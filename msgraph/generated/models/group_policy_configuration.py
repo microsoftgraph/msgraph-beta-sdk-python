@@ -1,35 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-group_policy_configuration_assignment = lazy_import('msgraph.generated.models.group_policy_configuration_assignment')
-group_policy_configuration_ingestion_type = lazy_import('msgraph.generated.models.group_policy_configuration_ingestion_type')
-group_policy_definition_value = lazy_import('msgraph.generated.models.group_policy_definition_value')
+if TYPE_CHECKING:
+    from . import entity, group_policy_configuration_assignment, group_policy_configuration_ingestion_type, group_policy_definition_value
+
+from . import entity
 
 class GroupPolicyConfiguration(entity.Entity):
     """
     The group policy configuration entity contains the configured values for one or more group policy definitions.
     """
-    @property
-    def assignments(self,) -> Optional[List[group_policy_configuration_assignment.GroupPolicyConfigurationAssignment]]:
-        """
-        Gets the assignments property value. The list of group assignments for the configuration.
-        Returns: Optional[List[group_policy_configuration_assignment.GroupPolicyConfigurationAssignment]]
-        """
-        return self._assignments
-    
-    @assignments.setter
-    def assignments(self,value: Optional[List[group_policy_configuration_assignment.GroupPolicyConfigurationAssignment]] = None) -> None:
-        """
-        Sets the assignments property value. The list of group assignments for the configuration.
-        Args:
-            value: Value to set for the assignments property.
-        """
-        self._assignments = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new groupPolicyConfiguration and sets the default values.
@@ -53,6 +35,23 @@ class GroupPolicyConfiguration(entity.Entity):
         self._policy_configuration_ingestion_type: Optional[group_policy_configuration_ingestion_type.GroupPolicyConfigurationIngestionType] = None
         # The list of scope tags for the configuration.
         self._role_scope_tag_ids: Optional[List[str]] = None
+    
+    @property
+    def assignments(self,) -> Optional[List[group_policy_configuration_assignment.GroupPolicyConfigurationAssignment]]:
+        """
+        Gets the assignments property value. The list of group assignments for the configuration.
+        Returns: Optional[List[group_policy_configuration_assignment.GroupPolicyConfigurationAssignment]]
+        """
+        return self._assignments
+    
+    @assignments.setter
+    def assignments(self,value: Optional[List[group_policy_configuration_assignment.GroupPolicyConfigurationAssignment]] = None) -> None:
+        """
+        Sets the assignments property value. The list of group assignments for the configuration.
+        Args:
+            value: Value to set for the assignments property.
+        """
+        self._assignments = value
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
@@ -139,7 +138,9 @@ class GroupPolicyConfiguration(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, group_policy_configuration_assignment, group_policy_configuration_ingestion_type, group_policy_definition_value
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(group_policy_configuration_assignment.GroupPolicyConfigurationAssignment)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "definitionValues": lambda n : setattr(self, 'definition_values', n.get_collection_of_object_values(group_policy_definition_value.GroupPolicyDefinitionValue)),

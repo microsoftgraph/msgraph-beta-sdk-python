@@ -1,28 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-teamwork_peripheral = lazy_import('msgraph.generated.models.teamwork_peripheral')
+if TYPE_CHECKING:
+    from . import teamwork_peripheral
 
 class TeamworkSpeakerConfiguration(AdditionalDataHolder, Parsable):
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new teamworkSpeakerConfiguration and sets the default values.
@@ -42,6 +25,23 @@ class TeamworkSpeakerConfiguration(AdditionalDataHolder, Parsable):
         self._odata_type: Optional[str] = None
         # The speakers property
         self._speakers: Optional[List[teamwork_peripheral.TeamworkPeripheral]] = None
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeamworkSpeakerConfiguration:
@@ -94,7 +94,9 @@ class TeamworkSpeakerConfiguration(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import teamwork_peripheral
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "defaultCommunicationSpeaker": lambda n : setattr(self, 'default_communication_speaker', n.get_object_value(teamwork_peripheral.TeamworkPeripheral)),
             "defaultSpeaker": lambda n : setattr(self, 'default_speaker', n.get_object_value(teamwork_peripheral.TeamworkPeripheral)),
             "isCommunicationSpeakerOptional": lambda n : setattr(self, 'is_communication_speaker_optional', n.get_bool_value()),

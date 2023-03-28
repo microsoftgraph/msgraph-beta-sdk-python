@@ -1,12 +1,28 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-key_typed_value_pair = lazy_import('msgraph.generated.models.key_typed_value_pair')
-single_sign_on_extension = lazy_import('msgraph.generated.models.single_sign_on_extension')
+if TYPE_CHECKING:
+    from . import key_typed_value_pair, single_sign_on_extension
+
+from . import single_sign_on_extension
 
 class RedirectSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtension):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new RedirectSingleSignOnExtension and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.redirectSingleSignOnExtension"
+        # Gets or sets a list of typed key-value pairs used to configure Credential-type profiles. This collection can contain a maximum of 500 elements.
+        self._configurations: Optional[List[key_typed_value_pair.KeyTypedValuePair]] = None
+        # Gets or sets the bundle ID of the app extension that performs SSO for the specified URLs.
+        self._extension_identifier: Optional[str] = None
+        # Gets or sets the team ID of the app extension that performs SSO for the specified URLs.
+        self._team_identifier: Optional[str] = None
+        # One or more URL prefixes of identity providers on whose behalf the app extension performs single sign-on. URLs must begin with http:// or https://. All URL prefixes must be unique for all profiles.
+        self._url_prefixes: Optional[List[str]] = None
+    
     @property
     def configurations(self,) -> Optional[List[key_typed_value_pair.KeyTypedValuePair]]:
         """
@@ -23,21 +39,6 @@ class RedirectSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
             value: Value to set for the configurations property.
         """
         self._configurations = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new RedirectSingleSignOnExtension and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.redirectSingleSignOnExtension"
-        # Gets or sets a list of typed key-value pairs used to configure Credential-type profiles. This collection can contain a maximum of 500 elements.
-        self._configurations: Optional[List[key_typed_value_pair.KeyTypedValuePair]] = None
-        # Gets or sets the bundle ID of the app extension that performs SSO for the specified URLs.
-        self._extension_identifier: Optional[str] = None
-        # Gets or sets the team ID of the app extension that performs SSO for the specified URLs.
-        self._team_identifier: Optional[str] = None
-        # One or more URL prefixes of identity providers on whose behalf the app extension performs single sign-on. URLs must begin with http:// or https://. All URL prefixes must be unique for all profiles.
-        self._url_prefixes: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RedirectSingleSignOnExtension:
@@ -73,7 +74,9 @@ class RedirectSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import key_typed_value_pair, single_sign_on_extension
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "configurations": lambda n : setattr(self, 'configurations', n.get_collection_of_object_values(key_typed_value_pair.KeyTypedValuePair)),
             "extensionIdentifier": lambda n : setattr(self, 'extension_identifier', n.get_str_value()),
             "teamIdentifier": lambda n : setattr(self, 'team_identifier', n.get_str_value()),

@@ -1,14 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-planner_category_descriptions = lazy_import('msgraph.generated.models.planner_category_descriptions')
-planner_delta = lazy_import('msgraph.generated.models.planner_delta')
-planner_plan_context_details_collection = lazy_import('msgraph.generated.models.planner_plan_context_details_collection')
-planner_user_ids = lazy_import('msgraph.generated.models.planner_user_ids')
+if TYPE_CHECKING:
+    from . import planner_category_descriptions, planner_delta, planner_plan_context_details_collection, planner_user_ids
+
+from . import planner_delta
 
 class PlannerPlanDetails(planner_delta.PlannerDelta):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new plannerPlanDetails and sets the default values.
+        """
+        super().__init__()
+        # An object that specifies the descriptions of the 25 categories that can be associated with tasks in the plan.
+        self._category_descriptions: Optional[planner_category_descriptions.PlannerCategoryDescriptions] = None
+        # A collection of additional information associated with plannerPlanContext entries that are defined for the plannerPlan container. Read-only.
+        self._context_details: Optional[planner_plan_context_details_collection.PlannerPlanContextDetailsCollection] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The set of user IDs that this plan is shared with. If you are using Microsoft 365 groups, use the groups API to manage group membership to share the group's plan. You can also add existing members of the group to this collection, although it is not required in order for them to access the plan owned by the group.
+        self._shared_with: Optional[planner_user_ids.PlannerUserIds] = None
+    
     @property
     def category_descriptions(self,) -> Optional[planner_category_descriptions.PlannerCategoryDescriptions]:
         """
@@ -25,20 +38,6 @@ class PlannerPlanDetails(planner_delta.PlannerDelta):
             value: Value to set for the category_descriptions property.
         """
         self._category_descriptions = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new plannerPlanDetails and sets the default values.
-        """
-        super().__init__()
-        # An object that specifies the descriptions of the 25 categories that can be associated with tasks in the plan.
-        self._category_descriptions: Optional[planner_category_descriptions.PlannerCategoryDescriptions] = None
-        # A collection of additional information associated with plannerPlanContext entries that are defined for the plannerPlan container. Read-only.
-        self._context_details: Optional[planner_plan_context_details_collection.PlannerPlanContextDetailsCollection] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The set of user IDs that this plan is shared with. If you are using Microsoft 365 groups, use the groups API to manage group membership to share the group's plan. You can also add existing members of the group to this collection, although it is not required in order for them to access the plan owned by the group.
-        self._shared_with: Optional[planner_user_ids.PlannerUserIds] = None
     
     @property
     def context_details(self,) -> Optional[planner_plan_context_details_collection.PlannerPlanContextDetailsCollection]:
@@ -74,7 +73,9 @@ class PlannerPlanDetails(planner_delta.PlannerDelta):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import planner_category_descriptions, planner_delta, planner_plan_context_details_collection, planner_user_ids
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "categoryDescriptions": lambda n : setattr(self, 'category_descriptions', n.get_object_value(planner_category_descriptions.PlannerCategoryDescriptions)),
             "contextDetails": lambda n : setattr(self, 'context_details', n.get_object_value(planner_plan_context_details_collection.PlannerPlanContextDetailsCollection)),
             "sharedWith": lambda n : setattr(self, 'shared_with', n.get_object_value(planner_user_ids.PlannerUserIds)),

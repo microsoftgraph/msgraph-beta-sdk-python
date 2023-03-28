@@ -1,13 +1,32 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-sign_in_status = lazy_import('msgraph.generated.models.sign_in_status')
+if TYPE_CHECKING:
+    from . import entity, sign_in_status
+
+from . import entity
 
 class ApplicationSignInDetailedSummary(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new ApplicationSignInDetailedSummary and sets the default values.
+        """
+        super().__init__()
+        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+        self._aggregated_event_date_time: Optional[datetime] = None
+        # Name of the application that the user signed in to.
+        self._app_display_name: Optional[str] = None
+        # ID of the application that the user signed in to.
+        self._app_id: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Count of sign-ins made by the application.
+        self._sign_in_count: Optional[int] = None
+        # Details of the sign-in status.
+        self._status: Optional[sign_in_status.SignInStatus] = None
+    
     @property
     def aggregated_event_date_time(self,) -> Optional[datetime]:
         """
@@ -59,24 +78,6 @@ class ApplicationSignInDetailedSummary(entity.Entity):
         """
         self._app_id = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new applicationSignInDetailedSummary and sets the default values.
-        """
-        super().__init__()
-        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        self._aggregated_event_date_time: Optional[datetime] = None
-        # Name of the application that the user signed in to.
-        self._app_display_name: Optional[str] = None
-        # ID of the application that the user signed in to.
-        self._app_id: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Count of sign-ins made by the application.
-        self._sign_in_count: Optional[int] = None
-        # Details of the sign-in status.
-        self._status: Optional[sign_in_status.SignInStatus] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ApplicationSignInDetailedSummary:
         """
@@ -94,7 +95,9 @@ class ApplicationSignInDetailedSummary(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, sign_in_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "aggregatedEventDateTime": lambda n : setattr(self, 'aggregated_event_date_time', n.get_datetime_value()),
             "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
             "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),

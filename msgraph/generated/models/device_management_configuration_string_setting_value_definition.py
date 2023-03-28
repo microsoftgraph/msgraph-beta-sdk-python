@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_configuration_setting_value_definition = lazy_import('msgraph.generated.models.device_management_configuration_setting_value_definition')
-device_management_configuration_string_format = lazy_import('msgraph.generated.models.device_management_configuration_string_format')
+if TYPE_CHECKING:
+    from . import device_management_configuration_setting_value_definition, device_management_configuration_string_format
+
+from . import device_management_configuration_setting_value_definition
 
 class DeviceManagementConfigurationStringSettingValueDefinition(device_management_configuration_setting_value_definition.DeviceManagementConfigurationSettingValueDefinition):
     def __init__(self,) -> None:
@@ -21,9 +22,9 @@ class DeviceManagementConfigurationStringSettingValueDefinition(device_managemen
         self._input_validation_schema: Optional[str] = None
         # Specifies whether the setting needs to be treated as a secret. Settings marked as yes will be encrypted in transit and at rest and will be displayed as asterisks when represented in the UX.
         self._is_secret: Optional[bool] = None
-        # Maximum length of string. Valid values 0 to 87516
+        # Maximum length of string
         self._maximum_length: Optional[int] = None
-        # Minimum length of string. Valid values 0 to 87516
+        # Minimum length of string
         self._minimum_length: Optional[int] = None
     
     @staticmethod
@@ -77,7 +78,9 @@ class DeviceManagementConfigurationStringSettingValueDefinition(device_managemen
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_configuration_setting_value_definition, device_management_configuration_string_format
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "fileTypes": lambda n : setattr(self, 'file_types', n.get_collection_of_primitive_values(str)),
             "format": lambda n : setattr(self, 'format', n.get_enum_value(device_management_configuration_string_format.DeviceManagementConfigurationStringFormat)),
             "inputValidationSchema": lambda n : setattr(self, 'input_validation_schema', n.get_str_value()),
@@ -126,7 +129,7 @@ class DeviceManagementConfigurationStringSettingValueDefinition(device_managemen
     @property
     def maximum_length(self,) -> Optional[int]:
         """
-        Gets the maximumLength property value. Maximum length of string. Valid values 0 to 87516
+        Gets the maximumLength property value. Maximum length of string
         Returns: Optional[int]
         """
         return self._maximum_length
@@ -134,7 +137,7 @@ class DeviceManagementConfigurationStringSettingValueDefinition(device_managemen
     @maximum_length.setter
     def maximum_length(self,value: Optional[int] = None) -> None:
         """
-        Sets the maximumLength property value. Maximum length of string. Valid values 0 to 87516
+        Sets the maximumLength property value. Maximum length of string
         Args:
             value: Value to set for the maximum_length property.
         """
@@ -143,7 +146,7 @@ class DeviceManagementConfigurationStringSettingValueDefinition(device_managemen
     @property
     def minimum_length(self,) -> Optional[int]:
         """
-        Gets the minimumLength property value. Minimum length of string. Valid values 0 to 87516
+        Gets the minimumLength property value. Minimum length of string
         Returns: Optional[int]
         """
         return self._minimum_length
@@ -151,7 +154,7 @@ class DeviceManagementConfigurationStringSettingValueDefinition(device_managemen
     @minimum_length.setter
     def minimum_length(self,value: Optional[int] = None) -> None:
         """
-        Sets the minimumLength property value. Minimum length of string. Valid values 0 to 87516
+        Sets the minimumLength property value. Minimum length of string
         Args:
             value: Value to set for the minimum_length property.
         """

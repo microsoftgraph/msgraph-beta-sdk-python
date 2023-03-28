@@ -1,12 +1,24 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-delivery_optimization_bandwidth = lazy_import('msgraph.generated.models.delivery_optimization_bandwidth')
-delivery_optimization_bandwidth_business_hours_limit = lazy_import('msgraph.generated.models.delivery_optimization_bandwidth_business_hours_limit')
+if TYPE_CHECKING:
+    from . import delivery_optimization_bandwidth, delivery_optimization_bandwidth_business_hours_limit
+
+from . import delivery_optimization_bandwidth
 
 class DeliveryOptimizationBandwidthHoursWithPercentage(delivery_optimization_bandwidth.DeliveryOptimizationBandwidth):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new DeliveryOptimizationBandwidthHoursWithPercentage and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.deliveryOptimizationBandwidthHoursWithPercentage"
+        # Background download percentage hours.
+        self._bandwidth_background_percentage_hours: Optional[delivery_optimization_bandwidth_business_hours_limit.DeliveryOptimizationBandwidthBusinessHoursLimit] = None
+        # Foreground download percentage hours.
+        self._bandwidth_foreground_percentage_hours: Optional[delivery_optimization_bandwidth_business_hours_limit.DeliveryOptimizationBandwidthBusinessHoursLimit] = None
+    
     @property
     def bandwidth_background_percentage_hours(self,) -> Optional[delivery_optimization_bandwidth_business_hours_limit.DeliveryOptimizationBandwidthBusinessHoursLimit]:
         """
@@ -41,17 +53,6 @@ class DeliveryOptimizationBandwidthHoursWithPercentage(delivery_optimization_ban
         """
         self._bandwidth_foreground_percentage_hours = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeliveryOptimizationBandwidthHoursWithPercentage and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deliveryOptimizationBandwidthHoursWithPercentage"
-        # Background download percentage hours.
-        self._bandwidth_background_percentage_hours: Optional[delivery_optimization_bandwidth_business_hours_limit.DeliveryOptimizationBandwidthBusinessHoursLimit] = None
-        # Foreground download percentage hours.
-        self._bandwidth_foreground_percentage_hours: Optional[delivery_optimization_bandwidth_business_hours_limit.DeliveryOptimizationBandwidthBusinessHoursLimit] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeliveryOptimizationBandwidthHoursWithPercentage:
         """
@@ -69,7 +70,9 @@ class DeliveryOptimizationBandwidthHoursWithPercentage(delivery_optimization_ban
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import delivery_optimization_bandwidth, delivery_optimization_bandwidth_business_hours_limit
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "bandwidthBackgroundPercentageHours": lambda n : setattr(self, 'bandwidth_background_percentage_hours', n.get_object_value(delivery_optimization_bandwidth_business_hours_limit.DeliveryOptimizationBandwidthBusinessHoursLimit)),
             "bandwidthForegroundPercentageHours": lambda n : setattr(self, 'bandwidth_foreground_percentage_hours', n.get_object_value(delivery_optimization_bandwidth_business_hours_limit.DeliveryOptimizationBandwidthBusinessHoursLimit)),
         }

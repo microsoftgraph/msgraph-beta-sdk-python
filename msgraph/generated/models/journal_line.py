@@ -1,13 +1,46 @@
 from __future__ import annotations
 from datetime import date, datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-account = lazy_import('msgraph.generated.models.account')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import account, entity
+
+from . import entity
 
 class JournalLine(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new journalLine and sets the default values.
+        """
+        super().__init__()
+        # The account property
+        self._account: Optional[account.Account] = None
+        # The accountId property
+        self._account_id: Optional[Guid] = None
+        # The accountNumber property
+        self._account_number: Optional[str] = None
+        # The amount property
+        self._amount: Optional[float] = None
+        # The comment property
+        self._comment: Optional[str] = None
+        # The description property
+        self._description: Optional[str] = None
+        # The documentNumber property
+        self._document_number: Optional[str] = None
+        # The externalDocumentNumber property
+        self._external_document_number: Optional[str] = None
+        # The journalDisplayName property
+        self._journal_display_name: Optional[str] = None
+        # The lastModifiedDateTime property
+        self._last_modified_date_time: Optional[datetime] = None
+        # The lineNumber property
+        self._line_number: Optional[int] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The postingDate property
+        self._posting_date: Optional[Date] = None
+    
     @property
     def account(self,) -> Optional[account.Account]:
         """
@@ -93,38 +126,6 @@ class JournalLine(entity.Entity):
         """
         self._comment = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new journalLine and sets the default values.
-        """
-        super().__init__()
-        # The account property
-        self._account: Optional[account.Account] = None
-        # The accountId property
-        self._account_id: Optional[Guid] = None
-        # The accountNumber property
-        self._account_number: Optional[str] = None
-        # The amount property
-        self._amount: Optional[float] = None
-        # The comment property
-        self._comment: Optional[str] = None
-        # The description property
-        self._description: Optional[str] = None
-        # The documentNumber property
-        self._document_number: Optional[str] = None
-        # The externalDocumentNumber property
-        self._external_document_number: Optional[str] = None
-        # The journalDisplayName property
-        self._journal_display_name: Optional[str] = None
-        # The lastModifiedDateTime property
-        self._last_modified_date_time: Optional[datetime] = None
-        # The lineNumber property
-        self._line_number: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The postingDate property
-        self._posting_date: Optional[Date] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> JournalLine:
         """
@@ -193,7 +194,9 @@ class JournalLine(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import account, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "account": lambda n : setattr(self, 'account', n.get_object_value(account.Account)),
             "accountId": lambda n : setattr(self, 'account_id', n.get_object_value(Guid)),
             "accountNumber": lambda n : setattr(self, 'account_number', n.get_str_value()),

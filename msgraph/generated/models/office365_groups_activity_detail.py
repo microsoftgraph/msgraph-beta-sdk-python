@@ -1,10 +1,12 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class Office365GroupsActivityDetail(entity.Entity):
     def __init__(self,) -> None:
@@ -46,9 +48,9 @@ class Office365GroupsActivityDetail(entity.Entity):
         self._share_point_site_storage_used_in_bytes: Optional[int] = None
         # The total number of files in SharePoint Group site.
         self._share_point_total_file_count: Optional[int] = None
-        # The teamsChannelMessagesCount property
+        # The number of channel messages in Teams team.
         self._teams_channel_messages_count: Optional[int] = None
-        # The teamsMeetingsOrganizedCount property
+        # The number of meetings organized in Teams team.
         self._teams_meetings_organized_count: Optional[int] = None
         # The number of messages liked in Yammer groups.
         self._yammer_liked_message_count: Optional[int] = None
@@ -142,7 +144,9 @@ class Office365GroupsActivityDetail(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "exchangeMailboxStorageUsedInBytes": lambda n : setattr(self, 'exchange_mailbox_storage_used_in_bytes', n.get_int_value()),
             "exchangeMailboxTotalItemCount": lambda n : setattr(self, 'exchange_mailbox_total_item_count', n.get_int_value()),
             "exchangeReceivedEmailCount": lambda n : setattr(self, 'exchange_received_email_count', n.get_int_value()),
@@ -407,7 +411,7 @@ class Office365GroupsActivityDetail(entity.Entity):
     @property
     def teams_channel_messages_count(self,) -> Optional[int]:
         """
-        Gets the teamsChannelMessagesCount property value. The teamsChannelMessagesCount property
+        Gets the teamsChannelMessagesCount property value. The number of channel messages in Teams team.
         Returns: Optional[int]
         """
         return self._teams_channel_messages_count
@@ -415,7 +419,7 @@ class Office365GroupsActivityDetail(entity.Entity):
     @teams_channel_messages_count.setter
     def teams_channel_messages_count(self,value: Optional[int] = None) -> None:
         """
-        Sets the teamsChannelMessagesCount property value. The teamsChannelMessagesCount property
+        Sets the teamsChannelMessagesCount property value. The number of channel messages in Teams team.
         Args:
             value: Value to set for the teams_channel_messages_count property.
         """
@@ -424,7 +428,7 @@ class Office365GroupsActivityDetail(entity.Entity):
     @property
     def teams_meetings_organized_count(self,) -> Optional[int]:
         """
-        Gets the teamsMeetingsOrganizedCount property value. The teamsMeetingsOrganizedCount property
+        Gets the teamsMeetingsOrganizedCount property value. The number of meetings organized in Teams team.
         Returns: Optional[int]
         """
         return self._teams_meetings_organized_count
@@ -432,7 +436,7 @@ class Office365GroupsActivityDetail(entity.Entity):
     @teams_meetings_organized_count.setter
     def teams_meetings_organized_count(self,value: Optional[int] = None) -> None:
         """
-        Sets the teamsMeetingsOrganizedCount property value. The teamsMeetingsOrganizedCount property
+        Sets the teamsMeetingsOrganizedCount property value. The number of meetings organized in Teams team.
         Args:
             value: Value to set for the teams_meetings_organized_count property.
         """

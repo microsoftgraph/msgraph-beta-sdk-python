@@ -1,12 +1,26 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-vpn_server = lazy_import('msgraph.generated.models.vpn_server')
+if TYPE_CHECKING:
+    from . import device_configuration, vpn_server, windows10_vpn_configuration, windows81_vpn_configuration, windows_phone81_vpn_configuration
+
+from . import device_configuration
 
 class WindowsVpnConfiguration(device_configuration.DeviceConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new WindowsVpnConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.windowsVpnConfiguration"
+        # Connection name displayed to the user.
+        self._connection_name: Optional[str] = None
+        # Custom XML commands that configures the VPN connection. (UTF8 encoded byte array)
+        self._custom_xml: Optional[bytes] = None
+        # List of VPN Servers on the network. Make sure end users can access these network locations. This collection can contain a maximum of 500 elements.
+        self._servers: Optional[List[vpn_server.VpnServer]] = None
+    
     @property
     def connection_name(self,) -> Optional[str]:
         """
@@ -24,19 +38,6 @@ class WindowsVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         self._connection_name = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsVpnConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsVpnConfiguration"
-        # Connection name displayed to the user.
-        self._connection_name: Optional[str] = None
-        # Custom XML commands that configures the VPN connection. (UTF8 encoded byte array)
-        self._custom_xml: Optional[bytes] = None
-        # List of VPN Servers on the network. Make sure end users can access these network locations. This collection can contain a maximum of 500 elements.
-        self._servers: Optional[List[vpn_server.VpnServer]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsVpnConfiguration:
         """
@@ -47,6 +48,21 @@ class WindowsVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.windows10VpnConfiguration":
+                from . import windows10_vpn_configuration
+
+                return windows10_vpn_configuration.Windows10VpnConfiguration()
+            if mapping_value == "#microsoft.graph.windows81VpnConfiguration":
+                from . import windows81_vpn_configuration
+
+                return windows81_vpn_configuration.Windows81VpnConfiguration()
+            if mapping_value == "#microsoft.graph.windowsPhone81VpnConfiguration":
+                from . import windows_phone81_vpn_configuration
+
+                return windows_phone81_vpn_configuration.WindowsPhone81VpnConfiguration()
         return WindowsVpnConfiguration()
     
     @property
@@ -71,7 +87,9 @@ class WindowsVpnConfiguration(device_configuration.DeviceConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_configuration, vpn_server, windows10_vpn_configuration, windows81_vpn_configuration, windows_phone81_vpn_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "connectionName": lambda n : setattr(self, 'connection_name', n.get_str_value()),
             "customXml": lambda n : setattr(self, 'custom_xml', n.get_bytes_value()),
             "servers": lambda n : setattr(self, 'servers', n.get_collection_of_object_values(vpn_server.VpnServer)),

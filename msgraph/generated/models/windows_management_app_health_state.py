@@ -1,11 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-health_state = lazy_import('msgraph.generated.models.health_state')
+if TYPE_CHECKING:
+    from . import entity, health_state
+
+from . import entity
 
 class WindowsManagementAppHealthState(entity.Entity):
     """
@@ -80,7 +81,9 @@ class WindowsManagementAppHealthState(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, health_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
             "deviceOSVersion": lambda n : setattr(self, 'device_o_s_version', n.get_str_value()),
             "healthState": lambda n : setattr(self, 'health_state', n.get_enum_value(health_state.HealthState)),

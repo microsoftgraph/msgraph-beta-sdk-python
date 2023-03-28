@@ -1,13 +1,28 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-applicable_content = lazy_import('msgraph.generated.models.windows_updates.applicable_content')
-updatable_asset = lazy_import('msgraph.generated.models.windows_updates.updatable_asset')
+if TYPE_CHECKING:
+    from . import applicable_content, updatable_asset
+    from .. import entity
+
+from .. import entity
 
 class DeploymentAudience(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new deploymentAudience and sets the default values.
+        """
+        super().__init__()
+        # Content eligible to deploy to devices in the audience. Not nullable. Read-only.
+        self._applicable_content: Optional[List[applicable_content.ApplicableContent]] = None
+        # Specifies the assets to exclude from the audience.
+        self._exclusions: Optional[List[updatable_asset.UpdatableAsset]] = None
+        # Specifies the assets to include in the audience.
+        self._members: Optional[List[updatable_asset.UpdatableAsset]] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def applicable_content(self,) -> Optional[List[applicable_content.ApplicableContent]]:
         """
@@ -24,20 +39,6 @@ class DeploymentAudience(entity.Entity):
             value: Value to set for the applicable_content property.
         """
         self._applicable_content = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deploymentAudience and sets the default values.
-        """
-        super().__init__()
-        # Content eligible to deploy to devices in the audience. Not nullable. Read-only.
-        self._applicable_content: Optional[List[applicable_content.ApplicableContent]] = None
-        # Specifies the assets to exclude from the audience.
-        self._exclusions: Optional[List[updatable_asset.UpdatableAsset]] = None
-        # Specifies the assets to include in the audience.
-        self._members: Optional[List[updatable_asset.UpdatableAsset]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeploymentAudience:
@@ -73,7 +74,10 @@ class DeploymentAudience(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import applicable_content, updatable_asset
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "applicableContent": lambda n : setattr(self, 'applicable_content', n.get_collection_of_object_values(applicable_content.ApplicableContent)),
             "exclusions": lambda n : setattr(self, 'exclusions', n.get_collection_of_object_values(updatable_asset.UpdatableAsset)),
             "members": lambda n : setattr(self, 'members', n.get_collection_of_object_values(updatable_asset.UpdatableAsset)),

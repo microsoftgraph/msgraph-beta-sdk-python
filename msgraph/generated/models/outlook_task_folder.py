@@ -1,31 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-multi_value_legacy_extended_property = lazy_import('msgraph.generated.models.multi_value_legacy_extended_property')
-outlook_task = lazy_import('msgraph.generated.models.outlook_task')
-single_value_legacy_extended_property = lazy_import('msgraph.generated.models.single_value_legacy_extended_property')
+if TYPE_CHECKING:
+    from . import entity, multi_value_legacy_extended_property, outlook_task, single_value_legacy_extended_property
+
+from . import entity
 
 class OutlookTaskFolder(entity.Entity):
-    @property
-    def change_key(self,) -> Optional[str]:
-        """
-        Gets the changeKey property value. The version of the task folder.
-        Returns: Optional[str]
-        """
-        return self._change_key
-    
-    @change_key.setter
-    def change_key(self,value: Optional[str] = None) -> None:
-        """
-        Sets the changeKey property value. The version of the task folder.
-        Args:
-            value: Value to set for the change_key property.
-        """
-        self._change_key = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new outlookTaskFolder and sets the default values.
@@ -48,6 +30,23 @@ class OutlookTaskFolder(entity.Entity):
         # The tasks in this task folder. Read-only. Nullable.
         self._tasks: Optional[List[outlook_task.OutlookTask]] = None
     
+    @property
+    def change_key(self,) -> Optional[str]:
+        """
+        Gets the changeKey property value. The version of the task folder.
+        Returns: Optional[str]
+        """
+        return self._change_key
+    
+    @change_key.setter
+    def change_key(self,value: Optional[str] = None) -> None:
+        """
+        Sets the changeKey property value. The version of the task folder.
+        Args:
+            value: Value to set for the change_key property.
+        """
+        self._change_key = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OutlookTaskFolder:
         """
@@ -65,7 +64,9 @@ class OutlookTaskFolder(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, multi_value_legacy_extended_property, outlook_task, single_value_legacy_extended_property
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "changeKey": lambda n : setattr(self, 'change_key', n.get_str_value()),
             "isDefaultFolder": lambda n : setattr(self, 'is_default_folder', n.get_bool_value()),
             "multiValueExtendedProperties": lambda n : setattr(self, 'multi_value_extended_properties', n.get_collection_of_object_values(multi_value_legacy_extended_property.MultiValueLegacyExtendedProperty)),

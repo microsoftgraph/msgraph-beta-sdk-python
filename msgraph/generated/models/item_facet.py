@@ -1,33 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-allowed_audiences = lazy_import('msgraph.generated.models.allowed_audiences')
-entity = lazy_import('msgraph.generated.models.entity')
-identity_set = lazy_import('msgraph.generated.models.identity_set')
-inference_data = lazy_import('msgraph.generated.models.inference_data')
-person_data_sources = lazy_import('msgraph.generated.models.person_data_sources')
+if TYPE_CHECKING:
+    from . import allowed_audiences, educational_activity, entity, identity_set, inference_data, item_address, item_email, item_patent, item_phone, item_publication, language_proficiency, person_annotation, person_annual_event, person_award, person_certification, person_data_sources, person_interest, person_name, person_responsibility, person_website, project_participation, skill_proficiency, user_account_information, web_account, work_position
+
+from . import entity
 
 class ItemFacet(entity.Entity):
-    @property
-    def allowed_audiences(self,) -> Optional[allowed_audiences.AllowedAudiences]:
-        """
-        Gets the allowedAudiences property value. The audiences that are able to see the values contained within the associated entity. Possible values are: me, family, contacts, groupMembers, organization, federatedOrganizations, everyone, unknownFutureValue.
-        Returns: Optional[allowed_audiences.AllowedAudiences]
-        """
-        return self._allowed_audiences
-    
-    @allowed_audiences.setter
-    def allowed_audiences(self,value: Optional[allowed_audiences.AllowedAudiences] = None) -> None:
-        """
-        Sets the allowedAudiences property value. The audiences that are able to see the values contained within the associated entity. Possible values are: me, family, contacts, groupMembers, organization, federatedOrganizations, everyone, unknownFutureValue.
-        Args:
-            value: Value to set for the allowed_audiences property.
-        """
-        self._allowed_audiences = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new itemFacet and sets the default values.
@@ -51,6 +32,23 @@ class ItemFacet(entity.Entity):
         self.odata_type: Optional[str] = None
         # Where the values within an entity originated if synced from another service.
         self._source: Optional[person_data_sources.PersonDataSources] = None
+    
+    @property
+    def allowed_audiences(self,) -> Optional[allowed_audiences.AllowedAudiences]:
+        """
+        Gets the allowedAudiences property value. The audiences that are able to see the values contained within the associated entity. Possible values are: me, family, contacts, groupMembers, organization, federatedOrganizations, everyone, unknownFutureValue.
+        Returns: Optional[allowed_audiences.AllowedAudiences]
+        """
+        return self._allowed_audiences
+    
+    @allowed_audiences.setter
+    def allowed_audiences(self,value: Optional[allowed_audiences.AllowedAudiences] = None) -> None:
+        """
+        Sets the allowedAudiences property value. The audiences that are able to see the values contained within the associated entity. Possible values are: me, family, contacts, groupMembers, organization, federatedOrganizations, everyone, unknownFutureValue.
+        Args:
+            value: Value to set for the allowed_audiences property.
+        """
+        self._allowed_audiences = value
     
     @property
     def created_by(self,) -> Optional[identity_set.IdentitySet]:
@@ -96,6 +94,89 @@ class ItemFacet(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.educationalActivity":
+                from . import educational_activity
+
+                return educational_activity.EducationalActivity()
+            if mapping_value == "#microsoft.graph.itemAddress":
+                from . import item_address
+
+                return item_address.ItemAddress()
+            if mapping_value == "#microsoft.graph.itemEmail":
+                from . import item_email
+
+                return item_email.ItemEmail()
+            if mapping_value == "#microsoft.graph.itemPatent":
+                from . import item_patent
+
+                return item_patent.ItemPatent()
+            if mapping_value == "#microsoft.graph.itemPhone":
+                from . import item_phone
+
+                return item_phone.ItemPhone()
+            if mapping_value == "#microsoft.graph.itemPublication":
+                from . import item_publication
+
+                return item_publication.ItemPublication()
+            if mapping_value == "#microsoft.graph.languageProficiency":
+                from . import language_proficiency
+
+                return language_proficiency.LanguageProficiency()
+            if mapping_value == "#microsoft.graph.personAnnotation":
+                from . import person_annotation
+
+                return person_annotation.PersonAnnotation()
+            if mapping_value == "#microsoft.graph.personAnnualEvent":
+                from . import person_annual_event
+
+                return person_annual_event.PersonAnnualEvent()
+            if mapping_value == "#microsoft.graph.personAward":
+                from . import person_award
+
+                return person_award.PersonAward()
+            if mapping_value == "#microsoft.graph.personCertification":
+                from . import person_certification
+
+                return person_certification.PersonCertification()
+            if mapping_value == "#microsoft.graph.personInterest":
+                from . import person_interest
+
+                return person_interest.PersonInterest()
+            if mapping_value == "#microsoft.graph.personName":
+                from . import person_name
+
+                return person_name.PersonName()
+            if mapping_value == "#microsoft.graph.personResponsibility":
+                from . import person_responsibility
+
+                return person_responsibility.PersonResponsibility()
+            if mapping_value == "#microsoft.graph.personWebsite":
+                from . import person_website
+
+                return person_website.PersonWebsite()
+            if mapping_value == "#microsoft.graph.projectParticipation":
+                from . import project_participation
+
+                return project_participation.ProjectParticipation()
+            if mapping_value == "#microsoft.graph.skillProficiency":
+                from . import skill_proficiency
+
+                return skill_proficiency.SkillProficiency()
+            if mapping_value == "#microsoft.graph.userAccountInformation":
+                from . import user_account_information
+
+                return user_account_information.UserAccountInformation()
+            if mapping_value == "#microsoft.graph.webAccount":
+                from . import web_account
+
+                return web_account.WebAccount()
+            if mapping_value == "#microsoft.graph.workPosition":
+                from . import work_position
+
+                return work_position.WorkPosition()
         return ItemFacet()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -103,7 +184,9 @@ class ItemFacet(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import allowed_audiences, educational_activity, entity, identity_set, inference_data, item_address, item_email, item_patent, item_phone, item_publication, language_proficiency, person_annotation, person_annual_event, person_award, person_certification, person_data_sources, person_interest, person_name, person_responsibility, person_website, project_participation, skill_proficiency, user_account_information, web_account, work_position
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowedAudiences": lambda n : setattr(self, 'allowed_audiences', n.get_enum_value(allowed_audiences.AllowedAudiences)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),

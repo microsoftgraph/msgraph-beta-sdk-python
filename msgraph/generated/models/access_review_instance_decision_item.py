@@ -1,19 +1,56 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-access_review_instance = lazy_import('msgraph.generated.models.access_review_instance')
-access_review_instance_decision_item_resource = lazy_import('msgraph.generated.models.access_review_instance_decision_item_resource')
-access_review_instance_decision_item_target = lazy_import('msgraph.generated.models.access_review_instance_decision_item_target')
-decision_item_principal_resource_membership = lazy_import('msgraph.generated.models.decision_item_principal_resource_membership')
-entity = lazy_import('msgraph.generated.models.entity')
-governance_insight = lazy_import('msgraph.generated.models.governance_insight')
-identity = lazy_import('msgraph.generated.models.identity')
-user_identity = lazy_import('msgraph.generated.models.user_identity')
+if TYPE_CHECKING:
+    from . import access_review_instance, access_review_instance_decision_item_resource, access_review_instance_decision_item_target, decision_item_principal_resource_membership, entity, governance_insight, identity, user_identity
+
+from . import entity
 
 class AccessReviewInstanceDecisionItem(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new accessReviewInstanceDecisionItem and sets the default values.
+        """
+        super().__init__()
+        # The identifier of the accessReviewInstance parent. Supports $select. Read-only.
+        self._access_review_id: Optional[str] = None
+        # The identifier of the user who applied the decision. 00000000-0000-0000-0000-000000000000 if the assigned reviewer hasn't applied the decision or it was automatically applied. Read-only.
+        self._applied_by: Optional[user_identity.UserIdentity] = None
+        # The timestamp when the approval decision was applied. The DatetimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.  Supports $select. Read-only.
+        self._applied_date_time: Optional[datetime] = None
+        # The result of applying the decision. Possible values: New, AppliedSuccessfully, AppliedWithUnknownFailure, AppliedSuccessfullyButObjectNotFound and ApplyNotSupported. Supports $select, $orderby, and $filter (eq only). Read-only.
+        self._apply_result: Optional[str] = None
+        # Result of the review. Possible values: Approve, Deny, NotReviewed, or DontKnow. Supports $select, $orderby, and $filter (eq only).
+        self._decision: Optional[str] = None
+        # Insights are recommendations to reviewers on whether to approve or deny a decision. There can be multiple insights associated with an accessReviewInstanceDecisionItem.
+        self._insights: Optional[List[governance_insight.GovernanceInsight]] = None
+        # There is exactly one accessReviewInstance associated with each decision. The instance is the parent of the decision item, representing the recurrence of the access review the decision is made on.
+        self._instance: Optional[access_review_instance.AccessReviewInstance] = None
+        # Justification left by the reviewer when they made the decision.
+        self._justification: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Every decision item in an access review represents a principal's access to a resource. This property represents details of the principal. For example, if a decision item represents access of User 'Bob' to Group 'Sales' - The principal is 'Bob' and the resource is 'Sales'. Principals can be of two types - userIdentity and servicePrincipalIdentity. Supports $select. Read-only.
+        self._principal: Optional[identity.Identity] = None
+        # Link to the principal object. For example: https://graph.microsoft.com/v1.0/users/a6c7aecb-cbfd-4763-87ef-e91b4bd509d9. Read-only.
+        self._principal_link: Optional[str] = None
+        # Every decision item in an access review represents a principal's membership to a resource. This property provides the details of the membership. For example, whether the principal has direct access or indirect access to the resource. Supports $select. Read-only.
+        self._principal_resource_membership: Optional[decision_item_principal_resource_membership.DecisionItemPrincipalResourceMembership] = None
+        # A system-generated recommendation for the approval decision based off last interactive sign-in to tenant. Recommend approve if sign-in is within thirty days of start of review. Recommend deny if sign-in is greater than thirty days of start of review. Recommendation not available otherwise. Possible values: Approve, Deny, or NoInfoAvailable. Supports $select, $orderby, and $filter (eq only). Read-only.
+        self._recommendation: Optional[str] = None
+        # Every decision item in an access review represents a principal's access to a resource. This property represents details of the resource. For example, if a decision item represents access of User 'Bob' to Group 'Sales' - The principal is Bob and the resource is 'Sales'. Resources can be of multiple types. See accessReviewInstanceDecisionItemResource. Read-only.
+        self._resource: Optional[access_review_instance_decision_item_resource.AccessReviewInstanceDecisionItemResource] = None
+        # A link to the resource. For example, https://graph.microsoft.com/v1.0/servicePrincipals/c86300f3-8695-4320-9f6e-32a2555f5ff8. Supports $select. Read-only.
+        self._resource_link: Optional[str] = None
+        # The identifier of the reviewer. 00000000-0000-0000-0000-000000000000 if the assigned reviewer hasn't reviewed. Supports $select. Read-only.
+        self._reviewed_by: Optional[user_identity.UserIdentity] = None
+        # The timestamp when the review decision occurred. Supports $select. Read-only.
+        self._reviewed_date_time: Optional[datetime] = None
+        # The target of this specific decision. Decision targets can be of different types – each one with its own specific properties. See accessReviewInstanceDecisionItemTarget. Read-only.  This property has been replaced by the principal and resource properties in v1.0.
+        self._target: Optional[access_review_instance_decision_item_target.AccessReviewInstanceDecisionItemTarget] = None
+    
     @property
     def access_review_id(self,) -> Optional[str]:
         """
@@ -82,48 +119,6 @@ class AccessReviewInstanceDecisionItem(entity.Entity):
         """
         self._apply_result = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new accessReviewInstanceDecisionItem and sets the default values.
-        """
-        super().__init__()
-        # The identifier of the accessReviewInstance parent. Supports $select. Read-only.
-        self._access_review_id: Optional[str] = None
-        # The identifier of the user who applied the decision. 00000000-0000-0000-0000-000000000000 if the assigned reviewer hasn't applied the decision or it was automatically applied. Read-only.
-        self._applied_by: Optional[user_identity.UserIdentity] = None
-        # The timestamp when the approval decision was applied. The DatetimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.  Supports $select. Read-only.
-        self._applied_date_time: Optional[datetime] = None
-        # The result of applying the decision. Possible values: New, AppliedSuccessfully, AppliedWithUnknownFailure, AppliedSuccessfullyButObjectNotFound and ApplyNotSupported. Supports $select, $orderby, and $filter (eq only). Read-only.
-        self._apply_result: Optional[str] = None
-        # Result of the review. Possible values: Approve, Deny, NotReviewed, or DontKnow. Supports $select, $orderby, and $filter (eq only).
-        self._decision: Optional[str] = None
-        # Insights are recommendations to reviewers on whether to approve or deny a decision. There can be multiple insights associated with an accessReviewInstanceDecisionItem.
-        self._insights: Optional[List[governance_insight.GovernanceInsight]] = None
-        # There is exactly one accessReviewInstance associated with each decision. The instance is the parent of the decision item, representing the recurrence of the access review the decision is made on.
-        self._instance: Optional[access_review_instance.AccessReviewInstance] = None
-        # Justification left by the reviewer when they made the decision.
-        self._justification: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Every decision item in an access review represents a principal's access to a resource. This property represents details of the principal. For example, if a decision item represents access of User 'Bob' to Group 'Sales' - The principal is 'Bob' and the resource is 'Sales'. Principals can be of two types - userIdentity and servicePrincipalIdentity. Supports $select. Read-only.
-        self._principal: Optional[identity.Identity] = None
-        # Link to the principal object. For example: https://graph.microsoft.com/v1.0/users/a6c7aecb-cbfd-4763-87ef-e91b4bd509d9. Read-only.
-        self._principal_link: Optional[str] = None
-        # Every decision item in an access review represents a principal's membership to a resource. This property provides the details of the membership. For example, whether the principal has direct access or indirect access to the resource. Supports $select. Read-only.
-        self._principal_resource_membership: Optional[decision_item_principal_resource_membership.DecisionItemPrincipalResourceMembership] = None
-        # A system-generated recommendation for the approval decision based off last interactive sign-in to tenant. Recommend approve if sign-in is within thirty days of start of review. Recommend deny if sign-in is greater than thirty days of start of review. Recommendation not available otherwise. Possible values: Approve, Deny, or NoInfoAvailable. Supports $select, $orderby, and $filter (eq only). Read-only.
-        self._recommendation: Optional[str] = None
-        # Every decision item in an access review represents a principal's access to a resource. This property represents details of the resource. For example, if a decision item represents access of User 'Bob' to Group 'Sales' - The principal is Bob and the resource is 'Sales'. Resources can be of multiple types. See accessReviewInstanceDecisionItemResource. Read-only.
-        self._resource: Optional[access_review_instance_decision_item_resource.AccessReviewInstanceDecisionItemResource] = None
-        # A link to the resource. For example, https://graph.microsoft.com/v1.0/servicePrincipals/c86300f3-8695-4320-9f6e-32a2555f5ff8. Supports $select. Read-only.
-        self._resource_link: Optional[str] = None
-        # The identifier of the reviewer. 00000000-0000-0000-0000-000000000000 if the assigned reviewer hasn't reviewed. Supports $select. Read-only.
-        self._reviewed_by: Optional[user_identity.UserIdentity] = None
-        # The timestamp when the review decision occurred. Supports $select. Read-only.
-        self._reviewed_date_time: Optional[datetime] = None
-        # The target of this specific decision. Decision targets can be of different types – each one with its own specific properties. See accessReviewInstanceDecisionItemTarget. Read-only.  This property has been replaced by the principal and resource properties in v1.0.
-        self._target: Optional[access_review_instance_decision_item_target.AccessReviewInstanceDecisionItemTarget] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccessReviewInstanceDecisionItem:
         """
@@ -158,7 +153,9 @@ class AccessReviewInstanceDecisionItem(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import access_review_instance, access_review_instance_decision_item_resource, access_review_instance_decision_item_target, decision_item_principal_resource_membership, entity, governance_insight, identity, user_identity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accessReviewId": lambda n : setattr(self, 'access_review_id', n.get_str_value()),
             "appliedBy": lambda n : setattr(self, 'applied_by', n.get_object_value(user_identity.UserIdentity)),
             "appliedDateTime": lambda n : setattr(self, 'applied_date_time', n.get_datetime_value()),

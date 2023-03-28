@@ -1,19 +1,62 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-action_step = lazy_import('msgraph.generated.models.action_step')
-entity = lazy_import('msgraph.generated.models.entity')
-impacted_resource = lazy_import('msgraph.generated.models.impacted_resource')
-recommendation_category = lazy_import('msgraph.generated.models.recommendation_category')
-recommendation_feature_areas = lazy_import('msgraph.generated.models.recommendation_feature_areas')
-recommendation_priority = lazy_import('msgraph.generated.models.recommendation_priority')
-recommendation_status = lazy_import('msgraph.generated.models.recommendation_status')
-recommendation_type = lazy_import('msgraph.generated.models.recommendation_type')
+if TYPE_CHECKING:
+    from . import action_step, entity, impacted_resource, recommendation, recommendation_category, recommendation_feature_areas, recommendation_priority, recommendation_status, recommendation_type
+
+from . import entity
 
 class RecommendationBase(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new recommendationBase and sets the default values.
+        """
+        super().__init__()
+        # List of actions to take to complete a recommendation.
+        self._action_steps: Optional[List[action_step.ActionStep]] = None
+        # An explanation of why completing the recommendation will benefit you. Corresponds to the Value section of a recommendation shown in the Azure AD portal.
+        self._benefits: Optional[str] = None
+        # The category property
+        self._category: Optional[recommendation_category.RecommendationCategory] = None
+        # The date and time when the recommendation was detected as applicable to your directory.
+        self._created_date_time: Optional[datetime] = None
+        # The number of points the tenant has attained. Only applies to recommendations with category set to identitySecureScore.
+        self._current_score: Optional[float] = None
+        # The title of the recommendation.
+        self._display_name: Optional[str] = None
+        # The directory feature that the recommendation is related to.
+        self._feature_areas: Optional[List[recommendation_feature_areas.RecommendationFeatureAreas]] = None
+        # The future date and time when a recommendation should be completed.
+        self._impact_start_date_time: Optional[datetime] = None
+        # Indicates the scope of impact of a recommendation. Tenant level indicates that the recommendation impacts the whole tenant. Other possible values include users, applications.
+        self._impact_type: Optional[str] = None
+        # The list of directory objects associated with the recommendation.
+        self._impacted_resources: Optional[List[impacted_resource.ImpactedResource]] = None
+        # Describes why a recommendation uniquely applies to your directory. Corresponds to the Description section of a recommendation shown in the Azure AD portal.
+        self._insights: Optional[str] = None
+        # The most recent date and time a recommendation was deemed applicable to your directory.
+        self._last_checked_date_time: Optional[datetime] = None
+        # Name of the user who last updated the status of the recommendation.
+        self._last_modified_by: Optional[str] = None
+        # The date and time the status of a recommendation was last updated.
+        self._last_modified_date_time: Optional[datetime] = None
+        # The maximum number of points attainable. Only applies to recommendations with category set to identitySecureScore.
+        self._max_score: Optional[float] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The future date and time when the status of a postponed recommendation will be active again.
+        self._postpone_until_date_time: Optional[datetime] = None
+        # The priority property
+        self._priority: Optional[recommendation_priority.RecommendationPriority] = None
+        # Friendly shortname to identify the recommendation. The possible values are: adfsAppsMigration, enableDesktopSSO, enablePHS, enableProvisioning, switchFromPerUserMFA, tenantMFA, thirdPartyApps, turnOffPerUserMFA, useAuthenticatorApp, useMyApps, staleApps, staleAppCreds, applicationCredentialExpiry, servicePrincipalKeyExpiry, adminMFAV2, blockLegacyAuthentication, integratedApps, mfaRegistrationV2, pwagePolicyNew, passwordHashSync, oneAdmin, roleOverlap, selfServicePasswordReset, signinRiskPolicy, userRiskPolicy, verifyAppPublisher, privateLinkForAAD, appRoleAssignmentsGroups, appRoleAssignmentsUsers, managedIdentity, overprivilegedApps, unknownFutureValue.
+        self._recommendation_type: Optional[recommendation_type.RecommendationType] = None
+        # Description of the impact on users of the remediation. Only applies to recommendations with category set to identitySecureScore.
+        self._remediation_impact: Optional[str] = None
+        # The status property
+        self._status: Optional[recommendation_status.RecommendationStatus] = None
+    
     @property
     def action_steps(self,) -> Optional[List[action_step.ActionStep]]:
         """
@@ -65,54 +108,6 @@ class RecommendationBase(entity.Entity):
         """
         self._category = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new recommendationBase and sets the default values.
-        """
-        super().__init__()
-        # List of actions to take to complete a recommendation.
-        self._action_steps: Optional[List[action_step.ActionStep]] = None
-        # An explanation of why completing the recommendation will benefit you. Corresponds to the Value section of a recommendation shown in the Azure AD portal.
-        self._benefits: Optional[str] = None
-        # The category property
-        self._category: Optional[recommendation_category.RecommendationCategory] = None
-        # The date and time when the recommendation was detected as applicable to your directory.
-        self._created_date_time: Optional[datetime] = None
-        # The number of points the tenant has attained. Only applies to recommendations with category set to identitySecureScore.
-        self._current_score: Optional[float] = None
-        # The title of the recommendation.
-        self._display_name: Optional[str] = None
-        # The directory feature that the recommendation is related to.
-        self._feature_areas: Optional[List[recommendation_feature_areas.RecommendationFeatureAreas]] = None
-        # The future date and time when a recommendation should be completed.
-        self._impact_start_date_time: Optional[datetime] = None
-        # Indicates the scope of impact of a recommendation. Tenant level indicates that the recommendation impacts the whole tenant. Other possible values include users, applications.
-        self._impact_type: Optional[str] = None
-        # The list of directory objects associated with the recommendation.
-        self._impacted_resources: Optional[List[impacted_resource.ImpactedResource]] = None
-        # Describes why a recommendation uniquely applies to your directory. Corresponds to the Description section of a recommendation shown in the Azure AD portal.
-        self._insights: Optional[str] = None
-        # The most recent date and time a recommendation was deemed applicable to your directory.
-        self._last_checked_date_time: Optional[datetime] = None
-        # Name of the user who last updated the status of the recommendation.
-        self._last_modified_by: Optional[str] = None
-        # The date and time the status of a recommendation was last updated.
-        self._last_modified_date_time: Optional[datetime] = None
-        # The maximum number of points attainable. Only applies to recommendations with category set to identitySecureScore.
-        self._max_score: Optional[float] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The future date and time when the status of a postponed recommendation will be active again.
-        self._postpone_until_date_time: Optional[datetime] = None
-        # The priority property
-        self._priority: Optional[recommendation_priority.RecommendationPriority] = None
-        # Friendly shortname to identify the recommendation. The possible values are: adfsAppsMigration, enableDesktopSSO, enablePHS, enableProvisioning, switchFromPerUserMFA, tenantMFA, thirdPartyApps, turnOffPerUserMFA, useAuthenticatorApp, useMyApps, staleApps, staleAppCreds, applicationCredentialExpiry, servicePrincipalKeyExpiry, adminMFAV2, blockLegacyAuthentication, integratedApps, mfaRegistrationV2, pwagePolicyNew, passwordHashSync, oneAdmin, roleOverlap, selfServicePasswordReset, signinRiskPolicy, userRiskPolicy, verifyAppPublisher, privateLinkForAAD, appRoleAssignmentsGroups, appRoleAssignmentsUsers, managedIdentity, overprivilegedApps, unknownFutureValue.
-        self._recommendation_type: Optional[recommendation_type.RecommendationType] = None
-        # Description of the impact on users of the remediation. Only applies to recommendations with category set to identitySecureScore.
-        self._remediation_impact: Optional[str] = None
-        # The status property
-        self._status: Optional[recommendation_status.RecommendationStatus] = None
-    
     @property
     def created_date_time(self,) -> Optional[datetime]:
         """
@@ -140,6 +135,13 @@ class RecommendationBase(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.recommendation":
+                from . import recommendation
+
+                return recommendation.Recommendation()
         return RecommendationBase()
     
     @property
@@ -198,7 +200,9 @@ class RecommendationBase(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import action_step, entity, impacted_resource, recommendation, recommendation_category, recommendation_feature_areas, recommendation_priority, recommendation_status, recommendation_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "actionSteps": lambda n : setattr(self, 'action_steps', n.get_collection_of_object_values(action_step.ActionStep)),
             "benefits": lambda n : setattr(self, 'benefits', n.get_str_value()),
             "category": lambda n : setattr(self, 'category', n.get_enum_value(recommendation_category.RecommendationCategory)),

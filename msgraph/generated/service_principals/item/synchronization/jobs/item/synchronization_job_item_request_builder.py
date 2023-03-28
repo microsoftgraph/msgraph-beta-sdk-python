@@ -7,72 +7,23 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-synchronization_job = lazy_import('msgraph.generated.models.synchronization_job')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-pause_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.pause.pause_request_builder')
-provision_on_demand_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.provision_on_demand.provision_on_demand_request_builder')
-restart_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.restart.restart_request_builder')
-schema_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.schema.schema_request_builder')
-start_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.start.start_request_builder')
-stop_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.stop.stop_request_builder')
-validate_credentials_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.validate_credentials.validate_credentials_request_builder')
+if TYPE_CHECKING:
+    from ......models import synchronization_job
+    from ......models.o_data_errors import o_data_error
+    from .pause import pause_request_builder
+    from .provision_on_demand import provision_on_demand_request_builder
+    from .restart import restart_request_builder
+    from .schema import schema_request_builder
+    from .start import start_request_builder
+    from .stop import stop_request_builder
+    from .validate_credentials import validate_credentials_request_builder
 
 class SynchronizationJobItemRequestBuilder():
     """
     Provides operations to manage the jobs property of the microsoft.graph.synchronization entity.
     """
-    @property
-    def pause(self) -> pause_request_builder.PauseRequestBuilder:
-        """
-        Provides operations to call the pause method.
-        """
-        return pause_request_builder.PauseRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def provision_on_demand(self) -> provision_on_demand_request_builder.ProvisionOnDemandRequestBuilder:
-        """
-        Provides operations to call the provisionOnDemand method.
-        """
-        return provision_on_demand_request_builder.ProvisionOnDemandRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def restart(self) -> restart_request_builder.RestartRequestBuilder:
-        """
-        Provides operations to call the restart method.
-        """
-        return restart_request_builder.RestartRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def schema(self) -> schema_request_builder.SchemaRequestBuilder:
-        """
-        Provides operations to manage the schema property of the microsoft.graph.synchronizationJob entity.
-        """
-        return schema_request_builder.SchemaRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def start(self) -> start_request_builder.StartRequestBuilder:
-        """
-        Provides operations to call the start method.
-        """
-        return start_request_builder.StartRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def stop(self) -> stop_request_builder.StopRequestBuilder:
-        """
-        Provides operations to call the stop method.
-        """
-        return stop_request_builder.StopRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def validate_credentials(self) -> validate_credentials_request_builder.ValidateCredentialsRequestBuilder:
-        """
-        Provides operations to call the validateCredentials method.
-        """
-        return validate_credentials_request_builder.ValidateCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new SynchronizationJobItemRequestBuilder and sets the default values.
@@ -100,6 +51,8 @@ class SynchronizationJobItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -118,12 +71,16 @@ class SynchronizationJobItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import synchronization_job
+
         return await self.request_adapter.send_async(request_info, synchronization_job.SynchronizationJob, error_mapping)
     
     async def patch(self,body: Optional[synchronization_job.SynchronizationJob] = None, request_configuration: Optional[SynchronizationJobItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[synchronization_job.SynchronizationJob]:
@@ -139,12 +96,16 @@ class SynchronizationJobItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import synchronization_job
+
         return await self.request_adapter.send_async(request_info, synchronization_job.SynchronizationJob, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SynchronizationJobItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -202,6 +163,69 @@ class SynchronizationJobItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def pause(self) -> pause_request_builder.PauseRequestBuilder:
+        """
+        Provides operations to call the pause method.
+        """
+        from .pause import pause_request_builder
+
+        return pause_request_builder.PauseRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def provision_on_demand(self) -> provision_on_demand_request_builder.ProvisionOnDemandRequestBuilder:
+        """
+        Provides operations to call the provisionOnDemand method.
+        """
+        from .provision_on_demand import provision_on_demand_request_builder
+
+        return provision_on_demand_request_builder.ProvisionOnDemandRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def restart(self) -> restart_request_builder.RestartRequestBuilder:
+        """
+        Provides operations to call the restart method.
+        """
+        from .restart import restart_request_builder
+
+        return restart_request_builder.RestartRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def schema(self) -> schema_request_builder.SchemaRequestBuilder:
+        """
+        Provides operations to manage the schema property of the microsoft.graph.synchronizationJob entity.
+        """
+        from .schema import schema_request_builder
+
+        return schema_request_builder.SchemaRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def start(self) -> start_request_builder.StartRequestBuilder:
+        """
+        Provides operations to call the start method.
+        """
+        from .start import start_request_builder
+
+        return start_request_builder.StartRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def stop(self) -> stop_request_builder.StopRequestBuilder:
+        """
+        Provides operations to call the stop method.
+        """
+        from .stop import stop_request_builder
+
+        return stop_request_builder.StopRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def validate_credentials(self) -> validate_credentials_request_builder.ValidateCredentialsRequestBuilder:
+        """
+        Provides operations to call the validateCredentials method.
+        """
+        from .validate_credentials import validate_credentials_request_builder
+
+        return validate_credentials_request_builder.ValidateCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class SynchronizationJobItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -219,12 +243,6 @@ class SynchronizationJobItemRequestBuilder():
         """
         Performs synchronization by periodically running in the background, polling for changes in one directory, and pushing them to another directory.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -240,6 +258,12 @@ class SynchronizationJobItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class SynchronizationJobItemRequestBuilderGetRequestConfiguration():

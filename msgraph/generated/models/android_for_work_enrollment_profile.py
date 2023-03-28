@@ -1,33 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-mime_content = lazy_import('msgraph.generated.models.mime_content')
+if TYPE_CHECKING:
+    from . import entity, mime_content
+
+from . import entity
 
 class AndroidForWorkEnrollmentProfile(entity.Entity):
     """
     Enrollment Profile used to enroll COSU devices using Google's Cloud Management.
     """
-    @property
-    def account_id(self,) -> Optional[str]:
-        """
-        Gets the accountId property value. Tenant GUID the enrollment profile belongs to.
-        Returns: Optional[str]
-        """
-        return self._account_id
-    
-    @account_id.setter
-    def account_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the accountId property value. Tenant GUID the enrollment profile belongs to.
-        Args:
-            value: Value to set for the account_id property.
-        """
-        self._account_id = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new androidForWorkEnrollmentProfile and sets the default values.
@@ -55,6 +39,23 @@ class AndroidForWorkEnrollmentProfile(entity.Entity):
         self._token_expiration_date_time: Optional[datetime] = None
         # Value of the most recently created token for this enrollment profile.
         self._token_value: Optional[str] = None
+    
+    @property
+    def account_id(self,) -> Optional[str]:
+        """
+        Gets the accountId property value. Tenant GUID the enrollment profile belongs to.
+        Returns: Optional[str]
+        """
+        return self._account_id
+    
+    @account_id.setter
+    def account_id(self,value: Optional[str] = None) -> None:
+        """
+        Sets the accountId property value. Tenant GUID the enrollment profile belongs to.
+        Args:
+            value: Value to set for the account_id property.
+        """
+        self._account_id = value
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
@@ -141,7 +142,9 @@ class AndroidForWorkEnrollmentProfile(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, mime_content
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accountId": lambda n : setattr(self, 'account_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

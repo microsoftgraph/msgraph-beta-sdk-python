@@ -1,14 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-custom_callout_extension = lazy_import('msgraph.generated.models.custom_callout_extension')
+if TYPE_CHECKING:
+    from . import custom_callout_extension, on_token_issuance_start_custom_extension
+
+from . import custom_callout_extension
 
 class CustomAuthenticationExtension(custom_callout_extension.CustomCalloutExtension):
     def __init__(self,) -> None:
         """
-        Instantiates a new CustomAuthenticationExtension and sets the default values.
+        Instantiates a new customAuthenticationExtension and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.customAuthenticationExtension"
@@ -23,6 +25,13 @@ class CustomAuthenticationExtension(custom_callout_extension.CustomCalloutExtens
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.onTokenIssuanceStartCustomExtension":
+                from . import on_token_issuance_start_custom_extension
+
+                return on_token_issuance_start_custom_extension.OnTokenIssuanceStartCustomExtension()
         return CustomAuthenticationExtension()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -30,7 +39,9 @@ class CustomAuthenticationExtension(custom_callout_extension.CustomCalloutExtens
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import custom_callout_extension, on_token_issuance_start_custom_extension
+
+        fields: Dict[str, Callable[[Any], None]] = {
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

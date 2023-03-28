@@ -1,12 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class DeviceAndAppManagementAssignedRoleDetails(AdditionalDataHolder, Parsable):
     """
     The set of Role Definitions and Role Assignments assigned to a user.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new deviceAndAppManagementAssignedRoleDetails and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Role Assignment IDs for the specifc Role Assignments assigned to a user. This property is read-only.
+        self._role_assignment_ids: Optional[List[str]] = None
+        # Role Definition IDs for the specifc Role Definitions assigned to a user. This property is read-only.
+        self._role_definition_ids: Optional[List[str]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,20 +36,6 @@ class DeviceAndAppManagementAssignedRoleDetails(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceAndAppManagementAssignedRoleDetails and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Role Assignment IDs for the specifc Role Assignments assigned to a user. This property is read-only.
-        self._role_assignment_ids: Optional[List[str]] = None
-        # Role Definition IDs for the specifc Role Definitions assigned to a user. This property is read-only.
-        self._role_definition_ids: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceAndAppManagementAssignedRoleDetails:
@@ -55,7 +54,7 @@ class DeviceAndAppManagementAssignedRoleDetails(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "roleAssignmentIds": lambda n : setattr(self, 'role_assignment_ids', n.get_collection_of_primitive_values(str)),
             "roleDefinitionIds": lambda n : setattr(self, 'role_definition_ids', n.get_collection_of_primitive_values(str)),

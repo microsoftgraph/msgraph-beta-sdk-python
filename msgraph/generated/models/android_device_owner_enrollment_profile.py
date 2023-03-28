@@ -1,53 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_device_owner_enrollment_mode = lazy_import('msgraph.generated.models.android_device_owner_enrollment_mode')
-android_device_owner_enrollment_token_type = lazy_import('msgraph.generated.models.android_device_owner_enrollment_token_type')
-aosp_wifi_security_type = lazy_import('msgraph.generated.models.aosp_wifi_security_type')
-entity = lazy_import('msgraph.generated.models.entity')
-mime_content = lazy_import('msgraph.generated.models.mime_content')
+if TYPE_CHECKING:
+    from . import android_device_owner_enrollment_mode, android_device_owner_enrollment_token_type, aosp_wifi_security_type, entity, mime_content
+
+from . import entity
 
 class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
     """
     Enrollment Profile used to enroll Android Enterprise devices using Google's Cloud Management.
     """
-    @property
-    def account_id(self,) -> Optional[str]:
-        """
-        Gets the accountId property value. Tenant GUID the enrollment profile belongs to.
-        Returns: Optional[str]
-        """
-        return self._account_id
-    
-    @account_id.setter
-    def account_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the accountId property value. Tenant GUID the enrollment profile belongs to.
-        Args:
-            value: Value to set for the account_id property.
-        """
-        self._account_id = value
-    
-    @property
-    def configure_wifi(self,) -> Optional[bool]:
-        """
-        Gets the configureWifi property value. Boolean that indicates that the Wi-Fi network should be configured during device provisioning. When set to TRUE, device provisioning will use Wi-Fi related properties to automatically connect to Wi-Fi networks. When set to FALSE or undefined, other Wi-Fi related properties will be ignored. Default value is TRUE. Returned by default.
-        Returns: Optional[bool]
-        """
-        return self._configure_wifi
-    
-    @configure_wifi.setter
-    def configure_wifi(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the configureWifi property value. Boolean that indicates that the Wi-Fi network should be configured during device provisioning. When set to TRUE, device provisioning will use Wi-Fi related properties to automatically connect to Wi-Fi networks. When set to FALSE or undefined, other Wi-Fi related properties will be ignored. Default value is TRUE. Returned by default.
-        Args:
-            value: Value to set for the configure_wifi property.
-        """
-        self._configure_wifi = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new androidDeviceOwnerEnrollmentProfile and sets the default values.
@@ -97,6 +61,40 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
         self._wifi_security_type: Optional[aosp_wifi_security_type.AospWifiSecurityType] = None
         # String that contains the wi-fi login ssid
         self._wifi_ssid: Optional[str] = None
+    
+    @property
+    def account_id(self,) -> Optional[str]:
+        """
+        Gets the accountId property value. Tenant GUID the enrollment profile belongs to.
+        Returns: Optional[str]
+        """
+        return self._account_id
+    
+    @account_id.setter
+    def account_id(self,value: Optional[str] = None) -> None:
+        """
+        Sets the accountId property value. Tenant GUID the enrollment profile belongs to.
+        Args:
+            value: Value to set for the account_id property.
+        """
+        self._account_id = value
+    
+    @property
+    def configure_wifi(self,) -> Optional[bool]:
+        """
+        Gets the configureWifi property value. Boolean that indicates that the Wi-Fi network should be configured during device provisioning. When set to TRUE, device provisioning will use Wi-Fi related properties to automatically connect to Wi-Fi networks. When set to FALSE or undefined, other Wi-Fi related properties will be ignored. Default value is TRUE. Returned by default.
+        Returns: Optional[bool]
+        """
+        return self._configure_wifi
+    
+    @configure_wifi.setter
+    def configure_wifi(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the configureWifi property value. Boolean that indicates that the Wi-Fi network should be configured during device provisioning. When set to TRUE, device provisioning will use Wi-Fi related properties to automatically connect to Wi-Fi networks. When set to FALSE or undefined, other Wi-Fi related properties will be ignored. Default value is TRUE. Returned by default.
+        Args:
+            value: Value to set for the configure_wifi property.
+        """
+        self._configure_wifi = value
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
@@ -234,7 +232,9 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_device_owner_enrollment_mode, android_device_owner_enrollment_token_type, aosp_wifi_security_type, entity, mime_content
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accountId": lambda n : setattr(self, 'account_id', n.get_str_value()),
             "configureWifi": lambda n : setattr(self, 'configure_wifi', n.get_bool_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),

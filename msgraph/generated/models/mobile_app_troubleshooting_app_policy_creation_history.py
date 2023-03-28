@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-mobile_app_troubleshooting_history_item = lazy_import('msgraph.generated.models.mobile_app_troubleshooting_history_item')
-run_state = lazy_import('msgraph.generated.models.run_state')
+if TYPE_CHECKING:
+    from . import mobile_app_troubleshooting_history_item, run_state
+
+from . import mobile_app_troubleshooting_history_item
 
 class MobileAppTroubleshootingAppPolicyCreationHistory(mobile_app_troubleshooting_history_item.MobileAppTroubleshootingHistoryItem):
     def __init__(self,) -> None:
@@ -53,7 +54,9 @@ class MobileAppTroubleshootingAppPolicyCreationHistory(mobile_app_troubleshootin
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import mobile_app_troubleshooting_history_item, run_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "errorCode": lambda n : setattr(self, 'error_code', n.get_str_value()),
             "runState": lambda n : setattr(self, 'run_state', n.get_enum_value(run_state.RunState)),
         }

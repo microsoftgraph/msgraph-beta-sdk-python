@@ -1,29 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-provisioning_status_error_category = lazy_import('msgraph.generated.models.provisioning_status_error_category')
-status_base = lazy_import('msgraph.generated.models.status_base')
+if TYPE_CHECKING:
+    from . import provisioning_status_error_category, status_base
+
+from . import status_base
 
 class StatusDetails(status_base.StatusBase):
-    @property
-    def additional_details(self,) -> Optional[str]:
-        """
-        Gets the additionalDetails property value. Additional details in case of error.
-        Returns: Optional[str]
-        """
-        return self._additional_details
-    
-    @additional_details.setter
-    def additional_details(self,value: Optional[str] = None) -> None:
-        """
-        Sets the additionalDetails property value. Additional details in case of error.
-        Args:
-            value: Value to set for the additional_details property.
-        """
-        self._additional_details = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new StatusDetails and sets the default values.
@@ -40,6 +24,23 @@ class StatusDetails(status_base.StatusBase):
         self._reason: Optional[str] = None
         # Provides the resolution for the corresponding error.
         self._recommended_action: Optional[str] = None
+    
+    @property
+    def additional_details(self,) -> Optional[str]:
+        """
+        Gets the additionalDetails property value. Additional details in case of error.
+        Returns: Optional[str]
+        """
+        return self._additional_details
+    
+    @additional_details.setter
+    def additional_details(self,value: Optional[str] = None) -> None:
+        """
+        Sets the additionalDetails property value. Additional details in case of error.
+        Args:
+            value: Value to set for the additional_details property.
+        """
+        self._additional_details = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> StatusDetails:
@@ -92,7 +93,9 @@ class StatusDetails(status_base.StatusBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import provisioning_status_error_category, status_base
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "additionalDetails": lambda n : setattr(self, 'additional_details', n.get_str_value()),
             "errorCategory": lambda n : setattr(self, 'error_category', n.get_enum_value(provisioning_status_error_category.ProvisioningStatusErrorCategory)),
             "errorCode": lambda n : setattr(self, 'error_code', n.get_str_value()),

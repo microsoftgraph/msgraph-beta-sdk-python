@@ -7,11 +7,11 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_response = lazy_import('msgraph.generated.role_management.entitlement_management.role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id.role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_response')
+if TYPE_CHECKING:
+    from . import role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_response
+    from ....models.o_data_errors import o_data_error
 
 class RoleScheduleInstancesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdPrincipalIdPrincipalIdRoleDefinitionIdRoleDefinitionIdRequestBuilder():
     """
@@ -45,12 +45,16 @@ class RoleScheduleInstancesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdP
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from . import role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_response
+
         return await self.request_adapter.send_async(request_info, role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_response.RoleScheduleInstancesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdPrincipalIdPrincipalIdRoleDefinitionIdRoleDefinitionIdResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RoleScheduleInstancesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdPrincipalIdPrincipalIdRoleDefinitionIdRoleDefinitionIdRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
@@ -76,6 +80,31 @@ class RoleScheduleInstancesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdP
         """
         Invoke function roleScheduleInstances
         """
+        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+            """
+            Maps the query parameters names to their encoded names for the URI template parsing.
+            Args:
+                originalName: The original query parameter name in the class.
+            Returns: str
+            """
+            if original_name is None:
+                raise Exception("original_name cannot be undefined")
+            if original_name == "count":
+                return "%24count"
+            if original_name == "filter":
+                return "%24filter"
+            if original_name == "orderby":
+                return "%24orderby"
+            if original_name == "search":
+                return "%24search"
+            if original_name == "select":
+                return "%24select"
+            if original_name == "skip":
+                return "%24skip"
+            if original_name == "top":
+                return "%24top"
+            return original_name
+        
         # Usage: appScopeId='@appScopeId'
         app_scope_id: Optional[str] = None
 
@@ -109,31 +138,6 @@ class RoleScheduleInstancesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdP
         # Show only the first n items
         top: Optional[int] = None
 
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
-            """
-            Maps the query parameters names to their encoded names for the URI template parsing.
-            Args:
-                originalName: The original query parameter name in the class.
-            Returns: str
-            """
-            if original_name is None:
-                raise Exception("original_name cannot be undefined")
-            if original_name == "count":
-                return "%24count"
-            if original_name == "filter":
-                return "%24filter"
-            if original_name == "orderby":
-                return "%24orderby"
-            if original_name == "search":
-                return "%24search"
-            if original_name == "select":
-                return "%24select"
-            if original_name == "skip":
-                return "%24skip"
-            if original_name == "top":
-                return "%24top"
-            return original_name
-        
     
     @dataclass
     class RoleScheduleInstancesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdPrincipalIdPrincipalIdRoleDefinitionIdRoleDefinitionIdRequestBuilderGetRequestConfiguration():

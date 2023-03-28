@@ -1,32 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-registration_auth_method = lazy_import('msgraph.generated.models.registration_auth_method')
+if TYPE_CHECKING:
+    from . import entity, registration_auth_method
+
+from . import entity
 
 class CredentialUserRegistrationDetails(entity.Entity):
-    @property
-    def auth_methods(self,) -> Optional[List[registration_auth_method.RegistrationAuthMethod]]:
-        """
-        Gets the authMethods property value. Represents the authentication method that the user has registered. Possible values are: email, mobilePhone, officePhone,  securityQuestion (only used for self-service password reset), appNotification,  appCode, alternateMobilePhone (supported only in registration),  fido,  appPassword,  unknownFutureValue.
-        Returns: Optional[List[registration_auth_method.RegistrationAuthMethod]]
-        """
-        return self._auth_methods
-    
-    @auth_methods.setter
-    def auth_methods(self,value: Optional[List[registration_auth_method.RegistrationAuthMethod]] = None) -> None:
-        """
-        Sets the authMethods property value. Represents the authentication method that the user has registered. Possible values are: email, mobilePhone, officePhone,  securityQuestion (only used for self-service password reset), appNotification,  appCode, alternateMobilePhone (supported only in registration),  fido,  appPassword,  unknownFutureValue.
-        Args:
-            value: Value to set for the auth_methods property.
-        """
-        self._auth_methods = value
-    
     def __init__(self,) -> None:
         """
-        Instantiates a new credentialUserRegistrationDetails and sets the default values.
+        Instantiates a new CredentialUserRegistrationDetails and sets the default values.
         """
         super().__init__()
         # Represents the authentication method that the user has registered. Possible values are: email, mobilePhone, officePhone,  securityQuestion (only used for self-service password reset), appNotification,  appCode, alternateMobilePhone (supported only in registration),  fido,  appPassword,  unknownFutureValue.
@@ -46,6 +30,23 @@ class CredentialUserRegistrationDetails(entity.Entity):
         # Provides the user principal name of the corresponding user.
         self._user_principal_name: Optional[str] = None
     
+    @property
+    def auth_methods(self,) -> Optional[List[registration_auth_method.RegistrationAuthMethod]]:
+        """
+        Gets the authMethods property value. Represents the authentication method that the user has registered. Possible values are: email, mobilePhone, officePhone,  securityQuestion (only used for self-service password reset), appNotification,  appCode, alternateMobilePhone (supported only in registration),  fido,  appPassword,  unknownFutureValue.
+        Returns: Optional[List[registration_auth_method.RegistrationAuthMethod]]
+        """
+        return self._auth_methods
+    
+    @auth_methods.setter
+    def auth_methods(self,value: Optional[List[registration_auth_method.RegistrationAuthMethod]] = None) -> None:
+        """
+        Sets the authMethods property value. Represents the authentication method that the user has registered. Possible values are: email, mobilePhone, officePhone,  securityQuestion (only used for self-service password reset), appNotification,  appCode, alternateMobilePhone (supported only in registration),  fido,  appPassword,  unknownFutureValue.
+        Args:
+            value: Value to set for the auth_methods property.
+        """
+        self._auth_methods = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CredentialUserRegistrationDetails:
         """
@@ -63,7 +64,9 @@ class CredentialUserRegistrationDetails(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, registration_auth_method
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "authMethods": lambda n : setattr(self, 'auth_methods', n.get_collection_of_enum_values(registration_auth_method.RegistrationAuthMethod)),
             "isCapable": lambda n : setattr(self, 'is_capable', n.get_bool_value()),
             "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),

@@ -1,17 +1,66 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-apple_vpn_always_on_configuration = lazy_import('msgraph.generated.models.apple_vpn_always_on_configuration')
-ios_vpn_configuration = lazy_import('msgraph.generated.models.ios_vpn_configuration')
-ios_vpn_security_association_parameters = lazy_import('msgraph.generated.models.ios_vpn_security_association_parameters')
-vpn_client_authentication_type = lazy_import('msgraph.generated.models.vpn_client_authentication_type')
-vpn_dead_peer_detection_rate = lazy_import('msgraph.generated.models.vpn_dead_peer_detection_rate')
-vpn_local_identifier = lazy_import('msgraph.generated.models.vpn_local_identifier')
-vpn_server_certificate_type = lazy_import('msgraph.generated.models.vpn_server_certificate_type')
+if TYPE_CHECKING:
+    from . import apple_vpn_always_on_configuration, ios_vpn_configuration, ios_vpn_security_association_parameters, vpn_client_authentication_type, vpn_dead_peer_detection_rate, vpn_local_identifier, vpn_server_certificate_type
+
+from . import ios_vpn_configuration
 
 class IosikEv2VpnConfiguration(ios_vpn_configuration.IosVpnConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new IosikEv2VpnConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.iosikEv2VpnConfiguration"
+        # Allows the use of child security association parameters by setting all parameters to the device's default unless explicitly specified.
+        self._allow_default_child_security_association_parameters: Optional[bool] = None
+        # Allows the use of security association parameters by setting all parameters to the device's default unless explicitly specified.
+        self._allow_default_security_association_parameters: Optional[bool] = None
+        # AlwaysOn Configuration
+        self._always_on_configuration: Optional[apple_vpn_always_on_configuration.AppleVpnAlwaysOnConfiguration] = None
+        # Child Security Association Parameters
+        self._child_security_association_parameters: Optional[ios_vpn_security_association_parameters.IosVpnSecurityAssociationParameters] = None
+        # The type of VPN client authentication type
+        self._client_authentication_type: Optional[vpn_client_authentication_type.VpnClientAuthenticationType] = None
+        # Determine how often to check if a peer connection is still active. . Possible values are: medium, none, low, high.
+        self._dead_peer_detection_rate: Optional[vpn_dead_peer_detection_rate.VpnDeadPeerDetectionRate] = None
+        # Disable MOBIKE
+        self._disable_mobility_and_multihoming: Optional[bool] = None
+        # Disable Redirect
+        self._disable_redirect: Optional[bool] = None
+        # Determines if Always on VPN is enabled
+        self._enable_always_on_configuration: Optional[bool] = None
+        # Enables a best-effort revocation check; server response timeouts will not cause it to fail
+        self._enable_certificate_revocation_check: Optional[bool] = None
+        # Enables EAP only authentication
+        self._enable_e_a_p: Optional[bool] = None
+        # Enable Perfect Forward Secrecy (PFS).
+        self._enable_perfect_forward_secrecy: Optional[bool] = None
+        # Enable Use Internal Subnet Attributes.
+        self._enable_use_internal_subnet_attributes: Optional[bool] = None
+        # The type of VPN local identifier
+        self._local_identifier: Optional[vpn_local_identifier.VpnLocalIdentifier] = None
+        # Maximum transmission unit. Valid values 1280 to 1400
+        self._mtu_size_in_bytes: Optional[int] = None
+        # Address of the IKEv2 server. Must be a FQDN, UserFQDN, network address, or ASN1DN
+        self._remote_identifier: Optional[str] = None
+        # Security Association Parameters
+        self._security_association_parameters: Optional[ios_vpn_security_association_parameters.IosVpnSecurityAssociationParameters] = None
+        # Common name of the IKEv2 Server Certificate used in Server Authentication
+        self._server_certificate_common_name: Optional[str] = None
+        # Issuer Common name of the IKEv2 Server Certificate issuer used in Authentication
+        self._server_certificate_issuer_common_name: Optional[str] = None
+        # The type of certificate the VPN server will present to the VPN client for authentication. Possible values are: rsa, ecdsa256, ecdsa384, ecdsa521.
+        self._server_certificate_type: Optional[vpn_server_certificate_type.VpnServerCertificateType] = None
+        # Used when Shared Secret Authentication is selected
+        self._shared_secret: Optional[str] = None
+        # The maximum TLS version to be used with EAP-TLS authentication
+        self._tls_maximum_version: Optional[str] = None
+        # The minimum TLS version to be used with EAP-TLS authentication
+        self._tls_minimum_version: Optional[str] = None
+    
     @property
     def allow_default_child_security_association_parameters(self,) -> Optional[bool]:
         """
@@ -96,59 +145,6 @@ class IosikEv2VpnConfiguration(ios_vpn_configuration.IosVpnConfiguration):
             value: Value to set for the client_authentication_type property.
         """
         self._client_authentication_type = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new IosikEv2VpnConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.iosikEv2VpnConfiguration"
-        # Allows the use of child security association parameters by setting all parameters to the device's default unless explicitly specified.
-        self._allow_default_child_security_association_parameters: Optional[bool] = None
-        # Allows the use of security association parameters by setting all parameters to the device's default unless explicitly specified.
-        self._allow_default_security_association_parameters: Optional[bool] = None
-        # AlwaysOn Configuration
-        self._always_on_configuration: Optional[apple_vpn_always_on_configuration.AppleVpnAlwaysOnConfiguration] = None
-        # Child Security Association Parameters
-        self._child_security_association_parameters: Optional[ios_vpn_security_association_parameters.IosVpnSecurityAssociationParameters] = None
-        # The type of VPN client authentication type
-        self._client_authentication_type: Optional[vpn_client_authentication_type.VpnClientAuthenticationType] = None
-        # Determine how often to check if a peer connection is still active. . Possible values are: medium, none, low, high.
-        self._dead_peer_detection_rate: Optional[vpn_dead_peer_detection_rate.VpnDeadPeerDetectionRate] = None
-        # Disable MOBIKE
-        self._disable_mobility_and_multihoming: Optional[bool] = None
-        # Disable Redirect
-        self._disable_redirect: Optional[bool] = None
-        # Determines if Always on VPN is enabled
-        self._enable_always_on_configuration: Optional[bool] = None
-        # Enables a best-effort revocation check; server response timeouts will not cause it to fail
-        self._enable_certificate_revocation_check: Optional[bool] = None
-        # Enables EAP only authentication
-        self._enable_e_a_p: Optional[bool] = None
-        # Enable Perfect Forward Secrecy (PFS).
-        self._enable_perfect_forward_secrecy: Optional[bool] = None
-        # Enable Use Internal Subnet Attributes.
-        self._enable_use_internal_subnet_attributes: Optional[bool] = None
-        # The type of VPN local identifier
-        self._local_identifier: Optional[vpn_local_identifier.VpnLocalIdentifier] = None
-        # Maximum transmission unit. Valid values 1280 to 1400
-        self._mtu_size_in_bytes: Optional[int] = None
-        # Address of the IKEv2 server. Must be a FQDN, UserFQDN, network address, or ASN1DN
-        self._remote_identifier: Optional[str] = None
-        # Security Association Parameters
-        self._security_association_parameters: Optional[ios_vpn_security_association_parameters.IosVpnSecurityAssociationParameters] = None
-        # Common name of the IKEv2 Server Certificate used in Server Authentication
-        self._server_certificate_common_name: Optional[str] = None
-        # Issuer Common name of the IKEv2 Server Certificate issuer used in Authentication
-        self._server_certificate_issuer_common_name: Optional[str] = None
-        # The type of certificate the VPN server will present to the VPN client for authentication. Possible values are: rsa, ecdsa256, ecdsa384, ecdsa521.
-        self._server_certificate_type: Optional[vpn_server_certificate_type.VpnServerCertificateType] = None
-        # Used when Shared Secret Authentication is selected
-        self._shared_secret: Optional[str] = None
-        # The maximum TLS version to be used with EAP-TLS authentication
-        self._tls_maximum_version: Optional[str] = None
-        # The minimum TLS version to be used with EAP-TLS authentication
-        self._tls_minimum_version: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosikEv2VpnConfiguration:
@@ -303,7 +299,9 @@ class IosikEv2VpnConfiguration(ios_vpn_configuration.IosVpnConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import apple_vpn_always_on_configuration, ios_vpn_configuration, ios_vpn_security_association_parameters, vpn_client_authentication_type, vpn_dead_peer_detection_rate, vpn_local_identifier, vpn_server_certificate_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowDefaultChildSecurityAssociationParameters": lambda n : setattr(self, 'allow_default_child_security_association_parameters', n.get_bool_value()),
             "allowDefaultSecurityAssociationParameters": lambda n : setattr(self, 'allow_default_security_association_parameters', n.get_bool_value()),
             "alwaysOnConfiguration": lambda n : setattr(self, 'always_on_configuration', n.get_object_value(apple_vpn_always_on_configuration.AppleVpnAlwaysOnConfiguration)),

@@ -1,11 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-embedded_s_i_m_device_state_value = lazy_import('msgraph.generated.models.embedded_s_i_m_device_state_value')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import embedded_s_i_m_device_state_value, entity
+
+from . import entity
 
 class EmbeddedSIMDeviceState(entity.Entity):
     """
@@ -86,7 +87,9 @@ class EmbeddedSIMDeviceState(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import embedded_s_i_m_device_state_value, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
             "lastSyncDateTime": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),

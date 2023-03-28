@@ -1,11 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_domain_join_connector_state = lazy_import('msgraph.generated.models.device_management_domain_join_connector_state')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import device_management_domain_join_connector_state, entity
+
+from . import entity
 
 class DeviceManagementDomainJoinConnector(entity.Entity):
     """
@@ -61,7 +62,9 @@ class DeviceManagementDomainJoinConnector(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_domain_join_connector_state, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "lastConnectionDateTime": lambda n : setattr(self, 'last_connection_date_time', n.get_datetime_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(device_management_domain_join_connector_state.DeviceManagementDomainJoinConnectorState)),

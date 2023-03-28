@@ -1,31 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-assignment_filter_operator = lazy_import('msgraph.generated.models.assignment_filter_operator')
+if TYPE_CHECKING:
+    from . import assignment_filter_operator
 
 class AssignmentFilterSupportedProperty(AdditionalDataHolder, Parsable):
     """
     Represents the information about the property which is supported in crafting the rule of AssignmentFilter.
     """
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new assignmentFilterSupportedProperty and sets the default values.
@@ -47,6 +30,23 @@ class AssignmentFilterSupportedProperty(AdditionalDataHolder, Parsable):
         self._supported_operators: Optional[List[assignment_filter_operator.AssignmentFilterOperator]] = None
         # List of all supported values for this property, empty if everything is supported.
         self._supported_values: Optional[List[str]] = None
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AssignmentFilterSupportedProperty:
@@ -82,7 +82,9 @@ class AssignmentFilterSupportedProperty(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import assignment_filter_operator
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "dataType": lambda n : setattr(self, 'data_type', n.get_str_value()),
             "isCollection": lambda n : setattr(self, 'is_collection', n.get_bool_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),

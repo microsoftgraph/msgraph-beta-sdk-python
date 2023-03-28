@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-updatable_asset_enrollment = lazy_import('msgraph.generated.models.windows_updates.updatable_asset_enrollment')
-update_category = lazy_import('msgraph.generated.models.windows_updates.update_category')
+if TYPE_CHECKING:
+    from . import updatable_asset_enrollment, update_category
+
+from . import updatable_asset_enrollment
 
 class UpdateManagementEnrollment(updatable_asset_enrollment.UpdatableAssetEnrollment):
     def __init__(self,) -> None:
@@ -33,7 +34,9 @@ class UpdateManagementEnrollment(updatable_asset_enrollment.UpdatableAssetEnroll
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import updatable_asset_enrollment, update_category
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "updateCategory": lambda n : setattr(self, 'update_category', n.get_enum_value(update_category.UpdateCategory)),
         }
         super_fields = super().get_field_deserializers()

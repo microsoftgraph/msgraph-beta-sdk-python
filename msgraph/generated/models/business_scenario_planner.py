@@ -1,12 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-business_scenario_task = lazy_import('msgraph.generated.models.business_scenario_task')
-entity = lazy_import('msgraph.generated.models.entity')
-planner_plan_configuration = lazy_import('msgraph.generated.models.planner_plan_configuration')
-planner_task_configuration = lazy_import('msgraph.generated.models.planner_task_configuration')
+if TYPE_CHECKING:
+    from . import business_scenario_task, entity, planner_plan_configuration, planner_task_configuration
+
+from . import entity
 
 class BusinessScenarioPlanner(entity.Entity):
     def __init__(self,) -> None:
@@ -40,7 +39,9 @@ class BusinessScenarioPlanner(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import business_scenario_task, entity, planner_plan_configuration, planner_task_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "planConfiguration": lambda n : setattr(self, 'plan_configuration', n.get_object_value(planner_plan_configuration.PlannerPlanConfiguration)),
             "tasks": lambda n : setattr(self, 'tasks', n.get_collection_of_object_values(business_scenario_task.BusinessScenarioTask)),
             "taskConfiguration": lambda n : setattr(self, 'task_configuration', n.get_object_value(planner_task_configuration.PlannerTaskConfiguration)),

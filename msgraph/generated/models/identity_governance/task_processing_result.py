@@ -1,32 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-user = lazy_import('msgraph.generated.models.user')
-lifecycle_workflow_processing_status = lazy_import('msgraph.generated.models.identity_governance.lifecycle_workflow_processing_status')
-task = lazy_import('msgraph.generated.models.identity_governance.task')
+if TYPE_CHECKING:
+    from . import lifecycle_workflow_processing_status, task
+    from .. import entity, user
+
+from .. import entity
 
 class TaskProcessingResult(entity.Entity):
-    @property
-    def completed_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the completedDateTime property value. The date time when taskProcessingResult execution ended. Value is null if task execution is still in progress.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-        Returns: Optional[datetime]
-        """
-        return self._completed_date_time
-    
-    @completed_date_time.setter
-    def completed_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the completedDateTime property value. The date time when taskProcessingResult execution ended. Value is null if task execution is still in progress.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-        Args:
-            value: Value to set for the completed_date_time property.
-        """
-        self._completed_date_time = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new taskProcessingResult and sets the default values.
@@ -48,6 +31,23 @@ class TaskProcessingResult(entity.Entity):
         self._subject: Optional[user.User] = None
         # The task property
         self._task: Optional[task.Task] = None
+    
+    @property
+    def completed_date_time(self,) -> Optional[datetime]:
+        """
+        Gets the completedDateTime property value. The date time when taskProcessingResult execution ended. Value is null if task execution is still in progress.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
+        Returns: Optional[datetime]
+        """
+        return self._completed_date_time
+    
+    @completed_date_time.setter
+    def completed_date_time(self,value: Optional[datetime] = None) -> None:
+        """
+        Sets the completedDateTime property value. The date time when taskProcessingResult execution ended. Value is null if task execution is still in progress.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
+        Args:
+            value: Value to set for the completed_date_time property.
+        """
+        self._completed_date_time = value
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
@@ -100,7 +100,10 @@ class TaskProcessingResult(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import lifecycle_workflow_processing_status, task
+        from .. import entity, user
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "completedDateTime": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "failureReason": lambda n : setattr(self, 'failure_reason', n.get_str_value()),

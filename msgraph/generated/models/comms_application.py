@@ -1,12 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-call = lazy_import('msgraph.generated.models.call')
-online_meeting = lazy_import('msgraph.generated.models.online_meeting')
+if TYPE_CHECKING:
+    from . import call, online_meeting
 
 class CommsApplication(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new CommsApplication and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The calls property
+        self._calls: Optional[List[call.Call]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The onlineMeetings property
+        self._online_meetings: Optional[List[online_meeting.OnlineMeeting]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -41,20 +54,6 @@ class CommsApplication(AdditionalDataHolder, Parsable):
         """
         self._calls = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new CommsApplication and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The calls property
-        self._calls: Optional[List[call.Call]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The onlineMeetings property
-        self._online_meetings: Optional[List[online_meeting.OnlineMeeting]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CommsApplication:
         """
@@ -72,7 +71,9 @@ class CommsApplication(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import call, online_meeting
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "calls": lambda n : setattr(self, 'calls', n.get_collection_of_object_values(call.Call)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "onlineMeetings": lambda n : setattr(self, 'online_meetings', n.get_collection_of_object_values(online_meeting.OnlineMeeting)),

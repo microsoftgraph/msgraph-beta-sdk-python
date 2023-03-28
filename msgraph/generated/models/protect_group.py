@@ -1,12 +1,26 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-group_privacy = lazy_import('msgraph.generated.models.group_privacy')
-label_action_base = lazy_import('msgraph.generated.models.label_action_base')
+if TYPE_CHECKING:
+    from . import group_privacy, label_action_base
+
+from . import label_action_base
 
 class ProtectGroup(label_action_base.LabelActionBase):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new ProtectGroup and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.protectGroup"
+        # The allowEmailFromGuestUsers property
+        self._allow_email_from_guest_users: Optional[bool] = None
+        # The allowGuestUsers property
+        self._allow_guest_users: Optional[bool] = None
+        # The privacy property
+        self._privacy: Optional[group_privacy.GroupPrivacy] = None
+    
     @property
     def allow_email_from_guest_users(self,) -> Optional[bool]:
         """
@@ -41,19 +55,6 @@ class ProtectGroup(label_action_base.LabelActionBase):
         """
         self._allow_guest_users = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ProtectGroup and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.protectGroup"
-        # The allowEmailFromGuestUsers property
-        self._allow_email_from_guest_users: Optional[bool] = None
-        # The allowGuestUsers property
-        self._allow_guest_users: Optional[bool] = None
-        # The privacy property
-        self._privacy: Optional[group_privacy.GroupPrivacy] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ProtectGroup:
         """
@@ -71,7 +72,9 @@ class ProtectGroup(label_action_base.LabelActionBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import group_privacy, label_action_base
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowEmailFromGuestUsers": lambda n : setattr(self, 'allow_email_from_guest_users', n.get_bool_value()),
             "allowGuestUsers": lambda n : setattr(self, 'allow_guest_users', n.get_bool_value()),
             "privacy": lambda n : setattr(self, 'privacy', n.get_enum_value(group_privacy.GroupPrivacy)),

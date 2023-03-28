@@ -1,13 +1,41 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-access_package_subject_lifecycle = lazy_import('msgraph.generated.models.access_package_subject_lifecycle')
-connected_organization = lazy_import('msgraph.generated.models.connected_organization')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import access_package_subject_lifecycle, connected_organization, entity
+
+from . import entity
 
 class AccessPackageSubject(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new accessPackageSubject and sets the default values.
+        """
+        super().__init__()
+        # The altSecId property
+        self._alt_sec_id: Optional[str] = None
+        # The connected organization of the subject. Read-only. Nullable.
+        self._connected_organization: Optional[connected_organization.ConnectedOrganization] = None
+        # The identifier of the connected organization of the subject.
+        self._connected_organization_id: Optional[str] = None
+        # The display name of the subject.
+        self._display_name: Optional[str] = None
+        # The email address of the subject.
+        self._email: Optional[str] = None
+        # The object identifier of the subject. null if the subject is not yet a user in the tenant.
+        self._object_id: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The onPremisesSecurityIdentifier property
+        self._on_premises_security_identifier: Optional[str] = None
+        # The principal name, if known, of the subject.
+        self._principal_name: Optional[str] = None
+        # The subjectLifecycle property
+        self._subject_lifecycle: Optional[access_package_subject_lifecycle.AccessPackageSubjectLifecycle] = None
+        # The resource type of the subject.
+        self._type: Optional[str] = None
+    
     @property
     def alt_sec_id(self,) -> Optional[str]:
         """
@@ -58,34 +86,6 @@ class AccessPackageSubject(entity.Entity):
             value: Value to set for the connected_organization_id property.
         """
         self._connected_organization_id = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new accessPackageSubject and sets the default values.
-        """
-        super().__init__()
-        # The altSecId property
-        self._alt_sec_id: Optional[str] = None
-        # The connected organization of the subject. Read-only. Nullable.
-        self._connected_organization: Optional[connected_organization.ConnectedOrganization] = None
-        # The identifier of the connected organization of the subject.
-        self._connected_organization_id: Optional[str] = None
-        # The display name of the subject.
-        self._display_name: Optional[str] = None
-        # The email address of the subject.
-        self._email: Optional[str] = None
-        # The object identifier of the subject. null if the subject is not yet a user in the tenant.
-        self._object_id: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The onPremisesSecurityIdentifier property
-        self._on_premises_security_identifier: Optional[str] = None
-        # The principal name, if known, of the subject.
-        self._principal_name: Optional[str] = None
-        # The subjectLifecycle property
-        self._subject_lifecycle: Optional[access_package_subject_lifecycle.AccessPackageSubjectLifecycle] = None
-        # The resource type of the subject.
-        self._type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccessPackageSubject:
@@ -138,7 +138,9 @@ class AccessPackageSubject(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import access_package_subject_lifecycle, connected_organization, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "altSecId": lambda n : setattr(self, 'alt_sec_id', n.get_str_value()),
             "connectedOrganization": lambda n : setattr(self, 'connected_organization', n.get_object_value(connected_organization.ConnectedOrganization)),
             "connectedOrganizationId": lambda n : setattr(self, 'connected_organization_id', n.get_str_value()),

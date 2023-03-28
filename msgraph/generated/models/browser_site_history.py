@@ -1,18 +1,39 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-browser_site_compatibility_mode = lazy_import('msgraph.generated.models.browser_site_compatibility_mode')
-browser_site_merge_type = lazy_import('msgraph.generated.models.browser_site_merge_type')
-browser_site_target_environment = lazy_import('msgraph.generated.models.browser_site_target_environment')
-identity_set = lazy_import('msgraph.generated.models.identity_set')
+if TYPE_CHECKING:
+    from . import browser_site_compatibility_mode, browser_site_merge_type, browser_site_target_environment, identity_set
 
 class BrowserSiteHistory(AdditionalDataHolder, Parsable):
     """
     The history for the site modifications
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new browserSiteHistory and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Controls the behavior of redirected sites. If true, indicates that the site will open in Internet Explorer 11 or Microsoft Edge even if the site is navigated to as part of a HTTP or meta refresh redirection chain.
+        self._allow_redirect: Optional[bool] = None
+        # The comment for the site.
+        self._comment: Optional[str] = None
+        # Controls what compatibility setting is used for specific sites or domains. The possible values are: default, internetExplorer8Enterprise, internetExplorer7Enterprise, internetExplorer11, internetExplorer10, internetExplorer9, internetExplorer8, internetExplorer7, internetExplorer5, unknownFutureValue.
+        self._compatibility_mode: Optional[browser_site_compatibility_mode.BrowserSiteCompatibilityMode] = None
+        # The user who last modified the site.
+        self._last_modified_by: Optional[identity_set.IdentitySet] = None
+        # The merge type of the site. The possible values are: noMerge, default, unknownFutureValue.
+        self._merge_type: Optional[browser_site_merge_type.BrowserSiteMergeType] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The date and time when the site was last published.
+        self._published_date_time: Optional[datetime] = None
+        # The target environment that the site should open in. The possible values are: internetExplorerMode, internetExplorer11, microsoftEdge, configurable, none, unknownFutureValue.Prior to June 15, 2022, the internetExplorer11 option would allow opening a site in the Internet Explorer 11 (IE11) desktop application. Following the retirement of IE11 on June 15, 2022, the internetExplorer11 option will no longer open an IE11 window and will instead behave the same as the internetExplorerMode option.
+        self._target_environment: Optional[browser_site_target_environment.BrowserSiteTargetEnvironment] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -81,30 +102,6 @@ class BrowserSiteHistory(AdditionalDataHolder, Parsable):
         """
         self._compatibility_mode = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new browserSiteHistory and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Controls the behavior of redirected sites. If true, indicates that the site will open in Internet Explorer 11 or Microsoft Edge even if the site is navigated to as part of a HTTP or meta refresh redirection chain.
-        self._allow_redirect: Optional[bool] = None
-        # The comment for the site.
-        self._comment: Optional[str] = None
-        # Controls what compatibility setting is used for specific sites or domains. The possible values are: default, internetExplorer8Enterprise, internetExplorer7Enterprise, internetExplorer11, internetExplorer10, internetExplorer9, internetExplorer8, internetExplorer7, internetExplorer5, unknownFutureValue.
-        self._compatibility_mode: Optional[browser_site_compatibility_mode.BrowserSiteCompatibilityMode] = None
-        # The user who last modified the site.
-        self._last_modified_by: Optional[identity_set.IdentitySet] = None
-        # The merge type of the site. The possible values are: noMerge, default, unknownFutureValue.
-        self._merge_type: Optional[browser_site_merge_type.BrowserSiteMergeType] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The date and time when the site was last published.
-        self._published_date_time: Optional[datetime] = None
-        # The target environment that the site should open in. The possible values are: internetExplorerMode, internetExplorer11, microsoftEdge, configurable, none, unknownFutureValue.Prior to June 15, 2022, the internetExplorer11 option would allow opening a site in the Internet Explorer 11 (IE11) desktop application. Following the retirement of IE11 on June 15, 2022, the internetExplorer11 option will no longer open an IE11 window and will instead behave the same as the internetExplorerMode option.
-        self._target_environment: Optional[browser_site_target_environment.BrowserSiteTargetEnvironment] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> BrowserSiteHistory:
         """
@@ -122,7 +119,9 @@ class BrowserSiteHistory(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import browser_site_compatibility_mode, browser_site_merge_type, browser_site_target_environment, identity_set
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowRedirect": lambda n : setattr(self, 'allow_redirect', n.get_bool_value()),
             "comment": lambda n : setattr(self, 'comment', n.get_str_value()),
             "compatibilityMode": lambda n : setattr(self, 'compatibility_mode', n.get_enum_value(browser_site_compatibility_mode.BrowserSiteCompatibilityMode)),

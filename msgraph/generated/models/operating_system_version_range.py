@@ -1,12 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class OperatingSystemVersionRange(AdditionalDataHolder, Parsable):
     """
     Operating System version range.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new operatingSystemVersionRange and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The description of this range (e.g. Valid 1702 builds)
+        self._description: Optional[str] = None
+        # The highest inclusive version that this range contains.
+        self._highest_version: Optional[str] = None
+        # The lowest inclusive version that this range contains.
+        self._lowest_version: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,22 +38,6 @@ class OperatingSystemVersionRange(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new operatingSystemVersionRange and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The description of this range (e.g. Valid 1702 builds)
-        self._description: Optional[str] = None
-        # The highest inclusive version that this range contains.
-        self._highest_version: Optional[str] = None
-        # The lowest inclusive version that this range contains.
-        self._lowest_version: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OperatingSystemVersionRange:
@@ -74,7 +73,7 @@ class OperatingSystemVersionRange(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "highestVersion": lambda n : setattr(self, 'highest_version', n.get_str_value()),
             "lowestVersion": lambda n : setattr(self, 'lowest_version', n.get_str_value()),

@@ -7,12 +7,11 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-risk_detection = lazy_import('msgraph.generated.models.risk_detection')
-risk_detection_collection_response = lazy_import('msgraph.generated.models.risk_detection_collection_response')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ..models import risk_detection, risk_detection_collection_response
+    from ..models.o_data_errors import o_data_error
 
 class RiskDetectionsRequestBuilder():
     """
@@ -46,12 +45,16 @@ class RiskDetectionsRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ..models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ..models import risk_detection_collection_response
+
         return await self.request_adapter.send_async(request_info, risk_detection_collection_response.RiskDetectionCollectionResponse, error_mapping)
     
     async def post(self,body: Optional[risk_detection.RiskDetection] = None, request_configuration: Optional[RiskDetectionsRequestBuilderPostRequestConfiguration] = None) -> Optional[risk_detection.RiskDetection]:
@@ -67,12 +70,16 @@ class RiskDetectionsRequestBuilder():
         request_info = self.to_post_request_information(
             body, request_configuration
         )
+        from ..models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ..models import risk_detection
+
         return await self.request_adapter.send_async(request_info, risk_detection.RiskDetection, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RiskDetectionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
@@ -119,24 +126,6 @@ class RiskDetectionsRequestBuilder():
         """
         Retrieve the properties of a **riskDetection** object.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Filter items by property values
-        filter: Optional[str] = None
-
-        # Order items by property values
-        orderby: Optional[List[str]] = None
-
-        # Search items by search phrases
-        search: Optional[str] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
-        # Show only the first n items
-        top: Optional[int] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -160,6 +149,24 @@ class RiskDetectionsRequestBuilder():
                 return "%24top"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Filter items by property values
+        filter: Optional[str] = None
+
+        # Order items by property values
+        orderby: Optional[List[str]] = None
+
+        # Search items by search phrases
+        search: Optional[str] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
+        # Show only the first n items
+        top: Optional[int] = None
+
     
     @dataclass
     class RiskDetectionsRequestBuilderGetRequestConfiguration():

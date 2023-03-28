@@ -1,12 +1,31 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-call_disposition = lazy_import('msgraph.generated.models.call_disposition')
-invitation_participant_info = lazy_import('msgraph.generated.models.invitation_participant_info')
+if TYPE_CHECKING:
+    from .....models import call_disposition, invitation_participant_info
 
 class RedirectPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new redirectPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The callbackUri property
+        self._callback_uri: Optional[str] = None
+        # The maskCallee property
+        self._mask_callee: Optional[bool] = None
+        # The maskCaller property
+        self._mask_caller: Optional[bool] = None
+        # The targetDisposition property
+        self._target_disposition: Optional[call_disposition.CallDisposition] = None
+        # The targets property
+        self._targets: Optional[List[invitation_participant_info.InvitationParticipantInfo]] = None
+        # The timeout property
+        self._timeout: Optional[int] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -41,26 +60,6 @@ class RedirectPostRequestBody(AdditionalDataHolder, Parsable):
         """
         self._callback_uri = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new redirectPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The callbackUri property
-        self._callback_uri: Optional[str] = None
-        # The maskCallee property
-        self._mask_callee: Optional[bool] = None
-        # The maskCaller property
-        self._mask_caller: Optional[bool] = None
-        # The targetDisposition property
-        self._target_disposition: Optional[call_disposition.CallDisposition] = None
-        # The targets property
-        self._targets: Optional[List[invitation_participant_info.InvitationParticipantInfo]] = None
-        # The timeout property
-        self._timeout: Optional[int] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RedirectPostRequestBody:
         """
@@ -78,7 +77,9 @@ class RedirectPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .....models import call_disposition, invitation_participant_info
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "callbackUri": lambda n : setattr(self, 'callback_uri', n.get_str_value()),
             "maskCallee": lambda n : setattr(self, 'mask_callee', n.get_bool_value()),
             "maskCaller": lambda n : setattr(self, 'mask_caller', n.get_bool_value()),

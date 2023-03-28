@@ -1,37 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-dep_i_o_s_enrollment_profile = lazy_import('msgraph.generated.models.dep_i_o_s_enrollment_profile')
-dep_mac_o_s_enrollment_profile = lazy_import('msgraph.generated.models.dep_mac_o_s_enrollment_profile')
-dep_token_type = lazy_import('msgraph.generated.models.dep_token_type')
-enrollment_profile = lazy_import('msgraph.generated.models.enrollment_profile')
-entity = lazy_import('msgraph.generated.models.entity')
-imported_apple_device_identity = lazy_import('msgraph.generated.models.imported_apple_device_identity')
+if TYPE_CHECKING:
+    from . import dep_i_o_s_enrollment_profile, dep_mac_o_s_enrollment_profile, dep_token_type, enrollment_profile, entity, imported_apple_device_identity
+
+from . import entity
 
 class DepOnboardingSetting(entity.Entity):
     """
     The depOnboardingSetting represents an instance of the Apple DEP service being onboarded to Intune. The onboarded service instance manages an Apple Token used to synchronize data between Apple and Intune.
     """
-    @property
-    def apple_identifier(self,) -> Optional[str]:
-        """
-        Gets the appleIdentifier property value. The Apple ID used to obtain the current token.
-        Returns: Optional[str]
-        """
-        return self._apple_identifier
-    
-    @apple_identifier.setter
-    def apple_identifier(self,value: Optional[str] = None) -> None:
-        """
-        Sets the appleIdentifier property value. The Apple ID used to obtain the current token.
-        Args:
-            value: Value to set for the apple_identifier property.
-        """
-        self._apple_identifier = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new depOnboardingSetting and sets the default values.
@@ -71,6 +51,23 @@ class DepOnboardingSetting(entity.Entity):
         self._token_name: Optional[str] = None
         # The tokenType property
         self._token_type: Optional[dep_token_type.DepTokenType] = None
+    
+    @property
+    def apple_identifier(self,) -> Optional[str]:
+        """
+        Gets the appleIdentifier property value. The Apple ID used to obtain the current token.
+        Returns: Optional[str]
+        """
+        return self._apple_identifier
+    
+    @apple_identifier.setter
+    def apple_identifier(self,value: Optional[str] = None) -> None:
+        """
+        Sets the appleIdentifier property value. The Apple ID used to obtain the current token.
+        Args:
+            value: Value to set for the apple_identifier property.
+        """
+        self._apple_identifier = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DepOnboardingSetting:
@@ -157,7 +154,9 @@ class DepOnboardingSetting(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import dep_i_o_s_enrollment_profile, dep_mac_o_s_enrollment_profile, dep_token_type, enrollment_profile, entity, imported_apple_device_identity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appleIdentifier": lambda n : setattr(self, 'apple_identifier', n.get_str_value()),
             "dataSharingConsentGranted": lambda n : setattr(self, 'data_sharing_consent_granted', n.get_bool_value()),
             "defaultIosEnrollmentProfile": lambda n : setattr(self, 'default_ios_enrollment_profile', n.get_object_value(dep_i_o_s_enrollment_profile.DepIOSEnrollmentProfile)),

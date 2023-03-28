@@ -1,11 +1,26 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_enrollment_configuration = lazy_import('msgraph.generated.models.device_enrollment_configuration')
+if TYPE_CHECKING:
+    from . import device_enrollment_configuration
+
+from . import device_enrollment_configuration
 
 class DeviceComanagementAuthorityConfiguration(device_enrollment_configuration.DeviceEnrollmentConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new DeviceComanagementAuthorityConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.deviceComanagementAuthorityConfiguration"
+        # CoManagement Authority configuration ConfigurationManagerAgentCommandLineArgument
+        self._configuration_manager_agent_command_line_argument: Optional[str] = None
+        # CoManagement Authority configuration InstallConfigurationManagerAgent
+        self._install_configuration_manager_agent: Optional[bool] = None
+        # CoManagement Authority configuration ManagedDeviceAuthority
+        self._managed_device_authority: Optional[int] = None
+    
     @property
     def configuration_manager_agent_command_line_argument(self,) -> Optional[str]:
         """
@@ -22,19 +37,6 @@ class DeviceComanagementAuthorityConfiguration(device_enrollment_configuration.D
             value: Value to set for the configuration_manager_agent_command_line_argument property.
         """
         self._configuration_manager_agent_command_line_argument = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceComanagementAuthorityConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceComanagementAuthorityConfiguration"
-        # CoManagement Authority configuration ConfigurationManagerAgentCommandLineArgument
-        self._configuration_manager_agent_command_line_argument: Optional[str] = None
-        # CoManagement Authority configuration InstallConfigurationManagerAgent
-        self._install_configuration_manager_agent: Optional[bool] = None
-        # CoManagement Authority configuration ManagedDeviceAuthority
-        self._managed_device_authority: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceComanagementAuthorityConfiguration:
@@ -53,7 +55,9 @@ class DeviceComanagementAuthorityConfiguration(device_enrollment_configuration.D
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_enrollment_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "configurationManagerAgentCommandLineArgument": lambda n : setattr(self, 'configuration_manager_agent_command_line_argument', n.get_str_value()),
             "installConfigurationManagerAgent": lambda n : setattr(self, 'install_configuration_manager_agent', n.get_bool_value()),
             "managedDeviceAuthority": lambda n : setattr(self, 'managed_device_authority', n.get_int_value()),

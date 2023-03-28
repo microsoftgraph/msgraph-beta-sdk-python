@@ -1,29 +1,14 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-item_facet = lazy_import('msgraph.generated.models.item_facet')
+if TYPE_CHECKING:
+    from . import item_facet
+
+from . import item_facet
 
 class PersonCertification(item_facet.ItemFacet):
-    @property
-    def certification_id(self,) -> Optional[str]:
-        """
-        Gets the certificationId property value. The referenceable identifier for the certification.
-        Returns: Optional[str]
-        """
-        return self._certification_id
-    
-    @certification_id.setter
-    def certification_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the certificationId property value. The referenceable identifier for the certification.
-        Args:
-            value: Value to set for the certification_id property.
-        """
-        self._certification_id = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new PersonCertification and sets the default values.
@@ -50,6 +35,23 @@ class PersonCertification(item_facet.ItemFacet):
         self._thumbnail_url: Optional[str] = None
         # URL referencing the certification.
         self._web_url: Optional[str] = None
+    
+    @property
+    def certification_id(self,) -> Optional[str]:
+        """
+        Gets the certificationId property value. The referenceable identifier for the certification.
+        Returns: Optional[str]
+        """
+        return self._certification_id
+    
+    @certification_id.setter
+    def certification_id(self,value: Optional[str] = None) -> None:
+        """
+        Sets the certificationId property value. The referenceable identifier for the certification.
+        Args:
+            value: Value to set for the certification_id property.
+        """
+        self._certification_id = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PersonCertification:
@@ -119,7 +121,9 @@ class PersonCertification(item_facet.ItemFacet):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import item_facet
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "certificationId": lambda n : setattr(self, 'certification_id', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

@@ -1,12 +1,33 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-access_package_resource_attribute_destination = lazy_import('msgraph.generated.models.access_package_resource_attribute_destination')
-access_package_resource_attribute_source = lazy_import('msgraph.generated.models.access_package_resource_attribute_source')
+if TYPE_CHECKING:
+    from . import access_package_resource_attribute_destination, access_package_resource_attribute_source
 
 class AccessPackageResourceAttribute(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new accessPackageResourceAttribute and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Information about how to set the attribute, currently a accessPackageUserDirectoryAttributeStore object type.
+        self._attribute_destination: Optional[access_package_resource_attribute_destination.AccessPackageResourceAttributeDestination] = None
+        # The name of the attribute in the end system. If the destination is accessPackageUserDirectoryAttributeStore, then a user property such as jobTitle or a directory schema extension for the user object type, such as extension_2b676109c7c74ae2b41549205f1947ed_personalTitle.
+        self._attribute_name: Optional[str] = None
+        # Information about how to populate the attribute value when an accessPackageAssignmentRequest is being fulfilled, currently a accessPackageResourceAttributeQuestion object type.
+        self._attribute_source: Optional[access_package_resource_attribute_source.AccessPackageResourceAttributeSource] = None
+        # Unique identifier for the attribute on the access package resource. Read-only.
+        self._id: Optional[str] = None
+        # Specifies whether or not an existing attribute value can be edited by the requester.
+        self._is_editable: Optional[bool] = None
+        # Specifies whether the attribute will remain in the end system after an assignment ends.
+        self._is_persisted_on_assignment_removal: Optional[bool] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -75,28 +96,6 @@ class AccessPackageResourceAttribute(AdditionalDataHolder, Parsable):
         """
         self._attribute_source = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new accessPackageResourceAttribute and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Information about how to set the attribute, currently a accessPackageUserDirectoryAttributeStore object type.
-        self._attribute_destination: Optional[access_package_resource_attribute_destination.AccessPackageResourceAttributeDestination] = None
-        # The name of the attribute in the end system. If the destination is accessPackageUserDirectoryAttributeStore, then a user property such as jobTitle or a directory schema extension for the user object type, such as extension_2b676109c7c74ae2b41549205f1947ed_personalTitle.
-        self._attribute_name: Optional[str] = None
-        # Information about how to populate the attribute value when an accessPackageAssignmentRequest is being fulfilled, currently a accessPackageResourceAttributeQuestion object type.
-        self._attribute_source: Optional[access_package_resource_attribute_source.AccessPackageResourceAttributeSource] = None
-        # Unique identifier for the attribute on the access package resource. Read-only.
-        self._id: Optional[str] = None
-        # Specifies whether or not an existing attribute value can be edited by the requester.
-        self._is_editable: Optional[bool] = None
-        # Specifies whether the attribute will remain in the end system after an assignment ends.
-        self._is_persisted_on_assignment_removal: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccessPackageResourceAttribute:
         """
@@ -114,7 +113,9 @@ class AccessPackageResourceAttribute(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import access_package_resource_attribute_destination, access_package_resource_attribute_source
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "attributeDestination": lambda n : setattr(self, 'attribute_destination', n.get_object_value(access_package_resource_attribute_destination.AccessPackageResourceAttributeDestination)),
             "attributeName": lambda n : setattr(self, 'attribute_name', n.get_str_value()),
             "attributeSource": lambda n : setattr(self, 'attribute_source', n.get_object_value(access_package_resource_attribute_source.AccessPackageResourceAttributeSource)),

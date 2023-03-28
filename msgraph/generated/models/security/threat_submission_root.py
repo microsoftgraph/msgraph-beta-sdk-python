@@ -1,13 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-email_threat_submission = lazy_import('msgraph.generated.models.security.email_threat_submission')
-email_threat_submission_policy = lazy_import('msgraph.generated.models.security.email_threat_submission_policy')
-file_threat_submission = lazy_import('msgraph.generated.models.security.file_threat_submission')
-url_threat_submission = lazy_import('msgraph.generated.models.security.url_threat_submission')
+if TYPE_CHECKING:
+    from . import email_threat_submission, email_threat_submission_policy, file_threat_submission, url_threat_submission
+    from .. import entity
+
+from .. import entity
 
 class ThreatSubmissionRoot(entity.Entity):
     def __init__(self,) -> None:
@@ -94,7 +93,10 @@ class ThreatSubmissionRoot(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import email_threat_submission, email_threat_submission_policy, file_threat_submission, url_threat_submission
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "emailThreats": lambda n : setattr(self, 'email_threats', n.get_collection_of_object_values(email_threat_submission.EmailThreatSubmission)),
             "emailThreatSubmissionPolicies": lambda n : setattr(self, 'email_threat_submission_policies', n.get_collection_of_object_values(email_threat_submission_policy.EmailThreatSubmissionPolicy)),
             "fileThreats": lambda n : setattr(self, 'file_threats', n.get_collection_of_object_values(file_threat_submission.FileThreatSubmission)),

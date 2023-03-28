@@ -1,34 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-service_now_authentication_method = lazy_import('msgraph.generated.models.service_now_authentication_method')
-service_now_connection_status = lazy_import('msgraph.generated.models.service_now_connection_status')
+if TYPE_CHECKING:
+    from . import entity, service_now_authentication_method, service_now_connection_status
+
+from . import entity
 
 class ServiceNowConnection(entity.Entity):
     """
     ServiceNow properties including the ServiceNow instanceUrl, connection credentials and other metadata.
     """
-    @property
-    def authentication_method(self,) -> Optional[service_now_authentication_method.ServiceNowAuthenticationMethod]:
-        """
-        Gets the authenticationMethod property value. Indicates the method used by Intune to authenticate with ServiceNow. Currently supports only web authentication with ServiceNow using the specified app id.
-        Returns: Optional[service_now_authentication_method.ServiceNowAuthenticationMethod]
-        """
-        return self._authentication_method
-    
-    @authentication_method.setter
-    def authentication_method(self,value: Optional[service_now_authentication_method.ServiceNowAuthenticationMethod] = None) -> None:
-        """
-        Sets the authenticationMethod property value. Indicates the method used by Intune to authenticate with ServiceNow. Currently supports only web authentication with ServiceNow using the specified app id.
-        Args:
-            value: Value to set for the authentication_method property.
-        """
-        self._authentication_method = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new serviceNowConnection and sets the default values.
@@ -50,6 +33,23 @@ class ServiceNowConnection(entity.Entity):
         self.odata_type: Optional[str] = None
         # Status of ServiceNow Connection
         self._service_now_connection_status: Optional[service_now_connection_status.ServiceNowConnectionStatus] = None
+    
+    @property
+    def authentication_method(self,) -> Optional[service_now_authentication_method.ServiceNowAuthenticationMethod]:
+        """
+        Gets the authenticationMethod property value. Indicates the method used by Intune to authenticate with ServiceNow. Currently supports only web authentication with ServiceNow using the specified app id.
+        Returns: Optional[service_now_authentication_method.ServiceNowAuthenticationMethod]
+        """
+        return self._authentication_method
+    
+    @authentication_method.setter
+    def authentication_method(self,value: Optional[service_now_authentication_method.ServiceNowAuthenticationMethod] = None) -> None:
+        """
+        Sets the authenticationMethod property value. Indicates the method used by Intune to authenticate with ServiceNow. Currently supports only web authentication with ServiceNow using the specified app id.
+        Args:
+            value: Value to set for the authentication_method property.
+        """
+        self._authentication_method = value
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
@@ -85,7 +85,9 @@ class ServiceNowConnection(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, service_now_authentication_method, service_now_connection_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_object_value(service_now_authentication_method.ServiceNowAuthenticationMethod)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "incidentApiUrl": lambda n : setattr(self, 'incident_api_url', n.get_str_value()),

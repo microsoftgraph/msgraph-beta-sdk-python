@@ -7,69 +7,22 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-business_flows_request_builder = lazy_import('msgraph.generated.approval_workflow_providers.item.business_flows.business_flows_request_builder')
-business_flow_item_request_builder = lazy_import('msgraph.generated.approval_workflow_providers.item.business_flows.item.business_flow_item_request_builder')
-business_flows_with_requests_awaiting_my_decision_request_builder = lazy_import('msgraph.generated.approval_workflow_providers.item.business_flows_with_requests_awaiting_my_decision.business_flows_with_requests_awaiting_my_decision_request_builder')
-business_flow_item_request_builder = lazy_import('msgraph.generated.approval_workflow_providers.item.business_flows_with_requests_awaiting_my_decision.item.business_flow_item_request_builder')
-policy_templates_request_builder = lazy_import('msgraph.generated.approval_workflow_providers.item.policy_templates.policy_templates_request_builder')
-governance_policy_template_item_request_builder = lazy_import('msgraph.generated.approval_workflow_providers.item.policy_templates.item.governance_policy_template_item_request_builder')
-approval_workflow_provider = lazy_import('msgraph.generated.models.approval_workflow_provider')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ...models import approval_workflow_provider
+    from ...models.o_data_errors import o_data_error
+    from .business_flows import business_flows_request_builder
+    from .business_flows.item import business_flow_item_request_builder
+    from .business_flows_with_requests_awaiting_my_decision import business_flows_with_requests_awaiting_my_decision_request_builder
+    from .business_flows_with_requests_awaiting_my_decision.item import business_flow_item_request_builder
+    from .policy_templates import policy_templates_request_builder
+    from .policy_templates.item import governance_policy_template_item_request_builder
 
 class ApprovalWorkflowProviderItemRequestBuilder():
     """
     Provides operations to manage the collection of approvalWorkflowProvider entities.
     """
-    @property
-    def business_flows(self) -> business_flows_request_builder.BusinessFlowsRequestBuilder:
-        """
-        Provides operations to manage the businessFlows property of the microsoft.graph.approvalWorkflowProvider entity.
-        """
-        return business_flows_request_builder.BusinessFlowsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def business_flows_with_requests_awaiting_my_decision(self) -> business_flows_with_requests_awaiting_my_decision_request_builder.BusinessFlowsWithRequestsAwaitingMyDecisionRequestBuilder:
-        """
-        Provides operations to manage the businessFlowsWithRequestsAwaitingMyDecision property of the microsoft.graph.approvalWorkflowProvider entity.
-        """
-        return business_flows_with_requests_awaiting_my_decision_request_builder.BusinessFlowsWithRequestsAwaitingMyDecisionRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def policy_templates(self) -> policy_templates_request_builder.PolicyTemplatesRequestBuilder:
-        """
-        Provides operations to manage the policyTemplates property of the microsoft.graph.approvalWorkflowProvider entity.
-        """
-        return policy_templates_request_builder.PolicyTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def business_flows_by_id(self,id: str) -> business_flow_item_request_builder.BusinessFlowItemRequestBuilder:
-        """
-        Provides operations to manage the businessFlows property of the microsoft.graph.approvalWorkflowProvider entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: business_flow_item_request_builder.BusinessFlowItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["businessFlow%2Did"] = id
-        return business_flow_item_request_builder.BusinessFlowItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def business_flows_with_requests_awaiting_my_decision_by_id(self,id: str) -> business_flow_item_request_builder.BusinessFlowItemRequestBuilder:
-        """
-        Provides operations to manage the businessFlowsWithRequestsAwaitingMyDecision property of the microsoft.graph.approvalWorkflowProvider entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: business_flow_item_request_builder.BusinessFlowItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["businessFlow%2Did"] = id
-        return business_flow_item_request_builder.BusinessFlowItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new ApprovalWorkflowProviderItemRequestBuilder and sets the default values.
@@ -88,6 +41,38 @@ class ApprovalWorkflowProviderItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def business_flows_by_id(self,id: str) -> business_flow_item_request_builder.BusinessFlowItemRequestBuilder:
+        """
+        Provides operations to manage the businessFlows property of the microsoft.graph.approvalWorkflowProvider entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: business_flow_item_request_builder.BusinessFlowItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .business_flows.item import business_flow_item_request_builder
+        from .business_flows_with_requests_awaiting_my_decision.item import business_flow_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["businessFlow%2Did"] = id
+        return business_flow_item_request_builder.BusinessFlowItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    def business_flows_with_requests_awaiting_my_decision_by_id(self,id: str) -> business_flow_item_request_builder.BusinessFlowItemRequestBuilder:
+        """
+        Provides operations to manage the businessFlowsWithRequestsAwaitingMyDecision property of the microsoft.graph.approvalWorkflowProvider entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: business_flow_item_request_builder.BusinessFlowItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .business_flows.item import business_flow_item_request_builder
+        from .business_flows_with_requests_awaiting_my_decision.item import business_flow_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["businessFlow%2Did"] = id
+        return business_flow_item_request_builder.BusinessFlowItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def delete(self,request_configuration: Optional[ApprovalWorkflowProviderItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete entity from approvalWorkflowProviders
@@ -97,6 +82,8 @@ class ApprovalWorkflowProviderItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -115,12 +102,16 @@ class ApprovalWorkflowProviderItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models import approval_workflow_provider
+
         return await self.request_adapter.send_async(request_info, approval_workflow_provider.ApprovalWorkflowProvider, error_mapping)
     
     async def patch(self,body: Optional[approval_workflow_provider.ApprovalWorkflowProvider] = None, request_configuration: Optional[ApprovalWorkflowProviderItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[approval_workflow_provider.ApprovalWorkflowProvider]:
@@ -136,12 +127,16 @@ class ApprovalWorkflowProviderItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models import approval_workflow_provider
+
         return await self.request_adapter.send_async(request_info, approval_workflow_provider.ApprovalWorkflowProvider, error_mapping)
     
     def policy_templates_by_id(self,id: str) -> governance_policy_template_item_request_builder.GovernancePolicyTemplateItemRequestBuilder:
@@ -153,6 +148,8 @@ class ApprovalWorkflowProviderItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .policy_templates.item import governance_policy_template_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["governancePolicyTemplate%2Did"] = id
         return governance_policy_template_item_request_builder.GovernancePolicyTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -212,6 +209,33 @@ class ApprovalWorkflowProviderItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def business_flows(self) -> business_flows_request_builder.BusinessFlowsRequestBuilder:
+        """
+        Provides operations to manage the businessFlows property of the microsoft.graph.approvalWorkflowProvider entity.
+        """
+        from .business_flows import business_flows_request_builder
+
+        return business_flows_request_builder.BusinessFlowsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def business_flows_with_requests_awaiting_my_decision(self) -> business_flows_with_requests_awaiting_my_decision_request_builder.BusinessFlowsWithRequestsAwaitingMyDecisionRequestBuilder:
+        """
+        Provides operations to manage the businessFlowsWithRequestsAwaitingMyDecision property of the microsoft.graph.approvalWorkflowProvider entity.
+        """
+        from .business_flows_with_requests_awaiting_my_decision import business_flows_with_requests_awaiting_my_decision_request_builder
+
+        return business_flows_with_requests_awaiting_my_decision_request_builder.BusinessFlowsWithRequestsAwaitingMyDecisionRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def policy_templates(self) -> policy_templates_request_builder.PolicyTemplatesRequestBuilder:
+        """
+        Provides operations to manage the policyTemplates property of the microsoft.graph.approvalWorkflowProvider entity.
+        """
+        from .policy_templates import policy_templates_request_builder
+
+        return policy_templates_request_builder.PolicyTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class ApprovalWorkflowProviderItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -229,12 +253,6 @@ class ApprovalWorkflowProviderItemRequestBuilder():
         """
         Get entity from approvalWorkflowProviders by key
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -250,6 +268,12 @@ class ApprovalWorkflowProviderItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class ApprovalWorkflowProviderItemRequestBuilderGetRequestConfiguration():

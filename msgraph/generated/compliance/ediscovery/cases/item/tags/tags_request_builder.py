@@ -7,33 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-count_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.tags.count.count_request_builder')
-ediscovery_as_hierarchy_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.tags.ediscovery_as_hierarchy.ediscovery_as_hierarchy_request_builder')
-tag = lazy_import('msgraph.generated.models.ediscovery.tag')
-tag_collection_response = lazy_import('msgraph.generated.models.ediscovery.tag_collection_response')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ......models.ediscovery import tag, tag_collection_response
+    from ......models.o_data_errors import o_data_error
+    from .count import count_request_builder
+    from .ediscovery_as_hierarchy import ediscovery_as_hierarchy_request_builder
 
 class TagsRequestBuilder():
     """
     Provides operations to manage the tags property of the microsoft.graph.ediscovery.case entity.
     """
-    @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
-        """
-        Provides operations to count the resources in the collection.
-        """
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def ediscovery_as_hierarchy(self) -> ediscovery_as_hierarchy_request_builder.EdiscoveryAsHierarchyRequestBuilder:
-        """
-        Provides operations to call the asHierarchy method.
-        """
-        return ediscovery_as_hierarchy_request_builder.EdiscoveryAsHierarchyRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new TagsRequestBuilder and sets the default values.
@@ -62,12 +47,16 @@ class TagsRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models.ediscovery import tag_collection_response
+
         return await self.request_adapter.send_async(request_info, tag_collection_response.TagCollectionResponse, error_mapping)
     
     async def post(self,body: Optional[tag.Tag] = None, request_configuration: Optional[TagsRequestBuilderPostRequestConfiguration] = None) -> Optional[tag.Tag]:
@@ -83,12 +72,16 @@ class TagsRequestBuilder():
         request_info = self.to_post_request_information(
             body, request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models.ediscovery import tag
+
         return await self.request_adapter.send_async(request_info, tag.Tag, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TagsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
@@ -130,35 +123,29 @@ class TagsRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def count(self) -> count_request_builder.CountRequestBuilder:
+        """
+        Provides operations to count the resources in the collection.
+        """
+        from .count import count_request_builder
+
+        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def ediscovery_as_hierarchy(self) -> ediscovery_as_hierarchy_request_builder.EdiscoveryAsHierarchyRequestBuilder:
+        """
+        Provides operations to call the asHierarchy method.
+        """
+        from .ediscovery_as_hierarchy import ediscovery_as_hierarchy_request_builder
+
+        return ediscovery_as_hierarchy_request_builder.EdiscoveryAsHierarchyRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class TagsRequestBuilderGetQueryParameters():
         """
         Retrieve a list of tag objects from an eDiscovery case.
         """
-        # Include count of items
-        count: Optional[bool] = None
-
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Filter items by property values
-        filter: Optional[str] = None
-
-        # Order items by property values
-        orderby: Optional[List[str]] = None
-
-        # Search items by search phrases
-        search: Optional[str] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
-        # Skip the first n items
-        skip: Optional[int] = None
-
-        # Show only the first n items
-        top: Optional[int] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -186,6 +173,30 @@ class TagsRequestBuilder():
                 return "%24top"
             return original_name
         
+        # Include count of items
+        count: Optional[bool] = None
+
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Filter items by property values
+        filter: Optional[str] = None
+
+        # Order items by property values
+        orderby: Optional[List[str]] = None
+
+        # Search items by search phrases
+        search: Optional[str] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
+        # Skip the first n items
+        skip: Optional[int] = None
+
+        # Show only the first n items
+        top: Optional[int] = None
+
     
     @dataclass
     class TagsRequestBuilderGetRequestConfiguration():

@@ -1,10 +1,37 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new officeClientCheckinStatus and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # List of policies delivered to the device as last checkin.
+        self._applied_policies: Optional[List[str]] = None
+        # Last device check-in time in UTC.
+        self._checkin_date_time: Optional[datetime] = None
+        # Device name trying to check-in.
+        self._device_name: Optional[str] = None
+        # Device platform trying to check-in.
+        self._device_platform: Optional[str] = None
+        # Device platform version trying to check-in.
+        self._device_platform_version: Optional[str] = None
+        # Error message if any associated for the last checkin.
+        self._error_message: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # User identifier using the device.
+        self._user_id: Optional[str] = None
+        # User principal name using the device.
+        self._user_principal_name: Optional[str] = None
+        # If the last checkin was successful.
+        self._was_successful: Optional[bool] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -55,34 +82,6 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
             value: Value to set for the checkin_date_time property.
         """
         self._checkin_date_time = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new officeClientCheckinStatus and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # List of policies delivered to the device as last checkin.
-        self._applied_policies: Optional[List[str]] = None
-        # Last device check-in time in UTC.
-        self._checkin_date_time: Optional[datetime] = None
-        # Device name trying to check-in.
-        self._device_name: Optional[str] = None
-        # Device platform trying to check-in.
-        self._device_platform: Optional[str] = None
-        # Device platform version trying to check-in.
-        self._device_platform_version: Optional[str] = None
-        # Error message if any associated for the last checkin.
-        self._error_message: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # User identifier using the device.
-        self._user_id: Optional[str] = None
-        # User principal name using the device.
-        self._user_principal_name: Optional[str] = None
-        # If the last checkin was successful.
-        self._was_successful: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OfficeClientCheckinStatus:
@@ -169,7 +168,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "appliedPolicies": lambda n : setattr(self, 'applied_policies', n.get_collection_of_primitive_values(str)),
             "checkinDateTime": lambda n : setattr(self, 'checkin_date_time', n.get_datetime_value()),
             "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),

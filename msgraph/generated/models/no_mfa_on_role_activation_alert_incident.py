@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-unified_role_management_alert_incident = lazy_import('msgraph.generated.models.unified_role_management_alert_incident')
+if TYPE_CHECKING:
+    from . import unified_role_management_alert_incident
+
+from . import unified_role_management_alert_incident
 
 class NoMfaOnRoleActivationAlertIncident(unified_role_management_alert_incident.UnifiedRoleManagementAlertIncident):
     def __init__(self,) -> None:
@@ -34,7 +36,9 @@ class NoMfaOnRoleActivationAlertIncident(unified_role_management_alert_incident.
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import unified_role_management_alert_incident
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "roleDisplayName": lambda n : setattr(self, 'role_display_name', n.get_str_value()),
             "roleTemplateId": lambda n : setattr(self, 'role_template_id', n.get_str_value()),
         }

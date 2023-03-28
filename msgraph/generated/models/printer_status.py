@@ -1,30 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-printer_processing_state = lazy_import('msgraph.generated.models.printer_processing_state')
-printer_processing_state_detail = lazy_import('msgraph.generated.models.printer_processing_state_detail')
-printer_processing_state_reason = lazy_import('msgraph.generated.models.printer_processing_state_reason')
+if TYPE_CHECKING:
+    from . import printer_processing_state, printer_processing_state_detail, printer_processing_state_reason
 
 class PrinterStatus(AdditionalDataHolder, Parsable):
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new printerStatus and sets the default values.
@@ -46,6 +27,23 @@ class PrinterStatus(AdditionalDataHolder, Parsable):
         self._processing_state_reasons: Optional[List[printer_processing_state_reason.PrinterProcessingStateReason]] = None
         # The state property
         self._state: Optional[printer_processing_state.PrinterProcessingState] = None
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PrinterStatus:
@@ -98,7 +96,9 @@ class PrinterStatus(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import printer_processing_state, printer_processing_state_detail, printer_processing_state_reason
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "details": lambda n : setattr(self, 'details', n.get_collection_of_enum_values(printer_processing_state_detail.PrinterProcessingStateDetail)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

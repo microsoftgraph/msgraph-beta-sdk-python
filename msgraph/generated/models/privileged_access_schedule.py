@@ -1,11 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-request_schedule = lazy_import('msgraph.generated.models.request_schedule')
+if TYPE_CHECKING:
+    from . import entity, privileged_access_group_assignment_schedule, privileged_access_group_eligibility_schedule, request_schedule
+
+from . import entity
 
 class PrivilegedAccessSchedule(entity.Entity):
     def __init__(self,) -> None:
@@ -70,6 +71,17 @@ class PrivilegedAccessSchedule(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.privilegedAccessGroupAssignmentSchedule":
+                from . import privileged_access_group_assignment_schedule
+
+                return privileged_access_group_assignment_schedule.PrivilegedAccessGroupAssignmentSchedule()
+            if mapping_value == "#microsoft.graph.privilegedAccessGroupEligibilitySchedule":
+                from . import privileged_access_group_eligibility_schedule
+
+                return privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule()
         return PrivilegedAccessSchedule()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -77,7 +89,9 @@ class PrivilegedAccessSchedule(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, privileged_access_group_assignment_schedule, privileged_access_group_eligibility_schedule, request_schedule
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "createdUsing": lambda n : setattr(self, 'created_using', n.get_str_value()),
             "modifiedDateTime": lambda n : setattr(self, 'modified_date_time', n.get_datetime_value()),

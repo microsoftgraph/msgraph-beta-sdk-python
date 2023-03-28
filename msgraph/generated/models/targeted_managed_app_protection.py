@@ -1,14 +1,28 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-app_management_level = lazy_import('msgraph.generated.models.app_management_level')
-managed_app_protection = lazy_import('msgraph.generated.models.managed_app_protection')
-targeted_managed_app_group_type = lazy_import('msgraph.generated.models.targeted_managed_app_group_type')
-targeted_managed_app_policy_assignment = lazy_import('msgraph.generated.models.targeted_managed_app_policy_assignment')
+if TYPE_CHECKING:
+    from . import android_managed_app_protection, app_management_level, ios_managed_app_protection, managed_app_protection, targeted_managed_app_group_type, targeted_managed_app_policy_assignment
+
+from . import managed_app_protection
 
 class TargetedManagedAppProtection(managed_app_protection.ManagedAppProtection):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new TargetedManagedAppProtection and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.targetedManagedAppProtection"
+        # Indicates a collection of apps to target which can be one of several pre-defined lists of apps or a manually selected list of apps
+        self._app_group_type: Optional[targeted_managed_app_group_type.TargetedManagedAppGroupType] = None
+        # Navigation property to list of inclusion and exclusion groups to which the policy is deployed.
+        self._assignments: Optional[List[targeted_managed_app_policy_assignment.TargetedManagedAppPolicyAssignment]] = None
+        # Indicates if the policy is deployed to any inclusion groups or not.
+        self._is_assigned: Optional[bool] = None
+        # Management levels for apps
+        self._targeted_app_management_levels: Optional[app_management_level.AppManagementLevel] = None
+    
     @property
     def app_group_type(self,) -> Optional[targeted_managed_app_group_type.TargetedManagedAppGroupType]:
         """
@@ -43,21 +57,6 @@ class TargetedManagedAppProtection(managed_app_protection.ManagedAppProtection):
         """
         self._assignments = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new TargetedManagedAppProtection and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.targetedManagedAppProtection"
-        # Indicates a collection of apps to target which can be one of several pre-defined lists of apps or a manually selected list of apps
-        self._app_group_type: Optional[targeted_managed_app_group_type.TargetedManagedAppGroupType] = None
-        # Navigation property to list of inclusion and exclusion groups to which the policy is deployed.
-        self._assignments: Optional[List[targeted_managed_app_policy_assignment.TargetedManagedAppPolicyAssignment]] = None
-        # Indicates if the policy is deployed to any inclusion groups or not.
-        self._is_assigned: Optional[bool] = None
-        # Management levels for apps
-        self._targeted_app_management_levels: Optional[app_management_level.AppManagementLevel] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TargetedManagedAppProtection:
         """
@@ -68,6 +67,17 @@ class TargetedManagedAppProtection(managed_app_protection.ManagedAppProtection):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.androidManagedAppProtection":
+                from . import android_managed_app_protection
+
+                return android_managed_app_protection.AndroidManagedAppProtection()
+            if mapping_value == "#microsoft.graph.iosManagedAppProtection":
+                from . import ios_managed_app_protection
+
+                return ios_managed_app_protection.IosManagedAppProtection()
         return TargetedManagedAppProtection()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -75,7 +85,9 @@ class TargetedManagedAppProtection(managed_app_protection.ManagedAppProtection):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_managed_app_protection, app_management_level, ios_managed_app_protection, managed_app_protection, targeted_managed_app_group_type, targeted_managed_app_policy_assignment
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appGroupType": lambda n : setattr(self, 'app_group_type', n.get_enum_value(targeted_managed_app_group_type.TargetedManagedAppGroupType)),
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(targeted_managed_app_policy_assignment.TargetedManagedAppPolicyAssignment)),
             "isAssigned": lambda n : setattr(self, 'is_assigned', n.get_bool_value()),

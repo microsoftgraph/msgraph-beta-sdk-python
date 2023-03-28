@@ -1,18 +1,74 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-eap_type = lazy_import('msgraph.generated.models.eap_type')
-network_single_sign_on_type = lazy_import('msgraph.generated.models.network_single_sign_on_type')
-non_eap_authentication_method_for_eap_ttls_type = lazy_import('msgraph.generated.models.non_eap_authentication_method_for_eap_ttls_type')
-wi_fi_authentication_method = lazy_import('msgraph.generated.models.wi_fi_authentication_method')
-wifi_authentication_type = lazy_import('msgraph.generated.models.wifi_authentication_type')
-windows_certificate_profile_base = lazy_import('msgraph.generated.models.windows_certificate_profile_base')
-windows_wifi_configuration = lazy_import('msgraph.generated.models.windows_wifi_configuration')
-windows81_trusted_root_certificate = lazy_import('msgraph.generated.models.windows81_trusted_root_certificate')
+if TYPE_CHECKING:
+    from . import eap_type, network_single_sign_on_type, non_eap_authentication_method_for_eap_ttls_type, wifi_authentication_type, windows81_trusted_root_certificate, windows_certificate_profile_base, windows_wifi_configuration, wi_fi_authentication_method
+
+from . import windows_wifi_configuration
 
 class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWifiConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new WindowsWifiEnterpriseEAPConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.windowsWifiEnterpriseEAPConfiguration"
+        # Specify the authentication method. Possible values are: certificate, usernameAndPassword, derivedCredential.
+        self._authentication_method: Optional[wi_fi_authentication_method.WiFiAuthenticationMethod] = None
+        # Specify the number of seconds for the client to wait after an authentication attempt before failing. Valid range 1-3600.
+        self._authentication_period_in_seconds: Optional[int] = None
+        # Specify the number of seconds between a failed authentication and the next authentication attempt. Valid range 1-3600.
+        self._authentication_retry_delay_period_in_seconds: Optional[int] = None
+        # Specify whether to authenticate the user, the device, either, or to use guest authentication (none). If you’re using certificate authentication, make sure the certificate type matches the authentication type. Possible values are: none, user, machine, machineOrUser, guest.
+        self._authentication_type: Optional[wifi_authentication_type.WifiAuthenticationType] = None
+        # Specify whether to cache user credentials on the device so that users don’t need to keep entering them each time they connect.
+        self._cache_credentials: Optional[bool] = None
+        # Specify whether to prevent the user from being prompted to authorize new servers for trusted certification authorities when EAP type is selected as PEAP.
+        self._disable_user_prompt_for_server_validation: Optional[bool] = None
+        # Extensible Authentication Protocol (EAP) configuration types.
+        self._eap_type: Optional[eap_type.EapType] = None
+        # Specify the number of seconds to wait before sending an EAPOL (Extensible Authentication Protocol over LAN) Start message. Valid range 1-3600.
+        self._eapol_start_period_in_seconds: Optional[int] = None
+        # Specify whether the wifi connection should enable pairwise master key caching.
+        self._enable_pairwise_master_key_caching: Optional[bool] = None
+        # Specify whether pre-authentication should be enabled.
+        self._enable_pre_authentication: Optional[bool] = None
+        # Specify identity certificate for client authentication.
+        self._identity_certificate_for_client_authentication: Optional[windows_certificate_profile_base.WindowsCertificateProfileBase] = None
+        # Specify inner authentication protocol for EAP TTLS. Possible values are: unencryptedPassword, challengeHandshakeAuthenticationProtocol, microsoftChap, microsoftChapVersionTwo.
+        self._inner_authentication_protocol_for_e_a_p_t_t_l_s: Optional[non_eap_authentication_method_for_eap_ttls_type.NonEapAuthenticationMethodForEapTtlsType] = None
+        # Specify the maximum authentication failures allowed for a set of credentials. Valid range 1-100.
+        self._maximum_authentication_failures: Optional[int] = None
+        # Specify maximum authentication timeout (in seconds).  Valid range: 1-120
+        self._maximum_authentication_timeout_in_seconds: Optional[int] = None
+        # Specifiy the maximum number of EAPOL (Extensible Authentication Protocol over LAN) Start messages to be sent before returning failure. Valid range 1-100.
+        self._maximum_e_a_p_o_l_start_messages: Optional[int] = None
+        # Specify maximum number of pairwise master keys in cache.  Valid range: 1-255
+        self._maximum_number_of_pairwise_master_keys_in_cache: Optional[int] = None
+        # Specify maximum pairwise master key cache time (in minutes).  Valid range: 5-1440
+        self._maximum_pairwise_master_key_cache_time_in_minutes: Optional[int] = None
+        # Specify maximum pre-authentication attempts.  Valid range: 1-16
+        self._maximum_pre_authentication_attempts: Optional[int] = None
+        # Specify the network single sign on type. Possible values are: disabled, prelogon, postlogon.
+        self._network_single_sign_on: Optional[network_single_sign_on_type.NetworkSingleSignOnType] = None
+        # Specify the string to replace usernames for privacy when using EAP TTLS or PEAP.
+        self._outer_identity_privacy_temporary_value: Optional[str] = None
+        # Specify whether to enable verification of server's identity by validating the certificate when EAP type is selected as PEAP.
+        self._perform_server_validation: Optional[bool] = None
+        # Specify whether the wifi connection should prompt for additional authentication credentials.
+        self._prompt_for_additional_authentication_credentials: Optional[bool] = None
+        # Specify whether to enable cryptographic binding when EAP type is selected as PEAP.
+        self._require_cryptographic_binding: Optional[bool] = None
+        # Specify root certificate for client validation.
+        self._root_certificate_for_client_validation: Optional[windows81_trusted_root_certificate.Windows81TrustedRootCertificate] = None
+        # Specify root certificate for server validation. This collection can contain a maximum of 500 elements.
+        self._root_certificates_for_server_validation: Optional[List[windows81_trusted_root_certificate.Windows81TrustedRootCertificate]] = None
+        # Specify trusted server certificate names.
+        self._trusted_server_certificate_names: Optional[List[str]] = None
+        # Specifiy whether to change the virtual LAN used by the device based on the user’s credentials. Cannot be used when NetworkSingleSignOnType is set to ​Disabled.
+        self._user_based_virtual_lan: Optional[bool] = None
+    
     @property
     def authentication_method(self,) -> Optional[wi_fi_authentication_method.WiFiAuthenticationMethod]:
         """
@@ -97,67 +153,6 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
             value: Value to set for the cache_credentials property.
         """
         self._cache_credentials = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsWifiEnterpriseEAPConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsWifiEnterpriseEAPConfiguration"
-        # Specify the authentication method. Possible values are: certificate, usernameAndPassword, derivedCredential.
-        self._authentication_method: Optional[wi_fi_authentication_method.WiFiAuthenticationMethod] = None
-        # Specify the number of seconds for the client to wait after an authentication attempt before failing. Valid range 1-3600.
-        self._authentication_period_in_seconds: Optional[int] = None
-        # Specify the number of seconds between a failed authentication and the next authentication attempt. Valid range 1-3600.
-        self._authentication_retry_delay_period_in_seconds: Optional[int] = None
-        # Specify whether to authenticate the user, the device, either, or to use guest authentication (none). If you’re using certificate authentication, make sure the certificate type matches the authentication type. Possible values are: none, user, machine, machineOrUser, guest.
-        self._authentication_type: Optional[wifi_authentication_type.WifiAuthenticationType] = None
-        # Specify whether to cache user credentials on the device so that users don’t need to keep entering them each time they connect.
-        self._cache_credentials: Optional[bool] = None
-        # Specify whether to prevent the user from being prompted to authorize new servers for trusted certification authorities when EAP type is selected as PEAP.
-        self._disable_user_prompt_for_server_validation: Optional[bool] = None
-        # Extensible Authentication Protocol (EAP) configuration types.
-        self._eap_type: Optional[eap_type.EapType] = None
-        # Specify the number of seconds to wait before sending an EAPOL (Extensible Authentication Protocol over LAN) Start message. Valid range 1-3600.
-        self._eapol_start_period_in_seconds: Optional[int] = None
-        # Specify whether the wifi connection should enable pairwise master key caching.
-        self._enable_pairwise_master_key_caching: Optional[bool] = None
-        # Specify whether pre-authentication should be enabled.
-        self._enable_pre_authentication: Optional[bool] = None
-        # Specify identity certificate for client authentication.
-        self._identity_certificate_for_client_authentication: Optional[windows_certificate_profile_base.WindowsCertificateProfileBase] = None
-        # Specify inner authentication protocol for EAP TTLS. Possible values are: unencryptedPassword, challengeHandshakeAuthenticationProtocol, microsoftChap, microsoftChapVersionTwo.
-        self._inner_authentication_protocol_for_e_a_p_t_t_l_s: Optional[non_eap_authentication_method_for_eap_ttls_type.NonEapAuthenticationMethodForEapTtlsType] = None
-        # Specify the maximum authentication failures allowed for a set of credentials. Valid range 1-100.
-        self._maximum_authentication_failures: Optional[int] = None
-        # Specify maximum authentication timeout (in seconds).  Valid range: 1-120
-        self._maximum_authentication_timeout_in_seconds: Optional[int] = None
-        # Specifiy the maximum number of EAPOL (Extensible Authentication Protocol over LAN) Start messages to be sent before returning failure. Valid range 1-100.
-        self._maximum_e_a_p_o_l_start_messages: Optional[int] = None
-        # Specify maximum number of pairwise master keys in cache.  Valid range: 1-255
-        self._maximum_number_of_pairwise_master_keys_in_cache: Optional[int] = None
-        # Specify maximum pairwise master key cache time (in minutes).  Valid range: 5-1440
-        self._maximum_pairwise_master_key_cache_time_in_minutes: Optional[int] = None
-        # Specify maximum pre-authentication attempts.  Valid range: 1-16
-        self._maximum_pre_authentication_attempts: Optional[int] = None
-        # Specify the network single sign on type. Possible values are: disabled, prelogon, postlogon.
-        self._network_single_sign_on: Optional[network_single_sign_on_type.NetworkSingleSignOnType] = None
-        # Specify the string to replace usernames for privacy when using EAP TTLS or PEAP.
-        self._outer_identity_privacy_temporary_value: Optional[str] = None
-        # Specify whether to enable verification of server's identity by validating the certificate when EAP type is selected as PEAP.
-        self._perform_server_validation: Optional[bool] = None
-        # Specify whether the wifi connection should prompt for additional authentication credentials.
-        self._prompt_for_additional_authentication_credentials: Optional[bool] = None
-        # Specify whether to enable cryptographic binding when EAP type is selected as PEAP.
-        self._require_cryptographic_binding: Optional[bool] = None
-        # Specify root certificate for client validation.
-        self._root_certificate_for_client_validation: Optional[windows81_trusted_root_certificate.Windows81TrustedRootCertificate] = None
-        # Specify root certificate for server validation. This collection can contain a maximum of 500 elements.
-        self._root_certificates_for_server_validation: Optional[List[windows81_trusted_root_certificate.Windows81TrustedRootCertificate]] = None
-        # Specify trusted server certificate names.
-        self._trusted_server_certificate_names: Optional[List[str]] = None
-        # Specifiy whether to change the virtual LAN used by the device based on the user’s credentials. Cannot be used when NetworkSingleSignOnType is set to ​Disabled.
-        self._user_based_virtual_lan: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsWifiEnterpriseEAPConfiguration:
@@ -261,7 +256,9 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import eap_type, network_single_sign_on_type, non_eap_authentication_method_for_eap_ttls_type, wifi_authentication_type, windows81_trusted_root_certificate, windows_certificate_profile_base, windows_wifi_configuration, wi_fi_authentication_method
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(wi_fi_authentication_method.WiFiAuthenticationMethod)),
             "authenticationPeriodInSeconds": lambda n : setattr(self, 'authentication_period_in_seconds', n.get_int_value()),
             "authenticationRetryDelayPeriodInSeconds": lambda n : setattr(self, 'authentication_retry_delay_period_in_seconds', n.get_int_value()),

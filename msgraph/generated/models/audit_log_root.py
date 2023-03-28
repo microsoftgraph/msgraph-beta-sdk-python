@@ -1,30 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-directory_audit = lazy_import('msgraph.generated.models.directory_audit')
-provisioning_object_summary = lazy_import('msgraph.generated.models.provisioning_object_summary')
-sign_in = lazy_import('msgraph.generated.models.sign_in')
+if TYPE_CHECKING:
+    from . import directory_audit, provisioning_object_summary, sign_in
 
 class AuditLogRoot(AdditionalDataHolder, Parsable):
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new AuditLogRoot and sets the default values.
@@ -42,6 +23,23 @@ class AuditLogRoot(AdditionalDataHolder, Parsable):
         self._provisioning: Optional[List[provisioning_object_summary.ProvisioningObjectSummary]] = None
         # The signIns property
         self._sign_ins: Optional[List[sign_in.SignIn]] = None
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AuditLogRoot:
@@ -94,7 +92,9 @@ class AuditLogRoot(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import directory_audit, provisioning_object_summary, sign_in
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "directoryAudits": lambda n : setattr(self, 'directory_audits', n.get_collection_of_object_values(directory_audit.DirectoryAudit)),
             "directoryProvisioning": lambda n : setattr(self, 'directory_provisioning', n.get_collection_of_object_values(provisioning_object_summary.ProvisioningObjectSummary)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

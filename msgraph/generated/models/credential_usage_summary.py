@@ -1,13 +1,29 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-feature_type = lazy_import('msgraph.generated.models.feature_type')
-usage_auth_method = lazy_import('msgraph.generated.models.usage_auth_method')
+if TYPE_CHECKING:
+    from . import entity, feature_type, usage_auth_method
+
+from . import entity
 
 class CredentialUsageSummary(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new CredentialUsageSummary and sets the default values.
+        """
+        super().__init__()
+        # The authMethod property
+        self._auth_method: Optional[usage_auth_method.UsageAuthMethod] = None
+        # Provides the count of failed resets or registration data.
+        self._failure_activity_count: Optional[int] = None
+        # The feature property
+        self._feature: Optional[feature_type.FeatureType] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Provides the count of successful registrations or resets.
+        self._successful_activity_count: Optional[int] = None
+    
     @property
     def auth_method(self,) -> Optional[usage_auth_method.UsageAuthMethod]:
         """
@@ -24,22 +40,6 @@ class CredentialUsageSummary(entity.Entity):
             value: Value to set for the auth_method property.
         """
         self._auth_method = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new CredentialUsageSummary and sets the default values.
-        """
-        super().__init__()
-        # The authMethod property
-        self._auth_method: Optional[usage_auth_method.UsageAuthMethod] = None
-        # Provides the count of failed resets or registration data.
-        self._failure_activity_count: Optional[int] = None
-        # The feature property
-        self._feature: Optional[feature_type.FeatureType] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Provides the count of successful registrations or resets.
-        self._successful_activity_count: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CredentialUsageSummary:
@@ -92,7 +92,9 @@ class CredentialUsageSummary(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, feature_type, usage_auth_method
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "authMethod": lambda n : setattr(self, 'auth_method', n.get_enum_value(usage_auth_method.UsageAuthMethod)),
             "failureActivityCount": lambda n : setattr(self, 'failure_activity_count', n.get_int_value()),
             "feature": lambda n : setattr(self, 'feature', n.get_enum_value(feature_type.FeatureType)),

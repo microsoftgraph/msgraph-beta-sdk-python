@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-business_scenario_task_target_base = lazy_import('msgraph.generated.models.business_scenario_task_target_base')
+if TYPE_CHECKING:
+    from . import business_scenario_task_target_base
+
+from . import business_scenario_task_target_base
 
 class BusinessScenarioGroupTarget(business_scenario_task_target_base.BusinessScenarioTaskTargetBase):
     def __init__(self,) -> None:
@@ -32,7 +34,9 @@ class BusinessScenarioGroupTarget(business_scenario_task_target_base.BusinessSce
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import business_scenario_task_target_base
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "groupId": lambda n : setattr(self, 'group_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

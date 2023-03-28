@@ -1,32 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-delegated_privilege_status = lazy_import('msgraph.generated.models.managed_tenants.delegated_privilege_status')
-tenant_onboarding_eligibility_reason = lazy_import('msgraph.generated.models.managed_tenants.tenant_onboarding_eligibility_reason')
-tenant_onboarding_status = lazy_import('msgraph.generated.models.managed_tenants.tenant_onboarding_status')
-workload_status = lazy_import('msgraph.generated.models.managed_tenants.workload_status')
+if TYPE_CHECKING:
+    from . import delegated_privilege_status, tenant_onboarding_eligibility_reason, tenant_onboarding_status, workload_status
 
 class TenantStatusInformation(AdditionalDataHolder, Parsable):
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new tenantStatusInformation and sets the default values.
@@ -54,6 +34,23 @@ class TenantStatusInformation(AdditionalDataHolder, Parsable):
         self._tenant_onboarding_eligibility_reason: Optional[tenant_onboarding_eligibility_reason.TenantOnboardingEligibilityReason] = None
         # The collection of workload statues for the managed tenant. Optional. Read-only.
         self._workload_statuses: Optional[List[workload_status.WorkloadStatus]] = None
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TenantStatusInformation:
@@ -89,7 +86,9 @@ class TenantStatusInformation(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import delegated_privilege_status, tenant_onboarding_eligibility_reason, tenant_onboarding_status, workload_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "delegatedPrivilegeStatus": lambda n : setattr(self, 'delegated_privilege_status', n.get_enum_value(delegated_privilege_status.DelegatedPrivilegeStatus)),
             "lastDelegatedPrivilegeRefreshDateTime": lambda n : setattr(self, 'last_delegated_privilege_refresh_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

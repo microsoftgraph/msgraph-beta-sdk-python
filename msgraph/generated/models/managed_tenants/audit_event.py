@@ -1,12 +1,48 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from .. import entity
+
+from .. import entity
 
 class AuditEvent(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new auditEvent and sets the default values.
+        """
+        super().__init__()
+        # A string which uniquely represents the operation that occurred. Required. Read-only.
+        self._activity: Optional[str] = None
+        # The time when the activity ocurred. Required. Read-only.
+        self._activity_date_time: Optional[datetime] = None
+        # The identifier of the activity request that made the audit event. Required. Read-only.
+        self._activity_id: Optional[str] = None
+        # A category which represents a logical grouping of activities. Required. Read-only.
+        self._category: Optional[str] = None
+        # The HTTP verb that was used when making the API request. Required. Read-only.
+        self._http_verb: Optional[str] = None
+        # The identifier of the app that was used to make the request. Required. Read-only.
+        self._initiated_by_app_id: Optional[str] = None
+        # The UPN of the user who initiated the activity. Required. Read-only.
+        self._initiated_by_upn: Optional[str] = None
+        # The identifier of the user who initiated the activity. Required. Read-only.
+        self._initiated_by_user_id: Optional[str] = None
+        # The IP address of where the activity was initiated. This may be an IPv4 or IPv6 address. Required. Read-only.
+        self._ip_address: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The raw HTTP request body. Some sensitive information may be removed.
+        self._request_body: Optional[str] = None
+        # The raw HTTP request URL. Required. Read-only.
+        self._request_url: Optional[str] = None
+        # The collection of Azure Active Directory tenant identifiers for the managed tenants that were impacted by this change. This is formatted as a list of comma-separated values. Required. Read-only.
+        self._tenant_ids: Optional[str] = None
+        # The collection of tenant names that were impacted by this change. This is formatted as a list of comma-separated values. Required. Read-only.
+        self._tenant_names: Optional[str] = None
+    
     @property
     def activity(self,) -> Optional[str]:
         """
@@ -75,40 +111,6 @@ class AuditEvent(entity.Entity):
         """
         self._category = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new auditEvent and sets the default values.
-        """
-        super().__init__()
-        # A string which uniquely represents the operation that occurred. Required. Read-only.
-        self._activity: Optional[str] = None
-        # The time when the activity ocurred. Required. Read-only.
-        self._activity_date_time: Optional[datetime] = None
-        # The identifier of the activity request that made the audit event. Required. Read-only.
-        self._activity_id: Optional[str] = None
-        # A category which represents a logical grouping of activities. Required. Read-only.
-        self._category: Optional[str] = None
-        # The HTTP verb that was used when making the API request. Required. Read-only.
-        self._http_verb: Optional[str] = None
-        # The identifier of the app that was used to make the request. Required. Read-only.
-        self._initiated_by_app_id: Optional[str] = None
-        # The UPN of the user who initiated the activity. Required. Read-only.
-        self._initiated_by_upn: Optional[str] = None
-        # The identifier of the user who initiated the activity. Required. Read-only.
-        self._initiated_by_user_id: Optional[str] = None
-        # The IP address of where the activity was initiated. This may be an IPv4 or IPv6 address. Required. Read-only.
-        self._ip_address: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The raw HTTP request body. Some sensitive information may be removed.
-        self._request_body: Optional[str] = None
-        # The raw HTTP request URL. Required. Read-only.
-        self._request_url: Optional[str] = None
-        # The collection of Azure Active Directory tenant identifiers for the managed tenants that were impacted by this change. This is formatted as a list of comma-separated values. Required. Read-only.
-        self._tenant_ids: Optional[str] = None
-        # The collection of tenant names that were impacted by this change. This is formatted as a list of comma-separated values. Required. Read-only.
-        self._tenant_names: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AuditEvent:
         """
@@ -126,7 +128,9 @@ class AuditEvent(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "activity": lambda n : setattr(self, 'activity', n.get_str_value()),
             "activityDateTime": lambda n : setattr(self, 'activity_date_time', n.get_datetime_value()),
             "activityId": lambda n : setattr(self, 'activity_id', n.get_str_value()),

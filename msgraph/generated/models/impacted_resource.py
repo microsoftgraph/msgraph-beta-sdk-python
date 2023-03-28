@@ -1,14 +1,50 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-key_value = lazy_import('msgraph.generated.models.key_value')
-recommendation_status = lazy_import('msgraph.generated.models.recommendation_status')
+if TYPE_CHECKING:
+    from . import entity, key_value, recommendation_status
+
+from . import entity
 
 class ImpactedResource(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new impactedResource and sets the default values.
+        """
+        super().__init__()
+        # The date and time when the impactedResource object was initially associated with the recommendation.
+        self._added_date_time: Optional[datetime] = None
+        # Additional information unique to the impactedResource to help contextualize the recommendation.
+        self._additional_details: Optional[List[key_value.KeyValue]] = None
+        # The URL link to the corresponding Azure AD resource.
+        self._api_url: Optional[str] = None
+        # Friendly name of the Azure AD resource.
+        self._display_name: Optional[str] = None
+        # Name of the user or service that last updated the status.
+        self._last_modified_by: Optional[str] = None
+        # The date and time when the status was last updated.
+        self._last_modified_date_time: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The user responsible for maintaining the resource.
+        self._owner: Optional[str] = None
+        # The URL link to the corresponding Azure AD portal page of the resource.
+        self._portal_url: Optional[str] = None
+        # The future date and time when the status of a postponed impactedResource will be active again.
+        self._postpone_until_date_time: Optional[datetime] = None
+        # Indicates the importance of the resource. A resource with a rank equal to 1 is of the highest importance.
+        self._rank: Optional[int] = None
+        # The unique identifier of the recommendation that the resource is associated with.
+        self._recommendation_id: Optional[str] = None
+        # Indicates the type of Azure AD resource. Examples include user, application.
+        self._resource_type: Optional[str] = None
+        # The status property
+        self._status: Optional[recommendation_status.RecommendationStatus] = None
+        # The related unique identifier, depending on the resourceType. For example, this property is set to the applicationId if the resourceType is an application.
+        self._subject_id: Optional[str] = None
+    
     @property
     def added_date_time(self,) -> Optional[datetime]:
         """
@@ -60,42 +96,6 @@ class ImpactedResource(entity.Entity):
         """
         self._api_url = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new impactedResource and sets the default values.
-        """
-        super().__init__()
-        # The date and time when the impactedResource object was initially associated with the recommendation.
-        self._added_date_time: Optional[datetime] = None
-        # Additional information unique to the impactedResource to help contextualize the recommendation.
-        self._additional_details: Optional[List[key_value.KeyValue]] = None
-        # The URL link to the corresponding Azure AD resource.
-        self._api_url: Optional[str] = None
-        # Friendly name of the Azure AD resource.
-        self._display_name: Optional[str] = None
-        # Name of the user or service that last updated the status.
-        self._last_modified_by: Optional[str] = None
-        # The date and time when the status was last updated.
-        self._last_modified_date_time: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The user responsible for maintaining the resource.
-        self._owner: Optional[str] = None
-        # The URL link to the corresponding Azure AD portal page of the resource.
-        self._portal_url: Optional[str] = None
-        # The future date and time when the status of a postponed impactedResource will be active again.
-        self._postpone_until_date_time: Optional[datetime] = None
-        # Indicates the importance of the resource. A resource with a rank equal to 1 is of the highest importance.
-        self._rank: Optional[int] = None
-        # The unique identifier of the recommendation that the resource is associated with.
-        self._recommendation_id: Optional[str] = None
-        # Indicates the type of Azure AD resource. Examples include user, application.
-        self._resource_type: Optional[str] = None
-        # The status property
-        self._status: Optional[recommendation_status.RecommendationStatus] = None
-        # The related unique identifier, depending on the resourceType. For example, this property is set to the applicationId if the resourceType is an application.
-        self._subject_id: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ImpactedResource:
         """
@@ -130,7 +130,9 @@ class ImpactedResource(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, key_value, recommendation_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "addedDateTime": lambda n : setattr(self, 'added_date_time', n.get_datetime_value()),
             "additionalDetails": lambda n : setattr(self, 'additional_details', n.get_collection_of_object_values(key_value.KeyValue)),
             "apiUrl": lambda n : setattr(self, 'api_url', n.get_str_value()),

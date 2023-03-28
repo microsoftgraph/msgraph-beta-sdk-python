@@ -1,12 +1,32 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-item_facet = lazy_import('msgraph.generated.models.item_facet')
-skill_proficiency_level = lazy_import('msgraph.generated.models.skill_proficiency_level')
+if TYPE_CHECKING:
+    from . import item_facet, skill_proficiency_level
+
+from . import item_facet
 
 class SkillProficiency(item_facet.ItemFacet):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new SkillProficiency and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.skillProficiency"
+        # Contains categories a user has associated with the skill (for example, personal, professional, hobby).
+        self._categories: Optional[List[str]] = None
+        # Contains experience scenario tags a user has associated with the interest. Allowed values in the collection are: askMeAbout, ableToMentor, wantsToLearn, wantsToImprove.
+        self._collaboration_tags: Optional[List[str]] = None
+        # Contains a friendly name for the skill.
+        self._display_name: Optional[str] = None
+        # Detail of the users proficiency with this skill. Possible values are: elementary, limitedWorking, generalProfessional, advancedProfessional, expert, unknownFutureValue.
+        self._proficiency: Optional[skill_proficiency_level.SkillProficiencyLevel] = None
+        # The thumbnailUrl property
+        self._thumbnail_url: Optional[str] = None
+        # Contains a link to an information source about the skill.
+        self._web_url: Optional[str] = None
+    
     @property
     def categories(self,) -> Optional[List[str]]:
         """
@@ -40,25 +60,6 @@ class SkillProficiency(item_facet.ItemFacet):
             value: Value to set for the collaboration_tags property.
         """
         self._collaboration_tags = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new SkillProficiency and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.skillProficiency"
-        # Contains categories a user has associated with the skill (for example, personal, professional, hobby).
-        self._categories: Optional[List[str]] = None
-        # Contains experience scenario tags a user has associated with the interest. Allowed values in the collection are: askMeAbout, ableToMentor, wantsToLearn, wantsToImprove.
-        self._collaboration_tags: Optional[List[str]] = None
-        # Contains a friendly name for the skill.
-        self._display_name: Optional[str] = None
-        # Detail of the users proficiency with this skill. Possible values are: elementary, limitedWorking, generalProfessional, advancedProfessional, expert, unknownFutureValue.
-        self._proficiency: Optional[skill_proficiency_level.SkillProficiencyLevel] = None
-        # The thumbnailUrl property
-        self._thumbnail_url: Optional[str] = None
-        # Contains a link to an information source about the skill.
-        self._web_url: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SkillProficiency:
@@ -94,7 +95,9 @@ class SkillProficiency(item_facet.ItemFacet):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import item_facet, skill_proficiency_level
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_primitive_values(str)),
             "collaborationTags": lambda n : setattr(self, 'collaboration_tags', n.get_collection_of_primitive_values(str)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

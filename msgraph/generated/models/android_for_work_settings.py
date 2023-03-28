@@ -1,32 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_for_work_bind_status = lazy_import('msgraph.generated.models.android_for_work_bind_status')
-android_for_work_enrollment_target = lazy_import('msgraph.generated.models.android_for_work_enrollment_target')
-android_for_work_sync_status = lazy_import('msgraph.generated.models.android_for_work_sync_status')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import android_for_work_bind_status, android_for_work_enrollment_target, android_for_work_sync_status, entity
+
+from . import entity
 
 class AndroidForWorkSettings(entity.Entity):
-    @property
-    def bind_status(self,) -> Optional[android_for_work_bind_status.AndroidForWorkBindStatus]:
-        """
-        Gets the bindStatus property value. Bind status of the tenant with the Google EMM API
-        Returns: Optional[android_for_work_bind_status.AndroidForWorkBindStatus]
-        """
-        return self._bind_status
-    
-    @bind_status.setter
-    def bind_status(self,value: Optional[android_for_work_bind_status.AndroidForWorkBindStatus] = None) -> None:
-        """
-        Sets the bindStatus property value. Bind status of the tenant with the Google EMM API
-        Args:
-            value: Value to set for the bind_status property.
-        """
-        self._bind_status = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new androidForWorkSettings and sets the default values.
@@ -52,6 +34,23 @@ class AndroidForWorkSettings(entity.Entity):
         self._owner_user_principal_name: Optional[str] = None
         # Specifies which AAD groups can enroll devices in Android for Work device management if enrollmentTarget is set to 'Targeted'
         self._target_group_ids: Optional[List[str]] = None
+    
+    @property
+    def bind_status(self,) -> Optional[android_for_work_bind_status.AndroidForWorkBindStatus]:
+        """
+        Gets the bindStatus property value. Bind status of the tenant with the Google EMM API
+        Returns: Optional[android_for_work_bind_status.AndroidForWorkBindStatus]
+        """
+        return self._bind_status
+    
+    @bind_status.setter
+    def bind_status(self,value: Optional[android_for_work_bind_status.AndroidForWorkBindStatus] = None) -> None:
+        """
+        Sets the bindStatus property value. Bind status of the tenant with the Google EMM API
+        Args:
+            value: Value to set for the bind_status property.
+        """
+        self._bind_status = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidForWorkSettings:
@@ -104,7 +103,9 @@ class AndroidForWorkSettings(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_for_work_bind_status, android_for_work_enrollment_target, android_for_work_sync_status, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "bindStatus": lambda n : setattr(self, 'bind_status', n.get_enum_value(android_for_work_bind_status.AndroidForWorkBindStatus)),
             "deviceOwnerManagementEnabled": lambda n : setattr(self, 'device_owner_management_enabled', n.get_bool_value()),
             "enrollmentTarget": lambda n : setattr(self, 'enrollment_target', n.get_enum_value(android_for_work_enrollment_target.AndroidForWorkEnrollmentTarget)),

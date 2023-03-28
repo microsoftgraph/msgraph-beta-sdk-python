@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-role_summary_status = lazy_import('msgraph.generated.models.role_summary_status')
+if TYPE_CHECKING:
+    from . import entity, role_summary_status
+
+from . import entity
 
 class PrivilegedRoleSummary(entity.Entity):
     def __init__(self,) -> None:
@@ -59,7 +60,9 @@ class PrivilegedRoleSummary(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, role_summary_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "elevatedCount": lambda n : setattr(self, 'elevated_count', n.get_int_value()),
             "managedCount": lambda n : setattr(self, 'managed_count', n.get_int_value()),
             "mfaEnabled": lambda n : setattr(self, 'mfa_enabled', n.get_bool_value()),

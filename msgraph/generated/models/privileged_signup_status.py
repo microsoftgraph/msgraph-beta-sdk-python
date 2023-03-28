@@ -1,15 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-setup_status = lazy_import('msgraph.generated.models.setup_status')
+if TYPE_CHECKING:
+    from . import entity, setup_status
+
+from . import entity
 
 class PrivilegedSignupStatus(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new privilegedSignupStatus and sets the default values.
+        Instantiates a new PrivilegedSignupStatus and sets the default values.
         """
         super().__init__()
         # The isRegistered property
@@ -36,7 +37,9 @@ class PrivilegedSignupStatus(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, setup_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "isRegistered": lambda n : setattr(self, 'is_registered', n.get_bool_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(setup_status.SetupStatus)),
         }

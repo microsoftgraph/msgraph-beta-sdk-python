@@ -1,13 +1,40 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-user_identity = lazy_import('msgraph.generated.models.user_identity')
+if TYPE_CHECKING:
+    from . import entity, user_identity
+
+from . import entity
 
 class AccessReviewDecision(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new accessReviewDecision and sets the default values.
+        """
+        super().__init__()
+        # The feature- generated recommendation shown to the reviewer, one of Approve, Deny or NotAvailable.
+        self._access_recommendation: Optional[str] = None
+        # The feature-generated id of the access review.
+        self._access_review_id: Optional[str] = None
+        # When the review completes, if the results were manually applied, the user identity of the user who applied the decision. If the review was auto-applied, the userPrincipalName is empty.
+        self._applied_by: Optional[user_identity.UserIdentity] = None
+        # The date and time when the review decision was applied.
+        self._applied_date_time: Optional[datetime] = None
+        # The outcome of applying the decision, one of NotApplied, Success, Failed, NotFound or NotSupported.
+        self._apply_result: Optional[str] = None
+        # The reviewer's business justification, if supplied.
+        self._justification: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The result of the review, one of NotReviewed, Deny, DontKnow or Approve.
+        self._review_result: Optional[str] = None
+        # The identity of the reviewer. If the recommendation was used as the review, the userPrincipalName is empty.
+        self._reviewed_by: Optional[user_identity.UserIdentity] = None
+        # The reviewedDateTime property
+        self._reviewed_date_time: Optional[datetime] = None
+    
     @property
     def access_recommendation(self,) -> Optional[str]:
         """
@@ -93,32 +120,6 @@ class AccessReviewDecision(entity.Entity):
         """
         self._apply_result = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new accessReviewDecision and sets the default values.
-        """
-        super().__init__()
-        # The feature- generated recommendation shown to the reviewer, one of Approve, Deny or NotAvailable.
-        self._access_recommendation: Optional[str] = None
-        # The feature-generated id of the access review.
-        self._access_review_id: Optional[str] = None
-        # When the review completes, if the results were manually applied, the user identity of the user who applied the decision. If the review was auto-applied, the userPrincipalName is empty.
-        self._applied_by: Optional[user_identity.UserIdentity] = None
-        # The date and time when the review decision was applied.
-        self._applied_date_time: Optional[datetime] = None
-        # The outcome of applying the decision, one of NotApplied, Success, Failed, NotFound or NotSupported.
-        self._apply_result: Optional[str] = None
-        # The reviewer's business justification, if supplied.
-        self._justification: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The result of the review, one of NotReviewed, Deny, DontKnow or Approve.
-        self._review_result: Optional[str] = None
-        # The identity of the reviewer. If the recommendation was used as the review, the userPrincipalName is empty.
-        self._reviewed_by: Optional[user_identity.UserIdentity] = None
-        # The reviewedDateTime property
-        self._reviewed_date_time: Optional[datetime] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccessReviewDecision:
         """
@@ -136,7 +137,9 @@ class AccessReviewDecision(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, user_identity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accessRecommendation": lambda n : setattr(self, 'access_recommendation', n.get_str_value()),
             "accessReviewId": lambda n : setattr(self, 'access_review_id', n.get_str_value()),
             "appliedBy": lambda n : setattr(self, 'applied_by', n.get_object_value(user_identity.UserIdentity)),

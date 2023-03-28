@@ -1,12 +1,29 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-item_body = lazy_import('msgraph.generated.models.item_body')
-time_card_event = lazy_import('msgraph.generated.models.time_card_event')
+if TYPE_CHECKING:
+    from . import item_body, time_card_event
 
 class TimeCardBreak(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new timeCardBreak and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # ID of the timeCardBreak.
+        self._break_id: Optional[str] = None
+        # The start event of the timeCardBreak.
+        self._end: Optional[time_card_event.TimeCardEvent] = None
+        # Notes about the timeCardBreak.
+        self._notes: Optional[item_body.ItemBody] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The start property
+        self._start: Optional[time_card_event.TimeCardEvent] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -40,24 +57,6 @@ class TimeCardBreak(AdditionalDataHolder, Parsable):
             value: Value to set for the break_id property.
         """
         self._break_id = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new timeCardBreak and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # ID of the timeCardBreak.
-        self._break_id: Optional[str] = None
-        # The start event of the timeCardBreak.
-        self._end: Optional[time_card_event.TimeCardEvent] = None
-        # Notes about the timeCardBreak.
-        self._notes: Optional[item_body.ItemBody] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The start property
-        self._start: Optional[time_card_event.TimeCardEvent] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TimeCardBreak:
@@ -93,7 +92,9 @@ class TimeCardBreak(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import item_body, time_card_event
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "breakId": lambda n : setattr(self, 'break_id', n.get_str_value()),
             "end": lambda n : setattr(self, 'end', n.get_object_value(time_card_event.TimeCardEvent)),
             "notes": lambda n : setattr(self, 'notes', n.get_object_value(item_body.ItemBody)),

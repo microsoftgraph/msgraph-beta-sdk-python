@@ -1,13 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-enrollment_state = lazy_import('msgraph.generated.models.enrollment_state')
-entity = lazy_import('msgraph.generated.models.entity')
-imported_device_identity_type = lazy_import('msgraph.generated.models.imported_device_identity_type')
-platform = lazy_import('msgraph.generated.models.platform')
+if TYPE_CHECKING:
+    from . import enrollment_state, entity, imported_device_identity_result, imported_device_identity_type, platform
+
+from . import entity
 
 class ImportedDeviceIdentity(entity.Entity):
     """
@@ -64,6 +63,13 @@ class ImportedDeviceIdentity(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.importedDeviceIdentityResult":
+                from . import imported_device_identity_result
+
+                return imported_device_identity_result.ImportedDeviceIdentityResult()
         return ImportedDeviceIdentity()
     
     @property
@@ -105,7 +111,9 @@ class ImportedDeviceIdentity(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import enrollment_state, entity, imported_device_identity_result, imported_device_identity_type, platform
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "enrollmentState": lambda n : setattr(self, 'enrollment_state', n.get_enum_value(enrollment_state.EnrollmentState)),

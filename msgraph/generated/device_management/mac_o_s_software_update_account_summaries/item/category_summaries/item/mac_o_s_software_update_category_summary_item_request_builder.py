@@ -7,25 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-update_state_summaries_request_builder = lazy_import('msgraph.generated.device_management.mac_o_s_software_update_account_summaries.item.category_summaries.item.update_state_summaries.update_state_summaries_request_builder')
-mac_o_s_software_update_state_summary_item_request_builder = lazy_import('msgraph.generated.device_management.mac_o_s_software_update_account_summaries.item.category_summaries.item.update_state_summaries.item.mac_o_s_software_update_state_summary_item_request_builder')
-mac_o_s_software_update_category_summary = lazy_import('msgraph.generated.models.mac_o_s_software_update_category_summary')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ......models import mac_o_s_software_update_category_summary
+    from ......models.o_data_errors import o_data_error
+    from .update_state_summaries import update_state_summaries_request_builder
+    from .update_state_summaries.item import mac_o_s_software_update_state_summary_item_request_builder
 
 class MacOSSoftwareUpdateCategorySummaryItemRequestBuilder():
     """
     Provides operations to manage the categorySummaries property of the microsoft.graph.macOSSoftwareUpdateAccountSummary entity.
     """
-    @property
-    def update_state_summaries(self) -> update_state_summaries_request_builder.UpdateStateSummariesRequestBuilder:
-        """
-        Provides operations to manage the updateStateSummaries property of the microsoft.graph.macOSSoftwareUpdateCategorySummary entity.
-        """
-        return update_state_summaries_request_builder.UpdateStateSummariesRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new MacOSSoftwareUpdateCategorySummaryItemRequestBuilder and sets the default values.
@@ -53,6 +46,8 @@ class MacOSSoftwareUpdateCategorySummaryItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -71,12 +66,16 @@ class MacOSSoftwareUpdateCategorySummaryItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import mac_o_s_software_update_category_summary
+
         return await self.request_adapter.send_async(request_info, mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary, error_mapping)
     
     async def patch(self,body: Optional[mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary] = None, request_configuration: Optional[MacOSSoftwareUpdateCategorySummaryItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary]:
@@ -92,12 +91,16 @@ class MacOSSoftwareUpdateCategorySummaryItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import mac_o_s_software_update_category_summary
+
         return await self.request_adapter.send_async(request_info, mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[MacOSSoftwareUpdateCategorySummaryItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -164,9 +167,20 @@ class MacOSSoftwareUpdateCategorySummaryItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .update_state_summaries.item import mac_o_s_software_update_state_summary_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["macOSSoftwareUpdateStateSummary%2Did"] = id
         return mac_o_s_software_update_state_summary_item_request_builder.MacOSSoftwareUpdateStateSummaryItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    @property
+    def update_state_summaries(self) -> update_state_summaries_request_builder.UpdateStateSummariesRequestBuilder:
+        """
+        Provides operations to manage the updateStateSummaries property of the microsoft.graph.macOSSoftwareUpdateCategorySummary entity.
+        """
+        from .update_state_summaries import update_state_summaries_request_builder
+
+        return update_state_summaries_request_builder.UpdateStateSummariesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class MacOSSoftwareUpdateCategorySummaryItemRequestBuilderDeleteRequestConfiguration():
@@ -185,12 +199,6 @@ class MacOSSoftwareUpdateCategorySummaryItemRequestBuilder():
         """
         Summary of the updates by category.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -206,6 +214,12 @@ class MacOSSoftwareUpdateCategorySummaryItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class MacOSSoftwareUpdateCategorySummaryItemRequestBuilderGetRequestConfiguration():

@@ -1,14 +1,38 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class UserExperienceAnalyticsBatteryHealthModelPerformance(entity.Entity):
     """
     The user experience analytics battery health model performance entity contains battery related information for all unique device models in their organization.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new userExperienceAnalyticsBatteryHealthModelPerformance and sets the default values.
+        """
+        super().__init__()
+        # Number of active devices for that model. Valid values -2147483648 to 2147483647
+        self._active_devices: Optional[int] = None
+        # The mean of the battery age for all devices of a given model in a tenant. Unit in days. Valid values -2147483648 to 2147483647
+        self._average_battery_age_in_days: Optional[int] = None
+        # The mean of the estimated runtimes on full charge for all devices of a given model. Unit in minutes. Valid values -2147483648 to 2147483647
+        self._average_estimated_runtime_in_minutes: Optional[int] = None
+        # The mean of the maximum capacity for all devices of a given model. Maximum capacity measures the full charge vs. design capacity for a device’s batteries.. Valid values -2147483648 to 2147483647
+        self._average_max_capacity_percentage: Optional[int] = None
+        # Name of the device manufacturer.
+        self._manufacturer: Optional[str] = None
+        # The model name of the device.
+        self._model: Optional[str] = None
+        # A weighted average of a model’s maximum capacity score and runtime estimate score. Values range from 0-100. Valid values -2147483648 to 2147483647
+        self._model_battery_health_score: Optional[int] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def active_devices(self,) -> Optional[int]:
         """
@@ -77,28 +101,6 @@ class UserExperienceAnalyticsBatteryHealthModelPerformance(entity.Entity):
         """
         self._average_max_capacity_percentage = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsBatteryHealthModelPerformance and sets the default values.
-        """
-        super().__init__()
-        # Number of active devices for that model. Valid values -2147483648 to 2147483647
-        self._active_devices: Optional[int] = None
-        # The mean of the battery age for all devices of a given model in a tenant. Unit in days. Valid values -2147483648 to 2147483647
-        self._average_battery_age_in_days: Optional[int] = None
-        # The mean of the estimated runtimes on full charge for all devices of a given model. Unit in minutes. Valid values -2147483648 to 2147483647
-        self._average_estimated_runtime_in_minutes: Optional[int] = None
-        # The mean of the maximum capacity for all devices of a given model. Maximum capacity measures the full charge vs. design capacity for a device’s batteries.. Valid values -2147483648 to 2147483647
-        self._average_max_capacity_percentage: Optional[int] = None
-        # Name of the device manufacturer.
-        self._manufacturer: Optional[str] = None
-        # The model name of the device.
-        self._model: Optional[str] = None
-        # A weighted average of a model’s maximum capacity score and runtime estimate score. Values range from 0-100. Valid values -2147483648 to 2147483647
-        self._model_battery_health_score: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsBatteryHealthModelPerformance:
         """
@@ -116,7 +118,9 @@ class UserExperienceAnalyticsBatteryHealthModelPerformance(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "activeDevices": lambda n : setattr(self, 'active_devices', n.get_int_value()),
             "averageBatteryAgeInDays": lambda n : setattr(self, 'average_battery_age_in_days', n.get_int_value()),
             "averageEstimatedRuntimeInMinutes": lambda n : setattr(self, 'average_estimated_runtime_in_minutes', n.get_int_value()),

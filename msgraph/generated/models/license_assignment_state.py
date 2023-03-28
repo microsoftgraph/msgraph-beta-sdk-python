@@ -1,10 +1,31 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class LicenseAssignmentState(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new licenseAssignmentState and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Indicates whether the license is directly-assigned or inherited from a group. If directly-assigned, this field is null; if inherited through a group membership, this field contains the ID of the group. Read-Only.
+        self._assigned_by_group: Optional[str] = None
+        # The service plans that are disabled in this assignment. Read-Only.
+        self._disabled_plans: Optional[List[Guid]] = None
+        # License assignment failure error. If the license is assigned successfully, this field will be Null. Read-Only. The possible values are CountViolation, MutuallyExclusiveViolation, DependencyViolation, ProhibitedInUsageLocationViolation, UniquenessViolation, and Other. For more information on how to identify and resolve license assignment errors see here.
+        self._error: Optional[str] = None
+        # The timestamp when the state of the license assignment was last updated.
+        self._last_updated_date_time: Optional[datetime] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The unique identifier for the SKU. Read-Only.
+        self._sku_id: Optional[Guid] = None
+        # Indicate the current state of this assignment. Read-Only. The possible values are Active, ActiveWithError, Disabled, and Error.
+        self._state: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -38,28 +59,6 @@ class LicenseAssignmentState(AdditionalDataHolder, Parsable):
             value: Value to set for the assigned_by_group property.
         """
         self._assigned_by_group = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new licenseAssignmentState and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Indicates whether the license is directly-assigned or inherited from a group. If directly-assigned, this field is null; if inherited through a group membership, this field contains the ID of the group. Read-Only.
-        self._assigned_by_group: Optional[str] = None
-        # The service plans that are disabled in this assignment. Read-Only.
-        self._disabled_plans: Optional[List[Guid]] = None
-        # License assignment failure error. If the license is assigned successfully, this field will be Null. Read-Only. The possible values are CountViolation, MutuallyExclusiveViolation, DependencyViolation, ProhibitedInUsageLocationViolation, UniquenessViolation, and Other. For more information on how to identify and resolve license assignment errors see here.
-        self._error: Optional[str] = None
-        # The timestamp when the state of the license assignment was last updated.
-        self._last_updated_date_time: Optional[datetime] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The unique identifier for the SKU. Read-Only.
-        self._sku_id: Optional[Guid] = None
-        # Indicate the current state of this assignment. Read-Only. The possible values are Active, ActiveWithError, Disabled, and Error.
-        self._state: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> LicenseAssignmentState:
@@ -112,7 +111,7 @@ class LicenseAssignmentState(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignedByGroup": lambda n : setattr(self, 'assigned_by_group', n.get_str_value()),
             "disabledPlans": lambda n : setattr(self, 'disabled_plans', n.get_collection_of_primitive_values(guid)),
             "error": lambda n : setattr(self, 'error', n.get_str_value()),

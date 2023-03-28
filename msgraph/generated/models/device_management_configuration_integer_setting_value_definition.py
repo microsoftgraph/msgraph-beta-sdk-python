@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_configuration_setting_value_definition = lazy_import('msgraph.generated.models.device_management_configuration_setting_value_definition')
+if TYPE_CHECKING:
+    from . import device_management_configuration_setting_value_definition
+
+from . import device_management_configuration_setting_value_definition
 
 class DeviceManagementConfigurationIntegerSettingValueDefinition(device_management_configuration_setting_value_definition.DeviceManagementConfigurationSettingValueDefinition):
     def __init__(self,) -> None:
@@ -34,7 +36,9 @@ class DeviceManagementConfigurationIntegerSettingValueDefinition(device_manageme
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_configuration_setting_value_definition
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "maximumValue": lambda n : setattr(self, 'maximum_value', n.get_int_value()),
             "minimumValue": lambda n : setattr(self, 'minimum_value', n.get_int_value()),
         }

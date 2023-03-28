@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-group_policy_presentation_value = lazy_import('msgraph.generated.models.group_policy_presentation_value')
-key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
+if TYPE_CHECKING:
+    from . import group_policy_presentation_value, key_value_pair
+
+from . import group_policy_presentation_value
 
 class GroupPolicyPresentationValueList(group_policy_presentation_value.GroupPolicyPresentationValue):
     def __init__(self,) -> None:
@@ -34,7 +35,9 @@ class GroupPolicyPresentationValueList(group_policy_presentation_value.GroupPoli
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import group_policy_presentation_value, key_value_pair
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "values": lambda n : setattr(self, 'values', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
         }
         super_fields = super().get_field_deserializers()

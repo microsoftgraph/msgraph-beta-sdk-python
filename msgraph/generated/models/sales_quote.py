@@ -1,18 +1,94 @@
 from __future__ import annotations
 from datetime import date, datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-currency = lazy_import('msgraph.generated.models.currency')
-customer = lazy_import('msgraph.generated.models.customer')
-entity = lazy_import('msgraph.generated.models.entity')
-payment_term = lazy_import('msgraph.generated.models.payment_term')
-postal_address_type = lazy_import('msgraph.generated.models.postal_address_type')
-sales_quote_line = lazy_import('msgraph.generated.models.sales_quote_line')
-shipment_method = lazy_import('msgraph.generated.models.shipment_method')
+if TYPE_CHECKING:
+    from . import currency, customer, entity, payment_term, postal_address_type, sales_quote_line, shipment_method
+
+from . import entity
 
 class SalesQuote(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new salesQuote and sets the default values.
+        """
+        super().__init__()
+        # The acceptedDate property
+        self._accepted_date: Optional[Date] = None
+        # The billToCustomerId property
+        self._bill_to_customer_id: Optional[Guid] = None
+        # The billToCustomerNumber property
+        self._bill_to_customer_number: Optional[str] = None
+        # The billToName property
+        self._bill_to_name: Optional[str] = None
+        # The billingPostalAddress property
+        self._billing_postal_address: Optional[postal_address_type.PostalAddressType] = None
+        # The currency property
+        self._currency: Optional[currency.Currency] = None
+        # The currencyCode property
+        self._currency_code: Optional[str] = None
+        # The currencyId property
+        self._currency_id: Optional[Guid] = None
+        # The customer property
+        self._customer: Optional[customer.Customer] = None
+        # The customerId property
+        self._customer_id: Optional[Guid] = None
+        # The customerName property
+        self._customer_name: Optional[str] = None
+        # The customerNumber property
+        self._customer_number: Optional[str] = None
+        # The discountAmount property
+        self._discount_amount: Optional[float] = None
+        # The documentDate property
+        self._document_date: Optional[Date] = None
+        # The dueDate property
+        self._due_date: Optional[Date] = None
+        # The email property
+        self._email: Optional[str] = None
+        # The externalDocumentNumber property
+        self._external_document_number: Optional[str] = None
+        # The lastModifiedDateTime property
+        self._last_modified_date_time: Optional[datetime] = None
+        # The number property
+        self._number: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The paymentTerm property
+        self._payment_term: Optional[payment_term.PaymentTerm] = None
+        # The paymentTermsId property
+        self._payment_terms_id: Optional[Guid] = None
+        # The phoneNumber property
+        self._phone_number: Optional[str] = None
+        # The salesQuoteLines property
+        self._sales_quote_lines: Optional[List[sales_quote_line.SalesQuoteLine]] = None
+        # The salesperson property
+        self._salesperson: Optional[str] = None
+        # The sellingPostalAddress property
+        self._selling_postal_address: Optional[postal_address_type.PostalAddressType] = None
+        # The sentDate property
+        self._sent_date: Optional[datetime] = None
+        # The shipToContact property
+        self._ship_to_contact: Optional[str] = None
+        # The shipToName property
+        self._ship_to_name: Optional[str] = None
+        # The shipmentMethod property
+        self._shipment_method: Optional[shipment_method.ShipmentMethod] = None
+        # The shipmentMethodId property
+        self._shipment_method_id: Optional[Guid] = None
+        # The shippingPostalAddress property
+        self._shipping_postal_address: Optional[postal_address_type.PostalAddressType] = None
+        # The status property
+        self._status: Optional[str] = None
+        # The totalAmountExcludingTax property
+        self._total_amount_excluding_tax: Optional[float] = None
+        # The totalAmountIncludingTax property
+        self._total_amount_including_tax: Optional[float] = None
+        # The totalTaxAmount property
+        self._total_tax_amount: Optional[float] = None
+        # The validUntilDate property
+        self._valid_until_date: Optional[Date] = None
+    
     @property
     def accepted_date(self,) -> Optional[Date]:
         """
@@ -97,86 +173,6 @@ class SalesQuote(entity.Entity):
             value: Value to set for the billing_postal_address property.
         """
         self._billing_postal_address = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new salesQuote and sets the default values.
-        """
-        super().__init__()
-        # The acceptedDate property
-        self._accepted_date: Optional[Date] = None
-        # The billToCustomerId property
-        self._bill_to_customer_id: Optional[Guid] = None
-        # The billToCustomerNumber property
-        self._bill_to_customer_number: Optional[str] = None
-        # The billToName property
-        self._bill_to_name: Optional[str] = None
-        # The billingPostalAddress property
-        self._billing_postal_address: Optional[postal_address_type.PostalAddressType] = None
-        # The currency property
-        self._currency: Optional[currency.Currency] = None
-        # The currencyCode property
-        self._currency_code: Optional[str] = None
-        # The currencyId property
-        self._currency_id: Optional[Guid] = None
-        # The customer property
-        self._customer: Optional[customer.Customer] = None
-        # The customerId property
-        self._customer_id: Optional[Guid] = None
-        # The customerName property
-        self._customer_name: Optional[str] = None
-        # The customerNumber property
-        self._customer_number: Optional[str] = None
-        # The discountAmount property
-        self._discount_amount: Optional[float] = None
-        # The documentDate property
-        self._document_date: Optional[Date] = None
-        # The dueDate property
-        self._due_date: Optional[Date] = None
-        # The email property
-        self._email: Optional[str] = None
-        # The externalDocumentNumber property
-        self._external_document_number: Optional[str] = None
-        # The lastModifiedDateTime property
-        self._last_modified_date_time: Optional[datetime] = None
-        # The number property
-        self._number: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The paymentTerm property
-        self._payment_term: Optional[payment_term.PaymentTerm] = None
-        # The paymentTermsId property
-        self._payment_terms_id: Optional[Guid] = None
-        # The phoneNumber property
-        self._phone_number: Optional[str] = None
-        # The salesQuoteLines property
-        self._sales_quote_lines: Optional[List[sales_quote_line.SalesQuoteLine]] = None
-        # The salesperson property
-        self._salesperson: Optional[str] = None
-        # The sellingPostalAddress property
-        self._selling_postal_address: Optional[postal_address_type.PostalAddressType] = None
-        # The sentDate property
-        self._sent_date: Optional[datetime] = None
-        # The shipToContact property
-        self._ship_to_contact: Optional[str] = None
-        # The shipToName property
-        self._ship_to_name: Optional[str] = None
-        # The shipmentMethod property
-        self._shipment_method: Optional[shipment_method.ShipmentMethod] = None
-        # The shipmentMethodId property
-        self._shipment_method_id: Optional[Guid] = None
-        # The shippingPostalAddress property
-        self._shipping_postal_address: Optional[postal_address_type.PostalAddressType] = None
-        # The status property
-        self._status: Optional[str] = None
-        # The totalAmountExcludingTax property
-        self._total_amount_excluding_tax: Optional[float] = None
-        # The totalAmountIncludingTax property
-        self._total_amount_including_tax: Optional[float] = None
-        # The totalTaxAmount property
-        self._total_tax_amount: Optional[float] = None
-        # The validUntilDate property
-        self._valid_until_date: Optional[Date] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SalesQuote:
@@ -399,7 +395,9 @@ class SalesQuote(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import currency, customer, entity, payment_term, postal_address_type, sales_quote_line, shipment_method
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "acceptedDate": lambda n : setattr(self, 'accepted_date', n.get_object_value(Date)),
             "billingPostalAddress": lambda n : setattr(self, 'billing_postal_address', n.get_object_value(postal_address_type.PostalAddressType)),
             "billToCustomerId": lambda n : setattr(self, 'bill_to_customer_id', n.get_object_value(Guid)),

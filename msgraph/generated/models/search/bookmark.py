@@ -1,16 +1,45 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_platform_type = lazy_import('msgraph.generated.models.device_platform_type')
-answer_keyword = lazy_import('msgraph.generated.models.search.answer_keyword')
-answer_state = lazy_import('msgraph.generated.models.search.answer_state')
-answer_variant = lazy_import('msgraph.generated.models.search.answer_variant')
-search_answer = lazy_import('msgraph.generated.models.search.search_answer')
+if TYPE_CHECKING:
+    from . import answer_keyword, answer_state, answer_variant, search_answer
+    from .. import device_platform_type
+
+from . import search_answer
 
 class Bookmark(search_answer.SearchAnswer):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new Bookmark and sets the default values.
+        """
+        super().__init__()
+        # Timestamp of when the bookmark will stop to appear as a search result. Set as null for always available.
+        self._availability_end_date_time: Optional[datetime] = None
+        # Timestamp of when the bookmark will start to appear as a search result. Set as null for always available.
+        self._availability_start_date_time: Optional[datetime] = None
+        # Categories commonly used to describe this bookmark. For example, IT and HR.
+        self._categories: Optional[List[str]] = None
+        # List of security groups able to view this bookmark.
+        self._group_ids: Optional[List[str]] = None
+        # True if this bookmark was suggested to the admin by a user or was mined and suggested by Microsoft. Read-only.
+        self._is_suggested: Optional[bool] = None
+        # Keywords that trigger this bookmark to appear in search results.
+        self._keywords: Optional[answer_keyword.AnswerKeyword] = None
+        # A list of language names that are geographically specific and that this bookmark can be viewed in. Each language tag value follows the pattern {language}-{region}. As an example, en-us is English as used in the United States. See supported language tags for the list of possible values.
+        self._language_tags: Optional[List[str]] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # List of devices and operating systems able to view this bookmark. Possible values are: unknown, android, androidForWork, ios, macOS, windowsPhone81, windowsPhone81AndLater, windows10AndLater, androidWorkProfile, androidASOP.
+        self._platforms: Optional[List[device_platform_type.DevicePlatformType]] = None
+        # List of Power Apps associated with this bookmark. If users add existing Power Apps to a bookmark, they can complete tasks, such as to enter vacation time or to report expenses on the search results page.
+        self._power_app_ids: Optional[List[str]] = None
+        # The state property
+        self._state: Optional[answer_state.AnswerState] = None
+        # Variations of a bookmark for different countries or devices. Use when you need to show different content to users based on their device, country/region, or both. The date and group settings will apply to all variations.
+        self._targeted_variations: Optional[List[answer_variant.AnswerVariant]] = None
+    
     @property
     def availability_end_date_time(self,) -> Optional[datetime]:
         """
@@ -62,36 +91,6 @@ class Bookmark(search_answer.SearchAnswer):
         """
         self._categories = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Bookmark and sets the default values.
-        """
-        super().__init__()
-        # Timestamp of when the bookmark will stop to appear as a search result. Set as null for always available.
-        self._availability_end_date_time: Optional[datetime] = None
-        # Timestamp of when the bookmark will start to appear as a search result. Set as null for always available.
-        self._availability_start_date_time: Optional[datetime] = None
-        # Categories commonly used to describe this bookmark. For example, IT and HR.
-        self._categories: Optional[List[str]] = None
-        # List of security groups able to view this bookmark.
-        self._group_ids: Optional[List[str]] = None
-        # True if this bookmark was suggested to the admin by a user or was mined and suggested by Microsoft. Read-only.
-        self._is_suggested: Optional[bool] = None
-        # Keywords that trigger this bookmark to appear in search results.
-        self._keywords: Optional[answer_keyword.AnswerKeyword] = None
-        # A list of language names that are geographically specific and that this bookmark can be viewed in. Each language tag value follows the pattern {language}-{region}. As an example, en-us is English as used in the United States. See supported language tags for the list of possible values.
-        self._language_tags: Optional[List[str]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # List of devices and operating systems able to view this bookmark. Possible values are: unknown, android, androidForWork, ios, macOS, windowsPhone81, windowsPhone81AndLater, windows10AndLater, androidWorkProfile, androidASOP.
-        self._platforms: Optional[List[device_platform_type.DevicePlatformType]] = None
-        # List of Power Apps associated with this bookmark. If users add existing Power Apps to a bookmark, they can complete tasks, such as to enter vacation time or to report expenses on the search results page.
-        self._power_app_ids: Optional[List[str]] = None
-        # The state property
-        self._state: Optional[answer_state.AnswerState] = None
-        # Variations of a bookmark for different countries or devices. Use when you need to show different content to users based on their device, country/region, or both. The date and group settings will apply to all variations.
-        self._targeted_variations: Optional[List[answer_variant.AnswerVariant]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Bookmark:
         """
@@ -109,7 +108,10 @@ class Bookmark(search_answer.SearchAnswer):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import answer_keyword, answer_state, answer_variant, search_answer
+        from .. import device_platform_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "availabilityEndDateTime": lambda n : setattr(self, 'availability_end_date_time', n.get_datetime_value()),
             "availabilityStartDateTime": lambda n : setattr(self, 'availability_start_date_time', n.get_datetime_value()),
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_primitive_values(str)),

@@ -7,63 +7,22 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-children_request_builder = lazy_import('msgraph.generated.device_management.group_policy_categories.item.children.children_request_builder')
-group_policy_category_item_request_builder = lazy_import('msgraph.generated.device_management.group_policy_categories.item.children.item.group_policy_category_item_request_builder')
-definition_file_request_builder = lazy_import('msgraph.generated.device_management.group_policy_categories.item.definition_file.definition_file_request_builder')
-definitions_request_builder = lazy_import('msgraph.generated.device_management.group_policy_categories.item.definitions.definitions_request_builder')
-group_policy_definition_item_request_builder = lazy_import('msgraph.generated.device_management.group_policy_categories.item.definitions.item.group_policy_definition_item_request_builder')
-parent_request_builder = lazy_import('msgraph.generated.device_management.group_policy_categories.item.parent.parent_request_builder')
-group_policy_category = lazy_import('msgraph.generated.models.group_policy_category')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ....models import group_policy_category
+    from ....models.o_data_errors import o_data_error
+    from .children import children_request_builder
+    from .children.item import group_policy_category_item_request_builder
+    from .definition_file import definition_file_request_builder
+    from .definitions import definitions_request_builder
+    from .definitions.item import group_policy_definition_item_request_builder
+    from .parent import parent_request_builder
 
 class GroupPolicyCategoryItemRequestBuilder():
     """
     Provides operations to manage the groupPolicyCategories property of the microsoft.graph.deviceManagement entity.
     """
-    @property
-    def children(self) -> children_request_builder.ChildrenRequestBuilder:
-        """
-        Provides operations to manage the children property of the microsoft.graph.groupPolicyCategory entity.
-        """
-        return children_request_builder.ChildrenRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def definition_file(self) -> definition_file_request_builder.DefinitionFileRequestBuilder:
-        """
-        Provides operations to manage the definitionFile property of the microsoft.graph.groupPolicyCategory entity.
-        """
-        return definition_file_request_builder.DefinitionFileRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def definitions(self) -> definitions_request_builder.DefinitionsRequestBuilder:
-        """
-        Provides operations to manage the definitions property of the microsoft.graph.groupPolicyCategory entity.
-        """
-        return definitions_request_builder.DefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def parent(self) -> parent_request_builder.ParentRequestBuilder:
-        """
-        Provides operations to manage the parent property of the microsoft.graph.groupPolicyCategory entity.
-        """
-        return parent_request_builder.ParentRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def children_by_id(self,id: str) -> GroupPolicyCategoryItemRequestBuilder:
-        """
-        Provides operations to manage the children property of the microsoft.graph.groupPolicyCategory entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: GroupPolicyCategoryItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["groupPolicyCategory%2Did1"] = id
-        return GroupPolicyCategoryItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new GroupPolicyCategoryItemRequestBuilder and sets the default values.
@@ -82,6 +41,21 @@ class GroupPolicyCategoryItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def children_by_id(self,id: str) -> GroupPolicyCategoryItemRequestBuilder:
+        """
+        Provides operations to manage the children property of the microsoft.graph.groupPolicyCategory entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: GroupPolicyCategoryItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .children.item import group_policy_category_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["groupPolicyCategory%2Did1"] = id
+        return GroupPolicyCategoryItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     def definitions_by_id(self,id: str) -> group_policy_definition_item_request_builder.GroupPolicyDefinitionItemRequestBuilder:
         """
         Provides operations to manage the definitions property of the microsoft.graph.groupPolicyCategory entity.
@@ -91,6 +65,8 @@ class GroupPolicyCategoryItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .definitions.item import group_policy_definition_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["groupPolicyDefinition%2Did"] = id
         return group_policy_definition_item_request_builder.GroupPolicyDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -104,6 +80,8 @@ class GroupPolicyCategoryItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -122,12 +100,16 @@ class GroupPolicyCategoryItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import group_policy_category
+
         return await self.request_adapter.send_async(request_info, group_policy_category.GroupPolicyCategory, error_mapping)
     
     async def patch(self,body: Optional[group_policy_category.GroupPolicyCategory] = None, request_configuration: Optional[GroupPolicyCategoryItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[group_policy_category.GroupPolicyCategory]:
@@ -143,12 +125,16 @@ class GroupPolicyCategoryItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import group_policy_category
+
         return await self.request_adapter.send_async(request_info, group_policy_category.GroupPolicyCategory, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[GroupPolicyCategoryItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -206,6 +192,42 @@ class GroupPolicyCategoryItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def children(self) -> children_request_builder.ChildrenRequestBuilder:
+        """
+        Provides operations to manage the children property of the microsoft.graph.groupPolicyCategory entity.
+        """
+        from .children import children_request_builder
+
+        return children_request_builder.ChildrenRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def definition_file(self) -> definition_file_request_builder.DefinitionFileRequestBuilder:
+        """
+        Provides operations to manage the definitionFile property of the microsoft.graph.groupPolicyCategory entity.
+        """
+        from .definition_file import definition_file_request_builder
+
+        return definition_file_request_builder.DefinitionFileRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def definitions(self) -> definitions_request_builder.DefinitionsRequestBuilder:
+        """
+        Provides operations to manage the definitions property of the microsoft.graph.groupPolicyCategory entity.
+        """
+        from .definitions import definitions_request_builder
+
+        return definitions_request_builder.DefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def parent(self) -> parent_request_builder.ParentRequestBuilder:
+        """
+        Provides operations to manage the parent property of the microsoft.graph.groupPolicyCategory entity.
+        """
+        from .parent import parent_request_builder
+
+        return parent_request_builder.ParentRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class GroupPolicyCategoryItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -223,12 +245,6 @@ class GroupPolicyCategoryItemRequestBuilder():
         """
         The available group policy categories for this account.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -244,6 +260,12 @@ class GroupPolicyCategoryItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class GroupPolicyCategoryItemRequestBuilderGetRequestConfiguration():

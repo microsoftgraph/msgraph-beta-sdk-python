@@ -1,29 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-outlook_task_folder = lazy_import('msgraph.generated.models.outlook_task_folder')
+if TYPE_CHECKING:
+    from . import entity, outlook_task_folder
+
+from . import entity
 
 class OutlookTaskGroup(entity.Entity):
-    @property
-    def change_key(self,) -> Optional[str]:
-        """
-        Gets the changeKey property value. The version of the task group.
-        Returns: Optional[str]
-        """
-        return self._change_key
-    
-    @change_key.setter
-    def change_key(self,value: Optional[str] = None) -> None:
-        """
-        Sets the changeKey property value. The version of the task group.
-        Args:
-            value: Value to set for the change_key property.
-        """
-        self._change_key = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new outlookTaskGroup and sets the default values.
@@ -42,6 +26,23 @@ class OutlookTaskGroup(entity.Entity):
         # The collection of task folders in the task group. Read-only. Nullable.
         self._task_folders: Optional[List[outlook_task_folder.OutlookTaskFolder]] = None
     
+    @property
+    def change_key(self,) -> Optional[str]:
+        """
+        Gets the changeKey property value. The version of the task group.
+        Returns: Optional[str]
+        """
+        return self._change_key
+    
+    @change_key.setter
+    def change_key(self,value: Optional[str] = None) -> None:
+        """
+        Sets the changeKey property value. The version of the task group.
+        Args:
+            value: Value to set for the change_key property.
+        """
+        self._change_key = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OutlookTaskGroup:
         """
@@ -59,7 +60,9 @@ class OutlookTaskGroup(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, outlook_task_folder
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "changeKey": lambda n : setattr(self, 'change_key', n.get_str_value()),
             "groupKey": lambda n : setattr(self, 'group_key', n.get_object_value(Guid)),
             "isDefaultGroup": lambda n : setattr(self, 'is_default_group', n.get_bool_value()),

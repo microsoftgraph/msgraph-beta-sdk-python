@@ -1,57 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_intent_assignment = lazy_import('msgraph.generated.models.device_management_intent_assignment')
-device_management_intent_device_setting_state_summary = lazy_import('msgraph.generated.models.device_management_intent_device_setting_state_summary')
-device_management_intent_device_state = lazy_import('msgraph.generated.models.device_management_intent_device_state')
-device_management_intent_device_state_summary = lazy_import('msgraph.generated.models.device_management_intent_device_state_summary')
-device_management_intent_setting_category = lazy_import('msgraph.generated.models.device_management_intent_setting_category')
-device_management_intent_user_state = lazy_import('msgraph.generated.models.device_management_intent_user_state')
-device_management_intent_user_state_summary = lazy_import('msgraph.generated.models.device_management_intent_user_state_summary')
-device_management_setting_instance = lazy_import('msgraph.generated.models.device_management_setting_instance')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import device_management_intent_assignment, device_management_intent_device_setting_state_summary, device_management_intent_device_state, device_management_intent_device_state_summary, device_management_intent_setting_category, device_management_intent_user_state, device_management_intent_user_state_summary, device_management_setting_instance, entity
+
+from . import entity
 
 class DeviceManagementIntent(entity.Entity):
     """
     Entity that represents an intent to apply settings to a device
     """
-    @property
-    def assignments(self,) -> Optional[List[device_management_intent_assignment.DeviceManagementIntentAssignment]]:
-        """
-        Gets the assignments property value. Collection of assignments
-        Returns: Optional[List[device_management_intent_assignment.DeviceManagementIntentAssignment]]
-        """
-        return self._assignments
-    
-    @assignments.setter
-    def assignments(self,value: Optional[List[device_management_intent_assignment.DeviceManagementIntentAssignment]] = None) -> None:
-        """
-        Sets the assignments property value. Collection of assignments
-        Args:
-            value: Value to set for the assignments property.
-        """
-        self._assignments = value
-    
-    @property
-    def categories(self,) -> Optional[List[device_management_intent_setting_category.DeviceManagementIntentSettingCategory]]:
-        """
-        Gets the categories property value. Collection of setting categories within the intent
-        Returns: Optional[List[device_management_intent_setting_category.DeviceManagementIntentSettingCategory]]
-        """
-        return self._categories
-    
-    @categories.setter
-    def categories(self,value: Optional[List[device_management_intent_setting_category.DeviceManagementIntentSettingCategory]] = None) -> None:
-        """
-        Sets the categories property value. Collection of setting categories within the intent
-        Args:
-            value: Value to set for the categories property.
-        """
-        self._categories = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new deviceManagementIntent and sets the default values.
@@ -87,6 +47,40 @@ class DeviceManagementIntent(entity.Entity):
         self._user_state_summary: Optional[device_management_intent_user_state_summary.DeviceManagementIntentUserStateSummary] = None
         # Collection of states of all users that the intent is applied to
         self._user_states: Optional[List[device_management_intent_user_state.DeviceManagementIntentUserState]] = None
+    
+    @property
+    def assignments(self,) -> Optional[List[device_management_intent_assignment.DeviceManagementIntentAssignment]]:
+        """
+        Gets the assignments property value. Collection of assignments
+        Returns: Optional[List[device_management_intent_assignment.DeviceManagementIntentAssignment]]
+        """
+        return self._assignments
+    
+    @assignments.setter
+    def assignments(self,value: Optional[List[device_management_intent_assignment.DeviceManagementIntentAssignment]] = None) -> None:
+        """
+        Sets the assignments property value. Collection of assignments
+        Args:
+            value: Value to set for the assignments property.
+        """
+        self._assignments = value
+    
+    @property
+    def categories(self,) -> Optional[List[device_management_intent_setting_category.DeviceManagementIntentSettingCategory]]:
+        """
+        Gets the categories property value. Collection of setting categories within the intent
+        Returns: Optional[List[device_management_intent_setting_category.DeviceManagementIntentSettingCategory]]
+        """
+        return self._categories
+    
+    @categories.setter
+    def categories(self,value: Optional[List[device_management_intent_setting_category.DeviceManagementIntentSettingCategory]] = None) -> None:
+        """
+        Sets the categories property value. Collection of setting categories within the intent
+        Args:
+            value: Value to set for the categories property.
+        """
+        self._categories = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementIntent:
@@ -190,7 +184,9 @@ class DeviceManagementIntent(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_intent_assignment, device_management_intent_device_setting_state_summary, device_management_intent_device_state, device_management_intent_device_state_summary, device_management_intent_setting_category, device_management_intent_user_state, device_management_intent_user_state_summary, device_management_setting_instance, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(device_management_intent_assignment.DeviceManagementIntentAssignment)),
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_object_values(device_management_intent_setting_category.DeviceManagementIntentSettingCategory)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

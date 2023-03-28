@@ -7,81 +7,26 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-assign_request_builder = lazy_import('msgraph.generated.device_management.device_custom_attribute_shell_scripts.item.assign.assign_request_builder')
-assignments_request_builder = lazy_import('msgraph.generated.device_management.device_custom_attribute_shell_scripts.item.assignments.assignments_request_builder')
-device_management_script_assignment_item_request_builder = lazy_import('msgraph.generated.device_management.device_custom_attribute_shell_scripts.item.assignments.item.device_management_script_assignment_item_request_builder')
-device_run_states_request_builder = lazy_import('msgraph.generated.device_management.device_custom_attribute_shell_scripts.item.device_run_states.device_run_states_request_builder')
-device_management_script_device_state_item_request_builder = lazy_import('msgraph.generated.device_management.device_custom_attribute_shell_scripts.item.device_run_states.item.device_management_script_device_state_item_request_builder')
-group_assignments_request_builder = lazy_import('msgraph.generated.device_management.device_custom_attribute_shell_scripts.item.group_assignments.group_assignments_request_builder')
-device_management_script_group_assignment_item_request_builder = lazy_import('msgraph.generated.device_management.device_custom_attribute_shell_scripts.item.group_assignments.item.device_management_script_group_assignment_item_request_builder')
-run_summary_request_builder = lazy_import('msgraph.generated.device_management.device_custom_attribute_shell_scripts.item.run_summary.run_summary_request_builder')
-user_run_states_request_builder = lazy_import('msgraph.generated.device_management.device_custom_attribute_shell_scripts.item.user_run_states.user_run_states_request_builder')
-device_management_script_user_state_item_request_builder = lazy_import('msgraph.generated.device_management.device_custom_attribute_shell_scripts.item.user_run_states.item.device_management_script_user_state_item_request_builder')
-device_custom_attribute_shell_script = lazy_import('msgraph.generated.models.device_custom_attribute_shell_script')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ....models import device_custom_attribute_shell_script
+    from ....models.o_data_errors import o_data_error
+    from .assign import assign_request_builder
+    from .assignments import assignments_request_builder
+    from .assignments.item import device_management_script_assignment_item_request_builder
+    from .device_run_states import device_run_states_request_builder
+    from .device_run_states.item import device_management_script_device_state_item_request_builder
+    from .group_assignments import group_assignments_request_builder
+    from .group_assignments.item import device_management_script_group_assignment_item_request_builder
+    from .run_summary import run_summary_request_builder
+    from .user_run_states import user_run_states_request_builder
+    from .user_run_states.item import device_management_script_user_state_item_request_builder
 
 class DeviceCustomAttributeShellScriptItemRequestBuilder():
     """
     Provides operations to manage the deviceCustomAttributeShellScripts property of the microsoft.graph.deviceManagement entity.
     """
-    @property
-    def assign(self) -> assign_request_builder.AssignRequestBuilder:
-        """
-        Provides operations to call the assign method.
-        """
-        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.deviceCustomAttributeShellScript entity.
-        """
-        return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def device_run_states(self) -> device_run_states_request_builder.DeviceRunStatesRequestBuilder:
-        """
-        Provides operations to manage the deviceRunStates property of the microsoft.graph.deviceCustomAttributeShellScript entity.
-        """
-        return device_run_states_request_builder.DeviceRunStatesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def group_assignments(self) -> group_assignments_request_builder.GroupAssignmentsRequestBuilder:
-        """
-        Provides operations to manage the groupAssignments property of the microsoft.graph.deviceCustomAttributeShellScript entity.
-        """
-        return group_assignments_request_builder.GroupAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def run_summary(self) -> run_summary_request_builder.RunSummaryRequestBuilder:
-        """
-        Provides operations to manage the runSummary property of the microsoft.graph.deviceCustomAttributeShellScript entity.
-        """
-        return run_summary_request_builder.RunSummaryRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def user_run_states(self) -> user_run_states_request_builder.UserRunStatesRequestBuilder:
-        """
-        Provides operations to manage the userRunStates property of the microsoft.graph.deviceCustomAttributeShellScript entity.
-        """
-        return user_run_states_request_builder.UserRunStatesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def assignments_by_id(self,id: str) -> device_management_script_assignment_item_request_builder.DeviceManagementScriptAssignmentItemRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.deviceCustomAttributeShellScript entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: device_management_script_assignment_item_request_builder.DeviceManagementScriptAssignmentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["deviceManagementScriptAssignment%2Did"] = id
-        return device_management_script_assignment_item_request_builder.DeviceManagementScriptAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new DeviceCustomAttributeShellScriptItemRequestBuilder and sets the default values.
@@ -100,6 +45,21 @@ class DeviceCustomAttributeShellScriptItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def assignments_by_id(self,id: str) -> device_management_script_assignment_item_request_builder.DeviceManagementScriptAssignmentItemRequestBuilder:
+        """
+        Provides operations to manage the assignments property of the microsoft.graph.deviceCustomAttributeShellScript entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: device_management_script_assignment_item_request_builder.DeviceManagementScriptAssignmentItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .assignments.item import device_management_script_assignment_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["deviceManagementScriptAssignment%2Did"] = id
+        return device_management_script_assignment_item_request_builder.DeviceManagementScriptAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def delete(self,request_configuration: Optional[DeviceCustomAttributeShellScriptItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property deviceCustomAttributeShellScripts for deviceManagement
@@ -109,6 +69,8 @@ class DeviceCustomAttributeShellScriptItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -126,6 +88,8 @@ class DeviceCustomAttributeShellScriptItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .device_run_states.item import device_management_script_device_state_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["deviceManagementScriptDeviceState%2Did"] = id
         return device_management_script_device_state_item_request_builder.DeviceManagementScriptDeviceStateItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -140,12 +104,16 @@ class DeviceCustomAttributeShellScriptItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import device_custom_attribute_shell_script
+
         return await self.request_adapter.send_async(request_info, device_custom_attribute_shell_script.DeviceCustomAttributeShellScript, error_mapping)
     
     def group_assignments_by_id(self,id: str) -> device_management_script_group_assignment_item_request_builder.DeviceManagementScriptGroupAssignmentItemRequestBuilder:
@@ -157,6 +125,8 @@ class DeviceCustomAttributeShellScriptItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .group_assignments.item import device_management_script_group_assignment_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["deviceManagementScriptGroupAssignment%2Did"] = id
         return device_management_script_group_assignment_item_request_builder.DeviceManagementScriptGroupAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -174,12 +144,16 @@ class DeviceCustomAttributeShellScriptItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import device_custom_attribute_shell_script
+
         return await self.request_adapter.send_async(request_info, device_custom_attribute_shell_script.DeviceCustomAttributeShellScript, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceCustomAttributeShellScriptItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -246,9 +220,65 @@ class DeviceCustomAttributeShellScriptItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .user_run_states.item import device_management_script_user_state_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["deviceManagementScriptUserState%2Did"] = id
         return device_management_script_user_state_item_request_builder.DeviceManagementScriptUserStateItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    @property
+    def assign(self) -> assign_request_builder.AssignRequestBuilder:
+        """
+        Provides operations to call the assign method.
+        """
+        from .assign import assign_request_builder
+
+        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
+        """
+        Provides operations to manage the assignments property of the microsoft.graph.deviceCustomAttributeShellScript entity.
+        """
+        from .assignments import assignments_request_builder
+
+        return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def device_run_states(self) -> device_run_states_request_builder.DeviceRunStatesRequestBuilder:
+        """
+        Provides operations to manage the deviceRunStates property of the microsoft.graph.deviceCustomAttributeShellScript entity.
+        """
+        from .device_run_states import device_run_states_request_builder
+
+        return device_run_states_request_builder.DeviceRunStatesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def group_assignments(self) -> group_assignments_request_builder.GroupAssignmentsRequestBuilder:
+        """
+        Provides operations to manage the groupAssignments property of the microsoft.graph.deviceCustomAttributeShellScript entity.
+        """
+        from .group_assignments import group_assignments_request_builder
+
+        return group_assignments_request_builder.GroupAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def run_summary(self) -> run_summary_request_builder.RunSummaryRequestBuilder:
+        """
+        Provides operations to manage the runSummary property of the microsoft.graph.deviceCustomAttributeShellScript entity.
+        """
+        from .run_summary import run_summary_request_builder
+
+        return run_summary_request_builder.RunSummaryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def user_run_states(self) -> user_run_states_request_builder.UserRunStatesRequestBuilder:
+        """
+        Provides operations to manage the userRunStates property of the microsoft.graph.deviceCustomAttributeShellScript entity.
+        """
+        from .user_run_states import user_run_states_request_builder
+
+        return user_run_states_request_builder.UserRunStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class DeviceCustomAttributeShellScriptItemRequestBuilderDeleteRequestConfiguration():
@@ -267,12 +297,6 @@ class DeviceCustomAttributeShellScriptItemRequestBuilder():
         """
         The list of device custom attribute shell scripts associated with the tenant.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -288,6 +312,12 @@ class DeviceCustomAttributeShellScriptItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class DeviceCustomAttributeShellScriptItemRequestBuilderGetRequestConfiguration():

@@ -1,12 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-planner_creation_source_kind = lazy_import('msgraph.generated.models.planner_creation_source_kind')
-planner_teams_publication_info = lazy_import('msgraph.generated.models.planner_teams_publication_info')
+if TYPE_CHECKING:
+    from . import planner_creation_source_kind, planner_external_task_source, planner_teams_publication_info
 
 class PlannerTaskCreation(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new plannerTaskCreation and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Specifies what kind of creation source the task is created with. The possible values are: external, publication and unknownFutureValue.
+        self._creation_source_kind: Optional[planner_creation_source_kind.PlannerCreationSourceKind] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Information about the publication process that created this task. This field is deprecated and clients should move to using the new inheritance model.
+        self._teams_publication_info: Optional[planner_teams_publication_info.PlannerTeamsPublicationInfo] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -24,20 +37,6 @@ class PlannerTaskCreation(AdditionalDataHolder, Parsable):
         """
         self._additional_data = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new plannerTaskCreation and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Specifies what kind of creation source the task is created with. The possible values are: external, publication and unknownFutureValue.
-        self._creation_source_kind: Optional[planner_creation_source_kind.PlannerCreationSourceKind] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Information about the publication process that created this task. This field is deprecated and clients should move to using the new inheritance model.
-        self._teams_publication_info: Optional[planner_teams_publication_info.PlannerTeamsPublicationInfo] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PlannerTaskCreation:
         """
@@ -48,6 +47,17 @@ class PlannerTaskCreation(AdditionalDataHolder, Parsable):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.plannerExternalTaskSource":
+                from . import planner_external_task_source
+
+                return planner_external_task_source.PlannerExternalTaskSource()
+            if mapping_value == "#microsoft.graph.plannerTeamsPublicationInfo":
+                from . import planner_teams_publication_info
+
+                return planner_teams_publication_info.PlannerTeamsPublicationInfo()
         return PlannerTaskCreation()
     
     @property
@@ -72,7 +82,9 @@ class PlannerTaskCreation(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import planner_creation_source_kind, planner_external_task_source, planner_teams_publication_info
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "creationSourceKind": lambda n : setattr(self, 'creation_source_kind', n.get_enum_value(planner_creation_source_kind.PlannerCreationSourceKind)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "teamsPublicationInfo": lambda n : setattr(self, 'teams_publication_info', n.get_object_value(planner_teams_publication_info.PlannerTeamsPublicationInfo)),

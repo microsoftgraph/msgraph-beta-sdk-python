@@ -1,31 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class UserExperienceAnalyticsAppHealthOSVersionPerformance(entity.Entity):
     """
     The user experience analytics device OS version performance entity contains OS version performance details.
     """
-    @property
-    def active_device_count(self,) -> Optional[int]:
-        """
-        Gets the activeDeviceCount property value. The number of active devices for the OS version. Valid values -2147483648 to 2147483647
-        Returns: Optional[int]
-        """
-        return self._active_device_count
-    
-    @active_device_count.setter
-    def active_device_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the activeDeviceCount property value. The number of active devices for the OS version. Valid values -2147483648 to 2147483647
-        Args:
-            value: Value to set for the active_device_count property.
-        """
-        self._active_device_count = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new userExperienceAnalyticsAppHealthOSVersionPerformance and sets the default values.
@@ -46,6 +31,23 @@ class UserExperienceAnalyticsAppHealthOSVersionPerformance(entity.Entity):
         # The overall app health status of the OS version.
         self._os_version_app_health_status: Optional[str] = None
     
+    @property
+    def active_device_count(self,) -> Optional[int]:
+        """
+        Gets the activeDeviceCount property value. The number of active devices for the OS version. Valid values -2147483648 to 2147483647
+        Returns: Optional[int]
+        """
+        return self._active_device_count
+    
+    @active_device_count.setter
+    def active_device_count(self,value: Optional[int] = None) -> None:
+        """
+        Sets the activeDeviceCount property value. The number of active devices for the OS version. Valid values -2147483648 to 2147483647
+        Args:
+            value: Value to set for the active_device_count property.
+        """
+        self._active_device_count = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsAppHealthOSVersionPerformance:
         """
@@ -63,7 +65,9 @@ class UserExperienceAnalyticsAppHealthOSVersionPerformance(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "activeDeviceCount": lambda n : setattr(self, 'active_device_count', n.get_int_value()),
             "meanTimeToFailureInMinutes": lambda n : setattr(self, 'mean_time_to_failure_in_minutes', n.get_int_value()),
             "osBuildNumber": lambda n : setattr(self, 'os_build_number', n.get_str_value()),

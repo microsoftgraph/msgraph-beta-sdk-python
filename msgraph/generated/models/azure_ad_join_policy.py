@@ -1,11 +1,29 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-policy_scope = lazy_import('msgraph.generated.models.policy_scope')
+if TYPE_CHECKING:
+    from . import policy_scope
 
 class AzureAdJoinPolicy(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new azureAdJoinPolicy and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The identifiers of the groups that are in the scope of the policy. Required when the appliesTo property is set to selected.
+        self._allowed_groups: Optional[List[str]] = None
+        # The identifiers of users that are in the scope of the policy. Required when the appliesTo property is set to selected.
+        self._allowed_users: Optional[List[str]] = None
+        # Specifies whether to block or allow fine-grained control of the policy scope. The possible values are: 0 (meaning none), 1 (meaning all), 2 (meaning selected), 3 (meaning unknownFutureValue). The default value is 1. When set to 2, at least one user or group identifier must be specified in either allowedUsers or allowedGroups.  Setting this property to 0 or 1 removes all identifiers in both allowedUsers and allowedGroups.
+        self._applies_to: Optional[policy_scope.PolicyScope] = None
+        # Specifies whether this policy scope is configurable by the admin. The default value is false. When an admin has enabled Intune (MEM) to manage devices, this property is set to false and appliesTo defaults to 1 (meaning all).
+        self._is_admin_configurable: Optional[bool] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -74,24 +92,6 @@ class AzureAdJoinPolicy(AdditionalDataHolder, Parsable):
         """
         self._applies_to = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new azureAdJoinPolicy and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The identifiers of the groups that are in the scope of the policy. Required when the appliesTo property is set to selected.
-        self._allowed_groups: Optional[List[str]] = None
-        # The identifiers of users that are in the scope of the policy. Required when the appliesTo property is set to selected.
-        self._allowed_users: Optional[List[str]] = None
-        # Specifies whether to block or allow fine-grained control of the policy scope. The possible values are: 0 (meaning none), 1 (meaning all), 2 (meaning selected), 3 (meaning unknownFutureValue). The default value is 1. When set to 2, at least one user or group identifier must be specified in either allowedUsers or allowedGroups.  Setting this property to 0 or 1 removes all identifiers in both allowedUsers and allowedGroups.
-        self._applies_to: Optional[policy_scope.PolicyScope] = None
-        # Specifies whether this policy scope is configurable by the admin. The default value is false. When an admin has enabled Intune (MEM) to manage devices, this property is set to false and appliesTo defaults to 1 (meaning all).
-        self._is_admin_configurable: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AzureAdJoinPolicy:
         """
@@ -109,7 +109,9 @@ class AzureAdJoinPolicy(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import policy_scope
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowedGroups": lambda n : setattr(self, 'allowed_groups', n.get_collection_of_primitive_values(str)),
             "allowedUsers": lambda n : setattr(self, 'allowed_users', n.get_collection_of_primitive_values(str)),
             "appliesTo": lambda n : setattr(self, 'applies_to', n.get_enum_value(policy_scope.PolicyScope)),

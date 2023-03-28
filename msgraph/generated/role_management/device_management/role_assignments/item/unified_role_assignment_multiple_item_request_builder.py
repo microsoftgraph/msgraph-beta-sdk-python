@@ -7,64 +7,23 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-unified_role_assignment_multiple = lazy_import('msgraph.generated.models.unified_role_assignment_multiple')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-app_scopes_request_builder = lazy_import('msgraph.generated.role_management.device_management.role_assignments.item.app_scopes.app_scopes_request_builder')
-app_scope_item_request_builder = lazy_import('msgraph.generated.role_management.device_management.role_assignments.item.app_scopes.item.app_scope_item_request_builder')
-directory_scopes_request_builder = lazy_import('msgraph.generated.role_management.device_management.role_assignments.item.directory_scopes.directory_scopes_request_builder')
-directory_object_item_request_builder = lazy_import('msgraph.generated.role_management.device_management.role_assignments.item.directory_scopes.item.directory_object_item_request_builder')
-principals_request_builder = lazy_import('msgraph.generated.role_management.device_management.role_assignments.item.principals.principals_request_builder')
-directory_object_item_request_builder = lazy_import('msgraph.generated.role_management.device_management.role_assignments.item.principals.item.directory_object_item_request_builder')
-role_definition_request_builder = lazy_import('msgraph.generated.role_management.device_management.role_assignments.item.role_definition.role_definition_request_builder')
+if TYPE_CHECKING:
+    from .....models import unified_role_assignment_multiple
+    from .....models.o_data_errors import o_data_error
+    from .app_scopes import app_scopes_request_builder
+    from .app_scopes.item import app_scope_item_request_builder
+    from .directory_scopes import directory_scopes_request_builder
+    from .directory_scopes.item import directory_object_item_request_builder
+    from .principals import principals_request_builder
+    from .principals.item import directory_object_item_request_builder
+    from .role_definition import role_definition_request_builder
 
 class UnifiedRoleAssignmentMultipleItemRequestBuilder():
     """
     Provides operations to manage the roleAssignments property of the microsoft.graph.rbacApplicationMultiple entity.
     """
-    @property
-    def app_scopes(self) -> app_scopes_request_builder.AppScopesRequestBuilder:
-        """
-        Provides operations to manage the appScopes property of the microsoft.graph.unifiedRoleAssignmentMultiple entity.
-        """
-        return app_scopes_request_builder.AppScopesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def directory_scopes(self) -> directory_scopes_request_builder.DirectoryScopesRequestBuilder:
-        """
-        Provides operations to manage the directoryScopes property of the microsoft.graph.unifiedRoleAssignmentMultiple entity.
-        """
-        return directory_scopes_request_builder.DirectoryScopesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def principals(self) -> principals_request_builder.PrincipalsRequestBuilder:
-        """
-        Provides operations to manage the principals property of the microsoft.graph.unifiedRoleAssignmentMultiple entity.
-        """
-        return principals_request_builder.PrincipalsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def role_definition(self) -> role_definition_request_builder.RoleDefinitionRequestBuilder:
-        """
-        Provides operations to manage the roleDefinition property of the microsoft.graph.unifiedRoleAssignmentMultiple entity.
-        """
-        return role_definition_request_builder.RoleDefinitionRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def app_scopes_by_id(self,id: str) -> app_scope_item_request_builder.AppScopeItemRequestBuilder:
-        """
-        Provides operations to manage the appScopes property of the microsoft.graph.unifiedRoleAssignmentMultiple entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: app_scope_item_request_builder.AppScopeItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["appScope%2Did"] = id
-        return app_scope_item_request_builder.AppScopeItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new UnifiedRoleAssignmentMultipleItemRequestBuilder and sets the default values.
@@ -83,6 +42,21 @@ class UnifiedRoleAssignmentMultipleItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def app_scopes_by_id(self,id: str) -> app_scope_item_request_builder.AppScopeItemRequestBuilder:
+        """
+        Provides operations to manage the appScopes property of the microsoft.graph.unifiedRoleAssignmentMultiple entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: app_scope_item_request_builder.AppScopeItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .app_scopes.item import app_scope_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["appScope%2Did"] = id
+        return app_scope_item_request_builder.AppScopeItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def delete(self,request_configuration: Optional[UnifiedRoleAssignmentMultipleItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property roleAssignments for roleManagement
@@ -92,6 +66,8 @@ class UnifiedRoleAssignmentMultipleItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -109,6 +85,9 @@ class UnifiedRoleAssignmentMultipleItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .directory_scopes.item import directory_object_item_request_builder
+        from .principals.item import directory_object_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["directoryObject%2Did"] = id
         return directory_object_item_request_builder.DirectoryObjectItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -123,12 +102,16 @@ class UnifiedRoleAssignmentMultipleItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .....models import unified_role_assignment_multiple
+
         return await self.request_adapter.send_async(request_info, unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple, error_mapping)
     
     async def patch(self,body: Optional[unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple] = None, request_configuration: Optional[UnifiedRoleAssignmentMultipleItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple]:
@@ -144,12 +127,16 @@ class UnifiedRoleAssignmentMultipleItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .....models import unified_role_assignment_multiple
+
         return await self.request_adapter.send_async(request_info, unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple, error_mapping)
     
     def principals_by_id(self,id: str) -> directory_object_item_request_builder.DirectoryObjectItemRequestBuilder:
@@ -161,6 +148,9 @@ class UnifiedRoleAssignmentMultipleItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .directory_scopes.item import directory_object_item_request_builder
+        from .principals.item import directory_object_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["directoryObject%2Did"] = id
         return directory_object_item_request_builder.DirectoryObjectItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -220,6 +210,42 @@ class UnifiedRoleAssignmentMultipleItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def app_scopes(self) -> app_scopes_request_builder.AppScopesRequestBuilder:
+        """
+        Provides operations to manage the appScopes property of the microsoft.graph.unifiedRoleAssignmentMultiple entity.
+        """
+        from .app_scopes import app_scopes_request_builder
+
+        return app_scopes_request_builder.AppScopesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def directory_scopes(self) -> directory_scopes_request_builder.DirectoryScopesRequestBuilder:
+        """
+        Provides operations to manage the directoryScopes property of the microsoft.graph.unifiedRoleAssignmentMultiple entity.
+        """
+        from .directory_scopes import directory_scopes_request_builder
+
+        return directory_scopes_request_builder.DirectoryScopesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def principals(self) -> principals_request_builder.PrincipalsRequestBuilder:
+        """
+        Provides operations to manage the principals property of the microsoft.graph.unifiedRoleAssignmentMultiple entity.
+        """
+        from .principals import principals_request_builder
+
+        return principals_request_builder.PrincipalsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def role_definition(self) -> role_definition_request_builder.RoleDefinitionRequestBuilder:
+        """
+        Provides operations to manage the roleDefinition property of the microsoft.graph.unifiedRoleAssignmentMultiple entity.
+        """
+        from .role_definition import role_definition_request_builder
+
+        return role_definition_request_builder.RoleDefinitionRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class UnifiedRoleAssignmentMultipleItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -237,12 +263,6 @@ class UnifiedRoleAssignmentMultipleItemRequestBuilder():
         """
         Get roleAssignments from roleManagement
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -258,6 +278,12 @@ class UnifiedRoleAssignmentMultipleItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class UnifiedRoleAssignmentMultipleItemRequestBuilderGetRequestConfiguration():

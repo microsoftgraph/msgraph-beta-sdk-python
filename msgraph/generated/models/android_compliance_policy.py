@@ -1,49 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_required_password_complexity = lazy_import('msgraph.generated.models.android_required_password_complexity')
-android_required_password_type = lazy_import('msgraph.generated.models.android_required_password_type')
-app_list_item = lazy_import('msgraph.generated.models.app_list_item')
-device_compliance_policy = lazy_import('msgraph.generated.models.device_compliance_policy')
-device_threat_protection_level = lazy_import('msgraph.generated.models.device_threat_protection_level')
+if TYPE_CHECKING:
+    from . import android_required_password_complexity, android_required_password_type, app_list_item, device_compliance_policy, device_threat_protection_level
+
+from . import device_compliance_policy
 
 class AndroidCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
-    @property
-    def advanced_threat_protection_required_security_level(self,) -> Optional[device_threat_protection_level.DeviceThreatProtectionLevel]:
-        """
-        Gets the advancedThreatProtectionRequiredSecurityLevel property value. Device threat protection levels for the Device Threat Protection API.
-        Returns: Optional[device_threat_protection_level.DeviceThreatProtectionLevel]
-        """
-        return self._advanced_threat_protection_required_security_level
-    
-    @advanced_threat_protection_required_security_level.setter
-    def advanced_threat_protection_required_security_level(self,value: Optional[device_threat_protection_level.DeviceThreatProtectionLevel] = None) -> None:
-        """
-        Sets the advancedThreatProtectionRequiredSecurityLevel property value. Device threat protection levels for the Device Threat Protection API.
-        Args:
-            value: Value to set for the advanced_threat_protection_required_security_level property.
-        """
-        self._advanced_threat_protection_required_security_level = value
-    
-    @property
-    def condition_statement_id(self,) -> Optional[str]:
-        """
-        Gets the conditionStatementId property value. Condition statement id.
-        Returns: Optional[str]
-        """
-        return self._condition_statement_id
-    
-    @condition_statement_id.setter
-    def condition_statement_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the conditionStatementId property value. Condition statement id.
-        Args:
-            value: Value to set for the condition_statement_id property.
-        """
-        self._condition_statement_id = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new AndroidCompliancePolicy and sets the default values.
@@ -105,6 +69,40 @@ class AndroidCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
         # Require encryption on Android devices.
         self._storage_require_encryption: Optional[bool] = None
     
+    @property
+    def advanced_threat_protection_required_security_level(self,) -> Optional[device_threat_protection_level.DeviceThreatProtectionLevel]:
+        """
+        Gets the advancedThreatProtectionRequiredSecurityLevel property value. Device threat protection levels for the Device Threat Protection API.
+        Returns: Optional[device_threat_protection_level.DeviceThreatProtectionLevel]
+        """
+        return self._advanced_threat_protection_required_security_level
+    
+    @advanced_threat_protection_required_security_level.setter
+    def advanced_threat_protection_required_security_level(self,value: Optional[device_threat_protection_level.DeviceThreatProtectionLevel] = None) -> None:
+        """
+        Sets the advancedThreatProtectionRequiredSecurityLevel property value. Device threat protection levels for the Device Threat Protection API.
+        Args:
+            value: Value to set for the advanced_threat_protection_required_security_level property.
+        """
+        self._advanced_threat_protection_required_security_level = value
+    
+    @property
+    def condition_statement_id(self,) -> Optional[str]:
+        """
+        Gets the conditionStatementId property value. Condition statement id.
+        Returns: Optional[str]
+        """
+        return self._condition_statement_id
+    
+    @condition_statement_id.setter
+    def condition_statement_id(self,value: Optional[str] = None) -> None:
+        """
+        Sets the conditionStatementId property value. Condition statement id.
+        Args:
+            value: Value to set for the condition_statement_id property.
+        """
+        self._condition_statement_id = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidCompliancePolicy:
         """
@@ -156,7 +154,9 @@ class AndroidCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_required_password_complexity, android_required_password_type, app_list_item, device_compliance_policy, device_threat_protection_level
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "advancedThreatProtectionRequiredSecurityLevel": lambda n : setattr(self, 'advanced_threat_protection_required_security_level', n.get_enum_value(device_threat_protection_level.DeviceThreatProtectionLevel)),
             "conditionStatementId": lambda n : setattr(self, 'condition_statement_id', n.get_str_value()),
             "deviceThreatProtectionEnabled": lambda n : setattr(self, 'device_threat_protection_enabled', n.get_bool_value()),

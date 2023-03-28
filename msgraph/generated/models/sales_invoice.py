@@ -1,86 +1,14 @@
 from __future__ import annotations
 from datetime import date, datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-currency = lazy_import('msgraph.generated.models.currency')
-customer = lazy_import('msgraph.generated.models.customer')
-entity = lazy_import('msgraph.generated.models.entity')
-payment_term = lazy_import('msgraph.generated.models.payment_term')
-postal_address_type = lazy_import('msgraph.generated.models.postal_address_type')
-sales_invoice_line = lazy_import('msgraph.generated.models.sales_invoice_line')
-shipment_method = lazy_import('msgraph.generated.models.shipment_method')
+if TYPE_CHECKING:
+    from . import currency, customer, entity, payment_term, postal_address_type, sales_invoice_line, shipment_method
+
+from . import entity
 
 class SalesInvoice(entity.Entity):
-    @property
-    def bill_to_customer_id(self,) -> Optional[Guid]:
-        """
-        Gets the billToCustomerId property value. The billToCustomerId property
-        Returns: Optional[Guid]
-        """
-        return self._bill_to_customer_id
-    
-    @bill_to_customer_id.setter
-    def bill_to_customer_id(self,value: Optional[Guid] = None) -> None:
-        """
-        Sets the billToCustomerId property value. The billToCustomerId property
-        Args:
-            value: Value to set for the bill_to_customer_id property.
-        """
-        self._bill_to_customer_id = value
-    
-    @property
-    def bill_to_customer_number(self,) -> Optional[str]:
-        """
-        Gets the billToCustomerNumber property value. The billToCustomerNumber property
-        Returns: Optional[str]
-        """
-        return self._bill_to_customer_number
-    
-    @bill_to_customer_number.setter
-    def bill_to_customer_number(self,value: Optional[str] = None) -> None:
-        """
-        Sets the billToCustomerNumber property value. The billToCustomerNumber property
-        Args:
-            value: Value to set for the bill_to_customer_number property.
-        """
-        self._bill_to_customer_number = value
-    
-    @property
-    def bill_to_name(self,) -> Optional[str]:
-        """
-        Gets the billToName property value. The billToName property
-        Returns: Optional[str]
-        """
-        return self._bill_to_name
-    
-    @bill_to_name.setter
-    def bill_to_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the billToName property value. The billToName property
-        Args:
-            value: Value to set for the bill_to_name property.
-        """
-        self._bill_to_name = value
-    
-    @property
-    def billing_postal_address(self,) -> Optional[postal_address_type.PostalAddressType]:
-        """
-        Gets the billingPostalAddress property value. The billingPostalAddress property
-        Returns: Optional[postal_address_type.PostalAddressType]
-        """
-        return self._billing_postal_address
-    
-    @billing_postal_address.setter
-    def billing_postal_address(self,value: Optional[postal_address_type.PostalAddressType] = None) -> None:
-        """
-        Sets the billingPostalAddress property value. The billingPostalAddress property
-        Args:
-            value: Value to set for the billing_postal_address property.
-        """
-        self._billing_postal_address = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new salesInvoice and sets the default values.
@@ -164,6 +92,74 @@ class SalesInvoice(entity.Entity):
         self._total_amount_including_tax: Optional[float] = None
         # The totalTaxAmount property
         self._total_tax_amount: Optional[float] = None
+    
+    @property
+    def bill_to_customer_id(self,) -> Optional[Guid]:
+        """
+        Gets the billToCustomerId property value. The billToCustomerId property
+        Returns: Optional[Guid]
+        """
+        return self._bill_to_customer_id
+    
+    @bill_to_customer_id.setter
+    def bill_to_customer_id(self,value: Optional[Guid] = None) -> None:
+        """
+        Sets the billToCustomerId property value. The billToCustomerId property
+        Args:
+            value: Value to set for the bill_to_customer_id property.
+        """
+        self._bill_to_customer_id = value
+    
+    @property
+    def bill_to_customer_number(self,) -> Optional[str]:
+        """
+        Gets the billToCustomerNumber property value. The billToCustomerNumber property
+        Returns: Optional[str]
+        """
+        return self._bill_to_customer_number
+    
+    @bill_to_customer_number.setter
+    def bill_to_customer_number(self,value: Optional[str] = None) -> None:
+        """
+        Sets the billToCustomerNumber property value. The billToCustomerNumber property
+        Args:
+            value: Value to set for the bill_to_customer_number property.
+        """
+        self._bill_to_customer_number = value
+    
+    @property
+    def bill_to_name(self,) -> Optional[str]:
+        """
+        Gets the billToName property value. The billToName property
+        Returns: Optional[str]
+        """
+        return self._bill_to_name
+    
+    @bill_to_name.setter
+    def bill_to_name(self,value: Optional[str] = None) -> None:
+        """
+        Sets the billToName property value. The billToName property
+        Args:
+            value: Value to set for the bill_to_name property.
+        """
+        self._bill_to_name = value
+    
+    @property
+    def billing_postal_address(self,) -> Optional[postal_address_type.PostalAddressType]:
+        """
+        Gets the billingPostalAddress property value. The billingPostalAddress property
+        Returns: Optional[postal_address_type.PostalAddressType]
+        """
+        return self._billing_postal_address
+    
+    @billing_postal_address.setter
+    def billing_postal_address(self,value: Optional[postal_address_type.PostalAddressType] = None) -> None:
+        """
+        Sets the billingPostalAddress property value. The billingPostalAddress property
+        Args:
+            value: Value to set for the billing_postal_address property.
+        """
+        self._billing_postal_address = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SalesInvoice:
@@ -403,7 +399,9 @@ class SalesInvoice(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import currency, customer, entity, payment_term, postal_address_type, sales_invoice_line, shipment_method
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "billingPostalAddress": lambda n : setattr(self, 'billing_postal_address', n.get_object_value(postal_address_type.PostalAddressType)),
             "billToCustomerId": lambda n : setattr(self, 'bill_to_customer_id', n.get_object_value(Guid)),
             "billToCustomerNumber": lambda n : setattr(self, 'bill_to_customer_number', n.get_str_value()),

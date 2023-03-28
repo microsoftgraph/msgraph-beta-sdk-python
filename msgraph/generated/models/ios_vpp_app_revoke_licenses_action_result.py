@@ -1,16 +1,43 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-action_state = lazy_import('msgraph.generated.models.action_state')
-vpp_token_action_failure_reason = lazy_import('msgraph.generated.models.vpp_token_action_failure_reason')
+if TYPE_CHECKING:
+    from . import action_state, vpp_token_action_failure_reason
 
 class IosVppAppRevokeLicensesActionResult(AdditionalDataHolder, Parsable):
     """
     Defines results for actions on iOS Vpp Apps, contains inherited properties for ActionResult.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new iosVppAppRevokeLicensesActionResult and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Possible types of reasons for an Apple Volume Purchase Program token action failure.
+        self._action_failure_reason: Optional[vpp_token_action_failure_reason.VppTokenActionFailureReason] = None
+        # Action name
+        self._action_name: Optional[str] = None
+        # The actionState property
+        self._action_state: Optional[action_state.ActionState] = None
+        # A count of the number of licenses for which revoke failed.
+        self._failed_licenses_count: Optional[int] = None
+        # Time the action state was last updated
+        self._last_updated_date_time: Optional[datetime] = None
+        # DeviceId associated with the action.
+        self._managed_device_id: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Time the action was initiated
+        self._start_date_time: Optional[datetime] = None
+        # A count of the number of licenses for which revoke was attempted.
+        self._total_licenses_count: Optional[int] = None
+        # UserId associated with the action.
+        self._user_id: Optional[str] = None
+    
     @property
     def action_failure_reason(self,) -> Optional[vpp_token_action_failure_reason.VppTokenActionFailureReason]:
         """
@@ -79,34 +106,6 @@ class IosVppAppRevokeLicensesActionResult(AdditionalDataHolder, Parsable):
         """
         self._additional_data = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new iosVppAppRevokeLicensesActionResult and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Possible types of reasons for an Apple Volume Purchase Program token action failure.
-        self._action_failure_reason: Optional[vpp_token_action_failure_reason.VppTokenActionFailureReason] = None
-        # Action name
-        self._action_name: Optional[str] = None
-        # The actionState property
-        self._action_state: Optional[action_state.ActionState] = None
-        # A count of the number of licenses for which revoke failed.
-        self._failed_licenses_count: Optional[int] = None
-        # Time the action state was last updated
-        self._last_updated_date_time: Optional[datetime] = None
-        # DeviceId associated with the action.
-        self._managed_device_id: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Time the action was initiated
-        self._start_date_time: Optional[datetime] = None
-        # A count of the number of licenses for which revoke was attempted.
-        self._total_licenses_count: Optional[int] = None
-        # UserId associated with the action.
-        self._user_id: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosVppAppRevokeLicensesActionResult:
         """
@@ -141,7 +140,9 @@ class IosVppAppRevokeLicensesActionResult(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import action_state, vpp_token_action_failure_reason
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "actionFailureReason": lambda n : setattr(self, 'action_failure_reason', n.get_enum_value(vpp_token_action_failure_reason.VppTokenActionFailureReason)),
             "actionName": lambda n : setattr(self, 'action_name', n.get_str_value()),
             "actionState": lambda n : setattr(self, 'action_state', n.get_enum_value(action_state.ActionState)),

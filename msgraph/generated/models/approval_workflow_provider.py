@@ -1,13 +1,29 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-business_flow = lazy_import('msgraph.generated.models.business_flow')
-entity = lazy_import('msgraph.generated.models.entity')
-governance_policy_template = lazy_import('msgraph.generated.models.governance_policy_template')
+if TYPE_CHECKING:
+    from . import business_flow, entity, governance_policy_template
+
+from . import entity
 
 class ApprovalWorkflowProvider(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new ApprovalWorkflowProvider and sets the default values.
+        """
+        super().__init__()
+        # The businessFlows property
+        self._business_flows: Optional[List[business_flow.BusinessFlow]] = None
+        # The businessFlowsWithRequestsAwaitingMyDecision property
+        self._business_flows_with_requests_awaiting_my_decision: Optional[List[business_flow.BusinessFlow]] = None
+        # The displayName property
+        self._display_name: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The policyTemplates property
+        self._policy_templates: Optional[List[governance_policy_template.GovernancePolicyTemplate]] = None
+    
     @property
     def business_flows(self,) -> Optional[List[business_flow.BusinessFlow]]:
         """
@@ -41,22 +57,6 @@ class ApprovalWorkflowProvider(entity.Entity):
             value: Value to set for the business_flows_with_requests_awaiting_my_decision property.
         """
         self._business_flows_with_requests_awaiting_my_decision = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ApprovalWorkflowProvider and sets the default values.
-        """
-        super().__init__()
-        # The businessFlows property
-        self._business_flows: Optional[List[business_flow.BusinessFlow]] = None
-        # The businessFlowsWithRequestsAwaitingMyDecision property
-        self._business_flows_with_requests_awaiting_my_decision: Optional[List[business_flow.BusinessFlow]] = None
-        # The displayName property
-        self._display_name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The policyTemplates property
-        self._policy_templates: Optional[List[governance_policy_template.GovernancePolicyTemplate]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ApprovalWorkflowProvider:
@@ -92,7 +92,9 @@ class ApprovalWorkflowProvider(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import business_flow, entity, governance_policy_template
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "businessFlows": lambda n : setattr(self, 'business_flows', n.get_collection_of_object_values(business_flow.BusinessFlow)),
             "businessFlowsWithRequestsAwaitingMyDecision": lambda n : setattr(self, 'business_flows_with_requests_awaiting_my_decision', n.get_collection_of_object_values(business_flow.BusinessFlow)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

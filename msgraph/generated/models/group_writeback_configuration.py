@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-writeback_configuration = lazy_import('msgraph.generated.models.writeback_configuration')
+if TYPE_CHECKING:
+    from . import writeback_configuration
+
+from . import writeback_configuration
 
 class GroupWritebackConfiguration(writeback_configuration.WritebackConfiguration):
     def __init__(self,) -> None:
@@ -33,7 +35,9 @@ class GroupWritebackConfiguration(writeback_configuration.WritebackConfiguration
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import writeback_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "onPremisesGroupType": lambda n : setattr(self, 'on_premises_group_type', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

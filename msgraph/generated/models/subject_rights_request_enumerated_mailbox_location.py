@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-subject_rights_request_mailbox_location = lazy_import('msgraph.generated.models.subject_rights_request_mailbox_location')
+if TYPE_CHECKING:
+    from . import subject_rights_request_mailbox_location
+
+from . import subject_rights_request_mailbox_location
 
 class SubjectRightsRequestEnumeratedMailboxLocation(subject_rights_request_mailbox_location.SubjectRightsRequestMailboxLocation):
     def __init__(self,) -> None:
@@ -32,7 +34,9 @@ class SubjectRightsRequestEnumeratedMailboxLocation(subject_rights_request_mailb
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import subject_rights_request_mailbox_location
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "upns": lambda n : setattr(self, 'upns', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()

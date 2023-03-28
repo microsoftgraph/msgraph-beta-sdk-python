@@ -1,11 +1,12 @@
 from __future__ import annotations
 from datetime import timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-compliance_change_rule = lazy_import('msgraph.generated.models.windows_updates.compliance_change_rule')
-content_filter = lazy_import('msgraph.generated.models.windows_updates.content_filter')
+if TYPE_CHECKING:
+    from . import compliance_change_rule, content_filter
+
+from . import compliance_change_rule
 
 class ContentApprovalRule(compliance_change_rule.ComplianceChangeRule):
     def __init__(self,) -> None:
@@ -70,7 +71,9 @@ class ContentApprovalRule(compliance_change_rule.ComplianceChangeRule):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import compliance_change_rule, content_filter
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "contentFilter": lambda n : setattr(self, 'content_filter', n.get_object_value(content_filter.ContentFilter)),
             "durationBeforeDeploymentStart": lambda n : setattr(self, 'duration_before_deployment_start', n.get_object_value(Timedelta)),
         }

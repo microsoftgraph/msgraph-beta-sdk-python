@@ -1,12 +1,26 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-driver_approval_action = lazy_import('msgraph.generated.models.driver_approval_action')
+if TYPE_CHECKING:
+    from .....models import driver_approval_action
 
 class ExecuteActionPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new executeActionPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # An enum type to represent approval actions of single or list of drivers.
+        self._action_name: Optional[driver_approval_action.DriverApprovalAction] = None
+        # The deploymentDate property
+        self._deployment_date: Optional[datetime] = None
+        # The driverIds property
+        self._driver_ids: Optional[List[str]] = None
+    
     @property
     def action_name(self,) -> Optional[driver_approval_action.DriverApprovalAction]:
         """
@@ -40,20 +54,6 @@ class ExecuteActionPostRequestBody(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new executeActionPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # An enum type to represent approval actions of single or list of drivers.
-        self._action_name: Optional[driver_approval_action.DriverApprovalAction] = None
-        # The deploymentDate property
-        self._deployment_date: Optional[datetime] = None
-        # The driverIds property
-        self._driver_ids: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ExecuteActionPostRequestBody:
@@ -106,7 +106,9 @@ class ExecuteActionPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .....models import driver_approval_action
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "actionName": lambda n : setattr(self, 'action_name', n.get_enum_value(driver_approval_action.DriverApprovalAction)),
             "deploymentDate": lambda n : setattr(self, 'deployment_date', n.get_datetime_value()),
             "driverIds": lambda n : setattr(self, 'driver_ids', n.get_collection_of_primitive_values(str)),

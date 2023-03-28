@@ -1,20 +1,43 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-long_running_operation_status = lazy_import('msgraph.generated.models.security.long_running_operation_status')
-submission_admin_review = lazy_import('msgraph.generated.models.security.submission_admin_review')
-submission_category = lazy_import('msgraph.generated.models.security.submission_category')
-submission_client_source = lazy_import('msgraph.generated.models.security.submission_client_source')
-submission_content_type = lazy_import('msgraph.generated.models.security.submission_content_type')
-submission_result = lazy_import('msgraph.generated.models.security.submission_result')
-submission_source = lazy_import('msgraph.generated.models.security.submission_source')
-submission_user_identity = lazy_import('msgraph.generated.models.security.submission_user_identity')
+if TYPE_CHECKING:
+    from . import email_content_threat_submission, email_threat_submission, email_url_threat_submission, file_content_threat_submission, file_threat_submission, file_url_threat_submission, long_running_operation_status, submission_admin_review, submission_category, submission_client_source, submission_content_type, submission_result, submission_source, submission_user_identity, url_threat_submission
+    from .. import entity
+
+from .. import entity
 
 class ThreatSubmission(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new threatSubmission and sets the default values.
+        """
+        super().__init__()
+        # Specifies the admin review property which constitutes of who reviewed the user submission, when and what was it identified as.
+        self._admin_review: Optional[submission_admin_review.SubmissionAdminReview] = None
+        # The category property
+        self._category: Optional[submission_category.SubmissionCategory] = None
+        # Specifies the source of the submission. The possible values are: microsoft,  other and unkownFutureValue.
+        self._client_source: Optional[submission_client_source.SubmissionClientSource] = None
+        # Specifies the type of content being submitted. The possible values are: email, url, file, app and unkownFutureValue.
+        self._content_type: Optional[submission_content_type.SubmissionContentType] = None
+        # Specifies who submitted the email as a threat. Supports $filter = createdBy/email eq 'value'.
+        self._created_by: Optional[submission_user_identity.SubmissionUserIdentity] = None
+        # Specifies when the threat submission was created. Supports $filter = createdDateTime ge 2022-01-01T00:00:00Z and createdDateTime lt 2022-01-02T00:00:00Z.
+        self._created_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Specifies the result of the analysis performed by Microsoft.
+        self._result: Optional[submission_result.SubmissionResult] = None
+        # Specifies the role of the submitter. Supports $filter = source eq 'value'. The possible values are: administrator,  user and unkownFutureValue.
+        self._source: Optional[submission_source.SubmissionSource] = None
+        # Indicates whether the threat submission has been analyzed by Microsoft. Supports $filter = status eq 'value'. The possible values are: notStarted, running, succeeded, failed, skipped and unkownFutureValue.
+        self._status: Optional[long_running_operation_status.LongRunningOperationStatus] = None
+        # Indicates the tenant id of the submitter. Not required when created using a POST operation. It is extracted from the token of the post API call.
+        self._tenant_id: Optional[str] = None
+    
     @property
     def admin_review(self,) -> Optional[submission_admin_review.SubmissionAdminReview]:
         """
@@ -65,34 +88,6 @@ class ThreatSubmission(entity.Entity):
             value: Value to set for the client_source property.
         """
         self._client_source = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new threatSubmission and sets the default values.
-        """
-        super().__init__()
-        # Specifies the admin review property which constitutes of who reviewed the user submission, when and what was it identified as.
-        self._admin_review: Optional[submission_admin_review.SubmissionAdminReview] = None
-        # The category property
-        self._category: Optional[submission_category.SubmissionCategory] = None
-        # Specifies the source of the submission. The possible values are: microsoft,  other and unkownFutureValue.
-        self._client_source: Optional[submission_client_source.SubmissionClientSource] = None
-        # Specifies the type of content being submitted. The possible values are: email, url, file, app and unkownFutureValue.
-        self._content_type: Optional[submission_content_type.SubmissionContentType] = None
-        # Specifies who submitted the email as a threat. Supports $filter = createdBy/email eq 'value'.
-        self._created_by: Optional[submission_user_identity.SubmissionUserIdentity] = None
-        # Specifies when the threat submission was created. Supports $filter = createdDateTime ge 2022-01-01T00:00:00Z and createdDateTime lt 2022-01-02T00:00:00Z.
-        self._created_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Specifies the result of the analysis performed by Microsoft.
-        self._result: Optional[submission_result.SubmissionResult] = None
-        # Specifies the role of the submitter. Supports $filter = source eq 'value'. The possible values are: administrator,  user and unkownFutureValue.
-        self._source: Optional[submission_source.SubmissionSource] = None
-        # Indicates whether the threat submission has been analyzed by Microsoft. Supports $filter = status eq 'value'. The possible values are: notStarted, running, succeeded, failed, skipped and unkownFutureValue.
-        self._status: Optional[long_running_operation_status.LongRunningOperationStatus] = None
-        # Indicates the tenant id of the submitter. Not required when created using a POST operation. It is extracted from the token of the post API call.
-        self._tenant_id: Optional[str] = None
     
     @property
     def content_type(self,) -> Optional[submission_content_type.SubmissionContentType]:
@@ -155,6 +150,37 @@ class ThreatSubmission(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.security.emailContentThreatSubmission":
+                from . import email_content_threat_submission
+
+                return email_content_threat_submission.EmailContentThreatSubmission()
+            if mapping_value == "#microsoft.graph.security.emailThreatSubmission":
+                from . import email_threat_submission
+
+                return email_threat_submission.EmailThreatSubmission()
+            if mapping_value == "#microsoft.graph.security.emailUrlThreatSubmission":
+                from . import email_url_threat_submission
+
+                return email_url_threat_submission.EmailUrlThreatSubmission()
+            if mapping_value == "#microsoft.graph.security.fileContentThreatSubmission":
+                from . import file_content_threat_submission
+
+                return file_content_threat_submission.FileContentThreatSubmission()
+            if mapping_value == "#microsoft.graph.security.fileThreatSubmission":
+                from . import file_threat_submission
+
+                return file_threat_submission.FileThreatSubmission()
+            if mapping_value == "#microsoft.graph.security.fileUrlThreatSubmission":
+                from . import file_url_threat_submission
+
+                return file_url_threat_submission.FileUrlThreatSubmission()
+            if mapping_value == "#microsoft.graph.security.urlThreatSubmission":
+                from . import url_threat_submission
+
+                return url_threat_submission.UrlThreatSubmission()
         return ThreatSubmission()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -162,7 +188,10 @@ class ThreatSubmission(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import email_content_threat_submission, email_threat_submission, email_url_threat_submission, file_content_threat_submission, file_threat_submission, file_url_threat_submission, long_running_operation_status, submission_admin_review, submission_category, submission_client_source, submission_content_type, submission_result, submission_source, submission_user_identity, url_threat_submission
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "adminReview": lambda n : setattr(self, 'admin_review', n.get_object_value(submission_admin_review.SubmissionAdminReview)),
             "category": lambda n : setattr(self, 'category', n.get_enum_value(submission_category.SubmissionCategory)),
             "clientSource": lambda n : setattr(self, 'client_source', n.get_enum_value(submission_client_source.SubmissionClientSource)),

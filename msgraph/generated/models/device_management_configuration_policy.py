@@ -1,38 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_configuration_platforms = lazy_import('msgraph.generated.models.device_management_configuration_platforms')
-device_management_configuration_policy_assignment = lazy_import('msgraph.generated.models.device_management_configuration_policy_assignment')
-device_management_configuration_policy_template_reference = lazy_import('msgraph.generated.models.device_management_configuration_policy_template_reference')
-device_management_configuration_setting = lazy_import('msgraph.generated.models.device_management_configuration_setting')
-device_management_configuration_technologies = lazy_import('msgraph.generated.models.device_management_configuration_technologies')
-device_management_priority_meta_data = lazy_import('msgraph.generated.models.device_management_priority_meta_data')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import device_management_configuration_platforms, device_management_configuration_policy_assignment, device_management_configuration_policy_template_reference, device_management_configuration_setting, device_management_configuration_technologies, device_management_priority_meta_data, entity
+
+from . import entity
 
 class DeviceManagementConfigurationPolicy(entity.Entity):
     """
     Device Management Configuration Policy
     """
-    @property
-    def assignments(self,) -> Optional[List[device_management_configuration_policy_assignment.DeviceManagementConfigurationPolicyAssignment]]:
-        """
-        Gets the assignments property value. Policy assignments
-        Returns: Optional[List[device_management_configuration_policy_assignment.DeviceManagementConfigurationPolicyAssignment]]
-        """
-        return self._assignments
-    
-    @assignments.setter
-    def assignments(self,value: Optional[List[device_management_configuration_policy_assignment.DeviceManagementConfigurationPolicyAssignment]] = None) -> None:
-        """
-        Sets the assignments property value. Policy assignments
-        Args:
-            value: Value to set for the assignments property.
-        """
-        self._assignments = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new deviceManagementConfigurationPolicy and sets the default values.
@@ -68,6 +47,23 @@ class DeviceManagementConfigurationPolicy(entity.Entity):
         self._technologies: Optional[device_management_configuration_technologies.DeviceManagementConfigurationTechnologies] = None
         # Template reference information
         self._template_reference: Optional[device_management_configuration_policy_template_reference.DeviceManagementConfigurationPolicyTemplateReference] = None
+    
+    @property
+    def assignments(self,) -> Optional[List[device_management_configuration_policy_assignment.DeviceManagementConfigurationPolicyAssignment]]:
+        """
+        Gets the assignments property value. Policy assignments
+        Returns: Optional[List[device_management_configuration_policy_assignment.DeviceManagementConfigurationPolicyAssignment]]
+        """
+        return self._assignments
+    
+    @assignments.setter
+    def assignments(self,value: Optional[List[device_management_configuration_policy_assignment.DeviceManagementConfigurationPolicyAssignment]] = None) -> None:
+        """
+        Sets the assignments property value. Policy assignments
+        Args:
+            value: Value to set for the assignments property.
+        """
+        self._assignments = value
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
@@ -137,7 +133,9 @@ class DeviceManagementConfigurationPolicy(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_configuration_platforms, device_management_configuration_policy_assignment, device_management_configuration_policy_template_reference, device_management_configuration_setting, device_management_configuration_technologies, device_management_priority_meta_data, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(device_management_configuration_policy_assignment.DeviceManagementConfigurationPolicyAssignment)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "creationSource": lambda n : setattr(self, 'creation_source', n.get_str_value()),

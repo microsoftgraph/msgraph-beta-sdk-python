@@ -1,11 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-ediscovery_custodian = lazy_import('msgraph.generated.models.security.ediscovery_custodian')
-ediscovery_review_tag = lazy_import('msgraph.generated.models.security.ediscovery_review_tag')
-file = lazy_import('msgraph.generated.models.security.file')
+if TYPE_CHECKING:
+    from . import ediscovery_custodian, ediscovery_review_tag, file
+
+from . import file
 
 class EdiscoveryFile(file.File):
     def __init__(self,) -> None:
@@ -54,7 +54,9 @@ class EdiscoveryFile(file.File):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import ediscovery_custodian, ediscovery_review_tag, file
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "custodian": lambda n : setattr(self, 'custodian', n.get_object_value(ediscovery_custodian.EdiscoveryCustodian)),
             "tags": lambda n : setattr(self, 'tags', n.get_collection_of_object_values(ediscovery_review_tag.EdiscoveryReviewTag)),
         }

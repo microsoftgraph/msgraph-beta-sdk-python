@@ -1,56 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-identity_set = lazy_import('msgraph.generated.models.identity_set')
-case_operation = lazy_import('msgraph.generated.models.ediscovery.case_operation')
-case_settings = lazy_import('msgraph.generated.models.ediscovery.case_settings')
-case_status = lazy_import('msgraph.generated.models.ediscovery.case_status')
-custodian = lazy_import('msgraph.generated.models.ediscovery.custodian')
-legal_hold = lazy_import('msgraph.generated.models.ediscovery.legal_hold')
-noncustodial_data_source = lazy_import('msgraph.generated.models.ediscovery.noncustodial_data_source')
-review_set = lazy_import('msgraph.generated.models.ediscovery.review_set')
-source_collection = lazy_import('msgraph.generated.models.ediscovery.source_collection')
-tag = lazy_import('msgraph.generated.models.ediscovery.tag')
+if TYPE_CHECKING:
+    from . import case_operation, case_settings, case_status, custodian, legal_hold, noncustodial_data_source, review_set, source_collection, tag
+    from .. import entity, identity_set
+
+from .. import entity
 
 class Case(entity.Entity):
-    @property
-    def closed_by(self,) -> Optional[identity_set.IdentitySet]:
-        """
-        Gets the closedBy property value. The user who closed the case.
-        Returns: Optional[identity_set.IdentitySet]
-        """
-        return self._closed_by
-    
-    @closed_by.setter
-    def closed_by(self,value: Optional[identity_set.IdentitySet] = None) -> None:
-        """
-        Sets the closedBy property value. The user who closed the case.
-        Args:
-            value: Value to set for the closed_by property.
-        """
-        self._closed_by = value
-    
-    @property
-    def closed_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the closedDateTime property value. The date and time when the case was closed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-        Returns: Optional[datetime]
-        """
-        return self._closed_date_time
-    
-    @closed_date_time.setter
-    def closed_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the closedDateTime property value. The date and time when the case was closed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-        Args:
-            value: Value to set for the closed_date_time property.
-        """
-        self._closed_date_time = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new case and sets the default values.
@@ -92,6 +51,40 @@ class Case(entity.Entity):
         self._status: Optional[case_status.CaseStatus] = None
         # Returns a list of tag objects associated to this case.
         self._tags: Optional[List[tag.Tag]] = None
+    
+    @property
+    def closed_by(self,) -> Optional[identity_set.IdentitySet]:
+        """
+        Gets the closedBy property value. The user who closed the case.
+        Returns: Optional[identity_set.IdentitySet]
+        """
+        return self._closed_by
+    
+    @closed_by.setter
+    def closed_by(self,value: Optional[identity_set.IdentitySet] = None) -> None:
+        """
+        Sets the closedBy property value. The user who closed the case.
+        Args:
+            value: Value to set for the closed_by property.
+        """
+        self._closed_by = value
+    
+    @property
+    def closed_date_time(self,) -> Optional[datetime]:
+        """
+        Gets the closedDateTime property value. The date and time when the case was closed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+        Returns: Optional[datetime]
+        """
+        return self._closed_date_time
+    
+    @closed_date_time.setter
+    def closed_date_time(self,value: Optional[datetime] = None) -> None:
+        """
+        Sets the closedDateTime property value. The date and time when the case was closed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+        Args:
+            value: Value to set for the closed_date_time property.
+        """
+        self._closed_date_time = value
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
@@ -195,7 +188,10 @@ class Case(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import case_operation, case_settings, case_status, custodian, legal_hold, noncustodial_data_source, review_set, source_collection, tag
+        from .. import entity, identity_set
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "closedBy": lambda n : setattr(self, 'closed_by', n.get_object_value(identity_set.IdentitySet)),
             "closedDateTime": lambda n : setattr(self, 'closed_date_time', n.get_datetime_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),

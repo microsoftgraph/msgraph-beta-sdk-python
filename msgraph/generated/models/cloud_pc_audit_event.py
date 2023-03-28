@@ -1,17 +1,44 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-cloud_pc_audit_activity_operation_type = lazy_import('msgraph.generated.models.cloud_pc_audit_activity_operation_type')
-cloud_pc_audit_activity_result = lazy_import('msgraph.generated.models.cloud_pc_audit_activity_result')
-cloud_pc_audit_actor = lazy_import('msgraph.generated.models.cloud_pc_audit_actor')
-cloud_pc_audit_category = lazy_import('msgraph.generated.models.cloud_pc_audit_category')
-cloud_pc_audit_resource = lazy_import('msgraph.generated.models.cloud_pc_audit_resource')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import cloud_pc_audit_activity_operation_type, cloud_pc_audit_activity_result, cloud_pc_audit_actor, cloud_pc_audit_category, cloud_pc_audit_resource, entity
+
+from . import entity
 
 class CloudPcAuditEvent(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new CloudPcAuditEvent and sets the default values.
+        """
+        super().__init__()
+        # Friendly name of the activity. Optional.
+        self._activity: Optional[str] = None
+        # The date time in UTC when the activity was performed. Read-only.
+        self._activity_date_time: Optional[datetime] = None
+        # The activityOperationType property
+        self._activity_operation_type: Optional[cloud_pc_audit_activity_operation_type.CloudPcAuditActivityOperationType] = None
+        # The activityResult property
+        self._activity_result: Optional[cloud_pc_audit_activity_result.CloudPcAuditActivityResult] = None
+        # The type of activity that was performed. Read-only.
+        self._activity_type: Optional[str] = None
+        # The actor property
+        self._actor: Optional[cloud_pc_audit_actor.CloudPcAuditActor] = None
+        # The category property
+        self._category: Optional[cloud_pc_audit_category.CloudPcAuditCategory] = None
+        # Component name. Read-only.
+        self._component_name: Optional[str] = None
+        # The client request identifier, used to correlate activity within the system. Read-only.
+        self._correlation_id: Optional[str] = None
+        # Event display name. Read-only.
+        self._display_name: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # List of cloudPcAuditResource objects. Read-only.
+        self._resources: Optional[List[cloud_pc_audit_resource.CloudPcAuditResource]] = None
+    
     @property
     def activity(self,) -> Optional[str]:
         """
@@ -148,36 +175,6 @@ class CloudPcAuditEvent(entity.Entity):
         """
         self._component_name = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new CloudPcAuditEvent and sets the default values.
-        """
-        super().__init__()
-        # Friendly name of the activity. Optional.
-        self._activity: Optional[str] = None
-        # The date time in UTC when the activity was performed. Read-only.
-        self._activity_date_time: Optional[datetime] = None
-        # The activityOperationType property
-        self._activity_operation_type: Optional[cloud_pc_audit_activity_operation_type.CloudPcAuditActivityOperationType] = None
-        # The activityResult property
-        self._activity_result: Optional[cloud_pc_audit_activity_result.CloudPcAuditActivityResult] = None
-        # The type of activity that was performed. Read-only.
-        self._activity_type: Optional[str] = None
-        # The actor property
-        self._actor: Optional[cloud_pc_audit_actor.CloudPcAuditActor] = None
-        # The category property
-        self._category: Optional[cloud_pc_audit_category.CloudPcAuditCategory] = None
-        # Component name. Read-only.
-        self._component_name: Optional[str] = None
-        # The client request identifier, used to correlate activity within the system. Read-only.
-        self._correlation_id: Optional[str] = None
-        # Event display name. Read-only.
-        self._display_name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # List of cloudPcAuditResource objects. Read-only.
-        self._resources: Optional[List[cloud_pc_audit_resource.CloudPcAuditResource]] = None
-    
     @property
     def correlation_id(self,) -> Optional[str]:
         """
@@ -229,7 +226,9 @@ class CloudPcAuditEvent(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import cloud_pc_audit_activity_operation_type, cloud_pc_audit_activity_result, cloud_pc_audit_actor, cloud_pc_audit_category, cloud_pc_audit_resource, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "activity": lambda n : setattr(self, 'activity', n.get_str_value()),
             "activityDateTime": lambda n : setattr(self, 'activity_date_time', n.get_datetime_value()),
             "activityOperationType": lambda n : setattr(self, 'activity_operation_type', n.get_enum_value(cloud_pc_audit_activity_operation_type.CloudPcAuditActivityOperationType)),

@@ -7,99 +7,29 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-bitlocker_request_builder = lazy_import('msgraph.generated.information_protection.bitlocker.bitlocker_request_builder')
-data_loss_prevention_policies_request_builder = lazy_import('msgraph.generated.information_protection.data_loss_prevention_policies.data_loss_prevention_policies_request_builder')
-data_loss_prevention_policy_item_request_builder = lazy_import('msgraph.generated.information_protection.data_loss_prevention_policies.item.data_loss_prevention_policy_item_request_builder')
-decrypt_buffer_request_builder = lazy_import('msgraph.generated.information_protection.decrypt_buffer.decrypt_buffer_request_builder')
-encrypt_buffer_request_builder = lazy_import('msgraph.generated.information_protection.encrypt_buffer.encrypt_buffer_request_builder')
-policy_request_builder = lazy_import('msgraph.generated.information_protection.policy.policy_request_builder')
-sensitivity_labels_request_builder = lazy_import('msgraph.generated.information_protection.sensitivity_labels.sensitivity_labels_request_builder')
-sensitivity_label_item_request_builder = lazy_import('msgraph.generated.information_protection.sensitivity_labels.item.sensitivity_label_item_request_builder')
-sensitivity_policy_settings_request_builder = lazy_import('msgraph.generated.information_protection.sensitivity_policy_settings.sensitivity_policy_settings_request_builder')
-sign_digest_request_builder = lazy_import('msgraph.generated.information_protection.sign_digest.sign_digest_request_builder')
-threat_assessment_requests_request_builder = lazy_import('msgraph.generated.information_protection.threat_assessment_requests.threat_assessment_requests_request_builder')
-threat_assessment_request_item_request_builder = lazy_import('msgraph.generated.information_protection.threat_assessment_requests.item.threat_assessment_request_item_request_builder')
-verify_signature_request_builder = lazy_import('msgraph.generated.information_protection.verify_signature.verify_signature_request_builder')
-information_protection = lazy_import('msgraph.generated.models.information_protection')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ..models import information_protection
+    from ..models.o_data_errors import o_data_error
+    from .bitlocker import bitlocker_request_builder
+    from .data_loss_prevention_policies import data_loss_prevention_policies_request_builder
+    from .data_loss_prevention_policies.item import data_loss_prevention_policy_item_request_builder
+    from .decrypt_buffer import decrypt_buffer_request_builder
+    from .encrypt_buffer import encrypt_buffer_request_builder
+    from .policy import policy_request_builder
+    from .sensitivity_labels import sensitivity_labels_request_builder
+    from .sensitivity_labels.item import sensitivity_label_item_request_builder
+    from .sensitivity_policy_settings import sensitivity_policy_settings_request_builder
+    from .sign_digest import sign_digest_request_builder
+    from .threat_assessment_requests import threat_assessment_requests_request_builder
+    from .threat_assessment_requests.item import threat_assessment_request_item_request_builder
+    from .verify_signature import verify_signature_request_builder
 
 class InformationProtectionRequestBuilder():
     """
     Provides operations to manage the informationProtection singleton.
     """
-    @property
-    def bitlocker(self) -> bitlocker_request_builder.BitlockerRequestBuilder:
-        """
-        Provides operations to manage the bitlocker property of the microsoft.graph.informationProtection entity.
-        """
-        return bitlocker_request_builder.BitlockerRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def data_loss_prevention_policies(self) -> data_loss_prevention_policies_request_builder.DataLossPreventionPoliciesRequestBuilder:
-        """
-        Provides operations to manage the dataLossPreventionPolicies property of the microsoft.graph.informationProtection entity.
-        """
-        return data_loss_prevention_policies_request_builder.DataLossPreventionPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def decrypt_buffer(self) -> decrypt_buffer_request_builder.DecryptBufferRequestBuilder:
-        """
-        Provides operations to call the decryptBuffer method.
-        """
-        return decrypt_buffer_request_builder.DecryptBufferRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def encrypt_buffer(self) -> encrypt_buffer_request_builder.EncryptBufferRequestBuilder:
-        """
-        Provides operations to call the encryptBuffer method.
-        """
-        return encrypt_buffer_request_builder.EncryptBufferRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def policy(self) -> policy_request_builder.PolicyRequestBuilder:
-        """
-        Provides operations to manage the policy property of the microsoft.graph.informationProtection entity.
-        """
-        return policy_request_builder.PolicyRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def sensitivity_labels(self) -> sensitivity_labels_request_builder.SensitivityLabelsRequestBuilder:
-        """
-        Provides operations to manage the sensitivityLabels property of the microsoft.graph.informationProtection entity.
-        """
-        return sensitivity_labels_request_builder.SensitivityLabelsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def sensitivity_policy_settings(self) -> sensitivity_policy_settings_request_builder.SensitivityPolicySettingsRequestBuilder:
-        """
-        Provides operations to manage the sensitivityPolicySettings property of the microsoft.graph.informationProtection entity.
-        """
-        return sensitivity_policy_settings_request_builder.SensitivityPolicySettingsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def sign_digest(self) -> sign_digest_request_builder.SignDigestRequestBuilder:
-        """
-        Provides operations to call the signDigest method.
-        """
-        return sign_digest_request_builder.SignDigestRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def threat_assessment_requests(self) -> threat_assessment_requests_request_builder.ThreatAssessmentRequestsRequestBuilder:
-        """
-        Provides operations to manage the threatAssessmentRequests property of the microsoft.graph.informationProtection entity.
-        """
-        return threat_assessment_requests_request_builder.ThreatAssessmentRequestsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def verify_signature(self) -> verify_signature_request_builder.VerifySignatureRequestBuilder:
-        """
-        Provides operations to call the verifySignature method.
-        """
-        return verify_signature_request_builder.VerifySignatureRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new InformationProtectionRequestBuilder and sets the default values.
@@ -127,6 +57,8 @@ class InformationProtectionRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .data_loss_prevention_policies.item import data_loss_prevention_policy_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["dataLossPreventionPolicy%2Did"] = id
         return data_loss_prevention_policy_item_request_builder.DataLossPreventionPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -141,12 +73,16 @@ class InformationProtectionRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ..models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ..models import information_protection
+
         return await self.request_adapter.send_async(request_info, information_protection.InformationProtection, error_mapping)
     
     async def patch(self,body: Optional[information_protection.InformationProtection] = None, request_configuration: Optional[InformationProtectionRequestBuilderPatchRequestConfiguration] = None) -> Optional[information_protection.InformationProtection]:
@@ -162,12 +98,16 @@ class InformationProtectionRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ..models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ..models import information_protection
+
         return await self.request_adapter.send_async(request_info, information_protection.InformationProtection, error_mapping)
     
     def sensitivity_labels_by_id(self,id: str) -> sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder:
@@ -179,6 +119,8 @@ class InformationProtectionRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .sensitivity_labels.item import sensitivity_label_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["sensitivityLabel%2Did"] = id
         return sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -192,6 +134,8 @@ class InformationProtectionRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .threat_assessment_requests.item import threat_assessment_request_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["threatAssessmentRequest%2Did"] = id
         return threat_assessment_request_item_request_builder.ThreatAssessmentRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -235,17 +179,101 @@ class InformationProtectionRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def bitlocker(self) -> bitlocker_request_builder.BitlockerRequestBuilder:
+        """
+        Provides operations to manage the bitlocker property of the microsoft.graph.informationProtection entity.
+        """
+        from .bitlocker import bitlocker_request_builder
+
+        return bitlocker_request_builder.BitlockerRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def data_loss_prevention_policies(self) -> data_loss_prevention_policies_request_builder.DataLossPreventionPoliciesRequestBuilder:
+        """
+        Provides operations to manage the dataLossPreventionPolicies property of the microsoft.graph.informationProtection entity.
+        """
+        from .data_loss_prevention_policies import data_loss_prevention_policies_request_builder
+
+        return data_loss_prevention_policies_request_builder.DataLossPreventionPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def decrypt_buffer(self) -> decrypt_buffer_request_builder.DecryptBufferRequestBuilder:
+        """
+        Provides operations to call the decryptBuffer method.
+        """
+        from .decrypt_buffer import decrypt_buffer_request_builder
+
+        return decrypt_buffer_request_builder.DecryptBufferRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def encrypt_buffer(self) -> encrypt_buffer_request_builder.EncryptBufferRequestBuilder:
+        """
+        Provides operations to call the encryptBuffer method.
+        """
+        from .encrypt_buffer import encrypt_buffer_request_builder
+
+        return encrypt_buffer_request_builder.EncryptBufferRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def policy(self) -> policy_request_builder.PolicyRequestBuilder:
+        """
+        Provides operations to manage the policy property of the microsoft.graph.informationProtection entity.
+        """
+        from .policy import policy_request_builder
+
+        return policy_request_builder.PolicyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def sensitivity_labels(self) -> sensitivity_labels_request_builder.SensitivityLabelsRequestBuilder:
+        """
+        Provides operations to manage the sensitivityLabels property of the microsoft.graph.informationProtection entity.
+        """
+        from .sensitivity_labels import sensitivity_labels_request_builder
+
+        return sensitivity_labels_request_builder.SensitivityLabelsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def sensitivity_policy_settings(self) -> sensitivity_policy_settings_request_builder.SensitivityPolicySettingsRequestBuilder:
+        """
+        Provides operations to manage the sensitivityPolicySettings property of the microsoft.graph.informationProtection entity.
+        """
+        from .sensitivity_policy_settings import sensitivity_policy_settings_request_builder
+
+        return sensitivity_policy_settings_request_builder.SensitivityPolicySettingsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def sign_digest(self) -> sign_digest_request_builder.SignDigestRequestBuilder:
+        """
+        Provides operations to call the signDigest method.
+        """
+        from .sign_digest import sign_digest_request_builder
+
+        return sign_digest_request_builder.SignDigestRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def threat_assessment_requests(self) -> threat_assessment_requests_request_builder.ThreatAssessmentRequestsRequestBuilder:
+        """
+        Provides operations to manage the threatAssessmentRequests property of the microsoft.graph.informationProtection entity.
+        """
+        from .threat_assessment_requests import threat_assessment_requests_request_builder
+
+        return threat_assessment_requests_request_builder.ThreatAssessmentRequestsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def verify_signature(self) -> verify_signature_request_builder.VerifySignatureRequestBuilder:
+        """
+        Provides operations to call the verifySignature method.
+        """
+        from .verify_signature import verify_signature_request_builder
+
+        return verify_signature_request_builder.VerifySignatureRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class InformationProtectionRequestBuilderGetQueryParameters():
         """
         Get informationProtection
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -261,6 +289,12 @@ class InformationProtectionRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class InformationProtectionRequestBuilderGetRequestConfiguration():

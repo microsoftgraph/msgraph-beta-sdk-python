@@ -1,13 +1,34 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-mobile_lob_app = lazy_import('msgraph.generated.models.mobile_lob_app')
-windows_architecture = lazy_import('msgraph.generated.models.windows_architecture')
-windows_minimum_operating_system = lazy_import('msgraph.generated.models.windows_minimum_operating_system')
+if TYPE_CHECKING:
+    from . import mobile_lob_app, windows_architecture, windows_minimum_operating_system
+
+from . import mobile_lob_app
 
 class WindowsAppX(mobile_lob_app.MobileLobApp):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new WindowsAppX and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.windowsAppX"
+        # Contains properties for Windows architecture.
+        self._applicable_architectures: Optional[windows_architecture.WindowsArchitecture] = None
+        # The identity name of the uploaded app package. For example: 'Contoso.DemoApp'.
+        self._identity_name: Optional[str] = None
+        # The identity publisher hash of the uploaded app package. This is the hash of the publisher from the manifest. For example: 'AB82CD0XYZ'.
+        self._identity_publisher_hash: Optional[str] = None
+        # The identity resource identifier of the uploaded app package. For example: 'TestResourceId'.
+        self._identity_resource_identifier: Optional[str] = None
+        # The identity version of the uploaded app package. For example: '1.0.0.0'.
+        self._identity_version: Optional[str] = None
+        # When TRUE, indicates that the app is a bundle. When FALSE, indicates that the app is not a bundle. By default, property is set to FALSE.
+        self._is_bundle: Optional[bool] = None
+        # The minimum operating system required for a Windows mobile app.
+        self._minimum_supported_operating_system: Optional[windows_minimum_operating_system.WindowsMinimumOperatingSystem] = None
+    
     @property
     def applicable_architectures(self,) -> Optional[windows_architecture.WindowsArchitecture]:
         """
@@ -24,27 +45,6 @@ class WindowsAppX(mobile_lob_app.MobileLobApp):
             value: Value to set for the applicable_architectures property.
         """
         self._applicable_architectures = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsAppX and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsAppX"
-        # Contains properties for Windows architecture.
-        self._applicable_architectures: Optional[windows_architecture.WindowsArchitecture] = None
-        # The Identity Name.
-        self._identity_name: Optional[str] = None
-        # The Identity Publisher Hash.
-        self._identity_publisher_hash: Optional[str] = None
-        # The Identity Resource Identifier.
-        self._identity_resource_identifier: Optional[str] = None
-        # The identity version.
-        self._identity_version: Optional[str] = None
-        # Whether or not the app is a bundle.
-        self._is_bundle: Optional[bool] = None
-        # The minimum operating system required for a Windows mobile app.
-        self._minimum_supported_operating_system: Optional[windows_minimum_operating_system.WindowsMinimumOperatingSystem] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsAppX:
@@ -63,7 +63,9 @@ class WindowsAppX(mobile_lob_app.MobileLobApp):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import mobile_lob_app, windows_architecture, windows_minimum_operating_system
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "applicableArchitectures": lambda n : setattr(self, 'applicable_architectures', n.get_enum_value(windows_architecture.WindowsArchitecture)),
             "identityName": lambda n : setattr(self, 'identity_name', n.get_str_value()),
             "identityPublisherHash": lambda n : setattr(self, 'identity_publisher_hash', n.get_str_value()),
@@ -79,7 +81,7 @@ class WindowsAppX(mobile_lob_app.MobileLobApp):
     @property
     def identity_name(self,) -> Optional[str]:
         """
-        Gets the identityName property value. The Identity Name.
+        Gets the identityName property value. The identity name of the uploaded app package. For example: 'Contoso.DemoApp'.
         Returns: Optional[str]
         """
         return self._identity_name
@@ -87,7 +89,7 @@ class WindowsAppX(mobile_lob_app.MobileLobApp):
     @identity_name.setter
     def identity_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the identityName property value. The Identity Name.
+        Sets the identityName property value. The identity name of the uploaded app package. For example: 'Contoso.DemoApp'.
         Args:
             value: Value to set for the identity_name property.
         """
@@ -96,7 +98,7 @@ class WindowsAppX(mobile_lob_app.MobileLobApp):
     @property
     def identity_publisher_hash(self,) -> Optional[str]:
         """
-        Gets the identityPublisherHash property value. The Identity Publisher Hash.
+        Gets the identityPublisherHash property value. The identity publisher hash of the uploaded app package. This is the hash of the publisher from the manifest. For example: 'AB82CD0XYZ'.
         Returns: Optional[str]
         """
         return self._identity_publisher_hash
@@ -104,7 +106,7 @@ class WindowsAppX(mobile_lob_app.MobileLobApp):
     @identity_publisher_hash.setter
     def identity_publisher_hash(self,value: Optional[str] = None) -> None:
         """
-        Sets the identityPublisherHash property value. The Identity Publisher Hash.
+        Sets the identityPublisherHash property value. The identity publisher hash of the uploaded app package. This is the hash of the publisher from the manifest. For example: 'AB82CD0XYZ'.
         Args:
             value: Value to set for the identity_publisher_hash property.
         """
@@ -113,7 +115,7 @@ class WindowsAppX(mobile_lob_app.MobileLobApp):
     @property
     def identity_resource_identifier(self,) -> Optional[str]:
         """
-        Gets the identityResourceIdentifier property value. The Identity Resource Identifier.
+        Gets the identityResourceIdentifier property value. The identity resource identifier of the uploaded app package. For example: 'TestResourceId'.
         Returns: Optional[str]
         """
         return self._identity_resource_identifier
@@ -121,7 +123,7 @@ class WindowsAppX(mobile_lob_app.MobileLobApp):
     @identity_resource_identifier.setter
     def identity_resource_identifier(self,value: Optional[str] = None) -> None:
         """
-        Sets the identityResourceIdentifier property value. The Identity Resource Identifier.
+        Sets the identityResourceIdentifier property value. The identity resource identifier of the uploaded app package. For example: 'TestResourceId'.
         Args:
             value: Value to set for the identity_resource_identifier property.
         """
@@ -130,7 +132,7 @@ class WindowsAppX(mobile_lob_app.MobileLobApp):
     @property
     def identity_version(self,) -> Optional[str]:
         """
-        Gets the identityVersion property value. The identity version.
+        Gets the identityVersion property value. The identity version of the uploaded app package. For example: '1.0.0.0'.
         Returns: Optional[str]
         """
         return self._identity_version
@@ -138,7 +140,7 @@ class WindowsAppX(mobile_lob_app.MobileLobApp):
     @identity_version.setter
     def identity_version(self,value: Optional[str] = None) -> None:
         """
-        Sets the identityVersion property value. The identity version.
+        Sets the identityVersion property value. The identity version of the uploaded app package. For example: '1.0.0.0'.
         Args:
             value: Value to set for the identity_version property.
         """
@@ -147,7 +149,7 @@ class WindowsAppX(mobile_lob_app.MobileLobApp):
     @property
     def is_bundle(self,) -> Optional[bool]:
         """
-        Gets the isBundle property value. Whether or not the app is a bundle.
+        Gets the isBundle property value. When TRUE, indicates that the app is a bundle. When FALSE, indicates that the app is not a bundle. By default, property is set to FALSE.
         Returns: Optional[bool]
         """
         return self._is_bundle
@@ -155,7 +157,7 @@ class WindowsAppX(mobile_lob_app.MobileLobApp):
     @is_bundle.setter
     def is_bundle(self,value: Optional[bool] = None) -> None:
         """
-        Sets the isBundle property value. Whether or not the app is a bundle.
+        Sets the isBundle property value. When TRUE, indicates that the app is a bundle. When FALSE, indicates that the app is not a bundle. By default, property is set to FALSE.
         Args:
             value: Value to set for the is_bundle property.
         """

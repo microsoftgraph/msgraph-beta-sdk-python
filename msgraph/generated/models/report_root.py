@@ -1,53 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-application_sign_in_detailed_summary = lazy_import('msgraph.generated.models.application_sign_in_detailed_summary')
-authentication_methods_root = lazy_import('msgraph.generated.models.authentication_methods_root')
-credential_user_registration_details = lazy_import('msgraph.generated.models.credential_user_registration_details')
-entity = lazy_import('msgraph.generated.models.entity')
-print_usage = lazy_import('msgraph.generated.models.print_usage')
-print_usage_by_printer = lazy_import('msgraph.generated.models.print_usage_by_printer')
-print_usage_by_user = lazy_import('msgraph.generated.models.print_usage_by_user')
-security_reports_root = lazy_import('msgraph.generated.models.security_reports_root')
-user_credential_usage_details = lazy_import('msgraph.generated.models.user_credential_usage_details')
+if TYPE_CHECKING:
+    from . import application_sign_in_detailed_summary, authentication_methods_root, credential_user_registration_details, entity, print_usage, print_usage_by_printer, print_usage_by_user, security_reports_root, user_credential_usage_details
+
+from . import entity
 
 class ReportRoot(entity.Entity):
-    @property
-    def application_sign_in_detailed_summary(self,) -> Optional[List[application_sign_in_detailed_summary.ApplicationSignInDetailedSummary]]:
-        """
-        Gets the applicationSignInDetailedSummary property value. Represents a detailed summary of an application sign-in.
-        Returns: Optional[List[application_sign_in_detailed_summary.ApplicationSignInDetailedSummary]]
-        """
-        return self._application_sign_in_detailed_summary
-    
-    @application_sign_in_detailed_summary.setter
-    def application_sign_in_detailed_summary(self,value: Optional[List[application_sign_in_detailed_summary.ApplicationSignInDetailedSummary]] = None) -> None:
-        """
-        Sets the applicationSignInDetailedSummary property value. Represents a detailed summary of an application sign-in.
-        Args:
-            value: Value to set for the application_sign_in_detailed_summary property.
-        """
-        self._application_sign_in_detailed_summary = value
-    
-    @property
-    def authentication_methods(self,) -> Optional[authentication_methods_root.AuthenticationMethodsRoot]:
-        """
-        Gets the authenticationMethods property value. Container for navigation properties for Azure AD authentication methods resources.
-        Returns: Optional[authentication_methods_root.AuthenticationMethodsRoot]
-        """
-        return self._authentication_methods
-    
-    @authentication_methods.setter
-    def authentication_methods(self,value: Optional[authentication_methods_root.AuthenticationMethodsRoot] = None) -> None:
-        """
-        Sets the authenticationMethods property value. Container for navigation properties for Azure AD authentication methods resources.
-        Args:
-            value: Value to set for the authentication_methods property.
-        """
-        self._authentication_methods = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new ReportRoot and sets the default values.
@@ -83,6 +43,40 @@ class ReportRoot(entity.Entity):
         self._security: Optional[security_reports_root.SecurityReportsRoot] = None
         # Represents the self-service password reset (SSPR) usage for a given tenant.
         self._user_credential_usage_details: Optional[List[user_credential_usage_details.UserCredentialUsageDetails]] = None
+    
+    @property
+    def application_sign_in_detailed_summary(self,) -> Optional[List[application_sign_in_detailed_summary.ApplicationSignInDetailedSummary]]:
+        """
+        Gets the applicationSignInDetailedSummary property value. Represents a detailed summary of an application sign-in.
+        Returns: Optional[List[application_sign_in_detailed_summary.ApplicationSignInDetailedSummary]]
+        """
+        return self._application_sign_in_detailed_summary
+    
+    @application_sign_in_detailed_summary.setter
+    def application_sign_in_detailed_summary(self,value: Optional[List[application_sign_in_detailed_summary.ApplicationSignInDetailedSummary]] = None) -> None:
+        """
+        Sets the applicationSignInDetailedSummary property value. Represents a detailed summary of an application sign-in.
+        Args:
+            value: Value to set for the application_sign_in_detailed_summary property.
+        """
+        self._application_sign_in_detailed_summary = value
+    
+    @property
+    def authentication_methods(self,) -> Optional[authentication_methods_root.AuthenticationMethodsRoot]:
+        """
+        Gets the authenticationMethods property value. Container for navigation properties for Azure AD authentication methods resources.
+        Returns: Optional[authentication_methods_root.AuthenticationMethodsRoot]
+        """
+        return self._authentication_methods
+    
+    @authentication_methods.setter
+    def authentication_methods(self,value: Optional[authentication_methods_root.AuthenticationMethodsRoot] = None) -> None:
+        """
+        Sets the authenticationMethods property value. Container for navigation properties for Azure AD authentication methods resources.
+        Args:
+            value: Value to set for the authentication_methods property.
+        """
+        self._authentication_methods = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ReportRoot:
@@ -203,7 +197,9 @@ class ReportRoot(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import application_sign_in_detailed_summary, authentication_methods_root, credential_user_registration_details, entity, print_usage, print_usage_by_printer, print_usage_by_user, security_reports_root, user_credential_usage_details
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "applicationSignInDetailedSummary": lambda n : setattr(self, 'application_sign_in_detailed_summary', n.get_collection_of_object_values(application_sign_in_detailed_summary.ApplicationSignInDetailedSummary)),
             "authenticationMethods": lambda n : setattr(self, 'authentication_methods', n.get_object_value(authentication_methods_root.AuthenticationMethodsRoot)),
             "credentialUserRegistrationDetails": lambda n : setattr(self, 'credential_user_registration_details', n.get_collection_of_object_values(credential_user_registration_details.CredentialUserRegistrationDetails)),

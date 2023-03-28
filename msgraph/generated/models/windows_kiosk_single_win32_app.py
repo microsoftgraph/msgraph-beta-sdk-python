@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-windows_kiosk_app_configuration = lazy_import('msgraph.generated.models.windows_kiosk_app_configuration')
-windows_kiosk_win32_app = lazy_import('msgraph.generated.models.windows_kiosk_win32_app')
+if TYPE_CHECKING:
+    from . import windows_kiosk_app_configuration, windows_kiosk_win32_app
+
+from . import windows_kiosk_app_configuration
 
 class WindowsKioskSingleWin32App(windows_kiosk_app_configuration.WindowsKioskAppConfiguration):
     def __init__(self,) -> None:
@@ -33,7 +34,9 @@ class WindowsKioskSingleWin32App(windows_kiosk_app_configuration.WindowsKioskApp
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import windows_kiosk_app_configuration, windows_kiosk_win32_app
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "win32App": lambda n : setattr(self, 'win32_app', n.get_object_value(windows_kiosk_win32_app.WindowsKioskWin32App)),
         }
         super_fields = super().get_field_deserializers()

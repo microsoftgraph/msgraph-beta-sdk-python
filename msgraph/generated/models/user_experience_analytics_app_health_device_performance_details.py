@@ -1,15 +1,39 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class UserExperienceAnalyticsAppHealthDevicePerformanceDetails(entity.Entity):
     """
     The user experience analytics device performance entity contains device performance details.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new userExperienceAnalyticsAppHealthDevicePerformanceDetails and sets the default values.
+        """
+        super().__init__()
+        # The friendly name of the application for which the event occurred.
+        self._app_display_name: Optional[str] = None
+        # The publisher of the application.
+        self._app_publisher: Optional[str] = None
+        # The version of the application.
+        self._app_version: Optional[str] = None
+        # The name of the device.
+        self._device_display_name: Optional[str] = None
+        # The id of the device.
+        self._device_id: Optional[str] = None
+        # The time the event occurred.
+        self._event_date_time: Optional[datetime] = None
+        # The type of the event.
+        self._event_type: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def app_display_name(self,) -> Optional[str]:
         """
@@ -60,28 +84,6 @@ class UserExperienceAnalyticsAppHealthDevicePerformanceDetails(entity.Entity):
             value: Value to set for the app_version property.
         """
         self._app_version = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsAppHealthDevicePerformanceDetails and sets the default values.
-        """
-        super().__init__()
-        # The friendly name of the application for which the event occurred.
-        self._app_display_name: Optional[str] = None
-        # The publisher of the application.
-        self._app_publisher: Optional[str] = None
-        # The version of the application.
-        self._app_version: Optional[str] = None
-        # The name of the device.
-        self._device_display_name: Optional[str] = None
-        # The id of the device.
-        self._device_id: Optional[str] = None
-        # The time the event occurred.
-        self._event_date_time: Optional[datetime] = None
-        # The type of the event.
-        self._event_type: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsAppHealthDevicePerformanceDetails:
@@ -168,7 +170,9 @@ class UserExperienceAnalyticsAppHealthDevicePerformanceDetails(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
             "appPublisher": lambda n : setattr(self, 'app_publisher', n.get_str_value()),
             "appVersion": lambda n : setattr(self, 'app_version', n.get_str_value()),

@@ -1,12 +1,26 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+
+if TYPE_CHECKING:
+    from . import device_health_script_daily_schedule, device_health_script_hourly_schedule, device_health_script_run_once_schedule, device_health_script_time_schedule
 
 class DeviceHealthScriptRunSchedule(AdditionalDataHolder, Parsable):
     """
     Base type of Device health script run schedule.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new deviceHealthScriptRunSchedule and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The x value of every x hours for hourly schedule, every x days for Daily Schedule, every x weeks for weekly schedule, every x months for Monthly Schedule. Valid values 1 to 23
+        self._interval: Optional[int] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -24,18 +38,6 @@ class DeviceHealthScriptRunSchedule(AdditionalDataHolder, Parsable):
         """
         self._additional_data = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceHealthScriptRunSchedule and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The x value of every x hours for hourly schedule, every x days for Daily Schedule, every x weeks for weekly schedule, every x months for Monthly Schedule. Valid values 1 to 23
-        self._interval: Optional[int] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceHealthScriptRunSchedule:
         """
@@ -46,6 +48,25 @@ class DeviceHealthScriptRunSchedule(AdditionalDataHolder, Parsable):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.deviceHealthScriptDailySchedule":
+                from . import device_health_script_daily_schedule
+
+                return device_health_script_daily_schedule.DeviceHealthScriptDailySchedule()
+            if mapping_value == "#microsoft.graph.deviceHealthScriptHourlySchedule":
+                from . import device_health_script_hourly_schedule
+
+                return device_health_script_hourly_schedule.DeviceHealthScriptHourlySchedule()
+            if mapping_value == "#microsoft.graph.deviceHealthScriptRunOnceSchedule":
+                from . import device_health_script_run_once_schedule
+
+                return device_health_script_run_once_schedule.DeviceHealthScriptRunOnceSchedule()
+            if mapping_value == "#microsoft.graph.deviceHealthScriptTimeSchedule":
+                from . import device_health_script_time_schedule
+
+                return device_health_script_time_schedule.DeviceHealthScriptTimeSchedule()
         return DeviceHealthScriptRunSchedule()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -53,7 +74,9 @@ class DeviceHealthScriptRunSchedule(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_health_script_daily_schedule, device_health_script_hourly_schedule, device_health_script_run_once_schedule, device_health_script_time_schedule
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "interval": lambda n : setattr(self, 'interval', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }

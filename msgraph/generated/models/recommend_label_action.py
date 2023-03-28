@@ -1,13 +1,28 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-action_source = lazy_import('msgraph.generated.models.action_source')
-information_protection_action = lazy_import('msgraph.generated.models.information_protection_action')
-label_details = lazy_import('msgraph.generated.models.label_details')
+if TYPE_CHECKING:
+    from . import action_source, information_protection_action, label_details
+
+from . import information_protection_action
 
 class RecommendLabelAction(information_protection_action.InformationProtectionAction):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new RecommendLabelAction and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.recommendLabelAction"
+        # The actionSource property
+        self._action_source: Optional[action_source.ActionSource] = None
+        # Actions to take if the label is accepted by the user.
+        self._actions: Optional[List[information_protection_action.InformationProtectionAction]] = None
+        # The label that is being recommended.
+        self._label: Optional[label_details.LabelDetails] = None
+        # The sensitive information type GUIDs that caused the recommendation to be given.
+        self._responsible_sensitive_type_ids: Optional[List[Guid]] = None
+    
     @property
     def action_source(self,) -> Optional[action_source.ActionSource]:
         """
@@ -42,21 +57,6 @@ class RecommendLabelAction(information_protection_action.InformationProtectionAc
         """
         self._actions = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new RecommendLabelAction and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.recommendLabelAction"
-        # The actionSource property
-        self._action_source: Optional[action_source.ActionSource] = None
-        # Actions to take if the label is accepted by the user.
-        self._actions: Optional[List[information_protection_action.InformationProtectionAction]] = None
-        # The label that is being recommended.
-        self._label: Optional[label_details.LabelDetails] = None
-        # The sensitive information type GUIDs that caused the recommendation to be given.
-        self._responsible_sensitive_type_ids: Optional[List[Guid]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RecommendLabelAction:
         """
@@ -74,7 +74,9 @@ class RecommendLabelAction(information_protection_action.InformationProtectionAc
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import action_source, information_protection_action, label_details
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "actions": lambda n : setattr(self, 'actions', n.get_collection_of_object_values(information_protection_action.InformationProtectionAction)),
             "actionSource": lambda n : setattr(self, 'action_source', n.get_enum_value(action_source.ActionSource)),
             "label": lambda n : setattr(self, 'label', n.get_object_value(label_details.LabelDetails)),

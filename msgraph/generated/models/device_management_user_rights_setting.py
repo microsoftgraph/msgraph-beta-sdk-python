@@ -1,15 +1,28 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_user_rights_local_user_or_group = lazy_import('msgraph.generated.models.device_management_user_rights_local_user_or_group')
-state_management_setting = lazy_import('msgraph.generated.models.state_management_setting')
+if TYPE_CHECKING:
+    from . import device_management_user_rights_local_user_or_group, state_management_setting
 
 class DeviceManagementUserRightsSetting(AdditionalDataHolder, Parsable):
     """
     Represents a user rights setting.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new deviceManagementUserRightsSetting and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Representing a collection of local users or groups which will be set on device if the state of this setting is Allowed. This collection can contain a maximum of 500 elements.
+        self._local_users_or_groups: Optional[List[device_management_user_rights_local_user_or_group.DeviceManagementUserRightsLocalUserOrGroup]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # State Management Setting.
+        self._state: Optional[state_management_setting.StateManagementSetting] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -26,20 +39,6 @@ class DeviceManagementUserRightsSetting(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementUserRightsSetting and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Representing a collection of local users or groups which will be set on device if the state of this setting is Allowed. This collection can contain a maximum of 500 elements.
-        self._local_users_or_groups: Optional[List[device_management_user_rights_local_user_or_group.DeviceManagementUserRightsLocalUserOrGroup]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # State Management Setting.
-        self._state: Optional[state_management_setting.StateManagementSetting] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementUserRightsSetting:
@@ -58,7 +57,9 @@ class DeviceManagementUserRightsSetting(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_user_rights_local_user_or_group, state_management_setting
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "localUsersOrGroups": lambda n : setattr(self, 'local_users_or_groups', n.get_collection_of_object_values(device_management_user_rights_local_user_or_group.DeviceManagementUserRightsLocalUserOrGroup)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(state_management_setting.StateManagementSetting)),

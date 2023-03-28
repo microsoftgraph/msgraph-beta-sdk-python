@@ -1,11 +1,22 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_configuration_integer_setting_value_default_template = lazy_import('msgraph.generated.models.device_management_configuration_integer_setting_value_default_template')
+if TYPE_CHECKING:
+    from . import device_management_configuration_integer_setting_value_default_template
+
+from . import device_management_configuration_integer_setting_value_default_template
 
 class DeviceManagementConfigurationIntegerSettingValueConstantDefaultTemplate(device_management_configuration_integer_setting_value_default_template.DeviceManagementConfigurationIntegerSettingValueDefaultTemplate):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new DeviceManagementConfigurationIntegerSettingValueConstantDefaultTemplate and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.deviceManagementConfigurationIntegerSettingValueConstantDefaultTemplate"
+        # Default Constant Value. Valid values -2147483648 to 2147483647
+        self._constant_value: Optional[int] = None
+    
     @property
     def constant_value(self,) -> Optional[int]:
         """
@@ -22,15 +33,6 @@ class DeviceManagementConfigurationIntegerSettingValueConstantDefaultTemplate(de
             value: Value to set for the constant_value property.
         """
         self._constant_value = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementConfigurationIntegerSettingValueConstantDefaultTemplate and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementConfigurationIntegerSettingValueConstantDefaultTemplate"
-        # Default Constant Value. Valid values -2147483648 to 2147483647
-        self._constant_value: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationIntegerSettingValueConstantDefaultTemplate:
@@ -49,7 +51,9 @@ class DeviceManagementConfigurationIntegerSettingValueConstantDefaultTemplate(de
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_configuration_integer_setting_value_default_template
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "constantValue": lambda n : setattr(self, 'constant_value', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()

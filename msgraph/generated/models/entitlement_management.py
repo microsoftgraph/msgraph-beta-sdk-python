@@ -1,25 +1,49 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-access_package = lazy_import('msgraph.generated.models.access_package')
-access_package_assignment = lazy_import('msgraph.generated.models.access_package_assignment')
-access_package_assignment_policy = lazy_import('msgraph.generated.models.access_package_assignment_policy')
-access_package_assignment_request = lazy_import('msgraph.generated.models.access_package_assignment_request')
-access_package_assignment_resource_role = lazy_import('msgraph.generated.models.access_package_assignment_resource_role')
-access_package_catalog = lazy_import('msgraph.generated.models.access_package_catalog')
-access_package_resource = lazy_import('msgraph.generated.models.access_package_resource')
-access_package_resource_environment = lazy_import('msgraph.generated.models.access_package_resource_environment')
-access_package_resource_request = lazy_import('msgraph.generated.models.access_package_resource_request')
-access_package_resource_role_scope = lazy_import('msgraph.generated.models.access_package_resource_role_scope')
-access_package_subject = lazy_import('msgraph.generated.models.access_package_subject')
-approval = lazy_import('msgraph.generated.models.approval')
-connected_organization = lazy_import('msgraph.generated.models.connected_organization')
-entitlement_management_settings = lazy_import('msgraph.generated.models.entitlement_management_settings')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import access_package, access_package_assignment, access_package_assignment_policy, access_package_assignment_request, access_package_assignment_resource_role, access_package_catalog, access_package_resource, access_package_resource_environment, access_package_resource_request, access_package_resource_role_scope, access_package_subject, approval, connected_organization, entitlement_management_settings, entity
+
+from . import entity
 
 class EntitlementManagement(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new EntitlementManagement and sets the default values.
+        """
+        super().__init__()
+        # The accessPackageAssignmentApprovals property
+        self._access_package_assignment_approvals: Optional[List[approval.Approval]] = None
+        # Represents the policy that governs which subjects can request or be assigned an access package via an access package assignment.
+        self._access_package_assignment_policies: Optional[List[access_package_assignment_policy.AccessPackageAssignmentPolicy]] = None
+        # Represents access package assignment requests created by or on behalf of a user.
+        self._access_package_assignment_requests: Optional[List[access_package_assignment_request.AccessPackageAssignmentRequest]] = None
+        # Represents the resource-specific role which a subject has been assigned through an access package assignment.
+        self._access_package_assignment_resource_roles: Optional[List[access_package_assignment_resource_role.AccessPackageAssignmentResourceRole]] = None
+        # The assignment of an access package to a subject for a period of time.
+        self._access_package_assignments: Optional[List[access_package_assignment.AccessPackageAssignment]] = None
+        # A container of access packages.
+        self._access_package_catalogs: Optional[List[access_package_catalog.AccessPackageCatalog]] = None
+        # A reference to the geolocation environment in which a resource is located.
+        self._access_package_resource_environments: Optional[List[access_package_resource_environment.AccessPackageResourceEnvironment]] = None
+        # Represents a request to add or remove a resource to or from a catalog respectively.
+        self._access_package_resource_requests: Optional[List[access_package_resource_request.AccessPackageResourceRequest]] = None
+        # A reference to both a scope within a resource, and a role in that resource for that scope.
+        self._access_package_resource_role_scopes: Optional[List[access_package_resource_role_scope.AccessPackageResourceRoleScope]] = None
+        # A reference to a resource associated with an access package catalog.
+        self._access_package_resources: Optional[List[access_package_resource.AccessPackageResource]] = None
+        # Represents access package objects.
+        self._access_packages: Optional[List[access_package.AccessPackage]] = None
+        # Represents references to a directory or domain of another organization whose users can request access.
+        self._connected_organizations: Optional[List[connected_organization.ConnectedOrganization]] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Represents the settings that control the behavior of Azure AD entitlement management.
+        self._settings: Optional[entitlement_management_settings.EntitlementManagementSettings] = None
+        # The subjects property
+        self._subjects: Optional[List[access_package_subject.AccessPackageSubject]] = None
+    
     @property
     def access_package_assignment_approvals(self,) -> Optional[List[approval.Approval]]:
         """
@@ -224,42 +248,6 @@ class EntitlementManagement(entity.Entity):
         """
         self._connected_organizations = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new EntitlementManagement and sets the default values.
-        """
-        super().__init__()
-        # The accessPackageAssignmentApprovals property
-        self._access_package_assignment_approvals: Optional[List[approval.Approval]] = None
-        # Represents the policy that governs which subjects can request or be assigned an access package via an access package assignment.
-        self._access_package_assignment_policies: Optional[List[access_package_assignment_policy.AccessPackageAssignmentPolicy]] = None
-        # Represents access package assignment requests created by or on behalf of a user.
-        self._access_package_assignment_requests: Optional[List[access_package_assignment_request.AccessPackageAssignmentRequest]] = None
-        # Represents the resource-specific role which a subject has been assigned through an access package assignment.
-        self._access_package_assignment_resource_roles: Optional[List[access_package_assignment_resource_role.AccessPackageAssignmentResourceRole]] = None
-        # The assignment of an access package to a subject for a period of time.
-        self._access_package_assignments: Optional[List[access_package_assignment.AccessPackageAssignment]] = None
-        # A container of access packages.
-        self._access_package_catalogs: Optional[List[access_package_catalog.AccessPackageCatalog]] = None
-        # A reference to the geolocation environment in which a resource is located.
-        self._access_package_resource_environments: Optional[List[access_package_resource_environment.AccessPackageResourceEnvironment]] = None
-        # Represents a request to add or remove a resource to or from a catalog respectively.
-        self._access_package_resource_requests: Optional[List[access_package_resource_request.AccessPackageResourceRequest]] = None
-        # A reference to both a scope within a resource, and a role in that resource for that scope.
-        self._access_package_resource_role_scopes: Optional[List[access_package_resource_role_scope.AccessPackageResourceRoleScope]] = None
-        # A reference to a resource associated with an access package catalog.
-        self._access_package_resources: Optional[List[access_package_resource.AccessPackageResource]] = None
-        # Represents access package objects.
-        self._access_packages: Optional[List[access_package.AccessPackage]] = None
-        # Represents references to a directory or domain of another organization whose users can request access.
-        self._connected_organizations: Optional[List[connected_organization.ConnectedOrganization]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Represents the settings that control the behavior of Azure AD entitlement management.
-        self._settings: Optional[entitlement_management_settings.EntitlementManagementSettings] = None
-        # The subjects property
-        self._subjects: Optional[List[access_package_subject.AccessPackageSubject]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EntitlementManagement:
         """
@@ -277,7 +265,9 @@ class EntitlementManagement(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import access_package, access_package_assignment, access_package_assignment_policy, access_package_assignment_request, access_package_assignment_resource_role, access_package_catalog, access_package_resource, access_package_resource_environment, access_package_resource_request, access_package_resource_role_scope, access_package_subject, approval, connected_organization, entitlement_management_settings, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accessPackages": lambda n : setattr(self, 'access_packages', n.get_collection_of_object_values(access_package.AccessPackage)),
             "accessPackageAssignments": lambda n : setattr(self, 'access_package_assignments', n.get_collection_of_object_values(access_package_assignment.AccessPackageAssignment)),
             "accessPackageAssignmentApprovals": lambda n : setattr(self, 'access_package_assignment_approvals', n.get_collection_of_object_values(approval.Approval)),

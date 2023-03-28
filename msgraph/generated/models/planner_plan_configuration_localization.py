@@ -1,12 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-planner_plan_configuration_bucket_localization = lazy_import('msgraph.generated.models.planner_plan_configuration_bucket_localization')
+if TYPE_CHECKING:
+    from . import entity, planner_plan_configuration_bucket_localization
+
+from . import entity
 
 class PlannerPlanConfigurationLocalization(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new plannerPlanConfigurationLocalization and sets the default values.
+        """
+        super().__init__()
+        # Localized names for configured buckets in the plan configuration.
+        self._buckets: Optional[List[planner_plan_configuration_bucket_localization.PlannerPlanConfigurationBucketLocalization]] = None
+        # The language code associated with the localized names in this object.
+        self._language_tag: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Localized title of the plan.
+        self._plan_title: Optional[str] = None
+    
     @property
     def buckets(self,) -> Optional[List[planner_plan_configuration_bucket_localization.PlannerPlanConfigurationBucketLocalization]]:
         """
@@ -23,20 +38,6 @@ class PlannerPlanConfigurationLocalization(entity.Entity):
             value: Value to set for the buckets property.
         """
         self._buckets = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new plannerPlanConfigurationLocalization and sets the default values.
-        """
-        super().__init__()
-        # Localized names for configured buckets in the plan configuration.
-        self._buckets: Optional[List[planner_plan_configuration_bucket_localization.PlannerPlanConfigurationBucketLocalization]] = None
-        # The language code associated with the localized names in this object.
-        self._language_tag: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Localized title of the plan.
-        self._plan_title: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PlannerPlanConfigurationLocalization:
@@ -55,7 +56,9 @@ class PlannerPlanConfigurationLocalization(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, planner_plan_configuration_bucket_localization
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "buckets": lambda n : setattr(self, 'buckets', n.get_collection_of_object_values(planner_plan_configuration_bucket_localization.PlannerPlanConfigurationBucketLocalization)),
             "languageTag": lambda n : setattr(self, 'language_tag', n.get_str_value()),
             "planTitle": lambda n : setattr(self, 'plan_title', n.get_str_value()),

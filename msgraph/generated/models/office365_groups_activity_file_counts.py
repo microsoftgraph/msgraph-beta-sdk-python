@@ -1,29 +1,14 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class Office365GroupsActivityFileCounts(entity.Entity):
-    @property
-    def active(self,) -> Optional[int]:
-        """
-        Gets the active property value. The number of files that were viewed, edited, shared, or synced in the group's SharePoint document library.
-        Returns: Optional[int]
-        """
-        return self._active
-    
-    @active.setter
-    def active(self,value: Optional[int] = None) -> None:
-        """
-        Sets the active property value. The number of files that were viewed, edited, shared, or synced in the group's SharePoint document library.
-        Args:
-            value: Value to set for the active property.
-        """
-        self._active = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new Office365GroupsActivityFileCounts and sets the default values.
@@ -42,6 +27,23 @@ class Office365GroupsActivityFileCounts(entity.Entity):
         # The total number of files in the group's SharePoint document library.
         self._total: Optional[int] = None
     
+    @property
+    def active(self,) -> Optional[int]:
+        """
+        Gets the active property value. The number of files that were viewed, edited, shared, or synced in the group's SharePoint document library.
+        Returns: Optional[int]
+        """
+        return self._active
+    
+    @active.setter
+    def active(self,value: Optional[int] = None) -> None:
+        """
+        Sets the active property value. The number of files that were viewed, edited, shared, or synced in the group's SharePoint document library.
+        Args:
+            value: Value to set for the active property.
+        """
+        self._active = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Office365GroupsActivityFileCounts:
         """
@@ -59,7 +61,9 @@ class Office365GroupsActivityFileCounts(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "active": lambda n : setattr(self, 'active', n.get_int_value()),
             "reportDate": lambda n : setattr(self, 'report_date', n.get_object_value(Date)),
             "reportPeriod": lambda n : setattr(self, 'report_period', n.get_str_value()),

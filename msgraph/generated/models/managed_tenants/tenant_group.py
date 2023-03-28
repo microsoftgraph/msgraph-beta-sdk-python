@@ -1,30 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-management_action_info = lazy_import('msgraph.generated.models.managed_tenants.management_action_info')
-management_intent_info = lazy_import('msgraph.generated.models.managed_tenants.management_intent_info')
+if TYPE_CHECKING:
+    from . import management_action_info, management_intent_info
+    from .. import entity
+
+from .. import entity
 
 class TenantGroup(entity.Entity):
-    @property
-    def all_tenants_included(self,) -> Optional[bool]:
-        """
-        Gets the allTenantsIncluded property value. A flag indicating whether all managed tenant are included in the tenant group. Required. Read-only.
-        Returns: Optional[bool]
-        """
-        return self._all_tenants_included
-    
-    @all_tenants_included.setter
-    def all_tenants_included(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the allTenantsIncluded property value. A flag indicating whether all managed tenant are included in the tenant group. Required. Read-only.
-        Args:
-            value: Value to set for the all_tenants_included property.
-        """
-        self._all_tenants_included = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new tenantGroup and sets the default values.
@@ -42,6 +26,23 @@ class TenantGroup(entity.Entity):
         self.odata_type: Optional[str] = None
         # The collection of managed tenant identifiers include in the tenant group. Optional. Read-only.
         self._tenant_ids: Optional[List[str]] = None
+    
+    @property
+    def all_tenants_included(self,) -> Optional[bool]:
+        """
+        Gets the allTenantsIncluded property value. A flag indicating whether all managed tenant are included in the tenant group. Required. Read-only.
+        Returns: Optional[bool]
+        """
+        return self._all_tenants_included
+    
+    @all_tenants_included.setter
+    def all_tenants_included(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the allTenantsIncluded property value. A flag indicating whether all managed tenant are included in the tenant group. Required. Read-only.
+        Args:
+            value: Value to set for the all_tenants_included property.
+        """
+        self._all_tenants_included = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TenantGroup:
@@ -77,7 +78,10 @@ class TenantGroup(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import management_action_info, management_intent_info
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allTenantsIncluded": lambda n : setattr(self, 'all_tenants_included', n.get_bool_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "managementActions": lambda n : setattr(self, 'management_actions', n.get_collection_of_object_values(management_action_info.ManagementActionInfo)),

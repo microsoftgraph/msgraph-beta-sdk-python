@@ -1,48 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-item_category = lazy_import('msgraph.generated.models.item_category')
-picture = lazy_import('msgraph.generated.models.picture')
+if TYPE_CHECKING:
+    from . import entity, item_category, picture
+
+from . import entity
 
 class Item(entity.Entity):
-    @property
-    def base_unit_of_measure_id(self,) -> Optional[Guid]:
-        """
-        Gets the baseUnitOfMeasureId property value. The baseUnitOfMeasureId property
-        Returns: Optional[Guid]
-        """
-        return self._base_unit_of_measure_id
-    
-    @base_unit_of_measure_id.setter
-    def base_unit_of_measure_id(self,value: Optional[Guid] = None) -> None:
-        """
-        Sets the baseUnitOfMeasureId property value. The baseUnitOfMeasureId property
-        Args:
-            value: Value to set for the base_unit_of_measure_id property.
-        """
-        self._base_unit_of_measure_id = value
-    
-    @property
-    def blocked(self,) -> Optional[bool]:
-        """
-        Gets the blocked property value. The blocked property
-        Returns: Optional[bool]
-        """
-        return self._blocked
-    
-    @blocked.setter
-    def blocked(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the blocked property value. The blocked property
-        Args:
-            value: Value to set for the blocked property.
-        """
-        self._blocked = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new item and sets the default values.
@@ -85,6 +51,40 @@ class Item(entity.Entity):
         # The unitPrice property
         self._unit_price: Optional[float] = None
     
+    @property
+    def base_unit_of_measure_id(self,) -> Optional[Guid]:
+        """
+        Gets the baseUnitOfMeasureId property value. The baseUnitOfMeasureId property
+        Returns: Optional[Guid]
+        """
+        return self._base_unit_of_measure_id
+    
+    @base_unit_of_measure_id.setter
+    def base_unit_of_measure_id(self,value: Optional[Guid] = None) -> None:
+        """
+        Sets the baseUnitOfMeasureId property value. The baseUnitOfMeasureId property
+        Args:
+            value: Value to set for the base_unit_of_measure_id property.
+        """
+        self._base_unit_of_measure_id = value
+    
+    @property
+    def blocked(self,) -> Optional[bool]:
+        """
+        Gets the blocked property value. The blocked property
+        Returns: Optional[bool]
+        """
+        return self._blocked
+    
+    @blocked.setter
+    def blocked(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the blocked property value. The blocked property
+        Args:
+            value: Value to set for the blocked property.
+        """
+        self._blocked = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Item:
         """
@@ -119,7 +119,9 @@ class Item(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, item_category, picture
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "baseUnitOfMeasureId": lambda n : setattr(self, 'base_unit_of_measure_id', n.get_object_value(Guid)),
             "blocked": lambda n : setattr(self, 'blocked', n.get_bool_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

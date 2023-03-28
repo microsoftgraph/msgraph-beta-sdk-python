@@ -1,15 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-program_control = lazy_import('msgraph.generated.models.program_control')
+if TYPE_CHECKING:
+    from . import entity, program_control
+
+from . import entity
 
 class Program(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new program and sets the default values.
+        Instantiates a new Program and sets the default values.
         """
         super().__init__()
         # Controls associated with the program.
@@ -89,7 +90,9 @@ class Program(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, program_control
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "controls": lambda n : setattr(self, 'controls', n.get_collection_of_object_values(program_control.ProgramControl)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

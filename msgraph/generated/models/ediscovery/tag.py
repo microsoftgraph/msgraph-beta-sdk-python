@@ -1,14 +1,37 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-identity_set = lazy_import('msgraph.generated.models.identity_set')
-child_selectability = lazy_import('msgraph.generated.models.ediscovery.child_selectability')
+if TYPE_CHECKING:
+    from . import child_selectability
+    from .. import entity, identity_set
+
+from .. import entity
 
 class Tag(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new tag and sets the default values.
+        """
+        super().__init__()
+        # Indicates whether a single or multiple child tags can be associated with a document. Possible values are: One, Many.  This value controls whether the UX presents the tags as checkboxes or a radio button group.
+        self._child_selectability: Optional[child_selectability.ChildSelectability] = None
+        # Returns the tags that are a child of a tag.
+        self._child_tags: Optional[List[Tag]] = None
+        # The user who created the tag.
+        self._created_by: Optional[identity_set.IdentitySet] = None
+        # The description for the tag.
+        self._description: Optional[str] = None
+        # Display name of the tag.
+        self._display_name: Optional[str] = None
+        # The date and time the tag was last modified.
+        self._last_modified_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Returns the parent tag of the specified tag.
+        self._parent: Optional[Tag] = None
+    
     @property
     def child_selectability(self,) -> Optional[child_selectability.ChildSelectability]:
         """
@@ -42,28 +65,6 @@ class Tag(entity.Entity):
             value: Value to set for the child_tags property.
         """
         self._child_tags = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new tag and sets the default values.
-        """
-        super().__init__()
-        # Indicates whether a single or multiple child tags can be associated with a document. Possible values are: One, Many.  This value controls whether the UX presents the tags as checkboxes or a radio button group.
-        self._child_selectability: Optional[child_selectability.ChildSelectability] = None
-        # Returns the tags that are a child of a tag.
-        self._child_tags: Optional[List[Tag]] = None
-        # The user who created the tag.
-        self._created_by: Optional[identity_set.IdentitySet] = None
-        # The description for the tag.
-        self._description: Optional[str] = None
-        # Display name of the tag.
-        self._display_name: Optional[str] = None
-        # The date and time the tag was last modified.
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Returns the parent tag of the specified tag.
-        self._parent: Optional[Tag] = None
     
     @property
     def created_by(self,) -> Optional[identity_set.IdentitySet]:
@@ -133,7 +134,10 @@ class Tag(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import child_selectability
+        from .. import entity, identity_set
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "childSelectability": lambda n : setattr(self, 'child_selectability', n.get_enum_value(child_selectability.ChildSelectability)),
             "childTags": lambda n : setattr(self, 'child_tags', n.get_collection_of_object_values(Tag)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),

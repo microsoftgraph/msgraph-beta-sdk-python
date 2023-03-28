@@ -7,57 +7,23 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-organization_settings = lazy_import('msgraph.generated.models.organization_settings')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-contact_insights_request_builder = lazy_import('msgraph.generated.organization.item.settings.contact_insights.contact_insights_request_builder')
-item_insights_request_builder = lazy_import('msgraph.generated.organization.item.settings.item_insights.item_insights_request_builder')
-microsoft_application_data_access_request_builder = lazy_import('msgraph.generated.organization.item.settings.microsoft_application_data_access.microsoft_application_data_access_request_builder')
-people_insights_request_builder = lazy_import('msgraph.generated.organization.item.settings.people_insights.people_insights_request_builder')
-profile_card_properties_request_builder = lazy_import('msgraph.generated.organization.item.settings.profile_card_properties.profile_card_properties_request_builder')
-profile_card_property_item_request_builder = lazy_import('msgraph.generated.organization.item.settings.profile_card_properties.item.profile_card_property_item_request_builder')
+if TYPE_CHECKING:
+    from ....models import organization_settings
+    from ....models.o_data_errors import o_data_error
+    from .contact_insights import contact_insights_request_builder
+    from .item_insights import item_insights_request_builder
+    from .microsoft_application_data_access import microsoft_application_data_access_request_builder
+    from .people_insights import people_insights_request_builder
+    from .profile_card_properties import profile_card_properties_request_builder
+    from .profile_card_properties.item import profile_card_property_item_request_builder
+    from .pronouns import pronouns_request_builder
 
 class SettingsRequestBuilder():
     """
     Provides operations to manage the settings property of the microsoft.graph.organization entity.
     """
-    @property
-    def contact_insights(self) -> contact_insights_request_builder.ContactInsightsRequestBuilder:
-        """
-        Provides operations to manage the contactInsights property of the microsoft.graph.organizationSettings entity.
-        """
-        return contact_insights_request_builder.ContactInsightsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def item_insights(self) -> item_insights_request_builder.ItemInsightsRequestBuilder:
-        """
-        Provides operations to manage the itemInsights property of the microsoft.graph.organizationSettings entity.
-        """
-        return item_insights_request_builder.ItemInsightsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def microsoft_application_data_access(self) -> microsoft_application_data_access_request_builder.MicrosoftApplicationDataAccessRequestBuilder:
-        """
-        Provides operations to manage the microsoftApplicationDataAccess property of the microsoft.graph.organizationSettings entity.
-        """
-        return microsoft_application_data_access_request_builder.MicrosoftApplicationDataAccessRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def people_insights(self) -> people_insights_request_builder.PeopleInsightsRequestBuilder:
-        """
-        Provides operations to manage the peopleInsights property of the microsoft.graph.organizationSettings entity.
-        """
-        return people_insights_request_builder.PeopleInsightsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def profile_card_properties(self) -> profile_card_properties_request_builder.ProfileCardPropertiesRequestBuilder:
-        """
-        Provides operations to manage the profileCardProperties property of the microsoft.graph.organizationSettings entity.
-        """
-        return profile_card_properties_request_builder.ProfileCardPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new SettingsRequestBuilder and sets the default values.
@@ -85,6 +51,8 @@ class SettingsRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -103,12 +71,16 @@ class SettingsRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import organization_settings
+
         return await self.request_adapter.send_async(request_info, organization_settings.OrganizationSettings, error_mapping)
     
     async def patch(self,body: Optional[organization_settings.OrganizationSettings] = None, request_configuration: Optional[SettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[organization_settings.OrganizationSettings]:
@@ -124,12 +96,16 @@ class SettingsRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import organization_settings
+
         return await self.request_adapter.send_async(request_info, organization_settings.OrganizationSettings, error_mapping)
     
     def profile_card_properties_by_id(self,id: str) -> profile_card_property_item_request_builder.ProfileCardPropertyItemRequestBuilder:
@@ -141,6 +117,8 @@ class SettingsRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .profile_card_properties.item import profile_card_property_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["profileCardProperty%2Did"] = id
         return profile_card_property_item_request_builder.ProfileCardPropertyItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -200,6 +178,60 @@ class SettingsRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def contact_insights(self) -> contact_insights_request_builder.ContactInsightsRequestBuilder:
+        """
+        Provides operations to manage the contactInsights property of the microsoft.graph.organizationSettings entity.
+        """
+        from .contact_insights import contact_insights_request_builder
+
+        return contact_insights_request_builder.ContactInsightsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def item_insights(self) -> item_insights_request_builder.ItemInsightsRequestBuilder:
+        """
+        Provides operations to manage the itemInsights property of the microsoft.graph.organizationSettings entity.
+        """
+        from .item_insights import item_insights_request_builder
+
+        return item_insights_request_builder.ItemInsightsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_application_data_access(self) -> microsoft_application_data_access_request_builder.MicrosoftApplicationDataAccessRequestBuilder:
+        """
+        Provides operations to manage the microsoftApplicationDataAccess property of the microsoft.graph.organizationSettings entity.
+        """
+        from .microsoft_application_data_access import microsoft_application_data_access_request_builder
+
+        return microsoft_application_data_access_request_builder.MicrosoftApplicationDataAccessRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def people_insights(self) -> people_insights_request_builder.PeopleInsightsRequestBuilder:
+        """
+        Provides operations to manage the peopleInsights property of the microsoft.graph.organizationSettings entity.
+        """
+        from .people_insights import people_insights_request_builder
+
+        return people_insights_request_builder.PeopleInsightsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def profile_card_properties(self) -> profile_card_properties_request_builder.ProfileCardPropertiesRequestBuilder:
+        """
+        Provides operations to manage the profileCardProperties property of the microsoft.graph.organizationSettings entity.
+        """
+        from .profile_card_properties import profile_card_properties_request_builder
+
+        return profile_card_properties_request_builder.ProfileCardPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def pronouns(self) -> pronouns_request_builder.PronounsRequestBuilder:
+        """
+        Provides operations to manage the pronouns property of the microsoft.graph.organizationSettings entity.
+        """
+        from .pronouns import pronouns_request_builder
+
+        return pronouns_request_builder.PronounsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class SettingsRequestBuilderDeleteRequestConfiguration():
         """
@@ -217,12 +249,6 @@ class SettingsRequestBuilder():
         """
         Retrieve the properties and relationships of an organizationSettings object, including **profileCardProperties**. This operation does not return insightsSettings. Depending on the type of insights, you can get their settings by using list itemInsights or list peopleInsights. This operation does not return microsoftApplicationDataAccessSettings. To get microsoftApplicationDataAccessSettings, use list microsoftApplicationDataAccessSettings.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -238,6 +264,12 @@ class SettingsRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class SettingsRequestBuilderGetRequestConfiguration():

@@ -1,30 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_configuration_device_mode = lazy_import('msgraph.generated.models.device_management_configuration_device_mode')
-device_management_configuration_platforms = lazy_import('msgraph.generated.models.device_management_configuration_platforms')
-device_management_configuration_technologies = lazy_import('msgraph.generated.models.device_management_configuration_technologies')
+if TYPE_CHECKING:
+    from . import device_management_configuration_device_mode, device_management_configuration_exchange_online_setting_applicability, device_management_configuration_platforms, device_management_configuration_technologies, device_management_configuration_windows_setting_applicability
 
 class DeviceManagementConfigurationSettingApplicability(AdditionalDataHolder, Parsable):
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new deviceManagementConfigurationSettingApplicability and sets the default values.
@@ -43,6 +24,23 @@ class DeviceManagementConfigurationSettingApplicability(AdditionalDataHolder, Pa
         # Describes which technology this setting can be deployed with
         self._technologies: Optional[device_management_configuration_technologies.DeviceManagementConfigurationTechnologies] = None
     
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationSettingApplicability:
         """
@@ -53,6 +51,17 @@ class DeviceManagementConfigurationSettingApplicability(AdditionalDataHolder, Pa
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.deviceManagementConfigurationExchangeOnlineSettingApplicability":
+                from . import device_management_configuration_exchange_online_setting_applicability
+
+                return device_management_configuration_exchange_online_setting_applicability.DeviceManagementConfigurationExchangeOnlineSettingApplicability()
+            if mapping_value == "#microsoft.graph.deviceManagementConfigurationWindowsSettingApplicability":
+                from . import device_management_configuration_windows_setting_applicability
+
+                return device_management_configuration_windows_setting_applicability.DeviceManagementConfigurationWindowsSettingApplicability()
         return DeviceManagementConfigurationSettingApplicability()
     
     @property
@@ -94,7 +103,9 @@ class DeviceManagementConfigurationSettingApplicability(AdditionalDataHolder, Pa
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_configuration_device_mode, device_management_configuration_exchange_online_setting_applicability, device_management_configuration_platforms, device_management_configuration_technologies, device_management_configuration_windows_setting_applicability
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "deviceMode": lambda n : setattr(self, 'device_mode', n.get_enum_value(device_management_configuration_device_mode.DeviceManagementConfigurationDeviceMode)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

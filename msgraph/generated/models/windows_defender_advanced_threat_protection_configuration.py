@@ -1,11 +1,34 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+if TYPE_CHECKING:
+    from . import device_configuration
+
+from . import device_configuration
 
 class WindowsDefenderAdvancedThreatProtectionConfiguration(device_configuration.DeviceConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new WindowsDefenderAdvancedThreatProtectionConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.windowsDefenderAdvancedThreatProtectionConfiguration"
+        # Auto populate onboarding blob programmatically from Advanced Threat protection service
+        self._advanced_threat_protection_auto_populate_onboarding_blob: Optional[bool] = None
+        # Windows Defender AdvancedThreatProtection Offboarding Blob.
+        self._advanced_threat_protection_offboarding_blob: Optional[str] = None
+        # Name of the file from which AdvancedThreatProtectionOffboardingBlob was obtained.
+        self._advanced_threat_protection_offboarding_filename: Optional[str] = None
+        # Windows Defender AdvancedThreatProtection Onboarding Blob.
+        self._advanced_threat_protection_onboarding_blob: Optional[str] = None
+        # Name of the file from which AdvancedThreatProtectionOnboardingBlob was obtained.
+        self._advanced_threat_protection_onboarding_filename: Optional[str] = None
+        # Windows Defender AdvancedThreatProtection 'Allow Sample Sharing' Rule
+        self._allow_sample_sharing: Optional[bool] = None
+        # Expedite Windows Defender Advanced Threat Protection telemetry reporting frequency.
+        self._enable_expedited_telemetry_reporting: Optional[bool] = None
+    
     @property
     def advanced_threat_protection_auto_populate_onboarding_blob(self,) -> Optional[bool]:
         """
@@ -108,27 +131,6 @@ class WindowsDefenderAdvancedThreatProtectionConfiguration(device_configuration.
         """
         self._allow_sample_sharing = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsDefenderAdvancedThreatProtectionConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsDefenderAdvancedThreatProtectionConfiguration"
-        # Auto populate onboarding blob programmatically from Advanced Threat protection service
-        self._advanced_threat_protection_auto_populate_onboarding_blob: Optional[bool] = None
-        # Windows Defender AdvancedThreatProtection Offboarding Blob.
-        self._advanced_threat_protection_offboarding_blob: Optional[str] = None
-        # Name of the file from which AdvancedThreatProtectionOffboardingBlob was obtained.
-        self._advanced_threat_protection_offboarding_filename: Optional[str] = None
-        # Windows Defender AdvancedThreatProtection Onboarding Blob.
-        self._advanced_threat_protection_onboarding_blob: Optional[str] = None
-        # Name of the file from which AdvancedThreatProtectionOnboardingBlob was obtained.
-        self._advanced_threat_protection_onboarding_filename: Optional[str] = None
-        # Windows Defender AdvancedThreatProtection 'Allow Sample Sharing' Rule
-        self._allow_sample_sharing: Optional[bool] = None
-        # Expedite Windows Defender Advanced Threat Protection telemetry reporting frequency.
-        self._enable_expedited_telemetry_reporting: Optional[bool] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsDefenderAdvancedThreatProtectionConfiguration:
         """
@@ -163,7 +165,9 @@ class WindowsDefenderAdvancedThreatProtectionConfiguration(device_configuration.
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "advancedThreatProtectionAutoPopulateOnboardingBlob": lambda n : setattr(self, 'advanced_threat_protection_auto_populate_onboarding_blob', n.get_bool_value()),
             "advancedThreatProtectionOffboardingBlob": lambda n : setattr(self, 'advanced_threat_protection_offboarding_blob', n.get_str_value()),
             "advancedThreatProtectionOffboardingFilename": lambda n : setattr(self, 'advanced_threat_protection_offboarding_filename', n.get_str_value()),

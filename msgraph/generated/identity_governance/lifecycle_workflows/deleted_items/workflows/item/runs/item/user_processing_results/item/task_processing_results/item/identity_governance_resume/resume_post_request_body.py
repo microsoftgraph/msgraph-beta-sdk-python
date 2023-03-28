@@ -1,11 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-custom_task_extension_callback_data = lazy_import('msgraph.generated.models.identity_governance.custom_task_extension_callback_data')
+if TYPE_CHECKING:
+    from .............models.identity_governance import custom_task_extension_callback_data
 
 class ResumePostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new resumePostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The data property
+        self._data: Optional[custom_task_extension_callback_data.CustomTaskExtensionCallbackData] = None
+        # The source property
+        self._source: Optional[str] = None
+        # The type property
+        self._type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -22,20 +36,6 @@ class ResumePostRequestBody(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new resumePostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The data property
-        self._data: Optional[custom_task_extension_callback_data.CustomTaskExtensionCallbackData] = None
-        # The source property
-        self._source: Optional[str] = None
-        # The type property
-        self._type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ResumePostRequestBody:
@@ -71,7 +71,9 @@ class ResumePostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .............models.identity_governance import custom_task_extension_callback_data
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "data": lambda n : setattr(self, 'data', n.get_object_value(custom_task_extension_callback_data.CustomTaskExtensionCallbackData)),
             "source": lambda n : setattr(self, 'source', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),

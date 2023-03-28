@@ -1,12 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-governance_criteria = lazy_import('msgraph.generated.models.governance_criteria')
-governance_notification_policy = lazy_import('msgraph.generated.models.governance_notification_policy')
+if TYPE_CHECKING:
+    from . import governance_criteria, governance_notification_policy
 
 class GovernancePolicy(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new governancePolicy and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The decisionMakerCriteria property
+        self._decision_maker_criteria: Optional[List[governance_criteria.GovernanceCriteria]] = None
+        # The notificationPolicy property
+        self._notification_policy: Optional[governance_notification_policy.GovernanceNotificationPolicy] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,20 +36,6 @@ class GovernancePolicy(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new governancePolicy and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The decisionMakerCriteria property
-        self._decision_maker_criteria: Optional[List[governance_criteria.GovernanceCriteria]] = None
-        # The notificationPolicy property
-        self._notification_policy: Optional[governance_notification_policy.GovernanceNotificationPolicy] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GovernancePolicy:
@@ -72,7 +71,9 @@ class GovernancePolicy(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import governance_criteria, governance_notification_policy
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "decisionMakerCriteria": lambda n : setattr(self, 'decision_maker_criteria', n.get_collection_of_object_values(governance_criteria.GovernanceCriteria)),
             "notificationPolicy": lambda n : setattr(self, 'notification_policy', n.get_object_value(governance_notification_policy.GovernanceNotificationPolicy)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

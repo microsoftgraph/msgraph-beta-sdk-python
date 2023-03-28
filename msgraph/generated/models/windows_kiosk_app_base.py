@@ -1,15 +1,32 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-windows_app_start_layout_tile_size = lazy_import('msgraph.generated.models.windows_app_start_layout_tile_size')
-windows_kiosk_app_type = lazy_import('msgraph.generated.models.windows_kiosk_app_type')
+if TYPE_CHECKING:
+    from . import windows_app_start_layout_tile_size, windows_kiosk_app_type, windows_kiosk_desktop_app, windows_kiosk_u_w_p_app, windows_kiosk_win32_app
 
 class WindowsKioskAppBase(AdditionalDataHolder, Parsable):
     """
     The base class for a type of apps
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new windowsKioskAppBase and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The type of Windows kiosk app.
+        self._app_type: Optional[windows_kiosk_app_type.WindowsKioskAppType] = None
+        # Allow the app to be auto-launched in multi-app kiosk mode
+        self._auto_launch: Optional[bool] = None
+        # Represents the friendly name of an app
+        self._name: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The tile size of Windows app in the start layout.
+        self._start_layout_tile_size: Optional[windows_app_start_layout_tile_size.WindowsAppStartLayoutTileSize] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -61,24 +78,6 @@ class WindowsKioskAppBase(AdditionalDataHolder, Parsable):
         """
         self._auto_launch = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new windowsKioskAppBase and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The type of Windows kiosk app.
-        self._app_type: Optional[windows_kiosk_app_type.WindowsKioskAppType] = None
-        # Allow the app to be auto-launched in multi-app kiosk mode
-        self._auto_launch: Optional[bool] = None
-        # Represents the friendly name of an app
-        self._name: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The tile size of Windows app in the start layout.
-        self._start_layout_tile_size: Optional[windows_app_start_layout_tile_size.WindowsAppStartLayoutTileSize] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsKioskAppBase:
         """
@@ -89,6 +88,21 @@ class WindowsKioskAppBase(AdditionalDataHolder, Parsable):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.windowsKioskDesktopApp":
+                from . import windows_kiosk_desktop_app
+
+                return windows_kiosk_desktop_app.WindowsKioskDesktopApp()
+            if mapping_value == "#microsoft.graph.windowsKioskUWPApp":
+                from . import windows_kiosk_u_w_p_app
+
+                return windows_kiosk_u_w_p_app.WindowsKioskUWPApp()
+            if mapping_value == "#microsoft.graph.windowsKioskWin32App":
+                from . import windows_kiosk_win32_app
+
+                return windows_kiosk_win32_app.WindowsKioskWin32App()
         return WindowsKioskAppBase()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -96,7 +110,9 @@ class WindowsKioskAppBase(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import windows_app_start_layout_tile_size, windows_kiosk_app_type, windows_kiosk_desktop_app, windows_kiosk_u_w_p_app, windows_kiosk_win32_app
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appType": lambda n : setattr(self, 'app_type', n.get_enum_value(windows_kiosk_app_type.WindowsKioskAppType)),
             "autoLaunch": lambda n : setattr(self, 'auto_launch', n.get_bool_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),

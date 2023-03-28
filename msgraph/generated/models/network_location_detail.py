@@ -1,11 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-network_type = lazy_import('msgraph.generated.models.network_type')
+if TYPE_CHECKING:
+    from . import network_type
 
 class NetworkLocationDetail(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new networkLocationDetail and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Provides the name of the network used when signing in.
+        self._network_names: Optional[List[str]] = None
+        # Provides the type of network used when signing in. Possible values are: intranet, extranet, namedNetwork, trusted, unknownFutureValue.
+        self._network_type: Optional[network_type.NetworkType] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -22,20 +36,6 @@ class NetworkLocationDetail(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new networkLocationDetail and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Provides the name of the network used when signing in.
-        self._network_names: Optional[List[str]] = None
-        # Provides the type of network used when signing in. Possible values are: intranet, extranet, namedNetwork, trusted, unknownFutureValue.
-        self._network_type: Optional[network_type.NetworkType] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> NetworkLocationDetail:
@@ -54,7 +54,9 @@ class NetworkLocationDetail(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import network_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "networkNames": lambda n : setattr(self, 'network_names', n.get_collection_of_primitive_values(str)),
             "networkType": lambda n : setattr(self, 'network_type', n.get_enum_value(network_type.NetworkType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

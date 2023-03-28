@@ -1,29 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from .. import entity
+
+from .. import entity
 
 class CloudPcDevice(entity.Entity):
-    @property
-    def cloud_pc_status(self,) -> Optional[str]:
-        """
-        Gets the cloudPcStatus property value. The status of the cloud PC. Possible values are: notProvisioned, provisioning, provisioned, upgrading, inGracePeriod, deprovisioning, failed. Required. Read-only.
-        Returns: Optional[str]
-        """
-        return self._cloud_pc_status
-    
-    @cloud_pc_status.setter
-    def cloud_pc_status(self,value: Optional[str] = None) -> None:
-        """
-        Sets the cloudPcStatus property value. The status of the cloud PC. Possible values are: notProvisioned, provisioning, provisioned, upgrading, inGracePeriod, deprovisioning, failed. Required. Read-only.
-        Args:
-            value: Value to set for the cloud_pc_status property.
-        """
-        self._cloud_pc_status = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new cloudPcDevice and sets the default values.
@@ -55,6 +40,23 @@ class CloudPcDevice(entity.Entity):
         self._tenant_id: Optional[str] = None
         # The user principal name (UPN) of the user assigned to the cloud PC device. Required. Read-only.
         self._user_principal_name: Optional[str] = None
+    
+    @property
+    def cloud_pc_status(self,) -> Optional[str]:
+        """
+        Gets the cloudPcStatus property value. The status of the cloud PC. Possible values are: notProvisioned, provisioning, provisioned, upgrading, inGracePeriod, deprovisioning, failed. Required. Read-only.
+        Returns: Optional[str]
+        """
+        return self._cloud_pc_status
+    
+    @cloud_pc_status.setter
+    def cloud_pc_status(self,value: Optional[str] = None) -> None:
+        """
+        Sets the cloudPcStatus property value. The status of the cloud PC. Possible values are: notProvisioned, provisioning, provisioned, upgrading, inGracePeriod, deprovisioning, failed. Required. Read-only.
+        Args:
+            value: Value to set for the cloud_pc_status property.
+        """
+        self._cloud_pc_status = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcDevice:
@@ -107,7 +109,9 @@ class CloudPcDevice(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "cloudPcStatus": lambda n : setattr(self, 'cloud_pc_status', n.get_str_value()),
             "deviceSpecification": lambda n : setattr(self, 'device_specification', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

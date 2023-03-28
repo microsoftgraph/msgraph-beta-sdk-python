@@ -1,13 +1,30 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-windows_vpn_configuration = lazy_import('msgraph.generated.models.windows_vpn_configuration')
-windows_vpn_connection_type = lazy_import('msgraph.generated.models.windows_vpn_connection_type')
-windows81_vpn_proxy_server = lazy_import('msgraph.generated.models.windows81_vpn_proxy_server')
+if TYPE_CHECKING:
+    from . import windows81_vpn_proxy_server, windows_phone81_vpn_configuration, windows_vpn_configuration, windows_vpn_connection_type
+
+from . import windows_vpn_configuration
 
 class Windows81VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new Windows81VpnConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.windows81VpnConfiguration"
+        # Value indicating whether this policy only applies to Windows 8.1. This property is read-only.
+        self._apply_only_to_windows81: Optional[bool] = None
+        # Windows VPN connection type.
+        self._connection_type: Optional[windows_vpn_connection_type.WindowsVpnConnectionType] = None
+        # Enable split tunneling for the VPN.
+        self._enable_split_tunneling: Optional[bool] = None
+        # Login group or domain when connection type is set to Dell SonicWALL Mobile Connection.
+        self._login_group_or_domain: Optional[str] = None
+        # Proxy Server.
+        self._proxy_server: Optional[windows81_vpn_proxy_server.Windows81VpnProxyServer] = None
+    
     @property
     def apply_only_to_windows81(self,) -> Optional[bool]:
         """
@@ -42,23 +59,6 @@ class Windows81VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         self._connection_type = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Windows81VpnConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windows81VpnConfiguration"
-        # Value indicating whether this policy only applies to Windows 8.1. This property is read-only.
-        self._apply_only_to_windows81: Optional[bool] = None
-        # Windows VPN connection type.
-        self._connection_type: Optional[windows_vpn_connection_type.WindowsVpnConnectionType] = None
-        # Enable split tunneling for the VPN.
-        self._enable_split_tunneling: Optional[bool] = None
-        # Login group or domain when connection type is set to Dell SonicWALL Mobile Connection.
-        self._login_group_or_domain: Optional[str] = None
-        # Proxy Server.
-        self._proxy_server: Optional[windows81_vpn_proxy_server.Windows81VpnProxyServer] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows81VpnConfiguration:
         """
@@ -69,6 +69,13 @@ class Windows81VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.windowsPhone81VpnConfiguration":
+                from . import windows_phone81_vpn_configuration
+
+                return windows_phone81_vpn_configuration.WindowsPhone81VpnConfiguration()
         return Windows81VpnConfiguration()
     
     @property
@@ -93,7 +100,9 @@ class Windows81VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import windows81_vpn_proxy_server, windows_phone81_vpn_configuration, windows_vpn_configuration, windows_vpn_connection_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "applyOnlyToWindows81": lambda n : setattr(self, 'apply_only_to_windows81', n.get_bool_value()),
             "connectionType": lambda n : setattr(self, 'connection_type', n.get_enum_value(windows_vpn_connection_type.WindowsVpnConnectionType)),
             "enableSplitTunneling": lambda n : setattr(self, 'enable_split_tunneling', n.get_bool_value()),

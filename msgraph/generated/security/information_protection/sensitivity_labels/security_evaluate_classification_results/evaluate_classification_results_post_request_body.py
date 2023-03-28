@@ -1,12 +1,23 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-classification_result = lazy_import('msgraph.generated.models.security.classification_result')
-content_info = lazy_import('msgraph.generated.models.security.content_info')
+if TYPE_CHECKING:
+    from .....models.security import classification_result, content_info
 
 class EvaluateClassificationResultsPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new evaluateClassificationResultsPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The classificationResults property
+        self._classification_results: Optional[List[classification_result.ClassificationResult]] = None
+        # The contentInfo property
+        self._content_info: Optional[content_info.ContentInfo] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -40,18 +51,6 @@ class EvaluateClassificationResultsPostRequestBody(AdditionalDataHolder, Parsabl
             value: Value to set for the classification_results property.
         """
         self._classification_results = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new evaluateClassificationResultsPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The classificationResults property
-        self._classification_results: Optional[List[classification_result.ClassificationResult]] = None
-        # The contentInfo property
-        self._content_info: Optional[content_info.ContentInfo] = None
     
     @property
     def content_info(self,) -> Optional[content_info.ContentInfo]:
@@ -87,7 +86,9 @@ class EvaluateClassificationResultsPostRequestBody(AdditionalDataHolder, Parsabl
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .....models.security import classification_result, content_info
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "classificationResults": lambda n : setattr(self, 'classification_results', n.get_collection_of_object_values(classification_result.ClassificationResult)),
             "contentInfo": lambda n : setattr(self, 'content_info', n.get_object_value(content_info.ContentInfo)),
         }

@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-delivery_optimization_max_cache_size = lazy_import('msgraph.generated.models.delivery_optimization_max_cache_size')
+if TYPE_CHECKING:
+    from . import delivery_optimization_max_cache_size
+
+from . import delivery_optimization_max_cache_size
 
 class DeliveryOptimizationMaxCacheSizeAbsolute(delivery_optimization_max_cache_size.DeliveryOptimizationMaxCacheSize):
     def __init__(self,) -> None:
@@ -32,7 +34,9 @@ class DeliveryOptimizationMaxCacheSizeAbsolute(delivery_optimization_max_cache_s
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import delivery_optimization_max_cache_size
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "maximumCacheSizeInGigabytes": lambda n : setattr(self, 'maximum_cache_size_in_gigabytes', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()

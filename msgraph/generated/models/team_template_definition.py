@@ -1,15 +1,46 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-identity_set = lazy_import('msgraph.generated.models.identity_set')
-team = lazy_import('msgraph.generated.models.team')
-team_template_audience = lazy_import('msgraph.generated.models.team_template_audience')
+if TYPE_CHECKING:
+    from . import entity, identity_set, team, team_template_audience
+
+from . import entity
 
 class TeamTemplateDefinition(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new teamTemplateDefinition and sets the default values.
+        """
+        super().__init__()
+        # The audience property
+        self._audience: Optional[team_template_audience.TeamTemplateAudience] = None
+        # The categories property
+        self._categories: Optional[List[str]] = None
+        # The description property
+        self._description: Optional[str] = None
+        # The displayName property
+        self._display_name: Optional[str] = None
+        # The iconUrl property
+        self._icon_url: Optional[str] = None
+        # The languageTag property
+        self._language_tag: Optional[str] = None
+        # The lastModifiedBy property
+        self._last_modified_by: Optional[identity_set.IdentitySet] = None
+        # The lastModifiedDateTime property
+        self._last_modified_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The parentTemplateId property
+        self._parent_template_id: Optional[str] = None
+        # The publisherName property
+        self._publisher_name: Optional[str] = None
+        # The shortDescription property
+        self._short_description: Optional[str] = None
+        # The teamDefinition property
+        self._team_definition: Optional[team.Team] = None
+    
     @property
     def audience(self,) -> Optional[team_template_audience.TeamTemplateAudience]:
         """
@@ -43,38 +74,6 @@ class TeamTemplateDefinition(entity.Entity):
             value: Value to set for the categories property.
         """
         self._categories = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new teamTemplateDefinition and sets the default values.
-        """
-        super().__init__()
-        # The audience property
-        self._audience: Optional[team_template_audience.TeamTemplateAudience] = None
-        # The categories property
-        self._categories: Optional[List[str]] = None
-        # The description property
-        self._description: Optional[str] = None
-        # The displayName property
-        self._display_name: Optional[str] = None
-        # The iconUrl property
-        self._icon_url: Optional[str] = None
-        # The languageTag property
-        self._language_tag: Optional[str] = None
-        # The lastModifiedBy property
-        self._last_modified_by: Optional[identity_set.IdentitySet] = None
-        # The lastModifiedDateTime property
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The parentTemplateId property
-        self._parent_template_id: Optional[str] = None
-        # The publisherName property
-        self._publisher_name: Optional[str] = None
-        # The shortDescription property
-        self._short_description: Optional[str] = None
-        # The teamDefinition property
-        self._team_definition: Optional[team.Team] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeamTemplateDefinition:
@@ -127,7 +126,9 @@ class TeamTemplateDefinition(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, identity_set, team, team_template_audience
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "audience": lambda n : setattr(self, 'audience', n.get_enum_value(team_template_audience.TeamTemplateAudience)),
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_primitive_values(str)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

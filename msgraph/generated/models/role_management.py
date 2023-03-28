@@ -1,13 +1,31 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-rbac_application = lazy_import('msgraph.generated.models.rbac_application')
-rbac_application_multiple = lazy_import('msgraph.generated.models.rbac_application_multiple')
-unified_rbac_application = lazy_import('msgraph.generated.models.unified_rbac_application')
+if TYPE_CHECKING:
+    from . import rbac_application, rbac_application_multiple, unified_rbac_application
 
 class RoleManagement(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new RoleManagement and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The cloudPC property
+        self._cloud_p_c: Optional[rbac_application_multiple.RbacApplicationMultiple] = None
+        # The RbacApplication for Device Management
+        self._device_management: Optional[rbac_application_multiple.RbacApplicationMultiple] = None
+        # The directory property
+        self._directory: Optional[rbac_application.RbacApplication] = None
+        # The RbacApplication for Entitlement Management
+        self._entitlement_management: Optional[rbac_application.RbacApplication] = None
+        # The exchange property
+        self._exchange: Optional[unified_rbac_application.UnifiedRbacApplication] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -41,26 +59,6 @@ class RoleManagement(AdditionalDataHolder, Parsable):
             value: Value to set for the cloud_p_c property.
         """
         self._cloud_p_c = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new RoleManagement and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The cloudPC property
-        self._cloud_p_c: Optional[rbac_application_multiple.RbacApplicationMultiple] = None
-        # The RbacApplication for Device Management
-        self._device_management: Optional[rbac_application_multiple.RbacApplicationMultiple] = None
-        # The directory property
-        self._directory: Optional[rbac_application.RbacApplication] = None
-        # The RbacApplication for Entitlement Management
-        self._entitlement_management: Optional[rbac_application.RbacApplication] = None
-        # The exchange property
-        self._exchange: Optional[unified_rbac_application.UnifiedRbacApplication] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RoleManagement:
@@ -147,7 +145,9 @@ class RoleManagement(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import rbac_application, rbac_application_multiple, unified_rbac_application
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "cloudPC": lambda n : setattr(self, 'cloud_p_c', n.get_object_value(rbac_application_multiple.RbacApplicationMultiple)),
             "deviceManagement": lambda n : setattr(self, 'device_management', n.get_object_value(rbac_application_multiple.RbacApplicationMultiple)),
             "directory": lambda n : setattr(self, 'directory', n.get_object_value(rbac_application.RbacApplication)),

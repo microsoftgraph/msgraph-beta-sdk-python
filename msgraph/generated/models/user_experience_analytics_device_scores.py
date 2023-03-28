@@ -1,15 +1,42 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-user_experience_analytics_health_state = lazy_import('msgraph.generated.models.user_experience_analytics_health_state')
+if TYPE_CHECKING:
+    from . import entity, user_experience_analytics_health_state
+
+from . import entity
 
 class UserExperienceAnalyticsDeviceScores(entity.Entity):
     """
     The user experience analytics device scores entity consolidates the various endpoint analytics scores.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new userExperienceAnalyticsDeviceScores and sets the default values.
+        """
+        super().__init__()
+        # The user experience analytics device app reliability score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+        self._app_reliability_score: Optional[float] = None
+        # The user experience analytics device battery health score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+        self._battery_health_score: Optional[float] = None
+        # The user experience analytics device name.
+        self._device_name: Optional[str] = None
+        # The user experience analytics device score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+        self._endpoint_analytics_score: Optional[float] = None
+        # The healthStatus property
+        self._health_status: Optional[user_experience_analytics_health_state.UserExperienceAnalyticsHealthState] = None
+        # The user experience analytics device manufacturer.
+        self._manufacturer: Optional[str] = None
+        # The user experience analytics device model.
+        self._model: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The user experience analytics device startup performance score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+        self._startup_performance_score: Optional[float] = None
+        # The user experience analytics device work From anywhere score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+        self._work_from_anywhere_score: Optional[float] = None
+    
     @property
     def app_reliability_score(self,) -> Optional[float]:
         """
@@ -43,32 +70,6 @@ class UserExperienceAnalyticsDeviceScores(entity.Entity):
             value: Value to set for the battery_health_score property.
         """
         self._battery_health_score = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsDeviceScores and sets the default values.
-        """
-        super().__init__()
-        # The user experience analytics device app reliability score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._app_reliability_score: Optional[float] = None
-        # The user experience analytics device battery health score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._battery_health_score: Optional[float] = None
-        # The user experience analytics device name.
-        self._device_name: Optional[str] = None
-        # The user experience analytics device score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._endpoint_analytics_score: Optional[float] = None
-        # The healthStatus property
-        self._health_status: Optional[user_experience_analytics_health_state.UserExperienceAnalyticsHealthState] = None
-        # The user experience analytics device manufacturer.
-        self._manufacturer: Optional[str] = None
-        # The user experience analytics device model.
-        self._model: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The user experience analytics device startup performance score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._startup_performance_score: Optional[float] = None
-        # The user experience analytics device work From anywhere score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._work_from_anywhere_score: Optional[float] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsDeviceScores:
@@ -121,7 +122,9 @@ class UserExperienceAnalyticsDeviceScores(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, user_experience_analytics_health_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appReliabilityScore": lambda n : setattr(self, 'app_reliability_score', n.get_float_value()),
             "batteryHealthScore": lambda n : setattr(self, 'battery_health_score', n.get_float_value()),
             "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),

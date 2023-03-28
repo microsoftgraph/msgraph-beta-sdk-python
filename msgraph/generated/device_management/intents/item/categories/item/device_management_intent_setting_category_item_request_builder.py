@@ -7,25 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-settings_request_builder = lazy_import('msgraph.generated.device_management.intents.item.categories.item.settings.settings_request_builder')
-device_management_setting_instance_item_request_builder = lazy_import('msgraph.generated.device_management.intents.item.categories.item.settings.item.device_management_setting_instance_item_request_builder')
-device_management_intent_setting_category = lazy_import('msgraph.generated.models.device_management_intent_setting_category')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ......models import device_management_intent_setting_category
+    from ......models.o_data_errors import o_data_error
+    from .settings import settings_request_builder
+    from .settings.item import device_management_setting_instance_item_request_builder
 
 class DeviceManagementIntentSettingCategoryItemRequestBuilder():
     """
     Provides operations to manage the categories property of the microsoft.graph.deviceManagementIntent entity.
     """
-    @property
-    def settings(self) -> settings_request_builder.SettingsRequestBuilder:
-        """
-        Provides operations to manage the settings property of the microsoft.graph.deviceManagementIntentSettingCategory entity.
-        """
-        return settings_request_builder.SettingsRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new DeviceManagementIntentSettingCategoryItemRequestBuilder and sets the default values.
@@ -53,6 +46,8 @@ class DeviceManagementIntentSettingCategoryItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -71,12 +66,16 @@ class DeviceManagementIntentSettingCategoryItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import device_management_intent_setting_category
+
         return await self.request_adapter.send_async(request_info, device_management_intent_setting_category.DeviceManagementIntentSettingCategory, error_mapping)
     
     async def patch(self,body: Optional[device_management_intent_setting_category.DeviceManagementIntentSettingCategory] = None, request_configuration: Optional[DeviceManagementIntentSettingCategoryItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_management_intent_setting_category.DeviceManagementIntentSettingCategory]:
@@ -92,12 +91,16 @@ class DeviceManagementIntentSettingCategoryItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import device_management_intent_setting_category
+
         return await self.request_adapter.send_async(request_info, device_management_intent_setting_category.DeviceManagementIntentSettingCategory, error_mapping)
     
     def settings_by_id(self,id: str) -> device_management_setting_instance_item_request_builder.DeviceManagementSettingInstanceItemRequestBuilder:
@@ -109,6 +112,8 @@ class DeviceManagementIntentSettingCategoryItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .settings.item import device_management_setting_instance_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["deviceManagementSettingInstance%2Did"] = id
         return device_management_setting_instance_item_request_builder.DeviceManagementSettingInstanceItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -168,6 +173,15 @@ class DeviceManagementIntentSettingCategoryItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def settings(self) -> settings_request_builder.SettingsRequestBuilder:
+        """
+        Provides operations to manage the settings property of the microsoft.graph.deviceManagementIntentSettingCategory entity.
+        """
+        from .settings import settings_request_builder
+
+        return settings_request_builder.SettingsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class DeviceManagementIntentSettingCategoryItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -185,12 +199,6 @@ class DeviceManagementIntentSettingCategoryItemRequestBuilder():
         """
         Collection of setting categories within the intent
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -206,6 +214,12 @@ class DeviceManagementIntentSettingCategoryItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class DeviceManagementIntentSettingCategoryItemRequestBuilderGetRequestConfiguration():

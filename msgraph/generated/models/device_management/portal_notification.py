@@ -1,13 +1,37 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-alert_impact = lazy_import('msgraph.generated.models.device_management.alert_impact')
-alert_rule_template = lazy_import('msgraph.generated.models.device_management.alert_rule_template')
-rule_severity_type = lazy_import('msgraph.generated.models.device_management.rule_severity_type')
+if TYPE_CHECKING:
+    from . import alert_impact, alert_rule_template, rule_severity_type
 
 class PortalNotification(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new portalNotification and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The associated alert impact.
+        self._alert_impact: Optional[alert_impact.AlertImpact] = None
+        # The associated alert record ID.
+        self._alert_record_id: Optional[str] = None
+        # The associated alert rule ID.
+        self._alert_rule_id: Optional[str] = None
+        # The associated alert rule name.
+        self._alert_rule_name: Optional[str] = None
+        # The associated alert rule template. The possible values are: cloudPcProvisionScenario, cloudPcImageUploadScenario, cloudPcOnPremiseNetworkConnectionCheckScenario, unknownFutureValue.
+        self._alert_rule_template: Optional[alert_rule_template.AlertRuleTemplate] = None
+        # The unique identifier for the portal notification.
+        self._id: Optional[str] = None
+        # true if the portal notification has already been sent to the user; false otherwise.
+        self._is_portal_notification_sent: Optional[bool] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The associated alert rule severity. The possible values are: unknown, informational, warning, critical, unknownFutureValue.
+        self._severity: Optional[rule_severity_type.RuleSeverityType] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -110,32 +134,6 @@ class PortalNotification(AdditionalDataHolder, Parsable):
         """
         self._alert_rule_template = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new portalNotification and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The associated alert impact.
-        self._alert_impact: Optional[alert_impact.AlertImpact] = None
-        # The associated alert record ID.
-        self._alert_record_id: Optional[str] = None
-        # The associated alert rule ID.
-        self._alert_rule_id: Optional[str] = None
-        # The associated alert rule name.
-        self._alert_rule_name: Optional[str] = None
-        # The associated alert rule template. The possible values are: cloudPcProvisionScenario, cloudPcImageUploadScenario, cloudPcOnPremiseNetworkConnectionCheckScenario, unknownFutureValue.
-        self._alert_rule_template: Optional[alert_rule_template.AlertRuleTemplate] = None
-        # The unique identifier for the portal notification.
-        self._id: Optional[str] = None
-        # true if the portal notification has already been sent to the user; false otherwise.
-        self._is_portal_notification_sent: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The associated alert rule severity. The possible values are: unknown, informational, warning, critical, unknownFutureValue.
-        self._severity: Optional[rule_severity_type.RuleSeverityType] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PortalNotification:
         """
@@ -153,7 +151,9 @@ class PortalNotification(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import alert_impact, alert_rule_template, rule_severity_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "alertImpact": lambda n : setattr(self, 'alert_impact', n.get_object_value(alert_impact.AlertImpact)),
             "alertRecordId": lambda n : setattr(self, 'alert_record_id', n.get_str_value()),
             "alertRuleId": lambda n : setattr(self, 'alert_rule_id', n.get_str_value()),

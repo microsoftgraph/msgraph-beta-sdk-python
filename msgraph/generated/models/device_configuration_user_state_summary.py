@@ -1,11 +1,35 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class DeviceConfigurationUserStateSummary(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new deviceConfigurationUserStateSummary and sets the default values.
+        """
+        super().__init__()
+        # Number of compliant users
+        self._compliant_user_count: Optional[int] = None
+        # Number of conflict users
+        self._conflict_user_count: Optional[int] = None
+        # Number of error users
+        self._error_user_count: Optional[int] = None
+        # Number of NonCompliant users
+        self._non_compliant_user_count: Optional[int] = None
+        # Number of not applicable users
+        self._not_applicable_user_count: Optional[int] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Number of remediated users
+        self._remediated_user_count: Optional[int] = None
+        # Number of unknown users
+        self._unknown_user_count: Optional[int] = None
+    
     @property
     def compliant_user_count(self,) -> Optional[int]:
         """
@@ -39,28 +63,6 @@ class DeviceConfigurationUserStateSummary(entity.Entity):
             value: Value to set for the conflict_user_count property.
         """
         self._conflict_user_count = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceConfigurationUserStateSummary and sets the default values.
-        """
-        super().__init__()
-        # Number of compliant users
-        self._compliant_user_count: Optional[int] = None
-        # Number of conflict users
-        self._conflict_user_count: Optional[int] = None
-        # Number of error users
-        self._error_user_count: Optional[int] = None
-        # Number of NonCompliant users
-        self._non_compliant_user_count: Optional[int] = None
-        # Number of not applicable users
-        self._not_applicable_user_count: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Number of remediated users
-        self._remediated_user_count: Optional[int] = None
-        # Number of unknown users
-        self._unknown_user_count: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceConfigurationUserStateSummary:
@@ -96,7 +98,9 @@ class DeviceConfigurationUserStateSummary(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "compliantUserCount": lambda n : setattr(self, 'compliant_user_count', n.get_int_value()),
             "conflictUserCount": lambda n : setattr(self, 'conflict_user_count', n.get_int_value()),
             "errorUserCount": lambda n : setattr(self, 'error_user_count', n.get_int_value()),

@@ -1,10 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import driver_update_catalog_entry, feature_update_catalog_entry, quality_update_catalog_entry, software_update_catalog_entry
+    from .. import entity
+
+from .. import entity
 
 class CatalogEntry(entity.Entity):
     def __init__(self,) -> None:
@@ -31,6 +34,25 @@ class CatalogEntry(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.windowsUpdates.driverUpdateCatalogEntry":
+                from . import driver_update_catalog_entry
+
+                return driver_update_catalog_entry.DriverUpdateCatalogEntry()
+            if mapping_value == "#microsoft.graph.windowsUpdates.featureUpdateCatalogEntry":
+                from . import feature_update_catalog_entry
+
+                return feature_update_catalog_entry.FeatureUpdateCatalogEntry()
+            if mapping_value == "#microsoft.graph.windowsUpdates.qualityUpdateCatalogEntry":
+                from . import quality_update_catalog_entry
+
+                return quality_update_catalog_entry.QualityUpdateCatalogEntry()
+            if mapping_value == "#microsoft.graph.windowsUpdates.softwareUpdateCatalogEntry":
+                from . import software_update_catalog_entry
+
+                return software_update_catalog_entry.SoftwareUpdateCatalogEntry()
         return CatalogEntry()
     
     @property
@@ -72,7 +94,10 @@ class CatalogEntry(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import driver_update_catalog_entry, feature_update_catalog_entry, quality_update_catalog_entry, software_update_catalog_entry
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "deployableUntilDateTime": lambda n : setattr(self, 'deployable_until_date_time', n.get_datetime_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "releaseDateTime": lambda n : setattr(self, 'release_date_time', n.get_datetime_value()),

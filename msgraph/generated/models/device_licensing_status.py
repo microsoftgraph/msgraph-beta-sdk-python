@@ -14,9 +14,9 @@ class DeviceLicensingStatus(Enum):
     # This status is set when the Microsoft device identity verification fails.
     DeviceIdentityVerificationFailed = "deviceIdentityVerificationFailed",
     # This status is set when the Microsoft account identity is being verified.
-    VerifyingMirosoftAccountIdentity = "verifyingMirosoftAccountIdentity",
+    VerifyingMicrosoftAccountIdentity = "verifyingMicrosoftAccountIdentity",
     # This status is set when the Microsoft account identity verification fails.
-    MirosoftAccountVerificationFailed = "mirosoftAccountVerificationFailed",
+    MicrosoftAccountVerificationFailed = "microsoftAccountVerificationFailed",
     # This status is set when the device license is being acquired.
     AcquiringDeviceLicense = "acquiringDeviceLicense",
     # This status is set when the device license is being refreshed.

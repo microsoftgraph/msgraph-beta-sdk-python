@@ -1,31 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import dep_enrollment_base_profile, dep_enrollment_profile, dep_i_o_s_enrollment_profile, dep_mac_o_s_enrollment_profile, entity
+
+from . import entity
 
 class EnrollmentProfile(entity.Entity):
-    """
-    The enrollmentProfile resource represents a collection of configurations which must be provided pre-enrollment to enable enrolling certain devices whose identities have been pre-staged. Pre-staged device identities are assigned to this type of profile to apply the profile's configurations at enrollment of the corresponding device.
-    """
-    @property
-    def configuration_endpoint_url(self,) -> Optional[str]:
-        """
-        Gets the configurationEndpointUrl property value. Configuration endpoint url to use for Enrollment
-        Returns: Optional[str]
-        """
-        return self._configuration_endpoint_url
-    
-    @configuration_endpoint_url.setter
-    def configuration_endpoint_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the configurationEndpointUrl property value. Configuration endpoint url to use for Enrollment
-        Args:
-            value: Value to set for the configuration_endpoint_url property.
-        """
-        self._configuration_endpoint_url = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new enrollmentProfile and sets the default values.
@@ -46,6 +28,23 @@ class EnrollmentProfile(entity.Entity):
         # Indicates if the profile requires user authentication
         self._requires_user_authentication: Optional[bool] = None
     
+    @property
+    def configuration_endpoint_url(self,) -> Optional[str]:
+        """
+        Gets the configurationEndpointUrl property value. Configuration endpoint url to use for Enrollment
+        Returns: Optional[str]
+        """
+        return self._configuration_endpoint_url
+    
+    @configuration_endpoint_url.setter
+    def configuration_endpoint_url(self,value: Optional[str] = None) -> None:
+        """
+        Sets the configurationEndpointUrl property value. Configuration endpoint url to use for Enrollment
+        Args:
+            value: Value to set for the configuration_endpoint_url property.
+        """
+        self._configuration_endpoint_url = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EnrollmentProfile:
         """
@@ -56,6 +55,25 @@ class EnrollmentProfile(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.depEnrollmentBaseProfile":
+                from . import dep_enrollment_base_profile
+
+                return dep_enrollment_base_profile.DepEnrollmentBaseProfile()
+            if mapping_value == "#microsoft.graph.depEnrollmentProfile":
+                from . import dep_enrollment_profile
+
+                return dep_enrollment_profile.DepEnrollmentProfile()
+            if mapping_value == "#microsoft.graph.depIOSEnrollmentProfile":
+                from . import dep_i_o_s_enrollment_profile
+
+                return dep_i_o_s_enrollment_profile.DepIOSEnrollmentProfile()
+            if mapping_value == "#microsoft.graph.depMacOSEnrollmentProfile":
+                from . import dep_mac_o_s_enrollment_profile
+
+                return dep_mac_o_s_enrollment_profile.DepMacOSEnrollmentProfile()
         return EnrollmentProfile()
     
     @property
@@ -114,7 +132,9 @@ class EnrollmentProfile(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import dep_enrollment_base_profile, dep_enrollment_profile, dep_i_o_s_enrollment_profile, dep_mac_o_s_enrollment_profile, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "configurationEndpointUrl": lambda n : setattr(self, 'configuration_endpoint_url', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

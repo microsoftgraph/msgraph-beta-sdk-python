@@ -1,12 +1,28 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-submission_result_category = lazy_import('msgraph.generated.models.security.submission_result_category')
+if TYPE_CHECKING:
+    from . import submission_result_category
 
 class SubmissionAdminReview(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new submissionAdminReview and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Specifies who reviewed the email. The identification is an email ID or other identity strings.
+        self._review_by: Optional[str] = None
+        # Specifies the date time when the review occurred.
+        self._review_date_time: Optional[datetime] = None
+        # Specifies what the review result was. The possible values are: notJunk, spam, phishing, malware, allowedByPolicy, blockedByPolicy, spoof, unknown, noResultAvailable, and unknownFutureValue.
+        self._review_result: Optional[submission_result_category.SubmissionResultCategory] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,22 +39,6 @@ class SubmissionAdminReview(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new submissionAdminReview and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Specifies who reviewed the email. The identification is an email ID or other identity strings.
-        self._review_by: Optional[str] = None
-        # Specifies the date time when the review occurred.
-        self._review_date_time: Optional[datetime] = None
-        # Specifies what the review result was. The possible values are: notJunk, spam, phishing, malware, allowedByPolicy, blockedByPolicy, spoof, unknown, noResultAvailable, and unknownFutureValue.
-        self._review_result: Optional[submission_result_category.SubmissionResultCategory] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SubmissionAdminReview:
@@ -57,7 +57,9 @@ class SubmissionAdminReview(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import submission_result_category
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "reviewBy": lambda n : setattr(self, 'review_by', n.get_str_value()),
             "reviewDateTime": lambda n : setattr(self, 'review_date_time', n.get_datetime_value()),

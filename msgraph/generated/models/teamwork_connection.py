@@ -1,12 +1,26 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-teamwork_connection_status = lazy_import('msgraph.generated.models.teamwork_connection_status')
+if TYPE_CHECKING:
+    from . import teamwork_connection_status
 
 class TeamworkConnection(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new teamworkConnection and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Indicates whether a component/peripheral is connected/disconnected or its state is unknown. The possible values are: unknown, connected, disconnected, unknownFutureValue.
+        self._connection_status: Optional[teamwork_connection_status.TeamworkConnectionStatus] = None
+        # Time at which the state was last changed. For example, indicates connected since when the state is connected and disconnected since when the state is disconnected.
+        self._last_modified_date_time: Optional[datetime] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -41,20 +55,6 @@ class TeamworkConnection(AdditionalDataHolder, Parsable):
         """
         self._connection_status = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new teamworkConnection and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Indicates whether a component/peripheral is connected/disconnected or its state is unknown. The possible values are: unknown, connected, disconnected, unknownFutureValue.
-        self._connection_status: Optional[teamwork_connection_status.TeamworkConnectionStatus] = None
-        # Time at which the state was last changed. For example, indicates connected since when the state is connected and disconnected since when the state is disconnected.
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeamworkConnection:
         """
@@ -72,7 +72,9 @@ class TeamworkConnection(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import teamwork_connection_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "connectionStatus": lambda n : setattr(self, 'connection_status', n.get_enum_value(teamwork_connection_status.TeamworkConnectionStatus)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

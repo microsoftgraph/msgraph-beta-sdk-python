@@ -1,11 +1,21 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-windows_assigned_access_profile = lazy_import('msgraph.generated.models.windows_assigned_access_profile')
+if TYPE_CHECKING:
+    from .....models import windows_assigned_access_profile
 
 class AssignedAccessMultiModeProfilesPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new assignedAccessMultiModeProfilesPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The assignedAccessMultiModeProfiles property
+        self._assigned_access_multi_mode_profiles: Optional[List[windows_assigned_access_profile.WindowsAssignedAccessProfile]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -40,16 +50,6 @@ class AssignedAccessMultiModeProfilesPostRequestBody(AdditionalDataHolder, Parsa
         """
         self._assigned_access_multi_mode_profiles = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new assignedAccessMultiModeProfilesPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The assignedAccessMultiModeProfiles property
-        self._assigned_access_multi_mode_profiles: Optional[List[windows_assigned_access_profile.WindowsAssignedAccessProfile]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AssignedAccessMultiModeProfilesPostRequestBody:
         """
@@ -67,7 +67,9 @@ class AssignedAccessMultiModeProfilesPostRequestBody(AdditionalDataHolder, Parsa
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .....models import windows_assigned_access_profile
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignedAccessMultiModeProfiles": lambda n : setattr(self, 'assigned_access_multi_mode_profiles', n.get_collection_of_object_values(windows_assigned_access_profile.WindowsAssignedAccessProfile)),
         }
         return fields

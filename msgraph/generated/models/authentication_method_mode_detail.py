@@ -1,12 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-base_authentication_method = lazy_import('msgraph.generated.models.base_authentication_method')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import base_authentication_method, entity
+
+from . import entity
 
 class AuthenticationMethodModeDetail(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new AuthenticationMethodModeDetail and sets the default values.
+        """
+        super().__init__()
+        # The authenticationMethod property
+        self._authentication_method: Optional[base_authentication_method.BaseAuthenticationMethod] = None
+        # The display name of this mode
+        self._display_name: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def authentication_method(self,) -> Optional[base_authentication_method.BaseAuthenticationMethod]:
         """
@@ -23,18 +36,6 @@ class AuthenticationMethodModeDetail(entity.Entity):
             value: Value to set for the authentication_method property.
         """
         self._authentication_method = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AuthenticationMethodModeDetail and sets the default values.
-        """
-        super().__init__()
-        # The authenticationMethod property
-        self._authentication_method: Optional[base_authentication_method.BaseAuthenticationMethod] = None
-        # The display name of this mode
-        self._display_name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AuthenticationMethodModeDetail:
@@ -70,7 +71,9 @@ class AuthenticationMethodModeDetail(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import base_authentication_method, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(base_authentication_method.BaseAuthenticationMethod)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
         }

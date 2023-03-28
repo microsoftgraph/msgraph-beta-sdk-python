@@ -1,12 +1,12 @@
 from __future__ import annotations
 from datetime import time
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-microsoft_tunnel_configuration = lazy_import('msgraph.generated.models.microsoft_tunnel_configuration')
-microsoft_tunnel_server = lazy_import('msgraph.generated.models.microsoft_tunnel_server')
+if TYPE_CHECKING:
+    from . import entity, microsoft_tunnel_configuration, microsoft_tunnel_server
+
+from . import entity
 
 class MicrosoftTunnelSite(entity.Entity):
     """
@@ -95,7 +95,9 @@ class MicrosoftTunnelSite(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, microsoft_tunnel_configuration, microsoft_tunnel_server
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "internalNetworkProbeUrl": lambda n : setattr(self, 'internal_network_probe_url', n.get_str_value()),

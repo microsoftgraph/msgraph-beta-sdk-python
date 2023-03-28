@@ -1,30 +1,14 @@
 from __future__ import annotations
 from datetime import date, datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-postal_address_type = lazy_import('msgraph.generated.models.postal_address_type')
+if TYPE_CHECKING:
+    from . import entity, postal_address_type
+
+from . import entity
 
 class CompanyInformation(entity.Entity):
-    @property
-    def address(self,) -> Optional[postal_address_type.PostalAddressType]:
-        """
-        Gets the address property value. The address property
-        Returns: Optional[postal_address_type.PostalAddressType]
-        """
-        return self._address
-    
-    @address.setter
-    def address(self,value: Optional[postal_address_type.PostalAddressType] = None) -> None:
-        """
-        Sets the address property value. The address property
-        Args:
-            value: Value to set for the address property.
-        """
-        self._address = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new companyInformation and sets the default values.
@@ -56,6 +40,23 @@ class CompanyInformation(entity.Entity):
         self._tax_registration_number: Optional[str] = None
         # The website property
         self._website: Optional[str] = None
+    
+    @property
+    def address(self,) -> Optional[postal_address_type.PostalAddressType]:
+        """
+        Gets the address property value. The address property
+        Returns: Optional[postal_address_type.PostalAddressType]
+        """
+        return self._address
+    
+    @address.setter
+    def address(self,value: Optional[postal_address_type.PostalAddressType] = None) -> None:
+        """
+        Sets the address property value. The address property
+        Args:
+            value: Value to set for the address property.
+        """
+        self._address = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CompanyInformation:
@@ -159,7 +160,9 @@ class CompanyInformation(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, postal_address_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "address": lambda n : setattr(self, 'address', n.get_object_value(postal_address_type.PostalAddressType)),
             "currencyCode": lambda n : setattr(self, 'currency_code', n.get_str_value()),
             "currentFiscalYearStartDate": lambda n : setattr(self, 'current_fiscal_year_start_date', n.get_object_value(Date)),

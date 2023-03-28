@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-detected_sensitive_content_base = lazy_import('msgraph.generated.models.detected_sensitive_content_base')
-sensitive_content_location = lazy_import('msgraph.generated.models.sensitive_content_location')
+if TYPE_CHECKING:
+    from . import detected_sensitive_content_base, sensitive_content_location
+
+from . import detected_sensitive_content_base
 
 class ExactMatchDetectedSensitiveContent(detected_sensitive_content_base.DetectedSensitiveContentBase):
     def __init__(self,) -> None:
@@ -34,7 +35,9 @@ class ExactMatchDetectedSensitiveContent(detected_sensitive_content_base.Detecte
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import detected_sensitive_content_base, sensitive_content_location
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "matches": lambda n : setattr(self, 'matches', n.get_collection_of_object_values(sensitive_content_location.SensitiveContentLocation)),
         }
         super_fields = super().get_field_deserializers()

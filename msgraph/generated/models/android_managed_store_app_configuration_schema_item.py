@@ -1,32 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_managed_store_app_configuration_schema_item_data_type = lazy_import('msgraph.generated.models.android_managed_store_app_configuration_schema_item_data_type')
-key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
+if TYPE_CHECKING:
+    from . import android_managed_store_app_configuration_schema_item_data_type, key_value_pair
 
 class AndroidManagedStoreAppConfigurationSchemaItem(AdditionalDataHolder, Parsable):
     """
     Single configuration item inside an Android application's custom configuration schema.
     """
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new androidManagedStoreAppConfigurationSchemaItem and sets the default values.
@@ -58,6 +40,23 @@ class AndroidManagedStoreAppConfigurationSchemaItem(AdditionalDataHolder, Parsab
         self._schema_item_key: Optional[str] = None
         # List of human readable name/value pairs for the valid values that can be set for this item (Choice and Multiselect items only)
         self._selections: Optional[List[key_value_pair.KeyValuePair]] = None
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidManagedStoreAppConfigurationSchemaItem:
@@ -195,7 +194,9 @@ class AndroidManagedStoreAppConfigurationSchemaItem(AdditionalDataHolder, Parsab
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_managed_store_app_configuration_schema_item_data_type, key_value_pair
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "dataType": lambda n : setattr(self, 'data_type', n.get_enum_value(android_managed_store_app_configuration_schema_item_data_type.AndroidManagedStoreAppConfigurationSchemaItemDataType)),
             "defaultBoolValue": lambda n : setattr(self, 'default_bool_value', n.get_bool_value()),
             "defaultIntValue": lambda n : setattr(self, 'default_int_value', n.get_int_value()),

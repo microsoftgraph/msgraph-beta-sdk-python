@@ -1,11 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_configuration_integer_setting_value_default_template = lazy_import('msgraph.generated.models.device_management_configuration_integer_setting_value_default_template')
-device_management_configuration_integer_setting_value_definition_template = lazy_import('msgraph.generated.models.device_management_configuration_integer_setting_value_definition_template')
-device_management_configuration_simple_setting_value_template = lazy_import('msgraph.generated.models.device_management_configuration_simple_setting_value_template')
+if TYPE_CHECKING:
+    from . import device_management_configuration_integer_setting_value_default_template, device_management_configuration_integer_setting_value_definition_template, device_management_configuration_simple_setting_value_template
+
+from . import device_management_configuration_simple_setting_value_template
 
 class DeviceManagementConfigurationIntegerSettingValueTemplate(device_management_configuration_simple_setting_value_template.DeviceManagementConfigurationSimpleSettingValueTemplate):
     def __init__(self,) -> None:
@@ -55,7 +55,9 @@ class DeviceManagementConfigurationIntegerSettingValueTemplate(device_management
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_configuration_integer_setting_value_default_template, device_management_configuration_integer_setting_value_definition_template, device_management_configuration_simple_setting_value_template
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "defaultValue": lambda n : setattr(self, 'default_value', n.get_object_value(device_management_configuration_integer_setting_value_default_template.DeviceManagementConfigurationIntegerSettingValueDefaultTemplate)),
             "recommendedValueDefinition": lambda n : setattr(self, 'recommended_value_definition', n.get_object_value(device_management_configuration_integer_setting_value_definition_template.DeviceManagementConfigurationIntegerSettingValueDefinitionTemplate)),
             "requiredValueDefinition": lambda n : setattr(self, 'required_value_definition', n.get_object_value(device_management_configuration_integer_setting_value_definition_template.DeviceManagementConfigurationIntegerSettingValueDefinitionTemplate)),

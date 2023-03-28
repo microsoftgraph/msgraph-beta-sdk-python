@@ -1,11 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_certificate_profile_base = lazy_import('msgraph.generated.models.android_certificate_profile_base')
-intended_purpose = lazy_import('msgraph.generated.models.intended_purpose')
-managed_device_certificate_state = lazy_import('msgraph.generated.models.managed_device_certificate_state')
+if TYPE_CHECKING:
+    from . import android_certificate_profile_base, intended_purpose, managed_device_certificate_state
+
+from . import android_certificate_profile_base
 
 class AndroidImportedPFXCertificateProfile(android_certificate_profile_base.AndroidCertificateProfileBase):
     def __init__(self,) -> None:
@@ -36,7 +36,9 @@ class AndroidImportedPFXCertificateProfile(android_certificate_profile_base.Andr
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_certificate_profile_base, intended_purpose, managed_device_certificate_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "intendedPurpose": lambda n : setattr(self, 'intended_purpose', n.get_enum_value(intended_purpose.IntendedPurpose)),
             "managedDeviceCertificateStates": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(managed_device_certificate_state.ManagedDeviceCertificateState)),
         }

@@ -1,14 +1,31 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-submission_detected_file = lazy_import('msgraph.generated.models.security.submission_detected_file')
-submission_result_category = lazy_import('msgraph.generated.models.security.submission_result_category')
-submission_result_detail = lazy_import('msgraph.generated.models.security.submission_result_detail')
-user_mailbox_setting = lazy_import('msgraph.generated.models.security.user_mailbox_setting')
+if TYPE_CHECKING:
+    from . import submission_detected_file, submission_result_category, submission_result_detail, user_mailbox_setting
 
 class SubmissionResult(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new submissionResult and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The submission result category. The possible values are: notJunk, spam, phishing, malware, allowedByPolicy, blockedByPolicy, spoof, unknown, noResultAvailable and unkownFutureValue.
+        self._category: Optional[submission_result_category.SubmissionResultCategory] = None
+        # Specifies the additional details provided by Microsoft to substantiate their analysis result.
+        self._detail: Optional[submission_result_detail.SubmissionResultDetail] = None
+        # Specifies the files detected by Microsoft in the submitted emails.
+        self._detected_files: Optional[List[submission_detected_file.SubmissionDetectedFile]] = None
+        # Specifes the URLs detected by Microsoft in the submitted email.
+        self._detected_urls: Optional[List[str]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Specifies the setting for user mailbox denoted by a comma-separated string.
+        self._user_mailbox_setting: Optional[user_mailbox_setting.UserMailboxSetting] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -42,26 +59,6 @@ class SubmissionResult(AdditionalDataHolder, Parsable):
             value: Value to set for the category property.
         """
         self._category = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new submissionResult and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The submission result category. The possible values are: notJunk, spam, phishing, malware, allowedByPolicy, blockedByPolicy, spoof, unknown, noResultAvailable and unkownFutureValue.
-        self._category: Optional[submission_result_category.SubmissionResultCategory] = None
-        # Specifies the additional details provided by Microsoft to substantiate their analysis result.
-        self._detail: Optional[submission_result_detail.SubmissionResultDetail] = None
-        # Specifies the files detected by Microsoft in the submitted emails.
-        self._detected_files: Optional[List[submission_detected_file.SubmissionDetectedFile]] = None
-        # Specifes the URLs detected by Microsoft in the submitted email.
-        self._detected_urls: Optional[List[str]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Specifies the setting for user mailbox denoted by a comma-separated string.
-        self._user_mailbox_setting: Optional[user_mailbox_setting.UserMailboxSetting] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SubmissionResult:
@@ -131,7 +128,9 @@ class SubmissionResult(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import submission_detected_file, submission_result_category, submission_result_detail, user_mailbox_setting
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "category": lambda n : setattr(self, 'category', n.get_enum_value(submission_result_category.SubmissionResultCategory)),
             "detail": lambda n : setattr(self, 'detail', n.get_enum_value(submission_result_detail.SubmissionResultDetail)),
             "detectedFiles": lambda n : setattr(self, 'detected_files', n.get_collection_of_object_values(submission_detected_file.SubmissionDetectedFile)),

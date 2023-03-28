@@ -1,12 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-unified_rbac_resource_namespace = lazy_import('msgraph.generated.models.unified_rbac_resource_namespace')
-unified_role_assignment = lazy_import('msgraph.generated.models.unified_role_assignment')
-unified_role_definition = lazy_import('msgraph.generated.models.unified_role_definition')
+if TYPE_CHECKING:
+    from . import entity, unified_rbac_resource_namespace, unified_role_assignment, unified_role_definition
+
+from . import entity
 
 class UnifiedRbacApplication(entity.Entity):
     def __init__(self,) -> None:
@@ -42,7 +41,9 @@ class UnifiedRbacApplication(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, unified_rbac_resource_namespace, unified_role_assignment, unified_role_definition
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "resourceNamespaces": lambda n : setattr(self, 'resource_namespaces', n.get_collection_of_object_values(unified_rbac_resource_namespace.UnifiedRbacResourceNamespace)),
             "roleAssignments": lambda n : setattr(self, 'role_assignments', n.get_collection_of_object_values(unified_role_assignment.UnifiedRoleAssignment)),
             "roleDefinitions": lambda n : setattr(self, 'role_definitions', n.get_collection_of_object_values(unified_role_definition.UnifiedRoleDefinition)),

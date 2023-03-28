@@ -1,16 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-classification_error = lazy_import('msgraph.generated.models.classification_error')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import classification_error, classification_job_response, dlp_evaluate_policies_job_response, entity, evaluate_label_job_response
+
+from . import entity
 
 class JobResponseBase(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new jobResponseBase and sets the default values.
+        Instantiates a new JobResponseBase and sets the default values.
         """
         super().__init__()
         # The creationDateTime property
@@ -29,6 +30,8 @@ class JobResponseBase(entity.Entity):
         self._tenant_id: Optional[str] = None
         # The type property
         self._type: Optional[str] = None
+        # The userId property
+        self._user_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> JobResponseBase:
@@ -40,6 +43,21 @@ class JobResponseBase(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.classificationJobResponse":
+                from . import classification_job_response
+
+                return classification_job_response.ClassificationJobResponse()
+            if mapping_value == "#microsoft.graph.dlpEvaluatePoliciesJobResponse":
+                from . import dlp_evaluate_policies_job_response
+
+                return dlp_evaluate_policies_job_response.DlpEvaluatePoliciesJobResponse()
+            if mapping_value == "#microsoft.graph.evaluateLabelJobResponse":
+                from . import evaluate_label_job_response
+
+                return evaluate_label_job_response.EvaluateLabelJobResponse()
         return JobResponseBase()
     
     @property
@@ -98,7 +116,9 @@ class JobResponseBase(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import classification_error, classification_job_response, dlp_evaluate_policies_job_response, entity, evaluate_label_job_response
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "creationDateTime": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
             "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
             "error": lambda n : setattr(self, 'error', n.get_object_value(classification_error.ClassificationError)),
@@ -106,6 +126,7 @@ class JobResponseBase(entity.Entity):
             "status": lambda n : setattr(self, 'status', n.get_str_value()),
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -127,6 +148,7 @@ class JobResponseBase(entity.Entity):
         writer.write_str_value("status", self.status)
         writer.write_str_value("tenantId", self.tenant_id)
         writer.write_str_value("type", self.type)
+        writer.write_str_value("userId", self.user_id)
     
     @property
     def start_date_time(self,) -> Optional[datetime]:
@@ -195,5 +217,22 @@ class JobResponseBase(entity.Entity):
             value: Value to set for the type property.
         """
         self._type = value
+    
+    @property
+    def user_id(self,) -> Optional[str]:
+        """
+        Gets the userId property value. The userId property
+        Returns: Optional[str]
+        """
+        return self._user_id
+    
+    @user_id.setter
+    def user_id(self,value: Optional[str] = None) -> None:
+        """
+        Sets the userId property value. The userId property
+        Args:
+            value: Value to set for the user_id property.
+        """
+        self._user_id = value
     
 

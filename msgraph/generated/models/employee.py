@@ -1,48 +1,14 @@
 from __future__ import annotations
 from datetime import date, datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-picture = lazy_import('msgraph.generated.models.picture')
-postal_address_type = lazy_import('msgraph.generated.models.postal_address_type')
+if TYPE_CHECKING:
+    from . import entity, picture, postal_address_type
+
+from . import entity
 
 class Employee(entity.Entity):
-    @property
-    def address(self,) -> Optional[postal_address_type.PostalAddressType]:
-        """
-        Gets the address property value. The address property
-        Returns: Optional[postal_address_type.PostalAddressType]
-        """
-        return self._address
-    
-    @address.setter
-    def address(self,value: Optional[postal_address_type.PostalAddressType] = None) -> None:
-        """
-        Sets the address property value. The address property
-        Args:
-            value: Value to set for the address property.
-        """
-        self._address = value
-    
-    @property
-    def birth_date(self,) -> Optional[Date]:
-        """
-        Gets the birthDate property value. The birthDate property
-        Returns: Optional[Date]
-        """
-        return self._birth_date
-    
-    @birth_date.setter
-    def birth_date(self,value: Optional[Date] = None) -> None:
-        """
-        Sets the birthDate property value. The birthDate property
-        Args:
-            value: Value to set for the birth_date property.
-        """
-        self._birth_date = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new employee and sets the default values.
@@ -86,6 +52,40 @@ class Employee(entity.Entity):
         self._surname: Optional[str] = None
         # The terminationDate property
         self._termination_date: Optional[Date] = None
+    
+    @property
+    def address(self,) -> Optional[postal_address_type.PostalAddressType]:
+        """
+        Gets the address property value. The address property
+        Returns: Optional[postal_address_type.PostalAddressType]
+        """
+        return self._address
+    
+    @address.setter
+    def address(self,value: Optional[postal_address_type.PostalAddressType] = None) -> None:
+        """
+        Sets the address property value. The address property
+        Args:
+            value: Value to set for the address property.
+        """
+        self._address = value
+    
+    @property
+    def birth_date(self,) -> Optional[Date]:
+        """
+        Gets the birthDate property value. The birthDate property
+        Returns: Optional[Date]
+        """
+        return self._birth_date
+    
+    @birth_date.setter
+    def birth_date(self,value: Optional[Date] = None) -> None:
+        """
+        Sets the birthDate property value. The birthDate property
+        Args:
+            value: Value to set for the birth_date property.
+        """
+        self._birth_date = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Employee:
@@ -155,7 +155,9 @@ class Employee(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, picture, postal_address_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "address": lambda n : setattr(self, 'address', n.get_object_value(postal_address_type.PostalAddressType)),
             "birthDate": lambda n : setattr(self, 'birth_date', n.get_object_value(Date)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

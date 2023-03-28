@@ -1,33 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-day_of_week = lazy_import('msgraph.generated.models.day_of_week')
-windows10_apps_update_recurrence = lazy_import('msgraph.generated.models.windows10_apps_update_recurrence')
+if TYPE_CHECKING:
+    from . import day_of_week, windows10_apps_update_recurrence
 
 class WindowsKioskForceUpdateSchedule(AdditionalDataHolder, Parsable):
     """
     Windows 10 force update schedule for Kiosk devices.
     """
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new windowsKioskForceUpdateSchedule and sets the default values.
@@ -47,6 +29,23 @@ class WindowsKioskForceUpdateSchedule(AdditionalDataHolder, Parsable):
         self._run_immediately_if_after_start_date_time: Optional[bool] = None
         # The start time for the force restart.
         self._start_date_time: Optional[datetime] = None
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsKioskForceUpdateSchedule:
@@ -99,7 +98,9 @@ class WindowsKioskForceUpdateSchedule(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import day_of_week, windows10_apps_update_recurrence
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "dayofMonth": lambda n : setattr(self, 'dayof_month', n.get_int_value()),
             "dayofWeek": lambda n : setattr(self, 'dayof_week', n.get_enum_value(day_of_week.DayOfWeek)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

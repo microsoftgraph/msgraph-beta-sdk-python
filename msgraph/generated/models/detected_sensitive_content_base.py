@@ -1,9 +1,31 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+
+if TYPE_CHECKING:
+    from . import detected_sensitive_content, exact_match_detected_sensitive_content, machine_learning_detected_sensitive_content
 
 class DetectedSensitiveContentBase(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new detectedSensitiveContentBase and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The confidence property
+        self._confidence: Optional[int] = None
+        # The displayName property
+        self._display_name: Optional[str] = None
+        # The id property
+        self._id: Optional[Guid] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The recommendedConfidence property
+        self._recommended_confidence: Optional[int] = None
+        # The uniqueCount property
+        self._unique_count: Optional[int] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -38,26 +60,6 @@ class DetectedSensitiveContentBase(AdditionalDataHolder, Parsable):
         """
         self._confidence = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new detectedSensitiveContentBase and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The confidence property
-        self._confidence: Optional[int] = None
-        # The displayName property
-        self._display_name: Optional[str] = None
-        # The id property
-        self._id: Optional[Guid] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The recommendedConfidence property
-        self._recommended_confidence: Optional[int] = None
-        # The uniqueCount property
-        self._unique_count: Optional[int] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DetectedSensitiveContentBase:
         """
@@ -68,6 +70,21 @@ class DetectedSensitiveContentBase(AdditionalDataHolder, Parsable):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.detectedSensitiveContent":
+                from . import detected_sensitive_content
+
+                return detected_sensitive_content.DetectedSensitiveContent()
+            if mapping_value == "#microsoft.graph.exactMatchDetectedSensitiveContent":
+                from . import exact_match_detected_sensitive_content
+
+                return exact_match_detected_sensitive_content.ExactMatchDetectedSensitiveContent()
+            if mapping_value == "#microsoft.graph.machineLearningDetectedSensitiveContent":
+                from . import machine_learning_detected_sensitive_content
+
+                return machine_learning_detected_sensitive_content.MachineLearningDetectedSensitiveContent()
         return DetectedSensitiveContentBase()
     
     @property
@@ -92,7 +109,9 @@ class DetectedSensitiveContentBase(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import detected_sensitive_content, exact_match_detected_sensitive_content, machine_learning_detected_sensitive_content
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "confidence": lambda n : setattr(self, 'confidence', n.get_int_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_object_value(Guid)),

@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_configuration_setting_instance = lazy_import('msgraph.generated.models.device_management_configuration_setting_instance')
-device_management_configuration_simple_setting_value = lazy_import('msgraph.generated.models.device_management_configuration_simple_setting_value')
+if TYPE_CHECKING:
+    from . import device_management_configuration_setting_instance, device_management_configuration_simple_setting_value
+
+from . import device_management_configuration_setting_instance
 
 class DeviceManagementConfigurationSimpleSettingCollectionInstance(device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance):
     def __init__(self,) -> None:
@@ -33,7 +34,9 @@ class DeviceManagementConfigurationSimpleSettingCollectionInstance(device_manage
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_configuration_setting_instance, device_management_configuration_simple_setting_value
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "simpleSettingCollectionValue": lambda n : setattr(self, 'simple_setting_collection_value', n.get_collection_of_object_values(device_management_configuration_simple_setting_value.DeviceManagementConfigurationSimpleSettingValue)),
         }
         super_fields = super().get_field_deserializers()

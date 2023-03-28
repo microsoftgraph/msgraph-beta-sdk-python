@@ -1,30 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-access_package_answer = lazy_import('msgraph.generated.models.access_package_answer')
-access_package_question = lazy_import('msgraph.generated.models.access_package_question')
-request_schedule = lazy_import('msgraph.generated.models.request_schedule')
+if TYPE_CHECKING:
+    from . import access_package_answer, access_package_question, request_schedule
 
 class AccessPackageAssignmentRequestRequirements(AdditionalDataHolder, Parsable):
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new accessPackageAssignmentRequestRequirements and sets the default values.
@@ -54,6 +35,23 @@ class AccessPackageAssignmentRequestRequirements(AdditionalDataHolder, Parsable)
         self._questions: Optional[List[access_package_question.AccessPackageQuestion]] = None
         # Schedule restrictions enforced, if any.
         self._schedule: Optional[request_schedule.RequestSchedule] = None
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccessPackageAssignmentRequestRequirements:
@@ -89,7 +87,9 @@ class AccessPackageAssignmentRequestRequirements(AdditionalDataHolder, Parsable)
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import access_package_answer, access_package_question, request_schedule
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "existingAnswers": lambda n : setattr(self, 'existing_answers', n.get_collection_of_object_values(access_package_answer.AccessPackageAnswer)),
             "isApprovalRequired": lambda n : setattr(self, 'is_approval_required', n.get_bool_value()),
             "isApprovalRequiredForExtension": lambda n : setattr(self, 'is_approval_required_for_extension', n.get_bool_value()),

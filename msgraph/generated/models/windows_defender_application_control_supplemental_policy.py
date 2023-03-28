@@ -1,32 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-windows_defender_application_control_supplemental_policy_assignment = lazy_import('msgraph.generated.models.windows_defender_application_control_supplemental_policy_assignment')
-windows_defender_application_control_supplemental_policy_deployment_status = lazy_import('msgraph.generated.models.windows_defender_application_control_supplemental_policy_deployment_status')
-windows_defender_application_control_supplemental_policy_deployment_summary = lazy_import('msgraph.generated.models.windows_defender_application_control_supplemental_policy_deployment_summary')
+if TYPE_CHECKING:
+    from . import entity, windows_defender_application_control_supplemental_policy_assignment, windows_defender_application_control_supplemental_policy_deployment_status, windows_defender_application_control_supplemental_policy_deployment_summary
+
+from . import entity
 
 class WindowsDefenderApplicationControlSupplementalPolicy(entity.Entity):
-    @property
-    def assignments(self,) -> Optional[List[windows_defender_application_control_supplemental_policy_assignment.WindowsDefenderApplicationControlSupplementalPolicyAssignment]]:
-        """
-        Gets the assignments property value. The associated group assignments for this WindowsDefenderApplicationControl supplemental policy.
-        Returns: Optional[List[windows_defender_application_control_supplemental_policy_assignment.WindowsDefenderApplicationControlSupplementalPolicyAssignment]]
-        """
-        return self._assignments
-    
-    @assignments.setter
-    def assignments(self,value: Optional[List[windows_defender_application_control_supplemental_policy_assignment.WindowsDefenderApplicationControlSupplementalPolicyAssignment]] = None) -> None:
-        """
-        Sets the assignments property value. The associated group assignments for this WindowsDefenderApplicationControl supplemental policy.
-        Args:
-            value: Value to set for the assignments property.
-        """
-        self._assignments = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new windowsDefenderApplicationControlSupplementalPolicy and sets the default values.
@@ -56,6 +38,23 @@ class WindowsDefenderApplicationControlSupplementalPolicy(entity.Entity):
         self._role_scope_tag_ids: Optional[List[str]] = None
         # The WindowsDefenderApplicationControl supplemental policy's version.
         self._version: Optional[str] = None
+    
+    @property
+    def assignments(self,) -> Optional[List[windows_defender_application_control_supplemental_policy_assignment.WindowsDefenderApplicationControlSupplementalPolicyAssignment]]:
+        """
+        Gets the assignments property value. The associated group assignments for this WindowsDefenderApplicationControl supplemental policy.
+        Returns: Optional[List[windows_defender_application_control_supplemental_policy_assignment.WindowsDefenderApplicationControlSupplementalPolicyAssignment]]
+        """
+        return self._assignments
+    
+    @assignments.setter
+    def assignments(self,value: Optional[List[windows_defender_application_control_supplemental_policy_assignment.WindowsDefenderApplicationControlSupplementalPolicyAssignment]] = None) -> None:
+        """
+        Sets the assignments property value. The associated group assignments for this WindowsDefenderApplicationControl supplemental policy.
+        Args:
+            value: Value to set for the assignments property.
+        """
+        self._assignments = value
     
     @property
     def content(self,) -> Optional[bytes]:
@@ -193,7 +192,9 @@ class WindowsDefenderApplicationControlSupplementalPolicy(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, windows_defender_application_control_supplemental_policy_assignment, windows_defender_application_control_supplemental_policy_deployment_status, windows_defender_application_control_supplemental_policy_deployment_summary
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(windows_defender_application_control_supplemental_policy_assignment.WindowsDefenderApplicationControlSupplementalPolicyAssignment)),
             "content": lambda n : setattr(self, 'content', n.get_bytes_value()),
             "contentFileName": lambda n : setattr(self, 'content_file_name', n.get_str_value()),

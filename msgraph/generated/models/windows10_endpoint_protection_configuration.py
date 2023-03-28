@@ -1,459 +1,14 @@
 from __future__ import annotations
 from datetime import time
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-app_locker_application_control_type = lazy_import('msgraph.generated.models.app_locker_application_control_type')
-application_guard_block_clipboard_sharing_type = lazy_import('msgraph.generated.models.application_guard_block_clipboard_sharing_type')
-application_guard_block_file_transfer_type = lazy_import('msgraph.generated.models.application_guard_block_file_transfer_type')
-application_guard_enabled_options = lazy_import('msgraph.generated.models.application_guard_enabled_options')
-bit_locker_fixed_drive_policy = lazy_import('msgraph.generated.models.bit_locker_fixed_drive_policy')
-bit_locker_recovery_password_rotation_type = lazy_import('msgraph.generated.models.bit_locker_recovery_password_rotation_type')
-bit_locker_removable_drive_policy = lazy_import('msgraph.generated.models.bit_locker_removable_drive_policy')
-bit_locker_system_drive_policy = lazy_import('msgraph.generated.models.bit_locker_system_drive_policy')
-defender_attack_surface_type = lazy_import('msgraph.generated.models.defender_attack_surface_type')
-defender_cloud_block_level_type = lazy_import('msgraph.generated.models.defender_cloud_block_level_type')
-defender_detected_malware_actions = lazy_import('msgraph.generated.models.defender_detected_malware_actions')
-defender_protection_type = lazy_import('msgraph.generated.models.defender_protection_type')
-defender_realtime_scan_direction = lazy_import('msgraph.generated.models.defender_realtime_scan_direction')
-defender_scan_type = lazy_import('msgraph.generated.models.defender_scan_type')
-defender_security_center_i_t_contact_display_type = lazy_import('msgraph.generated.models.defender_security_center_i_t_contact_display_type')
-defender_security_center_notifications_from_app_type = lazy_import('msgraph.generated.models.defender_security_center_notifications_from_app_type')
-defender_submit_samples_consent_type = lazy_import('msgraph.generated.models.defender_submit_samples_consent_type')
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-device_guard_local_system_authority_credential_guard_type = lazy_import('msgraph.generated.models.device_guard_local_system_authority_credential_guard_type')
-device_management_user_rights_setting = lazy_import('msgraph.generated.models.device_management_user_rights_setting')
-dma_guard_device_enumeration_policy_type = lazy_import('msgraph.generated.models.dma_guard_device_enumeration_policy_type')
-enablement = lazy_import('msgraph.generated.models.enablement')
-firewall_certificate_revocation_list_check_method_type = lazy_import('msgraph.generated.models.firewall_certificate_revocation_list_check_method_type')
-firewall_packet_queueing_method_type = lazy_import('msgraph.generated.models.firewall_packet_queueing_method_type')
-firewall_pre_shared_key_encoding_method_type = lazy_import('msgraph.generated.models.firewall_pre_shared_key_encoding_method_type')
-folder_protection_type = lazy_import('msgraph.generated.models.folder_protection_type')
-lan_manager_authentication_level = lazy_import('msgraph.generated.models.lan_manager_authentication_level')
-local_security_options_administrator_elevation_prompt_behavior_type = lazy_import('msgraph.generated.models.local_security_options_administrator_elevation_prompt_behavior_type')
-local_security_options_format_and_eject_of_removable_media_allowed_user_type = lazy_import('msgraph.generated.models.local_security_options_format_and_eject_of_removable_media_allowed_user_type')
-local_security_options_information_displayed_on_lock_screen_type = lazy_import('msgraph.generated.models.local_security_options_information_displayed_on_lock_screen_type')
-local_security_options_information_shown_on_lock_screen_type = lazy_import('msgraph.generated.models.local_security_options_information_shown_on_lock_screen_type')
-local_security_options_minimum_session_security = lazy_import('msgraph.generated.models.local_security_options_minimum_session_security')
-local_security_options_smart_card_removal_behavior_type = lazy_import('msgraph.generated.models.local_security_options_smart_card_removal_behavior_type')
-local_security_options_standard_user_elevation_prompt_behavior_type = lazy_import('msgraph.generated.models.local_security_options_standard_user_elevation_prompt_behavior_type')
-secure_boot_with_d_m_a_type = lazy_import('msgraph.generated.models.secure_boot_with_d_m_a_type')
-service_start_type = lazy_import('msgraph.generated.models.service_start_type')
-weekly_schedule = lazy_import('msgraph.generated.models.weekly_schedule')
-windows_defender_tamper_protection_options = lazy_import('msgraph.generated.models.windows_defender_tamper_protection_options')
-windows_firewall_network_profile = lazy_import('msgraph.generated.models.windows_firewall_network_profile')
-windows_firewall_rule = lazy_import('msgraph.generated.models.windows_firewall_rule')
+if TYPE_CHECKING:
+    from . import application_guard_block_clipboard_sharing_type, application_guard_block_file_transfer_type, application_guard_enabled_options, app_locker_application_control_type, bit_locker_fixed_drive_policy, bit_locker_recovery_password_rotation_type, bit_locker_removable_drive_policy, bit_locker_system_drive_policy, defender_attack_surface_type, defender_cloud_block_level_type, defender_detected_malware_actions, defender_protection_type, defender_realtime_scan_direction, defender_scan_type, defender_security_center_i_t_contact_display_type, defender_security_center_notifications_from_app_type, defender_submit_samples_consent_type, device_configuration, device_guard_local_system_authority_credential_guard_type, device_management_user_rights_setting, dma_guard_device_enumeration_policy_type, enablement, firewall_certificate_revocation_list_check_method_type, firewall_packet_queueing_method_type, firewall_pre_shared_key_encoding_method_type, folder_protection_type, lan_manager_authentication_level, local_security_options_administrator_elevation_prompt_behavior_type, local_security_options_format_and_eject_of_removable_media_allowed_user_type, local_security_options_information_displayed_on_lock_screen_type, local_security_options_information_shown_on_lock_screen_type, local_security_options_minimum_session_security, local_security_options_smart_card_removal_behavior_type, local_security_options_standard_user_elevation_prompt_behavior_type, secure_boot_with_d_m_a_type, service_start_type, weekly_schedule, windows_defender_tamper_protection_options, windows_firewall_network_profile, windows_firewall_rule
+
+from . import device_configuration
 
 class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfiguration):
-    @property
-    def app_locker_application_control(self,) -> Optional[app_locker_application_control_type.AppLockerApplicationControlType]:
-        """
-        Gets the appLockerApplicationControl property value. Possible values of AppLocker Application Control Types
-        Returns: Optional[app_locker_application_control_type.AppLockerApplicationControlType]
-        """
-        return self._app_locker_application_control
-    
-    @app_locker_application_control.setter
-    def app_locker_application_control(self,value: Optional[app_locker_application_control_type.AppLockerApplicationControlType] = None) -> None:
-        """
-        Sets the appLockerApplicationControl property value. Possible values of AppLocker Application Control Types
-        Args:
-            value: Value to set for the app_locker_application_control property.
-        """
-        self._app_locker_application_control = value
-    
-    @property
-    def application_guard_allow_camera_microphone_redirection(self,) -> Optional[bool]:
-        """
-        Gets the applicationGuardAllowCameraMicrophoneRedirection property value. Gets or sets whether applications inside Microsoft Defender Application Guard can access the device’s camera and microphone.
-        Returns: Optional[bool]
-        """
-        return self._application_guard_allow_camera_microphone_redirection
-    
-    @application_guard_allow_camera_microphone_redirection.setter
-    def application_guard_allow_camera_microphone_redirection(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the applicationGuardAllowCameraMicrophoneRedirection property value. Gets or sets whether applications inside Microsoft Defender Application Guard can access the device’s camera and microphone.
-        Args:
-            value: Value to set for the application_guard_allow_camera_microphone_redirection property.
-        """
-        self._application_guard_allow_camera_microphone_redirection = value
-    
-    @property
-    def application_guard_allow_file_save_on_host(self,) -> Optional[bool]:
-        """
-        Gets the applicationGuardAllowFileSaveOnHost property value. Allow users to download files from Edge in the application guard container and save them on the host file system
-        Returns: Optional[bool]
-        """
-        return self._application_guard_allow_file_save_on_host
-    
-    @application_guard_allow_file_save_on_host.setter
-    def application_guard_allow_file_save_on_host(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the applicationGuardAllowFileSaveOnHost property value. Allow users to download files from Edge in the application guard container and save them on the host file system
-        Args:
-            value: Value to set for the application_guard_allow_file_save_on_host property.
-        """
-        self._application_guard_allow_file_save_on_host = value
-    
-    @property
-    def application_guard_allow_persistence(self,) -> Optional[bool]:
-        """
-        Gets the applicationGuardAllowPersistence property value. Allow persisting user generated data inside the App Guard Containter (favorites, cookies, web passwords, etc.)
-        Returns: Optional[bool]
-        """
-        return self._application_guard_allow_persistence
-    
-    @application_guard_allow_persistence.setter
-    def application_guard_allow_persistence(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the applicationGuardAllowPersistence property value. Allow persisting user generated data inside the App Guard Containter (favorites, cookies, web passwords, etc.)
-        Args:
-            value: Value to set for the application_guard_allow_persistence property.
-        """
-        self._application_guard_allow_persistence = value
-    
-    @property
-    def application_guard_allow_print_to_local_printers(self,) -> Optional[bool]:
-        """
-        Gets the applicationGuardAllowPrintToLocalPrinters property value. Allow printing to Local Printers from Container
-        Returns: Optional[bool]
-        """
-        return self._application_guard_allow_print_to_local_printers
-    
-    @application_guard_allow_print_to_local_printers.setter
-    def application_guard_allow_print_to_local_printers(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the applicationGuardAllowPrintToLocalPrinters property value. Allow printing to Local Printers from Container
-        Args:
-            value: Value to set for the application_guard_allow_print_to_local_printers property.
-        """
-        self._application_guard_allow_print_to_local_printers = value
-    
-    @property
-    def application_guard_allow_print_to_network_printers(self,) -> Optional[bool]:
-        """
-        Gets the applicationGuardAllowPrintToNetworkPrinters property value. Allow printing to Network Printers from Container
-        Returns: Optional[bool]
-        """
-        return self._application_guard_allow_print_to_network_printers
-    
-    @application_guard_allow_print_to_network_printers.setter
-    def application_guard_allow_print_to_network_printers(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the applicationGuardAllowPrintToNetworkPrinters property value. Allow printing to Network Printers from Container
-        Args:
-            value: Value to set for the application_guard_allow_print_to_network_printers property.
-        """
-        self._application_guard_allow_print_to_network_printers = value
-    
-    @property
-    def application_guard_allow_print_to_p_d_f(self,) -> Optional[bool]:
-        """
-        Gets the applicationGuardAllowPrintToPDF property value. Allow printing to PDF from Container
-        Returns: Optional[bool]
-        """
-        return self._application_guard_allow_print_to_p_d_f
-    
-    @application_guard_allow_print_to_p_d_f.setter
-    def application_guard_allow_print_to_p_d_f(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the applicationGuardAllowPrintToPDF property value. Allow printing to PDF from Container
-        Args:
-            value: Value to set for the application_guard_allow_print_to_p_d_f property.
-        """
-        self._application_guard_allow_print_to_p_d_f = value
-    
-    @property
-    def application_guard_allow_print_to_x_p_s(self,) -> Optional[bool]:
-        """
-        Gets the applicationGuardAllowPrintToXPS property value. Allow printing to XPS from Container
-        Returns: Optional[bool]
-        """
-        return self._application_guard_allow_print_to_x_p_s
-    
-    @application_guard_allow_print_to_x_p_s.setter
-    def application_guard_allow_print_to_x_p_s(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the applicationGuardAllowPrintToXPS property value. Allow printing to XPS from Container
-        Args:
-            value: Value to set for the application_guard_allow_print_to_x_p_s property.
-        """
-        self._application_guard_allow_print_to_x_p_s = value
-    
-    @property
-    def application_guard_allow_virtual_g_p_u(self,) -> Optional[bool]:
-        """
-        Gets the applicationGuardAllowVirtualGPU property value. Allow application guard to use virtual GPU
-        Returns: Optional[bool]
-        """
-        return self._application_guard_allow_virtual_g_p_u
-    
-    @application_guard_allow_virtual_g_p_u.setter
-    def application_guard_allow_virtual_g_p_u(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the applicationGuardAllowVirtualGPU property value. Allow application guard to use virtual GPU
-        Args:
-            value: Value to set for the application_guard_allow_virtual_g_p_u property.
-        """
-        self._application_guard_allow_virtual_g_p_u = value
-    
-    @property
-    def application_guard_block_clipboard_sharing(self,) -> Optional[application_guard_block_clipboard_sharing_type.ApplicationGuardBlockClipboardSharingType]:
-        """
-        Gets the applicationGuardBlockClipboardSharing property value. Possible values for applicationGuardBlockClipboardSharingType
-        Returns: Optional[application_guard_block_clipboard_sharing_type.ApplicationGuardBlockClipboardSharingType]
-        """
-        return self._application_guard_block_clipboard_sharing
-    
-    @application_guard_block_clipboard_sharing.setter
-    def application_guard_block_clipboard_sharing(self,value: Optional[application_guard_block_clipboard_sharing_type.ApplicationGuardBlockClipboardSharingType] = None) -> None:
-        """
-        Sets the applicationGuardBlockClipboardSharing property value. Possible values for applicationGuardBlockClipboardSharingType
-        Args:
-            value: Value to set for the application_guard_block_clipboard_sharing property.
-        """
-        self._application_guard_block_clipboard_sharing = value
-    
-    @property
-    def application_guard_block_file_transfer(self,) -> Optional[application_guard_block_file_transfer_type.ApplicationGuardBlockFileTransferType]:
-        """
-        Gets the applicationGuardBlockFileTransfer property value. Possible values for applicationGuardBlockFileTransfer
-        Returns: Optional[application_guard_block_file_transfer_type.ApplicationGuardBlockFileTransferType]
-        """
-        return self._application_guard_block_file_transfer
-    
-    @application_guard_block_file_transfer.setter
-    def application_guard_block_file_transfer(self,value: Optional[application_guard_block_file_transfer_type.ApplicationGuardBlockFileTransferType] = None) -> None:
-        """
-        Sets the applicationGuardBlockFileTransfer property value. Possible values for applicationGuardBlockFileTransfer
-        Args:
-            value: Value to set for the application_guard_block_file_transfer property.
-        """
-        self._application_guard_block_file_transfer = value
-    
-    @property
-    def application_guard_block_non_enterprise_content(self,) -> Optional[bool]:
-        """
-        Gets the applicationGuardBlockNonEnterpriseContent property value. Block enterprise sites to load non-enterprise content, such as third party plug-ins
-        Returns: Optional[bool]
-        """
-        return self._application_guard_block_non_enterprise_content
-    
-    @application_guard_block_non_enterprise_content.setter
-    def application_guard_block_non_enterprise_content(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the applicationGuardBlockNonEnterpriseContent property value. Block enterprise sites to load non-enterprise content, such as third party plug-ins
-        Args:
-            value: Value to set for the application_guard_block_non_enterprise_content property.
-        """
-        self._application_guard_block_non_enterprise_content = value
-    
-    @property
-    def application_guard_certificate_thumbprints(self,) -> Optional[List[str]]:
-        """
-        Gets the applicationGuardCertificateThumbprints property value. Allows certain device level Root Certificates to be shared with the Microsoft Defender Application Guard container.
-        Returns: Optional[List[str]]
-        """
-        return self._application_guard_certificate_thumbprints
-    
-    @application_guard_certificate_thumbprints.setter
-    def application_guard_certificate_thumbprints(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the applicationGuardCertificateThumbprints property value. Allows certain device level Root Certificates to be shared with the Microsoft Defender Application Guard container.
-        Args:
-            value: Value to set for the application_guard_certificate_thumbprints property.
-        """
-        self._application_guard_certificate_thumbprints = value
-    
-    @property
-    def application_guard_enabled(self,) -> Optional[bool]:
-        """
-        Gets the applicationGuardEnabled property value. Enable Windows Defender Application Guard
-        Returns: Optional[bool]
-        """
-        return self._application_guard_enabled
-    
-    @application_guard_enabled.setter
-    def application_guard_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the applicationGuardEnabled property value. Enable Windows Defender Application Guard
-        Args:
-            value: Value to set for the application_guard_enabled property.
-        """
-        self._application_guard_enabled = value
-    
-    @property
-    def application_guard_enabled_options(self,) -> Optional[application_guard_enabled_options.ApplicationGuardEnabledOptions]:
-        """
-        Gets the applicationGuardEnabledOptions property value. Possible values for ApplicationGuardEnabledOptions
-        Returns: Optional[application_guard_enabled_options.ApplicationGuardEnabledOptions]
-        """
-        return self._application_guard_enabled_options
-    
-    @application_guard_enabled_options.setter
-    def application_guard_enabled_options(self,value: Optional[application_guard_enabled_options.ApplicationGuardEnabledOptions] = None) -> None:
-        """
-        Sets the applicationGuardEnabledOptions property value. Possible values for ApplicationGuardEnabledOptions
-        Args:
-            value: Value to set for the application_guard_enabled_options property.
-        """
-        self._application_guard_enabled_options = value
-    
-    @property
-    def application_guard_force_auditing(self,) -> Optional[bool]:
-        """
-        Gets the applicationGuardForceAuditing property value. Force auditing will persist Windows logs and events to meet security/compliance criteria (sample events are user login-logoff, use of privilege rights, software installation, system changes, etc.)
-        Returns: Optional[bool]
-        """
-        return self._application_guard_force_auditing
-    
-    @application_guard_force_auditing.setter
-    def application_guard_force_auditing(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the applicationGuardForceAuditing property value. Force auditing will persist Windows logs and events to meet security/compliance criteria (sample events are user login-logoff, use of privilege rights, software installation, system changes, etc.)
-        Args:
-            value: Value to set for the application_guard_force_auditing property.
-        """
-        self._application_guard_force_auditing = value
-    
-    @property
-    def bit_locker_allow_standard_user_encryption(self,) -> Optional[bool]:
-        """
-        Gets the bitLockerAllowStandardUserEncryption property value. Allows the admin to allow standard users to enable encrpytion during Azure AD Join.
-        Returns: Optional[bool]
-        """
-        return self._bit_locker_allow_standard_user_encryption
-    
-    @bit_locker_allow_standard_user_encryption.setter
-    def bit_locker_allow_standard_user_encryption(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the bitLockerAllowStandardUserEncryption property value. Allows the admin to allow standard users to enable encrpytion during Azure AD Join.
-        Args:
-            value: Value to set for the bit_locker_allow_standard_user_encryption property.
-        """
-        self._bit_locker_allow_standard_user_encryption = value
-    
-    @property
-    def bit_locker_disable_warning_for_other_disk_encryption(self,) -> Optional[bool]:
-        """
-        Gets the bitLockerDisableWarningForOtherDiskEncryption property value. Allows the Admin to disable the warning prompt for other disk encryption on the user machines.
-        Returns: Optional[bool]
-        """
-        return self._bit_locker_disable_warning_for_other_disk_encryption
-    
-    @bit_locker_disable_warning_for_other_disk_encryption.setter
-    def bit_locker_disable_warning_for_other_disk_encryption(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the bitLockerDisableWarningForOtherDiskEncryption property value. Allows the Admin to disable the warning prompt for other disk encryption on the user machines.
-        Args:
-            value: Value to set for the bit_locker_disable_warning_for_other_disk_encryption property.
-        """
-        self._bit_locker_disable_warning_for_other_disk_encryption = value
-    
-    @property
-    def bit_locker_enable_storage_card_encryption_on_mobile(self,) -> Optional[bool]:
-        """
-        Gets the bitLockerEnableStorageCardEncryptionOnMobile property value. Allows the admin to require encryption to be turned on using BitLocker. This policy is valid only for a mobile SKU.
-        Returns: Optional[bool]
-        """
-        return self._bit_locker_enable_storage_card_encryption_on_mobile
-    
-    @bit_locker_enable_storage_card_encryption_on_mobile.setter
-    def bit_locker_enable_storage_card_encryption_on_mobile(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the bitLockerEnableStorageCardEncryptionOnMobile property value. Allows the admin to require encryption to be turned on using BitLocker. This policy is valid only for a mobile SKU.
-        Args:
-            value: Value to set for the bit_locker_enable_storage_card_encryption_on_mobile property.
-        """
-        self._bit_locker_enable_storage_card_encryption_on_mobile = value
-    
-    @property
-    def bit_locker_encrypt_device(self,) -> Optional[bool]:
-        """
-        Gets the bitLockerEncryptDevice property value. Allows the admin to require encryption to be turned on using BitLocker.
-        Returns: Optional[bool]
-        """
-        return self._bit_locker_encrypt_device
-    
-    @bit_locker_encrypt_device.setter
-    def bit_locker_encrypt_device(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the bitLockerEncryptDevice property value. Allows the admin to require encryption to be turned on using BitLocker.
-        Args:
-            value: Value to set for the bit_locker_encrypt_device property.
-        """
-        self._bit_locker_encrypt_device = value
-    
-    @property
-    def bit_locker_fixed_drive_policy(self,) -> Optional[bit_locker_fixed_drive_policy.BitLockerFixedDrivePolicy]:
-        """
-        Gets the bitLockerFixedDrivePolicy property value. BitLocker Fixed Drive Policy.
-        Returns: Optional[bit_locker_fixed_drive_policy.BitLockerFixedDrivePolicy]
-        """
-        return self._bit_locker_fixed_drive_policy
-    
-    @bit_locker_fixed_drive_policy.setter
-    def bit_locker_fixed_drive_policy(self,value: Optional[bit_locker_fixed_drive_policy.BitLockerFixedDrivePolicy] = None) -> None:
-        """
-        Sets the bitLockerFixedDrivePolicy property value. BitLocker Fixed Drive Policy.
-        Args:
-            value: Value to set for the bit_locker_fixed_drive_policy property.
-        """
-        self._bit_locker_fixed_drive_policy = value
-    
-    @property
-    def bit_locker_recovery_password_rotation(self,) -> Optional[bit_locker_recovery_password_rotation_type.BitLockerRecoveryPasswordRotationType]:
-        """
-        Gets the bitLockerRecoveryPasswordRotation property value. BitLocker recovery password rotation type
-        Returns: Optional[bit_locker_recovery_password_rotation_type.BitLockerRecoveryPasswordRotationType]
-        """
-        return self._bit_locker_recovery_password_rotation
-    
-    @bit_locker_recovery_password_rotation.setter
-    def bit_locker_recovery_password_rotation(self,value: Optional[bit_locker_recovery_password_rotation_type.BitLockerRecoveryPasswordRotationType] = None) -> None:
-        """
-        Sets the bitLockerRecoveryPasswordRotation property value. BitLocker recovery password rotation type
-        Args:
-            value: Value to set for the bit_locker_recovery_password_rotation property.
-        """
-        self._bit_locker_recovery_password_rotation = value
-    
-    @property
-    def bit_locker_removable_drive_policy(self,) -> Optional[bit_locker_removable_drive_policy.BitLockerRemovableDrivePolicy]:
-        """
-        Gets the bitLockerRemovableDrivePolicy property value. BitLocker Removable Drive Policy.
-        Returns: Optional[bit_locker_removable_drive_policy.BitLockerRemovableDrivePolicy]
-        """
-        return self._bit_locker_removable_drive_policy
-    
-    @bit_locker_removable_drive_policy.setter
-    def bit_locker_removable_drive_policy(self,value: Optional[bit_locker_removable_drive_policy.BitLockerRemovableDrivePolicy] = None) -> None:
-        """
-        Sets the bitLockerRemovableDrivePolicy property value. BitLocker Removable Drive Policy.
-        Args:
-            value: Value to set for the bit_locker_removable_drive_policy property.
-        """
-        self._bit_locker_removable_drive_policy = value
-    
-    @property
-    def bit_locker_system_drive_policy(self,) -> Optional[bit_locker_system_drive_policy.BitLockerSystemDrivePolicy]:
-        """
-        Gets the bitLockerSystemDrivePolicy property value. BitLocker System Drive Policy.
-        Returns: Optional[bit_locker_system_drive_policy.BitLockerSystemDrivePolicy]
-        """
-        return self._bit_locker_system_drive_policy
-    
-    @bit_locker_system_drive_policy.setter
-    def bit_locker_system_drive_policy(self,value: Optional[bit_locker_system_drive_policy.BitLockerSystemDrivePolicy] = None) -> None:
-        """
-        Sets the bitLockerSystemDrivePolicy property value. BitLocker System Drive Policy.
-        Args:
-            value: Value to set for the bit_locker_system_drive_policy property.
-        """
-        self._bit_locker_system_drive_policy = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new Windows10EndpointProtectionConfiguration and sets the default values.
@@ -912,6 +467,414 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         self._xbox_services_live_game_save_service_startup_mode: Optional[service_start_type.ServiceStartType] = None
         # Possible values of xbox service start type
         self._xbox_services_live_networking_service_startup_mode: Optional[service_start_type.ServiceStartType] = None
+    
+    @property
+    def app_locker_application_control(self,) -> Optional[app_locker_application_control_type.AppLockerApplicationControlType]:
+        """
+        Gets the appLockerApplicationControl property value. Possible values of AppLocker Application Control Types
+        Returns: Optional[app_locker_application_control_type.AppLockerApplicationControlType]
+        """
+        return self._app_locker_application_control
+    
+    @app_locker_application_control.setter
+    def app_locker_application_control(self,value: Optional[app_locker_application_control_type.AppLockerApplicationControlType] = None) -> None:
+        """
+        Sets the appLockerApplicationControl property value. Possible values of AppLocker Application Control Types
+        Args:
+            value: Value to set for the app_locker_application_control property.
+        """
+        self._app_locker_application_control = value
+    
+    @property
+    def application_guard_allow_camera_microphone_redirection(self,) -> Optional[bool]:
+        """
+        Gets the applicationGuardAllowCameraMicrophoneRedirection property value. Gets or sets whether applications inside Microsoft Defender Application Guard can access the device’s camera and microphone.
+        Returns: Optional[bool]
+        """
+        return self._application_guard_allow_camera_microphone_redirection
+    
+    @application_guard_allow_camera_microphone_redirection.setter
+    def application_guard_allow_camera_microphone_redirection(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the applicationGuardAllowCameraMicrophoneRedirection property value. Gets or sets whether applications inside Microsoft Defender Application Guard can access the device’s camera and microphone.
+        Args:
+            value: Value to set for the application_guard_allow_camera_microphone_redirection property.
+        """
+        self._application_guard_allow_camera_microphone_redirection = value
+    
+    @property
+    def application_guard_allow_file_save_on_host(self,) -> Optional[bool]:
+        """
+        Gets the applicationGuardAllowFileSaveOnHost property value. Allow users to download files from Edge in the application guard container and save them on the host file system
+        Returns: Optional[bool]
+        """
+        return self._application_guard_allow_file_save_on_host
+    
+    @application_guard_allow_file_save_on_host.setter
+    def application_guard_allow_file_save_on_host(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the applicationGuardAllowFileSaveOnHost property value. Allow users to download files from Edge in the application guard container and save them on the host file system
+        Args:
+            value: Value to set for the application_guard_allow_file_save_on_host property.
+        """
+        self._application_guard_allow_file_save_on_host = value
+    
+    @property
+    def application_guard_allow_persistence(self,) -> Optional[bool]:
+        """
+        Gets the applicationGuardAllowPersistence property value. Allow persisting user generated data inside the App Guard Containter (favorites, cookies, web passwords, etc.)
+        Returns: Optional[bool]
+        """
+        return self._application_guard_allow_persistence
+    
+    @application_guard_allow_persistence.setter
+    def application_guard_allow_persistence(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the applicationGuardAllowPersistence property value. Allow persisting user generated data inside the App Guard Containter (favorites, cookies, web passwords, etc.)
+        Args:
+            value: Value to set for the application_guard_allow_persistence property.
+        """
+        self._application_guard_allow_persistence = value
+    
+    @property
+    def application_guard_allow_print_to_local_printers(self,) -> Optional[bool]:
+        """
+        Gets the applicationGuardAllowPrintToLocalPrinters property value. Allow printing to Local Printers from Container
+        Returns: Optional[bool]
+        """
+        return self._application_guard_allow_print_to_local_printers
+    
+    @application_guard_allow_print_to_local_printers.setter
+    def application_guard_allow_print_to_local_printers(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the applicationGuardAllowPrintToLocalPrinters property value. Allow printing to Local Printers from Container
+        Args:
+            value: Value to set for the application_guard_allow_print_to_local_printers property.
+        """
+        self._application_guard_allow_print_to_local_printers = value
+    
+    @property
+    def application_guard_allow_print_to_network_printers(self,) -> Optional[bool]:
+        """
+        Gets the applicationGuardAllowPrintToNetworkPrinters property value. Allow printing to Network Printers from Container
+        Returns: Optional[bool]
+        """
+        return self._application_guard_allow_print_to_network_printers
+    
+    @application_guard_allow_print_to_network_printers.setter
+    def application_guard_allow_print_to_network_printers(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the applicationGuardAllowPrintToNetworkPrinters property value. Allow printing to Network Printers from Container
+        Args:
+            value: Value to set for the application_guard_allow_print_to_network_printers property.
+        """
+        self._application_guard_allow_print_to_network_printers = value
+    
+    @property
+    def application_guard_allow_print_to_p_d_f(self,) -> Optional[bool]:
+        """
+        Gets the applicationGuardAllowPrintToPDF property value. Allow printing to PDF from Container
+        Returns: Optional[bool]
+        """
+        return self._application_guard_allow_print_to_p_d_f
+    
+    @application_guard_allow_print_to_p_d_f.setter
+    def application_guard_allow_print_to_p_d_f(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the applicationGuardAllowPrintToPDF property value. Allow printing to PDF from Container
+        Args:
+            value: Value to set for the application_guard_allow_print_to_p_d_f property.
+        """
+        self._application_guard_allow_print_to_p_d_f = value
+    
+    @property
+    def application_guard_allow_print_to_x_p_s(self,) -> Optional[bool]:
+        """
+        Gets the applicationGuardAllowPrintToXPS property value. Allow printing to XPS from Container
+        Returns: Optional[bool]
+        """
+        return self._application_guard_allow_print_to_x_p_s
+    
+    @application_guard_allow_print_to_x_p_s.setter
+    def application_guard_allow_print_to_x_p_s(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the applicationGuardAllowPrintToXPS property value. Allow printing to XPS from Container
+        Args:
+            value: Value to set for the application_guard_allow_print_to_x_p_s property.
+        """
+        self._application_guard_allow_print_to_x_p_s = value
+    
+    @property
+    def application_guard_allow_virtual_g_p_u(self,) -> Optional[bool]:
+        """
+        Gets the applicationGuardAllowVirtualGPU property value. Allow application guard to use virtual GPU
+        Returns: Optional[bool]
+        """
+        return self._application_guard_allow_virtual_g_p_u
+    
+    @application_guard_allow_virtual_g_p_u.setter
+    def application_guard_allow_virtual_g_p_u(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the applicationGuardAllowVirtualGPU property value. Allow application guard to use virtual GPU
+        Args:
+            value: Value to set for the application_guard_allow_virtual_g_p_u property.
+        """
+        self._application_guard_allow_virtual_g_p_u = value
+    
+    @property
+    def application_guard_block_clipboard_sharing(self,) -> Optional[application_guard_block_clipboard_sharing_type.ApplicationGuardBlockClipboardSharingType]:
+        """
+        Gets the applicationGuardBlockClipboardSharing property value. Possible values for applicationGuardBlockClipboardSharingType
+        Returns: Optional[application_guard_block_clipboard_sharing_type.ApplicationGuardBlockClipboardSharingType]
+        """
+        return self._application_guard_block_clipboard_sharing
+    
+    @application_guard_block_clipboard_sharing.setter
+    def application_guard_block_clipboard_sharing(self,value: Optional[application_guard_block_clipboard_sharing_type.ApplicationGuardBlockClipboardSharingType] = None) -> None:
+        """
+        Sets the applicationGuardBlockClipboardSharing property value. Possible values for applicationGuardBlockClipboardSharingType
+        Args:
+            value: Value to set for the application_guard_block_clipboard_sharing property.
+        """
+        self._application_guard_block_clipboard_sharing = value
+    
+    @property
+    def application_guard_block_file_transfer(self,) -> Optional[application_guard_block_file_transfer_type.ApplicationGuardBlockFileTransferType]:
+        """
+        Gets the applicationGuardBlockFileTransfer property value. Possible values for applicationGuardBlockFileTransfer
+        Returns: Optional[application_guard_block_file_transfer_type.ApplicationGuardBlockFileTransferType]
+        """
+        return self._application_guard_block_file_transfer
+    
+    @application_guard_block_file_transfer.setter
+    def application_guard_block_file_transfer(self,value: Optional[application_guard_block_file_transfer_type.ApplicationGuardBlockFileTransferType] = None) -> None:
+        """
+        Sets the applicationGuardBlockFileTransfer property value. Possible values for applicationGuardBlockFileTransfer
+        Args:
+            value: Value to set for the application_guard_block_file_transfer property.
+        """
+        self._application_guard_block_file_transfer = value
+    
+    @property
+    def application_guard_block_non_enterprise_content(self,) -> Optional[bool]:
+        """
+        Gets the applicationGuardBlockNonEnterpriseContent property value. Block enterprise sites to load non-enterprise content, such as third party plug-ins
+        Returns: Optional[bool]
+        """
+        return self._application_guard_block_non_enterprise_content
+    
+    @application_guard_block_non_enterprise_content.setter
+    def application_guard_block_non_enterprise_content(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the applicationGuardBlockNonEnterpriseContent property value. Block enterprise sites to load non-enterprise content, such as third party plug-ins
+        Args:
+            value: Value to set for the application_guard_block_non_enterprise_content property.
+        """
+        self._application_guard_block_non_enterprise_content = value
+    
+    @property
+    def application_guard_certificate_thumbprints(self,) -> Optional[List[str]]:
+        """
+        Gets the applicationGuardCertificateThumbprints property value. Allows certain device level Root Certificates to be shared with the Microsoft Defender Application Guard container.
+        Returns: Optional[List[str]]
+        """
+        return self._application_guard_certificate_thumbprints
+    
+    @application_guard_certificate_thumbprints.setter
+    def application_guard_certificate_thumbprints(self,value: Optional[List[str]] = None) -> None:
+        """
+        Sets the applicationGuardCertificateThumbprints property value. Allows certain device level Root Certificates to be shared with the Microsoft Defender Application Guard container.
+        Args:
+            value: Value to set for the application_guard_certificate_thumbprints property.
+        """
+        self._application_guard_certificate_thumbprints = value
+    
+    @property
+    def application_guard_enabled(self,) -> Optional[bool]:
+        """
+        Gets the applicationGuardEnabled property value. Enable Windows Defender Application Guard
+        Returns: Optional[bool]
+        """
+        return self._application_guard_enabled
+    
+    @application_guard_enabled.setter
+    def application_guard_enabled(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the applicationGuardEnabled property value. Enable Windows Defender Application Guard
+        Args:
+            value: Value to set for the application_guard_enabled property.
+        """
+        self._application_guard_enabled = value
+    
+    @property
+    def application_guard_enabled_options(self,) -> Optional[application_guard_enabled_options.ApplicationGuardEnabledOptions]:
+        """
+        Gets the applicationGuardEnabledOptions property value. Possible values for ApplicationGuardEnabledOptions
+        Returns: Optional[application_guard_enabled_options.ApplicationGuardEnabledOptions]
+        """
+        return self._application_guard_enabled_options
+    
+    @application_guard_enabled_options.setter
+    def application_guard_enabled_options(self,value: Optional[application_guard_enabled_options.ApplicationGuardEnabledOptions] = None) -> None:
+        """
+        Sets the applicationGuardEnabledOptions property value. Possible values for ApplicationGuardEnabledOptions
+        Args:
+            value: Value to set for the application_guard_enabled_options property.
+        """
+        self._application_guard_enabled_options = value
+    
+    @property
+    def application_guard_force_auditing(self,) -> Optional[bool]:
+        """
+        Gets the applicationGuardForceAuditing property value. Force auditing will persist Windows logs and events to meet security/compliance criteria (sample events are user login-logoff, use of privilege rights, software installation, system changes, etc.)
+        Returns: Optional[bool]
+        """
+        return self._application_guard_force_auditing
+    
+    @application_guard_force_auditing.setter
+    def application_guard_force_auditing(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the applicationGuardForceAuditing property value. Force auditing will persist Windows logs and events to meet security/compliance criteria (sample events are user login-logoff, use of privilege rights, software installation, system changes, etc.)
+        Args:
+            value: Value to set for the application_guard_force_auditing property.
+        """
+        self._application_guard_force_auditing = value
+    
+    @property
+    def bit_locker_allow_standard_user_encryption(self,) -> Optional[bool]:
+        """
+        Gets the bitLockerAllowStandardUserEncryption property value. Allows the admin to allow standard users to enable encrpytion during Azure AD Join.
+        Returns: Optional[bool]
+        """
+        return self._bit_locker_allow_standard_user_encryption
+    
+    @bit_locker_allow_standard_user_encryption.setter
+    def bit_locker_allow_standard_user_encryption(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the bitLockerAllowStandardUserEncryption property value. Allows the admin to allow standard users to enable encrpytion during Azure AD Join.
+        Args:
+            value: Value to set for the bit_locker_allow_standard_user_encryption property.
+        """
+        self._bit_locker_allow_standard_user_encryption = value
+    
+    @property
+    def bit_locker_disable_warning_for_other_disk_encryption(self,) -> Optional[bool]:
+        """
+        Gets the bitLockerDisableWarningForOtherDiskEncryption property value. Allows the Admin to disable the warning prompt for other disk encryption on the user machines.
+        Returns: Optional[bool]
+        """
+        return self._bit_locker_disable_warning_for_other_disk_encryption
+    
+    @bit_locker_disable_warning_for_other_disk_encryption.setter
+    def bit_locker_disable_warning_for_other_disk_encryption(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the bitLockerDisableWarningForOtherDiskEncryption property value. Allows the Admin to disable the warning prompt for other disk encryption on the user machines.
+        Args:
+            value: Value to set for the bit_locker_disable_warning_for_other_disk_encryption property.
+        """
+        self._bit_locker_disable_warning_for_other_disk_encryption = value
+    
+    @property
+    def bit_locker_enable_storage_card_encryption_on_mobile(self,) -> Optional[bool]:
+        """
+        Gets the bitLockerEnableStorageCardEncryptionOnMobile property value. Allows the admin to require encryption to be turned on using BitLocker. This policy is valid only for a mobile SKU.
+        Returns: Optional[bool]
+        """
+        return self._bit_locker_enable_storage_card_encryption_on_mobile
+    
+    @bit_locker_enable_storage_card_encryption_on_mobile.setter
+    def bit_locker_enable_storage_card_encryption_on_mobile(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the bitLockerEnableStorageCardEncryptionOnMobile property value. Allows the admin to require encryption to be turned on using BitLocker. This policy is valid only for a mobile SKU.
+        Args:
+            value: Value to set for the bit_locker_enable_storage_card_encryption_on_mobile property.
+        """
+        self._bit_locker_enable_storage_card_encryption_on_mobile = value
+    
+    @property
+    def bit_locker_encrypt_device(self,) -> Optional[bool]:
+        """
+        Gets the bitLockerEncryptDevice property value. Allows the admin to require encryption to be turned on using BitLocker.
+        Returns: Optional[bool]
+        """
+        return self._bit_locker_encrypt_device
+    
+    @bit_locker_encrypt_device.setter
+    def bit_locker_encrypt_device(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the bitLockerEncryptDevice property value. Allows the admin to require encryption to be turned on using BitLocker.
+        Args:
+            value: Value to set for the bit_locker_encrypt_device property.
+        """
+        self._bit_locker_encrypt_device = value
+    
+    @property
+    def bit_locker_fixed_drive_policy(self,) -> Optional[bit_locker_fixed_drive_policy.BitLockerFixedDrivePolicy]:
+        """
+        Gets the bitLockerFixedDrivePolicy property value. BitLocker Fixed Drive Policy.
+        Returns: Optional[bit_locker_fixed_drive_policy.BitLockerFixedDrivePolicy]
+        """
+        return self._bit_locker_fixed_drive_policy
+    
+    @bit_locker_fixed_drive_policy.setter
+    def bit_locker_fixed_drive_policy(self,value: Optional[bit_locker_fixed_drive_policy.BitLockerFixedDrivePolicy] = None) -> None:
+        """
+        Sets the bitLockerFixedDrivePolicy property value. BitLocker Fixed Drive Policy.
+        Args:
+            value: Value to set for the bit_locker_fixed_drive_policy property.
+        """
+        self._bit_locker_fixed_drive_policy = value
+    
+    @property
+    def bit_locker_recovery_password_rotation(self,) -> Optional[bit_locker_recovery_password_rotation_type.BitLockerRecoveryPasswordRotationType]:
+        """
+        Gets the bitLockerRecoveryPasswordRotation property value. BitLocker recovery password rotation type
+        Returns: Optional[bit_locker_recovery_password_rotation_type.BitLockerRecoveryPasswordRotationType]
+        """
+        return self._bit_locker_recovery_password_rotation
+    
+    @bit_locker_recovery_password_rotation.setter
+    def bit_locker_recovery_password_rotation(self,value: Optional[bit_locker_recovery_password_rotation_type.BitLockerRecoveryPasswordRotationType] = None) -> None:
+        """
+        Sets the bitLockerRecoveryPasswordRotation property value. BitLocker recovery password rotation type
+        Args:
+            value: Value to set for the bit_locker_recovery_password_rotation property.
+        """
+        self._bit_locker_recovery_password_rotation = value
+    
+    @property
+    def bit_locker_removable_drive_policy(self,) -> Optional[bit_locker_removable_drive_policy.BitLockerRemovableDrivePolicy]:
+        """
+        Gets the bitLockerRemovableDrivePolicy property value. BitLocker Removable Drive Policy.
+        Returns: Optional[bit_locker_removable_drive_policy.BitLockerRemovableDrivePolicy]
+        """
+        return self._bit_locker_removable_drive_policy
+    
+    @bit_locker_removable_drive_policy.setter
+    def bit_locker_removable_drive_policy(self,value: Optional[bit_locker_removable_drive_policy.BitLockerRemovableDrivePolicy] = None) -> None:
+        """
+        Sets the bitLockerRemovableDrivePolicy property value. BitLocker Removable Drive Policy.
+        Args:
+            value: Value to set for the bit_locker_removable_drive_policy property.
+        """
+        self._bit_locker_removable_drive_policy = value
+    
+    @property
+    def bit_locker_system_drive_policy(self,) -> Optional[bit_locker_system_drive_policy.BitLockerSystemDrivePolicy]:
+        """
+        Gets the bitLockerSystemDrivePolicy property value. BitLocker System Drive Policy.
+        Returns: Optional[bit_locker_system_drive_policy.BitLockerSystemDrivePolicy]
+        """
+        return self._bit_locker_system_drive_policy
+    
+    @bit_locker_system_drive_policy.setter
+    def bit_locker_system_drive_policy(self,value: Optional[bit_locker_system_drive_policy.BitLockerSystemDrivePolicy] = None) -> None:
+        """
+        Sets the bitLockerSystemDrivePolicy property value. BitLocker System Drive Policy.
+        Args:
+            value: Value to set for the bit_locker_system_drive_policy property.
+        """
+        self._bit_locker_system_drive_policy = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10EndpointProtectionConfiguration:
@@ -2919,7 +2882,9 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import application_guard_block_clipboard_sharing_type, application_guard_block_file_transfer_type, application_guard_enabled_options, app_locker_application_control_type, bit_locker_fixed_drive_policy, bit_locker_recovery_password_rotation_type, bit_locker_removable_drive_policy, bit_locker_system_drive_policy, defender_attack_surface_type, defender_cloud_block_level_type, defender_detected_malware_actions, defender_protection_type, defender_realtime_scan_direction, defender_scan_type, defender_security_center_i_t_contact_display_type, defender_security_center_notifications_from_app_type, defender_submit_samples_consent_type, device_configuration, device_guard_local_system_authority_credential_guard_type, device_management_user_rights_setting, dma_guard_device_enumeration_policy_type, enablement, firewall_certificate_revocation_list_check_method_type, firewall_packet_queueing_method_type, firewall_pre_shared_key_encoding_method_type, folder_protection_type, lan_manager_authentication_level, local_security_options_administrator_elevation_prompt_behavior_type, local_security_options_format_and_eject_of_removable_media_allowed_user_type, local_security_options_information_displayed_on_lock_screen_type, local_security_options_information_shown_on_lock_screen_type, local_security_options_minimum_session_security, local_security_options_smart_card_removal_behavior_type, local_security_options_standard_user_elevation_prompt_behavior_type, secure_boot_with_d_m_a_type, service_start_type, weekly_schedule, windows_defender_tamper_protection_options, windows_firewall_network_profile, windows_firewall_rule
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "applicationGuardAllowCameraMicrophoneRedirection": lambda n : setattr(self, 'application_guard_allow_camera_microphone_redirection', n.get_bool_value()),
             "applicationGuardAllowFileSaveOnHost": lambda n : setattr(self, 'application_guard_allow_file_save_on_host', n.get_bool_value()),
             "applicationGuardAllowPersistence": lambda n : setattr(self, 'application_guard_allow_persistence', n.get_bool_value()),

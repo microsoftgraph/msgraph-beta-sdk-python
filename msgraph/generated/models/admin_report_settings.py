@@ -1,14 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class AdminReportSettings(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new AdminReportSettings and sets the default values.
+        Instantiates a new adminReportSettings and sets the default values.
         """
         super().__init__()
         # If set to true, all reports will conceal user information such as usernames, groups, and sites. If false, all reports will show identifiable information. This property represents a setting in the Microsoft 365 admin center. Required.
@@ -50,7 +52,9 @@ class AdminReportSettings(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "displayConcealedNames": lambda n : setattr(self, 'display_concealed_names', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()

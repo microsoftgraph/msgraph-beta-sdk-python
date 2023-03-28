@@ -7,75 +7,26 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-apply_decisions_request_builder = lazy_import('msgraph.generated.access_reviews.item.instances.item.apply_decisions.apply_decisions_request_builder')
-decisions_request_builder = lazy_import('msgraph.generated.access_reviews.item.instances.item.decisions.decisions_request_builder')
-access_review_decision_item_request_builder = lazy_import('msgraph.generated.access_reviews.item.instances.item.decisions.item.access_review_decision_item_request_builder')
-my_decisions_request_builder = lazy_import('msgraph.generated.access_reviews.item.instances.item.my_decisions.my_decisions_request_builder')
-access_review_decision_item_request_builder = lazy_import('msgraph.generated.access_reviews.item.instances.item.my_decisions.item.access_review_decision_item_request_builder')
-reset_decisions_request_builder = lazy_import('msgraph.generated.access_reviews.item.instances.item.reset_decisions.reset_decisions_request_builder')
-reviewers_request_builder = lazy_import('msgraph.generated.access_reviews.item.instances.item.reviewers.reviewers_request_builder')
-access_review_reviewer_item_request_builder = lazy_import('msgraph.generated.access_reviews.item.instances.item.reviewers.item.access_review_reviewer_item_request_builder')
-send_reminder_request_builder = lazy_import('msgraph.generated.access_reviews.item.instances.item.send_reminder.send_reminder_request_builder')
-stop_request_builder = lazy_import('msgraph.generated.access_reviews.item.instances.item.stop.stop_request_builder')
-access_review = lazy_import('msgraph.generated.models.access_review')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from .....models import access_review
+    from .....models.o_data_errors import o_data_error
+    from .apply_decisions import apply_decisions_request_builder
+    from .decisions import decisions_request_builder
+    from .decisions.item import access_review_decision_item_request_builder
+    from .my_decisions import my_decisions_request_builder
+    from .my_decisions.item import access_review_decision_item_request_builder
+    from .reset_decisions import reset_decisions_request_builder
+    from .reviewers import reviewers_request_builder
+    from .reviewers.item import access_review_reviewer_item_request_builder
+    from .send_reminder import send_reminder_request_builder
+    from .stop import stop_request_builder
 
 class AccessReviewItemRequestBuilder():
     """
     Provides operations to manage the instances property of the microsoft.graph.accessReview entity.
     """
-    @property
-    def apply_decisions(self) -> apply_decisions_request_builder.ApplyDecisionsRequestBuilder:
-        """
-        Provides operations to call the applyDecisions method.
-        """
-        return apply_decisions_request_builder.ApplyDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def decisions(self) -> decisions_request_builder.DecisionsRequestBuilder:
-        """
-        Provides operations to manage the decisions property of the microsoft.graph.accessReview entity.
-        """
-        return decisions_request_builder.DecisionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def my_decisions(self) -> my_decisions_request_builder.MyDecisionsRequestBuilder:
-        """
-        Provides operations to manage the myDecisions property of the microsoft.graph.accessReview entity.
-        """
-        return my_decisions_request_builder.MyDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def reset_decisions(self) -> reset_decisions_request_builder.ResetDecisionsRequestBuilder:
-        """
-        Provides operations to call the resetDecisions method.
-        """
-        return reset_decisions_request_builder.ResetDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def reviewers(self) -> reviewers_request_builder.ReviewersRequestBuilder:
-        """
-        Provides operations to manage the reviewers property of the microsoft.graph.accessReview entity.
-        """
-        return reviewers_request_builder.ReviewersRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def send_reminder(self) -> send_reminder_request_builder.SendReminderRequestBuilder:
-        """
-        Provides operations to call the sendReminder method.
-        """
-        return send_reminder_request_builder.SendReminderRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def stop(self) -> stop_request_builder.StopRequestBuilder:
-        """
-        Provides operations to call the stop method.
-        """
-        return stop_request_builder.StopRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new AccessReviewItemRequestBuilder and sets the default values.
@@ -103,6 +54,9 @@ class AccessReviewItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .decisions.item import access_review_decision_item_request_builder
+        from .my_decisions.item import access_review_decision_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["accessReviewDecision%2Did"] = id
         return access_review_decision_item_request_builder.AccessReviewDecisionItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -116,6 +70,8 @@ class AccessReviewItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -134,12 +90,16 @@ class AccessReviewItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .....models import access_review
+
         return await self.request_adapter.send_async(request_info, access_review.AccessReview, error_mapping)
     
     def my_decisions_by_id(self,id: str) -> access_review_decision_item_request_builder.AccessReviewDecisionItemRequestBuilder:
@@ -151,6 +111,9 @@ class AccessReviewItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .decisions.item import access_review_decision_item_request_builder
+        from .my_decisions.item import access_review_decision_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["accessReviewDecision%2Did"] = id
         return access_review_decision_item_request_builder.AccessReviewDecisionItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -168,12 +131,16 @@ class AccessReviewItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .....models import access_review
+
         return await self.request_adapter.send_async(request_info, access_review.AccessReview, error_mapping)
     
     def reviewers_by_id(self,id: str) -> access_review_reviewer_item_request_builder.AccessReviewReviewerItemRequestBuilder:
@@ -185,6 +152,8 @@ class AccessReviewItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .reviewers.item import access_review_reviewer_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["accessReviewReviewer%2Did"] = id
         return access_review_reviewer_item_request_builder.AccessReviewReviewerItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -244,6 +213,69 @@ class AccessReviewItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def apply_decisions(self) -> apply_decisions_request_builder.ApplyDecisionsRequestBuilder:
+        """
+        Provides operations to call the applyDecisions method.
+        """
+        from .apply_decisions import apply_decisions_request_builder
+
+        return apply_decisions_request_builder.ApplyDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def decisions(self) -> decisions_request_builder.DecisionsRequestBuilder:
+        """
+        Provides operations to manage the decisions property of the microsoft.graph.accessReview entity.
+        """
+        from .decisions import decisions_request_builder
+
+        return decisions_request_builder.DecisionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def my_decisions(self) -> my_decisions_request_builder.MyDecisionsRequestBuilder:
+        """
+        Provides operations to manage the myDecisions property of the microsoft.graph.accessReview entity.
+        """
+        from .my_decisions import my_decisions_request_builder
+
+        return my_decisions_request_builder.MyDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def reset_decisions(self) -> reset_decisions_request_builder.ResetDecisionsRequestBuilder:
+        """
+        Provides operations to call the resetDecisions method.
+        """
+        from .reset_decisions import reset_decisions_request_builder
+
+        return reset_decisions_request_builder.ResetDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def reviewers(self) -> reviewers_request_builder.ReviewersRequestBuilder:
+        """
+        Provides operations to manage the reviewers property of the microsoft.graph.accessReview entity.
+        """
+        from .reviewers import reviewers_request_builder
+
+        return reviewers_request_builder.ReviewersRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def send_reminder(self) -> send_reminder_request_builder.SendReminderRequestBuilder:
+        """
+        Provides operations to call the sendReminder method.
+        """
+        from .send_reminder import send_reminder_request_builder
+
+        return send_reminder_request_builder.SendReminderRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def stop(self) -> stop_request_builder.StopRequestBuilder:
+        """
+        Provides operations to call the stop method.
+        """
+        from .stop import stop_request_builder
+
+        return stop_request_builder.StopRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class AccessReviewItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -261,12 +293,6 @@ class AccessReviewItemRequestBuilder():
         """
         The collection of access reviews instances past, present and future, if this object is a recurring access review.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -282,6 +308,12 @@ class AccessReviewItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class AccessReviewItemRequestBuilderGetRequestConfiguration():

@@ -1,38 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-apple_device_features_configuration_base = lazy_import('msgraph.generated.models.apple_device_features_configuration_base')
-ios_certificate_profile_base = lazy_import('msgraph.generated.models.ios_certificate_profile_base')
-ios_home_screen_item = lazy_import('msgraph.generated.models.ios_home_screen_item')
-ios_home_screen_page = lazy_import('msgraph.generated.models.ios_home_screen_page')
-ios_notification_settings = lazy_import('msgraph.generated.models.ios_notification_settings')
-ios_single_sign_on_extension = lazy_import('msgraph.generated.models.ios_single_sign_on_extension')
-ios_single_sign_on_settings = lazy_import('msgraph.generated.models.ios_single_sign_on_settings')
-ios_wallpaper_display_location = lazy_import('msgraph.generated.models.ios_wallpaper_display_location')
-ios_web_content_filter_base = lazy_import('msgraph.generated.models.ios_web_content_filter_base')
-mime_content = lazy_import('msgraph.generated.models.mime_content')
-single_sign_on_extension = lazy_import('msgraph.generated.models.single_sign_on_extension')
+if TYPE_CHECKING:
+    from . import apple_device_features_configuration_base, ios_certificate_profile_base, ios_home_screen_item, ios_home_screen_page, ios_notification_settings, ios_single_sign_on_extension, ios_single_sign_on_settings, ios_wallpaper_display_location, ios_web_content_filter_base, mime_content, single_sign_on_extension
+
+from . import apple_device_features_configuration_base
 
 class IosDeviceFeaturesConfiguration(apple_device_features_configuration_base.AppleDeviceFeaturesConfigurationBase):
-    @property
-    def asset_tag_template(self,) -> Optional[str]:
-        """
-        Gets the assetTagTemplate property value. Asset tag information for the device, displayed on the login window and lock screen.
-        Returns: Optional[str]
-        """
-        return self._asset_tag_template
-    
-    @asset_tag_template.setter
-    def asset_tag_template(self,value: Optional[str] = None) -> None:
-        """
-        Sets the assetTagTemplate property value. Asset tag information for the device, displayed on the login window and lock screen.
-        Args:
-            value: Value to set for the asset_tag_template property.
-        """
-        self._asset_tag_template = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new IosDeviceFeaturesConfiguration and sets the default values.
@@ -71,6 +46,23 @@ class IosDeviceFeaturesConfiguration(apple_device_features_configuration_base.Ap
         self._wallpaper_image: Optional[mime_content.MimeContent] = None
     
     @property
+    def asset_tag_template(self,) -> Optional[str]:
+        """
+        Gets the assetTagTemplate property value. Asset tag information for the device, displayed on the login window and lock screen.
+        Returns: Optional[str]
+        """
+        return self._asset_tag_template
+    
+    @asset_tag_template.setter
+    def asset_tag_template(self,value: Optional[str] = None) -> None:
+        """
+        Sets the assetTagTemplate property value. Asset tag information for the device, displayed on the login window and lock screen.
+        Args:
+            value: Value to set for the asset_tag_template property.
+        """
+        self._asset_tag_template = value
+    
+    @property
     def content_filter_settings(self,) -> Optional[ios_web_content_filter_base.IosWebContentFilterBase]:
         """
         Gets the contentFilterSettings property value. Gets or sets iOS Web Content Filter settings, supervised mode only
@@ -104,7 +96,9 @@ class IosDeviceFeaturesConfiguration(apple_device_features_configuration_base.Ap
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import apple_device_features_configuration_base, ios_certificate_profile_base, ios_home_screen_item, ios_home_screen_page, ios_notification_settings, ios_single_sign_on_extension, ios_single_sign_on_settings, ios_wallpaper_display_location, ios_web_content_filter_base, mime_content, single_sign_on_extension
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assetTagTemplate": lambda n : setattr(self, 'asset_tag_template', n.get_str_value()),
             "contentFilterSettings": lambda n : setattr(self, 'content_filter_settings', n.get_object_value(ios_web_content_filter_base.IosWebContentFilterBase)),
             "homeScreenDockIcons": lambda n : setattr(self, 'home_screen_dock_icons', n.get_collection_of_object_values(ios_home_screen_item.IosHomeScreenItem)),

@@ -1,15 +1,29 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-windows_driver_update_profile_inventory_sync_state = lazy_import('msgraph.generated.models.windows_driver_update_profile_inventory_sync_state')
+if TYPE_CHECKING:
+    from . import windows_driver_update_profile_inventory_sync_state
 
 class WindowsDriverUpdateProfileInventorySyncStatus(AdditionalDataHolder, Parsable):
     """
     A complex type to store the status of a driver and firmware profile inventory sync. The status includes the last successful sync date time and the state of the last sync.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new windowsDriverUpdateProfileInventorySyncStatus and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Windows DnF update inventory sync state.
+        self._driver_inventory_sync_state: Optional[windows_driver_update_profile_inventory_sync_state.WindowsDriverUpdateProfileInventorySyncState] = None
+        # The last successful sync date and time in UTC.
+        self._last_successful_sync_date_time: Optional[datetime] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -26,20 +40,6 @@ class WindowsDriverUpdateProfileInventorySyncStatus(AdditionalDataHolder, Parsab
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new windowsDriverUpdateProfileInventorySyncStatus and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Windows DnF update inventory sync state.
-        self._driver_inventory_sync_state: Optional[windows_driver_update_profile_inventory_sync_state.WindowsDriverUpdateProfileInventorySyncState] = None
-        # The last successful sync date and time in UTC.
-        self._last_successful_sync_date_time: Optional[datetime] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsDriverUpdateProfileInventorySyncStatus:
@@ -75,7 +75,9 @@ class WindowsDriverUpdateProfileInventorySyncStatus(AdditionalDataHolder, Parsab
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import windows_driver_update_profile_inventory_sync_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "driverInventorySyncState": lambda n : setattr(self, 'driver_inventory_sync_state', n.get_enum_value(windows_driver_update_profile_inventory_sync_state.WindowsDriverUpdateProfileInventorySyncState)),
             "lastSuccessfulSyncDateTime": lambda n : setattr(self, 'last_successful_sync_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

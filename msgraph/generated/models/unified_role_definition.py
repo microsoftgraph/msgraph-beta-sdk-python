@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-unified_role_permission = lazy_import('msgraph.generated.models.unified_role_permission')
+if TYPE_CHECKING:
+    from . import allowed_role_principal_types, entity, unified_role_permission
+
+from . import entity
 
 class UnifiedRoleDefinition(entity.Entity):
     def __init__(self,) -> None:
@@ -12,6 +13,8 @@ class UnifiedRoleDefinition(entity.Entity):
         Instantiates a new unifiedRoleDefinition and sets the default values.
         """
         super().__init__()
+        # The allowedPrincipalTypes property
+        self._allowed_principal_types: Optional[allowed_role_principal_types.AllowedRolePrincipalTypes] = None
         # The description for the unifiedRoleDefinition. Read-only when isBuiltIn is true.
         self._description: Optional[str] = None
         # The display name for the unifiedRoleDefinition. Read-only when isBuiltIn is true. Required.  Supports $filter (eq and startsWith operators only).
@@ -32,6 +35,23 @@ class UnifiedRoleDefinition(entity.Entity):
         self._template_id: Optional[str] = None
         # Indicates version of the unifiedRoleDefinition. Read-only when isBuiltIn is true.
         self._version: Optional[str] = None
+    
+    @property
+    def allowed_principal_types(self,) -> Optional[allowed_role_principal_types.AllowedRolePrincipalTypes]:
+        """
+        Gets the allowedPrincipalTypes property value. The allowedPrincipalTypes property
+        Returns: Optional[allowed_role_principal_types.AllowedRolePrincipalTypes]
+        """
+        return self._allowed_principal_types
+    
+    @allowed_principal_types.setter
+    def allowed_principal_types(self,value: Optional[allowed_role_principal_types.AllowedRolePrincipalTypes] = None) -> None:
+        """
+        Sets the allowedPrincipalTypes property value. The allowedPrincipalTypes property
+        Args:
+            value: Value to set for the allowed_principal_types property.
+        """
+        self._allowed_principal_types = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UnifiedRoleDefinition:
@@ -84,7 +104,10 @@ class UnifiedRoleDefinition(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import allowed_role_principal_types, entity, unified_role_permission
+
+        fields: Dict[str, Callable[[Any], None]] = {
+            "allowedPrincipalTypes": lambda n : setattr(self, 'allowed_principal_types', n.get_enum_value(allowed_role_principal_types.AllowedRolePrincipalTypes)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "inheritsPermissionsFrom": lambda n : setattr(self, 'inherits_permissions_from', n.get_collection_of_object_values(UnifiedRoleDefinition)),
@@ -193,6 +216,7 @@ class UnifiedRoleDefinition(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
+        writer.write_enum_value("allowedPrincipalTypes", self.allowed_principal_types)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_object_values("inheritsPermissionsFrom", self.inherits_permissions_from)

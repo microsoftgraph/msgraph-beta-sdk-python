@@ -1,12 +1,23 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-ios_lob_app_provisioning_configuration_assignment = lazy_import('msgraph.generated.models.ios_lob_app_provisioning_configuration_assignment')
-mobile_app_provisioning_config_group_assignment = lazy_import('msgraph.generated.models.mobile_app_provisioning_config_group_assignment')
+if TYPE_CHECKING:
+    from .....models import ios_lob_app_provisioning_configuration_assignment, mobile_app_provisioning_config_group_assignment
 
 class AssignPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new assignPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The appProvisioningConfigurationGroupAssignments property
+        self._app_provisioning_configuration_group_assignments: Optional[List[mobile_app_provisioning_config_group_assignment.MobileAppProvisioningConfigGroupAssignment]] = None
+        # The iOSLobAppProvisioningConfigAssignments property
+        self._i_o_s_lob_app_provisioning_config_assignments: Optional[List[ios_lob_app_provisioning_configuration_assignment.IosLobAppProvisioningConfigurationAssignment]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -41,18 +52,6 @@ class AssignPostRequestBody(AdditionalDataHolder, Parsable):
         """
         self._app_provisioning_configuration_group_assignments = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new assignPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The appProvisioningConfigurationGroupAssignments property
-        self._app_provisioning_configuration_group_assignments: Optional[List[mobile_app_provisioning_config_group_assignment.MobileAppProvisioningConfigGroupAssignment]] = None
-        # The iOSLobAppProvisioningConfigAssignments property
-        self._i_o_s_lob_app_provisioning_config_assignments: Optional[List[ios_lob_app_provisioning_configuration_assignment.IosLobAppProvisioningConfigurationAssignment]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AssignPostRequestBody:
         """
@@ -70,7 +69,9 @@ class AssignPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .....models import ios_lob_app_provisioning_configuration_assignment, mobile_app_provisioning_config_group_assignment
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appProvisioningConfigurationGroupAssignments": lambda n : setattr(self, 'app_provisioning_configuration_group_assignments', n.get_collection_of_object_values(mobile_app_provisioning_config_group_assignment.MobileAppProvisioningConfigGroupAssignment)),
             "iOSLobAppProvisioningConfigAssignments": lambda n : setattr(self, 'i_o_s_lob_app_provisioning_config_assignments', n.get_collection_of_object_values(ios_lob_app_provisioning_configuration_assignment.IosLobAppProvisioningConfigurationAssignment)),
         }

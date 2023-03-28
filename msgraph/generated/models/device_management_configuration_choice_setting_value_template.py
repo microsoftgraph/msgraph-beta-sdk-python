@@ -1,32 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_configuration_choice_setting_value_default_template = lazy_import('msgraph.generated.models.device_management_configuration_choice_setting_value_default_template')
-device_management_configuration_choice_setting_value_definition_template = lazy_import('msgraph.generated.models.device_management_configuration_choice_setting_value_definition_template')
+if TYPE_CHECKING:
+    from . import device_management_configuration_choice_setting_value_default_template, device_management_configuration_choice_setting_value_definition_template
 
 class DeviceManagementConfigurationChoiceSettingValueTemplate(AdditionalDataHolder, Parsable):
     """
     Choice Setting Value Template
     """
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new deviceManagementConfigurationChoiceSettingValueTemplate and sets the default values.
@@ -44,6 +26,23 @@ class DeviceManagementConfigurationChoiceSettingValueTemplate(AdditionalDataHold
         self._required_value_definition: Optional[device_management_configuration_choice_setting_value_definition_template.DeviceManagementConfigurationChoiceSettingValueDefinitionTemplate] = None
         # Setting Value Template Id
         self._setting_value_template_id: Optional[str] = None
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationChoiceSettingValueTemplate:
@@ -79,7 +78,9 @@ class DeviceManagementConfigurationChoiceSettingValueTemplate(AdditionalDataHold
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_configuration_choice_setting_value_default_template, device_management_configuration_choice_setting_value_definition_template
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "defaultValue": lambda n : setattr(self, 'default_value', n.get_object_value(device_management_configuration_choice_setting_value_default_template.DeviceManagementConfigurationChoiceSettingValueDefaultTemplate)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "recommendedValueDefinition": lambda n : setattr(self, 'recommended_value_definition', n.get_object_value(device_management_configuration_choice_setting_value_definition_template.DeviceManagementConfigurationChoiceSettingValueDefinitionTemplate)),

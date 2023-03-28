@@ -1,12 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-configuration_manager_action_delivery_status = lazy_import('msgraph.generated.models.configuration_manager_action_delivery_status')
-device_action_result = lazy_import('msgraph.generated.models.device_action_result')
+if TYPE_CHECKING:
+    from . import configuration_manager_action_delivery_status, device_action_result
+
+from . import device_action_result
 
 class ConfigurationManagerActionResult(device_action_result.DeviceActionResult):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new ConfigurationManagerActionResult and sets the default values.
+        """
+        super().__init__()
+        # Delivery state of Configuration Manager device action
+        self._action_delivery_status: Optional[configuration_manager_action_delivery_status.ConfigurationManagerActionDeliveryStatus] = None
+        # Error code of Configuration Manager action from client
+        self._error_code: Optional[int] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def action_delivery_status(self,) -> Optional[configuration_manager_action_delivery_status.ConfigurationManagerActionDeliveryStatus]:
         """
@@ -23,18 +36,6 @@ class ConfigurationManagerActionResult(device_action_result.DeviceActionResult):
             value: Value to set for the action_delivery_status property.
         """
         self._action_delivery_status = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ConfigurationManagerActionResult and sets the default values.
-        """
-        super().__init__()
-        # Delivery state of Configuration Manager device action
-        self._action_delivery_status: Optional[configuration_manager_action_delivery_status.ConfigurationManagerActionDeliveryStatus] = None
-        # Error code of Configuration Manager action from client
-        self._error_code: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ConfigurationManagerActionResult:
@@ -70,7 +71,9 @@ class ConfigurationManagerActionResult(device_action_result.DeviceActionResult):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import configuration_manager_action_delivery_status, device_action_result
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "actionDeliveryStatus": lambda n : setattr(self, 'action_delivery_status', n.get_enum_value(configuration_manager_action_delivery_status.ConfigurationManagerActionDeliveryStatus)),
             "errorCode": lambda n : setattr(self, 'error_code', n.get_int_value()),
         }

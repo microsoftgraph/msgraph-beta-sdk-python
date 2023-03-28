@@ -1,13 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-meeting_audience = lazy_import('msgraph.generated.models.meeting_audience')
-meeting_registrant_base = lazy_import('msgraph.generated.models.meeting_registrant_base')
+if TYPE_CHECKING:
+    from . import entity, external_meeting_registration, meeting_audience, meeting_registrant_base, meeting_registration
+
+from . import entity
 
 class MeetingRegistrationBase(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new meetingRegistrationBase and sets the default values.
+        """
+        super().__init__()
+        # Specifies who can register for the meeting.
+        self._allowed_registrant: Optional[meeting_audience.MeetingAudience] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Registrants of the online meeting.
+        self._registrants: Optional[List[meeting_registrant_base.MeetingRegistrantBase]] = None
+    
     @property
     def allowed_registrant(self,) -> Optional[meeting_audience.MeetingAudience]:
         """
@@ -25,18 +37,6 @@ class MeetingRegistrationBase(entity.Entity):
         """
         self._allowed_registrant = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new meetingRegistrationBase and sets the default values.
-        """
-        super().__init__()
-        # Specifies who can register for the meeting.
-        self._allowed_registrant: Optional[meeting_audience.MeetingAudience] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Registrants of the online meeting.
-        self._registrants: Optional[List[meeting_registrant_base.MeetingRegistrantBase]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MeetingRegistrationBase:
         """
@@ -47,6 +47,17 @@ class MeetingRegistrationBase(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.externalMeetingRegistration":
+                from . import external_meeting_registration
+
+                return external_meeting_registration.ExternalMeetingRegistration()
+            if mapping_value == "#microsoft.graph.meetingRegistration":
+                from . import meeting_registration
+
+                return meeting_registration.MeetingRegistration()
         return MeetingRegistrationBase()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -54,7 +65,9 @@ class MeetingRegistrationBase(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, external_meeting_registration, meeting_audience, meeting_registrant_base, meeting_registration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowedRegistrant": lambda n : setattr(self, 'allowed_registrant', n.get_enum_value(meeting_audience.MeetingAudience)),
             "registrants": lambda n : setattr(self, 'registrants', n.get_collection_of_object_values(meeting_registrant_base.MeetingRegistrantBase)),
         }

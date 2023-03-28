@@ -1,11 +1,41 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-managed_device_remote_action = lazy_import('msgraph.generated.models.managed_device_remote_action')
+if TYPE_CHECKING:
+    from ....models import managed_device_remote_action
 
 class ExecuteActionPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new executeActionPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The actionName property
+        self._action_name: Optional[managed_device_remote_action.ManagedDeviceRemoteAction] = None
+        # The carrierUrl property
+        self._carrier_url: Optional[str] = None
+        # The deprovisionReason property
+        self._deprovision_reason: Optional[str] = None
+        # The deviceIds property
+        self._device_ids: Optional[List[str]] = None
+        # The deviceName property
+        self._device_name: Optional[str] = None
+        # The keepEnrollmentData property
+        self._keep_enrollment_data: Optional[bool] = None
+        # The keepUserData property
+        self._keep_user_data: Optional[bool] = None
+        # The notificationBody property
+        self._notification_body: Optional[str] = None
+        # The notificationTitle property
+        self._notification_title: Optional[str] = None
+        # The organizationalUnitPath property
+        self._organizational_unit_path: Optional[str] = None
+        # The persistEsimDataPlan property
+        self._persist_esim_data_plan: Optional[bool] = None
+    
     @property
     def action_name(self,) -> Optional[managed_device_remote_action.ManagedDeviceRemoteAction]:
         """
@@ -56,36 +86,6 @@ class ExecuteActionPostRequestBody(AdditionalDataHolder, Parsable):
             value: Value to set for the carrier_url property.
         """
         self._carrier_url = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new executeActionPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The actionName property
-        self._action_name: Optional[managed_device_remote_action.ManagedDeviceRemoteAction] = None
-        # The carrierUrl property
-        self._carrier_url: Optional[str] = None
-        # The deprovisionReason property
-        self._deprovision_reason: Optional[str] = None
-        # The deviceIds property
-        self._device_ids: Optional[List[str]] = None
-        # The deviceName property
-        self._device_name: Optional[str] = None
-        # The keepEnrollmentData property
-        self._keep_enrollment_data: Optional[bool] = None
-        # The keepUserData property
-        self._keep_user_data: Optional[bool] = None
-        # The notificationBody property
-        self._notification_body: Optional[str] = None
-        # The notificationTitle property
-        self._notification_title: Optional[str] = None
-        # The organizationalUnitPath property
-        self._organizational_unit_path: Optional[str] = None
-        # The persistEsimDataPlan property
-        self._persist_esim_data_plan: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ExecuteActionPostRequestBody:
@@ -155,7 +155,9 @@ class ExecuteActionPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from ....models import managed_device_remote_action
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "actionName": lambda n : setattr(self, 'action_name', n.get_enum_value(managed_device_remote_action.ManagedDeviceRemoteAction)),
             "carrierUrl": lambda n : setattr(self, 'carrier_url', n.get_str_value()),
             "deprovisionReason": lambda n : setattr(self, 'deprovision_reason', n.get_str_value()),

@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-mobile_app_relationship_type = lazy_import('msgraph.generated.models.mobile_app_relationship_type')
+if TYPE_CHECKING:
+    from . import entity, mobile_app_dependency, mobile_app_relationship_type, mobile_app_supersedence
+
+from . import entity
 
 class MobileAppRelationship(entity.Entity):
     """
@@ -38,6 +39,17 @@ class MobileAppRelationship(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.mobileAppDependency":
+                from . import mobile_app_dependency
+
+                return mobile_app_dependency.MobileAppDependency()
+            if mapping_value == "#microsoft.graph.mobileAppSupersedence":
+                from . import mobile_app_supersedence
+
+                return mobile_app_supersedence.MobileAppSupersedence()
         return MobileAppRelationship()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -45,7 +57,9 @@ class MobileAppRelationship(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, mobile_app_dependency, mobile_app_relationship_type, mobile_app_supersedence
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "targetDisplayName": lambda n : setattr(self, 'target_display_name', n.get_str_value()),
             "targetDisplayVersion": lambda n : setattr(self, 'target_display_version', n.get_str_value()),
             "targetId": lambda n : setattr(self, 'target_id', n.get_str_value()),

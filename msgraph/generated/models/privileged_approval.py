@@ -1,15 +1,44 @@
 from __future__ import annotations
 from datetime import datetime, timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-approval_state = lazy_import('msgraph.generated.models.approval_state')
-entity = lazy_import('msgraph.generated.models.entity')
-privileged_role = lazy_import('msgraph.generated.models.privileged_role')
-privileged_role_assignment_request = lazy_import('msgraph.generated.models.privileged_role_assignment_request')
+if TYPE_CHECKING:
+    from . import approval_state, entity, privileged_role, privileged_role_assignment_request
+
+from . import entity
 
 class PrivilegedApproval(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new PrivilegedApproval and sets the default values.
+        """
+        super().__init__()
+        # The approvalDuration property
+        self._approval_duration: Optional[Timedelta] = None
+        # Possible values are: pending, approved, denied, aborted, canceled.
+        self._approval_state: Optional[approval_state.ApprovalState] = None
+        # The approvalType property
+        self._approval_type: Optional[str] = None
+        # The approverReason property
+        self._approver_reason: Optional[str] = None
+        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+        self._end_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Read-only. The role assignment request for this approval object
+        self._request: Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest] = None
+        # The requestorReason property
+        self._requestor_reason: Optional[str] = None
+        # The roleId property
+        self._role_id: Optional[str] = None
+        # The roleInfo property
+        self._role_info: Optional[privileged_role.PrivilegedRole] = None
+        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+        self._start_date_time: Optional[datetime] = None
+        # The userId property
+        self._user_id: Optional[str] = None
+    
     @property
     def approval_duration(self,) -> Optional[Timedelta]:
         """
@@ -78,36 +107,6 @@ class PrivilegedApproval(entity.Entity):
         """
         self._approver_reason = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new privilegedApproval and sets the default values.
-        """
-        super().__init__()
-        # The approvalDuration property
-        self._approval_duration: Optional[Timedelta] = None
-        # Possible values are: pending, approved, denied, aborted, canceled.
-        self._approval_state: Optional[approval_state.ApprovalState] = None
-        # The approvalType property
-        self._approval_type: Optional[str] = None
-        # The approverReason property
-        self._approver_reason: Optional[str] = None
-        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-        self._end_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Read-only. The role assignment request for this approval object
-        self._request: Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest] = None
-        # The requestorReason property
-        self._requestor_reason: Optional[str] = None
-        # The roleId property
-        self._role_id: Optional[str] = None
-        # The roleInfo property
-        self._role_info: Optional[privileged_role.PrivilegedRole] = None
-        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-        self._start_date_time: Optional[datetime] = None
-        # The userId property
-        self._user_id: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PrivilegedApproval:
         """
@@ -142,7 +141,9 @@ class PrivilegedApproval(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import approval_state, entity, privileged_role, privileged_role_assignment_request
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "approvalDuration": lambda n : setattr(self, 'approval_duration', n.get_object_value(Timedelta)),
             "approvalState": lambda n : setattr(self, 'approval_state', n.get_enum_value(approval_state.ApprovalState)),
             "approvalType": lambda n : setattr(self, 'approval_type', n.get_str_value()),

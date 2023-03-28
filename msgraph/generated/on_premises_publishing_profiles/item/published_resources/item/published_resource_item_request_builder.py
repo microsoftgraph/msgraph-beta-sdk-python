@@ -7,38 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-published_resource = lazy_import('msgraph.generated.models.published_resource')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-agent_groups_request_builder = lazy_import('msgraph.generated.on_premises_publishing_profiles.item.published_resources.item.agent_groups.agent_groups_request_builder')
-on_premises_agent_group_item_request_builder = lazy_import('msgraph.generated.on_premises_publishing_profiles.item.published_resources.item.agent_groups.item.on_premises_agent_group_item_request_builder')
+if TYPE_CHECKING:
+    from .....models import published_resource
+    from .....models.o_data_errors import o_data_error
+    from .agent_groups import agent_groups_request_builder
+    from .agent_groups.item import on_premises_agent_group_item_request_builder
 
 class PublishedResourceItemRequestBuilder():
     """
     Provides operations to manage the publishedResources property of the microsoft.graph.onPremisesPublishingProfile entity.
     """
-    @property
-    def agent_groups(self) -> agent_groups_request_builder.AgentGroupsRequestBuilder:
-        """
-        Provides operations to manage the agentGroups property of the microsoft.graph.publishedResource entity.
-        """
-        return agent_groups_request_builder.AgentGroupsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def agent_groups_by_id(self,id: str) -> on_premises_agent_group_item_request_builder.OnPremisesAgentGroupItemRequestBuilder:
-        """
-        Gets an item from the msgraph.generated.onPremisesPublishingProfiles.item.publishedResources.item.agentGroups.item collection
-        Args:
-            id: Unique identifier of the item
-        Returns: on_premises_agent_group_item_request_builder.OnPremisesAgentGroupItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["onPremisesAgentGroup%2Did"] = id
-        return on_premises_agent_group_item_request_builder.OnPremisesAgentGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new PublishedResourceItemRequestBuilder and sets the default values.
@@ -57,6 +37,21 @@ class PublishedResourceItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def agent_groups_by_id(self,id: str) -> on_premises_agent_group_item_request_builder.OnPremisesAgentGroupItemRequestBuilder:
+        """
+        Gets an item from the msgraph.generated.onPremisesPublishingProfiles.item.publishedResources.item.agentGroups.item collection
+        Args:
+            id: Unique identifier of the item
+        Returns: on_premises_agent_group_item_request_builder.OnPremisesAgentGroupItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .agent_groups.item import on_premises_agent_group_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["onPremisesAgentGroup%2Did"] = id
+        return on_premises_agent_group_item_request_builder.OnPremisesAgentGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def delete(self,request_configuration: Optional[PublishedResourceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property publishedResources for onPremisesPublishingProfiles
@@ -66,6 +61,8 @@ class PublishedResourceItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -84,12 +81,16 @@ class PublishedResourceItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .....models import published_resource
+
         return await self.request_adapter.send_async(request_info, published_resource.PublishedResource, error_mapping)
     
     async def patch(self,body: Optional[published_resource.PublishedResource] = None, request_configuration: Optional[PublishedResourceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[published_resource.PublishedResource]:
@@ -105,12 +106,16 @@ class PublishedResourceItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .....models import published_resource
+
         return await self.request_adapter.send_async(request_info, published_resource.PublishedResource, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PublishedResourceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -168,6 +173,15 @@ class PublishedResourceItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def agent_groups(self) -> agent_groups_request_builder.AgentGroupsRequestBuilder:
+        """
+        Provides operations to manage the agentGroups property of the microsoft.graph.publishedResource entity.
+        """
+        from .agent_groups import agent_groups_request_builder
+
+        return agent_groups_request_builder.AgentGroupsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class PublishedResourceItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -185,12 +199,6 @@ class PublishedResourceItemRequestBuilder():
         """
         List of existing publishedResource objects. Read-only. Nullable.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -206,6 +214,12 @@ class PublishedResourceItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class PublishedResourceItemRequestBuilderGetRequestConfiguration():

@@ -1,30 +1,14 @@
 from __future__ import annotations
 from datetime import date, timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-analytics_activity_type = lazy_import('msgraph.generated.models.analytics_activity_type')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import analytics_activity_type, call_activity_statistics, chat_activity_statistics, email_activity_statistics, entity, focus_activity_statistics, meeting_activity_statistics
+
+from . import entity
 
 class ActivityStatistics(entity.Entity):
-    @property
-    def activity(self,) -> Optional[analytics_activity_type.AnalyticsActivityType]:
-        """
-        Gets the activity property value. The type of activity for which statistics are returned. The possible values are: call, chat, email, focus, and meeting.
-        Returns: Optional[analytics_activity_type.AnalyticsActivityType]
-        """
-        return self._activity
-    
-    @activity.setter
-    def activity(self,value: Optional[analytics_activity_type.AnalyticsActivityType] = None) -> None:
-        """
-        Sets the activity property value. The type of activity for which statistics are returned. The possible values are: call, chat, email, focus, and meeting.
-        Args:
-            value: Value to set for the activity property.
-        """
-        self._activity = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new activityStatistics and sets the default values.
@@ -43,6 +27,23 @@ class ActivityStatistics(entity.Entity):
         # The time zone that the user sets in Microsoft Outlook is used for the computation. For example, the property value could be 'Pacific Standard Time.'
         self._time_zone_used: Optional[str] = None
     
+    @property
+    def activity(self,) -> Optional[analytics_activity_type.AnalyticsActivityType]:
+        """
+        Gets the activity property value. The type of activity for which statistics are returned. The possible values are: call, chat, email, focus, and meeting.
+        Returns: Optional[analytics_activity_type.AnalyticsActivityType]
+        """
+        return self._activity
+    
+    @activity.setter
+    def activity(self,value: Optional[analytics_activity_type.AnalyticsActivityType] = None) -> None:
+        """
+        Sets the activity property value. The type of activity for which statistics are returned. The possible values are: call, chat, email, focus, and meeting.
+        Args:
+            value: Value to set for the activity property.
+        """
+        self._activity = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ActivityStatistics:
         """
@@ -53,6 +54,29 @@ class ActivityStatistics(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.callActivityStatistics":
+                from . import call_activity_statistics
+
+                return call_activity_statistics.CallActivityStatistics()
+            if mapping_value == "#microsoft.graph.chatActivityStatistics":
+                from . import chat_activity_statistics
+
+                return chat_activity_statistics.ChatActivityStatistics()
+            if mapping_value == "#microsoft.graph.emailActivityStatistics":
+                from . import email_activity_statistics
+
+                return email_activity_statistics.EmailActivityStatistics()
+            if mapping_value == "#microsoft.graph.focusActivityStatistics":
+                from . import focus_activity_statistics
+
+                return focus_activity_statistics.FocusActivityStatistics()
+            if mapping_value == "#microsoft.graph.meetingActivityStatistics":
+                from . import meeting_activity_statistics
+
+                return meeting_activity_statistics.MeetingActivityStatistics()
         return ActivityStatistics()
     
     @property
@@ -94,7 +118,9 @@ class ActivityStatistics(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import analytics_activity_type, call_activity_statistics, chat_activity_statistics, email_activity_statistics, entity, focus_activity_statistics, meeting_activity_statistics
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "activity": lambda n : setattr(self, 'activity', n.get_enum_value(analytics_activity_type.AnalyticsActivityType)),
             "duration": lambda n : setattr(self, 'duration', n.get_object_value(Timedelta)),
             "endDate": lambda n : setattr(self, 'end_date', n.get_object_value(Date)),

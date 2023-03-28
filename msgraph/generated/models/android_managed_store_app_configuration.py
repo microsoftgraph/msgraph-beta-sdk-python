@@ -1,13 +1,32 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_permission_action = lazy_import('msgraph.generated.models.android_permission_action')
-android_profile_applicability = lazy_import('msgraph.generated.models.android_profile_applicability')
-managed_device_mobile_app_configuration = lazy_import('msgraph.generated.models.managed_device_mobile_app_configuration')
+if TYPE_CHECKING:
+    from . import android_permission_action, android_profile_applicability, managed_device_mobile_app_configuration
+
+from . import managed_device_mobile_app_configuration
 
 class AndroidManagedStoreAppConfiguration(managed_device_mobile_app_configuration.ManagedDeviceMobileAppConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new AndroidManagedStoreAppConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.androidManagedStoreAppConfiguration"
+        # Whether or not this AppConfig is an OEMConfig policy.
+        self._app_supports_oem_config: Optional[bool] = None
+        # Setting to specify whether to allow ConnectedApps experience for this app.
+        self._connected_apps_enabled: Optional[bool] = None
+        # Android Enterprise app configuration package id.
+        self._package_id: Optional[str] = None
+        # Android Enterprise app configuration JSON payload.
+        self._payload_json: Optional[str] = None
+        # List of Android app permissions and corresponding permission actions.
+        self._permission_actions: Optional[List[android_permission_action.AndroidPermissionAction]] = None
+        # Android profile applicability
+        self._profile_applicability: Optional[android_profile_applicability.AndroidProfileApplicability] = None
+    
     @property
     def app_supports_oem_config(self,) -> Optional[bool]:
         """
@@ -42,25 +61,6 @@ class AndroidManagedStoreAppConfiguration(managed_device_mobile_app_configuratio
         """
         self._connected_apps_enabled = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AndroidManagedStoreAppConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.androidManagedStoreAppConfiguration"
-        # Whether or not this AppConfig is an OEMConfig policy.
-        self._app_supports_oem_config: Optional[bool] = None
-        # Setting to specify whether to allow ConnectedApps experience for this app.
-        self._connected_apps_enabled: Optional[bool] = None
-        # Android Enterprise app configuration package id.
-        self._package_id: Optional[str] = None
-        # Android Enterprise app configuration JSON payload.
-        self._payload_json: Optional[str] = None
-        # List of Android app permissions and corresponding permission actions.
-        self._permission_actions: Optional[List[android_permission_action.AndroidPermissionAction]] = None
-        # Android profile applicability
-        self._profile_applicability: Optional[android_profile_applicability.AndroidProfileApplicability] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidManagedStoreAppConfiguration:
         """
@@ -78,7 +78,9 @@ class AndroidManagedStoreAppConfiguration(managed_device_mobile_app_configuratio
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_permission_action, android_profile_applicability, managed_device_mobile_app_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appSupportsOemConfig": lambda n : setattr(self, 'app_supports_oem_config', n.get_bool_value()),
             "connectedAppsEnabled": lambda n : setattr(self, 'connected_apps_enabled', n.get_bool_value()),
             "packageId": lambda n : setattr(self, 'package_id', n.get_str_value()),

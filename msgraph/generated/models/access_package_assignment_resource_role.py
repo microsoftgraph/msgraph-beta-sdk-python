@@ -1,15 +1,35 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-access_package_assignment = lazy_import('msgraph.generated.models.access_package_assignment')
-access_package_resource_role = lazy_import('msgraph.generated.models.access_package_resource_role')
-access_package_resource_scope = lazy_import('msgraph.generated.models.access_package_resource_scope')
-access_package_subject = lazy_import('msgraph.generated.models.access_package_subject')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import access_package_assignment, access_package_resource_role, access_package_resource_scope, access_package_subject, entity
+
+from . import entity
 
 class AccessPackageAssignmentResourceRole(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new accessPackageAssignmentResourceRole and sets the default values.
+        """
+        super().__init__()
+        # The access package assignments resulting in this role assignment. Read-only. Nullable.
+        self._access_package_assignments: Optional[List[access_package_assignment.AccessPackageAssignment]] = None
+        # The accessPackageResourceRole property
+        self._access_package_resource_role: Optional[access_package_resource_role.AccessPackageResourceRole] = None
+        # The accessPackageResourceScope property
+        self._access_package_resource_scope: Optional[access_package_resource_scope.AccessPackageResourceScope] = None
+        # Read-only. Nullable. Supports $filter (eq) on objectId and $expand query parameters.
+        self._access_package_subject: Optional[access_package_subject.AccessPackageSubject] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # A unique identifier relative to the origin system, corresponding to the originId property of the accessPackageResourceRole.
+        self._origin_id: Optional[str] = None
+        # The system where the role assignment is to be created or has been created for an access package assignment, such as SharePointOnline, AadGroup or AadApplication, corresponding to the originSystem property of the accessPackageResourceRole.
+        self._origin_system: Optional[str] = None
+        # The value is PendingFulfillment when the access package assignment has not yet been delivered to the origin system, and Fulfilled when the access package assignment has been delivered to the origin system.
+        self._status: Optional[str] = None
+    
     @property
     def access_package_assignments(self,) -> Optional[List[access_package_assignment.AccessPackageAssignment]]:
         """
@@ -78,28 +98,6 @@ class AccessPackageAssignmentResourceRole(entity.Entity):
         """
         self._access_package_subject = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new accessPackageAssignmentResourceRole and sets the default values.
-        """
-        super().__init__()
-        # The access package assignments resulting in this role assignment. Read-only. Nullable.
-        self._access_package_assignments: Optional[List[access_package_assignment.AccessPackageAssignment]] = None
-        # The accessPackageResourceRole property
-        self._access_package_resource_role: Optional[access_package_resource_role.AccessPackageResourceRole] = None
-        # The accessPackageResourceScope property
-        self._access_package_resource_scope: Optional[access_package_resource_scope.AccessPackageResourceScope] = None
-        # Read-only. Nullable. Supports $filter (eq) on objectId and $expand query parameters.
-        self._access_package_subject: Optional[access_package_subject.AccessPackageSubject] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # A unique identifier relative to the origin system, corresponding to the originId property of the accessPackageResourceRole.
-        self._origin_id: Optional[str] = None
-        # The system where the role assignment is to be created or has been created for an access package assignment, such as SharePointOnline, AadGroup or AadApplication, corresponding to the originSystem property of the accessPackageResourceRole.
-        self._origin_system: Optional[str] = None
-        # The value is PendingFulfillment when the access package assignment has not yet been delivered to the origin system, and Fulfilled when the access package assignment has been delivered to the origin system.
-        self._status: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccessPackageAssignmentResourceRole:
         """
@@ -117,7 +115,9 @@ class AccessPackageAssignmentResourceRole(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import access_package_assignment, access_package_resource_role, access_package_resource_scope, access_package_subject, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accessPackageAssignments": lambda n : setattr(self, 'access_package_assignments', n.get_collection_of_object_values(access_package_assignment.AccessPackageAssignment)),
             "accessPackageResourceRole": lambda n : setattr(self, 'access_package_resource_role', n.get_object_value(access_package_resource_role.AccessPackageResourceRole)),
             "accessPackageResourceScope": lambda n : setattr(self, 'access_package_resource_scope', n.get_object_value(access_package_resource_scope.AccessPackageResourceScope)),

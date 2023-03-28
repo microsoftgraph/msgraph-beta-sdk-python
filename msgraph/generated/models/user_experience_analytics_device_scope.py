@@ -1,18 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_scope_operator = lazy_import('msgraph.generated.models.device_scope_operator')
-device_scope_parameter = lazy_import('msgraph.generated.models.device_scope_parameter')
-device_scope_status = lazy_import('msgraph.generated.models.device_scope_status')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import device_scope_operator, device_scope_parameter, device_scope_status, entity
+
+from . import entity
 
 class UserExperienceAnalyticsDeviceScope(entity.Entity):
-    """
-    The user experience analytics device scope entity contains device scope configuration values use to apply filtering on the endpoint analytics reports.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new userExperienceAnalyticsDeviceScope and sets the default values.
@@ -111,7 +107,9 @@ class UserExperienceAnalyticsDeviceScope(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_scope_operator, device_scope_parameter, device_scope_status, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "deviceScopeName": lambda n : setattr(self, 'device_scope_name', n.get_str_value()),
             "enabled": lambda n : setattr(self, 'enabled', n.get_bool_value()),

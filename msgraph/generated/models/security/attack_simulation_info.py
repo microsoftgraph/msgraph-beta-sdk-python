@@ -1,10 +1,27 @@
 from __future__ import annotations
 from datetime import datetime, timedelta
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class AttackSimulationInfo(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new attackSimulationInfo and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The date and time of the attack simulation.
+        self._attack_sim_date_time: Optional[datetime] = None
+        # The duration (in time) for the attack simulation.
+        self._attack_sim_duration_time: Optional[Timedelta] = None
+        # The activity ID for the attack simulation.
+        self._attack_sim_id: Optional[Guid] = None
+        # The unique identifier for the user who got the attack simulation email.
+        self._attack_sim_user_id: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -90,24 +107,6 @@ class AttackSimulationInfo(AdditionalDataHolder, Parsable):
         """
         self._attack_sim_user_id = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new attackSimulationInfo and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The date and time of the attack simulation.
-        self._attack_sim_date_time: Optional[datetime] = None
-        # The duration (in time) for the attack simulation.
-        self._attack_sim_duration_time: Optional[Timedelta] = None
-        # The activity ID for the attack simulation.
-        self._attack_sim_id: Optional[Guid] = None
-        # The unique identifier for the user who got the attack simulation email.
-        self._attack_sim_user_id: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AttackSimulationInfo:
         """
@@ -125,7 +124,7 @@ class AttackSimulationInfo(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "attackSimDateTime": lambda n : setattr(self, 'attack_sim_date_time', n.get_datetime_value()),
             "attackSimDurationTime": lambda n : setattr(self, 'attack_sim_duration_time', n.get_object_value(Timedelta)),
             "attackSimId": lambda n : setattr(self, 'attack_sim_id', n.get_object_value(Guid)),

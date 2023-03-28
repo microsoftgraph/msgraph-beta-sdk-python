@@ -1,12 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-classification_error = lazy_import('msgraph.generated.models.classification_error')
-exact_match_detected_sensitive_content = lazy_import('msgraph.generated.models.exact_match_detected_sensitive_content')
+if TYPE_CHECKING:
+    from . import classification_error, exact_match_detected_sensitive_content
 
 class ExactMatchClassificationResult(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new exactMatchClassificationResult and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The classification property
+        self._classification: Optional[List[exact_match_detected_sensitive_content.ExactMatchDetectedSensitiveContent]] = None
+        # The errors property
+        self._errors: Optional[List[classification_error.ClassificationError]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -40,20 +53,6 @@ class ExactMatchClassificationResult(AdditionalDataHolder, Parsable):
             value: Value to set for the classification property.
         """
         self._classification = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new exactMatchClassificationResult and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The classification property
-        self._classification: Optional[List[exact_match_detected_sensitive_content.ExactMatchDetectedSensitiveContent]] = None
-        # The errors property
-        self._errors: Optional[List[classification_error.ClassificationError]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ExactMatchClassificationResult:
@@ -89,7 +88,9 @@ class ExactMatchClassificationResult(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import classification_error, exact_match_detected_sensitive_content
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "classification": lambda n : setattr(self, 'classification', n.get_collection_of_object_values(exact_match_detected_sensitive_content.ExactMatchDetectedSensitiveContent)),
             "errors": lambda n : setattr(self, 'errors', n.get_collection_of_object_values(classification_error.ClassificationError)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

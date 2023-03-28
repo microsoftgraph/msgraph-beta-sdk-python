@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-device_management_derived_credential_settings = lazy_import('msgraph.generated.models.device_management_derived_credential_settings')
+if TYPE_CHECKING:
+    from . import device_configuration, device_management_derived_credential_settings
+
+from . import device_configuration
 
 class IosDerivedCredentialAuthenticationConfiguration(device_configuration.DeviceConfiguration):
     def __init__(self,) -> None:
@@ -50,7 +51,9 @@ class IosDerivedCredentialAuthenticationConfiguration(device_configuration.Devic
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_configuration, device_management_derived_credential_settings
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "derivedCredentialSettings": lambda n : setattr(self, 'derived_credential_settings', n.get_object_value(device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings)),
         }
         super_fields = super().get_field_deserializers()

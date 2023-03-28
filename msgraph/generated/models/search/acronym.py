@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-answer_state = lazy_import('msgraph.generated.models.search.answer_state')
-search_answer = lazy_import('msgraph.generated.models.search.search_answer')
+if TYPE_CHECKING:
+    from . import answer_state, search_answer
+
+from . import search_answer
 
 class Acronym(search_answer.SearchAnswer):
     def __init__(self,) -> None:
@@ -36,7 +37,9 @@ class Acronym(search_answer.SearchAnswer):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import answer_state, search_answer
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "standsFor": lambda n : setattr(self, 'stands_for', n.get_str_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(answer_state.AnswerState)),
         }

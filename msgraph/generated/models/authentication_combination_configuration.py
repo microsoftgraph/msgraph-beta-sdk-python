@@ -1,12 +1,23 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-authentication_method_modes = lazy_import('msgraph.generated.models.authentication_method_modes')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import authentication_method_modes, entity, fido2_combination_configuration
+
+from . import entity
 
 class AuthenticationCombinationConfiguration(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new authenticationCombinationConfiguration and sets the default values.
+        """
+        super().__init__()
+        # Which authentication method combinations this configuration applies to. Must be an allowedCombinations object that's defined for the authenticationStrengthPolicy. The only possible value for fido2combinationConfigurations is 'fido2'.
+        self._applies_to_combinations: Optional[List[authentication_method_modes.AuthenticationMethodModes]] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def applies_to_combinations(self,) -> Optional[List[authentication_method_modes.AuthenticationMethodModes]]:
         """
@@ -24,16 +35,6 @@ class AuthenticationCombinationConfiguration(entity.Entity):
         """
         self._applies_to_combinations = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AuthenticationCombinationConfiguration and sets the default values.
-        """
-        super().__init__()
-        # Which authentication method combinations this configuration applies to. Must be an allowedCombinations object that's defined for the authenticationStrengthPolicy. The only possible value for fido2combinationConfigurations is 'fido2'.
-        self._applies_to_combinations: Optional[List[authentication_method_modes.AuthenticationMethodModes]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AuthenticationCombinationConfiguration:
         """
@@ -44,6 +45,13 @@ class AuthenticationCombinationConfiguration(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.fido2CombinationConfiguration":
+                from . import fido2_combination_configuration
+
+                return fido2_combination_configuration.Fido2CombinationConfiguration()
         return AuthenticationCombinationConfiguration()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -51,7 +59,9 @@ class AuthenticationCombinationConfiguration(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import authentication_method_modes, entity, fido2_combination_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appliesToCombinations": lambda n : setattr(self, 'applies_to_combinations', n.get_collection_of_enum_values(authentication_method_modes.AuthenticationMethodModes)),
         }
         super_fields = super().get_field_deserializers()

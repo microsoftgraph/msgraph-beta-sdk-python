@@ -1,14 +1,28 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_log_collection_template_type = lazy_import('msgraph.generated.models.device_log_collection_template_type')
+if TYPE_CHECKING:
+    from . import device_log_collection_template_type
 
 class DeviceLogCollectionRequest(AdditionalDataHolder, Parsable):
     """
     Windows Log Collection request entity.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new deviceLogCollectionRequest and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The unique identifier
+        self._id: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Enum for the template type used for collecting logs
+        self._template_type: Optional[device_log_collection_template_type.DeviceLogCollectionTemplateType] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -25,20 +39,6 @@ class DeviceLogCollectionRequest(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceLogCollectionRequest and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The unique identifier
-        self._id: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Enum for the template type used for collecting logs
-        self._template_type: Optional[device_log_collection_template_type.DeviceLogCollectionTemplateType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceLogCollectionRequest:
@@ -57,7 +57,9 @@ class DeviceLogCollectionRequest(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_log_collection_template_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "templateType": lambda n : setattr(self, 'template_type', n.get_enum_value(device_log_collection_template_type.DeviceLogCollectionTemplateType)),

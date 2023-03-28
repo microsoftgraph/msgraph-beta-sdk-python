@@ -7,54 +7,20 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-authentication_strength_policy = lazy_import('msgraph.generated.models.authentication_strength_policy')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-combination_configurations_request_builder = lazy_import('msgraph.generated.policies.authentication_strength_policies.item.combination_configurations.combination_configurations_request_builder')
-authentication_combination_configuration_item_request_builder = lazy_import('msgraph.generated.policies.authentication_strength_policies.item.combination_configurations.item.authentication_combination_configuration_item_request_builder')
-update_allowed_combinations_request_builder = lazy_import('msgraph.generated.policies.authentication_strength_policies.item.update_allowed_combinations.update_allowed_combinations_request_builder')
-usage_request_builder = lazy_import('msgraph.generated.policies.authentication_strength_policies.item.usage.usage_request_builder')
+if TYPE_CHECKING:
+    from ....models import authentication_strength_policy
+    from ....models.o_data_errors import o_data_error
+    from .combination_configurations import combination_configurations_request_builder
+    from .combination_configurations.item import authentication_combination_configuration_item_request_builder
+    from .update_allowed_combinations import update_allowed_combinations_request_builder
+    from .usage import usage_request_builder
 
 class AuthenticationStrengthPolicyItemRequestBuilder():
     """
     Provides operations to manage the authenticationStrengthPolicies property of the microsoft.graph.policyRoot entity.
     """
-    @property
-    def combination_configurations(self) -> combination_configurations_request_builder.CombinationConfigurationsRequestBuilder:
-        """
-        Provides operations to manage the combinationConfigurations property of the microsoft.graph.authenticationStrengthPolicy entity.
-        """
-        return combination_configurations_request_builder.CombinationConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def update_allowed_combinations(self) -> update_allowed_combinations_request_builder.UpdateAllowedCombinationsRequestBuilder:
-        """
-        Provides operations to call the updateAllowedCombinations method.
-        """
-        return update_allowed_combinations_request_builder.UpdateAllowedCombinationsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def usage(self) -> usage_request_builder.UsageRequestBuilder:
-        """
-        Provides operations to call the usage method.
-        """
-        return usage_request_builder.UsageRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def combination_configurations_by_id(self,id: str) -> authentication_combination_configuration_item_request_builder.AuthenticationCombinationConfigurationItemRequestBuilder:
-        """
-        Provides operations to manage the combinationConfigurations property of the microsoft.graph.authenticationStrengthPolicy entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: authentication_combination_configuration_item_request_builder.AuthenticationCombinationConfigurationItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["authenticationCombinationConfiguration%2Did"] = id
-        return authentication_combination_configuration_item_request_builder.AuthenticationCombinationConfigurationItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new AuthenticationStrengthPolicyItemRequestBuilder and sets the default values.
@@ -73,6 +39,21 @@ class AuthenticationStrengthPolicyItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def combination_configurations_by_id(self,id: str) -> authentication_combination_configuration_item_request_builder.AuthenticationCombinationConfigurationItemRequestBuilder:
+        """
+        Provides operations to manage the combinationConfigurations property of the microsoft.graph.authenticationStrengthPolicy entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: authentication_combination_configuration_item_request_builder.AuthenticationCombinationConfigurationItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .combination_configurations.item import authentication_combination_configuration_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["authenticationCombinationConfiguration%2Did"] = id
+        return authentication_combination_configuration_item_request_builder.AuthenticationCombinationConfigurationItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def delete(self,request_configuration: Optional[AuthenticationStrengthPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property authenticationStrengthPolicies for policies
@@ -82,6 +63,8 @@ class AuthenticationStrengthPolicyItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -100,12 +83,16 @@ class AuthenticationStrengthPolicyItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import authentication_strength_policy
+
         return await self.request_adapter.send_async(request_info, authentication_strength_policy.AuthenticationStrengthPolicy, error_mapping)
     
     async def patch(self,body: Optional[authentication_strength_policy.AuthenticationStrengthPolicy] = None, request_configuration: Optional[AuthenticationStrengthPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[authentication_strength_policy.AuthenticationStrengthPolicy]:
@@ -121,12 +108,16 @@ class AuthenticationStrengthPolicyItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import authentication_strength_policy
+
         return await self.request_adapter.send_async(request_info, authentication_strength_policy.AuthenticationStrengthPolicy, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AuthenticationStrengthPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -184,6 +175,33 @@ class AuthenticationStrengthPolicyItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def combination_configurations(self) -> combination_configurations_request_builder.CombinationConfigurationsRequestBuilder:
+        """
+        Provides operations to manage the combinationConfigurations property of the microsoft.graph.authenticationStrengthPolicy entity.
+        """
+        from .combination_configurations import combination_configurations_request_builder
+
+        return combination_configurations_request_builder.CombinationConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def update_allowed_combinations(self) -> update_allowed_combinations_request_builder.UpdateAllowedCombinationsRequestBuilder:
+        """
+        Provides operations to call the updateAllowedCombinations method.
+        """
+        from .update_allowed_combinations import update_allowed_combinations_request_builder
+
+        return update_allowed_combinations_request_builder.UpdateAllowedCombinationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def usage(self) -> usage_request_builder.UsageRequestBuilder:
+        """
+        Provides operations to call the usage method.
+        """
+        from .usage import usage_request_builder
+
+        return usage_request_builder.UsageRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class AuthenticationStrengthPolicyItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -201,12 +219,6 @@ class AuthenticationStrengthPolicyItemRequestBuilder():
         """
         The authentication method combinations that are to be used in scenarios defined by Azure AD Conditional Access.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -222,6 +234,12 @@ class AuthenticationStrengthPolicyItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class AuthenticationStrengthPolicyItemRequestBuilderGetRequestConfiguration():

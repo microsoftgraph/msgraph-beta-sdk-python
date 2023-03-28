@@ -1,11 +1,21 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-configuration_manager_action = lazy_import('msgraph.generated.models.configuration_manager_action')
+if TYPE_CHECKING:
+    from ......models import configuration_manager_action
 
 class TriggerConfigurationManagerActionPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new triggerConfigurationManagerActionPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Parameter for action triggerConfigurationManagerAction
+        self._configuration_manager_action: Optional[configuration_manager_action.ConfigurationManagerAction] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -40,16 +50,6 @@ class TriggerConfigurationManagerActionPostRequestBody(AdditionalDataHolder, Par
         """
         self._configuration_manager_action = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new triggerConfigurationManagerActionPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Parameter for action triggerConfigurationManagerAction
-        self._configuration_manager_action: Optional[configuration_manager_action.ConfigurationManagerAction] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TriggerConfigurationManagerActionPostRequestBody:
         """
@@ -67,7 +67,9 @@ class TriggerConfigurationManagerActionPostRequestBody(AdditionalDataHolder, Par
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from ......models import configuration_manager_action
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "configurationManagerAction": lambda n : setattr(self, 'configuration_manager_action', n.get_object_value(configuration_manager_action.ConfigurationManagerAction)),
         }
         return fields

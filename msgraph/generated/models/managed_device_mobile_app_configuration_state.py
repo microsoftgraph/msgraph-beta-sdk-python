@@ -1,12 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-compliance_status = lazy_import('msgraph.generated.models.compliance_status')
-entity = lazy_import('msgraph.generated.models.entity')
-managed_device_mobile_app_configuration_setting_state = lazy_import('msgraph.generated.models.managed_device_mobile_app_configuration_setting_state')
-policy_platform_type = lazy_import('msgraph.generated.models.policy_platform_type')
+if TYPE_CHECKING:
+    from . import compliance_status, entity, managed_device_mobile_app_configuration_setting_state, policy_platform_type
+
+from . import entity
 
 class ManagedDeviceMobileAppConfigurationState(entity.Entity):
     """
@@ -70,7 +69,9 @@ class ManagedDeviceMobileAppConfigurationState(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import compliance_status, entity, managed_device_mobile_app_configuration_setting_state, policy_platform_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "platformType": lambda n : setattr(self, 'platform_type', n.get_enum_value(policy_platform_type.PolicyPlatformType)),
             "settingCount": lambda n : setattr(self, 'setting_count', n.get_int_value()),

@@ -1,16 +1,52 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-access_package_assignment_policy = lazy_import('msgraph.generated.models.access_package_assignment_policy')
-access_package_catalog = lazy_import('msgraph.generated.models.access_package_catalog')
-access_package_resource_role_scope = lazy_import('msgraph.generated.models.access_package_resource_role_scope')
-entity = lazy_import('msgraph.generated.models.entity')
-group = lazy_import('msgraph.generated.models.group')
+if TYPE_CHECKING:
+    from . import access_package_assignment_policy, access_package_catalog, access_package_resource_role_scope, entity, group
+
+from . import entity
 
 class AccessPackage(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new accessPackage and sets the default values.
+        """
+        super().__init__()
+        # Read-only. Nullable. Supports $expand.
+        self._access_package_assignment_policies: Optional[List[access_package_assignment_policy.AccessPackageAssignmentPolicy]] = None
+        # The accessPackageCatalog property
+        self._access_package_catalog: Optional[access_package_catalog.AccessPackageCatalog] = None
+        # The accessPackageResourceRoleScopes property
+        self._access_package_resource_role_scopes: Optional[List[access_package_resource_role_scope.AccessPackageResourceRoleScope]] = None
+        # The access packages that are incompatible with this package. Read-only.
+        self._access_packages_incompatible_with: Optional[List[AccessPackage]] = None
+        # Identifier of the access package catalog referencing this access package. Read-only.
+        self._catalog_id: Optional[str] = None
+        # The userPrincipalName of the user or identity of the subject who created this resource. Read-only.
+        self._created_by: Optional[str] = None
+        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
+        self._created_date_time: Optional[datetime] = None
+        # The description of the access package.
+        self._description: Optional[str] = None
+        # The display name of the access package. Supports $filter (eq, contains).
+        self._display_name: Optional[str] = None
+        # The  access packages whose assigned users are ineligible to be assigned this access package.
+        self._incompatible_access_packages: Optional[List[AccessPackage]] = None
+        # The groups whose members are ineligible to be assigned this access package.
+        self._incompatible_groups: Optional[List[group.Group]] = None
+        # Whether the access package is hidden from the requestor.
+        self._is_hidden: Optional[bool] = None
+        # Indicates whether role scopes are visible.
+        self._is_role_scopes_visible: Optional[bool] = None
+        # The userPrincipalName of the user who last modified this resource. Read-only.
+        self._modified_by: Optional[str] = None
+        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
+        self._modified_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def access_package_assignment_policies(self,) -> Optional[List[access_package_assignment_policy.AccessPackageAssignmentPolicy]]:
         """
@@ -95,44 +131,6 @@ class AccessPackage(entity.Entity):
             value: Value to set for the catalog_id property.
         """
         self._catalog_id = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new accessPackage and sets the default values.
-        """
-        super().__init__()
-        # Read-only. Nullable. Supports $expand.
-        self._access_package_assignment_policies: Optional[List[access_package_assignment_policy.AccessPackageAssignmentPolicy]] = None
-        # The accessPackageCatalog property
-        self._access_package_catalog: Optional[access_package_catalog.AccessPackageCatalog] = None
-        # The accessPackageResourceRoleScopes property
-        self._access_package_resource_role_scopes: Optional[List[access_package_resource_role_scope.AccessPackageResourceRoleScope]] = None
-        # The access packages that are incompatible with this package. Read-only.
-        self._access_packages_incompatible_with: Optional[List[AccessPackage]] = None
-        # Identifier of the access package catalog referencing this access package. Read-only.
-        self._catalog_id: Optional[str] = None
-        # The userPrincipalName of the user or identity of the subject who created this resource. Read-only.
-        self._created_by: Optional[str] = None
-        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
-        self._created_date_time: Optional[datetime] = None
-        # The description of the access package.
-        self._description: Optional[str] = None
-        # The display name of the access package. Supports $filter (eq, contains).
-        self._display_name: Optional[str] = None
-        # The  access packages whose assigned users are ineligible to be assigned this access package.
-        self._incompatible_access_packages: Optional[List[AccessPackage]] = None
-        # The groups whose members are ineligible to be assigned this access package.
-        self._incompatible_groups: Optional[List[group.Group]] = None
-        # Whether the access package is hidden from the requestor.
-        self._is_hidden: Optional[bool] = None
-        # Indicates whether role scopes are visible.
-        self._is_role_scopes_visible: Optional[bool] = None
-        # The userPrincipalName of the user who last modified this resource. Read-only.
-        self._modified_by: Optional[str] = None
-        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
-        self._modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
     
     @property
     def created_by(self,) -> Optional[str]:
@@ -219,7 +217,9 @@ class AccessPackage(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import access_package_assignment_policy, access_package_catalog, access_package_resource_role_scope, entity, group
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accessPackagesIncompatibleWith": lambda n : setattr(self, 'access_packages_incompatible_with', n.get_collection_of_object_values(AccessPackage)),
             "accessPackageAssignmentPolicies": lambda n : setattr(self, 'access_package_assignment_policies', n.get_collection_of_object_values(access_package_assignment_policy.AccessPackageAssignmentPolicy)),
             "accessPackageCatalog": lambda n : setattr(self, 'access_package_catalog', n.get_object_value(access_package_catalog.AccessPackageCatalog)),

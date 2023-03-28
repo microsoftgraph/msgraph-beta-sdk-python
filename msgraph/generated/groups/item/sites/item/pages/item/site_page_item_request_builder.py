@@ -7,49 +7,21 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-canvas_layout_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.pages.item.canvas_layout.canvas_layout_request_builder')
-get_web_parts_by_position_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.pages.item.get_web_parts_by_position.get_web_parts_by_position_request_builder')
-publish_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.pages.item.publish.publish_request_builder')
-web_parts_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.pages.item.web_parts.web_parts_request_builder')
-web_part_item_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.pages.item.web_parts.item.web_part_item_request_builder')
-site_page = lazy_import('msgraph.generated.models.site_page')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from .......models import site_page
+    from .......models.o_data_errors import o_data_error
+    from .canvas_layout import canvas_layout_request_builder
+    from .get_web_parts_by_position import get_web_parts_by_position_request_builder
+    from .publish import publish_request_builder
+    from .web_parts import web_parts_request_builder
+    from .web_parts.item import web_part_item_request_builder
 
 class SitePageItemRequestBuilder():
     """
     Provides operations to manage the pages property of the microsoft.graph.site entity.
     """
-    @property
-    def canvas_layout(self) -> canvas_layout_request_builder.CanvasLayoutRequestBuilder:
-        """
-        Provides operations to manage the canvasLayout property of the microsoft.graph.sitePage entity.
-        """
-        return canvas_layout_request_builder.CanvasLayoutRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_web_parts_by_position(self) -> get_web_parts_by_position_request_builder.GetWebPartsByPositionRequestBuilder:
-        """
-        Provides operations to call the getWebPartsByPosition method.
-        """
-        return get_web_parts_by_position_request_builder.GetWebPartsByPositionRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def publish(self) -> publish_request_builder.PublishRequestBuilder:
-        """
-        Provides operations to call the publish method.
-        """
-        return publish_request_builder.PublishRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def web_parts(self) -> web_parts_request_builder.WebPartsRequestBuilder:
-        """
-        Provides operations to manage the webParts property of the microsoft.graph.sitePage entity.
-        """
-        return web_parts_request_builder.WebPartsRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new SitePageItemRequestBuilder and sets the default values.
@@ -77,6 +49,8 @@ class SitePageItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -95,12 +69,16 @@ class SitePageItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .......models import site_page
+
         return await self.request_adapter.send_async(request_info, site_page.SitePage, error_mapping)
     
     async def patch(self,body: Optional[site_page.SitePage] = None, request_configuration: Optional[SitePageItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[site_page.SitePage]:
@@ -116,12 +94,16 @@ class SitePageItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .......models import site_page
+
         return await self.request_adapter.send_async(request_info, site_page.SitePage, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SitePageItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -188,9 +170,47 @@ class SitePageItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .web_parts.item import web_part_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["webPart%2Did"] = id
         return web_part_item_request_builder.WebPartItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    @property
+    def canvas_layout(self) -> canvas_layout_request_builder.CanvasLayoutRequestBuilder:
+        """
+        Provides operations to manage the canvasLayout property of the microsoft.graph.sitePage entity.
+        """
+        from .canvas_layout import canvas_layout_request_builder
+
+        return canvas_layout_request_builder.CanvasLayoutRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_web_parts_by_position(self) -> get_web_parts_by_position_request_builder.GetWebPartsByPositionRequestBuilder:
+        """
+        Provides operations to call the getWebPartsByPosition method.
+        """
+        from .get_web_parts_by_position import get_web_parts_by_position_request_builder
+
+        return get_web_parts_by_position_request_builder.GetWebPartsByPositionRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def publish(self) -> publish_request_builder.PublishRequestBuilder:
+        """
+        Provides operations to call the publish method.
+        """
+        from .publish import publish_request_builder
+
+        return publish_request_builder.PublishRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def web_parts(self) -> web_parts_request_builder.WebPartsRequestBuilder:
+        """
+        Provides operations to manage the webParts property of the microsoft.graph.sitePage entity.
+        """
+        from .web_parts import web_parts_request_builder
+
+        return web_parts_request_builder.WebPartsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class SitePageItemRequestBuilderDeleteRequestConfiguration():
@@ -209,12 +229,6 @@ class SitePageItemRequestBuilder():
         """
         The collection of pages in the SitePages list in this site.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -230,6 +244,12 @@ class SitePageItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class SitePageItemRequestBuilderGetRequestConfiguration():

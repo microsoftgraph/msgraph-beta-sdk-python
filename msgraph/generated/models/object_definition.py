@@ -1,12 +1,29 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-attribute_definition = lazy_import('msgraph.generated.models.attribute_definition')
-metadata_entry = lazy_import('msgraph.generated.models.metadata_entry')
+if TYPE_CHECKING:
+    from . import attribute_definition, metadata_entry
 
 class ObjectDefinition(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new objectDefinition and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The attributes property
+        self._attributes: Optional[List[attribute_definition.AttributeDefinition]] = None
+        # The metadata property
+        self._metadata: Optional[List[metadata_entry.MetadataEntry]] = None
+        # The name property
+        self._name: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The supportedApis property
+        self._supported_apis: Optional[List[str]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -41,24 +58,6 @@ class ObjectDefinition(AdditionalDataHolder, Parsable):
         """
         self._attributes = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new objectDefinition and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The attributes property
-        self._attributes: Optional[List[attribute_definition.AttributeDefinition]] = None
-        # The metadata property
-        self._metadata: Optional[List[metadata_entry.MetadataEntry]] = None
-        # The name property
-        self._name: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The supportedApis property
-        self._supported_apis: Optional[List[str]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ObjectDefinition:
         """
@@ -76,7 +75,9 @@ class ObjectDefinition(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import attribute_definition, metadata_entry
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "attributes": lambda n : setattr(self, 'attributes', n.get_collection_of_object_values(attribute_definition.AttributeDefinition)),
             "metadata": lambda n : setattr(self, 'metadata', n.get_collection_of_object_values(metadata_entry.MetadataEntry)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),

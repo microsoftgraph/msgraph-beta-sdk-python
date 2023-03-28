@@ -1,12 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-external_activity_type = lazy_import('msgraph.generated.models.external_connectors.external_activity_type')
-identity = lazy_import('msgraph.generated.models.external_connectors.identity')
+if TYPE_CHECKING:
+    from . import external_activity_result, external_activity_type, identity
+    from .. import entity
+
+from .. import entity
 
 class ExternalActivity(entity.Entity):
     def __init__(self,) -> None:
@@ -33,6 +34,13 @@ class ExternalActivity(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.externalConnectors.externalActivityResult":
+                from . import external_activity_result
+
+                return external_activity_result.ExternalActivityResult()
         return ExternalActivity()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -40,7 +48,10 @@ class ExternalActivity(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import external_activity_result, external_activity_type, identity
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "performedBy": lambda n : setattr(self, 'performed_by', n.get_object_value(identity.Identity)),
             "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(external_activity_type.ExternalActivityType)),

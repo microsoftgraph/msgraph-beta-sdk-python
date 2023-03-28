@@ -1,31 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_enrollment_configuration = lazy_import('msgraph.generated.models.device_enrollment_configuration')
-enrollment_notification_branding_options = lazy_import('msgraph.generated.models.enrollment_notification_branding_options')
-enrollment_notification_template_type = lazy_import('msgraph.generated.models.enrollment_notification_template_type')
-enrollment_restriction_platform_type = lazy_import('msgraph.generated.models.enrollment_restriction_platform_type')
+if TYPE_CHECKING:
+    from . import device_enrollment_configuration, enrollment_notification_branding_options, enrollment_notification_template_type, enrollment_restriction_platform_type
+
+from . import device_enrollment_configuration
 
 class DeviceEnrollmentNotificationConfiguration(device_enrollment_configuration.DeviceEnrollmentConfiguration):
-    @property
-    def branding_options(self,) -> Optional[enrollment_notification_branding_options.EnrollmentNotificationBrandingOptions]:
-        """
-        Gets the brandingOptions property value. Branding Options for the Message Template. Branding is defined in the Intune Admin Console.
-        Returns: Optional[enrollment_notification_branding_options.EnrollmentNotificationBrandingOptions]
-        """
-        return self._branding_options
-    
-    @branding_options.setter
-    def branding_options(self,value: Optional[enrollment_notification_branding_options.EnrollmentNotificationBrandingOptions] = None) -> None:
-        """
-        Sets the brandingOptions property value. Branding Options for the Message Template. Branding is defined in the Intune Admin Console.
-        Args:
-            value: Value to set for the branding_options property.
-        """
-        self._branding_options = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new DeviceEnrollmentNotificationConfiguration and sets the default values.
@@ -44,6 +26,23 @@ class DeviceEnrollmentNotificationConfiguration(device_enrollment_configuration.
         self._platform_type: Optional[enrollment_restriction_platform_type.EnrollmentRestrictionPlatformType] = None
         # This enum indicates the Template type for which the enrollment notification applies.
         self._template_type: Optional[enrollment_notification_template_type.EnrollmentNotificationTemplateType] = None
+    
+    @property
+    def branding_options(self,) -> Optional[enrollment_notification_branding_options.EnrollmentNotificationBrandingOptions]:
+        """
+        Gets the brandingOptions property value. Branding Options for the Message Template. Branding is defined in the Intune Admin Console.
+        Returns: Optional[enrollment_notification_branding_options.EnrollmentNotificationBrandingOptions]
+        """
+        return self._branding_options
+    
+    @branding_options.setter
+    def branding_options(self,value: Optional[enrollment_notification_branding_options.EnrollmentNotificationBrandingOptions] = None) -> None:
+        """
+        Sets the brandingOptions property value. Branding Options for the Message Template. Branding is defined in the Intune Admin Console.
+        Args:
+            value: Value to set for the branding_options property.
+        """
+        self._branding_options = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceEnrollmentNotificationConfiguration:
@@ -79,7 +78,9 @@ class DeviceEnrollmentNotificationConfiguration(device_enrollment_configuration.
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_enrollment_configuration, enrollment_notification_branding_options, enrollment_notification_template_type, enrollment_restriction_platform_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "brandingOptions": lambda n : setattr(self, 'branding_options', n.get_enum_value(enrollment_notification_branding_options.EnrollmentNotificationBrandingOptions)),
             "defaultLocale": lambda n : setattr(self, 'default_locale', n.get_str_value()),
             "notificationMessageTemplateId": lambda n : setattr(self, 'notification_message_template_id', n.get_object_value(Guid)),

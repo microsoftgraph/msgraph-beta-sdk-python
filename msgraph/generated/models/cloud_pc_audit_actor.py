@@ -1,12 +1,43 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-cloud_pc_audit_actor_type = lazy_import('msgraph.generated.models.cloud_pc_audit_actor_type')
-cloud_pc_user_role_scope_tag_info = lazy_import('msgraph.generated.models.cloud_pc_user_role_scope_tag_info')
+if TYPE_CHECKING:
+    from . import cloud_pc_audit_actor_type, cloud_pc_user_role_scope_tag_info
 
 class CloudPcAuditActor(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new cloudPcAuditActor and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Name of the application.
+        self._application_display_name: Optional[str] = None
+        # Azure AD application ID.
+        self._application_id: Optional[str] = None
+        # IP address.
+        self._ip_address: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The delegated partner tenant ID.
+        self._remote_tenant_id: Optional[str] = None
+        # The delegated partner user ID.
+        self._remote_user_id: Optional[str] = None
+        # Service Principal Name (SPN).
+        self._service_principal_name: Optional[str] = None
+        # The type property
+        self._type: Optional[cloud_pc_audit_actor_type.CloudPcAuditActorType] = None
+        # Azure AD user ID.
+        self._user_id: Optional[str] = None
+        # List of user permissions and application permissions when the audit event was performed.
+        self._user_permissions: Optional[List[str]] = None
+        # User Principal Name (UPN).
+        self._user_principal_name: Optional[str] = None
+        # List of role scope tags.
+        self._user_role_scope_tags: Optional[List[cloud_pc_user_role_scope_tag_info.CloudPcUserRoleScopeTagInfo]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -58,38 +89,6 @@ class CloudPcAuditActor(AdditionalDataHolder, Parsable):
         """
         self._application_id = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new cloudPcAuditActor and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Name of the application.
-        self._application_display_name: Optional[str] = None
-        # Azure AD application ID.
-        self._application_id: Optional[str] = None
-        # IP address.
-        self._ip_address: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The delegated partner tenant ID.
-        self._remote_tenant_id: Optional[str] = None
-        # The delegated partner user ID.
-        self._remote_user_id: Optional[str] = None
-        # Service Principal Name (SPN).
-        self._service_principal_name: Optional[str] = None
-        # The type property
-        self._type: Optional[cloud_pc_audit_actor_type.CloudPcAuditActorType] = None
-        # Azure AD user ID.
-        self._user_id: Optional[str] = None
-        # List of user permissions and application permissions when the audit event was performed.
-        self._user_permissions: Optional[List[str]] = None
-        # User Principal Name (UPN).
-        self._user_principal_name: Optional[str] = None
-        # List of role scope tags.
-        self._user_role_scope_tags: Optional[List[cloud_pc_user_role_scope_tag_info.CloudPcUserRoleScopeTagInfo]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcAuditActor:
         """
@@ -107,7 +106,9 @@ class CloudPcAuditActor(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import cloud_pc_audit_actor_type, cloud_pc_user_role_scope_tag_info
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "applicationDisplayName": lambda n : setattr(self, 'application_display_name', n.get_str_value()),
             "applicationId": lambda n : setattr(self, 'application_id', n.get_str_value()),
             "ipAddress": lambda n : setattr(self, 'ip_address', n.get_str_value()),

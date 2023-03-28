@@ -1,32 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-user_experience_analytics_insight_severity = lazy_import('msgraph.generated.models.user_experience_analytics_insight_severity')
-user_experience_analytics_insight_value = lazy_import('msgraph.generated.models.user_experience_analytics_insight_value')
+if TYPE_CHECKING:
+    from . import user_experience_analytics_insight_severity, user_experience_analytics_insight_value
 
 class UserExperienceAnalyticsInsight(AdditionalDataHolder, Parsable):
     """
     The user experience analytics insight is the recomendation to improve the user experience analytics score.
     """
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new userExperienceAnalyticsInsight and sets the default values.
@@ -45,6 +27,23 @@ class UserExperienceAnalyticsInsight(AdditionalDataHolder, Parsable):
         # The value of the user experience analytics insight.
         self._values: Optional[List[user_experience_analytics_insight_value.UserExperienceAnalyticsInsightValue]] = None
     
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsInsight:
         """
@@ -62,7 +61,9 @@ class UserExperienceAnalyticsInsight(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import user_experience_analytics_insight_severity, user_experience_analytics_insight_value
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "insightId": lambda n : setattr(self, 'insight_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "severity": lambda n : setattr(self, 'severity', n.get_enum_value(user_experience_analytics_insight_severity.UserExperienceAnalyticsInsightSeverity)),

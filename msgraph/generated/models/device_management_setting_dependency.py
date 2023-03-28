@@ -1,14 +1,28 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_constraint = lazy_import('msgraph.generated.models.device_management_constraint')
+if TYPE_CHECKING:
+    from . import device_management_constraint
 
 class DeviceManagementSettingDependency(AdditionalDataHolder, Parsable):
     """
     Dependency information for a setting
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new deviceManagementSettingDependency and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Collection of constraints for the dependency setting value
+        self._constraints: Optional[List[device_management_constraint.DeviceManagementConstraint]] = None
+        # The setting definition ID of the setting depended on
+        self._definition_id: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -42,20 +56,6 @@ class DeviceManagementSettingDependency(AdditionalDataHolder, Parsable):
             value: Value to set for the constraints property.
         """
         self._constraints = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementSettingDependency and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Collection of constraints for the dependency setting value
-        self._constraints: Optional[List[device_management_constraint.DeviceManagementConstraint]] = None
-        # The setting definition ID of the setting depended on
-        self._definition_id: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementSettingDependency:
@@ -91,7 +91,9 @@ class DeviceManagementSettingDependency(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_constraint
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "constraints": lambda n : setattr(self, 'constraints', n.get_collection_of_object_values(device_management_constraint.DeviceManagementConstraint)),
             "definitionId": lambda n : setattr(self, 'definition_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

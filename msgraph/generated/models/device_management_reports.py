@@ -1,13 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_cached_report_configuration = lazy_import('msgraph.generated.models.device_management_cached_report_configuration')
-device_management_export_job = lazy_import('msgraph.generated.models.device_management_export_job')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import device_management_cached_report_configuration, device_management_export_job, entity
+
+from . import entity
 
 class DeviceManagementReports(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new deviceManagementReports and sets the default values.
+        """
+        super().__init__()
+        # Entity representing the configuration of a cached report
+        self._cached_report_configurations: Optional[List[device_management_cached_report_configuration.DeviceManagementCachedReportConfiguration]] = None
+        # Entity representing a job to export a report
+        self._export_jobs: Optional[List[device_management_export_job.DeviceManagementExportJob]] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def cached_report_configurations(self,) -> Optional[List[device_management_cached_report_configuration.DeviceManagementCachedReportConfiguration]]:
         """
@@ -24,18 +36,6 @@ class DeviceManagementReports(entity.Entity):
             value: Value to set for the cached_report_configurations property.
         """
         self._cached_report_configurations = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementReports and sets the default values.
-        """
-        super().__init__()
-        # Entity representing the configuration of a cached report
-        self._cached_report_configurations: Optional[List[device_management_cached_report_configuration.DeviceManagementCachedReportConfiguration]] = None
-        # Entity representing a job to export a report
-        self._export_jobs: Optional[List[device_management_export_job.DeviceManagementExportJob]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementReports:
@@ -71,7 +71,9 @@ class DeviceManagementReports(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_cached_report_configuration, device_management_export_job, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "cachedReportConfigurations": lambda n : setattr(self, 'cached_report_configurations', n.get_collection_of_object_values(device_management_cached_report_configuration.DeviceManagementCachedReportConfiguration)),
             "exportJobs": lambda n : setattr(self, 'export_jobs', n.get_collection_of_object_values(device_management_export_job.DeviceManagementExportJob)),
         }

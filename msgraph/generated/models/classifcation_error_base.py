@@ -1,11 +1,29 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-classification_inner_error = lazy_import('msgraph.generated.models.classification_inner_error')
+if TYPE_CHECKING:
+    from . import classification_error, classification_inner_error
 
 class ClassifcationErrorBase(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new classifcationErrorBase and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The code property
+        self._code: Optional[str] = None
+        # The innerError property
+        self._inner_error: Optional[classification_inner_error.ClassificationInnerError] = None
+        # The message property
+        self._message: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The target property
+        self._target: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -40,24 +58,6 @@ class ClassifcationErrorBase(AdditionalDataHolder, Parsable):
         """
         self._code = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new classifcationErrorBase and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The code property
-        self._code: Optional[str] = None
-        # The innerError property
-        self._inner_error: Optional[classification_inner_error.ClassificationInnerError] = None
-        # The message property
-        self._message: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The target property
-        self._target: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ClassifcationErrorBase:
         """
@@ -68,6 +68,13 @@ class ClassifcationErrorBase(AdditionalDataHolder, Parsable):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.classificationError":
+                from . import classification_error
+
+                return classification_error.ClassificationError()
         return ClassifcationErrorBase()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -75,7 +82,9 @@ class ClassifcationErrorBase(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import classification_error, classification_inner_error
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "code": lambda n : setattr(self, 'code', n.get_str_value()),
             "innerError": lambda n : setattr(self, 'inner_error', n.get_object_value(classification_inner_error.ClassificationInnerError)),
             "message": lambda n : setattr(self, 'message', n.get_str_value()),

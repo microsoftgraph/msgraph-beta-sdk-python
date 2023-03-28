@@ -1,33 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-ndes_connector_state = lazy_import('msgraph.generated.models.ndes_connector_state')
+if TYPE_CHECKING:
+    from . import entity, ndes_connector_state
+
+from . import entity
 
 class NdesConnector(entity.Entity):
     """
     Entity which represents an OnPrem Ndes connector.
     """
-    @property
-    def connector_version(self,) -> Optional[str]:
-        """
-        Gets the connectorVersion property value. The build version of the Ndes Connector.
-        Returns: Optional[str]
-        """
-        return self._connector_version
-    
-    @connector_version.setter
-    def connector_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the connectorVersion property value. The build version of the Ndes Connector.
-        Args:
-            value: Value to set for the connector_version property.
-        """
-        self._connector_version = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new ndesConnector and sets the default values.
@@ -49,6 +33,23 @@ class NdesConnector(entity.Entity):
         self._role_scope_tag_ids: Optional[List[str]] = None
         # The current status of the Ndes Connector.
         self._state: Optional[ndes_connector_state.NdesConnectorState] = None
+    
+    @property
+    def connector_version(self,) -> Optional[str]:
+        """
+        Gets the connectorVersion property value. The build version of the Ndes Connector.
+        Returns: Optional[str]
+        """
+        return self._connector_version
+    
+    @connector_version.setter
+    def connector_version(self,value: Optional[str] = None) -> None:
+        """
+        Sets the connectorVersion property value. The build version of the Ndes Connector.
+        Args:
+            value: Value to set for the connector_version property.
+        """
+        self._connector_version = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> NdesConnector:
@@ -101,7 +102,9 @@ class NdesConnector(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, ndes_connector_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "connectorVersion": lambda n : setattr(self, 'connector_version', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "enrolledDateTime": lambda n : setattr(self, 'enrolled_date_time', n.get_datetime_value()),

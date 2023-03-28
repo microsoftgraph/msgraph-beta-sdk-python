@@ -1,9 +1,24 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class GenerateKeyPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new generateKeyPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The exp property
+        self._exp: Optional[int] = None
+        # The kty property
+        self._kty: Optional[str] = None
+        # The nbf property
+        self._nbf: Optional[int] = None
+        # The use property
+        self._use: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -20,22 +35,6 @@ class GenerateKeyPostRequestBody(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new generateKeyPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The exp property
-        self._exp: Optional[int] = None
-        # The kty property
-        self._kty: Optional[str] = None
-        # The nbf property
-        self._nbf: Optional[int] = None
-        # The use property
-        self._use: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GenerateKeyPostRequestBody:
@@ -71,7 +70,7 @@ class GenerateKeyPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "exp": lambda n : setattr(self, 'exp', n.get_int_value()),
             "kty": lambda n : setattr(self, 'kty', n.get_str_value()),
             "nbf": lambda n : setattr(self, 'nbf', n.get_int_value()),

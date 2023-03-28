@@ -1,34 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_autopilot_policy_compliance_status = lazy_import('msgraph.generated.models.device_management_autopilot_policy_compliance_status')
-device_management_autopilot_policy_type = lazy_import('msgraph.generated.models.device_management_autopilot_policy_type')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import device_management_autopilot_policy_compliance_status, device_management_autopilot_policy_type, entity
+
+from . import entity
 
 class DeviceManagementAutopilotPolicyStatusDetail(entity.Entity):
     """
     Policy status detail item contained by an autopilot event.
     """
-    @property
-    def compliance_status(self,) -> Optional[device_management_autopilot_policy_compliance_status.DeviceManagementAutopilotPolicyComplianceStatus]:
-        """
-        Gets the complianceStatus property value. The complianceStatus property
-        Returns: Optional[device_management_autopilot_policy_compliance_status.DeviceManagementAutopilotPolicyComplianceStatus]
-        """
-        return self._compliance_status
-    
-    @compliance_status.setter
-    def compliance_status(self,value: Optional[device_management_autopilot_policy_compliance_status.DeviceManagementAutopilotPolicyComplianceStatus] = None) -> None:
-        """
-        Sets the complianceStatus property value. The complianceStatus property
-        Args:
-            value: Value to set for the compliance_status property.
-        """
-        self._compliance_status = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new deviceManagementAutopilotPolicyStatusDetail and sets the default values.
@@ -48,6 +31,23 @@ class DeviceManagementAutopilotPolicyStatusDetail(entity.Entity):
         self._policy_type: Optional[device_management_autopilot_policy_type.DeviceManagementAutopilotPolicyType] = None
         # Indicates if this prolicy was tracked as part of the autopilot bootstrap enrollment sync session
         self._tracked_on_enrollment_status: Optional[bool] = None
+    
+    @property
+    def compliance_status(self,) -> Optional[device_management_autopilot_policy_compliance_status.DeviceManagementAutopilotPolicyComplianceStatus]:
+        """
+        Gets the complianceStatus property value. The complianceStatus property
+        Returns: Optional[device_management_autopilot_policy_compliance_status.DeviceManagementAutopilotPolicyComplianceStatus]
+        """
+        return self._compliance_status
+    
+    @compliance_status.setter
+    def compliance_status(self,value: Optional[device_management_autopilot_policy_compliance_status.DeviceManagementAutopilotPolicyComplianceStatus] = None) -> None:
+        """
+        Sets the complianceStatus property value. The complianceStatus property
+        Args:
+            value: Value to set for the compliance_status property.
+        """
+        self._compliance_status = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementAutopilotPolicyStatusDetail:
@@ -100,7 +100,9 @@ class DeviceManagementAutopilotPolicyStatusDetail(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_autopilot_policy_compliance_status, device_management_autopilot_policy_type, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "complianceStatus": lambda n : setattr(self, 'compliance_status', n.get_enum_value(device_management_autopilot_policy_compliance_status.DeviceManagementAutopilotPolicyComplianceStatus)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "errorCode": lambda n : setattr(self, 'error_code', n.get_int_value()),

@@ -1,32 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-admin_report_settings = lazy_import('msgraph.generated.models.admin_report_settings')
-admin_windows = lazy_import('msgraph.generated.models.admin_windows')
-edge = lazy_import('msgraph.generated.models.edge')
-service_announcement = lazy_import('msgraph.generated.models.service_announcement')
-sharepoint = lazy_import('msgraph.generated.models.tenant_admin.sharepoint')
+if TYPE_CHECKING:
+    from . import sharepoint
+    from .. import admin_report_settings, admin_windows, edge, service_announcement
 
 class Admin(AdditionalDataHolder, Parsable):
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new Admin and sets the default values.
@@ -46,6 +26,23 @@ class Admin(AdditionalDataHolder, Parsable):
         self._sharepoint: Optional[sharepoint.Sharepoint] = None
         # A container for all Windows administrator functionalities. Read-only.
         self._windows: Optional[admin_windows.AdminWindows] = None
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Admin:
@@ -81,7 +78,10 @@ class Admin(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import sharepoint
+        from .. import admin_report_settings, admin_windows, edge, service_announcement
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "edge": lambda n : setattr(self, 'edge', n.get_object_value(edge.Edge)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "reportSettings": lambda n : setattr(self, 'report_settings', n.get_object_value(admin_report_settings.AdminReportSettings)),

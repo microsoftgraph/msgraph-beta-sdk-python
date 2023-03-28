@@ -1,64 +1,17 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-base_item = lazy_import('msgraph.generated.models.base_item')
-column_definition = lazy_import('msgraph.generated.models.column_definition')
-content_type = lazy_import('msgraph.generated.models.content_type')
-deleted = lazy_import('msgraph.generated.models.deleted')
-drive = lazy_import('msgraph.generated.models.drive')
-information_protection = lazy_import('msgraph.generated.models.information_protection')
-item_analytics = lazy_import('msgraph.generated.models.item_analytics')
-list = lazy_import('msgraph.generated.models.list')
-onenote = lazy_import('msgraph.generated.models.onenote')
-permission = lazy_import('msgraph.generated.models.permission')
-rich_long_running_operation = lazy_import('msgraph.generated.models.rich_long_running_operation')
-root = lazy_import('msgraph.generated.models.root')
-sharepoint_ids = lazy_import('msgraph.generated.models.sharepoint_ids')
-site_collection = lazy_import('msgraph.generated.models.site_collection')
-site_page = lazy_import('msgraph.generated.models.site_page')
-site_settings = lazy_import('msgraph.generated.models.site_settings')
-store = lazy_import('msgraph.generated.models.term_store.store')
+if TYPE_CHECKING:
+    from . import base_item, column_definition, content_type, deleted, drive, information_protection, item_analytics, list, onenote, permission, rich_long_running_operation, root, sharepoint_ids, site_collection, site_page, site_settings
+    from .term_store import store
+
+from . import base_item
 
 class Site(base_item.BaseItem):
-    @property
-    def analytics(self,) -> Optional[item_analytics.ItemAnalytics]:
-        """
-        Gets the analytics property value. Analytics about the view activities that took place in this site.
-        Returns: Optional[item_analytics.ItemAnalytics]
-        """
-        return self._analytics
-    
-    @analytics.setter
-    def analytics(self,value: Optional[item_analytics.ItemAnalytics] = None) -> None:
-        """
-        Sets the analytics property value. Analytics about the view activities that took place in this site.
-        Args:
-            value: Value to set for the analytics property.
-        """
-        self._analytics = value
-    
-    @property
-    def columns(self,) -> Optional[List[column_definition.ColumnDefinition]]:
-        """
-        Gets the columns property value. The collection of column definitions reusable across lists under this site.
-        Returns: Optional[List[column_definition.ColumnDefinition]]
-        """
-        return self._columns
-    
-    @columns.setter
-    def columns(self,value: Optional[List[column_definition.ColumnDefinition]] = None) -> None:
-        """
-        Sets the columns property value. The collection of column definitions reusable across lists under this site.
-        Args:
-            value: Value to set for the columns property.
-        """
-        self._columns = value
-    
     def __init__(self,) -> None:
         """
-        Instantiates a new site and sets the default values.
+        Instantiates a new Site and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.site"
@@ -101,9 +54,43 @@ class Site(base_item.BaseItem):
         # Provides details about the site's site collection. Available only on the root site. Read-only.
         self._site_collection: Optional[site_collection.SiteCollection] = None
         # The collection of the sub-sites under this site.
-        self._sites: Optional[List[Site]] = None
+        self._sites: Optional[List[site.Site]] = None
         # The termStore under this site.
         self._term_store: Optional[store.Store] = None
+    
+    @property
+    def analytics(self,) -> Optional[item_analytics.ItemAnalytics]:
+        """
+        Gets the analytics property value. Analytics about the view activities that took place in this site.
+        Returns: Optional[item_analytics.ItemAnalytics]
+        """
+        return self._analytics
+    
+    @analytics.setter
+    def analytics(self,value: Optional[item_analytics.ItemAnalytics] = None) -> None:
+        """
+        Sets the analytics property value. Analytics about the view activities that took place in this site.
+        Args:
+            value: Value to set for the analytics property.
+        """
+        self._analytics = value
+    
+    @property
+    def columns(self,) -> Optional[List[column_definition.ColumnDefinition]]:
+        """
+        Gets the columns property value. The collection of column definitions reusable across lists under this site.
+        Returns: Optional[List[column_definition.ColumnDefinition]]
+        """
+        return self._columns
+    
+    @columns.setter
+    def columns(self,value: Optional[List[column_definition.ColumnDefinition]] = None) -> None:
+        """
+        Sets the columns property value. The collection of column definitions reusable across lists under this site.
+        Args:
+            value: Value to set for the columns property.
+        """
+        self._columns = value
     
     @property
     def content_types(self,) -> Optional[List[content_type.ContentType]]:
@@ -224,7 +211,10 @@ class Site(base_item.BaseItem):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import base_item, column_definition, content_type, deleted, drive, information_protection, item_analytics, list, onenote, permission, rich_long_running_operation, root, sharepoint_ids, site_collection, site_page, site_settings
+        from .term_store import store
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "analytics": lambda n : setattr(self, 'analytics', n.get_object_value(item_analytics.ItemAnalytics)),
             "columns": lambda n : setattr(self, 'columns', n.get_collection_of_object_values(column_definition.ColumnDefinition)),
             "contentTypes": lambda n : setattr(self, 'content_types', n.get_collection_of_object_values(content_type.ContentType)),
@@ -243,7 +233,7 @@ class Site(base_item.BaseItem):
             "root": lambda n : setattr(self, 'root', n.get_object_value(root.Root)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(site_settings.SiteSettings)),
             "sharepointIds": lambda n : setattr(self, 'sharepoint_ids', n.get_object_value(sharepoint_ids.SharepointIds)),
-            "sites": lambda n : setattr(self, 'sites', n.get_collection_of_object_values(Site)),
+            "sites": lambda n : setattr(self, 'sites', n.get_collection_of_object_values(site.Site)),
             "siteCollection": lambda n : setattr(self, 'site_collection', n.get_object_value(site_collection.SiteCollection)),
             "termStore": lambda n : setattr(self, 'term_store', n.get_object_value(store.Store)),
         }
@@ -470,15 +460,15 @@ class Site(base_item.BaseItem):
         self._site_collection = value
     
     @property
-    def sites(self,) -> Optional[List[Site]]:
+    def sites(self,) -> Optional[List[site.Site]]:
         """
         Gets the sites property value. The collection of the sub-sites under this site.
-        Returns: Optional[List[Site]]
+        Returns: Optional[List[site.Site]]
         """
         return self._sites
     
     @sites.setter
-    def sites(self,value: Optional[List[Site]] = None) -> None:
+    def sites(self,value: Optional[List[site.Site]] = None) -> None:
         """
         Sets the sites property value. The collection of the sub-sites under this site.
         Args:

@@ -1,30 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-payload_request = lazy_import('msgraph.generated.models.payload_request')
-payload_response = lazy_import('msgraph.generated.models.payload_response')
+if TYPE_CHECKING:
+    from . import entity, payload_request, payload_response
+
+from . import entity
 
 class Command(entity.Entity):
-    @property
-    def app_service_name(self,) -> Optional[str]:
-        """
-        Gets the appServiceName property value. The appServiceName property
-        Returns: Optional[str]
-        """
-        return self._app_service_name
-    
-    @app_service_name.setter
-    def app_service_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the appServiceName property value. The appServiceName property
-        Args:
-            value: Value to set for the app_service_name property.
-        """
-        self._app_service_name = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new command and sets the default values.
@@ -50,6 +33,23 @@ class Command(entity.Entity):
         self._status: Optional[str] = None
         # The type property
         self._type: Optional[str] = None
+    
+    @property
+    def app_service_name(self,) -> Optional[str]:
+        """
+        Gets the appServiceName property value. The appServiceName property
+        Returns: Optional[str]
+        """
+        return self._app_service_name
+    
+    @app_service_name.setter
+    def app_service_name(self,value: Optional[str] = None) -> None:
+        """
+        Sets the appServiceName property value. The appServiceName property
+        Args:
+            value: Value to set for the app_service_name property.
+        """
+        self._app_service_name = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Command:
@@ -85,7 +85,9 @@ class Command(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, payload_request, payload_response
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appServiceName": lambda n : setattr(self, 'app_service_name', n.get_str_value()),
             "error": lambda n : setattr(self, 'error', n.get_str_value()),
             "packageFamilyName": lambda n : setattr(self, 'package_family_name', n.get_str_value()),

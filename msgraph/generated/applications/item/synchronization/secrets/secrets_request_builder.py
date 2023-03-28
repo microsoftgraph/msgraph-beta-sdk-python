@@ -7,24 +7,17 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-count_request_builder = lazy_import('msgraph.generated.applications.item.synchronization.secrets.count.count_request_builder')
-synchronization_secret_key_string_value_pair = lazy_import('msgraph.generated.models.synchronization_secret_key_string_value_pair')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from .....models import synchronization_secret_key_string_value_pair
+    from .....models.o_data_errors import o_data_error
+    from .count import count_request_builder
 
 class SecretsRequestBuilder():
     """
     Builds and executes requests for operations under /applications/{application-id}/synchronization/secrets
     """
-    @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
-        """
-        Provides operations to count the resources in the collection.
-        """
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new SecretsRequestBuilder and sets the default values.
@@ -56,12 +49,16 @@ class SecretsRequestBuilder():
         request_info = self.to_put_request_information(
             body, request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .....models import synchronization_secret_key_string_value_pair
+
         return await self.request_adapter.send_collection_async(request_info, synchronization_secret_key_string_value_pair.SynchronizationSecretKeyStringValuePair, error_mapping)
     
     def to_put_request_information(self,body: Optional[List[synchronization_secret_key_string_value_pair.SynchronizationSecretKeyStringValuePair]] = None, request_configuration: Optional[SecretsRequestBuilderPutRequestConfiguration] = None) -> RequestInformation:
@@ -84,6 +81,15 @@ class SecretsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
+    
+    @property
+    def count(self) -> count_request_builder.CountRequestBuilder:
+        """
+        Provides operations to count the resources in the collection.
+        """
+        from .count import count_request_builder
+
+        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class SecretsRequestBuilderPutRequestConfiguration():

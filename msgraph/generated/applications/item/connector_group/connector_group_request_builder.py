@@ -7,24 +7,17 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-ref_request_builder = lazy_import('msgraph.generated.applications.item.connector_group.ref.ref_request_builder')
-connector_group = lazy_import('msgraph.generated.models.connector_group')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ....models import connector_group
+    from ....models.o_data_errors import o_data_error
+    from .ref import ref_request_builder
 
 class ConnectorGroupRequestBuilder():
     """
     Provides operations to manage the connectorGroup property of the microsoft.graph.application entity.
     """
-    @property
-    def ref(self) -> ref_request_builder.RefRequestBuilder:
-        """
-        Provides operations to manage the collection of application entities.
-        """
-        return ref_request_builder.RefRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new ConnectorGroupRequestBuilder and sets the default values.
@@ -53,12 +46,16 @@ class ConnectorGroupRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import connector_group
+
         return await self.request_adapter.send_async(request_info, connector_group.ConnectorGroup, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ConnectorGroupRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
@@ -79,17 +76,20 @@ class ConnectorGroupRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
+    @property
+    def ref(self) -> ref_request_builder.RefRequestBuilder:
+        """
+        Provides operations to manage the collection of application entities.
+        """
+        from .ref import ref_request_builder
+
+        return ref_request_builder.RefRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class ConnectorGroupRequestBuilderGetQueryParameters():
         """
         The connectorGroup the application is using with Azure AD Application Proxy. Nullable.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -105,6 +105,12 @@ class ConnectorGroupRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class ConnectorGroupRequestBuilderGetRequestConfiguration():

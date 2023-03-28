@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-planner_external_task_source_display_type = lazy_import('msgraph.generated.models.planner_external_task_source_display_type')
-planner_task_creation = lazy_import('msgraph.generated.models.planner_task_creation')
+if TYPE_CHECKING:
+    from . import planner_external_task_source_display_type, planner_task_creation
+
+from . import planner_task_creation
 
 class PlannerExternalTaskSource(planner_task_creation.PlannerTaskCreation):
     def __init__(self,) -> None:
@@ -147,7 +148,9 @@ class PlannerExternalTaskSource(planner_task_creation.PlannerTaskCreation):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import planner_external_task_source_display_type, planner_task_creation
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "contextScenarioId": lambda n : setattr(self, 'context_scenario_id', n.get_str_value()),
             "displayLinkType": lambda n : setattr(self, 'display_link_type', n.get_enum_value(planner_external_task_source_display_type.PlannerExternalTaskSourceDisplayType)),
             "displayNameSegments": lambda n : setattr(self, 'display_name_segments', n.get_collection_of_primitive_values(str)),

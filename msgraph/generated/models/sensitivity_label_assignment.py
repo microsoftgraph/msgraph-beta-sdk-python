@@ -1,11 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-sensitivity_label_assignment_method = lazy_import('msgraph.generated.models.sensitivity_label_assignment_method')
+if TYPE_CHECKING:
+    from . import sensitivity_label_assignment_method
 
 class SensitivityLabelAssignment(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new sensitivityLabelAssignment and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The assignmentMethod property
+        self._assignment_method: Optional[sensitivity_label_assignment_method.SensitivityLabelAssignmentMethod] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The unique identifier for the sensitivity label assigned to the file.
+        self._sensitivity_label_id: Optional[str] = None
+        # The unique identifier for the tenant that hosts the file when this label is applied.
+        self._tenant_id: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -40,22 +56,6 @@ class SensitivityLabelAssignment(AdditionalDataHolder, Parsable):
         """
         self._assignment_method = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new sensitivityLabelAssignment and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The assignmentMethod property
-        self._assignment_method: Optional[sensitivity_label_assignment_method.SensitivityLabelAssignmentMethod] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The unique identifier for the sensitivity label assigned to the file.
-        self._sensitivity_label_id: Optional[str] = None
-        # The unique identifier for the tenant that hosts the file when this label is applied.
-        self._tenant_id: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SensitivityLabelAssignment:
         """
@@ -73,7 +73,9 @@ class SensitivityLabelAssignment(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import sensitivity_label_assignment_method
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignmentMethod": lambda n : setattr(self, 'assignment_method', n.get_enum_value(sensitivity_label_assignment_method.SensitivityLabelAssignmentMethod)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "sensitivityLabelId": lambda n : setattr(self, 'sensitivity_label_id', n.get_str_value()),

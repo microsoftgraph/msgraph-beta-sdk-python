@@ -7,33 +7,19 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-clone_request_builder = lazy_import('msgraph.generated.device_management.reusable_policy_settings.item.clone.clone_request_builder')
-referencing_configuration_policies_request_builder = lazy_import('msgraph.generated.device_management.reusable_policy_settings.item.referencing_configuration_policies.referencing_configuration_policies_request_builder')
-device_management_configuration_policy_item_request_builder = lazy_import('msgraph.generated.device_management.reusable_policy_settings.item.referencing_configuration_policies.item.device_management_configuration_policy_item_request_builder')
-device_management_reusable_policy_setting = lazy_import('msgraph.generated.models.device_management_reusable_policy_setting')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ....models import device_management_reusable_policy_setting
+    from ....models.o_data_errors import o_data_error
+    from .clone import clone_request_builder
+    from .referencing_configuration_policies import referencing_configuration_policies_request_builder
+    from .referencing_configuration_policies.item import device_management_configuration_policy_item_request_builder
 
 class DeviceManagementReusablePolicySettingItemRequestBuilder():
     """
     Provides operations to manage the reusablePolicySettings property of the microsoft.graph.deviceManagement entity.
     """
-    @property
-    def clone(self) -> clone_request_builder.CloneRequestBuilder:
-        """
-        Provides operations to call the clone method.
-        """
-        return clone_request_builder.CloneRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def referencing_configuration_policies(self) -> referencing_configuration_policies_request_builder.ReferencingConfigurationPoliciesRequestBuilder:
-        """
-        Provides operations to manage the referencingConfigurationPolicies property of the microsoft.graph.deviceManagementReusablePolicySetting entity.
-        """
-        return referencing_configuration_policies_request_builder.ReferencingConfigurationPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new DeviceManagementReusablePolicySettingItemRequestBuilder and sets the default values.
@@ -61,6 +47,8 @@ class DeviceManagementReusablePolicySettingItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -79,12 +67,16 @@ class DeviceManagementReusablePolicySettingItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import device_management_reusable_policy_setting
+
         return await self.request_adapter.send_async(request_info, device_management_reusable_policy_setting.DeviceManagementReusablePolicySetting, error_mapping)
     
     async def patch(self,body: Optional[device_management_reusable_policy_setting.DeviceManagementReusablePolicySetting] = None, request_configuration: Optional[DeviceManagementReusablePolicySettingItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_management_reusable_policy_setting.DeviceManagementReusablePolicySetting]:
@@ -100,12 +92,16 @@ class DeviceManagementReusablePolicySettingItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import device_management_reusable_policy_setting
+
         return await self.request_adapter.send_async(request_info, device_management_reusable_policy_setting.DeviceManagementReusablePolicySetting, error_mapping)
     
     def referencing_configuration_policies_by_id(self,id: str) -> device_management_configuration_policy_item_request_builder.DeviceManagementConfigurationPolicyItemRequestBuilder:
@@ -117,6 +113,8 @@ class DeviceManagementReusablePolicySettingItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .referencing_configuration_policies.item import device_management_configuration_policy_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["deviceManagementConfigurationPolicy%2Did"] = id
         return device_management_configuration_policy_item_request_builder.DeviceManagementConfigurationPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -176,6 +174,24 @@ class DeviceManagementReusablePolicySettingItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def clone(self) -> clone_request_builder.CloneRequestBuilder:
+        """
+        Provides operations to call the clone method.
+        """
+        from .clone import clone_request_builder
+
+        return clone_request_builder.CloneRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def referencing_configuration_policies(self) -> referencing_configuration_policies_request_builder.ReferencingConfigurationPoliciesRequestBuilder:
+        """
+        Provides operations to manage the referencingConfigurationPolicies property of the microsoft.graph.deviceManagementReusablePolicySetting entity.
+        """
+        from .referencing_configuration_policies import referencing_configuration_policies_request_builder
+
+        return referencing_configuration_policies_request_builder.ReferencingConfigurationPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class DeviceManagementReusablePolicySettingItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -193,12 +209,6 @@ class DeviceManagementReusablePolicySettingItemRequestBuilder():
         """
         List of all reusable settings that can be referred in a policy
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -214,6 +224,12 @@ class DeviceManagementReusablePolicySettingItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class DeviceManagementReusablePolicySettingItemRequestBuilderGetRequestConfiguration():

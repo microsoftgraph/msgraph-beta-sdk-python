@@ -1,12 +1,35 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-print_job_processing_state = lazy_import('msgraph.generated.models.print_job_processing_state')
-print_job_state_detail = lazy_import('msgraph.generated.models.print_job_state_detail')
+if TYPE_CHECKING:
+    from . import print_job_processing_state, print_job_state_detail
 
 class PrintJobStatus(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new printJobStatus and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The acquiredByPrinter property
+        self._acquired_by_printer: Optional[bool] = None
+        # A human-readable description of the print job's current processing state. Read-only.
+        self._description: Optional[str] = None
+        # Additional details for print job state. Valid values are described in the following table. Read-only.
+        self._details: Optional[List[print_job_state_detail.PrintJobStateDetail]] = None
+        # True if the job was acknowledged by a printer; false otherwise. Read-only.
+        self._is_acquired_by_printer: Optional[bool] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The processingState property
+        self._processing_state: Optional[print_job_processing_state.PrintJobProcessingState] = None
+        # The processingStateDescription property
+        self._processing_state_description: Optional[str] = None
+        # The state property
+        self._state: Optional[print_job_processing_state.PrintJobProcessingState] = None
+    
     @property
     def acquired_by_printer(self,) -> Optional[bool]:
         """
@@ -40,30 +63,6 @@ class PrintJobStatus(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new printJobStatus and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The acquiredByPrinter property
-        self._acquired_by_printer: Optional[bool] = None
-        # A human-readable description of the print job's current processing state. Read-only.
-        self._description: Optional[str] = None
-        # Additional details for print job state. Valid values are described in the following table. Read-only.
-        self._details: Optional[List[print_job_state_detail.PrintJobStateDetail]] = None
-        # True if the job was acknowledged by a printer; false otherwise. Read-only.
-        self._is_acquired_by_printer: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The processingState property
-        self._processing_state: Optional[print_job_processing_state.PrintJobProcessingState] = None
-        # The processingStateDescription property
-        self._processing_state_description: Optional[str] = None
-        # The state property
-        self._state: Optional[print_job_processing_state.PrintJobProcessingState] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PrintJobStatus:
@@ -116,7 +115,9 @@ class PrintJobStatus(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import print_job_processing_state, print_job_state_detail
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "acquiredByPrinter": lambda n : setattr(self, 'acquired_by_printer', n.get_bool_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "details": lambda n : setattr(self, 'details', n.get_collection_of_enum_values(print_job_state_detail.PrintJobStateDetail)),

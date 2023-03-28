@@ -1,31 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class ZebraFotaArtifact(entity.Entity):
     """
     Describes a single artifact for a specific device model.
     """
-    @property
-    def board_support_package_version(self,) -> Optional[str]:
-        """
-        Gets the boardSupportPackageVersion property value. The version of the Board Support Package (BSP. E.g.: 01.18.02.00)
-        Returns: Optional[str]
-        """
-        return self._board_support_package_version
-    
-    @board_support_package_version.setter
-    def board_support_package_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the boardSupportPackageVersion property value. The version of the Board Support Package (BSP. E.g.: 01.18.02.00)
-        Args:
-            value: Value to set for the board_support_package_version property.
-        """
-        self._board_support_package_version = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new zebraFotaArtifact and sets the default values.
@@ -45,6 +30,23 @@ class ZebraFotaArtifact(entity.Entity):
         self._patch_version: Optional[str] = None
         # Artifact release notes URL (e.g.: https://www.zebra.com/<filename.pdf>)
         self._release_notes_url: Optional[str] = None
+    
+    @property
+    def board_support_package_version(self,) -> Optional[str]:
+        """
+        Gets the boardSupportPackageVersion property value. The version of the Board Support Package (BSP. E.g.: 01.18.02.00)
+        Returns: Optional[str]
+        """
+        return self._board_support_package_version
+    
+    @board_support_package_version.setter
+    def board_support_package_version(self,value: Optional[str] = None) -> None:
+        """
+        Sets the boardSupportPackageVersion property value. The version of the Board Support Package (BSP. E.g.: 01.18.02.00)
+        Args:
+            value: Value to set for the board_support_package_version property.
+        """
+        self._board_support_package_version = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ZebraFotaArtifact:
@@ -97,7 +99,9 @@ class ZebraFotaArtifact(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "boardSupportPackageVersion": lambda n : setattr(self, 'board_support_package_version', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "deviceModel": lambda n : setattr(self, 'device_model', n.get_str_value()),

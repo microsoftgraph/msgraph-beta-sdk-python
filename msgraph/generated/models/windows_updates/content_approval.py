@@ -1,12 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-compliance_change = lazy_import('msgraph.generated.models.windows_updates.compliance_change')
-deployable_content = lazy_import('msgraph.generated.models.windows_updates.deployable_content')
-deployment = lazy_import('msgraph.generated.models.windows_updates.deployment')
-deployment_settings = lazy_import('msgraph.generated.models.windows_updates.deployment_settings')
+if TYPE_CHECKING:
+    from . import compliance_change, deployable_content, deployment, deployment_settings
+
+from . import compliance_change
 
 class ContentApproval(compliance_change.ComplianceChange):
     def __init__(self,) -> None:
@@ -90,7 +89,9 @@ class ContentApproval(compliance_change.ComplianceChange):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import compliance_change, deployable_content, deployment, deployment_settings
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "content": lambda n : setattr(self, 'content', n.get_object_value(deployable_content.DeployableContent)),
             "deployments": lambda n : setattr(self, 'deployments', n.get_collection_of_object_values(deployment.Deployment)),
             "deploymentSettings": lambda n : setattr(self, 'deployment_settings', n.get_object_value(deployment_settings.DeploymentSettings)),

@@ -1,19 +1,44 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-certificate_store = lazy_import('msgraph.generated.models.certificate_store')
-custom_subject_alternative_name = lazy_import('msgraph.generated.models.custom_subject_alternative_name')
-extended_key_usage = lazy_import('msgraph.generated.models.extended_key_usage')
-hash_algorithms = lazy_import('msgraph.generated.models.hash_algorithms')
-key_size = lazy_import('msgraph.generated.models.key_size')
-key_usages = lazy_import('msgraph.generated.models.key_usages')
-mac_o_s_certificate_profile_base = lazy_import('msgraph.generated.models.mac_o_s_certificate_profile_base')
-mac_o_s_trusted_root_certificate = lazy_import('msgraph.generated.models.mac_o_s_trusted_root_certificate')
-managed_device_certificate_state = lazy_import('msgraph.generated.models.managed_device_certificate_state')
+if TYPE_CHECKING:
+    from . import certificate_store, custom_subject_alternative_name, extended_key_usage, hash_algorithms, key_size, key_usages, mac_o_s_certificate_profile_base, mac_o_s_trusted_root_certificate, managed_device_certificate_state
+
+from . import mac_o_s_certificate_profile_base
 
 class MacOSScepCertificateProfile(mac_o_s_certificate_profile_base.MacOSCertificateProfileBase):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new MacOSScepCertificateProfile and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.macOSScepCertificateProfile"
+        # AllowAllAppsAccess setting
+        self._allow_all_apps_access: Optional[bool] = None
+        # Target store certificate. Possible values are: user, machine.
+        self._certificate_store: Optional[certificate_store.CertificateStore] = None
+        # Custom Subject Alternative Name Settings. This collection can contain a maximum of 500 elements.
+        self._custom_subject_alternative_names: Optional[List[custom_subject_alternative_name.CustomSubjectAlternativeName]] = None
+        # Extended Key Usage (EKU) settings. This collection can contain a maximum of 500 elements.
+        self._extended_key_usages: Optional[List[extended_key_usage.ExtendedKeyUsage]] = None
+        # SCEP Hash Algorithm. Possible values are: sha1, sha2.
+        self._hash_algorithm: Optional[hash_algorithms.HashAlgorithms] = None
+        # Key Size Options.
+        self._key_size: Optional[key_size.KeySize] = None
+        # Key Usage Options.
+        self._key_usage: Optional[key_usages.KeyUsages] = None
+        # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
+        self._managed_device_certificate_states: Optional[List[managed_device_certificate_state.ManagedDeviceCertificateState]] = None
+        # Trusted Root Certificate.
+        self._root_certificate: Optional[mac_o_s_trusted_root_certificate.MacOSTrustedRootCertificate] = None
+        # SCEP Server Url(s).
+        self._scep_server_urls: Optional[List[str]] = None
+        # Custom String that defines the AAD Attribute.
+        self._subject_alternative_name_format_string: Optional[str] = None
+        # Custom format to use with SubjectNameFormat = Custom. Example: CN={{EmailAddress}},E={{EmailAddress}},OU=Enterprise Users,O=Contoso Corporation,L=Redmond,ST=WA,C=US
+        self._subject_name_format_string: Optional[str] = None
+    
     @property
     def allow_all_apps_access(self,) -> Optional[bool]:
         """
@@ -47,37 +72,6 @@ class MacOSScepCertificateProfile(mac_o_s_certificate_profile_base.MacOSCertific
             value: Value to set for the certificate_store property.
         """
         self._certificate_store = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new MacOSScepCertificateProfile and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.macOSScepCertificateProfile"
-        # AllowAllAppsAccess setting
-        self._allow_all_apps_access: Optional[bool] = None
-        # Target store certificate. Possible values are: user, machine.
-        self._certificate_store: Optional[certificate_store.CertificateStore] = None
-        # Custom Subject Alternative Name Settings. This collection can contain a maximum of 500 elements.
-        self._custom_subject_alternative_names: Optional[List[custom_subject_alternative_name.CustomSubjectAlternativeName]] = None
-        # Extended Key Usage (EKU) settings. This collection can contain a maximum of 500 elements.
-        self._extended_key_usages: Optional[List[extended_key_usage.ExtendedKeyUsage]] = None
-        # SCEP Hash Algorithm. Possible values are: sha1, sha2.
-        self._hash_algorithm: Optional[hash_algorithms.HashAlgorithms] = None
-        # Key Size Options.
-        self._key_size: Optional[key_size.KeySize] = None
-        # Key Usage Options.
-        self._key_usage: Optional[key_usages.KeyUsages] = None
-        # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
-        self._managed_device_certificate_states: Optional[List[managed_device_certificate_state.ManagedDeviceCertificateState]] = None
-        # Trusted Root Certificate.
-        self._root_certificate: Optional[mac_o_s_trusted_root_certificate.MacOSTrustedRootCertificate] = None
-        # SCEP Server Url(s).
-        self._scep_server_urls: Optional[List[str]] = None
-        # Custom String that defines the AAD Attribute.
-        self._subject_alternative_name_format_string: Optional[str] = None
-        # Custom format to use with SubjectNameFormat = Custom. Example: CN={{EmailAddress}},E={{EmailAddress}},OU=Enterprise Users,O=Contoso Corporation,L=Redmond,ST=WA,C=US
-        self._subject_name_format_string: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSScepCertificateProfile:
@@ -130,7 +124,9 @@ class MacOSScepCertificateProfile(mac_o_s_certificate_profile_base.MacOSCertific
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import certificate_store, custom_subject_alternative_name, extended_key_usage, hash_algorithms, key_size, key_usages, mac_o_s_certificate_profile_base, mac_o_s_trusted_root_certificate, managed_device_certificate_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowAllAppsAccess": lambda n : setattr(self, 'allow_all_apps_access', n.get_bool_value()),
             "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(certificate_store.CertificateStore)),
             "customSubjectAlternativeNames": lambda n : setattr(self, 'custom_subject_alternative_names', n.get_collection_of_object_values(custom_subject_alternative_name.CustomSubjectAlternativeName)),

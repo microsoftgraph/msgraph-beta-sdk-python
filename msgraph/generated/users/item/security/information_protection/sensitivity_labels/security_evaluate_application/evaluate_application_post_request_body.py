@@ -1,12 +1,23 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-content_info = lazy_import('msgraph.generated.models.security.content_info')
-labeling_options = lazy_import('msgraph.generated.models.security.labeling_options')
+if TYPE_CHECKING:
+    from .......models.security import content_info, labeling_options
 
 class EvaluateApplicationPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new evaluateApplicationPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The contentInfo property
+        self._content_info: Optional[content_info.ContentInfo] = None
+        # The labelingOptions property
+        self._labeling_options: Optional[labeling_options.LabelingOptions] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,18 +34,6 @@ class EvaluateApplicationPostRequestBody(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new evaluateApplicationPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The contentInfo property
-        self._content_info: Optional[content_info.ContentInfo] = None
-        # The labelingOptions property
-        self._labeling_options: Optional[labeling_options.LabelingOptions] = None
     
     @property
     def content_info(self,) -> Optional[content_info.ContentInfo]:
@@ -70,7 +69,9 @@ class EvaluateApplicationPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .......models.security import content_info, labeling_options
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "contentInfo": lambda n : setattr(self, 'content_info', n.get_object_value(content_info.ContentInfo)),
             "labelingOptions": lambda n : setattr(self, 'labeling_options', n.get_object_value(labeling_options.LabelingOptions)),
         }

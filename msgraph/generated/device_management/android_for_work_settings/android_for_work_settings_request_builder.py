@@ -7,48 +7,20 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-complete_signup_request_builder = lazy_import('msgraph.generated.device_management.android_for_work_settings.complete_signup.complete_signup_request_builder')
-request_signup_url_request_builder = lazy_import('msgraph.generated.device_management.android_for_work_settings.request_signup_url.request_signup_url_request_builder')
-sync_apps_request_builder = lazy_import('msgraph.generated.device_management.android_for_work_settings.sync_apps.sync_apps_request_builder')
-unbind_request_builder = lazy_import('msgraph.generated.device_management.android_for_work_settings.unbind.unbind_request_builder')
-android_for_work_settings = lazy_import('msgraph.generated.models.android_for_work_settings')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ...models import android_for_work_settings
+    from ...models.o_data_errors import o_data_error
+    from .complete_signup import complete_signup_request_builder
+    from .request_signup_url import request_signup_url_request_builder
+    from .sync_apps import sync_apps_request_builder
+    from .unbind import unbind_request_builder
 
 class AndroidForWorkSettingsRequestBuilder():
     """
     Provides operations to manage the androidForWorkSettings property of the microsoft.graph.deviceManagement entity.
     """
-    @property
-    def complete_signup(self) -> complete_signup_request_builder.CompleteSignupRequestBuilder:
-        """
-        Provides operations to call the completeSignup method.
-        """
-        return complete_signup_request_builder.CompleteSignupRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def request_signup_url(self) -> request_signup_url_request_builder.RequestSignupUrlRequestBuilder:
-        """
-        Provides operations to call the requestSignupUrl method.
-        """
-        return request_signup_url_request_builder.RequestSignupUrlRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def sync_apps(self) -> sync_apps_request_builder.SyncAppsRequestBuilder:
-        """
-        Provides operations to call the syncApps method.
-        """
-        return sync_apps_request_builder.SyncAppsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def unbind(self) -> unbind_request_builder.UnbindRequestBuilder:
-        """
-        Provides operations to call the unbind method.
-        """
-        return unbind_request_builder.UnbindRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new AndroidForWorkSettingsRequestBuilder and sets the default values.
@@ -76,6 +48,8 @@ class AndroidForWorkSettingsRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -94,12 +68,16 @@ class AndroidForWorkSettingsRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models import android_for_work_settings
+
         return await self.request_adapter.send_async(request_info, android_for_work_settings.AndroidForWorkSettings, error_mapping)
     
     async def patch(self,body: Optional[android_for_work_settings.AndroidForWorkSettings] = None, request_configuration: Optional[AndroidForWorkSettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[android_for_work_settings.AndroidForWorkSettings]:
@@ -115,12 +93,16 @@ class AndroidForWorkSettingsRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models import android_for_work_settings
+
         return await self.request_adapter.send_async(request_info, android_for_work_settings.AndroidForWorkSettings, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AndroidForWorkSettingsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -178,6 +160,42 @@ class AndroidForWorkSettingsRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def complete_signup(self) -> complete_signup_request_builder.CompleteSignupRequestBuilder:
+        """
+        Provides operations to call the completeSignup method.
+        """
+        from .complete_signup import complete_signup_request_builder
+
+        return complete_signup_request_builder.CompleteSignupRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def request_signup_url(self) -> request_signup_url_request_builder.RequestSignupUrlRequestBuilder:
+        """
+        Provides operations to call the requestSignupUrl method.
+        """
+        from .request_signup_url import request_signup_url_request_builder
+
+        return request_signup_url_request_builder.RequestSignupUrlRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def sync_apps(self) -> sync_apps_request_builder.SyncAppsRequestBuilder:
+        """
+        Provides operations to call the syncApps method.
+        """
+        from .sync_apps import sync_apps_request_builder
+
+        return sync_apps_request_builder.SyncAppsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def unbind(self) -> unbind_request_builder.UnbindRequestBuilder:
+        """
+        Provides operations to call the unbind method.
+        """
+        from .unbind import unbind_request_builder
+
+        return unbind_request_builder.UnbindRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class AndroidForWorkSettingsRequestBuilderDeleteRequestConfiguration():
         """
@@ -195,12 +213,6 @@ class AndroidForWorkSettingsRequestBuilder():
         """
         The singleton Android for Work settings entity.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -216,6 +228,12 @@ class AndroidForWorkSettingsRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class AndroidForWorkSettingsRequestBuilderGetRequestConfiguration():

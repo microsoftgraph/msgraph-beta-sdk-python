@@ -1,31 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-governance_schedule = lazy_import('msgraph.generated.models.governance_schedule')
-privileged_role = lazy_import('msgraph.generated.models.privileged_role')
+if TYPE_CHECKING:
+    from . import entity, governance_schedule, privileged_role
+
+from . import entity
 
 class PrivilegedRoleAssignmentRequest(entity.Entity):
-    @property
-    def assignment_state(self,) -> Optional[str]:
-        """
-        Gets the assignmentState property value. The state of the assignment. The value can be Eligible for eligible assignment Active - if it is directly assigned Active by administrators, or activated on an eligible assignment by the users.
-        Returns: Optional[str]
-        """
-        return self._assignment_state
-    
-    @assignment_state.setter
-    def assignment_state(self,value: Optional[str] = None) -> None:
-        """
-        Sets the assignmentState property value. The state of the assignment. The value can be Eligible for eligible assignment Active - if it is directly assigned Active by administrators, or activated on an eligible assignment by the users.
-        Args:
-            value: Value to set for the assignment_state property.
-        """
-        self._assignment_state = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new privilegedRoleAssignmentRequest and sets the default values.
@@ -57,6 +40,23 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
         self._type: Optional[str] = None
         # The id of the user.
         self._user_id: Optional[str] = None
+    
+    @property
+    def assignment_state(self,) -> Optional[str]:
+        """
+        Gets the assignmentState property value. The state of the assignment. The value can be Eligible for eligible assignment Active - if it is directly assigned Active by administrators, or activated on an eligible assignment by the users.
+        Returns: Optional[str]
+        """
+        return self._assignment_state
+    
+    @assignment_state.setter
+    def assignment_state(self,value: Optional[str] = None) -> None:
+        """
+        Sets the assignmentState property value. The state of the assignment. The value can be Eligible for eligible assignment Active - if it is directly assigned Active by administrators, or activated on an eligible assignment by the users.
+        Args:
+            value: Value to set for the assignment_state property.
+        """
+        self._assignment_state = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PrivilegedRoleAssignmentRequest:
@@ -92,7 +92,9 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, governance_schedule, privileged_role
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignmentState": lambda n : setattr(self, 'assignment_state', n.get_str_value()),
             "duration": lambda n : setattr(self, 'duration', n.get_str_value()),
             "reason": lambda n : setattr(self, 'reason', n.get_str_value()),

@@ -1,11 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-onboarding_status = lazy_import('msgraph.generated.models.onboarding_status')
+if TYPE_CHECKING:
+    from . import entity, onboarding_status
+
+from . import entity
 
 class ChromeOSOnboardingSettings(entity.Entity):
     """
@@ -44,7 +45,9 @@ class ChromeOSOnboardingSettings(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, onboarding_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "lastDirectorySyncDateTime": lambda n : setattr(self, 'last_directory_sync_date_time', n.get_datetime_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "onboardingStatus": lambda n : setattr(self, 'onboarding_status', n.get_enum_value(onboarding_status.OnboardingStatus)),

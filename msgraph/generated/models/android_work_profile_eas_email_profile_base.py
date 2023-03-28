@@ -1,33 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_username_source = lazy_import('msgraph.generated.models.android_username_source')
-android_work_profile_certificate_profile_base = lazy_import('msgraph.generated.models.android_work_profile_certificate_profile_base')
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-eas_authentication_method = lazy_import('msgraph.generated.models.eas_authentication_method')
-email_sync_duration = lazy_import('msgraph.generated.models.email_sync_duration')
-user_email_source = lazy_import('msgraph.generated.models.user_email_source')
+if TYPE_CHECKING:
+    from . import android_username_source, android_work_profile_certificate_profile_base, android_work_profile_gmail_eas_configuration, android_work_profile_nine_work_eas_configuration, device_configuration, eas_authentication_method, email_sync_duration, user_email_source
+
+from . import device_configuration
 
 class AndroidWorkProfileEasEmailProfileBase(device_configuration.DeviceConfiguration):
-    @property
-    def authentication_method(self,) -> Optional[eas_authentication_method.EasAuthenticationMethod]:
-        """
-        Gets the authenticationMethod property value. Exchange Active Sync authentication method.
-        Returns: Optional[eas_authentication_method.EasAuthenticationMethod]
-        """
-        return self._authentication_method
-    
-    @authentication_method.setter
-    def authentication_method(self,value: Optional[eas_authentication_method.EasAuthenticationMethod] = None) -> None:
-        """
-        Sets the authenticationMethod property value. Exchange Active Sync authentication method.
-        Args:
-            value: Value to set for the authentication_method property.
-        """
-        self._authentication_method = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new AndroidWorkProfileEasEmailProfileBase and sets the default values.
@@ -49,6 +29,23 @@ class AndroidWorkProfileEasEmailProfileBase(device_configuration.DeviceConfigura
         # Android username source.
         self._username_source: Optional[android_username_source.AndroidUsernameSource] = None
     
+    @property
+    def authentication_method(self,) -> Optional[eas_authentication_method.EasAuthenticationMethod]:
+        """
+        Gets the authenticationMethod property value. Exchange Active Sync authentication method.
+        Returns: Optional[eas_authentication_method.EasAuthenticationMethod]
+        """
+        return self._authentication_method
+    
+    @authentication_method.setter
+    def authentication_method(self,value: Optional[eas_authentication_method.EasAuthenticationMethod] = None) -> None:
+        """
+        Sets the authenticationMethod property value. Exchange Active Sync authentication method.
+        Args:
+            value: Value to set for the authentication_method property.
+        """
+        self._authentication_method = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidWorkProfileEasEmailProfileBase:
         """
@@ -59,6 +56,17 @@ class AndroidWorkProfileEasEmailProfileBase(device_configuration.DeviceConfigura
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.androidWorkProfileGmailEasConfiguration":
+                from . import android_work_profile_gmail_eas_configuration
+
+                return android_work_profile_gmail_eas_configuration.AndroidWorkProfileGmailEasConfiguration()
+            if mapping_value == "#microsoft.graph.androidWorkProfileNineWorkEasConfiguration":
+                from . import android_work_profile_nine_work_eas_configuration
+
+                return android_work_profile_nine_work_eas_configuration.AndroidWorkProfileNineWorkEasConfiguration()
         return AndroidWorkProfileEasEmailProfileBase()
     
     @property
@@ -100,7 +108,9 @@ class AndroidWorkProfileEasEmailProfileBase(device_configuration.DeviceConfigura
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_username_source, android_work_profile_certificate_profile_base, android_work_profile_gmail_eas_configuration, android_work_profile_nine_work_eas_configuration, device_configuration, eas_authentication_method, email_sync_duration, user_email_source
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(eas_authentication_method.EasAuthenticationMethod)),
             "durationOfEmailToSync": lambda n : setattr(self, 'duration_of_email_to_sync', n.get_enum_value(email_sync_duration.EmailSyncDuration)),
             "emailAddressSource": lambda n : setattr(self, 'email_address_source', n.get_enum_value(user_email_source.UserEmailSource)),

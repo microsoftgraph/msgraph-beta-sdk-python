@@ -1,15 +1,28 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-assignment_filter_evaluation_result = lazy_import('msgraph.generated.models.assignment_filter_evaluation_result')
-device_and_app_management_assignment_filter_type = lazy_import('msgraph.generated.models.device_and_app_management_assignment_filter_type')
+if TYPE_CHECKING:
+    from . import assignment_filter_evaluation_result, device_and_app_management_assignment_filter_type
 
 class AssignmentFilterTypeAndEvaluationResult(AdditionalDataHolder, Parsable):
     """
     Represents the filter type and evalaution result of the filter.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new assignmentFilterTypeAndEvaluationResult and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Represents type of the assignment filter.
+        self._assignment_filter_type: Optional[device_and_app_management_assignment_filter_type.DeviceAndAppManagementAssignmentFilterType] = None
+        # Supported evaluation results for filter.
+        self._evaluation_result: Optional[assignment_filter_evaluation_result.AssignmentFilterEvaluationResult] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -43,20 +56,6 @@ class AssignmentFilterTypeAndEvaluationResult(AdditionalDataHolder, Parsable):
             value: Value to set for the assignment_filter_type property.
         """
         self._assignment_filter_type = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new assignmentFilterTypeAndEvaluationResult and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Represents type of the assignment filter.
-        self._assignment_filter_type: Optional[device_and_app_management_assignment_filter_type.DeviceAndAppManagementAssignmentFilterType] = None
-        # Supported evaluation results for filter.
-        self._evaluation_result: Optional[assignment_filter_evaluation_result.AssignmentFilterEvaluationResult] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AssignmentFilterTypeAndEvaluationResult:
@@ -92,7 +91,9 @@ class AssignmentFilterTypeAndEvaluationResult(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import assignment_filter_evaluation_result, device_and_app_management_assignment_filter_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignmentFilterType": lambda n : setattr(self, 'assignment_filter_type', n.get_enum_value(device_and_app_management_assignment_filter_type.DeviceAndAppManagementAssignmentFilterType)),
             "evaluationResult": lambda n : setattr(self, 'evaluation_result', n.get_enum_value(assignment_filter_evaluation_result.AssignmentFilterEvaluationResult)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

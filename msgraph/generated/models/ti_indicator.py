@@ -1,101 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-diamond_model = lazy_import('msgraph.generated.models.diamond_model')
-entity = lazy_import('msgraph.generated.models.entity')
-file_hash_type = lazy_import('msgraph.generated.models.file_hash_type')
-ti_action = lazy_import('msgraph.generated.models.ti_action')
-tlp_level = lazy_import('msgraph.generated.models.tlp_level')
+if TYPE_CHECKING:
+    from . import diamond_model, entity, file_hash_type, ti_action, tlp_level
+
+from . import entity
 
 class TiIndicator(entity.Entity):
-    @property
-    def action(self,) -> Optional[ti_action.TiAction]:
-        """
-        Gets the action property value. The action to apply if the indicator is matched from within the targetProduct security tool. Possible values are: unknown, allow, block, alert. Required.
-        Returns: Optional[ti_action.TiAction]
-        """
-        return self._action
-    
-    @action.setter
-    def action(self,value: Optional[ti_action.TiAction] = None) -> None:
-        """
-        Sets the action property value. The action to apply if the indicator is matched from within the targetProduct security tool. Possible values are: unknown, allow, block, alert. Required.
-        Args:
-            value: Value to set for the action property.
-        """
-        self._action = value
-    
-    @property
-    def activity_group_names(self,) -> Optional[List[str]]:
-        """
-        Gets the activityGroupNames property value. The cyber threat intelligence name(s) for the parties responsible for the malicious activity covered by the threat indicator.
-        Returns: Optional[List[str]]
-        """
-        return self._activity_group_names
-    
-    @activity_group_names.setter
-    def activity_group_names(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the activityGroupNames property value. The cyber threat intelligence name(s) for the parties responsible for the malicious activity covered by the threat indicator.
-        Args:
-            value: Value to set for the activity_group_names property.
-        """
-        self._activity_group_names = value
-    
-    @property
-    def additional_information(self,) -> Optional[str]:
-        """
-        Gets the additionalInformation property value. A catchall area into which extra data from the indicator not covered by the other tiIndicator properties may be placed. Data placed into additionalInformation will typically not be utilized by the targetProduct security tool.
-        Returns: Optional[str]
-        """
-        return self._additional_information
-    
-    @additional_information.setter
-    def additional_information(self,value: Optional[str] = None) -> None:
-        """
-        Sets the additionalInformation property value. A catchall area into which extra data from the indicator not covered by the other tiIndicator properties may be placed. Data placed into additionalInformation will typically not be utilized by the targetProduct security tool.
-        Args:
-            value: Value to set for the additional_information property.
-        """
-        self._additional_information = value
-    
-    @property
-    def azure_tenant_id(self,) -> Optional[str]:
-        """
-        Gets the azureTenantId property value. Stamped by the system when the indicator is ingested. The Azure Active Directory tenant id of submitting client. Required.
-        Returns: Optional[str]
-        """
-        return self._azure_tenant_id
-    
-    @azure_tenant_id.setter
-    def azure_tenant_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the azureTenantId property value. Stamped by the system when the indicator is ingested. The Azure Active Directory tenant id of submitting client. Required.
-        Args:
-            value: Value to set for the azure_tenant_id property.
-        """
-        self._azure_tenant_id = value
-    
-    @property
-    def confidence(self,) -> Optional[int]:
-        """
-        Gets the confidence property value. An integer representing the confidence the data within the indicator accurately identifies malicious behavior. Acceptable values are 0 – 100 with 100 being the highest.
-        Returns: Optional[int]
-        """
-        return self._confidence
-    
-    @confidence.setter
-    def confidence(self,value: Optional[int] = None) -> None:
-        """
-        Sets the confidence property value. An integer representing the confidence the data within the indicator accurately identifies malicious behavior. Acceptable values are 0 – 100 with 100 being the highest.
-        Args:
-            value: Value to set for the confidence property.
-        """
-        self._confidence = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new tiIndicator and sets the default values.
@@ -219,6 +132,91 @@ class TiIndicator(entity.Entity):
         self._url: Optional[str] = None
         # The userAgent property
         self._user_agent: Optional[str] = None
+    
+    @property
+    def action(self,) -> Optional[ti_action.TiAction]:
+        """
+        Gets the action property value. The action to apply if the indicator is matched from within the targetProduct security tool. Possible values are: unknown, allow, block, alert. Required.
+        Returns: Optional[ti_action.TiAction]
+        """
+        return self._action
+    
+    @action.setter
+    def action(self,value: Optional[ti_action.TiAction] = None) -> None:
+        """
+        Sets the action property value. The action to apply if the indicator is matched from within the targetProduct security tool. Possible values are: unknown, allow, block, alert. Required.
+        Args:
+            value: Value to set for the action property.
+        """
+        self._action = value
+    
+    @property
+    def activity_group_names(self,) -> Optional[List[str]]:
+        """
+        Gets the activityGroupNames property value. The cyber threat intelligence name(s) for the parties responsible for the malicious activity covered by the threat indicator.
+        Returns: Optional[List[str]]
+        """
+        return self._activity_group_names
+    
+    @activity_group_names.setter
+    def activity_group_names(self,value: Optional[List[str]] = None) -> None:
+        """
+        Sets the activityGroupNames property value. The cyber threat intelligence name(s) for the parties responsible for the malicious activity covered by the threat indicator.
+        Args:
+            value: Value to set for the activity_group_names property.
+        """
+        self._activity_group_names = value
+    
+    @property
+    def additional_information(self,) -> Optional[str]:
+        """
+        Gets the additionalInformation property value. A catchall area into which extra data from the indicator not covered by the other tiIndicator properties may be placed. Data placed into additionalInformation will typically not be utilized by the targetProduct security tool.
+        Returns: Optional[str]
+        """
+        return self._additional_information
+    
+    @additional_information.setter
+    def additional_information(self,value: Optional[str] = None) -> None:
+        """
+        Sets the additionalInformation property value. A catchall area into which extra data from the indicator not covered by the other tiIndicator properties may be placed. Data placed into additionalInformation will typically not be utilized by the targetProduct security tool.
+        Args:
+            value: Value to set for the additional_information property.
+        """
+        self._additional_information = value
+    
+    @property
+    def azure_tenant_id(self,) -> Optional[str]:
+        """
+        Gets the azureTenantId property value. Stamped by the system when the indicator is ingested. The Azure Active Directory tenant id of submitting client. Required.
+        Returns: Optional[str]
+        """
+        return self._azure_tenant_id
+    
+    @azure_tenant_id.setter
+    def azure_tenant_id(self,value: Optional[str] = None) -> None:
+        """
+        Sets the azureTenantId property value. Stamped by the system when the indicator is ingested. The Azure Active Directory tenant id of submitting client. Required.
+        Args:
+            value: Value to set for the azure_tenant_id property.
+        """
+        self._azure_tenant_id = value
+    
+    @property
+    def confidence(self,) -> Optional[int]:
+        """
+        Gets the confidence property value. An integer representing the confidence the data within the indicator accurately identifies malicious behavior. Acceptable values are 0 – 100 with 100 being the highest.
+        Returns: Optional[int]
+        """
+        return self._confidence
+    
+    @confidence.setter
+    def confidence(self,value: Optional[int] = None) -> None:
+        """
+        Sets the confidence property value. An integer representing the confidence the data within the indicator accurately identifies malicious behavior. Acceptable values are 0 – 100 with 100 being the highest.
+        Args:
+            value: Value to set for the confidence property.
+        """
+        self._confidence = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TiIndicator:
@@ -645,7 +643,9 @@ class TiIndicator(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import diamond_model, entity, file_hash_type, ti_action, tlp_level
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "action": lambda n : setattr(self, 'action', n.get_enum_value(ti_action.TiAction)),
             "activityGroupNames": lambda n : setattr(self, 'activity_group_names', n.get_collection_of_primitive_values(str)),
             "additionalInformation": lambda n : setattr(self, 'additional_information', n.get_str_value()),

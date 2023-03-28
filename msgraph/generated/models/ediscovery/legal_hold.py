@@ -1,15 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-identity_set = lazy_import('msgraph.generated.models.identity_set')
-legal_hold_status = lazy_import('msgraph.generated.models.ediscovery.legal_hold_status')
-site_source = lazy_import('msgraph.generated.models.ediscovery.site_source')
-unified_group_source = lazy_import('msgraph.generated.models.ediscovery.unified_group_source')
-user_source = lazy_import('msgraph.generated.models.ediscovery.user_source')
+if TYPE_CHECKING:
+    from . import legal_hold_status, site_source, unified_group_source, user_source
+    from .. import entity, identity_set
+
+from .. import entity
 
 class LegalHold(entity.Entity):
     def __init__(self,) -> None:
@@ -165,7 +163,10 @@ class LegalHold(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import legal_hold_status, site_source, unified_group_source, user_source
+        from .. import entity, identity_set
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "contentQuery": lambda n : setattr(self, 'content_query', n.get_str_value()),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),

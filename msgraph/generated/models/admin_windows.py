@@ -1,15 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-admin_windows_updates = lazy_import('msgraph.generated.models.admin_windows_updates')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import admin_windows_updates, entity
+
+from . import entity
 
 class AdminWindows(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new AdminWindows and sets the default values.
+        Instantiates a new adminWindows and sets the default values.
         """
         super().__init__()
         # The OdataType property
@@ -34,7 +35,9 @@ class AdminWindows(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import admin_windows_updates, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "updates": lambda n : setattr(self, 'updates', n.get_object_value(admin_windows_updates.AdminWindowsUpdates)),
         }
         super_fields = super().get_field_deserializers()

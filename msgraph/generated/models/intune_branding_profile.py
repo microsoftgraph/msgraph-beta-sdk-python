@@ -1,54 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-company_portal_blocked_action = lazy_import('msgraph.generated.models.company_portal_blocked_action')
-enrollment_availability_options = lazy_import('msgraph.generated.models.enrollment_availability_options')
-entity = lazy_import('msgraph.generated.models.entity')
-intune_branding_profile_assignment = lazy_import('msgraph.generated.models.intune_branding_profile_assignment')
-mime_content = lazy_import('msgraph.generated.models.mime_content')
-rgb_color = lazy_import('msgraph.generated.models.rgb_color')
+if TYPE_CHECKING:
+    from . import company_portal_blocked_action, enrollment_availability_options, entity, intune_branding_profile_assignment, mime_content, rgb_color
+
+from . import entity
 
 class IntuneBrandingProfile(entity.Entity):
     """
     This entity contains data which is used in customizing the tenant level appearance of the Company Portal applications as well as the end user web portal.
     """
-    @property
-    def assignments(self,) -> Optional[List[intune_branding_profile_assignment.IntuneBrandingProfileAssignment]]:
-        """
-        Gets the assignments property value. The list of group assignments for the branding profile
-        Returns: Optional[List[intune_branding_profile_assignment.IntuneBrandingProfileAssignment]]
-        """
-        return self._assignments
-    
-    @assignments.setter
-    def assignments(self,value: Optional[List[intune_branding_profile_assignment.IntuneBrandingProfileAssignment]] = None) -> None:
-        """
-        Sets the assignments property value. The list of group assignments for the branding profile
-        Args:
-            value: Value to set for the assignments property.
-        """
-        self._assignments = value
-    
-    @property
-    def company_portal_blocked_actions(self,) -> Optional[List[company_portal_blocked_action.CompanyPortalBlockedAction]]:
-        """
-        Gets the companyPortalBlockedActions property value. Collection of blocked actions on the company portal as per platform and device ownership types.
-        Returns: Optional[List[company_portal_blocked_action.CompanyPortalBlockedAction]]
-        """
-        return self._company_portal_blocked_actions
-    
-    @company_portal_blocked_actions.setter
-    def company_portal_blocked_actions(self,value: Optional[List[company_portal_blocked_action.CompanyPortalBlockedAction]] = None) -> None:
-        """
-        Sets the companyPortalBlockedActions property value. Collection of blocked actions on the company portal as per platform and device ownership types.
-        Args:
-            value: Value to set for the company_portal_blocked_actions property.
-        """
-        self._company_portal_blocked_actions = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new intuneBrandingProfile and sets the default values.
@@ -124,6 +87,40 @@ class IntuneBrandingProfile(entity.Entity):
         self._theme_color: Optional[rgb_color.RgbColor] = None
         # Logo image displayed in Company Portal apps which have a theme color background behind the logo
         self._theme_color_logo: Optional[mime_content.MimeContent] = None
+    
+    @property
+    def assignments(self,) -> Optional[List[intune_branding_profile_assignment.IntuneBrandingProfileAssignment]]:
+        """
+        Gets the assignments property value. The list of group assignments for the branding profile
+        Returns: Optional[List[intune_branding_profile_assignment.IntuneBrandingProfileAssignment]]
+        """
+        return self._assignments
+    
+    @assignments.setter
+    def assignments(self,value: Optional[List[intune_branding_profile_assignment.IntuneBrandingProfileAssignment]] = None) -> None:
+        """
+        Sets the assignments property value. The list of group assignments for the branding profile
+        Args:
+            value: Value to set for the assignments property.
+        """
+        self._assignments = value
+    
+    @property
+    def company_portal_blocked_actions(self,) -> Optional[List[company_portal_blocked_action.CompanyPortalBlockedAction]]:
+        """
+        Gets the companyPortalBlockedActions property value. Collection of blocked actions on the company portal as per platform and device ownership types.
+        Returns: Optional[List[company_portal_blocked_action.CompanyPortalBlockedAction]]
+        """
+        return self._company_portal_blocked_actions
+    
+    @company_portal_blocked_actions.setter
+    def company_portal_blocked_actions(self,value: Optional[List[company_portal_blocked_action.CompanyPortalBlockedAction]] = None) -> None:
+        """
+        Sets the companyPortalBlockedActions property value. Collection of blocked actions on the company portal as per platform and device ownership types.
+        Args:
+            value: Value to set for the company_portal_blocked_actions property.
+        """
+        self._company_portal_blocked_actions = value
     
     @property
     def contact_i_t_email_address(self,) -> Optional[str]:
@@ -346,7 +343,9 @@ class IntuneBrandingProfile(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import company_portal_blocked_action, enrollment_availability_options, entity, intune_branding_profile_assignment, mime_content, rgb_color
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(intune_branding_profile_assignment.IntuneBrandingProfileAssignment)),
             "companyPortalBlockedActions": lambda n : setattr(self, 'company_portal_blocked_actions', n.get_collection_of_object_values(company_portal_blocked_action.CompanyPortalBlockedAction)),
             "contactITEmailAddress": lambda n : setattr(self, 'contact_i_t_email_address', n.get_str_value()),

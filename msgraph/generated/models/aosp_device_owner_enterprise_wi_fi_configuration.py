@@ -1,34 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_eap_type = lazy_import('msgraph.generated.models.android_eap_type')
-aosp_device_owner_certificate_profile_base = lazy_import('msgraph.generated.models.aosp_device_owner_certificate_profile_base')
-aosp_device_owner_trusted_root_certificate = lazy_import('msgraph.generated.models.aosp_device_owner_trusted_root_certificate')
-aosp_device_owner_wi_fi_configuration = lazy_import('msgraph.generated.models.aosp_device_owner_wi_fi_configuration')
-non_eap_authentication_method_for_eap_ttls_type = lazy_import('msgraph.generated.models.non_eap_authentication_method_for_eap_ttls_type')
-non_eap_authentication_method_for_peap = lazy_import('msgraph.generated.models.non_eap_authentication_method_for_peap')
-wi_fi_authentication_method = lazy_import('msgraph.generated.models.wi_fi_authentication_method')
+if TYPE_CHECKING:
+    from . import android_eap_type, aosp_device_owner_certificate_profile_base, aosp_device_owner_trusted_root_certificate, aosp_device_owner_wi_fi_configuration, non_eap_authentication_method_for_eap_ttls_type, non_eap_authentication_method_for_peap, wi_fi_authentication_method
+
+from . import aosp_device_owner_wi_fi_configuration
 
 class AospDeviceOwnerEnterpriseWiFiConfiguration(aosp_device_owner_wi_fi_configuration.AospDeviceOwnerWiFiConfiguration):
-    @property
-    def authentication_method(self,) -> Optional[wi_fi_authentication_method.WiFiAuthenticationMethod]:
-        """
-        Gets the authenticationMethod property value. Indicates the Authentication Method the client (device) needs to use when the EAP Type is configured to PEAP or EAP-TTLS. Possible values are: certificate, usernameAndPassword, derivedCredential.
-        Returns: Optional[wi_fi_authentication_method.WiFiAuthenticationMethod]
-        """
-        return self._authentication_method
-    
-    @authentication_method.setter
-    def authentication_method(self,value: Optional[wi_fi_authentication_method.WiFiAuthenticationMethod] = None) -> None:
-        """
-        Sets the authenticationMethod property value. Indicates the Authentication Method the client (device) needs to use when the EAP Type is configured to PEAP or EAP-TTLS. Possible values are: certificate, usernameAndPassword, derivedCredential.
-        Args:
-            value: Value to set for the authentication_method property.
-        """
-        self._authentication_method = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new AospDeviceOwnerEnterpriseWiFiConfiguration and sets the default values.
@@ -51,6 +30,23 @@ class AospDeviceOwnerEnterpriseWiFiConfiguration(aosp_device_owner_wi_fi_configu
         self._root_certificate_for_server_validation: Optional[aosp_device_owner_trusted_root_certificate.AospDeviceOwnerTrustedRootCertificate] = None
         # Trusted server certificate names when EAP Type is configured to EAP-TLS/TTLS/FAST or PEAP. This is the common name used in the certificates issued by your trusted certificate authority (CA). If you provide this information, you can bypass the dynamic trust dialog that is displayed on end users' devices when they connect to this Wi-Fi network.
         self._trusted_server_certificate_names: Optional[List[str]] = None
+    
+    @property
+    def authentication_method(self,) -> Optional[wi_fi_authentication_method.WiFiAuthenticationMethod]:
+        """
+        Gets the authenticationMethod property value. Indicates the Authentication Method the client (device) needs to use when the EAP Type is configured to PEAP or EAP-TTLS. Possible values are: certificate, usernameAndPassword, derivedCredential.
+        Returns: Optional[wi_fi_authentication_method.WiFiAuthenticationMethod]
+        """
+        return self._authentication_method
+    
+    @authentication_method.setter
+    def authentication_method(self,value: Optional[wi_fi_authentication_method.WiFiAuthenticationMethod] = None) -> None:
+        """
+        Sets the authenticationMethod property value. Indicates the Authentication Method the client (device) needs to use when the EAP Type is configured to PEAP or EAP-TTLS. Possible values are: certificate, usernameAndPassword, derivedCredential.
+        Args:
+            value: Value to set for the authentication_method property.
+        """
+        self._authentication_method = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AospDeviceOwnerEnterpriseWiFiConfiguration:
@@ -86,7 +82,9 @@ class AospDeviceOwnerEnterpriseWiFiConfiguration(aosp_device_owner_wi_fi_configu
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_eap_type, aosp_device_owner_certificate_profile_base, aosp_device_owner_trusted_root_certificate, aosp_device_owner_wi_fi_configuration, non_eap_authentication_method_for_eap_ttls_type, non_eap_authentication_method_for_peap, wi_fi_authentication_method
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(wi_fi_authentication_method.WiFiAuthenticationMethod)),
             "eapType": lambda n : setattr(self, 'eap_type', n.get_enum_value(android_eap_type.AndroidEapType)),
             "identityCertificateForClientAuthentication": lambda n : setattr(self, 'identity_certificate_for_client_authentication', n.get_object_value(aosp_device_owner_certificate_profile_base.AospDeviceOwnerCertificateProfileBase)),

@@ -1,30 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
+if TYPE_CHECKING:
+    from . import entity, key_value_pair
+
+from . import entity
 
 class MicrosoftTunnelConfiguration(entity.Entity):
-    @property
-    def advanced_settings(self,) -> Optional[List[key_value_pair.KeyValuePair]]:
-        """
-        Gets the advancedSettings property value. Additional settings that may be applied to the server
-        Returns: Optional[List[key_value_pair.KeyValuePair]]
-        """
-        return self._advanced_settings
-    
-    @advanced_settings.setter
-    def advanced_settings(self,value: Optional[List[key_value_pair.KeyValuePair]] = None) -> None:
-        """
-        Sets the advancedSettings property value. Additional settings that may be applied to the server
-        Args:
-            value: Value to set for the advanced_settings property.
-        """
-        self._advanced_settings = value
-    
+    """
+    Entity that represents a collection of Microsoft Tunnel settings
+    """
     def __init__(self,) -> None:
         """
         Instantiates a new microsoftTunnelConfiguration and sets the default values.
@@ -62,6 +49,23 @@ class MicrosoftTunnelConfiguration(entity.Entity):
         self._routes_include: Optional[List[str]] = None
         # The domains that will be resolved using the provided dns servers
         self._split_d_n_s: Optional[List[str]] = None
+    
+    @property
+    def advanced_settings(self,) -> Optional[List[key_value_pair.KeyValuePair]]:
+        """
+        Gets the advancedSettings property value. Additional settings that may be applied to the server
+        Returns: Optional[List[key_value_pair.KeyValuePair]]
+        """
+        return self._advanced_settings
+    
+    @advanced_settings.setter
+    def advanced_settings(self,value: Optional[List[key_value_pair.KeyValuePair]] = None) -> None:
+        """
+        Sets the advancedSettings property value. Additional settings that may be applied to the server
+        Args:
+            value: Value to set for the advanced_settings property.
+        """
+        self._advanced_settings = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MicrosoftTunnelConfiguration:
@@ -165,7 +169,9 @@ class MicrosoftTunnelConfiguration(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, key_value_pair
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "advancedSettings": lambda n : setattr(self, 'advanced_settings', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
             "defaultDomainSuffix": lambda n : setattr(self, 'default_domain_suffix', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

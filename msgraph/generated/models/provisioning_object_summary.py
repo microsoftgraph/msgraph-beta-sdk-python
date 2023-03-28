@@ -1,21 +1,58 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-initiator = lazy_import('msgraph.generated.models.initiator')
-modified_property = lazy_import('msgraph.generated.models.modified_property')
-provisioned_identity = lazy_import('msgraph.generated.models.provisioned_identity')
-provisioning_action = lazy_import('msgraph.generated.models.provisioning_action')
-provisioning_service_principal = lazy_import('msgraph.generated.models.provisioning_service_principal')
-provisioning_status_info = lazy_import('msgraph.generated.models.provisioning_status_info')
-provisioning_step = lazy_import('msgraph.generated.models.provisioning_step')
-provisioning_system = lazy_import('msgraph.generated.models.provisioning_system')
-status_base = lazy_import('msgraph.generated.models.status_base')
+if TYPE_CHECKING:
+    from . import entity, initiator, modified_property, provisioned_identity, provisioning_action, provisioning_service_principal, provisioning_status_info, provisioning_step, provisioning_system, status_base
+
+from . import entity
 
 class ProvisioningObjectSummary(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new ProvisioningObjectSummary and sets the default values.
+        """
+        super().__init__()
+        # The action property
+        self._action: Optional[str] = None
+        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+        self._activity_date_time: Optional[datetime] = None
+        # Unique ID of this change in this cycle.
+        self._change_id: Optional[str] = None
+        # Unique ID per job iteration.
+        self._cycle_id: Optional[str] = None
+        # Indicates how long this provisioning action took to finish. Measured in milliseconds.
+        self._duration_in_milliseconds: Optional[int] = None
+        # Details of who initiated this provisioning.
+        self._initiated_by: Optional[initiator.Initiator] = None
+        # The unique ID for the whole provisioning job.
+        self._job_id: Optional[str] = None
+        # Details of each property that was modified in this provisioning action on this object.
+        self._modified_properties: Optional[List[modified_property.ModifiedProperty]] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Indicates the activity name or the operation name. Possible values are: create, update, delete, stageddelete, disable, other and unknownFutureValue. For a list of activities logged, refer to Azure AD activity list.
+        self._provisioning_action: Optional[provisioning_action.ProvisioningAction] = None
+        # Details of provisioning status.
+        self._provisioning_status_info: Optional[provisioning_status_info.ProvisioningStatusInfo] = None
+        # Details of each step in provisioning.
+        self._provisioning_steps: Optional[List[provisioning_step.ProvisioningStep]] = None
+        # Represents the service principal used for provisioning.
+        self._service_principal: Optional[provisioning_service_principal.ProvisioningServicePrincipal] = None
+        # Details of source object being provisioned.
+        self._source_identity: Optional[provisioned_identity.ProvisionedIdentity] = None
+        # Details of source system of the object being provisioned.
+        self._source_system: Optional[provisioning_system.ProvisioningSystem] = None
+        # The statusInfo property
+        self._status_info: Optional[status_base.StatusBase] = None
+        # Details of target object being provisioned.
+        self._target_identity: Optional[provisioned_identity.ProvisionedIdentity] = None
+        # Details of target system of the object being provisioned.
+        self._target_system: Optional[provisioning_system.ProvisioningSystem] = None
+        # Unique Azure AD tenant ID.
+        self._tenant_id: Optional[str] = None
+    
     @property
     def action(self,) -> Optional[str]:
         """
@@ -66,50 +103,6 @@ class ProvisioningObjectSummary(entity.Entity):
             value: Value to set for the change_id property.
         """
         self._change_id = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ProvisioningObjectSummary and sets the default values.
-        """
-        super().__init__()
-        # The action property
-        self._action: Optional[str] = None
-        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-        self._activity_date_time: Optional[datetime] = None
-        # Unique ID of this change in this cycle.
-        self._change_id: Optional[str] = None
-        # Unique ID per job iteration.
-        self._cycle_id: Optional[str] = None
-        # Indicates how long this provisioning action took to finish. Measured in milliseconds.
-        self._duration_in_milliseconds: Optional[int] = None
-        # Details of who initiated this provisioning.
-        self._initiated_by: Optional[initiator.Initiator] = None
-        # The unique ID for the whole provisioning job.
-        self._job_id: Optional[str] = None
-        # Details of each property that was modified in this provisioning action on this object.
-        self._modified_properties: Optional[List[modified_property.ModifiedProperty]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Indicates the activity name or the operation name. Possible values are: create, update, delete, stageddelete, disable, other and unknownFutureValue. For a list of activities logged, refer to Azure AD activity list.
-        self._provisioning_action: Optional[provisioning_action.ProvisioningAction] = None
-        # Details of provisioning status.
-        self._provisioning_status_info: Optional[provisioning_status_info.ProvisioningStatusInfo] = None
-        # Details of each step in provisioning.
-        self._provisioning_steps: Optional[List[provisioning_step.ProvisioningStep]] = None
-        # Represents the service principal used for provisioning.
-        self._service_principal: Optional[provisioning_service_principal.ProvisioningServicePrincipal] = None
-        # Details of source object being provisioned.
-        self._source_identity: Optional[provisioned_identity.ProvisionedIdentity] = None
-        # Details of source system of the object being provisioned.
-        self._source_system: Optional[provisioning_system.ProvisioningSystem] = None
-        # The statusInfo property
-        self._status_info: Optional[status_base.StatusBase] = None
-        # Details of target object being provisioned.
-        self._target_identity: Optional[provisioned_identity.ProvisionedIdentity] = None
-        # Details of target system of the object being provisioned.
-        self._target_system: Optional[provisioning_system.ProvisioningSystem] = None
-        # Unique Azure AD tenant ID.
-        self._tenant_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ProvisioningObjectSummary:
@@ -162,7 +155,9 @@ class ProvisioningObjectSummary(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, initiator, modified_property, provisioned_identity, provisioning_action, provisioning_service_principal, provisioning_status_info, provisioning_step, provisioning_system, status_base
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "action": lambda n : setattr(self, 'action', n.get_str_value()),
             "activityDateTime": lambda n : setattr(self, 'activity_date_time', n.get_datetime_value()),
             "changeId": lambda n : setattr(self, 'change_id', n.get_str_value()),

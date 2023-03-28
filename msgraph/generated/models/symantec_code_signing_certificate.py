@@ -1,11 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-certificate_status = lazy_import('msgraph.generated.models.certificate_status')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import certificate_status, entity
+
+from . import entity
 
 class SymantecCodeSigningCertificate(entity.Entity):
     def __init__(self,) -> None:
@@ -85,7 +86,9 @@ class SymantecCodeSigningCertificate(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import certificate_status, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "content": lambda n : setattr(self, 'content', n.get_bytes_value()),
             "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
             "issuer": lambda n : setattr(self, 'issuer', n.get_str_value()),

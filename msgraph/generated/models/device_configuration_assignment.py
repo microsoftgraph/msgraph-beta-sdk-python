@@ -1,12 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_and_app_management_assignment_source = lazy_import('msgraph.generated.models.device_and_app_management_assignment_source')
-device_and_app_management_assignment_target = lazy_import('msgraph.generated.models.device_and_app_management_assignment_target')
-device_config_assignment_intent = lazy_import('msgraph.generated.models.device_config_assignment_intent')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import device_and_app_management_assignment_source, device_and_app_management_assignment_target, device_config_assignment_intent, entity
+
+from . import entity
 
 class DeviceConfigurationAssignment(entity.Entity):
     """
@@ -45,7 +44,9 @@ class DeviceConfigurationAssignment(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_and_app_management_assignment_source, device_and_app_management_assignment_target, device_config_assignment_intent, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "intent": lambda n : setattr(self, 'intent', n.get_enum_value(device_config_assignment_intent.DeviceConfigAssignmentIntent)),
             "source": lambda n : setattr(self, 'source', n.get_enum_value(device_and_app_management_assignment_source.DeviceAndAppManagementAssignmentSource)),
             "sourceId": lambda n : setattr(self, 'source_id', n.get_str_value()),

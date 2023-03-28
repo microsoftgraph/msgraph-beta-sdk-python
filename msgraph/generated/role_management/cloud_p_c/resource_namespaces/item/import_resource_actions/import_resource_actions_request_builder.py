@@ -7,12 +7,12 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-unified_rbac_resource_namespace = lazy_import('msgraph.generated.models.unified_rbac_resource_namespace')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-import_resource_actions_post_request_body = lazy_import('msgraph.generated.role_management.cloud_p_c.resource_namespaces.item.import_resource_actions.import_resource_actions_post_request_body')
+if TYPE_CHECKING:
+    from . import import_resource_actions_post_request_body
+    from ......models import unified_rbac_resource_namespace
+    from ......models.o_data_errors import o_data_error
 
 class ImportResourceActionsRequestBuilder():
     """
@@ -49,12 +49,16 @@ class ImportResourceActionsRequestBuilder():
         request_info = self.to_post_request_information(
             body, request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import unified_rbac_resource_namespace
+
         return await self.request_adapter.send_async(request_info, unified_rbac_resource_namespace.UnifiedRbacResourceNamespace, error_mapping)
     
     def to_post_request_information(self,body: Optional[import_resource_actions_post_request_body.ImportResourceActionsPostRequestBody] = None, request_configuration: Optional[ImportResourceActionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:

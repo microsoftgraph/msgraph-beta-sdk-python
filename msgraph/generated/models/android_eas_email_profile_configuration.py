@@ -1,52 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_certificate_profile_base = lazy_import('msgraph.generated.models.android_certificate_profile_base')
-android_username_source = lazy_import('msgraph.generated.models.android_username_source')
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-domain_name_source = lazy_import('msgraph.generated.models.domain_name_source')
-eas_authentication_method = lazy_import('msgraph.generated.models.eas_authentication_method')
-email_sync_duration = lazy_import('msgraph.generated.models.email_sync_duration')
-email_sync_schedule = lazy_import('msgraph.generated.models.email_sync_schedule')
-user_email_source = lazy_import('msgraph.generated.models.user_email_source')
+if TYPE_CHECKING:
+    from . import android_certificate_profile_base, android_username_source, device_configuration, domain_name_source, eas_authentication_method, email_sync_duration, email_sync_schedule, user_email_source
+
+from . import device_configuration
 
 class AndroidEasEmailProfileConfiguration(device_configuration.DeviceConfiguration):
-    @property
-    def account_name(self,) -> Optional[str]:
-        """
-        Gets the accountName property value. Exchange ActiveSync account name, displayed to users as name of EAS (this) profile.
-        Returns: Optional[str]
-        """
-        return self._account_name
-    
-    @account_name.setter
-    def account_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the accountName property value. Exchange ActiveSync account name, displayed to users as name of EAS (this) profile.
-        Args:
-            value: Value to set for the account_name property.
-        """
-        self._account_name = value
-    
-    @property
-    def authentication_method(self,) -> Optional[eas_authentication_method.EasAuthenticationMethod]:
-        """
-        Gets the authenticationMethod property value. Exchange Active Sync authentication method.
-        Returns: Optional[eas_authentication_method.EasAuthenticationMethod]
-        """
-        return self._authentication_method
-    
-    @authentication_method.setter
-    def authentication_method(self,value: Optional[eas_authentication_method.EasAuthenticationMethod] = None) -> None:
-        """
-        Sets the authenticationMethod property value. Exchange Active Sync authentication method.
-        Args:
-            value: Value to set for the authentication_method property.
-        """
-        self._authentication_method = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new AndroidEasEmailProfileConfiguration and sets the default values.
@@ -87,6 +48,40 @@ class AndroidEasEmailProfileConfiguration(device_configuration.DeviceConfigurati
         self._user_domain_name_source: Optional[domain_name_source.DomainNameSource] = None
         # Android username source.
         self._username_source: Optional[android_username_source.AndroidUsernameSource] = None
+    
+    @property
+    def account_name(self,) -> Optional[str]:
+        """
+        Gets the accountName property value. Exchange ActiveSync account name, displayed to users as name of EAS (this) profile.
+        Returns: Optional[str]
+        """
+        return self._account_name
+    
+    @account_name.setter
+    def account_name(self,value: Optional[str] = None) -> None:
+        """
+        Sets the accountName property value. Exchange ActiveSync account name, displayed to users as name of EAS (this) profile.
+        Args:
+            value: Value to set for the account_name property.
+        """
+        self._account_name = value
+    
+    @property
+    def authentication_method(self,) -> Optional[eas_authentication_method.EasAuthenticationMethod]:
+        """
+        Gets the authenticationMethod property value. Exchange Active Sync authentication method.
+        Returns: Optional[eas_authentication_method.EasAuthenticationMethod]
+        """
+        return self._authentication_method
+    
+    @authentication_method.setter
+    def authentication_method(self,value: Optional[eas_authentication_method.EasAuthenticationMethod] = None) -> None:
+        """
+        Sets the authenticationMethod property value. Exchange Active Sync authentication method.
+        Args:
+            value: Value to set for the authentication_method property.
+        """
+        self._authentication_method = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidEasEmailProfileConfiguration:
@@ -173,7 +168,9 @@ class AndroidEasEmailProfileConfiguration(device_configuration.DeviceConfigurati
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_certificate_profile_base, android_username_source, device_configuration, domain_name_source, eas_authentication_method, email_sync_duration, email_sync_schedule, user_email_source
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accountName": lambda n : setattr(self, 'account_name', n.get_str_value()),
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(eas_authentication_method.EasAuthenticationMethod)),
             "customDomainName": lambda n : setattr(self, 'custom_domain_name', n.get_str_value()),

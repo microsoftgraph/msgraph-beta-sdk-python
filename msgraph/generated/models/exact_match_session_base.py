@@ -1,10 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-exact_match_job_base = lazy_import('msgraph.generated.models.exact_match_job_base')
+if TYPE_CHECKING:
+    from . import exact_match_job_base, exact_match_session
+
+from . import exact_match_job_base
 
 class ExactMatchSessionBase(exact_match_job_base.ExactMatchJobBase):
     def __init__(self,) -> None:
@@ -40,6 +42,13 @@ class ExactMatchSessionBase(exact_match_job_base.ExactMatchJobBase):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.exactMatchSession":
+                from . import exact_match_session
+
+                return exact_match_session.ExactMatchSession()
         return ExactMatchSessionBase()
     
     @property
@@ -64,7 +73,9 @@ class ExactMatchSessionBase(exact_match_job_base.ExactMatchJobBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import exact_match_job_base, exact_match_session
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "dataStoreId": lambda n : setattr(self, 'data_store_id', n.get_str_value()),
             "processingCompletionDateTime": lambda n : setattr(self, 'processing_completion_date_time', n.get_datetime_value()),
             "remainingBlockCount": lambda n : setattr(self, 'remaining_block_count', n.get_int_value()),

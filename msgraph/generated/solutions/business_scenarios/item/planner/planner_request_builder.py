@@ -7,49 +7,21 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-business_scenario_planner = lazy_import('msgraph.generated.models.business_scenario_planner')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-get_plan_request_builder = lazy_import('msgraph.generated.solutions.business_scenarios.item.planner.get_plan.get_plan_request_builder')
-plan_configuration_request_builder = lazy_import('msgraph.generated.solutions.business_scenarios.item.planner.plan_configuration.plan_configuration_request_builder')
-task_configuration_request_builder = lazy_import('msgraph.generated.solutions.business_scenarios.item.planner.task_configuration.task_configuration_request_builder')
-tasks_request_builder = lazy_import('msgraph.generated.solutions.business_scenarios.item.planner.tasks.tasks_request_builder')
-business_scenario_task_item_request_builder = lazy_import('msgraph.generated.solutions.business_scenarios.item.planner.tasks.item.business_scenario_task_item_request_builder')
+if TYPE_CHECKING:
+    from .....models import business_scenario_planner
+    from .....models.o_data_errors import o_data_error
+    from .get_plan import get_plan_request_builder
+    from .plan_configuration import plan_configuration_request_builder
+    from .task_configuration import task_configuration_request_builder
+    from .tasks import tasks_request_builder
+    from .tasks.item import business_scenario_task_item_request_builder
 
 class PlannerRequestBuilder():
     """
     Provides operations to manage the planner property of the microsoft.graph.businessScenario entity.
     """
-    @property
-    def get_plan(self) -> get_plan_request_builder.GetPlanRequestBuilder:
-        """
-        Provides operations to call the getPlan method.
-        """
-        return get_plan_request_builder.GetPlanRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def plan_configuration(self) -> plan_configuration_request_builder.PlanConfigurationRequestBuilder:
-        """
-        Provides operations to manage the planConfiguration property of the microsoft.graph.businessScenarioPlanner entity.
-        """
-        return plan_configuration_request_builder.PlanConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def task_configuration(self) -> task_configuration_request_builder.TaskConfigurationRequestBuilder:
-        """
-        Provides operations to manage the taskConfiguration property of the microsoft.graph.businessScenarioPlanner entity.
-        """
-        return task_configuration_request_builder.TaskConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def tasks(self) -> tasks_request_builder.TasksRequestBuilder:
-        """
-        Provides operations to manage the tasks property of the microsoft.graph.businessScenarioPlanner entity.
-        """
-        return tasks_request_builder.TasksRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new PlannerRequestBuilder and sets the default values.
@@ -77,6 +49,8 @@ class PlannerRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -95,12 +69,16 @@ class PlannerRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .....models import business_scenario_planner
+
         return await self.request_adapter.send_async(request_info, business_scenario_planner.BusinessScenarioPlanner, error_mapping)
     
     async def patch(self,body: Optional[business_scenario_planner.BusinessScenarioPlanner] = None, request_configuration: Optional[PlannerRequestBuilderPatchRequestConfiguration] = None) -> Optional[business_scenario_planner.BusinessScenarioPlanner]:
@@ -116,12 +94,16 @@ class PlannerRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .....models import business_scenario_planner
+
         return await self.request_adapter.send_async(request_info, business_scenario_planner.BusinessScenarioPlanner, error_mapping)
     
     def tasks_by_id(self,id: str) -> business_scenario_task_item_request_builder.BusinessScenarioTaskItemRequestBuilder:
@@ -133,6 +115,8 @@ class PlannerRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .tasks.item import business_scenario_task_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["businessScenarioTask%2Did"] = id
         return business_scenario_task_item_request_builder.BusinessScenarioTaskItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -192,6 +176,42 @@ class PlannerRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def get_plan(self) -> get_plan_request_builder.GetPlanRequestBuilder:
+        """
+        Provides operations to call the getPlan method.
+        """
+        from .get_plan import get_plan_request_builder
+
+        return get_plan_request_builder.GetPlanRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def plan_configuration(self) -> plan_configuration_request_builder.PlanConfigurationRequestBuilder:
+        """
+        Provides operations to manage the planConfiguration property of the microsoft.graph.businessScenarioPlanner entity.
+        """
+        from .plan_configuration import plan_configuration_request_builder
+
+        return plan_configuration_request_builder.PlanConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def task_configuration(self) -> task_configuration_request_builder.TaskConfigurationRequestBuilder:
+        """
+        Provides operations to manage the taskConfiguration property of the microsoft.graph.businessScenarioPlanner entity.
+        """
+        from .task_configuration import task_configuration_request_builder
+
+        return task_configuration_request_builder.TaskConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def tasks(self) -> tasks_request_builder.TasksRequestBuilder:
+        """
+        Provides operations to manage the tasks property of the microsoft.graph.businessScenarioPlanner entity.
+        """
+        from .tasks import tasks_request_builder
+
+        return tasks_request_builder.TasksRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class PlannerRequestBuilderDeleteRequestConfiguration():
         """
@@ -209,12 +229,6 @@ class PlannerRequestBuilder():
         """
         Read the properties and relationships of a businessScenarioPlanner object.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -230,6 +244,12 @@ class PlannerRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class PlannerRequestBuilderGetRequestConfiguration():

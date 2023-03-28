@@ -1,11 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-install_intent = lazy_import('msgraph.generated.models.install_intent')
-mobile_app_assignment_settings = lazy_import('msgraph.generated.models.mobile_app_assignment_settings')
-policy_set_item = lazy_import('msgraph.generated.models.policy_set_item')
+if TYPE_CHECKING:
+    from . import install_intent, mobile_app_assignment_settings, policy_set_item
+
+from . import policy_set_item
 
 class MobileAppPolicySetItem(policy_set_item.PolicySetItem):
     def __init__(self,) -> None:
@@ -36,7 +36,9 @@ class MobileAppPolicySetItem(policy_set_item.PolicySetItem):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import install_intent, mobile_app_assignment_settings, policy_set_item
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "intent": lambda n : setattr(self, 'intent', n.get_enum_value(install_intent.InstallIntent)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(mobile_app_assignment_settings.MobileAppAssignmentSettings)),
         }

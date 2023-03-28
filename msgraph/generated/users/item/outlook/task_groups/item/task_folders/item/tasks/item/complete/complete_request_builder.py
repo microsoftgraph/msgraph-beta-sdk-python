@@ -7,11 +7,11 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-complete_response = lazy_import('msgraph.generated.users.item.outlook.task_groups.item.task_folders.item.tasks.item.complete.complete_response')
+if TYPE_CHECKING:
+    from . import complete_response
+    from ...........models.o_data_errors import o_data_error
 
 class CompleteRequestBuilder():
     """
@@ -45,12 +45,16 @@ class CompleteRequestBuilder():
         request_info = self.to_post_request_information(
             request_configuration
         )
+        from ...........models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from . import complete_response
+
         return await self.request_adapter.send_async(request_info, complete_response.CompleteResponse, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[CompleteRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:

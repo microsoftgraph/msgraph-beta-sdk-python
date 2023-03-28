@@ -1,30 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-metadata_entry = lazy_import('msgraph.generated.models.metadata_entry')
-synchronization_schema = lazy_import('msgraph.generated.models.synchronization_schema')
+if TYPE_CHECKING:
+    from . import entity, metadata_entry, synchronization_schema
+
+from . import entity
 
 class SynchronizationTemplate(entity.Entity):
-    @property
-    def application_id(self,) -> Optional[Guid]:
-        """
-        Gets the applicationId property value. Identifier of the application this template belongs to.
-        Returns: Optional[Guid]
-        """
-        return self._application_id
-    
-    @application_id.setter
-    def application_id(self,value: Optional[Guid] = None) -> None:
-        """
-        Sets the applicationId property value. Identifier of the application this template belongs to.
-        Args:
-            value: Value to set for the application_id property.
-        """
-        self._application_id = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new synchronizationTemplate and sets the default values.
@@ -46,6 +29,23 @@ class SynchronizationTemplate(entity.Entity):
         self.odata_type: Optional[str] = None
         # Default synchronization schema for the jobs based on this template.
         self._schema: Optional[synchronization_schema.SynchronizationSchema] = None
+    
+    @property
+    def application_id(self,) -> Optional[Guid]:
+        """
+        Gets the applicationId property value. Identifier of the application this template belongs to.
+        Returns: Optional[Guid]
+        """
+        return self._application_id
+    
+    @application_id.setter
+    def application_id(self,value: Optional[Guid] = None) -> None:
+        """
+        Sets the applicationId property value. Identifier of the application this template belongs to.
+        Args:
+            value: Value to set for the application_id property.
+        """
+        self._application_id = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SynchronizationTemplate:
@@ -132,7 +132,9 @@ class SynchronizationTemplate(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, metadata_entry, synchronization_schema
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "applicationId": lambda n : setattr(self, 'application_id', n.get_object_value(Guid)),
             "default": lambda n : setattr(self, 'default', n.get_bool_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

@@ -7,33 +7,19 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-retention_label = lazy_import('msgraph.generated.models.security.retention_label')
-disposition_review_stages_request_builder = lazy_import('msgraph.generated.security.labels.retention_labels.item.disposition_review_stages.disposition_review_stages_request_builder')
-disposition_review_stage_item_request_builder = lazy_import('msgraph.generated.security.labels.retention_labels.item.disposition_review_stages.item.disposition_review_stage_item_request_builder')
-retention_event_type_request_builder = lazy_import('msgraph.generated.security.labels.retention_labels.item.retention_event_type.retention_event_type_request_builder')
+if TYPE_CHECKING:
+    from .....models.o_data_errors import o_data_error
+    from .....models.security import retention_label
+    from .disposition_review_stages import disposition_review_stages_request_builder
+    from .disposition_review_stages.item import disposition_review_stage_item_request_builder
+    from .retention_event_type import retention_event_type_request_builder
 
 class RetentionLabelItemRequestBuilder():
     """
     Provides operations to manage the retentionLabels property of the microsoft.graph.security.labelsRoot entity.
     """
-    @property
-    def disposition_review_stages(self) -> disposition_review_stages_request_builder.DispositionReviewStagesRequestBuilder:
-        """
-        Provides operations to manage the dispositionReviewStages property of the microsoft.graph.security.retentionLabel entity.
-        """
-        return disposition_review_stages_request_builder.DispositionReviewStagesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def retention_event_type(self) -> retention_event_type_request_builder.RetentionEventTypeRequestBuilder:
-        """
-        Provides operations to manage the retentionEventType property of the microsoft.graph.security.retentionLabel entity.
-        """
-        return retention_event_type_request_builder.RetentionEventTypeRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new RetentionLabelItemRequestBuilder and sets the default values.
@@ -61,6 +47,8 @@ class RetentionLabelItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -78,6 +66,8 @@ class RetentionLabelItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .disposition_review_stages.item import disposition_review_stage_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["dispositionReviewStage%2Did"] = id
         return disposition_review_stage_item_request_builder.DispositionReviewStageItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -92,12 +82,16 @@ class RetentionLabelItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .....models.security import retention_label
+
         return await self.request_adapter.send_async(request_info, retention_label.RetentionLabel, error_mapping)
     
     async def patch(self,body: Optional[retention_label.RetentionLabel] = None, request_configuration: Optional[RetentionLabelItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[retention_label.RetentionLabel]:
@@ -113,12 +107,16 @@ class RetentionLabelItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .....models.security import retention_label
+
         return await self.request_adapter.send_async(request_info, retention_label.RetentionLabel, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[RetentionLabelItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -176,6 +174,24 @@ class RetentionLabelItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def disposition_review_stages(self) -> disposition_review_stages_request_builder.DispositionReviewStagesRequestBuilder:
+        """
+        Provides operations to manage the dispositionReviewStages property of the microsoft.graph.security.retentionLabel entity.
+        """
+        from .disposition_review_stages import disposition_review_stages_request_builder
+
+        return disposition_review_stages_request_builder.DispositionReviewStagesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retention_event_type(self) -> retention_event_type_request_builder.RetentionEventTypeRequestBuilder:
+        """
+        Provides operations to manage the retentionEventType property of the microsoft.graph.security.retentionLabel entity.
+        """
+        from .retention_event_type import retention_event_type_request_builder
+
+        return retention_event_type_request_builder.RetentionEventTypeRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class RetentionLabelItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -193,12 +209,6 @@ class RetentionLabelItemRequestBuilder():
         """
         Get retentionLabels from security
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -214,6 +224,12 @@ class RetentionLabelItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class RetentionLabelItemRequestBuilderGetRequestConfiguration():

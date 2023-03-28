@@ -1,13 +1,12 @@
 from __future__ import annotations
 from datetime import date, datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-cloud_pc_device_image_os_status = lazy_import('msgraph.generated.models.cloud_pc_device_image_os_status')
-cloud_pc_device_image_status = lazy_import('msgraph.generated.models.cloud_pc_device_image_status')
-cloud_pc_device_image_status_details = lazy_import('msgraph.generated.models.cloud_pc_device_image_status_details')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import cloud_pc_device_image_os_status, cloud_pc_device_image_status, cloud_pc_device_image_status_details, entity
+
+from . import entity
 
 class CloudPcDeviceImage(entity.Entity):
     def __init__(self,) -> None:
@@ -15,27 +14,27 @@ class CloudPcDeviceImage(entity.Entity):
         Instantiates a new CloudPcDeviceImage and sets the default values.
         """
         super().__init__()
-        # The image's display name.
+        # The display name of the image.
         self._display_name: Optional[str] = None
         # The date the image became unavailable.
         self._expiration_date: Optional[Date] = None
-        # The data and time that the image was last modified. The time is shown in ISO 8601 format and  Coordinated Universal Time (UTC) time. For example, midnight UTC on Jan 1, 2014 appears as '2014-01-01T00:00:00Z'.
+        # The data and time that the image was last modified. The time is shown in ISO 8601 format and  Coordinated Universal Time (UTC) time. For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z.
         self._last_modified_date_time: Optional[datetime] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The image's operating system. For example: Windows 10 Enterprise.
+        # The operating system of the image. For example, Windows 10 Enterprise.
         self._operating_system: Optional[str] = None
-        # The image's OS build version. For example: 1909.
+        # The OS build version of the image. For example, 1909.
         self._os_build_number: Optional[str] = None
         # The OS status of this image. Possible values are: supported, supportedWithWarning, unknownFutureValue.
         self._os_status: Optional[cloud_pc_device_image_os_status.CloudPcDeviceImageOsStatus] = None
-        # The ID of the source image resource on Azure. Required format: '/subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/images/{imageName}'.
+        # The ID of the source image resource on Azure. Required format: /subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/images/{imageName}.
         self._source_image_resource_id: Optional[str] = None
         # The status of the image on Cloud PC. Possible values are: pending, ready, failed.
         self._status: Optional[cloud_pc_device_image_status.CloudPcDeviceImageStatus] = None
-        # The details of the image's status, which indicates why the upload failed, if applicable. Possible values are: internalServerError, sourceImageNotFound, osVersionNotSupported, sourceImageInvalid, and sourceImageNotGeneralized.
+        # The details of the status of the image that indicates why the upload failed, if applicable. Possible values are: internalServerError, sourceImageNotFound, osVersionNotSupported, sourceImageInvalid, and sourceImageNotGeneralized.
         self._status_details: Optional[cloud_pc_device_image_status_details.CloudPcDeviceImageStatusDetails] = None
-        # The image version. For example: 0.0.1, 1.5.13.
+        # The image version. For example, 0.0.1 and 1.5.13.
         self._version: Optional[str] = None
     
     @staticmethod
@@ -53,7 +52,7 @@ class CloudPcDeviceImage(entity.Entity):
     @property
     def display_name(self,) -> Optional[str]:
         """
-        Gets the displayName property value. The image's display name.
+        Gets the displayName property value. The display name of the image.
         Returns: Optional[str]
         """
         return self._display_name
@@ -61,7 +60,7 @@ class CloudPcDeviceImage(entity.Entity):
     @display_name.setter
     def display_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the displayName property value. The image's display name.
+        Sets the displayName property value. The display name of the image.
         Args:
             value: Value to set for the display_name property.
         """
@@ -89,7 +88,9 @@ class CloudPcDeviceImage(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import cloud_pc_device_image_os_status, cloud_pc_device_image_status, cloud_pc_device_image_status_details, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "expirationDate": lambda n : setattr(self, 'expiration_date', n.get_object_value(Date)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
@@ -108,7 +109,7 @@ class CloudPcDeviceImage(entity.Entity):
     @property
     def last_modified_date_time(self,) -> Optional[datetime]:
         """
-        Gets the lastModifiedDateTime property value. The data and time that the image was last modified. The time is shown in ISO 8601 format and  Coordinated Universal Time (UTC) time. For example, midnight UTC on Jan 1, 2014 appears as '2014-01-01T00:00:00Z'.
+        Gets the lastModifiedDateTime property value. The data and time that the image was last modified. The time is shown in ISO 8601 format and  Coordinated Universal Time (UTC) time. For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z.
         Returns: Optional[datetime]
         """
         return self._last_modified_date_time
@@ -116,7 +117,7 @@ class CloudPcDeviceImage(entity.Entity):
     @last_modified_date_time.setter
     def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the lastModifiedDateTime property value. The data and time that the image was last modified. The time is shown in ISO 8601 format and  Coordinated Universal Time (UTC) time. For example, midnight UTC on Jan 1, 2014 appears as '2014-01-01T00:00:00Z'.
+        Sets the lastModifiedDateTime property value. The data and time that the image was last modified. The time is shown in ISO 8601 format and  Coordinated Universal Time (UTC) time. For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z.
         Args:
             value: Value to set for the last_modified_date_time property.
         """
@@ -125,7 +126,7 @@ class CloudPcDeviceImage(entity.Entity):
     @property
     def operating_system(self,) -> Optional[str]:
         """
-        Gets the operatingSystem property value. The image's operating system. For example: Windows 10 Enterprise.
+        Gets the operatingSystem property value. The operating system of the image. For example, Windows 10 Enterprise.
         Returns: Optional[str]
         """
         return self._operating_system
@@ -133,7 +134,7 @@ class CloudPcDeviceImage(entity.Entity):
     @operating_system.setter
     def operating_system(self,value: Optional[str] = None) -> None:
         """
-        Sets the operatingSystem property value. The image's operating system. For example: Windows 10 Enterprise.
+        Sets the operatingSystem property value. The operating system of the image. For example, Windows 10 Enterprise.
         Args:
             value: Value to set for the operating_system property.
         """
@@ -142,7 +143,7 @@ class CloudPcDeviceImage(entity.Entity):
     @property
     def os_build_number(self,) -> Optional[str]:
         """
-        Gets the osBuildNumber property value. The image's OS build version. For example: 1909.
+        Gets the osBuildNumber property value. The OS build version of the image. For example, 1909.
         Returns: Optional[str]
         """
         return self._os_build_number
@@ -150,7 +151,7 @@ class CloudPcDeviceImage(entity.Entity):
     @os_build_number.setter
     def os_build_number(self,value: Optional[str] = None) -> None:
         """
-        Sets the osBuildNumber property value. The image's OS build version. For example: 1909.
+        Sets the osBuildNumber property value. The OS build version of the image. For example, 1909.
         Args:
             value: Value to set for the os_build_number property.
         """
@@ -196,7 +197,7 @@ class CloudPcDeviceImage(entity.Entity):
     @property
     def source_image_resource_id(self,) -> Optional[str]:
         """
-        Gets the sourceImageResourceId property value. The ID of the source image resource on Azure. Required format: '/subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/images/{imageName}'.
+        Gets the sourceImageResourceId property value. The ID of the source image resource on Azure. Required format: /subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/images/{imageName}.
         Returns: Optional[str]
         """
         return self._source_image_resource_id
@@ -204,7 +205,7 @@ class CloudPcDeviceImage(entity.Entity):
     @source_image_resource_id.setter
     def source_image_resource_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the sourceImageResourceId property value. The ID of the source image resource on Azure. Required format: '/subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/images/{imageName}'.
+        Sets the sourceImageResourceId property value. The ID of the source image resource on Azure. Required format: /subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/images/{imageName}.
         Args:
             value: Value to set for the source_image_resource_id property.
         """
@@ -230,7 +231,7 @@ class CloudPcDeviceImage(entity.Entity):
     @property
     def status_details(self,) -> Optional[cloud_pc_device_image_status_details.CloudPcDeviceImageStatusDetails]:
         """
-        Gets the statusDetails property value. The details of the image's status, which indicates why the upload failed, if applicable. Possible values are: internalServerError, sourceImageNotFound, osVersionNotSupported, sourceImageInvalid, and sourceImageNotGeneralized.
+        Gets the statusDetails property value. The details of the status of the image that indicates why the upload failed, if applicable. Possible values are: internalServerError, sourceImageNotFound, osVersionNotSupported, sourceImageInvalid, and sourceImageNotGeneralized.
         Returns: Optional[cloud_pc_device_image_status_details.CloudPcDeviceImageStatusDetails]
         """
         return self._status_details
@@ -238,7 +239,7 @@ class CloudPcDeviceImage(entity.Entity):
     @status_details.setter
     def status_details(self,value: Optional[cloud_pc_device_image_status_details.CloudPcDeviceImageStatusDetails] = None) -> None:
         """
-        Sets the statusDetails property value. The details of the image's status, which indicates why the upload failed, if applicable. Possible values are: internalServerError, sourceImageNotFound, osVersionNotSupported, sourceImageInvalid, and sourceImageNotGeneralized.
+        Sets the statusDetails property value. The details of the status of the image that indicates why the upload failed, if applicable. Possible values are: internalServerError, sourceImageNotFound, osVersionNotSupported, sourceImageInvalid, and sourceImageNotGeneralized.
         Args:
             value: Value to set for the status_details property.
         """
@@ -247,7 +248,7 @@ class CloudPcDeviceImage(entity.Entity):
     @property
     def version(self,) -> Optional[str]:
         """
-        Gets the version property value. The image version. For example: 0.0.1, 1.5.13.
+        Gets the version property value. The image version. For example, 0.0.1 and 1.5.13.
         Returns: Optional[str]
         """
         return self._version
@@ -255,7 +256,7 @@ class CloudPcDeviceImage(entity.Entity):
     @version.setter
     def version(self,value: Optional[str] = None) -> None:
         """
-        Sets the version property value. The image version. For example: 0.0.1, 1.5.13.
+        Sets the version property value. The image version. For example, 0.0.1 and 1.5.13.
         Args:
             value: Value to set for the version property.
         """

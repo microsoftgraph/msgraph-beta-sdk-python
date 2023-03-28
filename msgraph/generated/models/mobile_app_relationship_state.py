@@ -1,33 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-resultant_app_state = lazy_import('msgraph.generated.models.resultant_app_state')
-resultant_app_state_detail = lazy_import('msgraph.generated.models.resultant_app_state_detail')
+if TYPE_CHECKING:
+    from . import resultant_app_state, resultant_app_state_detail
 
 class MobileAppRelationshipState(AdditionalDataHolder, Parsable):
     """
     Describes the installation status details of the child app in the context of UPN and device id.
     """
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new mobileAppRelationshipState and sets the default values.
@@ -53,6 +35,23 @@ class MobileAppRelationshipState(AdditionalDataHolder, Parsable):
         self._target_id: Optional[str] = None
         # The last sync time of the target app.
         self._target_last_sync_date_time: Optional[datetime] = None
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MobileAppRelationshipState:
@@ -105,7 +104,9 @@ class MobileAppRelationshipState(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import resultant_app_state, resultant_app_state_detail
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
             "errorCode": lambda n : setattr(self, 'error_code', n.get_int_value()),
             "installState": lambda n : setattr(self, 'install_state', n.get_enum_value(resultant_app_state.ResultantAppState)),

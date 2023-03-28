@@ -1,17 +1,43 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-driver_approval_status = lazy_import('msgraph.generated.models.driver_approval_status')
-driver_category = lazy_import('msgraph.generated.models.driver_category')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import driver_approval_status, driver_category, entity
+
+from . import entity
 
 class WindowsDriverUpdateInventory(entity.Entity):
     """
     A new entity to represent driver inventories.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new windowsDriverUpdateInventory and sets the default values.
+        """
+        super().__init__()
+        # The number of devices for which this driver is applicable.
+        self._applicable_device_count: Optional[int] = None
+        # An enum type to represent approval status of a driver.
+        self._approval_status: Optional[driver_approval_status.DriverApprovalStatus] = None
+        # An enum type to represent which category a driver belongs to.
+        self._category: Optional[driver_category.DriverCategory] = None
+        # The date time when a driver should be deployed if approvalStatus is approved.
+        self._deploy_date_time: Optional[datetime] = None
+        # The class of the driver.
+        self._driver_class: Optional[str] = None
+        # The manufacturer of the driver.
+        self._manufacturer: Optional[str] = None
+        # The name of the driver.
+        self._name: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The release date time of the driver.
+        self._release_date_time: Optional[datetime] = None
+        # The version of the driver.
+        self._version: Optional[str] = None
+    
     @property
     def applicable_device_count(self,) -> Optional[int]:
         """
@@ -62,32 +88,6 @@ class WindowsDriverUpdateInventory(entity.Entity):
             value: Value to set for the category property.
         """
         self._category = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new windowsDriverUpdateInventory and sets the default values.
-        """
-        super().__init__()
-        # The number of devices for which this driver is applicable.
-        self._applicable_device_count: Optional[int] = None
-        # An enum type to represent approval status of a driver.
-        self._approval_status: Optional[driver_approval_status.DriverApprovalStatus] = None
-        # An enum type to represent which category a driver belongs to.
-        self._category: Optional[driver_category.DriverCategory] = None
-        # The date time when a driver should be deployed if approvalStatus is approved.
-        self._deploy_date_time: Optional[datetime] = None
-        # The class of the driver.
-        self._driver_class: Optional[str] = None
-        # The manufacturer of the driver.
-        self._manufacturer: Optional[str] = None
-        # The name of the driver.
-        self._name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The release date time of the driver.
-        self._release_date_time: Optional[datetime] = None
-        # The version of the driver.
-        self._version: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsDriverUpdateInventory:
@@ -140,7 +140,9 @@ class WindowsDriverUpdateInventory(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import driver_approval_status, driver_category, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "applicableDeviceCount": lambda n : setattr(self, 'applicable_device_count', n.get_int_value()),
             "approvalStatus": lambda n : setattr(self, 'approval_status', n.get_enum_value(driver_approval_status.DriverApprovalStatus)),
             "category": lambda n : setattr(self, 'category', n.get_enum_value(driver_category.DriverCategory)),

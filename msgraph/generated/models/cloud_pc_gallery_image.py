@@ -1,11 +1,12 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-cloud_pc_gallery_image_status = lazy_import('msgraph.generated.models.cloud_pc_gallery_image_status')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import cloud_pc_gallery_image_status, entity
+
+from . import entity
 
 class CloudPcGalleryImage(entity.Entity):
     def __init__(self,) -> None:
@@ -15,23 +16,23 @@ class CloudPcGalleryImage(entity.Entity):
         super().__init__()
         # The official display name of the gallery image. Read-only.
         self._display_name: Optional[str] = None
-        # The date in which this image is no longer within long-term support. The Cloud PC will continue to provide short-term support. Read-only.
+        # The date in which this image is no longer within long-term support. The Cloud PC continues to provide short-term support. Read-only.
         self._end_date: Optional[Date] = None
         # The date when the image is no longer available. Read-only.
         self._expiration_date: Optional[Date] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The offer name of the gallery image. This value will be passed to Azure to get the image resource. Read-only.
+        # The offer name of the gallery image. This value is passed to Azure to get the image resource. Read-only.
         self._offer: Optional[str] = None
         # The official display offer name of the gallery image. For example, Windows 10 Enterprise + OS Optimizations. Read-only.
         self._offer_display_name: Optional[str] = None
-        # The publisher name of the gallery image. This value will be passed to Azure to get the image resource. Read-only.
+        # The publisher name of the gallery image. This value is passed to Azure to get the image resource. Read-only.
         self._publisher: Optional[str] = None
         # Recommended Cloud PC SKU for this gallery image. Read-only.
         self._recommended_sku: Optional[str] = None
         # The size of this image in gigabytes. Read-only.
         self._size_in_g_b: Optional[int] = None
-        # The SKU name of the gallery image. This value will be passed to Azure to get the image resource. Read-only.
+        # The SKU name of the gallery image. This value is passed to Azure to get the image resource. Read-only.
         self._sku: Optional[str] = None
         # The official display stock keeping unit (SKU) name of this gallery image. For example, 2004. Read-only.
         self._sku_display_name: Optional[str] = None
@@ -72,7 +73,7 @@ class CloudPcGalleryImage(entity.Entity):
     @property
     def end_date(self,) -> Optional[Date]:
         """
-        Gets the endDate property value. The date in which this image is no longer within long-term support. The Cloud PC will continue to provide short-term support. Read-only.
+        Gets the endDate property value. The date in which this image is no longer within long-term support. The Cloud PC continues to provide short-term support. Read-only.
         Returns: Optional[Date]
         """
         return self._end_date
@@ -80,7 +81,7 @@ class CloudPcGalleryImage(entity.Entity):
     @end_date.setter
     def end_date(self,value: Optional[Date] = None) -> None:
         """
-        Sets the endDate property value. The date in which this image is no longer within long-term support. The Cloud PC will continue to provide short-term support. Read-only.
+        Sets the endDate property value. The date in which this image is no longer within long-term support. The Cloud PC continues to provide short-term support. Read-only.
         Args:
             value: Value to set for the end_date property.
         """
@@ -108,7 +109,9 @@ class CloudPcGalleryImage(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import cloud_pc_gallery_image_status, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "endDate": lambda n : setattr(self, 'end_date', n.get_object_value(Date)),
             "expirationDate": lambda n : setattr(self, 'expiration_date', n.get_object_value(Date)),
@@ -129,7 +132,7 @@ class CloudPcGalleryImage(entity.Entity):
     @property
     def offer(self,) -> Optional[str]:
         """
-        Gets the offer property value. The offer name of the gallery image. This value will be passed to Azure to get the image resource. Read-only.
+        Gets the offer property value. The offer name of the gallery image. This value is passed to Azure to get the image resource. Read-only.
         Returns: Optional[str]
         """
         return self._offer
@@ -137,7 +140,7 @@ class CloudPcGalleryImage(entity.Entity):
     @offer.setter
     def offer(self,value: Optional[str] = None) -> None:
         """
-        Sets the offer property value. The offer name of the gallery image. This value will be passed to Azure to get the image resource. Read-only.
+        Sets the offer property value. The offer name of the gallery image. This value is passed to Azure to get the image resource. Read-only.
         Args:
             value: Value to set for the offer property.
         """
@@ -163,7 +166,7 @@ class CloudPcGalleryImage(entity.Entity):
     @property
     def publisher(self,) -> Optional[str]:
         """
-        Gets the publisher property value. The publisher name of the gallery image. This value will be passed to Azure to get the image resource. Read-only.
+        Gets the publisher property value. The publisher name of the gallery image. This value is passed to Azure to get the image resource. Read-only.
         Returns: Optional[str]
         """
         return self._publisher
@@ -171,7 +174,7 @@ class CloudPcGalleryImage(entity.Entity):
     @publisher.setter
     def publisher(self,value: Optional[str] = None) -> None:
         """
-        Sets the publisher property value. The publisher name of the gallery image. This value will be passed to Azure to get the image resource. Read-only.
+        Sets the publisher property value. The publisher name of the gallery image. This value is passed to Azure to get the image resource. Read-only.
         Args:
             value: Value to set for the publisher property.
         """
@@ -236,7 +239,7 @@ class CloudPcGalleryImage(entity.Entity):
     @property
     def sku(self,) -> Optional[str]:
         """
-        Gets the sku property value. The SKU name of the gallery image. This value will be passed to Azure to get the image resource. Read-only.
+        Gets the sku property value. The SKU name of the gallery image. This value is passed to Azure to get the image resource. Read-only.
         Returns: Optional[str]
         """
         return self._sku
@@ -244,7 +247,7 @@ class CloudPcGalleryImage(entity.Entity):
     @sku.setter
     def sku(self,value: Optional[str] = None) -> None:
         """
-        Sets the sku property value. The SKU name of the gallery image. This value will be passed to Azure to get the image resource. Read-only.
+        Sets the sku property value. The SKU name of the gallery image. This value is passed to Azure to get the image resource. Read-only.
         Args:
             value: Value to set for the sku property.
         """

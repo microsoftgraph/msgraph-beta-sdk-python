@@ -1,33 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_app_management_task = lazy_import('msgraph.generated.models.device_app_management_task')
-endpoint_security_configuration_applicable_platform = lazy_import('msgraph.generated.models.endpoint_security_configuration_applicable_platform')
-endpoint_security_configuration_profile_type = lazy_import('msgraph.generated.models.endpoint_security_configuration_profile_type')
-endpoint_security_configuration_type = lazy_import('msgraph.generated.models.endpoint_security_configuration_type')
-key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
-vulnerable_managed_device = lazy_import('msgraph.generated.models.vulnerable_managed_device')
+if TYPE_CHECKING:
+    from . import device_app_management_task, endpoint_security_configuration_applicable_platform, endpoint_security_configuration_profile_type, endpoint_security_configuration_type, key_value_pair, vulnerable_managed_device
+
+from . import device_app_management_task
 
 class SecurityConfigurationTask(device_app_management_task.DeviceAppManagementTask):
-    @property
-    def applicable_platform(self,) -> Optional[endpoint_security_configuration_applicable_platform.EndpointSecurityConfigurationApplicablePlatform]:
-        """
-        Gets the applicablePlatform property value. The endpoint security configuration applicable platform.
-        Returns: Optional[endpoint_security_configuration_applicable_platform.EndpointSecurityConfigurationApplicablePlatform]
-        """
-        return self._applicable_platform
-    
-    @applicable_platform.setter
-    def applicable_platform(self,value: Optional[endpoint_security_configuration_applicable_platform.EndpointSecurityConfigurationApplicablePlatform] = None) -> None:
-        """
-        Sets the applicablePlatform property value. The endpoint security configuration applicable platform.
-        Args:
-            value: Value to set for the applicable_platform property.
-        """
-        self._applicable_platform = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new SecurityConfigurationTask and sets the default values.
@@ -48,6 +28,23 @@ class SecurityConfigurationTask(device_app_management_task.DeviceAppManagementTa
         self._managed_device_count: Optional[int] = None
         # The vulnerable managed devices.
         self._managed_devices: Optional[List[vulnerable_managed_device.VulnerableManagedDevice]] = None
+    
+    @property
+    def applicable_platform(self,) -> Optional[endpoint_security_configuration_applicable_platform.EndpointSecurityConfigurationApplicablePlatform]:
+        """
+        Gets the applicablePlatform property value. The endpoint security configuration applicable platform.
+        Returns: Optional[endpoint_security_configuration_applicable_platform.EndpointSecurityConfigurationApplicablePlatform]
+        """
+        return self._applicable_platform
+    
+    @applicable_platform.setter
+    def applicable_platform(self,value: Optional[endpoint_security_configuration_applicable_platform.EndpointSecurityConfigurationApplicablePlatform] = None) -> None:
+        """
+        Sets the applicablePlatform property value. The endpoint security configuration applicable platform.
+        Args:
+            value: Value to set for the applicable_platform property.
+        """
+        self._applicable_platform = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SecurityConfigurationTask:
@@ -100,7 +97,9 @@ class SecurityConfigurationTask(device_app_management_task.DeviceAppManagementTa
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_app_management_task, endpoint_security_configuration_applicable_platform, endpoint_security_configuration_profile_type, endpoint_security_configuration_type, key_value_pair, vulnerable_managed_device
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "applicablePlatform": lambda n : setattr(self, 'applicable_platform', n.get_enum_value(endpoint_security_configuration_applicable_platform.EndpointSecurityConfigurationApplicablePlatform)),
             "endpointSecurityPolicy": lambda n : setattr(self, 'endpoint_security_policy', n.get_enum_value(endpoint_security_configuration_type.EndpointSecurityConfigurationType)),
             "endpointSecurityPolicyProfile": lambda n : setattr(self, 'endpoint_security_policy_profile', n.get_enum_value(endpoint_security_configuration_profile_type.EndpointSecurityConfigurationProfileType)),

@@ -1,12 +1,33 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-json = lazy_import('msgraph.generated.models.json')
-server_processed_content = lazy_import('msgraph.generated.models.server_processed_content')
+if TYPE_CHECKING:
+    from . import json, server_processed_content
 
 class WebPartData(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new webPartData and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Audience information of the web part. By using this property, specific content will be prioritized to specific audiences.
+        self._audiences: Optional[List[str]] = None
+        # Data version of the web part. The value is defined by the web part developer. Different dataVersions usually refers to a different property structure.
+        self._data_version: Optional[str] = None
+        # Description of the web part.
+        self._description: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Properties bag of the web part.
+        self._properties: Optional[json.Json] = None
+        # Contains collections of data that can be processed by server side services like search index and link fixup.
+        self._server_processed_content: Optional[server_processed_content.ServerProcessedContent] = None
+        # Title of the web part.
+        self._title: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -40,28 +61,6 @@ class WebPartData(AdditionalDataHolder, Parsable):
             value: Value to set for the audiences property.
         """
         self._audiences = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new webPartData and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Audience information of the web part. By using this property, specific content will be prioritized to specific audiences.
-        self._audiences: Optional[List[str]] = None
-        # Data version of the web part. The value is defined by the web part developer. Different dataVersions usually refers to a different property structure.
-        self._data_version: Optional[str] = None
-        # Description of the web part.
-        self._description: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Properties bag of the web part.
-        self._properties: Optional[json.Json] = None
-        # Contains collections of data that can be processed by server side services like search index and link fixup.
-        self._server_processed_content: Optional[server_processed_content.ServerProcessedContent] = None
-        # Title of the web part.
-        self._title: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WebPartData:
@@ -114,7 +113,9 @@ class WebPartData(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import json, server_processed_content
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "audiences": lambda n : setattr(self, 'audiences', n.get_collection_of_primitive_values(str)),
             "dataVersion": lambda n : setattr(self, 'data_version', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

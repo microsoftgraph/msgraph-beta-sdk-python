@@ -1,15 +1,39 @@
 from __future__ import annotations
 from datetime import time
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-custom_update_time_window = lazy_import('msgraph.generated.models.custom_update_time_window')
-day_of_week = lazy_import('msgraph.generated.models.day_of_week')
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-ios_software_update_schedule_type = lazy_import('msgraph.generated.models.ios_software_update_schedule_type')
+if TYPE_CHECKING:
+    from . import custom_update_time_window, day_of_week, device_configuration, ios_software_update_schedule_type
+
+from . import device_configuration
 
 class IosUpdateConfiguration(device_configuration.DeviceConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new IosUpdateConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.iosUpdateConfiguration"
+        # Active Hours End (active hours mean the time window when updates install should not happen)
+        self._active_hours_end: Optional[Time] = None
+        # Active Hours Start (active hours mean the time window when updates install should not happen)
+        self._active_hours_start: Optional[Time] = None
+        # If update schedule type is set to use time window scheduling, custom time windows when updates will be scheduled. This collection can contain a maximum of 20 elements.
+        self._custom_update_time_windows: Optional[List[custom_update_time_window.CustomUpdateTimeWindow]] = None
+        # If left unspecified, devices will update to the latest version of the OS.
+        self._desired_os_version: Optional[str] = None
+        # Days before software updates are visible to iOS devices ranging from 0 to 90 inclusive
+        self._enforced_software_update_delay_in_days: Optional[int] = None
+        # Is setting enabled in UI
+        self._is_enabled: Optional[bool] = None
+        # Days in week for which active hours are configured. This collection can contain a maximum of 7 elements.
+        self._scheduled_install_days: Optional[List[day_of_week.DayOfWeek]] = None
+        # Update schedule type for iOS software updates.
+        self._update_schedule_type: Optional[ios_software_update_schedule_type.IosSoftwareUpdateScheduleType] = None
+        # UTC Time Offset indicated in minutes
+        self._utc_time_offset_in_minutes: Optional[int] = None
+    
     @property
     def active_hours_end(self,) -> Optional[Time]:
         """
@@ -43,31 +67,6 @@ class IosUpdateConfiguration(device_configuration.DeviceConfiguration):
             value: Value to set for the active_hours_start property.
         """
         self._active_hours_start = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new IosUpdateConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.iosUpdateConfiguration"
-        # Active Hours End (active hours mean the time window when updates install should not happen)
-        self._active_hours_end: Optional[Time] = None
-        # Active Hours Start (active hours mean the time window when updates install should not happen)
-        self._active_hours_start: Optional[Time] = None
-        # If update schedule type is set to use time window scheduling, custom time windows when updates will be scheduled. This collection can contain a maximum of 20 elements.
-        self._custom_update_time_windows: Optional[List[custom_update_time_window.CustomUpdateTimeWindow]] = None
-        # If left unspecified, devices will update to the latest version of the OS.
-        self._desired_os_version: Optional[str] = None
-        # Days before software updates are visible to iOS devices ranging from 0 to 90 inclusive
-        self._enforced_software_update_delay_in_days: Optional[int] = None
-        # Is setting enabled in UI
-        self._is_enabled: Optional[bool] = None
-        # Days in week for which active hours are configured. This collection can contain a maximum of 7 elements.
-        self._scheduled_install_days: Optional[List[day_of_week.DayOfWeek]] = None
-        # Update schedule type for iOS software updates.
-        self._update_schedule_type: Optional[ios_software_update_schedule_type.IosSoftwareUpdateScheduleType] = None
-        # UTC Time Offset indicated in minutes
-        self._utc_time_offset_in_minutes: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosUpdateConfiguration:
@@ -137,7 +136,9 @@ class IosUpdateConfiguration(device_configuration.DeviceConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import custom_update_time_window, day_of_week, device_configuration, ios_software_update_schedule_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "activeHoursEnd": lambda n : setattr(self, 'active_hours_end', n.get_object_value(Time)),
             "activeHoursStart": lambda n : setattr(self, 'active_hours_start', n.get_object_value(Time)),
             "customUpdateTimeWindows": lambda n : setattr(self, 'custom_update_time_windows', n.get_collection_of_object_values(custom_update_time_window.CustomUpdateTimeWindow)),

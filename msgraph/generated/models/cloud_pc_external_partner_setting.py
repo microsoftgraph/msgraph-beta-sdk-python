@@ -1,11 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-cloud_pc_external_partner_status = lazy_import('msgraph.generated.models.cloud_pc_external_partner_status')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import cloud_pc_external_partner_status, entity
+
+from . import entity
 
 class CloudPcExternalPartnerSetting(entity.Entity):
     def __init__(self,) -> None:
@@ -60,7 +61,9 @@ class CloudPcExternalPartnerSetting(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import cloud_pc_external_partner_status, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "enableConnection": lambda n : setattr(self, 'enable_connection', n.get_bool_value()),
             "lastSyncDateTime": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
             "partnerId": lambda n : setattr(self, 'partner_id', n.get_str_value()),

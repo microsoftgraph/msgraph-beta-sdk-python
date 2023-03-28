@@ -1,12 +1,22 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-catalog_entry = lazy_import('msgraph.generated.models.windows_updates.catalog_entry')
-deployable_content = lazy_import('msgraph.generated.models.windows_updates.deployable_content')
+if TYPE_CHECKING:
+    from . import catalog_entry, deployable_content
+
+from . import deployable_content
 
 class CatalogContent(deployable_content.DeployableContent):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new CatalogContent and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.windowsUpdates.catalogContent"
+        # The catalogEntry property
+        self._catalog_entry: Optional[catalog_entry.CatalogEntry] = None
+    
     @property
     def catalog_entry(self,) -> Optional[catalog_entry.CatalogEntry]:
         """
@@ -23,15 +33,6 @@ class CatalogContent(deployable_content.DeployableContent):
             value: Value to set for the catalog_entry property.
         """
         self._catalog_entry = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new CatalogContent and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsUpdates.catalogContent"
-        # The catalogEntry property
-        self._catalog_entry: Optional[catalog_entry.CatalogEntry] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CatalogContent:
@@ -50,7 +51,9 @@ class CatalogContent(deployable_content.DeployableContent):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import catalog_entry, deployable_content
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "catalogEntry": lambda n : setattr(self, 'catalog_entry', n.get_object_value(catalog_entry.CatalogEntry)),
         }
         super_fields = super().get_field_deserializers()

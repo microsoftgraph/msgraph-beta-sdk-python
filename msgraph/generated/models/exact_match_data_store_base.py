@@ -1,13 +1,30 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-exact_data_match_store_column = lazy_import('msgraph.generated.models.exact_data_match_store_column')
+if TYPE_CHECKING:
+    from . import entity, exact_data_match_store_column, exact_match_data_store
+
+from . import entity
 
 class ExactMatchDataStoreBase(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new exactMatchDataStoreBase and sets the default values.
+        """
+        super().__init__()
+        # The columns property
+        self._columns: Optional[List[exact_data_match_store_column.ExactDataMatchStoreColumn]] = None
+        # The dataLastUpdatedDateTime property
+        self._data_last_updated_date_time: Optional[datetime] = None
+        # The description property
+        self._description: Optional[str] = None
+        # The displayName property
+        self._display_name: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def columns(self,) -> Optional[List[exact_data_match_store_column.ExactDataMatchStoreColumn]]:
         """
@@ -25,22 +42,6 @@ class ExactMatchDataStoreBase(entity.Entity):
         """
         self._columns = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new exactMatchDataStoreBase and sets the default values.
-        """
-        super().__init__()
-        # The columns property
-        self._columns: Optional[List[exact_data_match_store_column.ExactDataMatchStoreColumn]] = None
-        # The dataLastUpdatedDateTime property
-        self._data_last_updated_date_time: Optional[datetime] = None
-        # The description property
-        self._description: Optional[str] = None
-        # The displayName property
-        self._display_name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ExactMatchDataStoreBase:
         """
@@ -51,6 +52,13 @@ class ExactMatchDataStoreBase(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.exactMatchDataStore":
+                from . import exact_match_data_store
+
+                return exact_match_data_store.ExactMatchDataStore()
         return ExactMatchDataStoreBase()
     
     @property
@@ -109,7 +117,9 @@ class ExactMatchDataStoreBase(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, exact_data_match_store_column, exact_match_data_store
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "columns": lambda n : setattr(self, 'columns', n.get_collection_of_object_values(exact_data_match_store_column.ExactDataMatchStoreColumn)),
             "dataLastUpdatedDateTime": lambda n : setattr(self, 'data_last_updated_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

@@ -1,31 +1,14 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-educational_activity_detail = lazy_import('msgraph.generated.models.educational_activity_detail')
-institution_data = lazy_import('msgraph.generated.models.institution_data')
-item_facet = lazy_import('msgraph.generated.models.item_facet')
+if TYPE_CHECKING:
+    from . import educational_activity_detail, institution_data, item_facet
+
+from . import item_facet
 
 class EducationalActivity(item_facet.ItemFacet):
-    @property
-    def completion_month_year(self,) -> Optional[Date]:
-        """
-        Gets the completionMonthYear property value. The month and year the user graduated or completed the activity.
-        Returns: Optional[Date]
-        """
-        return self._completion_month_year
-    
-    @completion_month_year.setter
-    def completion_month_year(self,value: Optional[Date] = None) -> None:
-        """
-        Sets the completionMonthYear property value. The month and year the user graduated or completed the activity.
-        Args:
-            value: Value to set for the completion_month_year property.
-        """
-        self._completion_month_year = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new EducationalActivity and sets the default values.
@@ -42,6 +25,23 @@ class EducationalActivity(item_facet.ItemFacet):
         self._program: Optional[educational_activity_detail.EducationalActivityDetail] = None
         # The month and year the user commenced the activity referenced.
         self._start_month_year: Optional[Date] = None
+    
+    @property
+    def completion_month_year(self,) -> Optional[Date]:
+        """
+        Gets the completionMonthYear property value. The month and year the user graduated or completed the activity.
+        Returns: Optional[Date]
+        """
+        return self._completion_month_year
+    
+    @completion_month_year.setter
+    def completion_month_year(self,value: Optional[Date] = None) -> None:
+        """
+        Sets the completionMonthYear property value. The month and year the user graduated or completed the activity.
+        Args:
+            value: Value to set for the completion_month_year property.
+        """
+        self._completion_month_year = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EducationalActivity:
@@ -77,7 +77,9 @@ class EducationalActivity(item_facet.ItemFacet):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import educational_activity_detail, institution_data, item_facet
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "completionMonthYear": lambda n : setattr(self, 'completion_month_year', n.get_object_value(Date)),
             "endMonthYear": lambda n : setattr(self, 'end_month_year', n.get_object_value(Date)),
             "institution": lambda n : setattr(self, 'institution', n.get_object_value(institution_data.InstitutionData)),

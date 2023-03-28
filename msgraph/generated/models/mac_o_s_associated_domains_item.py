@@ -1,12 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class MacOSAssociatedDomainsItem(AdditionalDataHolder, Parsable):
     """
     A mapping of application identifiers to associated domains.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new macOSAssociatedDomainsItem and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The application identifier of the app to associate domains with.
+        self._application_identifier: Optional[str] = None
+        # Determines whether data should be downloaded directly or via a CDN.
+        self._direct_downloads_enabled: Optional[bool] = None
+        # The list of domains to associate.
+        self._domains: Optional[List[str]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -40,22 +55,6 @@ class MacOSAssociatedDomainsItem(AdditionalDataHolder, Parsable):
             value: Value to set for the application_identifier property.
         """
         self._application_identifier = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new macOSAssociatedDomainsItem and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The application identifier of the app to associate domains with.
-        self._application_identifier: Optional[str] = None
-        # Determines whether data should be downloaded directly or via a CDN.
-        self._direct_downloads_enabled: Optional[bool] = None
-        # The list of domains to associate.
-        self._domains: Optional[List[str]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSAssociatedDomainsItem:
@@ -108,7 +107,7 @@ class MacOSAssociatedDomainsItem(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "applicationIdentifier": lambda n : setattr(self, 'application_identifier', n.get_str_value()),
             "directDownloadsEnabled": lambda n : setattr(self, 'direct_downloads_enabled', n.get_bool_value()),
             "domains": lambda n : setattr(self, 'domains', n.get_collection_of_primitive_values(str)),

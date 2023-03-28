@@ -1,14 +1,43 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-app_scope = lazy_import('msgraph.generated.models.app_scope')
-directory_object = lazy_import('msgraph.generated.models.directory_object')
-entity = lazy_import('msgraph.generated.models.entity')
-unified_role_definition = lazy_import('msgraph.generated.models.unified_role_definition')
+if TYPE_CHECKING:
+    from . import app_scope, directory_object, entity, unified_role_definition
+
+from . import entity
 
 class UnifiedRoleAssignment(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new unifiedRoleAssignment and sets the default values.
+        """
+        super().__init__()
+        # Details of the app specific scope when the assignment scope is app specific. Containment entity.
+        self._app_scope: Optional[app_scope.AppScope] = None
+        # Identifier of the app specific scope when the assignment scope is app specific. The scope of an assignment determines the set of resources for which the principal has been granted access. Directory scopes are shared scopes stored in the directory that are understood by multiple applications. Use / for tenant-wide scope. App scopes are scopes that are defined and understood by this application only.  For the entitlement management provider, use app scopes to specify a catalog, for example /AccessPackageCatalog/beedadfe-01d5-4025-910b-84abb9369997.
+        self._app_scope_id: Optional[str] = None
+        # The condition property
+        self._condition: Optional[str] = None
+        # The directory object that is the scope of the assignment. Provided so that callers can get the directory object using $expand at the same time as getting the role assignment. Read-only. Supports $expand.
+        self._directory_scope: Optional[directory_object.DirectoryObject] = None
+        # Identifier of the directory object representing the scope of the assignment. The scope of an assignment determines the set of resources for which the principal has been granted access. Directory scopes are shared scopes stored in the directory that are understood by multiple applications. App scopes are scopes that are defined and understood by this application only.
+        self._directory_scope_id: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The assigned principal. Provided so that callers can get the principal using $expand at the same time as getting the role assignment. Read-only. Supports $expand.
+        self._principal: Optional[directory_object.DirectoryObject] = None
+        # Identifier of the principal to which the assignment is granted. Supports $filter (eq operator only).
+        self._principal_id: Optional[str] = None
+        # The principalOrganizationId property
+        self._principal_organization_id: Optional[str] = None
+        # The scope at which the unifiedRoleAssignment applies. This is / for service-wide. DO NOT USE. This property will be deprecated soon.
+        self._resource_scope: Optional[str] = None
+        # The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.
+        self._role_definition: Optional[unified_role_definition.UnifiedRoleDefinition] = None
+        # Identifier of the unifiedRoleDefinition the assignment is for. Read-only. Supports $filter (eq operator only).
+        self._role_definition_id: Optional[str] = None
+    
     @property
     def app_scope(self,) -> Optional[app_scope.AppScope]:
         """
@@ -59,36 +88,6 @@ class UnifiedRoleAssignment(entity.Entity):
             value: Value to set for the condition property.
         """
         self._condition = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new unifiedRoleAssignment and sets the default values.
-        """
-        super().__init__()
-        # Details of the app specific scope when the assignment scope is app specific. Containment entity.
-        self._app_scope: Optional[app_scope.AppScope] = None
-        # Identifier of the app specific scope when the assignment scope is app specific. The scope of an assignment determines the set of resources for which the principal has been granted access. Directory scopes are shared scopes stored in the directory that are understood by multiple applications. Use / for tenant-wide scope. App scopes are scopes that are defined and understood by this application only.  For the entitlement management provider, use app scopes to specify a catalog, for example /AccessPackageCatalog/beedadfe-01d5-4025-910b-84abb9369997.
-        self._app_scope_id: Optional[str] = None
-        # The condition property
-        self._condition: Optional[str] = None
-        # The directory object that is the scope of the assignment. Provided so that callers can get the directory object using $expand at the same time as getting the role assignment. Read-only. Supports $expand.
-        self._directory_scope: Optional[directory_object.DirectoryObject] = None
-        # Identifier of the directory object representing the scope of the assignment. The scope of an assignment determines the set of resources for which the principal has been granted access. Directory scopes are shared scopes stored in the directory that are understood by multiple applications. App scopes are scopes that are defined and understood by this application only.
-        self._directory_scope_id: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The assigned principal. Provided so that callers can get the principal using $expand at the same time as getting the role assignment. Read-only. Supports $expand.
-        self._principal: Optional[directory_object.DirectoryObject] = None
-        # Identifier of the principal to which the assignment is granted. Supports $filter (eq operator only).
-        self._principal_id: Optional[str] = None
-        # The principalOrganizationId property
-        self._principal_organization_id: Optional[str] = None
-        # The scope at which the unifiedRoleAssignment applies. This is / for service-wide. DO NOT USE. This property will be deprecated soon.
-        self._resource_scope: Optional[str] = None
-        # The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.
-        self._role_definition: Optional[unified_role_definition.UnifiedRoleDefinition] = None
-        # Identifier of the unifiedRoleDefinition the assignment is for. Read-only. Supports $filter (eq operator only).
-        self._role_definition_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UnifiedRoleAssignment:
@@ -141,7 +140,9 @@ class UnifiedRoleAssignment(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import app_scope, directory_object, entity, unified_role_definition
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appScope": lambda n : setattr(self, 'app_scope', n.get_object_value(app_scope.AppScope)),
             "appScopeId": lambda n : setattr(self, 'app_scope_id', n.get_str_value()),
             "condition": lambda n : setattr(self, 'condition', n.get_str_value()),

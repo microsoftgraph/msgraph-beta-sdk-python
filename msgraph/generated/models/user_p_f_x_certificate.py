@@ -1,12 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-user_pfx_intended_purpose = lazy_import('msgraph.generated.models.user_pfx_intended_purpose')
-user_pfx_padding_scheme = lazy_import('msgraph.generated.models.user_pfx_padding_scheme')
+if TYPE_CHECKING:
+    from . import entity, user_pfx_intended_purpose, user_pfx_padding_scheme
+
+from . import entity
 
 class UserPFXCertificate(entity.Entity):
     """
@@ -129,7 +129,9 @@ class UserPFXCertificate(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, user_pfx_intended_purpose, user_pfx_padding_scheme
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "encryptedPfxBlob": lambda n : setattr(self, 'encrypted_pfx_blob', n.get_bytes_value()),
             "encryptedPfxPassword": lambda n : setattr(self, 'encrypted_pfx_password', n.get_str_value()),

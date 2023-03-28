@@ -7,91 +7,24 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-alert_configurations_request_builder = lazy_import('msgraph.generated.identity_governance.role_management_alerts.alert_configurations.alert_configurations_request_builder')
-unified_role_management_alert_configuration_item_request_builder = lazy_import('msgraph.generated.identity_governance.role_management_alerts.alert_configurations.item.unified_role_management_alert_configuration_item_request_builder')
-alert_definitions_request_builder = lazy_import('msgraph.generated.identity_governance.role_management_alerts.alert_definitions.alert_definitions_request_builder')
-unified_role_management_alert_definition_item_request_builder = lazy_import('msgraph.generated.identity_governance.role_management_alerts.alert_definitions.item.unified_role_management_alert_definition_item_request_builder')
-alerts_request_builder = lazy_import('msgraph.generated.identity_governance.role_management_alerts.alerts.alerts_request_builder')
-unified_role_management_alert_item_request_builder = lazy_import('msgraph.generated.identity_governance.role_management_alerts.alerts.item.unified_role_management_alert_item_request_builder')
-operations_request_builder = lazy_import('msgraph.generated.identity_governance.role_management_alerts.operations.operations_request_builder')
-long_running_operation_item_request_builder = lazy_import('msgraph.generated.identity_governance.role_management_alerts.operations.item.long_running_operation_item_request_builder')
-role_management_alert = lazy_import('msgraph.generated.models.role_management_alert')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ...models import role_management_alert
+    from ...models.o_data_errors import o_data_error
+    from .alert_configurations import alert_configurations_request_builder
+    from .alert_configurations.item import unified_role_management_alert_configuration_item_request_builder
+    from .alert_definitions import alert_definitions_request_builder
+    from .alert_definitions.item import unified_role_management_alert_definition_item_request_builder
+    from .alerts import alerts_request_builder
+    from .alerts.item import unified_role_management_alert_item_request_builder
+    from .operations import operations_request_builder
+    from .operations.item import long_running_operation_item_request_builder
 
 class RoleManagementAlertsRequestBuilder():
     """
     Provides operations to manage the roleManagementAlerts property of the microsoft.graph.identityGovernance entity.
     """
-    @property
-    def alert_configurations(self) -> alert_configurations_request_builder.AlertConfigurationsRequestBuilder:
-        """
-        Provides operations to manage the alertConfigurations property of the microsoft.graph.roleManagementAlert entity.
-        """
-        return alert_configurations_request_builder.AlertConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def alert_definitions(self) -> alert_definitions_request_builder.AlertDefinitionsRequestBuilder:
-        """
-        Provides operations to manage the alertDefinitions property of the microsoft.graph.roleManagementAlert entity.
-        """
-        return alert_definitions_request_builder.AlertDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def alerts(self) -> alerts_request_builder.AlertsRequestBuilder:
-        """
-        Provides operations to manage the alerts property of the microsoft.graph.roleManagementAlert entity.
-        """
-        return alerts_request_builder.AlertsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def operations(self) -> operations_request_builder.OperationsRequestBuilder:
-        """
-        Provides operations to manage the operations property of the microsoft.graph.roleManagementAlert entity.
-        """
-        return operations_request_builder.OperationsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def alert_configurations_by_id(self,id: str) -> unified_role_management_alert_configuration_item_request_builder.UnifiedRoleManagementAlertConfigurationItemRequestBuilder:
-        """
-        Provides operations to manage the alertConfigurations property of the microsoft.graph.roleManagementAlert entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: unified_role_management_alert_configuration_item_request_builder.UnifiedRoleManagementAlertConfigurationItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["unifiedRoleManagementAlertConfiguration%2Did"] = id
-        return unified_role_management_alert_configuration_item_request_builder.UnifiedRoleManagementAlertConfigurationItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def alert_definitions_by_id(self,id: str) -> unified_role_management_alert_definition_item_request_builder.UnifiedRoleManagementAlertDefinitionItemRequestBuilder:
-        """
-        Provides operations to manage the alertDefinitions property of the microsoft.graph.roleManagementAlert entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: unified_role_management_alert_definition_item_request_builder.UnifiedRoleManagementAlertDefinitionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["unifiedRoleManagementAlertDefinition%2Did"] = id
-        return unified_role_management_alert_definition_item_request_builder.UnifiedRoleManagementAlertDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def alerts_by_id(self,id: str) -> unified_role_management_alert_item_request_builder.UnifiedRoleManagementAlertItemRequestBuilder:
-        """
-        Provides operations to manage the alerts property of the microsoft.graph.roleManagementAlert entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: unified_role_management_alert_item_request_builder.UnifiedRoleManagementAlertItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["unifiedRoleManagementAlert%2Did"] = id
-        return unified_role_management_alert_item_request_builder.UnifiedRoleManagementAlertItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new RoleManagementAlertsRequestBuilder and sets the default values.
@@ -110,6 +43,51 @@ class RoleManagementAlertsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def alert_configurations_by_id(self,id: str) -> unified_role_management_alert_configuration_item_request_builder.UnifiedRoleManagementAlertConfigurationItemRequestBuilder:
+        """
+        Provides operations to manage the alertConfigurations property of the microsoft.graph.roleManagementAlert entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: unified_role_management_alert_configuration_item_request_builder.UnifiedRoleManagementAlertConfigurationItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .alert_configurations.item import unified_role_management_alert_configuration_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["unifiedRoleManagementAlertConfiguration%2Did"] = id
+        return unified_role_management_alert_configuration_item_request_builder.UnifiedRoleManagementAlertConfigurationItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    def alert_definitions_by_id(self,id: str) -> unified_role_management_alert_definition_item_request_builder.UnifiedRoleManagementAlertDefinitionItemRequestBuilder:
+        """
+        Provides operations to manage the alertDefinitions property of the microsoft.graph.roleManagementAlert entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: unified_role_management_alert_definition_item_request_builder.UnifiedRoleManagementAlertDefinitionItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .alert_definitions.item import unified_role_management_alert_definition_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["unifiedRoleManagementAlertDefinition%2Did"] = id
+        return unified_role_management_alert_definition_item_request_builder.UnifiedRoleManagementAlertDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    def alerts_by_id(self,id: str) -> unified_role_management_alert_item_request_builder.UnifiedRoleManagementAlertItemRequestBuilder:
+        """
+        Provides operations to manage the alerts property of the microsoft.graph.roleManagementAlert entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: unified_role_management_alert_item_request_builder.UnifiedRoleManagementAlertItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .alerts.item import unified_role_management_alert_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["unifiedRoleManagementAlert%2Did"] = id
+        return unified_role_management_alert_item_request_builder.UnifiedRoleManagementAlertItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def delete(self,request_configuration: Optional[RoleManagementAlertsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property roleManagementAlerts for identityGovernance
@@ -119,6 +97,8 @@ class RoleManagementAlertsRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -137,12 +117,16 @@ class RoleManagementAlertsRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models import role_management_alert
+
         return await self.request_adapter.send_async(request_info, role_management_alert.RoleManagementAlert, error_mapping)
     
     def operations_by_id(self,id: str) -> long_running_operation_item_request_builder.LongRunningOperationItemRequestBuilder:
@@ -154,6 +138,8 @@ class RoleManagementAlertsRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .operations.item import long_running_operation_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["longRunningOperation%2Did"] = id
         return long_running_operation_item_request_builder.LongRunningOperationItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -171,12 +157,16 @@ class RoleManagementAlertsRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models import role_management_alert
+
         return await self.request_adapter.send_async(request_info, role_management_alert.RoleManagementAlert, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[RoleManagementAlertsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -234,6 +224,42 @@ class RoleManagementAlertsRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def alert_configurations(self) -> alert_configurations_request_builder.AlertConfigurationsRequestBuilder:
+        """
+        Provides operations to manage the alertConfigurations property of the microsoft.graph.roleManagementAlert entity.
+        """
+        from .alert_configurations import alert_configurations_request_builder
+
+        return alert_configurations_request_builder.AlertConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def alert_definitions(self) -> alert_definitions_request_builder.AlertDefinitionsRequestBuilder:
+        """
+        Provides operations to manage the alertDefinitions property of the microsoft.graph.roleManagementAlert entity.
+        """
+        from .alert_definitions import alert_definitions_request_builder
+
+        return alert_definitions_request_builder.AlertDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def alerts(self) -> alerts_request_builder.AlertsRequestBuilder:
+        """
+        Provides operations to manage the alerts property of the microsoft.graph.roleManagementAlert entity.
+        """
+        from .alerts import alerts_request_builder
+
+        return alerts_request_builder.AlertsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def operations(self) -> operations_request_builder.OperationsRequestBuilder:
+        """
+        Provides operations to manage the operations property of the microsoft.graph.roleManagementAlert entity.
+        """
+        from .operations import operations_request_builder
+
+        return operations_request_builder.OperationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class RoleManagementAlertsRequestBuilderDeleteRequestConfiguration():
         """
@@ -251,12 +277,6 @@ class RoleManagementAlertsRequestBuilder():
         """
         Get roleManagementAlerts from identityGovernance
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -272,6 +292,12 @@ class RoleManagementAlertsRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class RoleManagementAlertsRequestBuilderGetRequestConfiguration():

@@ -1,11 +1,23 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-media_source_content_category = lazy_import('msgraph.generated.models.media_source_content_category')
+if TYPE_CHECKING:
+    from . import media_source_content_category
 
 class MediaSource(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new mediaSource and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Enumeration value that indicates the media content category.
+        self._content_category: Optional[media_source_content_category.MediaSourceContentCategory] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -22,18 +34,6 @@ class MediaSource(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new mediaSource and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Enumeration value that indicates the media content category.
-        self._content_category: Optional[media_source_content_category.MediaSourceContentCategory] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
     
     @property
     def content_category(self,) -> Optional[media_source_content_category.MediaSourceContentCategory]:
@@ -69,7 +69,9 @@ class MediaSource(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import media_source_content_category
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "contentCategory": lambda n : setattr(self, 'content_category', n.get_enum_value(media_source_content_category.MediaSourceContentCategory)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }

@@ -1,12 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class UserExperienceAnalyticsAutopilotDevicesSummary(AdditionalDataHolder, Parsable):
     """
     The user experience analytics summary of Devices not windows autopilot ready.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new userExperienceAnalyticsAutopilotDevicesSummary and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The count of intune devices that are not autopilot registerd.
+        self._devices_not_autopilot_registered: Optional[int] = None
+        # The count of intune devices not autopilot profile assigned.
+        self._devices_without_autopilot_profile_assigned: Optional[int] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The count of windows 10 devices that are Intune and Comanaged.
+        self._total_windows10_devices_without_tenant_attached: Optional[int] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,22 +38,6 @@ class UserExperienceAnalyticsAutopilotDevicesSummary(AdditionalDataHolder, Parsa
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsAutopilotDevicesSummary and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The count of intune devices that are not autopilot registerd.
-        self._devices_not_autopilot_registered: Optional[int] = None
-        # The count of intune devices not autopilot profile assigned.
-        self._devices_without_autopilot_profile_assigned: Optional[int] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The count of windows 10 devices that are Intune and Comanaged.
-        self._total_windows10_devices_without_tenant_attached: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsAutopilotDevicesSummary:
@@ -91,7 +90,7 @@ class UserExperienceAnalyticsAutopilotDevicesSummary(AdditionalDataHolder, Parsa
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "devicesNotAutopilotRegistered": lambda n : setattr(self, 'devices_not_autopilot_registered', n.get_int_value()),
             "devicesWithoutAutopilotProfileAssigned": lambda n : setattr(self, 'devices_without_autopilot_profile_assigned', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

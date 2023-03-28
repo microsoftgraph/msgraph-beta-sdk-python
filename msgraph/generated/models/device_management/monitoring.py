@@ -1,13 +1,26 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-alert_record = lazy_import('msgraph.generated.models.device_management.alert_record')
-alert_rule = lazy_import('msgraph.generated.models.device_management.alert_rule')
+if TYPE_CHECKING:
+    from . import alert_record, alert_rule
+    from .. import entity
+
+from .. import entity
 
 class Monitoring(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new monitoring and sets the default values.
+        """
+        super().__init__()
+        # The collection of records of alert events.
+        self._alert_records: Optional[List[alert_record.AlertRecord]] = None
+        # The collection of alert rules.
+        self._alert_rules: Optional[List[alert_rule.AlertRule]] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def alert_records(self,) -> Optional[List[alert_record.AlertRecord]]:
         """
@@ -42,18 +55,6 @@ class Monitoring(entity.Entity):
         """
         self._alert_rules = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new monitoring and sets the default values.
-        """
-        super().__init__()
-        # The collection of records of alert events.
-        self._alert_records: Optional[List[alert_record.AlertRecord]] = None
-        # The collection of alert rules.
-        self._alert_rules: Optional[List[alert_rule.AlertRule]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Monitoring:
         """
@@ -71,7 +72,10 @@ class Monitoring(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import alert_record, alert_rule
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "alertRecords": lambda n : setattr(self, 'alert_records', n.get_collection_of_object_values(alert_record.AlertRecord)),
             "alertRules": lambda n : setattr(self, 'alert_rules', n.get_collection_of_object_values(alert_rule.AlertRule)),
         }

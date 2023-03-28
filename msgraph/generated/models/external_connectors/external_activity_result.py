@@ -1,10 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-public_error = lazy_import('msgraph.generated.models.public_error')
-external_activity = lazy_import('msgraph.generated.models.external_connectors.external_activity')
+if TYPE_CHECKING:
+    from . import external_activity
+    from .. import public_error
+
+from . import external_activity
 
 class ExternalActivityResult(external_activity.ExternalActivity):
     def __init__(self,) -> None:
@@ -51,7 +53,10 @@ class ExternalActivityResult(external_activity.ExternalActivity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import external_activity
+        from .. import public_error
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "error": lambda n : setattr(self, 'error', n.get_object_value(public_error.PublicError)),
         }
         super_fields = super().get_field_deserializers()

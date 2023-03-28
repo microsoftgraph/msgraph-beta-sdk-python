@@ -1,14 +1,28 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_configuration_setting_instance_template = lazy_import('msgraph.generated.models.device_management_configuration_setting_instance_template')
+if TYPE_CHECKING:
+    from . import device_management_configuration_setting_instance_template
 
 class DeviceManagementConfigurationGroupSettingValueTemplate(AdditionalDataHolder, Parsable):
     """
     Group Setting Value Template
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new deviceManagementConfigurationGroupSettingValueTemplate and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Group setting value children
+        self._children: Optional[List[device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Setting Value Template Id
+        self._setting_value_template_id: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -43,20 +57,6 @@ class DeviceManagementConfigurationGroupSettingValueTemplate(AdditionalDataHolde
         """
         self._children = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementConfigurationGroupSettingValueTemplate and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Group setting value children
-        self._children: Optional[List[device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Setting Value Template Id
-        self._setting_value_template_id: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationGroupSettingValueTemplate:
         """
@@ -74,7 +74,9 @@ class DeviceManagementConfigurationGroupSettingValueTemplate(AdditionalDataHolde
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_configuration_setting_instance_template
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "children": lambda n : setattr(self, 'children', n.get_collection_of_object_values(device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "settingValueTemplateId": lambda n : setattr(self, 'setting_value_template_id', n.get_str_value()),

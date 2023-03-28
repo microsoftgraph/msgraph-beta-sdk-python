@@ -1,20 +1,70 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-certificate_issuance_states = lazy_import('msgraph.generated.models.certificate_issuance_states')
-certificate_revocation_status = lazy_import('msgraph.generated.models.certificate_revocation_status')
-certificate_validity_period_scale = lazy_import('msgraph.generated.models.certificate_validity_period_scale')
-device_platform_type = lazy_import('msgraph.generated.models.device_platform_type')
-entity = lazy_import('msgraph.generated.models.entity')
-key_storage_provider_option = lazy_import('msgraph.generated.models.key_storage_provider_option')
-key_usages = lazy_import('msgraph.generated.models.key_usages')
-subject_alternative_name_type = lazy_import('msgraph.generated.models.subject_alternative_name_type')
-subject_name_format = lazy_import('msgraph.generated.models.subject_name_format')
+if TYPE_CHECKING:
+    from . import certificate_issuance_states, certificate_revocation_status, certificate_validity_period_scale, device_platform_type, entity, key_storage_provider_option, key_usages, subject_alternative_name_type, subject_name_format
+
+from . import entity
 
 class ManagedDeviceCertificateState(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new managedDeviceCertificateState and sets the default values.
+        """
+        super().__init__()
+        # Extended key usage
+        self._certificate_enhanced_key_usage: Optional[str] = None
+        # Error code
+        self._certificate_error_code: Optional[int] = None
+        # Certificate expiry date
+        self._certificate_expiration_date_time: Optional[datetime] = None
+        # Issuance date
+        self._certificate_issuance_date_time: Optional[datetime] = None
+        # Certificate Issuance State Options.
+        self._certificate_issuance_state: Optional[certificate_issuance_states.CertificateIssuanceStates] = None
+        # Issuer
+        self._certificate_issuer: Optional[str] = None
+        # Key length
+        self._certificate_key_length: Optional[int] = None
+        # Key Storage Provider (KSP) Import Options.
+        self._certificate_key_storage_provider: Optional[key_storage_provider_option.KeyStorageProviderOption] = None
+        # Key Usage Options.
+        self._certificate_key_usage: Optional[key_usages.KeyUsages] = None
+        # Last certificate issuance state change
+        self._certificate_last_issuance_state_changed_date_time: Optional[datetime] = None
+        # Certificate profile display name
+        self._certificate_profile_display_name: Optional[str] = None
+        # Certificate Revocation Status.
+        self._certificate_revoke_status: Optional[certificate_revocation_status.CertificateRevocationStatus] = None
+        # Serial number
+        self._certificate_serial_number: Optional[str] = None
+        # Subject Alternative Name Options.
+        self._certificate_subject_alternative_name_format: Optional[subject_alternative_name_type.SubjectAlternativeNameType] = None
+        # Subject alternative name format string for custom formats
+        self._certificate_subject_alternative_name_format_string: Optional[str] = None
+        # Subject Name Format Options.
+        self._certificate_subject_name_format: Optional[subject_name_format.SubjectNameFormat] = None
+        # Subject name format string for custom subject name formats
+        self._certificate_subject_name_format_string: Optional[str] = None
+        # Thumbprint
+        self._certificate_thumbprint: Optional[str] = None
+        # Validity period
+        self._certificate_validity_period: Optional[int] = None
+        # Certificate Validity Period Options.
+        self._certificate_validity_period_units: Optional[certificate_validity_period_scale.CertificateValidityPeriodScale] = None
+        # Device display name
+        self._device_display_name: Optional[str] = None
+        # Supported platform types.
+        self._device_platform: Optional[device_platform_type.DevicePlatformType] = None
+        # Last certificate issuance state change
+        self._last_certificate_state_change_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # User display name
+        self._user_display_name: Optional[str] = None
+    
     @property
     def certificate_enhanced_key_usage(self,) -> Optional[str]:
         """
@@ -355,62 +405,6 @@ class ManagedDeviceCertificateState(entity.Entity):
         """
         self._certificate_validity_period_units = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new managedDeviceCertificateState and sets the default values.
-        """
-        super().__init__()
-        # Extended key usage
-        self._certificate_enhanced_key_usage: Optional[str] = None
-        # Error code
-        self._certificate_error_code: Optional[int] = None
-        # Certificate expiry date
-        self._certificate_expiration_date_time: Optional[datetime] = None
-        # Issuance date
-        self._certificate_issuance_date_time: Optional[datetime] = None
-        # Certificate Issuance State Options.
-        self._certificate_issuance_state: Optional[certificate_issuance_states.CertificateIssuanceStates] = None
-        # Issuer
-        self._certificate_issuer: Optional[str] = None
-        # Key length
-        self._certificate_key_length: Optional[int] = None
-        # Key Storage Provider (KSP) Import Options.
-        self._certificate_key_storage_provider: Optional[key_storage_provider_option.KeyStorageProviderOption] = None
-        # Key Usage Options.
-        self._certificate_key_usage: Optional[key_usages.KeyUsages] = None
-        # Last certificate issuance state change
-        self._certificate_last_issuance_state_changed_date_time: Optional[datetime] = None
-        # Certificate profile display name
-        self._certificate_profile_display_name: Optional[str] = None
-        # Certificate Revocation Status.
-        self._certificate_revoke_status: Optional[certificate_revocation_status.CertificateRevocationStatus] = None
-        # Serial number
-        self._certificate_serial_number: Optional[str] = None
-        # Subject Alternative Name Options.
-        self._certificate_subject_alternative_name_format: Optional[subject_alternative_name_type.SubjectAlternativeNameType] = None
-        # Subject alternative name format string for custom formats
-        self._certificate_subject_alternative_name_format_string: Optional[str] = None
-        # Subject Name Format Options.
-        self._certificate_subject_name_format: Optional[subject_name_format.SubjectNameFormat] = None
-        # Subject name format string for custom subject name formats
-        self._certificate_subject_name_format_string: Optional[str] = None
-        # Thumbprint
-        self._certificate_thumbprint: Optional[str] = None
-        # Validity period
-        self._certificate_validity_period: Optional[int] = None
-        # Certificate Validity Period Options.
-        self._certificate_validity_period_units: Optional[certificate_validity_period_scale.CertificateValidityPeriodScale] = None
-        # Device display name
-        self._device_display_name: Optional[str] = None
-        # Supported platform types.
-        self._device_platform: Optional[device_platform_type.DevicePlatformType] = None
-        # Last certificate issuance state change
-        self._last_certificate_state_change_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # User display name
-        self._user_display_name: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ManagedDeviceCertificateState:
         """
@@ -462,7 +456,9 @@ class ManagedDeviceCertificateState(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import certificate_issuance_states, certificate_revocation_status, certificate_validity_period_scale, device_platform_type, entity, key_storage_provider_option, key_usages, subject_alternative_name_type, subject_name_format
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "certificateEnhancedKeyUsage": lambda n : setattr(self, 'certificate_enhanced_key_usage', n.get_str_value()),
             "certificateErrorCode": lambda n : setattr(self, 'certificate_error_code', n.get_int_value()),
             "certificateExpirationDateTime": lambda n : setattr(self, 'certificate_expiration_date_time', n.get_datetime_value()),

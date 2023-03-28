@@ -1,32 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class PrivilegedOperationEvent(entity.Entity):
-    @property
-    def additional_information(self,) -> Optional[str]:
-        """
-        Gets the additionalInformation property value. Detailed human readable information for the event.
-        Returns: Optional[str]
-        """
-        return self._additional_information
-    
-    @additional_information.setter
-    def additional_information(self,value: Optional[str] = None) -> None:
-        """
-        Sets the additionalInformation property value. Detailed human readable information for the event.
-        Args:
-            value: Value to set for the additional_information property.
-        """
-        self._additional_information = value
-    
     def __init__(self,) -> None:
         """
-        Instantiates a new privilegedOperationEvent and sets the default values.
+        Instantiates a new PrivilegedOperationEvent and sets the default values.
         """
         super().__init__()
         # Detailed human readable information for the event.
@@ -59,6 +44,23 @@ class PrivilegedOperationEvent(entity.Entity):
         self._user_mail: Optional[str] = None
         # The user's display name.
         self._user_name: Optional[str] = None
+    
+    @property
+    def additional_information(self,) -> Optional[str]:
+        """
+        Gets the additionalInformation property value. Detailed human readable information for the event.
+        Returns: Optional[str]
+        """
+        return self._additional_information
+    
+    @additional_information.setter
+    def additional_information(self,value: Optional[str] = None) -> None:
+        """
+        Sets the additionalInformation property value. Detailed human readable information for the event.
+        Args:
+            value: Value to set for the additional_information property.
+        """
+        self._additional_information = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PrivilegedOperationEvent:
@@ -111,7 +113,9 @@ class PrivilegedOperationEvent(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "additionalInformation": lambda n : setattr(self, 'additional_information', n.get_str_value()),
             "creationDateTime": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
             "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),

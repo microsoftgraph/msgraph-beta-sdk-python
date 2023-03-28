@@ -1,16 +1,44 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-risk_detail = lazy_import('msgraph.generated.models.risk_detail')
-risk_level = lazy_import('msgraph.generated.models.risk_level')
-risk_state = lazy_import('msgraph.generated.models.risk_state')
-risky_service_principal_history_item = lazy_import('msgraph.generated.models.risky_service_principal_history_item')
+if TYPE_CHECKING:
+    from . import entity, risky_service_principal_history_item, risk_detail, risk_level, risk_state
+
+from . import entity
 
 class RiskyServicePrincipal(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new riskyServicePrincipal and sets the default values.
+        """
+        super().__init__()
+        # true if the service principal account is enabled; otherwise, false.
+        self._account_enabled: Optional[bool] = None
+        # The globally unique identifier for the associated application (its appId property), if any.
+        self._app_id: Optional[str] = None
+        # The display name for the service principal.
+        self._display_name: Optional[str] = None
+        # Represents the risk history of Azure AD service principals.
+        self._history: Optional[List[risky_service_principal_history_item.RiskyServicePrincipalHistoryItem]] = None
+        # The isEnabled property
+        self._is_enabled: Optional[bool] = None
+        # Indicates whether Azure AD is currently processing the service principal's risky state.
+        self._is_processing: Optional[bool] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Details of the detected risk. Note: Details for this property are only available for Workload Identities Premium customers. Events in tenants without this license will be returned hidden. The possible values are: none, hidden,  unknownFutureValue, adminConfirmedServicePrincipalCompromised, adminDismissedAllRiskForServicePrincipal. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: adminConfirmedServicePrincipalCompromised , adminDismissedAllRiskForServicePrincipal.
+        self._risk_detail: Optional[risk_detail.RiskDetail] = None
+        # The date and time that the risk state was last updated. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2021 is 2021-01-01T00:00:00Z. Supports $filter (eq).
+        self._risk_last_updated_date_time: Optional[datetime] = None
+        # Level of the detected risky workload identity. The possible values are: low, medium, high, hidden, none, unknownFutureValue. Supports $filter (eq).
+        self._risk_level: Optional[risk_level.RiskLevel] = None
+        # State of the service principal's risk. The possible values are: none, confirmedSafe, remediated, dismissed, atRisk, confirmedCompromised, unknownFutureValue.
+        self._risk_state: Optional[risk_state.RiskState] = None
+        # Identifies whether the service principal represents an Application, a ManagedIdentity, or a legacy application (socialIdp). This is set by Azure AD internally and is inherited from servicePrincipal.
+        self._service_principal_type: Optional[str] = None
+    
     @property
     def account_enabled(self,) -> Optional[bool]:
         """
@@ -45,34 +73,6 @@ class RiskyServicePrincipal(entity.Entity):
         """
         self._app_id = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new riskyServicePrincipal and sets the default values.
-        """
-        super().__init__()
-        # true if the service principal account is enabled; otherwise, false.
-        self._account_enabled: Optional[bool] = None
-        # The globally unique identifier for the associated application (its appId property), if any.
-        self._app_id: Optional[str] = None
-        # The display name for the service principal.
-        self._display_name: Optional[str] = None
-        # Represents the risk history of Azure AD service principals.
-        self._history: Optional[List[risky_service_principal_history_item.RiskyServicePrincipalHistoryItem]] = None
-        # Indicates whether Azure AD is currently processing the service principal's risky state.
-        self._is_processing: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Details of the detected risk. Note: Details for this property are only available for Workload Identities Premium customers. Events in tenants without this license will be returned hidden. The possible values are: none, hidden,  unknownFutureValue, adminConfirmedServicePrincipalCompromised, adminDismissedAllRiskForServicePrincipal. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: adminConfirmedServicePrincipalCompromised , adminDismissedAllRiskForServicePrincipal.
-        self._risk_detail: Optional[risk_detail.RiskDetail] = None
-        # The date and time that the risk state was last updated. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2021 is 2021-01-01T00:00:00Z. Supports $filter (eq).
-        self._risk_last_updated_date_time: Optional[datetime] = None
-        # Level of the detected risky workload identity. The possible values are: low, medium, high, hidden, none, unknownFutureValue. Supports $filter (eq).
-        self._risk_level: Optional[risk_level.RiskLevel] = None
-        # State of the service principal's risk. The possible values are: none, confirmedSafe, remediated, dismissed, atRisk, confirmedCompromised, unknownFutureValue.
-        self._risk_state: Optional[risk_state.RiskState] = None
-        # Identifies whether the service principal represents an Application, a ManagedIdentity, or a legacy application (socialIdp). This is set by Azure AD internally and is inherited from servicePrincipal.
-        self._service_principal_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RiskyServicePrincipal:
         """
@@ -83,6 +83,13 @@ class RiskyServicePrincipal(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.riskyServicePrincipalHistoryItem":
+                from . import risky_service_principal_history_item
+
+                return risky_service_principal_history_item.RiskyServicePrincipalHistoryItem()
         return RiskyServicePrincipal()
     
     @property
@@ -107,11 +114,14 @@ class RiskyServicePrincipal(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, risky_service_principal_history_item, risk_detail, risk_level, risk_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accountEnabled": lambda n : setattr(self, 'account_enabled', n.get_bool_value()),
             "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "history": lambda n : setattr(self, 'history', n.get_collection_of_object_values(risky_service_principal_history_item.RiskyServicePrincipalHistoryItem)),
+            "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
             "isProcessing": lambda n : setattr(self, 'is_processing', n.get_bool_value()),
             "riskDetail": lambda n : setattr(self, 'risk_detail', n.get_enum_value(risk_detail.RiskDetail)),
             "riskLastUpdatedDateTime": lambda n : setattr(self, 'risk_last_updated_date_time', n.get_datetime_value()),
@@ -139,6 +149,23 @@ class RiskyServicePrincipal(entity.Entity):
             value: Value to set for the history property.
         """
         self._history = value
+    
+    @property
+    def is_enabled(self,) -> Optional[bool]:
+        """
+        Gets the isEnabled property value. The isEnabled property
+        Returns: Optional[bool]
+        """
+        return self._is_enabled
+    
+    @is_enabled.setter
+    def is_enabled(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the isEnabled property value. The isEnabled property
+        Args:
+            value: Value to set for the is_enabled property.
+        """
+        self._is_enabled = value
     
     @property
     def is_processing(self,) -> Optional[bool]:
@@ -238,6 +265,7 @@ class RiskyServicePrincipal(entity.Entity):
         writer.write_str_value("appId", self.app_id)
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_object_values("history", self.history)
+        writer.write_bool_value("isEnabled", self.is_enabled)
         writer.write_bool_value("isProcessing", self.is_processing)
         writer.write_enum_value("riskDetail", self.risk_detail)
         writer.write_datetime_value("riskLastUpdatedDateTime", self.risk_last_updated_date_time)

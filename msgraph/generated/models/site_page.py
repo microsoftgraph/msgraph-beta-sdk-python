@@ -1,36 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-base_item = lazy_import('msgraph.generated.models.base_item')
-canvas_layout = lazy_import('msgraph.generated.models.canvas_layout')
-content_type_info = lazy_import('msgraph.generated.models.content_type_info')
-page_layout_type = lazy_import('msgraph.generated.models.page_layout_type')
-page_promotion_type = lazy_import('msgraph.generated.models.page_promotion_type')
-publication_facet = lazy_import('msgraph.generated.models.publication_facet')
-reactions_facet = lazy_import('msgraph.generated.models.reactions_facet')
-title_area = lazy_import('msgraph.generated.models.title_area')
-web_part = lazy_import('msgraph.generated.models.web_part')
+if TYPE_CHECKING:
+    from . import base_item, canvas_layout, content_type_info, page_layout_type, page_promotion_type, publication_facet, reactions_facet, title_area, web_part
+
+from . import base_item
 
 class SitePage(base_item.BaseItem):
-    @property
-    def canvas_layout(self,) -> Optional[canvas_layout.CanvasLayout]:
-        """
-        Gets the canvasLayout property value. Indicates the layout of the content in a given SharePoint page, including horizontal sections and vertical section
-        Returns: Optional[canvas_layout.CanvasLayout]
-        """
-        return self._canvas_layout
-    
-    @canvas_layout.setter
-    def canvas_layout(self,value: Optional[canvas_layout.CanvasLayout] = None) -> None:
-        """
-        Sets the canvasLayout property value. Indicates the layout of the content in a given SharePoint page, including horizontal sections and vertical section
-        Args:
-            value: Value to set for the canvas_layout property.
-        """
-        self._canvas_layout = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new sitePage and sets the default values.
@@ -61,6 +38,23 @@ class SitePage(base_item.BaseItem):
         self._title_area: Optional[title_area.TitleArea] = None
         # Collection of webparts on the SharePoint page
         self._web_parts: Optional[List[web_part.WebPart]] = None
+    
+    @property
+    def canvas_layout(self,) -> Optional[canvas_layout.CanvasLayout]:
+        """
+        Gets the canvasLayout property value. Indicates the layout of the content in a given SharePoint page, including horizontal sections and vertical section
+        Returns: Optional[canvas_layout.CanvasLayout]
+        """
+        return self._canvas_layout
+    
+    @canvas_layout.setter
+    def canvas_layout(self,value: Optional[canvas_layout.CanvasLayout] = None) -> None:
+        """
+        Sets the canvasLayout property value. Indicates the layout of the content in a given SharePoint page, including horizontal sections and vertical section
+        Args:
+            value: Value to set for the canvas_layout property.
+        """
+        self._canvas_layout = value
     
     @property
     def content_type(self,) -> Optional[content_type_info.ContentTypeInfo]:
@@ -96,7 +90,9 @@ class SitePage(base_item.BaseItem):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import base_item, canvas_layout, content_type_info, page_layout_type, page_promotion_type, publication_facet, reactions_facet, title_area, web_part
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "canvasLayout": lambda n : setattr(self, 'canvas_layout', n.get_object_value(canvas_layout.CanvasLayout)),
             "contentType": lambda n : setattr(self, 'content_type', n.get_object_value(content_type_info.ContentTypeInfo)),
             "pageLayout": lambda n : setattr(self, 'page_layout', n.get_enum_value(page_layout_type.PageLayoutType)),

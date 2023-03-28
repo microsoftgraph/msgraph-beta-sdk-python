@@ -1,11 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-item_body = lazy_import('msgraph.generated.models.item_body')
+if TYPE_CHECKING:
+    from ......models import item_body
 
 class ClockInPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new clockInPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The atApprovedLocation property
+        self._at_approved_location: Optional[bool] = None
+        # The notes property
+        self._notes: Optional[item_body.ItemBody] = None
+        # The onBehalfOfUserId property
+        self._on_behalf_of_user_id: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -40,20 +54,6 @@ class ClockInPostRequestBody(AdditionalDataHolder, Parsable):
         """
         self._at_approved_location = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new clockInPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The atApprovedLocation property
-        self._at_approved_location: Optional[bool] = None
-        # The notes property
-        self._notes: Optional[item_body.ItemBody] = None
-        # The onBehalfOfUserId property
-        self._on_behalf_of_user_id: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ClockInPostRequestBody:
         """
@@ -71,7 +71,9 @@ class ClockInPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from ......models import item_body
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "atApprovedLocation": lambda n : setattr(self, 'at_approved_location', n.get_bool_value()),
             "notes": lambda n : setattr(self, 'notes', n.get_object_value(item_body.ItemBody)),
             "onBehalfOfUserId": lambda n : setattr(self, 'on_behalf_of_user_id', n.get_str_value()),

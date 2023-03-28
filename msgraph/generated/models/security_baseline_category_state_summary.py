@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-security_baseline_state_summary = lazy_import('msgraph.generated.models.security_baseline_state_summary')
+if TYPE_CHECKING:
+    from . import security_baseline_state_summary
+
+from . import security_baseline_state_summary
 
 class SecurityBaselineCategoryStateSummary(security_baseline_state_summary.SecurityBaselineStateSummary):
     def __init__(self,) -> None:
@@ -49,7 +51,9 @@ class SecurityBaselineCategoryStateSummary(security_baseline_state_summary.Secur
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import security_baseline_state_summary
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

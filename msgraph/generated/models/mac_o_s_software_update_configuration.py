@@ -1,14 +1,34 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-custom_update_time_window = lazy_import('msgraph.generated.models.custom_update_time_window')
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-mac_o_s_software_update_behavior = lazy_import('msgraph.generated.models.mac_o_s_software_update_behavior')
-mac_o_s_software_update_schedule_type = lazy_import('msgraph.generated.models.mac_o_s_software_update_schedule_type')
+if TYPE_CHECKING:
+    from . import custom_update_time_window, device_configuration, mac_o_s_software_update_behavior, mac_o_s_software_update_schedule_type
+
+from . import device_configuration
 
 class MacOSSoftwareUpdateConfiguration(device_configuration.DeviceConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new MacOSSoftwareUpdateConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.macOSSoftwareUpdateConfiguration"
+        # Update behavior options for macOS software updates.
+        self._all_other_update_behavior: Optional[mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior] = None
+        # Update behavior options for macOS software updates.
+        self._config_data_update_behavior: Optional[mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior] = None
+        # Update behavior options for macOS software updates.
+        self._critical_update_behavior: Optional[mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior] = None
+        # Custom Time windows when updates will be allowed or blocked. This collection can contain a maximum of 20 elements.
+        self._custom_update_time_windows: Optional[List[custom_update_time_window.CustomUpdateTimeWindow]] = None
+        # Update behavior options for macOS software updates.
+        self._firmware_update_behavior: Optional[mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior] = None
+        # Update schedule type for macOS software updates.
+        self._update_schedule_type: Optional[mac_o_s_software_update_schedule_type.MacOSSoftwareUpdateScheduleType] = None
+        # Minutes indicating UTC offset for each update time window
+        self._update_time_window_utc_offset_in_minutes: Optional[int] = None
+    
     @property
     def all_other_update_behavior(self,) -> Optional[mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior]:
         """
@@ -42,27 +62,6 @@ class MacOSSoftwareUpdateConfiguration(device_configuration.DeviceConfiguration)
             value: Value to set for the config_data_update_behavior property.
         """
         self._config_data_update_behavior = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new MacOSSoftwareUpdateConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.macOSSoftwareUpdateConfiguration"
-        # Update behavior options for macOS software updates.
-        self._all_other_update_behavior: Optional[mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior] = None
-        # Update behavior options for macOS software updates.
-        self._config_data_update_behavior: Optional[mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior] = None
-        # Update behavior options for macOS software updates.
-        self._critical_update_behavior: Optional[mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior] = None
-        # Custom Time windows when updates will be allowed or blocked. This collection can contain a maximum of 20 elements.
-        self._custom_update_time_windows: Optional[List[custom_update_time_window.CustomUpdateTimeWindow]] = None
-        # Update behavior options for macOS software updates.
-        self._firmware_update_behavior: Optional[mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior] = None
-        # Update schedule type for macOS software updates.
-        self._update_schedule_type: Optional[mac_o_s_software_update_schedule_type.MacOSSoftwareUpdateScheduleType] = None
-        # Minutes indicating UTC offset for each update time window
-        self._update_time_window_utc_offset_in_minutes: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSSoftwareUpdateConfiguration:
@@ -132,7 +131,9 @@ class MacOSSoftwareUpdateConfiguration(device_configuration.DeviceConfiguration)
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import custom_update_time_window, device_configuration, mac_o_s_software_update_behavior, mac_o_s_software_update_schedule_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allOtherUpdateBehavior": lambda n : setattr(self, 'all_other_update_behavior', n.get_enum_value(mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior)),
             "configDataUpdateBehavior": lambda n : setattr(self, 'config_data_update_behavior', n.get_enum_value(mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior)),
             "criticalUpdateBehavior": lambda n : setattr(self, 'critical_update_behavior', n.get_enum_value(mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior)),

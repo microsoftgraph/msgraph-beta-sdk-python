@@ -1,11 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_enrollment_configuration = lazy_import('msgraph.generated.models.device_enrollment_configuration')
-device_enrollment_platform_restriction = lazy_import('msgraph.generated.models.device_enrollment_platform_restriction')
-enrollment_restriction_platform_type = lazy_import('msgraph.generated.models.enrollment_restriction_platform_type')
+if TYPE_CHECKING:
+    from . import device_enrollment_configuration, device_enrollment_platform_restriction, enrollment_restriction_platform_type
+
+from . import device_enrollment_configuration
 
 class DeviceEnrollmentPlatformRestrictionConfiguration(device_enrollment_configuration.DeviceEnrollmentConfiguration):
     def __init__(self,) -> None:
@@ -36,7 +36,9 @@ class DeviceEnrollmentPlatformRestrictionConfiguration(device_enrollment_configu
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_enrollment_configuration, device_enrollment_platform_restriction, enrollment_restriction_platform_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "platformRestriction": lambda n : setattr(self, 'platform_restriction', n.get_object_value(device_enrollment_platform_restriction.DeviceEnrollmentPlatformRestriction)),
             "platformType": lambda n : setattr(self, 'platform_type', n.get_enum_value(enrollment_restriction_platform_type.EnrollmentRestrictionPlatformType)),
         }

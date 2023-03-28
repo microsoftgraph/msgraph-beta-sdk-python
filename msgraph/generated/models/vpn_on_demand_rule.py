@@ -1,16 +1,42 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-vpn_on_demand_rule_connection_action = lazy_import('msgraph.generated.models.vpn_on_demand_rule_connection_action')
-vpn_on_demand_rule_connection_domain_action = lazy_import('msgraph.generated.models.vpn_on_demand_rule_connection_domain_action')
-vpn_on_demand_rule_interface_type_match = lazy_import('msgraph.generated.models.vpn_on_demand_rule_interface_type_match')
+if TYPE_CHECKING:
+    from . import vpn_on_demand_rule_connection_action, vpn_on_demand_rule_connection_domain_action, vpn_on_demand_rule_interface_type_match
 
 class VpnOnDemandRule(AdditionalDataHolder, Parsable):
     """
     VPN On-Demand Rule definition.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new vpnOnDemandRule and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # VPN On-Demand Rule Connection Action.
+        self._action: Optional[vpn_on_demand_rule_connection_action.VpnOnDemandRuleConnectionAction] = None
+        # DNS Search Domains.
+        self._dns_search_domains: Optional[List[str]] = None
+        # DNS Search Server Address.
+        self._dns_server_address_match: Optional[List[str]] = None
+        # VPN On-Demand Rule Connection Domain Action.
+        self._domain_action: Optional[vpn_on_demand_rule_connection_domain_action.VpnOnDemandRuleConnectionDomainAction] = None
+        # Domains (Only applicable when Action is evaluate connection).
+        self._domains: Optional[List[str]] = None
+        # VPN On-Demand Rule Connection network interface type.
+        self._interface_type_match: Optional[vpn_on_demand_rule_interface_type_match.VpnOnDemandRuleInterfaceTypeMatch] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Probe Required Url (Only applicable when Action is evaluate connection and DomainAction is connect if needed).
+        self._probe_required_url: Optional[str] = None
+        # A URL to probe. If this URL is successfully fetched (returning a 200 HTTP status code) without redirection, this rule matches.
+        self._probe_url: Optional[str] = None
+        # Network Service Set Identifiers (SSIDs).
+        self._ssids: Optional[List[str]] = None
+    
     @property
     def action(self,) -> Optional[vpn_on_demand_rule_connection_action.VpnOnDemandRuleConnectionAction]:
         """
@@ -44,34 +70,6 @@ class VpnOnDemandRule(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new vpnOnDemandRule and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # VPN On-Demand Rule Connection Action.
-        self._action: Optional[vpn_on_demand_rule_connection_action.VpnOnDemandRuleConnectionAction] = None
-        # DNS Search Domains.
-        self._dns_search_domains: Optional[List[str]] = None
-        # DNS Search Server Address.
-        self._dns_server_address_match: Optional[List[str]] = None
-        # VPN On-Demand Rule Connection Domain Action.
-        self._domain_action: Optional[vpn_on_demand_rule_connection_domain_action.VpnOnDemandRuleConnectionDomainAction] = None
-        # Domains (Only applicable when Action is evaluate connection).
-        self._domains: Optional[List[str]] = None
-        # VPN On-Demand Rule Connection network interface type.
-        self._interface_type_match: Optional[vpn_on_demand_rule_interface_type_match.VpnOnDemandRuleInterfaceTypeMatch] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Probe Required Url (Only applicable when Action is evaluate connection and DomainAction is connect if needed).
-        self._probe_required_url: Optional[str] = None
-        # A URL to probe. If this URL is successfully fetched (returning a 200 HTTP status code) without redirection, this rule matches.
-        self._probe_url: Optional[str] = None
-        # Network Service Set Identifiers (SSIDs).
-        self._ssids: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> VpnOnDemandRule:
@@ -158,7 +156,9 @@ class VpnOnDemandRule(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import vpn_on_demand_rule_connection_action, vpn_on_demand_rule_connection_domain_action, vpn_on_demand_rule_interface_type_match
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "action": lambda n : setattr(self, 'action', n.get_enum_value(vpn_on_demand_rule_connection_action.VpnOnDemandRuleConnectionAction)),
             "dnsSearchDomains": lambda n : setattr(self, 'dns_search_domains', n.get_collection_of_primitive_values(str)),
             "dnsServerAddressMatch": lambda n : setattr(self, 'dns_server_address_match', n.get_collection_of_primitive_values(str)),

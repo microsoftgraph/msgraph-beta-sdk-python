@@ -1,10 +1,29 @@
 from __future__ import annotations
 from datetime import timedelta
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class TeamworkDisplayScreenConfiguration(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new teamworkDisplayScreenConfiguration and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The brightness level on the device (0-100). Not applicable for Microsoft Teams Rooms devices.
+        self._backlight_brightness: Optional[int] = None
+        # Timeout for backlight (30-3600 secs). Not applicable for Teams Rooms devices.
+        self._backlight_timeout: Optional[Timedelta] = None
+        # True if high contrast mode is enabled. Not applicable for Teams Rooms devices.
+        self._is_high_contrast_enabled: Optional[bool] = None
+        # True if screensaver is enabled. Not applicable for Teams Rooms devices.
+        self._is_screensaver_enabled: Optional[bool] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Screensaver timeout from 30 to 3600 secs. Not applicable for Teams Rooms devices.
+        self._screensaver_timeout: Optional[Timedelta] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -56,26 +75,6 @@ class TeamworkDisplayScreenConfiguration(AdditionalDataHolder, Parsable):
         """
         self._backlight_timeout = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new teamworkDisplayScreenConfiguration and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The brightness level on the device (0-100). Not applicable for Microsoft Teams Rooms devices.
-        self._backlight_brightness: Optional[int] = None
-        # Timeout for backlight (30-3600 secs). Not applicable for Teams Rooms devices.
-        self._backlight_timeout: Optional[Timedelta] = None
-        # True if high contrast mode is enabled. Not applicable for Teams Rooms devices.
-        self._is_high_contrast_enabled: Optional[bool] = None
-        # True if screensaver is enabled. Not applicable for Teams Rooms devices.
-        self._is_screensaver_enabled: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Screensaver timeout from 30 to 3600 secs. Not applicable for Teams Rooms devices.
-        self._screensaver_timeout: Optional[Timedelta] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeamworkDisplayScreenConfiguration:
         """
@@ -93,7 +92,7 @@ class TeamworkDisplayScreenConfiguration(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "backlightBrightness": lambda n : setattr(self, 'backlight_brightness', n.get_int_value()),
             "backlightTimeout": lambda n : setattr(self, 'backlight_timeout', n.get_object_value(Timedelta)),
             "isHighContrastEnabled": lambda n : setattr(self, 'is_high_contrast_enabled', n.get_bool_value()),

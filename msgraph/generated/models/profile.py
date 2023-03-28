@@ -1,30 +1,59 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-educational_activity = lazy_import('msgraph.generated.models.educational_activity')
-entity = lazy_import('msgraph.generated.models.entity')
-item_address = lazy_import('msgraph.generated.models.item_address')
-item_email = lazy_import('msgraph.generated.models.item_email')
-item_patent = lazy_import('msgraph.generated.models.item_patent')
-item_phone = lazy_import('msgraph.generated.models.item_phone')
-item_publication = lazy_import('msgraph.generated.models.item_publication')
-language_proficiency = lazy_import('msgraph.generated.models.language_proficiency')
-person_annotation = lazy_import('msgraph.generated.models.person_annotation')
-person_annual_event = lazy_import('msgraph.generated.models.person_annual_event')
-person_award = lazy_import('msgraph.generated.models.person_award')
-person_certification = lazy_import('msgraph.generated.models.person_certification')
-person_interest = lazy_import('msgraph.generated.models.person_interest')
-person_name = lazy_import('msgraph.generated.models.person_name')
-person_website = lazy_import('msgraph.generated.models.person_website')
-project_participation = lazy_import('msgraph.generated.models.project_participation')
-skill_proficiency = lazy_import('msgraph.generated.models.skill_proficiency')
-user_account_information = lazy_import('msgraph.generated.models.user_account_information')
-web_account = lazy_import('msgraph.generated.models.web_account')
-work_position = lazy_import('msgraph.generated.models.work_position')
+if TYPE_CHECKING:
+    from . import educational_activity, entity, item_address, item_email, item_patent, item_phone, item_publication, language_proficiency, person_annotation, person_annual_event, person_award, person_certification, person_interest, person_name, person_website, project_participation, skill_proficiency, user_account_information, web_account, work_position
+
+from . import entity
 
 class Profile(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new profile and sets the default values.
+        """
+        super().__init__()
+        # The account property
+        self._account: Optional[List[user_account_information.UserAccountInformation]] = None
+        # Represents details of addresses associated with the user.
+        self._addresses: Optional[List[item_address.ItemAddress]] = None
+        # Represents the details of meaningful dates associated with a person.
+        self._anniversaries: Optional[List[person_annual_event.PersonAnnualEvent]] = None
+        # Represents the details of awards or honors associated with a person.
+        self._awards: Optional[List[person_award.PersonAward]] = None
+        # Represents the details of certifications associated with a person.
+        self._certifications: Optional[List[person_certification.PersonCertification]] = None
+        # Represents data that a user has supplied related to undergraduate, graduate, postgraduate or other educational activities.
+        self._educational_activities: Optional[List[educational_activity.EducationalActivity]] = None
+        # Represents detailed information about email addresses associated with the user.
+        self._emails: Optional[List[item_email.ItemEmail]] = None
+        # Provides detailed information about interests the user has associated with themselves in various services.
+        self._interests: Optional[List[person_interest.PersonInterest]] = None
+        # Represents detailed information about languages that a user has added to their profile.
+        self._languages: Optional[List[language_proficiency.LanguageProficiency]] = None
+        # Represents the names a user has added to their profile.
+        self._names: Optional[List[person_name.PersonName]] = None
+        # Represents notes that a user has added to their profile.
+        self._notes: Optional[List[person_annotation.PersonAnnotation]] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Represents patents that a user has added to their profile.
+        self._patents: Optional[List[item_patent.ItemPatent]] = None
+        # Represents detailed information about phone numbers associated with a user in various services.
+        self._phones: Optional[List[item_phone.ItemPhone]] = None
+        # Represents detailed information about work positions associated with a user's profile.
+        self._positions: Optional[List[work_position.WorkPosition]] = None
+        # Represents detailed information about projects associated with a user.
+        self._projects: Optional[List[project_participation.ProjectParticipation]] = None
+        # Represents details of any publications a user has added to their profile.
+        self._publications: Optional[List[item_publication.ItemPublication]] = None
+        # Represents detailed information about skills associated with a user in various services.
+        self._skills: Optional[List[skill_proficiency.SkillProficiency]] = None
+        # Represents web accounts the user has indicated they use or has added to their user profile.
+        self._web_accounts: Optional[List[web_account.WebAccount]] = None
+        # Represents detailed information about websites associated with a user in various services.
+        self._websites: Optional[List[person_website.PersonWebsite]] = None
+    
     @property
     def account(self,) -> Optional[List[user_account_information.UserAccountInformation]]:
         """
@@ -110,52 +139,6 @@ class Profile(entity.Entity):
         """
         self._certifications = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new profile and sets the default values.
-        """
-        super().__init__()
-        # The account property
-        self._account: Optional[List[user_account_information.UserAccountInformation]] = None
-        # Represents details of addresses associated with the user.
-        self._addresses: Optional[List[item_address.ItemAddress]] = None
-        # Represents the details of meaningful dates associated with a person.
-        self._anniversaries: Optional[List[person_annual_event.PersonAnnualEvent]] = None
-        # Represents the details of awards or honors associated with a person.
-        self._awards: Optional[List[person_award.PersonAward]] = None
-        # Represents the details of certifications associated with a person.
-        self._certifications: Optional[List[person_certification.PersonCertification]] = None
-        # Represents data that a user has supplied related to undergraduate, graduate, postgraduate or other educational activities.
-        self._educational_activities: Optional[List[educational_activity.EducationalActivity]] = None
-        # Represents detailed information about email addresses associated with the user.
-        self._emails: Optional[List[item_email.ItemEmail]] = None
-        # Provides detailed information about interests the user has associated with themselves in various services.
-        self._interests: Optional[List[person_interest.PersonInterest]] = None
-        # Represents detailed information about languages that a user has added to their profile.
-        self._languages: Optional[List[language_proficiency.LanguageProficiency]] = None
-        # Represents the names a user has added to their profile.
-        self._names: Optional[List[person_name.PersonName]] = None
-        # Represents notes that a user has added to their profile.
-        self._notes: Optional[List[person_annotation.PersonAnnotation]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Represents patents that a user has added to their profile.
-        self._patents: Optional[List[item_patent.ItemPatent]] = None
-        # Represents detailed information about phone numbers associated with a user in various services.
-        self._phones: Optional[List[item_phone.ItemPhone]] = None
-        # Represents detailed information about work positions associated with a user's profile.
-        self._positions: Optional[List[work_position.WorkPosition]] = None
-        # Represents detailed information about projects associated with a user.
-        self._projects: Optional[List[project_participation.ProjectParticipation]] = None
-        # Represents details of any publications a user has added to their profile.
-        self._publications: Optional[List[item_publication.ItemPublication]] = None
-        # Represents detailed information about skills associated with a user in various services.
-        self._skills: Optional[List[skill_proficiency.SkillProficiency]] = None
-        # Represents web accounts the user has indicated they use or has added to their user profile.
-        self._web_accounts: Optional[List[web_account.WebAccount]] = None
-        # Represents detailed information about websites associated with a user in various services.
-        self._websites: Optional[List[person_website.PersonWebsite]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Profile:
         """
@@ -207,7 +190,9 @@ class Profile(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import educational_activity, entity, item_address, item_email, item_patent, item_phone, item_publication, language_proficiency, person_annotation, person_annual_event, person_award, person_certification, person_interest, person_name, person_website, project_participation, skill_proficiency, user_account_information, web_account, work_position
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "account": lambda n : setattr(self, 'account', n.get_collection_of_object_values(user_account_information.UserAccountInformation)),
             "addresses": lambda n : setattr(self, 'addresses', n.get_collection_of_object_values(item_address.ItemAddress)),
             "anniversaries": lambda n : setattr(self, 'anniversaries', n.get_collection_of_object_values(person_annual_event.PersonAnnualEvent)),

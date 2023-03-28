@@ -7,25 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-picture_request_builder = lazy_import('msgraph.generated.financials.companies.item.employees.item.picture.picture_request_builder')
-picture_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.employees.item.picture.item.picture_item_request_builder')
-employee = lazy_import('msgraph.generated.models.employee')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ......models import employee
+    from ......models.o_data_errors import o_data_error
+    from .picture import picture_request_builder
+    from .picture.item import picture_item_request_builder
 
 class EmployeeItemRequestBuilder():
     """
     Provides operations to manage the employees property of the microsoft.graph.company entity.
     """
-    @property
-    def picture(self) -> picture_request_builder.PictureRequestBuilder:
-        """
-        Provides operations to manage the picture property of the microsoft.graph.employee entity.
-        """
-        return picture_request_builder.PictureRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new EmployeeItemRequestBuilder and sets the default values.
@@ -53,6 +46,8 @@ class EmployeeItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -71,12 +66,16 @@ class EmployeeItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import employee
+
         return await self.request_adapter.send_async(request_info, employee.Employee, error_mapping)
     
     async def patch(self,body: Optional[employee.Employee] = None, request_configuration: Optional[EmployeeItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[employee.Employee]:
@@ -92,12 +91,16 @@ class EmployeeItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import employee
+
         return await self.request_adapter.send_async(request_info, employee.Employee, error_mapping)
     
     def picture_by_id(self,id: str) -> picture_item_request_builder.PictureItemRequestBuilder:
@@ -109,6 +112,8 @@ class EmployeeItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .picture.item import picture_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["picture%2Did"] = id
         return picture_item_request_builder.PictureItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -168,6 +173,15 @@ class EmployeeItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def picture(self) -> picture_request_builder.PictureRequestBuilder:
+        """
+        Provides operations to manage the picture property of the microsoft.graph.employee entity.
+        """
+        from .picture import picture_request_builder
+
+        return picture_request_builder.PictureRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class EmployeeItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -185,12 +199,6 @@ class EmployeeItemRequestBuilder():
         """
         Get employees from financials
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -206,6 +214,12 @@ class EmployeeItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class EmployeeItemRequestBuilderGetRequestConfiguration():

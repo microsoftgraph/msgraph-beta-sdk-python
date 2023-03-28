@@ -1,17 +1,60 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-currency = lazy_import('msgraph.generated.models.currency')
-entity = lazy_import('msgraph.generated.models.entity')
-payment_method = lazy_import('msgraph.generated.models.payment_method')
-payment_term = lazy_import('msgraph.generated.models.payment_term')
-picture = lazy_import('msgraph.generated.models.picture')
-postal_address_type = lazy_import('msgraph.generated.models.postal_address_type')
+if TYPE_CHECKING:
+    from . import currency, entity, payment_method, payment_term, picture, postal_address_type
+
+from . import entity
 
 class Vendor(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new vendor and sets the default values.
+        """
+        super().__init__()
+        # The address property
+        self._address: Optional[postal_address_type.PostalAddressType] = None
+        # The balance property
+        self._balance: Optional[float] = None
+        # The blocked property
+        self._blocked: Optional[str] = None
+        # The currency property
+        self._currency: Optional[currency.Currency] = None
+        # The currencyCode property
+        self._currency_code: Optional[str] = None
+        # The currencyId property
+        self._currency_id: Optional[Guid] = None
+        # The displayName property
+        self._display_name: Optional[str] = None
+        # The email property
+        self._email: Optional[str] = None
+        # The lastModifiedDateTime property
+        self._last_modified_date_time: Optional[datetime] = None
+        # The number property
+        self._number: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The paymentMethod property
+        self._payment_method: Optional[payment_method.PaymentMethod] = None
+        # The paymentMethodId property
+        self._payment_method_id: Optional[Guid] = None
+        # The paymentTerm property
+        self._payment_term: Optional[payment_term.PaymentTerm] = None
+        # The paymentTermsId property
+        self._payment_terms_id: Optional[Guid] = None
+        # The phoneNumber property
+        self._phone_number: Optional[str] = None
+        # The picture property
+        self._picture: Optional[List[picture.Picture]] = None
+        # The taxLiable property
+        self._tax_liable: Optional[bool] = None
+        # The taxRegistrationNumber property
+        self._tax_registration_number: Optional[str] = None
+        # The website property
+        self._website: Optional[str] = None
+    
     @property
     def address(self,) -> Optional[postal_address_type.PostalAddressType]:
         """
@@ -62,52 +105,6 @@ class Vendor(entity.Entity):
             value: Value to set for the blocked property.
         """
         self._blocked = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new vendor and sets the default values.
-        """
-        super().__init__()
-        # The address property
-        self._address: Optional[postal_address_type.PostalAddressType] = None
-        # The balance property
-        self._balance: Optional[float] = None
-        # The blocked property
-        self._blocked: Optional[str] = None
-        # The currency property
-        self._currency: Optional[currency.Currency] = None
-        # The currencyCode property
-        self._currency_code: Optional[str] = None
-        # The currencyId property
-        self._currency_id: Optional[Guid] = None
-        # The displayName property
-        self._display_name: Optional[str] = None
-        # The email property
-        self._email: Optional[str] = None
-        # The lastModifiedDateTime property
-        self._last_modified_date_time: Optional[datetime] = None
-        # The number property
-        self._number: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The paymentMethod property
-        self._payment_method: Optional[payment_method.PaymentMethod] = None
-        # The paymentMethodId property
-        self._payment_method_id: Optional[Guid] = None
-        # The paymentTerm property
-        self._payment_term: Optional[payment_term.PaymentTerm] = None
-        # The paymentTermsId property
-        self._payment_terms_id: Optional[Guid] = None
-        # The phoneNumber property
-        self._phone_number: Optional[str] = None
-        # The picture property
-        self._picture: Optional[List[picture.Picture]] = None
-        # The taxLiable property
-        self._tax_liable: Optional[bool] = None
-        # The taxRegistrationNumber property
-        self._tax_registration_number: Optional[str] = None
-        # The website property
-        self._website: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Vendor:
@@ -211,7 +208,9 @@ class Vendor(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import currency, entity, payment_method, payment_term, picture, postal_address_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "address": lambda n : setattr(self, 'address', n.get_object_value(postal_address_type.PostalAddressType)),
             "balance": lambda n : setattr(self, 'balance', n.get_float_value()),
             "blocked": lambda n : setattr(self, 'blocked', n.get_str_value()),

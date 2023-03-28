@@ -7,11 +7,11 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-team_template_definition = lazy_import('msgraph.generated.models.team_template_definition')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ........models import team_template_definition
+    from ........models.o_data_errors import o_data_error
 
 class TemplateDefinitionRequestBuilder():
     """
@@ -37,7 +37,7 @@ class TemplateDefinitionRequestBuilder():
     
     async def get(self,request_configuration: Optional[TemplateDefinitionRequestBuilderGetRequestConfiguration] = None) -> Optional[team_template_definition.TeamTemplateDefinition]:
         """
-        Get templateDefinition from teamwork
+        Generic representation of a team template definition for a team with a specific structure and configuration.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[team_template_definition.TeamTemplateDefinition]
@@ -45,17 +45,21 @@ class TemplateDefinitionRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ........models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ........models import team_template_definition
+
         return await self.request_adapter.send_async(request_info, team_template_definition.TeamTemplateDefinition, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TemplateDefinitionRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get templateDefinition from teamwork
+        Generic representation of a team template definition for a team with a specific structure and configuration.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -74,14 +78,8 @@ class TemplateDefinitionRequestBuilder():
     @dataclass
     class TemplateDefinitionRequestBuilderGetQueryParameters():
         """
-        Get templateDefinition from teamwork
+        Generic representation of a team template definition for a team with a specific structure and configuration.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -97,6 +95,12 @@ class TemplateDefinitionRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class TemplateDefinitionRequestBuilderGetRequestConfiguration():

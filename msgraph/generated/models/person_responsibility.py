@@ -1,28 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-item_facet = lazy_import('msgraph.generated.models.item_facet')
+if TYPE_CHECKING:
+    from . import item_facet
+
+from . import item_facet
 
 class PersonResponsibility(item_facet.ItemFacet):
-    @property
-    def collaboration_tags(self,) -> Optional[List[str]]:
-        """
-        Gets the collaborationTags property value. Contains experience scenario tags a user has associated with the interest. Allowed values in the collection are: askMeAbout, ableToMentor, wantsToLearn, wantsToImprove.
-        Returns: Optional[List[str]]
-        """
-        return self._collaboration_tags
-    
-    @collaboration_tags.setter
-    def collaboration_tags(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the collaborationTags property value. Contains experience scenario tags a user has associated with the interest. Allowed values in the collection are: askMeAbout, ableToMentor, wantsToLearn, wantsToImprove.
-        Args:
-            value: Value to set for the collaboration_tags property.
-        """
-        self._collaboration_tags = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new PersonResponsibility and sets the default values.
@@ -39,6 +24,23 @@ class PersonResponsibility(item_facet.ItemFacet):
         self._thumbnail_url: Optional[str] = None
         # Contains a link to a web page or resource about the responsibility.
         self._web_url: Optional[str] = None
+    
+    @property
+    def collaboration_tags(self,) -> Optional[List[str]]:
+        """
+        Gets the collaborationTags property value. Contains experience scenario tags a user has associated with the interest. Allowed values in the collection are: askMeAbout, ableToMentor, wantsToLearn, wantsToImprove.
+        Returns: Optional[List[str]]
+        """
+        return self._collaboration_tags
+    
+    @collaboration_tags.setter
+    def collaboration_tags(self,value: Optional[List[str]] = None) -> None:
+        """
+        Sets the collaborationTags property value. Contains experience scenario tags a user has associated with the interest. Allowed values in the collection are: askMeAbout, ableToMentor, wantsToLearn, wantsToImprove.
+        Args:
+            value: Value to set for the collaboration_tags property.
+        """
+        self._collaboration_tags = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PersonResponsibility:
@@ -91,7 +93,9 @@ class PersonResponsibility(item_facet.ItemFacet):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import item_facet
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "collaborationTags": lambda n : setattr(self, 'collaboration_tags', n.get_collection_of_primitive_values(str)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

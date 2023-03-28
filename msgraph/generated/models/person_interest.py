@@ -1,11 +1,32 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-item_facet = lazy_import('msgraph.generated.models.item_facet')
+if TYPE_CHECKING:
+    from . import item_facet
+
+from . import item_facet
 
 class PersonInterest(item_facet.ItemFacet):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new PersonInterest and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.personInterest"
+        # Contains categories a user has associated with the interest (for example, personal, recipies).
+        self._categories: Optional[List[str]] = None
+        # Contains experience scenario tags a user has associated with the interest. Allowed values in the collection are: askMeAbout, ableToMentor, wantsToLearn, wantsToImprove.
+        self._collaboration_tags: Optional[List[str]] = None
+        # Contains a description of the interest.
+        self._description: Optional[str] = None
+        # Contains a friendly name for the interest.
+        self._display_name: Optional[str] = None
+        # The thumbnailUrl property
+        self._thumbnail_url: Optional[str] = None
+        # Contains a link to a web page or resource about the interest.
+        self._web_url: Optional[str] = None
+    
     @property
     def categories(self,) -> Optional[List[str]]:
         """
@@ -39,25 +60,6 @@ class PersonInterest(item_facet.ItemFacet):
             value: Value to set for the collaboration_tags property.
         """
         self._collaboration_tags = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new PersonInterest and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.personInterest"
-        # Contains categories a user has associated with the interest (for example, personal, recipies).
-        self._categories: Optional[List[str]] = None
-        # Contains experience scenario tags a user has associated with the interest. Allowed values in the collection are: askMeAbout, ableToMentor, wantsToLearn, wantsToImprove.
-        self._collaboration_tags: Optional[List[str]] = None
-        # Contains a description of the interest.
-        self._description: Optional[str] = None
-        # Contains a friendly name for the interest.
-        self._display_name: Optional[str] = None
-        # The thumbnailUrl property
-        self._thumbnail_url: Optional[str] = None
-        # Contains a link to a web page or resource about the interest.
-        self._web_url: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PersonInterest:
@@ -110,7 +112,9 @@ class PersonInterest(item_facet.ItemFacet):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import item_facet
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_primitive_values(str)),
             "collaborationTags": lambda n : setattr(self, 'collaboration_tags', n.get_collection_of_primitive_values(str)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

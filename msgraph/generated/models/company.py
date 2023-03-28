@@ -1,46 +1,99 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-account = lazy_import('msgraph.generated.models.account')
-aged_accounts_payable = lazy_import('msgraph.generated.models.aged_accounts_payable')
-aged_accounts_receivable = lazy_import('msgraph.generated.models.aged_accounts_receivable')
-company_information = lazy_import('msgraph.generated.models.company_information')
-country_region = lazy_import('msgraph.generated.models.country_region')
-currency = lazy_import('msgraph.generated.models.currency')
-customer = lazy_import('msgraph.generated.models.customer')
-customer_payment = lazy_import('msgraph.generated.models.customer_payment')
-customer_payment_journal = lazy_import('msgraph.generated.models.customer_payment_journal')
-dimension = lazy_import('msgraph.generated.models.dimension')
-dimension_value = lazy_import('msgraph.generated.models.dimension_value')
-employee = lazy_import('msgraph.generated.models.employee')
-entity = lazy_import('msgraph.generated.models.entity')
-general_ledger_entry = lazy_import('msgraph.generated.models.general_ledger_entry')
-item = lazy_import('msgraph.generated.models.item')
-item_category = lazy_import('msgraph.generated.models.item_category')
-journal = lazy_import('msgraph.generated.models.journal')
-journal_line = lazy_import('msgraph.generated.models.journal_line')
-payment_method = lazy_import('msgraph.generated.models.payment_method')
-payment_term = lazy_import('msgraph.generated.models.payment_term')
-picture = lazy_import('msgraph.generated.models.picture')
-purchase_invoice = lazy_import('msgraph.generated.models.purchase_invoice')
-purchase_invoice_line = lazy_import('msgraph.generated.models.purchase_invoice_line')
-sales_credit_memo = lazy_import('msgraph.generated.models.sales_credit_memo')
-sales_credit_memo_line = lazy_import('msgraph.generated.models.sales_credit_memo_line')
-sales_invoice = lazy_import('msgraph.generated.models.sales_invoice')
-sales_invoice_line = lazy_import('msgraph.generated.models.sales_invoice_line')
-sales_order = lazy_import('msgraph.generated.models.sales_order')
-sales_order_line = lazy_import('msgraph.generated.models.sales_order_line')
-sales_quote = lazy_import('msgraph.generated.models.sales_quote')
-sales_quote_line = lazy_import('msgraph.generated.models.sales_quote_line')
-shipment_method = lazy_import('msgraph.generated.models.shipment_method')
-tax_area = lazy_import('msgraph.generated.models.tax_area')
-tax_group = lazy_import('msgraph.generated.models.tax_group')
-unit_of_measure = lazy_import('msgraph.generated.models.unit_of_measure')
-vendor = lazy_import('msgraph.generated.models.vendor')
+if TYPE_CHECKING:
+    from . import account, aged_accounts_payable, aged_accounts_receivable, company_information, country_region, currency, customer, customer_payment, customer_payment_journal, dimension, dimension_value, employee, entity, general_ledger_entry, item, item_category, journal, journal_line, payment_method, payment_term, picture, purchase_invoice, purchase_invoice_line, sales_credit_memo, sales_credit_memo_line, sales_invoice, sales_invoice_line, sales_order, sales_order_line, sales_quote, sales_quote_line, shipment_method, tax_area, tax_group, unit_of_measure, vendor
+
+from . import entity
 
 class Company(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new Company and sets the default values.
+        """
+        super().__init__()
+        # The accounts property
+        self._accounts: Optional[List[account.Account]] = None
+        # The agedAccountsPayable property
+        self._aged_accounts_payable: Optional[List[aged_accounts_payable.AgedAccountsPayable]] = None
+        # The agedAccountsReceivable property
+        self._aged_accounts_receivable: Optional[List[aged_accounts_receivable.AgedAccountsReceivable]] = None
+        # The businessProfileId property
+        self._business_profile_id: Optional[str] = None
+        # The companyInformation property
+        self._company_information: Optional[List[company_information.CompanyInformation]] = None
+        # The countriesRegions property
+        self._countries_regions: Optional[List[country_region.CountryRegion]] = None
+        # The currencies property
+        self._currencies: Optional[List[currency.Currency]] = None
+        # The customerPaymentJournals property
+        self._customer_payment_journals: Optional[List[customer_payment_journal.CustomerPaymentJournal]] = None
+        # The customerPayments property
+        self._customer_payments: Optional[List[customer_payment.CustomerPayment]] = None
+        # The customers property
+        self._customers: Optional[List[customer.Customer]] = None
+        # The dimensionValues property
+        self._dimension_values: Optional[List[dimension_value.DimensionValue]] = None
+        # The dimensions property
+        self._dimensions: Optional[List[dimension.Dimension]] = None
+        # The displayName property
+        self._display_name: Optional[str] = None
+        # The employees property
+        self._employees: Optional[List[employee.Employee]] = None
+        # The generalLedgerEntries property
+        self._general_ledger_entries: Optional[List[general_ledger_entry.GeneralLedgerEntry]] = None
+        # The itemCategories property
+        self._item_categories: Optional[List[item_category.ItemCategory]] = None
+        # The items property
+        self._items: Optional[List[item.Item]] = None
+        # The journalLines property
+        self._journal_lines: Optional[List[journal_line.JournalLine]] = None
+        # The journals property
+        self._journals: Optional[List[journal.Journal]] = None
+        # The name property
+        self._name: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The paymentMethods property
+        self._payment_methods: Optional[List[payment_method.PaymentMethod]] = None
+        # The paymentTerms property
+        self._payment_terms: Optional[List[payment_term.PaymentTerm]] = None
+        # The picture property
+        self._picture: Optional[List[picture.Picture]] = None
+        # The purchaseInvoiceLines property
+        self._purchase_invoice_lines: Optional[List[purchase_invoice_line.PurchaseInvoiceLine]] = None
+        # The purchaseInvoices property
+        self._purchase_invoices: Optional[List[purchase_invoice.PurchaseInvoice]] = None
+        # The salesCreditMemoLines property
+        self._sales_credit_memo_lines: Optional[List[sales_credit_memo_line.SalesCreditMemoLine]] = None
+        # The salesCreditMemos property
+        self._sales_credit_memos: Optional[List[sales_credit_memo.SalesCreditMemo]] = None
+        # The salesInvoiceLines property
+        self._sales_invoice_lines: Optional[List[sales_invoice_line.SalesInvoiceLine]] = None
+        # The salesInvoices property
+        self._sales_invoices: Optional[List[sales_invoice.SalesInvoice]] = None
+        # The salesOrderLines property
+        self._sales_order_lines: Optional[List[sales_order_line.SalesOrderLine]] = None
+        # The salesOrders property
+        self._sales_orders: Optional[List[sales_order.SalesOrder]] = None
+        # The salesQuoteLines property
+        self._sales_quote_lines: Optional[List[sales_quote_line.SalesQuoteLine]] = None
+        # The salesQuotes property
+        self._sales_quotes: Optional[List[sales_quote.SalesQuote]] = None
+        # The shipmentMethods property
+        self._shipment_methods: Optional[List[shipment_method.ShipmentMethod]] = None
+        # The systemVersion property
+        self._system_version: Optional[str] = None
+        # The taxAreas property
+        self._tax_areas: Optional[List[tax_area.TaxArea]] = None
+        # The taxGroups property
+        self._tax_groups: Optional[List[tax_group.TaxGroup]] = None
+        # The unitsOfMeasure property
+        self._units_of_measure: Optional[List[unit_of_measure.UnitOfMeasure]] = None
+        # The vendors property
+        self._vendors: Optional[List[vendor.Vendor]] = None
+    
     @property
     def accounts(self,) -> Optional[List[account.Account]]:
         """
@@ -125,92 +178,6 @@ class Company(entity.Entity):
             value: Value to set for the company_information property.
         """
         self._company_information = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new company and sets the default values.
-        """
-        super().__init__()
-        # The accounts property
-        self._accounts: Optional[List[account.Account]] = None
-        # The agedAccountsPayable property
-        self._aged_accounts_payable: Optional[List[aged_accounts_payable.AgedAccountsPayable]] = None
-        # The agedAccountsReceivable property
-        self._aged_accounts_receivable: Optional[List[aged_accounts_receivable.AgedAccountsReceivable]] = None
-        # The businessProfileId property
-        self._business_profile_id: Optional[str] = None
-        # The companyInformation property
-        self._company_information: Optional[List[company_information.CompanyInformation]] = None
-        # The countriesRegions property
-        self._countries_regions: Optional[List[country_region.CountryRegion]] = None
-        # The currencies property
-        self._currencies: Optional[List[currency.Currency]] = None
-        # The customerPaymentJournals property
-        self._customer_payment_journals: Optional[List[customer_payment_journal.CustomerPaymentJournal]] = None
-        # The customerPayments property
-        self._customer_payments: Optional[List[customer_payment.CustomerPayment]] = None
-        # The customers property
-        self._customers: Optional[List[customer.Customer]] = None
-        # The dimensionValues property
-        self._dimension_values: Optional[List[dimension_value.DimensionValue]] = None
-        # The dimensions property
-        self._dimensions: Optional[List[dimension.Dimension]] = None
-        # The displayName property
-        self._display_name: Optional[str] = None
-        # The employees property
-        self._employees: Optional[List[employee.Employee]] = None
-        # The generalLedgerEntries property
-        self._general_ledger_entries: Optional[List[general_ledger_entry.GeneralLedgerEntry]] = None
-        # The itemCategories property
-        self._item_categories: Optional[List[item_category.ItemCategory]] = None
-        # The items property
-        self._items: Optional[List[item.Item]] = None
-        # The journalLines property
-        self._journal_lines: Optional[List[journal_line.JournalLine]] = None
-        # The journals property
-        self._journals: Optional[List[journal.Journal]] = None
-        # The name property
-        self._name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The paymentMethods property
-        self._payment_methods: Optional[List[payment_method.PaymentMethod]] = None
-        # The paymentTerms property
-        self._payment_terms: Optional[List[payment_term.PaymentTerm]] = None
-        # The picture property
-        self._picture: Optional[List[picture.Picture]] = None
-        # The purchaseInvoiceLines property
-        self._purchase_invoice_lines: Optional[List[purchase_invoice_line.PurchaseInvoiceLine]] = None
-        # The purchaseInvoices property
-        self._purchase_invoices: Optional[List[purchase_invoice.PurchaseInvoice]] = None
-        # The salesCreditMemoLines property
-        self._sales_credit_memo_lines: Optional[List[sales_credit_memo_line.SalesCreditMemoLine]] = None
-        # The salesCreditMemos property
-        self._sales_credit_memos: Optional[List[sales_credit_memo.SalesCreditMemo]] = None
-        # The salesInvoiceLines property
-        self._sales_invoice_lines: Optional[List[sales_invoice_line.SalesInvoiceLine]] = None
-        # The salesInvoices property
-        self._sales_invoices: Optional[List[sales_invoice.SalesInvoice]] = None
-        # The salesOrderLines property
-        self._sales_order_lines: Optional[List[sales_order_line.SalesOrderLine]] = None
-        # The salesOrders property
-        self._sales_orders: Optional[List[sales_order.SalesOrder]] = None
-        # The salesQuoteLines property
-        self._sales_quote_lines: Optional[List[sales_quote_line.SalesQuoteLine]] = None
-        # The salesQuotes property
-        self._sales_quotes: Optional[List[sales_quote.SalesQuote]] = None
-        # The shipmentMethods property
-        self._shipment_methods: Optional[List[shipment_method.ShipmentMethod]] = None
-        # The systemVersion property
-        self._system_version: Optional[str] = None
-        # The taxAreas property
-        self._tax_areas: Optional[List[tax_area.TaxArea]] = None
-        # The taxGroups property
-        self._tax_groups: Optional[List[tax_group.TaxGroup]] = None
-        # The unitsOfMeasure property
-        self._units_of_measure: Optional[List[unit_of_measure.UnitOfMeasure]] = None
-        # The vendors property
-        self._vendors: Optional[List[vendor.Vendor]] = None
     
     @property
     def countries_regions(self,) -> Optional[List[country_region.CountryRegion]]:
@@ -399,7 +366,9 @@ class Company(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import account, aged_accounts_payable, aged_accounts_receivable, company_information, country_region, currency, customer, customer_payment, customer_payment_journal, dimension, dimension_value, employee, entity, general_ledger_entry, item, item_category, journal, journal_line, payment_method, payment_term, picture, purchase_invoice, purchase_invoice_line, sales_credit_memo, sales_credit_memo_line, sales_invoice, sales_invoice_line, sales_order, sales_order_line, sales_quote, sales_quote_line, shipment_method, tax_area, tax_group, unit_of_measure, vendor
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accounts": lambda n : setattr(self, 'accounts', n.get_collection_of_object_values(account.Account)),
             "agedAccountsPayable": lambda n : setattr(self, 'aged_accounts_payable', n.get_collection_of_object_values(aged_accounts_payable.AgedAccountsPayable)),
             "agedAccountsReceivable": lambda n : setattr(self, 'aged_accounts_receivable', n.get_collection_of_object_values(aged_accounts_receivable.AgedAccountsReceivable)),

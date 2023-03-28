@@ -1,11 +1,39 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from .. import entity
+
+from .. import entity
 
 class ManagedDeviceComplianceTrend(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new managedDeviceComplianceTrend and sets the default values.
+        """
+        super().__init__()
+        # The number of devices with a compliant status. Required. Read-only.
+        self._compliant_device_count: Optional[int] = None
+        # The number of devices manged by Configuration Manager. Required. Read-only.
+        self._config_manager_device_count: Optional[int] = None
+        # The date and time compliance snapshot was performed. Required. Read-only.
+        self._count_date_time: Optional[str] = None
+        # The number of devices with an error status. Required. Read-only.
+        self._error_device_count: Optional[int] = None
+        # The number of devices that are in a grace period status. Required. Read-only.
+        self._in_grace_period_device_count: Optional[int] = None
+        # The number of devices that are in a non-compliant status. Required. Read-only.
+        self._noncompliant_device_count: Optional[int] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The display name for the managed tenant. Optional. Read-only.
+        self._tenant_display_name: Optional[str] = None
+        # The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
+        self._tenant_id: Optional[str] = None
+        # The number of devices in an unknown status. Required. Read-only.
+        self._unknown_device_count: Optional[int] = None
+    
     @property
     def compliant_device_count(self,) -> Optional[int]:
         """
@@ -39,32 +67,6 @@ class ManagedDeviceComplianceTrend(entity.Entity):
             value: Value to set for the config_manager_device_count property.
         """
         self._config_manager_device_count = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new managedDeviceComplianceTrend and sets the default values.
-        """
-        super().__init__()
-        # The number of devices with a compliant status. Required. Read-only.
-        self._compliant_device_count: Optional[int] = None
-        # The number of devices manged by Configuration Manager. Required. Read-only.
-        self._config_manager_device_count: Optional[int] = None
-        # The date and time compliance snapshot was performed. Required. Read-only.
-        self._count_date_time: Optional[str] = None
-        # The number of devices with an error status. Required. Read-only.
-        self._error_device_count: Optional[int] = None
-        # The number of devices that are in a grace period status. Required. Read-only.
-        self._in_grace_period_device_count: Optional[int] = None
-        # The number of devices that are in a non-compliant status. Required. Read-only.
-        self._noncompliant_device_count: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The display name for the managed tenant. Optional. Read-only.
-        self._tenant_display_name: Optional[str] = None
-        # The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
-        self._tenant_id: Optional[str] = None
-        # The number of devices in an unknown status. Required. Read-only.
-        self._unknown_device_count: Optional[int] = None
     
     @property
     def count_date_time(self,) -> Optional[str]:
@@ -117,7 +119,9 @@ class ManagedDeviceComplianceTrend(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "compliantDeviceCount": lambda n : setattr(self, 'compliant_device_count', n.get_int_value()),
             "configManagerDeviceCount": lambda n : setattr(self, 'config_manager_device_count', n.get_int_value()),
             "countDateTime": lambda n : setattr(self, 'count_date_time', n.get_str_value()),

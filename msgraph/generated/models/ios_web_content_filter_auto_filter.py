@@ -1,11 +1,24 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-ios_web_content_filter_base = lazy_import('msgraph.generated.models.ios_web_content_filter_base')
+if TYPE_CHECKING:
+    from . import ios_web_content_filter_base
+
+from . import ios_web_content_filter_base
 
 class IosWebContentFilterAutoFilter(ios_web_content_filter_base.IosWebContentFilterBase):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new IosWebContentFilterAutoFilter and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.iosWebContentFilterAutoFilter"
+        # Additional URLs allowed for access
+        self._allowed_urls: Optional[List[str]] = None
+        # Additional URLs blocked for access
+        self._blocked_urls: Optional[List[str]] = None
+    
     @property
     def allowed_urls(self,) -> Optional[List[str]]:
         """
@@ -40,17 +53,6 @@ class IosWebContentFilterAutoFilter(ios_web_content_filter_base.IosWebContentFil
         """
         self._blocked_urls = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new IosWebContentFilterAutoFilter and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.iosWebContentFilterAutoFilter"
-        # Additional URLs allowed for access
-        self._allowed_urls: Optional[List[str]] = None
-        # Additional URLs blocked for access
-        self._blocked_urls: Optional[List[str]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosWebContentFilterAutoFilter:
         """
@@ -68,7 +70,9 @@ class IosWebContentFilterAutoFilter(ios_web_content_filter_base.IosWebContentFil
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import ios_web_content_filter_base
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowedUrls": lambda n : setattr(self, 'allowed_urls', n.get_collection_of_primitive_values(str)),
             "blockedUrls": lambda n : setattr(self, 'blocked_urls', n.get_collection_of_primitive_values(str)),
         }

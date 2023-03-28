@@ -1,11 +1,22 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-authentication_combination_configuration = lazy_import('msgraph.generated.models.authentication_combination_configuration')
+if TYPE_CHECKING:
+    from . import authentication_combination_configuration
+
+from . import authentication_combination_configuration
 
 class Fido2CombinationConfiguration(authentication_combination_configuration.AuthenticationCombinationConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new Fido2CombinationConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.fido2CombinationConfiguration"
+        # A list of AAGUIDs allowed to be used as part of the specified authentication method combinations.
+        self._allowed_a_a_g_u_i_ds: Optional[List[str]] = None
+    
     @property
     def allowed_a_a_g_u_i_ds(self,) -> Optional[List[str]]:
         """
@@ -22,15 +33,6 @@ class Fido2CombinationConfiguration(authentication_combination_configuration.Aut
             value: Value to set for the allowed_a_a_g_u_i_ds property.
         """
         self._allowed_a_a_g_u_i_ds = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Fido2CombinationConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.fido2CombinationConfiguration"
-        # A list of AAGUIDs allowed to be used as part of the specified authentication method combinations.
-        self._allowed_a_a_g_u_i_ds: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Fido2CombinationConfiguration:
@@ -49,7 +51,9 @@ class Fido2CombinationConfiguration(authentication_combination_configuration.Aut
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import authentication_combination_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowedAAGUIDs": lambda n : setattr(self, 'allowed_a_a_g_u_i_ds', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()

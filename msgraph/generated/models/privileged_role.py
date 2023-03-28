@@ -1,14 +1,29 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-privileged_role_assignment = lazy_import('msgraph.generated.models.privileged_role_assignment')
-privileged_role_settings = lazy_import('msgraph.generated.models.privileged_role_settings')
-privileged_role_summary = lazy_import('msgraph.generated.models.privileged_role_summary')
+if TYPE_CHECKING:
+    from . import entity, privileged_role_assignment, privileged_role_settings, privileged_role_summary
+
+from . import entity
 
 class PrivilegedRole(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new privilegedRole and sets the default values.
+        """
+        super().__init__()
+        # The assignments for this role. Read-only. Nullable.
+        self._assignments: Optional[List[privileged_role_assignment.PrivilegedRoleAssignment]] = None
+        # Role name.
+        self._name: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The settings for this role. Read-only. Nullable.
+        self._settings: Optional[privileged_role_settings.PrivilegedRoleSettings] = None
+        # The summary information for this role. Read-only. Nullable.
+        self._summary: Optional[privileged_role_summary.PrivilegedRoleSummary] = None
+    
     @property
     def assignments(self,) -> Optional[List[privileged_role_assignment.PrivilegedRoleAssignment]]:
         """
@@ -25,22 +40,6 @@ class PrivilegedRole(entity.Entity):
             value: Value to set for the assignments property.
         """
         self._assignments = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new privilegedRole and sets the default values.
-        """
-        super().__init__()
-        # The assignments for this role. Read-only. Nullable.
-        self._assignments: Optional[List[privileged_role_assignment.PrivilegedRoleAssignment]] = None
-        # Role name.
-        self._name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The settings for this role. Read-only. Nullable.
-        self._settings: Optional[privileged_role_settings.PrivilegedRoleSettings] = None
-        # The summary information for this role. Read-only. Nullable.
-        self._summary: Optional[privileged_role_summary.PrivilegedRoleSummary] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PrivilegedRole:
@@ -59,7 +58,9 @@ class PrivilegedRole(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, privileged_role_assignment, privileged_role_settings, privileged_role_summary
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(privileged_role_assignment.PrivilegedRoleAssignment)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(privileged_role_settings.PrivilegedRoleSettings)),

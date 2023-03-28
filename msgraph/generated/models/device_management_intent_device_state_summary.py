@@ -1,28 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class DeviceManagementIntentDeviceStateSummary(entity.Entity):
-    @property
-    def conflict_count(self,) -> Optional[int]:
-        """
-        Gets the conflictCount property value. Number of devices in conflict
-        Returns: Optional[int]
-        """
-        return self._conflict_count
-    
-    @conflict_count.setter
-    def conflict_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the conflictCount property value. Number of devices in conflict
-        Args:
-            value: Value to set for the conflict_count property.
-        """
-        self._conflict_count = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new deviceManagementIntentDeviceStateSummary and sets the default values.
@@ -42,6 +27,23 @@ class DeviceManagementIntentDeviceStateSummary(entity.Entity):
         self.odata_type: Optional[str] = None
         # Number of succeeded devices
         self._success_count: Optional[int] = None
+    
+    @property
+    def conflict_count(self,) -> Optional[int]:
+        """
+        Gets the conflictCount property value. Number of devices in conflict
+        Returns: Optional[int]
+        """
+        return self._conflict_count
+    
+    @conflict_count.setter
+    def conflict_count(self,value: Optional[int] = None) -> None:
+        """
+        Sets the conflictCount property value. Number of devices in conflict
+        Args:
+            value: Value to set for the conflict_count property.
+        """
+        self._conflict_count = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementIntentDeviceStateSummary:
@@ -94,7 +96,9 @@ class DeviceManagementIntentDeviceStateSummary(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "conflictCount": lambda n : setattr(self, 'conflict_count', n.get_int_value()),
             "errorCount": lambda n : setattr(self, 'error_count', n.get_int_value()),
             "failedCount": lambda n : setattr(self, 'failed_count', n.get_int_value()),

@@ -7,25 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-count_request_builder = lazy_import('msgraph.generated.device_management.managed_devices.item.device_health_script_states.count.count_request_builder')
-with_id_with_policy_id_with_device_id_request_builder = lazy_import('msgraph.generated.device_management.managed_devices.item.device_health_script_states.with_id_with_policy_id_with_device_id.with_id_with_policy_id_with_device_id_request_builder')
-device_health_script_policy_state_collection_response = lazy_import('msgraph.generated.models.device_health_script_policy_state_collection_response')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from .....models import device_health_script_policy_state, device_health_script_policy_state_collection_response
+    from .....models.o_data_errors import o_data_error
+    from .count import count_request_builder
+    from .with_id_with_policy_id_with_device_id import with_id_with_policy_id_with_device_id_request_builder
 
 class DeviceHealthScriptStatesRequestBuilder():
     """
     Provides operations to manage the deviceHealthScriptStates property of the microsoft.graph.managedDevice entity.
     """
-    @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
-        """
-        Provides operations to count the resources in the collection.
-        """
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new DeviceHealthScriptStatesRequestBuilder and sets the default values.
@@ -54,13 +47,42 @@ class DeviceHealthScriptStatesRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .....models import device_health_script_policy_state_collection_response
+
         return await self.request_adapter.send_async(request_info, device_health_script_policy_state_collection_response.DeviceHealthScriptPolicyStateCollectionResponse, error_mapping)
+    
+    async def post(self,body: Optional[device_health_script_policy_state.DeviceHealthScriptPolicyState] = None, request_configuration: Optional[DeviceHealthScriptStatesRequestBuilderPostRequestConfiguration] = None) -> Optional[device_health_script_policy_state.DeviceHealthScriptPolicyState]:
+        """
+        Create new navigation property to deviceHealthScriptStates for deviceManagement
+        Args:
+            body: Contains properties for policy run state of the device health script.
+            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[device_health_script_policy_state.DeviceHealthScriptPolicyState]
+        """
+        if body is None:
+            raise Exception("body cannot be undefined")
+        request_info = self.to_post_request_information(
+            body, request_configuration
+        )
+        from .....models.o_data_errors import o_data_error
+
+        error_mapping: Dict[str, ParsableFactory] = {
+            "4XX": o_data_error.ODataError,
+            "5XX": o_data_error.ODataError,
+        }
+        if not self.request_adapter:
+            raise Exception("Http core is null") 
+        from .....models import device_health_script_policy_state
+
+        return await self.request_adapter.send_async(request_info, device_health_script_policy_state.DeviceHealthScriptPolicyState, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DeviceHealthScriptStatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -80,6 +102,27 @@ class DeviceHealthScriptStatesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
+    def to_post_request_information(self,body: Optional[device_health_script_policy_state.DeviceHealthScriptPolicyState] = None, request_configuration: Optional[DeviceHealthScriptStatesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+        """
+        Create new navigation property to deviceHealthScriptStates for deviceManagement
+        Args:
+            body: Contains properties for policy run state of the device health script.
+            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: RequestInformation
+        """
+        if body is None:
+            raise Exception("body cannot be undefined")
+        request_info = RequestInformation()
+        request_info.url_template = self.url_template
+        request_info.path_parameters = self.path_parameters
+        request_info.http_method = Method.POST
+        request_info.headers["Accept"] = ["application/json"]
+        if request_configuration:
+            request_info.add_request_headers(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
+        request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
+        return request_info
+    
     def with_id_with_policy_id_with_device_id(self,device_id: Optional[str] = None, id: Optional[str] = None, policy_id: Optional[str] = None) -> with_id_with_policy_id_with_device_id_request_builder.WithIdWithPolicyIdWithDeviceIdRequestBuilder:
         """
         Provides operations to manage the deviceHealthScriptStates property of the microsoft.graph.managedDevice entity.
@@ -95,37 +138,24 @@ class DeviceHealthScriptStatesRequestBuilder():
             raise Exception("id cannot be undefined")
         if policy_id is None:
             raise Exception("policy_id cannot be undefined")
-        return with_id_with_policy_id_with_device_id_request_builder.WithIdWithPolicyIdWithDeviceIdRequestBuilder(self.request_adapter, self.path_parameters, deviceId, id, policyId)
+        from .with_id_with_policy_id_with_device_id import with_id_with_policy_id_with_device_id_request_builder
+
+        return with_id_with_policy_id_with_device_id_request_builder.WithIdWithPolicyIdWithDeviceIdRequestBuilder(self.request_adapter, self.path_parameters, device_id, id, policy_id)
+    
+    @property
+    def count(self) -> count_request_builder.CountRequestBuilder:
+        """
+        Provides operations to count the resources in the collection.
+        """
+        from .count import count_request_builder
+
+        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class DeviceHealthScriptStatesRequestBuilderGetQueryParameters():
         """
         Results of device health scripts that ran for this device. Default is empty list. This property is read-only.
         """
-        # Include count of items
-        count: Optional[bool] = None
-
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Filter items by property values
-        filter: Optional[str] = None
-
-        # Order items by property values
-        orderby: Optional[List[str]] = None
-
-        # Search items by search phrases
-        search: Optional[str] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
-        # Skip the first n items
-        skip: Optional[int] = None
-
-        # Show only the first n items
-        top: Optional[int] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -153,6 +183,30 @@ class DeviceHealthScriptStatesRequestBuilder():
                 return "%24top"
             return original_name
         
+        # Include count of items
+        count: Optional[bool] = None
+
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Filter items by property values
+        filter: Optional[str] = None
+
+        # Order items by property values
+        orderby: Optional[List[str]] = None
+
+        # Search items by search phrases
+        search: Optional[str] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
+        # Skip the first n items
+        skip: Optional[int] = None
+
+        # Show only the first n items
+        top: Optional[int] = None
+
     
     @dataclass
     class DeviceHealthScriptStatesRequestBuilderGetRequestConfiguration():
@@ -167,6 +221,18 @@ class DeviceHealthScriptStatesRequestBuilder():
 
         # Request query parameters
         query_parameters: Optional[DeviceHealthScriptStatesRequestBuilder.DeviceHealthScriptStatesRequestBuilderGetQueryParameters] = None
+
+    
+    @dataclass
+    class DeviceHealthScriptStatesRequestBuilderPostRequestConfiguration():
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request headers
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
+
+        # Request options
+        options: Optional[List[RequestOption]] = None
 
     
 

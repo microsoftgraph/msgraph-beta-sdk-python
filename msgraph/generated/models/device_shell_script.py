@@ -1,55 +1,17 @@
 from __future__ import annotations
 from datetime import datetime, timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_script_assignment = lazy_import('msgraph.generated.models.device_management_script_assignment')
-device_management_script_device_state = lazy_import('msgraph.generated.models.device_management_script_device_state')
-device_management_script_group_assignment = lazy_import('msgraph.generated.models.device_management_script_group_assignment')
-device_management_script_run_summary = lazy_import('msgraph.generated.models.device_management_script_run_summary')
-device_management_script_user_state = lazy_import('msgraph.generated.models.device_management_script_user_state')
-entity = lazy_import('msgraph.generated.models.entity')
-run_as_account_type = lazy_import('msgraph.generated.models.run_as_account_type')
+if TYPE_CHECKING:
+    from . import device_management_script_assignment, device_management_script_device_state, device_management_script_group_assignment, device_management_script_run_summary, device_management_script_user_state, entity, run_as_account_type
+
+from . import entity
 
 class DeviceShellScript(entity.Entity):
     """
     Intune will provide customer the ability to run their Shell scripts on the enrolled Mac OS devices. The script can be run once or periodically.
     """
-    @property
-    def assignments(self,) -> Optional[List[device_management_script_assignment.DeviceManagementScriptAssignment]]:
-        """
-        Gets the assignments property value. The list of group assignments for the device management script.
-        Returns: Optional[List[device_management_script_assignment.DeviceManagementScriptAssignment]]
-        """
-        return self._assignments
-    
-    @assignments.setter
-    def assignments(self,value: Optional[List[device_management_script_assignment.DeviceManagementScriptAssignment]] = None) -> None:
-        """
-        Sets the assignments property value. The list of group assignments for the device management script.
-        Args:
-            value: Value to set for the assignments property.
-        """
-        self._assignments = value
-    
-    @property
-    def block_execution_notifications(self,) -> Optional[bool]:
-        """
-        Gets the blockExecutionNotifications property value. Does not notify the user a script is being executed
-        Returns: Optional[bool]
-        """
-        return self._block_execution_notifications
-    
-    @block_execution_notifications.setter
-    def block_execution_notifications(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the blockExecutionNotifications property value. Does not notify the user a script is being executed
-        Args:
-            value: Value to set for the block_execution_notifications property.
-        """
-        self._block_execution_notifications = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new deviceShellScript and sets the default values.
@@ -89,6 +51,40 @@ class DeviceShellScript(entity.Entity):
         self._script_content: Optional[bytes] = None
         # List of run states for this script across all users.
         self._user_run_states: Optional[List[device_management_script_user_state.DeviceManagementScriptUserState]] = None
+    
+    @property
+    def assignments(self,) -> Optional[List[device_management_script_assignment.DeviceManagementScriptAssignment]]:
+        """
+        Gets the assignments property value. The list of group assignments for the device management script.
+        Returns: Optional[List[device_management_script_assignment.DeviceManagementScriptAssignment]]
+        """
+        return self._assignments
+    
+    @assignments.setter
+    def assignments(self,value: Optional[List[device_management_script_assignment.DeviceManagementScriptAssignment]] = None) -> None:
+        """
+        Sets the assignments property value. The list of group assignments for the device management script.
+        Args:
+            value: Value to set for the assignments property.
+        """
+        self._assignments = value
+    
+    @property
+    def block_execution_notifications(self,) -> Optional[bool]:
+        """
+        Gets the blockExecutionNotifications property value. Does not notify the user a script is being executed
+        Returns: Optional[bool]
+        """
+        return self._block_execution_notifications
+    
+    @block_execution_notifications.setter
+    def block_execution_notifications(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the blockExecutionNotifications property value. Does not notify the user a script is being executed
+        Args:
+            value: Value to set for the block_execution_notifications property.
+        """
+        self._block_execution_notifications = value
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
@@ -209,7 +205,9 @@ class DeviceShellScript(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_script_assignment, device_management_script_device_state, device_management_script_group_assignment, device_management_script_run_summary, device_management_script_user_state, entity, run_as_account_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(device_management_script_assignment.DeviceManagementScriptAssignment)),
             "blockExecutionNotifications": lambda n : setattr(self, 'block_execution_notifications', n.get_bool_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),

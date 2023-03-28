@@ -1,18 +1,102 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_managed_app_safety_net_apps_verification_type = lazy_import('msgraph.generated.models.android_managed_app_safety_net_apps_verification_type')
-android_managed_app_safety_net_device_attestation_type = lazy_import('msgraph.generated.models.android_managed_app_safety_net_device_attestation_type')
-android_managed_app_safety_net_evaluation_type = lazy_import('msgraph.generated.models.android_managed_app_safety_net_evaluation_type')
-key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
-managed_app_policy_deployment_summary = lazy_import('msgraph.generated.models.managed_app_policy_deployment_summary')
-managed_app_remediation_action = lazy_import('msgraph.generated.models.managed_app_remediation_action')
-managed_mobile_app = lazy_import('msgraph.generated.models.managed_mobile_app')
-targeted_managed_app_protection = lazy_import('msgraph.generated.models.targeted_managed_app_protection')
+if TYPE_CHECKING:
+    from . import android_managed_app_safety_net_apps_verification_type, android_managed_app_safety_net_device_attestation_type, android_managed_app_safety_net_evaluation_type, key_value_pair, managed_app_policy_deployment_summary, managed_app_remediation_action, managed_mobile_app, targeted_managed_app_protection
+
+from . import targeted_managed_app_protection
 
 class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManagedAppProtection):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new AndroidManagedAppProtection and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.androidManagedAppProtection"
+        # Semicolon seperated list of device manufacturers allowed, as a string, for the managed app to work.
+        self._allowed_android_device_manufacturers: Optional[str] = None
+        # List of device models allowed, as a string, for the managed app to work.
+        self._allowed_android_device_models: Optional[List[str]] = None
+        # An admin initiated action to be applied on a managed app.
+        self._app_action_if_android_device_manufacturer_not_allowed: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
+        # An admin initiated action to be applied on a managed app.
+        self._app_action_if_android_device_model_not_allowed: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
+        # An admin initiated action to be applied on a managed app.
+        self._app_action_if_android_safety_net_apps_verification_failed: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
+        # An admin initiated action to be applied on a managed app.
+        self._app_action_if_android_safety_net_device_attestation_failed: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
+        # An admin initiated action to be applied on a managed app.
+        self._app_action_if_device_lock_not_set: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
+        # If the device does not have a passcode of high complexity or higher, trigger the stored action.
+        self._app_action_if_device_passcode_complexity_less_than_high: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
+        # If the device does not have a passcode of low complexity or higher, trigger the stored action.
+        self._app_action_if_device_passcode_complexity_less_than_low: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
+        # If the device does not have a passcode of medium complexity or higher, trigger the stored action.
+        self._app_action_if_device_passcode_complexity_less_than_medium: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
+        # If Keyboard Restriction is enabled, only keyboards in this approved list will be allowed. A key should be Android package id for a keyboard and value should be a friendly name
+        self._approved_keyboards: Optional[List[key_value_pair.KeyValuePair]] = None
+        # List of apps to which the policy is deployed.
+        self._apps: Optional[List[managed_mobile_app.ManagedMobileApp]] = None
+        # Indicates whether use of the biometric authentication is allowed in place of a pin if PinRequired is set to True.
+        self._biometric_authentication_blocked: Optional[bool] = None
+        # Maximum number of days Company Portal update can be deferred on the device or app access will be blocked.
+        self._block_after_company_portal_update_deferral_in_days: Optional[int] = None
+        # Whether the app should connect to the configured VPN on launch.
+        self._connect_to_vpn_on_launch: Optional[bool] = None
+        # Friendly name of the preferred custom browser to open weblink on Android.
+        self._custom_browser_display_name: Optional[str] = None
+        # Unique identifier of a custom browser to open weblink on Android.
+        self._custom_browser_package_id: Optional[str] = None
+        # Friendly name of a custom dialer app to click-to-open a phone number on Android.
+        self._custom_dialer_app_display_name: Optional[str] = None
+        # PackageId of a custom dialer app to click-to-open a phone number on Android.
+        self._custom_dialer_app_package_id: Optional[str] = None
+        # Count of apps to which the current policy is deployed.
+        self._deployed_app_count: Optional[int] = None
+        # Navigation property to deployment summary of the configuration.
+        self._deployment_summary: Optional[managed_app_policy_deployment_summary.ManagedAppPolicyDeploymentSummary] = None
+        # Defines if any kind of lock must be required on android device
+        self._device_lock_required: Optional[bool] = None
+        # When this setting is enabled, app level encryption is disabled if device level encryption is enabled
+        self._disable_app_encryption_if_device_encryption_is_enabled: Optional[bool] = None
+        # Indicates whether application data for managed apps should be encrypted
+        self._encrypt_app_data: Optional[bool] = None
+        # App packages in this list will be exempt from the policy and will be able to receive data from managed apps.
+        self._exempted_app_packages: Optional[List[key_value_pair.KeyValuePair]] = None
+        # If null, this setting will be ignored. If false both fingerprints and biometrics will not be enabled. If true, both fingerprints and biometrics will be enabled.
+        self._fingerprint_and_biometric_enabled: Optional[bool] = None
+        # Indicates if keyboard restriction is enabled. If enabled list of approved keyboards must be provided as well.
+        self._keyboards_restricted: Optional[bool] = None
+        # Minimum version of the Company portal that must be installed on the device or app access will be blocked
+        self._minimum_required_company_portal_version: Optional[str] = None
+        # Define the oldest required Android security patch level a user can have to gain secure access to the app.
+        self._minimum_required_patch_version: Optional[str] = None
+        # Minimum version of the Company portal that must be installed on the device or the user will receive a warning
+        self._minimum_warning_company_portal_version: Optional[str] = None
+        # Define the oldest recommended Android security patch level a user can have for secure access to the app.
+        self._minimum_warning_patch_version: Optional[str] = None
+        # Minimum version of the Company portal that must be installed on the device or the company data on the app will be wiped
+        self._minimum_wipe_company_portal_version: Optional[str] = None
+        # Android security patch level  less than or equal to the specified value will wipe the managed app and the associated company data.
+        self._minimum_wipe_patch_version: Optional[str] = None
+        # Require user to apply Class 3 Biometrics on their Android device.
+        self._require_class3_biometrics: Optional[bool] = None
+        # A PIN prompt will override biometric prompts if class 3 biometrics are updated on the device.
+        self._require_pin_after_biometric_change: Optional[bool] = None
+        # An admin enforced Android SafetyNet Device Attestation requirement on a managed app.
+        self._required_android_safety_net_apps_verification_type: Optional[android_managed_app_safety_net_apps_verification_type.AndroidManagedAppSafetyNetAppsVerificationType] = None
+        # An admin enforced Android SafetyNet Device Attestation requirement on a managed app.
+        self._required_android_safety_net_device_attestation_type: Optional[android_managed_app_safety_net_device_attestation_type.AndroidManagedAppSafetyNetDeviceAttestationType] = None
+        # An admin enforced Android SafetyNet evaluation type requirement on a managed app.
+        self._required_android_safety_net_evaluation_type: Optional[android_managed_app_safety_net_evaluation_type.AndroidManagedAppSafetyNetEvaluationType] = None
+        # Indicates whether a managed user can take screen captures of managed apps
+        self._screen_capture_blocked: Optional[bool] = None
+        # Maximum number of days Company Portal update can be deferred on the device or the user will receive the warning
+        self._warn_after_company_portal_update_deferral_in_days: Optional[int] = None
+        # Maximum number of days Company Portal update can be deferred on the device or the company data on the app will be wiped
+        self._wipe_after_company_portal_update_deferral_in_days: Optional[int] = None
+    
     @property
     def allowed_android_device_manufacturers(self,) -> Optional[str]:
         """
@@ -268,95 +352,6 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         self._connect_to_vpn_on_launch = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AndroidManagedAppProtection and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.androidManagedAppProtection"
-        # Semicolon seperated list of device manufacturers allowed, as a string, for the managed app to work.
-        self._allowed_android_device_manufacturers: Optional[str] = None
-        # List of device models allowed, as a string, for the managed app to work.
-        self._allowed_android_device_models: Optional[List[str]] = None
-        # An admin initiated action to be applied on a managed app.
-        self._app_action_if_android_device_manufacturer_not_allowed: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
-        # An admin initiated action to be applied on a managed app.
-        self._app_action_if_android_device_model_not_allowed: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
-        # An admin initiated action to be applied on a managed app.
-        self._app_action_if_android_safety_net_apps_verification_failed: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
-        # An admin initiated action to be applied on a managed app.
-        self._app_action_if_android_safety_net_device_attestation_failed: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
-        # An admin initiated action to be applied on a managed app.
-        self._app_action_if_device_lock_not_set: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
-        # If the device does not have a passcode of high complexity or higher, trigger the stored action.
-        self._app_action_if_device_passcode_complexity_less_than_high: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
-        # If the device does not have a passcode of low complexity or higher, trigger the stored action.
-        self._app_action_if_device_passcode_complexity_less_than_low: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
-        # If the device does not have a passcode of medium complexity or higher, trigger the stored action.
-        self._app_action_if_device_passcode_complexity_less_than_medium: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
-        # If Keyboard Restriction is enabled, only keyboards in this approved list will be allowed. A key should be Android package id for a keyboard and value should be a friendly name
-        self._approved_keyboards: Optional[List[key_value_pair.KeyValuePair]] = None
-        # List of apps to which the policy is deployed.
-        self._apps: Optional[List[managed_mobile_app.ManagedMobileApp]] = None
-        # Indicates whether use of the biometric authentication is allowed in place of a pin if PinRequired is set to True.
-        self._biometric_authentication_blocked: Optional[bool] = None
-        # Maximum number of days Company Portal update can be deferred on the device or app access will be blocked.
-        self._block_after_company_portal_update_deferral_in_days: Optional[int] = None
-        # Whether the app should connect to the configured VPN on launch.
-        self._connect_to_vpn_on_launch: Optional[bool] = None
-        # Friendly name of the preferred custom browser to open weblink on Android.
-        self._custom_browser_display_name: Optional[str] = None
-        # Unique identifier of a custom browser to open weblink on Android.
-        self._custom_browser_package_id: Optional[str] = None
-        # Friendly name of a custom dialer app to click-to-open a phone number on Android.
-        self._custom_dialer_app_display_name: Optional[str] = None
-        # PackageId of a custom dialer app to click-to-open a phone number on Android.
-        self._custom_dialer_app_package_id: Optional[str] = None
-        # Count of apps to which the current policy is deployed.
-        self._deployed_app_count: Optional[int] = None
-        # Navigation property to deployment summary of the configuration.
-        self._deployment_summary: Optional[managed_app_policy_deployment_summary.ManagedAppPolicyDeploymentSummary] = None
-        # Defines if any kind of lock must be required on android device
-        self._device_lock_required: Optional[bool] = None
-        # When this setting is enabled, app level encryption is disabled if device level encryption is enabled
-        self._disable_app_encryption_if_device_encryption_is_enabled: Optional[bool] = None
-        # Indicates whether application data for managed apps should be encrypted
-        self._encrypt_app_data: Optional[bool] = None
-        # App packages in this list will be exempt from the policy and will be able to receive data from managed apps.
-        self._exempted_app_packages: Optional[List[key_value_pair.KeyValuePair]] = None
-        # If null, this setting will be ignored. If false both fingerprints and biometrics will not be enabled. If true, both fingerprints and biometrics will be enabled.
-        self._fingerprint_and_biometric_enabled: Optional[bool] = None
-        # Indicates if keyboard restriction is enabled. If enabled list of approved keyboards must be provided as well.
-        self._keyboards_restricted: Optional[bool] = None
-        # Minimum version of the Company portal that must be installed on the device or app access will be blocked
-        self._minimum_required_company_portal_version: Optional[str] = None
-        # Define the oldest required Android security patch level a user can have to gain secure access to the app.
-        self._minimum_required_patch_version: Optional[str] = None
-        # Minimum version of the Company portal that must be installed on the device or the user will receive a warning
-        self._minimum_warning_company_portal_version: Optional[str] = None
-        # Define the oldest recommended Android security patch level a user can have for secure access to the app.
-        self._minimum_warning_patch_version: Optional[str] = None
-        # Minimum version of the Company portal that must be installed on the device or the company data on the app will be wiped
-        self._minimum_wipe_company_portal_version: Optional[str] = None
-        # Android security patch level  less than or equal to the specified value will wipe the managed app and the associated company data.
-        self._minimum_wipe_patch_version: Optional[str] = None
-        # Require user to apply Class 3 Biometrics on their Android device.
-        self._require_class3_biometrics: Optional[bool] = None
-        # A PIN prompt will override biometric prompts if class 3 biometrics are updated on the device.
-        self._require_pin_after_biometric_change: Optional[bool] = None
-        # An admin enforced Android SafetyNet Device Attestation requirement on a managed app.
-        self._required_android_safety_net_apps_verification_type: Optional[android_managed_app_safety_net_apps_verification_type.AndroidManagedAppSafetyNetAppsVerificationType] = None
-        # An admin enforced Android SafetyNet Device Attestation requirement on a managed app.
-        self._required_android_safety_net_device_attestation_type: Optional[android_managed_app_safety_net_device_attestation_type.AndroidManagedAppSafetyNetDeviceAttestationType] = None
-        # An admin enforced Android SafetyNet evaluation type requirement on a managed app.
-        self._required_android_safety_net_evaluation_type: Optional[android_managed_app_safety_net_evaluation_type.AndroidManagedAppSafetyNetEvaluationType] = None
-        # Indicates whether a managed user can take screen captures of managed apps
-        self._screen_capture_blocked: Optional[bool] = None
-        # Maximum number of days Company Portal update can be deferred on the device or the user will receive the warning
-        self._warn_after_company_portal_update_deferral_in_days: Optional[int] = None
-        # Maximum number of days Company Portal update can be deferred on the device or the company data on the app will be wiped
-        self._wipe_after_company_portal_update_deferral_in_days: Optional[int] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidManagedAppProtection:
         """
@@ -561,7 +556,9 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_managed_app_safety_net_apps_verification_type, android_managed_app_safety_net_device_attestation_type, android_managed_app_safety_net_evaluation_type, key_value_pair, managed_app_policy_deployment_summary, managed_app_remediation_action, managed_mobile_app, targeted_managed_app_protection
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowedAndroidDeviceManufacturers": lambda n : setattr(self, 'allowed_android_device_manufacturers', n.get_str_value()),
             "allowedAndroidDeviceModels": lambda n : setattr(self, 'allowed_android_device_models', n.get_collection_of_primitive_values(str)),
             "approvedKeyboards": lambda n : setattr(self, 'approved_keyboards', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),

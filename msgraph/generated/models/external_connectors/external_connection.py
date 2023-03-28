@@ -1,22 +1,52 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-activity_settings = lazy_import('msgraph.generated.models.external_connectors.activity_settings')
-compliance_settings = lazy_import('msgraph.generated.models.external_connectors.compliance_settings')
-configuration = lazy_import('msgraph.generated.models.external_connectors.configuration')
-connection_operation = lazy_import('msgraph.generated.models.external_connectors.connection_operation')
-connection_quota = lazy_import('msgraph.generated.models.external_connectors.connection_quota')
-connection_state = lazy_import('msgraph.generated.models.external_connectors.connection_state')
-content_experience_type = lazy_import('msgraph.generated.models.external_connectors.content_experience_type')
-external_group = lazy_import('msgraph.generated.models.external_connectors.external_group')
-external_item = lazy_import('msgraph.generated.models.external_connectors.external_item')
-schema = lazy_import('msgraph.generated.models.external_connectors.schema')
-search_settings = lazy_import('msgraph.generated.models.external_connectors.search_settings')
+if TYPE_CHECKING:
+    from . import activity_settings, compliance_settings, configuration, connection_operation, connection_quota, connection_state, content_experience_type, external_group, external_item, schema, search_settings
+    from .. import entity
+
+from .. import entity
 
 class ExternalConnection(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new ExternalConnection and sets the default values.
+        """
+        super().__init__()
+        # Collects configurable settings related to activities involving connector content.
+        self._activity_settings: Optional[activity_settings.ActivitySettings] = None
+        # The settings required for the connection to participate in eDiscovery, such as the display templates for eDiscovery results.
+        self._compliance_settings: Optional[compliance_settings.ComplianceSettings] = None
+        # Specifies additional application IDs that are allowed to manage the connection and to index content in the connection. Optional.
+        self._configuration: Optional[configuration.Configuration] = None
+        # The Teams App ID. Optional.
+        self._connector_id: Optional[str] = None
+        # Description of the connection displayed in the Microsoft 365 admin center. Optional.
+        self._description: Optional[str] = None
+        # The list of content experiences the connection will participate in. Possible values are search and compliance.
+        self._enabled_content_experiences: Optional[content_experience_type.ContentExperienceType] = None
+        # The groups property
+        self._groups: Optional[List[external_group.ExternalGroup]] = None
+        # The number of items ingested into a connection. This value is refreshed every 15 minutes. If the connection state is draft, then ingestedItemsCount will be null.
+        self._ingested_items_count: Optional[int] = None
+        # The items property
+        self._items: Optional[List[external_item.ExternalItem]] = None
+        # The display name of the connection to be displayed in the Microsoft 365 admin center. Maximum length of 128 characters. Required.
+        self._name: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The operations property
+        self._operations: Optional[List[connection_operation.ConnectionOperation]] = None
+        # The quota property
+        self._quota: Optional[connection_quota.ConnectionQuota] = None
+        # The schema property
+        self._schema: Optional[schema.Schema] = None
+        # The settings configuring the search experience for content in this connection, such as the display templates for search results.
+        self._search_settings: Optional[search_settings.SearchSettings] = None
+        # Indicates the current state of the connection. Possible values are draft, ready, obsolete, and limitExceeded. Required.
+        self._state: Optional[connection_state.ConnectionState] = None
+    
     @property
     def activity_settings(self,) -> Optional[activity_settings.ActivitySettings]:
         """
@@ -85,44 +115,6 @@ class ExternalConnection(entity.Entity):
         """
         self._connector_id = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new externalConnection and sets the default values.
-        """
-        super().__init__()
-        # Collects configurable settings related to activities involving connector content.
-        self._activity_settings: Optional[activity_settings.ActivitySettings] = None
-        # The settings required for the connection to participate in eDiscovery, such as the display templates for eDiscovery results.
-        self._compliance_settings: Optional[compliance_settings.ComplianceSettings] = None
-        # Specifies additional application IDs that are allowed to manage the connection and to index content in the connection. Optional.
-        self._configuration: Optional[configuration.Configuration] = None
-        # The Teams App ID. Optional.
-        self._connector_id: Optional[str] = None
-        # Description of the connection displayed in the Microsoft 365 admin center. Optional.
-        self._description: Optional[str] = None
-        # The list of content experiences the connection will participate in. Possible values are search and compliance.
-        self._enabled_content_experiences: Optional[content_experience_type.ContentExperienceType] = None
-        # The groups property
-        self._groups: Optional[List[external_group.ExternalGroup]] = None
-        # The number of items ingested into a connection. This value is refreshed every 15 minutes. If the connection state is draft, then ingestedItemsCount will be null.
-        self._ingested_items_count: Optional[int] = None
-        # The items property
-        self._items: Optional[List[external_item.ExternalItem]] = None
-        # The display name of the connection to be displayed in the Microsoft 365 admin center. Maximum length of 128 characters. Required.
-        self._name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The operations property
-        self._operations: Optional[List[connection_operation.ConnectionOperation]] = None
-        # The quota property
-        self._quota: Optional[connection_quota.ConnectionQuota] = None
-        # The schema property
-        self._schema: Optional[schema.Schema] = None
-        # The settings configuring the search experience for content in this connection, such as the display templates for search results.
-        self._search_settings: Optional[search_settings.SearchSettings] = None
-        # Indicates the current state of the connection. Possible values are draft, ready, obsolete, and limitExceeded. Required.
-        self._state: Optional[connection_state.ConnectionState] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ExternalConnection:
         """
@@ -174,7 +166,10 @@ class ExternalConnection(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import activity_settings, compliance_settings, configuration, connection_operation, connection_quota, connection_state, content_experience_type, external_group, external_item, schema, search_settings
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "activitySettings": lambda n : setattr(self, 'activity_settings', n.get_object_value(activity_settings.ActivitySettings)),
             "complianceSettings": lambda n : setattr(self, 'compliance_settings', n.get_object_value(compliance_settings.ComplianceSettings)),
             "configuration": lambda n : setattr(self, 'configuration', n.get_object_value(configuration.Configuration)),

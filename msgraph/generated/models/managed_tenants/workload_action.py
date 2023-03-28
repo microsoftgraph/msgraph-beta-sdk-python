@@ -1,12 +1,35 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-setting = lazy_import('msgraph.generated.models.managed_tenants.setting')
-workload_action_category = lazy_import('msgraph.generated.models.managed_tenants.workload_action_category')
+if TYPE_CHECKING:
+    from . import setting, workload_action_category
 
 class WorkloadAction(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new workloadAction and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The unique identifier for the workload action. Required. Read-only.
+        self._action_id: Optional[str] = None
+        # The category for the workload action. Possible values are: automated, manual, unknownFutureValue. Optional. Read-only.
+        self._category: Optional[workload_action_category.WorkloadActionCategory] = None
+        # The description for the workload action. Optional. Read-only.
+        self._description: Optional[str] = None
+        # The display name for the workload action. Optional. Read-only.
+        self._display_name: Optional[str] = None
+        # The licenses property
+        self._licenses: Optional[List[str]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The service associated with workload action. Optional. Read-only.
+        self._service: Optional[str] = None
+        # The collection of settings associated with the workload action. Optional. Read-only.
+        self._settings: Optional[List[setting.Setting]] = None
+    
     @property
     def action_id(self,) -> Optional[str]:
         """
@@ -57,30 +80,6 @@ class WorkloadAction(AdditionalDataHolder, Parsable):
             value: Value to set for the category property.
         """
         self._category = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new workloadAction and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The unique identifier for the workload action. Required. Read-only.
-        self._action_id: Optional[str] = None
-        # The category for the workload action. Possible values are: automated, manual, unknownFutureValue. Optional. Read-only.
-        self._category: Optional[workload_action_category.WorkloadActionCategory] = None
-        # The description for the workload action. Optional. Read-only.
-        self._description: Optional[str] = None
-        # The display name for the workload action. Optional. Read-only.
-        self._display_name: Optional[str] = None
-        # The licenses property
-        self._licenses: Optional[List[str]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The service associated with workload action. Optional. Read-only.
-        self._service: Optional[str] = None
-        # The collection of settings associated with the workload action. Optional. Read-only.
-        self._settings: Optional[List[setting.Setting]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WorkloadAction:
@@ -133,7 +132,9 @@ class WorkloadAction(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import setting, workload_action_category
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "actionId": lambda n : setattr(self, 'action_id', n.get_str_value()),
             "category": lambda n : setattr(self, 'category', n.get_enum_value(workload_action_category.WorkloadActionCategory)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

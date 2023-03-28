@@ -1,16 +1,92 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-operating_system_upgrade_eligibility = lazy_import('msgraph.generated.models.operating_system_upgrade_eligibility')
-user_experience_analytics_health_state = lazy_import('msgraph.generated.models.user_experience_analytics_health_state')
+if TYPE_CHECKING:
+    from . import entity, operating_system_upgrade_eligibility, user_experience_analytics_health_state
+
+from . import entity
 
 class UserExperienceAnalyticsWorkFromAnywhereDevice(entity.Entity):
     """
     The user experience analytics Device for work from anywhere report
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new userExperienceAnalyticsWorkFromAnywhereDevice and sets the default values.
+        """
+        super().__init__()
+        # The user experience analytics work from anywhere intune device's autopilotProfileAssigned.
+        self._auto_pilot_profile_assigned: Optional[bool] = None
+        # The user experience work from anywhere intune device's autopilotRegistered.
+        self._auto_pilot_registered: Optional[bool] = None
+        # The user experience work from anywhere azure Ad device Id.
+        self._azure_ad_device_id: Optional[str] = None
+        # The user experience work from anywhere device's azure Ad joinType.
+        self._azure_ad_join_type: Optional[str] = None
+        # The user experience work from anywhere device's azureAdRegistered.
+        self._azure_ad_registered: Optional[bool] = None
+        # The user experience work from anywhere per device cloud identity score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+        self._cloud_identity_score: Optional[float] = None
+        # The user experience work from anywhere per device cloud management score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+        self._cloud_management_score: Optional[float] = None
+        # The user experience work from anywhere per device cloud provisioning score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+        self._cloud_provisioning_score: Optional[float] = None
+        # The user experience work from anywhere device's compliancePolicySetToIntune.
+        self._compliance_policy_set_to_intune: Optional[bool] = None
+        # The user experience work from anywhere device Id.
+        self._device_id: Optional[str] = None
+        # The work from anywhere device's name.
+        self._device_name: Optional[str] = None
+        # The healthStatus property
+        self._health_status: Optional[user_experience_analytics_health_state.UserExperienceAnalyticsHealthState] = None
+        # The user experience work from anywhere device's Cloud Management Gateway for Configuration Manager is enabled.
+        self._is_cloud_managed_gateway_enabled: Optional[bool] = None
+        # The user experience work from anywhere management agent of the device.
+        self._managed_by: Optional[str] = None
+        # The user experience work from anywhere device's manufacturer.
+        self._manufacturer: Optional[str] = None
+        # The user experience work from anywhere device's model.
+        self._model: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The user experience work from anywhere device, Is OS check failed for device to upgrade to the latest version of windows.
+        self._os_check_failed: Optional[bool] = None
+        # The user experience work from anywhere device's OS Description.
+        self._os_description: Optional[str] = None
+        # The user experience work from anywhere device's OS Version.
+        self._os_version: Optional[str] = None
+        # The user experience work from anywhere device's otherWorkloadsSetToIntune.
+        self._other_workloads_set_to_intune: Optional[bool] = None
+        # The user experience work from anywhere device's ownership.
+        self._ownership: Optional[str] = None
+        # The user experience work from anywhere device, Is processor hardware core count check failed for device to upgrade to the latest version of windows.
+        self._processor_core_count_check_failed: Optional[bool] = None
+        # The user experience work from anywhere device, Is processor hardware family check failed for device to upgrade to the latest version of windows.
+        self._processor_family_check_failed: Optional[bool] = None
+        # The user experience work from anywhere device, Is processor hardware speed check failed for device to upgrade to the latest version of windows.
+        self._processor_speed_check_failed: Optional[bool] = None
+        # The user experience work from anywhere device, Is processor hardware 64-bit architecture check failed for device to upgrade to the latest version of windows.
+        self._processor64_bit_check_failed: Optional[bool] = None
+        # Is the user experience analytics work from anywhere device RAM hardware check failed for device to upgrade to the latest version of windows
+        self._ram_check_failed: Optional[bool] = None
+        # The user experience work from anywhere device, Is secure boot hardware check failed for device to upgrade to the latest version of windows.
+        self._secure_boot_check_failed: Optional[bool] = None
+        # The user experience work from anywhere device's serial number.
+        self._serial_number: Optional[str] = None
+        # The user experience work from anywhere device, Is storage hardware check failed for device to upgrade to the latest version of windows.
+        self._storage_check_failed: Optional[bool] = None
+        # The user experience work from anywhere device's tenantAttached.
+        self._tenant_attached: Optional[bool] = None
+        # The user experience work from anywhere device, Is Trusted Platform Module (TPM) hardware check failed for device to the latest version of upgrade to windows.
+        self._tpm_check_failed: Optional[bool] = None
+        # Work From Anywhere windows device upgrade eligibility status
+        self._upgrade_eligibility: Optional[operating_system_upgrade_eligibility.OperatingSystemUpgradeEligibility] = None
+        # The user experience work from anywhere per device windows score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+        self._windows_score: Optional[float] = None
+        # The user experience work from anywhere per device overall score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+        self._work_from_anywhere_score: Optional[float] = None
+    
     @property
     def auto_pilot_profile_assigned(self,) -> Optional[bool]:
         """
@@ -164,82 +240,6 @@ class UserExperienceAnalyticsWorkFromAnywhereDevice(entity.Entity):
         """
         self._compliance_policy_set_to_intune = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsWorkFromAnywhereDevice and sets the default values.
-        """
-        super().__init__()
-        # The user experience analytics work from anywhere intune device's autopilotProfileAssigned.
-        self._auto_pilot_profile_assigned: Optional[bool] = None
-        # The user experience work from anywhere intune device's autopilotRegistered.
-        self._auto_pilot_registered: Optional[bool] = None
-        # The user experience work from anywhere azure Ad device Id.
-        self._azure_ad_device_id: Optional[str] = None
-        # The user experience work from anywhere device's azure Ad joinType.
-        self._azure_ad_join_type: Optional[str] = None
-        # The user experience work from anywhere device's azureAdRegistered.
-        self._azure_ad_registered: Optional[bool] = None
-        # The user experience work from anywhere per device cloud identity score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._cloud_identity_score: Optional[float] = None
-        # The user experience work from anywhere per device cloud management score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._cloud_management_score: Optional[float] = None
-        # The user experience work from anywhere per device cloud provisioning score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._cloud_provisioning_score: Optional[float] = None
-        # The user experience work from anywhere device's compliancePolicySetToIntune.
-        self._compliance_policy_set_to_intune: Optional[bool] = None
-        # The user experience work from anywhere device Id.
-        self._device_id: Optional[str] = None
-        # The work from anywhere device's name.
-        self._device_name: Optional[str] = None
-        # The healthStatus property
-        self._health_status: Optional[user_experience_analytics_health_state.UserExperienceAnalyticsHealthState] = None
-        # The user experience work from anywhere device's Cloud Management Gateway for Configuration Manager is enabled.
-        self._is_cloud_managed_gateway_enabled: Optional[bool] = None
-        # The user experience work from anywhere management agent of the device.
-        self._managed_by: Optional[str] = None
-        # The user experience work from anywhere device's manufacturer.
-        self._manufacturer: Optional[str] = None
-        # The user experience work from anywhere device's model.
-        self._model: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The user experience work from anywhere device, Is OS check failed for device to upgrade to the latest version of windows.
-        self._os_check_failed: Optional[bool] = None
-        # The user experience work from anywhere device's OS Description.
-        self._os_description: Optional[str] = None
-        # The user experience work from anywhere device's OS Version.
-        self._os_version: Optional[str] = None
-        # The user experience work from anywhere device's otherWorkloadsSetToIntune.
-        self._other_workloads_set_to_intune: Optional[bool] = None
-        # The user experience work from anywhere device's ownership.
-        self._ownership: Optional[str] = None
-        # The user experience work from anywhere device, Is processor hardware core count check failed for device to upgrade to the latest version of windows.
-        self._processor_core_count_check_failed: Optional[bool] = None
-        # The user experience work from anywhere device, Is processor hardware family check failed for device to upgrade to the latest version of windows.
-        self._processor_family_check_failed: Optional[bool] = None
-        # The user experience work from anywhere device, Is processor hardware speed check failed for device to upgrade to the latest version of windows.
-        self._processor_speed_check_failed: Optional[bool] = None
-        # The user experience work from anywhere device, Is processor hardware 64-bit architecture check failed for device to upgrade to the latest version of windows.
-        self._processor64_bit_check_failed: Optional[bool] = None
-        # Is the user experience analytics work from anywhere device RAM hardware check failed for device to upgrade to the latest version of windows
-        self._ram_check_failed: Optional[bool] = None
-        # The user experience work from anywhere device, Is secure boot hardware check failed for device to upgrade to the latest version of windows.
-        self._secure_boot_check_failed: Optional[bool] = None
-        # The user experience work from anywhere device's serial number.
-        self._serial_number: Optional[str] = None
-        # The user experience work from anywhere device, Is storage hardware check failed for device to upgrade to the latest version of windows.
-        self._storage_check_failed: Optional[bool] = None
-        # The user experience work from anywhere device's tenantAttached.
-        self._tenant_attached: Optional[bool] = None
-        # The user experience work from anywhere device, Is Trusted Platform Module (TPM) hardware check failed for device to the latest version of upgrade to windows.
-        self._tpm_check_failed: Optional[bool] = None
-        # Work From Anywhere windows device upgrade eligibility status
-        self._upgrade_eligibility: Optional[operating_system_upgrade_eligibility.OperatingSystemUpgradeEligibility] = None
-        # The user experience work from anywhere per device windows score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._windows_score: Optional[float] = None
-        # The user experience work from anywhere per device overall score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._work_from_anywhere_score: Optional[float] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsWorkFromAnywhereDevice:
         """
@@ -291,7 +291,9 @@ class UserExperienceAnalyticsWorkFromAnywhereDevice(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, operating_system_upgrade_eligibility, user_experience_analytics_health_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "autoPilotProfileAssigned": lambda n : setattr(self, 'auto_pilot_profile_assigned', n.get_bool_value()),
             "autoPilotRegistered": lambda n : setattr(self, 'auto_pilot_registered', n.get_bool_value()),
             "azureAdDeviceId": lambda n : setattr(self, 'azure_ad_device_id', n.get_str_value()),

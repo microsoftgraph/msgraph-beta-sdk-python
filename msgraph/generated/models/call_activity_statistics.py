@@ -1,12 +1,23 @@
 from __future__ import annotations
 from datetime import timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-activity_statistics = lazy_import('msgraph.generated.models.activity_statistics')
+if TYPE_CHECKING:
+    from . import activity_statistics
+
+from . import activity_statistics
 
 class CallActivityStatistics(activity_statistics.ActivityStatistics):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new CallActivityStatistics and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.callActivityStatistics"
+        # Time spent on calls outside of working hours, which is based on the user's Outlook calendar setting for work hours. The value is represented in ISO 8601 format for durations.
+        self._after_hours: Optional[Timedelta] = None
+    
     @property
     def after_hours(self,) -> Optional[Timedelta]:
         """
@@ -23,15 +34,6 @@ class CallActivityStatistics(activity_statistics.ActivityStatistics):
             value: Value to set for the after_hours property.
         """
         self._after_hours = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new CallActivityStatistics and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.callActivityStatistics"
-        # Time spent on calls outside of working hours, which is based on the user's Outlook calendar setting for work hours. The value is represented in ISO 8601 format for durations.
-        self._after_hours: Optional[Timedelta] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CallActivityStatistics:
@@ -50,7 +52,9 @@ class CallActivityStatistics(activity_statistics.ActivityStatistics):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import activity_statistics
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "afterHours": lambda n : setattr(self, 'after_hours', n.get_object_value(Timedelta)),
         }
         super_fields = super().get_field_deserializers()

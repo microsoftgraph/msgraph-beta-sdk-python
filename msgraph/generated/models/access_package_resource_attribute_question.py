@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-access_package_question = lazy_import('msgraph.generated.models.access_package_question')
-access_package_resource_attribute_source = lazy_import('msgraph.generated.models.access_package_resource_attribute_source')
+if TYPE_CHECKING:
+    from . import access_package_question, access_package_resource_attribute_source
+
+from . import access_package_resource_attribute_source
 
 class AccessPackageResourceAttributeQuestion(access_package_resource_attribute_source.AccessPackageResourceAttributeSource):
     def __init__(self,) -> None:
@@ -33,7 +34,9 @@ class AccessPackageResourceAttributeQuestion(access_package_resource_attribute_s
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import access_package_question, access_package_resource_attribute_source
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "question": lambda n : setattr(self, 'question', n.get_object_value(access_package_question.AccessPackageQuestion)),
         }
         super_fields = super().get_field_deserializers()

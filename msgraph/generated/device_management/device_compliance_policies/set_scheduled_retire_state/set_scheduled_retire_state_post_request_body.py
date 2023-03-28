@@ -1,11 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-scheduled_retire_state = lazy_import('msgraph.generated.models.scheduled_retire_state')
+if TYPE_CHECKING:
+    from ....models import scheduled_retire_state
 
 class SetScheduledRetireStatePostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new setScheduledRetireStatePostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The managedDeviceIds property
+        self._managed_device_ids: Optional[List[str]] = None
+        # The scopedToAllDevices property
+        self._scoped_to_all_devices: Optional[bool] = None
+        # Cancel or confirm scheduled retire 
+        self._state: Optional[scheduled_retire_state.ScheduledRetireState] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -22,20 +36,6 @@ class SetScheduledRetireStatePostRequestBody(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new setScheduledRetireStatePostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The managedDeviceIds property
-        self._managed_device_ids: Optional[List[str]] = None
-        # The scopedToAllDevices property
-        self._scoped_to_all_devices: Optional[bool] = None
-        # Cancel or confirm scheduled retire 
-        self._state: Optional[scheduled_retire_state.ScheduledRetireState] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SetScheduledRetireStatePostRequestBody:
@@ -54,7 +54,9 @@ class SetScheduledRetireStatePostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from ....models import scheduled_retire_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "managedDeviceIds": lambda n : setattr(self, 'managed_device_ids', n.get_collection_of_primitive_values(str)),
             "scopedToAllDevices": lambda n : setattr(self, 'scoped_to_all_devices', n.get_bool_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(scheduled_retire_state.ScheduledRetireState)),

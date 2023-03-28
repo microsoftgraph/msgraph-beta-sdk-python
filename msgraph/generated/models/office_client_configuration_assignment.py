@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-office_configuration_assignment_target = lazy_import('msgraph.generated.models.office_configuration_assignment_target')
+if TYPE_CHECKING:
+    from . import entity, office_configuration_assignment_target
+
+from . import entity
 
 class OfficeClientConfigurationAssignment(entity.Entity):
     def __init__(self,) -> None:
@@ -34,7 +35,9 @@ class OfficeClientConfigurationAssignment(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, office_configuration_assignment_target
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "target": lambda n : setattr(self, 'target', n.get_object_value(office_configuration_assignment_target.OfficeConfigurationAssignmentTarget)),
         }
         super_fields = super().get_field_deserializers()

@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-unified_role_permission = lazy_import('msgraph.generated.models.unified_role_permission')
+if TYPE_CHECKING:
+    from . import entity, unified_role_permission
+
+from . import entity
 
 class DefaultUserRoleOverride(entity.Entity):
     def __init__(self,) -> None:
@@ -36,7 +37,9 @@ class DefaultUserRoleOverride(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, unified_role_permission
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "isDefault": lambda n : setattr(self, 'is_default', n.get_bool_value()),
             "rolePermissions": lambda n : setattr(self, 'role_permissions', n.get_collection_of_object_values(unified_role_permission.UnifiedRolePermission)),
         }

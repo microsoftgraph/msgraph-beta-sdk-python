@@ -1,15 +1,32 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-role_scope_tag_auto_assignment = lazy_import('msgraph.generated.models.role_scope_tag_auto_assignment')
+if TYPE_CHECKING:
+    from . import entity, role_scope_tag_auto_assignment
+
+from . import entity
 
 class RoleScopeTag(entity.Entity):
     """
     Role Scope Tag
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new roleScopeTag and sets the default values.
+        """
+        super().__init__()
+        # The list of assignments for this Role Scope Tag.
+        self._assignments: Optional[List[role_scope_tag_auto_assignment.RoleScopeTagAutoAssignment]] = None
+        # Description of the Role Scope Tag.
+        self._description: Optional[str] = None
+        # The display or friendly name of the Role Scope Tag.
+        self._display_name: Optional[str] = None
+        # Description of the Role Scope Tag. This property is read-only.
+        self._is_built_in: Optional[bool] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def assignments(self,) -> Optional[List[role_scope_tag_auto_assignment.RoleScopeTagAutoAssignment]]:
         """
@@ -26,22 +43,6 @@ class RoleScopeTag(entity.Entity):
             value: Value to set for the assignments property.
         """
         self._assignments = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new roleScopeTag and sets the default values.
-        """
-        super().__init__()
-        # The list of assignments for this Role Scope Tag.
-        self._assignments: Optional[List[role_scope_tag_auto_assignment.RoleScopeTagAutoAssignment]] = None
-        # Description of the Role Scope Tag.
-        self._description: Optional[str] = None
-        # The display or friendly name of the Role Scope Tag.
-        self._display_name: Optional[str] = None
-        # Description of the Role Scope Tag. This property is read-only.
-        self._is_built_in: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RoleScopeTag:
@@ -94,7 +95,9 @@ class RoleScopeTag(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, role_scope_tag_auto_assignment
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(role_scope_tag_auto_assignment.RoleScopeTagAutoAssignment)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

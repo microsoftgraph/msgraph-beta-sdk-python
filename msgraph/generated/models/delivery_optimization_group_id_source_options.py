@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-delivery_optimization_group_id_options_type = lazy_import('msgraph.generated.models.delivery_optimization_group_id_options_type')
-delivery_optimization_group_id_source = lazy_import('msgraph.generated.models.delivery_optimization_group_id_source')
+if TYPE_CHECKING:
+    from . import delivery_optimization_group_id_options_type, delivery_optimization_group_id_source
+
+from . import delivery_optimization_group_id_source
 
 class DeliveryOptimizationGroupIdSourceOptions(delivery_optimization_group_id_source.DeliveryOptimizationGroupIdSource):
     def __init__(self,) -> None:
@@ -33,7 +34,9 @@ class DeliveryOptimizationGroupIdSourceOptions(delivery_optimization_group_id_so
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import delivery_optimization_group_id_options_type, delivery_optimization_group_id_source
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "groupIdSourceOption": lambda n : setattr(self, 'group_id_source_option', n.get_enum_value(delivery_optimization_group_id_options_type.DeliveryOptimizationGroupIdOptionsType)),
         }
         super_fields = super().get_field_deserializers()

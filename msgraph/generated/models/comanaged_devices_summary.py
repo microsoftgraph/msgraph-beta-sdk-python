@@ -1,12 +1,39 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class ComanagedDevicesSummary(AdditionalDataHolder, Parsable):
     """
     Summary data for co managed devices
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new comanagedDevicesSummary and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Number of devices with CompliancePolicy swung-over. This property is read-only.
+        self._compliance_policy_count: Optional[int] = None
+        # Number of devices with ConfigurationSettings swung-over. This property is read-only.
+        self._configuration_settings_count: Optional[int] = None
+        # Number of devices with EndpointProtection swung-over. This property is read-only.
+        self._endpoint_protection_count: Optional[int] = None
+        # Number of devices with Inventory swung-over. This property is read-only.
+        self._inventory_count: Optional[int] = None
+        # Number of devices with ModernApps swung-over. This property is read-only.
+        self._modern_apps_count: Optional[int] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Number of devices with OfficeApps swung-over. This property is read-only.
+        self._office_apps_count: Optional[int] = None
+        # Number of devices with ResourceAccess swung-over. This property is read-only.
+        self._resource_access_count: Optional[int] = None
+        # Number of Co-Managed Devices. This property is read-only.
+        self._total_comanaged_count: Optional[int] = None
+        # Number of devices with WindowsUpdateForBusiness swung-over. This property is read-only.
+        self._windows_update_for_business_count: Optional[int] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -58,34 +85,6 @@ class ComanagedDevicesSummary(AdditionalDataHolder, Parsable):
         """
         self._configuration_settings_count = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new comanagedDevicesSummary and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Number of devices with CompliancePolicy swung-over. This property is read-only.
-        self._compliance_policy_count: Optional[int] = None
-        # Number of devices with ConfigurationSettings swung-over. This property is read-only.
-        self._configuration_settings_count: Optional[int] = None
-        # Number of devices with EndpointProtection swung-over. This property is read-only.
-        self._endpoint_protection_count: Optional[int] = None
-        # Number of devices with Inventory swung-over. This property is read-only.
-        self._inventory_count: Optional[int] = None
-        # Number of devices with ModernApps swung-over. This property is read-only.
-        self._modern_apps_count: Optional[int] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Number of devices with OfficeApps swung-over. This property is read-only.
-        self._office_apps_count: Optional[int] = None
-        # Number of devices with ResourceAccess swung-over. This property is read-only.
-        self._resource_access_count: Optional[int] = None
-        # Number of Co-Managed Devices. This property is read-only.
-        self._total_comanaged_count: Optional[int] = None
-        # Number of devices with WindowsUpdateForBusiness swung-over. This property is read-only.
-        self._windows_update_for_business_count: Optional[int] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ComanagedDevicesSummary:
         """
@@ -120,7 +119,7 @@ class ComanagedDevicesSummary(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "compliancePolicyCount": lambda n : setattr(self, 'compliance_policy_count', n.get_int_value()),
             "configurationSettingsCount": lambda n : setattr(self, 'configuration_settings_count', n.get_int_value()),
             "endpointProtectionCount": lambda n : setattr(self, 'endpoint_protection_count', n.get_int_value()),

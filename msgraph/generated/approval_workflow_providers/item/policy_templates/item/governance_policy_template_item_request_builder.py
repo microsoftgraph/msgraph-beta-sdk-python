@@ -7,11 +7,11 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-governance_policy_template = lazy_import('msgraph.generated.models.governance_policy_template')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from .....models import governance_policy_template
+    from .....models.o_data_errors import o_data_error
 
 class GovernancePolicyTemplateItemRequestBuilder():
     """
@@ -44,6 +44,8 @@ class GovernancePolicyTemplateItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -62,12 +64,16 @@ class GovernancePolicyTemplateItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .....models import governance_policy_template
+
         return await self.request_adapter.send_async(request_info, governance_policy_template.GovernancePolicyTemplate, error_mapping)
     
     async def patch(self,body: Optional[governance_policy_template.GovernancePolicyTemplate] = None, request_configuration: Optional[GovernancePolicyTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[governance_policy_template.GovernancePolicyTemplate]:
@@ -83,12 +89,16 @@ class GovernancePolicyTemplateItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .....models import governance_policy_template
+
         return await self.request_adapter.send_async(request_info, governance_policy_template.GovernancePolicyTemplate, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[GovernancePolicyTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -163,12 +173,6 @@ class GovernancePolicyTemplateItemRequestBuilder():
         """
         Get policyTemplates from approvalWorkflowProviders
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -184,6 +188,12 @@ class GovernancePolicyTemplateItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class GovernancePolicyTemplateItemRequestBuilderGetRequestConfiguration():

@@ -1,9 +1,28 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class ServicePrincipalLockConfiguration(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new servicePrincipalLockConfiguration and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Enables locking all sensitive properties. The sensitive properties are keyCredentials, passwordCredentials, and tokenEncryptionKeyId.
+        self._all_properties: Optional[bool] = None
+        # Locks the keyCredentials and passwordCredentials properties for modification where credential usage type is Sign.
+        self._credentials_with_usage_sign: Optional[bool] = None
+        # Locks the keyCredentials and passwordCredentials properties for modification where credential usage type is Verify. This locks OAuth service principals.
+        self._credentials_with_usage_verify: Optional[bool] = None
+        # Enables or disables service principal lock configuration. To allow the sensitive properties to be updated, update this property to false to disable the lock on the service principal.
+        self._is_enabled: Optional[bool] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Locks the tokenEncryptionKeyId property for modification on the service principal.
+        self._token_encryption_key_id: Optional[bool] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -37,26 +56,6 @@ class ServicePrincipalLockConfiguration(AdditionalDataHolder, Parsable):
             value: Value to set for the all_properties property.
         """
         self._all_properties = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new servicePrincipalLockConfiguration and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Enables locking all sensitive properties. The sensitive properties are keyCredentials, passwordCredentials, and tokenEncryptionKeyId.
-        self._all_properties: Optional[bool] = None
-        # Locks the keyCredentials and passwordCredentials properties for modification where credential usage type is Sign.
-        self._credentials_with_usage_sign: Optional[bool] = None
-        # Locks the keyCredentials and passwordCredentials properties for modification where credential usage type is Verify. This locks OAuth service principals.
-        self._credentials_with_usage_verify: Optional[bool] = None
-        # Enables or disables service principal lock configuration. To allow the sensitive properties to be updated, update this property to false to disable the lock on the service principal.
-        self._is_enabled: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Locks the tokenEncryptionKeyId property for modification on the service principal.
-        self._token_encryption_key_id: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ServicePrincipalLockConfiguration:
@@ -109,7 +108,7 @@ class ServicePrincipalLockConfiguration(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "allProperties": lambda n : setattr(self, 'all_properties', n.get_bool_value()),
             "credentialsWithUsageSign": lambda n : setattr(self, 'credentials_with_usage_sign', n.get_bool_value()),
             "credentialsWithUsageVerify": lambda n : setattr(self, 'credentials_with_usage_verify', n.get_bool_value()),

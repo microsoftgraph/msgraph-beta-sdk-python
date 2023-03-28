@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+if TYPE_CHECKING:
+    from . import device_configuration, ios_certificate_profile_base, ios_imported_p_f_x_certificate_profile, ios_pkcs_certificate_profile, ios_scep_certificate_profile
+
+from . import device_configuration
 
 class IosCertificateProfile(device_configuration.DeviceConfiguration):
     def __init__(self,) -> None:
@@ -23,6 +25,25 @@ class IosCertificateProfile(device_configuration.DeviceConfiguration):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.iosCertificateProfileBase":
+                from . import ios_certificate_profile_base
+
+                return ios_certificate_profile_base.IosCertificateProfileBase()
+            if mapping_value == "#microsoft.graph.iosImportedPFXCertificateProfile":
+                from . import ios_imported_p_f_x_certificate_profile
+
+                return ios_imported_p_f_x_certificate_profile.IosImportedPFXCertificateProfile()
+            if mapping_value == "#microsoft.graph.iosPkcsCertificateProfile":
+                from . import ios_pkcs_certificate_profile
+
+                return ios_pkcs_certificate_profile.IosPkcsCertificateProfile()
+            if mapping_value == "#microsoft.graph.iosScepCertificateProfile":
+                from . import ios_scep_certificate_profile
+
+                return ios_scep_certificate_profile.IosScepCertificateProfile()
         return IosCertificateProfile()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -30,7 +51,9 @@ class IosCertificateProfile(device_configuration.DeviceConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_configuration, ios_certificate_profile_base, ios_imported_p_f_x_certificate_profile, ios_pkcs_certificate_profile, ios_scep_certificate_profile
+
+        fields: Dict[str, Callable[[Any], None]] = {
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

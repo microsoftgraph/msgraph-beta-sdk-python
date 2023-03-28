@@ -1,64 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-enrollment_profile = lazy_import('msgraph.generated.models.enrollment_profile')
-i_tunes_pairing_mode = lazy_import('msgraph.generated.models.i_tunes_pairing_mode')
-management_certificate_with_thumbprint = lazy_import('msgraph.generated.models.management_certificate_with_thumbprint')
+if TYPE_CHECKING:
+    from . import enrollment_profile, i_tunes_pairing_mode, management_certificate_with_thumbprint
+
+from . import enrollment_profile
 
 class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
-    @property
-    def apple_id_disabled(self,) -> Optional[bool]:
-        """
-        Gets the appleIdDisabled property value. Indicates if Apple id setup pane is disabled
-        Returns: Optional[bool]
-        """
-        return self._apple_id_disabled
-    
-    @apple_id_disabled.setter
-    def apple_id_disabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the appleIdDisabled property value. Indicates if Apple id setup pane is disabled
-        Args:
-            value: Value to set for the apple_id_disabled property.
-        """
-        self._apple_id_disabled = value
-    
-    @property
-    def apple_pay_disabled(self,) -> Optional[bool]:
-        """
-        Gets the applePayDisabled property value. Indicates if Apple pay setup pane is disabled
-        Returns: Optional[bool]
-        """
-        return self._apple_pay_disabled
-    
-    @apple_pay_disabled.setter
-    def apple_pay_disabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the applePayDisabled property value. Indicates if Apple pay setup pane is disabled
-        Args:
-            value: Value to set for the apple_pay_disabled property.
-        """
-        self._apple_pay_disabled = value
-    
-    @property
-    def await_device_configured_confirmation(self,) -> Optional[bool]:
-        """
-        Gets the awaitDeviceConfiguredConfirmation property value. Indicates if the device will need to wait for configured confirmation
-        Returns: Optional[bool]
-        """
-        return self._await_device_configured_confirmation
-    
-    @await_device_configured_confirmation.setter
-    def await_device_configured_confirmation(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the awaitDeviceConfiguredConfirmation property value. Indicates if the device will need to wait for configured confirmation
-        Args:
-            value: Value to set for the await_device_configured_confirmation property.
-        """
-        self._await_device_configured_confirmation = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new DepEnrollmentProfile and sets the default values.
@@ -114,6 +63,57 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
         # Indicates if zoom setup pane is disabled
         self._zoom_disabled: Optional[bool] = None
     
+    @property
+    def apple_id_disabled(self,) -> Optional[bool]:
+        """
+        Gets the appleIdDisabled property value. Indicates if Apple id setup pane is disabled
+        Returns: Optional[bool]
+        """
+        return self._apple_id_disabled
+    
+    @apple_id_disabled.setter
+    def apple_id_disabled(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the appleIdDisabled property value. Indicates if Apple id setup pane is disabled
+        Args:
+            value: Value to set for the apple_id_disabled property.
+        """
+        self._apple_id_disabled = value
+    
+    @property
+    def apple_pay_disabled(self,) -> Optional[bool]:
+        """
+        Gets the applePayDisabled property value. Indicates if Apple pay setup pane is disabled
+        Returns: Optional[bool]
+        """
+        return self._apple_pay_disabled
+    
+    @apple_pay_disabled.setter
+    def apple_pay_disabled(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the applePayDisabled property value. Indicates if Apple pay setup pane is disabled
+        Args:
+            value: Value to set for the apple_pay_disabled property.
+        """
+        self._apple_pay_disabled = value
+    
+    @property
+    def await_device_configured_confirmation(self,) -> Optional[bool]:
+        """
+        Gets the awaitDeviceConfiguredConfirmation property value. Indicates if the device will need to wait for configured confirmation
+        Returns: Optional[bool]
+        """
+        return self._await_device_configured_confirmation
+    
+    @await_device_configured_confirmation.setter
+    def await_device_configured_confirmation(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the awaitDeviceConfiguredConfirmation property value. Indicates if the device will need to wait for configured confirmation
+        Args:
+            value: Value to set for the await_device_configured_confirmation property.
+        """
+        self._await_device_configured_confirmation = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DepEnrollmentProfile:
         """
@@ -165,7 +165,9 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import enrollment_profile, i_tunes_pairing_mode, management_certificate_with_thumbprint
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appleIdDisabled": lambda n : setattr(self, 'apple_id_disabled', n.get_bool_value()),
             "applePayDisabled": lambda n : setattr(self, 'apple_pay_disabled', n.get_bool_value()),
             "awaitDeviceConfiguredConfirmation": lambda n : setattr(self, 'await_device_configured_confirmation', n.get_bool_value()),

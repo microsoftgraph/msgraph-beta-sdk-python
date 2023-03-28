@@ -1,12 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class MacOSIncludedApp(AdditionalDataHolder, Parsable):
     """
     Contains properties of an included .app in a MacOS app.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new macOSIncludedApp and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The CFBundleIdentifier.
+        self._bundle_id: Optional[str] = None
+        # The CFBundleVersion.
+        self._bundle_version: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -58,20 +71,6 @@ class MacOSIncludedApp(AdditionalDataHolder, Parsable):
         """
         self._bundle_version = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new macOSIncludedApp and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The CFBundleIdentifier.
-        self._bundle_id: Optional[str] = None
-        # The CFBundleVersion.
-        self._bundle_version: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSIncludedApp:
         """
@@ -89,7 +88,7 @@ class MacOSIncludedApp(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "bundleId": lambda n : setattr(self, 'bundle_id', n.get_str_value()),
             "bundleVersion": lambda n : setattr(self, 'bundle_version', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

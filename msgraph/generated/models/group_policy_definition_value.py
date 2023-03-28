@@ -1,32 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-group_policy_configuration_type = lazy_import('msgraph.generated.models.group_policy_configuration_type')
-group_policy_definition = lazy_import('msgraph.generated.models.group_policy_definition')
-group_policy_presentation_value = lazy_import('msgraph.generated.models.group_policy_presentation_value')
+if TYPE_CHECKING:
+    from . import entity, group_policy_configuration_type, group_policy_definition, group_policy_presentation_value
+
+from . import entity
 
 class GroupPolicyDefinitionValue(entity.Entity):
-    @property
-    def configuration_type(self,) -> Optional[group_policy_configuration_type.GroupPolicyConfigurationType]:
-        """
-        Gets the configurationType property value. Group Policy Configuration Type
-        Returns: Optional[group_policy_configuration_type.GroupPolicyConfigurationType]
-        """
-        return self._configuration_type
-    
-    @configuration_type.setter
-    def configuration_type(self,value: Optional[group_policy_configuration_type.GroupPolicyConfigurationType] = None) -> None:
-        """
-        Sets the configurationType property value. Group Policy Configuration Type
-        Args:
-            value: Value to set for the configuration_type property.
-        """
-        self._configuration_type = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new groupPolicyDefinitionValue and sets the default values.
@@ -46,6 +28,23 @@ class GroupPolicyDefinitionValue(entity.Entity):
         self.odata_type: Optional[str] = None
         # The associated group policy presentation values with the definition value.
         self._presentation_values: Optional[List[group_policy_presentation_value.GroupPolicyPresentationValue]] = None
+    
+    @property
+    def configuration_type(self,) -> Optional[group_policy_configuration_type.GroupPolicyConfigurationType]:
+        """
+        Gets the configurationType property value. Group Policy Configuration Type
+        Returns: Optional[group_policy_configuration_type.GroupPolicyConfigurationType]
+        """
+        return self._configuration_type
+    
+    @configuration_type.setter
+    def configuration_type(self,value: Optional[group_policy_configuration_type.GroupPolicyConfigurationType] = None) -> None:
+        """
+        Sets the configurationType property value. Group Policy Configuration Type
+        Args:
+            value: Value to set for the configuration_type property.
+        """
+        self._configuration_type = value
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
@@ -115,7 +114,9 @@ class GroupPolicyDefinitionValue(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, group_policy_configuration_type, group_policy_definition, group_policy_presentation_value
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "configurationType": lambda n : setattr(self, 'configuration_type', n.get_enum_value(group_policy_configuration_type.GroupPolicyConfigurationType)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "definition": lambda n : setattr(self, 'definition', n.get_object_value(group_policy_definition.GroupPolicyDefinition)),

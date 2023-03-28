@@ -1,13 +1,42 @@
 from __future__ import annotations
 from datetime import date, datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-account = lazy_import('msgraph.generated.models.account')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import account, entity
+
+from . import entity
 
 class GeneralLedgerEntry(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new generalLedgerEntry and sets the default values.
+        """
+        super().__init__()
+        # The account property
+        self._account: Optional[account.Account] = None
+        # The accountId property
+        self._account_id: Optional[Guid] = None
+        # The accountNumber property
+        self._account_number: Optional[str] = None
+        # The creditAmount property
+        self._credit_amount: Optional[float] = None
+        # The debitAmount property
+        self._debit_amount: Optional[float] = None
+        # The description property
+        self._description: Optional[str] = None
+        # The documentNumber property
+        self._document_number: Optional[str] = None
+        # The documentType property
+        self._document_type: Optional[str] = None
+        # The lastModifiedDateTime property
+        self._last_modified_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The postingDate property
+        self._posting_date: Optional[Date] = None
+    
     @property
     def account(self,) -> Optional[account.Account]:
         """
@@ -58,34 +87,6 @@ class GeneralLedgerEntry(entity.Entity):
             value: Value to set for the account_number property.
         """
         self._account_number = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new generalLedgerEntry and sets the default values.
-        """
-        super().__init__()
-        # The account property
-        self._account: Optional[account.Account] = None
-        # The accountId property
-        self._account_id: Optional[Guid] = None
-        # The accountNumber property
-        self._account_number: Optional[str] = None
-        # The creditAmount property
-        self._credit_amount: Optional[float] = None
-        # The debitAmount property
-        self._debit_amount: Optional[float] = None
-        # The description property
-        self._description: Optional[str] = None
-        # The documentNumber property
-        self._document_number: Optional[str] = None
-        # The documentType property
-        self._document_type: Optional[str] = None
-        # The lastModifiedDateTime property
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The postingDate property
-        self._posting_date: Optional[Date] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GeneralLedgerEntry:
@@ -189,7 +190,9 @@ class GeneralLedgerEntry(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import account, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "account": lambda n : setattr(self, 'account', n.get_object_value(account.Account)),
             "accountId": lambda n : setattr(self, 'account_id', n.get_object_value(Guid)),
             "accountNumber": lambda n : setattr(self, 'account_number', n.get_str_value()),

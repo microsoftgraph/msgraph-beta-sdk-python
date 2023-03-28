@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-mobile_app_relationship = lazy_import('msgraph.generated.models.mobile_app_relationship')
-mobile_app_supersedence_type = lazy_import('msgraph.generated.models.mobile_app_supersedence_type')
+if TYPE_CHECKING:
+    from . import mobile_app_relationship, mobile_app_supersedence_type
+
+from . import mobile_app_relationship
 
 class MobileAppSupersedence(mobile_app_relationship.MobileAppRelationship):
     def __init__(self,) -> None:
@@ -37,7 +38,9 @@ class MobileAppSupersedence(mobile_app_relationship.MobileAppRelationship):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import mobile_app_relationship, mobile_app_supersedence_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "supersededAppCount": lambda n : setattr(self, 'superseded_app_count', n.get_int_value()),
             "supersedenceType": lambda n : setattr(self, 'supersedence_type', n.get_enum_value(mobile_app_supersedence_type.MobileAppSupersedenceType)),
             "supersedingAppCount": lambda n : setattr(self, 'superseding_app_count', n.get_int_value()),

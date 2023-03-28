@@ -1,11 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_event_level = lazy_import('msgraph.generated.models.device_event_level')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import device_event_level, entity
+
+from . import entity
 
 class UserExperienceAnalyticsDeviceTimelineEvent(entity.Entity):
     """
@@ -150,7 +151,9 @@ class UserExperienceAnalyticsDeviceTimelineEvent(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_event_level, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
             "eventDateTime": lambda n : setattr(self, 'event_date_time', n.get_datetime_value()),
             "eventDetails": lambda n : setattr(self, 'event_details', n.get_str_value()),

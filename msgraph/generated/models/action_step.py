@@ -1,11 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-action_url = lazy_import('msgraph.generated.models.action_url')
+if TYPE_CHECKING:
+    from . import action_url
 
 class ActionStep(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new actionStep and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # A link to the documentation or Azure portal page that is associated with the action step.
+        self._action_url: Optional[action_url.ActionUrl] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Indicates the position for this action in the order of the collection of actions to be taken.
+        self._step_number: Optional[int] = None
+        # Friendly description of the action to take.
+        self._text: Optional[str] = None
+    
     @property
     def action_url(self,) -> Optional[action_url.ActionUrl]:
         """
@@ -40,22 +56,6 @@ class ActionStep(AdditionalDataHolder, Parsable):
         """
         self._additional_data = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new actionStep and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # A link to the documentation or Azure portal page that is associated with the action step.
-        self._action_url: Optional[action_url.ActionUrl] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Indicates the position for this action in the order of the collection of actions to be taken.
-        self._step_number: Optional[int] = None
-        # Friendly description of the action to take.
-        self._text: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ActionStep:
         """
@@ -73,7 +73,9 @@ class ActionStep(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import action_url
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "actionUrl": lambda n : setattr(self, 'action_url', n.get_object_value(action_url.ActionUrl)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "stepNumber": lambda n : setattr(self, 'step_number', n.get_int_value()),

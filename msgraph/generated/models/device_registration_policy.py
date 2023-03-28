@@ -1,14 +1,33 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-azure_a_d_registration_policy = lazy_import('msgraph.generated.models.azure_a_d_registration_policy')
-azure_ad_join_policy = lazy_import('msgraph.generated.models.azure_ad_join_policy')
-entity = lazy_import('msgraph.generated.models.entity')
-multi_factor_auth_configuration = lazy_import('msgraph.generated.models.multi_factor_auth_configuration')
+if TYPE_CHECKING:
+    from . import azure_ad_join_policy, azure_a_d_registration_policy, entity, multi_factor_auth_configuration
+
+from . import entity
 
 class DeviceRegistrationPolicy(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new DeviceRegistrationPolicy and sets the default values.
+        """
+        super().__init__()
+        # Specifies the authorization policy for controlling registration of new devices using Azure AD Join within your organization. Required. For more information, see What is a device identity?.
+        self._azure_a_d_join: Optional[azure_ad_join_policy.AzureAdJoinPolicy] = None
+        # Specifies the authorization policy for controlling registration of new devices using Azure AD registered within your organization. Required. For more information, see What is a device identity?.
+        self._azure_a_d_registration: Optional[azure_a_d_registration_policy.AzureADRegistrationPolicy] = None
+        # The description of the device registration policy. It is always set to Tenant-wide policy that manages intial provisioning controls using quota restrictions, additional authentication and authorization checks. Read-only.
+        self._description: Optional[str] = None
+        # The name of the device registration policy. It is always set to Device Registration Policy. Read-only.
+        self._display_name: Optional[str] = None
+        # The multiFactorAuthConfiguration property
+        self._multi_factor_auth_configuration: Optional[multi_factor_auth_configuration.MultiFactorAuthConfiguration] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Specifies the maximum number of devices that a user can have within your organization before blocking new device registrations. The default value is set to 50. If this property is not specified during the policy update operation, it is automatically reset to 0 to indicate that users are not allowed to join any devices.
+        self._user_device_quota: Optional[int] = None
+    
     @property
     def azure_a_d_join(self,) -> Optional[azure_ad_join_policy.AzureAdJoinPolicy]:
         """
@@ -42,26 +61,6 @@ class DeviceRegistrationPolicy(entity.Entity):
             value: Value to set for the azure_a_d_registration property.
         """
         self._azure_a_d_registration = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceRegistrationPolicy and sets the default values.
-        """
-        super().__init__()
-        # Specifies the authorization policy for controlling registration of new devices using Azure AD Join within your organization. Required. For more information, see What is a device identity?.
-        self._azure_a_d_join: Optional[azure_ad_join_policy.AzureAdJoinPolicy] = None
-        # Specifies the authorization policy for controlling registration of new devices using Azure AD registered within your organization. Required. For more information, see What is a device identity?.
-        self._azure_a_d_registration: Optional[azure_a_d_registration_policy.AzureADRegistrationPolicy] = None
-        # The description of the device registration policy. It is always set to Tenant-wide policy that manages intial provisioning controls using quota restrictions, additional authentication and authorization checks. Read-only.
-        self._description: Optional[str] = None
-        # The name of the device registration policy. It is always set to Device Registration Policy. Read-only.
-        self._display_name: Optional[str] = None
-        # The multiFactorAuthConfiguration property
-        self._multi_factor_auth_configuration: Optional[multi_factor_auth_configuration.MultiFactorAuthConfiguration] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Specifies the maximum number of devices that a user can have within your organization before blocking new device registrations. The default value is set to 50. If this property is not specified during the policy update operation, it is automatically reset to 0 to indicate that users are not allowed to join any devices.
-        self._user_device_quota: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceRegistrationPolicy:
@@ -114,7 +113,9 @@ class DeviceRegistrationPolicy(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import azure_ad_join_policy, azure_a_d_registration_policy, entity, multi_factor_auth_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "azureADJoin": lambda n : setattr(self, 'azure_a_d_join', n.get_object_value(azure_ad_join_policy.AzureAdJoinPolicy)),
             "azureADRegistration": lambda n : setattr(self, 'azure_a_d_registration', n.get_object_value(azure_a_d_registration_policy.AzureADRegistrationPolicy)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

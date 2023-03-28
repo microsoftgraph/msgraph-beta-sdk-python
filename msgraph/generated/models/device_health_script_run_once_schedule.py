@@ -1,10 +1,12 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_health_script_time_schedule = lazy_import('msgraph.generated.models.device_health_script_time_schedule')
+if TYPE_CHECKING:
+    from . import device_health_script_time_schedule
+
+from . import device_health_script_time_schedule
 
 class DeviceHealthScriptRunOnceSchedule(device_health_script_time_schedule.DeviceHealthScriptTimeSchedule):
     def __init__(self,) -> None:
@@ -50,7 +52,9 @@ class DeviceHealthScriptRunOnceSchedule(device_health_script_time_schedule.Devic
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_health_script_time_schedule
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "date": lambda n : setattr(self, 'date', n.get_object_value(Date)),
         }
         super_fields = super().get_field_deserializers()

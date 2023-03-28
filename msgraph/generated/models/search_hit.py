@@ -1,11 +1,43 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
 
 class SearchHit(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new searchHit and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The _id property
+        self.__id: Optional[str] = None
+        # The _score property
+        self.__score: Optional[int] = None
+        # The _source property
+        self.__source: Optional[entity.Entity] = None
+        # The _summary property
+        self.__summary: Optional[str] = None
+        # The name of the content source that the externalItem is part of.
+        self._content_source: Optional[str] = None
+        # The internal identifier for the item. The format of the identifier varies based on the entity type. For details, see hitId format.
+        self._hit_id: Optional[str] = None
+        # Indicates whether the current result is collapses when the collapseProperties property is used.
+        self._is_collapsed: Optional[bool] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The rank or the order of the result.
+        self._rank: Optional[int] = None
+        # The resource property
+        self._resource: Optional[entity.Entity] = None
+        # ID of the result template for rendering the search result. This ID must map to a display layout in the resultTemplates dictionary, included in the searchresponse as well.
+        self._result_template_id: Optional[str] = None
+        # A summary of the result, if a summary is available.
+        self._summary: Optional[str] = None
+    
     @property
     def _id(self,) -> Optional[str]:
         """
@@ -91,38 +123,6 @@ class SearchHit(AdditionalDataHolder, Parsable):
         """
         self._additional_data = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new searchHit and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The _id property
-        self.__id: Optional[str] = None
-        # The _score property
-        self.__score: Optional[int] = None
-        # The _source property
-        self.__source: Optional[entity.Entity] = None
-        # The _summary property
-        self.__summary: Optional[str] = None
-        # The name of the content source that the externalItem is part of.
-        self._content_source: Optional[str] = None
-        # The internal identifier for the item. The format of the identifier varies based on the entity type. For details, see hitId format.
-        self._hit_id: Optional[str] = None
-        # Indicates whether the current result is collapses when the collapseProperties property is used.
-        self._is_collapsed: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The rank or the order of the result.
-        self._rank: Optional[int] = None
-        # The resource property
-        self._resource: Optional[entity.Entity] = None
-        # ID of the result template for rendering the search result. This ID must map to a display layout in the resultTemplates dictionary, included in the searchresponse as well.
-        self._result_template_id: Optional[str] = None
-        # A summary of the result, if a summary is available.
-        self._summary: Optional[str] = None
-    
     @property
     def content_source(self,) -> Optional[str]:
         """
@@ -157,7 +157,9 @@ class SearchHit(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "contentSource": lambda n : setattr(self, 'content_source', n.get_str_value()),
             "hitId": lambda n : setattr(self, 'hit_id', n.get_str_value()),
             "isCollapsed": lambda n : setattr(self, 'is_collapsed', n.get_bool_value()),

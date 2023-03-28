@@ -1,15 +1,42 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-user_experience_analytics_health_state = lazy_import('msgraph.generated.models.user_experience_analytics_health_state')
+if TYPE_CHECKING:
+    from . import entity, user_experience_analytics_health_state
+
+from . import entity
 
 class UserExperienceAnalyticsWorkFromAnywhereModelPerformance(entity.Entity):
     """
     The user experience analytics work from anywhere model performance.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new userExperienceAnalyticsWorkFromAnywhereModelPerformance and sets the default values.
+        """
+        super().__init__()
+        # The user experience work from anywhere's cloud identity score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+        self._cloud_identity_score: Optional[float] = None
+        # The user experience work from anywhere's cloud management score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+        self._cloud_management_score: Optional[float] = None
+        # The user experience work from anywhere's cloud provisioning score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+        self._cloud_provisioning_score: Optional[float] = None
+        # The healthStatus property
+        self._health_status: Optional[user_experience_analytics_health_state.UserExperienceAnalyticsHealthState] = None
+        # The user experience work from anywhere's manufacturer name of the devices.
+        self._manufacturer: Optional[str] = None
+        # The user experience work from anywhere's model name of the devices.
+        self._model: Optional[str] = None
+        # The user experience work from anywhere's devices count for the model. Valid values -2147483648 to 2147483647
+        self._model_device_count: Optional[int] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The user experience work from anywhere windows score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+        self._windows_score: Optional[float] = None
+        # The user experience work from anywhere overall score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+        self._work_from_anywhere_score: Optional[float] = None
+    
     @property
     def cloud_identity_score(self,) -> Optional[float]:
         """
@@ -61,32 +88,6 @@ class UserExperienceAnalyticsWorkFromAnywhereModelPerformance(entity.Entity):
         """
         self._cloud_provisioning_score = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsWorkFromAnywhereModelPerformance and sets the default values.
-        """
-        super().__init__()
-        # The user experience work from anywhere's cloud identity score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._cloud_identity_score: Optional[float] = None
-        # The user experience work from anywhere's cloud management score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._cloud_management_score: Optional[float] = None
-        # The user experience work from anywhere's cloud provisioning score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._cloud_provisioning_score: Optional[float] = None
-        # The healthStatus property
-        self._health_status: Optional[user_experience_analytics_health_state.UserExperienceAnalyticsHealthState] = None
-        # The user experience work from anywhere's manufacturer name of the devices.
-        self._manufacturer: Optional[str] = None
-        # The user experience work from anywhere's model name of the devices.
-        self._model: Optional[str] = None
-        # The user experience work from anywhere's devices count for the model. Valid values -2147483648 to 2147483647
-        self._model_device_count: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The user experience work from anywhere windows score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._windows_score: Optional[float] = None
-        # The user experience work from anywhere overall score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._work_from_anywhere_score: Optional[float] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsWorkFromAnywhereModelPerformance:
         """
@@ -104,7 +105,9 @@ class UserExperienceAnalyticsWorkFromAnywhereModelPerformance(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, user_experience_analytics_health_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "cloudIdentityScore": lambda n : setattr(self, 'cloud_identity_score', n.get_float_value()),
             "cloudManagementScore": lambda n : setattr(self, 'cloud_management_score', n.get_float_value()),
             "cloudProvisioningScore": lambda n : setattr(self, 'cloud_provisioning_score', n.get_float_value()),

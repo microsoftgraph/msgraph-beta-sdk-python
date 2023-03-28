@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-dlp_action_info = lazy_import('msgraph.generated.models.dlp_action_info')
+if TYPE_CHECKING:
+    from . import dlp_action_info
+
+from . import dlp_action_info
 
 class BlockAccessAction(dlp_action_info.DlpActionInfo):
     def __init__(self,) -> None:
@@ -31,7 +33,9 @@ class BlockAccessAction(dlp_action_info.DlpActionInfo):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import dlp_action_info
+
+        fields: Dict[str, Callable[[Any], None]] = {
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

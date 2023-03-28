@@ -1,10 +1,12 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class Office365ActiveUserCounts(entity.Entity):
     def __init__(self,) -> None:
@@ -69,7 +71,9 @@ class Office365ActiveUserCounts(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "exchange": lambda n : setattr(self, 'exchange', n.get_int_value()),
             "office365": lambda n : setattr(self, 'office365', n.get_int_value()),
             "oneDrive": lambda n : setattr(self, 'one_drive', n.get_int_value()),

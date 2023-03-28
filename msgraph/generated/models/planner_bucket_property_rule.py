@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-planner_property_rule = lazy_import('msgraph.generated.models.planner_property_rule')
+if TYPE_CHECKING:
+    from . import planner_property_rule
+
+from . import planner_property_rule
 
 class PlannerBucketPropertyRule(planner_property_rule.PlannerPropertyRule):
     def __init__(self,) -> None:
@@ -34,7 +36,9 @@ class PlannerBucketPropertyRule(planner_property_rule.PlannerPropertyRule):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import planner_property_rule
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "order": lambda n : setattr(self, 'order', n.get_collection_of_primitive_values(str)),
             "title": lambda n : setattr(self, 'title', n.get_collection_of_primitive_values(str)),
         }

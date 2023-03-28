@@ -1,11 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-zebra_fota_connector_state = lazy_import('msgraph.generated.models.zebra_fota_connector_state')
+if TYPE_CHECKING:
+    from . import entity, zebra_fota_connector_state
+
+from . import entity
 
 class ZebraFotaConnector(entity.Entity):
     def __init__(self,) -> None:
@@ -94,7 +95,9 @@ class ZebraFotaConnector(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, zebra_fota_connector_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "enrollmentAuthorizationUrl": lambda n : setattr(self, 'enrollment_authorization_url', n.get_str_value()),
             "enrollmentToken": lambda n : setattr(self, 'enrollment_token', n.get_str_value()),
             "fotaAppsApproved": lambda n : setattr(self, 'fota_apps_approved', n.get_bool_value()),

@@ -1,53 +1,17 @@
 from __future__ import annotations
 from datetime import datetime, timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_autopilot_policy_status_detail = lazy_import('msgraph.generated.models.device_management_autopilot_policy_status_detail')
-enrollment_state = lazy_import('msgraph.generated.models.enrollment_state')
-entity = lazy_import('msgraph.generated.models.entity')
-windows_autopilot_deployment_state = lazy_import('msgraph.generated.models.windows_autopilot_deployment_state')
-windows_autopilot_enrollment_type = lazy_import('msgraph.generated.models.windows_autopilot_enrollment_type')
+if TYPE_CHECKING:
+    from . import device_management_autopilot_policy_status_detail, enrollment_state, entity, windows_autopilot_deployment_state, windows_autopilot_enrollment_type
+
+from . import entity
 
 class DeviceManagementAutopilotEvent(entity.Entity):
     """
     Represents an Autopilot flow event.
     """
-    @property
-    def account_setup_duration(self,) -> Optional[Timedelta]:
-        """
-        Gets the accountSetupDuration property value. Time spent in user ESP.
-        Returns: Optional[Timedelta]
-        """
-        return self._account_setup_duration
-    
-    @account_setup_duration.setter
-    def account_setup_duration(self,value: Optional[Timedelta] = None) -> None:
-        """
-        Sets the accountSetupDuration property value. Time spent in user ESP.
-        Args:
-            value: Value to set for the account_setup_duration property.
-        """
-        self._account_setup_duration = value
-    
-    @property
-    def account_setup_status(self,) -> Optional[windows_autopilot_deployment_state.WindowsAutopilotDeploymentState]:
-        """
-        Gets the accountSetupStatus property value. Deployment states for Autopilot devices
-        Returns: Optional[windows_autopilot_deployment_state.WindowsAutopilotDeploymentState]
-        """
-        return self._account_setup_status
-    
-    @account_setup_status.setter
-    def account_setup_status(self,value: Optional[windows_autopilot_deployment_state.WindowsAutopilotDeploymentState] = None) -> None:
-        """
-        Sets the accountSetupStatus property value. Deployment states for Autopilot devices
-        Args:
-            value: Value to set for the account_setup_status property.
-        """
-        self._account_setup_status = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new deviceManagementAutopilotEvent and sets the default values.
@@ -109,6 +73,40 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         self._windows10_enrollment_completion_page_configuration_display_name: Optional[str] = None
         # Enrollment Status Page profile ID
         self._windows10_enrollment_completion_page_configuration_id: Optional[str] = None
+    
+    @property
+    def account_setup_duration(self,) -> Optional[Timedelta]:
+        """
+        Gets the accountSetupDuration property value. Time spent in user ESP.
+        Returns: Optional[Timedelta]
+        """
+        return self._account_setup_duration
+    
+    @account_setup_duration.setter
+    def account_setup_duration(self,value: Optional[Timedelta] = None) -> None:
+        """
+        Sets the accountSetupDuration property value. Time spent in user ESP.
+        Args:
+            value: Value to set for the account_setup_duration property.
+        """
+        self._account_setup_duration = value
+    
+    @property
+    def account_setup_status(self,) -> Optional[windows_autopilot_deployment_state.WindowsAutopilotDeploymentState]:
+        """
+        Gets the accountSetupStatus property value. Deployment states for Autopilot devices
+        Returns: Optional[windows_autopilot_deployment_state.WindowsAutopilotDeploymentState]
+        """
+        return self._account_setup_status
+    
+    @account_setup_status.setter
+    def account_setup_status(self,value: Optional[windows_autopilot_deployment_state.WindowsAutopilotDeploymentState] = None) -> None:
+        """
+        Sets the accountSetupStatus property value. Deployment states for Autopilot devices
+        Args:
+            value: Value to set for the account_setup_status property.
+        """
+        self._account_setup_status = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementAutopilotEvent:
@@ -399,7 +397,9 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_autopilot_policy_status_detail, enrollment_state, entity, windows_autopilot_deployment_state, windows_autopilot_enrollment_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accountSetupDuration": lambda n : setattr(self, 'account_setup_duration', n.get_object_value(Timedelta)),
             "accountSetupStatus": lambda n : setattr(self, 'account_setup_status', n.get_enum_value(windows_autopilot_deployment_state.WindowsAutopilotDeploymentState)),
             "deploymentDuration": lambda n : setattr(self, 'deployment_duration', n.get_object_value(Timedelta)),

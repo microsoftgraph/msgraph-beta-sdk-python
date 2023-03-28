@@ -1,11 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-place = lazy_import('msgraph.generated.models.place')
-room = lazy_import('msgraph.generated.models.room')
-workspace = lazy_import('msgraph.generated.models.workspace')
+if TYPE_CHECKING:
+    from . import place, room, workspace
+
+from . import place
 
 class RoomList(place.Place):
     def __init__(self,) -> None:
@@ -55,7 +55,9 @@ class RoomList(place.Place):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import place, room, workspace
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "emailAddress": lambda n : setattr(self, 'email_address', n.get_str_value()),
             "rooms": lambda n : setattr(self, 'rooms', n.get_collection_of_object_values(room.Room)),
             "workspaces": lambda n : setattr(self, 'workspaces', n.get_collection_of_object_values(workspace.Workspace)),

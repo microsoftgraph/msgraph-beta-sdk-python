@@ -1,12 +1,24 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-label_action_base = lazy_import('msgraph.generated.models.label_action_base')
-site_access_type = lazy_import('msgraph.generated.models.site_access_type')
+if TYPE_CHECKING:
+    from . import label_action_base, site_access_type
+
+from . import label_action_base
 
 class ProtectSite(label_action_base.LabelActionBase):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new ProtectSite and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.protectSite"
+        # The accessType property
+        self._access_type: Optional[site_access_type.SiteAccessType] = None
+        # The conditionalAccessProtectionLevelId property
+        self._conditional_access_protection_level_id: Optional[str] = None
+    
     @property
     def access_type(self,) -> Optional[site_access_type.SiteAccessType]:
         """
@@ -41,17 +53,6 @@ class ProtectSite(label_action_base.LabelActionBase):
         """
         self._conditional_access_protection_level_id = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ProtectSite and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.protectSite"
-        # The accessType property
-        self._access_type: Optional[site_access_type.SiteAccessType] = None
-        # The conditionalAccessProtectionLevelId property
-        self._conditional_access_protection_level_id: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ProtectSite:
         """
@@ -69,7 +70,9 @@ class ProtectSite(label_action_base.LabelActionBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import label_action_base, site_access_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accessType": lambda n : setattr(self, 'access_type', n.get_enum_value(site_access_type.SiteAccessType)),
             "conditionalAccessProtectionLevelId": lambda n : setattr(self, 'conditional_access_protection_level_id', n.get_str_value()),
         }

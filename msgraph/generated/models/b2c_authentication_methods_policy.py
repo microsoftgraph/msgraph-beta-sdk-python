@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class B2cAuthenticationMethodsPolicy(entity.Entity):
     def __init__(self,) -> None:
@@ -37,7 +39,9 @@ class B2cAuthenticationMethodsPolicy(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "isEmailPasswordAuthenticationEnabled": lambda n : setattr(self, 'is_email_password_authentication_enabled', n.get_bool_value()),
             "isPhoneOneTimePasswordAuthenticationEnabled": lambda n : setattr(self, 'is_phone_one_time_password_authentication_enabled', n.get_bool_value()),
             "isUserNameAuthenticationEnabled": lambda n : setattr(self, 'is_user_name_authentication_enabled', n.get_bool_value()),

@@ -1,15 +1,31 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-configuration_manager_client_state = lazy_import('msgraph.generated.models.configuration_manager_client_state')
+if TYPE_CHECKING:
+    from . import configuration_manager_client_state
 
 class ConfigurationManagerClientHealthState(AdditionalDataHolder, Parsable):
     """
     Configuration manager client health state
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new configurationManagerClientHealthState and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Error code for failed state.
+        self._error_code: Optional[int] = None
+        # Datetime for last sync with configuration manager management point.
+        self._last_sync_date_time: Optional[datetime] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Configuration manager client state
+        self._state: Optional[configuration_manager_client_state.ConfigurationManagerClientState] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -26,22 +42,6 @@ class ConfigurationManagerClientHealthState(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new configurationManagerClientHealthState and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Error code for failed state.
-        self._error_code: Optional[int] = None
-        # Datetime for last sync with configuration manager management point.
-        self._last_sync_date_time: Optional[datetime] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Configuration manager client state
-        self._state: Optional[configuration_manager_client_state.ConfigurationManagerClientState] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ConfigurationManagerClientHealthState:
@@ -77,7 +77,9 @@ class ConfigurationManagerClientHealthState(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import configuration_manager_client_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "errorCode": lambda n : setattr(self, 'error_code', n.get_int_value()),
             "lastSyncDateTime": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

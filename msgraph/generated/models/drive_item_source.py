@@ -1,11 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-drive_item_source_application = lazy_import('msgraph.generated.models.drive_item_source_application')
+if TYPE_CHECKING:
+    from . import drive_item_source_application
 
 class DriveItemSource(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new driveItemSource and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Enumeration value that indicates the source application where the file was created.
+        self._application: Optional[drive_item_source_application.DriveItemSourceApplication] = None
+        # The external identifier for the drive item from the source.
+        self._external_id: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -39,20 +53,6 @@ class DriveItemSource(AdditionalDataHolder, Parsable):
             value: Value to set for the application property.
         """
         self._application = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new driveItemSource and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Enumeration value that indicates the source application where the file was created.
-        self._application: Optional[drive_item_source_application.DriveItemSourceApplication] = None
-        # The external identifier for the drive item from the source.
-        self._external_id: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DriveItemSource:
@@ -88,7 +88,9 @@ class DriveItemSource(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import drive_item_source_application
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "application": lambda n : setattr(self, 'application', n.get_enum_value(drive_item_source_application.DriveItemSourceApplication)),
             "externalId": lambda n : setattr(self, 'external_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

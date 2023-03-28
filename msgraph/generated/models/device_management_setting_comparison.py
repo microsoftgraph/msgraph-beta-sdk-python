@@ -1,14 +1,36 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_comparison_result = lazy_import('msgraph.generated.models.device_management_comparison_result')
+if TYPE_CHECKING:
+    from . import device_management_comparison_result
 
 class DeviceManagementSettingComparison(AdditionalDataHolder, Parsable):
     """
     Entity representing setting comparison result
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new deviceManagementSettingComparison and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Setting comparison result type
+        self._comparison_result: Optional[device_management_comparison_result.DeviceManagementComparisonResult] = None
+        # JSON representation of current intent (or) template setting's value
+        self._current_value_json: Optional[str] = None
+        # The ID of the setting definition for this instance
+        self._definition_id: Optional[str] = None
+        # The setting's display name
+        self._display_name: Optional[str] = None
+        # The setting ID
+        self._id: Optional[str] = None
+        # JSON representation of new template setting's value
+        self._new_value_json: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -42,28 +64,6 @@ class DeviceManagementSettingComparison(AdditionalDataHolder, Parsable):
             value: Value to set for the comparison_result property.
         """
         self._comparison_result = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementSettingComparison and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Setting comparison result type
-        self._comparison_result: Optional[device_management_comparison_result.DeviceManagementComparisonResult] = None
-        # JSON representation of current intent (or) template setting's value
-        self._current_value_json: Optional[str] = None
-        # The ID of the setting definition for this instance
-        self._definition_id: Optional[str] = None
-        # The setting's display name
-        self._display_name: Optional[str] = None
-        # The setting ID
-        self._id: Optional[str] = None
-        # JSON representation of new template setting's value
-        self._new_value_json: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementSettingComparison:
@@ -133,7 +133,9 @@ class DeviceManagementSettingComparison(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_comparison_result
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "comparisonResult": lambda n : setattr(self, 'comparison_result', n.get_enum_value(device_management_comparison_result.DeviceManagementComparisonResult)),
             "currentValueJson": lambda n : setattr(self, 'current_value_json', n.get_str_value()),
             "definitionId": lambda n : setattr(self, 'definition_id', n.get_str_value()),

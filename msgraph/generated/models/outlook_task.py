@@ -1,20 +1,56 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-attachment = lazy_import('msgraph.generated.models.attachment')
-date_time_time_zone = lazy_import('msgraph.generated.models.date_time_time_zone')
-importance = lazy_import('msgraph.generated.models.importance')
-item_body = lazy_import('msgraph.generated.models.item_body')
-multi_value_legacy_extended_property = lazy_import('msgraph.generated.models.multi_value_legacy_extended_property')
-outlook_item = lazy_import('msgraph.generated.models.outlook_item')
-patterned_recurrence = lazy_import('msgraph.generated.models.patterned_recurrence')
-sensitivity = lazy_import('msgraph.generated.models.sensitivity')
-single_value_legacy_extended_property = lazy_import('msgraph.generated.models.single_value_legacy_extended_property')
-task_status = lazy_import('msgraph.generated.models.task_status')
+if TYPE_CHECKING:
+    from . import attachment, date_time_time_zone, importance, item_body, multi_value_legacy_extended_property, outlook_item, patterned_recurrence, sensitivity, single_value_legacy_extended_property, task_status
+
+from . import outlook_item
 
 class OutlookTask(outlook_item.OutlookItem):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new OutlookTask and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.outlookTask"
+        # The name of the person who has been assigned the task in Outlook. Read-only.
+        self._assigned_to: Optional[str] = None
+        # The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the task.  Read-only. Nullable.
+        self._attachments: Optional[List[attachment.Attachment]] = None
+        # The task body that typically contains information about the task. Note that only HTML type is supported.
+        self._body: Optional[item_body.ItemBody] = None
+        # The date in the specified time zone that the task was finished.
+        self._completed_date_time: Optional[date_time_time_zone.DateTimeTimeZone] = None
+        # The date in the specified time zone that the task is to be finished.
+        self._due_date_time: Optional[date_time_time_zone.DateTimeTimeZone] = None
+        # Set to true if the task has attachments.
+        self._has_attachments: Optional[bool] = None
+        # The importance property
+        self._importance: Optional[importance.Importance] = None
+        # The isReminderOn property
+        self._is_reminder_on: Optional[bool] = None
+        # The collection of multi-value extended properties defined for the task. Read-only. Nullable.
+        self._multi_value_extended_properties: Optional[List[multi_value_legacy_extended_property.MultiValueLegacyExtendedProperty]] = None
+        # The owner property
+        self._owner: Optional[str] = None
+        # The parentFolderId property
+        self._parent_folder_id: Optional[str] = None
+        # The recurrence property
+        self._recurrence: Optional[patterned_recurrence.PatternedRecurrence] = None
+        # The reminderDateTime property
+        self._reminder_date_time: Optional[date_time_time_zone.DateTimeTimeZone] = None
+        # The sensitivity property
+        self._sensitivity: Optional[sensitivity.Sensitivity] = None
+        # The collection of single-value extended properties defined for the task. Read-only. Nullable.
+        self._single_value_extended_properties: Optional[List[single_value_legacy_extended_property.SingleValueLegacyExtendedProperty]] = None
+        # The startDateTime property
+        self._start_date_time: Optional[date_time_time_zone.DateTimeTimeZone] = None
+        # The status property
+        self._status: Optional[task_status.TaskStatus] = None
+        # The subject property
+        self._subject: Optional[str] = None
+    
     @property
     def assigned_to(self,) -> Optional[str]:
         """
@@ -83,49 +119,6 @@ class OutlookTask(outlook_item.OutlookItem):
         """
         self._completed_date_time = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new OutlookTask and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.outlookTask"
-        # The name of the person who has been assigned the task in Outlook. Read-only.
-        self._assigned_to: Optional[str] = None
-        # The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the task.  Read-only. Nullable.
-        self._attachments: Optional[List[attachment.Attachment]] = None
-        # The task body that typically contains information about the task. Note that only HTML type is supported.
-        self._body: Optional[item_body.ItemBody] = None
-        # The date in the specified time zone that the task was finished.
-        self._completed_date_time: Optional[date_time_time_zone.DateTimeTimeZone] = None
-        # The date in the specified time zone that the task is to be finished.
-        self._due_date_time: Optional[date_time_time_zone.DateTimeTimeZone] = None
-        # Set to true if the task has attachments.
-        self._has_attachments: Optional[bool] = None
-        # The importance property
-        self._importance: Optional[importance.Importance] = None
-        # The isReminderOn property
-        self._is_reminder_on: Optional[bool] = None
-        # The collection of multi-value extended properties defined for the task. Read-only. Nullable.
-        self._multi_value_extended_properties: Optional[List[multi_value_legacy_extended_property.MultiValueLegacyExtendedProperty]] = None
-        # The owner property
-        self._owner: Optional[str] = None
-        # The parentFolderId property
-        self._parent_folder_id: Optional[str] = None
-        # The recurrence property
-        self._recurrence: Optional[patterned_recurrence.PatternedRecurrence] = None
-        # The reminderDateTime property
-        self._reminder_date_time: Optional[date_time_time_zone.DateTimeTimeZone] = None
-        # The sensitivity property
-        self._sensitivity: Optional[sensitivity.Sensitivity] = None
-        # The collection of single-value extended properties defined for the task. Read-only. Nullable.
-        self._single_value_extended_properties: Optional[List[single_value_legacy_extended_property.SingleValueLegacyExtendedProperty]] = None
-        # The startDateTime property
-        self._start_date_time: Optional[date_time_time_zone.DateTimeTimeZone] = None
-        # The status property
-        self._status: Optional[task_status.TaskStatus] = None
-        # The subject property
-        self._subject: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OutlookTask:
         """
@@ -160,7 +153,9 @@ class OutlookTask(outlook_item.OutlookItem):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import attachment, date_time_time_zone, importance, item_body, multi_value_legacy_extended_property, outlook_item, patterned_recurrence, sensitivity, single_value_legacy_extended_property, task_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignedTo": lambda n : setattr(self, 'assigned_to', n.get_str_value()),
             "attachments": lambda n : setattr(self, 'attachments', n.get_collection_of_object_values(attachment.Attachment)),
             "body": lambda n : setattr(self, 'body', n.get_object_value(item_body.ItemBody)),

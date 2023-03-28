@@ -1,29 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-key_typed_value_pair = lazy_import('msgraph.generated.models.key_typed_value_pair')
-mac_o_s_single_sign_on_extension = lazy_import('msgraph.generated.models.mac_o_s_single_sign_on_extension')
+if TYPE_CHECKING:
+    from . import key_typed_value_pair, mac_o_s_single_sign_on_extension
+
+from . import mac_o_s_single_sign_on_extension
 
 class MacOSCredentialSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSSingleSignOnExtension):
-    @property
-    def configurations(self,) -> Optional[List[key_typed_value_pair.KeyTypedValuePair]]:
-        """
-        Gets the configurations property value. Gets or sets a list of typed key-value pairs used to configure Credential-type profiles. This collection can contain a maximum of 500 elements.
-        Returns: Optional[List[key_typed_value_pair.KeyTypedValuePair]]
-        """
-        return self._configurations
-    
-    @configurations.setter
-    def configurations(self,value: Optional[List[key_typed_value_pair.KeyTypedValuePair]] = None) -> None:
-        """
-        Sets the configurations property value. Gets or sets a list of typed key-value pairs used to configure Credential-type profiles. This collection can contain a maximum of 500 elements.
-        Args:
-            value: Value to set for the configurations property.
-        """
-        self._configurations = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new MacOSCredentialSingleSignOnExtension and sets the default values.
@@ -40,6 +24,23 @@ class MacOSCredentialSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacO
         self._realm: Optional[str] = None
         # Gets or sets the team ID of the app extension that performs SSO for the specified URLs.
         self._team_identifier: Optional[str] = None
+    
+    @property
+    def configurations(self,) -> Optional[List[key_typed_value_pair.KeyTypedValuePair]]:
+        """
+        Gets the configurations property value. Gets or sets a list of typed key-value pairs used to configure Credential-type profiles. This collection can contain a maximum of 500 elements.
+        Returns: Optional[List[key_typed_value_pair.KeyTypedValuePair]]
+        """
+        return self._configurations
+    
+    @configurations.setter
+    def configurations(self,value: Optional[List[key_typed_value_pair.KeyTypedValuePair]] = None) -> None:
+        """
+        Sets the configurations property value. Gets or sets a list of typed key-value pairs used to configure Credential-type profiles. This collection can contain a maximum of 500 elements.
+        Args:
+            value: Value to set for the configurations property.
+        """
+        self._configurations = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSCredentialSingleSignOnExtension:
@@ -92,7 +93,9 @@ class MacOSCredentialSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacO
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import key_typed_value_pair, mac_o_s_single_sign_on_extension
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "configurations": lambda n : setattr(self, 'configurations', n.get_collection_of_object_values(key_typed_value_pair.KeyTypedValuePair)),
             "domains": lambda n : setattr(self, 'domains', n.get_collection_of_primitive_values(str)),
             "extensionIdentifier": lambda n : setattr(self, 'extension_identifier', n.get_str_value()),

@@ -1,12 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_applicability_rule_type = lazy_import('msgraph.generated.models.device_management_applicability_rule_type')
-windows10_edition_type = lazy_import('msgraph.generated.models.windows10_edition_type')
+if TYPE_CHECKING:
+    from . import device_management_applicability_rule_type, windows10_edition_type
 
 class DeviceManagementApplicabilityRuleOsEdition(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new deviceManagementApplicabilityRuleOsEdition and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Name for object.
+        self._name: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Applicability rule OS edition type.
+        self._os_edition_types: Optional[List[windows10_edition_type.Windows10EditionType]] = None
+        # Supported Applicability rule types for Device Configuration
+        self._rule_type: Optional[device_management_applicability_rule_type.DeviceManagementApplicabilityRuleType] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,22 +38,6 @@ class DeviceManagementApplicabilityRuleOsEdition(AdditionalDataHolder, Parsable)
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementApplicabilityRuleOsEdition and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Name for object.
-        self._name: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Applicability rule OS edition type.
-        self._os_edition_types: Optional[List[windows10_edition_type.Windows10EditionType]] = None
-        # Supported Applicability rule types for Device Configuration
-        self._rule_type: Optional[device_management_applicability_rule_type.DeviceManagementApplicabilityRuleType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementApplicabilityRuleOsEdition:
@@ -57,7 +56,9 @@ class DeviceManagementApplicabilityRuleOsEdition(AdditionalDataHolder, Parsable)
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_applicability_rule_type, windows10_edition_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "osEditionTypes": lambda n : setattr(self, 'os_edition_types', n.get_collection_of_enum_values(windows10_edition_type.Windows10EditionType)),

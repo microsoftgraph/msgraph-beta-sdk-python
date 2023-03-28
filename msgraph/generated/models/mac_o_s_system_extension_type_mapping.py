@@ -1,14 +1,28 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-mac_o_s_system_extension_type = lazy_import('msgraph.generated.models.mac_o_s_system_extension_type')
+if TYPE_CHECKING:
+    from . import mac_o_s_system_extension_type
 
 class MacOSSystemExtensionTypeMapping(AdditionalDataHolder, Parsable):
     """
     Represents a mapping between team identifiers for macOS system extensions and system extension types.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new macOSSystemExtensionTypeMapping and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Flag enum representing the allowed macOS system extension types.
+        self._allowed_types: Optional[mac_o_s_system_extension_type.MacOSSystemExtensionType] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Gets or sets the team identifier used to sign the system extension.
+        self._team_identifier: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -43,20 +57,6 @@ class MacOSSystemExtensionTypeMapping(AdditionalDataHolder, Parsable):
         """
         self._allowed_types = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new macOSSystemExtensionTypeMapping and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Flag enum representing the allowed macOS system extension types.
-        self._allowed_types: Optional[mac_o_s_system_extension_type.MacOSSystemExtensionType] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Gets or sets the team identifier used to sign the system extension.
-        self._team_identifier: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSSystemExtensionTypeMapping:
         """
@@ -74,7 +74,9 @@ class MacOSSystemExtensionTypeMapping(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import mac_o_s_system_extension_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowedTypes": lambda n : setattr(self, 'allowed_types', n.get_enum_value(mac_o_s_system_extension_type.MacOSSystemExtensionType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "teamIdentifier": lambda n : setattr(self, 'team_identifier', n.get_str_value()),

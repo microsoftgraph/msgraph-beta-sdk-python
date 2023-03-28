@@ -7,73 +7,25 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-assign_request_builder = lazy_import('msgraph.generated.device_app_management.ios_lob_app_provisioning_configurations.item.assign.assign_request_builder')
-assignments_request_builder = lazy_import('msgraph.generated.device_app_management.ios_lob_app_provisioning_configurations.item.assignments.assignments_request_builder')
-ios_lob_app_provisioning_configuration_assignment_item_request_builder = lazy_import('msgraph.generated.device_app_management.ios_lob_app_provisioning_configurations.item.assignments.item.ios_lob_app_provisioning_configuration_assignment_item_request_builder')
-device_statuses_request_builder = lazy_import('msgraph.generated.device_app_management.ios_lob_app_provisioning_configurations.item.device_statuses.device_statuses_request_builder')
-managed_device_mobile_app_configuration_device_status_item_request_builder = lazy_import('msgraph.generated.device_app_management.ios_lob_app_provisioning_configurations.item.device_statuses.item.managed_device_mobile_app_configuration_device_status_item_request_builder')
-group_assignments_request_builder = lazy_import('msgraph.generated.device_app_management.ios_lob_app_provisioning_configurations.item.group_assignments.group_assignments_request_builder')
-mobile_app_provisioning_config_group_assignment_item_request_builder = lazy_import('msgraph.generated.device_app_management.ios_lob_app_provisioning_configurations.item.group_assignments.item.mobile_app_provisioning_config_group_assignment_item_request_builder')
-user_statuses_request_builder = lazy_import('msgraph.generated.device_app_management.ios_lob_app_provisioning_configurations.item.user_statuses.user_statuses_request_builder')
-managed_device_mobile_app_configuration_user_status_item_request_builder = lazy_import('msgraph.generated.device_app_management.ios_lob_app_provisioning_configurations.item.user_statuses.item.managed_device_mobile_app_configuration_user_status_item_request_builder')
-ios_lob_app_provisioning_configuration = lazy_import('msgraph.generated.models.ios_lob_app_provisioning_configuration')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ....models import ios_lob_app_provisioning_configuration
+    from ....models.o_data_errors import o_data_error
+    from .assign import assign_request_builder
+    from .assignments import assignments_request_builder
+    from .assignments.item import ios_lob_app_provisioning_configuration_assignment_item_request_builder
+    from .device_statuses import device_statuses_request_builder
+    from .device_statuses.item import managed_device_mobile_app_configuration_device_status_item_request_builder
+    from .group_assignments import group_assignments_request_builder
+    from .group_assignments.item import mobile_app_provisioning_config_group_assignment_item_request_builder
+    from .user_statuses import user_statuses_request_builder
+    from .user_statuses.item import managed_device_mobile_app_configuration_user_status_item_request_builder
 
 class IosLobAppProvisioningConfigurationItemRequestBuilder():
     """
     Provides operations to manage the iosLobAppProvisioningConfigurations property of the microsoft.graph.deviceAppManagement entity.
     """
-    @property
-    def assign(self) -> assign_request_builder.AssignRequestBuilder:
-        """
-        Provides operations to call the assign method.
-        """
-        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.iosLobAppProvisioningConfiguration entity.
-        """
-        return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def device_statuses(self) -> device_statuses_request_builder.DeviceStatusesRequestBuilder:
-        """
-        Provides operations to manage the deviceStatuses property of the microsoft.graph.iosLobAppProvisioningConfiguration entity.
-        """
-        return device_statuses_request_builder.DeviceStatusesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def group_assignments(self) -> group_assignments_request_builder.GroupAssignmentsRequestBuilder:
-        """
-        Provides operations to manage the groupAssignments property of the microsoft.graph.iosLobAppProvisioningConfiguration entity.
-        """
-        return group_assignments_request_builder.GroupAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def user_statuses(self) -> user_statuses_request_builder.UserStatusesRequestBuilder:
-        """
-        Provides operations to manage the userStatuses property of the microsoft.graph.iosLobAppProvisioningConfiguration entity.
-        """
-        return user_statuses_request_builder.UserStatusesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def assignments_by_id(self,id: str) -> ios_lob_app_provisioning_configuration_assignment_item_request_builder.IosLobAppProvisioningConfigurationAssignmentItemRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.iosLobAppProvisioningConfiguration entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: ios_lob_app_provisioning_configuration_assignment_item_request_builder.IosLobAppProvisioningConfigurationAssignmentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["iosLobAppProvisioningConfigurationAssignment%2Did"] = id
-        return ios_lob_app_provisioning_configuration_assignment_item_request_builder.IosLobAppProvisioningConfigurationAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new IosLobAppProvisioningConfigurationItemRequestBuilder and sets the default values.
@@ -92,6 +44,21 @@ class IosLobAppProvisioningConfigurationItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def assignments_by_id(self,id: str) -> ios_lob_app_provisioning_configuration_assignment_item_request_builder.IosLobAppProvisioningConfigurationAssignmentItemRequestBuilder:
+        """
+        Provides operations to manage the assignments property of the microsoft.graph.iosLobAppProvisioningConfiguration entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: ios_lob_app_provisioning_configuration_assignment_item_request_builder.IosLobAppProvisioningConfigurationAssignmentItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .assignments.item import ios_lob_app_provisioning_configuration_assignment_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["iosLobAppProvisioningConfigurationAssignment%2Did"] = id
+        return ios_lob_app_provisioning_configuration_assignment_item_request_builder.IosLobAppProvisioningConfigurationAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def delete(self,request_configuration: Optional[IosLobAppProvisioningConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property iosLobAppProvisioningConfigurations for deviceAppManagement
@@ -101,6 +68,8 @@ class IosLobAppProvisioningConfigurationItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -118,6 +87,8 @@ class IosLobAppProvisioningConfigurationItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .device_statuses.item import managed_device_mobile_app_configuration_device_status_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["managedDeviceMobileAppConfigurationDeviceStatus%2Did"] = id
         return managed_device_mobile_app_configuration_device_status_item_request_builder.ManagedDeviceMobileAppConfigurationDeviceStatusItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -132,12 +103,16 @@ class IosLobAppProvisioningConfigurationItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import ios_lob_app_provisioning_configuration
+
         return await self.request_adapter.send_async(request_info, ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration, error_mapping)
     
     def group_assignments_by_id(self,id: str) -> mobile_app_provisioning_config_group_assignment_item_request_builder.MobileAppProvisioningConfigGroupAssignmentItemRequestBuilder:
@@ -149,6 +124,8 @@ class IosLobAppProvisioningConfigurationItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .group_assignments.item import mobile_app_provisioning_config_group_assignment_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["mobileAppProvisioningConfigGroupAssignment%2Did"] = id
         return mobile_app_provisioning_config_group_assignment_item_request_builder.MobileAppProvisioningConfigGroupAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -166,12 +143,16 @@ class IosLobAppProvisioningConfigurationItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import ios_lob_app_provisioning_configuration
+
         return await self.request_adapter.send_async(request_info, ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[IosLobAppProvisioningConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -238,9 +219,56 @@ class IosLobAppProvisioningConfigurationItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .user_statuses.item import managed_device_mobile_app_configuration_user_status_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["managedDeviceMobileAppConfigurationUserStatus%2Did"] = id
         return managed_device_mobile_app_configuration_user_status_item_request_builder.ManagedDeviceMobileAppConfigurationUserStatusItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    @property
+    def assign(self) -> assign_request_builder.AssignRequestBuilder:
+        """
+        Provides operations to call the assign method.
+        """
+        from .assign import assign_request_builder
+
+        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
+        """
+        Provides operations to manage the assignments property of the microsoft.graph.iosLobAppProvisioningConfiguration entity.
+        """
+        from .assignments import assignments_request_builder
+
+        return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def device_statuses(self) -> device_statuses_request_builder.DeviceStatusesRequestBuilder:
+        """
+        Provides operations to manage the deviceStatuses property of the microsoft.graph.iosLobAppProvisioningConfiguration entity.
+        """
+        from .device_statuses import device_statuses_request_builder
+
+        return device_statuses_request_builder.DeviceStatusesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def group_assignments(self) -> group_assignments_request_builder.GroupAssignmentsRequestBuilder:
+        """
+        Provides operations to manage the groupAssignments property of the microsoft.graph.iosLobAppProvisioningConfiguration entity.
+        """
+        from .group_assignments import group_assignments_request_builder
+
+        return group_assignments_request_builder.GroupAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def user_statuses(self) -> user_statuses_request_builder.UserStatusesRequestBuilder:
+        """
+        Provides operations to manage the userStatuses property of the microsoft.graph.iosLobAppProvisioningConfiguration entity.
+        """
+        from .user_statuses import user_statuses_request_builder
+
+        return user_statuses_request_builder.UserStatusesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class IosLobAppProvisioningConfigurationItemRequestBuilderDeleteRequestConfiguration():
@@ -259,12 +287,6 @@ class IosLobAppProvisioningConfigurationItemRequestBuilder():
         """
         The IOS Lob App Provisioning Configurations.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -280,6 +302,12 @@ class IosLobAppProvisioningConfigurationItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class IosLobAppProvisioningConfigurationItemRequestBuilderGetRequestConfiguration():

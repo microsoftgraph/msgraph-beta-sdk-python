@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-edge_home_button_configuration = lazy_import('msgraph.generated.models.edge_home_button_configuration')
+if TYPE_CHECKING:
+    from . import edge_home_button_configuration
+
+from . import edge_home_button_configuration
 
 class EdgeHomeButtonOpensNewTab(edge_home_button_configuration.EdgeHomeButtonConfiguration):
     def __init__(self,) -> None:
@@ -30,7 +32,9 @@ class EdgeHomeButtonOpensNewTab(edge_home_button_configuration.EdgeHomeButtonCon
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import edge_home_button_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

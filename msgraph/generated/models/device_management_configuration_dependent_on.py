@@ -1,9 +1,22 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class DeviceManagementConfigurationDependentOn(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new deviceManagementConfigurationDependentOn and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Identifier of parent setting/ parent setting option dependent on
+        self._dependent_on: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Identifier of parent setting/ parent setting id dependent on
+        self._parent_setting_id: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -20,20 +33,6 @@ class DeviceManagementConfigurationDependentOn(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementConfigurationDependentOn and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Identifier of parent setting/ parent setting option dependent on
-        self._dependent_on: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Identifier of parent setting/ parent setting id dependent on
-        self._parent_setting_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationDependentOn:
@@ -69,7 +68,7 @@ class DeviceManagementConfigurationDependentOn(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "dependentOn": lambda n : setattr(self, 'dependent_on', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "parentSettingId": lambda n : setattr(self, 'parent_setting_id', n.get_str_value()),

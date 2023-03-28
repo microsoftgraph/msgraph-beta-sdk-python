@@ -1,18 +1,44 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-base_item = lazy_import('msgraph.generated.models.base_item')
-drive_item = lazy_import('msgraph.generated.models.drive_item')
-identity_set = lazy_import('msgraph.generated.models.identity_set')
-item_activity_o_l_d = lazy_import('msgraph.generated.models.item_activity_o_l_d')
-list = lazy_import('msgraph.generated.models.list')
-quota = lazy_import('msgraph.generated.models.quota')
-sharepoint_ids = lazy_import('msgraph.generated.models.sharepoint_ids')
-system_facet = lazy_import('msgraph.generated.models.system_facet')
+if TYPE_CHECKING:
+    from . import base_item, drive_item, identity_set, item_activity_o_l_d, list, quota, sharepoint_ids, system_facet
+
+from . import base_item
 
 class Drive(base_item.BaseItem):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new Drive and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.drive"
+        # The list of recent activities that took place under this drive.
+        self._activities: Optional[List[item_activity_o_l_d.ItemActivityOLD]] = None
+        # Collection of [bundles][bundle] (albums and multi-select-shared sets of items). Only in personal OneDrive.
+        self._bundles: Optional[List[drive_item.DriveItem]] = None
+        # Describes the type of drive represented by this resource. OneDrive personal drives will return personal. OneDrive for Business will return business. SharePoint document libraries will return documentLibrary. Read-only.
+        self._drive_type: Optional[str] = None
+        # The list of items the user is following. Only in OneDrive for Business.
+        self._following: Optional[List[drive_item.DriveItem]] = None
+        # All items contained in the drive. Read-only. Nullable.
+        self._items: Optional[List[drive_item.DriveItem]] = None
+        # For drives in SharePoint, the underlying document library list. Read-only. Nullable.
+        self._list: Optional[list.List] = None
+        # Optional. The user account that owns the drive. Read-only.
+        self._owner: Optional[identity_set.IdentitySet] = None
+        # Optional. Information about the drive's storage space quota. Read-only.
+        self._quota: Optional[quota.Quota] = None
+        # The root folder of the drive. Read-only.
+        self._root: Optional[drive_item.DriveItem] = None
+        # The sharePointIds property
+        self._share_point_ids: Optional[sharepoint_ids.SharepointIds] = None
+        # Collection of common folders available in OneDrive. Read-only. Nullable.
+        self._special: Optional[List[drive_item.DriveItem]] = None
+        # If present, indicates that this is a system-managed drive. Read-only.
+        self._system: Optional[system_facet.SystemFacet] = None
+    
     @property
     def activities(self,) -> Optional[List[item_activity_o_l_d.ItemActivityOLD]]:
         """
@@ -46,37 +72,6 @@ class Drive(base_item.BaseItem):
             value: Value to set for the bundles property.
         """
         self._bundles = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Drive and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.drive"
-        # The list of recent activities that took place under this drive.
-        self._activities: Optional[List[item_activity_o_l_d.ItemActivityOLD]] = None
-        # Collection of [bundles][bundle] (albums and multi-select-shared sets of items). Only in personal OneDrive.
-        self._bundles: Optional[List[drive_item.DriveItem]] = None
-        # Describes the type of drive represented by this resource. OneDrive personal drives will return personal. OneDrive for Business will return business. SharePoint document libraries will return documentLibrary. Read-only.
-        self._drive_type: Optional[str] = None
-        # The list of items the user is following. Only in OneDrive for Business.
-        self._following: Optional[List[drive_item.DriveItem]] = None
-        # All items contained in the drive. Read-only. Nullable.
-        self._items: Optional[List[drive_item.DriveItem]] = None
-        # For drives in SharePoint, the underlying document library list. Read-only. Nullable.
-        self._list: Optional[list.List] = None
-        # Optional. The user account that owns the drive. Read-only.
-        self._owner: Optional[identity_set.IdentitySet] = None
-        # Optional. Information about the drive's storage space quota. Read-only.
-        self._quota: Optional[quota.Quota] = None
-        # The root folder of the drive. Read-only.
-        self._root: Optional[drive_item.DriveItem] = None
-        # The sharePointIds property
-        self._share_point_ids: Optional[sharepoint_ids.SharepointIds] = None
-        # Collection of common folders available in OneDrive. Read-only. Nullable.
-        self._special: Optional[List[drive_item.DriveItem]] = None
-        # If present, indicates that this is a system-managed drive. Read-only.
-        self._system: Optional[system_facet.SystemFacet] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Drive:
@@ -129,7 +124,9 @@ class Drive(base_item.BaseItem):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import base_item, drive_item, identity_set, item_activity_o_l_d, list, quota, sharepoint_ids, system_facet
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "activities": lambda n : setattr(self, 'activities', n.get_collection_of_object_values(item_activity_o_l_d.ItemActivityOLD)),
             "bundles": lambda n : setattr(self, 'bundles', n.get_collection_of_object_values(drive_item.DriveItem)),
             "driveType": lambda n : setattr(self, 'drive_type', n.get_str_value()),

@@ -1,30 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-cloud_pc_connectivity_event_result = lazy_import('msgraph.generated.models.cloud_pc_connectivity_event_result')
-cloud_pc_connectivity_event_type = lazy_import('msgraph.generated.models.cloud_pc_connectivity_event_type')
+if TYPE_CHECKING:
+    from . import cloud_pc_connectivity_event_result, cloud_pc_connectivity_event_type
 
 class CloudPcConnectivityEvent(AdditionalDataHolder, Parsable):
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new cloudPcConnectivityEvent and sets the default values.
@@ -44,6 +26,23 @@ class CloudPcConnectivityEvent(AdditionalDataHolder, Parsable):
         self._message: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcConnectivityEvent:
@@ -130,7 +129,9 @@ class CloudPcConnectivityEvent(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import cloud_pc_connectivity_event_result, cloud_pc_connectivity_event_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "eventDateTime": lambda n : setattr(self, 'event_date_time', n.get_datetime_value()),
             "eventName": lambda n : setattr(self, 'event_name', n.get_str_value()),
             "eventResult": lambda n : setattr(self, 'event_result', n.get_enum_value(cloud_pc_connectivity_event_result.CloudPcConnectivityEventResult)),

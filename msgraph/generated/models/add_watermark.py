@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-mark_content = lazy_import('msgraph.generated.models.mark_content')
-page_orientation = lazy_import('msgraph.generated.models.page_orientation')
+if TYPE_CHECKING:
+    from . import mark_content, page_orientation
+
+from . import mark_content
 
 class AddWatermark(mark_content.MarkContent):
     def __init__(self,) -> None:
@@ -33,7 +34,9 @@ class AddWatermark(mark_content.MarkContent):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import mark_content, page_orientation
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "orientation": lambda n : setattr(self, 'orientation', n.get_enum_value(page_orientation.PageOrientation)),
         }
         super_fields = super().get_field_deserializers()

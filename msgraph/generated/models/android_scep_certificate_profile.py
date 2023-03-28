@@ -1,13 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_certificate_profile_base = lazy_import('msgraph.generated.models.android_certificate_profile_base')
-hash_algorithms = lazy_import('msgraph.generated.models.hash_algorithms')
-key_size = lazy_import('msgraph.generated.models.key_size')
-key_usages = lazy_import('msgraph.generated.models.key_usages')
-managed_device_certificate_state = lazy_import('msgraph.generated.models.managed_device_certificate_state')
+if TYPE_CHECKING:
+    from . import android_certificate_profile_base, hash_algorithms, key_size, key_usages, managed_device_certificate_state
+
+from . import android_certificate_profile_base
 
 class AndroidScepCertificateProfile(android_certificate_profile_base.AndroidCertificateProfileBase):
     def __init__(self,) -> None:
@@ -48,7 +46,9 @@ class AndroidScepCertificateProfile(android_certificate_profile_base.AndroidCert
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_certificate_profile_base, hash_algorithms, key_size, key_usages, managed_device_certificate_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "hashAlgorithm": lambda n : setattr(self, 'hash_algorithm', n.get_enum_value(hash_algorithms.HashAlgorithms)),
             "keySize": lambda n : setattr(self, 'key_size', n.get_enum_value(key_size.KeySize)),
             "keyUsage": lambda n : setattr(self, 'key_usage', n.get_enum_value(key_usages.KeyUsages)),

@@ -1,11 +1,12 @@
 from __future__ import annotations
 from datetime import timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-access_review_recommendation_insight_setting = lazy_import('msgraph.generated.models.access_review_recommendation_insight_setting')
-user_sign_in_recommendation_scope = lazy_import('msgraph.generated.models.user_sign_in_recommendation_scope')
+if TYPE_CHECKING:
+    from . import access_review_recommendation_insight_setting, user_sign_in_recommendation_scope
+
+from . import access_review_recommendation_insight_setting
 
 class UserLastSignInRecommendationInsightSetting(access_review_recommendation_insight_setting.AccessReviewRecommendationInsightSetting):
     def __init__(self,) -> None:
@@ -36,7 +37,9 @@ class UserLastSignInRecommendationInsightSetting(access_review_recommendation_in
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import access_review_recommendation_insight_setting, user_sign_in_recommendation_scope
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "recommendationLookBackDuration": lambda n : setattr(self, 'recommendation_look_back_duration', n.get_object_value(Timedelta)),
             "signInScope": lambda n : setattr(self, 'sign_in_scope', n.get_enum_value(user_sign_in_recommendation_scope.UserSignInRecommendationScope)),
         }

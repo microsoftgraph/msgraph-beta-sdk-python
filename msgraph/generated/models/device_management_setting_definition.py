@@ -1,34 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_constraint = lazy_import('msgraph.generated.models.device_management_constraint')
-device_management_setting_dependency = lazy_import('msgraph.generated.models.device_management_setting_dependency')
-device_manangement_intent_value_type = lazy_import('msgraph.generated.models.device_manangement_intent_value_type')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import device_management_abstract_complex_setting_definition, device_management_collection_setting_definition, device_management_complex_setting_definition, device_management_constraint, device_management_setting_dependency, device_manangement_intent_value_type, entity
+
+from . import entity
 
 class DeviceManagementSettingDefinition(entity.Entity):
     """
     Entity representing the defintion for a given setting
     """
-    @property
-    def constraints(self,) -> Optional[List[device_management_constraint.DeviceManagementConstraint]]:
-        """
-        Gets the constraints property value. Collection of constraints for the setting value
-        Returns: Optional[List[device_management_constraint.DeviceManagementConstraint]]
-        """
-        return self._constraints
-    
-    @constraints.setter
-    def constraints(self,value: Optional[List[device_management_constraint.DeviceManagementConstraint]] = None) -> None:
-        """
-        Sets the constraints property value. Collection of constraints for the setting value
-        Args:
-            value: Value to set for the constraints property.
-        """
-        self._constraints = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new deviceManagementSettingDefinition and sets the default values.
@@ -59,6 +41,23 @@ class DeviceManagementSettingDefinition(entity.Entity):
         # The valueType property
         self._value_type: Optional[device_manangement_intent_value_type.DeviceManangementIntentValueType] = None
     
+    @property
+    def constraints(self,) -> Optional[List[device_management_constraint.DeviceManagementConstraint]]:
+        """
+        Gets the constraints property value. Collection of constraints for the setting value
+        Returns: Optional[List[device_management_constraint.DeviceManagementConstraint]]
+        """
+        return self._constraints
+    
+    @constraints.setter
+    def constraints(self,value: Optional[List[device_management_constraint.DeviceManagementConstraint]] = None) -> None:
+        """
+        Sets the constraints property value. Collection of constraints for the setting value
+        Args:
+            value: Value to set for the constraints property.
+        """
+        self._constraints = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementSettingDefinition:
         """
@@ -69,6 +68,21 @@ class DeviceManagementSettingDefinition(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.deviceManagementAbstractComplexSettingDefinition":
+                from . import device_management_abstract_complex_setting_definition
+
+                return device_management_abstract_complex_setting_definition.DeviceManagementAbstractComplexSettingDefinition()
+            if mapping_value == "#microsoft.graph.deviceManagementCollectionSettingDefinition":
+                from . import device_management_collection_setting_definition
+
+                return device_management_collection_setting_definition.DeviceManagementCollectionSettingDefinition()
+            if mapping_value == "#microsoft.graph.deviceManagementComplexSettingDefinition":
+                from . import device_management_complex_setting_definition
+
+                return device_management_complex_setting_definition.DeviceManagementComplexSettingDefinition()
         return DeviceManagementSettingDefinition()
     
     @property
@@ -144,7 +158,9 @@ class DeviceManagementSettingDefinition(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_abstract_complex_setting_definition, device_management_collection_setting_definition, device_management_complex_setting_definition, device_management_constraint, device_management_setting_dependency, device_manangement_intent_value_type, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "constraints": lambda n : setattr(self, 'constraints', n.get_collection_of_object_values(device_management_constraint.DeviceManagementConstraint)),
             "dependencies": lambda n : setattr(self, 'dependencies', n.get_collection_of_object_values(device_management_setting_dependency.DeviceManagementSettingDependency)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

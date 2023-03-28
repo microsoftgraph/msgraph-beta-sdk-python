@@ -1,15 +1,32 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-associated_assignment_payload_type = lazy_import('msgraph.generated.models.associated_assignment_payload_type')
-device_and_app_management_assignment_filter_type = lazy_import('msgraph.generated.models.device_and_app_management_assignment_filter_type')
+if TYPE_CHECKING:
+    from . import associated_assignment_payload_type, device_and_app_management_assignment_filter_type
 
 class PayloadByFilter(AdditionalDataHolder, Parsable):
     """
     This entity represents a single payload with requested assignment filter Id
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new payloadByFilter and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Represents type of the assignment filter.
+        self._assignment_filter_type: Optional[device_and_app_management_assignment_filter_type.DeviceAndAppManagementAssignmentFilterType] = None
+        # The Azure AD security group ID
+        self._group_id: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The policy identifier
+        self._payload_id: Optional[str] = None
+        # This enum represents associated assignment payload type
+        self._payload_type: Optional[associated_assignment_payload_type.AssociatedAssignmentPayloadType] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -44,24 +61,6 @@ class PayloadByFilter(AdditionalDataHolder, Parsable):
         """
         self._assignment_filter_type = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new payloadByFilter and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Represents type of the assignment filter.
-        self._assignment_filter_type: Optional[device_and_app_management_assignment_filter_type.DeviceAndAppManagementAssignmentFilterType] = None
-        # The Azure AD security group ID
-        self._group_id: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The policy identifier
-        self._payload_id: Optional[str] = None
-        # This enum represents associated assignment payload type
-        self._payload_type: Optional[associated_assignment_payload_type.AssociatedAssignmentPayloadType] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PayloadByFilter:
         """
@@ -79,7 +78,9 @@ class PayloadByFilter(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import associated_assignment_payload_type, device_and_app_management_assignment_filter_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignmentFilterType": lambda n : setattr(self, 'assignment_filter_type', n.get_enum_value(device_and_app_management_assignment_filter_type.DeviceAndAppManagementAssignmentFilterType)),
             "groupId": lambda n : setattr(self, 'group_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

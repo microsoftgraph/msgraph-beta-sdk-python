@@ -1,11 +1,24 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-identity = lazy_import('msgraph.generated.models.identity')
+if TYPE_CHECKING:
+    from . import identity
+
+from . import identity
 
 class CommunicationsApplicationIdentity(identity.Identity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new CommunicationsApplicationIdentity and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.communicationsApplicationIdentity"
+        # First party Microsoft application presenting this identity.
+        self._application_type: Optional[str] = None
+        # True if the participant would not like to be shown in other participants' rosters.
+        self._hidden: Optional[bool] = None
+    
     @property
     def application_type(self,) -> Optional[str]:
         """
@@ -22,17 +35,6 @@ class CommunicationsApplicationIdentity(identity.Identity):
             value: Value to set for the application_type property.
         """
         self._application_type = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new CommunicationsApplicationIdentity and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.communicationsApplicationIdentity"
-        # First party Microsoft application presenting this identity.
-        self._application_type: Optional[str] = None
-        # True if the participant would not like to be shown in other participants' rosters.
-        self._hidden: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CommunicationsApplicationIdentity:
@@ -51,7 +53,9 @@ class CommunicationsApplicationIdentity(identity.Identity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import identity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "applicationType": lambda n : setattr(self, 'application_type', n.get_str_value()),
             "hidden": lambda n : setattr(self, 'hidden', n.get_bool_value()),
         }

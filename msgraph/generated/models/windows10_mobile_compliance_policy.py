@@ -1,13 +1,56 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_compliance_policy = lazy_import('msgraph.generated.models.device_compliance_policy')
-operating_system_version_range = lazy_import('msgraph.generated.models.operating_system_version_range')
-required_password_type = lazy_import('msgraph.generated.models.required_password_type')
+if TYPE_CHECKING:
+    from . import device_compliance_policy, operating_system_version_range, required_password_type
+
+from . import device_compliance_policy
 
 class Windows10MobileCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new Windows10MobileCompliancePolicy and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.windows10MobileCompliancePolicy"
+        # Require active firewall on Windows devices.
+        self._active_firewall_required: Optional[bool] = None
+        # Require devices to be reported healthy by Windows Device Health Attestation - bit locker is enabled
+        self._bit_locker_enabled: Optional[bool] = None
+        # Require devices to be reported as healthy by Windows Device Health Attestation.
+        self._code_integrity_enabled: Optional[bool] = None
+        # Require devices to be reported as healthy by Windows Device Health Attestation - early launch antimalware driver is enabled.
+        self._early_launch_anti_malware_driver_enabled: Optional[bool] = None
+        # Maximum Windows Phone version.
+        self._os_maximum_version: Optional[str] = None
+        # Minimum Windows Phone version.
+        self._os_minimum_version: Optional[str] = None
+        # Whether or not to block syncing the calendar.
+        self._password_block_simple: Optional[bool] = None
+        # Number of days before password expiration. Valid values 1 to 255
+        self._password_expiration_days: Optional[int] = None
+        # The number of character sets required in the password.
+        self._password_minimum_character_set_count: Optional[int] = None
+        # Minimum password length. Valid values 4 to 16
+        self._password_minimum_length: Optional[int] = None
+        # Minutes of inactivity before a password is required.
+        self._password_minutes_of_inactivity_before_lock: Optional[int] = None
+        # The number of previous passwords to prevent re-use of.
+        self._password_previous_password_block_count: Optional[int] = None
+        # Require a password to unlock an idle device.
+        self._password_require_to_unlock_from_idle: Optional[bool] = None
+        # Require a password to unlock Windows Phone device.
+        self._password_required: Optional[bool] = None
+        # Possible values of required passwords.
+        self._password_required_type: Optional[required_password_type.RequiredPasswordType] = None
+        # Require devices to be reported as healthy by Windows Device Health Attestation - secure boot is enabled.
+        self._secure_boot_enabled: Optional[bool] = None
+        # Require encryption on windows devices.
+        self._storage_require_encryption: Optional[bool] = None
+        # The valid operating system build ranges on Windows devices. This collection can contain a maximum of 10000 elements.
+        self._valid_operating_system_build_ranges: Optional[List[operating_system_version_range.OperatingSystemVersionRange]] = None
+    
     @property
     def active_firewall_required(self,) -> Optional[bool]:
         """
@@ -59,49 +102,6 @@ class Windows10MobileCompliancePolicy(device_compliance_policy.DeviceComplianceP
         """
         self._code_integrity_enabled = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Windows10MobileCompliancePolicy and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windows10MobileCompliancePolicy"
-        # Require active firewall on Windows devices.
-        self._active_firewall_required: Optional[bool] = None
-        # Require devices to be reported healthy by Windows Device Health Attestation - bit locker is enabled
-        self._bit_locker_enabled: Optional[bool] = None
-        # Require devices to be reported as healthy by Windows Device Health Attestation.
-        self._code_integrity_enabled: Optional[bool] = None
-        # Require devices to be reported as healthy by Windows Device Health Attestation - early launch antimalware driver is enabled.
-        self._early_launch_anti_malware_driver_enabled: Optional[bool] = None
-        # Maximum Windows Phone version.
-        self._os_maximum_version: Optional[str] = None
-        # Minimum Windows Phone version.
-        self._os_minimum_version: Optional[str] = None
-        # Whether or not to block syncing the calendar.
-        self._password_block_simple: Optional[bool] = None
-        # Number of days before password expiration. Valid values 1 to 255
-        self._password_expiration_days: Optional[int] = None
-        # The number of character sets required in the password.
-        self._password_minimum_character_set_count: Optional[int] = None
-        # Minimum password length. Valid values 4 to 16
-        self._password_minimum_length: Optional[int] = None
-        # Minutes of inactivity before a password is required.
-        self._password_minutes_of_inactivity_before_lock: Optional[int] = None
-        # The number of previous passwords to prevent re-use of.
-        self._password_previous_password_block_count: Optional[int] = None
-        # Require a password to unlock an idle device.
-        self._password_require_to_unlock_from_idle: Optional[bool] = None
-        # Require a password to unlock Windows Phone device.
-        self._password_required: Optional[bool] = None
-        # Possible values of required passwords.
-        self._password_required_type: Optional[required_password_type.RequiredPasswordType] = None
-        # Require devices to be reported as healthy by Windows Device Health Attestation - secure boot is enabled.
-        self._secure_boot_enabled: Optional[bool] = None
-        # Require encryption on windows devices.
-        self._storage_require_encryption: Optional[bool] = None
-        # The valid operating system build ranges on Windows devices. This collection can contain a maximum of 10000 elements.
-        self._valid_operating_system_build_ranges: Optional[List[operating_system_version_range.OperatingSystemVersionRange]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10MobileCompliancePolicy:
         """
@@ -136,7 +136,9 @@ class Windows10MobileCompliancePolicy(device_compliance_policy.DeviceComplianceP
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_compliance_policy, operating_system_version_range, required_password_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "activeFirewallRequired": lambda n : setattr(self, 'active_firewall_required', n.get_bool_value()),
             "bitLockerEnabled": lambda n : setattr(self, 'bit_locker_enabled', n.get_bool_value()),
             "codeIntegrityEnabled": lambda n : setattr(self, 'code_integrity_enabled', n.get_bool_value()),

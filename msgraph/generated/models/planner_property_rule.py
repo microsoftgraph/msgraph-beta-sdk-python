@@ -1,11 +1,23 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-planner_rule_kind = lazy_import('msgraph.generated.models.planner_rule_kind')
+if TYPE_CHECKING:
+    from . import planner_bucket_property_rule, planner_plan_property_rule, planner_rule_kind, planner_task_property_rule
 
 class PlannerPropertyRule(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new plannerPropertyRule and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Identifies which type of property rules is represented by this instance. The possible values are: taskRule, bucketRule, planRule, unknownFutureValue.
+        self._rule_kind: Optional[planner_rule_kind.PlannerRuleKind] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,18 +35,6 @@ class PlannerPropertyRule(AdditionalDataHolder, Parsable):
         """
         self._additional_data = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new plannerPropertyRule and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Identifies which type of property rules is represented by this instance. The possible values are: taskRule, bucketRule, planRule, unknownFutureValue.
-        self._rule_kind: Optional[planner_rule_kind.PlannerRuleKind] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PlannerPropertyRule:
         """
@@ -45,6 +45,21 @@ class PlannerPropertyRule(AdditionalDataHolder, Parsable):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.plannerBucketPropertyRule":
+                from . import planner_bucket_property_rule
+
+                return planner_bucket_property_rule.PlannerBucketPropertyRule()
+            if mapping_value == "#microsoft.graph.plannerPlanPropertyRule":
+                from . import planner_plan_property_rule
+
+                return planner_plan_property_rule.PlannerPlanPropertyRule()
+            if mapping_value == "#microsoft.graph.plannerTaskPropertyRule":
+                from . import planner_task_property_rule
+
+                return planner_task_property_rule.PlannerTaskPropertyRule()
         return PlannerPropertyRule()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -52,7 +67,9 @@ class PlannerPropertyRule(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import planner_bucket_property_rule, planner_plan_property_rule, planner_rule_kind, planner_task_property_rule
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "ruleKind": lambda n : setattr(self, 'rule_kind', n.get_enum_value(planner_rule_kind.PlannerRuleKind)),
         }

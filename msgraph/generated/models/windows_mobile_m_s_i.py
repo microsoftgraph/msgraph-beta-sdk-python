@@ -1,28 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-mobile_lob_app = lazy_import('msgraph.generated.models.mobile_lob_app')
+if TYPE_CHECKING:
+    from . import mobile_lob_app
+
+from . import mobile_lob_app
 
 class WindowsMobileMSI(mobile_lob_app.MobileLobApp):
-    @property
-    def command_line(self,) -> Optional[str]:
-        """
-        Gets the commandLine property value. The command line.
-        Returns: Optional[str]
-        """
-        return self._command_line
-    
-    @command_line.setter
-    def command_line(self,value: Optional[str] = None) -> None:
-        """
-        Sets the commandLine property value. The command line.
-        Args:
-            value: Value to set for the command_line property.
-        """
-        self._command_line = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new WindowsMobileMSI and sets the default values.
@@ -42,6 +27,23 @@ class WindowsMobileMSI(mobile_lob_app.MobileLobApp):
         # Indicates whether to install a dual-mode MSI in the device context. If true, app will be installed for all users. If false, app will be installed per-user. If null, service will use the MSI package's default install context. In case of dual-mode MSI, this default will be per-user.  Cannot be set for non-dual-mode apps.  Cannot be changed after initial creation of the application.
         self._use_device_context: Optional[bool] = None
     
+    @property
+    def command_line(self,) -> Optional[str]:
+        """
+        Gets the commandLine property value. The command line.
+        Returns: Optional[str]
+        """
+        return self._command_line
+    
+    @command_line.setter
+    def command_line(self,value: Optional[str] = None) -> None:
+        """
+        Sets the commandLine property value. The command line.
+        Args:
+            value: Value to set for the command_line property.
+        """
+        self._command_line = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsMobileMSI:
         """
@@ -59,7 +61,9 @@ class WindowsMobileMSI(mobile_lob_app.MobileLobApp):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import mobile_lob_app
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "commandLine": lambda n : setattr(self, 'command_line', n.get_str_value()),
             "identityVersion": lambda n : setattr(self, 'identity_version', n.get_str_value()),
             "ignoreVersionDetection": lambda n : setattr(self, 'ignore_version_detection', n.get_bool_value()),

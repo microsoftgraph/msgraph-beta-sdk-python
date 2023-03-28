@@ -1,10 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-information_protection = lazy_import('msgraph.generated.models.security.information_protection')
+if TYPE_CHECKING:
+    from . import information_protection
+    from .. import entity
+
+from .. import entity
 
 class Security(entity.Entity):
     def __init__(self,) -> None:
@@ -34,7 +36,10 @@ class Security(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import information_protection
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "informationProtection": lambda n : setattr(self, 'information_protection', n.get_object_value(information_protection.InformationProtection)),
         }
         super_fields = super().get_field_deserializers()

@@ -1,11 +1,33 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-teamwork_peripheral_health = lazy_import('msgraph.generated.models.teamwork_peripheral_health')
+if TYPE_CHECKING:
+    from . import teamwork_peripheral_health
 
 class TeamworkPeripheralsHealth(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new teamworkPeripheralsHealth and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The health details about the communication speaker.
+        self._communication_speaker_health: Optional[teamwork_peripheral_health.TeamworkPeripheralHealth] = None
+        # The health details about the content camera.
+        self._content_camera_health: Optional[teamwork_peripheral_health.TeamworkPeripheralHealth] = None
+        # The health details about displays.
+        self._display_health_collection: Optional[List[teamwork_peripheral_health.TeamworkPeripheralHealth]] = None
+        # The health details about the microphone.
+        self._microphone_health: Optional[teamwork_peripheral_health.TeamworkPeripheralHealth] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The health details about the room camera.
+        self._room_camera_health: Optional[teamwork_peripheral_health.TeamworkPeripheralHealth] = None
+        # The health details about the speaker.
+        self._speaker_health: Optional[teamwork_peripheral_health.TeamworkPeripheralHealth] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -39,28 +61,6 @@ class TeamworkPeripheralsHealth(AdditionalDataHolder, Parsable):
             value: Value to set for the communication_speaker_health property.
         """
         self._communication_speaker_health = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new teamworkPeripheralsHealth and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The health details about the communication speaker.
-        self._communication_speaker_health: Optional[teamwork_peripheral_health.TeamworkPeripheralHealth] = None
-        # The health details about the content camera.
-        self._content_camera_health: Optional[teamwork_peripheral_health.TeamworkPeripheralHealth] = None
-        # The health details about displays.
-        self._display_health_collection: Optional[List[teamwork_peripheral_health.TeamworkPeripheralHealth]] = None
-        # The health details about the microphone.
-        self._microphone_health: Optional[teamwork_peripheral_health.TeamworkPeripheralHealth] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The health details about the room camera.
-        self._room_camera_health: Optional[teamwork_peripheral_health.TeamworkPeripheralHealth] = None
-        # The health details about the speaker.
-        self._speaker_health: Optional[teamwork_peripheral_health.TeamworkPeripheralHealth] = None
     
     @property
     def content_camera_health(self,) -> Optional[teamwork_peripheral_health.TeamworkPeripheralHealth]:
@@ -113,7 +113,9 @@ class TeamworkPeripheralsHealth(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import teamwork_peripheral_health
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "communicationSpeakerHealth": lambda n : setattr(self, 'communication_speaker_health', n.get_object_value(teamwork_peripheral_health.TeamworkPeripheralHealth)),
             "contentCameraHealth": lambda n : setattr(self, 'content_camera_health', n.get_object_value(teamwork_peripheral_health.TeamworkPeripheralHealth)),
             "displayHealthCollection": lambda n : setattr(self, 'display_health_collection', n.get_collection_of_object_values(teamwork_peripheral_health.TeamworkPeripheralHealth)),

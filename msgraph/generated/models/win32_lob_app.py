@@ -1,53 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-mobile_lob_app = lazy_import('msgraph.generated.models.mobile_lob_app')
-win32_lob_app_detection = lazy_import('msgraph.generated.models.win32_lob_app_detection')
-win32_lob_app_install_experience = lazy_import('msgraph.generated.models.win32_lob_app_install_experience')
-win32_lob_app_msi_information = lazy_import('msgraph.generated.models.win32_lob_app_msi_information')
-win32_lob_app_requirement = lazy_import('msgraph.generated.models.win32_lob_app_requirement')
-win32_lob_app_return_code = lazy_import('msgraph.generated.models.win32_lob_app_return_code')
-win32_lob_app_rule = lazy_import('msgraph.generated.models.win32_lob_app_rule')
-windows_architecture = lazy_import('msgraph.generated.models.windows_architecture')
-windows_minimum_operating_system = lazy_import('msgraph.generated.models.windows_minimum_operating_system')
+if TYPE_CHECKING:
+    from . import mobile_lob_app, win32_lob_app_detection, win32_lob_app_install_experience, win32_lob_app_msi_information, win32_lob_app_requirement, win32_lob_app_return_code, win32_lob_app_rule, windows_architecture, windows_minimum_operating_system
+
+from . import mobile_lob_app
 
 class Win32LobApp(mobile_lob_app.MobileLobApp):
-    @property
-    def allow_available_uninstall(self,) -> Optional[bool]:
-        """
-        Gets the allowAvailableUninstall property value. When TRUE, indicates that uninstall is supported from the company portal for the Windows app (Win32) with an Available assignment. When FALSE, indicates that uninstall is not supported for the Windows app (Win32) with an Available assignment. Default value is FALSE.
-        Returns: Optional[bool]
-        """
-        return self._allow_available_uninstall
-    
-    @allow_available_uninstall.setter
-    def allow_available_uninstall(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the allowAvailableUninstall property value. When TRUE, indicates that uninstall is supported from the company portal for the Windows app (Win32) with an Available assignment. When FALSE, indicates that uninstall is not supported for the Windows app (Win32) with an Available assignment. Default value is FALSE.
-        Args:
-            value: Value to set for the allow_available_uninstall property.
-        """
-        self._allow_available_uninstall = value
-    
-    @property
-    def applicable_architectures(self,) -> Optional[windows_architecture.WindowsArchitecture]:
-        """
-        Gets the applicableArchitectures property value. Contains properties for Windows architecture.
-        Returns: Optional[windows_architecture.WindowsArchitecture]
-        """
-        return self._applicable_architectures
-    
-    @applicable_architectures.setter
-    def applicable_architectures(self,value: Optional[windows_architecture.WindowsArchitecture] = None) -> None:
-        """
-        Sets the applicableArchitectures property value. Contains properties for Windows architecture.
-        Args:
-            value: Value to set for the applicable_architectures property.
-        """
-        self._applicable_architectures = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new Win32LobApp and sets the default values.
@@ -90,6 +50,40 @@ class Win32LobApp(mobile_lob_app.MobileLobApp):
         self._setup_file_path: Optional[str] = None
         # The command line to uninstall this app
         self._uninstall_command_line: Optional[str] = None
+    
+    @property
+    def allow_available_uninstall(self,) -> Optional[bool]:
+        """
+        Gets the allowAvailableUninstall property value. When TRUE, indicates that uninstall is supported from the company portal for the Windows app (Win32) with an Available assignment. When FALSE, indicates that uninstall is not supported for the Windows app (Win32) with an Available assignment. Default value is FALSE.
+        Returns: Optional[bool]
+        """
+        return self._allow_available_uninstall
+    
+    @allow_available_uninstall.setter
+    def allow_available_uninstall(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the allowAvailableUninstall property value. When TRUE, indicates that uninstall is supported from the company portal for the Windows app (Win32) with an Available assignment. When FALSE, indicates that uninstall is not supported for the Windows app (Win32) with an Available assignment. Default value is FALSE.
+        Args:
+            value: Value to set for the allow_available_uninstall property.
+        """
+        self._allow_available_uninstall = value
+    
+    @property
+    def applicable_architectures(self,) -> Optional[windows_architecture.WindowsArchitecture]:
+        """
+        Gets the applicableArchitectures property value. Contains properties for Windows architecture.
+        Returns: Optional[windows_architecture.WindowsArchitecture]
+        """
+        return self._applicable_architectures
+    
+    @applicable_architectures.setter
+    def applicable_architectures(self,value: Optional[windows_architecture.WindowsArchitecture] = None) -> None:
+        """
+        Sets the applicableArchitectures property value. Contains properties for Windows architecture.
+        Args:
+            value: Value to set for the applicable_architectures property.
+        """
+        self._applicable_architectures = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Win32LobApp:
@@ -142,7 +136,9 @@ class Win32LobApp(mobile_lob_app.MobileLobApp):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import mobile_lob_app, win32_lob_app_detection, win32_lob_app_install_experience, win32_lob_app_msi_information, win32_lob_app_requirement, win32_lob_app_return_code, win32_lob_app_rule, windows_architecture, windows_minimum_operating_system
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowAvailableUninstall": lambda n : setattr(self, 'allow_available_uninstall', n.get_bool_value()),
             "applicableArchitectures": lambda n : setattr(self, 'applicable_architectures', n.get_enum_value(windows_architecture.WindowsArchitecture)),
             "detectionRules": lambda n : setattr(self, 'detection_rules', n.get_collection_of_object_values(win32_lob_app_detection.Win32LobAppDetection)),

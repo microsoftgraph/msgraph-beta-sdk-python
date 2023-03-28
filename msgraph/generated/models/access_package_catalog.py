@@ -1,17 +1,69 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-access_package = lazy_import('msgraph.generated.models.access_package')
-access_package_resource = lazy_import('msgraph.generated.models.access_package_resource')
-access_package_resource_role = lazy_import('msgraph.generated.models.access_package_resource_role')
-access_package_resource_scope = lazy_import('msgraph.generated.models.access_package_resource_scope')
-custom_access_package_workflow_extension = lazy_import('msgraph.generated.models.custom_access_package_workflow_extension')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import access_package, access_package_resource, access_package_resource_role, access_package_resource_scope, custom_access_package_workflow_extension, custom_callout_extension, entity
+
+from . import entity
 
 class AccessPackageCatalog(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new accessPackageCatalog and sets the default values.
+        """
+        super().__init__()
+        # The attributes of a logic app, which can be called at various stages of an access package request and assignment cycle.
+        self._access_package_custom_workflow_extensions: Optional[List[custom_callout_extension.CustomCalloutExtension]] = None
+        # The roles in each resource in a catalog. Read-only.
+        self._access_package_resource_roles: Optional[List[access_package_resource_role.AccessPackageResourceRole]] = None
+        # The accessPackageResourceScopes property
+        self._access_package_resource_scopes: Optional[List[access_package_resource_scope.AccessPackageResourceScope]] = None
+        # The accessPackageResources property
+        self._access_package_resources: Optional[List[access_package_resource.AccessPackageResource]] = None
+        # The access packages in this catalog. Read-only. Nullable. Supports $expand.
+        self._access_packages: Optional[List[access_package.AccessPackage]] = None
+        # Has the value Published if the access packages are available for management.
+        self._catalog_status: Optional[str] = None
+        # One of UserManaged or ServiceDefault.
+        self._catalog_type: Optional[str] = None
+        # UPN of the user who created this resource. Read-only.
+        self._created_by: Optional[str] = None
+        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
+        self._created_date_time: Optional[datetime] = None
+        # The customAccessPackageWorkflowExtensions property
+        self._custom_access_package_workflow_extensions: Optional[List[custom_access_package_workflow_extension.CustomAccessPackageWorkflowExtension]] = None
+        # The description of the access package catalog.
+        self._description: Optional[str] = None
+        # The display name of the access package catalog. Supports $filter (eq, contains).
+        self._display_name: Optional[str] = None
+        # Whether the access packages in this catalog can be requested by users outside of the tenant.
+        self._is_externally_visible: Optional[bool] = None
+        # The UPN of the user who last modified this resource. Read-only.
+        self._modified_by: Optional[str] = None
+        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
+        self._modified_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
+    @property
+    def access_package_custom_workflow_extensions(self,) -> Optional[List[custom_callout_extension.CustomCalloutExtension]]:
+        """
+        Gets the accessPackageCustomWorkflowExtensions property value. The attributes of a logic app, which can be called at various stages of an access package request and assignment cycle.
+        Returns: Optional[List[custom_callout_extension.CustomCalloutExtension]]
+        """
+        return self._access_package_custom_workflow_extensions
+    
+    @access_package_custom_workflow_extensions.setter
+    def access_package_custom_workflow_extensions(self,value: Optional[List[custom_callout_extension.CustomCalloutExtension]] = None) -> None:
+        """
+        Sets the accessPackageCustomWorkflowExtensions property value. The attributes of a logic app, which can be called at various stages of an access package request and assignment cycle.
+        Args:
+            value: Value to set for the access_package_custom_workflow_extensions property.
+        """
+        self._access_package_custom_workflow_extensions = value
+    
     @property
     def access_package_resource_roles(self,) -> Optional[List[access_package_resource_role.AccessPackageResourceRole]]:
         """
@@ -113,42 +165,6 @@ class AccessPackageCatalog(entity.Entity):
             value: Value to set for the catalog_type property.
         """
         self._catalog_type = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new accessPackageCatalog and sets the default values.
-        """
-        super().__init__()
-        # The roles in each resource in a catalog. Read-only.
-        self._access_package_resource_roles: Optional[List[access_package_resource_role.AccessPackageResourceRole]] = None
-        # The accessPackageResourceScopes property
-        self._access_package_resource_scopes: Optional[List[access_package_resource_scope.AccessPackageResourceScope]] = None
-        # The accessPackageResources property
-        self._access_package_resources: Optional[List[access_package_resource.AccessPackageResource]] = None
-        # The access packages in this catalog. Read-only. Nullable. Supports $expand.
-        self._access_packages: Optional[List[access_package.AccessPackage]] = None
-        # Has the value Published if the access packages are available for management.
-        self._catalog_status: Optional[str] = None
-        # One of UserManaged or ServiceDefault.
-        self._catalog_type: Optional[str] = None
-        # UPN of the user who created this resource. Read-only.
-        self._created_by: Optional[str] = None
-        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
-        self._created_date_time: Optional[datetime] = None
-        # The customAccessPackageWorkflowExtensions property
-        self._custom_access_package_workflow_extensions: Optional[List[custom_access_package_workflow_extension.CustomAccessPackageWorkflowExtension]] = None
-        # The description of the access package catalog.
-        self._description: Optional[str] = None
-        # The display name of the access package catalog. Supports $filter (eq, contains).
-        self._display_name: Optional[str] = None
-        # Whether the access packages in this catalog can be requested by users outside of the tenant.
-        self._is_externally_visible: Optional[bool] = None
-        # The UPN of the user who last modified this resource. Read-only.
-        self._modified_by: Optional[str] = None
-        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
-        self._modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
     
     @property
     def created_by(self,) -> Optional[str]:
@@ -252,8 +268,11 @@ class AccessPackageCatalog(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import access_package, access_package_resource, access_package_resource_role, access_package_resource_scope, custom_access_package_workflow_extension, custom_callout_extension, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accessPackages": lambda n : setattr(self, 'access_packages', n.get_collection_of_object_values(access_package.AccessPackage)),
+            "accessPackageCustomWorkflowExtensions": lambda n : setattr(self, 'access_package_custom_workflow_extensions', n.get_collection_of_object_values(custom_callout_extension.CustomCalloutExtension)),
             "accessPackageResources": lambda n : setattr(self, 'access_package_resources', n.get_collection_of_object_values(access_package_resource.AccessPackageResource)),
             "accessPackageResourceRoles": lambda n : setattr(self, 'access_package_resource_roles', n.get_collection_of_object_values(access_package_resource_role.AccessPackageResourceRole)),
             "accessPackageResourceScopes": lambda n : setattr(self, 'access_package_resource_scopes', n.get_collection_of_object_values(access_package_resource_scope.AccessPackageResourceScope)),
@@ -333,6 +352,7 @@ class AccessPackageCatalog(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_collection_of_object_values("accessPackages", self.access_packages)
+        writer.write_collection_of_object_values("accessPackageCustomWorkflowExtensions", self.access_package_custom_workflow_extensions)
         writer.write_collection_of_object_values("accessPackageResources", self.access_package_resources)
         writer.write_collection_of_object_values("accessPackageResourceRoles", self.access_package_resource_roles)
         writer.write_collection_of_object_values("accessPackageResourceScopes", self.access_package_resource_scopes)

@@ -7,11 +7,11 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-group_policy_definition_file = lazy_import('msgraph.generated.models.group_policy_definition_file')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from .......models import group_policy_definition_file
+    from .......models.o_data_errors import o_data_error
 
 class DefinitionFileRequestBuilder():
     """
@@ -45,12 +45,16 @@ class DefinitionFileRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .......models import group_policy_definition_file
+
         return await self.request_adapter.send_async(request_info, group_policy_definition_file.GroupPolicyDefinitionFile, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DefinitionFileRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
@@ -76,12 +80,6 @@ class DefinitionFileRequestBuilder():
         """
         The group policy file associated with the definition.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -97,6 +95,12 @@ class DefinitionFileRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class DefinitionFileRequestBuilderGetRequestConfiguration():

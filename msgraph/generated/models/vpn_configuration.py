@@ -1,13 +1,30 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-vpn_authentication_method = lazy_import('msgraph.generated.models.vpn_authentication_method')
-vpn_server = lazy_import('msgraph.generated.models.vpn_server')
+if TYPE_CHECKING:
+    from . import android_device_owner_vpn_configuration, device_configuration, vpn_authentication_method, vpn_server
+
+from . import device_configuration
 
 class VpnConfiguration(device_configuration.DeviceConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new VpnConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.vpnConfiguration"
+        # VPN Authentication Method.
+        self._authentication_method: Optional[vpn_authentication_method.VpnAuthenticationMethod] = None
+        # Connection name displayed to the user.
+        self._connection_name: Optional[str] = None
+        # Realm when connection type is set to Pulse Secure.
+        self._realm: Optional[str] = None
+        # Role when connection type is set to Pulse Secure.
+        self._role: Optional[str] = None
+        # List of VPN Servers on the network. Make sure end users can access these network locations. This collection can contain a maximum of 500 elements.
+        self._servers: Optional[List[vpn_server.VpnServer]] = None
+    
     @property
     def authentication_method(self,) -> Optional[vpn_authentication_method.VpnAuthenticationMethod]:
         """
@@ -42,23 +59,6 @@ class VpnConfiguration(device_configuration.DeviceConfiguration):
         """
         self._connection_name = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new VpnConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.vpnConfiguration"
-        # VPN Authentication Method.
-        self._authentication_method: Optional[vpn_authentication_method.VpnAuthenticationMethod] = None
-        # Connection name displayed to the user.
-        self._connection_name: Optional[str] = None
-        # Realm when connection type is set to Pulse Secure.
-        self._realm: Optional[str] = None
-        # Role when connection type is set to Pulse Secure.
-        self._role: Optional[str] = None
-        # List of VPN Servers on the network. Make sure end users can access these network locations. This collection can contain a maximum of 500 elements.
-        self._servers: Optional[List[vpn_server.VpnServer]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> VpnConfiguration:
         """
@@ -69,6 +69,13 @@ class VpnConfiguration(device_configuration.DeviceConfiguration):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.androidDeviceOwnerVpnConfiguration":
+                from . import android_device_owner_vpn_configuration
+
+                return android_device_owner_vpn_configuration.AndroidDeviceOwnerVpnConfiguration()
         return VpnConfiguration()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -76,7 +83,9 @@ class VpnConfiguration(device_configuration.DeviceConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_device_owner_vpn_configuration, device_configuration, vpn_authentication_method, vpn_server
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(vpn_authentication_method.VpnAuthenticationMethod)),
             "connectionName": lambda n : setattr(self, 'connection_name', n.get_str_value()),
             "realm": lambda n : setattr(self, 'realm', n.get_str_value()),

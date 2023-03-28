@@ -1,12 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-domain_name_source = lazy_import('msgraph.generated.models.domain_name_source')
-user_email_source = lazy_import('msgraph.generated.models.user_email_source')
-username_source = lazy_import('msgraph.generated.models.username_source')
+if TYPE_CHECKING:
+    from . import device_configuration, domain_name_source, ios_eas_email_profile_configuration, username_source, user_email_source, windows10_eas_email_profile_configuration, windows_phone_e_a_s_email_profile_configuration
+
+from . import device_configuration
 
 class EasEmailProfileConfigurationBase(device_configuration.DeviceConfiguration):
     def __init__(self,) -> None:
@@ -34,6 +33,21 @@ class EasEmailProfileConfigurationBase(device_configuration.DeviceConfiguration)
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.iosEasEmailProfileConfiguration":
+                from . import ios_eas_email_profile_configuration
+
+                return ios_eas_email_profile_configuration.IosEasEmailProfileConfiguration()
+            if mapping_value == "#microsoft.graph.windows10EasEmailProfileConfiguration":
+                from . import windows10_eas_email_profile_configuration
+
+                return windows10_eas_email_profile_configuration.Windows10EasEmailProfileConfiguration()
+            if mapping_value == "#microsoft.graph.windowsPhoneEASEmailProfileConfiguration":
+                from . import windows_phone_e_a_s_email_profile_configuration
+
+                return windows_phone_e_a_s_email_profile_configuration.WindowsPhoneEASEmailProfileConfiguration()
         return EasEmailProfileConfigurationBase()
     
     @property
@@ -58,7 +72,9 @@ class EasEmailProfileConfigurationBase(device_configuration.DeviceConfiguration)
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_configuration, domain_name_source, ios_eas_email_profile_configuration, username_source, user_email_source, windows10_eas_email_profile_configuration, windows_phone_e_a_s_email_profile_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "customDomainName": lambda n : setattr(self, 'custom_domain_name', n.get_str_value()),
             "usernameAADSource": lambda n : setattr(self, 'username_a_a_d_source', n.get_enum_value(username_source.UsernameSource)),
             "usernameSource": lambda n : setattr(self, 'username_source', n.get_enum_value(user_email_source.UserEmailSource)),

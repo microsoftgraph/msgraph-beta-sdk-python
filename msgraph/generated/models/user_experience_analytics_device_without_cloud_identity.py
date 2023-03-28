@@ -1,14 +1,28 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class UserExperienceAnalyticsDeviceWithoutCloudIdentity(entity.Entity):
     """
     The user experience analytics Device without Cloud Identity.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new userExperienceAnalyticsDeviceWithoutCloudIdentity and sets the default values.
+        """
+        super().__init__()
+        # Azure Active Directory Device Id
+        self._azure_ad_device_id: Optional[str] = None
+        # The tenant attach device's name.
+        self._device_name: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def azure_ad_device_id(self,) -> Optional[str]:
         """
@@ -25,18 +39,6 @@ class UserExperienceAnalyticsDeviceWithoutCloudIdentity(entity.Entity):
             value: Value to set for the azure_ad_device_id property.
         """
         self._azure_ad_device_id = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsDeviceWithoutCloudIdentity and sets the default values.
-        """
-        super().__init__()
-        # Azure Active Directory Device Id
-        self._azure_ad_device_id: Optional[str] = None
-        # The tenant attach device's name.
-        self._device_name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsDeviceWithoutCloudIdentity:
@@ -72,7 +74,9 @@ class UserExperienceAnalyticsDeviceWithoutCloudIdentity(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "azureAdDeviceId": lambda n : setattr(self, 'azure_ad_device_id', n.get_str_value()),
             "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
         }

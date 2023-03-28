@@ -1,12 +1,42 @@
 from __future__ import annotations
 from datetime import timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class PrivilegedRoleSettings(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new privilegedRoleSettings and sets the default values.
+        """
+        super().__init__()
+        # true if the approval is required when activate the role. false if the approval is not required when activate the role.
+        self._approval_on_elevation: Optional[bool] = None
+        # List of Approval ids, if approval is required for activation.
+        self._approver_ids: Optional[List[str]] = None
+        # The duration when the role is activated.
+        self._elevation_duration: Optional[Timedelta] = None
+        # true if mfaOnElevation is configurable. false if mfaOnElevation is not configurable.
+        self._is_mfa_on_elevation_configurable: Optional[bool] = None
+        # Internal used only.
+        self._last_global_admin: Optional[bool] = None
+        # Maximal duration for the activated role.
+        self._max_elavation_duration: Optional[Timedelta] = None
+        # true if MFA is required to activate the role. false if MFA is not required to activate the role.
+        self._mfa_on_elevation: Optional[bool] = None
+        # Minimal duration for the activated role.
+        self._min_elevation_duration: Optional[Timedelta] = None
+        # true if send notification to the end user when the role is activated. false if do not send notification when the role is activated.
+        self._notification_to_user_on_elevation: Optional[bool] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # true if the ticketing information is required when activate the role. false if the ticketing information is not required when activate the role.
+        self._ticketing_info_on_elevation: Optional[bool] = None
+    
     @property
     def approval_on_elevation(self,) -> Optional[bool]:
         """
@@ -40,34 +70,6 @@ class PrivilegedRoleSettings(entity.Entity):
             value: Value to set for the approver_ids property.
         """
         self._approver_ids = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new privilegedRoleSettings and sets the default values.
-        """
-        super().__init__()
-        # true if the approval is required when activate the role. false if the approval is not required when activate the role.
-        self._approval_on_elevation: Optional[bool] = None
-        # List of Approval ids, if approval is required for activation.
-        self._approver_ids: Optional[List[str]] = None
-        # The duration when the role is activated.
-        self._elevation_duration: Optional[Timedelta] = None
-        # true if mfaOnElevation is configurable. false if mfaOnElevation is not configurable.
-        self._is_mfa_on_elevation_configurable: Optional[bool] = None
-        # Internal used only.
-        self._last_global_admin: Optional[bool] = None
-        # Maximal duration for the activated role.
-        self._max_elavation_duration: Optional[Timedelta] = None
-        # true if MFA is required to activate the role. false if MFA is not required to activate the role.
-        self._mfa_on_elevation: Optional[bool] = None
-        # Minimal duration for the activated role.
-        self._min_elevation_duration: Optional[Timedelta] = None
-        # true if send notification to the end user when the role is activated. false if do not send notification when the role is activated.
-        self._notification_to_user_on_elevation: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # true if the ticketing information is required when activate the role. false if the ticketing information is not required when activate the role.
-        self._ticketing_info_on_elevation: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PrivilegedRoleSettings:
@@ -103,7 +105,9 @@ class PrivilegedRoleSettings(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "approvalOnElevation": lambda n : setattr(self, 'approval_on_elevation', n.get_bool_value()),
             "approverIds": lambda n : setattr(self, 'approver_ids', n.get_collection_of_primitive_values(str)),
             "elevationDuration": lambda n : setattr(self, 'elevation_duration', n.get_object_value(Timedelta)),

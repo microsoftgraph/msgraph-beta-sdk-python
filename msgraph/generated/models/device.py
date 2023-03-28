@@ -1,102 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-alternative_security_id = lazy_import('msgraph.generated.models.alternative_security_id')
-command = lazy_import('msgraph.generated.models.command')
-directory_object = lazy_import('msgraph.generated.models.directory_object')
-extension = lazy_import('msgraph.generated.models.extension')
-on_premises_extension_attributes = lazy_import('msgraph.generated.models.on_premises_extension_attributes')
-usage_right = lazy_import('msgraph.generated.models.usage_right')
+if TYPE_CHECKING:
+    from . import alternative_security_id, command, directory_object, extension, on_premises_extension_attributes, usage_right
+
+from . import directory_object
 
 class Device(directory_object.DirectoryObject):
-    @property
-    def account_enabled(self,) -> Optional[bool]:
-        """
-        Gets the accountEnabled property value. true if the account is enabled; otherwise, false. Default is true.  Supports $filter (eq, ne, not, in). Only callers in Global Administrator and Cloud Device Administrator roles can set this property.
-        Returns: Optional[bool]
-        """
-        return self._account_enabled
-    
-    @account_enabled.setter
-    def account_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the accountEnabled property value. true if the account is enabled; otherwise, false. Default is true.  Supports $filter (eq, ne, not, in). Only callers in Global Administrator and Cloud Device Administrator roles can set this property.
-        Args:
-            value: Value to set for the account_enabled property.
-        """
-        self._account_enabled = value
-    
-    @property
-    def alternative_security_ids(self,) -> Optional[List[alternative_security_id.AlternativeSecurityId]]:
-        """
-        Gets the alternativeSecurityIds property value. For internal use only. Not nullable. Supports $filter (eq, not, ge, le).
-        Returns: Optional[List[alternative_security_id.AlternativeSecurityId]]
-        """
-        return self._alternative_security_ids
-    
-    @alternative_security_ids.setter
-    def alternative_security_ids(self,value: Optional[List[alternative_security_id.AlternativeSecurityId]] = None) -> None:
-        """
-        Sets the alternativeSecurityIds property value. For internal use only. Not nullable. Supports $filter (eq, not, ge, le).
-        Args:
-            value: Value to set for the alternative_security_ids property.
-        """
-        self._alternative_security_ids = value
-    
-    @property
-    def approximate_last_sign_in_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the approximateLastSignInDateTime property value. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only. Supports $filter (eq, ne, not, ge, le, and eq on null values) and $orderBy.
-        Returns: Optional[datetime]
-        """
-        return self._approximate_last_sign_in_date_time
-    
-    @approximate_last_sign_in_date_time.setter
-    def approximate_last_sign_in_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the approximateLastSignInDateTime property value. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only. Supports $filter (eq, ne, not, ge, le, and eq on null values) and $orderBy.
-        Args:
-            value: Value to set for the approximate_last_sign_in_date_time property.
-        """
-        self._approximate_last_sign_in_date_time = value
-    
-    @property
-    def commands(self,) -> Optional[List[command.Command]]:
-        """
-        Gets the commands property value. Set of commands sent to this device.
-        Returns: Optional[List[command.Command]]
-        """
-        return self._commands
-    
-    @commands.setter
-    def commands(self,value: Optional[List[command.Command]] = None) -> None:
-        """
-        Sets the commands property value. Set of commands sent to this device.
-        Args:
-            value: Value to set for the commands property.
-        """
-        self._commands = value
-    
-    @property
-    def compliance_expiration_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the complianceExpirationDateTime property value. The timestamp when the device is no longer deemed compliant. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
-        Returns: Optional[datetime]
-        """
-        return self._compliance_expiration_date_time
-    
-    @compliance_expiration_date_time.setter
-    def compliance_expiration_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the complianceExpirationDateTime property value. The timestamp when the device is no longer deemed compliant. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
-        Args:
-            value: Value to set for the compliance_expiration_date_time property.
-        """
-        self._compliance_expiration_date_time = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new device and sets the default values.
@@ -189,6 +101,91 @@ class Device(directory_object.DirectoryObject):
         self._trust_type: Optional[str] = None
         # Represents the usage rights a device has been granted.
         self._usage_rights: Optional[List[usage_right.UsageRight]] = None
+    
+    @property
+    def account_enabled(self,) -> Optional[bool]:
+        """
+        Gets the accountEnabled property value. true if the account is enabled; otherwise, false. Default is true.  Supports $filter (eq, ne, not, in). Only callers in Global Administrator and Cloud Device Administrator roles can set this property.
+        Returns: Optional[bool]
+        """
+        return self._account_enabled
+    
+    @account_enabled.setter
+    def account_enabled(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the accountEnabled property value. true if the account is enabled; otherwise, false. Default is true.  Supports $filter (eq, ne, not, in). Only callers in Global Administrator and Cloud Device Administrator roles can set this property.
+        Args:
+            value: Value to set for the account_enabled property.
+        """
+        self._account_enabled = value
+    
+    @property
+    def alternative_security_ids(self,) -> Optional[List[alternative_security_id.AlternativeSecurityId]]:
+        """
+        Gets the alternativeSecurityIds property value. For internal use only. Not nullable. Supports $filter (eq, not, ge, le).
+        Returns: Optional[List[alternative_security_id.AlternativeSecurityId]]
+        """
+        return self._alternative_security_ids
+    
+    @alternative_security_ids.setter
+    def alternative_security_ids(self,value: Optional[List[alternative_security_id.AlternativeSecurityId]] = None) -> None:
+        """
+        Sets the alternativeSecurityIds property value. For internal use only. Not nullable. Supports $filter (eq, not, ge, le).
+        Args:
+            value: Value to set for the alternative_security_ids property.
+        """
+        self._alternative_security_ids = value
+    
+    @property
+    def approximate_last_sign_in_date_time(self,) -> Optional[datetime]:
+        """
+        Gets the approximateLastSignInDateTime property value. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only. Supports $filter (eq, ne, not, ge, le, and eq on null values) and $orderBy.
+        Returns: Optional[datetime]
+        """
+        return self._approximate_last_sign_in_date_time
+    
+    @approximate_last_sign_in_date_time.setter
+    def approximate_last_sign_in_date_time(self,value: Optional[datetime] = None) -> None:
+        """
+        Sets the approximateLastSignInDateTime property value. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only. Supports $filter (eq, ne, not, ge, le, and eq on null values) and $orderBy.
+        Args:
+            value: Value to set for the approximate_last_sign_in_date_time property.
+        """
+        self._approximate_last_sign_in_date_time = value
+    
+    @property
+    def commands(self,) -> Optional[List[command.Command]]:
+        """
+        Gets the commands property value. Set of commands sent to this device.
+        Returns: Optional[List[command.Command]]
+        """
+        return self._commands
+    
+    @commands.setter
+    def commands(self,value: Optional[List[command.Command]] = None) -> None:
+        """
+        Sets the commands property value. Set of commands sent to this device.
+        Args:
+            value: Value to set for the commands property.
+        """
+        self._commands = value
+    
+    @property
+    def compliance_expiration_date_time(self,) -> Optional[datetime]:
+        """
+        Gets the complianceExpirationDateTime property value. The timestamp when the device is no longer deemed compliant. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
+        Returns: Optional[datetime]
+        """
+        return self._compliance_expiration_date_time
+    
+    @compliance_expiration_date_time.setter
+    def compliance_expiration_date_time(self,value: Optional[datetime] = None) -> None:
+        """
+        Sets the complianceExpirationDateTime property value. The timestamp when the device is no longer deemed compliant. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
+        Args:
+            value: Value to set for the compliance_expiration_date_time property.
+        """
+        self._compliance_expiration_date_time = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Device:
@@ -394,7 +391,9 @@ class Device(directory_object.DirectoryObject):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import alternative_security_id, command, directory_object, extension, on_premises_extension_attributes, usage_right
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accountEnabled": lambda n : setattr(self, 'account_enabled', n.get_bool_value()),
             "alternativeSecurityIds": lambda n : setattr(self, 'alternative_security_ids', n.get_collection_of_object_values(alternative_security_id.AlternativeSecurityId)),
             "approximateLastSignInDateTime": lambda n : setattr(self, 'approximate_last_sign_in_date_time', n.get_datetime_value()),

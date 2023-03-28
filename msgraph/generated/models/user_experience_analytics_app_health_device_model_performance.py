@@ -1,32 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-user_experience_analytics_health_state = lazy_import('msgraph.generated.models.user_experience_analytics_health_state')
+if TYPE_CHECKING:
+    from . import entity, user_experience_analytics_health_state
+
+from . import entity
 
 class UserExperienceAnalyticsAppHealthDeviceModelPerformance(entity.Entity):
     """
     The user experience analytics device model performance entity contains device model performance details.
     """
-    @property
-    def active_device_count(self,) -> Optional[int]:
-        """
-        Gets the activeDeviceCount property value. The number of active devices for the model. Valid values -2147483648 to 2147483647
-        Returns: Optional[int]
-        """
-        return self._active_device_count
-    
-    @active_device_count.setter
-    def active_device_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the activeDeviceCount property value. The number of active devices for the model. Valid values -2147483648 to 2147483647
-        Args:
-            value: Value to set for the active_device_count property.
-        """
-        self._active_device_count = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new userExperienceAnalyticsAppHealthDeviceModelPerformance and sets the default values.
@@ -48,6 +32,23 @@ class UserExperienceAnalyticsAppHealthDeviceModelPerformance(entity.Entity):
         self._model_app_health_status: Optional[str] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
+    
+    @property
+    def active_device_count(self,) -> Optional[int]:
+        """
+        Gets the activeDeviceCount property value. The number of active devices for the model. Valid values -2147483648 to 2147483647
+        Returns: Optional[int]
+        """
+        return self._active_device_count
+    
+    @active_device_count.setter
+    def active_device_count(self,value: Optional[int] = None) -> None:
+        """
+        Sets the activeDeviceCount property value. The number of active devices for the model. Valid values -2147483648 to 2147483647
+        Args:
+            value: Value to set for the active_device_count property.
+        """
+        self._active_device_count = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsAppHealthDeviceModelPerformance:
@@ -100,7 +101,9 @@ class UserExperienceAnalyticsAppHealthDeviceModelPerformance(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, user_experience_analytics_health_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "activeDeviceCount": lambda n : setattr(self, 'active_device_count', n.get_int_value()),
             "deviceManufacturer": lambda n : setattr(self, 'device_manufacturer', n.get_str_value()),
             "deviceModel": lambda n : setattr(self, 'device_model', n.get_str_value()),

@@ -1,12 +1,28 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class DimensionValue(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new dimensionValue and sets the default values.
+        """
+        super().__init__()
+        # The code property
+        self._code: Optional[str] = None
+        # The displayName property
+        self._display_name: Optional[str] = None
+        # The lastModifiedDateTime property
+        self._last_modified_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def code(self,) -> Optional[str]:
         """
@@ -23,20 +39,6 @@ class DimensionValue(entity.Entity):
             value: Value to set for the code property.
         """
         self._code = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new dimensionValue and sets the default values.
-        """
-        super().__init__()
-        # The code property
-        self._code: Optional[str] = None
-        # The displayName property
-        self._display_name: Optional[str] = None
-        # The lastModifiedDateTime property
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DimensionValue:
@@ -72,7 +74,9 @@ class DimensionValue(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "code": lambda n : setattr(self, 'code', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),

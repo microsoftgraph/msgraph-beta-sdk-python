@@ -1,28 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-item_facet = lazy_import('msgraph.generated.models.item_facet')
+if TYPE_CHECKING:
+    from . import item_facet
+
+from . import item_facet
 
 class PersonWebsite(item_facet.ItemFacet):
-    @property
-    def categories(self,) -> Optional[List[str]]:
-        """
-        Gets the categories property value. Contains categories a user has associated with the website (for example, personal, recipes).
-        Returns: Optional[List[str]]
-        """
-        return self._categories
-    
-    @categories.setter
-    def categories(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the categories property value. Contains categories a user has associated with the website (for example, personal, recipes).
-        Args:
-            value: Value to set for the categories property.
-        """
-        self._categories = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new PersonWebsite and sets the default values.
@@ -39,6 +24,23 @@ class PersonWebsite(item_facet.ItemFacet):
         self._thumbnail_url: Optional[str] = None
         # Contains a link to the website itself.
         self._web_url: Optional[str] = None
+    
+    @property
+    def categories(self,) -> Optional[List[str]]:
+        """
+        Gets the categories property value. Contains categories a user has associated with the website (for example, personal, recipes).
+        Returns: Optional[List[str]]
+        """
+        return self._categories
+    
+    @categories.setter
+    def categories(self,value: Optional[List[str]] = None) -> None:
+        """
+        Sets the categories property value. Contains categories a user has associated with the website (for example, personal, recipes).
+        Args:
+            value: Value to set for the categories property.
+        """
+        self._categories = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PersonWebsite:
@@ -91,7 +93,9 @@ class PersonWebsite(item_facet.ItemFacet):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import item_facet
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_primitive_values(str)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

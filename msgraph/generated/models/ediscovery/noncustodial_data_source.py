@@ -1,12 +1,24 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-data_source = lazy_import('msgraph.generated.models.ediscovery.data_source')
-data_source_container = lazy_import('msgraph.generated.models.ediscovery.data_source_container')
+if TYPE_CHECKING:
+    from . import data_source, data_source_container
+
+from . import data_source_container
 
 class NoncustodialDataSource(data_source_container.DataSourceContainer):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new NoncustodialDataSource and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.ediscovery.noncustodialDataSource"
+        # Indicates if hold is applied to non-custodial data source (such as mailbox or site).
+        self._apply_hold_to_source: Optional[bool] = None
+        # User source or SharePoint site data source as non-custodial data source.
+        self._data_source: Optional[data_source.DataSource] = None
+    
     @property
     def apply_hold_to_source(self,) -> Optional[bool]:
         """
@@ -23,17 +35,6 @@ class NoncustodialDataSource(data_source_container.DataSourceContainer):
             value: Value to set for the apply_hold_to_source property.
         """
         self._apply_hold_to_source = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new NoncustodialDataSource and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.ediscovery.noncustodialDataSource"
-        # Indicates if hold is applied to non-custodial data source (such as mailbox or site).
-        self._apply_hold_to_source: Optional[bool] = None
-        # User source or SharePoint site data source as non-custodial data source.
-        self._data_source: Optional[data_source.DataSource] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> NoncustodialDataSource:
@@ -69,7 +70,9 @@ class NoncustodialDataSource(data_source_container.DataSourceContainer):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import data_source, data_source_container
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "applyHoldToSource": lambda n : setattr(self, 'apply_hold_to_source', n.get_bool_value()),
             "dataSource": lambda n : setattr(self, 'data_source', n.get_object_value(data_source.DataSource)),
         }

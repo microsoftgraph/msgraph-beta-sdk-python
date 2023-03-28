@@ -1,12 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-mac_o_s_kernel_extension = lazy_import('msgraph.generated.models.mac_o_s_kernel_extension')
-mac_o_s_system_extension = lazy_import('msgraph.generated.models.mac_o_s_system_extension')
-mac_o_s_system_extension_type_mapping = lazy_import('msgraph.generated.models.mac_o_s_system_extension_type_mapping')
+if TYPE_CHECKING:
+    from . import device_configuration, mac_o_s_kernel_extension, mac_o_s_system_extension, mac_o_s_system_extension_type_mapping
+
+from . import device_configuration
 
 class MacOSExtensionsConfiguration(device_configuration.DeviceConfiguration):
     def __init__(self,) -> None:
@@ -47,7 +46,9 @@ class MacOSExtensionsConfiguration(device_configuration.DeviceConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_configuration, mac_o_s_kernel_extension, mac_o_s_system_extension, mac_o_s_system_extension_type_mapping
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "kernelExtensionsAllowed": lambda n : setattr(self, 'kernel_extensions_allowed', n.get_collection_of_object_values(mac_o_s_kernel_extension.MacOSKernelExtension)),
             "kernelExtensionAllowedTeamIdentifiers": lambda n : setattr(self, 'kernel_extension_allowed_team_identifiers', n.get_collection_of_primitive_values(str)),
             "kernelExtensionOverridesAllowed": lambda n : setattr(self, 'kernel_extension_overrides_allowed', n.get_bool_value()),

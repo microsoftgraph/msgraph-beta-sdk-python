@@ -1,14 +1,37 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-booking_person = lazy_import('msgraph.generated.models.booking_person')
-booking_staff_membership_status = lazy_import('msgraph.generated.models.booking_staff_membership_status')
-booking_staff_role = lazy_import('msgraph.generated.models.booking_staff_role')
-booking_work_hours = lazy_import('msgraph.generated.models.booking_work_hours')
+if TYPE_CHECKING:
+    from . import booking_person, booking_staff_membership_status, booking_staff_role, booking_work_hours
+
+from . import booking_person
 
 class BookingStaffMember(booking_person.BookingPerson):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new BookingStaffMember and sets the default values.
+        """
+        super().__init__()
+        # True means that if the staff member is a Microsoft 365 user, the Bookings API would verify the staff member's availability in their personal calendar in Microsoft 365, before making a booking.
+        self._availability_is_affected_by_personal_calendar: Optional[bool] = None
+        # Identifies a color to represent the staff member. The color corresponds to the color palette in the Staff details page in the Bookings app.
+        self._color_index: Optional[int] = None
+        # True indicates that a staff member will be notified via email when a booking assigned to them is created or changed.
+        self._is_email_notification_enabled: Optional[bool] = None
+        # The membershipStatus property
+        self._membership_status: Optional[booking_staff_membership_status.BookingStaffMembershipStatus] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The role property
+        self._role: Optional[booking_staff_role.BookingStaffRole] = None
+        # The time zone of the staff member. For a list of possible values, see dateTimeTimeZone.
+        self._time_zone: Optional[str] = None
+        # True means the staff member's availability is as specified in the businessHours property of the business. False means the availability is determined by the staff member's workingHours property setting.
+        self._use_business_hours: Optional[bool] = None
+        # The range of hours each day of the week that the staff member is available for booking. By default, they are initialized to be the same as the businessHours property of the business.
+        self._working_hours: Optional[List[booking_work_hours.BookingWorkHours]] = None
+    
     @property
     def availability_is_affected_by_personal_calendar(self,) -> Optional[bool]:
         """
@@ -43,30 +66,6 @@ class BookingStaffMember(booking_person.BookingPerson):
         """
         self._color_index = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new BookingStaffMember and sets the default values.
-        """
-        super().__init__()
-        # True means that if the staff member is a Microsoft 365 user, the Bookings API would verify the staff member's availability in their personal calendar in Microsoft 365, before making a booking.
-        self._availability_is_affected_by_personal_calendar: Optional[bool] = None
-        # Identifies a color to represent the staff member. The color corresponds to the color palette in the Staff details page in the Bookings app.
-        self._color_index: Optional[int] = None
-        # True indicates that a staff member will be notified via email when a booking assigned to them is created or changed.
-        self._is_email_notification_enabled: Optional[bool] = None
-        # The membershipStatus property
-        self._membership_status: Optional[booking_staff_membership_status.BookingStaffMembershipStatus] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The role property
-        self._role: Optional[booking_staff_role.BookingStaffRole] = None
-        # The time zone of the staff member. For a list of possible values, see dateTimeTimeZone.
-        self._time_zone: Optional[str] = None
-        # True means the staff member's availability is as specified in the businessHours property of the business. False means the availability is determined by the staff member's workingHours property setting.
-        self._use_business_hours: Optional[bool] = None
-        # The range of hours each day of the week that the staff member is available for booking. By default, they are initialized to be the same as the businessHours property of the business.
-        self._working_hours: Optional[List[booking_work_hours.BookingWorkHours]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> BookingStaffMember:
         """
@@ -84,7 +83,9 @@ class BookingStaffMember(booking_person.BookingPerson):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import booking_person, booking_staff_membership_status, booking_staff_role, booking_work_hours
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "availabilityIsAffectedByPersonalCalendar": lambda n : setattr(self, 'availability_is_affected_by_personal_calendar', n.get_bool_value()),
             "colorIndex": lambda n : setattr(self, 'color_index', n.get_int_value()),
             "isEmailNotificationEnabled": lambda n : setattr(self, 'is_email_notification_enabled', n.get_bool_value()),

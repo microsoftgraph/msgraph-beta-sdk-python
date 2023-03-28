@@ -1,31 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-identity_set = lazy_import('msgraph.generated.models.identity_set')
-teamwork_active_peripherals = lazy_import('msgraph.generated.models.teamwork_active_peripherals')
+if TYPE_CHECKING:
+    from . import entity, identity_set, teamwork_active_peripherals
+
+from . import entity
 
 class TeamworkDeviceActivity(entity.Entity):
-    @property
-    def active_peripherals(self,) -> Optional[teamwork_active_peripherals.TeamworkActivePeripherals]:
-        """
-        Gets the activePeripherals property value. The active peripheral devices attached to the device.
-        Returns: Optional[teamwork_active_peripherals.TeamworkActivePeripherals]
-        """
-        return self._active_peripherals
-    
-    @active_peripherals.setter
-    def active_peripherals(self,value: Optional[teamwork_active_peripherals.TeamworkActivePeripherals] = None) -> None:
-        """
-        Sets the activePeripherals property value. The active peripheral devices attached to the device.
-        Args:
-            value: Value to set for the active_peripherals property.
-        """
-        self._active_peripherals = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new teamworkDeviceActivity and sets the default values.
@@ -43,6 +26,23 @@ class TeamworkDeviceActivity(entity.Entity):
         self._last_modified_date_time: Optional[datetime] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
+    
+    @property
+    def active_peripherals(self,) -> Optional[teamwork_active_peripherals.TeamworkActivePeripherals]:
+        """
+        Gets the activePeripherals property value. The active peripheral devices attached to the device.
+        Returns: Optional[teamwork_active_peripherals.TeamworkActivePeripherals]
+        """
+        return self._active_peripherals
+    
+    @active_peripherals.setter
+    def active_peripherals(self,value: Optional[teamwork_active_peripherals.TeamworkActivePeripherals] = None) -> None:
+        """
+        Sets the activePeripherals property value. The active peripheral devices attached to the device.
+        Args:
+            value: Value to set for the active_peripherals property.
+        """
+        self._active_peripherals = value
     
     @property
     def created_by(self,) -> Optional[identity_set.IdentitySet]:
@@ -95,7 +95,9 @@ class TeamworkDeviceActivity(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, identity_set, teamwork_active_peripherals
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "activePeripherals": lambda n : setattr(self, 'active_peripherals', n.get_object_value(teamwork_active_peripherals.TeamworkActivePeripherals)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),

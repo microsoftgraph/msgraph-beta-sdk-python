@@ -7,41 +7,20 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-account_request_builder = lazy_import('msgraph.generated.financials.companies.item.journals.item.account.account_request_builder')
-journal_lines_request_builder = lazy_import('msgraph.generated.financials.companies.item.journals.item.journal_lines.journal_lines_request_builder')
-journal_line_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.journals.item.journal_lines.item.journal_line_item_request_builder')
-post_request_builder = lazy_import('msgraph.generated.financials.companies.item.journals.item.post.post_request_builder')
-journal = lazy_import('msgraph.generated.models.journal')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ......models import journal
+    from ......models.o_data_errors import o_data_error
+    from .account import account_request_builder
+    from .journal_lines import journal_lines_request_builder
+    from .journal_lines.item import journal_line_item_request_builder
+    from .post import post_request_builder
 
 class JournalItemRequestBuilder():
     """
     Provides operations to manage the journals property of the microsoft.graph.company entity.
     """
-    @property
-    def account(self) -> account_request_builder.AccountRequestBuilder:
-        """
-        Provides operations to manage the account property of the microsoft.graph.journal entity.
-        """
-        return account_request_builder.AccountRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def journal_lines(self) -> journal_lines_request_builder.JournalLinesRequestBuilder:
-        """
-        Provides operations to manage the journalLines property of the microsoft.graph.journal entity.
-        """
-        return journal_lines_request_builder.JournalLinesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def post_path(self) -> post_request_builder.PostRequestBuilder:
-        """
-        Provides operations to call the post method.
-        """
-        return post_request_builder.PostRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new JournalItemRequestBuilder and sets the default values.
@@ -69,6 +48,8 @@ class JournalItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -87,12 +68,16 @@ class JournalItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import journal
+
         return await self.request_adapter.send_async(request_info, journal.Journal, error_mapping)
     
     def journal_lines_by_id(self,id: str) -> journal_line_item_request_builder.JournalLineItemRequestBuilder:
@@ -104,6 +89,8 @@ class JournalItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .journal_lines.item import journal_line_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["journalLine%2Did"] = id
         return journal_line_item_request_builder.JournalLineItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -121,12 +108,16 @@ class JournalItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import journal
+
         return await self.request_adapter.send_async(request_info, journal.Journal, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[JournalItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -184,6 +175,33 @@ class JournalItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def account(self) -> account_request_builder.AccountRequestBuilder:
+        """
+        Provides operations to manage the account property of the microsoft.graph.journal entity.
+        """
+        from .account import account_request_builder
+
+        return account_request_builder.AccountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def journal_lines(self) -> journal_lines_request_builder.JournalLinesRequestBuilder:
+        """
+        Provides operations to manage the journalLines property of the microsoft.graph.journal entity.
+        """
+        from .journal_lines import journal_lines_request_builder
+
+        return journal_lines_request_builder.JournalLinesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def post_path(self) -> post_request_builder.PostRequestBuilder:
+        """
+        Provides operations to call the post method.
+        """
+        from .post import post_request_builder
+
+        return post_request_builder.PostRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class JournalItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -201,12 +219,6 @@ class JournalItemRequestBuilder():
         """
         Get journals from financials
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -222,6 +234,12 @@ class JournalItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class JournalItemRequestBuilderGetRequestConfiguration():

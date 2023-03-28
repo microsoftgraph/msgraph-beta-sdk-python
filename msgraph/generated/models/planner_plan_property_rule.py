@@ -1,12 +1,28 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-planner_field_rules = lazy_import('msgraph.generated.models.planner_field_rules')
-planner_property_rule = lazy_import('msgraph.generated.models.planner_property_rule')
+if TYPE_CHECKING:
+    from . import planner_field_rules, planner_property_rule
+
+from . import planner_property_rule
 
 class PlannerPlanPropertyRule(planner_property_rule.PlannerPropertyRule):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new PlannerPlanPropertyRule and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.plannerPlanPropertyRule"
+        # The buckets property
+        self._buckets: Optional[List[str]] = None
+        # The categoryDescriptions property
+        self._category_descriptions: Optional[planner_field_rules.PlannerFieldRules] = None
+        # The tasks property
+        self._tasks: Optional[List[str]] = None
+        # The title property
+        self._title: Optional[planner_field_rules.PlannerFieldRules] = None
+    
     @property
     def buckets(self,) -> Optional[List[str]]:
         """
@@ -41,21 +57,6 @@ class PlannerPlanPropertyRule(planner_property_rule.PlannerPropertyRule):
         """
         self._category_descriptions = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new PlannerPlanPropertyRule and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.plannerPlanPropertyRule"
-        # The buckets property
-        self._buckets: Optional[List[str]] = None
-        # The categoryDescriptions property
-        self._category_descriptions: Optional[planner_field_rules.PlannerFieldRules] = None
-        # The tasks property
-        self._tasks: Optional[List[str]] = None
-        # The title property
-        self._title: Optional[planner_field_rules.PlannerFieldRules] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PlannerPlanPropertyRule:
         """
@@ -73,7 +74,9 @@ class PlannerPlanPropertyRule(planner_property_rule.PlannerPropertyRule):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import planner_field_rules, planner_property_rule
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "buckets": lambda n : setattr(self, 'buckets', n.get_collection_of_primitive_values(str)),
             "categoryDescriptions": lambda n : setattr(self, 'category_descriptions', n.get_object_value(planner_field_rules.PlannerFieldRules)),
             "tasks": lambda n : setattr(self, 'tasks', n.get_collection_of_primitive_values(str)),

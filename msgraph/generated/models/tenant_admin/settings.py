@@ -1,49 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-idle_session_sign_out = lazy_import('msgraph.generated.models.tenant_admin.idle_session_sign_out')
-image_tagging_choice = lazy_import('msgraph.generated.models.tenant_admin.image_tagging_choice')
-sharing_capabilities = lazy_import('msgraph.generated.models.tenant_admin.sharing_capabilities')
-sharing_domain_restriction_mode = lazy_import('msgraph.generated.models.tenant_admin.sharing_domain_restriction_mode')
+if TYPE_CHECKING:
+    from . import idle_session_sign_out, image_tagging_choice, sharing_capabilities, sharing_domain_restriction_mode
+    from .. import entity
+
+from .. import entity
 
 class Settings(entity.Entity):
-    @property
-    def allowed_domain_guids_for_sync_app(self,) -> Optional[List[Guid]]:
-        """
-        Gets the allowedDomainGuidsForSyncApp property value. Collection of trusted domain GUIDs for the OneDrive sync app.
-        Returns: Optional[List[Guid]]
-        """
-        return self._allowed_domain_guids_for_sync_app
-    
-    @allowed_domain_guids_for_sync_app.setter
-    def allowed_domain_guids_for_sync_app(self,value: Optional[List[Guid]] = None) -> None:
-        """
-        Sets the allowedDomainGuidsForSyncApp property value. Collection of trusted domain GUIDs for the OneDrive sync app.
-        Args:
-            value: Value to set for the allowed_domain_guids_for_sync_app property.
-        """
-        self._allowed_domain_guids_for_sync_app = value
-    
-    @property
-    def available_managed_paths_for_site_creation(self,) -> Optional[List[str]]:
-        """
-        Gets the availableManagedPathsForSiteCreation property value. Collection of managed paths available for site creation. Read-only.
-        Returns: Optional[List[str]]
-        """
-        return self._available_managed_paths_for_site_creation
-    
-    @available_managed_paths_for_site_creation.setter
-    def available_managed_paths_for_site_creation(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the availableManagedPathsForSiteCreation property value. Collection of managed paths available for site creation. Read-only.
-        Args:
-            value: Value to set for the available_managed_paths_for_site_creation property.
-        """
-        self._available_managed_paths_for_site_creation = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new settings and sets the default values.
@@ -110,6 +75,40 @@ class Settings(entity.Entity):
         # The default timezone of a tenant for newly created sites. For a list of possible values, see SPRegionalSettings.TimeZones property.
         self._tenant_default_timezone: Optional[str] = None
     
+    @property
+    def allowed_domain_guids_for_sync_app(self,) -> Optional[List[Guid]]:
+        """
+        Gets the allowedDomainGuidsForSyncApp property value. Collection of trusted domain GUIDs for the OneDrive sync app.
+        Returns: Optional[List[Guid]]
+        """
+        return self._allowed_domain_guids_for_sync_app
+    
+    @allowed_domain_guids_for_sync_app.setter
+    def allowed_domain_guids_for_sync_app(self,value: Optional[List[Guid]] = None) -> None:
+        """
+        Sets the allowedDomainGuidsForSyncApp property value. Collection of trusted domain GUIDs for the OneDrive sync app.
+        Args:
+            value: Value to set for the allowed_domain_guids_for_sync_app property.
+        """
+        self._allowed_domain_guids_for_sync_app = value
+    
+    @property
+    def available_managed_paths_for_site_creation(self,) -> Optional[List[str]]:
+        """
+        Gets the availableManagedPathsForSiteCreation property value. Collection of managed paths available for site creation. Read-only.
+        Returns: Optional[List[str]]
+        """
+        return self._available_managed_paths_for_site_creation
+    
+    @available_managed_paths_for_site_creation.setter
+    def available_managed_paths_for_site_creation(self,value: Optional[List[str]] = None) -> None:
+        """
+        Sets the availableManagedPathsForSiteCreation property value. Collection of managed paths available for site creation. Read-only.
+        Args:
+            value: Value to set for the available_managed_paths_for_site_creation property.
+        """
+        self._available_managed_paths_for_site_creation = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Settings:
         """
@@ -161,7 +160,10 @@ class Settings(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import idle_session_sign_out, image_tagging_choice, sharing_capabilities, sharing_domain_restriction_mode
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowedDomainGuidsForSyncApp": lambda n : setattr(self, 'allowed_domain_guids_for_sync_app', n.get_collection_of_primitive_values(guid)),
             "availableManagedPathsForSiteCreation": lambda n : setattr(self, 'available_managed_paths_for_site_creation', n.get_collection_of_primitive_values(str)),
             "deletedUserPersonalSiteRetentionPeriodInDays": lambda n : setattr(self, 'deleted_user_personal_site_retention_period_in_days', n.get_int_value()),

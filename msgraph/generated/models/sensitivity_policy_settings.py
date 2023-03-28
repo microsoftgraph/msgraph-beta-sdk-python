@@ -1,12 +1,29 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-sensitivity_label_target = lazy_import('msgraph.generated.models.sensitivity_label_target')
+if TYPE_CHECKING:
+    from . import entity, sensitivity_label_target
+
+from . import entity
 
 class SensitivityPolicySettings(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new sensitivityPolicySettings and sets the default values.
+        """
+        super().__init__()
+        # The applicableTo property
+        self._applicable_to: Optional[sensitivity_label_target.SensitivityLabelTarget] = None
+        # The downgradeSensitivityRequiresJustification property
+        self._downgrade_sensitivity_requires_justification: Optional[bool] = None
+        # The helpWebUrl property
+        self._help_web_url: Optional[str] = None
+        # The isMandatory property
+        self._is_mandatory: Optional[bool] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def applicable_to(self,) -> Optional[sensitivity_label_target.SensitivityLabelTarget]:
         """
@@ -23,22 +40,6 @@ class SensitivityPolicySettings(entity.Entity):
             value: Value to set for the applicable_to property.
         """
         self._applicable_to = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new sensitivityPolicySettings and sets the default values.
-        """
-        super().__init__()
-        # The applicableTo property
-        self._applicable_to: Optional[sensitivity_label_target.SensitivityLabelTarget] = None
-        # The downgradeSensitivityRequiresJustification property
-        self._downgrade_sensitivity_requires_justification: Optional[bool] = None
-        # The helpWebUrl property
-        self._help_web_url: Optional[str] = None
-        # The isMandatory property
-        self._is_mandatory: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SensitivityPolicySettings:
@@ -74,7 +75,9 @@ class SensitivityPolicySettings(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, sensitivity_label_target
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "applicableTo": lambda n : setattr(self, 'applicable_to', n.get_enum_value(sensitivity_label_target.SensitivityLabelTarget)),
             "downgradeSensitivityRequiresJustification": lambda n : setattr(self, 'downgrade_sensitivity_requires_justification', n.get_bool_value()),
             "helpWebUrl": lambda n : setattr(self, 'help_web_url', n.get_str_value()),

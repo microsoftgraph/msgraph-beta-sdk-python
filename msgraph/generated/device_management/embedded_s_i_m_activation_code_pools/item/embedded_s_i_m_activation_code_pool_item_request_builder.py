@@ -7,55 +7,21 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-assign_request_builder = lazy_import('msgraph.generated.device_management.embedded_s_i_m_activation_code_pools.item.assign.assign_request_builder')
-assignments_request_builder = lazy_import('msgraph.generated.device_management.embedded_s_i_m_activation_code_pools.item.assignments.assignments_request_builder')
-embedded_s_i_m_activation_code_pool_assignment_item_request_builder = lazy_import('msgraph.generated.device_management.embedded_s_i_m_activation_code_pools.item.assignments.item.embedded_s_i_m_activation_code_pool_assignment_item_request_builder')
-device_states_request_builder = lazy_import('msgraph.generated.device_management.embedded_s_i_m_activation_code_pools.item.device_states.device_states_request_builder')
-embedded_s_i_m_device_state_item_request_builder = lazy_import('msgraph.generated.device_management.embedded_s_i_m_activation_code_pools.item.device_states.item.embedded_s_i_m_device_state_item_request_builder')
-embedded_s_i_m_activation_code_pool = lazy_import('msgraph.generated.models.embedded_s_i_m_activation_code_pool')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ....models import embedded_s_i_m_activation_code_pool
+    from ....models.o_data_errors import o_data_error
+    from .assign import assign_request_builder
+    from .assignments import assignments_request_builder
+    from .assignments.item import embedded_s_i_m_activation_code_pool_assignment_item_request_builder
+    from .device_states import device_states_request_builder
+    from .device_states.item import embedded_s_i_m_device_state_item_request_builder
 
 class EmbeddedSIMActivationCodePoolItemRequestBuilder():
     """
     Provides operations to manage the embeddedSIMActivationCodePools property of the microsoft.graph.deviceManagement entity.
     """
-    @property
-    def assign(self) -> assign_request_builder.AssignRequestBuilder:
-        """
-        Provides operations to call the assign method.
-        """
-        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.embeddedSIMActivationCodePool entity.
-        """
-        return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def device_states(self) -> device_states_request_builder.DeviceStatesRequestBuilder:
-        """
-        Provides operations to manage the deviceStates property of the microsoft.graph.embeddedSIMActivationCodePool entity.
-        """
-        return device_states_request_builder.DeviceStatesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def assignments_by_id(self,id: str) -> embedded_s_i_m_activation_code_pool_assignment_item_request_builder.EmbeddedSIMActivationCodePoolAssignmentItemRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.embeddedSIMActivationCodePool entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: embedded_s_i_m_activation_code_pool_assignment_item_request_builder.EmbeddedSIMActivationCodePoolAssignmentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["embeddedSIMActivationCodePoolAssignment%2Did"] = id
-        return embedded_s_i_m_activation_code_pool_assignment_item_request_builder.EmbeddedSIMActivationCodePoolAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new EmbeddedSIMActivationCodePoolItemRequestBuilder and sets the default values.
@@ -74,6 +40,21 @@ class EmbeddedSIMActivationCodePoolItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def assignments_by_id(self,id: str) -> embedded_s_i_m_activation_code_pool_assignment_item_request_builder.EmbeddedSIMActivationCodePoolAssignmentItemRequestBuilder:
+        """
+        Provides operations to manage the assignments property of the microsoft.graph.embeddedSIMActivationCodePool entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: embedded_s_i_m_activation_code_pool_assignment_item_request_builder.EmbeddedSIMActivationCodePoolAssignmentItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .assignments.item import embedded_s_i_m_activation_code_pool_assignment_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["embeddedSIMActivationCodePoolAssignment%2Did"] = id
+        return embedded_s_i_m_activation_code_pool_assignment_item_request_builder.EmbeddedSIMActivationCodePoolAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def delete(self,request_configuration: Optional[EmbeddedSIMActivationCodePoolItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property embeddedSIMActivationCodePools for deviceManagement
@@ -83,6 +64,8 @@ class EmbeddedSIMActivationCodePoolItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -100,6 +83,8 @@ class EmbeddedSIMActivationCodePoolItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .device_states.item import embedded_s_i_m_device_state_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["embeddedSIMDeviceState%2Did"] = id
         return embedded_s_i_m_device_state_item_request_builder.EmbeddedSIMDeviceStateItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -114,12 +99,16 @@ class EmbeddedSIMActivationCodePoolItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import embedded_s_i_m_activation_code_pool
+
         return await self.request_adapter.send_async(request_info, embedded_s_i_m_activation_code_pool.EmbeddedSIMActivationCodePool, error_mapping)
     
     async def patch(self,body: Optional[embedded_s_i_m_activation_code_pool.EmbeddedSIMActivationCodePool] = None, request_configuration: Optional[EmbeddedSIMActivationCodePoolItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[embedded_s_i_m_activation_code_pool.EmbeddedSIMActivationCodePool]:
@@ -135,12 +124,16 @@ class EmbeddedSIMActivationCodePoolItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import embedded_s_i_m_activation_code_pool
+
         return await self.request_adapter.send_async(request_info, embedded_s_i_m_activation_code_pool.EmbeddedSIMActivationCodePool, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[EmbeddedSIMActivationCodePoolItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -198,6 +191,33 @@ class EmbeddedSIMActivationCodePoolItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def assign(self) -> assign_request_builder.AssignRequestBuilder:
+        """
+        Provides operations to call the assign method.
+        """
+        from .assign import assign_request_builder
+
+        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
+        """
+        Provides operations to manage the assignments property of the microsoft.graph.embeddedSIMActivationCodePool entity.
+        """
+        from .assignments import assignments_request_builder
+
+        return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def device_states(self) -> device_states_request_builder.DeviceStatesRequestBuilder:
+        """
+        Provides operations to manage the deviceStates property of the microsoft.graph.embeddedSIMActivationCodePool entity.
+        """
+        from .device_states import device_states_request_builder
+
+        return device_states_request_builder.DeviceStatesRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class EmbeddedSIMActivationCodePoolItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -215,12 +235,6 @@ class EmbeddedSIMActivationCodePoolItemRequestBuilder():
         """
         The embedded SIM activation code pools created by this account.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -236,6 +250,12 @@ class EmbeddedSIMActivationCodePoolItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class EmbeddedSIMActivationCodePoolItemRequestBuilderGetRequestConfiguration():

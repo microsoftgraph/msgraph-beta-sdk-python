@@ -1,9 +1,20 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class TriggerDeviceScopeActionPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new triggerDeviceScopeActionPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Trigger on the service to either START or STOP computing metrics data based on a device scope configuration.
+        self._action_name: Optional[str] = None
+        # The deviceScopeId property
+        self._device_scope_id: Optional[str] = None
+    
     @property
     def action_name(self,) -> Optional[str]:
         """
@@ -37,18 +48,6 @@ class TriggerDeviceScopeActionPostRequestBody(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new triggerDeviceScopeActionPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Trigger on the service to either START or STOP computing metrics data based on a device scope configuration.
-        self._action_name: Optional[str] = None
-        # The deviceScopeId property
-        self._device_scope_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TriggerDeviceScopeActionPostRequestBody:
@@ -84,7 +83,7 @@ class TriggerDeviceScopeActionPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "actionName": lambda n : setattr(self, 'action_name', n.get_str_value()),
             "deviceScopeId": lambda n : setattr(self, 'device_scope_id', n.get_str_value()),
         }

@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_configuration_group_setting_value_template = lazy_import('msgraph.generated.models.device_management_configuration_group_setting_value_template')
-device_management_configuration_setting_instance_template = lazy_import('msgraph.generated.models.device_management_configuration_setting_instance_template')
+if TYPE_CHECKING:
+    from . import device_management_configuration_group_setting_value_template, device_management_configuration_setting_instance_template
+
+from . import device_management_configuration_setting_instance_template
 
 class DeviceManagementConfigurationGroupSettingInstanceTemplate(device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate):
     def __init__(self,) -> None:
@@ -33,7 +34,9 @@ class DeviceManagementConfigurationGroupSettingInstanceTemplate(device_managemen
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_configuration_group_setting_value_template, device_management_configuration_setting_instance_template
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "groupSettingValueTemplate": lambda n : setattr(self, 'group_setting_value_template', n.get_object_value(device_management_configuration_group_setting_value_template.DeviceManagementConfigurationGroupSettingValueTemplate)),
         }
         super_fields = super().get_field_deserializers()

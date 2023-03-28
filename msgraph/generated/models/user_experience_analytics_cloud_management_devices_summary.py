@@ -1,12 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class UserExperienceAnalyticsCloudManagementDevicesSummary(AdditionalDataHolder, Parsable):
     """
     The user experience work from anywhere Cloud management devices summary.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new userExperienceAnalyticsCloudManagementDevicesSummary and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Total number of  co-managed devices.
+        self._co_managed_device_count: Optional[int] = None
+        # The count of intune devices that are not autopilot registerd.
+        self._intune_device_count: Optional[int] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Total count of tenant attach devices.
+        self._tenant_attach_device_count: Optional[int] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -41,22 +56,6 @@ class UserExperienceAnalyticsCloudManagementDevicesSummary(AdditionalDataHolder,
         """
         self._co_managed_device_count = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsCloudManagementDevicesSummary and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Total number of  co-managed devices.
-        self._co_managed_device_count: Optional[int] = None
-        # The count of intune devices that are not autopilot registerd.
-        self._intune_device_count: Optional[int] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Total count of tenant attach devices.
-        self._tenant_attach_device_count: Optional[int] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsCloudManagementDevicesSummary:
         """
@@ -74,7 +73,7 @@ class UserExperienceAnalyticsCloudManagementDevicesSummary(AdditionalDataHolder,
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "coManagedDeviceCount": lambda n : setattr(self, 'co_managed_device_count', n.get_int_value()),
             "intuneDeviceCount": lambda n : setattr(self, 'intune_device_count', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

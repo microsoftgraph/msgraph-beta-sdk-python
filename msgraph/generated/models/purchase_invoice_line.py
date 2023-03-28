@@ -1,14 +1,68 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-account = lazy_import('msgraph.generated.models.account')
-entity = lazy_import('msgraph.generated.models.entity')
-item = lazy_import('msgraph.generated.models.item')
+if TYPE_CHECKING:
+    from . import account, entity, item
+
+from . import entity
 
 class PurchaseInvoiceLine(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new purchaseInvoiceLine and sets the default values.
+        """
+        super().__init__()
+        # The account property
+        self._account: Optional[account.Account] = None
+        # The accountId property
+        self._account_id: Optional[Guid] = None
+        # The amountExcludingTax property
+        self._amount_excluding_tax: Optional[float] = None
+        # The amountIncludingTax property
+        self._amount_including_tax: Optional[float] = None
+        # The description property
+        self._description: Optional[str] = None
+        # The discountAmount property
+        self._discount_amount: Optional[float] = None
+        # The discountAppliedBeforeTax property
+        self._discount_applied_before_tax: Optional[bool] = None
+        # The discountPercent property
+        self._discount_percent: Optional[float] = None
+        # The documentId property
+        self._document_id: Optional[Guid] = None
+        # The expectedReceiptDate property
+        self._expected_receipt_date: Optional[Date] = None
+        # The invoiceDiscountAllocation property
+        self._invoice_discount_allocation: Optional[float] = None
+        # The item property
+        self._item: Optional[item.Item] = None
+        # The itemId property
+        self._item_id: Optional[Guid] = None
+        # The lineType property
+        self._line_type: Optional[str] = None
+        # The netAmount property
+        self._net_amount: Optional[float] = None
+        # The netAmountIncludingTax property
+        self._net_amount_including_tax: Optional[float] = None
+        # The netTaxAmount property
+        self._net_tax_amount: Optional[float] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The quantity property
+        self._quantity: Optional[float] = None
+        # The sequence property
+        self._sequence: Optional[int] = None
+        # The taxCode property
+        self._tax_code: Optional[str] = None
+        # The taxPercent property
+        self._tax_percent: Optional[float] = None
+        # The totalTaxAmount property
+        self._total_tax_amount: Optional[float] = None
+        # The unitCost property
+        self._unit_cost: Optional[float] = None
+    
     @property
     def account(self,) -> Optional[account.Account]:
         """
@@ -76,60 +130,6 @@ class PurchaseInvoiceLine(entity.Entity):
             value: Value to set for the amount_including_tax property.
         """
         self._amount_including_tax = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new purchaseInvoiceLine and sets the default values.
-        """
-        super().__init__()
-        # The account property
-        self._account: Optional[account.Account] = None
-        # The accountId property
-        self._account_id: Optional[Guid] = None
-        # The amountExcludingTax property
-        self._amount_excluding_tax: Optional[float] = None
-        # The amountIncludingTax property
-        self._amount_including_tax: Optional[float] = None
-        # The description property
-        self._description: Optional[str] = None
-        # The discountAmount property
-        self._discount_amount: Optional[float] = None
-        # The discountAppliedBeforeTax property
-        self._discount_applied_before_tax: Optional[bool] = None
-        # The discountPercent property
-        self._discount_percent: Optional[float] = None
-        # The documentId property
-        self._document_id: Optional[Guid] = None
-        # The expectedReceiptDate property
-        self._expected_receipt_date: Optional[Date] = None
-        # The invoiceDiscountAllocation property
-        self._invoice_discount_allocation: Optional[float] = None
-        # The item property
-        self._item: Optional[item.Item] = None
-        # The itemId property
-        self._item_id: Optional[Guid] = None
-        # The lineType property
-        self._line_type: Optional[str] = None
-        # The netAmount property
-        self._net_amount: Optional[float] = None
-        # The netAmountIncludingTax property
-        self._net_amount_including_tax: Optional[float] = None
-        # The netTaxAmount property
-        self._net_tax_amount: Optional[float] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The quantity property
-        self._quantity: Optional[float] = None
-        # The sequence property
-        self._sequence: Optional[int] = None
-        # The taxCode property
-        self._tax_code: Optional[str] = None
-        # The taxPercent property
-        self._tax_percent: Optional[float] = None
-        # The totalTaxAmount property
-        self._total_tax_amount: Optional[float] = None
-        # The unitCost property
-        self._unit_cost: Optional[float] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PurchaseInvoiceLine:
@@ -250,7 +250,9 @@ class PurchaseInvoiceLine(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import account, entity, item
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "account": lambda n : setattr(self, 'account', n.get_object_value(account.Account)),
             "accountId": lambda n : setattr(self, 'account_id', n.get_object_value(Guid)),
             "amountExcludingTax": lambda n : setattr(self, 'amount_excluding_tax', n.get_float_value()),

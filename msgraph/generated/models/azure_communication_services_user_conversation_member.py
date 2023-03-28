@@ -1,11 +1,22 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-conversation_member = lazy_import('msgraph.generated.models.conversation_member')
+if TYPE_CHECKING:
+    from . import conversation_member
+
+from . import conversation_member
 
 class AzureCommunicationServicesUserConversationMember(conversation_member.ConversationMember):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new AzureCommunicationServicesUserConversationMember and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.azureCommunicationServicesUserConversationMember"
+        # Azure Communication Services ID of the user.
+        self._azure_communication_services_id: Optional[str] = None
+    
     @property
     def azure_communication_services_id(self,) -> Optional[str]:
         """
@@ -22,15 +33,6 @@ class AzureCommunicationServicesUserConversationMember(conversation_member.Conve
             value: Value to set for the azure_communication_services_id property.
         """
         self._azure_communication_services_id = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AzureCommunicationServicesUserConversationMember and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.azureCommunicationServicesUserConversationMember"
-        # Azure Communication Services ID of the user.
-        self._azure_communication_services_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AzureCommunicationServicesUserConversationMember:
@@ -49,7 +51,9 @@ class AzureCommunicationServicesUserConversationMember(conversation_member.Conve
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import conversation_member
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "azureCommunicationServicesId": lambda n : setattr(self, 'azure_communication_services_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

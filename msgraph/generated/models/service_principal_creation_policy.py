@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-policy_base = lazy_import('msgraph.generated.models.policy_base')
-service_principal_creation_condition_set = lazy_import('msgraph.generated.models.service_principal_creation_condition_set')
+if TYPE_CHECKING:
+    from . import policy_base, service_principal_creation_condition_set
+
+from . import policy_base
 
 class ServicePrincipalCreationPolicy(policy_base.PolicyBase):
     def __init__(self,) -> None:
@@ -54,7 +55,9 @@ class ServicePrincipalCreationPolicy(policy_base.PolicyBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import policy_base, service_principal_creation_condition_set
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "excludes": lambda n : setattr(self, 'excludes', n.get_collection_of_object_values(service_principal_creation_condition_set.ServicePrincipalCreationConditionSet)),
             "includes": lambda n : setattr(self, 'includes', n.get_collection_of_object_values(service_principal_creation_condition_set.ServicePrincipalCreationConditionSet)),
             "isBuiltIn": lambda n : setattr(self, 'is_built_in', n.get_bool_value()),

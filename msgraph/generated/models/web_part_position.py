@@ -1,9 +1,26 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class WebPartPosition(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new webPartPosition and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Indicates the identifier of the column where the web part is located.
+        self._column_id: Optional[float] = None
+        # Indicates the horizontal section where the web part is located.
+        self._horizontal_section_id: Optional[float] = None
+        # Indicates whether the web part is located in the vertical section.
+        self._is_in_vertical_section: Optional[bool] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Index of the current web part. Represents the order of the web part in this column or section.
+        self._web_part_index: Optional[float] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -38,24 +55,6 @@ class WebPartPosition(AdditionalDataHolder, Parsable):
         """
         self._column_id = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new webPartPosition and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Indicates the identifier of the column where the web part is located.
-        self._column_id: Optional[float] = None
-        # Indicates the horizontal section where the web part is located.
-        self._horizontal_section_id: Optional[float] = None
-        # Indicates whether the web part is located in the vertical section.
-        self._is_in_vertical_section: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Index of the current web part. Represents the order of the web part in this column or section.
-        self._web_part_index: Optional[float] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WebPartPosition:
         """
@@ -73,7 +72,7 @@ class WebPartPosition(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "columnId": lambda n : setattr(self, 'column_id', n.get_float_value()),
             "horizontalSectionId": lambda n : setattr(self, 'horizontal_section_id', n.get_float_value()),
             "isInVerticalSection": lambda n : setattr(self, 'is_in_vertical_section', n.get_bool_value()),

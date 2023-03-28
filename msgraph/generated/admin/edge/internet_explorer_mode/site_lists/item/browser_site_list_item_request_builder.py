@@ -7,42 +7,21 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-publish_request_builder = lazy_import('msgraph.generated.admin.edge.internet_explorer_mode.site_lists.item.publish.publish_request_builder')
-shared_cookies_request_builder = lazy_import('msgraph.generated.admin.edge.internet_explorer_mode.site_lists.item.shared_cookies.shared_cookies_request_builder')
-browser_shared_cookie_item_request_builder = lazy_import('msgraph.generated.admin.edge.internet_explorer_mode.site_lists.item.shared_cookies.item.browser_shared_cookie_item_request_builder')
-sites_request_builder = lazy_import('msgraph.generated.admin.edge.internet_explorer_mode.site_lists.item.sites.sites_request_builder')
-browser_site_item_request_builder = lazy_import('msgraph.generated.admin.edge.internet_explorer_mode.site_lists.item.sites.item.browser_site_item_request_builder')
-browser_site_list = lazy_import('msgraph.generated.models.browser_site_list')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ......models import browser_site_list
+    from ......models.o_data_errors import o_data_error
+    from .publish import publish_request_builder
+    from .shared_cookies import shared_cookies_request_builder
+    from .shared_cookies.item import browser_shared_cookie_item_request_builder
+    from .sites import sites_request_builder
+    from .sites.item import browser_site_item_request_builder
 
 class BrowserSiteListItemRequestBuilder():
     """
     Provides operations to manage the siteLists property of the microsoft.graph.internetExplorerMode entity.
     """
-    @property
-    def publish(self) -> publish_request_builder.PublishRequestBuilder:
-        """
-        Provides operations to call the publish method.
-        """
-        return publish_request_builder.PublishRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def shared_cookies(self) -> shared_cookies_request_builder.SharedCookiesRequestBuilder:
-        """
-        Provides operations to manage the sharedCookies property of the microsoft.graph.browserSiteList entity.
-        """
-        return shared_cookies_request_builder.SharedCookiesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def sites(self) -> sites_request_builder.SitesRequestBuilder:
-        """
-        Provides operations to manage the sites property of the microsoft.graph.browserSiteList entity.
-        """
-        return sites_request_builder.SitesRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new BrowserSiteListItemRequestBuilder and sets the default values.
@@ -70,6 +49,8 @@ class BrowserSiteListItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -88,12 +69,16 @@ class BrowserSiteListItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import browser_site_list
+
         return await self.request_adapter.send_async(request_info, browser_site_list.BrowserSiteList, error_mapping)
     
     async def patch(self,body: Optional[browser_site_list.BrowserSiteList] = None, request_configuration: Optional[BrowserSiteListItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[browser_site_list.BrowserSiteList]:
@@ -109,12 +94,16 @@ class BrowserSiteListItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import browser_site_list
+
         return await self.request_adapter.send_async(request_info, browser_site_list.BrowserSiteList, error_mapping)
     
     def shared_cookies_by_id(self,id: str) -> browser_shared_cookie_item_request_builder.BrowserSharedCookieItemRequestBuilder:
@@ -126,6 +115,8 @@ class BrowserSiteListItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .shared_cookies.item import browser_shared_cookie_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["browserSharedCookie%2Did"] = id
         return browser_shared_cookie_item_request_builder.BrowserSharedCookieItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -139,6 +130,8 @@ class BrowserSiteListItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .sites.item import browser_site_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["browserSite%2Did"] = id
         return browser_site_item_request_builder.BrowserSiteItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -198,6 +191,33 @@ class BrowserSiteListItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def publish(self) -> publish_request_builder.PublishRequestBuilder:
+        """
+        Provides operations to call the publish method.
+        """
+        from .publish import publish_request_builder
+
+        return publish_request_builder.PublishRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def shared_cookies(self) -> shared_cookies_request_builder.SharedCookiesRequestBuilder:
+        """
+        Provides operations to manage the sharedCookies property of the microsoft.graph.browserSiteList entity.
+        """
+        from .shared_cookies import shared_cookies_request_builder
+
+        return shared_cookies_request_builder.SharedCookiesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def sites(self) -> sites_request_builder.SitesRequestBuilder:
+        """
+        Provides operations to manage the sites property of the microsoft.graph.browserSiteList entity.
+        """
+        from .sites import sites_request_builder
+
+        return sites_request_builder.SitesRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class BrowserSiteListItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -215,12 +235,6 @@ class BrowserSiteListItemRequestBuilder():
         """
         A collection of site lists to support Internet Explorer mode.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -236,6 +250,12 @@ class BrowserSiteListItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class BrowserSiteListItemRequestBuilderGetRequestConfiguration():

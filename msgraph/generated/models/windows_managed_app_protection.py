@@ -1,18 +1,69 @@
 from __future__ import annotations
 from datetime import timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-managed_app_device_threat_level = lazy_import('msgraph.generated.models.managed_app_device_threat_level')
-managed_app_policy = lazy_import('msgraph.generated.models.managed_app_policy')
-managed_app_remediation_action = lazy_import('msgraph.generated.models.managed_app_remediation_action')
-managed_mobile_app = lazy_import('msgraph.generated.models.managed_mobile_app')
-targeted_managed_app_policy_assignment = lazy_import('msgraph.generated.models.targeted_managed_app_policy_assignment')
-windows_managed_app_clipboard_sharing_level = lazy_import('msgraph.generated.models.windows_managed_app_clipboard_sharing_level')
-windows_managed_app_data_transfer_level = lazy_import('msgraph.generated.models.windows_managed_app_data_transfer_level')
+if TYPE_CHECKING:
+    from . import managed_app_device_threat_level, managed_app_policy, managed_app_remediation_action, managed_mobile_app, targeted_managed_app_policy_assignment, windows_managed_app_clipboard_sharing_level, windows_managed_app_data_transfer_level
+
+from . import managed_app_policy
 
 class WindowsManagedAppProtection(managed_app_policy.ManagedAppPolicy):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new WindowsManagedAppProtection and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.windowsManagedAppProtection"
+        # Data can be transferred from/to these classes of apps
+        self._allowed_inbound_data_transfer_sources: Optional[windows_managed_app_data_transfer_level.WindowsManagedAppDataTransferLevel] = None
+        # Represents the level to which the device's clipboard may be shared between apps
+        self._allowed_outbound_clipboard_sharing_level: Optional[windows_managed_app_clipboard_sharing_level.WindowsManagedAppClipboardSharingLevel] = None
+        # Data can be transferred from/to these classes of apps
+        self._allowed_outbound_data_transfer_destinations: Optional[windows_managed_app_data_transfer_level.WindowsManagedAppDataTransferLevel] = None
+        # If set, it will specify what action to take in the case where the user is unable to checkin because their authentication token is invalid. This happens when the user is deleted or disabled in AAD. Some possible values are block or wipe. If this property is not set, no action will be taken. Possible values are: block, wipe, warn.
+        self._app_action_if_unable_to_authenticate_user: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
+        # List of apps to which the policy is deployed.
+        self._apps: Optional[List[managed_mobile_app.ManagedMobileApp]] = None
+        # Navigation property to list of inclusion and exclusion groups to which the policy is deployed.
+        self._assignments: Optional[List[targeted_managed_app_policy_assignment.TargetedManagedAppPolicyAssignment]] = None
+        # Indicates the total number of applications for which the current policy is deployed.
+        self._deployed_app_count: Optional[int] = None
+        # When TRUE, indicates that the policy is deployed to some inclusion groups. When FALSE, indicates that the policy is not deployed to any inclusion groups. Default value is FALSE.
+        self._is_assigned: Optional[bool] = None
+        # The maxium threat level allowed for an app to be compliant.
+        self._maximum_allowed_device_threat_level: Optional[managed_app_device_threat_level.ManagedAppDeviceThreatLevel] = None
+        # Versions bigger than the specified version will block the managed app from accessing company data. For example: '8.1.0' or '13.1.1'.
+        self._maximum_required_os_version: Optional[str] = None
+        # Versions bigger than the specified version will result in warning message on the managed app from accessing company data. For example: '8.1.0' or '13.1.1'.
+        self._maximum_warning_os_version: Optional[str] = None
+        # Versions bigger than the specified version will wipe the managed app and the associated company data. For example: '8.1.0' or '13.1.1'.
+        self._maximum_wipe_os_version: Optional[str] = None
+        # Versions less than the specified version will block the managed app from accessing company data. For example: '8.1.0' or '13.1.1'.
+        self._minimum_required_app_version: Optional[str] = None
+        # Versions less than the specified version will block the managed app from accessing company data. For example: '8.1.0' or '13.1.1'.
+        self._minimum_required_os_version: Optional[str] = None
+        # Versions less than the specified version will block the managed app from accessing company data. For example: '8.1.0' or '13.1.1'.
+        self._minimum_required_sdk_version: Optional[str] = None
+        # Versions less than the specified version will result in warning message on the managed app from accessing company data. For example: '8.1.0' or '13.1.1'.
+        self._minimum_warning_app_version: Optional[str] = None
+        # Versions less than the specified version will result in warning message on the managed app from accessing company data. For example: '8.1.0' or '13.1.1'.
+        self._minimum_warning_os_version: Optional[str] = None
+        # Versions less than the specified version will wipe the managed app and the associated company data. For example: '8.1.0' or '13.1.1'.
+        self._minimum_wipe_app_version: Optional[str] = None
+        # Versions less than the specified version will wipe the managed app and the associated company data. For example: '8.1.0' or '13.1.1'.
+        self._minimum_wipe_os_version: Optional[str] = None
+        # Versions less than the specified version will wipe the managed app and the associated company data. For example: '8.1.0' or '13.1.1'.
+        self._minimum_wipe_sdk_version: Optional[str] = None
+        # An admin initiated action to be applied on a managed app.
+        self._mobile_threat_defense_remediation_action: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
+        # The period after which access is checked when the device is not connected to the internet. For example, PT5M indicates that the interval is 5 minutes in duration. A timespan value of PT0S indicates that access will be blocked immediately when the device is not connected to the internet.
+        self._period_offline_before_access_check: Optional[Timedelta] = None
+        # The amount of time an app is allowed to remain disconnected from the internet before all managed data it is wiped. For example, P5D indicates that the interval is 5 days in duration. A timespan value of PT0S indicates that managed data will never be wiped when the device is not connected to the internet.
+        self._period_offline_before_wipe_is_enforced: Optional[Timedelta] = None
+        # When TRUE, indicates that printing is blocked from managed apps. When FALSE, indicates that printing is allowed from managed apps. Default value is FALSE.
+        self._print_blocked: Optional[bool] = None
+    
     @property
     def allowed_inbound_data_transfer_sources(self,) -> Optional[windows_managed_app_data_transfer_level.WindowsManagedAppDataTransferLevel]:
         """
@@ -115,61 +166,6 @@ class WindowsManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         self._assignments = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsManagedAppProtection and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsManagedAppProtection"
-        # Data can be transferred from/to these classes of apps
-        self._allowed_inbound_data_transfer_sources: Optional[windows_managed_app_data_transfer_level.WindowsManagedAppDataTransferLevel] = None
-        # Represents the level to which the device's clipboard may be shared between apps
-        self._allowed_outbound_clipboard_sharing_level: Optional[windows_managed_app_clipboard_sharing_level.WindowsManagedAppClipboardSharingLevel] = None
-        # Data can be transferred from/to these classes of apps
-        self._allowed_outbound_data_transfer_destinations: Optional[windows_managed_app_data_transfer_level.WindowsManagedAppDataTransferLevel] = None
-        # If set, it will specify what action to take in the case where the user is unable to checkin because their authentication token is invalid. This happens when the user is deleted or disabled in AAD. Some possible values are block or wipe. If this property is not set, no action will be taken. Possible values are: block, wipe, warn.
-        self._app_action_if_unable_to_authenticate_user: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
-        # List of apps to which the policy is deployed.
-        self._apps: Optional[List[managed_mobile_app.ManagedMobileApp]] = None
-        # Navigation property to list of inclusion and exclusion groups to which the policy is deployed.
-        self._assignments: Optional[List[targeted_managed_app_policy_assignment.TargetedManagedAppPolicyAssignment]] = None
-        # Indicates the total number of applications for which the current policy is deployed.
-        self._deployed_app_count: Optional[int] = None
-        # When TRUE, indicates that the policy is deployed to some inclusion groups. When FALSE, indicates that the policy is not deployed to any inclusion groups. Default value is FALSE.
-        self._is_assigned: Optional[bool] = None
-        # The maxium threat level allowed for an app to be compliant.
-        self._maximum_allowed_device_threat_level: Optional[managed_app_device_threat_level.ManagedAppDeviceThreatLevel] = None
-        # Versions bigger than the specified version will block the managed app from accessing company data. For example: '8.1.0' or '13.1.1'.
-        self._maximum_required_os_version: Optional[str] = None
-        # Versions bigger than the specified version will result in warning message on the managed app from accessing company data. For example: '8.1.0' or '13.1.1'.
-        self._maximum_warning_os_version: Optional[str] = None
-        # Versions bigger than the specified version will wipe the managed app and the associated company data. For example: '8.1.0' or '13.1.1'.
-        self._maximum_wipe_os_version: Optional[str] = None
-        # Versions less than the specified version will block the managed app from accessing company data. For example: '8.1.0' or '13.1.1'.
-        self._minimum_required_app_version: Optional[str] = None
-        # Versions less than the specified version will block the managed app from accessing company data. For example: '8.1.0' or '13.1.1'.
-        self._minimum_required_os_version: Optional[str] = None
-        # Versions less than the specified version will block the managed app from accessing company data. For example: '8.1.0' or '13.1.1'.
-        self._minimum_required_sdk_version: Optional[str] = None
-        # Versions less than the specified version will result in warning message on the managed app from accessing company data. For example: '8.1.0' or '13.1.1'.
-        self._minimum_warning_app_version: Optional[str] = None
-        # Versions less than the specified version will result in warning message on the managed app from accessing company data. For example: '8.1.0' or '13.1.1'.
-        self._minimum_warning_os_version: Optional[str] = None
-        # Versions less than the specified version will wipe the managed app and the associated company data. For example: '8.1.0' or '13.1.1'.
-        self._minimum_wipe_app_version: Optional[str] = None
-        # Versions less than the specified version will wipe the managed app and the associated company data. For example: '8.1.0' or '13.1.1'.
-        self._minimum_wipe_os_version: Optional[str] = None
-        # Versions less than the specified version will wipe the managed app and the associated company data. For example: '8.1.0' or '13.1.1'.
-        self._minimum_wipe_sdk_version: Optional[str] = None
-        # An admin initiated action to be applied on a managed app.
-        self._mobile_threat_defense_remediation_action: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
-        # The period after which access is checked when the device is not connected to the internet. For example, PT5M indicates that the interval is 5 minutes in duration. A timespan value of PT0S indicates that access will be blocked immediately when the device is not connected to the internet.
-        self._period_offline_before_access_check: Optional[Timedelta] = None
-        # The amount of time an app is allowed to remain disconnected from the internet before all managed data it is wiped. For example, P5D indicates that the interval is 5 days in duration. A timespan value of PT0S indicates that managed data will never be wiped when the device is not connected to the internet.
-        self._period_offline_before_wipe_is_enforced: Optional[Timedelta] = None
-        # When TRUE, indicates that printing is blocked from managed apps. When FALSE, indicates that printing is allowed from managed apps. Default value is FALSE.
-        self._print_blocked: Optional[bool] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsManagedAppProtection:
         """
@@ -204,7 +200,9 @@ class WindowsManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import managed_app_device_threat_level, managed_app_policy, managed_app_remediation_action, managed_mobile_app, targeted_managed_app_policy_assignment, windows_managed_app_clipboard_sharing_level, windows_managed_app_data_transfer_level
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowedInboundDataTransferSources": lambda n : setattr(self, 'allowed_inbound_data_transfer_sources', n.get_enum_value(windows_managed_app_data_transfer_level.WindowsManagedAppDataTransferLevel)),
             "allowedOutboundClipboardSharingLevel": lambda n : setattr(self, 'allowed_outbound_clipboard_sharing_level', n.get_enum_value(windows_managed_app_clipboard_sharing_level.WindowsManagedAppClipboardSharingLevel)),
             "allowedOutboundDataTransferDestinations": lambda n : setattr(self, 'allowed_outbound_data_transfer_destinations', n.get_enum_value(windows_managed_app_data_transfer_level.WindowsManagedAppDataTransferLevel)),

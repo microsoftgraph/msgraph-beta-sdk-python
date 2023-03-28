@@ -1,12 +1,44 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity, print_usage_by_printer, print_usage_by_user
+
+from . import entity
 
 class PrintUsage(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new printUsage and sets the default values.
+        """
+        super().__init__()
+        # The blackAndWhitePageCount property
+        self._black_and_white_page_count: Optional[int] = None
+        # The colorPageCount property
+        self._color_page_count: Optional[int] = None
+        # The completedBlackAndWhiteJobCount property
+        self._completed_black_and_white_job_count: Optional[int] = None
+        # The completedColorJobCount property
+        self._completed_color_job_count: Optional[int] = None
+        # The completedJobCount property
+        self._completed_job_count: Optional[int] = None
+        # The doubleSidedSheetCount property
+        self._double_sided_sheet_count: Optional[int] = None
+        # The incompleteJobCount property
+        self._incomplete_job_count: Optional[int] = None
+        # The mediaSheetCount property
+        self._media_sheet_count: Optional[int] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The pageCount property
+        self._page_count: Optional[int] = None
+        # The singleSidedSheetCount property
+        self._single_sided_sheet_count: Optional[int] = None
+        # The usageDate property
+        self._usage_date: Optional[Date] = None
+    
     @property
     def black_and_white_page_count(self,) -> Optional[int]:
         """
@@ -92,36 +124,6 @@ class PrintUsage(entity.Entity):
         """
         self._completed_job_count = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new printUsage and sets the default values.
-        """
-        super().__init__()
-        # The blackAndWhitePageCount property
-        self._black_and_white_page_count: Optional[int] = None
-        # The colorPageCount property
-        self._color_page_count: Optional[int] = None
-        # The completedBlackAndWhiteJobCount property
-        self._completed_black_and_white_job_count: Optional[int] = None
-        # The completedColorJobCount property
-        self._completed_color_job_count: Optional[int] = None
-        # The completedJobCount property
-        self._completed_job_count: Optional[int] = None
-        # The doubleSidedSheetCount property
-        self._double_sided_sheet_count: Optional[int] = None
-        # The incompleteJobCount property
-        self._incomplete_job_count: Optional[int] = None
-        # The mediaSheetCount property
-        self._media_sheet_count: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The pageCount property
-        self._page_count: Optional[int] = None
-        # The singleSidedSheetCount property
-        self._single_sided_sheet_count: Optional[int] = None
-        # The usageDate property
-        self._usage_date: Optional[Date] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PrintUsage:
         """
@@ -132,6 +134,17 @@ class PrintUsage(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.printUsageByPrinter":
+                from . import print_usage_by_printer
+
+                return print_usage_by_printer.PrintUsageByPrinter()
+            if mapping_value == "#microsoft.graph.printUsageByUser":
+                from . import print_usage_by_user
+
+                return print_usage_by_user.PrintUsageByUser()
         return PrintUsage()
     
     @property
@@ -156,7 +169,9 @@ class PrintUsage(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, print_usage_by_printer, print_usage_by_user
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "blackAndWhitePageCount": lambda n : setattr(self, 'black_and_white_page_count', n.get_int_value()),
             "colorPageCount": lambda n : setattr(self, 'color_page_count', n.get_int_value()),
             "completedBlackAndWhiteJobCount": lambda n : setattr(self, 'completed_black_and_white_job_count', n.get_int_value()),

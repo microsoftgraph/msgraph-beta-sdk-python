@@ -1,31 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_troubleshooting_error_resource = lazy_import('msgraph.generated.models.device_management_troubleshooting_error_resource')
+if TYPE_CHECKING:
+    from . import device_management_troubleshooting_error_resource
 
 class DeviceManagementTroubleshootingErrorDetails(AdditionalDataHolder, Parsable):
     """
     Object containing detailed information about the error and its remediation.
     """
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new deviceManagementTroubleshootingErrorDetails and sets the default values.
@@ -45,6 +28,23 @@ class DeviceManagementTroubleshootingErrorDetails(AdditionalDataHolder, Parsable
         self._remediation: Optional[str] = None
         # Links to helpful documentation about this failure.
         self._resources: Optional[List[device_management_troubleshooting_error_resource.DeviceManagementTroubleshootingErrorResource]] = None
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
     
     @property
     def context(self,) -> Optional[str]:
@@ -114,7 +114,9 @@ class DeviceManagementTroubleshootingErrorDetails(AdditionalDataHolder, Parsable
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_troubleshooting_error_resource
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "context": lambda n : setattr(self, 'context', n.get_str_value()),
             "failure": lambda n : setattr(self, 'failure', n.get_str_value()),
             "failureDetails": lambda n : setattr(self, 'failure_details', n.get_str_value()),

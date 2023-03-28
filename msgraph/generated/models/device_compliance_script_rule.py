@@ -1,31 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-data_type = lazy_import('msgraph.generated.models.data_type')
-device_compliance_script_rul_operator = lazy_import('msgraph.generated.models.device_compliance_script_rul_operator')
-device_compliance_script_rule_data_type = lazy_import('msgraph.generated.models.device_compliance_script_rule_data_type')
-operator = lazy_import('msgraph.generated.models.operator')
+if TYPE_CHECKING:
+    from . import data_type, device_compliance_script_rule_data_type, device_compliance_script_rul_operator, operator
 
 class DeviceComplianceScriptRule(AdditionalDataHolder, Parsable):
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new deviceComplianceScriptRule and sets the default values.
@@ -47,6 +27,23 @@ class DeviceComplianceScriptRule(AdditionalDataHolder, Parsable):
         self._operator: Optional[operator.Operator] = None
         # Setting name specified in the rule.
         self._setting_name: Optional[str] = None
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceComplianceScriptRule:
@@ -116,7 +113,9 @@ class DeviceComplianceScriptRule(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import data_type, device_compliance_script_rule_data_type, device_compliance_script_rul_operator, operator
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "dataType": lambda n : setattr(self, 'data_type', n.get_enum_value(data_type.DataType)),
             "deviceComplianceScriptRuleDataType": lambda n : setattr(self, 'device_compliance_script_rule_data_type', n.get_enum_value(device_compliance_script_rule_data_type.DeviceComplianceScriptRuleDataType)),
             "deviceComplianceScriptRulOperator": lambda n : setattr(self, 'device_compliance_script_rul_operator', n.get_enum_value(device_compliance_script_rul_operator.DeviceComplianceScriptRulOperator)),

@@ -1,17 +1,43 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-compliance_management_partner_assignment = lazy_import('msgraph.generated.models.compliance_management_partner_assignment')
-device_management_partner_tenant_state = lazy_import('msgraph.generated.models.device_management_partner_tenant_state')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import compliance_management_partner_assignment, device_management_partner_tenant_state, entity
+
+from . import entity
 
 class ComplianceManagementPartner(entity.Entity):
     """
     Compliance management partner for all platforms
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new complianceManagementPartner and sets the default values.
+        """
+        super().__init__()
+        # User groups which enroll Android devices through partner.
+        self._android_enrollment_assignments: Optional[List[compliance_management_partner_assignment.ComplianceManagementPartnerAssignment]] = None
+        # Partner onboarded for Android devices.
+        self._android_onboarded: Optional[bool] = None
+        # Partner display name
+        self._display_name: Optional[str] = None
+        # User groups which enroll ios devices through partner.
+        self._ios_enrollment_assignments: Optional[List[compliance_management_partner_assignment.ComplianceManagementPartnerAssignment]] = None
+        # Partner onboarded for ios devices.
+        self._ios_onboarded: Optional[bool] = None
+        # Timestamp of last heartbeat after admin onboarded to the compliance management partner
+        self._last_heartbeat_date_time: Optional[datetime] = None
+        # User groups which enroll Mac devices through partner.
+        self._mac_os_enrollment_assignments: Optional[List[compliance_management_partner_assignment.ComplianceManagementPartnerAssignment]] = None
+        # Partner onboarded for Mac devices.
+        self._mac_os_onboarded: Optional[bool] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Partner state of this tenant.
+        self._partner_state: Optional[device_management_partner_tenant_state.DeviceManagementPartnerTenantState] = None
+    
     @property
     def android_enrollment_assignments(self,) -> Optional[List[compliance_management_partner_assignment.ComplianceManagementPartnerAssignment]]:
         """
@@ -45,36 +71,6 @@ class ComplianceManagementPartner(entity.Entity):
             value: Value to set for the android_onboarded property.
         """
         self._android_onboarded = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new complianceManagementPartner and sets the default values.
-        """
-        super().__init__()
-        # User groups which enroll Android devices through partner.
-        self._android_enrollment_assignments: Optional[List[compliance_management_partner_assignment.ComplianceManagementPartnerAssignment]] = None
-        # Partner onboarded for Android devices.
-        self._android_onboarded: Optional[bool] = None
-        # Partner display name
-        self._display_name: Optional[str] = None
-        # User groups which enroll ios devices through partner.
-        self._ios_enrollment_assignments: Optional[List[compliance_management_partner_assignment.ComplianceManagementPartnerAssignment]] = None
-        # Partner onboarded for ios devices.
-        self._ios_onboarded: Optional[bool] = None
-        # Timestamp of last heartbeat after admin onboarded to the compliance management partner
-        self._last_heartbeat_date_time: Optional[datetime] = None
-        # User groups which enroll Mac devices through partner.
-        self._mac_os_enrollment_assignments: Optional[List[compliance_management_partner_assignment.ComplianceManagementPartnerAssignment]] = None
-        # Partner onboarded for Mac devices.
-        self._mac_os_onboarded: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Partner state of this tenant.
-        self._partner_state: Optional[device_management_partner_tenant_state.DeviceManagementPartnerTenantState] = None
-        # User groups which enroll Windows devices through partner.
-        self._windows_enrollment_assignments: Optional[List[compliance_management_partner_assignment.ComplianceManagementPartnerAssignment]] = None
-        # Partner onboarded for Windows devices.
-        self._windows_onboarded: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ComplianceManagementPartner:
@@ -110,7 +106,9 @@ class ComplianceManagementPartner(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import compliance_management_partner_assignment, device_management_partner_tenant_state, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "androidEnrollmentAssignments": lambda n : setattr(self, 'android_enrollment_assignments', n.get_collection_of_object_values(compliance_management_partner_assignment.ComplianceManagementPartnerAssignment)),
             "androidOnboarded": lambda n : setattr(self, 'android_onboarded', n.get_bool_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
@@ -120,8 +118,6 @@ class ComplianceManagementPartner(entity.Entity):
             "macOsEnrollmentAssignments": lambda n : setattr(self, 'mac_os_enrollment_assignments', n.get_collection_of_object_values(compliance_management_partner_assignment.ComplianceManagementPartnerAssignment)),
             "macOsOnboarded": lambda n : setattr(self, 'mac_os_onboarded', n.get_bool_value()),
             "partnerState": lambda n : setattr(self, 'partner_state', n.get_enum_value(device_management_partner_tenant_state.DeviceManagementPartnerTenantState)),
-            "windowsEnrollmentAssignments": lambda n : setattr(self, 'windows_enrollment_assignments', n.get_collection_of_object_values(compliance_management_partner_assignment.ComplianceManagementPartnerAssignment)),
-            "windowsOnboarded": lambda n : setattr(self, 'windows_onboarded', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -247,41 +243,5 @@ class ComplianceManagementPartner(entity.Entity):
         writer.write_collection_of_object_values("macOsEnrollmentAssignments", self.mac_os_enrollment_assignments)
         writer.write_bool_value("macOsOnboarded", self.mac_os_onboarded)
         writer.write_enum_value("partnerState", self.partner_state)
-        writer.write_collection_of_object_values("windowsEnrollmentAssignments", self.windows_enrollment_assignments)
-        writer.write_bool_value("windowsOnboarded", self.windows_onboarded)
-    
-    @property
-    def windows_enrollment_assignments(self,) -> Optional[List[compliance_management_partner_assignment.ComplianceManagementPartnerAssignment]]:
-        """
-        Gets the windowsEnrollmentAssignments property value. User groups which enroll Windows devices through partner.
-        Returns: Optional[List[compliance_management_partner_assignment.ComplianceManagementPartnerAssignment]]
-        """
-        return self._windows_enrollment_assignments
-    
-    @windows_enrollment_assignments.setter
-    def windows_enrollment_assignments(self,value: Optional[List[compliance_management_partner_assignment.ComplianceManagementPartnerAssignment]] = None) -> None:
-        """
-        Sets the windowsEnrollmentAssignments property value. User groups which enroll Windows devices through partner.
-        Args:
-            value: Value to set for the windows_enrollment_assignments property.
-        """
-        self._windows_enrollment_assignments = value
-    
-    @property
-    def windows_onboarded(self,) -> Optional[bool]:
-        """
-        Gets the windowsOnboarded property value. Partner onboarded for Windows devices.
-        Returns: Optional[bool]
-        """
-        return self._windows_onboarded
-    
-    @windows_onboarded.setter
-    def windows_onboarded(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the windowsOnboarded property value. Partner onboarded for Windows devices.
-        Args:
-            value: Value to set for the windows_onboarded property.
-        """
-        self._windows_onboarded = value
     
 

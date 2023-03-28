@@ -1,16 +1,44 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-specified_captive_network_plugins = lazy_import('msgraph.generated.models.specified_captive_network_plugins')
-vpn_service_exception_action = lazy_import('msgraph.generated.models.vpn_service_exception_action')
-vpn_tunnel_configuration_type = lazy_import('msgraph.generated.models.vpn_tunnel_configuration_type')
+if TYPE_CHECKING:
+    from . import specified_captive_network_plugins, vpn_service_exception_action, vpn_tunnel_configuration_type
 
 class AppleVpnAlwaysOnConfiguration(AdditionalDataHolder, Parsable):
     """
     Always On VPN configuration for MacOS and iOS IKEv2
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new appleVpnAlwaysOnConfiguration and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Determine whether AirPrint service will be exempt from the always-on VPN connection. Possible values are: forceTrafficViaVPN, allowTrafficOutside, dropTraffic.
+        self._air_print_exception_action: Optional[vpn_service_exception_action.VpnServiceExceptionAction] = None
+        # Specifies whether traffic from all captive network plugins should be allowed outside the vpn
+        self._allow_all_captive_network_plugins: Optional[bool] = None
+        # Determines whether traffic from the Websheet app is allowed outside of the VPN
+        self._allow_captive_web_sheet: Optional[bool] = None
+        # Determines whether all, some, or no non-native captive networking apps are allowed
+        self._allowed_captive_network_plugins: Optional[specified_captive_network_plugins.SpecifiedCaptiveNetworkPlugins] = None
+        # Determine whether Cellular service will be exempt from the always-on VPN connection. Possible values are: forceTrafficViaVPN, allowTrafficOutside, dropTraffic.
+        self._cellular_exception_action: Optional[vpn_service_exception_action.VpnServiceExceptionAction] = None
+        # Specifies how often in seconds to send a network address translation keepalive package through the VPN
+        self._nat_keep_alive_interval_in_seconds: Optional[int] = None
+        # Enable hardware offloading of NAT keepalive signals when the device is asleep
+        self._nat_keep_alive_offload_enable: Optional[bool] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The type of tunnels that will be present to the VPN client for configuration
+        self._tunnel_configuration: Optional[vpn_tunnel_configuration_type.VpnTunnelConfigurationType] = None
+        # Allow the user to toggle the VPN configuration using the UI
+        self._user_toggle_enabled: Optional[bool] = None
+        # Determine whether voicemail service will be exempt from the always-on VPN connection. Possible values are: forceTrafficViaVPN, allowTrafficOutside, dropTraffic.
+        self._voicemail_exception_action: Optional[vpn_service_exception_action.VpnServiceExceptionAction] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -113,36 +141,6 @@ class AppleVpnAlwaysOnConfiguration(AdditionalDataHolder, Parsable):
         """
         self._cellular_exception_action = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new appleVpnAlwaysOnConfiguration and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Determine whether AirPrint service will be exempt from the always-on VPN connection. Possible values are: forceTrafficViaVPN, allowTrafficOutside, dropTraffic.
-        self._air_print_exception_action: Optional[vpn_service_exception_action.VpnServiceExceptionAction] = None
-        # Specifies whether traffic from all captive network plugins should be allowed outside the vpn
-        self._allow_all_captive_network_plugins: Optional[bool] = None
-        # Determines whether traffic from the Websheet app is allowed outside of the VPN
-        self._allow_captive_web_sheet: Optional[bool] = None
-        # Determines whether all, some, or no non-native captive networking apps are allowed
-        self._allowed_captive_network_plugins: Optional[specified_captive_network_plugins.SpecifiedCaptiveNetworkPlugins] = None
-        # Determine whether Cellular service will be exempt from the always-on VPN connection. Possible values are: forceTrafficViaVPN, allowTrafficOutside, dropTraffic.
-        self._cellular_exception_action: Optional[vpn_service_exception_action.VpnServiceExceptionAction] = None
-        # Specifies how often in seconds to send a network address translation keepalive package through the VPN
-        self._nat_keep_alive_interval_in_seconds: Optional[int] = None
-        # Enable hardware offloading of NAT keepalive signals when the device is asleep
-        self._nat_keep_alive_offload_enable: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The type of tunnels that will be present to the VPN client for configuration
-        self._tunnel_configuration: Optional[vpn_tunnel_configuration_type.VpnTunnelConfigurationType] = None
-        # Allow the user to toggle the VPN configuration using the UI
-        self._user_toggle_enabled: Optional[bool] = None
-        # Determine whether voicemail service will be exempt from the always-on VPN connection. Possible values are: forceTrafficViaVPN, allowTrafficOutside, dropTraffic.
-        self._voicemail_exception_action: Optional[vpn_service_exception_action.VpnServiceExceptionAction] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AppleVpnAlwaysOnConfiguration:
         """
@@ -160,7 +158,9 @@ class AppleVpnAlwaysOnConfiguration(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import specified_captive_network_plugins, vpn_service_exception_action, vpn_tunnel_configuration_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "airPrintExceptionAction": lambda n : setattr(self, 'air_print_exception_action', n.get_enum_value(vpn_service_exception_action.VpnServiceExceptionAction)),
             "allowedCaptiveNetworkPlugins": lambda n : setattr(self, 'allowed_captive_network_plugins', n.get_object_value(specified_captive_network_plugins.SpecifiedCaptiveNetworkPlugins)),
             "allowAllCaptiveNetworkPlugins": lambda n : setattr(self, 'allow_all_captive_network_plugins', n.get_bool_value()),

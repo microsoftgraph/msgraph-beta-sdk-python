@@ -7,25 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-scheduled_action_configurations_request_builder = lazy_import('msgraph.generated.device_management.compliance_policies.item.scheduled_actions_for_rule.item.scheduled_action_configurations.scheduled_action_configurations_request_builder')
-device_management_compliance_action_item_item_request_builder = lazy_import('msgraph.generated.device_management.compliance_policies.item.scheduled_actions_for_rule.item.scheduled_action_configurations.item.device_management_compliance_action_item_item_request_builder')
-device_management_compliance_scheduled_action_for_rule = lazy_import('msgraph.generated.models.device_management_compliance_scheduled_action_for_rule')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ......models import device_management_compliance_scheduled_action_for_rule
+    from ......models.o_data_errors import o_data_error
+    from .scheduled_action_configurations import scheduled_action_configurations_request_builder
+    from .scheduled_action_configurations.item import device_management_compliance_action_item_item_request_builder
 
 class DeviceManagementComplianceScheduledActionForRuleItemRequestBuilder():
     """
     Provides operations to manage the scheduledActionsForRule property of the microsoft.graph.deviceManagementCompliancePolicy entity.
     """
-    @property
-    def scheduled_action_configurations(self) -> scheduled_action_configurations_request_builder.ScheduledActionConfigurationsRequestBuilder:
-        """
-        Provides operations to manage the scheduledActionConfigurations property of the microsoft.graph.deviceManagementComplianceScheduledActionForRule entity.
-        """
-        return scheduled_action_configurations_request_builder.ScheduledActionConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new DeviceManagementComplianceScheduledActionForRuleItemRequestBuilder and sets the default values.
@@ -53,6 +46,8 @@ class DeviceManagementComplianceScheduledActionForRuleItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -71,12 +66,16 @@ class DeviceManagementComplianceScheduledActionForRuleItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import device_management_compliance_scheduled_action_for_rule
+
         return await self.request_adapter.send_async(request_info, device_management_compliance_scheduled_action_for_rule.DeviceManagementComplianceScheduledActionForRule, error_mapping)
     
     async def patch(self,body: Optional[device_management_compliance_scheduled_action_for_rule.DeviceManagementComplianceScheduledActionForRule] = None, request_configuration: Optional[DeviceManagementComplianceScheduledActionForRuleItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_management_compliance_scheduled_action_for_rule.DeviceManagementComplianceScheduledActionForRule]:
@@ -92,12 +91,16 @@ class DeviceManagementComplianceScheduledActionForRuleItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import device_management_compliance_scheduled_action_for_rule
+
         return await self.request_adapter.send_async(request_info, device_management_compliance_scheduled_action_for_rule.DeviceManagementComplianceScheduledActionForRule, error_mapping)
     
     def scheduled_action_configurations_by_id(self,id: str) -> device_management_compliance_action_item_item_request_builder.DeviceManagementComplianceActionItemItemRequestBuilder:
@@ -109,6 +112,8 @@ class DeviceManagementComplianceScheduledActionForRuleItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .scheduled_action_configurations.item import device_management_compliance_action_item_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["deviceManagementComplianceActionItem%2Did"] = id
         return device_management_compliance_action_item_item_request_builder.DeviceManagementComplianceActionItemItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -168,6 +173,15 @@ class DeviceManagementComplianceScheduledActionForRuleItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def scheduled_action_configurations(self) -> scheduled_action_configurations_request_builder.ScheduledActionConfigurationsRequestBuilder:
+        """
+        Provides operations to manage the scheduledActionConfigurations property of the microsoft.graph.deviceManagementComplianceScheduledActionForRule entity.
+        """
+        from .scheduled_action_configurations import scheduled_action_configurations_request_builder
+
+        return scheduled_action_configurations_request_builder.ScheduledActionConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class DeviceManagementComplianceScheduledActionForRuleItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -185,12 +199,6 @@ class DeviceManagementComplianceScheduledActionForRuleItemRequestBuilder():
         """
         The list of scheduled action for this rule
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -206,6 +214,12 @@ class DeviceManagementComplianceScheduledActionForRuleItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class DeviceManagementComplianceScheduledActionForRuleItemRequestBuilderGetRequestConfiguration():

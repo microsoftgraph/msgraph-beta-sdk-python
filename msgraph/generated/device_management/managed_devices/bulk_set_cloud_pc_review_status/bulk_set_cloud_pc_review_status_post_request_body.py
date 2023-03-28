@@ -1,11 +1,23 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-cloud_pc_review_status = lazy_import('msgraph.generated.models.cloud_pc_review_status')
+if TYPE_CHECKING:
+    from ....models import cloud_pc_review_status
 
 class BulkSetCloudPcReviewStatusPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new bulkSetCloudPcReviewStatusPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The managedDeviceIds property
+        self._managed_device_ids: Optional[List[str]] = None
+        # The reviewStatus property
+        self._review_status: Optional[cloud_pc_review_status.CloudPcReviewStatus] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -22,18 +34,6 @@ class BulkSetCloudPcReviewStatusPostRequestBody(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new bulkSetCloudPcReviewStatusPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The managedDeviceIds property
-        self._managed_device_ids: Optional[List[str]] = None
-        # The reviewStatus property
-        self._review_status: Optional[cloud_pc_review_status.CloudPcReviewStatus] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> BulkSetCloudPcReviewStatusPostRequestBody:
@@ -52,7 +52,9 @@ class BulkSetCloudPcReviewStatusPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from ....models import cloud_pc_review_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "managedDeviceIds": lambda n : setattr(self, 'managed_device_ids', n.get_collection_of_primitive_values(str)),
             "reviewStatus": lambda n : setattr(self, 'review_status', n.get_object_value(cloud_pc_review_status.CloudPcReviewStatus)),
         }

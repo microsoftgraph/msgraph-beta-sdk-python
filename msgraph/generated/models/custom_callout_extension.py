@@ -1,14 +1,32 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-custom_extension_authentication_configuration = lazy_import('msgraph.generated.models.custom_extension_authentication_configuration')
-custom_extension_client_configuration = lazy_import('msgraph.generated.models.custom_extension_client_configuration')
-custom_extension_endpoint_configuration = lazy_import('msgraph.generated.models.custom_extension_endpoint_configuration')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import access_package_assignment_request_workflow_extension, access_package_assignment_workflow_extension, custom_access_package_workflow_extension, custom_authentication_extension, custom_extension_authentication_configuration, custom_extension_client_configuration, custom_extension_endpoint_configuration, entity, on_token_issuance_start_custom_extension
+    from .identity_governance import custom_task_extension
+
+from . import entity
 
 class CustomCalloutExtension(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new customCalloutExtension and sets the default values.
+        """
+        super().__init__()
+        # Configuration for securing the API call to the logic app. For example, using OAuth client credentials flow.
+        self._authentication_configuration: Optional[custom_extension_authentication_configuration.CustomExtensionAuthenticationConfiguration] = None
+        # HTTP connection settings that define how long Azure AD can wait for a connection to a logic app, how many times you can retry a timed-out connection and the exception scenarios when retries are allowed.
+        self._client_configuration: Optional[custom_extension_client_configuration.CustomExtensionClientConfiguration] = None
+        # Description for the customCalloutExtension object.
+        self._description: Optional[str] = None
+        # Display name for the customCalloutExtension object.
+        self._display_name: Optional[str] = None
+        # The type and details for configuring the endpoint to call the logic app's workflow.
+        self._endpoint_configuration: Optional[custom_extension_endpoint_configuration.CustomExtensionEndpointConfiguration] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def authentication_configuration(self,) -> Optional[custom_extension_authentication_configuration.CustomExtensionAuthenticationConfiguration]:
         """
@@ -43,24 +61,6 @@ class CustomCalloutExtension(entity.Entity):
         """
         self._client_configuration = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new customCalloutExtension and sets the default values.
-        """
-        super().__init__()
-        # Configuration for securing the API call to the logic app. For example, using OAuth client credentials flow.
-        self._authentication_configuration: Optional[custom_extension_authentication_configuration.CustomExtensionAuthenticationConfiguration] = None
-        # HTTP connection settings that define how long Azure AD can wait for a connection to a logic app, how many times you can retry a timed-out connection and the exception scenarios when retries are allowed.
-        self._client_configuration: Optional[custom_extension_client_configuration.CustomExtensionClientConfiguration] = None
-        # Description for the customCalloutExtension object.
-        self._description: Optional[str] = None
-        # Display name for the customCalloutExtension object.
-        self._display_name: Optional[str] = None
-        # The type and details for configuring the endpoint to call the logic app's workflow.
-        self._endpoint_configuration: Optional[custom_extension_endpoint_configuration.CustomExtensionEndpointConfiguration] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CustomCalloutExtension:
         """
@@ -71,6 +71,33 @@ class CustomCalloutExtension(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.accessPackageAssignmentRequestWorkflowExtension":
+                from . import access_package_assignment_request_workflow_extension
+
+                return access_package_assignment_request_workflow_extension.AccessPackageAssignmentRequestWorkflowExtension()
+            if mapping_value == "#microsoft.graph.accessPackageAssignmentWorkflowExtension":
+                from . import access_package_assignment_workflow_extension
+
+                return access_package_assignment_workflow_extension.AccessPackageAssignmentWorkflowExtension()
+            if mapping_value == "#microsoft.graph.customAccessPackageWorkflowExtension":
+                from . import custom_access_package_workflow_extension
+
+                return custom_access_package_workflow_extension.CustomAccessPackageWorkflowExtension()
+            if mapping_value == "#microsoft.graph.customAuthenticationExtension":
+                from . import custom_authentication_extension
+
+                return custom_authentication_extension.CustomAuthenticationExtension()
+            if mapping_value == "#microsoft.graph.identityGovernance.customTaskExtension":
+                from .identity_governance import custom_task_extension
+
+                return custom_task_extension.CustomTaskExtension()
+            if mapping_value == "#microsoft.graph.onTokenIssuanceStartCustomExtension":
+                from . import on_token_issuance_start_custom_extension
+
+                return on_token_issuance_start_custom_extension.OnTokenIssuanceStartCustomExtension()
         return CustomCalloutExtension()
     
     @property
@@ -129,7 +156,10 @@ class CustomCalloutExtension(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import access_package_assignment_request_workflow_extension, access_package_assignment_workflow_extension, custom_access_package_workflow_extension, custom_authentication_extension, custom_extension_authentication_configuration, custom_extension_client_configuration, custom_extension_endpoint_configuration, entity, on_token_issuance_start_custom_extension
+        from .identity_governance import custom_task_extension
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "authenticationConfiguration": lambda n : setattr(self, 'authentication_configuration', n.get_object_value(custom_extension_authentication_configuration.CustomExtensionAuthenticationConfiguration)),
             "clientConfiguration": lambda n : setattr(self, 'client_configuration', n.get_object_value(custom_extension_client_configuration.CustomExtensionClientConfiguration)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

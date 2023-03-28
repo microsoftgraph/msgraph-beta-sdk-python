@@ -1,13 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-mobile_app_action_type = lazy_import('msgraph.generated.models.mobile_app_action_type')
-mobile_app_troubleshooting_history_item = lazy_import('msgraph.generated.models.mobile_app_troubleshooting_history_item')
-run_state = lazy_import('msgraph.generated.models.run_state')
+if TYPE_CHECKING:
+    from . import mobile_app_action_type, mobile_app_troubleshooting_history_item, run_state
+
+from . import mobile_app_troubleshooting_history_item
 
 class MobileAppTroubleshootingAppStateHistory(mobile_app_troubleshooting_history_item.MobileAppTroubleshootingHistoryItem):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new MobileAppTroubleshootingAppStateHistory and sets the default values.
+        """
+        super().__init__()
+        # Defines the Action Types for an Intune Application.
+        self._action_type: Optional[mobile_app_action_type.MobileAppActionType] = None
+        # Error code for the failure, empty if no failure.
+        self._error_code: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Indicates the type of execution status of the device management script.
+        self._run_state: Optional[run_state.RunState] = None
+    
     @property
     def action_type(self,) -> Optional[mobile_app_action_type.MobileAppActionType]:
         """
@@ -24,20 +38,6 @@ class MobileAppTroubleshootingAppStateHistory(mobile_app_troubleshooting_history
             value: Value to set for the action_type property.
         """
         self._action_type = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new MobileAppTroubleshootingAppStateHistory and sets the default values.
-        """
-        super().__init__()
-        # Defines the Action Types for an Intune Application.
-        self._action_type: Optional[mobile_app_action_type.MobileAppActionType] = None
-        # Error code for the failure, empty if no failure.
-        self._error_code: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Indicates the type of execution status of the device management script.
-        self._run_state: Optional[run_state.RunState] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MobileAppTroubleshootingAppStateHistory:
@@ -73,7 +73,9 @@ class MobileAppTroubleshootingAppStateHistory(mobile_app_troubleshooting_history
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import mobile_app_action_type, mobile_app_troubleshooting_history_item, run_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "actionType": lambda n : setattr(self, 'action_type', n.get_enum_value(mobile_app_action_type.MobileAppActionType)),
             "errorCode": lambda n : setattr(self, 'error_code', n.get_str_value()),
             "runState": lambda n : setattr(self, 'run_state', n.get_enum_value(run_state.RunState)),

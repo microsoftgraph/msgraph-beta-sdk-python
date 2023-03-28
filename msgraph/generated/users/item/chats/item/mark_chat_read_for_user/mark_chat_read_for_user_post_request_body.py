@@ -1,11 +1,23 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-teamwork_user_identity = lazy_import('msgraph.generated.models.teamwork_user_identity')
+if TYPE_CHECKING:
+    from ......models import teamwork_user_identity
 
 class MarkChatReadForUserPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new markChatReadForUserPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The tenantId property
+        self._tenant_id: Optional[str] = None
+        # The user property
+        self._user: Optional[teamwork_user_identity.TeamworkUserIdentity] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -22,18 +34,6 @@ class MarkChatReadForUserPostRequestBody(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new markChatReadForUserPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The tenantId property
-        self._tenant_id: Optional[str] = None
-        # The user property
-        self._user: Optional[teamwork_user_identity.TeamworkUserIdentity] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MarkChatReadForUserPostRequestBody:
@@ -52,7 +52,9 @@ class MarkChatReadForUserPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from ......models import teamwork_user_identity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
             "user": lambda n : setattr(self, 'user', n.get_object_value(teamwork_user_identity.TeamworkUserIdentity)),
         }

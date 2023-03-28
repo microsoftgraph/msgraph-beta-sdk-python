@@ -1,11 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-management_template_detailed_info = lazy_import('msgraph.generated.models.managed_tenants.management_template_detailed_info')
+if TYPE_CHECKING:
+    from . import management_template_detailed_info
 
 class ManagementIntentInfo(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new managementIntentInfo and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The display name for the management intent. Optional. Read-only.
+        self._management_intent_display_name: Optional[str] = None
+        # The identifier for the management intent. Required. Read-only.
+        self._management_intent_id: Optional[str] = None
+        # The collection of management template information associated with the management intent. Optional. Read-only.
+        self._management_templates: Optional[List[management_template_detailed_info.ManagementTemplateDetailedInfo]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -22,22 +38,6 @@ class ManagementIntentInfo(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new managementIntentInfo and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The display name for the management intent. Optional. Read-only.
-        self._management_intent_display_name: Optional[str] = None
-        # The identifier for the management intent. Required. Read-only.
-        self._management_intent_id: Optional[str] = None
-        # The collection of management template information associated with the management intent. Optional. Read-only.
-        self._management_templates: Optional[List[management_template_detailed_info.ManagementTemplateDetailedInfo]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ManagementIntentInfo:
@@ -56,7 +56,9 @@ class ManagementIntentInfo(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import management_template_detailed_info
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "managementIntentDisplayName": lambda n : setattr(self, 'management_intent_display_name', n.get_str_value()),
             "managementIntentId": lambda n : setattr(self, 'management_intent_id', n.get_str_value()),
             "managementTemplates": lambda n : setattr(self, 'management_templates', n.get_collection_of_object_values(management_template_detailed_info.ManagementTemplateDetailedInfo)),

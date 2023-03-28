@@ -1,11 +1,29 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-education_user_role = lazy_import('msgraph.generated.models.education_user_role')
+if TYPE_CHECKING:
+    from . import education_user_role
 
 class EducationIdentityMatchingOptions(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new educationIdentityMatchingOptions and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The appliesTo property
+        self._applies_to: Optional[education_user_role.EducationUserRole] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The name of the source property, which should be a field name in the source data. This property is case-sensitive.
+        self._source_property_name: Optional[str] = None
+        # The domain to suffix with the source property to match on the target. If provided as null, the source property will be used to match with the target property.
+        self._target_domain: Optional[str] = None
+        # The name of the target property, which should be a valid property in Azure AD. This property is case-sensitive.
+        self._target_property_name: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -40,24 +58,6 @@ class EducationIdentityMatchingOptions(AdditionalDataHolder, Parsable):
         """
         self._applies_to = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new educationIdentityMatchingOptions and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The appliesTo property
-        self._applies_to: Optional[education_user_role.EducationUserRole] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The name of the source property, which should be a field name in the source data. This property is case-sensitive.
-        self._source_property_name: Optional[str] = None
-        # The domain to suffix with the source property to match on the target. If provided as null, the source property will be used to match with the target property.
-        self._target_domain: Optional[str] = None
-        # The name of the target property, which should be a valid property in Azure AD. This property is case-sensitive.
-        self._target_property_name: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EducationIdentityMatchingOptions:
         """
@@ -75,7 +75,9 @@ class EducationIdentityMatchingOptions(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import education_user_role
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appliesTo": lambda n : setattr(self, 'applies_to', n.get_enum_value(education_user_role.EducationUserRole)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "sourcePropertyName": lambda n : setattr(self, 'source_property_name', n.get_str_value()),

@@ -7,32 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-privileged_approval = lazy_import('msgraph.generated.models.privileged_approval')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-request_request_builder = lazy_import('msgraph.generated.privileged_approval.item.request.request_request_builder')
-role_info_request_builder = lazy_import('msgraph.generated.privileged_approval.item.role_info.role_info_request_builder')
+if TYPE_CHECKING:
+    from ...models import privileged_approval
+    from ...models.o_data_errors import o_data_error
+    from .request import request_request_builder
+    from .role_info import role_info_request_builder
 
 class PrivilegedApprovalItemRequestBuilder():
     """
     Provides operations to manage the collection of privilegedApproval entities.
     """
-    @property
-    def request(self) -> request_request_builder.RequestRequestBuilder:
-        """
-        Provides operations to manage the request property of the microsoft.graph.privilegedApproval entity.
-        """
-        return request_request_builder.RequestRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def role_info(self) -> role_info_request_builder.RoleInfoRequestBuilder:
-        """
-        Provides operations to manage the roleInfo property of the microsoft.graph.privilegedApproval entity.
-        """
-        return role_info_request_builder.RoleInfoRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new PrivilegedApprovalItemRequestBuilder and sets the default values.
@@ -60,6 +46,8 @@ class PrivilegedApprovalItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -78,12 +66,16 @@ class PrivilegedApprovalItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models import privileged_approval
+
         return await self.request_adapter.send_async(request_info, privileged_approval.PrivilegedApproval, error_mapping)
     
     async def patch(self,body: Optional[privileged_approval.PrivilegedApproval] = None, request_configuration: Optional[PrivilegedApprovalItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[privileged_approval.PrivilegedApproval]:
@@ -99,12 +91,16 @@ class PrivilegedApprovalItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models import privileged_approval
+
         return await self.request_adapter.send_async(request_info, privileged_approval.PrivilegedApproval, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PrivilegedApprovalItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -162,6 +158,24 @@ class PrivilegedApprovalItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def request(self) -> request_request_builder.RequestRequestBuilder:
+        """
+        Provides operations to manage the request property of the microsoft.graph.privilegedApproval entity.
+        """
+        from .request import request_request_builder
+
+        return request_request_builder.RequestRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def role_info(self) -> role_info_request_builder.RoleInfoRequestBuilder:
+        """
+        Provides operations to manage the roleInfo property of the microsoft.graph.privilegedApproval entity.
+        """
+        from .role_info import role_info_request_builder
+
+        return role_info_request_builder.RoleInfoRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class PrivilegedApprovalItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -179,12 +193,6 @@ class PrivilegedApprovalItemRequestBuilder():
         """
         Retrieve the properties and relationships of privilegedapproval object.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -200,6 +208,12 @@ class PrivilegedApprovalItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class PrivilegedApprovalItemRequestBuilderGetRequestConfiguration():

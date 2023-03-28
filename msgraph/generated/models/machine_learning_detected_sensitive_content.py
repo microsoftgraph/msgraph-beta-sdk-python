@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-detected_sensitive_content = lazy_import('msgraph.generated.models.detected_sensitive_content')
-ml_classification_match_tolerance = lazy_import('msgraph.generated.models.ml_classification_match_tolerance')
+if TYPE_CHECKING:
+    from . import detected_sensitive_content, ml_classification_match_tolerance
+
+from . import detected_sensitive_content
 
 class MachineLearningDetectedSensitiveContent(detected_sensitive_content.DetectedSensitiveContent):
     def __init__(self,) -> None:
@@ -36,7 +37,9 @@ class MachineLearningDetectedSensitiveContent(detected_sensitive_content.Detecte
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import detected_sensitive_content, ml_classification_match_tolerance
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "matchTolerance": lambda n : setattr(self, 'match_tolerance', n.get_enum_value(ml_classification_match_tolerance.MlClassificationMatchTolerance)),
             "modelVersion": lambda n : setattr(self, 'model_version', n.get_str_value()),
         }

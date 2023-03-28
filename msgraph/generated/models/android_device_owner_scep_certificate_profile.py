@@ -1,19 +1,42 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_device_owner_certificate_access_type = lazy_import('msgraph.generated.models.android_device_owner_certificate_access_type')
-android_device_owner_certificate_profile_base = lazy_import('msgraph.generated.models.android_device_owner_certificate_profile_base')
-android_device_owner_silent_certificate_access = lazy_import('msgraph.generated.models.android_device_owner_silent_certificate_access')
-certificate_store = lazy_import('msgraph.generated.models.certificate_store')
-custom_subject_alternative_name = lazy_import('msgraph.generated.models.custom_subject_alternative_name')
-hash_algorithms = lazy_import('msgraph.generated.models.hash_algorithms')
-key_size = lazy_import('msgraph.generated.models.key_size')
-key_usages = lazy_import('msgraph.generated.models.key_usages')
-managed_device_certificate_state = lazy_import('msgraph.generated.models.managed_device_certificate_state')
+if TYPE_CHECKING:
+    from . import android_device_owner_certificate_access_type, android_device_owner_certificate_profile_base, android_device_owner_silent_certificate_access, certificate_store, custom_subject_alternative_name, hash_algorithms, key_size, key_usages, managed_device_certificate_state
+
+from . import android_device_owner_certificate_profile_base
 
 class AndroidDeviceOwnerScepCertificateProfile(android_device_owner_certificate_profile_base.AndroidDeviceOwnerCertificateProfileBase):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new AndroidDeviceOwnerScepCertificateProfile and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.androidDeviceOwnerScepCertificateProfile"
+        # Certificate access type. Possible values are: userApproval, specificApps, unknownFutureValue.
+        self._certificate_access_type: Optional[android_device_owner_certificate_access_type.AndroidDeviceOwnerCertificateAccessType] = None
+        # Target store certificate. Possible values are: user, machine.
+        self._certificate_store: Optional[certificate_store.CertificateStore] = None
+        # Custom Subject Alternative Name Settings. This collection can contain a maximum of 500 elements.
+        self._custom_subject_alternative_names: Optional[List[custom_subject_alternative_name.CustomSubjectAlternativeName]] = None
+        # Hash Algorithm Options.
+        self._hash_algorithm: Optional[hash_algorithms.HashAlgorithms] = None
+        # Key Size Options.
+        self._key_size: Optional[key_size.KeySize] = None
+        # Key Usage Options.
+        self._key_usage: Optional[key_usages.KeyUsages] = None
+        # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
+        self._managed_device_certificate_states: Optional[List[managed_device_certificate_state.ManagedDeviceCertificateState]] = None
+        # SCEP Server Url(s)
+        self._scep_server_urls: Optional[List[str]] = None
+        # Certificate access information. This collection can contain a maximum of 50 elements.
+        self._silent_certificate_access_details: Optional[List[android_device_owner_silent_certificate_access.AndroidDeviceOwnerSilentCertificateAccess]] = None
+        # Custom String that defines the AAD Attribute.
+        self._subject_alternative_name_format_string: Optional[str] = None
+        # Custom format to use with SubjectNameFormat = Custom. Example: CN={{EmailAddress}},E={{EmailAddress}},OU=Enterprise Users,O=Contoso Corporation,L=Redmond,ST=WA,C=US
+        self._subject_name_format_string: Optional[str] = None
+    
     @property
     def certificate_access_type(self,) -> Optional[android_device_owner_certificate_access_type.AndroidDeviceOwnerCertificateAccessType]:
         """
@@ -47,35 +70,6 @@ class AndroidDeviceOwnerScepCertificateProfile(android_device_owner_certificate_
             value: Value to set for the certificate_store property.
         """
         self._certificate_store = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AndroidDeviceOwnerScepCertificateProfile and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.androidDeviceOwnerScepCertificateProfile"
-        # Certificate access type. Possible values are: userApproval, specificApps, unknownFutureValue.
-        self._certificate_access_type: Optional[android_device_owner_certificate_access_type.AndroidDeviceOwnerCertificateAccessType] = None
-        # Target store certificate. Possible values are: user, machine.
-        self._certificate_store: Optional[certificate_store.CertificateStore] = None
-        # Custom Subject Alternative Name Settings. This collection can contain a maximum of 500 elements.
-        self._custom_subject_alternative_names: Optional[List[custom_subject_alternative_name.CustomSubjectAlternativeName]] = None
-        # Hash Algorithm Options.
-        self._hash_algorithm: Optional[hash_algorithms.HashAlgorithms] = None
-        # Key Size Options.
-        self._key_size: Optional[key_size.KeySize] = None
-        # Key Usage Options.
-        self._key_usage: Optional[key_usages.KeyUsages] = None
-        # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
-        self._managed_device_certificate_states: Optional[List[managed_device_certificate_state.ManagedDeviceCertificateState]] = None
-        # SCEP Server Url(s)
-        self._scep_server_urls: Optional[List[str]] = None
-        # Certificate access information. This collection can contain a maximum of 50 elements.
-        self._silent_certificate_access_details: Optional[List[android_device_owner_silent_certificate_access.AndroidDeviceOwnerSilentCertificateAccess]] = None
-        # Custom String that defines the AAD Attribute.
-        self._subject_alternative_name_format_string: Optional[str] = None
-        # Custom format to use with SubjectNameFormat = Custom. Example: CN={{EmailAddress}},E={{EmailAddress}},OU=Enterprise Users,O=Contoso Corporation,L=Redmond,ST=WA,C=US
-        self._subject_name_format_string: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidDeviceOwnerScepCertificateProfile:
@@ -111,7 +105,9 @@ class AndroidDeviceOwnerScepCertificateProfile(android_device_owner_certificate_
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_device_owner_certificate_access_type, android_device_owner_certificate_profile_base, android_device_owner_silent_certificate_access, certificate_store, custom_subject_alternative_name, hash_algorithms, key_size, key_usages, managed_device_certificate_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "certificateAccessType": lambda n : setattr(self, 'certificate_access_type', n.get_enum_value(android_device_owner_certificate_access_type.AndroidDeviceOwnerCertificateAccessType)),
             "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(certificate_store.CertificateStore)),
             "customSubjectAlternativeNames": lambda n : setattr(self, 'custom_subject_alternative_names', n.get_collection_of_object_values(custom_subject_alternative_name.CustomSubjectAlternativeName)),

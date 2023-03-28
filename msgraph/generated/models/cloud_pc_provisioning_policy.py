@@ -1,18 +1,59 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-cloud_pc_domain_join_configuration = lazy_import('msgraph.generated.models.cloud_pc_domain_join_configuration')
-cloud_pc_management_service = lazy_import('msgraph.generated.models.cloud_pc_management_service')
-cloud_pc_provisioning_policy_assignment = lazy_import('msgraph.generated.models.cloud_pc_provisioning_policy_assignment')
-cloud_pc_provisioning_policy_image_type = lazy_import('msgraph.generated.models.cloud_pc_provisioning_policy_image_type')
-cloud_pc_provisioning_type = lazy_import('msgraph.generated.models.cloud_pc_provisioning_type')
-cloud_pc_windows_settings = lazy_import('msgraph.generated.models.cloud_pc_windows_settings')
-entity = lazy_import('msgraph.generated.models.entity')
-microsoft_managed_desktop = lazy_import('msgraph.generated.models.microsoft_managed_desktop')
+if TYPE_CHECKING:
+    from . import cloud_pc_domain_join_configuration, cloud_pc_management_service, cloud_pc_provisioning_policy_assignment, cloud_pc_provisioning_policy_image_type, cloud_pc_provisioning_type, cloud_pc_windows_settings, entity, microsoft_managed_desktop
+
+from . import entity
 
 class CloudPcProvisioningPolicy(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new CloudPcProvisioningPolicy and sets the default values.
+        """
+        super().__init__()
+        # The URL of the alternate resource that links to this provisioning policy. Read-only.
+        self._alternate_resource_url: Optional[str] = None
+        # A defined collection of provisioning policy assignments. Represents the set of Microsoft 365 groups and security groups in Azure AD that have provisioning policy assigned. Returned only on $expand. For an example about how to get the assignments relationship, see Get cloudPcProvisioningPolicy.
+        self._assignments: Optional[List[cloud_pc_provisioning_policy_assignment.CloudPcProvisioningPolicyAssignment]] = None
+        # The display name of the Cloud PC group that the Cloud PCs reside in. Read-only.
+        self._cloud_pc_group_display_name: Optional[str] = None
+        # The cloudPcNamingTemplate property
+        self._cloud_pc_naming_template: Optional[str] = None
+        # The provisioning policy description.
+        self._description: Optional[str] = None
+        # The display name for the provisioning policy.
+        self._display_name: Optional[str] = None
+        # Specifies how Cloud PCs will join Azure Active Directory.
+        self._domain_join_configuration: Optional[cloud_pc_domain_join_configuration.CloudPcDomainJoinConfiguration] = None
+        # The domainJoinConfigurations property
+        self._domain_join_configurations: Optional[List[cloud_pc_domain_join_configuration.CloudPcDomainJoinConfiguration]] = None
+        # True if the provisioned Cloud PC can be accessed by single sign-on. False indicates that the provisioned Cloud PC doesn't support this feature. Default value is false. Windows 365 users can use single sign-on to authenticate to Azure Active Directory (Azure AD) with passwordless options (for example, FIDO keys) to access their Cloud PC. Optional.
+        self._enable_single_sign_on: Optional[bool] = None
+        # The number of hours to wait before reprovisioning/deprovisioning happens. Read-only.
+        self._grace_period_in_hours: Optional[int] = None
+        # The display name for the OS image you’re provisioning.
+        self._image_display_name: Optional[str] = None
+        # The ID of the OS image you want to provision on Cloud PCs. The format for a gallery type image is: {publisher_offer_sku}. Supported values for each of the parameters are as follows:publisher: Microsoftwindowsdesktop. offer: windows-ent-cpc. sku: 21h1-ent-cpc-m365, 21h1-ent-cpc-os, 20h2-ent-cpc-m365, 20h2-ent-cpc-os, 20h1-ent-cpc-m365, 20h1-ent-cpc-os, 19h2-ent-cpc-m365 and 19h2-ent-cpc-os.
+        self._image_id: Optional[str] = None
+        # The imageType property
+        self._image_type: Optional[cloud_pc_provisioning_policy_image_type.CloudPcProvisioningPolicyImageType] = None
+        # Indicates whether the local admin option is enabled. If the local admin option is enabled, the end user can be an admin of the Cloud PC device. Read-only.
+        self._local_admin_enabled: Optional[bool] = None
+        # The managedBy property
+        self._managed_by: Optional[cloud_pc_management_service.CloudPcManagementService] = None
+        # The specific settings for the Microsoft Managed Desktop, which enables customers to get a managed device experience for the Cloud PC. Before you can enable Microsoft Managed Desktop, an admin must configure it.
+        self._microsoft_managed_desktop: Optional[microsoft_managed_desktop.MicrosoftManagedDesktop] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The ID of the cloudPcOnPremisesConnection. To ensure that Cloud PCs have network connectivity and that they domain join, choose a connection with a virtual network that’s validated by the Cloud PC service.
+        self._on_premises_connection_id: Optional[str] = None
+        # Specifies the type of license used when provisioning Cloud PCs using this policy. By default, the license type is dedicated if the provisioningType isn't specified when you create the cloudPcProvisioningPolicy. You can't change this property after the cloudPcProvisioningPolicy was created. Possible values are: dedicated, shared, unknownFutureValue.
+        self._provisioning_type: Optional[cloud_pc_provisioning_type.CloudPcProvisioningType] = None
+        # Specific Windows settings to configure while creating Cloud PCs for this provisioning policy.
+        self._windows_settings: Optional[cloud_pc_windows_settings.CloudPcWindowsSettings] = None
+    
     @property
     def alternate_resource_url(self,) -> Optional[str]:
         """
@@ -64,49 +105,22 @@ class CloudPcProvisioningPolicy(entity.Entity):
         """
         self._cloud_pc_group_display_name = value
     
-    def __init__(self,) -> None:
+    @property
+    def cloud_pc_naming_template(self,) -> Optional[str]:
         """
-        Instantiates a new cloudPcProvisioningPolicy and sets the default values.
+        Gets the cloudPcNamingTemplate property value. The cloudPcNamingTemplate property
+        Returns: Optional[str]
         """
-        super().__init__()
-        # The URL of the alternate resource that links to this provisioning policy. Read-only.
-        self._alternate_resource_url: Optional[str] = None
-        # A defined collection of provisioning policy assignments. Represents the set of Microsoft 365 groups and security groups in Azure AD that have provisioning policy assigned. Returned only on $expand. For an example about how to get the assignments relationship, see Get cloudPcProvisioningPolicy.
-        self._assignments: Optional[List[cloud_pc_provisioning_policy_assignment.CloudPcProvisioningPolicyAssignment]] = None
-        # The display name of the Cloud PC group that the Cloud PCs reside in. Read-only.
-        self._cloud_pc_group_display_name: Optional[str] = None
-        # The provisioning policy description.
-        self._description: Optional[str] = None
-        # The display name for the provisioning policy.
-        self._display_name: Optional[str] = None
-        # Specifies how Cloud PCs will join Azure Active Directory.
-        self._domain_join_configuration: Optional[cloud_pc_domain_join_configuration.CloudPcDomainJoinConfiguration] = None
-        # The domainJoinConfigurations property
-        self._domain_join_configurations: Optional[List[cloud_pc_domain_join_configuration.CloudPcDomainJoinConfiguration]] = None
-        # True if the provisioned Cloud PC can be accessed by single sign-on. False indicates that the provisioned Cloud PC doesn't support this feature. Default value is false. Windows 365 users can use single sign-on to authenticate to Azure Active Directory (Azure AD) with passwordless options (for example, FIDO keys) to access their Cloud PC. Optional.
-        self._enable_single_sign_on: Optional[bool] = None
-        # The number of hours to wait before reprovisioning/deprovisioning happens. Read-only.
-        self._grace_period_in_hours: Optional[int] = None
-        # The display name for the OS image you’re provisioning.
-        self._image_display_name: Optional[str] = None
-        # The ID of the OS image you want to provision on Cloud PCs. The format for a gallery type image is: {publisher_offer_sku}. Supported values for each of the parameters are as follows:publisher: Microsoftwindowsdesktop. offer: windows-ent-cpc. sku: 21h1-ent-cpc-m365, 21h1-ent-cpc-os, 20h2-ent-cpc-m365, 20h2-ent-cpc-os, 20h1-ent-cpc-m365, 20h1-ent-cpc-os, 19h2-ent-cpc-m365 and 19h2-ent-cpc-os.
-        self._image_id: Optional[str] = None
-        # The imageType property
-        self._image_type: Optional[cloud_pc_provisioning_policy_image_type.CloudPcProvisioningPolicyImageType] = None
-        # Indicates whether the local admin option is enabled. If the local admin option is enabled, the end user can be an admin of the Cloud PC device. Read-only.
-        self._local_admin_enabled: Optional[bool] = None
-        # The managedBy property
-        self._managed_by: Optional[cloud_pc_management_service.CloudPcManagementService] = None
-        # The specific settings for the Microsoft Managed Desktop, which enables customers to get a managed device experience for the Cloud PC. Before you can enable Microsoft Managed Desktop, an admin must configure it.
-        self._microsoft_managed_desktop: Optional[microsoft_managed_desktop.MicrosoftManagedDesktop] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The ID of the cloudPcOnPremisesConnection. To ensure that Cloud PCs have network connectivity and that they domain join, choose a connection with a virtual network that’s validated by the Cloud PC service.
-        self._on_premises_connection_id: Optional[str] = None
-        # Specifies the type of license used when provisioning Cloud PCs using this policy. By default, the license type is dedicated if the provisioningType isn't specified when you create the cloudPcProvisioningPolicy. You can't change this property after the cloudPcProvisioningPolicy was created. Possible values are: dedicated, shared, unknownFutureValue.
-        self._provisioning_type: Optional[cloud_pc_provisioning_type.CloudPcProvisioningType] = None
-        # Specific Windows settings to configure while creating Cloud PCs for this provisioning policy.
-        self._windows_settings: Optional[cloud_pc_windows_settings.CloudPcWindowsSettings] = None
+        return self._cloud_pc_naming_template
+    
+    @cloud_pc_naming_template.setter
+    def cloud_pc_naming_template(self,value: Optional[str] = None) -> None:
+        """
+        Sets the cloudPcNamingTemplate property value. The cloudPcNamingTemplate property
+        Args:
+            value: Value to set for the cloud_pc_naming_template property.
+        """
+        self._cloud_pc_naming_template = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcProvisioningPolicy:
@@ -210,10 +224,13 @@ class CloudPcProvisioningPolicy(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import cloud_pc_domain_join_configuration, cloud_pc_management_service, cloud_pc_provisioning_policy_assignment, cloud_pc_provisioning_policy_image_type, cloud_pc_provisioning_type, cloud_pc_windows_settings, entity, microsoft_managed_desktop
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "alternateResourceUrl": lambda n : setattr(self, 'alternate_resource_url', n.get_str_value()),
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(cloud_pc_provisioning_policy_assignment.CloudPcProvisioningPolicyAssignment)),
             "cloudPcGroupDisplayName": lambda n : setattr(self, 'cloud_pc_group_display_name', n.get_str_value()),
+            "cloudPcNamingTemplate": lambda n : setattr(self, 'cloud_pc_naming_template', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "domainJoinConfiguration": lambda n : setattr(self, 'domain_join_configuration', n.get_object_value(cloud_pc_domain_join_configuration.CloudPcDomainJoinConfiguration)),
@@ -399,6 +416,7 @@ class CloudPcProvisioningPolicy(entity.Entity):
         writer.write_str_value("alternateResourceUrl", self.alternate_resource_url)
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_str_value("cloudPcGroupDisplayName", self.cloud_pc_group_display_name)
+        writer.write_str_value("cloudPcNamingTemplate", self.cloud_pc_naming_template)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_object_value("domainJoinConfiguration", self.domain_join_configuration)

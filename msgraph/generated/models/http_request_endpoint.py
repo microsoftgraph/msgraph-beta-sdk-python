@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-custom_extension_endpoint_configuration = lazy_import('msgraph.generated.models.custom_extension_endpoint_configuration')
+if TYPE_CHECKING:
+    from . import custom_extension_endpoint_configuration
+
+from . import custom_extension_endpoint_configuration
 
 class HttpRequestEndpoint(custom_extension_endpoint_configuration.CustomExtensionEndpointConfiguration):
     def __init__(self,) -> None:
@@ -32,7 +34,9 @@ class HttpRequestEndpoint(custom_extension_endpoint_configuration.CustomExtensio
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import custom_extension_endpoint_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "targetUrl": lambda n : setattr(self, 'target_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

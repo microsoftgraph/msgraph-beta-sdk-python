@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-workflow_execution_trigger = lazy_import('msgraph.generated.models.identity_governance.workflow_execution_trigger')
-workflow_trigger_time_based_attribute = lazy_import('msgraph.generated.models.identity_governance.workflow_trigger_time_based_attribute')
+if TYPE_CHECKING:
+    from . import workflow_execution_trigger, workflow_trigger_time_based_attribute
+
+from . import workflow_execution_trigger
 
 class TimeBasedAttributeTrigger(workflow_execution_trigger.WorkflowExecutionTrigger):
     def __init__(self,) -> None:
@@ -35,7 +36,9 @@ class TimeBasedAttributeTrigger(workflow_execution_trigger.WorkflowExecutionTrig
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import workflow_execution_trigger, workflow_trigger_time_based_attribute
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "offsetInDays": lambda n : setattr(self, 'offset_in_days', n.get_int_value()),
             "timeBasedAttribute": lambda n : setattr(self, 'time_based_attribute', n.get_enum_value(workflow_trigger_time_based_attribute.WorkflowTriggerTimeBasedAttribute)),
         }

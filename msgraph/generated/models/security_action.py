@@ -1,17 +1,50 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
-operation_status = lazy_import('msgraph.generated.models.operation_status')
-result_info = lazy_import('msgraph.generated.models.result_info')
-security_action_state = lazy_import('msgraph.generated.models.security_action_state')
-security_vendor_information = lazy_import('msgraph.generated.models.security_vendor_information')
+if TYPE_CHECKING:
+    from . import entity, key_value_pair, operation_status, result_info, security_action_state, security_vendor_information
+
+from . import entity
 
 class SecurityAction(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new securityAction and sets the default values.
+        """
+        super().__init__()
+        # Reason for invoking this action.
+        self._action_reason: Optional[str] = None
+        # The Application ID of the calling application that submitted (POST) the action. The appId should be extracted from the auth token and not entered manually by the calling application.
+        self._app_id: Optional[str] = None
+        # Azure tenant ID of the entity to determine which tenant the entity belongs to (multi-tenancy support). The azureTenantId should be extracted from the auth token and not entered manually by the calling application.
+        self._azure_tenant_id: Optional[str] = None
+        # The clientContext property
+        self._client_context: Optional[str] = None
+        # Timestamp when the action was completed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+        self._completed_date_time: Optional[datetime] = None
+        # Timestamp when the action is created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+        self._created_date_time: Optional[datetime] = None
+        # Error info when the action fails.
+        self._error_info: Optional[result_info.ResultInfo] = None
+        # Timestamp when this action was last updated. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+        self._last_action_date_time: Optional[datetime] = None
+        # Action name.
+        self._name: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Collection of parameters (key-value pairs) necessary to invoke the action, for example, URL or fileHash to block.). Required.
+        self._parameters: Optional[List[key_value_pair.KeyValuePair]] = None
+        # Collection of securityActionState to keep the history of an action.
+        self._states: Optional[List[security_action_state.SecurityActionState]] = None
+        # Status of the action. Possible values are: NotStarted, Running, Completed, Failed.
+        self._status: Optional[operation_status.OperationStatus] = None
+        # The user principal name of the signed-in user that submitted  (POST) the action. The user should be extracted from the auth token and not entered manually by the calling application.
+        self._user: Optional[str] = None
+        # Complex Type containing details about the Security product/service vendor, provider, and sub-provider (for example, vendor=Microsoft; provider=Windows Defender ATP; sub-provider=AppLocker).
+        self._vendor_information: Optional[security_vendor_information.SecurityVendorInformation] = None
+    
     @property
     def action_reason(self,) -> Optional[str]:
         """
@@ -97,42 +130,6 @@ class SecurityAction(entity.Entity):
         """
         self._completed_date_time = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new securityAction and sets the default values.
-        """
-        super().__init__()
-        # Reason for invoking this action.
-        self._action_reason: Optional[str] = None
-        # The Application ID of the calling application that submitted (POST) the action. The appId should be extracted from the auth token and not entered manually by the calling application.
-        self._app_id: Optional[str] = None
-        # Azure tenant ID of the entity to determine which tenant the entity belongs to (multi-tenancy support). The azureTenantId should be extracted from the auth token and not entered manually by the calling application.
-        self._azure_tenant_id: Optional[str] = None
-        # The clientContext property
-        self._client_context: Optional[str] = None
-        # Timestamp when the action was completed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        self._completed_date_time: Optional[datetime] = None
-        # Timestamp when the action is created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        self._created_date_time: Optional[datetime] = None
-        # Error info when the action fails.
-        self._error_info: Optional[result_info.ResultInfo] = None
-        # Timestamp when this action was last updated. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        self._last_action_date_time: Optional[datetime] = None
-        # Action name.
-        self._name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Collection of parameters (key-value pairs) necessary to invoke the action, for example, URL or fileHash to block.). Required.
-        self._parameters: Optional[List[key_value_pair.KeyValuePair]] = None
-        # Collection of securityActionState to keep the history of an action.
-        self._states: Optional[List[security_action_state.SecurityActionState]] = None
-        # Status of the action. Possible values are: NotStarted, Running, Completed, Failed.
-        self._status: Optional[operation_status.OperationStatus] = None
-        # The user principal name of the signed-in user that submitted  (POST) the action. The user should be extracted from the auth token and not entered manually by the calling application.
-        self._user: Optional[str] = None
-        # Complex Type containing details about the Security product/service vendor, provider, and sub-provider (for example, vendor=Microsoft; provider=Windows Defender ATP; sub-provider=AppLocker).
-        self._vendor_information: Optional[security_vendor_information.SecurityVendorInformation] = None
-    
     @property
     def created_date_time(self,) -> Optional[datetime]:
         """
@@ -184,7 +181,9 @@ class SecurityAction(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, key_value_pair, operation_status, result_info, security_action_state, security_vendor_information
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "actionReason": lambda n : setattr(self, 'action_reason', n.get_str_value()),
             "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
             "azureTenantId": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),

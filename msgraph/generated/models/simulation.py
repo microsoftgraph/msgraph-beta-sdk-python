@@ -1,20 +1,60 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-account_target_content = lazy_import('msgraph.generated.models.account_target_content')
-email_identity = lazy_import('msgraph.generated.models.email_identity')
-entity = lazy_import('msgraph.generated.models.entity')
-payload = lazy_import('msgraph.generated.models.payload')
-payload_delivery_platform = lazy_import('msgraph.generated.models.payload_delivery_platform')
-simulation_attack_technique = lazy_import('msgraph.generated.models.simulation_attack_technique')
-simulation_attack_type = lazy_import('msgraph.generated.models.simulation_attack_type')
-simulation_report = lazy_import('msgraph.generated.models.simulation_report')
-simulation_status = lazy_import('msgraph.generated.models.simulation_status')
+if TYPE_CHECKING:
+    from . import account_target_content, email_identity, entity, payload, payload_delivery_platform, simulation_attack_technique, simulation_attack_type, simulation_report, simulation_status
+
+from . import entity
 
 class Simulation(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new simulation and sets the default values.
+        """
+        super().__init__()
+        # The social engineering technique used in the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, credentialHarvesting, attachmentMalware, driveByUrl, linkInAttachment, linkToMalwareFile, unknownFutureValue. For more information on the types of social engineering attack techniques, see simulations.
+        self._attack_technique: Optional[simulation_attack_technique.SimulationAttackTechnique] = None
+        # Attack type of the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, social, cloud, endpoint, unknownFutureValue.
+        self._attack_type: Optional[simulation_attack_type.SimulationAttackType] = None
+        # Unique identifier for the attack simulation automation.
+        self._automation_id: Optional[str] = None
+        # Date and time of completion of the attack simulation and training campaign. Supports $filter and $orderby.
+        self._completion_date_time: Optional[datetime] = None
+        # Identity of the user who created the attack simulation and training campaign.
+        self._created_by: Optional[email_identity.EmailIdentity] = None
+        # Date and time of creation of the attack simulation and training campaign.
+        self._created_date_time: Optional[datetime] = None
+        # Description of the attack simulation and training campaign.
+        self._description: Optional[str] = None
+        # Display name of the attack simulation and training campaign. Supports $filter and $orderby.
+        self._display_name: Optional[str] = None
+        # Simulation duration in days.
+        self._duration_in_days: Optional[int] = None
+        # Users excluded from the simulation.
+        self._excluded_account_target: Optional[account_target_content.AccountTargetContent] = None
+        # Users targeted in the simulation.
+        self._included_account_target: Optional[account_target_content.AccountTargetContent] = None
+        # Flag that represents if the attack simulation and training campaign was created from a simulation automation flow. Supports $filter and $orderby.
+        self._is_automated: Optional[bool] = None
+        # Identity of the user who most recently modified the attack simulation and training campaign.
+        self._last_modified_by: Optional[email_identity.EmailIdentity] = None
+        # Date and time of the most recent modification of the attack simulation and training campaign.
+        self._last_modified_date_time: Optional[datetime] = None
+        # Date and time of the launch/start of the attack simulation and training campaign. Supports $filter and $orderby.
+        self._launch_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The payload associated with a simulation during its creation.
+        self._payload: Optional[payload.Payload] = None
+        # Method of delivery of the phishing payload used in the attack simulation and training campaign. Possible values are: unknown, sms, email, teams, unknownFutureValue.
+        self._payload_delivery_platform: Optional[payload_delivery_platform.PayloadDeliveryPlatform] = None
+        # Report of the attack simulation and training campaign.
+        self._report: Optional[simulation_report.SimulationReport] = None
+        # Status of the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, draft, running, scheduled, succeeded, failed, cancelled, excluded, unknownFutureValue.
+        self._status: Optional[simulation_status.SimulationStatus] = None
+    
     @property
     def attack_technique(self,) -> Optional[simulation_attack_technique.SimulationAttackTechnique]:
         """
@@ -82,52 +122,6 @@ class Simulation(entity.Entity):
             value: Value to set for the completion_date_time property.
         """
         self._completion_date_time = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new simulation and sets the default values.
-        """
-        super().__init__()
-        # The social engineering technique used in the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, credentialHarvesting, attachmentMalware, driveByUrl, linkInAttachment, linkToMalwareFile, unknownFutureValue. For more information on the types of social engineering attack techniques, see simulations.
-        self._attack_technique: Optional[simulation_attack_technique.SimulationAttackTechnique] = None
-        # Attack type of the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, social, cloud, endpoint, unknownFutureValue.
-        self._attack_type: Optional[simulation_attack_type.SimulationAttackType] = None
-        # Unique identifier for the attack simulation automation.
-        self._automation_id: Optional[str] = None
-        # Date and time of completion of the attack simulation and training campaign. Supports $filter and $orderby.
-        self._completion_date_time: Optional[datetime] = None
-        # Identity of the user who created the attack simulation and training campaign.
-        self._created_by: Optional[email_identity.EmailIdentity] = None
-        # Date and time of creation of the attack simulation and training campaign.
-        self._created_date_time: Optional[datetime] = None
-        # Description of the attack simulation and training campaign.
-        self._description: Optional[str] = None
-        # Display name of the attack simulation and training campaign. Supports $filter and $orderby.
-        self._display_name: Optional[str] = None
-        # Simulation duration in days.
-        self._duration_in_days: Optional[int] = None
-        # Users excluded from the simulation.
-        self._excluded_account_target: Optional[account_target_content.AccountTargetContent] = None
-        # Users targeted in the simulation.
-        self._included_account_target: Optional[account_target_content.AccountTargetContent] = None
-        # Flag that represents if the attack simulation and training campaign was created from a simulation automation flow. Supports $filter and $orderby.
-        self._is_automated: Optional[bool] = None
-        # Identity of the user who most recently modified the attack simulation and training campaign.
-        self._last_modified_by: Optional[email_identity.EmailIdentity] = None
-        # Date and time of the most recent modification of the attack simulation and training campaign.
-        self._last_modified_date_time: Optional[datetime] = None
-        # Date and time of the launch/start of the attack simulation and training campaign. Supports $filter and $orderby.
-        self._launch_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The payload associated with a simulation during its creation.
-        self._payload: Optional[payload.Payload] = None
-        # Method of delivery of the phishing payload used in the attack simulation and training campaign. Possible values are: unknown, sms, email, teams, unknownFutureValue.
-        self._payload_delivery_platform: Optional[payload_delivery_platform.PayloadDeliveryPlatform] = None
-        # Report of the attack simulation and training campaign.
-        self._report: Optional[simulation_report.SimulationReport] = None
-        # Status of the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, draft, running, scheduled, succeeded, failed, cancelled, excluded, unknownFutureValue.
-        self._status: Optional[simulation_status.SimulationStatus] = None
     
     @property
     def created_by(self,) -> Optional[email_identity.EmailIdentity]:
@@ -248,7 +242,9 @@ class Simulation(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import account_target_content, email_identity, entity, payload, payload_delivery_platform, simulation_attack_technique, simulation_attack_type, simulation_report, simulation_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "attackTechnique": lambda n : setattr(self, 'attack_technique', n.get_enum_value(simulation_attack_technique.SimulationAttackTechnique)),
             "attackType": lambda n : setattr(self, 'attack_type', n.get_enum_value(simulation_attack_type.SimulationAttackType)),
             "automationId": lambda n : setattr(self, 'automation_id', n.get_str_value()),

@@ -1,30 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-classification_error = lazy_import('msgraph.generated.models.classification_error')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import classification_error, entity, exact_match_lookup_job, exact_match_session, exact_match_session_base
+
+from . import entity
 
 class ExactMatchJobBase(entity.Entity):
-    @property
-    def completion_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the completionDateTime property value. The completionDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._completion_date_time
-    
-    @completion_date_time.setter
-    def completion_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the completionDateTime property value. The completionDateTime property
-        Args:
-            value: Value to set for the completion_date_time property.
-        """
-        self._completion_date_time = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new exactMatchJobBase and sets the default values.
@@ -43,6 +27,23 @@ class ExactMatchJobBase(entity.Entity):
         # The startDateTime property
         self._start_date_time: Optional[datetime] = None
     
+    @property
+    def completion_date_time(self,) -> Optional[datetime]:
+        """
+        Gets the completionDateTime property value. The completionDateTime property
+        Returns: Optional[datetime]
+        """
+        return self._completion_date_time
+    
+    @completion_date_time.setter
+    def completion_date_time(self,value: Optional[datetime] = None) -> None:
+        """
+        Sets the completionDateTime property value. The completionDateTime property
+        Args:
+            value: Value to set for the completion_date_time property.
+        """
+        self._completion_date_time = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ExactMatchJobBase:
         """
@@ -53,6 +54,21 @@ class ExactMatchJobBase(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.exactMatchLookupJob":
+                from . import exact_match_lookup_job
+
+                return exact_match_lookup_job.ExactMatchLookupJob()
+            if mapping_value == "#microsoft.graph.exactMatchSession":
+                from . import exact_match_session
+
+                return exact_match_session.ExactMatchSession()
+            if mapping_value == "#microsoft.graph.exactMatchSessionBase":
+                from . import exact_match_session_base
+
+                return exact_match_session_base.ExactMatchSessionBase()
         return ExactMatchJobBase()
     
     @property
@@ -94,7 +110,9 @@ class ExactMatchJobBase(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import classification_error, entity, exact_match_lookup_job, exact_match_session, exact_match_session_base
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "completionDateTime": lambda n : setattr(self, 'completion_date_time', n.get_datetime_value()),
             "creationDateTime": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
             "error": lambda n : setattr(self, 'error', n.get_object_value(classification_error.ClassificationError)),

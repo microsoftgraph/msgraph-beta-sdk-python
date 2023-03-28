@@ -1,16 +1,31 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-drive_item = lazy_import('msgraph.generated.models.drive_item')
-entity = lazy_import('msgraph.generated.models.entity')
-identity_set = lazy_import('msgraph.generated.models.identity_set')
-item_action_set = lazy_import('msgraph.generated.models.item_action_set')
-item_activity_time_set = lazy_import('msgraph.generated.models.item_activity_time_set')
-list_item = lazy_import('msgraph.generated.models.list_item')
+if TYPE_CHECKING:
+    from . import drive_item, entity, identity_set, item_action_set, item_activity_time_set, list_item
+
+from . import entity
 
 class ItemActivityOLD(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new itemActivityOLD and sets the default values.
+        """
+        super().__init__()
+        # The action property
+        self._action: Optional[item_action_set.ItemActionSet] = None
+        # The actor property
+        self._actor: Optional[identity_set.IdentitySet] = None
+        # The driveItem property
+        self._drive_item: Optional[drive_item.DriveItem] = None
+        # The listItem property
+        self._list_item: Optional[list_item.ListItem] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The times property
+        self._times: Optional[item_activity_time_set.ItemActivityTimeSet] = None
+    
     @property
     def action(self,) -> Optional[item_action_set.ItemActionSet]:
         """
@@ -44,24 +59,6 @@ class ItemActivityOLD(entity.Entity):
             value: Value to set for the actor property.
         """
         self._actor = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new itemActivityOLD and sets the default values.
-        """
-        super().__init__()
-        # The action property
-        self._action: Optional[item_action_set.ItemActionSet] = None
-        # The actor property
-        self._actor: Optional[identity_set.IdentitySet] = None
-        # The driveItem property
-        self._drive_item: Optional[drive_item.DriveItem] = None
-        # The listItem property
-        self._list_item: Optional[list_item.ListItem] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The times property
-        self._times: Optional[item_activity_time_set.ItemActivityTimeSet] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ItemActivityOLD:
@@ -97,7 +94,9 @@ class ItemActivityOLD(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import drive_item, entity, identity_set, item_action_set, item_activity_time_set, list_item
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "action": lambda n : setattr(self, 'action', n.get_object_value(item_action_set.ItemActionSet)),
             "actor": lambda n : setattr(self, 'actor', n.get_object_value(identity_set.IdentitySet)),
             "driveItem": lambda n : setattr(self, 'drive_item', n.get_object_value(drive_item.DriveItem)),

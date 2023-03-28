@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-key_typed_value_pair = lazy_import('msgraph.generated.models.key_typed_value_pair')
+if TYPE_CHECKING:
+    from . import key_typed_value_pair
+
+from . import key_typed_value_pair
 
 class KeyStringValuePair(key_typed_value_pair.KeyTypedValuePair):
     def __init__(self,) -> None:
@@ -32,7 +34,9 @@ class KeyStringValuePair(key_typed_value_pair.KeyTypedValuePair):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import key_typed_value_pair
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "value": lambda n : setattr(self, 'value', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

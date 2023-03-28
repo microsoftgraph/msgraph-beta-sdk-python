@@ -1,12 +1,24 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-case = lazy_import('msgraph.generated.models.ediscovery.case')
+if TYPE_CHECKING:
+    from . import case
+    from .. import entity
+
+from .. import entity
 
 class Ediscoveryroot(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new Ediscoveryroot and sets the default values.
+        """
+        super().__init__()
+        # The cases property
+        self._cases: Optional[List[case.Case]] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def cases(self,) -> Optional[List[case.Case]]:
         """
@@ -23,16 +35,6 @@ class Ediscoveryroot(entity.Entity):
             value: Value to set for the cases property.
         """
         self._cases = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Ediscoveryroot and sets the default values.
-        """
-        super().__init__()
-        # The cases property
-        self._cases: Optional[List[case.Case]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Ediscoveryroot:
@@ -51,7 +53,10 @@ class Ediscoveryroot(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import case
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "cases": lambda n : setattr(self, 'cases', n.get_collection_of_object_values(case.Case)),
         }
         super_fields = super().get_field_deserializers()

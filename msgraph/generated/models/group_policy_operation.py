@@ -1,12 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-group_policy_operation_status = lazy_import('msgraph.generated.models.group_policy_operation_status')
-group_policy_operation_type = lazy_import('msgraph.generated.models.group_policy_operation_type')
+if TYPE_CHECKING:
+    from . import entity, group_policy_operation_status, group_policy_operation_type
+
+from . import entity
 
 class GroupPolicyOperation(entity.Entity):
     """
@@ -45,7 +45,9 @@ class GroupPolicyOperation(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, group_policy_operation_status, group_policy_operation_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "operationStatus": lambda n : setattr(self, 'operation_status', n.get_enum_value(group_policy_operation_status.GroupPolicyOperationStatus)),
             "operationType": lambda n : setattr(self, 'operation_type', n.get_enum_value(group_policy_operation_type.GroupPolicyOperationType)),

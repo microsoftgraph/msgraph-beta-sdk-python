@@ -1,12 +1,39 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-access_review_recurrence_settings = lazy_import('msgraph.generated.models.access_review_recurrence_settings')
-auto_review_settings = lazy_import('msgraph.generated.models.auto_review_settings')
+if TYPE_CHECKING:
+    from . import access_review_recurrence_settings, auto_review_settings, business_flow_settings
 
 class AccessReviewSettings(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new accessReviewSettings and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Indicates whether showing recommendations to reviewers is enabled.
+        self._access_recommendations_enabled: Optional[bool] = None
+        # The number of days of user activities to show to reviewers.
+        self._activity_duration_in_days: Optional[int] = None
+        # Indicates whether the auto-apply capability, to automatically change the target object access resource, is enabled.  If not enabled, a user must, after the review completes, apply the access review.
+        self._auto_apply_review_results_enabled: Optional[bool] = None
+        # Indicates whether a decision should be set if the reviewer did not supply one. For use when auto-apply is enabled. If you don't want to have a review decision recorded unless the reviewer makes an explicit choice, set it to false.
+        self._auto_review_enabled: Optional[bool] = None
+        # Detailed settings for how the feature should set the review decision. For use when auto-apply is enabled.
+        self._auto_review_settings: Optional[auto_review_settings.AutoReviewSettings] = None
+        # Indicates whether reviewers are required to provide a justification when reviewing access.
+        self._justification_required_on_approval: Optional[bool] = None
+        # Indicates whether sending mails to reviewers and the review creator is enabled.
+        self._mail_notifications_enabled: Optional[bool] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Detailed settings for recurrence.
+        self._recurrence_settings: Optional[access_review_recurrence_settings.AccessReviewRecurrenceSettings] = None
+        # Indicates whether sending reminder emails to reviewers is enabled.
+        self._reminders_enabled: Optional[bool] = None
+    
     @property
     def access_recommendations_enabled(self,) -> Optional[bool]:
         """
@@ -109,34 +136,6 @@ class AccessReviewSettings(AdditionalDataHolder, Parsable):
         """
         self._auto_review_settings = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new accessReviewSettings and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Indicates whether showing recommendations to reviewers is enabled.
-        self._access_recommendations_enabled: Optional[bool] = None
-        # The number of days of user activities to show to reviewers.
-        self._activity_duration_in_days: Optional[int] = None
-        # Indicates whether the auto-apply capability, to automatically change the target object access resource, is enabled.  If not enabled, a user must, after the review completes, apply the access review.
-        self._auto_apply_review_results_enabled: Optional[bool] = None
-        # Indicates whether a decision should be set if the reviewer did not supply one. For use when auto-apply is enabled. If you don't want to have a review decision recorded unless the reviewer makes an explicit choice, set it to false.
-        self._auto_review_enabled: Optional[bool] = None
-        # Detailed settings for how the feature should set the review decision. For use when auto-apply is enabled.
-        self._auto_review_settings: Optional[auto_review_settings.AutoReviewSettings] = None
-        # Indicates whether reviewers are required to provide a justification when reviewing access.
-        self._justification_required_on_approval: Optional[bool] = None
-        # Indicates whether sending mails to reviewers and the review creator is enabled.
-        self._mail_notifications_enabled: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Detailed settings for recurrence.
-        self._recurrence_settings: Optional[access_review_recurrence_settings.AccessReviewRecurrenceSettings] = None
-        # Indicates whether sending reminder emails to reviewers is enabled.
-        self._reminders_enabled: Optional[bool] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccessReviewSettings:
         """
@@ -147,6 +146,13 @@ class AccessReviewSettings(AdditionalDataHolder, Parsable):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.businessFlowSettings":
+                from . import business_flow_settings
+
+                return business_flow_settings.BusinessFlowSettings()
         return AccessReviewSettings()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -154,7 +160,9 @@ class AccessReviewSettings(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import access_review_recurrence_settings, auto_review_settings, business_flow_settings
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accessRecommendationsEnabled": lambda n : setattr(self, 'access_recommendations_enabled', n.get_bool_value()),
             "activityDurationInDays": lambda n : setattr(self, 'activity_duration_in_days', n.get_int_value()),
             "autoApplyReviewResultsEnabled": lambda n : setattr(self, 'auto_apply_review_results_enabled', n.get_bool_value()),

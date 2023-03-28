@@ -1,11 +1,26 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+if TYPE_CHECKING:
+    from . import device_configuration
+
+from . import device_configuration
 
 class MacOSCustomAppConfiguration(device_configuration.DeviceConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new MacOSCustomAppConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.macOSCustomAppConfiguration"
+        # Bundle id for targeting.
+        self._bundle_id: Optional[str] = None
+        # Configuration xml. (UTF8 encoded byte array)
+        self._configuration_xml: Optional[bytes] = None
+        # Configuration file name (.plist
+        self._file_name: Optional[str] = None
+    
     @property
     def bundle_id(self,) -> Optional[str]:
         """
@@ -39,19 +54,6 @@ class MacOSCustomAppConfiguration(device_configuration.DeviceConfiguration):
             value: Value to set for the configuration_xml property.
         """
         self._configuration_xml = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new MacOSCustomAppConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.macOSCustomAppConfiguration"
-        # Bundle id for targeting.
-        self._bundle_id: Optional[str] = None
-        # Configuration xml. (UTF8 encoded byte array)
-        self._configuration_xml: Optional[bytes] = None
-        # Configuration file name (.plist
-        self._file_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSCustomAppConfiguration:
@@ -87,7 +89,9 @@ class MacOSCustomAppConfiguration(device_configuration.DeviceConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "bundleId": lambda n : setattr(self, 'bundle_id', n.get_str_value()),
             "configurationXml": lambda n : setattr(self, 'configuration_xml', n.get_bytes_value()),
             "fileName": lambda n : setattr(self, 'file_name', n.get_str_value()),

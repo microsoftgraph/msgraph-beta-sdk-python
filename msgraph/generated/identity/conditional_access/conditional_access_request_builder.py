@@ -7,81 +7,26 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-authentication_context_class_references_request_builder = lazy_import('msgraph.generated.identity.conditional_access.authentication_context_class_references.authentication_context_class_references_request_builder')
-authentication_context_class_reference_item_request_builder = lazy_import('msgraph.generated.identity.conditional_access.authentication_context_class_references.item.authentication_context_class_reference_item_request_builder')
-authentication_strength_request_builder = lazy_import('msgraph.generated.identity.conditional_access.authentication_strength.authentication_strength_request_builder')
-authentication_strengths_request_builder = lazy_import('msgraph.generated.identity.conditional_access.authentication_strengths.authentication_strengths_request_builder')
-named_locations_request_builder = lazy_import('msgraph.generated.identity.conditional_access.named_locations.named_locations_request_builder')
-named_location_item_request_builder = lazy_import('msgraph.generated.identity.conditional_access.named_locations.item.named_location_item_request_builder')
-policies_request_builder = lazy_import('msgraph.generated.identity.conditional_access.policies.policies_request_builder')
-conditional_access_policy_item_request_builder = lazy_import('msgraph.generated.identity.conditional_access.policies.item.conditional_access_policy_item_request_builder')
-templates_request_builder = lazy_import('msgraph.generated.identity.conditional_access.templates.templates_request_builder')
-conditional_access_template_item_request_builder = lazy_import('msgraph.generated.identity.conditional_access.templates.item.conditional_access_template_item_request_builder')
-conditional_access_root = lazy_import('msgraph.generated.models.conditional_access_root')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ...models import conditional_access_root
+    from ...models.o_data_errors import o_data_error
+    from .authentication_context_class_references import authentication_context_class_references_request_builder
+    from .authentication_context_class_references.item import authentication_context_class_reference_item_request_builder
+    from .authentication_strength import authentication_strength_request_builder
+    from .authentication_strengths import authentication_strengths_request_builder
+    from .named_locations import named_locations_request_builder
+    from .named_locations.item import named_location_item_request_builder
+    from .policies import policies_request_builder
+    from .policies.item import conditional_access_policy_item_request_builder
+    from .templates import templates_request_builder
+    from .templates.item import conditional_access_template_item_request_builder
 
 class ConditionalAccessRequestBuilder():
     """
     Provides operations to manage the conditionalAccess property of the microsoft.graph.identityContainer entity.
     """
-    @property
-    def authentication_context_class_references(self) -> authentication_context_class_references_request_builder.AuthenticationContextClassReferencesRequestBuilder:
-        """
-        Provides operations to manage the authenticationContextClassReferences property of the microsoft.graph.conditionalAccessRoot entity.
-        """
-        return authentication_context_class_references_request_builder.AuthenticationContextClassReferencesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def authentication_strength(self) -> authentication_strength_request_builder.AuthenticationStrengthRequestBuilder:
-        """
-        Provides operations to manage the authenticationStrength property of the microsoft.graph.conditionalAccessRoot entity.
-        """
-        return authentication_strength_request_builder.AuthenticationStrengthRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def authentication_strengths(self) -> authentication_strengths_request_builder.AuthenticationStrengthsRequestBuilder:
-        """
-        Provides operations to manage the authenticationStrengths property of the microsoft.graph.conditionalAccessRoot entity.
-        """
-        return authentication_strengths_request_builder.AuthenticationStrengthsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def named_locations(self) -> named_locations_request_builder.NamedLocationsRequestBuilder:
-        """
-        Provides operations to manage the namedLocations property of the microsoft.graph.conditionalAccessRoot entity.
-        """
-        return named_locations_request_builder.NamedLocationsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def policies(self) -> policies_request_builder.PoliciesRequestBuilder:
-        """
-        Provides operations to manage the policies property of the microsoft.graph.conditionalAccessRoot entity.
-        """
-        return policies_request_builder.PoliciesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def templates(self) -> templates_request_builder.TemplatesRequestBuilder:
-        """
-        Provides operations to manage the templates property of the microsoft.graph.conditionalAccessRoot entity.
-        """
-        return templates_request_builder.TemplatesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def authentication_context_class_references_by_id(self,id: str) -> authentication_context_class_reference_item_request_builder.AuthenticationContextClassReferenceItemRequestBuilder:
-        """
-        Provides operations to manage the authenticationContextClassReferences property of the microsoft.graph.conditionalAccessRoot entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: authentication_context_class_reference_item_request_builder.AuthenticationContextClassReferenceItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["authenticationContextClassReference%2Did"] = id
-        return authentication_context_class_reference_item_request_builder.AuthenticationContextClassReferenceItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new ConditionalAccessRequestBuilder and sets the default values.
@@ -100,6 +45,21 @@ class ConditionalAccessRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def authentication_context_class_references_by_id(self,id: str) -> authentication_context_class_reference_item_request_builder.AuthenticationContextClassReferenceItemRequestBuilder:
+        """
+        Provides operations to manage the authenticationContextClassReferences property of the microsoft.graph.conditionalAccessRoot entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: authentication_context_class_reference_item_request_builder.AuthenticationContextClassReferenceItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .authentication_context_class_references.item import authentication_context_class_reference_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["authenticationContextClassReference%2Did"] = id
+        return authentication_context_class_reference_item_request_builder.AuthenticationContextClassReferenceItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def delete(self,request_configuration: Optional[ConditionalAccessRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property conditionalAccess for identity
@@ -109,6 +69,8 @@ class ConditionalAccessRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -127,12 +89,16 @@ class ConditionalAccessRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models import conditional_access_root
+
         return await self.request_adapter.send_async(request_info, conditional_access_root.ConditionalAccessRoot, error_mapping)
     
     def named_locations_by_id(self,id: str) -> named_location_item_request_builder.NamedLocationItemRequestBuilder:
@@ -144,6 +110,8 @@ class ConditionalAccessRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .named_locations.item import named_location_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["namedLocation%2Did"] = id
         return named_location_item_request_builder.NamedLocationItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -161,12 +129,16 @@ class ConditionalAccessRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models import conditional_access_root
+
         return await self.request_adapter.send_async(request_info, conditional_access_root.ConditionalAccessRoot, error_mapping)
     
     def policies_by_id(self,id: str) -> conditional_access_policy_item_request_builder.ConditionalAccessPolicyItemRequestBuilder:
@@ -178,6 +150,8 @@ class ConditionalAccessRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .policies.item import conditional_access_policy_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["conditionalAccessPolicy%2Did"] = id
         return conditional_access_policy_item_request_builder.ConditionalAccessPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -191,6 +165,8 @@ class ConditionalAccessRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .templates.item import conditional_access_template_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["conditionalAccessTemplate%2Did"] = id
         return conditional_access_template_item_request_builder.ConditionalAccessTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -250,6 +226,60 @@ class ConditionalAccessRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def authentication_context_class_references(self) -> authentication_context_class_references_request_builder.AuthenticationContextClassReferencesRequestBuilder:
+        """
+        Provides operations to manage the authenticationContextClassReferences property of the microsoft.graph.conditionalAccessRoot entity.
+        """
+        from .authentication_context_class_references import authentication_context_class_references_request_builder
+
+        return authentication_context_class_references_request_builder.AuthenticationContextClassReferencesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def authentication_strength(self) -> authentication_strength_request_builder.AuthenticationStrengthRequestBuilder:
+        """
+        Provides operations to manage the authenticationStrength property of the microsoft.graph.conditionalAccessRoot entity.
+        """
+        from .authentication_strength import authentication_strength_request_builder
+
+        return authentication_strength_request_builder.AuthenticationStrengthRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def authentication_strengths(self) -> authentication_strengths_request_builder.AuthenticationStrengthsRequestBuilder:
+        """
+        Provides operations to manage the authenticationStrengths property of the microsoft.graph.conditionalAccessRoot entity.
+        """
+        from .authentication_strengths import authentication_strengths_request_builder
+
+        return authentication_strengths_request_builder.AuthenticationStrengthsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def named_locations(self) -> named_locations_request_builder.NamedLocationsRequestBuilder:
+        """
+        Provides operations to manage the namedLocations property of the microsoft.graph.conditionalAccessRoot entity.
+        """
+        from .named_locations import named_locations_request_builder
+
+        return named_locations_request_builder.NamedLocationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def policies(self) -> policies_request_builder.PoliciesRequestBuilder:
+        """
+        Provides operations to manage the policies property of the microsoft.graph.conditionalAccessRoot entity.
+        """
+        from .policies import policies_request_builder
+
+        return policies_request_builder.PoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def templates(self) -> templates_request_builder.TemplatesRequestBuilder:
+        """
+        Provides operations to manage the templates property of the microsoft.graph.conditionalAccessRoot entity.
+        """
+        from .templates import templates_request_builder
+
+        return templates_request_builder.TemplatesRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class ConditionalAccessRequestBuilderDeleteRequestConfiguration():
         """
@@ -267,12 +297,6 @@ class ConditionalAccessRequestBuilder():
         """
         the entry point for the Conditional Access (CA) object model.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -288,6 +312,12 @@ class ConditionalAccessRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class ConditionalAccessRequestBuilderGetRequestConfiguration():

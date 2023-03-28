@@ -1,11 +1,60 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-enrollment_profile = lazy_import('msgraph.generated.models.enrollment_profile')
+if TYPE_CHECKING:
+    from . import dep_i_o_s_enrollment_profile, dep_mac_o_s_enrollment_profile, enrollment_profile
+
+from . import enrollment_profile
 
 class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new DepEnrollmentBaseProfile and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.depEnrollmentBaseProfile"
+        # Indicates if Apple id setup pane is disabled
+        self._apple_id_disabled: Optional[bool] = None
+        # Indicates if Apple pay setup pane is disabled
+        self._apple_pay_disabled: Optional[bool] = None
+        # URL for setup assistant login
+        self._configuration_web_url: Optional[bool] = None
+        # Sets a literal or name pattern.
+        self._device_name_template: Optional[str] = None
+        # Indicates if diagnostics setup pane is disabled
+        self._diagnostics_disabled: Optional[bool] = None
+        # Indicates if displaytone setup screen is disabled
+        self._display_tone_setup_disabled: Optional[bool] = None
+        # enabledSkipKeys contains all the enabled skip keys as strings
+        self._enabled_skip_keys: Optional[List[str]] = None
+        # Indicates if this is the default profile
+        self._is_default: Optional[bool] = None
+        # Indicates if the profile is mandatory
+        self._is_mandatory: Optional[bool] = None
+        # Indicates if Location service setup pane is disabled
+        self._location_disabled: Optional[bool] = None
+        # Indicates if privacy screen is disabled
+        self._privacy_pane_disabled: Optional[bool] = None
+        # Indicates if the profile removal option is disabled
+        self._profile_removal_disabled: Optional[bool] = None
+        # Indicates if Restore setup pane is blocked
+        self._restore_blocked: Optional[bool] = None
+        # Indicates if screen timeout setup is disabled
+        self._screen_time_screen_disabled: Optional[bool] = None
+        # Indicates if siri setup pane is disabled
+        self._siri_disabled: Optional[bool] = None
+        # Supervised mode, True to enable, false otherwise. See https://learn.microsoft.com/intune/deploy-use/enroll-devices-in-microsoft-intune for additional information.
+        self._supervised_mode_enabled: Optional[bool] = None
+        # Support department information
+        self._support_department: Optional[str] = None
+        # Support phone number
+        self._support_phone_number: Optional[str] = None
+        # Indicates if 'Terms and Conditions' setup pane is disabled
+        self._terms_and_conditions_disabled: Optional[bool] = None
+        # Indicates if touch id setup pane is disabled
+        self._touch_id_disabled: Optional[bool] = None
+    
     @property
     def apple_id_disabled(self,) -> Optional[bool]:
         """
@@ -57,53 +106,6 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
         """
         self._configuration_web_url = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DepEnrollmentBaseProfile and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.depEnrollmentBaseProfile"
-        # Indicates if Apple id setup pane is disabled
-        self._apple_id_disabled: Optional[bool] = None
-        # Indicates if Apple pay setup pane is disabled
-        self._apple_pay_disabled: Optional[bool] = None
-        # URL for setup assistant login
-        self._configuration_web_url: Optional[bool] = None
-        # Sets a literal or name pattern.
-        self._device_name_template: Optional[str] = None
-        # Indicates if diagnostics setup pane is disabled
-        self._diagnostics_disabled: Optional[bool] = None
-        # Indicates if displaytone setup screen is disabled
-        self._display_tone_setup_disabled: Optional[bool] = None
-        # enabledSkipKeys contains all the enabled skip keys as strings
-        self._enabled_skip_keys: Optional[List[str]] = None
-        # Indicates if this is the default profile
-        self._is_default: Optional[bool] = None
-        # Indicates if the profile is mandatory
-        self._is_mandatory: Optional[bool] = None
-        # Indicates if Location service setup pane is disabled
-        self._location_disabled: Optional[bool] = None
-        # Indicates if privacy screen is disabled
-        self._privacy_pane_disabled: Optional[bool] = None
-        # Indicates if the profile removal option is disabled
-        self._profile_removal_disabled: Optional[bool] = None
-        # Indicates if Restore setup pane is blocked
-        self._restore_blocked: Optional[bool] = None
-        # Indicates if screen timeout setup is disabled
-        self._screen_time_screen_disabled: Optional[bool] = None
-        # Indicates if siri setup pane is disabled
-        self._siri_disabled: Optional[bool] = None
-        # Supervised mode, True to enable, false otherwise. See https://learn.microsoft.com/intune/deploy-use/enroll-devices-in-microsoft-intune for additional information.
-        self._supervised_mode_enabled: Optional[bool] = None
-        # Support department information
-        self._support_department: Optional[str] = None
-        # Support phone number
-        self._support_phone_number: Optional[str] = None
-        # Indicates if 'Terms and Conditions' setup pane is disabled
-        self._terms_and_conditions_disabled: Optional[bool] = None
-        # Indicates if touch id setup pane is disabled
-        self._touch_id_disabled: Optional[bool] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DepEnrollmentBaseProfile:
         """
@@ -114,6 +116,17 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.depIOSEnrollmentProfile":
+                from . import dep_i_o_s_enrollment_profile
+
+                return dep_i_o_s_enrollment_profile.DepIOSEnrollmentProfile()
+            if mapping_value == "#microsoft.graph.depMacOSEnrollmentProfile":
+                from . import dep_mac_o_s_enrollment_profile
+
+                return dep_mac_o_s_enrollment_profile.DepMacOSEnrollmentProfile()
         return DepEnrollmentBaseProfile()
     
     @property
@@ -189,7 +202,9 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import dep_i_o_s_enrollment_profile, dep_mac_o_s_enrollment_profile, enrollment_profile
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appleIdDisabled": lambda n : setattr(self, 'apple_id_disabled', n.get_bool_value()),
             "applePayDisabled": lambda n : setattr(self, 'apple_pay_disabled', n.get_bool_value()),
             "configurationWebUrl": lambda n : setattr(self, 'configuration_web_url', n.get_bool_value()),

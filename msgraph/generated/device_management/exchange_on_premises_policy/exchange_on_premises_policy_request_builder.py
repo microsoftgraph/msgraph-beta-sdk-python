@@ -7,24 +7,17 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-conditional_access_settings_request_builder = lazy_import('msgraph.generated.device_management.exchange_on_premises_policy.conditional_access_settings.conditional_access_settings_request_builder')
-device_management_exchange_on_premises_policy = lazy_import('msgraph.generated.models.device_management_exchange_on_premises_policy')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ...models import device_management_exchange_on_premises_policy
+    from ...models.o_data_errors import o_data_error
+    from .conditional_access_settings import conditional_access_settings_request_builder
 
 class ExchangeOnPremisesPolicyRequestBuilder():
     """
     Provides operations to manage the exchangeOnPremisesPolicy property of the microsoft.graph.deviceManagement entity.
     """
-    @property
-    def conditional_access_settings(self) -> conditional_access_settings_request_builder.ConditionalAccessSettingsRequestBuilder:
-        """
-        Provides operations to manage the conditionalAccessSettings property of the microsoft.graph.deviceManagementExchangeOnPremisesPolicy entity.
-        """
-        return conditional_access_settings_request_builder.ConditionalAccessSettingsRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new ExchangeOnPremisesPolicyRequestBuilder and sets the default values.
@@ -52,6 +45,8 @@ class ExchangeOnPremisesPolicyRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -70,12 +65,16 @@ class ExchangeOnPremisesPolicyRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models import device_management_exchange_on_premises_policy
+
         return await self.request_adapter.send_async(request_info, device_management_exchange_on_premises_policy.DeviceManagementExchangeOnPremisesPolicy, error_mapping)
     
     async def patch(self,body: Optional[device_management_exchange_on_premises_policy.DeviceManagementExchangeOnPremisesPolicy] = None, request_configuration: Optional[ExchangeOnPremisesPolicyRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_management_exchange_on_premises_policy.DeviceManagementExchangeOnPremisesPolicy]:
@@ -91,12 +90,16 @@ class ExchangeOnPremisesPolicyRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models import device_management_exchange_on_premises_policy
+
         return await self.request_adapter.send_async(request_info, device_management_exchange_on_premises_policy.DeviceManagementExchangeOnPremisesPolicy, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ExchangeOnPremisesPolicyRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -154,6 +157,15 @@ class ExchangeOnPremisesPolicyRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def conditional_access_settings(self) -> conditional_access_settings_request_builder.ConditionalAccessSettingsRequestBuilder:
+        """
+        Provides operations to manage the conditionalAccessSettings property of the microsoft.graph.deviceManagementExchangeOnPremisesPolicy entity.
+        """
+        from .conditional_access_settings import conditional_access_settings_request_builder
+
+        return conditional_access_settings_request_builder.ConditionalAccessSettingsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class ExchangeOnPremisesPolicyRequestBuilderDeleteRequestConfiguration():
         """
@@ -171,12 +183,6 @@ class ExchangeOnPremisesPolicyRequestBuilder():
         """
         The policy which controls mobile device access to Exchange On Premises
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -192,6 +198,12 @@ class ExchangeOnPremisesPolicyRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class ExchangeOnPremisesPolicyRequestBuilderGetRequestConfiguration():

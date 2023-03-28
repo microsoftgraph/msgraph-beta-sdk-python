@@ -1,29 +1,14 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class Office365ActiveUserDetail(entity.Entity):
-    @property
-    def assigned_products(self,) -> Optional[List[str]]:
-        """
-        Gets the assignedProducts property value. All the products assigned for the user.
-        Returns: Optional[List[str]]
-        """
-        return self._assigned_products
-    
-    @assigned_products.setter
-    def assigned_products(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the assignedProducts property value. All the products assigned for the user.
-        Args:
-            value: Value to set for the assigned_products property.
-        """
-        self._assigned_products = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new Office365ActiveUserDetail and sets the default values.
@@ -79,6 +64,23 @@ class Office365ActiveUserDetail(entity.Entity):
         self._yammer_last_activity_date: Optional[Date] = None
         # The last date when the user was assigned a Yammer license.
         self._yammer_license_assign_date: Optional[Date] = None
+    
+    @property
+    def assigned_products(self,) -> Optional[List[str]]:
+        """
+        Gets the assignedProducts property value. All the products assigned for the user.
+        Returns: Optional[List[str]]
+        """
+        return self._assigned_products
+    
+    @assigned_products.setter
+    def assigned_products(self,value: Optional[List[str]] = None) -> None:
+        """
+        Sets the assignedProducts property value. All the products assigned for the user.
+        Args:
+            value: Value to set for the assigned_products property.
+        """
+        self._assigned_products = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Office365ActiveUserDetail:
@@ -165,7 +167,9 @@ class Office365ActiveUserDetail(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignedProducts": lambda n : setattr(self, 'assigned_products', n.get_collection_of_primitive_values(str)),
             "deletedDate": lambda n : setattr(self, 'deleted_date', n.get_object_value(Date)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

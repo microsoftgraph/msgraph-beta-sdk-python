@@ -1,13 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_for_work_cross_profile_data_sharing_type = lazy_import('msgraph.generated.models.android_for_work_cross_profile_data_sharing_type')
-android_for_work_default_app_permission_policy_type = lazy_import('msgraph.generated.models.android_for_work_default_app_permission_policy_type')
-android_for_work_required_password_type = lazy_import('msgraph.generated.models.android_for_work_required_password_type')
-android_required_password_complexity = lazy_import('msgraph.generated.models.android_required_password_complexity')
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+if TYPE_CHECKING:
+    from . import android_for_work_cross_profile_data_sharing_type, android_for_work_default_app_permission_policy_type, android_for_work_required_password_type, android_required_password_complexity, device_configuration
+
+from . import device_configuration
 
 class AndroidForWorkGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
     def __init__(self,) -> None:
@@ -122,7 +120,9 @@ class AndroidForWorkGeneralDeviceConfiguration(device_configuration.DeviceConfig
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_for_work_cross_profile_data_sharing_type, android_for_work_default_app_permission_policy_type, android_for_work_required_password_type, android_required_password_complexity, device_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "passwordBlockFaceUnlock": lambda n : setattr(self, 'password_block_face_unlock', n.get_bool_value()),
             "passwordBlockFingerprintUnlock": lambda n : setattr(self, 'password_block_fingerprint_unlock', n.get_bool_value()),
             "passwordBlockIrisUnlock": lambda n : setattr(self, 'password_block_iris_unlock', n.get_bool_value()),

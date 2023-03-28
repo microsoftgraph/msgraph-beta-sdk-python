@@ -1,19 +1,74 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_derived_credential_settings = lazy_import('msgraph.generated.models.device_management_derived_credential_settings')
-eas_authentication_method = lazy_import('msgraph.generated.models.eas_authentication_method')
-eas_email_profile_configuration_base = lazy_import('msgraph.generated.models.eas_email_profile_configuration_base')
-eas_services = lazy_import('msgraph.generated.models.eas_services')
-email_certificate_type = lazy_import('msgraph.generated.models.email_certificate_type')
-email_sync_duration = lazy_import('msgraph.generated.models.email_sync_duration')
-ios_certificate_profile = lazy_import('msgraph.generated.models.ios_certificate_profile')
-ios_certificate_profile_base = lazy_import('msgraph.generated.models.ios_certificate_profile_base')
-user_email_source = lazy_import('msgraph.generated.models.user_email_source')
+if TYPE_CHECKING:
+    from . import device_management_derived_credential_settings, eas_authentication_method, eas_email_profile_configuration_base, eas_services, email_certificate_type, email_sync_duration, ios_certificate_profile, ios_certificate_profile_base, user_email_source
+
+from . import eas_email_profile_configuration_base
 
 class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEmailProfileConfigurationBase):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new IosEasEmailProfileConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.iosEasEmailProfileConfiguration"
+        # Account name.
+        self._account_name: Optional[str] = None
+        # Authentication method for this Email profile. Possible values are: usernameAndPassword, certificate, derivedCredential.
+        self._authentication_method: Optional[eas_authentication_method.EasAuthenticationMethod] = None
+        # Indicates whether or not to block moving messages to other email accounts.
+        self._block_moving_messages_to_other_email_accounts: Optional[bool] = None
+        # Indicates whether or not to block sending email from third party apps.
+        self._block_sending_email_from_third_party_apps: Optional[bool] = None
+        # Indicates whether or not to block syncing recently used email addresses, for instance - when composing new email.
+        self._block_syncing_recently_used_email_addresses: Optional[bool] = None
+        # Tenant level settings for the Derived Credentials to be used for authentication.
+        self._derived_credential_settings: Optional[device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings] = None
+        # Possible values for email sync duration.
+        self._duration_of_email_to_sync: Optional[email_sync_duration.EmailSyncDuration] = None
+        # Exchange data to sync. Possible values are: none, calendars, contacts, email, notes, reminders.
+        self._eas_services: Optional[eas_services.EasServices] = None
+        # Allow users to change sync settings.
+        self._eas_services_user_override_enabled: Optional[bool] = None
+        # Possible values for username source or email source.
+        self._email_address_source: Optional[user_email_source.UserEmailSource] = None
+        # Encryption Certificate type for this Email profile. Possible values are: none, certificate, derivedCredential.
+        self._encryption_certificate_type: Optional[email_certificate_type.EmailCertificateType] = None
+        # Exchange location that (URL) that the native mail app connects to.
+        self._host_name: Optional[str] = None
+        # Identity certificate.
+        self._identity_certificate: Optional[ios_certificate_profile_base.IosCertificateProfileBase] = None
+        # Profile ID of the Per-App VPN policy to be used to access emails from the native Mail client
+        self._per_app_v_p_n_profile_id: Optional[str] = None
+        # Indicates whether or not to use S/MIME certificate.
+        self._require_smime: Optional[bool] = None
+        # Indicates whether or not to use SSL.
+        self._require_ssl: Optional[bool] = None
+        # Signing Certificate type for this Email profile. Possible values are: none, certificate, derivedCredential.
+        self._signing_certificate_type: Optional[email_certificate_type.EmailCertificateType] = None
+        # Indicates whether or not to allow unencrypted emails.
+        self._smime_enable_per_message_switch: Optional[bool] = None
+        # If set to true S/MIME encryption is enabled by default.
+        self._smime_encrypt_by_default_enabled: Optional[bool] = None
+        # If set to true, the user can toggle the encryption by default setting.
+        self._smime_encrypt_by_default_user_override_enabled: Optional[bool] = None
+        # S/MIME encryption certificate.
+        self._smime_encryption_certificate: Optional[ios_certificate_profile.IosCertificateProfile] = None
+        # If set to true the user can select the S/MIME encryption identity.
+        self._smime_encryption_certificate_user_override_enabled: Optional[bool] = None
+        # S/MIME signing certificate.
+        self._smime_signing_certificate: Optional[ios_certificate_profile.IosCertificateProfile] = None
+        # If set to true, the user can select the signing identity.
+        self._smime_signing_certificate_user_override_enabled: Optional[bool] = None
+        # If set to true S/MIME signing is enabled for this account
+        self._smime_signing_enabled: Optional[bool] = None
+        # If set to true, the user can toggle S/MIME signing on or off.
+        self._smime_signing_user_override_enabled: Optional[bool] = None
+        # Specifies whether the connection should use OAuth for authentication.
+        self._use_o_auth: Optional[bool] = None
+    
     @property
     def account_name(self,) -> Optional[str]:
         """
@@ -98,67 +153,6 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
             value: Value to set for the block_syncing_recently_used_email_addresses property.
         """
         self._block_syncing_recently_used_email_addresses = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new IosEasEmailProfileConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.iosEasEmailProfileConfiguration"
-        # Account name.
-        self._account_name: Optional[str] = None
-        # Authentication method for this Email profile. Possible values are: usernameAndPassword, certificate, derivedCredential.
-        self._authentication_method: Optional[eas_authentication_method.EasAuthenticationMethod] = None
-        # Indicates whether or not to block moving messages to other email accounts.
-        self._block_moving_messages_to_other_email_accounts: Optional[bool] = None
-        # Indicates whether or not to block sending email from third party apps.
-        self._block_sending_email_from_third_party_apps: Optional[bool] = None
-        # Indicates whether or not to block syncing recently used email addresses, for instance - when composing new email.
-        self._block_syncing_recently_used_email_addresses: Optional[bool] = None
-        # Tenant level settings for the Derived Credentials to be used for authentication.
-        self._derived_credential_settings: Optional[device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings] = None
-        # Possible values for email sync duration.
-        self._duration_of_email_to_sync: Optional[email_sync_duration.EmailSyncDuration] = None
-        # Exchange data to sync. Possible values are: none, calendars, contacts, email, notes, reminders.
-        self._eas_services: Optional[eas_services.EasServices] = None
-        # Allow users to change sync settings.
-        self._eas_services_user_override_enabled: Optional[bool] = None
-        # Possible values for username source or email source.
-        self._email_address_source: Optional[user_email_source.UserEmailSource] = None
-        # Encryption Certificate type for this Email profile. Possible values are: none, certificate, derivedCredential.
-        self._encryption_certificate_type: Optional[email_certificate_type.EmailCertificateType] = None
-        # Exchange location that (URL) that the native mail app connects to.
-        self._host_name: Optional[str] = None
-        # Identity certificate.
-        self._identity_certificate: Optional[ios_certificate_profile_base.IosCertificateProfileBase] = None
-        # Profile ID of the Per-App VPN policy to be used to access emails from the native Mail client
-        self._per_app_v_p_n_profile_id: Optional[str] = None
-        # Indicates whether or not to use S/MIME certificate.
-        self._require_smime: Optional[bool] = None
-        # Indicates whether or not to use SSL.
-        self._require_ssl: Optional[bool] = None
-        # Signing Certificate type for this Email profile. Possible values are: none, certificate, derivedCredential.
-        self._signing_certificate_type: Optional[email_certificate_type.EmailCertificateType] = None
-        # Indicates whether or not to allow unencrypted emails.
-        self._smime_enable_per_message_switch: Optional[bool] = None
-        # If set to true S/MIME encryption is enabled by default.
-        self._smime_encrypt_by_default_enabled: Optional[bool] = None
-        # If set to true, the user can toggle the encryption by default setting.
-        self._smime_encrypt_by_default_user_override_enabled: Optional[bool] = None
-        # S/MIME encryption certificate.
-        self._smime_encryption_certificate: Optional[ios_certificate_profile.IosCertificateProfile] = None
-        # If set to true the user can select the S/MIME encryption identity.
-        self._smime_encryption_certificate_user_override_enabled: Optional[bool] = None
-        # S/MIME signing certificate.
-        self._smime_signing_certificate: Optional[ios_certificate_profile.IosCertificateProfile] = None
-        # If set to true, the user can select the signing identity.
-        self._smime_signing_certificate_user_override_enabled: Optional[bool] = None
-        # If set to true S/MIME signing is enabled for this account
-        self._smime_signing_enabled: Optional[bool] = None
-        # If set to true, the user can toggle S/MIME signing on or off.
-        self._smime_signing_user_override_enabled: Optional[bool] = None
-        # Specifies whether the connection should use OAuth for authentication.
-        self._use_o_auth: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosEasEmailProfileConfiguration:
@@ -279,7 +273,9 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_derived_credential_settings, eas_authentication_method, eas_email_profile_configuration_base, eas_services, email_certificate_type, email_sync_duration, ios_certificate_profile, ios_certificate_profile_base, user_email_source
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accountName": lambda n : setattr(self, 'account_name', n.get_str_value()),
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(eas_authentication_method.EasAuthenticationMethod)),
             "blockMovingMessagesToOtherEmailAccounts": lambda n : setattr(self, 'block_moving_messages_to_other_email_accounts', n.get_bool_value()),

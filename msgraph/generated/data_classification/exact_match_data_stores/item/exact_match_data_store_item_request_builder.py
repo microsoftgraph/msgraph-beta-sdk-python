@@ -7,33 +7,19 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-lookup_request_builder = lazy_import('msgraph.generated.data_classification.exact_match_data_stores.item.lookup.lookup_request_builder')
-sessions_request_builder = lazy_import('msgraph.generated.data_classification.exact_match_data_stores.item.sessions.sessions_request_builder')
-exact_match_session_item_request_builder = lazy_import('msgraph.generated.data_classification.exact_match_data_stores.item.sessions.item.exact_match_session_item_request_builder')
-exact_match_data_store = lazy_import('msgraph.generated.models.exact_match_data_store')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ....models import exact_match_data_store
+    from ....models.o_data_errors import o_data_error
+    from .lookup import lookup_request_builder
+    from .sessions import sessions_request_builder
+    from .sessions.item import exact_match_session_item_request_builder
 
 class ExactMatchDataStoreItemRequestBuilder():
     """
     Provides operations to manage the exactMatchDataStores property of the microsoft.graph.dataClassificationService entity.
     """
-    @property
-    def lookup(self) -> lookup_request_builder.LookupRequestBuilder:
-        """
-        Provides operations to call the lookup method.
-        """
-        return lookup_request_builder.LookupRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def sessions(self) -> sessions_request_builder.SessionsRequestBuilder:
-        """
-        Provides operations to manage the sessions property of the microsoft.graph.exactMatchDataStore entity.
-        """
-        return sessions_request_builder.SessionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new ExactMatchDataStoreItemRequestBuilder and sets the default values.
@@ -61,6 +47,8 @@ class ExactMatchDataStoreItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -79,12 +67,16 @@ class ExactMatchDataStoreItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import exact_match_data_store
+
         return await self.request_adapter.send_async(request_info, exact_match_data_store.ExactMatchDataStore, error_mapping)
     
     async def patch(self,body: Optional[exact_match_data_store.ExactMatchDataStore] = None, request_configuration: Optional[ExactMatchDataStoreItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[exact_match_data_store.ExactMatchDataStore]:
@@ -100,12 +92,16 @@ class ExactMatchDataStoreItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import exact_match_data_store
+
         return await self.request_adapter.send_async(request_info, exact_match_data_store.ExactMatchDataStore, error_mapping)
     
     def sessions_by_id(self,id: str) -> exact_match_session_item_request_builder.ExactMatchSessionItemRequestBuilder:
@@ -117,6 +113,8 @@ class ExactMatchDataStoreItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .sessions.item import exact_match_session_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["exactMatchSession%2Did"] = id
         return exact_match_session_item_request_builder.ExactMatchSessionItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -176,6 +174,24 @@ class ExactMatchDataStoreItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def lookup(self) -> lookup_request_builder.LookupRequestBuilder:
+        """
+        Provides operations to call the lookup method.
+        """
+        from .lookup import lookup_request_builder
+
+        return lookup_request_builder.LookupRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def sessions(self) -> sessions_request_builder.SessionsRequestBuilder:
+        """
+        Provides operations to manage the sessions property of the microsoft.graph.exactMatchDataStore entity.
+        """
+        from .sessions import sessions_request_builder
+
+        return sessions_request_builder.SessionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class ExactMatchDataStoreItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -193,12 +209,6 @@ class ExactMatchDataStoreItemRequestBuilder():
         """
         Get exactMatchDataStores from dataClassification
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -214,6 +224,12 @@ class ExactMatchDataStoreItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class ExactMatchDataStoreItemRequestBuilderGetRequestConfiguration():

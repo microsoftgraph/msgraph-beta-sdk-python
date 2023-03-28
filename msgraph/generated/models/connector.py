@@ -1,11 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-connector_group = lazy_import('msgraph.generated.models.connector_group')
-connector_status = lazy_import('msgraph.generated.models.connector_status')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import connector_group, connector_status, entity
+
+from . import entity
 
 class Connector(entity.Entity):
     def __init__(self,) -> None:
@@ -58,7 +58,9 @@ class Connector(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import connector_group, connector_status, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "externalIp": lambda n : setattr(self, 'external_ip', n.get_str_value()),
             "machineName": lambda n : setattr(self, 'machine_name', n.get_str_value()),
             "memberOf": lambda n : setattr(self, 'member_of', n.get_collection_of_object_values(connector_group.ConnectorGroup)),

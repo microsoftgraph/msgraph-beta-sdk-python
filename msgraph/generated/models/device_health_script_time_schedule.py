@@ -1,10 +1,12 @@
 from __future__ import annotations
 from datetime import time
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_health_script_run_schedule = lazy_import('msgraph.generated.models.device_health_script_run_schedule')
+if TYPE_CHECKING:
+    from . import device_health_script_daily_schedule, device_health_script_run_once_schedule, device_health_script_run_schedule
+
+from . import device_health_script_run_schedule
 
 class DeviceHealthScriptTimeSchedule(device_health_script_run_schedule.DeviceHealthScriptRunSchedule):
     def __init__(self,) -> None:
@@ -28,6 +30,17 @@ class DeviceHealthScriptTimeSchedule(device_health_script_run_schedule.DeviceHea
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.deviceHealthScriptDailySchedule":
+                from . import device_health_script_daily_schedule
+
+                return device_health_script_daily_schedule.DeviceHealthScriptDailySchedule()
+            if mapping_value == "#microsoft.graph.deviceHealthScriptRunOnceSchedule":
+                from . import device_health_script_run_once_schedule
+
+                return device_health_script_run_once_schedule.DeviceHealthScriptRunOnceSchedule()
         return DeviceHealthScriptTimeSchedule()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -35,7 +48,9 @@ class DeviceHealthScriptTimeSchedule(device_health_script_run_schedule.DeviceHea
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_health_script_daily_schedule, device_health_script_run_once_schedule, device_health_script_run_schedule
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "time": lambda n : setattr(self, 'time', n.get_object_value(Time)),
             "useUtc": lambda n : setattr(self, 'use_utc', n.get_bool_value()),
         }

@@ -1,14 +1,26 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-configuration_manager_action_type = lazy_import('msgraph.generated.models.configuration_manager_action_type')
+if TYPE_CHECKING:
+    from . import configuration_manager_action_type
 
 class ConfigurationManagerAction(AdditionalDataHolder, Parsable):
     """
     Parameter for action triggerConfigurationManagerAction
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new configurationManagerAction and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Action type on Configuration Manager client
+        self._action: Optional[configuration_manager_action_type.ConfigurationManagerActionType] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def action(self,) -> Optional[configuration_manager_action_type.ConfigurationManagerActionType]:
         """
@@ -43,18 +55,6 @@ class ConfigurationManagerAction(AdditionalDataHolder, Parsable):
         """
         self._additional_data = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new configurationManagerAction and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Action type on Configuration Manager client
-        self._action: Optional[configuration_manager_action_type.ConfigurationManagerActionType] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ConfigurationManagerAction:
         """
@@ -72,7 +72,9 @@ class ConfigurationManagerAction(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import configuration_manager_action_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "action": lambda n : setattr(self, 'action', n.get_enum_value(configuration_manager_action_type.ConfigurationManagerActionType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }

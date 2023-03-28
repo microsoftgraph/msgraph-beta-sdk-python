@@ -1,16 +1,34 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-aosp_device_owner_trusted_root_certificate = lazy_import('msgraph.generated.models.aosp_device_owner_trusted_root_certificate')
-certificate_validity_period_scale = lazy_import('msgraph.generated.models.certificate_validity_period_scale')
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-extended_key_usage = lazy_import('msgraph.generated.models.extended_key_usage')
-subject_alternative_name_type = lazy_import('msgraph.generated.models.subject_alternative_name_type')
-subject_name_format = lazy_import('msgraph.generated.models.subject_name_format')
+if TYPE_CHECKING:
+    from . import aosp_device_owner_pkcs_certificate_profile, aosp_device_owner_scep_certificate_profile, aosp_device_owner_trusted_root_certificate, certificate_validity_period_scale, device_configuration, extended_key_usage, subject_alternative_name_type, subject_name_format
+
+from . import device_configuration
 
 class AospDeviceOwnerCertificateProfileBase(device_configuration.DeviceConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new AospDeviceOwnerCertificateProfileBase and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.aospDeviceOwnerCertificateProfileBase"
+        # Certificate Validity Period Options.
+        self._certificate_validity_period_scale: Optional[certificate_validity_period_scale.CertificateValidityPeriodScale] = None
+        # Value for the Certificate Validity Period.
+        self._certificate_validity_period_value: Optional[int] = None
+        # Extended Key Usage (EKU) settings. This collection can contain a maximum of 500 elements.
+        self._extended_key_usages: Optional[List[extended_key_usage.ExtendedKeyUsage]] = None
+        # Certificate renewal threshold percentage. Valid values 1 to 99
+        self._renewal_threshold_percentage: Optional[int] = None
+        # Trusted Root Certificate.
+        self._root_certificate: Optional[aosp_device_owner_trusted_root_certificate.AospDeviceOwnerTrustedRootCertificate] = None
+        # Certificate Subject Alternative Name Type. This collection can contain a maximum of 500 elements. Possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
+        self._subject_alternative_name_type: Optional[subject_alternative_name_type.SubjectAlternativeNameType] = None
+        # Certificate Subject Name Format. This collection can contain a maximum of 500 elements. Possible values are: commonName, commonNameIncludingEmail, commonNameAsEmail, custom, commonNameAsIMEI, commonNameAsSerialNumber, commonNameAsAadDeviceId, commonNameAsIntuneDeviceId, commonNameAsDurableDeviceId.
+        self._subject_name_format: Optional[subject_name_format.SubjectNameFormat] = None
+    
     @property
     def certificate_validity_period_scale(self,) -> Optional[certificate_validity_period_scale.CertificateValidityPeriodScale]:
         """
@@ -45,27 +63,6 @@ class AospDeviceOwnerCertificateProfileBase(device_configuration.DeviceConfigura
         """
         self._certificate_validity_period_value = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AospDeviceOwnerCertificateProfileBase and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.aospDeviceOwnerCertificateProfileBase"
-        # Certificate Validity Period Options.
-        self._certificate_validity_period_scale: Optional[certificate_validity_period_scale.CertificateValidityPeriodScale] = None
-        # Value for the Certificate Validity Period.
-        self._certificate_validity_period_value: Optional[int] = None
-        # Extended Key Usage (EKU) settings. This collection can contain a maximum of 500 elements.
-        self._extended_key_usages: Optional[List[extended_key_usage.ExtendedKeyUsage]] = None
-        # Certificate renewal threshold percentage. Valid values 1 to 99
-        self._renewal_threshold_percentage: Optional[int] = None
-        # Trusted Root Certificate.
-        self._root_certificate: Optional[aosp_device_owner_trusted_root_certificate.AospDeviceOwnerTrustedRootCertificate] = None
-        # Certificate Subject Alternative Name Type. This collection can contain a maximum of 500 elements. Possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
-        self._subject_alternative_name_type: Optional[subject_alternative_name_type.SubjectAlternativeNameType] = None
-        # Certificate Subject Name Format. This collection can contain a maximum of 500 elements. Possible values are: commonName, commonNameIncludingEmail, commonNameAsEmail, custom, commonNameAsIMEI, commonNameAsSerialNumber, commonNameAsAadDeviceId, commonNameAsIntuneDeviceId, commonNameAsDurableDeviceId.
-        self._subject_name_format: Optional[subject_name_format.SubjectNameFormat] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AospDeviceOwnerCertificateProfileBase:
         """
@@ -76,6 +73,17 @@ class AospDeviceOwnerCertificateProfileBase(device_configuration.DeviceConfigura
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.aospDeviceOwnerPkcsCertificateProfile":
+                from . import aosp_device_owner_pkcs_certificate_profile
+
+                return aosp_device_owner_pkcs_certificate_profile.AospDeviceOwnerPkcsCertificateProfile()
+            if mapping_value == "#microsoft.graph.aospDeviceOwnerScepCertificateProfile":
+                from . import aosp_device_owner_scep_certificate_profile
+
+                return aosp_device_owner_scep_certificate_profile.AospDeviceOwnerScepCertificateProfile()
         return AospDeviceOwnerCertificateProfileBase()
     
     @property
@@ -100,7 +108,9 @@ class AospDeviceOwnerCertificateProfileBase(device_configuration.DeviceConfigura
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import aosp_device_owner_pkcs_certificate_profile, aosp_device_owner_scep_certificate_profile, aosp_device_owner_trusted_root_certificate, certificate_validity_period_scale, device_configuration, extended_key_usage, subject_alternative_name_type, subject_name_format
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "certificateValidityPeriodScale": lambda n : setattr(self, 'certificate_validity_period_scale', n.get_enum_value(certificate_validity_period_scale.CertificateValidityPeriodScale)),
             "certificateValidityPeriodValue": lambda n : setattr(self, 'certificate_validity_period_value', n.get_int_value()),
             "extendedKeyUsages": lambda n : setattr(self, 'extended_key_usages', n.get_collection_of_object_values(extended_key_usage.ExtendedKeyUsage)),

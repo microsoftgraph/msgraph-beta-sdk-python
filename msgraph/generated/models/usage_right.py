@@ -1,12 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-usage_right_state = lazy_import('msgraph.generated.models.usage_right_state')
+if TYPE_CHECKING:
+    from . import entity, usage_right_state
+
+from . import entity
 
 class UsageRight(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new usageRight and sets the default values.
+        """
+        super().__init__()
+        # Product id corresponding to the usage right.
+        self._catalog_id: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Identifier of the service corresponding to the usage right.
+        self._service_identifier: Optional[str] = None
+        # The state property
+        self._state: Optional[usage_right_state.UsageRightState] = None
+    
     @property
     def catalog_id(self,) -> Optional[str]:
         """
@@ -23,20 +38,6 @@ class UsageRight(entity.Entity):
             value: Value to set for the catalog_id property.
         """
         self._catalog_id = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new usageRight and sets the default values.
-        """
-        super().__init__()
-        # Product id corresponding to the usage right.
-        self._catalog_id: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Identifier of the service corresponding to the usage right.
-        self._service_identifier: Optional[str] = None
-        # The state property
-        self._state: Optional[usage_right_state.UsageRightState] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UsageRight:
@@ -55,7 +56,9 @@ class UsageRight(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, usage_right_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "catalogId": lambda n : setattr(self, 'catalog_id', n.get_str_value()),
             "serviceIdentifier": lambda n : setattr(self, 'service_identifier', n.get_str_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(usage_right_state.UsageRightState)),

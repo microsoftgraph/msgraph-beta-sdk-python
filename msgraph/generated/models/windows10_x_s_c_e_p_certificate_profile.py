@@ -1,19 +1,46 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-certificate_store = lazy_import('msgraph.generated.models.certificate_store')
-certificate_validity_period_scale = lazy_import('msgraph.generated.models.certificate_validity_period_scale')
-extended_key_usage = lazy_import('msgraph.generated.models.extended_key_usage')
-hash_algorithms = lazy_import('msgraph.generated.models.hash_algorithms')
-key_size = lazy_import('msgraph.generated.models.key_size')
-key_storage_provider_option = lazy_import('msgraph.generated.models.key_storage_provider_option')
-key_usages = lazy_import('msgraph.generated.models.key_usages')
-windows10_x_certificate_profile = lazy_import('msgraph.generated.models.windows10_x_certificate_profile')
-windows10_x_custom_subject_alternative_name = lazy_import('msgraph.generated.models.windows10_x_custom_subject_alternative_name')
+if TYPE_CHECKING:
+    from . import certificate_store, certificate_validity_period_scale, extended_key_usage, hash_algorithms, key_size, key_storage_provider_option, key_usages, windows10_x_certificate_profile, windows10_x_custom_subject_alternative_name
+
+from . import windows10_x_certificate_profile
 
 class Windows10XSCEPCertificateProfile(windows10_x_certificate_profile.Windows10XCertificateProfile):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new Windows10XSCEPCertificateProfile and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.windows10XSCEPCertificateProfile"
+        # CertificateStore types
+        self._certificate_store: Optional[certificate_store.CertificateStore] = None
+        # Certificate Validity Period Options.
+        self._certificate_validity_period_scale: Optional[certificate_validity_period_scale.CertificateValidityPeriodScale] = None
+        # Value for the Certificate Validity Period
+        self._certificate_validity_period_value: Optional[int] = None
+        # Extended Key Usage (EKU) settings.
+        self._extended_key_usages: Optional[List[extended_key_usage.ExtendedKeyUsage]] = None
+        # SCEP Hash Algorithm.
+        self._hash_algorithm: Optional[List[hash_algorithms.HashAlgorithms]] = None
+        # Key Size Options.
+        self._key_size: Optional[key_size.KeySize] = None
+        # Key Storage Provider (KSP) Import Options.
+        self._key_storage_provider: Optional[key_storage_provider_option.KeyStorageProviderOption] = None
+        # Key Usage Options.
+        self._key_usage: Optional[key_usages.KeyUsages] = None
+        # Certificate renewal threshold percentage
+        self._renewal_threshold_percentage: Optional[int] = None
+        # Trusted Root Certificate ID
+        self._root_certificate_id: Optional[Guid] = None
+        # SCEP Server Url(s).
+        self._scep_server_urls: Optional[List[str]] = None
+        # Custom AAD Attributes.
+        self._subject_alternative_name_formats: Optional[List[windows10_x_custom_subject_alternative_name.Windows10XCustomSubjectAlternativeName]] = None
+        # Custom format to use with SubjectNameFormat = Custom. Example: CN={{EmailAddress}},E={{EmailAddress}},OU=Enterprise Users,O=Contoso Corporation,L=Redmond,ST=WA,C=US
+        self._subject_name_format_string: Optional[str] = None
+    
     @property
     def certificate_store(self,) -> Optional[certificate_store.CertificateStore]:
         """
@@ -65,39 +92,6 @@ class Windows10XSCEPCertificateProfile(windows10_x_certificate_profile.Windows10
         """
         self._certificate_validity_period_value = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Windows10XSCEPCertificateProfile and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windows10XSCEPCertificateProfile"
-        # CertificateStore types
-        self._certificate_store: Optional[certificate_store.CertificateStore] = None
-        # Certificate Validity Period Options.
-        self._certificate_validity_period_scale: Optional[certificate_validity_period_scale.CertificateValidityPeriodScale] = None
-        # Value for the Certificate Validity Period
-        self._certificate_validity_period_value: Optional[int] = None
-        # Extended Key Usage (EKU) settings.
-        self._extended_key_usages: Optional[List[extended_key_usage.ExtendedKeyUsage]] = None
-        # SCEP Hash Algorithm.
-        self._hash_algorithm: Optional[List[hash_algorithms.HashAlgorithms]] = None
-        # Key Size Options.
-        self._key_size: Optional[key_size.KeySize] = None
-        # Key Storage Provider (KSP) Import Options.
-        self._key_storage_provider: Optional[key_storage_provider_option.KeyStorageProviderOption] = None
-        # Key Usage Options.
-        self._key_usage: Optional[key_usages.KeyUsages] = None
-        # Certificate renewal threshold percentage
-        self._renewal_threshold_percentage: Optional[int] = None
-        # Trusted Root Certificate ID
-        self._root_certificate_id: Optional[Guid] = None
-        # SCEP Server Url(s).
-        self._scep_server_urls: Optional[List[str]] = None
-        # Custom AAD Attributes.
-        self._subject_alternative_name_formats: Optional[List[windows10_x_custom_subject_alternative_name.Windows10XCustomSubjectAlternativeName]] = None
-        # Custom format to use with SubjectNameFormat = Custom. Example: CN={{EmailAddress}},E={{EmailAddress}},OU=Enterprise Users,O=Contoso Corporation,L=Redmond,ST=WA,C=US
-        self._subject_name_format_string: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10XSCEPCertificateProfile:
         """
@@ -132,7 +126,9 @@ class Windows10XSCEPCertificateProfile(windows10_x_certificate_profile.Windows10
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import certificate_store, certificate_validity_period_scale, extended_key_usage, hash_algorithms, key_size, key_storage_provider_option, key_usages, windows10_x_certificate_profile, windows10_x_custom_subject_alternative_name
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(certificate_store.CertificateStore)),
             "certificateValidityPeriodScale": lambda n : setattr(self, 'certificate_validity_period_scale', n.get_enum_value(certificate_validity_period_scale.CertificateValidityPeriodScale)),
             "certificateValidityPeriodValue": lambda n : setattr(self, 'certificate_validity_period_value', n.get_int_value()),

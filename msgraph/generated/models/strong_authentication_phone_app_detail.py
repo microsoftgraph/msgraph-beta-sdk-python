@@ -1,47 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-oath_token_metadata = lazy_import('msgraph.generated.models.oath_token_metadata')
+if TYPE_CHECKING:
+    from . import entity, oath_token_metadata
+
+from . import entity
 
 class StrongAuthenticationPhoneAppDetail(entity.Entity):
-    @property
-    def authentication_type(self,) -> Optional[str]:
-        """
-        Gets the authenticationType property value. The authenticationType property
-        Returns: Optional[str]
-        """
-        return self._authentication_type
-    
-    @authentication_type.setter
-    def authentication_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the authenticationType property value. The authenticationType property
-        Args:
-            value: Value to set for the authentication_type property.
-        """
-        self._authentication_type = value
-    
-    @property
-    def authenticator_flavor(self,) -> Optional[str]:
-        """
-        Gets the authenticatorFlavor property value. The authenticatorFlavor property
-        Returns: Optional[str]
-        """
-        return self._authenticator_flavor
-    
-    @authenticator_flavor.setter
-    def authenticator_flavor(self,value: Optional[str] = None) -> None:
-        """
-        Sets the authenticatorFlavor property value. The authenticatorFlavor property
-        Args:
-            value: Value to set for the authenticator_flavor property.
-        """
-        self._authenticator_flavor = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new StrongAuthenticationPhoneAppDetail and sets the default values.
@@ -79,6 +46,40 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
         self._tenant_device_id: Optional[str] = None
         # The tokenGenerationIntervalInSeconds property
         self._token_generation_interval_in_seconds: Optional[int] = None
+    
+    @property
+    def authentication_type(self,) -> Optional[str]:
+        """
+        Gets the authenticationType property value. The authenticationType property
+        Returns: Optional[str]
+        """
+        return self._authentication_type
+    
+    @authentication_type.setter
+    def authentication_type(self,value: Optional[str] = None) -> None:
+        """
+        Sets the authenticationType property value. The authenticationType property
+        Args:
+            value: Value to set for the authentication_type property.
+        """
+        self._authentication_type = value
+    
+    @property
+    def authenticator_flavor(self,) -> Optional[str]:
+        """
+        Gets the authenticatorFlavor property value. The authenticatorFlavor property
+        Returns: Optional[str]
+        """
+        return self._authenticator_flavor
+    
+    @authenticator_flavor.setter
+    def authenticator_flavor(self,value: Optional[str] = None) -> None:
+        """
+        Sets the authenticatorFlavor property value. The authenticatorFlavor property
+        Args:
+            value: Value to set for the authenticator_flavor property.
+        """
+        self._authenticator_flavor = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> StrongAuthenticationPhoneAppDetail:
@@ -165,7 +166,9 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, oath_token_metadata
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "authenticationType": lambda n : setattr(self, 'authentication_type', n.get_str_value()),
             "authenticatorFlavor": lambda n : setattr(self, 'authenticator_flavor', n.get_str_value()),
             "deviceId": lambda n : setattr(self, 'device_id', n.get_object_value(Guid)),

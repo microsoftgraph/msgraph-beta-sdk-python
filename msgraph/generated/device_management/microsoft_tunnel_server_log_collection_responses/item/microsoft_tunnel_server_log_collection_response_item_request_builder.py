@@ -7,32 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-create_download_url_request_builder = lazy_import('msgraph.generated.device_management.microsoft_tunnel_server_log_collection_responses.item.create_download_url.create_download_url_request_builder')
-generate_download_url_request_builder = lazy_import('msgraph.generated.device_management.microsoft_tunnel_server_log_collection_responses.item.generate_download_url.generate_download_url_request_builder')
-microsoft_tunnel_server_log_collection_response = lazy_import('msgraph.generated.models.microsoft_tunnel_server_log_collection_response')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ....models import microsoft_tunnel_server_log_collection_response
+    from ....models.o_data_errors import o_data_error
+    from .create_download_url import create_download_url_request_builder
+    from .generate_download_url import generate_download_url_request_builder
 
 class MicrosoftTunnelServerLogCollectionResponseItemRequestBuilder():
     """
     Provides operations to manage the microsoftTunnelServerLogCollectionResponses property of the microsoft.graph.deviceManagement entity.
     """
-    @property
-    def create_download_url(self) -> create_download_url_request_builder.CreateDownloadUrlRequestBuilder:
-        """
-        Provides operations to call the createDownloadUrl method.
-        """
-        return create_download_url_request_builder.CreateDownloadUrlRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def generate_download_url(self) -> generate_download_url_request_builder.GenerateDownloadUrlRequestBuilder:
-        """
-        Provides operations to call the generateDownloadUrl method.
-        """
-        return generate_download_url_request_builder.GenerateDownloadUrlRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new MicrosoftTunnelServerLogCollectionResponseItemRequestBuilder and sets the default values.
@@ -60,6 +46,8 @@ class MicrosoftTunnelServerLogCollectionResponseItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -78,12 +66,16 @@ class MicrosoftTunnelServerLogCollectionResponseItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import microsoft_tunnel_server_log_collection_response
+
         return await self.request_adapter.send_async(request_info, microsoft_tunnel_server_log_collection_response.MicrosoftTunnelServerLogCollectionResponse, error_mapping)
     
     async def patch(self,body: Optional[microsoft_tunnel_server_log_collection_response.MicrosoftTunnelServerLogCollectionResponse] = None, request_configuration: Optional[MicrosoftTunnelServerLogCollectionResponseItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[microsoft_tunnel_server_log_collection_response.MicrosoftTunnelServerLogCollectionResponse]:
@@ -99,12 +91,16 @@ class MicrosoftTunnelServerLogCollectionResponseItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import microsoft_tunnel_server_log_collection_response
+
         return await self.request_adapter.send_async(request_info, microsoft_tunnel_server_log_collection_response.MicrosoftTunnelServerLogCollectionResponse, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[MicrosoftTunnelServerLogCollectionResponseItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -162,6 +158,24 @@ class MicrosoftTunnelServerLogCollectionResponseItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def create_download_url(self) -> create_download_url_request_builder.CreateDownloadUrlRequestBuilder:
+        """
+        Provides operations to call the createDownloadUrl method.
+        """
+        from .create_download_url import create_download_url_request_builder
+
+        return create_download_url_request_builder.CreateDownloadUrlRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def generate_download_url(self) -> generate_download_url_request_builder.GenerateDownloadUrlRequestBuilder:
+        """
+        Provides operations to call the generateDownloadUrl method.
+        """
+        from .generate_download_url import generate_download_url_request_builder
+
+        return generate_download_url_request_builder.GenerateDownloadUrlRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class MicrosoftTunnelServerLogCollectionResponseItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -179,12 +193,6 @@ class MicrosoftTunnelServerLogCollectionResponseItemRequestBuilder():
         """
         Collection of MicrosoftTunnelServerLogCollectionResponse settings associated with account.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -200,6 +208,12 @@ class MicrosoftTunnelServerLogCollectionResponseItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class MicrosoftTunnelServerLogCollectionResponseItemRequestBuilderGetRequestConfiguration():

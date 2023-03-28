@@ -1,13 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_required_password_complexity = lazy_import('msgraph.generated.models.android_required_password_complexity')
-android_required_password_type = lazy_import('msgraph.generated.models.android_required_password_type')
-android_safety_net_evaluation_type = lazy_import('msgraph.generated.models.android_safety_net_evaluation_type')
-device_compliance_policy = lazy_import('msgraph.generated.models.device_compliance_policy')
-device_threat_protection_level = lazy_import('msgraph.generated.models.device_threat_protection_level')
+if TYPE_CHECKING:
+    from . import android_required_password_complexity, android_required_password_type, android_safety_net_evaluation_type, device_compliance_policy, device_threat_protection_level
+
+from . import device_compliance_policy
 
 class AndroidForWorkCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
     def __init__(self,) -> None:
@@ -116,7 +114,9 @@ class AndroidForWorkCompliancePolicy(device_compliance_policy.DeviceCompliancePo
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_required_password_complexity, android_required_password_type, android_safety_net_evaluation_type, device_compliance_policy, device_threat_protection_level
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "deviceThreatProtectionEnabled": lambda n : setattr(self, 'device_threat_protection_enabled', n.get_bool_value()),
             "deviceThreatProtectionRequiredSecurityLevel": lambda n : setattr(self, 'device_threat_protection_required_security_level', n.get_enum_value(device_threat_protection_level.DeviceThreatProtectionLevel)),
             "minAndroidSecurityPatchLevel": lambda n : setattr(self, 'min_android_security_patch_level', n.get_str_value()),

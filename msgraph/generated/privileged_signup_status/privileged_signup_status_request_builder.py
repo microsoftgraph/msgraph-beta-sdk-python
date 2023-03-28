@@ -7,57 +7,21 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-privileged_signup_status = lazy_import('msgraph.generated.models.privileged_signup_status')
-privileged_signup_status_collection_response = lazy_import('msgraph.generated.models.privileged_signup_status_collection_response')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-can_sign_up_request_builder = lazy_import('msgraph.generated.privileged_signup_status.can_sign_up.can_sign_up_request_builder')
-complete_setup_request_builder = lazy_import('msgraph.generated.privileged_signup_status.complete_setup.complete_setup_request_builder')
-count_request_builder = lazy_import('msgraph.generated.privileged_signup_status.count.count_request_builder')
-is_signed_up_request_builder = lazy_import('msgraph.generated.privileged_signup_status.is_signed_up.is_signed_up_request_builder')
-sign_up_request_builder = lazy_import('msgraph.generated.privileged_signup_status.sign_up.sign_up_request_builder')
+if TYPE_CHECKING:
+    from ..models import privileged_signup_status, privileged_signup_status_collection_response
+    from ..models.o_data_errors import o_data_error
+    from .can_sign_up import can_sign_up_request_builder
+    from .complete_setup import complete_setup_request_builder
+    from .count import count_request_builder
+    from .is_signed_up import is_signed_up_request_builder
+    from .sign_up import sign_up_request_builder
 
 class PrivilegedSignupStatusRequestBuilder():
     """
     Provides operations to manage the collection of privilegedSignupStatus entities.
     """
-    @property
-    def can_sign_up(self) -> can_sign_up_request_builder.CanSignUpRequestBuilder:
-        """
-        Provides operations to call the canSignUp method.
-        """
-        return can_sign_up_request_builder.CanSignUpRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def complete_setup(self) -> complete_setup_request_builder.CompleteSetupRequestBuilder:
-        """
-        Provides operations to call the completeSetup method.
-        """
-        return complete_setup_request_builder.CompleteSetupRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
-        """
-        Provides operations to count the resources in the collection.
-        """
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def is_signed_up(self) -> is_signed_up_request_builder.IsSignedUpRequestBuilder:
-        """
-        Provides operations to call the isSignedUp method.
-        """
-        return is_signed_up_request_builder.IsSignedUpRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def sign_up(self) -> sign_up_request_builder.SignUpRequestBuilder:
-        """
-        Provides operations to call the signUp method.
-        """
-        return sign_up_request_builder.SignUpRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new PrivilegedSignupStatusRequestBuilder and sets the default values.
@@ -86,12 +50,16 @@ class PrivilegedSignupStatusRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ..models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ..models import privileged_signup_status_collection_response
+
         return await self.request_adapter.send_async(request_info, privileged_signup_status_collection_response.PrivilegedSignupStatusCollectionResponse, error_mapping)
     
     async def post(self,body: Optional[privileged_signup_status.PrivilegedSignupStatus] = None, request_configuration: Optional[PrivilegedSignupStatusRequestBuilderPostRequestConfiguration] = None) -> Optional[privileged_signup_status.PrivilegedSignupStatus]:
@@ -107,12 +75,16 @@ class PrivilegedSignupStatusRequestBuilder():
         request_info = self.to_post_request_information(
             body, request_configuration
         )
+        from ..models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ..models import privileged_signup_status
+
         return await self.request_adapter.send_async(request_info, privileged_signup_status.PrivilegedSignupStatus, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PrivilegedSignupStatusRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
@@ -154,35 +126,56 @@ class PrivilegedSignupStatusRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def can_sign_up(self) -> can_sign_up_request_builder.CanSignUpRequestBuilder:
+        """
+        Provides operations to call the canSignUp method.
+        """
+        from .can_sign_up import can_sign_up_request_builder
+
+        return can_sign_up_request_builder.CanSignUpRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def complete_setup(self) -> complete_setup_request_builder.CompleteSetupRequestBuilder:
+        """
+        Provides operations to call the completeSetup method.
+        """
+        from .complete_setup import complete_setup_request_builder
+
+        return complete_setup_request_builder.CompleteSetupRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def count(self) -> count_request_builder.CountRequestBuilder:
+        """
+        Provides operations to count the resources in the collection.
+        """
+        from .count import count_request_builder
+
+        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def is_signed_up(self) -> is_signed_up_request_builder.IsSignedUpRequestBuilder:
+        """
+        Provides operations to call the isSignedUp method.
+        """
+        from .is_signed_up import is_signed_up_request_builder
+
+        return is_signed_up_request_builder.IsSignedUpRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def sign_up(self) -> sign_up_request_builder.SignUpRequestBuilder:
+        """
+        Provides operations to call the signUp method.
+        """
+        from .sign_up import sign_up_request_builder
+
+        return sign_up_request_builder.SignUpRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class PrivilegedSignupStatusRequestBuilderGetQueryParameters():
         """
         Get entities from privilegedSignupStatus
         """
-        # Include count of items
-        count: Optional[bool] = None
-
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Filter items by property values
-        filter: Optional[str] = None
-
-        # Order items by property values
-        orderby: Optional[List[str]] = None
-
-        # Search items by search phrases
-        search: Optional[str] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
-        # Skip the first n items
-        skip: Optional[int] = None
-
-        # Show only the first n items
-        top: Optional[int] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -210,6 +203,30 @@ class PrivilegedSignupStatusRequestBuilder():
                 return "%24top"
             return original_name
         
+        # Include count of items
+        count: Optional[bool] = None
+
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Filter items by property values
+        filter: Optional[str] = None
+
+        # Order items by property values
+        orderby: Optional[List[str]] = None
+
+        # Search items by search phrases
+        search: Optional[str] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
+        # Skip the first n items
+        skip: Optional[int] = None
+
+        # Show only the first n items
+        top: Optional[int] = None
+
     
     @dataclass
     class PrivilegedSignupStatusRequestBuilderGetRequestConfiguration():

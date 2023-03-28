@@ -1,15 +1,68 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-enablement = lazy_import('msgraph.generated.models.enablement')
-mac_o_s_file_vault_recovery_key_types = lazy_import('msgraph.generated.models.mac_o_s_file_vault_recovery_key_types')
-mac_o_s_firewall_application = lazy_import('msgraph.generated.models.mac_o_s_firewall_application')
-mac_o_s_gatekeeper_app_sources = lazy_import('msgraph.generated.models.mac_o_s_gatekeeper_app_sources')
+if TYPE_CHECKING:
+    from . import device_configuration, enablement, mac_o_s_file_vault_recovery_key_types, mac_o_s_firewall_application, mac_o_s_gatekeeper_app_sources
+
+from . import device_configuration
 
 class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new MacOSEndpointProtectionConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.macOSEndpointProtectionConfiguration"
+        # Possible values of a property
+        self._advanced_threat_protection_automatic_sample_submission: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._advanced_threat_protection_cloud_delivered: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._advanced_threat_protection_diagnostic_data_collection: Optional[enablement.Enablement] = None
+        # A list of file extensions to exclude from antivirus scanning for Microsoft Defender Advanced Threat Protection on macOS.
+        self._advanced_threat_protection_excluded_extensions: Optional[List[str]] = None
+        # A list of paths to files to exclude from antivirus scanning for Microsoft Defender Advanced Threat Protection on macOS.
+        self._advanced_threat_protection_excluded_files: Optional[List[str]] = None
+        # A list of paths to folders to exclude from antivirus scanning for Microsoft Defender Advanced Threat Protection on macOS.
+        self._advanced_threat_protection_excluded_folders: Optional[List[str]] = None
+        # A list of process names to exclude from antivirus scanning for Microsoft Defender Advanced Threat Protection on macOS.
+        self._advanced_threat_protection_excluded_processes: Optional[List[str]] = None
+        # Possible values of a property
+        self._advanced_threat_protection_real_time: Optional[enablement.Enablement] = None
+        # Optional. If set to true, the user can defer the enabling of FileVault until they sign out.
+        self._file_vault_allow_deferral_until_sign_out: Optional[bool] = None
+        # Optional. When using the Defer option, if set to true, the user is not prompted to enable FileVault at sign-out.
+        self._file_vault_disable_prompt_at_sign_out: Optional[bool] = None
+        # Whether FileVault should be enabled or not.
+        self._file_vault_enabled: Optional[bool] = None
+        # Optional. A hidden personal recovery key does not appear on the user's screen during FileVault encryption, reducing the risk of it ending up in the wrong hands.
+        self._file_vault_hide_personal_recovery_key: Optional[bool] = None
+        # Required if selected recovery key type(s) include InstitutionalRecoveryKey. The DER Encoded certificate file used to set an institutional recovery key.
+        self._file_vault_institutional_recovery_key_certificate: Optional[bytes] = None
+        # File name of the institutional recovery key certificate to display in UI. (.der).
+        self._file_vault_institutional_recovery_key_certificate_file_name: Optional[str] = None
+        # Optional. When using the Defer option, this is the maximum number of times the user can ignore prompts to enable FileVault before FileVault will be required for the user to sign in. If set to -1, it will always prompt to enable FileVault until FileVault is enabled, though it will allow the user to bypass enabling FileVault. Setting this to 0 will disable the feature.
+        self._file_vault_number_of_times_user_can_ignore: Optional[int] = None
+        # Required if selected recovery key type(s) include PersonalRecoveryKey. A short message displayed to the user that explains how they can retrieve their personal recovery key.
+        self._file_vault_personal_recovery_key_help_message: Optional[str] = None
+        # Optional. If selected recovery key type(s) include PersonalRecoveryKey, the frequency to rotate that key, in months.
+        self._file_vault_personal_recovery_key_rotation_in_months: Optional[int] = None
+        # Recovery key types for macOS FileVault
+        self._file_vault_selected_recovery_key_types: Optional[mac_o_s_file_vault_recovery_key_types.MacOSFileVaultRecoveryKeyTypes] = None
+        # List of applications with firewall settings. Firewall settings for applications not on this list are determined by the user. This collection can contain a maximum of 500 elements.
+        self._firewall_applications: Optional[List[mac_o_s_firewall_application.MacOSFirewallApplication]] = None
+        # Corresponds to the 'Block all incoming connections' option.
+        self._firewall_block_all_incoming: Optional[bool] = None
+        # Corresponds to 'Enable stealth mode.'
+        self._firewall_enable_stealth_mode: Optional[bool] = None
+        # Whether the firewall should be enabled or not.
+        self._firewall_enabled: Optional[bool] = None
+        # App source options for macOS Gatekeeper.
+        self._gatekeeper_allowed_app_source: Optional[mac_o_s_gatekeeper_app_sources.MacOSGatekeeperAppSources] = None
+        # If set to true, the user override for Gatekeeper will be disabled.
+        self._gatekeeper_block_override: Optional[bool] = None
+    
     @property
     def advanced_threat_protection_automatic_sample_submission(self,) -> Optional[enablement.Enablement]:
         """
@@ -145,61 +198,6 @@ class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfigurat
             value: Value to set for the advanced_threat_protection_real_time property.
         """
         self._advanced_threat_protection_real_time = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new MacOSEndpointProtectionConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.macOSEndpointProtectionConfiguration"
-        # Possible values of a property
-        self._advanced_threat_protection_automatic_sample_submission: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._advanced_threat_protection_cloud_delivered: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._advanced_threat_protection_diagnostic_data_collection: Optional[enablement.Enablement] = None
-        # A list of file extensions to exclude from antivirus scanning for Microsoft Defender Advanced Threat Protection on macOS.
-        self._advanced_threat_protection_excluded_extensions: Optional[List[str]] = None
-        # A list of paths to files to exclude from antivirus scanning for Microsoft Defender Advanced Threat Protection on macOS.
-        self._advanced_threat_protection_excluded_files: Optional[List[str]] = None
-        # A list of paths to folders to exclude from antivirus scanning for Microsoft Defender Advanced Threat Protection on macOS.
-        self._advanced_threat_protection_excluded_folders: Optional[List[str]] = None
-        # A list of process names to exclude from antivirus scanning for Microsoft Defender Advanced Threat Protection on macOS.
-        self._advanced_threat_protection_excluded_processes: Optional[List[str]] = None
-        # Possible values of a property
-        self._advanced_threat_protection_real_time: Optional[enablement.Enablement] = None
-        # Optional. If set to true, the user can defer the enabling of FileVault until they sign out.
-        self._file_vault_allow_deferral_until_sign_out: Optional[bool] = None
-        # Optional. When using the Defer option, if set to true, the user is not prompted to enable FileVault at sign-out.
-        self._file_vault_disable_prompt_at_sign_out: Optional[bool] = None
-        # Whether FileVault should be enabled or not.
-        self._file_vault_enabled: Optional[bool] = None
-        # Optional. A hidden personal recovery key does not appear on the user's screen during FileVault encryption, reducing the risk of it ending up in the wrong hands.
-        self._file_vault_hide_personal_recovery_key: Optional[bool] = None
-        # Required if selected recovery key type(s) include InstitutionalRecoveryKey. The DER Encoded certificate file used to set an institutional recovery key.
-        self._file_vault_institutional_recovery_key_certificate: Optional[bytes] = None
-        # File name of the institutional recovery key certificate to display in UI. (.der).
-        self._file_vault_institutional_recovery_key_certificate_file_name: Optional[str] = None
-        # Optional. When using the Defer option, this is the maximum number of times the user can ignore prompts to enable FileVault before FileVault will be required for the user to sign in. If set to -1, it will always prompt to enable FileVault until FileVault is enabled, though it will allow the user to bypass enabling FileVault. Setting this to 0 will disable the feature.
-        self._file_vault_number_of_times_user_can_ignore: Optional[int] = None
-        # Required if selected recovery key type(s) include PersonalRecoveryKey. A short message displayed to the user that explains how they can retrieve their personal recovery key.
-        self._file_vault_personal_recovery_key_help_message: Optional[str] = None
-        # Optional. If selected recovery key type(s) include PersonalRecoveryKey, the frequency to rotate that key, in months.
-        self._file_vault_personal_recovery_key_rotation_in_months: Optional[int] = None
-        # Recovery key types for macOS FileVault
-        self._file_vault_selected_recovery_key_types: Optional[mac_o_s_file_vault_recovery_key_types.MacOSFileVaultRecoveryKeyTypes] = None
-        # List of applications with firewall settings. Firewall settings for applications not on this list are determined by the user. This collection can contain a maximum of 500 elements.
-        self._firewall_applications: Optional[List[mac_o_s_firewall_application.MacOSFirewallApplication]] = None
-        # Corresponds to the 'Block all incoming connections' option.
-        self._firewall_block_all_incoming: Optional[bool] = None
-        # Corresponds to 'Enable stealth mode.'
-        self._firewall_enable_stealth_mode: Optional[bool] = None
-        # Whether the firewall should be enabled or not.
-        self._firewall_enabled: Optional[bool] = None
-        # App source options for macOS Gatekeeper.
-        self._gatekeeper_allowed_app_source: Optional[mac_o_s_gatekeeper_app_sources.MacOSGatekeeperAppSources] = None
-        # If set to true, the user override for Gatekeeper will be disabled.
-        self._gatekeeper_block_override: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSEndpointProtectionConfiguration:
@@ -490,7 +488,9 @@ class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfigurat
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_configuration, enablement, mac_o_s_file_vault_recovery_key_types, mac_o_s_firewall_application, mac_o_s_gatekeeper_app_sources
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "advancedThreatProtectionAutomaticSampleSubmission": lambda n : setattr(self, 'advanced_threat_protection_automatic_sample_submission', n.get_enum_value(enablement.Enablement)),
             "advancedThreatProtectionCloudDelivered": lambda n : setattr(self, 'advanced_threat_protection_cloud_delivered', n.get_enum_value(enablement.Enablement)),
             "advancedThreatProtectionDiagnosticDataCollection": lambda n : setattr(self, 'advanced_threat_protection_diagnostic_data_collection', n.get_enum_value(enablement.Enablement)),

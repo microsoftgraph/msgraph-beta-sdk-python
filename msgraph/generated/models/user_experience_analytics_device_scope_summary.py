@@ -1,12 +1,29 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class UserExperienceAnalyticsDeviceScopeSummary(AdditionalDataHolder, Parsable):
     """
     The user experience analytics tenant level information for all the device scope configurations
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new userExperienceAnalyticsDeviceScopeSummary and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # A collection of the user experience analytics device scope Unique Identifiers that are enabled and finished recalculating the report metric.
+        self._completed_device_scope_ids: Optional[List[str]] = None
+        # A collection of user experience analytics device scope Unique Identitfiers that are enabled but there is insufficient data to calculate results.
+        self._insufficient_data_device_scope_ids: Optional[List[str]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The total number of user experience analytics device scopes. Valid values -2147483648 to 2147483647
+        self._total_device_scopes: Optional[int] = None
+        # The total number of user experience analytics device scopes that are enabled. Valid values -2147483648 to 2147483647
+        self._total_device_scopes_enabled: Optional[int] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -41,24 +58,6 @@ class UserExperienceAnalyticsDeviceScopeSummary(AdditionalDataHolder, Parsable):
         """
         self._completed_device_scope_ids = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsDeviceScopeSummary and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # A collection of the user experience analytics device scope Unique Identifiers that are enabled and finished recalculating the report metric.
-        self._completed_device_scope_ids: Optional[List[str]] = None
-        # A collection of user experience analytics device scope Unique Identitfiers that are enabled but there is insufficient data to calculate results.
-        self._insufficient_data_device_scope_ids: Optional[List[str]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The total number of user experience analytics device scopes. Valid values -2147483648 to 2147483647
-        self._total_device_scopes: Optional[int] = None
-        # The total number of user experience analytics device scopes that are enabled. Valid values -2147483648 to 2147483647
-        self._total_device_scopes_enabled: Optional[int] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsDeviceScopeSummary:
         """
@@ -76,7 +75,7 @@ class UserExperienceAnalyticsDeviceScopeSummary(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "completedDeviceScopeIds": lambda n : setattr(self, 'completed_device_scope_ids', n.get_collection_of_primitive_values(str)),
             "insufficientDataDeviceScopeIds": lambda n : setattr(self, 'insufficient_data_device_scope_ids', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

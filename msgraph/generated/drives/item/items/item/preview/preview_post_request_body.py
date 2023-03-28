@@ -1,9 +1,26 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class PreviewPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new previewPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The allowEdit property
+        self._allow_edit: Optional[bool] = None
+        # The chromeless property
+        self._chromeless: Optional[bool] = None
+        # The page property
+        self._page: Optional[str] = None
+        # The viewer property
+        self._viewer: Optional[str] = None
+        # The zoom property
+        self._zoom: Optional[float] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -55,24 +72,6 @@ class PreviewPostRequestBody(AdditionalDataHolder, Parsable):
         """
         self._chromeless = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new previewPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The allowEdit property
-        self._allow_edit: Optional[bool] = None
-        # The chromeless property
-        self._chromeless: Optional[bool] = None
-        # The page property
-        self._page: Optional[str] = None
-        # The viewer property
-        self._viewer: Optional[str] = None
-        # The zoom property
-        self._zoom: Optional[float] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PreviewPostRequestBody:
         """
@@ -90,7 +89,7 @@ class PreviewPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowEdit": lambda n : setattr(self, 'allow_edit', n.get_bool_value()),
             "chromeless": lambda n : setattr(self, 'chromeless', n.get_bool_value()),
             "page": lambda n : setattr(self, 'page', n.get_str_value()),
