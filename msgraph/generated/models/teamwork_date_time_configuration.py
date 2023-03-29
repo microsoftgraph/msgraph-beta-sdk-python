@@ -1,10 +1,29 @@
 from __future__ import annotations
 from datetime import time
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class TeamworkDateTimeConfiguration(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new teamworkDateTimeConfiguration and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The date format for the device.
+        self._date_format: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The time of the day when the device is turned off.
+        self._office_hours_end_time: Optional[time] = None
+        # The time of the day when the device is turned on.
+        self._office_hours_start_time: Optional[time] = None
+        # The time format for the device.
+        self._time_format: Optional[str] = None
+        # The time zone to which the office hours apply.
+        self._time_zone: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -21,26 +40,6 @@ class TeamworkDateTimeConfiguration(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new teamworkDateTimeConfiguration and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The date format for the device.
-        self._date_format: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The time of the day when the device is turned off.
-        self._office_hours_end_time: Optional[Time] = None
-        # The time of the day when the device is turned on.
-        self._office_hours_start_time: Optional[Time] = None
-        # The time format for the device.
-        self._time_format: Optional[str] = None
-        # The time zone to which the office hours apply.
-        self._time_zone: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeamworkDateTimeConfiguration:
@@ -76,11 +75,11 @@ class TeamworkDateTimeConfiguration(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "dateFormat": lambda n : setattr(self, 'date_format', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "officeHoursEndTime": lambda n : setattr(self, 'office_hours_end_time', n.get_object_value(Time)),
-            "officeHoursStartTime": lambda n : setattr(self, 'office_hours_start_time', n.get_object_value(Time)),
+            "officeHoursEndTime": lambda n : setattr(self, 'office_hours_end_time', n.get_time_value()),
+            "officeHoursStartTime": lambda n : setattr(self, 'office_hours_start_time', n.get_time_value()),
             "timeFormat": lambda n : setattr(self, 'time_format', n.get_str_value()),
             "timeZone": lambda n : setattr(self, 'time_zone', n.get_str_value()),
         }
@@ -104,15 +103,15 @@ class TeamworkDateTimeConfiguration(AdditionalDataHolder, Parsable):
         self._odata_type = value
     
     @property
-    def office_hours_end_time(self,) -> Optional[Time]:
+    def office_hours_end_time(self,) -> Optional[time]:
         """
         Gets the officeHoursEndTime property value. The time of the day when the device is turned off.
-        Returns: Optional[Time]
+        Returns: Optional[time]
         """
         return self._office_hours_end_time
     
     @office_hours_end_time.setter
-    def office_hours_end_time(self,value: Optional[Time] = None) -> None:
+    def office_hours_end_time(self,value: Optional[time] = None) -> None:
         """
         Sets the officeHoursEndTime property value. The time of the day when the device is turned off.
         Args:
@@ -121,15 +120,15 @@ class TeamworkDateTimeConfiguration(AdditionalDataHolder, Parsable):
         self._office_hours_end_time = value
     
     @property
-    def office_hours_start_time(self,) -> Optional[Time]:
+    def office_hours_start_time(self,) -> Optional[time]:
         """
         Gets the officeHoursStartTime property value. The time of the day when the device is turned on.
-        Returns: Optional[Time]
+        Returns: Optional[time]
         """
         return self._office_hours_start_time
     
     @office_hours_start_time.setter
-    def office_hours_start_time(self,value: Optional[Time] = None) -> None:
+    def office_hours_start_time(self,value: Optional[time] = None) -> None:
         """
         Sets the officeHoursStartTime property value. The time of the day when the device is turned on.
         Args:
@@ -147,8 +146,8 @@ class TeamworkDateTimeConfiguration(AdditionalDataHolder, Parsable):
             raise Exception("writer cannot be undefined")
         writer.write_str_value("dateFormat", self.date_format)
         writer.write_str_value("@odata.type", self.odata_type)
-        writer.write_object_value("officeHoursEndTime", self.office_hours_end_time)
-        writer.write_object_value("officeHoursStartTime", self.office_hours_start_time)
+        writer.write_time_value("officeHoursEndTime", self.office_hours_end_time)
+        writer.write_time_value("officeHoursStartTime", self.office_hours_start_time)
         writer.write_str_value("timeFormat", self.time_format)
         writer.write_str_value("timeZone", self.time_zone)
         writer.write_additional_data_value(self.additional_data)

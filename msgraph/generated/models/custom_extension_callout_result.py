@@ -1,29 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-authentication_event_handler_result = lazy_import('msgraph.generated.models.authentication_event_handler_result')
+if TYPE_CHECKING:
+    from . import authentication_event_handler_result
+
+from . import authentication_event_handler_result
 
 class CustomExtensionCalloutResult(authentication_event_handler_result.AuthenticationEventHandlerResult):
-    @property
-    def callout_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the calloutDateTime property value. When the API transaction was initiated, the date and time information uses ISO 8601 format and is always in UTC time. Example: midnight on Jan 1, 2014, is reported as 2014-01-01T00:00:00Z.
-        Returns: Optional[datetime]
-        """
-        return self._callout_date_time
-    
-    @callout_date_time.setter
-    def callout_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the calloutDateTime property value. When the API transaction was initiated, the date and time information uses ISO 8601 format and is always in UTC time. Example: midnight on Jan 1, 2014, is reported as 2014-01-01T00:00:00Z.
-        Args:
-            value: Value to set for the callout_date_time property.
-        """
-        self._callout_date_time = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new CustomExtensionCalloutResult and sets the default values.
@@ -40,6 +25,23 @@ class CustomExtensionCalloutResult(authentication_event_handler_result.Authentic
         self._http_status: Optional[int] = None
         # The number of API calls to the customer's API.
         self._number_of_attempts: Optional[int] = None
+    
+    @property
+    def callout_date_time(self,) -> Optional[datetime]:
+        """
+        Gets the calloutDateTime property value. When the API transaction was initiated, the date and time information uses ISO 8601 format and is always in UTC time. Example: midnight on Jan 1, 2014, is reported as 2014-01-01T00:00:00Z.
+        Returns: Optional[datetime]
+        """
+        return self._callout_date_time
+    
+    @callout_date_time.setter
+    def callout_date_time(self,value: Optional[datetime] = None) -> None:
+        """
+        Sets the calloutDateTime property value. When the API transaction was initiated, the date and time information uses ISO 8601 format and is always in UTC time. Example: midnight on Jan 1, 2014, is reported as 2014-01-01T00:00:00Z.
+        Args:
+            value: Value to set for the callout_date_time property.
+        """
+        self._callout_date_time = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CustomExtensionCalloutResult:
@@ -92,7 +94,9 @@ class CustomExtensionCalloutResult(authentication_event_handler_result.Authentic
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import authentication_event_handler_result
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "calloutDateTime": lambda n : setattr(self, 'callout_date_time', n.get_datetime_value()),
             "customExtensionId": lambda n : setattr(self, 'custom_extension_id', n.get_str_value()),
             "errorCode": lambda n : setattr(self, 'error_code', n.get_int_value()),

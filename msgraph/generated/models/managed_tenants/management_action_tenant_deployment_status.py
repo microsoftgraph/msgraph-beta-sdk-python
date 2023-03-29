@@ -1,10 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-management_action_deployment_status = lazy_import('msgraph.generated.models.managed_tenants.management_action_deployment_status')
+if TYPE_CHECKING:
+    from . import management_action_deployment_status
+    from .. import entity
+
+from .. import entity
 
 class ManagementActionTenantDeploymentStatus(entity.Entity):
     def __init__(self,) -> None:
@@ -38,7 +40,10 @@ class ManagementActionTenantDeploymentStatus(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import management_action_deployment_status
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "statuses": lambda n : setattr(self, 'statuses', n.get_collection_of_object_values(management_action_deployment_status.ManagementActionDeploymentStatus)),
             "tenantGroupId": lambda n : setattr(self, 'tenant_group_id', n.get_str_value()),
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),

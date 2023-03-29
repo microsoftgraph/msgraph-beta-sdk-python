@@ -1,22 +1,43 @@
 from __future__ import annotations
 from datetime import timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-activity_statistics = lazy_import('msgraph.generated.models.activity_statistics')
+if TYPE_CHECKING:
+    from . import activity_statistics
+
+from . import activity_statistics
 
 class MeetingActivityStatistics(activity_statistics.ActivityStatistics):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new MeetingActivityStatistics and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.meetingActivityStatistics"
+        # Time spent on meetings outside of working hours, which is based on the user's Outlook calendar setting for work hours. The value is represented in ISO 8601 format for durations.
+        self._after_hours: Optional[timedelta] = None
+        # Time spent in conflicting meetings (meetings that overlap with other meetings that the person accepted and where the person’s status is set to Busy). The value is represented in ISO 8601 format for durations.
+        self._conflicting: Optional[timedelta] = None
+        # Time spent in long meetings (more than an hour in duration). The value is represented in ISO 8601 format for durations.
+        self._long: Optional[timedelta] = None
+        # Time spent in meetings where the person was multitasking (read/sent more than a minimum number of emails and/or sent more than a minimum number of messages in Teams or in Skype for Business). The value is represented in ISO 8601 format for durations.
+        self._multitasking: Optional[timedelta] = None
+        # Time spent in meetings organized by the user. The value is represented in ISO 8601 format for durations.
+        self._organized: Optional[timedelta] = None
+        # Time spent on recurring meetings. The value is represented in ISO 8601 format for durations.
+        self._recurring: Optional[timedelta] = None
+    
     @property
-    def after_hours(self,) -> Optional[Timedelta]:
+    def after_hours(self,) -> Optional[timedelta]:
         """
         Gets the afterHours property value. Time spent on meetings outside of working hours, which is based on the user's Outlook calendar setting for work hours. The value is represented in ISO 8601 format for durations.
-        Returns: Optional[Timedelta]
+        Returns: Optional[timedelta]
         """
         return self._after_hours
     
     @after_hours.setter
-    def after_hours(self,value: Optional[Timedelta] = None) -> None:
+    def after_hours(self,value: Optional[timedelta] = None) -> None:
         """
         Sets the afterHours property value. Time spent on meetings outside of working hours, which is based on the user's Outlook calendar setting for work hours. The value is represented in ISO 8601 format for durations.
         Args:
@@ -25,40 +46,21 @@ class MeetingActivityStatistics(activity_statistics.ActivityStatistics):
         self._after_hours = value
     
     @property
-    def conflicting(self,) -> Optional[Timedelta]:
+    def conflicting(self,) -> Optional[timedelta]:
         """
         Gets the conflicting property value. Time spent in conflicting meetings (meetings that overlap with other meetings that the person accepted and where the person’s status is set to Busy). The value is represented in ISO 8601 format for durations.
-        Returns: Optional[Timedelta]
+        Returns: Optional[timedelta]
         """
         return self._conflicting
     
     @conflicting.setter
-    def conflicting(self,value: Optional[Timedelta] = None) -> None:
+    def conflicting(self,value: Optional[timedelta] = None) -> None:
         """
         Sets the conflicting property value. Time spent in conflicting meetings (meetings that overlap with other meetings that the person accepted and where the person’s status is set to Busy). The value is represented in ISO 8601 format for durations.
         Args:
             value: Value to set for the conflicting property.
         """
         self._conflicting = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new MeetingActivityStatistics and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.meetingActivityStatistics"
-        # Time spent on meetings outside of working hours, which is based on the user's Outlook calendar setting for work hours. The value is represented in ISO 8601 format for durations.
-        self._after_hours: Optional[Timedelta] = None
-        # Time spent in conflicting meetings (meetings that overlap with other meetings that the person accepted and where the person’s status is set to Busy). The value is represented in ISO 8601 format for durations.
-        self._conflicting: Optional[Timedelta] = None
-        # Time spent in long meetings (more than an hour in duration). The value is represented in ISO 8601 format for durations.
-        self._long: Optional[Timedelta] = None
-        # Time spent in meetings where the person was multitasking (read/sent more than a minimum number of emails and/or sent more than a minimum number of messages in Teams or in Skype for Business). The value is represented in ISO 8601 format for durations.
-        self._multitasking: Optional[Timedelta] = None
-        # Time spent in meetings organized by the user. The value is represented in ISO 8601 format for durations.
-        self._organized: Optional[Timedelta] = None
-        # Time spent on recurring meetings. The value is represented in ISO 8601 format for durations.
-        self._recurring: Optional[Timedelta] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MeetingActivityStatistics:
@@ -77,28 +79,30 @@ class MeetingActivityStatistics(activity_statistics.ActivityStatistics):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
-            "afterHours": lambda n : setattr(self, 'after_hours', n.get_object_value(Timedelta)),
-            "conflicting": lambda n : setattr(self, 'conflicting', n.get_object_value(Timedelta)),
-            "long": lambda n : setattr(self, 'long', n.get_object_value(Timedelta)),
-            "multitasking": lambda n : setattr(self, 'multitasking', n.get_object_value(Timedelta)),
-            "organized": lambda n : setattr(self, 'organized', n.get_object_value(Timedelta)),
-            "recurring": lambda n : setattr(self, 'recurring', n.get_object_value(Timedelta)),
+        from . import activity_statistics
+
+        fields: Dict[str, Callable[[Any], None]] = {
+            "afterHours": lambda n : setattr(self, 'after_hours', n.get_timedelta_value()),
+            "conflicting": lambda n : setattr(self, 'conflicting', n.get_timedelta_value()),
+            "long": lambda n : setattr(self, 'long', n.get_timedelta_value()),
+            "multitasking": lambda n : setattr(self, 'multitasking', n.get_timedelta_value()),
+            "organized": lambda n : setattr(self, 'organized', n.get_timedelta_value()),
+            "recurring": lambda n : setattr(self, 'recurring', n.get_timedelta_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
     
     @property
-    def long(self,) -> Optional[Timedelta]:
+    def long(self,) -> Optional[timedelta]:
         """
         Gets the long property value. Time spent in long meetings (more than an hour in duration). The value is represented in ISO 8601 format for durations.
-        Returns: Optional[Timedelta]
+        Returns: Optional[timedelta]
         """
         return self._long
     
     @long.setter
-    def long(self,value: Optional[Timedelta] = None) -> None:
+    def long(self,value: Optional[timedelta] = None) -> None:
         """
         Sets the long property value. Time spent in long meetings (more than an hour in duration). The value is represented in ISO 8601 format for durations.
         Args:
@@ -107,15 +111,15 @@ class MeetingActivityStatistics(activity_statistics.ActivityStatistics):
         self._long = value
     
     @property
-    def multitasking(self,) -> Optional[Timedelta]:
+    def multitasking(self,) -> Optional[timedelta]:
         """
         Gets the multitasking property value. Time spent in meetings where the person was multitasking (read/sent more than a minimum number of emails and/or sent more than a minimum number of messages in Teams or in Skype for Business). The value is represented in ISO 8601 format for durations.
-        Returns: Optional[Timedelta]
+        Returns: Optional[timedelta]
         """
         return self._multitasking
     
     @multitasking.setter
-    def multitasking(self,value: Optional[Timedelta] = None) -> None:
+    def multitasking(self,value: Optional[timedelta] = None) -> None:
         """
         Sets the multitasking property value. Time spent in meetings where the person was multitasking (read/sent more than a minimum number of emails and/or sent more than a minimum number of messages in Teams or in Skype for Business). The value is represented in ISO 8601 format for durations.
         Args:
@@ -124,15 +128,15 @@ class MeetingActivityStatistics(activity_statistics.ActivityStatistics):
         self._multitasking = value
     
     @property
-    def organized(self,) -> Optional[Timedelta]:
+    def organized(self,) -> Optional[timedelta]:
         """
         Gets the organized property value. Time spent in meetings organized by the user. The value is represented in ISO 8601 format for durations.
-        Returns: Optional[Timedelta]
+        Returns: Optional[timedelta]
         """
         return self._organized
     
     @organized.setter
-    def organized(self,value: Optional[Timedelta] = None) -> None:
+    def organized(self,value: Optional[timedelta] = None) -> None:
         """
         Sets the organized property value. Time spent in meetings organized by the user. The value is represented in ISO 8601 format for durations.
         Args:
@@ -141,15 +145,15 @@ class MeetingActivityStatistics(activity_statistics.ActivityStatistics):
         self._organized = value
     
     @property
-    def recurring(self,) -> Optional[Timedelta]:
+    def recurring(self,) -> Optional[timedelta]:
         """
         Gets the recurring property value. Time spent on recurring meetings. The value is represented in ISO 8601 format for durations.
-        Returns: Optional[Timedelta]
+        Returns: Optional[timedelta]
         """
         return self._recurring
     
     @recurring.setter
-    def recurring(self,value: Optional[Timedelta] = None) -> None:
+    def recurring(self,value: Optional[timedelta] = None) -> None:
         """
         Sets the recurring property value. Time spent on recurring meetings. The value is represented in ISO 8601 format for durations.
         Args:
@@ -166,11 +170,11 @@ class MeetingActivityStatistics(activity_statistics.ActivityStatistics):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-        writer.write_object_value("afterHours", self.after_hours)
-        writer.write_object_value("conflicting", self.conflicting)
-        writer.write_object_value("long", self.long)
-        writer.write_object_value("multitasking", self.multitasking)
-        writer.write_object_value("organized", self.organized)
-        writer.write_object_value("recurring", self.recurring)
+        writer.write_timedelta_value("afterHours", self.after_hours)
+        writer.write_timedelta_value("conflicting", self.conflicting)
+        writer.write_timedelta_value("long", self.long)
+        writer.write_timedelta_value("multitasking", self.multitasking)
+        writer.write_timedelta_value("organized", self.organized)
+        writer.write_timedelta_value("recurring", self.recurring)
     
 

@@ -1,11 +1,29 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-authentication_method_modes = lazy_import('msgraph.generated.models.authentication_method_modes')
+if TYPE_CHECKING:
+    from . import authentication_method_modes
 
 class UpdateAllowedCombinationsResult(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new updateAllowedCombinationsResult and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Information about why the updateAllowedCombinations action was successful or failed.
+        self._additional_information: Optional[str] = None
+        # References to existing Conditional Access policies that use this authentication strength.
+        self._conditional_access_references: Optional[List[str]] = None
+        # The list of current authentication method combinations allowed by the authentication strength.
+        self._current_combinations: Optional[List[authentication_method_modes.AuthenticationMethodModes]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The list of former authentication method combinations allowed by the authentication strength before they were updated through the updateAllowedCombinations action.
+        self._previous_combinations: Optional[List[authentication_method_modes.AuthenticationMethodModes]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -57,24 +75,6 @@ class UpdateAllowedCombinationsResult(AdditionalDataHolder, Parsable):
         """
         self._conditional_access_references = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new updateAllowedCombinationsResult and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Information about why the updateAllowedCombinations action was successful or failed.
-        self._additional_information: Optional[str] = None
-        # References to existing Conditional Access policies that use this authentication strength.
-        self._conditional_access_references: Optional[List[str]] = None
-        # The list of current authentication method combinations allowed by the authentication strength.
-        self._current_combinations: Optional[List[authentication_method_modes.AuthenticationMethodModes]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The list of former authentication method combinations allowed by the authentication strength before they were updated through the updateAllowedCombinations action.
-        self._previous_combinations: Optional[List[authentication_method_modes.AuthenticationMethodModes]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UpdateAllowedCombinationsResult:
         """
@@ -109,7 +109,9 @@ class UpdateAllowedCombinationsResult(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import authentication_method_modes
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "additionalInformation": lambda n : setattr(self, 'additional_information', n.get_str_value()),
             "conditionalAccessReferences": lambda n : setattr(self, 'conditional_access_references', n.get_collection_of_primitive_values(str)),
             "currentCombinations": lambda n : setattr(self, 'current_combinations', n.get_collection_of_enum_values(authentication_method_modes.AuthenticationMethodModes)),

@@ -1,12 +1,28 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-matching_dlp_rule = lazy_import('msgraph.generated.models.matching_dlp_rule')
+if TYPE_CHECKING:
+    from . import matching_dlp_rule
 
 class DlpPoliciesJobResult(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new dlpPoliciesJobResult and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The auditCorrelationId property
+        self._audit_correlation_id: Optional[str] = None
+        # The evaluationDateTime property
+        self._evaluation_date_time: Optional[datetime] = None
+        # The matchingRules property
+        self._matching_rules: Optional[List[matching_dlp_rule.MatchingDlpRule]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -40,22 +56,6 @@ class DlpPoliciesJobResult(AdditionalDataHolder, Parsable):
             value: Value to set for the audit_correlation_id property.
         """
         self._audit_correlation_id = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new dlpPoliciesJobResult and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The auditCorrelationId property
-        self._audit_correlation_id: Optional[str] = None
-        # The evaluationDateTime property
-        self._evaluation_date_time: Optional[datetime] = None
-        # The matchingRules property
-        self._matching_rules: Optional[List[matching_dlp_rule.MatchingDlpRule]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DlpPoliciesJobResult:
@@ -91,7 +91,9 @@ class DlpPoliciesJobResult(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import matching_dlp_rule
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "auditCorrelationId": lambda n : setattr(self, 'audit_correlation_id', n.get_str_value()),
             "evaluationDateTime": lambda n : setattr(self, 'evaluation_date_time', n.get_datetime_value()),
             "matchingRules": lambda n : setattr(self, 'matching_rules', n.get_collection_of_object_values(matching_dlp_rule.MatchingDlpRule)),

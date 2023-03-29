@@ -1,11 +1,23 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-administrator_configured_device_compliance_state = lazy_import('msgraph.generated.models.administrator_configured_device_compliance_state')
+if TYPE_CHECKING:
+    from ......models import administrator_configured_device_compliance_state
 
 class OverrideComplianceStatePostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new overrideComplianceStatePostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Administrator configured device compliance state Enum
+        self._compliance_state: Optional[administrator_configured_device_compliance_state.AdministratorConfiguredDeviceComplianceState] = None
+        # The remediationUrl property
+        self._remediation_url: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -40,18 +52,6 @@ class OverrideComplianceStatePostRequestBody(AdditionalDataHolder, Parsable):
         """
         self._compliance_state = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new overrideComplianceStatePostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Administrator configured device compliance state Enum
-        self._compliance_state: Optional[administrator_configured_device_compliance_state.AdministratorConfiguredDeviceComplianceState] = None
-        # The remediationUrl property
-        self._remediation_url: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OverrideComplianceStatePostRequestBody:
         """
@@ -69,7 +69,9 @@ class OverrideComplianceStatePostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from ......models import administrator_configured_device_compliance_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "complianceState": lambda n : setattr(self, 'compliance_state', n.get_enum_value(administrator_configured_device_compliance_state.AdministratorConfiguredDeviceComplianceState)),
             "remediationUrl": lambda n : setattr(self, 'remediation_url', n.get_str_value()),
         }

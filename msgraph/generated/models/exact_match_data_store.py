@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-exact_match_data_store_base = lazy_import('msgraph.generated.models.exact_match_data_store_base')
-exact_match_session = lazy_import('msgraph.generated.models.exact_match_session')
+if TYPE_CHECKING:
+    from . import exact_match_data_store_base, exact_match_session
+
+from . import exact_match_data_store_base
 
 class ExactMatchDataStore(exact_match_data_store_base.ExactMatchDataStoreBase):
     def __init__(self,) -> None:
@@ -34,7 +35,9 @@ class ExactMatchDataStore(exact_match_data_store_base.ExactMatchDataStoreBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import exact_match_data_store_base, exact_match_session
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "sessions": lambda n : setattr(self, 'sessions', n.get_collection_of_object_values(exact_match_session.ExactMatchSession)),
         }
         super_fields = super().get_field_deserializers()

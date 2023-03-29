@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_configuration_choice_setting_definition = lazy_import('msgraph.generated.models.device_management_configuration_choice_setting_definition')
+if TYPE_CHECKING:
+    from . import device_management_configuration_choice_setting_definition
+
+from . import device_management_configuration_choice_setting_definition
 
 class DeviceManagementConfigurationChoiceSettingCollectionDefinition(device_management_configuration_choice_setting_definition.DeviceManagementConfigurationChoiceSettingDefinition):
     def __init__(self,) -> None:
@@ -11,9 +13,9 @@ class DeviceManagementConfigurationChoiceSettingCollectionDefinition(device_mana
         Instantiates a new DeviceManagementConfigurationChoiceSettingCollectionDefinition and sets the default values.
         """
         super().__init__()
-        # Maximum number of choices in the collection. Valid values 1 to 100
+        # Maximum number of choices in the collection
         self._maximum_count: Optional[int] = None
-        # Minimum number of choices in the collection. Valid values 1 to 100
+        # Minimum number of choices in the collection
         self._minimum_count: Optional[int] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
@@ -35,7 +37,9 @@ class DeviceManagementConfigurationChoiceSettingCollectionDefinition(device_mana
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_configuration_choice_setting_definition
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "maximumCount": lambda n : setattr(self, 'maximum_count', n.get_int_value()),
             "minimumCount": lambda n : setattr(self, 'minimum_count', n.get_int_value()),
         }
@@ -46,7 +50,7 @@ class DeviceManagementConfigurationChoiceSettingCollectionDefinition(device_mana
     @property
     def maximum_count(self,) -> Optional[int]:
         """
-        Gets the maximumCount property value. Maximum number of choices in the collection. Valid values 1 to 100
+        Gets the maximumCount property value. Maximum number of choices in the collection
         Returns: Optional[int]
         """
         return self._maximum_count
@@ -54,7 +58,7 @@ class DeviceManagementConfigurationChoiceSettingCollectionDefinition(device_mana
     @maximum_count.setter
     def maximum_count(self,value: Optional[int] = None) -> None:
         """
-        Sets the maximumCount property value. Maximum number of choices in the collection. Valid values 1 to 100
+        Sets the maximumCount property value. Maximum number of choices in the collection
         Args:
             value: Value to set for the maximum_count property.
         """
@@ -63,7 +67,7 @@ class DeviceManagementConfigurationChoiceSettingCollectionDefinition(device_mana
     @property
     def minimum_count(self,) -> Optional[int]:
         """
-        Gets the minimumCount property value. Minimum number of choices in the collection. Valid values 1 to 100
+        Gets the minimumCount property value. Minimum number of choices in the collection
         Returns: Optional[int]
         """
         return self._minimum_count
@@ -71,7 +75,7 @@ class DeviceManagementConfigurationChoiceSettingCollectionDefinition(device_mana
     @minimum_count.setter
     def minimum_count(self,value: Optional[int] = None) -> None:
         """
-        Sets the minimumCount property value. Minimum number of choices in the collection. Valid values 1 to 100
+        Sets the minimumCount property value. Minimum number of choices in the collection
         Args:
             value: Value to set for the minimum_count property.
         """

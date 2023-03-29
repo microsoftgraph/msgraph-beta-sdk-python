@@ -1,33 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-mobile_app = lazy_import('msgraph.generated.models.mobile_app')
-mobile_app_install_status = lazy_import('msgraph.generated.models.mobile_app_install_status')
+if TYPE_CHECKING:
+    from . import entity, mobile_app, mobile_app_install_status
+
+from . import entity
 
 class UserAppInstallStatus(entity.Entity):
     """
     Contains properties for the installation status for a user.
     """
-    @property
-    def app(self,) -> Optional[mobile_app.MobileApp]:
-        """
-        Gets the app property value. The navigation link to the mobile app.
-        Returns: Optional[mobile_app.MobileApp]
-        """
-        return self._app
-    
-    @app.setter
-    def app(self,value: Optional[mobile_app.MobileApp] = None) -> None:
-        """
-        Sets the app property value. The navigation link to the mobile app.
-        Args:
-            value: Value to set for the app property.
-        """
-        self._app = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new userAppInstallStatus and sets the default values.
@@ -49,6 +32,23 @@ class UserAppInstallStatus(entity.Entity):
         self._user_name: Optional[str] = None
         # User Principal Name.
         self._user_principal_name: Optional[str] = None
+    
+    @property
+    def app(self,) -> Optional[mobile_app.MobileApp]:
+        """
+        Gets the app property value. The navigation link to the mobile app.
+        Returns: Optional[mobile_app.MobileApp]
+        """
+        return self._app
+    
+    @app.setter
+    def app(self,value: Optional[mobile_app.MobileApp] = None) -> None:
+        """
+        Sets the app property value. The navigation link to the mobile app.
+        Args:
+            value: Value to set for the app property.
+        """
+        self._app = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserAppInstallStatus:
@@ -101,7 +101,9 @@ class UserAppInstallStatus(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, mobile_app, mobile_app_install_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "app": lambda n : setattr(self, 'app', n.get_object_value(mobile_app.MobileApp)),
             "deviceStatuses": lambda n : setattr(self, 'device_statuses', n.get_collection_of_object_values(mobile_app_install_status.MobileAppInstallStatus)),
             "failedDeviceCount": lambda n : setattr(self, 'failed_device_count', n.get_int_value()),

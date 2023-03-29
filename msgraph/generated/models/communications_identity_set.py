@@ -1,13 +1,36 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-endpoint_type = lazy_import('msgraph.generated.models.endpoint_type')
-identity = lazy_import('msgraph.generated.models.identity')
-identity_set = lazy_import('msgraph.generated.models.identity_set')
+if TYPE_CHECKING:
+    from . import endpoint_type, identity, identity_set
+
+from . import identity_set
 
 class CommunicationsIdentitySet(identity_set.IdentitySet):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new CommunicationsIdentitySet and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.communicationsIdentitySet"
+        # The application instance associated with this action.
+        self._application_instance: Optional[identity.Identity] = None
+        # An identity the participant would like to present itself as to the other participants in the call.
+        self._asserted_identity: Optional[identity.Identity] = None
+        # The Azure Communication Services user associated with this action.
+        self._azure_communication_services_user: Optional[identity.Identity] = None
+        # The encrypted user associated with this action.
+        self._encrypted: Optional[identity.Identity] = None
+        # Type of endpoint the participant is using. Possible values are: default, voicemail, skypeForBusiness, skypeForBusinessVoipPhone and unknownFutureValue.
+        self._endpoint_type: Optional[endpoint_type.EndpointType] = None
+        # The guest user associated with this action.
+        self._guest: Optional[identity.Identity] = None
+        # The Skype for Business On-Premises user associated with this action.
+        self._on_premises: Optional[identity.Identity] = None
+        # Inherited from identitySet. The phone user associated with this action.
+        self._phone: Optional[identity.Identity] = None
+    
     @property
     def application_instance(self,) -> Optional[identity.Identity]:
         """
@@ -58,29 +81,6 @@ class CommunicationsIdentitySet(identity_set.IdentitySet):
             value: Value to set for the azure_communication_services_user property.
         """
         self._azure_communication_services_user = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new CommunicationsIdentitySet and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.communicationsIdentitySet"
-        # The application instance associated with this action.
-        self._application_instance: Optional[identity.Identity] = None
-        # An identity the participant would like to present itself as to the other participants in the call.
-        self._asserted_identity: Optional[identity.Identity] = None
-        # The Azure Communication Services user associated with this action.
-        self._azure_communication_services_user: Optional[identity.Identity] = None
-        # The encrypted user associated with this action.
-        self._encrypted: Optional[identity.Identity] = None
-        # Type of endpoint the participant is using. Possible values are: default, voicemail, skypeForBusiness, skypeForBusinessVoipPhone and unknownFutureValue.
-        self._endpoint_type: Optional[endpoint_type.EndpointType] = None
-        # The guest user associated with this action.
-        self._guest: Optional[identity.Identity] = None
-        # The Skype for Business On-Premises user associated with this action.
-        self._on_premises: Optional[identity.Identity] = None
-        # Inherited from identitySet. The phone user associated with this action.
-        self._phone: Optional[identity.Identity] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CommunicationsIdentitySet:
@@ -133,7 +133,9 @@ class CommunicationsIdentitySet(identity_set.IdentitySet):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import endpoint_type, identity, identity_set
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "applicationInstance": lambda n : setattr(self, 'application_instance', n.get_object_value(identity.Identity)),
             "assertedIdentity": lambda n : setattr(self, 'asserted_identity', n.get_object_value(identity.Identity)),
             "azureCommunicationServicesUser": lambda n : setattr(self, 'azure_communication_services_user', n.get_object_value(identity.Identity)),

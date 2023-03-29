@@ -7,49 +7,21 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-currency_request_builder = lazy_import('msgraph.generated.financials.companies.item.purchase_invoices.item.vendor.currency.currency_request_builder')
-payment_method_request_builder = lazy_import('msgraph.generated.financials.companies.item.purchase_invoices.item.vendor.payment_method.payment_method_request_builder')
-payment_term_request_builder = lazy_import('msgraph.generated.financials.companies.item.purchase_invoices.item.vendor.payment_term.payment_term_request_builder')
-picture_request_builder = lazy_import('msgraph.generated.financials.companies.item.purchase_invoices.item.vendor.picture.picture_request_builder')
-picture_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.purchase_invoices.item.vendor.picture.item.picture_item_request_builder')
-vendor = lazy_import('msgraph.generated.models.vendor')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from .......models import vendor
+    from .......models.o_data_errors import o_data_error
+    from .currency import currency_request_builder
+    from .payment_method import payment_method_request_builder
+    from .payment_term import payment_term_request_builder
+    from .picture import picture_request_builder
+    from .picture.item import picture_item_request_builder
 
 class VendorRequestBuilder():
     """
     Provides operations to manage the vendor property of the microsoft.graph.purchaseInvoice entity.
     """
-    @property
-    def currency(self) -> currency_request_builder.CurrencyRequestBuilder:
-        """
-        Provides operations to manage the currency property of the microsoft.graph.vendor entity.
-        """
-        return currency_request_builder.CurrencyRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def payment_method(self) -> payment_method_request_builder.PaymentMethodRequestBuilder:
-        """
-        Provides operations to manage the paymentMethod property of the microsoft.graph.vendor entity.
-        """
-        return payment_method_request_builder.PaymentMethodRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def payment_term(self) -> payment_term_request_builder.PaymentTermRequestBuilder:
-        """
-        Provides operations to manage the paymentTerm property of the microsoft.graph.vendor entity.
-        """
-        return payment_term_request_builder.PaymentTermRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def picture(self) -> picture_request_builder.PictureRequestBuilder:
-        """
-        Provides operations to manage the picture property of the microsoft.graph.vendor entity.
-        """
-        return picture_request_builder.PictureRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new VendorRequestBuilder and sets the default values.
@@ -77,6 +49,8 @@ class VendorRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -95,12 +69,16 @@ class VendorRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .......models import vendor
+
         return await self.request_adapter.send_async(request_info, vendor.Vendor, error_mapping)
     
     async def patch(self,body: Optional[vendor.Vendor] = None, request_configuration: Optional[VendorRequestBuilderPatchRequestConfiguration] = None) -> Optional[vendor.Vendor]:
@@ -116,12 +94,16 @@ class VendorRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .......models import vendor
+
         return await self.request_adapter.send_async(request_info, vendor.Vendor, error_mapping)
     
     def picture_by_id(self,id: str) -> picture_item_request_builder.PictureItemRequestBuilder:
@@ -133,6 +115,8 @@ class VendorRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .picture.item import picture_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["picture%2Did"] = id
         return picture_item_request_builder.PictureItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -192,6 +176,42 @@ class VendorRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def currency(self) -> currency_request_builder.CurrencyRequestBuilder:
+        """
+        Provides operations to manage the currency property of the microsoft.graph.vendor entity.
+        """
+        from .currency import currency_request_builder
+
+        return currency_request_builder.CurrencyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def payment_method(self) -> payment_method_request_builder.PaymentMethodRequestBuilder:
+        """
+        Provides operations to manage the paymentMethod property of the microsoft.graph.vendor entity.
+        """
+        from .payment_method import payment_method_request_builder
+
+        return payment_method_request_builder.PaymentMethodRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def payment_term(self) -> payment_term_request_builder.PaymentTermRequestBuilder:
+        """
+        Provides operations to manage the paymentTerm property of the microsoft.graph.vendor entity.
+        """
+        from .payment_term import payment_term_request_builder
+
+        return payment_term_request_builder.PaymentTermRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def picture(self) -> picture_request_builder.PictureRequestBuilder:
+        """
+        Provides operations to manage the picture property of the microsoft.graph.vendor entity.
+        """
+        from .picture import picture_request_builder
+
+        return picture_request_builder.PictureRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class VendorRequestBuilderDeleteRequestConfiguration():
         """
@@ -209,12 +229,6 @@ class VendorRequestBuilder():
         """
         Get vendor from financials
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -230,6 +244,12 @@ class VendorRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class VendorRequestBuilderGetRequestConfiguration():

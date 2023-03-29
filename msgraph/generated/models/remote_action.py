@@ -61,4 +61,6 @@ class RemoteAction(Enum):
     InitiateMobileDeviceManagementKeyRecovery = "initiateMobileDeviceManagementKeyRecovery",
     # Add device action of InitiateOnDemandProactiveRemediation
     InitiateOnDemandProactiveRemediation = "initiateOnDemandProactiveRemediation",
+    # Add device action of RotateLocalAdminPassword
+    RotateLocalAdminPassword = "rotateLocalAdminPassword",
 

@@ -1,28 +1,105 @@
 from __future__ import annotations
 from datetime import date, datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from uuid import UUID
 
-currency = lazy_import('msgraph.generated.models.currency')
-customer = lazy_import('msgraph.generated.models.customer')
-entity = lazy_import('msgraph.generated.models.entity')
-payment_term = lazy_import('msgraph.generated.models.payment_term')
-postal_address_type = lazy_import('msgraph.generated.models.postal_address_type')
-sales_quote_line = lazy_import('msgraph.generated.models.sales_quote_line')
-shipment_method = lazy_import('msgraph.generated.models.shipment_method')
+if TYPE_CHECKING:
+    from . import currency, customer, entity, payment_term, postal_address_type, sales_quote_line, shipment_method
+
+from . import entity
 
 class SalesQuote(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new salesQuote and sets the default values.
+        """
+        super().__init__()
+        # The acceptedDate property
+        self._accepted_date: Optional[date] = None
+        # The billToCustomerId property
+        self._bill_to_customer_id: Optional[UUID] = None
+        # The billToCustomerNumber property
+        self._bill_to_customer_number: Optional[str] = None
+        # The billToName property
+        self._bill_to_name: Optional[str] = None
+        # The billingPostalAddress property
+        self._billing_postal_address: Optional[postal_address_type.PostalAddressType] = None
+        # The currency property
+        self._currency: Optional[currency.Currency] = None
+        # The currencyCode property
+        self._currency_code: Optional[str] = None
+        # The currencyId property
+        self._currency_id: Optional[UUID] = None
+        # The customer property
+        self._customer: Optional[customer.Customer] = None
+        # The customerId property
+        self._customer_id: Optional[UUID] = None
+        # The customerName property
+        self._customer_name: Optional[str] = None
+        # The customerNumber property
+        self._customer_number: Optional[str] = None
+        # The discountAmount property
+        self._discount_amount: Optional[float] = None
+        # The documentDate property
+        self._document_date: Optional[date] = None
+        # The dueDate property
+        self._due_date: Optional[date] = None
+        # The email property
+        self._email: Optional[str] = None
+        # The externalDocumentNumber property
+        self._external_document_number: Optional[str] = None
+        # The lastModifiedDateTime property
+        self._last_modified_date_time: Optional[datetime] = None
+        # The number property
+        self._number: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The paymentTerm property
+        self._payment_term: Optional[payment_term.PaymentTerm] = None
+        # The paymentTermsId property
+        self._payment_terms_id: Optional[UUID] = None
+        # The phoneNumber property
+        self._phone_number: Optional[str] = None
+        # The salesQuoteLines property
+        self._sales_quote_lines: Optional[List[sales_quote_line.SalesQuoteLine]] = None
+        # The salesperson property
+        self._salesperson: Optional[str] = None
+        # The sellingPostalAddress property
+        self._selling_postal_address: Optional[postal_address_type.PostalAddressType] = None
+        # The sentDate property
+        self._sent_date: Optional[datetime] = None
+        # The shipToContact property
+        self._ship_to_contact: Optional[str] = None
+        # The shipToName property
+        self._ship_to_name: Optional[str] = None
+        # The shipmentMethod property
+        self._shipment_method: Optional[shipment_method.ShipmentMethod] = None
+        # The shipmentMethodId property
+        self._shipment_method_id: Optional[UUID] = None
+        # The shippingPostalAddress property
+        self._shipping_postal_address: Optional[postal_address_type.PostalAddressType] = None
+        # The status property
+        self._status: Optional[str] = None
+        # The totalAmountExcludingTax property
+        self._total_amount_excluding_tax: Optional[float] = None
+        # The totalAmountIncludingTax property
+        self._total_amount_including_tax: Optional[float] = None
+        # The totalTaxAmount property
+        self._total_tax_amount: Optional[float] = None
+        # The validUntilDate property
+        self._valid_until_date: Optional[date] = None
+    
     @property
-    def accepted_date(self,) -> Optional[Date]:
+    def accepted_date(self,) -> Optional[date]:
         """
         Gets the acceptedDate property value. The acceptedDate property
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._accepted_date
     
     @accepted_date.setter
-    def accepted_date(self,value: Optional[Date] = None) -> None:
+    def accepted_date(self,value: Optional[date] = None) -> None:
         """
         Sets the acceptedDate property value. The acceptedDate property
         Args:
@@ -31,15 +108,15 @@ class SalesQuote(entity.Entity):
         self._accepted_date = value
     
     @property
-    def bill_to_customer_id(self,) -> Optional[Guid]:
+    def bill_to_customer_id(self,) -> Optional[UUID]:
         """
         Gets the billToCustomerId property value. The billToCustomerId property
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._bill_to_customer_id
     
     @bill_to_customer_id.setter
-    def bill_to_customer_id(self,value: Optional[Guid] = None) -> None:
+    def bill_to_customer_id(self,value: Optional[UUID] = None) -> None:
         """
         Sets the billToCustomerId property value. The billToCustomerId property
         Args:
@@ -98,86 +175,6 @@ class SalesQuote(entity.Entity):
         """
         self._billing_postal_address = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new salesQuote and sets the default values.
-        """
-        super().__init__()
-        # The acceptedDate property
-        self._accepted_date: Optional[Date] = None
-        # The billToCustomerId property
-        self._bill_to_customer_id: Optional[Guid] = None
-        # The billToCustomerNumber property
-        self._bill_to_customer_number: Optional[str] = None
-        # The billToName property
-        self._bill_to_name: Optional[str] = None
-        # The billingPostalAddress property
-        self._billing_postal_address: Optional[postal_address_type.PostalAddressType] = None
-        # The currency property
-        self._currency: Optional[currency.Currency] = None
-        # The currencyCode property
-        self._currency_code: Optional[str] = None
-        # The currencyId property
-        self._currency_id: Optional[Guid] = None
-        # The customer property
-        self._customer: Optional[customer.Customer] = None
-        # The customerId property
-        self._customer_id: Optional[Guid] = None
-        # The customerName property
-        self._customer_name: Optional[str] = None
-        # The customerNumber property
-        self._customer_number: Optional[str] = None
-        # The discountAmount property
-        self._discount_amount: Optional[float] = None
-        # The documentDate property
-        self._document_date: Optional[Date] = None
-        # The dueDate property
-        self._due_date: Optional[Date] = None
-        # The email property
-        self._email: Optional[str] = None
-        # The externalDocumentNumber property
-        self._external_document_number: Optional[str] = None
-        # The lastModifiedDateTime property
-        self._last_modified_date_time: Optional[datetime] = None
-        # The number property
-        self._number: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The paymentTerm property
-        self._payment_term: Optional[payment_term.PaymentTerm] = None
-        # The paymentTermsId property
-        self._payment_terms_id: Optional[Guid] = None
-        # The phoneNumber property
-        self._phone_number: Optional[str] = None
-        # The salesQuoteLines property
-        self._sales_quote_lines: Optional[List[sales_quote_line.SalesQuoteLine]] = None
-        # The salesperson property
-        self._salesperson: Optional[str] = None
-        # The sellingPostalAddress property
-        self._selling_postal_address: Optional[postal_address_type.PostalAddressType] = None
-        # The sentDate property
-        self._sent_date: Optional[datetime] = None
-        # The shipToContact property
-        self._ship_to_contact: Optional[str] = None
-        # The shipToName property
-        self._ship_to_name: Optional[str] = None
-        # The shipmentMethod property
-        self._shipment_method: Optional[shipment_method.ShipmentMethod] = None
-        # The shipmentMethodId property
-        self._shipment_method_id: Optional[Guid] = None
-        # The shippingPostalAddress property
-        self._shipping_postal_address: Optional[postal_address_type.PostalAddressType] = None
-        # The status property
-        self._status: Optional[str] = None
-        # The totalAmountExcludingTax property
-        self._total_amount_excluding_tax: Optional[float] = None
-        # The totalAmountIncludingTax property
-        self._total_amount_including_tax: Optional[float] = None
-        # The totalTaxAmount property
-        self._total_tax_amount: Optional[float] = None
-        # The validUntilDate property
-        self._valid_until_date: Optional[Date] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SalesQuote:
         """
@@ -225,15 +222,15 @@ class SalesQuote(entity.Entity):
         self._currency_code = value
     
     @property
-    def currency_id(self,) -> Optional[Guid]:
+    def currency_id(self,) -> Optional[UUID]:
         """
         Gets the currencyId property value. The currencyId property
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._currency_id
     
     @currency_id.setter
-    def currency_id(self,value: Optional[Guid] = None) -> None:
+    def currency_id(self,value: Optional[UUID] = None) -> None:
         """
         Sets the currencyId property value. The currencyId property
         Args:
@@ -259,15 +256,15 @@ class SalesQuote(entity.Entity):
         self._customer = value
     
     @property
-    def customer_id(self,) -> Optional[Guid]:
+    def customer_id(self,) -> Optional[UUID]:
         """
         Gets the customerId property value. The customerId property
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._customer_id
     
     @customer_id.setter
-    def customer_id(self,value: Optional[Guid] = None) -> None:
+    def customer_id(self,value: Optional[UUID] = None) -> None:
         """
         Sets the customerId property value. The customerId property
         Args:
@@ -327,15 +324,15 @@ class SalesQuote(entity.Entity):
         self._discount_amount = value
     
     @property
-    def document_date(self,) -> Optional[Date]:
+    def document_date(self,) -> Optional[date]:
         """
         Gets the documentDate property value. The documentDate property
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._document_date
     
     @document_date.setter
-    def document_date(self,value: Optional[Date] = None) -> None:
+    def document_date(self,value: Optional[date] = None) -> None:
         """
         Sets the documentDate property value. The documentDate property
         Args:
@@ -344,15 +341,15 @@ class SalesQuote(entity.Entity):
         self._document_date = value
     
     @property
-    def due_date(self,) -> Optional[Date]:
+    def due_date(self,) -> Optional[date]:
         """
         Gets the dueDate property value. The dueDate property
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._due_date
     
     @due_date.setter
-    def due_date(self,value: Optional[Date] = None) -> None:
+    def due_date(self,value: Optional[date] = None) -> None:
         """
         Sets the dueDate property value. The dueDate property
         Args:
@@ -399,35 +396,37 @@ class SalesQuote(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
-            "acceptedDate": lambda n : setattr(self, 'accepted_date', n.get_object_value(Date)),
+        from . import currency, customer, entity, payment_term, postal_address_type, sales_quote_line, shipment_method
+
+        fields: Dict[str, Callable[[Any], None]] = {
+            "acceptedDate": lambda n : setattr(self, 'accepted_date', n.get_date_value()),
             "billingPostalAddress": lambda n : setattr(self, 'billing_postal_address', n.get_object_value(postal_address_type.PostalAddressType)),
-            "billToCustomerId": lambda n : setattr(self, 'bill_to_customer_id', n.get_object_value(Guid)),
+            "billToCustomerId": lambda n : setattr(self, 'bill_to_customer_id', n.get_uuid_value()),
             "billToCustomerNumber": lambda n : setattr(self, 'bill_to_customer_number', n.get_str_value()),
             "billToName": lambda n : setattr(self, 'bill_to_name', n.get_str_value()),
             "currency": lambda n : setattr(self, 'currency', n.get_object_value(currency.Currency)),
             "currencyCode": lambda n : setattr(self, 'currency_code', n.get_str_value()),
-            "currencyId": lambda n : setattr(self, 'currency_id', n.get_object_value(Guid)),
+            "currencyId": lambda n : setattr(self, 'currency_id', n.get_uuid_value()),
             "customer": lambda n : setattr(self, 'customer', n.get_object_value(customer.Customer)),
-            "customerId": lambda n : setattr(self, 'customer_id', n.get_object_value(Guid)),
+            "customerId": lambda n : setattr(self, 'customer_id', n.get_uuid_value()),
             "customerName": lambda n : setattr(self, 'customer_name', n.get_str_value()),
             "customerNumber": lambda n : setattr(self, 'customer_number', n.get_str_value()),
             "discountAmount": lambda n : setattr(self, 'discount_amount', n.get_float_value()),
-            "documentDate": lambda n : setattr(self, 'document_date', n.get_object_value(Date)),
-            "dueDate": lambda n : setattr(self, 'due_date', n.get_object_value(Date)),
+            "documentDate": lambda n : setattr(self, 'document_date', n.get_date_value()),
+            "dueDate": lambda n : setattr(self, 'due_date', n.get_date_value()),
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
             "externalDocumentNumber": lambda n : setattr(self, 'external_document_number', n.get_str_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "number": lambda n : setattr(self, 'number', n.get_str_value()),
             "paymentTerm": lambda n : setattr(self, 'payment_term', n.get_object_value(payment_term.PaymentTerm)),
-            "paymentTermsId": lambda n : setattr(self, 'payment_terms_id', n.get_object_value(Guid)),
+            "paymentTermsId": lambda n : setattr(self, 'payment_terms_id', n.get_uuid_value()),
             "phoneNumber": lambda n : setattr(self, 'phone_number', n.get_str_value()),
             "salesperson": lambda n : setattr(self, 'salesperson', n.get_str_value()),
             "salesQuoteLines": lambda n : setattr(self, 'sales_quote_lines', n.get_collection_of_object_values(sales_quote_line.SalesQuoteLine)),
             "sellingPostalAddress": lambda n : setattr(self, 'selling_postal_address', n.get_object_value(postal_address_type.PostalAddressType)),
             "sentDate": lambda n : setattr(self, 'sent_date', n.get_datetime_value()),
             "shipmentMethod": lambda n : setattr(self, 'shipment_method', n.get_object_value(shipment_method.ShipmentMethod)),
-            "shipmentMethodId": lambda n : setattr(self, 'shipment_method_id', n.get_object_value(Guid)),
+            "shipmentMethodId": lambda n : setattr(self, 'shipment_method_id', n.get_uuid_value()),
             "shippingPostalAddress": lambda n : setattr(self, 'shipping_postal_address', n.get_object_value(postal_address_type.PostalAddressType)),
             "shipToContact": lambda n : setattr(self, 'ship_to_contact', n.get_str_value()),
             "shipToName": lambda n : setattr(self, 'ship_to_name', n.get_str_value()),
@@ -435,7 +434,7 @@ class SalesQuote(entity.Entity):
             "totalAmountExcludingTax": lambda n : setattr(self, 'total_amount_excluding_tax', n.get_float_value()),
             "totalAmountIncludingTax": lambda n : setattr(self, 'total_amount_including_tax', n.get_float_value()),
             "totalTaxAmount": lambda n : setattr(self, 'total_tax_amount', n.get_float_value()),
-            "validUntilDate": lambda n : setattr(self, 'valid_until_date', n.get_object_value(Date)),
+            "validUntilDate": lambda n : setattr(self, 'valid_until_date', n.get_date_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -493,15 +492,15 @@ class SalesQuote(entity.Entity):
         self._payment_term = value
     
     @property
-    def payment_terms_id(self,) -> Optional[Guid]:
+    def payment_terms_id(self,) -> Optional[UUID]:
         """
         Gets the paymentTermsId property value. The paymentTermsId property
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._payment_terms_id
     
     @payment_terms_id.setter
-    def payment_terms_id(self,value: Optional[Guid] = None) -> None:
+    def payment_terms_id(self,value: Optional[UUID] = None) -> None:
         """
         Sets the paymentTermsId property value. The paymentTermsId property
         Args:
@@ -603,34 +602,34 @@ class SalesQuote(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-        writer.write_object_value("acceptedDate", self.accepted_date)
+        writer.write_date_value("acceptedDate", self.accepted_date)
         writer.write_object_value("billingPostalAddress", self.billing_postal_address)
-        writer.write_object_value("billToCustomerId", self.bill_to_customer_id)
+        writer.write_uuid_value("billToCustomerId", self.bill_to_customer_id)
         writer.write_str_value("billToCustomerNumber", self.bill_to_customer_number)
         writer.write_str_value("billToName", self.bill_to_name)
         writer.write_object_value("currency", self.currency)
         writer.write_str_value("currencyCode", self.currency_code)
-        writer.write_object_value("currencyId", self.currency_id)
+        writer.write_uuid_value("currencyId", self.currency_id)
         writer.write_object_value("customer", self.customer)
-        writer.write_object_value("customerId", self.customer_id)
+        writer.write_uuid_value("customerId", self.customer_id)
         writer.write_str_value("customerName", self.customer_name)
         writer.write_str_value("customerNumber", self.customer_number)
         writer.write_float_value("discountAmount", self.discount_amount)
-        writer.write_object_value("documentDate", self.document_date)
-        writer.write_object_value("dueDate", self.due_date)
+        writer.write_date_value("documentDate", self.document_date)
+        writer.write_date_value("dueDate", self.due_date)
         writer.write_str_value("email", self.email)
         writer.write_str_value("externalDocumentNumber", self.external_document_number)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("number", self.number)
         writer.write_object_value("paymentTerm", self.payment_term)
-        writer.write_object_value("paymentTermsId", self.payment_terms_id)
+        writer.write_uuid_value("paymentTermsId", self.payment_terms_id)
         writer.write_str_value("phoneNumber", self.phone_number)
         writer.write_str_value("salesperson", self.salesperson)
         writer.write_collection_of_object_values("salesQuoteLines", self.sales_quote_lines)
         writer.write_object_value("sellingPostalAddress", self.selling_postal_address)
         writer.write_datetime_value("sentDate", self.sent_date)
         writer.write_object_value("shipmentMethod", self.shipment_method)
-        writer.write_object_value("shipmentMethodId", self.shipment_method_id)
+        writer.write_uuid_value("shipmentMethodId", self.shipment_method_id)
         writer.write_object_value("shippingPostalAddress", self.shipping_postal_address)
         writer.write_str_value("shipToContact", self.ship_to_contact)
         writer.write_str_value("shipToName", self.ship_to_name)
@@ -638,7 +637,7 @@ class SalesQuote(entity.Entity):
         writer.write_float_value("totalAmountExcludingTax", self.total_amount_excluding_tax)
         writer.write_float_value("totalAmountIncludingTax", self.total_amount_including_tax)
         writer.write_float_value("totalTaxAmount", self.total_tax_amount)
-        writer.write_object_value("validUntilDate", self.valid_until_date)
+        writer.write_date_value("validUntilDate", self.valid_until_date)
     
     @property
     def ship_to_contact(self,) -> Optional[str]:
@@ -692,15 +691,15 @@ class SalesQuote(entity.Entity):
         self._shipment_method = value
     
     @property
-    def shipment_method_id(self,) -> Optional[Guid]:
+    def shipment_method_id(self,) -> Optional[UUID]:
         """
         Gets the shipmentMethodId property value. The shipmentMethodId property
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._shipment_method_id
     
     @shipment_method_id.setter
-    def shipment_method_id(self,value: Optional[Guid] = None) -> None:
+    def shipment_method_id(self,value: Optional[UUID] = None) -> None:
         """
         Sets the shipmentMethodId property value. The shipmentMethodId property
         Args:
@@ -794,15 +793,15 @@ class SalesQuote(entity.Entity):
         self._total_tax_amount = value
     
     @property
-    def valid_until_date(self,) -> Optional[Date]:
+    def valid_until_date(self,) -> Optional[date]:
         """
         Gets the validUntilDate property value. The validUntilDate property
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._valid_until_date
     
     @valid_until_date.setter
-    def valid_until_date(self,value: Optional[Date] = None) -> None:
+    def valid_until_date(self,value: Optional[date] = None) -> None:
         """
         Sets the validUntilDate property value. The validUntilDate property
         Args:

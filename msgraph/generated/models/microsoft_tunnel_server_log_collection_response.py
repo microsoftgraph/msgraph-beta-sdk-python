@@ -1,11 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-microsoft_tunnel_log_collection_status = lazy_import('msgraph.generated.models.microsoft_tunnel_log_collection_status')
+if TYPE_CHECKING:
+    from . import entity, microsoft_tunnel_log_collection_status
+
+from . import entity
 
 class MicrosoftTunnelServerLogCollectionResponse(entity.Entity):
     """
@@ -84,7 +85,9 @@ class MicrosoftTunnelServerLogCollectionResponse(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, microsoft_tunnel_log_collection_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
             "expiryDateTime": lambda n : setattr(self, 'expiry_date_time', n.get_datetime_value()),
             "requestDateTime": lambda n : setattr(self, 'request_date_time', n.get_datetime_value()),

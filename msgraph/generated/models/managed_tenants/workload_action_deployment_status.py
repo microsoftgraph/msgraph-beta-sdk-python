@@ -1,13 +1,39 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-generic_error = lazy_import('msgraph.generated.models.generic_error')
-workload_action_status = lazy_import('msgraph.generated.models.managed_tenants.workload_action_status')
+if TYPE_CHECKING:
+    from . import workload_action_status
+    from .. import generic_error
 
 class WorkloadActionDeploymentStatus(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new workloadActionDeploymentStatus and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The unique identifier for the workload action. Required. Read-only.
+        self._action_id: Optional[str] = None
+        # The identifier of any policy that was created by applying the workload action. Optional. Read-only.
+        self._deployed_policy_id: Optional[str] = None
+        # The detailed information for exceptions that occur when deploying the workload action. Optional. Required.
+        self._error: Optional[generic_error.GenericError] = None
+        # The excludeGroups property
+        self._exclude_groups: Optional[List[str]] = None
+        # The includeAllUsers property
+        self._include_all_users: Optional[bool] = None
+        # The includeGroups property
+        self._include_groups: Optional[List[str]] = None
+        # The date and time the workload action was last deployed. Optional.
+        self._last_deployment_date_time: Optional[datetime] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The status property
+        self._status: Optional[workload_action_status.WorkloadActionStatus] = None
+    
     @property
     def action_id(self,) -> Optional[str]:
         """
@@ -41,32 +67,6 @@ class WorkloadActionDeploymentStatus(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new workloadActionDeploymentStatus and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The unique identifier for the workload action. Required. Read-only.
-        self._action_id: Optional[str] = None
-        # The identifier of any policy that was created by applying the workload action. Optional. Read-only.
-        self._deployed_policy_id: Optional[str] = None
-        # The detailed information for exceptions that occur when deploying the workload action. Optional. Required.
-        self._error: Optional[generic_error.GenericError] = None
-        # The excludeGroups property
-        self._exclude_groups: Optional[List[str]] = None
-        # The includeAllUsers property
-        self._include_all_users: Optional[bool] = None
-        # The includeGroups property
-        self._include_groups: Optional[List[str]] = None
-        # The date and time the workload action was last deployed. Optional.
-        self._last_deployment_date_time: Optional[datetime] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The status property
-        self._status: Optional[workload_action_status.WorkloadActionStatus] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WorkloadActionDeploymentStatus:
@@ -136,7 +136,10 @@ class WorkloadActionDeploymentStatus(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import workload_action_status
+        from .. import generic_error
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "actionId": lambda n : setattr(self, 'action_id', n.get_str_value()),
             "deployedPolicyId": lambda n : setattr(self, 'deployed_policy_id', n.get_str_value()),
             "error": lambda n : setattr(self, 'error', n.get_object_value(generic_error.GenericError)),

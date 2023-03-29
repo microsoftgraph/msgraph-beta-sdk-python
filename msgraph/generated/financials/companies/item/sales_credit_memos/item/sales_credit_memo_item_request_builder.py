@@ -7,49 +7,21 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-currency_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_credit_memos.item.currency.currency_request_builder')
-customer_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_credit_memos.item.customer.customer_request_builder')
-payment_term_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_credit_memos.item.payment_term.payment_term_request_builder')
-sales_credit_memo_lines_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_credit_memos.item.sales_credit_memo_lines.sales_credit_memo_lines_request_builder')
-sales_credit_memo_line_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_credit_memos.item.sales_credit_memo_lines.item.sales_credit_memo_line_item_request_builder')
-sales_credit_memo = lazy_import('msgraph.generated.models.sales_credit_memo')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ......models import sales_credit_memo
+    from ......models.o_data_errors import o_data_error
+    from .currency import currency_request_builder
+    from .customer import customer_request_builder
+    from .payment_term import payment_term_request_builder
+    from .sales_credit_memo_lines import sales_credit_memo_lines_request_builder
+    from .sales_credit_memo_lines.item import sales_credit_memo_line_item_request_builder
 
 class SalesCreditMemoItemRequestBuilder():
     """
     Provides operations to manage the salesCreditMemos property of the microsoft.graph.company entity.
     """
-    @property
-    def currency(self) -> currency_request_builder.CurrencyRequestBuilder:
-        """
-        Provides operations to manage the currency property of the microsoft.graph.salesCreditMemo entity.
-        """
-        return currency_request_builder.CurrencyRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def customer(self) -> customer_request_builder.CustomerRequestBuilder:
-        """
-        Provides operations to manage the customer property of the microsoft.graph.salesCreditMemo entity.
-        """
-        return customer_request_builder.CustomerRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def payment_term(self) -> payment_term_request_builder.PaymentTermRequestBuilder:
-        """
-        Provides operations to manage the paymentTerm property of the microsoft.graph.salesCreditMemo entity.
-        """
-        return payment_term_request_builder.PaymentTermRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def sales_credit_memo_lines(self) -> sales_credit_memo_lines_request_builder.SalesCreditMemoLinesRequestBuilder:
-        """
-        Provides operations to manage the salesCreditMemoLines property of the microsoft.graph.salesCreditMemo entity.
-        """
-        return sales_credit_memo_lines_request_builder.SalesCreditMemoLinesRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new SalesCreditMemoItemRequestBuilder and sets the default values.
@@ -78,12 +50,16 @@ class SalesCreditMemoItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import sales_credit_memo
+
         return await self.request_adapter.send_async(request_info, sales_credit_memo.SalesCreditMemo, error_mapping)
     
     async def patch(self,body: Optional[sales_credit_memo.SalesCreditMemo] = None, request_configuration: Optional[SalesCreditMemoItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[sales_credit_memo.SalesCreditMemo]:
@@ -99,12 +75,16 @@ class SalesCreditMemoItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import sales_credit_memo
+
         return await self.request_adapter.send_async(request_info, sales_credit_memo.SalesCreditMemo, error_mapping)
     
     def sales_credit_memo_lines_by_id(self,id: str) -> sales_credit_memo_line_item_request_builder.SalesCreditMemoLineItemRequestBuilder:
@@ -116,6 +96,8 @@ class SalesCreditMemoItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .sales_credit_memo_lines.item import sales_credit_memo_line_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["salesCreditMemoLine%2Did"] = id
         return sales_credit_memo_line_item_request_builder.SalesCreditMemoLineItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -159,17 +141,47 @@ class SalesCreditMemoItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def currency(self) -> currency_request_builder.CurrencyRequestBuilder:
+        """
+        Provides operations to manage the currency property of the microsoft.graph.salesCreditMemo entity.
+        """
+        from .currency import currency_request_builder
+
+        return currency_request_builder.CurrencyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def customer(self) -> customer_request_builder.CustomerRequestBuilder:
+        """
+        Provides operations to manage the customer property of the microsoft.graph.salesCreditMemo entity.
+        """
+        from .customer import customer_request_builder
+
+        return customer_request_builder.CustomerRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def payment_term(self) -> payment_term_request_builder.PaymentTermRequestBuilder:
+        """
+        Provides operations to manage the paymentTerm property of the microsoft.graph.salesCreditMemo entity.
+        """
+        from .payment_term import payment_term_request_builder
+
+        return payment_term_request_builder.PaymentTermRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def sales_credit_memo_lines(self) -> sales_credit_memo_lines_request_builder.SalesCreditMemoLinesRequestBuilder:
+        """
+        Provides operations to manage the salesCreditMemoLines property of the microsoft.graph.salesCreditMemo entity.
+        """
+        from .sales_credit_memo_lines import sales_credit_memo_lines_request_builder
+
+        return sales_credit_memo_lines_request_builder.SalesCreditMemoLinesRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class SalesCreditMemoItemRequestBuilderGetQueryParameters():
         """
         Get salesCreditMemos from financials
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -185,6 +197,12 @@ class SalesCreditMemoItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class SalesCreditMemoItemRequestBuilderGetRequestConfiguration():

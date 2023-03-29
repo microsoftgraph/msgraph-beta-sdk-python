@@ -1,14 +1,42 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-access_package_resource = lazy_import('msgraph.generated.models.access_package_resource')
-access_package_subject = lazy_import('msgraph.generated.models.access_package_subject')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import access_package_resource, access_package_subject, entity
+
+from . import entity
 
 class AccessPackageResourceRequest(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new accessPackageResourceRequest and sets the default values.
+        """
+        super().__init__()
+        # The accessPackageResource property
+        self._access_package_resource: Optional[access_package_resource.AccessPackageResource] = None
+        # The unique ID of the access package catalog.
+        self._catalog_id: Optional[str] = None
+        # The executeImmediately property
+        self._execute_immediately: Optional[bool] = None
+        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+        self._expiration_date_time: Optional[datetime] = None
+        # If set, does not add the resource.
+        self._is_validation_only: Optional[bool] = None
+        # The requestor's justification for adding or removing the resource.
+        self._justification: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The outcome of whether the service was able to add the resource to the catalog.  The value is Delivered if the resource was added or removed. Read-Only.
+        self._request_state: Optional[str] = None
+        # The requestStatus property
+        self._request_status: Optional[str] = None
+        # Use AdminAdd to add a resource, if the caller is an administrator or resource owner, AdminUpdate to update a resource, or AdminRemove to remove a resource.
+        self._request_type: Optional[str] = None
+        # Read-only. Nullable. Supports $expand.
+        self._requestor: Optional[access_package_subject.AccessPackageSubject] = None
+    
     @property
     def access_package_resource(self,) -> Optional[access_package_resource.AccessPackageResource]:
         """
@@ -42,34 +70,6 @@ class AccessPackageResourceRequest(entity.Entity):
             value: Value to set for the catalog_id property.
         """
         self._catalog_id = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new accessPackageResourceRequest and sets the default values.
-        """
-        super().__init__()
-        # The accessPackageResource property
-        self._access_package_resource: Optional[access_package_resource.AccessPackageResource] = None
-        # The unique ID of the access package catalog.
-        self._catalog_id: Optional[str] = None
-        # The executeImmediately property
-        self._execute_immediately: Optional[bool] = None
-        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-        self._expiration_date_time: Optional[datetime] = None
-        # If set, does not add the resource.
-        self._is_validation_only: Optional[bool] = None
-        # The requestor's justification for adding or removing the resource.
-        self._justification: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The outcome of whether the service was able to add the resource to the catalog.  The value is Delivered if the resource was added or removed. Read-Only.
-        self._request_state: Optional[str] = None
-        # The requestStatus property
-        self._request_status: Optional[str] = None
-        # Use AdminAdd to add a resource, if the caller is an administrator or resource owner, AdminUpdate to update a resource, or AdminRemove to remove a resource.
-        self._request_type: Optional[str] = None
-        # Read-only. Nullable. Supports $expand.
-        self._requestor: Optional[access_package_subject.AccessPackageSubject] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccessPackageResourceRequest:
@@ -122,7 +122,9 @@ class AccessPackageResourceRequest(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import access_package_resource, access_package_subject, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accessPackageResource": lambda n : setattr(self, 'access_package_resource', n.get_object_value(access_package_resource.AccessPackageResource)),
             "catalogId": lambda n : setattr(self, 'catalog_id', n.get_str_value()),
             "executeImmediately": lambda n : setattr(self, 'execute_immediately', n.get_bool_value()),

@@ -1,15 +1,38 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-aosp_device_owner_certificate_profile_base = lazy_import('msgraph.generated.models.aosp_device_owner_certificate_profile_base')
-certificate_store = lazy_import('msgraph.generated.models.certificate_store')
-custom_subject_alternative_name = lazy_import('msgraph.generated.models.custom_subject_alternative_name')
-device_management_certification_authority = lazy_import('msgraph.generated.models.device_management_certification_authority')
-managed_device_certificate_state = lazy_import('msgraph.generated.models.managed_device_certificate_state')
+if TYPE_CHECKING:
+    from . import aosp_device_owner_certificate_profile_base, certificate_store, custom_subject_alternative_name, device_management_certification_authority, managed_device_certificate_state
+
+from . import aosp_device_owner_certificate_profile_base
 
 class AospDeviceOwnerPkcsCertificateProfile(aosp_device_owner_certificate_profile_base.AospDeviceOwnerCertificateProfileBase):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new AospDeviceOwnerPkcsCertificateProfile and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.aospDeviceOwnerPkcsCertificateProfile"
+        # CertificateStore types
+        self._certificate_store: Optional[certificate_store.CertificateStore] = None
+        # PKCS Certificate Template Name
+        self._certificate_template_name: Optional[str] = None
+        # PKCS Certification Authority
+        self._certification_authority: Optional[str] = None
+        # PKCS Certification Authority Name
+        self._certification_authority_name: Optional[str] = None
+        # Device Management Certification Authority Types.
+        self._certification_authority_type: Optional[device_management_certification_authority.DeviceManagementCertificationAuthority] = None
+        # Custom Subject Alternative Name Settings. This collection can contain a maximum of 500 elements.
+        self._custom_subject_alternative_names: Optional[List[custom_subject_alternative_name.CustomSubjectAlternativeName]] = None
+        # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
+        self._managed_device_certificate_states: Optional[List[managed_device_certificate_state.ManagedDeviceCertificateState]] = None
+        # Custom String that defines the AAD Attribute.
+        self._subject_alternative_name_format_string: Optional[str] = None
+        # Custom format to use with SubjectNameFormat = Custom. Example: CN={{EmailAddress}},E={{EmailAddress}},OU=Enterprise Users,O=Contoso Corporation,L=Redmond,ST=WA,C=US
+        self._subject_name_format_string: Optional[str] = None
+    
     @property
     def certificate_store(self,) -> Optional[certificate_store.CertificateStore]:
         """
@@ -95,31 +118,6 @@ class AospDeviceOwnerPkcsCertificateProfile(aosp_device_owner_certificate_profil
         """
         self._certification_authority_type = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AospDeviceOwnerPkcsCertificateProfile and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.aospDeviceOwnerPkcsCertificateProfile"
-        # CertificateStore types
-        self._certificate_store: Optional[certificate_store.CertificateStore] = None
-        # PKCS Certificate Template Name
-        self._certificate_template_name: Optional[str] = None
-        # PKCS Certification Authority
-        self._certification_authority: Optional[str] = None
-        # PKCS Certification Authority Name
-        self._certification_authority_name: Optional[str] = None
-        # Device Management Certification Authority Types.
-        self._certification_authority_type: Optional[device_management_certification_authority.DeviceManagementCertificationAuthority] = None
-        # Custom Subject Alternative Name Settings. This collection can contain a maximum of 500 elements.
-        self._custom_subject_alternative_names: Optional[List[custom_subject_alternative_name.CustomSubjectAlternativeName]] = None
-        # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
-        self._managed_device_certificate_states: Optional[List[managed_device_certificate_state.ManagedDeviceCertificateState]] = None
-        # Custom String that defines the AAD Attribute.
-        self._subject_alternative_name_format_string: Optional[str] = None
-        # Custom format to use with SubjectNameFormat = Custom. Example: CN={{EmailAddress}},E={{EmailAddress}},OU=Enterprise Users,O=Contoso Corporation,L=Redmond,ST=WA,C=US
-        self._subject_name_format_string: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AospDeviceOwnerPkcsCertificateProfile:
         """
@@ -154,7 +152,9 @@ class AospDeviceOwnerPkcsCertificateProfile(aosp_device_owner_certificate_profil
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import aosp_device_owner_certificate_profile_base, certificate_store, custom_subject_alternative_name, device_management_certification_authority, managed_device_certificate_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(certificate_store.CertificateStore)),
             "certificateTemplateName": lambda n : setattr(self, 'certificate_template_name', n.get_str_value()),
             "certificationAuthority": lambda n : setattr(self, 'certification_authority', n.get_str_value()),

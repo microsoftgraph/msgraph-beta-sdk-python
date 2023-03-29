@@ -1,13 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-matching_label = lazy_import('msgraph.generated.models.matching_label')
-responsible_policy = lazy_import('msgraph.generated.models.responsible_policy')
-responsible_sensitive_type = lazy_import('msgraph.generated.models.responsible_sensitive_type')
+if TYPE_CHECKING:
+    from . import matching_label, responsible_policy, responsible_sensitive_type
 
 class EvaluateLabelJobResult(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new evaluateLabelJobResult and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The responsiblePolicy property
+        self._responsible_policy: Optional[responsible_policy.ResponsiblePolicy] = None
+        # The responsibleSensitiveTypes property
+        self._responsible_sensitive_types: Optional[List[responsible_sensitive_type.ResponsibleSensitiveType]] = None
+        # The sensitivityLabel property
+        self._sensitivity_label: Optional[matching_label.MatchingLabel] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -24,22 +38,6 @@ class EvaluateLabelJobResult(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new evaluateLabelJobResult and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The responsiblePolicy property
-        self._responsible_policy: Optional[responsible_policy.ResponsiblePolicy] = None
-        # The responsibleSensitiveTypes property
-        self._responsible_sensitive_types: Optional[List[responsible_sensitive_type.ResponsibleSensitiveType]] = None
-        # The sensitivityLabel property
-        self._sensitivity_label: Optional[matching_label.MatchingLabel] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EvaluateLabelJobResult:
@@ -58,7 +56,9 @@ class EvaluateLabelJobResult(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import matching_label, responsible_policy, responsible_sensitive_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "responsiblePolicy": lambda n : setattr(self, 'responsible_policy', n.get_object_value(responsible_policy.ResponsiblePolicy)),
             "responsibleSensitiveTypes": lambda n : setattr(self, 'responsible_sensitive_types', n.get_collection_of_object_values(responsible_sensitive_type.ResponsibleSensitiveType)),

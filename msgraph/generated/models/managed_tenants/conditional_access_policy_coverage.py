@@ -1,12 +1,30 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from .. import entity
+
+from .. import entity
 
 class ConditionalAccessPolicyCoverage(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new conditionalAccessPolicyCoverage and sets the default values.
+        """
+        super().__init__()
+        # The state for the conditional access policy. Possible values are: enabled, disabled, enabledForReportingButNotEnforced. Required. Read-only.
+        self._conditional_access_policy_state: Optional[str] = None
+        # The date and time the conditional access policy was last modified. Required. Read-only.
+        self._latest_policy_modified_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # A flag indicating whether the conditional access policy requires device compliance. Required. Read-only.
+        self._requires_device_compliance: Optional[bool] = None
+        # The display name for the managed tenant. Required. Read-only.
+        self._tenant_display_name: Optional[str] = None
+    
     @property
     def conditional_access_policy_state(self,) -> Optional[str]:
         """
@@ -23,22 +41,6 @@ class ConditionalAccessPolicyCoverage(entity.Entity):
             value: Value to set for the conditional_access_policy_state property.
         """
         self._conditional_access_policy_state = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new conditionalAccessPolicyCoverage and sets the default values.
-        """
-        super().__init__()
-        # The state for the conditional access policy. Possible values are: enabled, disabled, enabledForReportingButNotEnforced. Required. Read-only.
-        self._conditional_access_policy_state: Optional[str] = None
-        # The date and time the conditional access policy was last modified. Required. Read-only.
-        self._latest_policy_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # A flag indicating whether the conditional access policy requires device compliance. Required. Read-only.
-        self._requires_device_compliance: Optional[bool] = None
-        # The display name for the managed tenant. Required. Read-only.
-        self._tenant_display_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ConditionalAccessPolicyCoverage:
@@ -57,7 +59,9 @@ class ConditionalAccessPolicyCoverage(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "conditionalAccessPolicyState": lambda n : setattr(self, 'conditional_access_policy_state', n.get_str_value()),
             "latestPolicyModifiedDateTime": lambda n : setattr(self, 'latest_policy_modified_date_time', n.get_datetime_value()),
             "requiresDeviceCompliance": lambda n : setattr(self, 'requires_device_compliance', n.get_bool_value()),

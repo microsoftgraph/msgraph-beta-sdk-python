@@ -1,30 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_configuration_azure_ad_trust_type = lazy_import('msgraph.generated.models.device_management_configuration_azure_ad_trust_type')
-device_management_configuration_setting_applicability = lazy_import('msgraph.generated.models.device_management_configuration_setting_applicability')
-device_management_configuration_windows_skus = lazy_import('msgraph.generated.models.device_management_configuration_windows_skus')
+if TYPE_CHECKING:
+    from . import device_management_configuration_azure_ad_trust_type, device_management_configuration_setting_applicability, device_management_configuration_windows_skus
+
+from . import device_management_configuration_setting_applicability
 
 class DeviceManagementConfigurationWindowsSettingApplicability(device_management_configuration_setting_applicability.DeviceManagementConfigurationSettingApplicability):
-    @property
-    def configuration_service_provider_version(self,) -> Optional[str]:
-        """
-        Gets the configurationServiceProviderVersion property value. Version of CSP setting is a part of
-        Returns: Optional[str]
-        """
-        return self._configuration_service_provider_version
-    
-    @configuration_service_provider_version.setter
-    def configuration_service_provider_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the configurationServiceProviderVersion property value. Version of CSP setting is a part of
-        Args:
-            value: Value to set for the configuration_service_provider_version property.
-        """
-        self._configuration_service_provider_version = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new DeviceManagementConfigurationWindowsSettingApplicability and sets the default values.
@@ -44,6 +27,23 @@ class DeviceManagementConfigurationWindowsSettingApplicability(device_management
         # List of Windows SKUs that the setting is applicable for
         self._windows_skus: Optional[List[device_management_configuration_windows_skus.DeviceManagementConfigurationWindowsSkus]] = None
     
+    @property
+    def configuration_service_provider_version(self,) -> Optional[str]:
+        """
+        Gets the configurationServiceProviderVersion property value. Version of CSP setting is a part of
+        Returns: Optional[str]
+        """
+        return self._configuration_service_provider_version
+    
+    @configuration_service_provider_version.setter
+    def configuration_service_provider_version(self,value: Optional[str] = None) -> None:
+        """
+        Sets the configurationServiceProviderVersion property value. Version of CSP setting is a part of
+        Args:
+            value: Value to set for the configuration_service_provider_version property.
+        """
+        self._configuration_service_provider_version = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationWindowsSettingApplicability:
         """
@@ -61,7 +61,9 @@ class DeviceManagementConfigurationWindowsSettingApplicability(device_management
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_configuration_azure_ad_trust_type, device_management_configuration_setting_applicability, device_management_configuration_windows_skus
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "configurationServiceProviderVersion": lambda n : setattr(self, 'configuration_service_provider_version', n.get_str_value()),
             "maximumSupportedVersion": lambda n : setattr(self, 'maximum_supported_version', n.get_str_value()),
             "minimumSupportedVersion": lambda n : setattr(self, 'minimum_supported_version', n.get_str_value()),

@@ -1,11 +1,38 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-place = lazy_import('msgraph.generated.models.place')
+if TYPE_CHECKING:
+    from . import place
+
+from . import place
 
 class Workspace(place.Place):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new workspace and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.workspace"
+        # Specifies the building name or building number that the workspace is in.
+        self._building: Optional[str] = None
+        # Specifies the capacity of the workspace.
+        self._capacity: Optional[int] = None
+        # Email address of the workspace.
+        self._email_address: Optional[str] = None
+        # Specifies a descriptive label for the floor, for example, P.
+        self._floor_label: Optional[str] = None
+        # Specifies the floor number that the workspace is on.
+        self._floor_number: Optional[int] = None
+        # Specifies whether the workspace is wheelchair accessible.
+        self._is_wheel_chair_accessible: Optional[bool] = None
+        # Specifies a descriptive label for the workspace, for example, a number or name.
+        self._label: Optional[str] = None
+        # Specifies a nickname for the workspace, for example, 'quiet workspace'.
+        self._nickname: Optional[str] = None
+        # Specifies additional features of the workspace, for example, details like the type of view or furniture type.
+        self._tags: Optional[List[str]] = None
+    
     @property
     def building(self,) -> Optional[str]:
         """
@@ -39,31 +66,6 @@ class Workspace(place.Place):
             value: Value to set for the capacity property.
         """
         self._capacity = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new workspace and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.workspace"
-        # Specifies the building name or building number that the workspace is in.
-        self._building: Optional[str] = None
-        # Specifies the capacity of the workspace.
-        self._capacity: Optional[int] = None
-        # Email address of the workspace.
-        self._email_address: Optional[str] = None
-        # Specifies a descriptive label for the floor, for example, P.
-        self._floor_label: Optional[str] = None
-        # Specifies the floor number that the workspace is on.
-        self._floor_number: Optional[int] = None
-        # Specifies whether the workspace is wheelchair accessible.
-        self._is_wheel_chair_accessible: Optional[bool] = None
-        # Specifies a descriptive label for the workspace, for example, a number or name.
-        self._label: Optional[str] = None
-        # Specifies a nickname for the workspace, for example, 'quiet workspace'.
-        self._nickname: Optional[str] = None
-        # Specifies additional features of the workspace, for example, details like the type of view or furniture type.
-        self._tags: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Workspace:
@@ -133,7 +135,9 @@ class Workspace(place.Place):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import place
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "building": lambda n : setattr(self, 'building', n.get_str_value()),
             "capacity": lambda n : setattr(self, 'capacity', n.get_int_value()),
             "emailAddress": lambda n : setattr(self, 'email_address', n.get_str_value()),

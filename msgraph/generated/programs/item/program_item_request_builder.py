@@ -7,25 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-program = lazy_import('msgraph.generated.models.program')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-controls_request_builder = lazy_import('msgraph.generated.programs.item.controls.controls_request_builder')
-program_control_item_request_builder = lazy_import('msgraph.generated.programs.item.controls.item.program_control_item_request_builder')
+if TYPE_CHECKING:
+    from ...models import program
+    from ...models.o_data_errors import o_data_error
+    from .controls import controls_request_builder
+    from .controls.item import program_control_item_request_builder
 
 class ProgramItemRequestBuilder():
     """
     Provides operations to manage the collection of program entities.
     """
-    @property
-    def controls(self) -> controls_request_builder.ControlsRequestBuilder:
-        """
-        Provides operations to manage the controls property of the microsoft.graph.program entity.
-        """
-        return controls_request_builder.ControlsRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new ProgramItemRequestBuilder and sets the default values.
@@ -53,6 +46,8 @@ class ProgramItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .controls.item import program_control_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["programControl%2Did"] = id
         return program_control_item_request_builder.ProgramControlItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -66,6 +61,8 @@ class ProgramItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -84,12 +81,16 @@ class ProgramItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models import program
+
         return await self.request_adapter.send_async(request_info, program.Program, error_mapping)
     
     async def patch(self,body: Optional[program.Program] = None, request_configuration: Optional[ProgramItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[program.Program]:
@@ -105,12 +106,16 @@ class ProgramItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models import program
+
         return await self.request_adapter.send_async(request_info, program.Program, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ProgramItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -168,6 +173,15 @@ class ProgramItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def controls(self) -> controls_request_builder.ControlsRequestBuilder:
+        """
+        Provides operations to manage the controls property of the microsoft.graph.program entity.
+        """
+        from .controls import controls_request_builder
+
+        return controls_request_builder.ControlsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class ProgramItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -185,12 +199,6 @@ class ProgramItemRequestBuilder():
         """
         Get entity from programs by key
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -206,6 +214,12 @@ class ProgramItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class ProgramItemRequestBuilderGetRequestConfiguration():

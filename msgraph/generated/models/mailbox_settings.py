@@ -1,16 +1,41 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-automatic_replies_setting = lazy_import('msgraph.generated.models.automatic_replies_setting')
-delegate_meeting_message_delivery_options = lazy_import('msgraph.generated.models.delegate_meeting_message_delivery_options')
-locale_info = lazy_import('msgraph.generated.models.locale_info')
-mailbox_recipient_type = lazy_import('msgraph.generated.models.mailbox_recipient_type')
-user_purpose = lazy_import('msgraph.generated.models.user_purpose')
-working_hours = lazy_import('msgraph.generated.models.working_hours')
+if TYPE_CHECKING:
+    from . import automatic_replies_setting, delegate_meeting_message_delivery_options, locale_info, mailbox_recipient_type, user_purpose, working_hours
 
 class MailboxSettings(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new mailboxSettings and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Folder ID of an archive folder for the user. Read-only.
+        self._archive_folder: Optional[str] = None
+        # Configuration settings to automatically notify the sender of an incoming email with a message from the signed-in user.
+        self._automatic_replies_setting: Optional[automatic_replies_setting.AutomaticRepliesSetting] = None
+        # The date format for the user's mailbox.
+        self._date_format: Optional[str] = None
+        # If the user has a calendar delegate, this specifies whether the delegate, mailbox owner, or both receive meeting messages and meeting responses. Possible values are: sendToDelegateAndInformationToPrincipal, sendToDelegateAndPrincipal, sendToDelegateOnly. The default is sendToDelegateOnly.
+        self._delegate_meeting_message_delivery_options: Optional[delegate_meeting_message_delivery_options.DelegateMeetingMessageDeliveryOptions] = None
+        # The locale information for the user, including the preferred language and country/region.
+        self._language: Optional[locale_info.LocaleInfo] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The time format for the user's mailbox.
+        self._time_format: Optional[str] = None
+        # The default time zone for the user's mailbox.
+        self._time_zone: Optional[str] = None
+        # The purpose of the mailbox. Differentiates a mailbox for a single user from a shared mailbox and equipment mailbox in Exchange Online. Possible values are: user, linked, shared, room, equipment, others, unknownFutureValue. Read-only.
+        self._user_purpose: Optional[user_purpose.UserPurpose] = None
+        # The userPurposeV2 property
+        self._user_purpose_v2: Optional[mailbox_recipient_type.MailboxRecipientType] = None
+        # The days of the week and hours in a specific time zone that the user works.
+        self._working_hours: Optional[working_hours.WorkingHours] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -31,7 +56,7 @@ class MailboxSettings(AdditionalDataHolder, Parsable):
     @property
     def archive_folder(self,) -> Optional[str]:
         """
-        Gets the archiveFolder property value. Folder ID of an archive folder for the user. Read only.
+        Gets the archiveFolder property value. Folder ID of an archive folder for the user. Read-only.
         Returns: Optional[str]
         """
         return self._archive_folder
@@ -39,7 +64,7 @@ class MailboxSettings(AdditionalDataHolder, Parsable):
     @archive_folder.setter
     def archive_folder(self,value: Optional[str] = None) -> None:
         """
-        Sets the archiveFolder property value. Folder ID of an archive folder for the user. Read only.
+        Sets the archiveFolder property value. Folder ID of an archive folder for the user. Read-only.
         Args:
             value: Value to set for the archive_folder property.
         """
@@ -61,36 +86,6 @@ class MailboxSettings(AdditionalDataHolder, Parsable):
             value: Value to set for the automatic_replies_setting property.
         """
         self._automatic_replies_setting = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new mailboxSettings and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Folder ID of an archive folder for the user. Read only.
-        self._archive_folder: Optional[str] = None
-        # Configuration settings to automatically notify the sender of an incoming email with a message from the signed-in user.
-        self._automatic_replies_setting: Optional[automatic_replies_setting.AutomaticRepliesSetting] = None
-        # The date format for the user's mailbox.
-        self._date_format: Optional[str] = None
-        # If the user has a calendar delegate, this specifies whether the delegate, mailbox owner, or both receive meeting messages and meeting responses. Possible values are: sendToDelegateAndInformationToPrincipal, sendToDelegateAndPrincipal, sendToDelegateOnly. The default is sendToDelegateOnly.
-        self._delegate_meeting_message_delivery_options: Optional[delegate_meeting_message_delivery_options.DelegateMeetingMessageDeliveryOptions] = None
-        # The locale information for the user, including the preferred language and country/region.
-        self._language: Optional[locale_info.LocaleInfo] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The time format for the user's mailbox.
-        self._time_format: Optional[str] = None
-        # The default time zone for the user's mailbox.
-        self._time_zone: Optional[str] = None
-        # The purpose of the mailbox. Used to differentiate a mailbox for a single user from a shared mailbox and equipment mailbox in Exchange Online. Read only.
-        self._user_purpose: Optional[user_purpose.UserPurpose] = None
-        # The userPurposeV2 property
-        self._user_purpose_v2: Optional[mailbox_recipient_type.MailboxRecipientType] = None
-        # The days of the week and hours in a specific time zone that the user works.
-        self._working_hours: Optional[working_hours.WorkingHours] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MailboxSettings:
@@ -143,7 +138,9 @@ class MailboxSettings(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import automatic_replies_setting, delegate_meeting_message_delivery_options, locale_info, mailbox_recipient_type, user_purpose, working_hours
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "archiveFolder": lambda n : setattr(self, 'archive_folder', n.get_str_value()),
             "automaticRepliesSetting": lambda n : setattr(self, 'automatic_replies_setting', n.get_object_value(automatic_replies_setting.AutomaticRepliesSetting)),
             "dateFormat": lambda n : setattr(self, 'date_format', n.get_str_value()),
@@ -250,7 +247,7 @@ class MailboxSettings(AdditionalDataHolder, Parsable):
     @property
     def user_purpose(self,) -> Optional[user_purpose.UserPurpose]:
         """
-        Gets the userPurpose property value. The purpose of the mailbox. Used to differentiate a mailbox for a single user from a shared mailbox and equipment mailbox in Exchange Online. Read only.
+        Gets the userPurpose property value. The purpose of the mailbox. Differentiates a mailbox for a single user from a shared mailbox and equipment mailbox in Exchange Online. Possible values are: user, linked, shared, room, equipment, others, unknownFutureValue. Read-only.
         Returns: Optional[user_purpose.UserPurpose]
         """
         return self._user_purpose
@@ -258,7 +255,7 @@ class MailboxSettings(AdditionalDataHolder, Parsable):
     @user_purpose.setter
     def user_purpose(self,value: Optional[user_purpose.UserPurpose] = None) -> None:
         """
-        Sets the userPurpose property value. The purpose of the mailbox. Used to differentiate a mailbox for a single user from a shared mailbox and equipment mailbox in Exchange Online. Read only.
+        Sets the userPurpose property value. The purpose of the mailbox. Differentiates a mailbox for a single user from a shared mailbox and equipment mailbox in Exchange Online. Possible values are: user, linked, shared, room, equipment, others, unknownFutureValue. Read-only.
         Args:
             value: Value to set for the user_purpose property.
         """

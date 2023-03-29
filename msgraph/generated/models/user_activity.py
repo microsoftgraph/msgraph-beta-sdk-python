@@ -1,16 +1,50 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-activity_history_item = lazy_import('msgraph.generated.models.activity_history_item')
-entity = lazy_import('msgraph.generated.models.entity')
-json = lazy_import('msgraph.generated.models.json')
-status = lazy_import('msgraph.generated.models.status')
-visual_info = lazy_import('msgraph.generated.models.visual_info')
+if TYPE_CHECKING:
+    from . import activity_history_item, entity, json, status, visual_info
+
+from . import entity
 
 class UserActivity(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new userActivity and sets the default values.
+        """
+        super().__init__()
+        # The activationUrl property
+        self._activation_url: Optional[str] = None
+        # The activitySourceHost property
+        self._activity_source_host: Optional[str] = None
+        # The appActivityId property
+        self._app_activity_id: Optional[str] = None
+        # The appDisplayName property
+        self._app_display_name: Optional[str] = None
+        # The contentInfo property
+        self._content_info: Optional[json.Json] = None
+        # The contentUrl property
+        self._content_url: Optional[str] = None
+        # The createdDateTime property
+        self._created_date_time: Optional[datetime] = None
+        # The expirationDateTime property
+        self._expiration_date_time: Optional[datetime] = None
+        # The fallbackUrl property
+        self._fallback_url: Optional[str] = None
+        # The historyItems property
+        self._history_items: Optional[List[activity_history_item.ActivityHistoryItem]] = None
+        # The lastModifiedDateTime property
+        self._last_modified_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The status property
+        self._status: Optional[status.Status] = None
+        # The userTimezone property
+        self._user_timezone: Optional[str] = None
+        # The visualElements property
+        self._visual_elements: Optional[visual_info.VisualInfo] = None
+    
     @property
     def activation_url(self,) -> Optional[str]:
         """
@@ -78,42 +112,6 @@ class UserActivity(entity.Entity):
             value: Value to set for the app_display_name property.
         """
         self._app_display_name = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userActivity and sets the default values.
-        """
-        super().__init__()
-        # The activationUrl property
-        self._activation_url: Optional[str] = None
-        # The activitySourceHost property
-        self._activity_source_host: Optional[str] = None
-        # The appActivityId property
-        self._app_activity_id: Optional[str] = None
-        # The appDisplayName property
-        self._app_display_name: Optional[str] = None
-        # The contentInfo property
-        self._content_info: Optional[json.Json] = None
-        # The contentUrl property
-        self._content_url: Optional[str] = None
-        # The createdDateTime property
-        self._created_date_time: Optional[datetime] = None
-        # The expirationDateTime property
-        self._expiration_date_time: Optional[datetime] = None
-        # The fallbackUrl property
-        self._fallback_url: Optional[str] = None
-        # The historyItems property
-        self._history_items: Optional[List[activity_history_item.ActivityHistoryItem]] = None
-        # The lastModifiedDateTime property
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The status property
-        self._status: Optional[status.Status] = None
-        # The userTimezone property
-        self._user_timezone: Optional[str] = None
-        # The visualElements property
-        self._visual_elements: Optional[visual_info.VisualInfo] = None
     
     @property
     def content_info(self,) -> Optional[json.Json]:
@@ -217,7 +215,9 @@ class UserActivity(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import activity_history_item, entity, json, status, visual_info
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "activationUrl": lambda n : setattr(self, 'activation_url', n.get_str_value()),
             "activitySourceHost": lambda n : setattr(self, 'activity_source_host', n.get_str_value()),
             "appActivityId": lambda n : setattr(self, 'app_activity_id', n.get_str_value()),

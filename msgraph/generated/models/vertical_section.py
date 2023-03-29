@@ -1,11 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-section_emphasis_type = lazy_import('msgraph.generated.models.section_emphasis_type')
-web_part = lazy_import('msgraph.generated.models.web_part')
+if TYPE_CHECKING:
+    from . import entity, section_emphasis_type, web_part
+
+from . import entity
 
 class VerticalSection(entity.Entity):
     def __init__(self,) -> None:
@@ -54,7 +54,9 @@ class VerticalSection(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, section_emphasis_type, web_part
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "emphasis": lambda n : setattr(self, 'emphasis', n.get_enum_value(section_emphasis_type.SectionEmphasisType)),
             "webparts": lambda n : setattr(self, 'webparts', n.get_collection_of_object_values(web_part.WebPart)),
         }

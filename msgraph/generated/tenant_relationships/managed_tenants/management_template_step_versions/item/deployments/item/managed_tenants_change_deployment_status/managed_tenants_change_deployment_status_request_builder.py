@@ -7,12 +7,12 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-management_template_step_deployment = lazy_import('msgraph.generated.models.managed_tenants.management_template_step_deployment')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-change_deployment_status_post_request_body = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.management_template_step_versions.item.deployments.item.managed_tenants_change_deployment_status.change_deployment_status_post_request_body')
+if TYPE_CHECKING:
+    from . import change_deployment_status_post_request_body
+    from ........models.managed_tenants import management_template_step_deployment
+    from ........models.o_data_errors import o_data_error
 
 class ManagedTenantsChangeDeploymentStatusRequestBuilder():
     """
@@ -49,12 +49,16 @@ class ManagedTenantsChangeDeploymentStatusRequestBuilder():
         request_info = self.to_post_request_information(
             body, request_configuration
         )
+        from ........models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ........models.managed_tenants import management_template_step_deployment
+
         return await self.request_adapter.send_async(request_info, management_template_step_deployment.ManagementTemplateStepDeployment, error_mapping)
     
     def to_post_request_information(self,body: Optional[change_deployment_status_post_request_body.ChangeDeploymentStatusPostRequestBody] = None, request_configuration: Optional[ManagedTenantsChangeDeploymentStatusRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:

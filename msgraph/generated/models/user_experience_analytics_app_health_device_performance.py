@@ -1,16 +1,49 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-user_experience_analytics_health_state = lazy_import('msgraph.generated.models.user_experience_analytics_health_state')
+if TYPE_CHECKING:
+    from . import entity, user_experience_analytics_health_state
+
+from . import entity
 
 class UserExperienceAnalyticsAppHealthDevicePerformance(entity.Entity):
     """
     The user experience analytics device performance entity contains device performance details.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new userExperienceAnalyticsAppHealthDevicePerformance and sets the default values.
+        """
+        super().__init__()
+        # The number of app crashes for the device. Valid values -2147483648 to 2147483647
+        self._app_crash_count: Optional[int] = None
+        # The number of app hangs for the device. Valid values -2147483648 to 2147483647
+        self._app_hang_count: Optional[int] = None
+        # The number of distinct app crashes for the device. Valid values -2147483648 to 2147483647
+        self._crashed_app_count: Optional[int] = None
+        # The app health score of the device. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+        self._device_app_health_score: Optional[float] = None
+        # The overall app health status of the device.
+        self._device_app_health_status: Optional[str] = None
+        # The name of the device.
+        self._device_display_name: Optional[str] = None
+        # The id of the device.
+        self._device_id: Optional[str] = None
+        # The manufacturer name of the device.
+        self._device_manufacturer: Optional[str] = None
+        # The model name of the device.
+        self._device_model: Optional[str] = None
+        # The healthStatus property
+        self._health_status: Optional[user_experience_analytics_health_state.UserExperienceAnalyticsHealthState] = None
+        # The mean time to failure for the device in minutes. Valid values -2147483648 to 2147483647
+        self._mean_time_to_failure_in_minutes: Optional[int] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The date and time when the statistics were last computed.
+        self._processed_date_time: Optional[datetime] = None
+    
     @property
     def app_crash_count(self,) -> Optional[int]:
         """
@@ -44,38 +77,6 @@ class UserExperienceAnalyticsAppHealthDevicePerformance(entity.Entity):
             value: Value to set for the app_hang_count property.
         """
         self._app_hang_count = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsAppHealthDevicePerformance and sets the default values.
-        """
-        super().__init__()
-        # The number of app crashes for the device. Valid values -2147483648 to 2147483647
-        self._app_crash_count: Optional[int] = None
-        # The number of app hangs for the device. Valid values -2147483648 to 2147483647
-        self._app_hang_count: Optional[int] = None
-        # The number of distinct app crashes for the device. Valid values -2147483648 to 2147483647
-        self._crashed_app_count: Optional[int] = None
-        # The app health score of the device. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._device_app_health_score: Optional[float] = None
-        # The overall app health status of the device.
-        self._device_app_health_status: Optional[str] = None
-        # The name of the device.
-        self._device_display_name: Optional[str] = None
-        # The id of the device.
-        self._device_id: Optional[str] = None
-        # The manufacturer name of the device.
-        self._device_manufacturer: Optional[str] = None
-        # The model name of the device.
-        self._device_model: Optional[str] = None
-        # The healthStatus property
-        self._health_status: Optional[user_experience_analytics_health_state.UserExperienceAnalyticsHealthState] = None
-        # The mean time to failure for the device in minutes. Valid values -2147483648 to 2147483647
-        self._mean_time_to_failure_in_minutes: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The date and time when the statistics were last computed.
-        self._processed_date_time: Optional[datetime] = None
     
     @property
     def crashed_app_count(self,) -> Optional[int]:
@@ -213,7 +214,9 @@ class UserExperienceAnalyticsAppHealthDevicePerformance(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, user_experience_analytics_health_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appCrashCount": lambda n : setattr(self, 'app_crash_count', n.get_int_value()),
             "appHangCount": lambda n : setattr(self, 'app_hang_count', n.get_int_value()),
             "crashedAppCount": lambda n : setattr(self, 'crashed_app_count', n.get_int_value()),

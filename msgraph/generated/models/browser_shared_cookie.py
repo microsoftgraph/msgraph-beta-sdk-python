@@ -1,33 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-browser_shared_cookie_history = lazy_import('msgraph.generated.models.browser_shared_cookie_history')
-browser_shared_cookie_source_environment = lazy_import('msgraph.generated.models.browser_shared_cookie_source_environment')
-browser_shared_cookie_status = lazy_import('msgraph.generated.models.browser_shared_cookie_status')
-entity = lazy_import('msgraph.generated.models.entity')
-identity_set = lazy_import('msgraph.generated.models.identity_set')
+if TYPE_CHECKING:
+    from . import browser_shared_cookie_history, browser_shared_cookie_source_environment, browser_shared_cookie_status, entity, identity_set
+
+from . import entity
 
 class BrowserSharedCookie(entity.Entity):
-    @property
-    def comment(self,) -> Optional[str]:
-        """
-        Gets the comment property value. The comment for the shared cookie.
-        Returns: Optional[str]
-        """
-        return self._comment
-    
-    @comment.setter
-    def comment(self,value: Optional[str] = None) -> None:
-        """
-        Sets the comment property value. The comment for the shared cookie.
-        Args:
-            value: Value to set for the comment property.
-        """
-        self._comment = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new browserSharedCookie and sets the default values.
@@ -59,6 +40,23 @@ class BrowserSharedCookie(entity.Entity):
         self._source_environment: Optional[browser_shared_cookie_source_environment.BrowserSharedCookieSourceEnvironment] = None
         # The status property
         self._status: Optional[browser_shared_cookie_status.BrowserSharedCookieStatus] = None
+    
+    @property
+    def comment(self,) -> Optional[str]:
+        """
+        Gets the comment property value. The comment for the shared cookie.
+        Returns: Optional[str]
+        """
+        return self._comment
+    
+    @comment.setter
+    def comment(self,value: Optional[str] = None) -> None:
+        """
+        Sets the comment property value. The comment for the shared cookie.
+        Args:
+            value: Value to set for the comment property.
+        """
+        self._comment = value
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
@@ -128,7 +126,9 @@ class BrowserSharedCookie(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import browser_shared_cookie_history, browser_shared_cookie_source_environment, browser_shared_cookie_status, entity, identity_set
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "comment": lambda n : setattr(self, 'comment', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "deletedDateTime": lambda n : setattr(self, 'deleted_date_time', n.get_datetime_value()),

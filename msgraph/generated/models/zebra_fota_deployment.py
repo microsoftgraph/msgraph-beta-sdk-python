@@ -1,12 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_fota_deployment_assignment = lazy_import('msgraph.generated.models.android_fota_deployment_assignment')
-entity = lazy_import('msgraph.generated.models.entity')
-zebra_fota_deployment_settings = lazy_import('msgraph.generated.models.zebra_fota_deployment_settings')
-zebra_fota_deployment_status = lazy_import('msgraph.generated.models.zebra_fota_deployment_status')
+if TYPE_CHECKING:
+    from . import android_fota_deployment_assignment, entity, zebra_fota_deployment_settings, zebra_fota_deployment_status
+
+from . import entity
 
 class ZebraFotaDeployment(entity.Entity):
     """
@@ -132,7 +131,9 @@ class ZebraFotaDeployment(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_fota_deployment_assignment, entity, zebra_fota_deployment_settings, zebra_fota_deployment_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "deploymentAssignments": lambda n : setattr(self, 'deployment_assignments', n.get_collection_of_object_values(android_fota_deployment_assignment.AndroidFotaDeploymentAssignment)),
             "deploymentSettings": lambda n : setattr(self, 'deployment_settings', n.get_object_value(zebra_fota_deployment_settings.ZebraFotaDeploymentSettings)),
             "deploymentStatus": lambda n : setattr(self, 'deployment_status', n.get_object_value(zebra_fota_deployment_status.ZebraFotaDeploymentStatus)),

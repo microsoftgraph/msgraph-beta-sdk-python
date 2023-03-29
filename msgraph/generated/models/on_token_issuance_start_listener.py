@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-authentication_event_listener = lazy_import('msgraph.generated.models.authentication_event_listener')
-on_token_issuance_start_handler = lazy_import('msgraph.generated.models.on_token_issuance_start_handler')
+if TYPE_CHECKING:
+    from . import authentication_event_listener, on_token_issuance_start_handler
+
+from . import authentication_event_listener
 
 class OnTokenIssuanceStartListener(authentication_event_listener.AuthenticationEventListener):
     def __init__(self,) -> None:
@@ -33,7 +34,9 @@ class OnTokenIssuanceStartListener(authentication_event_listener.AuthenticationE
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import authentication_event_listener, on_token_issuance_start_handler
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "handler": lambda n : setattr(self, 'handler', n.get_object_value(on_token_issuance_start_handler.OnTokenIssuanceStartHandler)),
         }
         super_fields = super().get_field_deserializers()

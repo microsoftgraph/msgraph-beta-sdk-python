@@ -1,14 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-acl = lazy_import('msgraph.generated.models.acl')
-entity = lazy_import('msgraph.generated.models.entity')
-external_item_content = lazy_import('msgraph.generated.models.external_item_content')
-properties = lazy_import('msgraph.generated.models.properties')
+if TYPE_CHECKING:
+    from . import acl, entity, external_item_content, properties
+
+from . import entity
 
 class ExternalItem(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new externalItem and sets the default values.
+        """
+        super().__init__()
+        # The acl property
+        self._acl: Optional[List[acl.Acl]] = None
+        # The content property
+        self._content: Optional[external_item_content.ExternalItemContent] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The properties property
+        self._properties: Optional[properties.Properties] = None
+    
     @property
     def acl(self,) -> Optional[List[acl.Acl]]:
         """
@@ -25,20 +38,6 @@ class ExternalItem(entity.Entity):
             value: Value to set for the acl property.
         """
         self._acl = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new externalItem and sets the default values.
-        """
-        super().__init__()
-        # The acl property
-        self._acl: Optional[List[acl.Acl]] = None
-        # The content property
-        self._content: Optional[external_item_content.ExternalItemContent] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The properties property
-        self._properties: Optional[properties.Properties] = None
     
     @property
     def content(self,) -> Optional[external_item_content.ExternalItemContent]:
@@ -74,7 +73,9 @@ class ExternalItem(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import acl, entity, external_item_content, properties
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "acl": lambda n : setattr(self, 'acl', n.get_collection_of_object_values(acl.Acl)),
             "content": lambda n : setattr(self, 'content', n.get_object_value(external_item_content.ExternalItemContent)),
             "properties": lambda n : setattr(self, 'properties', n.get_object_value(properties.Properties)),

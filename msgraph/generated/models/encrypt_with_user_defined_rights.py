@@ -1,11 +1,26 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-encrypt_content = lazy_import('msgraph.generated.models.encrypt_content')
+if TYPE_CHECKING:
+    from . import encrypt_content
+
+from . import encrypt_content
 
 class EncryptWithUserDefinedRights(encrypt_content.EncryptContent):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new EncryptWithUserDefinedRights and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.encryptWithUserDefinedRights"
+        # The allowAdHocPermissions property
+        self._allow_ad_hoc_permissions: Optional[bool] = None
+        # The allowMailForwarding property
+        self._allow_mail_forwarding: Optional[bool] = None
+        # The decryptionRightsManagementTemplateId property
+        self._decryption_rights_management_template_id: Optional[str] = None
+    
     @property
     def allow_ad_hoc_permissions(self,) -> Optional[bool]:
         """
@@ -39,19 +54,6 @@ class EncryptWithUserDefinedRights(encrypt_content.EncryptContent):
             value: Value to set for the allow_mail_forwarding property.
         """
         self._allow_mail_forwarding = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new EncryptWithUserDefinedRights and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.encryptWithUserDefinedRights"
-        # The allowAdHocPermissions property
-        self._allow_ad_hoc_permissions: Optional[bool] = None
-        # The allowMailForwarding property
-        self._allow_mail_forwarding: Optional[bool] = None
-        # The decryptionRightsManagementTemplateId property
-        self._decryption_rights_management_template_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EncryptWithUserDefinedRights:
@@ -87,7 +89,9 @@ class EncryptWithUserDefinedRights(encrypt_content.EncryptContent):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import encrypt_content
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowAdHocPermissions": lambda n : setattr(self, 'allow_ad_hoc_permissions', n.get_bool_value()),
             "allowMailForwarding": lambda n : setattr(self, 'allow_mail_forwarding', n.get_bool_value()),
             "decryptionRightsManagementTemplateId": lambda n : setattr(self, 'decryption_rights_management_template_id', n.get_str_value()),

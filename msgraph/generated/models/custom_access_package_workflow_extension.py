@@ -1,10 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-custom_callout_extension = lazy_import('msgraph.generated.models.custom_callout_extension')
+if TYPE_CHECKING:
+    from . import custom_callout_extension
+
+from . import custom_callout_extension
 
 class CustomAccessPackageWorkflowExtension(custom_callout_extension.CustomCalloutExtension):
     def __init__(self,) -> None:
@@ -52,7 +54,9 @@ class CustomAccessPackageWorkflowExtension(custom_callout_extension.CustomCallou
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import custom_callout_extension
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
         }

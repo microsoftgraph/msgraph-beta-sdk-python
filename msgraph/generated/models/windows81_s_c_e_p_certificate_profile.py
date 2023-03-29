@@ -1,34 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-certificate_store = lazy_import('msgraph.generated.models.certificate_store')
-hash_algorithms = lazy_import('msgraph.generated.models.hash_algorithms')
-key_size = lazy_import('msgraph.generated.models.key_size')
-key_usages = lazy_import('msgraph.generated.models.key_usages')
-managed_device_certificate_state = lazy_import('msgraph.generated.models.managed_device_certificate_state')
-windows81_certificate_profile_base = lazy_import('msgraph.generated.models.windows81_certificate_profile_base')
-windows81_trusted_root_certificate = lazy_import('msgraph.generated.models.windows81_trusted_root_certificate')
+if TYPE_CHECKING:
+    from . import certificate_store, hash_algorithms, key_size, key_usages, managed_device_certificate_state, windows81_certificate_profile_base, windows81_trusted_root_certificate
+
+from . import windows81_certificate_profile_base
 
 class Windows81SCEPCertificateProfile(windows81_certificate_profile_base.Windows81CertificateProfileBase):
-    @property
-    def certificate_store(self,) -> Optional[certificate_store.CertificateStore]:
-        """
-        Gets the certificateStore property value. Target store certificate. Possible values are: user, machine.
-        Returns: Optional[certificate_store.CertificateStore]
-        """
-        return self._certificate_store
-    
-    @certificate_store.setter
-    def certificate_store(self,value: Optional[certificate_store.CertificateStore] = None) -> None:
-        """
-        Sets the certificateStore property value. Target store certificate. Possible values are: user, machine.
-        Args:
-            value: Value to set for the certificate_store property.
-        """
-        self._certificate_store = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new Windows81SCEPCertificateProfile and sets the default values.
@@ -54,6 +33,23 @@ class Windows81SCEPCertificateProfile(windows81_certificate_profile_base.Windows
         # Custom format to use with SubjectNameFormat = Custom. Example: CN={{EmailAddress}},E={{EmailAddress}},OU=Enterprise Users,O=Contoso Corporation,L=Redmond,ST=WA,C=US
         self._subject_name_format_string: Optional[str] = None
     
+    @property
+    def certificate_store(self,) -> Optional[certificate_store.CertificateStore]:
+        """
+        Gets the certificateStore property value. Target store certificate. Possible values are: user, machine.
+        Returns: Optional[certificate_store.CertificateStore]
+        """
+        return self._certificate_store
+    
+    @certificate_store.setter
+    def certificate_store(self,value: Optional[certificate_store.CertificateStore] = None) -> None:
+        """
+        Sets the certificateStore property value. Target store certificate. Possible values are: user, machine.
+        Args:
+            value: Value to set for the certificate_store property.
+        """
+        self._certificate_store = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows81SCEPCertificateProfile:
         """
@@ -71,7 +67,9 @@ class Windows81SCEPCertificateProfile(windows81_certificate_profile_base.Windows
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import certificate_store, hash_algorithms, key_size, key_usages, managed_device_certificate_state, windows81_certificate_profile_base, windows81_trusted_root_certificate
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(certificate_store.CertificateStore)),
             "hashAlgorithm": lambda n : setattr(self, 'hash_algorithm', n.get_enum_value(hash_algorithms.HashAlgorithms)),
             "keySize": lambda n : setattr(self, 'key_size', n.get_enum_value(key_size.KeySize)),

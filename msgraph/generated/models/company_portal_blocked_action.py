@@ -1,16 +1,30 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-company_portal_action = lazy_import('msgraph.generated.models.company_portal_action')
-device_platform_type = lazy_import('msgraph.generated.models.device_platform_type')
-owner_type = lazy_import('msgraph.generated.models.owner_type')
+if TYPE_CHECKING:
+    from . import company_portal_action, device_platform_type, owner_type
 
 class CompanyPortalBlockedAction(AdditionalDataHolder, Parsable):
     """
     Blocked actions on the company portal as per platform and device ownership types
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new companyPortalBlockedAction and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Action on a device that can be executed in the Company Portal
+        self._action: Optional[company_portal_action.CompanyPortalAction] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Owner type of device.
+        self._owner_type: Optional[owner_type.OwnerType] = None
+        # Supported platform types.
+        self._platform: Optional[device_platform_type.DevicePlatformType] = None
+    
     @property
     def action(self,) -> Optional[company_portal_action.CompanyPortalAction]:
         """
@@ -45,22 +59,6 @@ class CompanyPortalBlockedAction(AdditionalDataHolder, Parsable):
         """
         self._additional_data = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new companyPortalBlockedAction and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Action on a device that can be executed in the Company Portal
-        self._action: Optional[company_portal_action.CompanyPortalAction] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Owner type of device.
-        self._owner_type: Optional[owner_type.OwnerType] = None
-        # Supported platform types.
-        self._platform: Optional[device_platform_type.DevicePlatformType] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CompanyPortalBlockedAction:
         """
@@ -78,7 +76,9 @@ class CompanyPortalBlockedAction(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import company_portal_action, device_platform_type, owner_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "action": lambda n : setattr(self, 'action', n.get_enum_value(company_portal_action.CompanyPortalAction)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "ownerType": lambda n : setattr(self, 'owner_type', n.get_enum_value(owner_type.OwnerType)),

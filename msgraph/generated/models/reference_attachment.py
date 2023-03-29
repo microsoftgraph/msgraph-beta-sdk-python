@@ -1,11 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-attachment = lazy_import('msgraph.generated.models.attachment')
-reference_attachment_permission = lazy_import('msgraph.generated.models.reference_attachment_permission')
-reference_attachment_provider = lazy_import('msgraph.generated.models.reference_attachment_provider')
+if TYPE_CHECKING:
+    from . import attachment, reference_attachment_permission, reference_attachment_provider
+
+from . import attachment
 
 class ReferenceAttachment(attachment.Attachment):
     def __init__(self,) -> None:
@@ -44,7 +44,9 @@ class ReferenceAttachment(attachment.Attachment):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import attachment, reference_attachment_permission, reference_attachment_provider
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "isFolder": lambda n : setattr(self, 'is_folder', n.get_bool_value()),
             "permission": lambda n : setattr(self, 'permission', n.get_enum_value(reference_attachment_permission.ReferenceAttachmentPermission)),
             "previewUrl": lambda n : setattr(self, 'preview_url', n.get_str_value()),

@@ -1,11 +1,33 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-teamwork_software_update_status = lazy_import('msgraph.generated.models.teamwork_software_update_status')
+if TYPE_CHECKING:
+    from . import teamwork_software_update_status
 
 class TeamworkSoftwareUpdateHealth(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new teamworkSoftwareUpdateHealth and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The software update available for the admin agent.
+        self._admin_agent_software_update_status: Optional[teamwork_software_update_status.TeamworkSoftwareUpdateStatus] = None
+        # The software update available for the company portal.
+        self._company_portal_software_update_status: Optional[teamwork_software_update_status.TeamworkSoftwareUpdateStatus] = None
+        # The software update available for the firmware.
+        self._firmware_software_update_status: Optional[teamwork_software_update_status.TeamworkSoftwareUpdateStatus] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The software update available for the operating system.
+        self._operating_system_software_update_status: Optional[teamwork_software_update_status.TeamworkSoftwareUpdateStatus] = None
+        # The software update available for the partner agent.
+        self._partner_agent_software_update_status: Optional[teamwork_software_update_status.TeamworkSoftwareUpdateStatus] = None
+        # The software update available for the Teams client.
+        self._teams_client_software_update_status: Optional[teamwork_software_update_status.TeamworkSoftwareUpdateStatus] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -57,28 +79,6 @@ class TeamworkSoftwareUpdateHealth(AdditionalDataHolder, Parsable):
         """
         self._company_portal_software_update_status = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new teamworkSoftwareUpdateHealth and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The software update available for the admin agent.
-        self._admin_agent_software_update_status: Optional[teamwork_software_update_status.TeamworkSoftwareUpdateStatus] = None
-        # The software update available for the company portal.
-        self._company_portal_software_update_status: Optional[teamwork_software_update_status.TeamworkSoftwareUpdateStatus] = None
-        # The software update available for the firmware.
-        self._firmware_software_update_status: Optional[teamwork_software_update_status.TeamworkSoftwareUpdateStatus] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The software update available for the operating system.
-        self._operating_system_software_update_status: Optional[teamwork_software_update_status.TeamworkSoftwareUpdateStatus] = None
-        # The software update available for the partner agent.
-        self._partner_agent_software_update_status: Optional[teamwork_software_update_status.TeamworkSoftwareUpdateStatus] = None
-        # The software update available for the Teams client.
-        self._teams_client_software_update_status: Optional[teamwork_software_update_status.TeamworkSoftwareUpdateStatus] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeamworkSoftwareUpdateHealth:
         """
@@ -113,7 +113,9 @@ class TeamworkSoftwareUpdateHealth(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import teamwork_software_update_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "adminAgentSoftwareUpdateStatus": lambda n : setattr(self, 'admin_agent_software_update_status', n.get_object_value(teamwork_software_update_status.TeamworkSoftwareUpdateStatus)),
             "companyPortalSoftwareUpdateStatus": lambda n : setattr(self, 'company_portal_software_update_status', n.get_object_value(teamwork_software_update_status.TeamworkSoftwareUpdateStatus)),
             "firmwareSoftwareUpdateStatus": lambda n : setattr(self, 'firmware_software_update_status', n.get_object_value(teamwork_software_update_status.TeamworkSoftwareUpdateStatus)),

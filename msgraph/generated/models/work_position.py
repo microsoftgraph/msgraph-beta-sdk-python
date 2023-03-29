@@ -1,13 +1,30 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-item_facet = lazy_import('msgraph.generated.models.item_facet')
-position_detail = lazy_import('msgraph.generated.models.position_detail')
-related_person = lazy_import('msgraph.generated.models.related_person')
+if TYPE_CHECKING:
+    from . import item_facet, position_detail, related_person
+
+from . import item_facet
 
 class WorkPosition(item_facet.ItemFacet):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new WorkPosition and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.workPosition"
+        # Categories that the user has associated with this position.
+        self._categories: Optional[List[str]] = None
+        # Colleagues that are associated with this position.
+        self._colleagues: Optional[List[related_person.RelatedPerson]] = None
+        # The detail property
+        self._detail: Optional[position_detail.PositionDetail] = None
+        # Denotes whether or not the position is current.
+        self._is_current: Optional[bool] = None
+        # Contains detail of the user's manager in this position.
+        self._manager: Optional[related_person.RelatedPerson] = None
+    
     @property
     def categories(self,) -> Optional[List[str]]:
         """
@@ -41,23 +58,6 @@ class WorkPosition(item_facet.ItemFacet):
             value: Value to set for the colleagues property.
         """
         self._colleagues = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WorkPosition and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.workPosition"
-        # Categories that the user has associated with this position.
-        self._categories: Optional[List[str]] = None
-        # Colleagues that are associated with this position.
-        self._colleagues: Optional[List[related_person.RelatedPerson]] = None
-        # The detail property
-        self._detail: Optional[position_detail.PositionDetail] = None
-        # Denotes whether or not the position is current.
-        self._is_current: Optional[bool] = None
-        # Contains detail of the user's manager in this position.
-        self._manager: Optional[related_person.RelatedPerson] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WorkPosition:
@@ -93,7 +93,9 @@ class WorkPosition(item_facet.ItemFacet):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import item_facet, position_detail, related_person
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_primitive_values(str)),
             "colleagues": lambda n : setattr(self, 'colleagues', n.get_collection_of_object_values(related_person.RelatedPerson)),
             "detail": lambda n : setattr(self, 'detail', n.get_object_value(position_detail.PositionDetail)),

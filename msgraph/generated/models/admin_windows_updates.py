@@ -1,34 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-catalog = lazy_import('msgraph.generated.models.windows_updates.catalog')
-deployment = lazy_import('msgraph.generated.models.windows_updates.deployment')
-deployment_audience = lazy_import('msgraph.generated.models.windows_updates.deployment_audience')
-resource_connection = lazy_import('msgraph.generated.models.windows_updates.resource_connection')
-updatable_asset = lazy_import('msgraph.generated.models.windows_updates.updatable_asset')
-update_policy = lazy_import('msgraph.generated.models.windows_updates.update_policy')
+if TYPE_CHECKING:
+    from . import entity
+    from .windows_updates import catalog, deployment, deployment_audience, resource_connection, updatable_asset, update_policy
+
+from . import entity
 
 class AdminWindowsUpdates(entity.Entity):
-    @property
-    def catalog(self,) -> Optional[catalog.Catalog]:
-        """
-        Gets the catalog property value. Catalog of content that can be approved for deployment by the deployment service. Read-only.
-        Returns: Optional[catalog.Catalog]
-        """
-        return self._catalog
-    
-    @catalog.setter
-    def catalog(self,value: Optional[catalog.Catalog] = None) -> None:
-        """
-        Sets the catalog property value. Catalog of content that can be approved for deployment by the deployment service. Read-only.
-        Args:
-            value: Value to set for the catalog property.
-        """
-        self._catalog = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new adminWindowsUpdates and sets the default values.
@@ -48,6 +28,23 @@ class AdminWindowsUpdates(entity.Entity):
         self._updatable_assets: Optional[List[updatable_asset.UpdatableAsset]] = None
         # A collection of policies for approving the deployment of different content to an audience over time.
         self._update_policies: Optional[List[update_policy.UpdatePolicy]] = None
+    
+    @property
+    def catalog(self,) -> Optional[catalog.Catalog]:
+        """
+        Gets the catalog property value. Catalog of content that can be approved for deployment by the deployment service. Read-only.
+        Returns: Optional[catalog.Catalog]
+        """
+        return self._catalog
+    
+    @catalog.setter
+    def catalog(self,value: Optional[catalog.Catalog] = None) -> None:
+        """
+        Sets the catalog property value. Catalog of content that can be approved for deployment by the deployment service. Read-only.
+        Args:
+            value: Value to set for the catalog property.
+        """
+        self._catalog = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AdminWindowsUpdates:
@@ -100,7 +97,10 @@ class AdminWindowsUpdates(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+        from .windows_updates import catalog, deployment, deployment_audience, resource_connection, updatable_asset, update_policy
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "catalog": lambda n : setattr(self, 'catalog', n.get_object_value(catalog.Catalog)),
             "deployments": lambda n : setattr(self, 'deployments', n.get_collection_of_object_values(deployment.Deployment)),
             "deploymentAudiences": lambda n : setattr(self, 'deployment_audiences', n.get_collection_of_object_values(deployment_audience.DeploymentAudience)),

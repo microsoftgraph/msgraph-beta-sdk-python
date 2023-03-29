@@ -1,14 +1,34 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-access_package_resource_role = lazy_import('msgraph.generated.models.access_package_resource_role')
-access_package_resource_scope = lazy_import('msgraph.generated.models.access_package_resource_scope')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import access_package_resource_role, access_package_resource_scope, entity
+
+from . import entity
 
 class AccessPackageResourceRoleScope(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new accessPackageResourceRoleScope and sets the default values.
+        """
+        super().__init__()
+        # Read-only. Nullable. Supports $expand.
+        self._access_package_resource_role: Optional[access_package_resource_role.AccessPackageResourceRole] = None
+        # The accessPackageResourceScope property
+        self._access_package_resource_scope: Optional[access_package_resource_scope.AccessPackageResourceScope] = None
+        # The createdBy property
+        self._created_by: Optional[str] = None
+        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+        self._created_date_time: Optional[datetime] = None
+        # The modifiedBy property
+        self._modified_by: Optional[str] = None
+        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+        self._modified_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def access_package_resource_role(self,) -> Optional[access_package_resource_role.AccessPackageResourceRole]:
         """
@@ -42,26 +62,6 @@ class AccessPackageResourceRoleScope(entity.Entity):
             value: Value to set for the access_package_resource_scope property.
         """
         self._access_package_resource_scope = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new accessPackageResourceRoleScope and sets the default values.
-        """
-        super().__init__()
-        # Read-only. Nullable. Supports $expand.
-        self._access_package_resource_role: Optional[access_package_resource_role.AccessPackageResourceRole] = None
-        # The accessPackageResourceScope property
-        self._access_package_resource_scope: Optional[access_package_resource_scope.AccessPackageResourceScope] = None
-        # The createdBy property
-        self._created_by: Optional[str] = None
-        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-        self._created_date_time: Optional[datetime] = None
-        # The modifiedBy property
-        self._modified_by: Optional[str] = None
-        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-        self._modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
     
     @property
     def created_by(self,) -> Optional[str]:
@@ -114,7 +114,9 @@ class AccessPackageResourceRoleScope(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import access_package_resource_role, access_package_resource_scope, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accessPackageResourceRole": lambda n : setattr(self, 'access_package_resource_role', n.get_object_value(access_package_resource_role.AccessPackageResourceRole)),
             "accessPackageResourceScope": lambda n : setattr(self, 'access_package_resource_scope', n.get_object_value(access_package_resource_scope.AccessPackageResourceScope)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_str_value()),

@@ -1,31 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-app_list_item = lazy_import('msgraph.generated.models.app_list_item')
-apple_vpn_configuration = lazy_import('msgraph.generated.models.apple_vpn_configuration')
-device_management_derived_credential_settings = lazy_import('msgraph.generated.models.device_management_derived_credential_settings')
-ios_certificate_profile_base = lazy_import('msgraph.generated.models.ios_certificate_profile_base')
+if TYPE_CHECKING:
+    from . import apple_vpn_configuration, app_list_item, device_management_derived_credential_settings, iosik_ev2_vpn_configuration, ios_certificate_profile_base
+
+from . import apple_vpn_configuration
 
 class IosVpnConfiguration(apple_vpn_configuration.AppleVpnConfiguration):
-    @property
-    def cloud_name(self,) -> Optional[str]:
-        """
-        Gets the cloudName property value. Zscaler only. Zscaler cloud which the user is assigned to.
-        Returns: Optional[str]
-        """
-        return self._cloud_name
-    
-    @cloud_name.setter
-    def cloud_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the cloudName property value. Zscaler only. Zscaler cloud which the user is assigned to.
-        Args:
-            value: Value to set for the cloud_name property.
-        """
-        self._cloud_name = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new IosVpnConfiguration and sets the default values.
@@ -49,6 +31,23 @@ class IosVpnConfiguration(apple_vpn_configuration.AppleVpnConfiguration):
         # Zscaler only. Enter a static domain to pre-populate the login field with in the Zscaler app. If this is left empty, the user's Azure Active Directory domain will be used instead.
         self._user_domain: Optional[str] = None
     
+    @property
+    def cloud_name(self,) -> Optional[str]:
+        """
+        Gets the cloudName property value. Zscaler only. Zscaler cloud which the user is assigned to.
+        Returns: Optional[str]
+        """
+        return self._cloud_name
+    
+    @cloud_name.setter
+    def cloud_name(self,value: Optional[str] = None) -> None:
+        """
+        Sets the cloudName property value. Zscaler only. Zscaler cloud which the user is assigned to.
+        Args:
+            value: Value to set for the cloud_name property.
+        """
+        self._cloud_name = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosVpnConfiguration:
         """
@@ -59,6 +58,13 @@ class IosVpnConfiguration(apple_vpn_configuration.AppleVpnConfiguration):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.iosikEv2VpnConfiguration":
+                from . import iosik_ev2_vpn_configuration
+
+                return iosik_ev2_vpn_configuration.IosikEv2VpnConfiguration()
         return IosVpnConfiguration()
     
     @property
@@ -100,7 +106,9 @@ class IosVpnConfiguration(apple_vpn_configuration.AppleVpnConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import apple_vpn_configuration, app_list_item, device_management_derived_credential_settings, iosik_ev2_vpn_configuration, ios_certificate_profile_base
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "cloudName": lambda n : setattr(self, 'cloud_name', n.get_str_value()),
             "derivedCredentialSettings": lambda n : setattr(self, 'derived_credential_settings', n.get_object_value(device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings)),
             "excludeList": lambda n : setattr(self, 'exclude_list', n.get_collection_of_primitive_values(str)),

@@ -1,14 +1,34 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-cloud_pc_snapshot_status = lazy_import('msgraph.generated.models.cloud_pc_snapshot_status')
-cloud_pc_snapshot_type = lazy_import('msgraph.generated.models.cloud_pc_snapshot_type')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import cloud_pc_snapshot_status, cloud_pc_snapshot_type, entity
+
+from . import entity
 
 class CloudPcSnapshot(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new CloudPcSnapshot and sets the default values.
+        """
+        super().__init__()
+        # The unique identifier for the Cloud PC.
+        self._cloud_pc_id: Optional[str] = None
+        # The date and time at which the snapshot was taken. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+        self._created_date_time: Optional[datetime] = None
+        # The date and time when the snapshot expires. The time is shown in ISO 8601 format and Coordinated Universal Time (UTC) time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+        self._expiration_date_time: Optional[datetime] = None
+        # The date and time at which the snapshot was last used to restore the Cloud PC device. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+        self._last_restored_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The type of snapshot that indicates how to create the snapshot. Possible values are automatic, manual. Default value is automatic.
+        self._snapshot_type: Optional[cloud_pc_snapshot_type.CloudPcSnapshotType] = None
+        # The status of the Cloud PC snapshot. The possible values are: ready, unknownFutureValue.
+        self._status: Optional[cloud_pc_snapshot_status.CloudPcSnapshotStatus] = None
+    
     @property
     def cloud_pc_id(self,) -> Optional[str]:
         """
@@ -25,26 +45,6 @@ class CloudPcSnapshot(entity.Entity):
             value: Value to set for the cloud_pc_id property.
         """
         self._cloud_pc_id = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new cloudPcSnapshot and sets the default values.
-        """
-        super().__init__()
-        # The unique identifier for the Cloud PC.
-        self._cloud_pc_id: Optional[str] = None
-        # The date and time at which the snapshot was taken. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        self._created_date_time: Optional[datetime] = None
-        # The date and time when the snapshot expires. The time is shown in ISO 8601 format and Coordinated Universal Time (UTC) time. For example, midnight UTC on Jan 1, 2014 appears as'2014-01-01T00:00:00Z'.
-        self._expiration_date_time: Optional[datetime] = None
-        # The date and time at which the snapshot was last used to restore the Cloud PC device. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        self._last_restored_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The type of snapshot. indicates how the snapshot is to be created. Possible values are automatic, manual. Default value is automatic.
-        self._snapshot_type: Optional[cloud_pc_snapshot_type.CloudPcSnapshotType] = None
-        # The status of the Cloud PC snapshot. The possible values are: ready, unknownFutureValue.
-        self._status: Optional[cloud_pc_snapshot_status.CloudPcSnapshotStatus] = None
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
@@ -78,7 +78,7 @@ class CloudPcSnapshot(entity.Entity):
     @property
     def expiration_date_time(self,) -> Optional[datetime]:
         """
-        Gets the expirationDateTime property value. The date and time when the snapshot expires. The time is shown in ISO 8601 format and Coordinated Universal Time (UTC) time. For example, midnight UTC on Jan 1, 2014 appears as'2014-01-01T00:00:00Z'.
+        Gets the expirationDateTime property value. The date and time when the snapshot expires. The time is shown in ISO 8601 format and Coordinated Universal Time (UTC) time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Returns: Optional[datetime]
         """
         return self._expiration_date_time
@@ -86,7 +86,7 @@ class CloudPcSnapshot(entity.Entity):
     @expiration_date_time.setter
     def expiration_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the expirationDateTime property value. The date and time when the snapshot expires. The time is shown in ISO 8601 format and Coordinated Universal Time (UTC) time. For example, midnight UTC on Jan 1, 2014 appears as'2014-01-01T00:00:00Z'.
+        Sets the expirationDateTime property value. The date and time when the snapshot expires. The time is shown in ISO 8601 format and Coordinated Universal Time (UTC) time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
             value: Value to set for the expiration_date_time property.
         """
@@ -97,7 +97,9 @@ class CloudPcSnapshot(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import cloud_pc_snapshot_status, cloud_pc_snapshot_type, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "cloudPcId": lambda n : setattr(self, 'cloud_pc_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
@@ -145,7 +147,7 @@ class CloudPcSnapshot(entity.Entity):
     @property
     def snapshot_type(self,) -> Optional[cloud_pc_snapshot_type.CloudPcSnapshotType]:
         """
-        Gets the snapshotType property value. The type of snapshot. indicates how the snapshot is to be created. Possible values are automatic, manual. Default value is automatic.
+        Gets the snapshotType property value. The type of snapshot that indicates how to create the snapshot. Possible values are automatic, manual. Default value is automatic.
         Returns: Optional[cloud_pc_snapshot_type.CloudPcSnapshotType]
         """
         return self._snapshot_type
@@ -153,7 +155,7 @@ class CloudPcSnapshot(entity.Entity):
     @snapshot_type.setter
     def snapshot_type(self,value: Optional[cloud_pc_snapshot_type.CloudPcSnapshotType] = None) -> None:
         """
-        Sets the snapshotType property value. The type of snapshot. indicates how the snapshot is to be created. Possible values are automatic, manual. Default value is automatic.
+        Sets the snapshotType property value. The type of snapshot that indicates how to create the snapshot. Possible values are automatic, manual. Default value is automatic.
         Args:
             value: Value to set for the snapshot_type property.
         """

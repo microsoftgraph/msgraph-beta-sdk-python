@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-quality_update_classification = lazy_import('msgraph.generated.models.windows_updates.quality_update_classification')
-software_update_catalog_entry = lazy_import('msgraph.generated.models.windows_updates.software_update_catalog_entry')
+if TYPE_CHECKING:
+    from . import quality_update_classification, software_update_catalog_entry
+
+from . import software_update_catalog_entry
 
 class QualityUpdateCatalogEntry(software_update_catalog_entry.SoftwareUpdateCatalogEntry):
     def __init__(self,) -> None:
@@ -35,7 +36,9 @@ class QualityUpdateCatalogEntry(software_update_catalog_entry.SoftwareUpdateCata
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import quality_update_classification, software_update_catalog_entry
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "isExpeditable": lambda n : setattr(self, 'is_expeditable', n.get_bool_value()),
             "qualityUpdateClassification": lambda n : setattr(self, 'quality_update_classification', n.get_enum_value(quality_update_classification.QualityUpdateClassification)),
         }

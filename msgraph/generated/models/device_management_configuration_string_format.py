@@ -28,6 +28,7 @@ class DeviceManagementConfigurationStringFormat(Enum):
     Json = "json",
     # Indicates a string that is expected to be a valid Datetime.
     DateTime = "dateTime",
+    # Indicates a Windows SKU applicability value that maps to Intune.
     SurfaceHub = "surfaceHub",
     # String whose value is a bash script
     BashScript = "bashScript",

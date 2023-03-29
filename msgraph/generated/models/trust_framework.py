@@ -1,12 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-trust_framework_key_set = lazy_import('msgraph.generated.models.trust_framework_key_set')
-trust_framework_policy = lazy_import('msgraph.generated.models.trust_framework_policy')
+if TYPE_CHECKING:
+    from . import trust_framework_key_set, trust_framework_policy
 
 class TrustFramework(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new TrustFramework and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The keySets property
+        self._key_sets: Optional[List[trust_framework_key_set.TrustFrameworkKeySet]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The policies property
+        self._policies: Optional[List[trust_framework_policy.TrustFrameworkPolicy]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,20 +36,6 @@ class TrustFramework(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new TrustFramework and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The keySets property
-        self._key_sets: Optional[List[trust_framework_key_set.TrustFrameworkKeySet]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The policies property
-        self._policies: Optional[List[trust_framework_policy.TrustFrameworkPolicy]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TrustFramework:
@@ -55,7 +54,9 @@ class TrustFramework(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import trust_framework_key_set, trust_framework_policy
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "keySets": lambda n : setattr(self, 'key_sets', n.get_collection_of_object_values(trust_framework_key_set.TrustFrameworkKeySet)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "policies": lambda n : setattr(self, 'policies', n.get_collection_of_object_values(trust_framework_policy.TrustFrameworkPolicy)),

@@ -7,25 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-sensitivity_label = lazy_import('msgraph.generated.models.sensitivity_label')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-sublabels_request_builder = lazy_import('msgraph.generated.users.item.information_protection.sensitivity_labels.item.sublabels.sublabels_request_builder')
-sensitivity_label_item_request_builder = lazy_import('msgraph.generated.users.item.information_protection.sensitivity_labels.item.sublabels.item.sensitivity_label_item_request_builder')
+if TYPE_CHECKING:
+    from ......models import sensitivity_label
+    from ......models.o_data_errors import o_data_error
+    from .sublabels import sublabels_request_builder
+    from .sublabels.item import sensitivity_label_item_request_builder
 
 class SensitivityLabelItemRequestBuilder():
     """
     Provides operations to manage the sensitivityLabels property of the microsoft.graph.informationProtection entity.
     """
-    @property
-    def sublabels(self) -> sublabels_request_builder.SublabelsRequestBuilder:
-        """
-        Provides operations to manage the sublabels property of the microsoft.graph.sensitivityLabel entity.
-        """
-        return sublabels_request_builder.SublabelsRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new SensitivityLabelItemRequestBuilder and sets the default values.
@@ -53,6 +46,8 @@ class SensitivityLabelItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -71,12 +66,16 @@ class SensitivityLabelItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import sensitivity_label
+
         return await self.request_adapter.send_async(request_info, sensitivity_label.SensitivityLabel, error_mapping)
     
     async def patch(self,body: Optional[sensitivity_label.SensitivityLabel] = None, request_configuration: Optional[SensitivityLabelItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[sensitivity_label.SensitivityLabel]:
@@ -92,12 +91,16 @@ class SensitivityLabelItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import sensitivity_label
+
         return await self.request_adapter.send_async(request_info, sensitivity_label.SensitivityLabel, error_mapping)
     
     def sublabels_by_id(self,id: str) -> SensitivityLabelItemRequestBuilder:
@@ -109,6 +112,8 @@ class SensitivityLabelItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .sublabels.item import sensitivity_label_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["sensitivityLabel%2Did1"] = id
         return SensitivityLabelItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -168,6 +173,15 @@ class SensitivityLabelItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def sublabels(self) -> sublabels_request_builder.SublabelsRequestBuilder:
+        """
+        Provides operations to manage the sublabels property of the microsoft.graph.sensitivityLabel entity.
+        """
+        from .sublabels import sublabels_request_builder
+
+        return sublabels_request_builder.SublabelsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class SensitivityLabelItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -185,12 +199,6 @@ class SensitivityLabelItemRequestBuilder():
         """
         Get sensitivityLabels from users
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -206,6 +214,12 @@ class SensitivityLabelItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class SensitivityLabelItemRequestBuilderGetRequestConfiguration():

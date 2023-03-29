@@ -1,13 +1,32 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-vpn_authentication_method = lazy_import('msgraph.generated.models.vpn_authentication_method')
-windows_phone81_certificate_profile_base = lazy_import('msgraph.generated.models.windows_phone81_certificate_profile_base')
-windows81_vpn_configuration = lazy_import('msgraph.generated.models.windows81_vpn_configuration')
+if TYPE_CHECKING:
+    from . import vpn_authentication_method, windows81_vpn_configuration, windows_phone81_certificate_profile_base
+
+from . import windows81_vpn_configuration
 
 class WindowsPhone81VpnConfiguration(windows81_vpn_configuration.Windows81VpnConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new WindowsPhone81VpnConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.windowsPhone81VpnConfiguration"
+        # VPN Authentication Method.
+        self._authentication_method: Optional[vpn_authentication_method.VpnAuthenticationMethod] = None
+        # Bypass VPN on company Wi-Fi.
+        self._bypass_vpn_on_company_wifi: Optional[bool] = None
+        # Bypass VPN on home Wi-Fi.
+        self._bypass_vpn_on_home_wifi: Optional[bool] = None
+        # DNS suffix search list.
+        self._dns_suffix_search_list: Optional[List[str]] = None
+        # Identity certificate for client authentication when authentication method is certificate.
+        self._identity_certificate: Optional[windows_phone81_certificate_profile_base.WindowsPhone81CertificateProfileBase] = None
+        # Remember user credentials.
+        self._remember_user_credentials: Optional[bool] = None
+    
     @property
     def authentication_method(self,) -> Optional[vpn_authentication_method.VpnAuthenticationMethod]:
         """
@@ -59,25 +78,6 @@ class WindowsPhone81VpnConfiguration(windows81_vpn_configuration.Windows81VpnCon
         """
         self._bypass_vpn_on_home_wifi = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsPhone81VpnConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsPhone81VpnConfiguration"
-        # VPN Authentication Method.
-        self._authentication_method: Optional[vpn_authentication_method.VpnAuthenticationMethod] = None
-        # Bypass VPN on company Wi-Fi.
-        self._bypass_vpn_on_company_wifi: Optional[bool] = None
-        # Bypass VPN on home Wi-Fi.
-        self._bypass_vpn_on_home_wifi: Optional[bool] = None
-        # DNS suffix search list.
-        self._dns_suffix_search_list: Optional[List[str]] = None
-        # Identity certificate for client authentication when authentication method is certificate.
-        self._identity_certificate: Optional[windows_phone81_certificate_profile_base.WindowsPhone81CertificateProfileBase] = None
-        # Remember user credentials.
-        self._remember_user_credentials: Optional[bool] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsPhone81VpnConfiguration:
         """
@@ -112,7 +112,9 @@ class WindowsPhone81VpnConfiguration(windows81_vpn_configuration.Windows81VpnCon
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import vpn_authentication_method, windows81_vpn_configuration, windows_phone81_certificate_profile_base
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(vpn_authentication_method.VpnAuthenticationMethod)),
             "bypassVpnOnCompanyWifi": lambda n : setattr(self, 'bypass_vpn_on_company_wifi', n.get_bool_value()),
             "bypassVpnOnHomeWifi": lambda n : setattr(self, 'bypass_vpn_on_home_wifi', n.get_bool_value()),

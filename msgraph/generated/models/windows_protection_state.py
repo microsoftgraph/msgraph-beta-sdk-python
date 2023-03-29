@@ -1,32 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-windows_defender_product_status = lazy_import('msgraph.generated.models.windows_defender_product_status')
-windows_device_health_state = lazy_import('msgraph.generated.models.windows_device_health_state')
-windows_device_malware_state = lazy_import('msgraph.generated.models.windows_device_malware_state')
+if TYPE_CHECKING:
+    from . import entity, windows_defender_product_status, windows_device_health_state, windows_device_malware_state
+
+from . import entity
 
 class WindowsProtectionState(entity.Entity):
-    @property
-    def anti_malware_version(self,) -> Optional[str]:
-        """
-        Gets the antiMalwareVersion property value. Current anti malware version
-        Returns: Optional[str]
-        """
-        return self._anti_malware_version
-    
-    @anti_malware_version.setter
-    def anti_malware_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the antiMalwareVersion property value. Current anti malware version
-        Args:
-            value: Value to set for the anti_malware_version property.
-        """
-        self._anti_malware_version = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new windowsProtectionState and sets the default values.
@@ -76,6 +58,23 @@ class WindowsProtectionState(entity.Entity):
         self._signature_version: Optional[str] = None
         # Indicates whether the Windows Defender tamper protection feature is enabled.
         self._tamper_protection_enabled: Optional[bool] = None
+    
+    @property
+    def anti_malware_version(self,) -> Optional[str]:
+        """
+        Gets the antiMalwareVersion property value. Current anti malware version
+        Returns: Optional[str]
+        """
+        return self._anti_malware_version
+    
+    @anti_malware_version.setter
+    def anti_malware_version(self,value: Optional[str] = None) -> None:
+        """
+        Sets the antiMalwareVersion property value. Current anti malware version
+        Args:
+            value: Value to set for the anti_malware_version property.
+        """
+        self._anti_malware_version = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsProtectionState:
@@ -179,7 +178,9 @@ class WindowsProtectionState(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, windows_defender_product_status, windows_device_health_state, windows_device_malware_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "antiMalwareVersion": lambda n : setattr(self, 'anti_malware_version', n.get_str_value()),
             "detectedMalwareState": lambda n : setattr(self, 'detected_malware_state', n.get_collection_of_object_values(windows_device_malware_state.WindowsDeviceMalwareState)),
             "deviceState": lambda n : setattr(self, 'device_state', n.get_enum_value(windows_device_health_state.WindowsDeviceHealthState)),

@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-user_set = lazy_import('msgraph.generated.models.user_set')
+if TYPE_CHECKING:
+    from . import user_set
+
+from . import user_set
 
 class ConnectedOrganizationMembers(user_set.UserSet):
     def __init__(self,) -> None:
@@ -51,7 +53,9 @@ class ConnectedOrganizationMembers(user_set.UserSet):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import user_set
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
         }

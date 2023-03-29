@@ -1,14 +1,40 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-eas_email_profile_configuration_base = lazy_import('msgraph.generated.models.eas_email_profile_configuration_base')
-email_sync_duration = lazy_import('msgraph.generated.models.email_sync_duration')
-email_sync_schedule = lazy_import('msgraph.generated.models.email_sync_schedule')
-user_email_source = lazy_import('msgraph.generated.models.user_email_source')
+if TYPE_CHECKING:
+    from . import eas_email_profile_configuration_base, email_sync_duration, email_sync_schedule, user_email_source
+
+from . import eas_email_profile_configuration_base
 
 class WindowsPhoneEASEmailProfileConfiguration(eas_email_profile_configuration_base.EasEmailProfileConfigurationBase):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new WindowsPhoneEASEmailProfileConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.windowsPhoneEASEmailProfileConfiguration"
+        # Account name.
+        self._account_name: Optional[str] = None
+        # Value indicating whether this policy only applies to Windows 8.1. This property is read-only.
+        self._apply_only_to_windows_phone81: Optional[bool] = None
+        # Possible values for email sync duration.
+        self._duration_of_email_to_sync: Optional[email_sync_duration.EmailSyncDuration] = None
+        # Email attribute that is picked from AAD and injected into this profile before installing on the device. Possible values are: userPrincipalName, primarySmtpAddress.
+        self._email_address_source: Optional[user_email_source.UserEmailSource] = None
+        # Possible values for email sync schedule.
+        self._email_sync_schedule: Optional[email_sync_schedule.EmailSyncSchedule] = None
+        # Exchange location that (URL) that the native mail app connects to.
+        self._host_name: Optional[str] = None
+        # Indicates whether or not to use SSL.
+        self._require_ssl: Optional[bool] = None
+        # Whether or not to sync the calendar.
+        self._sync_calendar: Optional[bool] = None
+        # Whether or not to sync contacts.
+        self._sync_contacts: Optional[bool] = None
+        # Whether or not to sync tasks.
+        self._sync_tasks: Optional[bool] = None
+    
     @property
     def account_name(self,) -> Optional[str]:
         """
@@ -42,33 +68,6 @@ class WindowsPhoneEASEmailProfileConfiguration(eas_email_profile_configuration_b
             value: Value to set for the apply_only_to_windows_phone81 property.
         """
         self._apply_only_to_windows_phone81 = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsPhoneEASEmailProfileConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsPhoneEASEmailProfileConfiguration"
-        # Account name.
-        self._account_name: Optional[str] = None
-        # Value indicating whether this policy only applies to Windows 8.1. This property is read-only.
-        self._apply_only_to_windows_phone81: Optional[bool] = None
-        # Possible values for email sync duration.
-        self._duration_of_email_to_sync: Optional[email_sync_duration.EmailSyncDuration] = None
-        # Email attribute that is picked from AAD and injected into this profile before installing on the device. Possible values are: userPrincipalName, primarySmtpAddress.
-        self._email_address_source: Optional[user_email_source.UserEmailSource] = None
-        # Possible values for email sync schedule.
-        self._email_sync_schedule: Optional[email_sync_schedule.EmailSyncSchedule] = None
-        # Exchange location that (URL) that the native mail app connects to.
-        self._host_name: Optional[str] = None
-        # Indicates whether or not to use SSL.
-        self._require_ssl: Optional[bool] = None
-        # Whether or not to sync the calendar.
-        self._sync_calendar: Optional[bool] = None
-        # Whether or not to sync contacts.
-        self._sync_contacts: Optional[bool] = None
-        # Whether or not to sync tasks.
-        self._sync_tasks: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsPhoneEASEmailProfileConfiguration:
@@ -138,7 +137,9 @@ class WindowsPhoneEASEmailProfileConfiguration(eas_email_profile_configuration_b
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import eas_email_profile_configuration_base, email_sync_duration, email_sync_schedule, user_email_source
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accountName": lambda n : setattr(self, 'account_name', n.get_str_value()),
             "applyOnlyToWindowsPhone81": lambda n : setattr(self, 'apply_only_to_windows_phone81', n.get_bool_value()),
             "durationOfEmailToSync": lambda n : setattr(self, 'duration_of_email_to_sync', n.get_enum_value(email_sync_duration.EmailSyncDuration)),

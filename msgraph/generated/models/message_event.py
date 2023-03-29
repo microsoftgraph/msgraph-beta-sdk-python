@@ -1,11 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-message_event_type = lazy_import('msgraph.generated.models.message_event_type')
+if TYPE_CHECKING:
+    from . import entity, message_event_type
+
+from . import entity
 
 class MessageEvent(entity.Entity):
     def __init__(self,) -> None:
@@ -90,7 +91,9 @@ class MessageEvent(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, message_event_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "dateTime": lambda n : setattr(self, 'date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "eventType": lambda n : setattr(self, 'event_type', n.get_enum_value(message_event_type.MessageEventType)),

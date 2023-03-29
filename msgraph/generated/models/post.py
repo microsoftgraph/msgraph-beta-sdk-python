@@ -1,54 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-attachment = lazy_import('msgraph.generated.models.attachment')
-extension = lazy_import('msgraph.generated.models.extension')
-importance = lazy_import('msgraph.generated.models.importance')
-item_body = lazy_import('msgraph.generated.models.item_body')
-mention = lazy_import('msgraph.generated.models.mention')
-multi_value_legacy_extended_property = lazy_import('msgraph.generated.models.multi_value_legacy_extended_property')
-outlook_item = lazy_import('msgraph.generated.models.outlook_item')
-recipient = lazy_import('msgraph.generated.models.recipient')
-single_value_legacy_extended_property = lazy_import('msgraph.generated.models.single_value_legacy_extended_property')
+if TYPE_CHECKING:
+    from . import attachment, extension, importance, item_body, mention, multi_value_legacy_extended_property, outlook_item, recipient, single_value_legacy_extended_property
+
+from . import outlook_item
 
 class Post(outlook_item.OutlookItem):
-    @property
-    def attachments(self,) -> Optional[List[attachment.Attachment]]:
-        """
-        Gets the attachments property value. The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.
-        Returns: Optional[List[attachment.Attachment]]
-        """
-        return self._attachments
-    
-    @attachments.setter
-    def attachments(self,value: Optional[List[attachment.Attachment]] = None) -> None:
-        """
-        Sets the attachments property value. The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.
-        Args:
-            value: Value to set for the attachments property.
-        """
-        self._attachments = value
-    
-    @property
-    def body(self,) -> Optional[item_body.ItemBody]:
-        """
-        Gets the body property value. The contents of the post. This is a default property. This property can be null.
-        Returns: Optional[item_body.ItemBody]
-        """
-        return self._body
-    
-    @body.setter
-    def body(self,value: Optional[item_body.ItemBody] = None) -> None:
-        """
-        Sets the body property value. The contents of the post. This is a default property. This property can be null.
-        Args:
-            value: Value to set for the body property.
-        """
-        self._body = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new Post and sets the default values.
@@ -85,6 +45,40 @@ class Post(outlook_item.OutlookItem):
         self._sender: Optional[recipient.Recipient] = None
         # The collection of single-value extended properties defined for the post. Read-only. Nullable.
         self._single_value_extended_properties: Optional[List[single_value_legacy_extended_property.SingleValueLegacyExtendedProperty]] = None
+    
+    @property
+    def attachments(self,) -> Optional[List[attachment.Attachment]]:
+        """
+        Gets the attachments property value. The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.
+        Returns: Optional[List[attachment.Attachment]]
+        """
+        return self._attachments
+    
+    @attachments.setter
+    def attachments(self,value: Optional[List[attachment.Attachment]] = None) -> None:
+        """
+        Sets the attachments property value. The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.
+        Args:
+            value: Value to set for the attachments property.
+        """
+        self._attachments = value
+    
+    @property
+    def body(self,) -> Optional[item_body.ItemBody]:
+        """
+        Gets the body property value. The contents of the post. This is a default property. This property can be null.
+        Returns: Optional[item_body.ItemBody]
+        """
+        return self._body
+    
+    @body.setter
+    def body(self,value: Optional[item_body.ItemBody] = None) -> None:
+        """
+        Sets the body property value. The contents of the post. This is a default property. This property can be null.
+        Args:
+            value: Value to set for the body property.
+        """
+        self._body = value
     
     @property
     def conversation_id(self,) -> Optional[str]:
@@ -171,7 +165,9 @@ class Post(outlook_item.OutlookItem):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import attachment, extension, importance, item_body, mention, multi_value_legacy_extended_property, outlook_item, recipient, single_value_legacy_extended_property
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "attachments": lambda n : setattr(self, 'attachments', n.get_collection_of_object_values(attachment.Attachment)),
             "body": lambda n : setattr(self, 'body', n.get_object_value(item_body.ItemBody)),
             "conversationId": lambda n : setattr(self, 'conversation_id', n.get_str_value()),

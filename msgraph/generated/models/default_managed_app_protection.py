@@ -1,19 +1,128 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_managed_app_safety_net_apps_verification_type = lazy_import('msgraph.generated.models.android_managed_app_safety_net_apps_verification_type')
-android_managed_app_safety_net_device_attestation_type = lazy_import('msgraph.generated.models.android_managed_app_safety_net_device_attestation_type')
-android_managed_app_safety_net_evaluation_type = lazy_import('msgraph.generated.models.android_managed_app_safety_net_evaluation_type')
-key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
-managed_app_data_encryption_type = lazy_import('msgraph.generated.models.managed_app_data_encryption_type')
-managed_app_policy_deployment_summary = lazy_import('msgraph.generated.models.managed_app_policy_deployment_summary')
-managed_app_protection = lazy_import('msgraph.generated.models.managed_app_protection')
-managed_app_remediation_action = lazy_import('msgraph.generated.models.managed_app_remediation_action')
-managed_mobile_app = lazy_import('msgraph.generated.models.managed_mobile_app')
+if TYPE_CHECKING:
+    from . import android_managed_app_safety_net_apps_verification_type, android_managed_app_safety_net_device_attestation_type, android_managed_app_safety_net_evaluation_type, key_value_pair, managed_app_data_encryption_type, managed_app_policy_deployment_summary, managed_app_protection, managed_app_remediation_action, managed_mobile_app
+
+from . import managed_app_protection
 
 class DefaultManagedAppProtection(managed_app_protection.ManagedAppProtection):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new DefaultManagedAppProtection and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.defaultManagedAppProtection"
+        # Semicolon seperated list of device manufacturers allowed, as a string, for the managed app to work. (Android only)
+        self._allowed_android_device_manufacturers: Optional[str] = None
+        # List of device models allowed, as a string, for the managed app to work. (Android Only)
+        self._allowed_android_device_models: Optional[List[str]] = None
+        # Semicolon seperated list of device models allowed, as a string, for the managed app to work. (iOS Only)
+        self._allowed_ios_device_models: Optional[str] = None
+        # An admin initiated action to be applied on a managed app.
+        self._app_action_if_android_device_manufacturer_not_allowed: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
+        # An admin initiated action to be applied on a managed app.
+        self._app_action_if_android_device_model_not_allowed: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
+        # An admin initiated action to be applied on a managed app.
+        self._app_action_if_android_safety_net_apps_verification_failed: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
+        # An admin initiated action to be applied on a managed app.
+        self._app_action_if_android_safety_net_device_attestation_failed: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
+        # An admin initiated action to be applied on a managed app.
+        self._app_action_if_device_lock_not_set: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
+        # If the device does not have a passcode of high complexity or higher, trigger the stored action. Possible values are: block, wipe, warn.
+        self._app_action_if_device_passcode_complexity_less_than_high: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
+        # If the device does not have a passcode of low complexity or higher, trigger the stored action. Possible values are: block, wipe, warn.
+        self._app_action_if_device_passcode_complexity_less_than_low: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
+        # If the device does not have a passcode of medium complexity or higher, trigger the stored action. Possible values are: block, wipe, warn.
+        self._app_action_if_device_passcode_complexity_less_than_medium: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
+        # An admin initiated action to be applied on a managed app.
+        self._app_action_if_ios_device_model_not_allowed: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
+        # Represents the level to which app data is encrypted for managed apps
+        self._app_data_encryption_type: Optional[managed_app_data_encryption_type.ManagedAppDataEncryptionType] = None
+        # List of apps to which the policy is deployed.
+        self._apps: Optional[List[managed_mobile_app.ManagedMobileApp]] = None
+        # Indicates whether use of the biometric authentication is allowed in place of a pin if PinRequired is set to True. (Android Only)
+        self._biometric_authentication_blocked: Optional[bool] = None
+        # Maximum number of days Company Portal update can be deferred on the device or app access will be blocked.
+        self._block_after_company_portal_update_deferral_in_days: Optional[int] = None
+        # Whether the app should connect to the configured VPN on launch (Android only).
+        self._connect_to_vpn_on_launch: Optional[bool] = None
+        # Friendly name of the preferred custom browser to open weblink on Android. (Android only)
+        self._custom_browser_display_name: Optional[str] = None
+        # Unique identifier of a custom browser to open weblink on Android. (Android only)
+        self._custom_browser_package_id: Optional[str] = None
+        # A custom browser protocol to open weblink on iOS. (iOS only)
+        self._custom_browser_protocol: Optional[str] = None
+        # Friendly name of a custom dialer app to click-to-open a phone number on Android.
+        self._custom_dialer_app_display_name: Optional[str] = None
+        # PackageId of a custom dialer app to click-to-open a phone number on Android.
+        self._custom_dialer_app_package_id: Optional[str] = None
+        # Protocol of a custom dialer app to click-to-open a phone number on iOS, for example, skype:.
+        self._custom_dialer_app_protocol: Optional[str] = None
+        # A set of string key and string value pairs to be sent to the affected users, unalterned by this service
+        self._custom_settings: Optional[List[key_value_pair.KeyValuePair]] = None
+        # Count of apps to which the current policy is deployed.
+        self._deployed_app_count: Optional[int] = None
+        # Navigation property to deployment summary of the configuration.
+        self._deployment_summary: Optional[managed_app_policy_deployment_summary.ManagedAppPolicyDeploymentSummary] = None
+        # Defines if any kind of lock must be required on device. (android only)
+        self._device_lock_required: Optional[bool] = None
+        # When this setting is enabled, app level encryption is disabled if device level encryption is enabled. (Android only)
+        self._disable_app_encryption_if_device_encryption_is_enabled: Optional[bool] = None
+        # Disable protection of data transferred to other apps through IOS OpenIn option. This setting is only allowed to be True when AllowedOutboundDataTransferDestinations is set to ManagedApps. (iOS Only)
+        self._disable_protection_of_managed_outbound_open_in_data: Optional[bool] = None
+        # Indicates whether managed-app data should be encrypted. (Android only)
+        self._encrypt_app_data: Optional[bool] = None
+        # Android App packages in this list will be exempt from the policy and will be able to receive data from managed apps. (Android only)
+        self._exempted_app_packages: Optional[List[key_value_pair.KeyValuePair]] = None
+        # iOS Apps in this list will be exempt from the policy and will be able to receive data from managed apps. (iOS Only)
+        self._exempted_app_protocols: Optional[List[key_value_pair.KeyValuePair]] = None
+        # Indicates whether use of the FaceID is allowed in place of a pin if PinRequired is set to True. (iOS Only)
+        self._face_id_blocked: Optional[bool] = None
+        # Defines if open-in operation is supported from the managed app to the filesharing locations selected. This setting only applies when AllowedOutboundDataTransferDestinations is set to ManagedApps and DisableProtectionOfManagedOutboundOpenInData is set to False. (iOS Only)
+        self._filter_open_in_to_only_managed_apps: Optional[bool] = None
+        # Indicate to the client to enable both biometrics and fingerprints for the app.
+        self._fingerprint_and_biometric_enabled: Optional[bool] = None
+        # Minimum version of the Company portal that must be installed on the device or app access will be blocked
+        self._minimum_required_company_portal_version: Optional[str] = None
+        # Define the oldest required Android security patch level a user can have to gain secure access to the app. (Android only)
+        self._minimum_required_patch_version: Optional[str] = None
+        # Versions less than the specified version will block the managed app from accessing company data. (iOS Only)
+        self._minimum_required_sdk_version: Optional[str] = None
+        # Minimum version of the Company portal that must be installed on the device or the user will receive a warning
+        self._minimum_warning_company_portal_version: Optional[str] = None
+        # Define the oldest recommended Android security patch level a user can have for secure access to the app. (Android only)
+        self._minimum_warning_patch_version: Optional[str] = None
+        # Versions less than the specified version will result in warning message on the managed app from accessing company data. (iOS only)
+        self._minimum_warning_sdk_version: Optional[str] = None
+        # Minimum version of the Company portal that must be installed on the device or the company data on the app will be wiped
+        self._minimum_wipe_company_portal_version: Optional[str] = None
+        # Android security patch level  less than or equal to the specified value will wipe the managed app and the associated company data. (Android only)
+        self._minimum_wipe_patch_version: Optional[str] = None
+        # Versions less than the specified version will block the managed app from accessing company data.
+        self._minimum_wipe_sdk_version: Optional[str] = None
+        # Protect incoming data from unknown source. This setting is only allowed to be True when AllowedInboundDataTransferSources is set to AllApps. (iOS Only)
+        self._protect_inbound_data_from_unknown_sources: Optional[bool] = None
+        # Require user to apply Class 3 Biometrics on their Android device.
+        self._require_class3_biometrics: Optional[bool] = None
+        # A PIN prompt will override biometric prompts if class 3 biometrics are updated on the device.
+        self._require_pin_after_biometric_change: Optional[bool] = None
+        # An admin enforced Android SafetyNet Device Attestation requirement on a managed app.
+        self._required_android_safety_net_apps_verification_type: Optional[android_managed_app_safety_net_apps_verification_type.AndroidManagedAppSafetyNetAppsVerificationType] = None
+        # An admin enforced Android SafetyNet Device Attestation requirement on a managed app.
+        self._required_android_safety_net_device_attestation_type: Optional[android_managed_app_safety_net_device_attestation_type.AndroidManagedAppSafetyNetDeviceAttestationType] = None
+        # An admin enforced Android SafetyNet evaluation type requirement on a managed app.
+        self._required_android_safety_net_evaluation_type: Optional[android_managed_app_safety_net_evaluation_type.AndroidManagedAppSafetyNetEvaluationType] = None
+        # Indicates whether screen capture is blocked. (Android only)
+        self._screen_capture_blocked: Optional[bool] = None
+        # Defines if third party keyboards are allowed while accessing a managed app. (iOS Only)
+        self._third_party_keyboards_blocked: Optional[bool] = None
+        # Maximum number of days Company Portal update can be deferred on the device or the user will receive the warning
+        self._warn_after_company_portal_update_deferral_in_days: Optional[int] = None
+        # Maximum number of days Company Portal update can be deferred on the device or the company data on the app will be wiped
+        self._wipe_after_company_portal_update_deferral_in_days: Optional[int] = None
+    
     @property
     def allowed_android_device_manufacturers(self,) -> Optional[str]:
         """
@@ -302,121 +411,6 @@ class DefaultManagedAppProtection(managed_app_protection.ManagedAppProtection):
             value: Value to set for the connect_to_vpn_on_launch property.
         """
         self._connect_to_vpn_on_launch = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DefaultManagedAppProtection and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.defaultManagedAppProtection"
-        # Semicolon seperated list of device manufacturers allowed, as a string, for the managed app to work. (Android only)
-        self._allowed_android_device_manufacturers: Optional[str] = None
-        # List of device models allowed, as a string, for the managed app to work. (Android Only)
-        self._allowed_android_device_models: Optional[List[str]] = None
-        # Semicolon seperated list of device models allowed, as a string, for the managed app to work. (iOS Only)
-        self._allowed_ios_device_models: Optional[str] = None
-        # An admin initiated action to be applied on a managed app.
-        self._app_action_if_android_device_manufacturer_not_allowed: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
-        # An admin initiated action to be applied on a managed app.
-        self._app_action_if_android_device_model_not_allowed: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
-        # An admin initiated action to be applied on a managed app.
-        self._app_action_if_android_safety_net_apps_verification_failed: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
-        # An admin initiated action to be applied on a managed app.
-        self._app_action_if_android_safety_net_device_attestation_failed: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
-        # An admin initiated action to be applied on a managed app.
-        self._app_action_if_device_lock_not_set: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
-        # If the device does not have a passcode of high complexity or higher, trigger the stored action. Possible values are: block, wipe, warn.
-        self._app_action_if_device_passcode_complexity_less_than_high: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
-        # If the device does not have a passcode of low complexity or higher, trigger the stored action. Possible values are: block, wipe, warn.
-        self._app_action_if_device_passcode_complexity_less_than_low: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
-        # If the device does not have a passcode of medium complexity or higher, trigger the stored action. Possible values are: block, wipe, warn.
-        self._app_action_if_device_passcode_complexity_less_than_medium: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
-        # An admin initiated action to be applied on a managed app.
-        self._app_action_if_ios_device_model_not_allowed: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
-        # Represents the level to which app data is encrypted for managed apps
-        self._app_data_encryption_type: Optional[managed_app_data_encryption_type.ManagedAppDataEncryptionType] = None
-        # List of apps to which the policy is deployed.
-        self._apps: Optional[List[managed_mobile_app.ManagedMobileApp]] = None
-        # Indicates whether use of the biometric authentication is allowed in place of a pin if PinRequired is set to True. (Android Only)
-        self._biometric_authentication_blocked: Optional[bool] = None
-        # Maximum number of days Company Portal update can be deferred on the device or app access will be blocked.
-        self._block_after_company_portal_update_deferral_in_days: Optional[int] = None
-        # Whether the app should connect to the configured VPN on launch (Android only).
-        self._connect_to_vpn_on_launch: Optional[bool] = None
-        # Friendly name of the preferred custom browser to open weblink on Android. (Android only)
-        self._custom_browser_display_name: Optional[str] = None
-        # Unique identifier of a custom browser to open weblink on Android. (Android only)
-        self._custom_browser_package_id: Optional[str] = None
-        # A custom browser protocol to open weblink on iOS. (iOS only)
-        self._custom_browser_protocol: Optional[str] = None
-        # Friendly name of a custom dialer app to click-to-open a phone number on Android.
-        self._custom_dialer_app_display_name: Optional[str] = None
-        # PackageId of a custom dialer app to click-to-open a phone number on Android.
-        self._custom_dialer_app_package_id: Optional[str] = None
-        # Protocol of a custom dialer app to click-to-open a phone number on iOS, for example, skype:.
-        self._custom_dialer_app_protocol: Optional[str] = None
-        # A set of string key and string value pairs to be sent to the affected users, unalterned by this service
-        self._custom_settings: Optional[List[key_value_pair.KeyValuePair]] = None
-        # Count of apps to which the current policy is deployed.
-        self._deployed_app_count: Optional[int] = None
-        # Navigation property to deployment summary of the configuration.
-        self._deployment_summary: Optional[managed_app_policy_deployment_summary.ManagedAppPolicyDeploymentSummary] = None
-        # Defines if any kind of lock must be required on device. (android only)
-        self._device_lock_required: Optional[bool] = None
-        # When this setting is enabled, app level encryption is disabled if device level encryption is enabled. (Android only)
-        self._disable_app_encryption_if_device_encryption_is_enabled: Optional[bool] = None
-        # Disable protection of data transferred to other apps through IOS OpenIn option. This setting is only allowed to be True when AllowedOutboundDataTransferDestinations is set to ManagedApps. (iOS Only)
-        self._disable_protection_of_managed_outbound_open_in_data: Optional[bool] = None
-        # Indicates whether managed-app data should be encrypted. (Android only)
-        self._encrypt_app_data: Optional[bool] = None
-        # Android App packages in this list will be exempt from the policy and will be able to receive data from managed apps. (Android only)
-        self._exempted_app_packages: Optional[List[key_value_pair.KeyValuePair]] = None
-        # iOS Apps in this list will be exempt from the policy and will be able to receive data from managed apps. (iOS Only)
-        self._exempted_app_protocols: Optional[List[key_value_pair.KeyValuePair]] = None
-        # Indicates whether use of the FaceID is allowed in place of a pin if PinRequired is set to True. (iOS Only)
-        self._face_id_blocked: Optional[bool] = None
-        # Defines if open-in operation is supported from the managed app to the filesharing locations selected. This setting only applies when AllowedOutboundDataTransferDestinations is set to ManagedApps and DisableProtectionOfManagedOutboundOpenInData is set to False. (iOS Only)
-        self._filter_open_in_to_only_managed_apps: Optional[bool] = None
-        # Indicate to the client to enable both biometrics and fingerprints for the app.
-        self._fingerprint_and_biometric_enabled: Optional[bool] = None
-        # Minimum version of the Company portal that must be installed on the device or app access will be blocked
-        self._minimum_required_company_portal_version: Optional[str] = None
-        # Define the oldest required Android security patch level a user can have to gain secure access to the app. (Android only)
-        self._minimum_required_patch_version: Optional[str] = None
-        # Versions less than the specified version will block the managed app from accessing company data. (iOS Only)
-        self._minimum_required_sdk_version: Optional[str] = None
-        # Minimum version of the Company portal that must be installed on the device or the user will receive a warning
-        self._minimum_warning_company_portal_version: Optional[str] = None
-        # Define the oldest recommended Android security patch level a user can have for secure access to the app. (Android only)
-        self._minimum_warning_patch_version: Optional[str] = None
-        # Versions less than the specified version will result in warning message on the managed app from accessing company data. (iOS only)
-        self._minimum_warning_sdk_version: Optional[str] = None
-        # Minimum version of the Company portal that must be installed on the device or the company data on the app will be wiped
-        self._minimum_wipe_company_portal_version: Optional[str] = None
-        # Android security patch level  less than or equal to the specified value will wipe the managed app and the associated company data. (Android only)
-        self._minimum_wipe_patch_version: Optional[str] = None
-        # Versions less than the specified version will block the managed app from accessing company data.
-        self._minimum_wipe_sdk_version: Optional[str] = None
-        # Protect incoming data from unknown source. This setting is only allowed to be True when AllowedInboundDataTransferSources is set to AllApps. (iOS Only)
-        self._protect_inbound_data_from_unknown_sources: Optional[bool] = None
-        # Require user to apply Class 3 Biometrics on their Android device.
-        self._require_class3_biometrics: Optional[bool] = None
-        # A PIN prompt will override biometric prompts if class 3 biometrics are updated on the device.
-        self._require_pin_after_biometric_change: Optional[bool] = None
-        # An admin enforced Android SafetyNet Device Attestation requirement on a managed app.
-        self._required_android_safety_net_apps_verification_type: Optional[android_managed_app_safety_net_apps_verification_type.AndroidManagedAppSafetyNetAppsVerificationType] = None
-        # An admin enforced Android SafetyNet Device Attestation requirement on a managed app.
-        self._required_android_safety_net_device_attestation_type: Optional[android_managed_app_safety_net_device_attestation_type.AndroidManagedAppSafetyNetDeviceAttestationType] = None
-        # An admin enforced Android SafetyNet evaluation type requirement on a managed app.
-        self._required_android_safety_net_evaluation_type: Optional[android_managed_app_safety_net_evaluation_type.AndroidManagedAppSafetyNetEvaluationType] = None
-        # Indicates whether screen capture is blocked. (Android only)
-        self._screen_capture_blocked: Optional[bool] = None
-        # Defines if third party keyboards are allowed while accessing a managed app. (iOS Only)
-        self._third_party_keyboards_blocked: Optional[bool] = None
-        # Maximum number of days Company Portal update can be deferred on the device or the user will receive the warning
-        self._warn_after_company_portal_update_deferral_in_days: Optional[int] = None
-        # Maximum number of days Company Portal update can be deferred on the device or the company data on the app will be wiped
-        self._wipe_after_company_portal_update_deferral_in_days: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DefaultManagedAppProtection:
@@ -741,7 +735,9 @@ class DefaultManagedAppProtection(managed_app_protection.ManagedAppProtection):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_managed_app_safety_net_apps_verification_type, android_managed_app_safety_net_device_attestation_type, android_managed_app_safety_net_evaluation_type, key_value_pair, managed_app_data_encryption_type, managed_app_policy_deployment_summary, managed_app_protection, managed_app_remediation_action, managed_mobile_app
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowedAndroidDeviceManufacturers": lambda n : setattr(self, 'allowed_android_device_manufacturers', n.get_str_value()),
             "allowedAndroidDeviceModels": lambda n : setattr(self, 'allowed_android_device_models', n.get_collection_of_primitive_values(str)),
             "allowedIosDeviceModels": lambda n : setattr(self, 'allowed_ios_device_models', n.get_str_value()),

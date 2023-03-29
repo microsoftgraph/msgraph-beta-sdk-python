@@ -1,54 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-out_of_box_experience_settings = lazy_import('msgraph.generated.models.out_of_box_experience_settings')
-windows_autopilot_deployment_profile_assignment = lazy_import('msgraph.generated.models.windows_autopilot_deployment_profile_assignment')
-windows_autopilot_device_identity = lazy_import('msgraph.generated.models.windows_autopilot_device_identity')
-windows_autopilot_device_type = lazy_import('msgraph.generated.models.windows_autopilot_device_type')
-windows_enrollment_status_screen_settings = lazy_import('msgraph.generated.models.windows_enrollment_status_screen_settings')
+if TYPE_CHECKING:
+    from . import active_directory_windows_autopilot_deployment_profile, azure_a_d_windows_autopilot_deployment_profile, entity, out_of_box_experience_settings, windows_autopilot_deployment_profile_assignment, windows_autopilot_device_identity, windows_autopilot_device_type, windows_enrollment_status_screen_settings
+
+from . import entity
 
 class WindowsAutopilotDeploymentProfile(entity.Entity):
     """
     Windows Autopilot Deployment Profile
     """
-    @property
-    def assigned_devices(self,) -> Optional[List[windows_autopilot_device_identity.WindowsAutopilotDeviceIdentity]]:
-        """
-        Gets the assignedDevices property value. The list of assigned devices for the profile.
-        Returns: Optional[List[windows_autopilot_device_identity.WindowsAutopilotDeviceIdentity]]
-        """
-        return self._assigned_devices
-    
-    @assigned_devices.setter
-    def assigned_devices(self,value: Optional[List[windows_autopilot_device_identity.WindowsAutopilotDeviceIdentity]] = None) -> None:
-        """
-        Sets the assignedDevices property value. The list of assigned devices for the profile.
-        Args:
-            value: Value to set for the assigned_devices property.
-        """
-        self._assigned_devices = value
-    
-    @property
-    def assignments(self,) -> Optional[List[windows_autopilot_deployment_profile_assignment.WindowsAutopilotDeploymentProfileAssignment]]:
-        """
-        Gets the assignments property value. The list of group assignments for the profile.
-        Returns: Optional[List[windows_autopilot_deployment_profile_assignment.WindowsAutopilotDeploymentProfileAssignment]]
-        """
-        return self._assignments
-    
-    @assignments.setter
-    def assignments(self,value: Optional[List[windows_autopilot_deployment_profile_assignment.WindowsAutopilotDeploymentProfileAssignment]] = None) -> None:
-        """
-        Sets the assignments property value. The list of group assignments for the profile.
-        Args:
-            value: Value to set for the assignments property.
-        """
-        self._assignments = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new windowsAutopilotDeploymentProfile and sets the default values.
@@ -88,6 +51,40 @@ class WindowsAutopilotDeploymentProfile(entity.Entity):
         self._role_scope_tag_ids: Optional[List[str]] = None
     
     @property
+    def assigned_devices(self,) -> Optional[List[windows_autopilot_device_identity.WindowsAutopilotDeviceIdentity]]:
+        """
+        Gets the assignedDevices property value. The list of assigned devices for the profile.
+        Returns: Optional[List[windows_autopilot_device_identity.WindowsAutopilotDeviceIdentity]]
+        """
+        return self._assigned_devices
+    
+    @assigned_devices.setter
+    def assigned_devices(self,value: Optional[List[windows_autopilot_device_identity.WindowsAutopilotDeviceIdentity]] = None) -> None:
+        """
+        Sets the assignedDevices property value. The list of assigned devices for the profile.
+        Args:
+            value: Value to set for the assigned_devices property.
+        """
+        self._assigned_devices = value
+    
+    @property
+    def assignments(self,) -> Optional[List[windows_autopilot_deployment_profile_assignment.WindowsAutopilotDeploymentProfileAssignment]]:
+        """
+        Gets the assignments property value. The list of group assignments for the profile.
+        Returns: Optional[List[windows_autopilot_deployment_profile_assignment.WindowsAutopilotDeploymentProfileAssignment]]
+        """
+        return self._assignments
+    
+    @assignments.setter
+    def assignments(self,value: Optional[List[windows_autopilot_deployment_profile_assignment.WindowsAutopilotDeploymentProfileAssignment]] = None) -> None:
+        """
+        Sets the assignments property value. The list of group assignments for the profile.
+        Args:
+            value: Value to set for the assignments property.
+        """
+        self._assignments = value
+    
+    @property
     def created_date_time(self,) -> Optional[datetime]:
         """
         Gets the createdDateTime property value. Profile creation time
@@ -114,6 +111,17 @@ class WindowsAutopilotDeploymentProfile(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.activeDirectoryWindowsAutopilotDeploymentProfile":
+                from . import active_directory_windows_autopilot_deployment_profile
+
+                return active_directory_windows_autopilot_deployment_profile.ActiveDirectoryWindowsAutopilotDeploymentProfile()
+            if mapping_value == "#microsoft.graph.azureADWindowsAutopilotDeploymentProfile":
+                from . import azure_a_d_windows_autopilot_deployment_profile
+
+                return azure_a_d_windows_autopilot_deployment_profile.AzureADWindowsAutopilotDeploymentProfile()
         return WindowsAutopilotDeploymentProfile()
     
     @property
@@ -240,7 +248,9 @@ class WindowsAutopilotDeploymentProfile(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import active_directory_windows_autopilot_deployment_profile, azure_a_d_windows_autopilot_deployment_profile, entity, out_of_box_experience_settings, windows_autopilot_deployment_profile_assignment, windows_autopilot_device_identity, windows_autopilot_device_type, windows_enrollment_status_screen_settings
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignedDevices": lambda n : setattr(self, 'assigned_devices', n.get_collection_of_object_values(windows_autopilot_device_identity.WindowsAutopilotDeviceIdentity)),
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(windows_autopilot_deployment_profile_assignment.WindowsAutopilotDeploymentProfileAssignment)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),

@@ -1,17 +1,54 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-delivery_optimization_bandwidth = lazy_import('msgraph.generated.models.delivery_optimization_bandwidth')
-delivery_optimization_group_id_source = lazy_import('msgraph.generated.models.delivery_optimization_group_id_source')
-delivery_optimization_max_cache_size = lazy_import('msgraph.generated.models.delivery_optimization_max_cache_size')
-delivery_optimization_restrict_peer_selection_by_options = lazy_import('msgraph.generated.models.delivery_optimization_restrict_peer_selection_by_options')
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-enablement = lazy_import('msgraph.generated.models.enablement')
-windows_delivery_optimization_mode = lazy_import('msgraph.generated.models.windows_delivery_optimization_mode')
+if TYPE_CHECKING:
+    from . import delivery_optimization_bandwidth, delivery_optimization_group_id_source, delivery_optimization_max_cache_size, delivery_optimization_restrict_peer_selection_by_options, device_configuration, enablement, windows_delivery_optimization_mode
+
+from . import device_configuration
 
 class WindowsDeliveryOptimizationConfiguration(device_configuration.DeviceConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new WindowsDeliveryOptimizationConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.windowsDeliveryOptimizationConfiguration"
+        # Specifies number of seconds to delay an HTTP source in a background download that is allowed to use peer-to-peer. Valid values 0 to 4294967295
+        self._background_download_from_http_delay_in_seconds: Optional[int] = None
+        # Specifies foreground and background bandwidth usage using percentages, absolutes, or hours.
+        self._bandwidth_mode: Optional[delivery_optimization_bandwidth.DeliveryOptimizationBandwidth] = None
+        # Specifies number of seconds to delay a fall back from cache servers to an HTTP source for a background download. Valid values 0 to 2592000.
+        self._cache_server_background_download_fallback_to_http_delay_in_seconds: Optional[int] = None
+        # Specifies number of seconds to delay a fall back from cache servers to an HTTP source for a foreground download. Valid values 0 to 2592000.​
+        self._cache_server_foreground_download_fallback_to_http_delay_in_seconds: Optional[int] = None
+        # Specifies cache servers host names.
+        self._cache_server_host_names: Optional[List[str]] = None
+        # Delivery optimization mode for peer distribution
+        self._delivery_optimization_mode: Optional[windows_delivery_optimization_mode.WindowsDeliveryOptimizationMode] = None
+        # Specifies number of seconds to delay an HTTP source in a foreground download that is allowed to use peer-to-peer (0-86400). Valid values 0 to 86400
+        self._foreground_download_from_http_delay_in_seconds: Optional[int] = None
+        # Specifies to restrict peer selection to a specfic source.
+        self._group_id_source: Optional[delivery_optimization_group_id_source.DeliveryOptimizationGroupIdSource] = None
+        # Specifies the maximum time in days that each file is held in the Delivery Optimization cache after downloading successfully (0-3650). Valid values 0 to 3650
+        self._maximum_cache_age_in_days: Optional[int] = None
+        # Specifies the maximum cache size that Delivery Optimization either as a percentage or in GB.
+        self._maximum_cache_size: Optional[delivery_optimization_max_cache_size.DeliveryOptimizationMaxCacheSize] = None
+        # Specifies the minimum battery percentage to allow the device to upload data (0-100). Valid values 0 to 100
+        self._minimum_battery_percentage_allowed_to_upload: Optional[int] = None
+        # Specifies the minimum disk size in GB to use Peer Caching (1-100000). Valid values 1 to 100000
+        self._minimum_disk_size_allowed_to_peer_in_gigabytes: Optional[int] = None
+        # Specifies the minimum content file size in MB enabled to use Peer Caching (1-100000). Valid values 1 to 100000
+        self._minimum_file_size_to_cache_in_megabytes: Optional[int] = None
+        # Specifies the minimum RAM size in GB to use Peer Caching (1-100000). Valid values 1 to 100000
+        self._minimum_ram_allowed_to_peer_in_gigabytes: Optional[int] = None
+        # Specifies the drive that Delivery Optimization should use for its cache.
+        self._modify_cache_location: Optional[str] = None
+        # Values to restrict peer selection by.
+        self._restrict_peer_selection_by: Optional[delivery_optimization_restrict_peer_selection_by_options.DeliveryOptimizationRestrictPeerSelectionByOptions] = None
+        # Possible values of a property
+        self._vpn_peer_caching: Optional[enablement.Enablement] = None
+    
     @property
     def background_download_from_http_delay_in_seconds(self,) -> Optional[int]:
         """
@@ -97,47 +134,6 @@ class WindowsDeliveryOptimizationConfiguration(device_configuration.DeviceConfig
         """
         self._cache_server_host_names = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsDeliveryOptimizationConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsDeliveryOptimizationConfiguration"
-        # Specifies number of seconds to delay an HTTP source in a background download that is allowed to use peer-to-peer. Valid values 0 to 4294967295
-        self._background_download_from_http_delay_in_seconds: Optional[int] = None
-        # Specifies foreground and background bandwidth usage using percentages, absolutes, or hours.
-        self._bandwidth_mode: Optional[delivery_optimization_bandwidth.DeliveryOptimizationBandwidth] = None
-        # Specifies number of seconds to delay a fall back from cache servers to an HTTP source for a background download. Valid values 0 to 2592000.
-        self._cache_server_background_download_fallback_to_http_delay_in_seconds: Optional[int] = None
-        # Specifies number of seconds to delay a fall back from cache servers to an HTTP source for a foreground download. Valid values 0 to 2592000.​
-        self._cache_server_foreground_download_fallback_to_http_delay_in_seconds: Optional[int] = None
-        # Specifies cache servers host names.
-        self._cache_server_host_names: Optional[List[str]] = None
-        # Delivery optimization mode for peer distribution
-        self._delivery_optimization_mode: Optional[windows_delivery_optimization_mode.WindowsDeliveryOptimizationMode] = None
-        # Specifies number of seconds to delay an HTTP source in a foreground download that is allowed to use peer-to-peer (0-86400). Valid values 0 to 86400
-        self._foreground_download_from_http_delay_in_seconds: Optional[int] = None
-        # Specifies to restrict peer selection to a specfic source.
-        self._group_id_source: Optional[delivery_optimization_group_id_source.DeliveryOptimizationGroupIdSource] = None
-        # Specifies the maximum time in days that each file is held in the Delivery Optimization cache after downloading successfully (0-3650). Valid values 0 to 3650
-        self._maximum_cache_age_in_days: Optional[int] = None
-        # Specifies the maximum cache size that Delivery Optimization either as a percentage or in GB.
-        self._maximum_cache_size: Optional[delivery_optimization_max_cache_size.DeliveryOptimizationMaxCacheSize] = None
-        # Specifies the minimum battery percentage to allow the device to upload data (0-100). Valid values 0 to 100
-        self._minimum_battery_percentage_allowed_to_upload: Optional[int] = None
-        # Specifies the minimum disk size in GB to use Peer Caching (1-100000). Valid values 1 to 100000
-        self._minimum_disk_size_allowed_to_peer_in_gigabytes: Optional[int] = None
-        # Specifies the minimum content file size in MB enabled to use Peer Caching (1-100000). Valid values 1 to 100000
-        self._minimum_file_size_to_cache_in_megabytes: Optional[int] = None
-        # Specifies the minimum RAM size in GB to use Peer Caching (1-100000). Valid values 1 to 100000
-        self._minimum_ram_allowed_to_peer_in_gigabytes: Optional[int] = None
-        # Specifies the drive that Delivery Optimization should use for its cache.
-        self._modify_cache_location: Optional[str] = None
-        # Values to restrict peer selection by.
-        self._restrict_peer_selection_by: Optional[delivery_optimization_restrict_peer_selection_by_options.DeliveryOptimizationRestrictPeerSelectionByOptions] = None
-        # Possible values of a property
-        self._vpn_peer_caching: Optional[enablement.Enablement] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsDeliveryOptimizationConfiguration:
         """
@@ -189,7 +185,9 @@ class WindowsDeliveryOptimizationConfiguration(device_configuration.DeviceConfig
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import delivery_optimization_bandwidth, delivery_optimization_group_id_source, delivery_optimization_max_cache_size, delivery_optimization_restrict_peer_selection_by_options, device_configuration, enablement, windows_delivery_optimization_mode
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "backgroundDownloadFromHttpDelayInSeconds": lambda n : setattr(self, 'background_download_from_http_delay_in_seconds', n.get_int_value()),
             "bandwidthMode": lambda n : setattr(self, 'bandwidth_mode', n.get_object_value(delivery_optimization_bandwidth.DeliveryOptimizationBandwidth)),
             "cacheServerBackgroundDownloadFallbackToHttpDelayInSeconds": lambda n : setattr(self, 'cache_server_background_download_fallback_to_http_delay_in_seconds', n.get_int_value()),

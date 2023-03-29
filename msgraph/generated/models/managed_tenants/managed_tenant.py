@@ -1,45 +1,96 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-aggregated_policy_compliance = lazy_import('msgraph.generated.models.managed_tenants.aggregated_policy_compliance')
-audit_event = lazy_import('msgraph.generated.models.managed_tenants.audit_event')
-cloud_pc_connection = lazy_import('msgraph.generated.models.managed_tenants.cloud_pc_connection')
-cloud_pc_device = lazy_import('msgraph.generated.models.managed_tenants.cloud_pc_device')
-cloud_pc_overview = lazy_import('msgraph.generated.models.managed_tenants.cloud_pc_overview')
-conditional_access_policy_coverage = lazy_import('msgraph.generated.models.managed_tenants.conditional_access_policy_coverage')
-credential_user_registrations_summary = lazy_import('msgraph.generated.models.managed_tenants.credential_user_registrations_summary')
-device_compliance_policy_setting_state_summary = lazy_import('msgraph.generated.models.managed_tenants.device_compliance_policy_setting_state_summary')
-managed_device_compliance = lazy_import('msgraph.generated.models.managed_tenants.managed_device_compliance')
-managed_device_compliance_trend = lazy_import('msgraph.generated.models.managed_tenants.managed_device_compliance_trend')
-managed_tenant_alert = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_alert')
-managed_tenant_alert_log = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_alert_log')
-managed_tenant_alert_rule = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_alert_rule')
-managed_tenant_alert_rule_definition = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_alert_rule_definition')
-managed_tenant_api_notification = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_api_notification')
-managed_tenant_email_notification = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_email_notification')
-managed_tenant_ticketing_endpoint = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_ticketing_endpoint')
-management_action = lazy_import('msgraph.generated.models.managed_tenants.management_action')
-management_action_tenant_deployment_status = lazy_import('msgraph.generated.models.managed_tenants.management_action_tenant_deployment_status')
-management_intent = lazy_import('msgraph.generated.models.managed_tenants.management_intent')
-management_template = lazy_import('msgraph.generated.models.managed_tenants.management_template')
-management_template_collection = lazy_import('msgraph.generated.models.managed_tenants.management_template_collection')
-management_template_collection_tenant_summary = lazy_import('msgraph.generated.models.managed_tenants.management_template_collection_tenant_summary')
-management_template_step = lazy_import('msgraph.generated.models.managed_tenants.management_template_step')
-management_template_step_tenant_summary = lazy_import('msgraph.generated.models.managed_tenants.management_template_step_tenant_summary')
-management_template_step_version = lazy_import('msgraph.generated.models.managed_tenants.management_template_step_version')
-my_role = lazy_import('msgraph.generated.models.managed_tenants.my_role')
-tenant = lazy_import('msgraph.generated.models.managed_tenants.tenant')
-tenant_customized_information = lazy_import('msgraph.generated.models.managed_tenants.tenant_customized_information')
-tenant_detailed_information = lazy_import('msgraph.generated.models.managed_tenants.tenant_detailed_information')
-tenant_group = lazy_import('msgraph.generated.models.managed_tenants.tenant_group')
-tenant_tag = lazy_import('msgraph.generated.models.managed_tenants.tenant_tag')
-windows_device_malware_state = lazy_import('msgraph.generated.models.managed_tenants.windows_device_malware_state')
-windows_protection_state = lazy_import('msgraph.generated.models.managed_tenants.windows_protection_state')
+if TYPE_CHECKING:
+    from . import aggregated_policy_compliance, app_performance, audit_event, cloud_pc_connection, cloud_pc_device, cloud_pc_overview, conditional_access_policy_coverage, credential_user_registrations_summary, device_app_performance, device_compliance_policy_setting_state_summary, device_health_status, managed_device_compliance, managed_device_compliance_trend, managed_tenant_alert, managed_tenant_alert_log, managed_tenant_alert_rule, managed_tenant_alert_rule_definition, managed_tenant_api_notification, managed_tenant_email_notification, managed_tenant_ticketing_endpoint, management_action, management_action_tenant_deployment_status, management_intent, management_template, management_template_collection, management_template_collection_tenant_summary, management_template_step, management_template_step_tenant_summary, management_template_step_version, my_role, tenant, tenant_customized_information, tenant_detailed_information, tenant_group, tenant_tag, windows_device_malware_state, windows_protection_state
+    from .. import entity
+
+from .. import entity
 
 class ManagedTenant(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new ManagedTenant and sets the default values.
+        """
+        super().__init__()
+        # Aggregate view of device compliance policies across managed tenants.
+        self._aggregated_policy_compliances: Optional[List[aggregated_policy_compliance.AggregatedPolicyCompliance]] = None
+        # The appPerformances property
+        self._app_performances: Optional[List[app_performance.AppPerformance]] = None
+        # The collection of audit events across managed tenants.
+        self._audit_events: Optional[List[audit_event.AuditEvent]] = None
+        # The collection of cloud PC connections across managed tenants.
+        self._cloud_pc_connections: Optional[List[cloud_pc_connection.CloudPcConnection]] = None
+        # The collection of cloud PC devices across managed tenants.
+        self._cloud_pc_devices: Optional[List[cloud_pc_device.CloudPcDevice]] = None
+        # Overview of cloud PC information across managed tenants.
+        self._cloud_pcs_overview: Optional[List[cloud_pc_overview.CloudPcOverview]] = None
+        # Aggregate view of conditional access policy coverage across managed tenants.
+        self._conditional_access_policy_coverages: Optional[List[conditional_access_policy_coverage.ConditionalAccessPolicyCoverage]] = None
+        # Summary information for user registration for multi-factor authentication and self service password reset across managed tenants.
+        self._credential_user_registrations_summaries: Optional[List[credential_user_registrations_summary.CredentialUserRegistrationsSummary]] = None
+        # The deviceAppPerformances property
+        self._device_app_performances: Optional[List[device_app_performance.DeviceAppPerformance]] = None
+        # Summary information for device compliance policy setting states across managed tenants.
+        self._device_compliance_policy_setting_state_summaries: Optional[List[device_compliance_policy_setting_state_summary.DeviceCompliancePolicySettingStateSummary]] = None
+        # The deviceHealthStatuses property
+        self._device_health_statuses: Optional[List[device_health_status.DeviceHealthStatus]] = None
+        # Trend insights for device compliance across managed tenants.
+        self._managed_device_compliance_trends: Optional[List[managed_device_compliance_trend.ManagedDeviceComplianceTrend]] = None
+        # The collection of compliance for managed devices across managed tenants.
+        self._managed_device_compliances: Optional[List[managed_device_compliance.ManagedDeviceCompliance]] = None
+        # The managedTenantAlertLogs property
+        self._managed_tenant_alert_logs: Optional[List[managed_tenant_alert_log.ManagedTenantAlertLog]] = None
+        # The managedTenantAlertRuleDefinitions property
+        self._managed_tenant_alert_rule_definitions: Optional[List[managed_tenant_alert_rule_definition.ManagedTenantAlertRuleDefinition]] = None
+        # The managedTenantAlertRules property
+        self._managed_tenant_alert_rules: Optional[List[managed_tenant_alert_rule.ManagedTenantAlertRule]] = None
+        # The managedTenantAlerts property
+        self._managed_tenant_alerts: Optional[List[managed_tenant_alert.ManagedTenantAlert]] = None
+        # The managedTenantApiNotifications property
+        self._managed_tenant_api_notifications: Optional[List[managed_tenant_api_notification.ManagedTenantApiNotification]] = None
+        # The managedTenantEmailNotifications property
+        self._managed_tenant_email_notifications: Optional[List[managed_tenant_email_notification.ManagedTenantEmailNotification]] = None
+        # The managedTenantTicketingEndpoints property
+        self._managed_tenant_ticketing_endpoints: Optional[List[managed_tenant_ticketing_endpoint.ManagedTenantTicketingEndpoint]] = None
+        # The tenant level status of management actions across managed tenants.
+        self._management_action_tenant_deployment_statuses: Optional[List[management_action_tenant_deployment_status.ManagementActionTenantDeploymentStatus]] = None
+        # The collection of baseline management actions across managed tenants.
+        self._management_actions: Optional[List[management_action.ManagementAction]] = None
+        # The collection of baseline management intents across managed tenants.
+        self._management_intents: Optional[List[management_intent.ManagementIntent]] = None
+        # The managementTemplateCollectionTenantSummaries property
+        self._management_template_collection_tenant_summaries: Optional[List[management_template_collection_tenant_summary.ManagementTemplateCollectionTenantSummary]] = None
+        # The managementTemplateCollections property
+        self._management_template_collections: Optional[List[management_template_collection.ManagementTemplateCollection]] = None
+        # The managementTemplateStepTenantSummaries property
+        self._management_template_step_tenant_summaries: Optional[List[management_template_step_tenant_summary.ManagementTemplateStepTenantSummary]] = None
+        # The managementTemplateStepVersions property
+        self._management_template_step_versions: Optional[List[management_template_step_version.ManagementTemplateStepVersion]] = None
+        # The managementTemplateSteps property
+        self._management_template_steps: Optional[List[management_template_step.ManagementTemplateStep]] = None
+        # The collection of baseline management templates across managed tenants.
+        self._management_templates: Optional[List[management_template.ManagementTemplate]] = None
+        # The collection of role assignments to a signed-in user for a managed tenant.
+        self._my_roles: Optional[List[my_role.MyRole]] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The collection of a logical grouping of managed tenants used by the multi-tenant management platform.
+        self._tenant_groups: Optional[List[tenant_group.TenantGroup]] = None
+        # The collection of tenant tags across managed tenants.
+        self._tenant_tags: Optional[List[tenant_tag.TenantTag]] = None
+        # The collection of tenants associated with the managing entity.
+        self._tenants: Optional[List[tenant.Tenant]] = None
+        # The collection of tenant level customized information across managed tenants.
+        self._tenants_customized_information: Optional[List[tenant_customized_information.TenantCustomizedInformation]] = None
+        # The collection tenant level detailed information across managed tenants.
+        self._tenants_detailed_information: Optional[List[tenant_detailed_information.TenantDetailedInformation]] = None
+        # The state of malware for Windows devices, registered with Microsoft Endpoint Manager, across managed tenants.
+        self._windows_device_malware_states: Optional[List[windows_device_malware_state.WindowsDeviceMalwareState]] = None
+        # The protection state for Windows devices, registered with Microsoft Endpoint Manager, across managed tenants.
+        self._windows_protection_states: Optional[List[windows_protection_state.WindowsProtectionState]] = None
+    
     @property
     def aggregated_policy_compliances(self,) -> Optional[List[aggregated_policy_compliance.AggregatedPolicyCompliance]]:
         """
@@ -56,6 +107,23 @@ class ManagedTenant(entity.Entity):
             value: Value to set for the aggregated_policy_compliances property.
         """
         self._aggregated_policy_compliances = value
+    
+    @property
+    def app_performances(self,) -> Optional[List[app_performance.AppPerformance]]:
+        """
+        Gets the appPerformances property value. The appPerformances property
+        Returns: Optional[List[app_performance.AppPerformance]]
+        """
+        return self._app_performances
+    
+    @app_performances.setter
+    def app_performances(self,value: Optional[List[app_performance.AppPerformance]] = None) -> None:
+        """
+        Sets the appPerformances property value. The appPerformances property
+        Args:
+            value: Value to set for the app_performances property.
+        """
+        self._app_performances = value
     
     @property
     def audit_events(self,) -> Optional[List[audit_event.AuditEvent]]:
@@ -142,82 +210,6 @@ class ManagedTenant(entity.Entity):
         """
         self._conditional_access_policy_coverages = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ManagedTenant and sets the default values.
-        """
-        super().__init__()
-        # Aggregate view of device compliance policies across managed tenants.
-        self._aggregated_policy_compliances: Optional[List[aggregated_policy_compliance.AggregatedPolicyCompliance]] = None
-        # The collection of audit events across managed tenants.
-        self._audit_events: Optional[List[audit_event.AuditEvent]] = None
-        # The collection of cloud PC connections across managed tenants.
-        self._cloud_pc_connections: Optional[List[cloud_pc_connection.CloudPcConnection]] = None
-        # The collection of cloud PC devices across managed tenants.
-        self._cloud_pc_devices: Optional[List[cloud_pc_device.CloudPcDevice]] = None
-        # Overview of cloud PC information across managed tenants.
-        self._cloud_pcs_overview: Optional[List[cloud_pc_overview.CloudPcOverview]] = None
-        # Aggregate view of conditional access policy coverage across managed tenants.
-        self._conditional_access_policy_coverages: Optional[List[conditional_access_policy_coverage.ConditionalAccessPolicyCoverage]] = None
-        # Summary information for user registration for multi-factor authentication and self service password reset across managed tenants.
-        self._credential_user_registrations_summaries: Optional[List[credential_user_registrations_summary.CredentialUserRegistrationsSummary]] = None
-        # Summary information for device compliance policy setting states across managed tenants.
-        self._device_compliance_policy_setting_state_summaries: Optional[List[device_compliance_policy_setting_state_summary.DeviceCompliancePolicySettingStateSummary]] = None
-        # Trend insights for device compliance across managed tenants.
-        self._managed_device_compliance_trends: Optional[List[managed_device_compliance_trend.ManagedDeviceComplianceTrend]] = None
-        # The collection of compliance for managed devices across managed tenants.
-        self._managed_device_compliances: Optional[List[managed_device_compliance.ManagedDeviceCompliance]] = None
-        # The managedTenantAlertLogs property
-        self._managed_tenant_alert_logs: Optional[List[managed_tenant_alert_log.ManagedTenantAlertLog]] = None
-        # The managedTenantAlertRuleDefinitions property
-        self._managed_tenant_alert_rule_definitions: Optional[List[managed_tenant_alert_rule_definition.ManagedTenantAlertRuleDefinition]] = None
-        # The managedTenantAlertRules property
-        self._managed_tenant_alert_rules: Optional[List[managed_tenant_alert_rule.ManagedTenantAlertRule]] = None
-        # The managedTenantAlerts property
-        self._managed_tenant_alerts: Optional[List[managed_tenant_alert.ManagedTenantAlert]] = None
-        # The managedTenantApiNotifications property
-        self._managed_tenant_api_notifications: Optional[List[managed_tenant_api_notification.ManagedTenantApiNotification]] = None
-        # The managedTenantEmailNotifications property
-        self._managed_tenant_email_notifications: Optional[List[managed_tenant_email_notification.ManagedTenantEmailNotification]] = None
-        # The managedTenantTicketingEndpoints property
-        self._managed_tenant_ticketing_endpoints: Optional[List[managed_tenant_ticketing_endpoint.ManagedTenantTicketingEndpoint]] = None
-        # The tenant level status of management actions across managed tenants.
-        self._management_action_tenant_deployment_statuses: Optional[List[management_action_tenant_deployment_status.ManagementActionTenantDeploymentStatus]] = None
-        # The collection of baseline management actions across managed tenants.
-        self._management_actions: Optional[List[management_action.ManagementAction]] = None
-        # The collection of baseline management intents across managed tenants.
-        self._management_intents: Optional[List[management_intent.ManagementIntent]] = None
-        # The managementTemplateCollectionTenantSummaries property
-        self._management_template_collection_tenant_summaries: Optional[List[management_template_collection_tenant_summary.ManagementTemplateCollectionTenantSummary]] = None
-        # The managementTemplateCollections property
-        self._management_template_collections: Optional[List[management_template_collection.ManagementTemplateCollection]] = None
-        # The managementTemplateStepTenantSummaries property
-        self._management_template_step_tenant_summaries: Optional[List[management_template_step_tenant_summary.ManagementTemplateStepTenantSummary]] = None
-        # The managementTemplateStepVersions property
-        self._management_template_step_versions: Optional[List[management_template_step_version.ManagementTemplateStepVersion]] = None
-        # The managementTemplateSteps property
-        self._management_template_steps: Optional[List[management_template_step.ManagementTemplateStep]] = None
-        # The collection of baseline management templates across managed tenants.
-        self._management_templates: Optional[List[management_template.ManagementTemplate]] = None
-        # The collection of role assignments to a signed-in user for a managed tenant.
-        self._my_roles: Optional[List[my_role.MyRole]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The collection of a logical grouping of managed tenants used by the multi-tenant management platform.
-        self._tenant_groups: Optional[List[tenant_group.TenantGroup]] = None
-        # The collection of tenant tags across managed tenants.
-        self._tenant_tags: Optional[List[tenant_tag.TenantTag]] = None
-        # The collection of tenants associated with the managing entity.
-        self._tenants: Optional[List[tenant.Tenant]] = None
-        # The collection of tenant level customized information across managed tenants.
-        self._tenants_customized_information: Optional[List[tenant_customized_information.TenantCustomizedInformation]] = None
-        # The collection tenant level detailed information across managed tenants.
-        self._tenants_detailed_information: Optional[List[tenant_detailed_information.TenantDetailedInformation]] = None
-        # The state of malware for Windows devices, registered with Microsoft Endpoint Manager, across managed tenants.
-        self._windows_device_malware_states: Optional[List[windows_device_malware_state.WindowsDeviceMalwareState]] = None
-        # The protection state for Windows devices, registered with Microsoft Endpoint Manager, across managed tenants.
-        self._windows_protection_states: Optional[List[windows_protection_state.WindowsProtectionState]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ManagedTenant:
         """
@@ -248,6 +240,23 @@ class ManagedTenant(entity.Entity):
         self._credential_user_registrations_summaries = value
     
     @property
+    def device_app_performances(self,) -> Optional[List[device_app_performance.DeviceAppPerformance]]:
+        """
+        Gets the deviceAppPerformances property value. The deviceAppPerformances property
+        Returns: Optional[List[device_app_performance.DeviceAppPerformance]]
+        """
+        return self._device_app_performances
+    
+    @device_app_performances.setter
+    def device_app_performances(self,value: Optional[List[device_app_performance.DeviceAppPerformance]] = None) -> None:
+        """
+        Sets the deviceAppPerformances property value. The deviceAppPerformances property
+        Args:
+            value: Value to set for the device_app_performances property.
+        """
+        self._device_app_performances = value
+    
+    @property
     def device_compliance_policy_setting_state_summaries(self,) -> Optional[List[device_compliance_policy_setting_state_summary.DeviceCompliancePolicySettingStateSummary]]:
         """
         Gets the deviceCompliancePolicySettingStateSummaries property value. Summary information for device compliance policy setting states across managed tenants.
@@ -264,20 +273,43 @@ class ManagedTenant(entity.Entity):
         """
         self._device_compliance_policy_setting_state_summaries = value
     
+    @property
+    def device_health_statuses(self,) -> Optional[List[device_health_status.DeviceHealthStatus]]:
+        """
+        Gets the deviceHealthStatuses property value. The deviceHealthStatuses property
+        Returns: Optional[List[device_health_status.DeviceHealthStatus]]
+        """
+        return self._device_health_statuses
+    
+    @device_health_statuses.setter
+    def device_health_statuses(self,value: Optional[List[device_health_status.DeviceHealthStatus]] = None) -> None:
+        """
+        Sets the deviceHealthStatuses property value. The deviceHealthStatuses property
+        Args:
+            value: Value to set for the device_health_statuses property.
+        """
+        self._device_health_statuses = value
+    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import aggregated_policy_compliance, app_performance, audit_event, cloud_pc_connection, cloud_pc_device, cloud_pc_overview, conditional_access_policy_coverage, credential_user_registrations_summary, device_app_performance, device_compliance_policy_setting_state_summary, device_health_status, managed_device_compliance, managed_device_compliance_trend, managed_tenant_alert, managed_tenant_alert_log, managed_tenant_alert_rule, managed_tenant_alert_rule_definition, managed_tenant_api_notification, managed_tenant_email_notification, managed_tenant_ticketing_endpoint, management_action, management_action_tenant_deployment_status, management_intent, management_template, management_template_collection, management_template_collection_tenant_summary, management_template_step, management_template_step_tenant_summary, management_template_step_version, my_role, tenant, tenant_customized_information, tenant_detailed_information, tenant_group, tenant_tag, windows_device_malware_state, windows_protection_state
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "aggregatedPolicyCompliances": lambda n : setattr(self, 'aggregated_policy_compliances', n.get_collection_of_object_values(aggregated_policy_compliance.AggregatedPolicyCompliance)),
+            "appPerformances": lambda n : setattr(self, 'app_performances', n.get_collection_of_object_values(app_performance.AppPerformance)),
             "auditEvents": lambda n : setattr(self, 'audit_events', n.get_collection_of_object_values(audit_event.AuditEvent)),
             "cloudPcsOverview": lambda n : setattr(self, 'cloud_pcs_overview', n.get_collection_of_object_values(cloud_pc_overview.CloudPcOverview)),
             "cloudPcConnections": lambda n : setattr(self, 'cloud_pc_connections', n.get_collection_of_object_values(cloud_pc_connection.CloudPcConnection)),
             "cloudPcDevices": lambda n : setattr(self, 'cloud_pc_devices', n.get_collection_of_object_values(cloud_pc_device.CloudPcDevice)),
             "conditionalAccessPolicyCoverages": lambda n : setattr(self, 'conditional_access_policy_coverages', n.get_collection_of_object_values(conditional_access_policy_coverage.ConditionalAccessPolicyCoverage)),
             "credentialUserRegistrationsSummaries": lambda n : setattr(self, 'credential_user_registrations_summaries', n.get_collection_of_object_values(credential_user_registrations_summary.CredentialUserRegistrationsSummary)),
+            "deviceAppPerformances": lambda n : setattr(self, 'device_app_performances', n.get_collection_of_object_values(device_app_performance.DeviceAppPerformance)),
             "deviceCompliancePolicySettingStateSummaries": lambda n : setattr(self, 'device_compliance_policy_setting_state_summaries', n.get_collection_of_object_values(device_compliance_policy_setting_state_summary.DeviceCompliancePolicySettingStateSummary)),
+            "deviceHealthStatuses": lambda n : setattr(self, 'device_health_statuses', n.get_collection_of_object_values(device_health_status.DeviceHealthStatus)),
             "managedDeviceCompliances": lambda n : setattr(self, 'managed_device_compliances', n.get_collection_of_object_values(managed_device_compliance.ManagedDeviceCompliance)),
             "managedDeviceComplianceTrends": lambda n : setattr(self, 'managed_device_compliance_trends', n.get_collection_of_object_values(managed_device_compliance_trend.ManagedDeviceComplianceTrend)),
             "managedTenantAlerts": lambda n : setattr(self, 'managed_tenant_alerts', n.get_collection_of_object_values(managed_tenant_alert.ManagedTenantAlert)),
@@ -642,13 +674,16 @@ class ManagedTenant(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_collection_of_object_values("aggregatedPolicyCompliances", self.aggregated_policy_compliances)
+        writer.write_collection_of_object_values("appPerformances", self.app_performances)
         writer.write_collection_of_object_values("auditEvents", self.audit_events)
         writer.write_collection_of_object_values("cloudPcsOverview", self.cloud_pcs_overview)
         writer.write_collection_of_object_values("cloudPcConnections", self.cloud_pc_connections)
         writer.write_collection_of_object_values("cloudPcDevices", self.cloud_pc_devices)
         writer.write_collection_of_object_values("conditionalAccessPolicyCoverages", self.conditional_access_policy_coverages)
         writer.write_collection_of_object_values("credentialUserRegistrationsSummaries", self.credential_user_registrations_summaries)
+        writer.write_collection_of_object_values("deviceAppPerformances", self.device_app_performances)
         writer.write_collection_of_object_values("deviceCompliancePolicySettingStateSummaries", self.device_compliance_policy_setting_state_summaries)
+        writer.write_collection_of_object_values("deviceHealthStatuses", self.device_health_statuses)
         writer.write_collection_of_object_values("managedDeviceCompliances", self.managed_device_compliances)
         writer.write_collection_of_object_values("managedDeviceComplianceTrends", self.managed_device_compliance_trends)
         writer.write_collection_of_object_values("managedTenantAlerts", self.managed_tenant_alerts)

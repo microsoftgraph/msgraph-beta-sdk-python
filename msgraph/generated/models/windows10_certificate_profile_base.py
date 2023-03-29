@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-windows_certificate_profile_base = lazy_import('msgraph.generated.models.windows_certificate_profile_base')
+if TYPE_CHECKING:
+    from . import windows10_pkcs_certificate_profile, windows_certificate_profile_base
+
+from . import windows_certificate_profile_base
 
 class Windows10CertificateProfileBase(windows_certificate_profile_base.WindowsCertificateProfileBase):
     def __init__(self,) -> None:
@@ -23,6 +25,13 @@ class Windows10CertificateProfileBase(windows_certificate_profile_base.WindowsCe
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.windows10PkcsCertificateProfile":
+                from . import windows10_pkcs_certificate_profile
+
+                return windows10_pkcs_certificate_profile.Windows10PkcsCertificateProfile()
         return Windows10CertificateProfileBase()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -30,7 +39,9 @@ class Windows10CertificateProfileBase(windows_certificate_profile_base.WindowsCe
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import windows10_pkcs_certificate_profile, windows_certificate_profile_base
+
+        fields: Dict[str, Callable[[Any], None]] = {
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

@@ -7,32 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-export_personal_data_request_builder = lazy_import('msgraph.generated.directory.inbound_shared_user_profiles.item.export_personal_data.export_personal_data_request_builder')
-remove_personal_data_request_builder = lazy_import('msgraph.generated.directory.inbound_shared_user_profiles.item.remove_personal_data.remove_personal_data_request_builder')
-inbound_shared_user_profile = lazy_import('msgraph.generated.models.inbound_shared_user_profile')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ....models import inbound_shared_user_profile
+    from ....models.o_data_errors import o_data_error
+    from .export_personal_data import export_personal_data_request_builder
+    from .remove_personal_data import remove_personal_data_request_builder
 
 class InboundSharedUserProfileUserItemRequestBuilder():
     """
     Provides operations to manage the inboundSharedUserProfiles property of the microsoft.graph.directory entity.
     """
-    @property
-    def export_personal_data(self) -> export_personal_data_request_builder.ExportPersonalDataRequestBuilder:
-        """
-        Provides operations to call the exportPersonalData method.
-        """
-        return export_personal_data_request_builder.ExportPersonalDataRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def remove_personal_data(self) -> remove_personal_data_request_builder.RemovePersonalDataRequestBuilder:
-        """
-        Provides operations to call the removePersonalData method.
-        """
-        return remove_personal_data_request_builder.RemovePersonalDataRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new InboundSharedUserProfileUserItemRequestBuilder and sets the default values.
@@ -60,6 +46,8 @@ class InboundSharedUserProfileUserItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -78,12 +66,16 @@ class InboundSharedUserProfileUserItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import inbound_shared_user_profile
+
         return await self.request_adapter.send_async(request_info, inbound_shared_user_profile.InboundSharedUserProfile, error_mapping)
     
     async def patch(self,body: Optional[inbound_shared_user_profile.InboundSharedUserProfile] = None, request_configuration: Optional[InboundSharedUserProfileUserItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[inbound_shared_user_profile.InboundSharedUserProfile]:
@@ -99,12 +91,16 @@ class InboundSharedUserProfileUserItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import inbound_shared_user_profile
+
         return await self.request_adapter.send_async(request_info, inbound_shared_user_profile.InboundSharedUserProfile, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[InboundSharedUserProfileUserItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -162,6 +158,24 @@ class InboundSharedUserProfileUserItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def export_personal_data(self) -> export_personal_data_request_builder.ExportPersonalDataRequestBuilder:
+        """
+        Provides operations to call the exportPersonalData method.
+        """
+        from .export_personal_data import export_personal_data_request_builder
+
+        return export_personal_data_request_builder.ExportPersonalDataRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def remove_personal_data(self) -> remove_personal_data_request_builder.RemovePersonalDataRequestBuilder:
+        """
+        Provides operations to call the removePersonalData method.
+        """
+        from .remove_personal_data import remove_personal_data_request_builder
+
+        return remove_personal_data_request_builder.RemovePersonalDataRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class InboundSharedUserProfileUserItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -179,12 +193,6 @@ class InboundSharedUserProfileUserItemRequestBuilder():
         """
         Get inboundSharedUserProfiles from directory
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -200,6 +208,12 @@ class InboundSharedUserProfileUserItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class InboundSharedUserProfileUserItemRequestBuilderGetRequestConfiguration():

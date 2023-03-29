@@ -1,12 +1,48 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_device_owner_required_password_type = lazy_import('msgraph.generated.models.android_device_owner_required_password_type')
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+if TYPE_CHECKING:
+    from . import android_device_owner_required_password_type, device_configuration
+
+from . import device_configuration
 
 class AospDeviceOwnerDeviceConfiguration(device_configuration.DeviceConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new AospDeviceOwnerDeviceConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.aospDeviceOwnerDeviceConfiguration"
+        # Indicates whether or not the user is allowed to enable unknown sources setting. When set to true, user is not allowed to enable unknown sources settings.
+        self._apps_block_install_from_unknown_sources: Optional[bool] = None
+        # Indicates whether or not to block a user from configuring bluetooth.
+        self._bluetooth_block_configuration: Optional[bool] = None
+        # Indicates whether or not to disable the use of bluetooth. When set to true, bluetooth cannot be enabled on the device.
+        self._bluetooth_blocked: Optional[bool] = None
+        # Indicates whether or not to disable the use of the camera.
+        self._camera_blocked: Optional[bool] = None
+        # Indicates whether or not the factory reset option in settings is disabled.
+        self._factory_reset_blocked: Optional[bool] = None
+        # Indicates the minimum length of the password required on the device. Valid values 4 to 16
+        self._password_minimum_length: Optional[int] = None
+        # Minutes of inactivity before the screen times out.
+        self._password_minutes_of_inactivity_before_screen_timeout: Optional[int] = None
+        # Indicates the minimum password quality required on the device. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
+        self._password_required_type: Optional[android_device_owner_required_password_type.AndroidDeviceOwnerRequiredPasswordType] = None
+        # Indicates the number of times a user can enter an incorrect password before the device is wiped. Valid values 4 to 11
+        self._password_sign_in_failure_count_before_factory_reset: Optional[int] = None
+        # Indicates whether or not to disable the capability to take screenshots.
+        self._screen_capture_blocked: Optional[bool] = None
+        # Indicates whether or not to block the user from enabling debugging features on the device.
+        self._security_allow_debugging_features: Optional[bool] = None
+        # Indicates whether or not to block external media.
+        self._storage_block_external_media: Optional[bool] = None
+        # Indicates whether or not to block USB file transfer.
+        self._storage_block_usb_file_transfer: Optional[bool] = None
+        # Indicates whether or not to block the user from editing the wifi connection settings.
+        self._wifi_block_edit_configurations: Optional[bool] = None
+    
     @property
     def apps_block_install_from_unknown_sources(self,) -> Optional[bool]:
         """
@@ -75,41 +111,6 @@ class AospDeviceOwnerDeviceConfiguration(device_configuration.DeviceConfiguratio
         """
         self._camera_blocked = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AospDeviceOwnerDeviceConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.aospDeviceOwnerDeviceConfiguration"
-        # Indicates whether or not the user is allowed to enable unknown sources setting. When set to true, user is not allowed to enable unknown sources settings.
-        self._apps_block_install_from_unknown_sources: Optional[bool] = None
-        # Indicates whether or not to block a user from configuring bluetooth.
-        self._bluetooth_block_configuration: Optional[bool] = None
-        # Indicates whether or not to disable the use of bluetooth. When set to true, bluetooth cannot be enabled on the device.
-        self._bluetooth_blocked: Optional[bool] = None
-        # Indicates whether or not to disable the use of the camera.
-        self._camera_blocked: Optional[bool] = None
-        # Indicates whether or not the factory reset option in settings is disabled.
-        self._factory_reset_blocked: Optional[bool] = None
-        # Indicates the minimum length of the password required on the device. Valid values 4 to 16
-        self._password_minimum_length: Optional[int] = None
-        # Minutes of inactivity before the screen times out.
-        self._password_minutes_of_inactivity_before_screen_timeout: Optional[int] = None
-        # Indicates the minimum password quality required on the device. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
-        self._password_required_type: Optional[android_device_owner_required_password_type.AndroidDeviceOwnerRequiredPasswordType] = None
-        # Indicates the number of times a user can enter an incorrect password before the device is wiped. Valid values 4 to 11
-        self._password_sign_in_failure_count_before_factory_reset: Optional[int] = None
-        # Indicates whether or not to disable the capability to take screenshots.
-        self._screen_capture_blocked: Optional[bool] = None
-        # Indicates whether or not to block the user from enabling debugging features on the device.
-        self._security_allow_debugging_features: Optional[bool] = None
-        # Indicates whether or not to block external media.
-        self._storage_block_external_media: Optional[bool] = None
-        # Indicates whether or not to block USB file transfer.
-        self._storage_block_usb_file_transfer: Optional[bool] = None
-        # Indicates whether or not to block the user from editing the wifi connection settings.
-        self._wifi_block_edit_configurations: Optional[bool] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AospDeviceOwnerDeviceConfiguration:
         """
@@ -144,7 +145,9 @@ class AospDeviceOwnerDeviceConfiguration(device_configuration.DeviceConfiguratio
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_device_owner_required_password_type, device_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appsBlockInstallFromUnknownSources": lambda n : setattr(self, 'apps_block_install_from_unknown_sources', n.get_bool_value()),
             "bluetoothBlocked": lambda n : setattr(self, 'bluetooth_blocked', n.get_bool_value()),
             "bluetoothBlockConfiguration": lambda n : setattr(self, 'bluetooth_block_configuration', n.get_bool_value()),

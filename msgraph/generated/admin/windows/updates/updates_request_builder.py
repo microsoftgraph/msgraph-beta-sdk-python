@@ -7,69 +7,27 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-catalog_request_builder = lazy_import('msgraph.generated.admin.windows.updates.catalog.catalog_request_builder')
-deployment_audiences_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployment_audiences.deployment_audiences_request_builder')
-deployment_audience_item_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployment_audiences.item.deployment_audience_item_request_builder')
-deployments_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.deployments_request_builder')
-deployment_item_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.deployment_item_request_builder')
-resource_connections_request_builder = lazy_import('msgraph.generated.admin.windows.updates.resource_connections.resource_connections_request_builder')
-resource_connection_item_request_builder = lazy_import('msgraph.generated.admin.windows.updates.resource_connections.item.resource_connection_item_request_builder')
-updatable_assets_request_builder = lazy_import('msgraph.generated.admin.windows.updates.updatable_assets.updatable_assets_request_builder')
-updatable_asset_item_request_builder = lazy_import('msgraph.generated.admin.windows.updates.updatable_assets.item.updatable_asset_item_request_builder')
-update_policies_request_builder = lazy_import('msgraph.generated.admin.windows.updates.update_policies.update_policies_request_builder')
-update_policy_item_request_builder = lazy_import('msgraph.generated.admin.windows.updates.update_policies.item.update_policy_item_request_builder')
-admin_windows_updates = lazy_import('msgraph.generated.models.admin_windows_updates')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ....models import admin_windows_updates
+    from ....models.o_data_errors import o_data_error
+    from .catalog import catalog_request_builder
+    from .deployment_audiences import deployment_audiences_request_builder
+    from .deployment_audiences.item import deployment_audience_item_request_builder
+    from .deployments import deployments_request_builder
+    from .deployments.item import deployment_item_request_builder
+    from .resource_connections import resource_connections_request_builder
+    from .resource_connections.item import resource_connection_item_request_builder
+    from .updatable_assets import updatable_assets_request_builder
+    from .updatable_assets.item import updatable_asset_item_request_builder
+    from .update_policies import update_policies_request_builder
+    from .update_policies.item import update_policy_item_request_builder
 
 class UpdatesRequestBuilder():
     """
     Provides operations to manage the updates property of the microsoft.graph.adminWindows entity.
     """
-    @property
-    def catalog(self) -> catalog_request_builder.CatalogRequestBuilder:
-        """
-        Provides operations to manage the catalog property of the microsoft.graph.adminWindowsUpdates entity.
-        """
-        return catalog_request_builder.CatalogRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def deployment_audiences(self) -> deployment_audiences_request_builder.DeploymentAudiencesRequestBuilder:
-        """
-        Provides operations to manage the deploymentAudiences property of the microsoft.graph.adminWindowsUpdates entity.
-        """
-        return deployment_audiences_request_builder.DeploymentAudiencesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def deployments(self) -> deployments_request_builder.DeploymentsRequestBuilder:
-        """
-        Provides operations to manage the deployments property of the microsoft.graph.adminWindowsUpdates entity.
-        """
-        return deployments_request_builder.DeploymentsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def resource_connections(self) -> resource_connections_request_builder.ResourceConnectionsRequestBuilder:
-        """
-        Provides operations to manage the resourceConnections property of the microsoft.graph.adminWindowsUpdates entity.
-        """
-        return resource_connections_request_builder.ResourceConnectionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def updatable_assets(self) -> updatable_assets_request_builder.UpdatableAssetsRequestBuilder:
-        """
-        Provides operations to manage the updatableAssets property of the microsoft.graph.adminWindowsUpdates entity.
-        """
-        return updatable_assets_request_builder.UpdatableAssetsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def update_policies(self) -> update_policies_request_builder.UpdatePoliciesRequestBuilder:
-        """
-        Provides operations to manage the updatePolicies property of the microsoft.graph.adminWindowsUpdates entity.
-        """
-        return update_policies_request_builder.UpdatePoliciesRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new UpdatesRequestBuilder and sets the default values.
@@ -97,6 +55,8 @@ class UpdatesRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -114,6 +74,8 @@ class UpdatesRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .deployment_audiences.item import deployment_audience_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["deploymentAudience%2Did"] = id
         return deployment_audience_item_request_builder.DeploymentAudienceItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -127,6 +89,8 @@ class UpdatesRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .deployments.item import deployment_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["deployment%2Did"] = id
         return deployment_item_request_builder.DeploymentItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -141,12 +105,16 @@ class UpdatesRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import admin_windows_updates
+
         return await self.request_adapter.send_async(request_info, admin_windows_updates.AdminWindowsUpdates, error_mapping)
     
     async def patch(self,body: Optional[admin_windows_updates.AdminWindowsUpdates] = None, request_configuration: Optional[UpdatesRequestBuilderPatchRequestConfiguration] = None) -> Optional[admin_windows_updates.AdminWindowsUpdates]:
@@ -162,12 +130,16 @@ class UpdatesRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import admin_windows_updates
+
         return await self.request_adapter.send_async(request_info, admin_windows_updates.AdminWindowsUpdates, error_mapping)
     
     def resource_connections_by_id(self,id: str) -> resource_connection_item_request_builder.ResourceConnectionItemRequestBuilder:
@@ -179,6 +151,8 @@ class UpdatesRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .resource_connections.item import resource_connection_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["resourceConnection%2Did"] = id
         return resource_connection_item_request_builder.ResourceConnectionItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -247,6 +221,8 @@ class UpdatesRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .updatable_assets.item import updatable_asset_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["updatableAsset%2Did"] = id
         return updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -260,9 +236,65 @@ class UpdatesRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .update_policies.item import update_policy_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["updatePolicy%2Did"] = id
         return update_policy_item_request_builder.UpdatePolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    @property
+    def catalog(self) -> catalog_request_builder.CatalogRequestBuilder:
+        """
+        Provides operations to manage the catalog property of the microsoft.graph.adminWindowsUpdates entity.
+        """
+        from .catalog import catalog_request_builder
+
+        return catalog_request_builder.CatalogRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def deployment_audiences(self) -> deployment_audiences_request_builder.DeploymentAudiencesRequestBuilder:
+        """
+        Provides operations to manage the deploymentAudiences property of the microsoft.graph.adminWindowsUpdates entity.
+        """
+        from .deployment_audiences import deployment_audiences_request_builder
+
+        return deployment_audiences_request_builder.DeploymentAudiencesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def deployments(self) -> deployments_request_builder.DeploymentsRequestBuilder:
+        """
+        Provides operations to manage the deployments property of the microsoft.graph.adminWindowsUpdates entity.
+        """
+        from .deployments import deployments_request_builder
+
+        return deployments_request_builder.DeploymentsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def resource_connections(self) -> resource_connections_request_builder.ResourceConnectionsRequestBuilder:
+        """
+        Provides operations to manage the resourceConnections property of the microsoft.graph.adminWindowsUpdates entity.
+        """
+        from .resource_connections import resource_connections_request_builder
+
+        return resource_connections_request_builder.ResourceConnectionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def updatable_assets(self) -> updatable_assets_request_builder.UpdatableAssetsRequestBuilder:
+        """
+        Provides operations to manage the updatableAssets property of the microsoft.graph.adminWindowsUpdates entity.
+        """
+        from .updatable_assets import updatable_assets_request_builder
+
+        return updatable_assets_request_builder.UpdatableAssetsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def update_policies(self) -> update_policies_request_builder.UpdatePoliciesRequestBuilder:
+        """
+        Provides operations to manage the updatePolicies property of the microsoft.graph.adminWindowsUpdates entity.
+        """
+        from .update_policies import update_policies_request_builder
+
+        return update_policies_request_builder.UpdatePoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class UpdatesRequestBuilderDeleteRequestConfiguration():
@@ -281,12 +313,6 @@ class UpdatesRequestBuilder():
         """
         Entity that acts as a container for all Windows Update for Business deployment service functionalities. Read-only.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -302,6 +328,12 @@ class UpdatesRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class UpdatesRequestBuilderGetRequestConfiguration():

@@ -7,33 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-count_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.operations.count.count_request_builder')
-microsoft_graph_ediscovery_case_export_operation_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.operations.microsoft_graph_ediscovery_case_export_operation.microsoft_graph_ediscovery_case_export_operation_request_builder')
-case_operation = lazy_import('msgraph.generated.models.ediscovery.case_operation')
-case_operation_collection_response = lazy_import('msgraph.generated.models.ediscovery.case_operation_collection_response')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ......models.ediscovery import case_operation, case_operation_collection_response
+    from ......models.o_data_errors import o_data_error
+    from .count import count_request_builder
+    from .microsoft_graph_ediscovery_case_export_operation import microsoft_graph_ediscovery_case_export_operation_request_builder
 
 class OperationsRequestBuilder():
     """
     Provides operations to manage the operations property of the microsoft.graph.ediscovery.case entity.
     """
-    @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
-        """
-        Provides operations to count the resources in the collection.
-        """
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def microsoft_graph_ediscovery_case_export_operation(self) -> microsoft_graph_ediscovery_case_export_operation_request_builder.MicrosoftGraphEdiscoveryCaseExportOperationRequestBuilder:
-        """
-        Casts the previous resource to caseExportOperation.
-        """
-        return microsoft_graph_ediscovery_case_export_operation_request_builder.MicrosoftGraphEdiscoveryCaseExportOperationRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new OperationsRequestBuilder and sets the default values.
@@ -62,12 +47,16 @@ class OperationsRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models.ediscovery import case_operation_collection_response
+
         return await self.request_adapter.send_async(request_info, case_operation_collection_response.CaseOperationCollectionResponse, error_mapping)
     
     async def post(self,body: Optional[case_operation.CaseOperation] = None, request_configuration: Optional[OperationsRequestBuilderPostRequestConfiguration] = None) -> Optional[case_operation.CaseOperation]:
@@ -83,12 +72,16 @@ class OperationsRequestBuilder():
         request_info = self.to_post_request_information(
             body, request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models.ediscovery import case_operation
+
         return await self.request_adapter.send_async(request_info, case_operation.CaseOperation, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[OperationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
@@ -130,35 +123,29 @@ class OperationsRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def count(self) -> count_request_builder.CountRequestBuilder:
+        """
+        Provides operations to count the resources in the collection.
+        """
+        from .count import count_request_builder
+
+        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_ediscovery_case_export_operation(self) -> microsoft_graph_ediscovery_case_export_operation_request_builder.MicrosoftGraphEdiscoveryCaseExportOperationRequestBuilder:
+        """
+        Casts the previous resource to caseExportOperation.
+        """
+        from .microsoft_graph_ediscovery_case_export_operation import microsoft_graph_ediscovery_case_export_operation_request_builder
+
+        return microsoft_graph_ediscovery_case_export_operation_request_builder.MicrosoftGraphEdiscoveryCaseExportOperationRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class OperationsRequestBuilderGetQueryParameters():
         """
         Returns a list of case operation objects for this case. Nullable.
         """
-        # Include count of items
-        count: Optional[bool] = None
-
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Filter items by property values
-        filter: Optional[str] = None
-
-        # Order items by property values
-        orderby: Optional[List[str]] = None
-
-        # Search items by search phrases
-        search: Optional[str] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
-        # Skip the first n items
-        skip: Optional[int] = None
-
-        # Show only the first n items
-        top: Optional[int] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -186,6 +173,30 @@ class OperationsRequestBuilder():
                 return "%24top"
             return original_name
         
+        # Include count of items
+        count: Optional[bool] = None
+
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Filter items by property values
+        filter: Optional[str] = None
+
+        # Order items by property values
+        orderby: Optional[List[str]] = None
+
+        # Search items by search phrases
+        search: Optional[str] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
+        # Skip the first n items
+        skip: Optional[int] = None
+
+        # Show only the first n items
+        top: Optional[int] = None
+
     
     @dataclass
     class OperationsRequestBuilderGetRequestConfiguration():

@@ -1,12 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-edition_upgrade_license_type = lazy_import('msgraph.generated.models.edition_upgrade_license_type')
-windows_s_mode_configuration = lazy_import('msgraph.generated.models.windows_s_mode_configuration')
-windows10_edition_type = lazy_import('msgraph.generated.models.windows10_edition_type')
+if TYPE_CHECKING:
+    from . import device_configuration, edition_upgrade_license_type, windows10_edition_type, windows_s_mode_configuration
+
+from . import device_configuration
 
 class EditionUpgradeConfiguration(device_configuration.DeviceConfiguration):
     def __init__(self,) -> None:
@@ -43,7 +42,9 @@ class EditionUpgradeConfiguration(device_configuration.DeviceConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_configuration, edition_upgrade_license_type, windows10_edition_type, windows_s_mode_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "license": lambda n : setattr(self, 'license', n.get_str_value()),
             "licenseType": lambda n : setattr(self, 'license_type', n.get_enum_value(edition_upgrade_license_type.EditionUpgradeLicenseType)),
             "productKey": lambda n : setattr(self, 'product_key', n.get_str_value()),

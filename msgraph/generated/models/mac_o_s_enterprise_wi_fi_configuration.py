@@ -1,34 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-eap_fast_configuration = lazy_import('msgraph.generated.models.eap_fast_configuration')
-eap_type = lazy_import('msgraph.generated.models.eap_type')
-mac_o_s_certificate_profile_base = lazy_import('msgraph.generated.models.mac_o_s_certificate_profile_base')
-mac_o_s_trusted_root_certificate = lazy_import('msgraph.generated.models.mac_o_s_trusted_root_certificate')
-mac_o_s_wi_fi_configuration = lazy_import('msgraph.generated.models.mac_o_s_wi_fi_configuration')
-non_eap_authentication_method_for_eap_ttls_type = lazy_import('msgraph.generated.models.non_eap_authentication_method_for_eap_ttls_type')
-wi_fi_authentication_method = lazy_import('msgraph.generated.models.wi_fi_authentication_method')
+if TYPE_CHECKING:
+    from . import eap_fast_configuration, eap_type, mac_o_s_certificate_profile_base, mac_o_s_trusted_root_certificate, mac_o_s_wi_fi_configuration, non_eap_authentication_method_for_eap_ttls_type, wi_fi_authentication_method
+
+from . import mac_o_s_wi_fi_configuration
 
 class MacOSEnterpriseWiFiConfiguration(mac_o_s_wi_fi_configuration.MacOSWiFiConfiguration):
-    @property
-    def authentication_method(self,) -> Optional[wi_fi_authentication_method.WiFiAuthenticationMethod]:
-        """
-        Gets the authenticationMethod property value. Authentication Method when EAP Type is configured to PEAP or EAP-TTLS. Possible values are: certificate, usernameAndPassword, derivedCredential.
-        Returns: Optional[wi_fi_authentication_method.WiFiAuthenticationMethod]
-        """
-        return self._authentication_method
-    
-    @authentication_method.setter
-    def authentication_method(self,value: Optional[wi_fi_authentication_method.WiFiAuthenticationMethod] = None) -> None:
-        """
-        Sets the authenticationMethod property value. Authentication Method when EAP Type is configured to PEAP or EAP-TTLS. Possible values are: certificate, usernameAndPassword, derivedCredential.
-        Args:
-            value: Value to set for the authentication_method property.
-        """
-        self._authentication_method = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new MacOSEnterpriseWiFiConfiguration and sets the default values.
@@ -53,6 +32,23 @@ class MacOSEnterpriseWiFiConfiguration(mac_o_s_wi_fi_configuration.MacOSWiFiConf
         self._root_certificates_for_server_validation: Optional[List[mac_o_s_trusted_root_certificate.MacOSTrustedRootCertificate]] = None
         # Trusted server certificate names when EAP Type is configured to EAP-TLS/TTLS/FAST or PEAP. This is the common name used in the certificates issued by your trusted certificate authority (CA). If you provide this information, you can bypass the dynamic trust dialog that is displayed on end users devices when they connect to this Wi-Fi network.
         self._trusted_server_certificate_names: Optional[List[str]] = None
+    
+    @property
+    def authentication_method(self,) -> Optional[wi_fi_authentication_method.WiFiAuthenticationMethod]:
+        """
+        Gets the authenticationMethod property value. Authentication Method when EAP Type is configured to PEAP or EAP-TTLS. Possible values are: certificate, usernameAndPassword, derivedCredential.
+        Returns: Optional[wi_fi_authentication_method.WiFiAuthenticationMethod]
+        """
+        return self._authentication_method
+    
+    @authentication_method.setter
+    def authentication_method(self,value: Optional[wi_fi_authentication_method.WiFiAuthenticationMethod] = None) -> None:
+        """
+        Sets the authenticationMethod property value. Authentication Method when EAP Type is configured to PEAP or EAP-TTLS. Possible values are: certificate, usernameAndPassword, derivedCredential.
+        Args:
+            value: Value to set for the authentication_method property.
+        """
+        self._authentication_method = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSEnterpriseWiFiConfiguration:
@@ -105,7 +101,9 @@ class MacOSEnterpriseWiFiConfiguration(mac_o_s_wi_fi_configuration.MacOSWiFiConf
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import eap_fast_configuration, eap_type, mac_o_s_certificate_profile_base, mac_o_s_trusted_root_certificate, mac_o_s_wi_fi_configuration, non_eap_authentication_method_for_eap_ttls_type, wi_fi_authentication_method
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(wi_fi_authentication_method.WiFiAuthenticationMethod)),
             "eapFastConfiguration": lambda n : setattr(self, 'eap_fast_configuration', n.get_enum_value(eap_fast_configuration.EapFastConfiguration)),
             "eapType": lambda n : setattr(self, 'eap_type', n.get_enum_value(eap_type.EapType)),

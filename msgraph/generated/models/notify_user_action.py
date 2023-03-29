@@ -1,12 +1,30 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-dlp_action_info = lazy_import('msgraph.generated.models.dlp_action_info')
+if TYPE_CHECKING:
+    from . import dlp_action_info
+
+from . import dlp_action_info
 
 class NotifyUserAction(dlp_action_info.DlpActionInfo):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new NotifyUserAction and sets the default values.
+        """
+        super().__init__()
+        # The actionLastModifiedDateTime property
+        self._action_last_modified_date_time: Optional[datetime] = None
+        # The emailText property
+        self._email_text: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The policyTip property
+        self._policy_tip: Optional[str] = None
+        # The recipients property
+        self._recipients: Optional[List[str]] = None
+    
     @property
     def action_last_modified_date_time(self,) -> Optional[datetime]:
         """
@@ -23,22 +41,6 @@ class NotifyUserAction(dlp_action_info.DlpActionInfo):
             value: Value to set for the action_last_modified_date_time property.
         """
         self._action_last_modified_date_time = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new NotifyUserAction and sets the default values.
-        """
-        super().__init__()
-        # The actionLastModifiedDateTime property
-        self._action_last_modified_date_time: Optional[datetime] = None
-        # The emailText property
-        self._email_text: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The policyTip property
-        self._policy_tip: Optional[str] = None
-        # The recipients property
-        self._recipients: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> NotifyUserAction:
@@ -74,7 +76,9 @@ class NotifyUserAction(dlp_action_info.DlpActionInfo):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import dlp_action_info
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "actionLastModifiedDateTime": lambda n : setattr(self, 'action_last_modified_date_time', n.get_datetime_value()),
             "emailText": lambda n : setattr(self, 'email_text', n.get_str_value()),
             "policyTip": lambda n : setattr(self, 'policy_tip', n.get_str_value()),

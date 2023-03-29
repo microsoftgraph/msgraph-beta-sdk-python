@@ -1,13 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
-synchronization_schedule = lazy_import('msgraph.generated.models.synchronization_schedule')
-synchronization_schema = lazy_import('msgraph.generated.models.synchronization_schema')
-synchronization_status = lazy_import('msgraph.generated.models.synchronization_status')
+if TYPE_CHECKING:
+    from . import entity, key_value_pair, synchronization_schedule, synchronization_schema, synchronization_status
+
+from . import entity
 
 class SynchronizationJob(entity.Entity):
     def __init__(self,) -> None:
@@ -45,7 +43,9 @@ class SynchronizationJob(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, key_value_pair, synchronization_schedule, synchronization_schema, synchronization_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "schedule": lambda n : setattr(self, 'schedule', n.get_object_value(synchronization_schedule.SynchronizationSchedule)),
             "schema": lambda n : setattr(self, 'schema', n.get_object_value(synchronization_schema.SynchronizationSchema)),
             "status": lambda n : setattr(self, 'status', n.get_object_value(synchronization_status.SynchronizationStatus)),

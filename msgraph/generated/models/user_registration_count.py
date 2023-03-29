@@ -1,11 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-registration_status_type = lazy_import('msgraph.generated.models.registration_status_type')
+if TYPE_CHECKING:
+    from . import registration_status_type
 
 class UserRegistrationCount(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new userRegistrationCount and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Provides the registration count for your tenant.
+        self._registration_count: Optional[int] = None
+        # The registrationStatus property
+        self._registration_status: Optional[registration_status_type.RegistrationStatusType] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -22,20 +36,6 @@ class UserRegistrationCount(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userRegistrationCount and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Provides the registration count for your tenant.
-        self._registration_count: Optional[int] = None
-        # The registrationStatus property
-        self._registration_status: Optional[registration_status_type.RegistrationStatusType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserRegistrationCount:
@@ -54,7 +54,9 @@ class UserRegistrationCount(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import registration_status_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "registrationCount": lambda n : setattr(self, 'registration_count', n.get_int_value()),
             "registrationStatus": lambda n : setattr(self, 'registration_status', n.get_enum_value(registration_status_type.RegistrationStatusType)),

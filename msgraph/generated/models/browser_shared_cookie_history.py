@@ -1,13 +1,38 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-browser_shared_cookie_source_environment = lazy_import('msgraph.generated.models.browser_shared_cookie_source_environment')
-identity_set = lazy_import('msgraph.generated.models.identity_set')
+if TYPE_CHECKING:
+    from . import browser_shared_cookie_source_environment, identity_set
 
 class BrowserSharedCookieHistory(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new browserSharedCookieHistory and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The comment for the shared cookie.
+        self._comment: Optional[str] = None
+        # The name of the cookie.
+        self._display_name: Optional[str] = None
+        # Controls whether a cookie is a host-only or domain cookie.
+        self._host_only: Optional[bool] = None
+        # The URL of the cookie.
+        self._host_or_domain: Optional[str] = None
+        # The lastModifiedBy property
+        self._last_modified_by: Optional[identity_set.IdentitySet] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The path of the cookie.
+        self._path: Optional[str] = None
+        # The date and time when the cookie was last published.
+        self._published_date_time: Optional[datetime] = None
+        # Specifies how the cookies are shared between Microsoft Edge and Internet Explorer. The possible values are: microsoftEdge, internetExplorer11, both, unknownFutureValue.
+        self._source_environment: Optional[browser_shared_cookie_source_environment.BrowserSharedCookieSourceEnvironment] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -41,32 +66,6 @@ class BrowserSharedCookieHistory(AdditionalDataHolder, Parsable):
             value: Value to set for the comment property.
         """
         self._comment = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new browserSharedCookieHistory and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The comment for the shared cookie.
-        self._comment: Optional[str] = None
-        # The name of the cookie.
-        self._display_name: Optional[str] = None
-        # Controls whether a cookie is a host-only or domain cookie.
-        self._host_only: Optional[bool] = None
-        # The URL of the cookie.
-        self._host_or_domain: Optional[str] = None
-        # The lastModifiedBy property
-        self._last_modified_by: Optional[identity_set.IdentitySet] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The path of the cookie.
-        self._path: Optional[str] = None
-        # The date and time when the cookie was last published.
-        self._published_date_time: Optional[datetime] = None
-        # Specifies how the cookies are shared between Microsoft Edge and Internet Explorer. The possible values are: microsoftEdge, internetExplorer11, both, unknownFutureValue.
-        self._source_environment: Optional[browser_shared_cookie_source_environment.BrowserSharedCookieSourceEnvironment] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> BrowserSharedCookieHistory:
@@ -102,7 +101,9 @@ class BrowserSharedCookieHistory(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import browser_shared_cookie_source_environment, identity_set
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "comment": lambda n : setattr(self, 'comment', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "hostOnly": lambda n : setattr(self, 'host_only', n.get_bool_value()),

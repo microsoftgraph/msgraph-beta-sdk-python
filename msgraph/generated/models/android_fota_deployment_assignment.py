@@ -1,14 +1,30 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_fota_deployment_assignment_target = lazy_import('msgraph.generated.models.android_fota_deployment_assignment_target')
+if TYPE_CHECKING:
+    from . import android_fota_deployment_assignment_target
 
 class AndroidFotaDeploymentAssignment(AdditionalDataHolder, Parsable):
     """
     Describes deployment security group to assign a deployment to. The backend will expand the security Group ID to extract device serial numbers prior sending a create deployment request to Zebra.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new androidFotaDeploymentAssignment and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The display name of the Azure AD security group used for the assignment.
+        self._display_name: Optional[str] = None
+        # A unique identifier assigned to each Android FOTA Assignment entity
+        self._id: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The AAD Group we are deploying firmware updates to
+        self._target: Optional[android_fota_deployment_assignment_target.AndroidFotaDeploymentAssignmentTarget] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -25,22 +41,6 @@ class AndroidFotaDeploymentAssignment(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new androidFotaDeploymentAssignment and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The display name of the Azure AD security group used for the assignment.
-        self._display_name: Optional[str] = None
-        # A unique identifier assigned to each Android FOTA Assignment entity
-        self._id: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The AAD Group we are deploying firmware updates to
-        self._target: Optional[android_fota_deployment_assignment_target.AndroidFotaDeploymentAssignmentTarget] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidFotaDeploymentAssignment:
@@ -76,7 +76,9 @@ class AndroidFotaDeploymentAssignment(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_fota_deployment_assignment_target
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

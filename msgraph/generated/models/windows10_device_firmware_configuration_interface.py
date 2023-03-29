@@ -1,13 +1,62 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-change_uefi_settings_permission = lazy_import('msgraph.generated.models.change_uefi_settings_permission')
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-enablement = lazy_import('msgraph.generated.models.enablement')
+if TYPE_CHECKING:
+    from . import change_uefi_settings_permission, device_configuration, enablement
+
+from . import device_configuration
 
 class Windows10DeviceFirmwareConfigurationInterface(device_configuration.DeviceConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new Windows10DeviceFirmwareConfigurationInterface and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.windows10DeviceFirmwareConfigurationInterface"
+        # Possible values of a property
+        self._bluetooth: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._boot_from_built_in_network_adapters: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._boot_from_external_media: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._cameras: Optional[enablement.Enablement] = None
+        # Defines the permission level granted to users to enable them change Uefi settings
+        self._change_uefi_settings_permission: Optional[change_uefi_settings_permission.ChangeUefiSettingsPermission] = None
+        # Possible values of a property
+        self._front_camera: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._infrared_camera: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._microphone: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._microphones_and_speakers: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._near_field_communication: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._radios: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._rear_camera: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._sd_card: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._simultaneous_multi_threading: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._usb_type_a_port: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._virtualization_of_cpu_and_i_o: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._wake_on_l_a_n: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._wake_on_power: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._wi_fi: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._windows_platform_binary_table: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._wireless_wide_area_network: Optional[enablement.Enablement] = None
+    
     @property
     def bluetooth(self,) -> Optional[enablement.Enablement]:
         """
@@ -93,55 +142,6 @@ class Windows10DeviceFirmwareConfigurationInterface(device_configuration.DeviceC
         """
         self._change_uefi_settings_permission = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Windows10DeviceFirmwareConfigurationInterface and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windows10DeviceFirmwareConfigurationInterface"
-        # Possible values of a property
-        self._bluetooth: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._boot_from_built_in_network_adapters: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._boot_from_external_media: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._cameras: Optional[enablement.Enablement] = None
-        # Defines the permission level granted to users to enable them change Uefi settings
-        self._change_uefi_settings_permission: Optional[change_uefi_settings_permission.ChangeUefiSettingsPermission] = None
-        # Possible values of a property
-        self._front_camera: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._infrared_camera: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._microphone: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._microphones_and_speakers: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._near_field_communication: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._radios: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._rear_camera: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._sd_card: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._simultaneous_multi_threading: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._usb_type_a_port: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._virtualization_of_cpu_and_i_o: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._wake_on_l_a_n: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._wake_on_power: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._wi_fi: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._windows_platform_binary_table: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._wireless_wide_area_network: Optional[enablement.Enablement] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10DeviceFirmwareConfigurationInterface:
         """
@@ -176,7 +176,9 @@ class Windows10DeviceFirmwareConfigurationInterface(device_configuration.DeviceC
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import change_uefi_settings_permission, device_configuration, enablement
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "bluetooth": lambda n : setattr(self, 'bluetooth', n.get_enum_value(enablement.Enablement)),
             "bootFromBuiltInNetworkAdapters": lambda n : setattr(self, 'boot_from_built_in_network_adapters', n.get_enum_value(enablement.Enablement)),
             "bootFromExternalMedia": lambda n : setattr(self, 'boot_from_external_media', n.get_enum_value(enablement.Enablement)),

@@ -1,12 +1,30 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+
+if TYPE_CHECKING:
+    from . import device_management_configuration_choice_setting_collection_instance_template, device_management_configuration_choice_setting_instance_template, device_management_configuration_group_setting_collection_instance_template, device_management_configuration_group_setting_instance_template, device_management_configuration_simple_setting_collection_instance_template, device_management_configuration_simple_setting_instance_template
 
 class DeviceManagementConfigurationSettingInstanceTemplate(AdditionalDataHolder, Parsable):
     """
     Setting Instance Template
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new deviceManagementConfigurationSettingInstanceTemplate and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Indicates if a policy must specify this setting.
+        self._is_required: Optional[bool] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Setting Definition Id
+        self._setting_definition_id: Optional[str] = None
+        # Setting Instance Template Id
+        self._setting_instance_template_id: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -24,22 +42,6 @@ class DeviceManagementConfigurationSettingInstanceTemplate(AdditionalDataHolder,
         """
         self._additional_data = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementConfigurationSettingInstanceTemplate and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Indicates if a policy must specify this setting.
-        self._is_required: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Setting Definition Id
-        self._setting_definition_id: Optional[str] = None
-        # Setting Instance Template Id
-        self._setting_instance_template_id: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationSettingInstanceTemplate:
         """
@@ -50,6 +52,33 @@ class DeviceManagementConfigurationSettingInstanceTemplate(AdditionalDataHolder,
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.deviceManagementConfigurationChoiceSettingCollectionInstanceTemplate":
+                from . import device_management_configuration_choice_setting_collection_instance_template
+
+                return device_management_configuration_choice_setting_collection_instance_template.DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate()
+            if mapping_value == "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstanceTemplate":
+                from . import device_management_configuration_choice_setting_instance_template
+
+                return device_management_configuration_choice_setting_instance_template.DeviceManagementConfigurationChoiceSettingInstanceTemplate()
+            if mapping_value == "#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstanceTemplate":
+                from . import device_management_configuration_group_setting_collection_instance_template
+
+                return device_management_configuration_group_setting_collection_instance_template.DeviceManagementConfigurationGroupSettingCollectionInstanceTemplate()
+            if mapping_value == "#microsoft.graph.deviceManagementConfigurationGroupSettingInstanceTemplate":
+                from . import device_management_configuration_group_setting_instance_template
+
+                return device_management_configuration_group_setting_instance_template.DeviceManagementConfigurationGroupSettingInstanceTemplate()
+            if mapping_value == "#microsoft.graph.deviceManagementConfigurationSimpleSettingCollectionInstanceTemplate":
+                from . import device_management_configuration_simple_setting_collection_instance_template
+
+                return device_management_configuration_simple_setting_collection_instance_template.DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate()
+            if mapping_value == "#microsoft.graph.deviceManagementConfigurationSimpleSettingInstanceTemplate":
+                from . import device_management_configuration_simple_setting_instance_template
+
+                return device_management_configuration_simple_setting_instance_template.DeviceManagementConfigurationSimpleSettingInstanceTemplate()
         return DeviceManagementConfigurationSettingInstanceTemplate()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -57,7 +86,9 @@ class DeviceManagementConfigurationSettingInstanceTemplate(AdditionalDataHolder,
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_configuration_choice_setting_collection_instance_template, device_management_configuration_choice_setting_instance_template, device_management_configuration_group_setting_collection_instance_template, device_management_configuration_group_setting_instance_template, device_management_configuration_simple_setting_collection_instance_template, device_management_configuration_simple_setting_instance_template
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "isRequired": lambda n : setattr(self, 'is_required', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "settingDefinitionId": lambda n : setattr(self, 'setting_definition_id', n.get_str_value()),

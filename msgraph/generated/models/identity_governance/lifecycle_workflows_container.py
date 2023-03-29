@@ -1,15 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-deleted_item_container = lazy_import('msgraph.generated.models.deleted_item_container')
-entity = lazy_import('msgraph.generated.models.entity')
-custom_task_extension = lazy_import('msgraph.generated.models.identity_governance.custom_task_extension')
-lifecycle_management_settings = lazy_import('msgraph.generated.models.identity_governance.lifecycle_management_settings')
-task_definition = lazy_import('msgraph.generated.models.identity_governance.task_definition')
-workflow = lazy_import('msgraph.generated.models.identity_governance.workflow')
-workflow_template = lazy_import('msgraph.generated.models.identity_governance.workflow_template')
+if TYPE_CHECKING:
+    from . import custom_task_extension, lifecycle_management_settings, task_definition, workflow, workflow_template
+    from .. import deleted_item_container, entity
+
+from .. import entity
 
 class LifecycleWorkflowsContainer(entity.Entity):
     def __init__(self,) -> None:
@@ -83,7 +80,10 @@ class LifecycleWorkflowsContainer(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import custom_task_extension, lifecycle_management_settings, task_definition, workflow, workflow_template
+        from .. import deleted_item_container, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "customTaskExtensions": lambda n : setattr(self, 'custom_task_extensions', n.get_collection_of_object_values(custom_task_extension.CustomTaskExtension)),
             "deletedItems": lambda n : setattr(self, 'deleted_items', n.get_object_value(deleted_item_container.DeletedItemContainer)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(lifecycle_management_settings.LifecycleManagementSettings)),

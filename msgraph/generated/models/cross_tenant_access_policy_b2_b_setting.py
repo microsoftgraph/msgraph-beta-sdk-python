@@ -1,11 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-cross_tenant_access_policy_target_configuration = lazy_import('msgraph.generated.models.cross_tenant_access_policy_target_configuration')
+if TYPE_CHECKING:
+    from . import cross_tenant_access_policy_target_configuration, cross_tenant_access_policy_tenant_restrictions
 
 class CrossTenantAccessPolicyB2BSetting(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new crossTenantAccessPolicyB2BSetting and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The list of applications targeted with your cross-tenant access policy.
+        self._applications: Optional[cross_tenant_access_policy_target_configuration.CrossTenantAccessPolicyTargetConfiguration] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The list of users and groups targeted with your cross-tenant access policy.
+        self._users_and_groups: Optional[cross_tenant_access_policy_target_configuration.CrossTenantAccessPolicyTargetConfiguration] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -40,20 +54,6 @@ class CrossTenantAccessPolicyB2BSetting(AdditionalDataHolder, Parsable):
         """
         self._applications = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new crossTenantAccessPolicyB2BSetting and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The list of applications targeted with your cross-tenant access policy.
-        self._applications: Optional[cross_tenant_access_policy_target_configuration.CrossTenantAccessPolicyTargetConfiguration] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The list of users and groups targeted with your cross-tenant access policy.
-        self._users_and_groups: Optional[cross_tenant_access_policy_target_configuration.CrossTenantAccessPolicyTargetConfiguration] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CrossTenantAccessPolicyB2BSetting:
         """
@@ -64,6 +64,13 @@ class CrossTenantAccessPolicyB2BSetting(AdditionalDataHolder, Parsable):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.crossTenantAccessPolicyTenantRestrictions":
+                from . import cross_tenant_access_policy_tenant_restrictions
+
+                return cross_tenant_access_policy_tenant_restrictions.CrossTenantAccessPolicyTenantRestrictions()
         return CrossTenantAccessPolicyB2BSetting()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -71,7 +78,9 @@ class CrossTenantAccessPolicyB2BSetting(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import cross_tenant_access_policy_target_configuration, cross_tenant_access_policy_tenant_restrictions
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "applications": lambda n : setattr(self, 'applications', n.get_object_value(cross_tenant_access_policy_target_configuration.CrossTenantAccessPolicyTargetConfiguration)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "usersAndGroups": lambda n : setattr(self, 'users_and_groups', n.get_object_value(cross_tenant_access_policy_target_configuration.CrossTenantAccessPolicyTargetConfiguration)),

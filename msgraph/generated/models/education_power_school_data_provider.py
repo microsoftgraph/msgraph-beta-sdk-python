@@ -1,12 +1,34 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-education_synchronization_customizations = lazy_import('msgraph.generated.models.education_synchronization_customizations')
-education_synchronization_data_provider = lazy_import('msgraph.generated.models.education_synchronization_data_provider')
+if TYPE_CHECKING:
+    from . import education_synchronization_customizations, education_synchronization_data_provider
+
+from . import education_synchronization_data_provider
 
 class EducationPowerSchoolDataProvider(education_synchronization_data_provider.EducationSynchronizationDataProvider):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new EducationPowerSchoolDataProvider and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.educationPowerSchoolDataProvider"
+        # Indicates whether the source has multiple identifiers for a single student or teacher.
+        self._allow_teachers_in_multiple_schools: Optional[bool] = None
+        # The client ID used to connect to PowerSchool.
+        self._client_id: Optional[str] = None
+        # The client secret to authenticate the connection to the PowerSchool instance.
+        self._client_secret: Optional[str] = None
+        # The connection URL to the PowerSchool instance.
+        self._connection_url: Optional[str] = None
+        # Optional customization to be applied to the synchronization profile.
+        self._customizations: Optional[education_synchronization_customizations.EducationSynchronizationCustomizations] = None
+        # The school year to sync.
+        self._school_year: Optional[str] = None
+        # The list of schools to sync.
+        self._schools_ids: Optional[List[str]] = None
+    
     @property
     def allow_teachers_in_multiple_schools(self,) -> Optional[bool]:
         """
@@ -75,27 +97,6 @@ class EducationPowerSchoolDataProvider(education_synchronization_data_provider.E
         """
         self._connection_url = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new EducationPowerSchoolDataProvider and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.educationPowerSchoolDataProvider"
-        # Indicates whether the source has multiple identifiers for a single student or teacher.
-        self._allow_teachers_in_multiple_schools: Optional[bool] = None
-        # The client ID used to connect to PowerSchool.
-        self._client_id: Optional[str] = None
-        # The client secret to authenticate the connection to the PowerSchool instance.
-        self._client_secret: Optional[str] = None
-        # The connection URL to the PowerSchool instance.
-        self._connection_url: Optional[str] = None
-        # Optional customization to be applied to the synchronization profile.
-        self._customizations: Optional[education_synchronization_customizations.EducationSynchronizationCustomizations] = None
-        # The school year to sync.
-        self._school_year: Optional[str] = None
-        # The list of schools to sync.
-        self._schools_ids: Optional[List[str]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EducationPowerSchoolDataProvider:
         """
@@ -130,7 +131,9 @@ class EducationPowerSchoolDataProvider(education_synchronization_data_provider.E
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import education_synchronization_customizations, education_synchronization_data_provider
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowTeachersInMultipleSchools": lambda n : setattr(self, 'allow_teachers_in_multiple_schools', n.get_bool_value()),
             "clientId": lambda n : setattr(self, 'client_id', n.get_str_value()),
             "clientSecret": lambda n : setattr(self, 'client_secret', n.get_str_value()),

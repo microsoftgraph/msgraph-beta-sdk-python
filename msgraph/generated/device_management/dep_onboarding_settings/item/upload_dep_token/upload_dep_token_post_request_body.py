@@ -1,9 +1,20 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class UploadDepTokenPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new uploadDepTokenPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The appleId property
+        self._apple_id: Optional[str] = None
+        # The depToken property
+        self._dep_token: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -37,18 +48,6 @@ class UploadDepTokenPostRequestBody(AdditionalDataHolder, Parsable):
             value: Value to set for the apple_id property.
         """
         self._apple_id = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new uploadDepTokenPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The appleId property
-        self._apple_id: Optional[str] = None
-        # The depToken property
-        self._dep_token: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UploadDepTokenPostRequestBody:
@@ -84,7 +83,7 @@ class UploadDepTokenPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "appleId": lambda n : setattr(self, 'apple_id', n.get_str_value()),
             "depToken": lambda n : setattr(self, 'dep_token', n.get_str_value()),
         }

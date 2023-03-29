@@ -1,12 +1,23 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class SpecifiedCaptiveNetworkPlugins(AdditionalDataHolder, Parsable):
     """
     Specifies all the Captive network plugins allowed during the IKEv2 AlwaysOn VPN connection
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new specifiedCaptiveNetworkPlugins and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Address of the IKEv2 server. Must be a FQDN, UserFQDN, network address, or ASN1DN
+        self._allowed_bundle_identifiers: Optional[List[str]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -41,18 +52,6 @@ class SpecifiedCaptiveNetworkPlugins(AdditionalDataHolder, Parsable):
         """
         self._allowed_bundle_identifiers = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new specifiedCaptiveNetworkPlugins and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Address of the IKEv2 server. Must be a FQDN, UserFQDN, network address, or ASN1DN
-        self._allowed_bundle_identifiers: Optional[List[str]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SpecifiedCaptiveNetworkPlugins:
         """
@@ -70,7 +69,7 @@ class SpecifiedCaptiveNetworkPlugins(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowedBundleIdentifiers": lambda n : setattr(self, 'allowed_bundle_identifiers', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }

@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class EntitlementManagementSettings(entity.Entity):
     def __init__(self,) -> None:
@@ -69,7 +71,9 @@ class EntitlementManagementSettings(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "daysUntilExternalUserDeletedAfterBlocked": lambda n : setattr(self, 'days_until_external_user_deleted_after_blocked', n.get_int_value()),
             "externalUserLifecycleAction": lambda n : setattr(self, 'external_user_lifecycle_action', n.get_str_value()),
         }

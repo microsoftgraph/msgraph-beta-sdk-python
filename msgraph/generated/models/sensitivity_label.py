@@ -1,16 +1,47 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-application_mode = lazy_import('msgraph.generated.models.application_mode')
-auto_labeling = lazy_import('msgraph.generated.models.auto_labeling')
-entity = lazy_import('msgraph.generated.models.entity')
-label_action_base = lazy_import('msgraph.generated.models.label_action_base')
-label_policy = lazy_import('msgraph.generated.models.label_policy')
-sensitivity_label_target = lazy_import('msgraph.generated.models.sensitivity_label_target')
+if TYPE_CHECKING:
+    from . import application_mode, auto_labeling, entity, label_action_base, label_policy, sensitivity_label_target
+
+from . import entity
 
 class SensitivityLabel(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new sensitivityLabel and sets the default values.
+        """
+        super().__init__()
+        # The applicableTo property
+        self._applicable_to: Optional[sensitivity_label_target.SensitivityLabelTarget] = None
+        # The applicationMode property
+        self._application_mode: Optional[application_mode.ApplicationMode] = None
+        # The assignedPolicies property
+        self._assigned_policies: Optional[List[label_policy.LabelPolicy]] = None
+        # The autoLabeling property
+        self._auto_labeling: Optional[auto_labeling.AutoLabeling] = None
+        # The description property
+        self._description: Optional[str] = None
+        # The displayName property
+        self._display_name: Optional[str] = None
+        # The isDefault property
+        self._is_default: Optional[bool] = None
+        # The isEndpointProtectionEnabled property
+        self._is_endpoint_protection_enabled: Optional[bool] = None
+        # The labelActions property
+        self._label_actions: Optional[List[label_action_base.LabelActionBase]] = None
+        # The name property
+        self._name: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The priority property
+        self._priority: Optional[int] = None
+        # The sublabels property
+        self._sublabels: Optional[List[SensitivityLabel]] = None
+        # The toolTip property
+        self._tool_tip: Optional[str] = None
+    
     @property
     def applicable_to(self,) -> Optional[sensitivity_label_target.SensitivityLabelTarget]:
         """
@@ -79,40 +110,6 @@ class SensitivityLabel(entity.Entity):
         """
         self._auto_labeling = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new sensitivityLabel and sets the default values.
-        """
-        super().__init__()
-        # The applicableTo property
-        self._applicable_to: Optional[sensitivity_label_target.SensitivityLabelTarget] = None
-        # The applicationMode property
-        self._application_mode: Optional[application_mode.ApplicationMode] = None
-        # The assignedPolicies property
-        self._assigned_policies: Optional[List[label_policy.LabelPolicy]] = None
-        # The autoLabeling property
-        self._auto_labeling: Optional[auto_labeling.AutoLabeling] = None
-        # The description property
-        self._description: Optional[str] = None
-        # The displayName property
-        self._display_name: Optional[str] = None
-        # The isDefault property
-        self._is_default: Optional[bool] = None
-        # The isEndpointProtectionEnabled property
-        self._is_endpoint_protection_enabled: Optional[bool] = None
-        # The labelActions property
-        self._label_actions: Optional[List[label_action_base.LabelActionBase]] = None
-        # The name property
-        self._name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The priority property
-        self._priority: Optional[int] = None
-        # The sublabels property
-        self._sublabels: Optional[List[SensitivityLabel]] = None
-        # The toolTip property
-        self._tool_tip: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SensitivityLabel:
         """
@@ -164,7 +161,9 @@ class SensitivityLabel(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import application_mode, auto_labeling, entity, label_action_base, label_policy, sensitivity_label_target
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "applicableTo": lambda n : setattr(self, 'applicable_to', n.get_enum_value(sensitivity_label_target.SensitivityLabelTarget)),
             "applicationMode": lambda n : setattr(self, 'application_mode', n.get_enum_value(application_mode.ApplicationMode)),
             "assignedPolicies": lambda n : setattr(self, 'assigned_policies', n.get_collection_of_object_values(label_policy.LabelPolicy)),

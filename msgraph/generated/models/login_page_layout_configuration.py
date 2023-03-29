@@ -1,11 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-layout_template_type = lazy_import('msgraph.generated.models.layout_template_type')
+if TYPE_CHECKING:
+    from . import layout_template_type
 
 class LoginPageLayoutConfiguration(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new loginPageLayoutConfiguration and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Option to show the footer on the sign-in page.
+        self._is_footer_shown: Optional[bool] = None
+        # Option to show the header on the sign-in page.
+        self._is_header_shown: Optional[bool] = None
+        # Represents the layout template to be displayed on the login page for a tenant. The possible values are  default - Represents the default Microsoft layout with a centered lightbox.  verticalSplit - Represents a layout with a backgound on the left side and a full-height lightbox to the right.  unknownFutureValue - Evolvable enumeration sentinel value. Do not use.
+        self._layout_template_type: Optional[layout_template_type.LayoutTemplateType] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -22,22 +38,6 @@ class LoginPageLayoutConfiguration(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new loginPageLayoutConfiguration and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Option to show the footer on the sign-in page.
-        self._is_footer_shown: Optional[bool] = None
-        # Option to show the header on the sign-in page.
-        self._is_header_shown: Optional[bool] = None
-        # Represents the layout template to be displayed on the login page for a tenant. The possible values are  default - Represents the default Microsoft layout with a centered lightbox.  verticalSplit - Represents a layout with a backgound on the left side and a full-height lightbox to the right.  unknownFutureValue - Evolvable enumeration sentinel value. Do not use.
-        self._layout_template_type: Optional[layout_template_type.LayoutTemplateType] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> LoginPageLayoutConfiguration:
@@ -56,7 +56,9 @@ class LoginPageLayoutConfiguration(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import layout_template_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "isFooterShown": lambda n : setattr(self, 'is_footer_shown', n.get_bool_value()),
             "isHeaderShown": lambda n : setattr(self, 'is_header_shown', n.get_bool_value()),
             "layoutTemplateType": lambda n : setattr(self, 'layout_template_type', n.get_enum_value(layout_template_type.LayoutTemplateType)),

@@ -1,13 +1,34 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class CertificateConnectorSetting(AdditionalDataHolder, Parsable):
     """
     Certificate connector settings.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new certificateConnectorSetting and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Certificate expire time
+        self._cert_expiry_time: Optional[datetime] = None
+        # Version of certificate connector
+        self._connector_version: Optional[str] = None
+        # Certificate connector enrollment error
+        self._enrollment_error: Optional[str] = None
+        # Last time certificate connector connected
+        self._last_connector_connection_time: Optional[datetime] = None
+        # Version of last uploaded certificate connector
+        self._last_upload_version: Optional[int] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Certificate connector status
+        self._status: Optional[int] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -59,28 +80,6 @@ class CertificateConnectorSetting(AdditionalDataHolder, Parsable):
         """
         self._connector_version = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new certificateConnectorSetting and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Certificate expire time
-        self._cert_expiry_time: Optional[datetime] = None
-        # Version of certificate connector
-        self._connector_version: Optional[str] = None
-        # Certificate connector enrollment error
-        self._enrollment_error: Optional[str] = None
-        # Last time certificate connector connected
-        self._last_connector_connection_time: Optional[datetime] = None
-        # Version of last uploaded certificate connector
-        self._last_upload_version: Optional[int] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Certificate connector status
-        self._status: Optional[int] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CertificateConnectorSetting:
         """
@@ -115,7 +114,7 @@ class CertificateConnectorSetting(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "certExpiryTime": lambda n : setattr(self, 'cert_expiry_time', n.get_datetime_value()),
             "connectorVersion": lambda n : setattr(self, 'connector_version', n.get_str_value()),
             "enrollmentError": lambda n : setattr(self, 'enrollment_error', n.get_str_value()),

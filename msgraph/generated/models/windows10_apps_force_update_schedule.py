@@ -1,15 +1,31 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-windows10_apps_update_recurrence = lazy_import('msgraph.generated.models.windows10_apps_update_recurrence')
+if TYPE_CHECKING:
+    from . import windows10_apps_update_recurrence
 
 class Windows10AppsForceUpdateSchedule(AdditionalDataHolder, Parsable):
     """
     Windows 10 force update schedule for Apps
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new windows10AppsForceUpdateSchedule and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Possible values for App update on Windows10 recurrence.
+        self._recurrence: Optional[windows10_apps_update_recurrence.Windows10AppsUpdateRecurrence] = None
+        # If true, runs the task immediately if StartDateTime is in the past, else, runs at the next recurrence.
+        self._run_immediately_if_after_start_date_time: Optional[bool] = None
+        # The start time for the force restart.
+        self._start_date_time: Optional[datetime] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -26,22 +42,6 @@ class Windows10AppsForceUpdateSchedule(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new windows10AppsForceUpdateSchedule and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Possible values for App update on Windows10 recurrence.
-        self._recurrence: Optional[windows10_apps_update_recurrence.Windows10AppsUpdateRecurrence] = None
-        # If true, runs the task immediately if StartDateTime is in the past, else, runs at the next recurrence.
-        self._run_immediately_if_after_start_date_time: Optional[bool] = None
-        # The start time for the force restart.
-        self._start_date_time: Optional[datetime] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10AppsForceUpdateSchedule:
@@ -60,7 +60,9 @@ class Windows10AppsForceUpdateSchedule(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import windows10_apps_update_recurrence
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "recurrence": lambda n : setattr(self, 'recurrence', n.get_enum_value(windows10_apps_update_recurrence.Windows10AppsUpdateRecurrence)),
             "runImmediatelyIfAfterStartDateTime": lambda n : setattr(self, 'run_immediately_if_after_start_date_time', n.get_bool_value()),

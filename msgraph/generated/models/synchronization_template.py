@@ -1,37 +1,21 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from uuid import UUID
 
-entity = lazy_import('msgraph.generated.models.entity')
-metadata_entry = lazy_import('msgraph.generated.models.metadata_entry')
-synchronization_schema = lazy_import('msgraph.generated.models.synchronization_schema')
+if TYPE_CHECKING:
+    from . import entity, metadata_entry, synchronization_schema
+
+from . import entity
 
 class SynchronizationTemplate(entity.Entity):
-    @property
-    def application_id(self,) -> Optional[Guid]:
-        """
-        Gets the applicationId property value. Identifier of the application this template belongs to.
-        Returns: Optional[Guid]
-        """
-        return self._application_id
-    
-    @application_id.setter
-    def application_id(self,value: Optional[Guid] = None) -> None:
-        """
-        Sets the applicationId property value. Identifier of the application this template belongs to.
-        Args:
-            value: Value to set for the application_id property.
-        """
-        self._application_id = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new synchronizationTemplate and sets the default values.
         """
         super().__init__()
         # Identifier of the application this template belongs to.
-        self._application_id: Optional[Guid] = None
+        self._application_id: Optional[UUID] = None
         # true if this template is recommended to be the default for the application.
         self._default: Optional[bool] = None
         # Description of the template.
@@ -46,6 +30,23 @@ class SynchronizationTemplate(entity.Entity):
         self.odata_type: Optional[str] = None
         # Default synchronization schema for the jobs based on this template.
         self._schema: Optional[synchronization_schema.SynchronizationSchema] = None
+    
+    @property
+    def application_id(self,) -> Optional[UUID]:
+        """
+        Gets the applicationId property value. Identifier of the application this template belongs to.
+        Returns: Optional[UUID]
+        """
+        return self._application_id
+    
+    @application_id.setter
+    def application_id(self,value: Optional[UUID] = None) -> None:
+        """
+        Sets the applicationId property value. Identifier of the application this template belongs to.
+        Args:
+            value: Value to set for the application_id property.
+        """
+        self._application_id = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SynchronizationTemplate:
@@ -132,8 +133,10 @@ class SynchronizationTemplate(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
-            "applicationId": lambda n : setattr(self, 'application_id', n.get_object_value(Guid)),
+        from . import entity, metadata_entry, synchronization_schema
+
+        fields: Dict[str, Callable[[Any], None]] = {
+            "applicationId": lambda n : setattr(self, 'application_id', n.get_uuid_value()),
             "default": lambda n : setattr(self, 'default', n.get_bool_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "discoverable": lambda n : setattr(self, 'discoverable', n.get_bool_value()),
@@ -188,7 +191,7 @@ class SynchronizationTemplate(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-        writer.write_object_value("applicationId", self.application_id)
+        writer.write_uuid_value("applicationId", self.application_id)
         writer.write_bool_value("default", self.default)
         writer.write_str_value("description", self.description)
         writer.write_bool_value("discoverable", self.discoverable)

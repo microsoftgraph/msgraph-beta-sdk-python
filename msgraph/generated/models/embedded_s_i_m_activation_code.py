@@ -1,12 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class EmbeddedSIMActivationCode(AdditionalDataHolder, Parsable):
     """
     The embedded SIM activation code as provided by the mobile operator.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new embeddedSIMActivationCode and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The Integrated Circuit Card Identifier (ICCID) for this embedded SIM activation code as provided by the mobile operator.
+        self._integrated_circuit_card_identifier: Optional[str] = None
+        # The MatchingIdentifier (MatchingID) as specified in the GSMA Association SGP.22 RSP Technical Specification section 4.1.
+        self._matching_identifier: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The fully qualified domain name of the SM-DP+ server as specified in the GSM Association SPG .22 RSP Technical Specification.
+        self._smdp_plus_server_address: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,22 +38,6 @@ class EmbeddedSIMActivationCode(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new embeddedSIMActivationCode and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The Integrated Circuit Card Identifier (ICCID) for this embedded SIM activation code as provided by the mobile operator.
-        self._integrated_circuit_card_identifier: Optional[str] = None
-        # The MatchingIdentifier (MatchingID) as specified in the GSMA Association SGP.22 RSP Technical Specification section 4.1.
-        self._matching_identifier: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The fully qualified domain name of the SM-DP+ server as specified in the GSM Association SPG .22 RSP Technical Specification.
-        self._smdp_plus_server_address: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EmbeddedSIMActivationCode:
@@ -57,7 +56,7 @@ class EmbeddedSIMActivationCode(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "integratedCircuitCardIdentifier": lambda n : setattr(self, 'integrated_circuit_card_identifier', n.get_str_value()),
             "matchingIdentifier": lambda n : setattr(self, 'matching_identifier', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

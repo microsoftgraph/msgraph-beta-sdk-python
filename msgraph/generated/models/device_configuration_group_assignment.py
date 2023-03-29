@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import device_configuration, entity
+
+from . import entity
 
 class DeviceConfigurationGroupAssignment(entity.Entity):
     """
@@ -75,7 +76,9 @@ class DeviceConfigurationGroupAssignment(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_configuration, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "deviceConfiguration": lambda n : setattr(self, 'device_configuration', n.get_object_value(device_configuration.DeviceConfiguration)),
             "excludeGroup": lambda n : setattr(self, 'exclude_group', n.get_bool_value()),
             "targetGroupId": lambda n : setattr(self, 'target_group_id', n.get_str_value()),

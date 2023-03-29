@@ -1,13 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-booking_person = lazy_import('msgraph.generated.models.booking_person')
-phone = lazy_import('msgraph.generated.models.phone')
-physical_address = lazy_import('msgraph.generated.models.physical_address')
+if TYPE_CHECKING:
+    from . import booking_person, phone, physical_address
+
+from . import booking_person
 
 class BookingCustomer(booking_person.BookingPerson):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new BookingCustomer and sets the default values.
+        """
+        super().__init__()
+        # Addresses associated with the customer, including home, business and other addresses.
+        self._addresses: Optional[List[physical_address.PhysicalAddress]] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Phone numbers associated with the customer, including home, business and mobile numbers.
+        self._phones: Optional[List[phone.Phone]] = None
+    
     @property
     def addresses(self,) -> Optional[List[physical_address.PhysicalAddress]]:
         """
@@ -24,18 +36,6 @@ class BookingCustomer(booking_person.BookingPerson):
             value: Value to set for the addresses property.
         """
         self._addresses = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new BookingCustomer and sets the default values.
-        """
-        super().__init__()
-        # Addresses associated with the customer, including home, business and other addresses.
-        self._addresses: Optional[List[physical_address.PhysicalAddress]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Phone numbers associated with the customer, including home, business and mobile numbers.
-        self._phones: Optional[List[phone.Phone]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> BookingCustomer:
@@ -54,7 +54,9 @@ class BookingCustomer(booking_person.BookingPerson):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import booking_person, phone, physical_address
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "addresses": lambda n : setattr(self, 'addresses', n.get_collection_of_object_values(physical_address.PhysicalAddress)),
             "phones": lambda n : setattr(self, 'phones', n.get_collection_of_object_values(phone.Phone)),
         }

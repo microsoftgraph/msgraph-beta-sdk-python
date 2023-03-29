@@ -1,12 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-authentication_event_handler_result = lazy_import('msgraph.generated.models.authentication_event_handler_result')
-authentication_event_type = lazy_import('msgraph.generated.models.authentication_event_type')
+if TYPE_CHECKING:
+    from . import authentication_event_handler_result, authentication_event_type
 
 class AppliedAuthenticationEventListener(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new appliedAuthenticationEventListener and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The type of authentication event that triggered the custom extension request. The possible values are: tokenIssuanceStart, pageRenderStart, unknownFutureValue.
+        self._event_type: Optional[authentication_event_type.AuthenticationEventType] = None
+        # ID of the Event Listener that was executed.
+        self._executed_listener_id: Optional[str] = None
+        # The result from the listening client, such as an Azure Logic App and Azure Functions, of this authentication event.
+        self._handler_result: Optional[authentication_event_handler_result.AuthenticationEventHandlerResult] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,22 +38,6 @@ class AppliedAuthenticationEventListener(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new appliedAuthenticationEventListener and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The type of authentication event that triggered the custom extension request. The possible values are: tokenIssuanceStart, pageRenderStart, unknownFutureValue.
-        self._event_type: Optional[authentication_event_type.AuthenticationEventType] = None
-        # ID of the Event Listener that was executed.
-        self._executed_listener_id: Optional[str] = None
-        # The result from the listening client, such as an Azure Logic App and Azure Functions, of this authentication event.
-        self._handler_result: Optional[authentication_event_handler_result.AuthenticationEventHandlerResult] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AppliedAuthenticationEventListener:
@@ -91,7 +90,9 @@ class AppliedAuthenticationEventListener(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import authentication_event_handler_result, authentication_event_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "eventType": lambda n : setattr(self, 'event_type', n.get_enum_value(authentication_event_type.AuthenticationEventType)),
             "executedListenerId": lambda n : setattr(self, 'executed_listener_id', n.get_str_value()),
             "handlerResult": lambda n : setattr(self, 'handler_result', n.get_object_value(authentication_event_handler_result.AuthenticationEventHandlerResult)),

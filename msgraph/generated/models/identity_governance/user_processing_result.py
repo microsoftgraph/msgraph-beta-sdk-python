@@ -1,33 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-user = lazy_import('msgraph.generated.models.user')
-lifecycle_workflow_processing_status = lazy_import('msgraph.generated.models.identity_governance.lifecycle_workflow_processing_status')
-task_processing_result = lazy_import('msgraph.generated.models.identity_governance.task_processing_result')
-workflow_execution_type = lazy_import('msgraph.generated.models.identity_governance.workflow_execution_type')
+if TYPE_CHECKING:
+    from . import lifecycle_workflow_processing_status, task_processing_result, workflow_execution_type
+    from .. import entity, user
+
+from .. import entity
 
 class UserProcessingResult(entity.Entity):
-    @property
-    def completed_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the completedDateTime property value. The date time that the workflow execution for a user completed. Value is null if the workflow hasn't completed.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-        Returns: Optional[datetime]
-        """
-        return self._completed_date_time
-    
-    @completed_date_time.setter
-    def completed_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the completedDateTime property value. The date time that the workflow execution for a user completed. Value is null if the workflow hasn't completed.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-        Args:
-            value: Value to set for the completed_date_time property.
-        """
-        self._completed_date_time = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new userProcessingResult and sets the default values.
@@ -57,6 +39,23 @@ class UserProcessingResult(entity.Entity):
         self._workflow_execution_type: Optional[workflow_execution_type.WorkflowExecutionType] = None
         # The version of the workflow that was executed.
         self._workflow_version: Optional[int] = None
+    
+    @property
+    def completed_date_time(self,) -> Optional[datetime]:
+        """
+        Gets the completedDateTime property value. The date time that the workflow execution for a user completed. Value is null if the workflow hasn't completed.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
+        Returns: Optional[datetime]
+        """
+        return self._completed_date_time
+    
+    @completed_date_time.setter
+    def completed_date_time(self,value: Optional[datetime] = None) -> None:
+        """
+        Sets the completedDateTime property value. The date time that the workflow execution for a user completed. Value is null if the workflow hasn't completed.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
+        Args:
+            value: Value to set for the completed_date_time property.
+        """
+        self._completed_date_time = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserProcessingResult:
@@ -92,7 +91,10 @@ class UserProcessingResult(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import lifecycle_workflow_processing_status, task_processing_result, workflow_execution_type
+        from .. import entity, user
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "completedDateTime": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
             "failedTasksCount": lambda n : setattr(self, 'failed_tasks_count', n.get_int_value()),
             "processingStatus": lambda n : setattr(self, 'processing_status', n.get_enum_value(lifecycle_workflow_processing_status.LifecycleWorkflowProcessingStatus)),

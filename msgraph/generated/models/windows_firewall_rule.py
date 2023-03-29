@@ -1,51 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-state_management_setting = lazy_import('msgraph.generated.models.state_management_setting')
-windows_firewall_rule_interface_types = lazy_import('msgraph.generated.models.windows_firewall_rule_interface_types')
-windows_firewall_rule_network_profile_types = lazy_import('msgraph.generated.models.windows_firewall_rule_network_profile_types')
-windows_firewall_rule_traffic_direction_type = lazy_import('msgraph.generated.models.windows_firewall_rule_traffic_direction_type')
+if TYPE_CHECKING:
+    from . import state_management_setting, windows_firewall_rule_interface_types, windows_firewall_rule_network_profile_types, windows_firewall_rule_traffic_direction_type
 
 class WindowsFirewallRule(AdditionalDataHolder, Parsable):
     """
     A rule controlling traffic through the Windows Firewall.
     """
-    @property
-    def action(self,) -> Optional[state_management_setting.StateManagementSetting]:
-        """
-        Gets the action property value. State Management Setting.
-        Returns: Optional[state_management_setting.StateManagementSetting]
-        """
-        return self._action
-    
-    @action.setter
-    def action(self,value: Optional[state_management_setting.StateManagementSetting] = None) -> None:
-        """
-        Sets the action property value. State Management Setting.
-        Args:
-            value: Value to set for the action property.
-        """
-        self._action = value
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new windowsFirewallRule and sets the default values.
@@ -87,6 +50,40 @@ class WindowsFirewallRule(AdditionalDataHolder, Parsable):
         self._service_name: Optional[str] = None
         # Firewall rule traffic directions.
         self._traffic_direction: Optional[windows_firewall_rule_traffic_direction_type.WindowsFirewallRuleTrafficDirectionType] = None
+    
+    @property
+    def action(self,) -> Optional[state_management_setting.StateManagementSetting]:
+        """
+        Gets the action property value. State Management Setting.
+        Returns: Optional[state_management_setting.StateManagementSetting]
+        """
+        return self._action
+    
+    @action.setter
+    def action(self,value: Optional[state_management_setting.StateManagementSetting] = None) -> None:
+        """
+        Sets the action property value. State Management Setting.
+        Args:
+            value: Value to set for the action property.
+        """
+        self._action = value
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsFirewallRule:
@@ -173,7 +170,9 @@ class WindowsFirewallRule(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import state_management_setting, windows_firewall_rule_interface_types, windows_firewall_rule_network_profile_types, windows_firewall_rule_traffic_direction_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "action": lambda n : setattr(self, 'action', n.get_enum_value(state_management_setting.StateManagementSetting)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

@@ -7,56 +7,21 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-activated_using_request_builder = lazy_import('msgraph.generated.identity_governance.privileged_access.group.assignment_schedule_requests.item.activated_using.activated_using_request_builder')
-cancel_request_builder = lazy_import('msgraph.generated.identity_governance.privileged_access.group.assignment_schedule_requests.item.cancel.cancel_request_builder')
-group_request_builder = lazy_import('msgraph.generated.identity_governance.privileged_access.group.assignment_schedule_requests.item.group.group_request_builder')
-principal_request_builder = lazy_import('msgraph.generated.identity_governance.privileged_access.group.assignment_schedule_requests.item.principal.principal_request_builder')
-target_schedule_request_builder = lazy_import('msgraph.generated.identity_governance.privileged_access.group.assignment_schedule_requests.item.target_schedule.target_schedule_request_builder')
-privileged_access_group_assignment_schedule_request = lazy_import('msgraph.generated.models.privileged_access_group_assignment_schedule_request')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ......models import privileged_access_group_assignment_schedule_request
+    from ......models.o_data_errors import o_data_error
+    from .activated_using import activated_using_request_builder
+    from .cancel import cancel_request_builder
+    from .group import group_request_builder
+    from .principal import principal_request_builder
+    from .target_schedule import target_schedule_request_builder
 
 class PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder():
     """
     Provides operations to manage the assignmentScheduleRequests property of the microsoft.graph.privilegedAccessGroup entity.
     """
-    @property
-    def activated_using(self) -> activated_using_request_builder.ActivatedUsingRequestBuilder:
-        """
-        Provides operations to manage the activatedUsing property of the microsoft.graph.privilegedAccessGroupAssignmentScheduleRequest entity.
-        """
-        return activated_using_request_builder.ActivatedUsingRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def cancel(self) -> cancel_request_builder.CancelRequestBuilder:
-        """
-        Provides operations to call the cancel method.
-        """
-        return cancel_request_builder.CancelRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def group(self) -> group_request_builder.GroupRequestBuilder:
-        """
-        Provides operations to manage the group property of the microsoft.graph.privilegedAccessGroupAssignmentScheduleRequest entity.
-        """
-        return group_request_builder.GroupRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def principal(self) -> principal_request_builder.PrincipalRequestBuilder:
-        """
-        Provides operations to manage the principal property of the microsoft.graph.privilegedAccessGroupAssignmentScheduleRequest entity.
-        """
-        return principal_request_builder.PrincipalRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def target_schedule(self) -> target_schedule_request_builder.TargetScheduleRequestBuilder:
-        """
-        Provides operations to manage the targetSchedule property of the microsoft.graph.privilegedAccessGroupAssignmentScheduleRequest entity.
-        """
-        return target_schedule_request_builder.TargetScheduleRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder and sets the default values.
@@ -84,6 +49,8 @@ class PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -102,12 +69,16 @@ class PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import privileged_access_group_assignment_schedule_request
+
         return await self.request_adapter.send_async(request_info, privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest, error_mapping)
     
     async def patch(self,body: Optional[privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest] = None, request_configuration: Optional[PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest]:
@@ -123,12 +94,16 @@ class PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import privileged_access_group_assignment_schedule_request
+
         return await self.request_adapter.send_async(request_info, privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -186,6 +161,51 @@ class PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def activated_using(self) -> activated_using_request_builder.ActivatedUsingRequestBuilder:
+        """
+        Provides operations to manage the activatedUsing property of the microsoft.graph.privilegedAccessGroupAssignmentScheduleRequest entity.
+        """
+        from .activated_using import activated_using_request_builder
+
+        return activated_using_request_builder.ActivatedUsingRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def cancel(self) -> cancel_request_builder.CancelRequestBuilder:
+        """
+        Provides operations to call the cancel method.
+        """
+        from .cancel import cancel_request_builder
+
+        return cancel_request_builder.CancelRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def group(self) -> group_request_builder.GroupRequestBuilder:
+        """
+        Provides operations to manage the group property of the microsoft.graph.privilegedAccessGroupAssignmentScheduleRequest entity.
+        """
+        from .group import group_request_builder
+
+        return group_request_builder.GroupRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def principal(self) -> principal_request_builder.PrincipalRequestBuilder:
+        """
+        Provides operations to manage the principal property of the microsoft.graph.privilegedAccessGroupAssignmentScheduleRequest entity.
+        """
+        from .principal import principal_request_builder
+
+        return principal_request_builder.PrincipalRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def target_schedule(self) -> target_schedule_request_builder.TargetScheduleRequestBuilder:
+        """
+        Provides operations to manage the targetSchedule property of the microsoft.graph.privilegedAccessGroupAssignmentScheduleRequest entity.
+        """
+        from .target_schedule import target_schedule_request_builder
+
+        return target_schedule_request_builder.TargetScheduleRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -203,12 +223,6 @@ class PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder():
         """
         Get assignmentScheduleRequests from identityGovernance
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -224,6 +238,12 @@ class PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilderGetRequestConfiguration():

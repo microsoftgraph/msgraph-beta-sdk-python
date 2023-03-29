@@ -1,15 +1,36 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-directory_object = lazy_import('msgraph.generated.models.directory_object')
-group = lazy_import('msgraph.generated.models.group')
-privileged_access_group_eligibility_schedule = lazy_import('msgraph.generated.models.privileged_access_group_eligibility_schedule')
-privileged_access_group_relationships = lazy_import('msgraph.generated.models.privileged_access_group_relationships')
-privileged_access_schedule_request = lazy_import('msgraph.generated.models.privileged_access_schedule_request')
+if TYPE_CHECKING:
+    from . import directory_object, group, privileged_access_group_eligibility_schedule, privileged_access_group_relationships, privileged_access_schedule_request
+
+from . import privileged_access_schedule_request
 
 class PrivilegedAccessGroupAssignmentScheduleRequest(privileged_access_schedule_request.PrivilegedAccessScheduleRequest):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new PrivilegedAccessGroupAssignmentScheduleRequest and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.privilegedAccessGroupAssignmentScheduleRequest"
+        # The accessId property
+        self._access_id: Optional[privileged_access_group_relationships.PrivilegedAccessGroupRelationships] = None
+        # The activatedUsing property
+        self._activated_using: Optional[privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule] = None
+        # The group property
+        self._group: Optional[group.Group] = None
+        # The groupId property
+        self._group_id: Optional[str] = None
+        # The principal property
+        self._principal: Optional[directory_object.DirectoryObject] = None
+        # The principalId property
+        self._principal_id: Optional[str] = None
+        # The targetSchedule property
+        self._target_schedule: Optional[privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule] = None
+        # The targetScheduleId property
+        self._target_schedule_id: Optional[str] = None
+    
     @property
     def access_id(self,) -> Optional[privileged_access_group_relationships.PrivilegedAccessGroupRelationships]:
         """
@@ -44,29 +65,6 @@ class PrivilegedAccessGroupAssignmentScheduleRequest(privileged_access_schedule_
         """
         self._activated_using = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new PrivilegedAccessGroupAssignmentScheduleRequest and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.privilegedAccessGroupAssignmentScheduleRequest"
-        # The accessId property
-        self._access_id: Optional[privileged_access_group_relationships.PrivilegedAccessGroupRelationships] = None
-        # The activatedUsing property
-        self._activated_using: Optional[privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule] = None
-        # The group property
-        self._group: Optional[group.Group] = None
-        # The groupId property
-        self._group_id: Optional[str] = None
-        # The principal property
-        self._principal: Optional[directory_object.DirectoryObject] = None
-        # The principalId property
-        self._principal_id: Optional[str] = None
-        # The targetSchedule property
-        self._target_schedule: Optional[privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule] = None
-        # The targetScheduleId property
-        self._target_schedule_id: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PrivilegedAccessGroupAssignmentScheduleRequest:
         """
@@ -84,7 +82,9 @@ class PrivilegedAccessGroupAssignmentScheduleRequest(privileged_access_schedule_
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import directory_object, group, privileged_access_group_eligibility_schedule, privileged_access_group_relationships, privileged_access_schedule_request
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accessId": lambda n : setattr(self, 'access_id', n.get_enum_value(privileged_access_group_relationships.PrivilegedAccessGroupRelationships)),
             "activatedUsing": lambda n : setattr(self, 'activated_using', n.get_object_value(privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule)),
             "group": lambda n : setattr(self, 'group', n.get_object_value(group.Group)),

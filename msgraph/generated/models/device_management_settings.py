@@ -1,45 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-derived_credential_provider_type = lazy_import('msgraph.generated.models.derived_credential_provider_type')
+if TYPE_CHECKING:
+    from . import derived_credential_provider_type
 
 class DeviceManagementSettings(AdditionalDataHolder, Parsable):
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def android_device_administrator_enrollment_enabled(self,) -> Optional[bool]:
-        """
-        Gets the androidDeviceAdministratorEnrollmentEnabled property value. The property to determine if Android device administrator enrollment is enabled for this account.
-        Returns: Optional[bool]
-        """
-        return self._android_device_administrator_enrollment_enabled
-    
-    @android_device_administrator_enrollment_enabled.setter
-    def android_device_administrator_enrollment_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the androidDeviceAdministratorEnrollmentEnabled property value. The property to determine if Android device administrator enrollment is enabled for this account.
-        Args:
-            value: Value to set for the android_device_administrator_enrollment_enabled property.
-        """
-        self._android_device_administrator_enrollment_enabled = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new deviceManagementSettings and sets the default values.
@@ -75,6 +41,40 @@ class DeviceManagementSettings(AdditionalDataHolder, Parsable):
         self._odata_type: Optional[str] = None
         # Device should be noncompliant when there is no compliance policy targeted when this is true
         self._secure_by_default: Optional[bool] = None
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
+    
+    @property
+    def android_device_administrator_enrollment_enabled(self,) -> Optional[bool]:
+        """
+        Gets the androidDeviceAdministratorEnrollmentEnabled property value. The property to determine if Android device administrator enrollment is enabled for this account.
+        Returns: Optional[bool]
+        """
+        return self._android_device_administrator_enrollment_enabled
+    
+    @android_device_administrator_enrollment_enabled.setter
+    def android_device_administrator_enrollment_enabled(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the androidDeviceAdministratorEnrollmentEnabled property value. The property to determine if Android device administrator enrollment is enabled for this account.
+        Args:
+            value: Value to set for the android_device_administrator_enrollment_enabled property.
+        """
+        self._android_device_administrator_enrollment_enabled = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementSettings:
@@ -246,7 +246,9 @@ class DeviceManagementSettings(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import derived_credential_provider_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "androidDeviceAdministratorEnrollmentEnabled": lambda n : setattr(self, 'android_device_administrator_enrollment_enabled', n.get_bool_value()),
             "derivedCredentialProvider": lambda n : setattr(self, 'derived_credential_provider', n.get_enum_value(derived_credential_provider_type.DerivedCredentialProviderType)),
             "derivedCredentialUrl": lambda n : setattr(self, 'derived_credential_url', n.get_str_value()),

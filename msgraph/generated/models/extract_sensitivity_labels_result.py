@@ -1,11 +1,23 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-sensitivity_label_assignment = lazy_import('msgraph.generated.models.sensitivity_label_assignment')
+if TYPE_CHECKING:
+    from . import sensitivity_label_assignment
 
 class ExtractSensitivityLabelsResult(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new extractSensitivityLabelsResult and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # List of sensitivity labels assigned to a file.
+        self._labels: Optional[List[sensitivity_label_assignment.SensitivityLabelAssignment]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -22,18 +34,6 @@ class ExtractSensitivityLabelsResult(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new extractSensitivityLabelsResult and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # List of sensitivity labels assigned to a file.
-        self._labels: Optional[List[sensitivity_label_assignment.SensitivityLabelAssignment]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ExtractSensitivityLabelsResult:
@@ -52,7 +52,9 @@ class ExtractSensitivityLabelsResult(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import sensitivity_label_assignment
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "labels": lambda n : setattr(self, 'labels', n.get_collection_of_object_values(sensitivity_label_assignment.SensitivityLabelAssignment)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }

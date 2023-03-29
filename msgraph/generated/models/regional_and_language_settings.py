@@ -1,31 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-locale_info = lazy_import('msgraph.generated.models.locale_info')
-regional_format_overrides = lazy_import('msgraph.generated.models.regional_format_overrides')
-translation_preferences = lazy_import('msgraph.generated.models.translation_preferences')
+if TYPE_CHECKING:
+    from . import entity, locale_info, regional_format_overrides, translation_preferences
+
+from . import entity
 
 class RegionalAndLanguageSettings(entity.Entity):
-    @property
-    def authoring_languages(self,) -> Optional[List[locale_info.LocaleInfo]]:
-        """
-        Gets the authoringLanguages property value. Prioritized list of languages the user reads and authors in.Returned by default. Not nullable.
-        Returns: Optional[List[locale_info.LocaleInfo]]
-        """
-        return self._authoring_languages
-    
-    @authoring_languages.setter
-    def authoring_languages(self,value: Optional[List[locale_info.LocaleInfo]] = None) -> None:
-        """
-        Sets the authoringLanguages property value. Prioritized list of languages the user reads and authors in.Returned by default. Not nullable.
-        Args:
-            value: Value to set for the authoring_languages property.
-        """
-        self._authoring_languages = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new regionalAndLanguageSettings and sets the default values.
@@ -47,6 +29,23 @@ class RegionalAndLanguageSettings(entity.Entity):
         self._regional_format_overrides: Optional[regional_format_overrides.RegionalFormatOverrides] = None
         # The user's preferred settings when consuming translated documents, emails, messages, and websites.Returned by default. Not nullable.
         self._translation_preferences: Optional[translation_preferences.TranslationPreferences] = None
+    
+    @property
+    def authoring_languages(self,) -> Optional[List[locale_info.LocaleInfo]]:
+        """
+        Gets the authoringLanguages property value. Prioritized list of languages the user reads and authors in.Returned by default. Not nullable.
+        Returns: Optional[List[locale_info.LocaleInfo]]
+        """
+        return self._authoring_languages
+    
+    @authoring_languages.setter
+    def authoring_languages(self,value: Optional[List[locale_info.LocaleInfo]] = None) -> None:
+        """
+        Sets the authoringLanguages property value. Prioritized list of languages the user reads and authors in.Returned by default. Not nullable.
+        Args:
+            value: Value to set for the authoring_languages property.
+        """
+        self._authoring_languages = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RegionalAndLanguageSettings:
@@ -133,7 +132,9 @@ class RegionalAndLanguageSettings(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, locale_info, regional_format_overrides, translation_preferences
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "authoringLanguages": lambda n : setattr(self, 'authoring_languages', n.get_collection_of_object_values(locale_info.LocaleInfo)),
             "defaultDisplayLanguage": lambda n : setattr(self, 'default_display_language', n.get_object_value(locale_info.LocaleInfo)),
             "defaultRegionalFormat": lambda n : setattr(self, 'default_regional_format', n.get_object_value(locale_info.LocaleInfo)),

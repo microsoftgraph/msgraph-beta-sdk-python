@@ -1,32 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-group_policy_definition = lazy_import('msgraph.generated.models.group_policy_definition')
-group_policy_definition_file = lazy_import('msgraph.generated.models.group_policy_definition_file')
-ingestion_source = lazy_import('msgraph.generated.models.ingestion_source')
+if TYPE_CHECKING:
+    from . import entity, group_policy_definition, group_policy_definition_file, ingestion_source
+
+from . import entity
 
 class GroupPolicyCategory(entity.Entity):
-    @property
-    def children(self,) -> Optional[List[GroupPolicyCategory]]:
-        """
-        Gets the children property value. The children categories
-        Returns: Optional[List[GroupPolicyCategory]]
-        """
-        return self._children
-    
-    @children.setter
-    def children(self,value: Optional[List[GroupPolicyCategory]] = None) -> None:
-        """
-        Sets the children property value. The children categories
-        Args:
-            value: Value to set for the children property.
-        """
-        self._children = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new groupPolicyCategory and sets the default values.
@@ -50,6 +32,23 @@ class GroupPolicyCategory(entity.Entity):
         self.odata_type: Optional[str] = None
         # The parent category
         self._parent: Optional[GroupPolicyCategory] = None
+    
+    @property
+    def children(self,) -> Optional[List[GroupPolicyCategory]]:
+        """
+        Gets the children property value. The children categories
+        Returns: Optional[List[GroupPolicyCategory]]
+        """
+        return self._children
+    
+    @children.setter
+    def children(self,value: Optional[List[GroupPolicyCategory]] = None) -> None:
+        """
+        Sets the children property value. The children categories
+        Args:
+            value: Value to set for the children property.
+        """
+        self._children = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GroupPolicyCategory:
@@ -119,7 +118,9 @@ class GroupPolicyCategory(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, group_policy_definition, group_policy_definition_file, ingestion_source
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "children": lambda n : setattr(self, 'children', n.get_collection_of_object_values(GroupPolicyCategory)),
             "definitions": lambda n : setattr(self, 'definitions', n.get_collection_of_object_values(group_policy_definition.GroupPolicyDefinition)),
             "definitionFile": lambda n : setattr(self, 'definition_file', n.get_object_value(group_policy_definition_file.GroupPolicyDefinitionFile)),

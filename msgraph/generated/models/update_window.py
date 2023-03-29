@@ -1,10 +1,23 @@
 from __future__ import annotations
 from datetime import time
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class UpdateWindow(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new updateWindow and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # End of a time window during which agents can receive updates
+        self._update_window_end_time: Optional[time] = None
+        # Start of a time window during which agents can receive updates
+        self._update_window_start_time: Optional[time] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -21,20 +34,6 @@ class UpdateWindow(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new updateWindow and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # End of a time window during which agents can receive updates
-        self._update_window_end_time: Optional[Time] = None
-        # Start of a time window during which agents can receive updates
-        self._update_window_start_time: Optional[Time] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UpdateWindow:
@@ -53,10 +52,10 @@ class UpdateWindow(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "updateWindowEndTime": lambda n : setattr(self, 'update_window_end_time', n.get_object_value(Time)),
-            "updateWindowStartTime": lambda n : setattr(self, 'update_window_start_time', n.get_object_value(Time)),
+            "updateWindowEndTime": lambda n : setattr(self, 'update_window_end_time', n.get_time_value()),
+            "updateWindowStartTime": lambda n : setattr(self, 'update_window_start_time', n.get_time_value()),
         }
         return fields
     
@@ -86,20 +85,20 @@ class UpdateWindow(AdditionalDataHolder, Parsable):
         if writer is None:
             raise Exception("writer cannot be undefined")
         writer.write_str_value("@odata.type", self.odata_type)
-        writer.write_object_value("updateWindowEndTime", self.update_window_end_time)
-        writer.write_object_value("updateWindowStartTime", self.update_window_start_time)
+        writer.write_time_value("updateWindowEndTime", self.update_window_end_time)
+        writer.write_time_value("updateWindowStartTime", self.update_window_start_time)
         writer.write_additional_data_value(self.additional_data)
     
     @property
-    def update_window_end_time(self,) -> Optional[Time]:
+    def update_window_end_time(self,) -> Optional[time]:
         """
         Gets the updateWindowEndTime property value. End of a time window during which agents can receive updates
-        Returns: Optional[Time]
+        Returns: Optional[time]
         """
         return self._update_window_end_time
     
     @update_window_end_time.setter
-    def update_window_end_time(self,value: Optional[Time] = None) -> None:
+    def update_window_end_time(self,value: Optional[time] = None) -> None:
         """
         Sets the updateWindowEndTime property value. End of a time window during which agents can receive updates
         Args:
@@ -108,15 +107,15 @@ class UpdateWindow(AdditionalDataHolder, Parsable):
         self._update_window_end_time = value
     
     @property
-    def update_window_start_time(self,) -> Optional[Time]:
+    def update_window_start_time(self,) -> Optional[time]:
         """
         Gets the updateWindowStartTime property value. Start of a time window during which agents can receive updates
-        Returns: Optional[Time]
+        Returns: Optional[time]
         """
         return self._update_window_start_time
     
     @update_window_start_time.setter
-    def update_window_start_time(self,value: Optional[Time] = None) -> None:
+    def update_window_start_time(self,value: Optional[time] = None) -> None:
         """
         Sets the updateWindowStartTime property value. Start of a time window during which agents can receive updates
         Args:

@@ -1,16 +1,36 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-mobile_app_intent = lazy_import('msgraph.generated.models.mobile_app_intent')
-mobile_app_supported_device_type = lazy_import('msgraph.generated.models.mobile_app_supported_device_type')
-resultant_app_state = lazy_import('msgraph.generated.models.resultant_app_state')
+if TYPE_CHECKING:
+    from . import mobile_app_intent, mobile_app_supported_device_type, resultant_app_state
 
 class MobileAppIntentAndStateDetail(AdditionalDataHolder, Parsable):
     """
     Mobile App Intent and Install State for a given device.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new mobileAppIntentAndStateDetail and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # MobieApp identifier.
+        self._application_id: Optional[str] = None
+        # The admin provided or imported title of the app.
+        self._display_name: Optional[str] = None
+        # Human readable version of the application
+        self._display_version: Optional[str] = None
+        # A list of possible states for application status on an individual device. When devices contact the Intune service and find targeted application enforcement intent, the status of the enforcement is recorded and becomes accessible in the Graph API. Since the application status is identified during device interaction with the Intune service, status records do not immediately appear upon application group assignment; it is created only after the assignment is evaluated in the service and devices start receiving the policy during check-ins.
+        self._install_state: Optional[resultant_app_state.ResultantAppState] = None
+        # Indicates the status of the mobile app on the device.
+        self._mobile_app_intent: Optional[mobile_app_intent.MobileAppIntent] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The supported platforms for the app.
+        self._supported_device_types: Optional[List[mobile_app_supported_device_type.MobileAppSupportedDeviceType]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -44,28 +64,6 @@ class MobileAppIntentAndStateDetail(AdditionalDataHolder, Parsable):
             value: Value to set for the application_id property.
         """
         self._application_id = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new mobileAppIntentAndStateDetail and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # MobieApp identifier.
-        self._application_id: Optional[str] = None
-        # The admin provided or imported title of the app.
-        self._display_name: Optional[str] = None
-        # Human readable version of the application
-        self._display_version: Optional[str] = None
-        # A list of possible states for application status on an individual device. When devices contact the Intune service and find targeted application enforcement intent, the status of the enforcement is recorded and becomes accessible in the Graph API. Since the application status is identified during device interaction with the Intune service, status records do not immediately appear upon application group assignment; it is created only after the assignment is evaluated in the service and devices start receiving the policy during check-ins.
-        self._install_state: Optional[resultant_app_state.ResultantAppState] = None
-        # Indicates the status of the mobile app on the device.
-        self._mobile_app_intent: Optional[mobile_app_intent.MobileAppIntent] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The supported platforms for the app.
-        self._supported_device_types: Optional[List[mobile_app_supported_device_type.MobileAppSupportedDeviceType]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MobileAppIntentAndStateDetail:
@@ -118,7 +116,9 @@ class MobileAppIntentAndStateDetail(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import mobile_app_intent, mobile_app_supported_device_type, resultant_app_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "applicationId": lambda n : setattr(self, 'application_id', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "displayVersion": lambda n : setattr(self, 'display_version', n.get_str_value()),

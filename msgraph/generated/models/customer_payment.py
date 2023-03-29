@@ -1,13 +1,53 @@
 from __future__ import annotations
 from datetime import date, datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from uuid import UUID
 
-customer = lazy_import('msgraph.generated.models.customer')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import customer, entity
+
+from . import entity
 
 class CustomerPayment(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new customerPayment and sets the default values.
+        """
+        super().__init__()
+        # The amount property
+        self._amount: Optional[float] = None
+        # The appliesToInvoiceId property
+        self._applies_to_invoice_id: Optional[UUID] = None
+        # The appliesToInvoiceNumber property
+        self._applies_to_invoice_number: Optional[str] = None
+        # The comment property
+        self._comment: Optional[str] = None
+        # The contactId property
+        self._contact_id: Optional[str] = None
+        # The customer property
+        self._customer: Optional[customer.Customer] = None
+        # The customerId property
+        self._customer_id: Optional[UUID] = None
+        # The customerNumber property
+        self._customer_number: Optional[str] = None
+        # The description property
+        self._description: Optional[str] = None
+        # The documentNumber property
+        self._document_number: Optional[str] = None
+        # The externalDocumentNumber property
+        self._external_document_number: Optional[str] = None
+        # The journalDisplayName property
+        self._journal_display_name: Optional[str] = None
+        # The lastModifiedDateTime property
+        self._last_modified_date_time: Optional[datetime] = None
+        # The lineNumber property
+        self._line_number: Optional[int] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The postingDate property
+        self._posting_date: Optional[date] = None
+    
     @property
     def amount(self,) -> Optional[float]:
         """
@@ -26,15 +66,15 @@ class CustomerPayment(entity.Entity):
         self._amount = value
     
     @property
-    def applies_to_invoice_id(self,) -> Optional[Guid]:
+    def applies_to_invoice_id(self,) -> Optional[UUID]:
         """
         Gets the appliesToInvoiceId property value. The appliesToInvoiceId property
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._applies_to_invoice_id
     
     @applies_to_invoice_id.setter
-    def applies_to_invoice_id(self,value: Optional[Guid] = None) -> None:
+    def applies_to_invoice_id(self,value: Optional[UUID] = None) -> None:
         """
         Sets the appliesToInvoiceId property value. The appliesToInvoiceId property
         Args:
@@ -75,44 +115,6 @@ class CustomerPayment(entity.Entity):
             value: Value to set for the comment property.
         """
         self._comment = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new customerPayment and sets the default values.
-        """
-        super().__init__()
-        # The amount property
-        self._amount: Optional[float] = None
-        # The appliesToInvoiceId property
-        self._applies_to_invoice_id: Optional[Guid] = None
-        # The appliesToInvoiceNumber property
-        self._applies_to_invoice_number: Optional[str] = None
-        # The comment property
-        self._comment: Optional[str] = None
-        # The contactId property
-        self._contact_id: Optional[str] = None
-        # The customer property
-        self._customer: Optional[customer.Customer] = None
-        # The customerId property
-        self._customer_id: Optional[Guid] = None
-        # The customerNumber property
-        self._customer_number: Optional[str] = None
-        # The description property
-        self._description: Optional[str] = None
-        # The documentNumber property
-        self._document_number: Optional[str] = None
-        # The externalDocumentNumber property
-        self._external_document_number: Optional[str] = None
-        # The journalDisplayName property
-        self._journal_display_name: Optional[str] = None
-        # The lastModifiedDateTime property
-        self._last_modified_date_time: Optional[datetime] = None
-        # The lineNumber property
-        self._line_number: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The postingDate property
-        self._posting_date: Optional[Date] = None
     
     @property
     def contact_id(self,) -> Optional[str]:
@@ -161,15 +163,15 @@ class CustomerPayment(entity.Entity):
         self._customer = value
     
     @property
-    def customer_id(self,) -> Optional[Guid]:
+    def customer_id(self,) -> Optional[UUID]:
         """
         Gets the customerId property value. The customerId property
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._customer_id
     
     @customer_id.setter
-    def customer_id(self,value: Optional[Guid] = None) -> None:
+    def customer_id(self,value: Optional[UUID] = None) -> None:
         """
         Sets the customerId property value. The customerId property
         Args:
@@ -250,14 +252,16 @@ class CustomerPayment(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import customer, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "amount": lambda n : setattr(self, 'amount', n.get_float_value()),
-            "appliesToInvoiceId": lambda n : setattr(self, 'applies_to_invoice_id', n.get_object_value(Guid)),
+            "appliesToInvoiceId": lambda n : setattr(self, 'applies_to_invoice_id', n.get_uuid_value()),
             "appliesToInvoiceNumber": lambda n : setattr(self, 'applies_to_invoice_number', n.get_str_value()),
             "comment": lambda n : setattr(self, 'comment', n.get_str_value()),
             "contactId": lambda n : setattr(self, 'contact_id', n.get_str_value()),
             "customer": lambda n : setattr(self, 'customer', n.get_object_value(customer.Customer)),
-            "customerId": lambda n : setattr(self, 'customer_id', n.get_object_value(Guid)),
+            "customerId": lambda n : setattr(self, 'customer_id', n.get_uuid_value()),
             "customerNumber": lambda n : setattr(self, 'customer_number', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "documentNumber": lambda n : setattr(self, 'document_number', n.get_str_value()),
@@ -265,7 +269,7 @@ class CustomerPayment(entity.Entity):
             "journalDisplayName": lambda n : setattr(self, 'journal_display_name', n.get_str_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "lineNumber": lambda n : setattr(self, 'line_number', n.get_int_value()),
-            "postingDate": lambda n : setattr(self, 'posting_date', n.get_object_value(Date)),
+            "postingDate": lambda n : setattr(self, 'posting_date', n.get_date_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -323,15 +327,15 @@ class CustomerPayment(entity.Entity):
         self._line_number = value
     
     @property
-    def posting_date(self,) -> Optional[Date]:
+    def posting_date(self,) -> Optional[date]:
         """
         Gets the postingDate property value. The postingDate property
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._posting_date
     
     @posting_date.setter
-    def posting_date(self,value: Optional[Date] = None) -> None:
+    def posting_date(self,value: Optional[date] = None) -> None:
         """
         Sets the postingDate property value. The postingDate property
         Args:
@@ -349,12 +353,12 @@ class CustomerPayment(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_float_value("amount", self.amount)
-        writer.write_object_value("appliesToInvoiceId", self.applies_to_invoice_id)
+        writer.write_uuid_value("appliesToInvoiceId", self.applies_to_invoice_id)
         writer.write_str_value("appliesToInvoiceNumber", self.applies_to_invoice_number)
         writer.write_str_value("comment", self.comment)
         writer.write_str_value("contactId", self.contact_id)
         writer.write_object_value("customer", self.customer)
-        writer.write_object_value("customerId", self.customer_id)
+        writer.write_uuid_value("customerId", self.customer_id)
         writer.write_str_value("customerNumber", self.customer_number)
         writer.write_str_value("description", self.description)
         writer.write_str_value("documentNumber", self.document_number)
@@ -362,6 +366,6 @@ class CustomerPayment(entity.Entity):
         writer.write_str_value("journalDisplayName", self.journal_display_name)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_int_value("lineNumber", self.line_number)
-        writer.write_object_value("postingDate", self.posting_date)
+        writer.write_date_value("postingDate", self.posting_date)
     
 

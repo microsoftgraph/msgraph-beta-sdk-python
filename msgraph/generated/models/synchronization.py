@@ -1,12 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-synchronization_job = lazy_import('msgraph.generated.models.synchronization_job')
-synchronization_secret_key_string_value_pair = lazy_import('msgraph.generated.models.synchronization_secret_key_string_value_pair')
-synchronization_template = lazy_import('msgraph.generated.models.synchronization_template')
+if TYPE_CHECKING:
+    from . import entity, synchronization_job, synchronization_secret_key_string_value_pair, synchronization_template
+
+from . import entity
 
 class Synchronization(entity.Entity):
     def __init__(self,) -> None:
@@ -40,7 +39,9 @@ class Synchronization(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, synchronization_job, synchronization_secret_key_string_value_pair, synchronization_template
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "jobs": lambda n : setattr(self, 'jobs', n.get_collection_of_object_values(synchronization_job.SynchronizationJob)),
             "secrets": lambda n : setattr(self, 'secrets', n.get_collection_of_object_values(synchronization_secret_key_string_value_pair.SynchronizationSecretKeyStringValuePair)),
             "templates": lambda n : setattr(self, 'templates', n.get_collection_of_object_values(synchronization_template.SynchronizationTemplate)),

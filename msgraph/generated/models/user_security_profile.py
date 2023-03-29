@@ -1,14 +1,42 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-security_vendor_information = lazy_import('msgraph.generated.models.security_vendor_information')
-user_account = lazy_import('msgraph.generated.models.user_account')
+if TYPE_CHECKING:
+    from . import entity, security_vendor_information, user_account
+
+from . import entity
 
 class UserSecurityProfile(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new userSecurityProfile and sets the default values.
+        """
+        super().__init__()
+        # The accounts property
+        self._accounts: Optional[List[user_account.UserAccount]] = None
+        # The azureSubscriptionId property
+        self._azure_subscription_id: Optional[str] = None
+        # The azureTenantId property
+        self._azure_tenant_id: Optional[str] = None
+        # The createdDateTime property
+        self._created_date_time: Optional[datetime] = None
+        # The displayName property
+        self._display_name: Optional[str] = None
+        # The lastModifiedDateTime property
+        self._last_modified_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The riskScore property
+        self._risk_score: Optional[str] = None
+        # The tags property
+        self._tags: Optional[List[str]] = None
+        # The userPrincipalName property
+        self._user_principal_name: Optional[str] = None
+        # The vendorInformation property
+        self._vendor_information: Optional[security_vendor_information.SecurityVendorInformation] = None
+    
     @property
     def accounts(self,) -> Optional[List[user_account.UserAccount]]:
         """
@@ -59,34 +87,6 @@ class UserSecurityProfile(entity.Entity):
             value: Value to set for the azure_tenant_id property.
         """
         self._azure_tenant_id = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userSecurityProfile and sets the default values.
-        """
-        super().__init__()
-        # The accounts property
-        self._accounts: Optional[List[user_account.UserAccount]] = None
-        # The azureSubscriptionId property
-        self._azure_subscription_id: Optional[str] = None
-        # The azureTenantId property
-        self._azure_tenant_id: Optional[str] = None
-        # The createdDateTime property
-        self._created_date_time: Optional[datetime] = None
-        # The displayName property
-        self._display_name: Optional[str] = None
-        # The lastModifiedDateTime property
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The riskScore property
-        self._risk_score: Optional[str] = None
-        # The tags property
-        self._tags: Optional[List[str]] = None
-        # The userPrincipalName property
-        self._user_principal_name: Optional[str] = None
-        # The vendorInformation property
-        self._vendor_information: Optional[security_vendor_information.SecurityVendorInformation] = None
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
@@ -139,7 +139,9 @@ class UserSecurityProfile(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, security_vendor_information, user_account
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accounts": lambda n : setattr(self, 'accounts', n.get_collection_of_object_values(user_account.UserAccount)),
             "azureSubscriptionId": lambda n : setattr(self, 'azure_subscription_id', n.get_str_value()),
             "azureTenantId": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),

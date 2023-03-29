@@ -1,29 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-exact_match_session_base = lazy_import('msgraph.generated.models.exact_match_session_base')
-exact_match_upload_agent = lazy_import('msgraph.generated.models.exact_match_upload_agent')
+if TYPE_CHECKING:
+    from . import exact_match_session_base, exact_match_upload_agent
+
+from . import exact_match_session_base
 
 class ExactMatchSession(exact_match_session_base.ExactMatchSessionBase):
-    @property
-    def checksum(self,) -> Optional[str]:
-        """
-        Gets the checksum property value. The checksum property
-        Returns: Optional[str]
-        """
-        return self._checksum
-    
-    @checksum.setter
-    def checksum(self,value: Optional[str] = None) -> None:
-        """
-        Sets the checksum property value. The checksum property
-        Args:
-            value: Value to set for the checksum property.
-        """
-        self._checksum = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new ExactMatchSession and sets the default values.
@@ -47,6 +31,23 @@ class ExactMatchSession(exact_match_session_base.ExactMatchSessionBase):
         self._upload_agent: Optional[exact_match_upload_agent.ExactMatchUploadAgent] = None
         # The uploadAgentId property
         self._upload_agent_id: Optional[str] = None
+    
+    @property
+    def checksum(self,) -> Optional[str]:
+        """
+        Gets the checksum property value. The checksum property
+        Returns: Optional[str]
+        """
+        return self._checksum
+    
+    @checksum.setter
+    def checksum(self,value: Optional[str] = None) -> None:
+        """
+        Sets the checksum property value. The checksum property
+        Args:
+            value: Value to set for the checksum property.
+        """
+        self._checksum = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ExactMatchSession:
@@ -116,7 +117,9 @@ class ExactMatchSession(exact_match_session_base.ExactMatchSessionBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import exact_match_session_base, exact_match_upload_agent
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "checksum": lambda n : setattr(self, 'checksum', n.get_str_value()),
             "dataUploadURI": lambda n : setattr(self, 'data_upload_u_r_i', n.get_str_value()),
             "fields": lambda n : setattr(self, 'fields', n.get_collection_of_primitive_values(str)),

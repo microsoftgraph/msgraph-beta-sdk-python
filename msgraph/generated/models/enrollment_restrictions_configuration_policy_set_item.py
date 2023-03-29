@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-policy_set_item = lazy_import('msgraph.generated.models.policy_set_item')
+if TYPE_CHECKING:
+    from . import policy_set_item
+
+from . import policy_set_item
 
 class EnrollmentRestrictionsConfigurationPolicySetItem(policy_set_item.PolicySetItem):
     def __init__(self,) -> None:
@@ -34,7 +36,9 @@ class EnrollmentRestrictionsConfigurationPolicySetItem(policy_set_item.PolicySet
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import policy_set_item
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "limit": lambda n : setattr(self, 'limit', n.get_int_value()),
             "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
         }

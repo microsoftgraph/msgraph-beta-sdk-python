@@ -1,12 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-comms_operation = lazy_import('msgraph.generated.models.comms_operation')
-record_completion_reason = lazy_import('msgraph.generated.models.record_completion_reason')
+if TYPE_CHECKING:
+    from . import comms_operation, record_completion_reason
+
+from . import comms_operation
 
 class RecordOperation(comms_operation.CommsOperation):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new RecordOperation and sets the default values.
+        """
+        super().__init__()
+        # Possible values are: operationCanceled, stopToneDetected, maxRecordDurationReached, initialSilenceTimeout, maxSilenceTimeout, playPromptFailed, playBeepFailed, mediaReceiveTimeout, unspecifiedError, none.
+        self._completion_reason: Optional[record_completion_reason.RecordCompletionReason] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The access token required to retrieve the recording.
+        self._recording_access_token: Optional[str] = None
+        # The location where the recording is located.
+        self._recording_location: Optional[str] = None
+    
     @property
     def completion_reason(self,) -> Optional[record_completion_reason.RecordCompletionReason]:
         """
@@ -23,20 +38,6 @@ class RecordOperation(comms_operation.CommsOperation):
             value: Value to set for the completion_reason property.
         """
         self._completion_reason = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new RecordOperation and sets the default values.
-        """
-        super().__init__()
-        # Possible values are: operationCanceled, stopToneDetected, maxRecordDurationReached, initialSilenceTimeout, maxSilenceTimeout, playPromptFailed, playBeepFailed, mediaReceiveTimeout, unspecifiedError, none.
-        self._completion_reason: Optional[record_completion_reason.RecordCompletionReason] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The access token required to retrieve the recording.
-        self._recording_access_token: Optional[str] = None
-        # The location where the recording is located.
-        self._recording_location: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RecordOperation:
@@ -55,7 +56,9 @@ class RecordOperation(comms_operation.CommsOperation):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import comms_operation, record_completion_reason
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "completionReason": lambda n : setattr(self, 'completion_reason', n.get_enum_value(record_completion_reason.RecordCompletionReason)),
             "recordingAccessToken": lambda n : setattr(self, 'recording_access_token', n.get_str_value()),
             "recordingLocation": lambda n : setattr(self, 'recording_location', n.get_str_value()),

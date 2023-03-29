@@ -1,12 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-aggregation_type = lazy_import('msgraph.generated.models.device_management.aggregation_type')
-operator_type = lazy_import('msgraph.generated.models.device_management.operator_type')
+if TYPE_CHECKING:
+    from . import aggregation_type, operator_type
 
 class RuleThreshold(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new ruleThreshold and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Indicates the built-in aggregation methods. The possible values are: count, percentage, affectedCloudPcCount, affectedCloudPcPercentage, unknownFutureValue.
+        self._aggregation: Optional[aggregation_type.AggregationType] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Indicates the built-in operator. The possible values are: greaterOrEqual, equal, greater, less, lessOrEqual, notEqual, unknownFutureValue.
+        self._operator: Optional[operator_type.OperatorType] = None
+        # The target threshold value.
+        self._target: Optional[int] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -41,22 +56,6 @@ class RuleThreshold(AdditionalDataHolder, Parsable):
         """
         self._aggregation = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ruleThreshold and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Indicates the built-in aggregation methods. The possible values are: count, percentage, affectedCloudPcCount, affectedCloudPcPercentage, unknownFutureValue.
-        self._aggregation: Optional[aggregation_type.AggregationType] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Indicates the built-in operator. The possible values are: greaterOrEqual, equal, greater, less, lessOrEqual, notEqual, unknownFutureValue.
-        self._operator: Optional[operator_type.OperatorType] = None
-        # The target threshold value.
-        self._target: Optional[int] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RuleThreshold:
         """
@@ -74,7 +73,9 @@ class RuleThreshold(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import aggregation_type, operator_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "aggregation": lambda n : setattr(self, 'aggregation', n.get_enum_value(aggregation_type.AggregationType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "operator": lambda n : setattr(self, 'operator', n.get_enum_value(operator_type.OperatorType)),

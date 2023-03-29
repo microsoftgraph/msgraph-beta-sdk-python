@@ -1,12 +1,26 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-certificate_destination_store = lazy_import('msgraph.generated.models.certificate_destination_store')
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+if TYPE_CHECKING:
+    from . import certificate_destination_store, device_configuration
+
+from . import device_configuration
 
 class Windows81TrustedRootCertificate(device_configuration.DeviceConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new windows81TrustedRootCertificate and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.windows81TrustedRootCertificate"
+        # File name to display in UI.
+        self._cert_file_name: Optional[str] = None
+        # Possible values for the Certificate Destination Store.
+        self._destination_store: Optional[certificate_destination_store.CertificateDestinationStore] = None
+        # Trusted Root Certificate
+        self._trusted_root_certificate: Optional[bytes] = None
+    
     @property
     def cert_file_name(self,) -> Optional[str]:
         """
@@ -23,19 +37,6 @@ class Windows81TrustedRootCertificate(device_configuration.DeviceConfiguration):
             value: Value to set for the cert_file_name property.
         """
         self._cert_file_name = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new windows81TrustedRootCertificate and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windows81TrustedRootCertificate"
-        # File name to display in UI.
-        self._cert_file_name: Optional[str] = None
-        # Possible values for the Certificate Destination Store.
-        self._destination_store: Optional[certificate_destination_store.CertificateDestinationStore] = None
-        # Trusted Root Certificate
-        self._trusted_root_certificate: Optional[bytes] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows81TrustedRootCertificate:
@@ -71,7 +72,9 @@ class Windows81TrustedRootCertificate(device_configuration.DeviceConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import certificate_destination_store, device_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "certFileName": lambda n : setattr(self, 'cert_file_name', n.get_str_value()),
             "destinationStore": lambda n : setattr(self, 'destination_store', n.get_enum_value(certificate_destination_store.CertificateDestinationStore)),
             "trustedRootCertificate": lambda n : setattr(self, 'trusted_root_certificate', n.get_bytes_value()),

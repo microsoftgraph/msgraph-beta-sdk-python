@@ -1,14 +1,30 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class OemWarrantyInformationOnboarding(entity.Entity):
     """
     Warranty status entity for a given OEM
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new oemWarrantyInformationOnboarding and sets the default values.
+        """
+        super().__init__()
+        # Specifies whether warranty API is available. This property is read-only.
+        self._available: Optional[bool] = None
+        # Specifies whether warranty query is enabled for given OEM. This property is read-only.
+        self._enabled: Optional[bool] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # OEM name. This property is read-only.
+        self._oem_name: Optional[str] = None
+    
     @property
     def available(self,) -> Optional[bool]:
         """
@@ -25,20 +41,6 @@ class OemWarrantyInformationOnboarding(entity.Entity):
             value: Value to set for the available property.
         """
         self._available = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new oemWarrantyInformationOnboarding and sets the default values.
-        """
-        super().__init__()
-        # Specifies whether warranty API is available. This property is read-only.
-        self._available: Optional[bool] = None
-        # Specifies whether warranty query is enabled for given OEM. This property is read-only.
-        self._enabled: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # OEM name. This property is read-only.
-        self._oem_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OemWarrantyInformationOnboarding:
@@ -74,7 +76,9 @@ class OemWarrantyInformationOnboarding(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "available": lambda n : setattr(self, 'available', n.get_bool_value()),
             "enabled": lambda n : setattr(self, 'enabled', n.get_bool_value()),
             "oemName": lambda n : setattr(self, 'oem_name', n.get_str_value()),

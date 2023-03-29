@@ -1,12 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-planner_task_configuration_role_base = lazy_import('msgraph.generated.models.planner_task_configuration_role_base')
-planner_task_property_rule = lazy_import('msgraph.generated.models.planner_task_property_rule')
+if TYPE_CHECKING:
+    from . import planner_task_configuration_role_base, planner_task_property_rule
 
 class PlannerTaskRoleBasedRule(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new plannerTaskRoleBasedRule and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Default rule that applies when a property or action-specific rule is not provided. Possible values are: Allow, Block
+        self._default_rule: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Rules for specific properties and actions.
+        self._property_rule: Optional[planner_task_property_rule.PlannerTaskPropertyRule] = None
+        # The role these rules apply to.
+        self._role: Optional[planner_task_configuration_role_base.PlannerTaskConfigurationRoleBase] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,22 +38,6 @@ class PlannerTaskRoleBasedRule(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new plannerTaskRoleBasedRule and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Default rule that applies when a property or action-specific rule is not provided. Possible values are: Allow, Block
-        self._default_rule: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Rules for specific properties and actions.
-        self._property_rule: Optional[planner_task_property_rule.PlannerTaskPropertyRule] = None
-        # The role these rules apply to.
-        self._role: Optional[planner_task_configuration_role_base.PlannerTaskConfigurationRoleBase] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PlannerTaskRoleBasedRule:
@@ -74,7 +73,9 @@ class PlannerTaskRoleBasedRule(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import planner_task_configuration_role_base, planner_task_property_rule
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "defaultRule": lambda n : setattr(self, 'default_rule', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "propertyRule": lambda n : setattr(self, 'property_rule', n.get_object_value(planner_task_property_rule.PlannerTaskPropertyRule)),

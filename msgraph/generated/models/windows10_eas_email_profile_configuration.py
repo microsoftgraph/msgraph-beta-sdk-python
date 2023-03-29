@@ -1,31 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-eas_email_profile_configuration_base = lazy_import('msgraph.generated.models.eas_email_profile_configuration_base')
-email_sync_duration = lazy_import('msgraph.generated.models.email_sync_duration')
-email_sync_schedule = lazy_import('msgraph.generated.models.email_sync_schedule')
-user_email_source = lazy_import('msgraph.generated.models.user_email_source')
+if TYPE_CHECKING:
+    from . import eas_email_profile_configuration_base, email_sync_duration, email_sync_schedule, user_email_source
+
+from . import eas_email_profile_configuration_base
 
 class Windows10EasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEmailProfileConfigurationBase):
-    @property
-    def account_name(self,) -> Optional[str]:
-        """
-        Gets the accountName property value. Account name.
-        Returns: Optional[str]
-        """
-        return self._account_name
-    
-    @account_name.setter
-    def account_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the accountName property value. Account name.
-        Args:
-            value: Value to set for the account_name property.
-        """
-        self._account_name = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new Windows10EasEmailProfileConfiguration and sets the default values.
@@ -50,6 +32,23 @@ class Windows10EasEmailProfileConfiguration(eas_email_profile_configuration_base
         self._sync_contacts: Optional[bool] = None
         # Whether or not to sync tasks.
         self._sync_tasks: Optional[bool] = None
+    
+    @property
+    def account_name(self,) -> Optional[str]:
+        """
+        Gets the accountName property value. Account name.
+        Returns: Optional[str]
+        """
+        return self._account_name
+    
+    @account_name.setter
+    def account_name(self,value: Optional[str] = None) -> None:
+        """
+        Sets the accountName property value. Account name.
+        Args:
+            value: Value to set for the account_name property.
+        """
+        self._account_name = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10EasEmailProfileConfiguration:
@@ -119,7 +118,9 @@ class Windows10EasEmailProfileConfiguration(eas_email_profile_configuration_base
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import eas_email_profile_configuration_base, email_sync_duration, email_sync_schedule, user_email_source
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accountName": lambda n : setattr(self, 'account_name', n.get_str_value()),
             "durationOfEmailToSync": lambda n : setattr(self, 'duration_of_email_to_sync', n.get_enum_value(email_sync_duration.EmailSyncDuration)),
             "emailAddressSource": lambda n : setattr(self, 'email_address_source', n.get_enum_value(user_email_source.UserEmailSource)),

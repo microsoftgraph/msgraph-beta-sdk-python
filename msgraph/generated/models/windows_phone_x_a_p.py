@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-mobile_lob_app = lazy_import('msgraph.generated.models.mobile_lob_app')
-windows_minimum_operating_system = lazy_import('msgraph.generated.models.windows_minimum_operating_system')
+if TYPE_CHECKING:
+    from . import mobile_lob_app, windows_minimum_operating_system
+
+from . import mobile_lob_app
 
 class WindowsPhoneXAP(mobile_lob_app.MobileLobApp):
     def __init__(self,) -> None:
@@ -37,7 +38,9 @@ class WindowsPhoneXAP(mobile_lob_app.MobileLobApp):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import mobile_lob_app, windows_minimum_operating_system
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "identityVersion": lambda n : setattr(self, 'identity_version', n.get_str_value()),
             "minimumSupportedOperatingSystem": lambda n : setattr(self, 'minimum_supported_operating_system', n.get_object_value(windows_minimum_operating_system.WindowsMinimumOperatingSystem)),
             "productIdentifier": lambda n : setattr(self, 'product_identifier', n.get_str_value()),

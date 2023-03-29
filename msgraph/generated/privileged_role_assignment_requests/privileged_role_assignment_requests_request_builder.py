@@ -7,33 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-privileged_role_assignment_request = lazy_import('msgraph.generated.models.privileged_role_assignment_request')
-privileged_role_assignment_request_collection_response = lazy_import('msgraph.generated.models.privileged_role_assignment_request_collection_response')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-count_request_builder = lazy_import('msgraph.generated.privileged_role_assignment_requests.count.count_request_builder')
-my_request_builder = lazy_import('msgraph.generated.privileged_role_assignment_requests.my.my_request_builder')
+if TYPE_CHECKING:
+    from ..models import privileged_role_assignment_request, privileged_role_assignment_request_collection_response
+    from ..models.o_data_errors import o_data_error
+    from .count import count_request_builder
+    from .my import my_request_builder
 
 class PrivilegedRoleAssignmentRequestsRequestBuilder():
     """
     Provides operations to manage the collection of privilegedRoleAssignmentRequest entities.
     """
-    @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
-        """
-        Provides operations to count the resources in the collection.
-        """
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def my(self) -> my_request_builder.MyRequestBuilder:
-        """
-        Provides operations to call the my method.
-        """
-        return my_request_builder.MyRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new PrivilegedRoleAssignmentRequestsRequestBuilder and sets the default values.
@@ -62,12 +47,16 @@ class PrivilegedRoleAssignmentRequestsRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ..models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ..models import privileged_role_assignment_request_collection_response
+
         return await self.request_adapter.send_async(request_info, privileged_role_assignment_request_collection_response.PrivilegedRoleAssignmentRequestCollectionResponse, error_mapping)
     
     async def post(self,body: Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest] = None, request_configuration: Optional[PrivilegedRoleAssignmentRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest]:
@@ -83,12 +72,16 @@ class PrivilegedRoleAssignmentRequestsRequestBuilder():
         request_info = self.to_post_request_information(
             body, request_configuration
         )
+        from ..models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ..models import privileged_role_assignment_request
+
         return await self.request_adapter.send_async(request_info, privileged_role_assignment_request.PrivilegedRoleAssignmentRequest, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PrivilegedRoleAssignmentRequestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
@@ -130,35 +123,29 @@ class PrivilegedRoleAssignmentRequestsRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def count(self) -> count_request_builder.CountRequestBuilder:
+        """
+        Provides operations to count the resources in the collection.
+        """
+        from .count import count_request_builder
+
+        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def my(self) -> my_request_builder.MyRequestBuilder:
+        """
+        Provides operations to call the my method.
+        """
+        from .my import my_request_builder
+
+        return my_request_builder.MyRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class PrivilegedRoleAssignmentRequestsRequestBuilderGetQueryParameters():
         """
         Retrieve a collection of privilegedRoleAssignmentRequest.  **Note:** This requester must have at least one role assignment on the resource.
         """
-        # Include count of items
-        count: Optional[bool] = None
-
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Filter items by property values
-        filter: Optional[str] = None
-
-        # Order items by property values
-        orderby: Optional[List[str]] = None
-
-        # Search items by search phrases
-        search: Optional[str] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
-        # Skip the first n items
-        skip: Optional[int] = None
-
-        # Show only the first n items
-        top: Optional[int] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -186,6 +173,30 @@ class PrivilegedRoleAssignmentRequestsRequestBuilder():
                 return "%24top"
             return original_name
         
+        # Include count of items
+        count: Optional[bool] = None
+
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Filter items by property values
+        filter: Optional[str] = None
+
+        # Order items by property values
+        orderby: Optional[List[str]] = None
+
+        # Search items by search phrases
+        search: Optional[str] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
+        # Skip the first n items
+        skip: Optional[int] = None
+
+        # Show only the first n items
+        top: Optional[int] = None
+
     
     @dataclass
     class PrivilegedRoleAssignmentRequestsRequestBuilderGetRequestConfiguration():

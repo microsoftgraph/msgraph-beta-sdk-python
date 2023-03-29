@@ -1,30 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-quarantine_reason = lazy_import('msgraph.generated.models.quarantine_reason')
-synchronization_error = lazy_import('msgraph.generated.models.synchronization_error')
+if TYPE_CHECKING:
+    from . import quarantine_reason, synchronization_error
 
 class SynchronizationQuarantine(AdditionalDataHolder, Parsable):
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new synchronizationQuarantine and sets the default values.
@@ -46,6 +28,23 @@ class SynchronizationQuarantine(AdditionalDataHolder, Parsable):
         self._series_began: Optional[datetime] = None
         # Number of times in this series the quarantine was re-evaluated and left in effect (a series starts when quarantine is first imposed, and is reset as soon as quarantine is lifted).
         self._series_count: Optional[int] = None
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SynchronizationQuarantine:
@@ -98,7 +97,9 @@ class SynchronizationQuarantine(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import quarantine_reason, synchronization_error
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "currentBegan": lambda n : setattr(self, 'current_began', n.get_datetime_value()),
             "error": lambda n : setattr(self, 'error', n.get_object_value(synchronization_error.SynchronizationError)),
             "nextAttempt": lambda n : setattr(self, 'next_attempt', n.get_datetime_value()),

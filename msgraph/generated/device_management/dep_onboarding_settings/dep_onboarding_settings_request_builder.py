@@ -7,26 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-count_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.count.count_request_builder')
-get_expiring_vpp_token_count_with_expiring_before_date_time_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.get_expiring_vpp_token_count_with_expiring_before_date_time.get_expiring_vpp_token_count_with_expiring_before_date_time_request_builder')
-dep_onboarding_setting = lazy_import('msgraph.generated.models.dep_onboarding_setting')
-dep_onboarding_setting_collection_response = lazy_import('msgraph.generated.models.dep_onboarding_setting_collection_response')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ...models import dep_onboarding_setting, dep_onboarding_setting_collection_response
+    from ...models.o_data_errors import o_data_error
+    from .count import count_request_builder
+    from .get_expiring_vpp_token_count_with_expiring_before_date_time import get_expiring_vpp_token_count_with_expiring_before_date_time_request_builder
 
 class DepOnboardingSettingsRequestBuilder():
     """
     Provides operations to manage the depOnboardingSettings property of the microsoft.graph.deviceManagement entity.
     """
-    @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
-        """
-        Provides operations to count the resources in the collection.
-        """
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new DepOnboardingSettingsRequestBuilder and sets the default values.
@@ -55,12 +47,16 @@ class DepOnboardingSettingsRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models import dep_onboarding_setting_collection_response
+
         return await self.request_adapter.send_async(request_info, dep_onboarding_setting_collection_response.DepOnboardingSettingCollectionResponse, error_mapping)
     
     def get_expiring_vpp_token_count_with_expiring_before_date_time(self,expiring_before_date_time: Optional[str] = None) -> get_expiring_vpp_token_count_with_expiring_before_date_time_request_builder.GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilder:
@@ -72,7 +68,9 @@ class DepOnboardingSettingsRequestBuilder():
         """
         if expiring_before_date_time is None:
             raise Exception("expiring_before_date_time cannot be undefined")
-        return get_expiring_vpp_token_count_with_expiring_before_date_time_request_builder.GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilder(self.request_adapter, self.path_parameters, expiringBeforeDateTime)
+        from .get_expiring_vpp_token_count_with_expiring_before_date_time import get_expiring_vpp_token_count_with_expiring_before_date_time_request_builder
+
+        return get_expiring_vpp_token_count_with_expiring_before_date_time_request_builder.GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilder(self.request_adapter, self.path_parameters, expiring_before_date_time)
     
     async def post(self,body: Optional[dep_onboarding_setting.DepOnboardingSetting] = None, request_configuration: Optional[DepOnboardingSettingsRequestBuilderPostRequestConfiguration] = None) -> Optional[dep_onboarding_setting.DepOnboardingSetting]:
         """
@@ -87,12 +85,16 @@ class DepOnboardingSettingsRequestBuilder():
         request_info = self.to_post_request_information(
             body, request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models import dep_onboarding_setting
+
         return await self.request_adapter.send_async(request_info, dep_onboarding_setting.DepOnboardingSetting, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DepOnboardingSettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
@@ -134,35 +136,20 @@ class DepOnboardingSettingsRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def count(self) -> count_request_builder.CountRequestBuilder:
+        """
+        Provides operations to count the resources in the collection.
+        """
+        from .count import count_request_builder
+
+        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class DepOnboardingSettingsRequestBuilderGetQueryParameters():
         """
         This collections of multiple DEP tokens per-tenant.
         """
-        # Include count of items
-        count: Optional[bool] = None
-
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Filter items by property values
-        filter: Optional[str] = None
-
-        # Order items by property values
-        orderby: Optional[List[str]] = None
-
-        # Search items by search phrases
-        search: Optional[str] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
-        # Skip the first n items
-        skip: Optional[int] = None
-
-        # Show only the first n items
-        top: Optional[int] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -190,6 +177,30 @@ class DepOnboardingSettingsRequestBuilder():
                 return "%24top"
             return original_name
         
+        # Include count of items
+        count: Optional[bool] = None
+
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Filter items by property values
+        filter: Optional[str] = None
+
+        # Order items by property values
+        orderby: Optional[List[str]] = None
+
+        # Search items by search phrases
+        search: Optional[str] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
+        # Skip the first n items
+        skip: Optional[int] = None
+
+        # Show only the first n items
+        top: Optional[int] = None
+
     
     @dataclass
     class DepOnboardingSettingsRequestBuilderGetRequestConfiguration():

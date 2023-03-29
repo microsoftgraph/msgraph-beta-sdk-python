@@ -1,10 +1,12 @@
 from __future__ import annotations
 from datetime import timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-unified_role_management_alert_configuration = lazy_import('msgraph.generated.models.unified_role_management_alert_configuration')
+if TYPE_CHECKING:
+    from . import unified_role_management_alert_configuration
+
+from . import unified_role_management_alert_configuration
 
 class StaleSignInAlertConfiguration(unified_role_management_alert_configuration.UnifiedRoleManagementAlertConfiguration):
     def __init__(self,) -> None:
@@ -14,7 +16,7 @@ class StaleSignInAlertConfiguration(unified_role_management_alert_configuration.
         super().__init__()
         self.odata_type = "#microsoft.graph.staleSignInAlertConfiguration"
         # The duration property
-        self._duration: Optional[Timedelta] = None
+        self._duration: Optional[timedelta] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> StaleSignInAlertConfiguration:
@@ -29,15 +31,15 @@ class StaleSignInAlertConfiguration(unified_role_management_alert_configuration.
         return StaleSignInAlertConfiguration()
     
     @property
-    def duration(self,) -> Optional[Timedelta]:
+    def duration(self,) -> Optional[timedelta]:
         """
         Gets the duration property value. The duration property
-        Returns: Optional[Timedelta]
+        Returns: Optional[timedelta]
         """
         return self._duration
     
     @duration.setter
-    def duration(self,value: Optional[Timedelta] = None) -> None:
+    def duration(self,value: Optional[timedelta] = None) -> None:
         """
         Sets the duration property value. The duration property
         Args:
@@ -50,8 +52,10 @@ class StaleSignInAlertConfiguration(unified_role_management_alert_configuration.
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
-            "duration": lambda n : setattr(self, 'duration', n.get_object_value(Timedelta)),
+        from . import unified_role_management_alert_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
+            "duration": lambda n : setattr(self, 'duration', n.get_timedelta_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -66,6 +70,6 @@ class StaleSignInAlertConfiguration(unified_role_management_alert_configuration.
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-        writer.write_object_value("duration", self.duration)
+        writer.write_timedelta_value("duration", self.duration)
     
 

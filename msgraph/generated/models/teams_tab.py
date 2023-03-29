@@ -1,30 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-teams_app = lazy_import('msgraph.generated.models.teams_app')
-teams_tab_configuration = lazy_import('msgraph.generated.models.teams_tab_configuration')
+if TYPE_CHECKING:
+    from . import entity, teams_app, teams_tab_configuration
+
+from . import entity
 
 class TeamsTab(entity.Entity):
-    @property
-    def configuration(self,) -> Optional[teams_tab_configuration.TeamsTabConfiguration]:
-        """
-        Gets the configuration property value. Container for custom settings applied to a tab. The tab is considered configured only once this property is set.
-        Returns: Optional[teams_tab_configuration.TeamsTabConfiguration]
-        """
-        return self._configuration
-    
-    @configuration.setter
-    def configuration(self,value: Optional[teams_tab_configuration.TeamsTabConfiguration] = None) -> None:
-        """
-        Sets the configuration property value. Container for custom settings applied to a tab. The tab is considered configured only once this property is set.
-        Args:
-            value: Value to set for the configuration property.
-        """
-        self._configuration = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new teamsTab and sets the default values.
@@ -46,6 +29,23 @@ class TeamsTab(entity.Entity):
         self._teams_app_id: Optional[str] = None
         # Deep link URL of the tab instance. Read only.
         self._web_url: Optional[str] = None
+    
+    @property
+    def configuration(self,) -> Optional[teams_tab_configuration.TeamsTabConfiguration]:
+        """
+        Gets the configuration property value. Container for custom settings applied to a tab. The tab is considered configured only once this property is set.
+        Returns: Optional[teams_tab_configuration.TeamsTabConfiguration]
+        """
+        return self._configuration
+    
+    @configuration.setter
+    def configuration(self,value: Optional[teams_tab_configuration.TeamsTabConfiguration] = None) -> None:
+        """
+        Sets the configuration property value. Container for custom settings applied to a tab. The tab is considered configured only once this property is set.
+        Args:
+            value: Value to set for the configuration property.
+        """
+        self._configuration = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeamsTab:
@@ -81,7 +81,9 @@ class TeamsTab(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, teams_app, teams_tab_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "configuration": lambda n : setattr(self, 'configuration', n.get_object_value(teams_tab_configuration.TeamsTabConfiguration)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "messageId": lambda n : setattr(self, 'message_id', n.get_str_value()),

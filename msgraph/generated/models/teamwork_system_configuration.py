@@ -1,30 +1,12 @@
 from __future__ import annotations
 from datetime import timedelta
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-teamwork_date_time_configuration = lazy_import('msgraph.generated.models.teamwork_date_time_configuration')
-teamwork_network_configuration = lazy_import('msgraph.generated.models.teamwork_network_configuration')
+if TYPE_CHECKING:
+    from . import teamwork_date_time_configuration, teamwork_network_configuration
 
 class TeamworkSystemConfiguration(AdditionalDataHolder, Parsable):
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new teamworkSystemConfiguration and sets the default values.
@@ -37,7 +19,7 @@ class TeamworkSystemConfiguration(AdditionalDataHolder, Parsable):
         # The default password for the device. Write-Only.
         self._default_password: Optional[str] = None
         # The device lock timeout in seconds.
-        self._device_lock_timeout: Optional[Timedelta] = None
+        self._device_lock_timeout: Optional[timedelta] = None
         # True if the device lock is enabled.
         self._is_device_lock_enabled: Optional[bool] = None
         # True if logging is enabled.
@@ -58,6 +40,23 @@ class TeamworkSystemConfiguration(AdditionalDataHolder, Parsable):
         self._network_configuration: Optional[teamwork_network_configuration.TeamworkNetworkConfiguration] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeamworkSystemConfiguration:
@@ -106,15 +105,15 @@ class TeamworkSystemConfiguration(AdditionalDataHolder, Parsable):
         self._default_password = value
     
     @property
-    def device_lock_timeout(self,) -> Optional[Timedelta]:
+    def device_lock_timeout(self,) -> Optional[timedelta]:
         """
         Gets the deviceLockTimeout property value. The device lock timeout in seconds.
-        Returns: Optional[Timedelta]
+        Returns: Optional[timedelta]
         """
         return self._device_lock_timeout
     
     @device_lock_timeout.setter
-    def device_lock_timeout(self,value: Optional[Timedelta] = None) -> None:
+    def device_lock_timeout(self,value: Optional[timedelta] = None) -> None:
         """
         Sets the deviceLockTimeout property value. The device lock timeout in seconds.
         Args:
@@ -127,10 +126,12 @@ class TeamworkSystemConfiguration(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import teamwork_date_time_configuration, teamwork_network_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "dateTimeConfiguration": lambda n : setattr(self, 'date_time_configuration', n.get_object_value(teamwork_date_time_configuration.TeamworkDateTimeConfiguration)),
             "defaultPassword": lambda n : setattr(self, 'default_password', n.get_str_value()),
-            "deviceLockTimeout": lambda n : setattr(self, 'device_lock_timeout', n.get_object_value(Timedelta)),
+            "deviceLockTimeout": lambda n : setattr(self, 'device_lock_timeout', n.get_timedelta_value()),
             "isDeviceLockEnabled": lambda n : setattr(self, 'is_device_lock_enabled', n.get_bool_value()),
             "isLoggingEnabled": lambda n : setattr(self, 'is_logging_enabled', n.get_bool_value()),
             "isPowerSavingEnabled": lambda n : setattr(self, 'is_power_saving_enabled', n.get_bool_value()),
@@ -324,7 +325,7 @@ class TeamworkSystemConfiguration(AdditionalDataHolder, Parsable):
             raise Exception("writer cannot be undefined")
         writer.write_object_value("dateTimeConfiguration", self.date_time_configuration)
         writer.write_str_value("defaultPassword", self.default_password)
-        writer.write_object_value("deviceLockTimeout", self.device_lock_timeout)
+        writer.write_timedelta_value("deviceLockTimeout", self.device_lock_timeout)
         writer.write_bool_value("isDeviceLockEnabled", self.is_device_lock_enabled)
         writer.write_bool_value("isLoggingEnabled", self.is_logging_enabled)
         writer.write_bool_value("isPowerSavingEnabled", self.is_power_saving_enabled)

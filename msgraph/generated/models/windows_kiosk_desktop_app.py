@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-windows_kiosk_app_base = lazy_import('msgraph.generated.models.windows_kiosk_app_base')
+if TYPE_CHECKING:
+    from . import windows_kiosk_app_base
+
+from . import windows_kiosk_app_base
 
 class WindowsKioskDesktopApp(windows_kiosk_app_base.WindowsKioskAppBase):
     def __init__(self,) -> None:
@@ -70,7 +72,9 @@ class WindowsKioskDesktopApp(windows_kiosk_app_base.WindowsKioskAppBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import windows_kiosk_app_base
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "desktopApplicationId": lambda n : setattr(self, 'desktop_application_id', n.get_str_value()),
             "desktopApplicationLinkPath": lambda n : setattr(self, 'desktop_application_link_path', n.get_str_value()),
             "path": lambda n : setattr(self, 'path', n.get_str_value()),

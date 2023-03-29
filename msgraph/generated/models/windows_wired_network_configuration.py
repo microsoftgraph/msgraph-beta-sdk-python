@@ -1,17 +1,68 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-eap_type = lazy_import('msgraph.generated.models.eap_type')
-non_eap_authentication_method_for_eap_ttls_type = lazy_import('msgraph.generated.models.non_eap_authentication_method_for_eap_ttls_type')
-windows_certificate_profile_base = lazy_import('msgraph.generated.models.windows_certificate_profile_base')
-windows81_trusted_root_certificate = lazy_import('msgraph.generated.models.windows81_trusted_root_certificate')
-wired_network_authentication_method = lazy_import('msgraph.generated.models.wired_network_authentication_method')
-wired_network_authentication_type = lazy_import('msgraph.generated.models.wired_network_authentication_type')
+if TYPE_CHECKING:
+    from . import device_configuration, eap_type, non_eap_authentication_method_for_eap_ttls_type, windows81_trusted_root_certificate, windows_certificate_profile_base, wired_network_authentication_method, wired_network_authentication_type
+
+from . import device_configuration
 
 class WindowsWiredNetworkConfiguration(device_configuration.DeviceConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new WindowsWiredNetworkConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.windowsWiredNetworkConfiguration"
+        # Specify the duration for which automatic authentication attempts will be blocked from occuring after a failed authentication attempt.
+        self._authentication_block_period_in_minutes: Optional[int] = None
+        # Specify the authentication method. Possible values are: certificate, usernameAndPassword, derivedCredential. Possible values are: certificate, usernameAndPassword, derivedCredential, unknownFutureValue.
+        self._authentication_method: Optional[wired_network_authentication_method.WiredNetworkAuthenticationMethod] = None
+        # Specify the number of seconds for the client to wait after an authentication attempt before failing. Valid range 1-3600.
+        self._authentication_period_in_seconds: Optional[int] = None
+        # Specify the number of seconds between a failed authentication and the next authentication attempt. Valid range 1-3600.
+        self._authentication_retry_delay_period_in_seconds: Optional[int] = None
+        # Specify whether to authenticate the user, the device, either, or to use guest authentication (none). If you're using certificate authentication, make sure the certificate type matches the authentication type. Possible values are: none, user, machine, machineOrUser, guest. Possible values are: none, user, machine, machineOrUser, guest, unknownFutureValue.
+        self._authentication_type: Optional[wired_network_authentication_type.WiredNetworkAuthenticationType] = None
+        # When TRUE, caches user credentials on the device so that users don't need to keep entering them each time they connect. When FALSE, do not cache credentials. Default value is FALSE.
+        self._cache_credentials: Optional[bool] = None
+        # When TRUE, prevents the user from being prompted to authorize new servers for trusted certification authorities when EAP type is selected as PEAP. When FALSE, does not prevent the user from being prompted. Default value is FALSE.
+        self._disable_user_prompt_for_server_validation: Optional[bool] = None
+        # Extensible Authentication Protocol (EAP) configuration types.
+        self._eap_type: Optional[eap_type.EapType] = None
+        # Specify the number of seconds to wait before sending an EAPOL (Extensible Authentication Protocol over LAN) Start message. Valid range 1-3600.
+        self._eapol_start_period_in_seconds: Optional[int] = None
+        # When TRUE, the automatic configuration service for wired networks requires the use of 802.1X for port authentication. When FALSE, 802.1X is not required. Default value is FALSE.
+        self._enforce8021_x: Optional[bool] = None
+        # When TRUE, forces FIPS compliance. When FALSE, does not enable FIPS compliance. Default value is FALSE.
+        self._force_f_i_p_s_compliance: Optional[bool] = None
+        # Specify identity certificate for client authentication.
+        self._identity_certificate_for_client_authentication: Optional[windows_certificate_profile_base.WindowsCertificateProfileBase] = None
+        # Specify inner authentication protocol for EAP TTLS. Possible values are: unencryptedPassword, challengeHandshakeAuthenticationProtocol, microsoftChap, microsoftChapVersionTwo. Possible values are: unencryptedPassword, challengeHandshakeAuthenticationProtocol, microsoftChap, microsoftChapVersionTwo.
+        self._inner_authentication_protocol_for_e_a_p_t_t_l_s: Optional[non_eap_authentication_method_for_eap_ttls_type.NonEapAuthenticationMethodForEapTtlsType] = None
+        # Specify the maximum authentication failures allowed for a set of credentials. Valid range 1-100.
+        self._maximum_authentication_failures: Optional[int] = None
+        # Specify the maximum number of EAPOL (Extensible Authentication Protocol over LAN) Start messages to be sent before returning failure. Valid range 1-100.
+        self._maximum_e_a_p_o_l_start_messages: Optional[int] = None
+        # Specify the string to replace usernames for privacy when using EAP TTLS or PEAP.
+        self._outer_identity_privacy_temporary_value: Optional[str] = None
+        # When TRUE, enables verification of server's identity by validating the certificate when EAP type is selected as PEAP. When FALSE, the certificate is not validated. Default value is TRUE.
+        self._perform_server_validation: Optional[bool] = None
+        # When TRUE, enables cryptographic binding when EAP type is selected as PEAP. When FALSE, does not enable cryptogrpahic binding. Default value is TRUE.
+        self._require_cryptographic_binding: Optional[bool] = None
+        # Specify root certificate for client validation.
+        self._root_certificate_for_client_validation: Optional[windows81_trusted_root_certificate.Windows81TrustedRootCertificate] = None
+        # Specify root certificates for server validation. This collection can contain a maximum of 500 elements.
+        self._root_certificates_for_server_validation: Optional[List[windows81_trusted_root_certificate.Windows81TrustedRootCertificate]] = None
+        # Specify the secondary authentication method. Possible values are: certificate, usernameAndPassword, derivedCredential. Possible values are: certificate, usernameAndPassword, derivedCredential, unknownFutureValue.
+        self._secondary_authentication_method: Optional[wired_network_authentication_method.WiredNetworkAuthenticationMethod] = None
+        # Specify secondary identity certificate for client authentication.
+        self._secondary_identity_certificate_for_client_authentication: Optional[windows_certificate_profile_base.WindowsCertificateProfileBase] = None
+        # Specify secondary root certificate for client validation.
+        self._secondary_root_certificate_for_client_validation: Optional[windows81_trusted_root_certificate.Windows81TrustedRootCertificate] = None
+        # Specify trusted server certificate names.
+        self._trusted_server_certificate_names: Optional[List[str]] = None
+    
     @property
     def authentication_block_period_in_minutes(self,) -> Optional[int]:
         """
@@ -113,61 +164,6 @@ class WindowsWiredNetworkConfiguration(device_configuration.DeviceConfiguration)
             value: Value to set for the cache_credentials property.
         """
         self._cache_credentials = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsWiredNetworkConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsWiredNetworkConfiguration"
-        # Specify the duration for which automatic authentication attempts will be blocked from occuring after a failed authentication attempt.
-        self._authentication_block_period_in_minutes: Optional[int] = None
-        # Specify the authentication method. Possible values are: certificate, usernameAndPassword, derivedCredential. Possible values are: certificate, usernameAndPassword, derivedCredential, unknownFutureValue.
-        self._authentication_method: Optional[wired_network_authentication_method.WiredNetworkAuthenticationMethod] = None
-        # Specify the number of seconds for the client to wait after an authentication attempt before failing. Valid range 1-3600.
-        self._authentication_period_in_seconds: Optional[int] = None
-        # Specify the number of seconds between a failed authentication and the next authentication attempt. Valid range 1-3600.
-        self._authentication_retry_delay_period_in_seconds: Optional[int] = None
-        # Specify whether to authenticate the user, the device, either, or to use guest authentication (none). If you're using certificate authentication, make sure the certificate type matches the authentication type. Possible values are: none, user, machine, machineOrUser, guest. Possible values are: none, user, machine, machineOrUser, guest, unknownFutureValue.
-        self._authentication_type: Optional[wired_network_authentication_type.WiredNetworkAuthenticationType] = None
-        # When TRUE, caches user credentials on the device so that users don't need to keep entering them each time they connect. When FALSE, do not cache credentials. Default value is FALSE.
-        self._cache_credentials: Optional[bool] = None
-        # When TRUE, prevents the user from being prompted to authorize new servers for trusted certification authorities when EAP type is selected as PEAP. When FALSE, does not prevent the user from being prompted. Default value is FALSE.
-        self._disable_user_prompt_for_server_validation: Optional[bool] = None
-        # Extensible Authentication Protocol (EAP) configuration types.
-        self._eap_type: Optional[eap_type.EapType] = None
-        # Specify the number of seconds to wait before sending an EAPOL (Extensible Authentication Protocol over LAN) Start message. Valid range 1-3600.
-        self._eapol_start_period_in_seconds: Optional[int] = None
-        # When TRUE, the automatic configuration service for wired networks requires the use of 802.1X for port authentication. When FALSE, 802.1X is not required. Default value is FALSE.
-        self._enforce8021_x: Optional[bool] = None
-        # When TRUE, forces FIPS compliance. When FALSE, does not enable FIPS compliance. Default value is FALSE.
-        self._force_f_i_p_s_compliance: Optional[bool] = None
-        # Specify identity certificate for client authentication.
-        self._identity_certificate_for_client_authentication: Optional[windows_certificate_profile_base.WindowsCertificateProfileBase] = None
-        # Specify inner authentication protocol for EAP TTLS. Possible values are: unencryptedPassword, challengeHandshakeAuthenticationProtocol, microsoftChap, microsoftChapVersionTwo. Possible values are: unencryptedPassword, challengeHandshakeAuthenticationProtocol, microsoftChap, microsoftChapVersionTwo.
-        self._inner_authentication_protocol_for_e_a_p_t_t_l_s: Optional[non_eap_authentication_method_for_eap_ttls_type.NonEapAuthenticationMethodForEapTtlsType] = None
-        # Specify the maximum authentication failures allowed for a set of credentials. Valid range 1-100.
-        self._maximum_authentication_failures: Optional[int] = None
-        # Specify the maximum number of EAPOL (Extensible Authentication Protocol over LAN) Start messages to be sent before returning failure. Valid range 1-100.
-        self._maximum_e_a_p_o_l_start_messages: Optional[int] = None
-        # Specify the string to replace usernames for privacy when using EAP TTLS or PEAP.
-        self._outer_identity_privacy_temporary_value: Optional[str] = None
-        # When TRUE, enables verification of server's identity by validating the certificate when EAP type is selected as PEAP. When FALSE, the certificate is not validated. Default value is TRUE.
-        self._perform_server_validation: Optional[bool] = None
-        # When TRUE, enables cryptographic binding when EAP type is selected as PEAP. When FALSE, does not enable cryptogrpahic binding. Default value is TRUE.
-        self._require_cryptographic_binding: Optional[bool] = None
-        # Specify root certificate for client validation.
-        self._root_certificate_for_client_validation: Optional[windows81_trusted_root_certificate.Windows81TrustedRootCertificate] = None
-        # Specify root certificates for server validation. This collection can contain a maximum of 500 elements.
-        self._root_certificates_for_server_validation: Optional[List[windows81_trusted_root_certificate.Windows81TrustedRootCertificate]] = None
-        # Specify the secondary authentication method. Possible values are: certificate, usernameAndPassword, derivedCredential. Possible values are: certificate, usernameAndPassword, derivedCredential, unknownFutureValue.
-        self._secondary_authentication_method: Optional[wired_network_authentication_method.WiredNetworkAuthenticationMethod] = None
-        # Specify secondary identity certificate for client authentication.
-        self._secondary_identity_certificate_for_client_authentication: Optional[windows_certificate_profile_base.WindowsCertificateProfileBase] = None
-        # Specify secondary root certificate for client validation.
-        self._secondary_root_certificate_for_client_validation: Optional[windows81_trusted_root_certificate.Windows81TrustedRootCertificate] = None
-        # Specify trusted server certificate names.
-        self._trusted_server_certificate_names: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsWiredNetworkConfiguration:
@@ -271,7 +267,9 @@ class WindowsWiredNetworkConfiguration(device_configuration.DeviceConfiguration)
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_configuration, eap_type, non_eap_authentication_method_for_eap_ttls_type, windows81_trusted_root_certificate, windows_certificate_profile_base, wired_network_authentication_method, wired_network_authentication_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "authenticationBlockPeriodInMinutes": lambda n : setattr(self, 'authentication_block_period_in_minutes', n.get_int_value()),
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(wired_network_authentication_method.WiredNetworkAuthenticationMethod)),
             "authenticationPeriodInSeconds": lambda n : setattr(self, 'authentication_period_in_seconds', n.get_int_value()),

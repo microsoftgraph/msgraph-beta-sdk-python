@@ -1,12 +1,23 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-cloud_pc_operating_system = lazy_import('msgraph.generated.models.cloud_pc_operating_system')
-cloud_pc_user_account_type = lazy_import('msgraph.generated.models.cloud_pc_user_account_type')
+if TYPE_CHECKING:
+    from .....models import cloud_pc_operating_system, cloud_pc_user_account_type
 
 class ReprovisionPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new reprovisionPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The osVersion property
+        self._os_version: Optional[cloud_pc_operating_system.CloudPcOperatingSystem] = None
+        # The userAccountType property
+        self._user_account_type: Optional[cloud_pc_user_account_type.CloudPcUserAccountType] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,18 +34,6 @@ class ReprovisionPostRequestBody(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new reprovisionPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The osVersion property
-        self._os_version: Optional[cloud_pc_operating_system.CloudPcOperatingSystem] = None
-        # The userAccountType property
-        self._user_account_type: Optional[cloud_pc_user_account_type.CloudPcUserAccountType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ReprovisionPostRequestBody:
@@ -53,7 +52,9 @@ class ReprovisionPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .....models import cloud_pc_operating_system, cloud_pc_user_account_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "osVersion": lambda n : setattr(self, 'os_version', n.get_enum_value(cloud_pc_operating_system.CloudPcOperatingSystem)),
             "userAccountType": lambda n : setattr(self, 'user_account_type', n.get_enum_value(cloud_pc_user_account_type.CloudPcUserAccountType)),
         }

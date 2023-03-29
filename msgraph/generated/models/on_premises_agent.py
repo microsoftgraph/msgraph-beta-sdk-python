@@ -1,31 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-agent_status = lazy_import('msgraph.generated.models.agent_status')
-entity = lazy_import('msgraph.generated.models.entity')
-on_premises_agent_group = lazy_import('msgraph.generated.models.on_premises_agent_group')
-on_premises_publishing_type = lazy_import('msgraph.generated.models.on_premises_publishing_type')
+if TYPE_CHECKING:
+    from . import agent_status, entity, on_premises_agent_group, on_premises_publishing_type
+
+from . import entity
 
 class OnPremisesAgent(entity.Entity):
-    @property
-    def agent_groups(self,) -> Optional[List[on_premises_agent_group.OnPremisesAgentGroup]]:
-        """
-        Gets the agentGroups property value. List of onPremisesAgentGroups that an onPremisesAgent is assigned to. Read-only. Nullable.
-        Returns: Optional[List[on_premises_agent_group.OnPremisesAgentGroup]]
-        """
-        return self._agent_groups
-    
-    @agent_groups.setter
-    def agent_groups(self,value: Optional[List[on_premises_agent_group.OnPremisesAgentGroup]] = None) -> None:
-        """
-        Sets the agentGroups property value. List of onPremisesAgentGroups that an onPremisesAgent is assigned to. Read-only. Nullable.
-        Args:
-            value: Value to set for the agent_groups property.
-        """
-        self._agent_groups = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new onPremisesAgent and sets the default values.
@@ -43,6 +25,23 @@ class OnPremisesAgent(entity.Entity):
         self._status: Optional[agent_status.AgentStatus] = None
         # The supportedPublishingTypes property
         self._supported_publishing_types: Optional[List[on_premises_publishing_type.OnPremisesPublishingType]] = None
+    
+    @property
+    def agent_groups(self,) -> Optional[List[on_premises_agent_group.OnPremisesAgentGroup]]:
+        """
+        Gets the agentGroups property value. List of onPremisesAgentGroups that an onPremisesAgent is assigned to. Read-only. Nullable.
+        Returns: Optional[List[on_premises_agent_group.OnPremisesAgentGroup]]
+        """
+        return self._agent_groups
+    
+    @agent_groups.setter
+    def agent_groups(self,value: Optional[List[on_premises_agent_group.OnPremisesAgentGroup]] = None) -> None:
+        """
+        Sets the agentGroups property value. List of onPremisesAgentGroups that an onPremisesAgent is assigned to. Read-only. Nullable.
+        Args:
+            value: Value to set for the agent_groups property.
+        """
+        self._agent_groups = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OnPremisesAgent:
@@ -78,7 +77,9 @@ class OnPremisesAgent(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import agent_status, entity, on_premises_agent_group, on_premises_publishing_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "agentGroups": lambda n : setattr(self, 'agent_groups', n.get_collection_of_object_values(on_premises_agent_group.OnPremisesAgentGroup)),
             "externalIp": lambda n : setattr(self, 'external_ip', n.get_str_value()),
             "machineName": lambda n : setattr(self, 'machine_name', n.get_str_value()),

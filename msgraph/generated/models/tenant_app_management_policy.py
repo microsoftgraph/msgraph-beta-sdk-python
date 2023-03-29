@@ -1,12 +1,26 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-app_management_configuration = lazy_import('msgraph.generated.models.app_management_configuration')
-policy_base = lazy_import('msgraph.generated.models.policy_base')
+if TYPE_CHECKING:
+    from . import app_management_configuration, policy_base
+
+from . import policy_base
 
 class TenantAppManagementPolicy(policy_base.PolicyBase):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new TenantAppManagementPolicy and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.tenantAppManagementPolicy"
+        # Restrictions that apply as default to all application objects in the tenant.
+        self._application_restrictions: Optional[app_management_configuration.AppManagementConfiguration] = None
+        # Denotes whether the policy is enabled. Default value is false.
+        self._is_enabled: Optional[bool] = None
+        # Restrictions that apply as default to all service principal objects in the tenant.
+        self._service_principal_restrictions: Optional[app_management_configuration.AppManagementConfiguration] = None
+    
     @property
     def application_restrictions(self,) -> Optional[app_management_configuration.AppManagementConfiguration]:
         """
@@ -23,19 +37,6 @@ class TenantAppManagementPolicy(policy_base.PolicyBase):
             value: Value to set for the application_restrictions property.
         """
         self._application_restrictions = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new TenantAppManagementPolicy and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.tenantAppManagementPolicy"
-        # Restrictions that apply as default to all application objects in the tenant.
-        self._application_restrictions: Optional[app_management_configuration.AppManagementConfiguration] = None
-        # Denotes whether the policy is enabled. Default value is false.
-        self._is_enabled: Optional[bool] = None
-        # Restrictions that apply as default to all service principal objects in the tenant.
-        self._service_principal_restrictions: Optional[app_management_configuration.AppManagementConfiguration] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TenantAppManagementPolicy:
@@ -54,7 +55,9 @@ class TenantAppManagementPolicy(policy_base.PolicyBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import app_management_configuration, policy_base
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "applicationRestrictions": lambda n : setattr(self, 'application_restrictions', n.get_object_value(app_management_configuration.AppManagementConfiguration)),
             "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
             "servicePrincipalRestrictions": lambda n : setattr(self, 'service_principal_restrictions', n.get_object_value(app_management_configuration.AppManagementConfiguration)),

@@ -1,11 +1,30 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from uuid import UUID
 
-classification_attribute = lazy_import('msgraph.generated.models.classification_attribute')
+if TYPE_CHECKING:
+    from . import classification_attribute
 
 class DiscoveredSensitiveType(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new discoveredSensitiveType and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The classificationAttributes property
+        self._classification_attributes: Optional[List[classification_attribute.ClassificationAttribute]] = None
+        # The confidence property
+        self._confidence: Optional[int] = None
+        # The count property
+        self._count: Optional[int] = None
+        # The id property
+        self._id: Optional[UUID] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -57,24 +76,6 @@ class DiscoveredSensitiveType(AdditionalDataHolder, Parsable):
         """
         self._confidence = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new discoveredSensitiveType and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The classificationAttributes property
-        self._classification_attributes: Optional[List[classification_attribute.ClassificationAttribute]] = None
-        # The confidence property
-        self._confidence: Optional[int] = None
-        # The count property
-        self._count: Optional[int] = None
-        # The id property
-        self._id: Optional[Guid] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
     @property
     def count(self,) -> Optional[int]:
         """
@@ -109,25 +110,27 @@ class DiscoveredSensitiveType(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import classification_attribute
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "classificationAttributes": lambda n : setattr(self, 'classification_attributes', n.get_collection_of_object_values(classification_attribute.ClassificationAttribute)),
             "confidence": lambda n : setattr(self, 'confidence', n.get_int_value()),
             "count": lambda n : setattr(self, 'count', n.get_int_value()),
-            "id": lambda n : setattr(self, 'id', n.get_object_value(Guid)),
+            "id": lambda n : setattr(self, 'id', n.get_uuid_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
     @property
-    def id(self,) -> Optional[Guid]:
+    def id(self,) -> Optional[UUID]:
         """
         Gets the id property value. The id property
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._id
     
     @id.setter
-    def id(self,value: Optional[Guid] = None) -> None:
+    def id(self,value: Optional[UUID] = None) -> None:
         """
         Sets the id property value. The id property
         Args:
@@ -163,7 +166,7 @@ class DiscoveredSensitiveType(AdditionalDataHolder, Parsable):
         writer.write_collection_of_object_values("classificationAttributes", self.classification_attributes)
         writer.write_int_value("confidence", self.confidence)
         writer.write_int_value("count", self.count)
-        writer.write_object_value("id", self.id)
+        writer.write_uuid_value("id", self.id)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     

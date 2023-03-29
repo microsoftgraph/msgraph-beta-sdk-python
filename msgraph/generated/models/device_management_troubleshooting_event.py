@@ -1,34 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_troubleshooting_error_details = lazy_import('msgraph.generated.models.device_management_troubleshooting_error_details')
-entity = lazy_import('msgraph.generated.models.entity')
-key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
+if TYPE_CHECKING:
+    from . import apple_vpp_token_troubleshooting_event, device_management_troubleshooting_error_details, enrollment_troubleshooting_event, entity, key_value_pair, mobile_app_troubleshooting_event
+
+from . import entity
 
 class DeviceManagementTroubleshootingEvent(entity.Entity):
     """
     Event representing an general failure.
     """
-    @property
-    def additional_information(self,) -> Optional[List[key_value_pair.KeyValuePair]]:
-        """
-        Gets the additionalInformation property value. A set of string key and string value pairs which provides additional information on the Troubleshooting event
-        Returns: Optional[List[key_value_pair.KeyValuePair]]
-        """
-        return self._additional_information
-    
-    @additional_information.setter
-    def additional_information(self,value: Optional[List[key_value_pair.KeyValuePair]] = None) -> None:
-        """
-        Sets the additionalInformation property value. A set of string key and string value pairs which provides additional information on the Troubleshooting event
-        Args:
-            value: Value to set for the additional_information property.
-        """
-        self._additional_information = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new deviceManagementTroubleshootingEvent and sets the default values.
@@ -46,6 +29,23 @@ class DeviceManagementTroubleshootingEvent(entity.Entity):
         self.odata_type: Optional[str] = None
         # Object containing detailed information about the error and its remediation.
         self._troubleshooting_error_details: Optional[device_management_troubleshooting_error_details.DeviceManagementTroubleshootingErrorDetails] = None
+    
+    @property
+    def additional_information(self,) -> Optional[List[key_value_pair.KeyValuePair]]:
+        """
+        Gets the additionalInformation property value. A set of string key and string value pairs which provides additional information on the Troubleshooting event
+        Returns: Optional[List[key_value_pair.KeyValuePair]]
+        """
+        return self._additional_information
+    
+    @additional_information.setter
+    def additional_information(self,value: Optional[List[key_value_pair.KeyValuePair]] = None) -> None:
+        """
+        Sets the additionalInformation property value. A set of string key and string value pairs which provides additional information on the Troubleshooting event
+        Args:
+            value: Value to set for the additional_information property.
+        """
+        self._additional_information = value
     
     @property
     def correlation_id(self,) -> Optional[str]:
@@ -74,6 +74,21 @@ class DeviceManagementTroubleshootingEvent(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.appleVppTokenTroubleshootingEvent":
+                from . import apple_vpp_token_troubleshooting_event
+
+                return apple_vpp_token_troubleshooting_event.AppleVppTokenTroubleshootingEvent()
+            if mapping_value == "#microsoft.graph.enrollmentTroubleshootingEvent":
+                from . import enrollment_troubleshooting_event
+
+                return enrollment_troubleshooting_event.EnrollmentTroubleshootingEvent()
+            if mapping_value == "#microsoft.graph.mobileAppTroubleshootingEvent":
+                from . import mobile_app_troubleshooting_event
+
+                return mobile_app_troubleshooting_event.MobileAppTroubleshootingEvent()
         return DeviceManagementTroubleshootingEvent()
     
     @property
@@ -115,7 +130,9 @@ class DeviceManagementTroubleshootingEvent(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import apple_vpp_token_troubleshooting_event, device_management_troubleshooting_error_details, enrollment_troubleshooting_event, entity, key_value_pair, mobile_app_troubleshooting_event
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "additionalInformation": lambda n : setattr(self, 'additional_information', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
             "correlationId": lambda n : setattr(self, 'correlation_id', n.get_str_value()),
             "eventDateTime": lambda n : setattr(self, 'event_date_time', n.get_datetime_value()),

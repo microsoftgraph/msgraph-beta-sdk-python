@@ -1,33 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-lifecycle_workflow_processing_status = lazy_import('msgraph.generated.models.identity_governance.lifecycle_workflow_processing_status')
-task = lazy_import('msgraph.generated.models.identity_governance.task')
-task_definition = lazy_import('msgraph.generated.models.identity_governance.task_definition')
-task_processing_result = lazy_import('msgraph.generated.models.identity_governance.task_processing_result')
+if TYPE_CHECKING:
+    from . import lifecycle_workflow_processing_status, task, task_definition, task_processing_result
+    from .. import entity
+
+from .. import entity
 
 class TaskReport(entity.Entity):
-    @property
-    def completed_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the completedDateTime property value. The date time that the associated run completed. Value is null if the run has not completed.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-        Returns: Optional[datetime]
-        """
-        return self._completed_date_time
-    
-    @completed_date_time.setter
-    def completed_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the completedDateTime property value. The date time that the associated run completed. Value is null if the run has not completed.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-        Args:
-            value: Value to set for the completed_date_time property.
-        """
-        self._completed_date_time = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new taskReport and sets the default values.
@@ -59,6 +41,23 @@ class TaskReport(entity.Entity):
         self._total_users_count: Optional[int] = None
         # The number of users in the run execution for which the associated task is queued, in progress, or canceled.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
         self._unprocessed_users_count: Optional[int] = None
+    
+    @property
+    def completed_date_time(self,) -> Optional[datetime]:
+        """
+        Gets the completedDateTime property value. The date time that the associated run completed. Value is null if the run has not completed.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
+        Returns: Optional[datetime]
+        """
+        return self._completed_date_time
+    
+    @completed_date_time.setter
+    def completed_date_time(self,value: Optional[datetime] = None) -> None:
+        """
+        Sets the completedDateTime property value. The date time that the associated run completed. Value is null if the run has not completed.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
+        Args:
+            value: Value to set for the completed_date_time property.
+        """
+        self._completed_date_time = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TaskReport:
@@ -94,7 +93,10 @@ class TaskReport(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import lifecycle_workflow_processing_status, task, task_definition, task_processing_result
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "completedDateTime": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
             "failedUsersCount": lambda n : setattr(self, 'failed_users_count', n.get_int_value()),
             "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),

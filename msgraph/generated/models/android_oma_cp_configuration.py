@@ -1,11 +1,22 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+if TYPE_CHECKING:
+    from . import device_configuration
+
+from . import device_configuration
 
 class AndroidOmaCpConfiguration(device_configuration.DeviceConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new AndroidOmaCpConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.androidOmaCpConfiguration"
+        # Configuration XML that will be applied to the device. When it is read, it only provides a placeholder string since the original data is encrypted and stored.
+        self._configuration_xml: Optional[bytes] = None
+    
     @property
     def configuration_xml(self,) -> Optional[bytes]:
         """
@@ -22,15 +33,6 @@ class AndroidOmaCpConfiguration(device_configuration.DeviceConfiguration):
             value: Value to set for the configuration_xml property.
         """
         self._configuration_xml = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AndroidOmaCpConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.androidOmaCpConfiguration"
-        # Configuration XML that will be applied to the device. When it is read, it only provides a placeholder string since the original data is encrypted and stored.
-        self._configuration_xml: Optional[bytes] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidOmaCpConfiguration:
@@ -49,7 +51,9 @@ class AndroidOmaCpConfiguration(device_configuration.DeviceConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "configurationXml": lambda n : setattr(self, 'configuration_xml', n.get_bytes_value()),
         }
         super_fields = super().get_field_deserializers()

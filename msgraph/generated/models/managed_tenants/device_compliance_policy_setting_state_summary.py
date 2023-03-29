@@ -1,29 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from .. import entity
+
+from .. import entity
 
 class DeviceCompliancePolicySettingStateSummary(entity.Entity):
-    @property
-    def conflict_device_count(self,) -> Optional[int]:
-        """
-        Gets the conflictDeviceCount property value. The number of devices in a conflict state. Optional. Read-only.
-        Returns: Optional[int]
-        """
-        return self._conflict_device_count
-    
-    @conflict_device_count.setter
-    def conflict_device_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the conflictDeviceCount property value. The number of devices in a conflict state. Optional. Read-only.
-        Args:
-            value: Value to set for the conflict_device_count property.
-        """
-        self._conflict_device_count = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new deviceCompliancePolicySettingStateSummary and sets the default values.
@@ -57,6 +42,23 @@ class DeviceCompliancePolicySettingStateSummary(entity.Entity):
         self._tenant_display_name: Optional[str] = None
         # The Azure Active Directory tenant identifier for the managed tenant. Required. Read-only.
         self._tenant_id: Optional[str] = None
+    
+    @property
+    def conflict_device_count(self,) -> Optional[int]:
+        """
+        Gets the conflictDeviceCount property value. The number of devices in a conflict state. Optional. Read-only.
+        Returns: Optional[int]
+        """
+        return self._conflict_device_count
+    
+    @conflict_device_count.setter
+    def conflict_device_count(self,value: Optional[int] = None) -> None:
+        """
+        Sets the conflictDeviceCount property value. The number of devices in a conflict state. Optional. Read-only.
+        Args:
+            value: Value to set for the conflict_device_count property.
+        """
+        self._conflict_device_count = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceCompliancePolicySettingStateSummary:
@@ -109,7 +111,9 @@ class DeviceCompliancePolicySettingStateSummary(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "conflictDeviceCount": lambda n : setattr(self, 'conflict_device_count', n.get_int_value()),
             "errorDeviceCount": lambda n : setattr(self, 'error_device_count', n.get_int_value()),
             "failedDeviceCount": lambda n : setattr(self, 'failed_device_count', n.get_int_value()),

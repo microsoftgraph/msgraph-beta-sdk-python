@@ -1,12 +1,12 @@
 from __future__ import annotations
 from datetime import time
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-microsoft_tunnel_configuration = lazy_import('msgraph.generated.models.microsoft_tunnel_configuration')
-microsoft_tunnel_server = lazy_import('msgraph.generated.models.microsoft_tunnel_server')
+if TYPE_CHECKING:
+    from . import entity, microsoft_tunnel_configuration, microsoft_tunnel_server
+
+from . import entity
 
 class MicrosoftTunnelSite(entity.Entity):
     """
@@ -38,9 +38,9 @@ class MicrosoftTunnelSite(entity.Entity):
         # The site provides the state of when an upgrade is available
         self._upgrade_available: Optional[bool] = None
         # The site's upgrade window end time of day
-        self._upgrade_window_end_time: Optional[Time] = None
+        self._upgrade_window_end_time: Optional[time] = None
         # The site's upgrade window start time of day
-        self._upgrade_window_start_time: Optional[Time] = None
+        self._upgrade_window_start_time: Optional[time] = None
         # The site's timezone represented as a minute offset from UTC
         self._upgrade_window_utc_offset_in_minutes: Optional[int] = None
     
@@ -95,7 +95,9 @@ class MicrosoftTunnelSite(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, microsoft_tunnel_configuration, microsoft_tunnel_server
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "internalNetworkProbeUrl": lambda n : setattr(self, 'internal_network_probe_url', n.get_str_value()),
@@ -105,8 +107,8 @@ class MicrosoftTunnelSite(entity.Entity):
             "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
             "upgradeAutomatically": lambda n : setattr(self, 'upgrade_automatically', n.get_bool_value()),
             "upgradeAvailable": lambda n : setattr(self, 'upgrade_available', n.get_bool_value()),
-            "upgradeWindowEndTime": lambda n : setattr(self, 'upgrade_window_end_time', n.get_object_value(Time)),
-            "upgradeWindowStartTime": lambda n : setattr(self, 'upgrade_window_start_time', n.get_object_value(Time)),
+            "upgradeWindowEndTime": lambda n : setattr(self, 'upgrade_window_end_time', n.get_time_value()),
+            "upgradeWindowStartTime": lambda n : setattr(self, 'upgrade_window_start_time', n.get_time_value()),
             "upgradeWindowUtcOffsetInMinutes": lambda n : setattr(self, 'upgrade_window_utc_offset_in_minutes', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -216,8 +218,8 @@ class MicrosoftTunnelSite(entity.Entity):
         writer.write_collection_of_primitive_values("roleScopeTagIds", self.role_scope_tag_ids)
         writer.write_bool_value("upgradeAutomatically", self.upgrade_automatically)
         writer.write_bool_value("upgradeAvailable", self.upgrade_available)
-        writer.write_object_value("upgradeWindowEndTime", self.upgrade_window_end_time)
-        writer.write_object_value("upgradeWindowStartTime", self.upgrade_window_start_time)
+        writer.write_time_value("upgradeWindowEndTime", self.upgrade_window_end_time)
+        writer.write_time_value("upgradeWindowStartTime", self.upgrade_window_start_time)
         writer.write_int_value("upgradeWindowUtcOffsetInMinutes", self.upgrade_window_utc_offset_in_minutes)
     
     @property
@@ -255,15 +257,15 @@ class MicrosoftTunnelSite(entity.Entity):
         self._upgrade_available = value
     
     @property
-    def upgrade_window_end_time(self,) -> Optional[Time]:
+    def upgrade_window_end_time(self,) -> Optional[time]:
         """
         Gets the upgradeWindowEndTime property value. The site's upgrade window end time of day
-        Returns: Optional[Time]
+        Returns: Optional[time]
         """
         return self._upgrade_window_end_time
     
     @upgrade_window_end_time.setter
-    def upgrade_window_end_time(self,value: Optional[Time] = None) -> None:
+    def upgrade_window_end_time(self,value: Optional[time] = None) -> None:
         """
         Sets the upgradeWindowEndTime property value. The site's upgrade window end time of day
         Args:
@@ -272,15 +274,15 @@ class MicrosoftTunnelSite(entity.Entity):
         self._upgrade_window_end_time = value
     
     @property
-    def upgrade_window_start_time(self,) -> Optional[Time]:
+    def upgrade_window_start_time(self,) -> Optional[time]:
         """
         Gets the upgradeWindowStartTime property value. The site's upgrade window start time of day
-        Returns: Optional[Time]
+        Returns: Optional[time]
         """
         return self._upgrade_window_start_time
     
     @upgrade_window_start_time.setter
-    def upgrade_window_start_time(self,value: Optional[Time] = None) -> None:
+    def upgrade_window_start_time(self,value: Optional[time] = None) -> None:
         """
         Sets the upgradeWindowStartTime property value. The site's upgrade window start time of day
         Args:

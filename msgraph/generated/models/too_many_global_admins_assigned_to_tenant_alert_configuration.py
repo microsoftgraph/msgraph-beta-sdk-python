@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-unified_role_management_alert_configuration = lazy_import('msgraph.generated.models.unified_role_management_alert_configuration')
+if TYPE_CHECKING:
+    from . import unified_role_management_alert_configuration
+
+from . import unified_role_management_alert_configuration
 
 class TooManyGlobalAdminsAssignedToTenantAlertConfiguration(unified_role_management_alert_configuration.UnifiedRoleManagementAlertConfiguration):
     def __init__(self,) -> None:
@@ -34,7 +36,9 @@ class TooManyGlobalAdminsAssignedToTenantAlertConfiguration(unified_role_managem
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import unified_role_management_alert_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "globalAdminCountThreshold": lambda n : setattr(self, 'global_admin_count_threshold', n.get_int_value()),
             "percentageOfGlobalAdminsOutOfRolesThreshold": lambda n : setattr(self, 'percentage_of_global_admins_out_of_roles_threshold', n.get_int_value()),
         }

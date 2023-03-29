@@ -1,47 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-synchronization_error = lazy_import('msgraph.generated.models.synchronization_error')
-synchronization_task_execution_result = lazy_import('msgraph.generated.models.synchronization_task_execution_result')
+if TYPE_CHECKING:
+    from . import synchronization_error, synchronization_task_execution_result
 
 class SynchronizationTaskExecution(AdditionalDataHolder, Parsable):
-    @property
-    def activity_identifier(self,) -> Optional[str]:
-        """
-        Gets the activityIdentifier property value. Identifier of the job run.
-        Returns: Optional[str]
-        """
-        return self._activity_identifier
-    
-    @activity_identifier.setter
-    def activity_identifier(self,value: Optional[str] = None) -> None:
-        """
-        Sets the activityIdentifier property value. Identifier of the job run.
-        Args:
-            value: Value to set for the activity_identifier property.
-        """
-        self._activity_identifier = value
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new synchronizationTaskExecution and sets the default values.
@@ -79,6 +44,40 @@ class SynchronizationTaskExecution(AdditionalDataHolder, Parsable):
         self._time_began: Optional[datetime] = None
         # Time when this job run ended. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         self._time_ended: Optional[datetime] = None
+    
+    @property
+    def activity_identifier(self,) -> Optional[str]:
+        """
+        Gets the activityIdentifier property value. Identifier of the job run.
+        Returns: Optional[str]
+        """
+        return self._activity_identifier
+    
+    @activity_identifier.setter
+    def activity_identifier(self,value: Optional[str] = None) -> None:
+        """
+        Sets the activityIdentifier property value. Identifier of the job run.
+        Args:
+            value: Value to set for the activity_identifier property.
+        """
+        self._activity_identifier = value
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
     
     @property
     def count_entitled(self,) -> Optional[int]:
@@ -267,7 +266,9 @@ class SynchronizationTaskExecution(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import synchronization_error, synchronization_task_execution_result
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "activityIdentifier": lambda n : setattr(self, 'activity_identifier', n.get_str_value()),
             "countEntitled": lambda n : setattr(self, 'count_entitled', n.get_int_value()),
             "countEntitledForProvisioning": lambda n : setattr(self, 'count_entitled_for_provisioning', n.get_int_value()),

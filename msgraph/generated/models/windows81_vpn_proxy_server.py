@@ -1,11 +1,24 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-vpn_proxy_server = lazy_import('msgraph.generated.models.vpn_proxy_server')
+if TYPE_CHECKING:
+    from . import vpn_proxy_server
+
+from . import vpn_proxy_server
 
 class Windows81VpnProxyServer(vpn_proxy_server.VpnProxyServer):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new Windows81VpnProxyServer and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.windows81VpnProxyServer"
+        # Automatically detect proxy settings.
+        self._automatically_detect_proxy_settings: Optional[bool] = None
+        # Bypass proxy server for local address.
+        self._bypass_proxy_server_for_local_address: Optional[bool] = None
+    
     @property
     def automatically_detect_proxy_settings(self,) -> Optional[bool]:
         """
@@ -40,17 +53,6 @@ class Windows81VpnProxyServer(vpn_proxy_server.VpnProxyServer):
         """
         self._bypass_proxy_server_for_local_address = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Windows81VpnProxyServer and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windows81VpnProxyServer"
-        # Automatically detect proxy settings.
-        self._automatically_detect_proxy_settings: Optional[bool] = None
-        # Bypass proxy server for local address.
-        self._bypass_proxy_server_for_local_address: Optional[bool] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows81VpnProxyServer:
         """
@@ -68,7 +70,9 @@ class Windows81VpnProxyServer(vpn_proxy_server.VpnProxyServer):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import vpn_proxy_server
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "automaticallyDetectProxySettings": lambda n : setattr(self, 'automatically_detect_proxy_settings', n.get_bool_value()),
             "bypassProxyServerForLocalAddress": lambda n : setattr(self, 'bypass_proxy_server_for_local_address', n.get_bool_value()),
         }

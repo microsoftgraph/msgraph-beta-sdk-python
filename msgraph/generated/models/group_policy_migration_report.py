@@ -1,13 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from uuid import UUID
 
-entity = lazy_import('msgraph.generated.models.entity')
-group_policy_migration_readiness = lazy_import('msgraph.generated.models.group_policy_migration_readiness')
-group_policy_setting_mapping = lazy_import('msgraph.generated.models.group_policy_setting_mapping')
-unsupported_group_policy_extension = lazy_import('msgraph.generated.models.unsupported_group_policy_extension')
+if TYPE_CHECKING:
+    from . import entity, group_policy_migration_readiness, group_policy_setting_mapping, unsupported_group_policy_extension
+
+from . import entity
 
 class GroupPolicyMigrationReport(entity.Entity):
     """
@@ -27,7 +27,7 @@ class GroupPolicyMigrationReport(entity.Entity):
         # The date and time at which the GroupPolicyMigrationReport was last modified.
         self._group_policy_last_modified_date_time: Optional[datetime] = None
         # The Group Policy Object GUID from GPO Xml content
-        self._group_policy_object_id: Optional[Guid] = None
+        self._group_policy_object_id: Optional[UUID] = None
         # A list of group policy settings to MDM/Intune mappings.
         self._group_policy_setting_mappings: Optional[List[group_policy_setting_mapping.GroupPolicySettingMapping]] = None
         # The date and time at which the GroupPolicyMigrationReport was last modified.
@@ -102,12 +102,14 @@ class GroupPolicyMigrationReport(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, group_policy_migration_readiness, group_policy_setting_mapping, unsupported_group_policy_extension
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "groupPolicyCreatedDateTime": lambda n : setattr(self, 'group_policy_created_date_time', n.get_datetime_value()),
             "groupPolicyLastModifiedDateTime": lambda n : setattr(self, 'group_policy_last_modified_date_time', n.get_datetime_value()),
-            "groupPolicyObjectId": lambda n : setattr(self, 'group_policy_object_id', n.get_object_value(Guid)),
+            "groupPolicyObjectId": lambda n : setattr(self, 'group_policy_object_id', n.get_uuid_value()),
             "groupPolicySettingMappings": lambda n : setattr(self, 'group_policy_setting_mappings', n.get_collection_of_object_values(group_policy_setting_mapping.GroupPolicySettingMapping)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "migrationReadiness": lambda n : setattr(self, 'migration_readiness', n.get_enum_value(group_policy_migration_readiness.GroupPolicyMigrationReadiness)),
@@ -158,15 +160,15 @@ class GroupPolicyMigrationReport(entity.Entity):
         self._group_policy_last_modified_date_time = value
     
     @property
-    def group_policy_object_id(self,) -> Optional[Guid]:
+    def group_policy_object_id(self,) -> Optional[UUID]:
         """
         Gets the groupPolicyObjectId property value. The Group Policy Object GUID from GPO Xml content
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._group_policy_object_id
     
     @group_policy_object_id.setter
-    def group_policy_object_id(self,value: Optional[Guid] = None) -> None:
+    def group_policy_object_id(self,value: Optional[UUID] = None) -> None:
         """
         Sets the groupPolicyObjectId property value. The Group Policy Object GUID from GPO Xml content
         Args:
@@ -272,7 +274,7 @@ class GroupPolicyMigrationReport(entity.Entity):
         writer.write_str_value("displayName", self.display_name)
         writer.write_datetime_value("groupPolicyCreatedDateTime", self.group_policy_created_date_time)
         writer.write_datetime_value("groupPolicyLastModifiedDateTime", self.group_policy_last_modified_date_time)
-        writer.write_object_value("groupPolicyObjectId", self.group_policy_object_id)
+        writer.write_uuid_value("groupPolicyObjectId", self.group_policy_object_id)
         writer.write_collection_of_object_values("groupPolicySettingMappings", self.group_policy_setting_mappings)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_enum_value("migrationReadiness", self.migration_readiness)

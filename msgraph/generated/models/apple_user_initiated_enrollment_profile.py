@@ -1,19 +1,43 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-apple_enrollment_profile_assignment = lazy_import('msgraph.generated.models.apple_enrollment_profile_assignment')
-apple_owner_type_enrollment_type = lazy_import('msgraph.generated.models.apple_owner_type_enrollment_type')
-apple_user_initiated_enrollment_type = lazy_import('msgraph.generated.models.apple_user_initiated_enrollment_type')
-device_platform_type = lazy_import('msgraph.generated.models.device_platform_type')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import apple_enrollment_profile_assignment, apple_owner_type_enrollment_type, apple_user_initiated_enrollment_type, device_platform_type, entity
+
+from . import entity
 
 class AppleUserInitiatedEnrollmentProfile(entity.Entity):
     """
     The enrollmentProfile resource represents a collection of configurations which must be provided pre-enrollment to enable enrolling certain devices whose identities have been pre-staged. Pre-staged device identities are assigned to this type of profile to apply the profile's configurations at enrollment of the corresponding device.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new appleUserInitiatedEnrollmentProfile and sets the default values.
+        """
+        super().__init__()
+        # The list of assignments for this profile.
+        self._assignments: Optional[List[apple_enrollment_profile_assignment.AppleEnrollmentProfileAssignment]] = None
+        # List of available enrollment type options
+        self._available_enrollment_type_options: Optional[List[apple_owner_type_enrollment_type.AppleOwnerTypeEnrollmentType]] = None
+        # Profile creation time
+        self._created_date_time: Optional[datetime] = None
+        # The defaultEnrollmentType property
+        self._default_enrollment_type: Optional[apple_user_initiated_enrollment_type.AppleUserInitiatedEnrollmentType] = None
+        # Description of the profile
+        self._description: Optional[str] = None
+        # Name of the profile
+        self._display_name: Optional[str] = None
+        # Profile last modified time
+        self._last_modified_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Supported platform types.
+        self._platform: Optional[device_platform_type.DevicePlatformType] = None
+        # Priority, 0 is highest
+        self._priority: Optional[int] = None
+    
     @property
     def assignments(self,) -> Optional[List[apple_enrollment_profile_assignment.AppleEnrollmentProfileAssignment]]:
         """
@@ -47,32 +71,6 @@ class AppleUserInitiatedEnrollmentProfile(entity.Entity):
             value: Value to set for the available_enrollment_type_options property.
         """
         self._available_enrollment_type_options = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new appleUserInitiatedEnrollmentProfile and sets the default values.
-        """
-        super().__init__()
-        # The list of assignments for this profile.
-        self._assignments: Optional[List[apple_enrollment_profile_assignment.AppleEnrollmentProfileAssignment]] = None
-        # List of available enrollment type options
-        self._available_enrollment_type_options: Optional[List[apple_owner_type_enrollment_type.AppleOwnerTypeEnrollmentType]] = None
-        # Profile creation time
-        self._created_date_time: Optional[datetime] = None
-        # The defaultEnrollmentType property
-        self._default_enrollment_type: Optional[apple_user_initiated_enrollment_type.AppleUserInitiatedEnrollmentType] = None
-        # Description of the profile
-        self._description: Optional[str] = None
-        # Name of the profile
-        self._display_name: Optional[str] = None
-        # Profile last modified time
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Supported platform types.
-        self._platform: Optional[device_platform_type.DevicePlatformType] = None
-        # Priority, 0 is highest
-        self._priority: Optional[int] = None
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
@@ -159,7 +157,9 @@ class AppleUserInitiatedEnrollmentProfile(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import apple_enrollment_profile_assignment, apple_owner_type_enrollment_type, apple_user_initiated_enrollment_type, device_platform_type, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(apple_enrollment_profile_assignment.AppleEnrollmentProfileAssignment)),
             "availableEnrollmentTypeOptions": lambda n : setattr(self, 'available_enrollment_type_options', n.get_collection_of_object_values(apple_owner_type_enrollment_type.AppleOwnerTypeEnrollmentType)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),

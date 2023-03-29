@@ -7,32 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-download_apple_push_notification_certificate_signing_request_request_builder = lazy_import('msgraph.generated.device_management.apple_push_notification_certificate.download_apple_push_notification_certificate_signing_request.download_apple_push_notification_certificate_signing_request_request_builder')
-generate_apple_push_notification_certificate_signing_request_request_builder = lazy_import('msgraph.generated.device_management.apple_push_notification_certificate.generate_apple_push_notification_certificate_signing_request.generate_apple_push_notification_certificate_signing_request_request_builder')
-apple_push_notification_certificate = lazy_import('msgraph.generated.models.apple_push_notification_certificate')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ...models import apple_push_notification_certificate
+    from ...models.o_data_errors import o_data_error
+    from .download_apple_push_notification_certificate_signing_request import download_apple_push_notification_certificate_signing_request_request_builder
+    from .generate_apple_push_notification_certificate_signing_request import generate_apple_push_notification_certificate_signing_request_request_builder
 
 class ApplePushNotificationCertificateRequestBuilder():
     """
     Provides operations to manage the applePushNotificationCertificate property of the microsoft.graph.deviceManagement entity.
     """
-    @property
-    def download_apple_push_notification_certificate_signing_request(self) -> download_apple_push_notification_certificate_signing_request_request_builder.DownloadApplePushNotificationCertificateSigningRequestRequestBuilder:
-        """
-        Provides operations to call the downloadApplePushNotificationCertificateSigningRequest method.
-        """
-        return download_apple_push_notification_certificate_signing_request_request_builder.DownloadApplePushNotificationCertificateSigningRequestRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def generate_apple_push_notification_certificate_signing_request(self) -> generate_apple_push_notification_certificate_signing_request_request_builder.GenerateApplePushNotificationCertificateSigningRequestRequestBuilder:
-        """
-        Provides operations to call the generateApplePushNotificationCertificateSigningRequest method.
-        """
-        return generate_apple_push_notification_certificate_signing_request_request_builder.GenerateApplePushNotificationCertificateSigningRequestRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new ApplePushNotificationCertificateRequestBuilder and sets the default values.
@@ -60,6 +46,8 @@ class ApplePushNotificationCertificateRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -78,12 +66,16 @@ class ApplePushNotificationCertificateRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models import apple_push_notification_certificate
+
         return await self.request_adapter.send_async(request_info, apple_push_notification_certificate.ApplePushNotificationCertificate, error_mapping)
     
     async def patch(self,body: Optional[apple_push_notification_certificate.ApplePushNotificationCertificate] = None, request_configuration: Optional[ApplePushNotificationCertificateRequestBuilderPatchRequestConfiguration] = None) -> Optional[apple_push_notification_certificate.ApplePushNotificationCertificate]:
@@ -99,12 +91,16 @@ class ApplePushNotificationCertificateRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models import apple_push_notification_certificate
+
         return await self.request_adapter.send_async(request_info, apple_push_notification_certificate.ApplePushNotificationCertificate, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ApplePushNotificationCertificateRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -162,6 +158,24 @@ class ApplePushNotificationCertificateRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def download_apple_push_notification_certificate_signing_request(self) -> download_apple_push_notification_certificate_signing_request_request_builder.DownloadApplePushNotificationCertificateSigningRequestRequestBuilder:
+        """
+        Provides operations to call the downloadApplePushNotificationCertificateSigningRequest method.
+        """
+        from .download_apple_push_notification_certificate_signing_request import download_apple_push_notification_certificate_signing_request_request_builder
+
+        return download_apple_push_notification_certificate_signing_request_request_builder.DownloadApplePushNotificationCertificateSigningRequestRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def generate_apple_push_notification_certificate_signing_request(self) -> generate_apple_push_notification_certificate_signing_request_request_builder.GenerateApplePushNotificationCertificateSigningRequestRequestBuilder:
+        """
+        Provides operations to call the generateApplePushNotificationCertificateSigningRequest method.
+        """
+        from .generate_apple_push_notification_certificate_signing_request import generate_apple_push_notification_certificate_signing_request_request_builder
+
+        return generate_apple_push_notification_certificate_signing_request_request_builder.GenerateApplePushNotificationCertificateSigningRequestRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class ApplePushNotificationCertificateRequestBuilderDeleteRequestConfiguration():
         """
@@ -179,12 +193,6 @@ class ApplePushNotificationCertificateRequestBuilder():
         """
         Apple push notification certificate.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -200,6 +208,12 @@ class ApplePushNotificationCertificateRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class ApplePushNotificationCertificateRequestBuilderGetRequestConfiguration():

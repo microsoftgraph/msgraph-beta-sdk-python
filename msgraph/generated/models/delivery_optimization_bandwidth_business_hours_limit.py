@@ -1,12 +1,29 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class DeliveryOptimizationBandwidthBusinessHoursLimit(AdditionalDataHolder, Parsable):
     """
     Bandwidth business hours and percentages type
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new deliveryOptimizationBandwidthBusinessHoursLimit and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Specifies the beginning of business hours using a 24-hour clock (0-23). Valid values 0 to 23
+        self._bandwidth_begin_business_hours: Optional[int] = None
+        # Specifies the end of business hours using a 24-hour clock (0-23). Valid values 0 to 23
+        self._bandwidth_end_business_hours: Optional[int] = None
+        # Specifies the percentage of bandwidth to limit during business hours (0-100). Valid values 0 to 100
+        self._bandwidth_percentage_during_business_hours: Optional[int] = None
+        # Specifies the percentage of bandwidth to limit outsidse business hours (0-100). Valid values 0 to 100
+        self._bandwidth_percentage_outside_business_hours: Optional[int] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -92,24 +109,6 @@ class DeliveryOptimizationBandwidthBusinessHoursLimit(AdditionalDataHolder, Pars
         """
         self._bandwidth_percentage_outside_business_hours = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deliveryOptimizationBandwidthBusinessHoursLimit and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Specifies the beginning of business hours using a 24-hour clock (0-23). Valid values 0 to 23
-        self._bandwidth_begin_business_hours: Optional[int] = None
-        # Specifies the end of business hours using a 24-hour clock (0-23). Valid values 0 to 23
-        self._bandwidth_end_business_hours: Optional[int] = None
-        # Specifies the percentage of bandwidth to limit during business hours (0-100). Valid values 0 to 100
-        self._bandwidth_percentage_during_business_hours: Optional[int] = None
-        # Specifies the percentage of bandwidth to limit outsidse business hours (0-100). Valid values 0 to 100
-        self._bandwidth_percentage_outside_business_hours: Optional[int] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeliveryOptimizationBandwidthBusinessHoursLimit:
         """
@@ -127,7 +126,7 @@ class DeliveryOptimizationBandwidthBusinessHoursLimit(AdditionalDataHolder, Pars
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "bandwidthBeginBusinessHours": lambda n : setattr(self, 'bandwidth_begin_business_hours', n.get_int_value()),
             "bandwidthEndBusinessHours": lambda n : setattr(self, 'bandwidth_end_business_hours', n.get_int_value()),
             "bandwidthPercentageDuringBusinessHours": lambda n : setattr(self, 'bandwidth_percentage_during_business_hours', n.get_int_value()),

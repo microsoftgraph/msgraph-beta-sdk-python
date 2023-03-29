@@ -1,10 +1,27 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class ClassificationInnerError(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new classificationInnerError and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The activityId property
+        self._activity_id: Optional[str] = None
+        # The clientRequestId property
+        self._client_request_id: Optional[str] = None
+        # The code property
+        self._code: Optional[str] = None
+        # The errorDateTime property
+        self._error_date_time: Optional[datetime] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def activity_id(self,) -> Optional[str]:
         """
@@ -73,24 +90,6 @@ class ClassificationInnerError(AdditionalDataHolder, Parsable):
         """
         self._code = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new classificationInnerError and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The activityId property
-        self._activity_id: Optional[str] = None
-        # The clientRequestId property
-        self._client_request_id: Optional[str] = None
-        # The code property
-        self._code: Optional[str] = None
-        # The errorDateTime property
-        self._error_date_time: Optional[datetime] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ClassificationInnerError:
         """
@@ -125,7 +124,7 @@ class ClassificationInnerError(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "activityId": lambda n : setattr(self, 'activity_id', n.get_str_value()),
             "clientRequestId": lambda n : setattr(self, 'client_request_id', n.get_str_value()),
             "code": lambda n : setattr(self, 'code', n.get_str_value()),

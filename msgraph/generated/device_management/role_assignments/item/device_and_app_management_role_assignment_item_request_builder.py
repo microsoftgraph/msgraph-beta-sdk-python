@@ -7,25 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-role_scope_tags_request_builder = lazy_import('msgraph.generated.device_management.role_assignments.item.role_scope_tags.role_scope_tags_request_builder')
-role_scope_tag_item_request_builder = lazy_import('msgraph.generated.device_management.role_assignments.item.role_scope_tags.item.role_scope_tag_item_request_builder')
-device_and_app_management_role_assignment = lazy_import('msgraph.generated.models.device_and_app_management_role_assignment')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ....models import device_and_app_management_role_assignment
+    from ....models.o_data_errors import o_data_error
+    from .role_scope_tags import role_scope_tags_request_builder
+    from .role_scope_tags.item import role_scope_tag_item_request_builder
 
 class DeviceAndAppManagementRoleAssignmentItemRequestBuilder():
     """
     Provides operations to manage the roleAssignments property of the microsoft.graph.deviceManagement entity.
     """
-    @property
-    def role_scope_tags(self) -> role_scope_tags_request_builder.RoleScopeTagsRequestBuilder:
-        """
-        Provides operations to manage the roleScopeTags property of the microsoft.graph.deviceAndAppManagementRoleAssignment entity.
-        """
-        return role_scope_tags_request_builder.RoleScopeTagsRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new DeviceAndAppManagementRoleAssignmentItemRequestBuilder and sets the default values.
@@ -53,6 +46,8 @@ class DeviceAndAppManagementRoleAssignmentItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -71,12 +66,16 @@ class DeviceAndAppManagementRoleAssignmentItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import device_and_app_management_role_assignment
+
         return await self.request_adapter.send_async(request_info, device_and_app_management_role_assignment.DeviceAndAppManagementRoleAssignment, error_mapping)
     
     async def patch(self,body: Optional[device_and_app_management_role_assignment.DeviceAndAppManagementRoleAssignment] = None, request_configuration: Optional[DeviceAndAppManagementRoleAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_and_app_management_role_assignment.DeviceAndAppManagementRoleAssignment]:
@@ -92,12 +91,16 @@ class DeviceAndAppManagementRoleAssignmentItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import device_and_app_management_role_assignment
+
         return await self.request_adapter.send_async(request_info, device_and_app_management_role_assignment.DeviceAndAppManagementRoleAssignment, error_mapping)
     
     def role_scope_tags_by_id(self,id: str) -> role_scope_tag_item_request_builder.RoleScopeTagItemRequestBuilder:
@@ -109,6 +112,8 @@ class DeviceAndAppManagementRoleAssignmentItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .role_scope_tags.item import role_scope_tag_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["roleScopeTag%2Did"] = id
         return role_scope_tag_item_request_builder.RoleScopeTagItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -168,6 +173,15 @@ class DeviceAndAppManagementRoleAssignmentItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def role_scope_tags(self) -> role_scope_tags_request_builder.RoleScopeTagsRequestBuilder:
+        """
+        Provides operations to manage the roleScopeTags property of the microsoft.graph.deviceAndAppManagementRoleAssignment entity.
+        """
+        from .role_scope_tags import role_scope_tags_request_builder
+
+        return role_scope_tags_request_builder.RoleScopeTagsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class DeviceAndAppManagementRoleAssignmentItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -185,12 +199,6 @@ class DeviceAndAppManagementRoleAssignmentItemRequestBuilder():
         """
         The Role Assignments.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -206,6 +214,12 @@ class DeviceAndAppManagementRoleAssignmentItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class DeviceAndAppManagementRoleAssignmentItemRequestBuilderGetRequestConfiguration():

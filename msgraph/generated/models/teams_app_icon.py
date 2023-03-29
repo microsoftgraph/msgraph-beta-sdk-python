@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-teamwork_hosted_content = lazy_import('msgraph.generated.models.teamwork_hosted_content')
+if TYPE_CHECKING:
+    from . import entity, teamwork_hosted_content
+
+from . import entity
 
 class TeamsAppIcon(entity.Entity):
     def __init__(self,) -> None:
@@ -36,7 +37,9 @@ class TeamsAppIcon(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, teamwork_hosted_content
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "hostedContent": lambda n : setattr(self, 'hosted_content', n.get_object_value(teamwork_hosted_content.TeamworkHostedContent)),
             "webUrl": lambda n : setattr(self, 'web_url', n.get_str_value()),
         }

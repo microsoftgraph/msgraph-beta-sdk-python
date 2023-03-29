@@ -1,20 +1,41 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-authentication_event_listener = lazy_import('msgraph.generated.models.authentication_event_listener')
-b2c_identity_user_flow = lazy_import('msgraph.generated.models.b2c_identity_user_flow')
-b2x_identity_user_flow = lazy_import('msgraph.generated.models.b2x_identity_user_flow')
-conditional_access_root = lazy_import('msgraph.generated.models.conditional_access_root')
-continuous_access_evaluation_policy = lazy_import('msgraph.generated.models.continuous_access_evaluation_policy')
-custom_authentication_extension = lazy_import('msgraph.generated.models.custom_authentication_extension')
-identity_api_connector = lazy_import('msgraph.generated.models.identity_api_connector')
-identity_provider_base = lazy_import('msgraph.generated.models.identity_provider_base')
-identity_user_flow = lazy_import('msgraph.generated.models.identity_user_flow')
-identity_user_flow_attribute = lazy_import('msgraph.generated.models.identity_user_flow_attribute')
+if TYPE_CHECKING:
+    from . import authentication_event_listener, b2c_identity_user_flow, b2x_identity_user_flow, conditional_access_root, continuous_access_evaluation_policy, custom_authentication_extension, identity_api_connector, identity_provider_base, identity_user_flow, identity_user_flow_attribute
 
 class IdentityContainer(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new IdentityContainer and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Represents entry point for API connectors.
+        self._api_connectors: Optional[List[identity_api_connector.IdentityApiConnector]] = None
+        # The authenticationEventListeners property
+        self._authentication_event_listeners: Optional[List[authentication_event_listener.AuthenticationEventListener]] = None
+        # Represents entry point for B2C identity userflows.
+        self._b2c_user_flows: Optional[List[b2c_identity_user_flow.B2cIdentityUserFlow]] = None
+        # Represents entry point for B2X and self-service sign-up identity userflows.
+        self._b2x_user_flows: Optional[List[b2x_identity_user_flow.B2xIdentityUserFlow]] = None
+        # the entry point for the Conditional Access (CA) object model.
+        self._conditional_access: Optional[conditional_access_root.ConditionalAccessRoot] = None
+        # Represents entry point for continuous access evaluation policy.
+        self._continuous_access_evaluation_policy: Optional[continuous_access_evaluation_policy.ContinuousAccessEvaluationPolicy] = None
+        # The customAuthenticationExtensions property
+        self._custom_authentication_extensions: Optional[List[custom_authentication_extension.CustomAuthenticationExtension]] = None
+        # Represents entry point for identity provider base.
+        self._identity_providers: Optional[List[identity_provider_base.IdentityProviderBase]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Represents entry point for identity userflow attributes.
+        self._user_flow_attributes: Optional[List[identity_user_flow_attribute.IdentityUserFlowAttribute]] = None
+        # The userFlows property
+        self._user_flows: Optional[List[identity_user_flow.IdentityUserFlow]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -117,36 +138,6 @@ class IdentityContainer(AdditionalDataHolder, Parsable):
         """
         self._conditional_access = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new IdentityContainer and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Represents entry point for API connectors.
-        self._api_connectors: Optional[List[identity_api_connector.IdentityApiConnector]] = None
-        # The authenticationEventListeners property
-        self._authentication_event_listeners: Optional[List[authentication_event_listener.AuthenticationEventListener]] = None
-        # Represents entry point for B2C identity userflows.
-        self._b2c_user_flows: Optional[List[b2c_identity_user_flow.B2cIdentityUserFlow]] = None
-        # Represents entry point for B2X and self-service sign-up identity userflows.
-        self._b2x_user_flows: Optional[List[b2x_identity_user_flow.B2xIdentityUserFlow]] = None
-        # the entry point for the Conditional Access (CA) object model.
-        self._conditional_access: Optional[conditional_access_root.ConditionalAccessRoot] = None
-        # Represents entry point for continuous access evaluation policy.
-        self._continuous_access_evaluation_policy: Optional[continuous_access_evaluation_policy.ContinuousAccessEvaluationPolicy] = None
-        # The customAuthenticationExtensions property
-        self._custom_authentication_extensions: Optional[List[custom_authentication_extension.CustomAuthenticationExtension]] = None
-        # Represents entry point for identity provider base.
-        self._identity_providers: Optional[List[identity_provider_base.IdentityProviderBase]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Represents entry point for identity userflow attributes.
-        self._user_flow_attributes: Optional[List[identity_user_flow_attribute.IdentityUserFlowAttribute]] = None
-        # The userFlows property
-        self._user_flows: Optional[List[identity_user_flow.IdentityUserFlow]] = None
-    
     @property
     def continuous_access_evaluation_policy(self,) -> Optional[continuous_access_evaluation_policy.ContinuousAccessEvaluationPolicy]:
         """
@@ -198,7 +189,9 @@ class IdentityContainer(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import authentication_event_listener, b2c_identity_user_flow, b2x_identity_user_flow, conditional_access_root, continuous_access_evaluation_policy, custom_authentication_extension, identity_api_connector, identity_provider_base, identity_user_flow, identity_user_flow_attribute
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "apiConnectors": lambda n : setattr(self, 'api_connectors', n.get_collection_of_object_values(identity_api_connector.IdentityApiConnector)),
             "authenticationEventListeners": lambda n : setattr(self, 'authentication_event_listeners', n.get_collection_of_object_values(authentication_event_listener.AuthenticationEventListener)),
             "b2cUserFlows": lambda n : setattr(self, 'b2c_user_flows', n.get_collection_of_object_values(b2c_identity_user_flow.B2cIdentityUserFlow)),

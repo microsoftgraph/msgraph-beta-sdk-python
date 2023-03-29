@@ -7,34 +7,20 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-planner_roster = lazy_import('msgraph.generated.models.planner_roster')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-members_request_builder = lazy_import('msgraph.generated.planner.rosters.item.members.members_request_builder')
-planner_roster_member_item_request_builder = lazy_import('msgraph.generated.planner.rosters.item.members.item.planner_roster_member_item_request_builder')
-plans_request_builder = lazy_import('msgraph.generated.planner.rosters.item.plans.plans_request_builder')
-planner_plan_item_request_builder = lazy_import('msgraph.generated.planner.rosters.item.plans.item.planner_plan_item_request_builder')
+if TYPE_CHECKING:
+    from ....models import planner_roster
+    from ....models.o_data_errors import o_data_error
+    from .members import members_request_builder
+    from .members.item import planner_roster_member_item_request_builder
+    from .plans import plans_request_builder
+    from .plans.item import planner_plan_item_request_builder
 
 class PlannerRosterItemRequestBuilder():
     """
     Provides operations to manage the rosters property of the microsoft.graph.planner entity.
     """
-    @property
-    def members(self) -> members_request_builder.MembersRequestBuilder:
-        """
-        Provides operations to manage the members property of the microsoft.graph.plannerRoster entity.
-        """
-        return members_request_builder.MembersRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def plans(self) -> plans_request_builder.PlansRequestBuilder:
-        """
-        Provides operations to manage the plans property of the microsoft.graph.plannerRoster entity.
-        """
-        return plans_request_builder.PlansRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new PlannerRosterItemRequestBuilder and sets the default values.
@@ -62,6 +48,8 @@ class PlannerRosterItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -80,12 +68,16 @@ class PlannerRosterItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import planner_roster
+
         return await self.request_adapter.send_async(request_info, planner_roster.PlannerRoster, error_mapping)
     
     def members_by_id(self,id: str) -> planner_roster_member_item_request_builder.PlannerRosterMemberItemRequestBuilder:
@@ -97,6 +89,8 @@ class PlannerRosterItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .members.item import planner_roster_member_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["plannerRosterMember%2Did"] = id
         return planner_roster_member_item_request_builder.PlannerRosterMemberItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -114,12 +108,16 @@ class PlannerRosterItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import planner_roster
+
         return await self.request_adapter.send_async(request_info, planner_roster.PlannerRoster, error_mapping)
     
     def plans_by_id(self,id: str) -> planner_plan_item_request_builder.PlannerPlanItemRequestBuilder:
@@ -131,6 +129,8 @@ class PlannerRosterItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .plans.item import planner_plan_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["plannerPlan%2Did"] = id
         return planner_plan_item_request_builder.PlannerPlanItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -190,6 +190,24 @@ class PlannerRosterItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def members(self) -> members_request_builder.MembersRequestBuilder:
+        """
+        Provides operations to manage the members property of the microsoft.graph.plannerRoster entity.
+        """
+        from .members import members_request_builder
+
+        return members_request_builder.MembersRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def plans(self) -> plans_request_builder.PlansRequestBuilder:
+        """
+        Provides operations to manage the plans property of the microsoft.graph.plannerRoster entity.
+        """
+        from .plans import plans_request_builder
+
+        return plans_request_builder.PlansRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class PlannerRosterItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -207,12 +225,6 @@ class PlannerRosterItemRequestBuilder():
         """
         Read-only. Nullable. Returns a collection of the specified rosters
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -228,6 +240,12 @@ class PlannerRosterItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class PlannerRosterItemRequestBuilderGetRequestConfiguration():

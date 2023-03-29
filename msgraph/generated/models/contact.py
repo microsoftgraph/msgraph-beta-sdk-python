@@ -1,89 +1,14 @@
 from __future__ import annotations
 from datetime import date, datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-extension = lazy_import('msgraph.generated.models.extension')
-followup_flag = lazy_import('msgraph.generated.models.followup_flag')
-multi_value_legacy_extended_property = lazy_import('msgraph.generated.models.multi_value_legacy_extended_property')
-outlook_item = lazy_import('msgraph.generated.models.outlook_item')
-phone = lazy_import('msgraph.generated.models.phone')
-physical_address = lazy_import('msgraph.generated.models.physical_address')
-profile_photo = lazy_import('msgraph.generated.models.profile_photo')
-single_value_legacy_extended_property = lazy_import('msgraph.generated.models.single_value_legacy_extended_property')
-typed_email_address = lazy_import('msgraph.generated.models.typed_email_address')
-website = lazy_import('msgraph.generated.models.website')
+if TYPE_CHECKING:
+    from . import extension, followup_flag, multi_value_legacy_extended_property, outlook_item, phone, physical_address, profile_photo, single_value_legacy_extended_property, typed_email_address, website
+
+from . import outlook_item
 
 class Contact(outlook_item.OutlookItem):
-    @property
-    def assistant_name(self,) -> Optional[str]:
-        """
-        Gets the assistantName property value. The name of the contact's assistant.
-        Returns: Optional[str]
-        """
-        return self._assistant_name
-    
-    @assistant_name.setter
-    def assistant_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the assistantName property value. The name of the contact's assistant.
-        Args:
-            value: Value to set for the assistant_name property.
-        """
-        self._assistant_name = value
-    
-    @property
-    def birthday(self,) -> Optional[datetime]:
-        """
-        Gets the birthday property value. The contact's birthday. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-        Returns: Optional[datetime]
-        """
-        return self._birthday
-    
-    @birthday.setter
-    def birthday(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the birthday property value. The contact's birthday. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-        Args:
-            value: Value to set for the birthday property.
-        """
-        self._birthday = value
-    
-    @property
-    def children(self,) -> Optional[List[str]]:
-        """
-        Gets the children property value. The names of the contact's children.
-        Returns: Optional[List[str]]
-        """
-        return self._children
-    
-    @children.setter
-    def children(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the children property value. The names of the contact's children.
-        Args:
-            value: Value to set for the children property.
-        """
-        self._children = value
-    
-    @property
-    def company_name(self,) -> Optional[str]:
-        """
-        Gets the companyName property value. The name of the contact's company.
-        Returns: Optional[str]
-        """
-        return self._company_name
-    
-    @company_name.setter
-    def company_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the companyName property value. The name of the contact's company.
-        Args:
-            value: Value to set for the company_name property.
-        """
-        self._company_name = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new Contact and sets the default values.
@@ -157,13 +82,81 @@ class Contact(outlook_item.OutlookItem):
         # The websites property
         self._websites: Optional[List[website.Website]] = None
         # The weddingAnniversary property
-        self._wedding_anniversary: Optional[Date] = None
+        self._wedding_anniversary: Optional[date] = None
         # The yomiCompanyName property
         self._yomi_company_name: Optional[str] = None
         # The yomiGivenName property
         self._yomi_given_name: Optional[str] = None
         # The yomiSurname property
         self._yomi_surname: Optional[str] = None
+    
+    @property
+    def assistant_name(self,) -> Optional[str]:
+        """
+        Gets the assistantName property value. The name of the contact's assistant.
+        Returns: Optional[str]
+        """
+        return self._assistant_name
+    
+    @assistant_name.setter
+    def assistant_name(self,value: Optional[str] = None) -> None:
+        """
+        Sets the assistantName property value. The name of the contact's assistant.
+        Args:
+            value: Value to set for the assistant_name property.
+        """
+        self._assistant_name = value
+    
+    @property
+    def birthday(self,) -> Optional[datetime]:
+        """
+        Gets the birthday property value. The contact's birthday. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+        Returns: Optional[datetime]
+        """
+        return self._birthday
+    
+    @birthday.setter
+    def birthday(self,value: Optional[datetime] = None) -> None:
+        """
+        Sets the birthday property value. The contact's birthday. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+        Args:
+            value: Value to set for the birthday property.
+        """
+        self._birthday = value
+    
+    @property
+    def children(self,) -> Optional[List[str]]:
+        """
+        Gets the children property value. The names of the contact's children.
+        Returns: Optional[List[str]]
+        """
+        return self._children
+    
+    @children.setter
+    def children(self,value: Optional[List[str]] = None) -> None:
+        """
+        Sets the children property value. The names of the contact's children.
+        Args:
+            value: Value to set for the children property.
+        """
+        self._children = value
+    
+    @property
+    def company_name(self,) -> Optional[str]:
+        """
+        Gets the companyName property value. The name of the contact's company.
+        Returns: Optional[str]
+        """
+        return self._company_name
+    
+    @company_name.setter
+    def company_name(self,value: Optional[str] = None) -> None:
+        """
+        Sets the companyName property value. The name of the contact's company.
+        Args:
+            value: Value to set for the company_name property.
+        """
+        self._company_name = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Contact:
@@ -318,7 +311,9 @@ class Contact(outlook_item.OutlookItem):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import extension, followup_flag, multi_value_legacy_extended_property, outlook_item, phone, physical_address, profile_photo, single_value_legacy_extended_property, typed_email_address, website
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assistantName": lambda n : setattr(self, 'assistant_name', n.get_str_value()),
             "birthday": lambda n : setattr(self, 'birthday', n.get_datetime_value()),
             "children": lambda n : setattr(self, 'children', n.get_collection_of_primitive_values(str)),
@@ -352,7 +347,7 @@ class Contact(outlook_item.OutlookItem):
             "surname": lambda n : setattr(self, 'surname', n.get_str_value()),
             "title": lambda n : setattr(self, 'title', n.get_str_value()),
             "websites": lambda n : setattr(self, 'websites', n.get_collection_of_object_values(website.Website)),
-            "weddingAnniversary": lambda n : setattr(self, 'wedding_anniversary', n.get_object_value(Date)),
+            "weddingAnniversary": lambda n : setattr(self, 'wedding_anniversary', n.get_date_value()),
             "yomiCompanyName": lambda n : setattr(self, 'yomi_company_name', n.get_str_value()),
             "yomiGivenName": lambda n : setattr(self, 'yomi_given_name', n.get_str_value()),
             "yomiSurname": lambda n : setattr(self, 'yomi_surname', n.get_str_value()),
@@ -675,7 +670,7 @@ class Contact(outlook_item.OutlookItem):
         writer.write_str_value("surname", self.surname)
         writer.write_str_value("title", self.title)
         writer.write_collection_of_object_values("websites", self.websites)
-        writer.write_object_value("weddingAnniversary", self.wedding_anniversary)
+        writer.write_date_value("weddingAnniversary", self.wedding_anniversary)
         writer.write_str_value("yomiCompanyName", self.yomi_company_name)
         writer.write_str_value("yomiGivenName", self.yomi_given_name)
         writer.write_str_value("yomiSurname", self.yomi_surname)
@@ -766,15 +761,15 @@ class Contact(outlook_item.OutlookItem):
         self._websites = value
     
     @property
-    def wedding_anniversary(self,) -> Optional[Date]:
+    def wedding_anniversary(self,) -> Optional[date]:
         """
         Gets the weddingAnniversary property value. The weddingAnniversary property
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._wedding_anniversary
     
     @wedding_anniversary.setter
-    def wedding_anniversary(self,value: Optional[Date] = None) -> None:
+    def wedding_anniversary(self,value: Optional[date] = None) -> None:
         """
         Sets the weddingAnniversary property value. The weddingAnniversary property
         Args:

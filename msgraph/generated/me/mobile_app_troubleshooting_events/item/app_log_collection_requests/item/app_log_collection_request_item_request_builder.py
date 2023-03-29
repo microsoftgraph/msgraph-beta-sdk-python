@@ -7,24 +7,17 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-create_download_url_request_builder = lazy_import('msgraph.generated.me.mobile_app_troubleshooting_events.item.app_log_collection_requests.item.create_download_url.create_download_url_request_builder')
-app_log_collection_request = lazy_import('msgraph.generated.models.app_log_collection_request')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ......models import app_log_collection_request
+    from ......models.o_data_errors import o_data_error
+    from .create_download_url import create_download_url_request_builder
 
 class AppLogCollectionRequestItemRequestBuilder():
     """
     Provides operations to manage the appLogCollectionRequests property of the microsoft.graph.mobileAppTroubleshootingEvent entity.
     """
-    @property
-    def create_download_url(self) -> create_download_url_request_builder.CreateDownloadUrlRequestBuilder:
-        """
-        Provides operations to call the createDownloadUrl method.
-        """
-        return create_download_url_request_builder.CreateDownloadUrlRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new AppLogCollectionRequestItemRequestBuilder and sets the default values.
@@ -52,6 +45,8 @@ class AppLogCollectionRequestItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -70,12 +65,16 @@ class AppLogCollectionRequestItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import app_log_collection_request
+
         return await self.request_adapter.send_async(request_info, app_log_collection_request.AppLogCollectionRequest, error_mapping)
     
     async def patch(self,body: Optional[app_log_collection_request.AppLogCollectionRequest] = None, request_configuration: Optional[AppLogCollectionRequestItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[app_log_collection_request.AppLogCollectionRequest]:
@@ -91,12 +90,16 @@ class AppLogCollectionRequestItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import app_log_collection_request
+
         return await self.request_adapter.send_async(request_info, app_log_collection_request.AppLogCollectionRequest, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AppLogCollectionRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -154,6 +157,15 @@ class AppLogCollectionRequestItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def create_download_url(self) -> create_download_url_request_builder.CreateDownloadUrlRequestBuilder:
+        """
+        Provides operations to call the createDownloadUrl method.
+        """
+        from .create_download_url import create_download_url_request_builder
+
+        return create_download_url_request_builder.CreateDownloadUrlRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class AppLogCollectionRequestItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -171,12 +183,6 @@ class AppLogCollectionRequestItemRequestBuilder():
         """
         The collection property of AppLogUploadRequest.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -192,6 +198,12 @@ class AppLogCollectionRequestItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class AppLogCollectionRequestItemRequestBuilderGetRequestConfiguration():

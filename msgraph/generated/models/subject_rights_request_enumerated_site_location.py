@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-subject_rights_request_site_location = lazy_import('msgraph.generated.models.subject_rights_request_site_location')
+if TYPE_CHECKING:
+    from . import subject_rights_request_site_location
+
+from . import subject_rights_request_site_location
 
 class SubjectRightsRequestEnumeratedSiteLocation(subject_rights_request_site_location.SubjectRightsRequestSiteLocation):
     def __init__(self,) -> None:
@@ -32,7 +34,9 @@ class SubjectRightsRequestEnumeratedSiteLocation(subject_rights_request_site_loc
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import subject_rights_request_site_location
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "urls": lambda n : setattr(self, 'urls', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()

@@ -1,31 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_scope_action_status = lazy_import('msgraph.generated.models.device_scope_action_status')
+if TYPE_CHECKING:
+    from . import device_scope_action_status
 
 class DeviceScopeActionResult(AdditionalDataHolder, Parsable):
     """
     The result of the triggered device scope action.
     """
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new deviceScopeActionResult and sets the default values.
@@ -43,6 +26,23 @@ class DeviceScopeActionResult(AdditionalDataHolder, Parsable):
         self._odata_type: Optional[str] = None
         # Indicates the status of the attempted device scope action
         self._status: Optional[device_scope_action_status.DeviceScopeActionStatus] = None
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceScopeActionResult:
@@ -112,7 +112,9 @@ class DeviceScopeActionResult(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_scope_action_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "deviceScopeAction": lambda n : setattr(self, 'device_scope_action', n.get_str_value()),
             "deviceScopeId": lambda n : setattr(self, 'device_scope_id', n.get_str_value()),
             "failedMessage": lambda n : setattr(self, 'failed_message', n.get_str_value()),

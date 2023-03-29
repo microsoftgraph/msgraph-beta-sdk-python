@@ -1,12 +1,40 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-cloud_pc_user_access_level = lazy_import('msgraph.generated.models.cloud_pc_user_access_level')
+if TYPE_CHECKING:
+    from . import cloud_pc_user_access_level
 
 class CloudPcReviewStatus(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new cloudPcReviewStatus and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The resource ID of the Azure Storage account in which the Cloud PC snapshot is being saved.
+        self._azure_storage_account_id: Optional[str] = None
+        # The name of the Azure Storage account in which the Cloud PC snapshot is being saved.
+        self._azure_storage_account_name: Optional[str] = None
+        # The name of the container in an Azure Storage account in which the Cloud PC snapshot is being saved.
+        self._azure_storage_container_name: Optional[str] = None
+        # True if the Cloud PC is set to in review by the administrator.
+        self._in_review: Optional[bool] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The specific date and time of the Cloud PC snapshot that was taken and saved automatically, when the Cloud PC is set to in review. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z.
+        self._restore_point_date_time: Optional[datetime] = None
+        # The specific date and time when the Cloud PC was set to in review. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z.
+        self._review_start_date_time: Optional[datetime] = None
+        # The ID of the Azure subscription in which the Cloud PC snapshot is being saved, in GUID format.
+        self._subscription_id: Optional[str] = None
+        # The name of the Azure subscription in which the Cloud PC snapshot is being saved.
+        self._subscription_name: Optional[str] = None
+        # The userAccessLevel property
+        self._user_access_level: Optional[cloud_pc_user_access_level.CloudPcUserAccessLevel] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -75,34 +103,6 @@ class CloudPcReviewStatus(AdditionalDataHolder, Parsable):
         """
         self._azure_storage_container_name = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new cloudPcReviewStatus and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The resource ID of the Azure Storage account in which the Cloud PC snapshot is being saved.
-        self._azure_storage_account_id: Optional[str] = None
-        # The name of the Azure Storage account in which the Cloud PC snapshot is being saved.
-        self._azure_storage_account_name: Optional[str] = None
-        # The name of the container in an Azure Storage account in which the Cloud PC snapshot is being saved.
-        self._azure_storage_container_name: Optional[str] = None
-        # True if the Cloud PC is set to in review by the administrator.
-        self._in_review: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The specific date and time of the Cloud PC snapshot that was taken and saved automatically, when the Cloud PC is set to in review. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z.
-        self._restore_point_date_time: Optional[datetime] = None
-        # The specific date and time when the Cloud PC was set to in review. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z.
-        self._review_start_date_time: Optional[datetime] = None
-        # The ID of the Azure subscription in which the Cloud PC snapshot is being saved, in GUID format.
-        self._subscription_id: Optional[str] = None
-        # The name of the Azure subscription in which the Cloud PC snapshot is being saved.
-        self._subscription_name: Optional[str] = None
-        # The userAccessLevel property
-        self._user_access_level: Optional[cloud_pc_user_access_level.CloudPcUserAccessLevel] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcReviewStatus:
         """
@@ -120,7 +120,9 @@ class CloudPcReviewStatus(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import cloud_pc_user_access_level
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "azureStorageAccountId": lambda n : setattr(self, 'azure_storage_account_id', n.get_str_value()),
             "azureStorageAccountName": lambda n : setattr(self, 'azure_storage_account_name', n.get_str_value()),
             "azureStorageContainerName": lambda n : setattr(self, 'azure_storage_container_name', n.get_str_value()),

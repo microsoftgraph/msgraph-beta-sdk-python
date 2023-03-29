@@ -1,12 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-managed_device = lazy_import('msgraph.generated.models.managed_device')
-run_state = lazy_import('msgraph.generated.models.run_state')
+if TYPE_CHECKING:
+    from . import entity, managed_device, run_state
+
+from . import entity
 
 class DeviceManagementScriptDeviceState(entity.Entity):
     """
@@ -83,7 +83,9 @@ class DeviceManagementScriptDeviceState(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, managed_device, run_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "errorCode": lambda n : setattr(self, 'error_code', n.get_int_value()),
             "errorDescription": lambda n : setattr(self, 'error_description', n.get_str_value()),
             "lastStateUpdateDateTime": lambda n : setattr(self, 'last_state_update_date_time', n.get_datetime_value()),

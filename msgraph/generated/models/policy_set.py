@@ -1,36 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-error_code = lazy_import('msgraph.generated.models.error_code')
-policy_set_assignment = lazy_import('msgraph.generated.models.policy_set_assignment')
-policy_set_item = lazy_import('msgraph.generated.models.policy_set_item')
-policy_set_status = lazy_import('msgraph.generated.models.policy_set_status')
+if TYPE_CHECKING:
+    from . import entity, error_code, policy_set_assignment, policy_set_item, policy_set_status
+
+from . import entity
 
 class PolicySet(entity.Entity):
     """
     A class containing the properties used for PolicySet.
     """
-    @property
-    def assignments(self,) -> Optional[List[policy_set_assignment.PolicySetAssignment]]:
-        """
-        Gets the assignments property value. Assignments of the PolicySet.
-        Returns: Optional[List[policy_set_assignment.PolicySetAssignment]]
-        """
-        return self._assignments
-    
-    @assignments.setter
-    def assignments(self,value: Optional[List[policy_set_assignment.PolicySetAssignment]] = None) -> None:
-        """
-        Sets the assignments property value. Assignments of the PolicySet.
-        Args:
-            value: Value to set for the assignments property.
-        """
-        self._assignments = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new policySet and sets the default values.
@@ -58,6 +39,23 @@ class PolicySet(entity.Entity):
         self._role_scope_tags: Optional[List[str]] = None
         # The enum to specify the status of PolicySet.
         self._status: Optional[policy_set_status.PolicySetStatus] = None
+    
+    @property
+    def assignments(self,) -> Optional[List[policy_set_assignment.PolicySetAssignment]]:
+        """
+        Gets the assignments property value. Assignments of the PolicySet.
+        Returns: Optional[List[policy_set_assignment.PolicySetAssignment]]
+        """
+        return self._assignments
+    
+    @assignments.setter
+    def assignments(self,value: Optional[List[policy_set_assignment.PolicySetAssignment]] = None) -> None:
+        """
+        Sets the assignments property value. Assignments of the PolicySet.
+        Args:
+            value: Value to set for the assignments property.
+        """
+        self._assignments = value
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
@@ -144,7 +142,9 @@ class PolicySet(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, error_code, policy_set_assignment, policy_set_item, policy_set_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(policy_set_assignment.PolicySetAssignment)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

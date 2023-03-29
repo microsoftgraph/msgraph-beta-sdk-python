@@ -1,17 +1,37 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-connector = lazy_import('msgraph.generated.models.connector')
-connector_group = lazy_import('msgraph.generated.models.connector_group')
-entity = lazy_import('msgraph.generated.models.entity')
-hybrid_agent_updater_configuration = lazy_import('msgraph.generated.models.hybrid_agent_updater_configuration')
-on_premises_agent = lazy_import('msgraph.generated.models.on_premises_agent')
-on_premises_agent_group = lazy_import('msgraph.generated.models.on_premises_agent_group')
-published_resource = lazy_import('msgraph.generated.models.published_resource')
+if TYPE_CHECKING:
+    from . import connector, connector_group, entity, hybrid_agent_updater_configuration, on_premises_agent, on_premises_agent_group, published_resource
+
+from . import entity
 
 class OnPremisesPublishingProfile(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new onPremisesPublishingProfile and sets the default values.
+        """
+        super().__init__()
+        # List of existing onPremisesAgentGroup objects. Read-only. Nullable.
+        self._agent_groups: Optional[List[on_premises_agent_group.OnPremisesAgentGroup]] = None
+        # List of existing onPremisesAgent objects. Read-only. Nullable.
+        self._agents: Optional[List[on_premises_agent.OnPremisesAgent]] = None
+        # List of existing connectorGroup objects for applications published through Application Proxy. Read-only. Nullable.
+        self._connector_groups: Optional[List[connector_group.ConnectorGroup]] = None
+        # List of existing connector objects for applications published through Application Proxy. Read-only. Nullable.
+        self._connectors: Optional[List[connector.Connector]] = None
+        # Represents a hybridAgentUpdaterConfiguration object.
+        self._hybrid_agent_updater_configuration: Optional[hybrid_agent_updater_configuration.HybridAgentUpdaterConfiguration] = None
+        # The isDefaultAccessEnabled property
+        self._is_default_access_enabled: Optional[bool] = None
+        # Represents if Azure AD Application Proxy is enabled for the tenant.
+        self._is_enabled: Optional[bool] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # List of existing publishedResource objects. Read-only. Nullable.
+        self._published_resources: Optional[List[published_resource.PublishedResource]] = None
+    
     @property
     def agent_groups(self,) -> Optional[List[on_premises_agent_group.OnPremisesAgentGroup]]:
         """
@@ -80,30 +100,6 @@ class OnPremisesPublishingProfile(entity.Entity):
         """
         self._connectors = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new OnPremisesPublishingProfile and sets the default values.
-        """
-        super().__init__()
-        # List of existing onPremisesAgentGroup objects. Read-only. Nullable.
-        self._agent_groups: Optional[List[on_premises_agent_group.OnPremisesAgentGroup]] = None
-        # List of existing onPremisesAgent objects. Read-only. Nullable.
-        self._agents: Optional[List[on_premises_agent.OnPremisesAgent]] = None
-        # List of existing connectorGroup objects for applications published through Application Proxy. Read-only. Nullable.
-        self._connector_groups: Optional[List[connector_group.ConnectorGroup]] = None
-        # List of existing connector objects for applications published through Application Proxy. Read-only. Nullable.
-        self._connectors: Optional[List[connector.Connector]] = None
-        # Represents a hybridAgentUpdaterConfiguration object.
-        self._hybrid_agent_updater_configuration: Optional[hybrid_agent_updater_configuration.HybridAgentUpdaterConfiguration] = None
-        # The isDefaultAccessEnabled property
-        self._is_default_access_enabled: Optional[bool] = None
-        # Represents if Azure AD Application Proxy is enabled for the tenant.
-        self._is_enabled: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # List of existing publishedResource objects. Read-only. Nullable.
-        self._published_resources: Optional[List[published_resource.PublishedResource]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OnPremisesPublishingProfile:
         """
@@ -121,7 +117,9 @@ class OnPremisesPublishingProfile(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import connector, connector_group, entity, hybrid_agent_updater_configuration, on_premises_agent, on_premises_agent_group, published_resource
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "agents": lambda n : setattr(self, 'agents', n.get_collection_of_object_values(on_premises_agent.OnPremisesAgent)),
             "agentGroups": lambda n : setattr(self, 'agent_groups', n.get_collection_of_object_values(on_premises_agent_group.OnPremisesAgentGroup)),
             "connectors": lambda n : setattr(self, 'connectors', n.get_collection_of_object_values(connector.Connector)),

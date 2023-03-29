@@ -7,38 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-office_configuration = lazy_import('msgraph.generated.models.office_configuration')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-client_configurations_request_builder = lazy_import('msgraph.generated.office_configuration.client_configurations.client_configurations_request_builder')
-office_client_configuration_item_request_builder = lazy_import('msgraph.generated.office_configuration.client_configurations.item.office_client_configuration_item_request_builder')
+if TYPE_CHECKING:
+    from ..models import office_configuration
+    from ..models.o_data_errors import o_data_error
+    from .client_configurations import client_configurations_request_builder
+    from .client_configurations.item import office_client_configuration_item_request_builder
 
 class OfficeConfigurationRequestBuilder():
     """
     Provides operations to manage the officeConfiguration singleton.
     """
-    @property
-    def client_configurations(self) -> client_configurations_request_builder.ClientConfigurationsRequestBuilder:
-        """
-        Provides operations to manage the clientConfigurations property of the microsoft.graph.officeConfiguration entity.
-        """
-        return client_configurations_request_builder.ClientConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def client_configurations_by_id(self,id: str) -> office_client_configuration_item_request_builder.OfficeClientConfigurationItemRequestBuilder:
-        """
-        Provides operations to manage the clientConfigurations property of the microsoft.graph.officeConfiguration entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: office_client_configuration_item_request_builder.OfficeClientConfigurationItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["officeClientConfiguration%2Did"] = id
-        return office_client_configuration_item_request_builder.OfficeClientConfigurationItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new OfficeConfigurationRequestBuilder and sets the default values.
@@ -57,6 +37,21 @@ class OfficeConfigurationRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def client_configurations_by_id(self,id: str) -> office_client_configuration_item_request_builder.OfficeClientConfigurationItemRequestBuilder:
+        """
+        Provides operations to manage the clientConfigurations property of the microsoft.graph.officeConfiguration entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: office_client_configuration_item_request_builder.OfficeClientConfigurationItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .client_configurations.item import office_client_configuration_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["officeClientConfiguration%2Did"] = id
+        return office_client_configuration_item_request_builder.OfficeClientConfigurationItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[OfficeConfigurationRequestBuilderGetRequestConfiguration] = None) -> Optional[office_configuration.OfficeConfiguration]:
         """
         Get officeConfiguration
@@ -67,12 +62,16 @@ class OfficeConfigurationRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ..models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ..models import office_configuration
+
         return await self.request_adapter.send_async(request_info, office_configuration.OfficeConfiguration, error_mapping)
     
     async def patch(self,body: Optional[office_configuration.OfficeConfiguration] = None, request_configuration: Optional[OfficeConfigurationRequestBuilderPatchRequestConfiguration] = None) -> Optional[office_configuration.OfficeConfiguration]:
@@ -88,12 +87,16 @@ class OfficeConfigurationRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ..models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ..models import office_configuration
+
         return await self.request_adapter.send_async(request_info, office_configuration.OfficeConfiguration, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[OfficeConfigurationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
@@ -135,17 +138,20 @@ class OfficeConfigurationRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def client_configurations(self) -> client_configurations_request_builder.ClientConfigurationsRequestBuilder:
+        """
+        Provides operations to manage the clientConfigurations property of the microsoft.graph.officeConfiguration entity.
+        """
+        from .client_configurations import client_configurations_request_builder
+
+        return client_configurations_request_builder.ClientConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class OfficeConfigurationRequestBuilderGetQueryParameters():
         """
         Get officeConfiguration
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -161,6 +167,12 @@ class OfficeConfigurationRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class OfficeConfigurationRequestBuilderGetRequestConfiguration():

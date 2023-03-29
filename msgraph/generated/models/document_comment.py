@@ -1,15 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-document_comment_reply = lazy_import('msgraph.generated.models.document_comment_reply')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import document_comment_reply, entity
+
+from . import entity
 
 class DocumentComment(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new documentComment and sets the default values.
+        Instantiates a new DocumentComment and sets the default values.
         """
         super().__init__()
         # The content property
@@ -53,7 +54,9 @@ class DocumentComment(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import document_comment_reply, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "content": lambda n : setattr(self, 'content', n.get_str_value()),
             "replies": lambda n : setattr(self, 'replies', n.get_collection_of_object_values(document_comment_reply.DocumentCommentReply)),
         }

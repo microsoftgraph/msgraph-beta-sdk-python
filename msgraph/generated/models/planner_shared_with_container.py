@@ -1,12 +1,22 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-planner_plan_access_level = lazy_import('msgraph.generated.models.planner_plan_access_level')
-planner_plan_container = lazy_import('msgraph.generated.models.planner_plan_container')
+if TYPE_CHECKING:
+    from . import planner_plan_access_level, planner_plan_container
+
+from . import planner_plan_container
 
 class PlannerSharedWithContainer(planner_plan_container.PlannerPlanContainer):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new PlannerSharedWithContainer and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.plannerSharedWithContainer"
+        # The accessLevel property
+        self._access_level: Optional[planner_plan_access_level.PlannerPlanAccessLevel] = None
+    
     @property
     def access_level(self,) -> Optional[planner_plan_access_level.PlannerPlanAccessLevel]:
         """
@@ -23,15 +33,6 @@ class PlannerSharedWithContainer(planner_plan_container.PlannerPlanContainer):
             value: Value to set for the access_level property.
         """
         self._access_level = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new PlannerSharedWithContainer and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.plannerSharedWithContainer"
-        # The accessLevel property
-        self._access_level: Optional[planner_plan_access_level.PlannerPlanAccessLevel] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PlannerSharedWithContainer:
@@ -50,7 +51,9 @@ class PlannerSharedWithContainer(planner_plan_container.PlannerPlanContainer):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import planner_plan_access_level, planner_plan_container
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accessLevel": lambda n : setattr(self, 'access_level', n.get_enum_value(planner_plan_access_level.PlannerPlanAccessLevel)),
         }
         super_fields = super().get_field_deserializers()

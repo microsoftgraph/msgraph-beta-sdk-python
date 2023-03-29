@@ -1,14 +1,40 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
-lifecycle_task_category = lazy_import('msgraph.generated.models.identity_governance.lifecycle_task_category')
-task_processing_result = lazy_import('msgraph.generated.models.identity_governance.task_processing_result')
+if TYPE_CHECKING:
+    from . import lifecycle_task_category, task_processing_result
+    from .. import entity, key_value_pair
+
+from .. import entity
 
 class Task(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new task and sets the default values.
+        """
+        super().__init__()
+        # Arguments included within the task.  For guidance to configure this property, see Configure the arguments for built-in Lifecycle Workflow tasks. Required.
+        self._arguments: Optional[List[key_value_pair.KeyValuePair]] = None
+        # The category property
+        self._category: Optional[lifecycle_task_category.LifecycleTaskCategory] = None
+        # A boolean value that specifies whether, if this task fails, the workflow will stop, and subsequent tasks will not run. Optional.
+        self._continue_on_error: Optional[bool] = None
+        # A string that describes the purpose of the task for administrative use. Optional.
+        self._description: Optional[str] = None
+        # A unique string that identifies the task. Required.Supports $filter(eq, ne) and orderBy.
+        self._display_name: Optional[str] = None
+        # An integer that states in what order the task will run in a workflow.Supports $orderby.
+        self._execution_sequence: Optional[int] = None
+        # A boolean value that denotes whether the task is set to run or not. Optional.Supports $filter(eq, ne) and orderBy.
+        self._is_enabled: Optional[bool] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # A unique template identifier for the task. For more information about the tasks that Lifecycle Workflows currently supports and their unique identifiers, see supported tasks. Required.Supports $filter(eq, ne).
+        self._task_definition_id: Optional[str] = None
+        # The result of processing the task.
+        self._task_processing_results: Optional[List[task_processing_result.TaskProcessingResult]] = None
+    
     @property
     def arguments(self,) -> Optional[List[key_value_pair.KeyValuePair]]:
         """
@@ -42,32 +68,6 @@ class Task(entity.Entity):
             value: Value to set for the category property.
         """
         self._category = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new task and sets the default values.
-        """
-        super().__init__()
-        # Arguments included within the task.  For guidance to configure this property, see Configure the arguments for built-in Lifecycle Workflow tasks. Required.
-        self._arguments: Optional[List[key_value_pair.KeyValuePair]] = None
-        # The category property
-        self._category: Optional[lifecycle_task_category.LifecycleTaskCategory] = None
-        # A boolean value that specifies whether, if this task fails, the workflow will stop, and subsequent tasks will not run. Optional.
-        self._continue_on_error: Optional[bool] = None
-        # A string that describes the purpose of the task for administrative use. Optional.
-        self._description: Optional[str] = None
-        # A unique string that identifies the task. Required.Supports $filter(eq, ne) and orderBy.
-        self._display_name: Optional[str] = None
-        # An integer that states in what order the task will run in a workflow.Supports $orderby.
-        self._execution_sequence: Optional[int] = None
-        # A boolean value that denotes whether the task is set to run or not. Optional.Supports $filter(eq, ne) and orderBy.
-        self._is_enabled: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # A unique template identifier for the task. For more information about the tasks that Lifecycle Workflows currently supports and their unique identifiers, see supported tasks. Required.Supports $filter(eq, ne).
-        self._task_definition_id: Optional[str] = None
-        # The result of processing the task.
-        self._task_processing_results: Optional[List[task_processing_result.TaskProcessingResult]] = None
     
     @property
     def continue_on_error(self,) -> Optional[bool]:
@@ -154,7 +154,10 @@ class Task(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import lifecycle_task_category, task_processing_result
+        from .. import entity, key_value_pair
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "arguments": lambda n : setattr(self, 'arguments', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
             "category": lambda n : setattr(self, 'category', n.get_enum_value(lifecycle_task_category.LifecycleTaskCategory)),
             "continueOnError": lambda n : setattr(self, 'continue_on_error', n.get_bool_value()),

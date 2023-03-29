@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_setting_definition = lazy_import('msgraph.generated.models.device_management_setting_definition')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import device_management_intent_setting_category, device_management_setting_definition, device_management_template_setting_category, entity
+
+from . import entity
 
 class DeviceManagementSettingCategory(entity.Entity):
     """
@@ -34,6 +35,17 @@ class DeviceManagementSettingCategory(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.deviceManagementIntentSettingCategory":
+                from . import device_management_intent_setting_category
+
+                return device_management_intent_setting_category.DeviceManagementIntentSettingCategory()
+            if mapping_value == "#microsoft.graph.deviceManagementTemplateSettingCategory":
+                from . import device_management_template_setting_category
+
+                return device_management_template_setting_category.DeviceManagementTemplateSettingCategory()
         return DeviceManagementSettingCategory()
     
     @property
@@ -58,7 +70,9 @@ class DeviceManagementSettingCategory(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_intent_setting_category, device_management_setting_definition, device_management_template_setting_category, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "hasRequiredSetting": lambda n : setattr(self, 'has_required_setting', n.get_bool_value()),
             "settingDefinitions": lambda n : setattr(self, 'setting_definitions', n.get_collection_of_object_values(device_management_setting_definition.DeviceManagementSettingDefinition)),

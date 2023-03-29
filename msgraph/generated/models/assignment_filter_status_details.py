@@ -1,32 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-assignment_filter_evaluation_summary = lazy_import('msgraph.generated.models.assignment_filter_evaluation_summary')
-key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
+if TYPE_CHECKING:
+    from . import assignment_filter_evaluation_summary, key_value_pair
 
 class AssignmentFilterStatusDetails(AdditionalDataHolder, Parsable):
     """
     Represent status details for device and payload and all associated applied filters.
     """
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new assignmentFilterStatusDetails and sets the default values.
@@ -46,6 +28,23 @@ class AssignmentFilterStatusDetails(AdditionalDataHolder, Parsable):
         self._payload_id: Optional[str] = None
         # Unique identifier for UserId object. Can be null
         self._user_id: Optional[str] = None
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AssignmentFilterStatusDetails:
@@ -98,7 +97,9 @@ class AssignmentFilterStatusDetails(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import assignment_filter_evaluation_summary, key_value_pair
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "deviceProperties": lambda n : setattr(self, 'device_properties', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
             "evalutionSummaries": lambda n : setattr(self, 'evalution_summaries', n.get_collection_of_object_values(assignment_filter_evaluation_summary.AssignmentFilterEvaluationSummary)),
             "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),

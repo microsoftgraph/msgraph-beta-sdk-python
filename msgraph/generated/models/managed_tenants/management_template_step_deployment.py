@@ -1,13 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-graph_a_p_i_error_details = lazy_import('msgraph.generated.models.managed_tenants.graph_a_p_i_error_details')
-management_template_deployment_status = lazy_import('msgraph.generated.models.managed_tenants.management_template_deployment_status')
-management_template_step_version = lazy_import('msgraph.generated.models.managed_tenants.management_template_step_version')
+if TYPE_CHECKING:
+    from . import graph_a_p_i_error_details, management_template_deployment_status, management_template_step_version
+    from .. import entity
+
+from .. import entity
 
 class ManagementTemplateStepDeployment(entity.Entity):
     def __init__(self,) -> None:
@@ -102,7 +102,10 @@ class ManagementTemplateStepDeployment(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import graph_a_p_i_error_details, management_template_deployment_status, management_template_step_version
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "error": lambda n : setattr(self, 'error', n.get_object_value(graphAPIErrorDetails)),

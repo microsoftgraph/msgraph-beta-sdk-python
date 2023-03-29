@@ -1,11 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-evaluate_label_job_result = lazy_import('msgraph.generated.models.evaluate_label_job_result')
+if TYPE_CHECKING:
+    from . import evaluate_label_job_result
 
 class EvaluateLabelJobResultGroup(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new evaluateLabelJobResultGroup and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The automatic property
+        self._automatic: Optional[evaluate_label_job_result.EvaluateLabelJobResult] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The recommended property
+        self._recommended: Optional[evaluate_label_job_result.EvaluateLabelJobResult] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -40,20 +54,6 @@ class EvaluateLabelJobResultGroup(AdditionalDataHolder, Parsable):
         """
         self._automatic = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new evaluateLabelJobResultGroup and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The automatic property
-        self._automatic: Optional[evaluate_label_job_result.EvaluateLabelJobResult] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The recommended property
-        self._recommended: Optional[evaluate_label_job_result.EvaluateLabelJobResult] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EvaluateLabelJobResultGroup:
         """
@@ -71,7 +71,9 @@ class EvaluateLabelJobResultGroup(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import evaluate_label_job_result
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "automatic": lambda n : setattr(self, 'automatic', n.get_object_value(evaluate_label_job_result.EvaluateLabelJobResult)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "recommended": lambda n : setattr(self, 'recommended', n.get_object_value(evaluate_label_job_result.EvaluateLabelJobResult)),

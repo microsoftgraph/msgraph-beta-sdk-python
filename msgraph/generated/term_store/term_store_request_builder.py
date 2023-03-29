@@ -7,34 +7,20 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-store = lazy_import('msgraph.generated.models.term_store.store')
-groups_request_builder = lazy_import('msgraph.generated.term_store.groups.groups_request_builder')
-group_item_request_builder = lazy_import('msgraph.generated.term_store.groups.item.group_item_request_builder')
-sets_request_builder = lazy_import('msgraph.generated.term_store.sets.sets_request_builder')
-set_item_request_builder = lazy_import('msgraph.generated.term_store.sets.item.set_item_request_builder')
+if TYPE_CHECKING:
+    from ..models.o_data_errors import o_data_error
+    from ..models.term_store import store
+    from .groups import groups_request_builder
+    from .groups.item import group_item_request_builder
+    from .sets import sets_request_builder
+    from .sets.item import set_item_request_builder
 
 class TermStoreRequestBuilder():
     """
     Provides operations to manage the store singleton.
     """
-    @property
-    def groups(self) -> groups_request_builder.GroupsRequestBuilder:
-        """
-        Provides operations to manage the groups property of the microsoft.graph.termStore.store entity.
-        """
-        return groups_request_builder.GroupsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def sets(self) -> sets_request_builder.SetsRequestBuilder:
-        """
-        Provides operations to manage the sets property of the microsoft.graph.termStore.store entity.
-        """
-        return sets_request_builder.SetsRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new TermStoreRequestBuilder and sets the default values.
@@ -63,12 +49,16 @@ class TermStoreRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ..models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ..models.term_store import store
+
         return await self.request_adapter.send_async(request_info, store.Store, error_mapping)
     
     def groups_by_id(self,id: str) -> group_item_request_builder.GroupItemRequestBuilder:
@@ -80,6 +70,8 @@ class TermStoreRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .groups.item import group_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["group%2Did"] = id
         return group_item_request_builder.GroupItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -97,12 +89,16 @@ class TermStoreRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ..models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ..models.term_store import store
+
         return await self.request_adapter.send_async(request_info, store.Store, error_mapping)
     
     def sets_by_id(self,id: str) -> set_item_request_builder.SetItemRequestBuilder:
@@ -114,6 +110,8 @@ class TermStoreRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .sets.item import set_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["set%2Did"] = id
         return set_item_request_builder.SetItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -157,17 +155,29 @@ class TermStoreRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def groups(self) -> groups_request_builder.GroupsRequestBuilder:
+        """
+        Provides operations to manage the groups property of the microsoft.graph.termStore.store entity.
+        """
+        from .groups import groups_request_builder
+
+        return groups_request_builder.GroupsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def sets(self) -> sets_request_builder.SetsRequestBuilder:
+        """
+        Provides operations to manage the sets property of the microsoft.graph.termStore.store entity.
+        """
+        from .sets import sets_request_builder
+
+        return sets_request_builder.SetsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class TermStoreRequestBuilderGetQueryParameters():
         """
         Read the properties and relationships of a store object.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -183,6 +193,12 @@ class TermStoreRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class TermStoreRequestBuilderGetRequestConfiguration():

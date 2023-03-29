@@ -1,11 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-app_log_decryption_algorithm = lazy_import('msgraph.generated.models.app_log_decryption_algorithm')
+if TYPE_CHECKING:
+    from . import app_log_decryption_algorithm
 
 class AppLogCollectionDownloadDetails(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new appLogCollectionDownloadDetails and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The appLogDecryptionAlgorithm property
+        self._app_log_decryption_algorithm: Optional[app_log_decryption_algorithm.AppLogDecryptionAlgorithm] = None
+        # Decryption key that used to decrypt the log.
+        self._decryption_key: Optional[str] = None
+        # Download SAS (Shared Access Signature) Url for completed app log request.
+        self._download_url: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -39,22 +55,6 @@ class AppLogCollectionDownloadDetails(AdditionalDataHolder, Parsable):
             value: Value to set for the app_log_decryption_algorithm property.
         """
         self._app_log_decryption_algorithm = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new appLogCollectionDownloadDetails and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The appLogDecryptionAlgorithm property
-        self._app_log_decryption_algorithm: Optional[app_log_decryption_algorithm.AppLogDecryptionAlgorithm] = None
-        # Decryption key that used to decrypt the log.
-        self._decryption_key: Optional[str] = None
-        # Download SAS (Shared Access Signature) Url for completed app log request.
-        self._download_url: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AppLogCollectionDownloadDetails:
@@ -107,7 +107,9 @@ class AppLogCollectionDownloadDetails(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import app_log_decryption_algorithm
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appLogDecryptionAlgorithm": lambda n : setattr(self, 'app_log_decryption_algorithm', n.get_enum_value(app_log_decryption_algorithm.AppLogDecryptionAlgorithm)),
             "decryptionKey": lambda n : setattr(self, 'decryption_key', n.get_str_value()),
             "downloadUrl": lambda n : setattr(self, 'download_url', n.get_str_value()),

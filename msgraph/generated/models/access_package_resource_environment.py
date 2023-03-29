@@ -1,14 +1,44 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-access_package_resource = lazy_import('msgraph.generated.models.access_package_resource')
-connection_info = lazy_import('msgraph.generated.models.connection_info')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import access_package_resource, connection_info, entity
+
+from . import entity
 
 class AccessPackageResourceEnvironment(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new accessPackageResourceEnvironment and sets the default values.
+        """
+        super().__init__()
+        # Read-only. Required.
+        self._access_package_resources: Optional[List[access_package_resource.AccessPackageResource]] = None
+        # Connection information of an environment used to connect to a resource.
+        self._connection_info: Optional[connection_info.ConnectionInfo] = None
+        # The display name of the user that created this object.
+        self._created_by: Optional[str] = None
+        # The date and time that this object was created. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+        self._created_date_time: Optional[datetime] = None
+        # The description of this object.
+        self._description: Optional[str] = None
+        # The display name of this object.
+        self._display_name: Optional[str] = None
+        # Determines whether this is default environment or not. It is set to true for all static origin systems, such as Azure AD groups and Azure AD Applications.
+        self._is_default_environment: Optional[bool] = None
+        # The display name of the entity that last modified this object.
+        self._modified_by: Optional[str] = None
+        # The date and time that this object was last modified. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+        self._modified_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The unique identifier of this environment in the origin system.
+        self._origin_id: Optional[str] = None
+        # The type of the resource in the origin system, that is, SharePointOnline. Requires $filter (eq).
+        self._origin_system: Optional[str] = None
+    
     @property
     def access_package_resources(self,) -> Optional[List[access_package_resource.AccessPackageResource]]:
         """
@@ -42,36 +72,6 @@ class AccessPackageResourceEnvironment(entity.Entity):
             value: Value to set for the connection_info property.
         """
         self._connection_info = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new accessPackageResourceEnvironment and sets the default values.
-        """
-        super().__init__()
-        # Read-only. Required.
-        self._access_package_resources: Optional[List[access_package_resource.AccessPackageResource]] = None
-        # Connection information of an environment used to connect to a resource.
-        self._connection_info: Optional[connection_info.ConnectionInfo] = None
-        # The display name of the user that created this object.
-        self._created_by: Optional[str] = None
-        # The date and time that this object was created. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        self._created_date_time: Optional[datetime] = None
-        # The description of this object.
-        self._description: Optional[str] = None
-        # The display name of this object.
-        self._display_name: Optional[str] = None
-        # Determines whether this is default environment or not. It is set to true for all static origin systems, such as Azure AD groups and Azure AD Applications.
-        self._is_default_environment: Optional[bool] = None
-        # The display name of the entity that last modified this object.
-        self._modified_by: Optional[str] = None
-        # The date and time that this object was last modified. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        self._modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The unique identifier of this environment in the origin system.
-        self._origin_id: Optional[str] = None
-        # The type of the resource in the origin system, that is, SharePointOnline. Requires $filter (eq).
-        self._origin_system: Optional[str] = None
     
     @property
     def created_by(self,) -> Optional[str]:
@@ -158,7 +158,9 @@ class AccessPackageResourceEnvironment(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import access_package_resource, connection_info, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accessPackageResources": lambda n : setattr(self, 'access_package_resources', n.get_collection_of_object_values(access_package_resource.AccessPackageResource)),
             "connectionInfo": lambda n : setattr(self, 'connection_info', n.get_object_value(connection_info.ConnectionInfo)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_str_value()),

@@ -7,47 +7,20 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-authentication_method_modes_request_builder = lazy_import('msgraph.generated.identity.conditional_access.authentication_strength.authentication_method_modes.authentication_method_modes_request_builder')
-authentication_method_mode_detail_item_request_builder = lazy_import('msgraph.generated.identity.conditional_access.authentication_strength.authentication_method_modes.item.authentication_method_mode_detail_item_request_builder')
-policies_request_builder = lazy_import('msgraph.generated.identity.conditional_access.authentication_strength.policies.policies_request_builder')
-authentication_strength_policy_item_request_builder = lazy_import('msgraph.generated.identity.conditional_access.authentication_strength.policies.item.authentication_strength_policy_item_request_builder')
-authentication_strength_root = lazy_import('msgraph.generated.models.authentication_strength_root')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ....models import authentication_strength_root
+    from ....models.o_data_errors import o_data_error
+    from .authentication_method_modes import authentication_method_modes_request_builder
+    from .authentication_method_modes.item import authentication_method_mode_detail_item_request_builder
+    from .policies import policies_request_builder
+    from .policies.item import authentication_strength_policy_item_request_builder
 
 class AuthenticationStrengthRequestBuilder():
     """
     Provides operations to manage the authenticationStrength property of the microsoft.graph.conditionalAccessRoot entity.
     """
-    @property
-    def authentication_method_modes(self) -> authentication_method_modes_request_builder.AuthenticationMethodModesRequestBuilder:
-        """
-        Provides operations to manage the authenticationMethodModes property of the microsoft.graph.authenticationStrengthRoot entity.
-        """
-        return authentication_method_modes_request_builder.AuthenticationMethodModesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def policies(self) -> policies_request_builder.PoliciesRequestBuilder:
-        """
-        Provides operations to manage the policies property of the microsoft.graph.authenticationStrengthRoot entity.
-        """
-        return policies_request_builder.PoliciesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def authentication_method_modes_by_id(self,id: str) -> authentication_method_mode_detail_item_request_builder.AuthenticationMethodModeDetailItemRequestBuilder:
-        """
-        Provides operations to manage the authenticationMethodModes property of the microsoft.graph.authenticationStrengthRoot entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: authentication_method_mode_detail_item_request_builder.AuthenticationMethodModeDetailItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["authenticationMethodModeDetail%2Did"] = id
-        return authentication_method_mode_detail_item_request_builder.AuthenticationMethodModeDetailItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new AuthenticationStrengthRequestBuilder and sets the default values.
@@ -66,6 +39,21 @@ class AuthenticationStrengthRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def authentication_method_modes_by_id(self,id: str) -> authentication_method_mode_detail_item_request_builder.AuthenticationMethodModeDetailItemRequestBuilder:
+        """
+        Provides operations to manage the authenticationMethodModes property of the microsoft.graph.authenticationStrengthRoot entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: authentication_method_mode_detail_item_request_builder.AuthenticationMethodModeDetailItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .authentication_method_modes.item import authentication_method_mode_detail_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["authenticationMethodModeDetail%2Did"] = id
+        return authentication_method_mode_detail_item_request_builder.AuthenticationMethodModeDetailItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def delete(self,request_configuration: Optional[AuthenticationStrengthRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property authenticationStrength for identity
@@ -75,6 +63,8 @@ class AuthenticationStrengthRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -93,12 +83,16 @@ class AuthenticationStrengthRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import authentication_strength_root
+
         return await self.request_adapter.send_async(request_info, authentication_strength_root.AuthenticationStrengthRoot, error_mapping)
     
     async def patch(self,body: Optional[authentication_strength_root.AuthenticationStrengthRoot] = None, request_configuration: Optional[AuthenticationStrengthRequestBuilderPatchRequestConfiguration] = None) -> Optional[authentication_strength_root.AuthenticationStrengthRoot]:
@@ -114,12 +108,16 @@ class AuthenticationStrengthRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import authentication_strength_root
+
         return await self.request_adapter.send_async(request_info, authentication_strength_root.AuthenticationStrengthRoot, error_mapping)
     
     def policies_by_id(self,id: str) -> authentication_strength_policy_item_request_builder.AuthenticationStrengthPolicyItemRequestBuilder:
@@ -131,6 +129,8 @@ class AuthenticationStrengthRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .policies.item import authentication_strength_policy_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["authenticationStrengthPolicy%2Did"] = id
         return authentication_strength_policy_item_request_builder.AuthenticationStrengthPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -190,6 +190,24 @@ class AuthenticationStrengthRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def authentication_method_modes(self) -> authentication_method_modes_request_builder.AuthenticationMethodModesRequestBuilder:
+        """
+        Provides operations to manage the authenticationMethodModes property of the microsoft.graph.authenticationStrengthRoot entity.
+        """
+        from .authentication_method_modes import authentication_method_modes_request_builder
+
+        return authentication_method_modes_request_builder.AuthenticationMethodModesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def policies(self) -> policies_request_builder.PoliciesRequestBuilder:
+        """
+        Provides operations to manage the policies property of the microsoft.graph.authenticationStrengthRoot entity.
+        """
+        from .policies import policies_request_builder
+
+        return policies_request_builder.PoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class AuthenticationStrengthRequestBuilderDeleteRequestConfiguration():
         """
@@ -207,12 +225,6 @@ class AuthenticationStrengthRequestBuilder():
         """
         Get authenticationStrength from identity
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -228,6 +240,12 @@ class AuthenticationStrengthRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class AuthenticationStrengthRequestBuilderGetRequestConfiguration():

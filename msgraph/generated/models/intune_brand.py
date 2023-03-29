@@ -1,51 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-company_portal_blocked_action = lazy_import('msgraph.generated.models.company_portal_blocked_action')
-enrollment_availability_options = lazy_import('msgraph.generated.models.enrollment_availability_options')
-mime_content = lazy_import('msgraph.generated.models.mime_content')
-rgb_color = lazy_import('msgraph.generated.models.rgb_color')
+if TYPE_CHECKING:
+    from . import company_portal_blocked_action, enrollment_availability_options, mime_content, rgb_color
 
 class IntuneBrand(AdditionalDataHolder, Parsable):
     """
     intuneBrand contains data which is used in customizing the appearance of the Company Portal applications as well as the end user web portal.
     """
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def company_portal_blocked_actions(self,) -> Optional[List[company_portal_blocked_action.CompanyPortalBlockedAction]]:
-        """
-        Gets the companyPortalBlockedActions property value. Collection of blocked actions on the company portal as per platform and device ownership types.
-        Returns: Optional[List[company_portal_blocked_action.CompanyPortalBlockedAction]]
-        """
-        return self._company_portal_blocked_actions
-    
-    @company_portal_blocked_actions.setter
-    def company_portal_blocked_actions(self,value: Optional[List[company_portal_blocked_action.CompanyPortalBlockedAction]] = None) -> None:
-        """
-        Sets the companyPortalBlockedActions property value. Collection of blocked actions on the company portal as per platform and device ownership types.
-        Args:
-            value: Value to set for the company_portal_blocked_actions property.
-        """
-        self._company_portal_blocked_actions = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new intuneBrand and sets the default values.
@@ -113,6 +76,40 @@ class IntuneBrand(AdditionalDataHolder, Parsable):
         self._show_office_web_apps: Optional[bool] = None
         # Primary theme color used in the Company Portal applications and web portal.
         self._theme_color: Optional[rgb_color.RgbColor] = None
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
+    
+    @property
+    def company_portal_blocked_actions(self,) -> Optional[List[company_portal_blocked_action.CompanyPortalBlockedAction]]:
+        """
+        Gets the companyPortalBlockedActions property value. Collection of blocked actions on the company portal as per platform and device ownership types.
+        Returns: Optional[List[company_portal_blocked_action.CompanyPortalBlockedAction]]
+        """
+        return self._company_portal_blocked_actions
+    
+    @company_portal_blocked_actions.setter
+    def company_portal_blocked_actions(self,value: Optional[List[company_portal_blocked_action.CompanyPortalBlockedAction]] = None) -> None:
+        """
+        Sets the companyPortalBlockedActions property value. Collection of blocked actions on the company portal as per platform and device ownership types.
+        Args:
+            value: Value to set for the company_portal_blocked_actions property.
+        """
+        self._company_portal_blocked_actions = value
     
     @property
     def contact_i_t_email_address(self,) -> Optional[str]:
@@ -335,7 +332,9 @@ class IntuneBrand(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import company_portal_blocked_action, enrollment_availability_options, mime_content, rgb_color
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "companyPortalBlockedActions": lambda n : setattr(self, 'company_portal_blocked_actions', n.get_collection_of_object_values(company_portal_blocked_action.CompanyPortalBlockedAction)),
             "contactITEmailAddress": lambda n : setattr(self, 'contact_i_t_email_address', n.get_str_value()),
             "contactITName": lambda n : setattr(self, 'contact_i_t_name', n.get_str_value()),

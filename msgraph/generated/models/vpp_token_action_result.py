@@ -1,15 +1,33 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-action_state = lazy_import('msgraph.generated.models.action_state')
+if TYPE_CHECKING:
+    from . import action_state, vpp_token_revoke_licenses_action_result
 
 class VppTokenActionResult(AdditionalDataHolder, Parsable):
     """
     The status of the action performed with an Apple Volume Purchase Program token.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new vppTokenActionResult and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Action name
+        self._action_name: Optional[str] = None
+        # The actionState property
+        self._action_state: Optional[action_state.ActionState] = None
+        # Time the action state was last updated
+        self._last_updated_date_time: Optional[datetime] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Time the action was initiated
+        self._start_date_time: Optional[datetime] = None
+    
     @property
     def action_name(self,) -> Optional[str]:
         """
@@ -61,24 +79,6 @@ class VppTokenActionResult(AdditionalDataHolder, Parsable):
         """
         self._additional_data = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new vppTokenActionResult and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Action name
-        self._action_name: Optional[str] = None
-        # The actionState property
-        self._action_state: Optional[action_state.ActionState] = None
-        # Time the action state was last updated
-        self._last_updated_date_time: Optional[datetime] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Time the action was initiated
-        self._start_date_time: Optional[datetime] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> VppTokenActionResult:
         """
@@ -89,6 +89,13 @@ class VppTokenActionResult(AdditionalDataHolder, Parsable):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.vppTokenRevokeLicensesActionResult":
+                from . import vpp_token_revoke_licenses_action_result
+
+                return vpp_token_revoke_licenses_action_result.VppTokenRevokeLicensesActionResult()
         return VppTokenActionResult()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -96,7 +103,9 @@ class VppTokenActionResult(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import action_state, vpp_token_revoke_licenses_action_result
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "actionName": lambda n : setattr(self, 'action_name', n.get_str_value()),
             "actionState": lambda n : setattr(self, 'action_state', n.get_enum_value(action_state.ActionState)),
             "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),

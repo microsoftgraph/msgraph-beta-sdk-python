@@ -1,131 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-account = lazy_import('msgraph.generated.models.account')
-aged_accounts_payable = lazy_import('msgraph.generated.models.aged_accounts_payable')
-aged_accounts_receivable = lazy_import('msgraph.generated.models.aged_accounts_receivable')
-company_information = lazy_import('msgraph.generated.models.company_information')
-country_region = lazy_import('msgraph.generated.models.country_region')
-currency = lazy_import('msgraph.generated.models.currency')
-customer = lazy_import('msgraph.generated.models.customer')
-customer_payment = lazy_import('msgraph.generated.models.customer_payment')
-customer_payment_journal = lazy_import('msgraph.generated.models.customer_payment_journal')
-dimension = lazy_import('msgraph.generated.models.dimension')
-dimension_value = lazy_import('msgraph.generated.models.dimension_value')
-employee = lazy_import('msgraph.generated.models.employee')
-entity = lazy_import('msgraph.generated.models.entity')
-general_ledger_entry = lazy_import('msgraph.generated.models.general_ledger_entry')
-item = lazy_import('msgraph.generated.models.item')
-item_category = lazy_import('msgraph.generated.models.item_category')
-journal = lazy_import('msgraph.generated.models.journal')
-journal_line = lazy_import('msgraph.generated.models.journal_line')
-payment_method = lazy_import('msgraph.generated.models.payment_method')
-payment_term = lazy_import('msgraph.generated.models.payment_term')
-picture = lazy_import('msgraph.generated.models.picture')
-purchase_invoice = lazy_import('msgraph.generated.models.purchase_invoice')
-purchase_invoice_line = lazy_import('msgraph.generated.models.purchase_invoice_line')
-sales_credit_memo = lazy_import('msgraph.generated.models.sales_credit_memo')
-sales_credit_memo_line = lazy_import('msgraph.generated.models.sales_credit_memo_line')
-sales_invoice = lazy_import('msgraph.generated.models.sales_invoice')
-sales_invoice_line = lazy_import('msgraph.generated.models.sales_invoice_line')
-sales_order = lazy_import('msgraph.generated.models.sales_order')
-sales_order_line = lazy_import('msgraph.generated.models.sales_order_line')
-sales_quote = lazy_import('msgraph.generated.models.sales_quote')
-sales_quote_line = lazy_import('msgraph.generated.models.sales_quote_line')
-shipment_method = lazy_import('msgraph.generated.models.shipment_method')
-tax_area = lazy_import('msgraph.generated.models.tax_area')
-tax_group = lazy_import('msgraph.generated.models.tax_group')
-unit_of_measure = lazy_import('msgraph.generated.models.unit_of_measure')
-vendor = lazy_import('msgraph.generated.models.vendor')
+if TYPE_CHECKING:
+    from . import account, aged_accounts_payable, aged_accounts_receivable, company_information, country_region, currency, customer, customer_payment, customer_payment_journal, dimension, dimension_value, employee, entity, general_ledger_entry, item, item_category, journal, journal_line, payment_method, payment_term, picture, purchase_invoice, purchase_invoice_line, sales_credit_memo, sales_credit_memo_line, sales_invoice, sales_invoice_line, sales_order, sales_order_line, sales_quote, sales_quote_line, shipment_method, tax_area, tax_group, unit_of_measure, vendor
+
+from . import entity
 
 class Company(entity.Entity):
-    @property
-    def accounts(self,) -> Optional[List[account.Account]]:
-        """
-        Gets the accounts property value. The accounts property
-        Returns: Optional[List[account.Account]]
-        """
-        return self._accounts
-    
-    @accounts.setter
-    def accounts(self,value: Optional[List[account.Account]] = None) -> None:
-        """
-        Sets the accounts property value. The accounts property
-        Args:
-            value: Value to set for the accounts property.
-        """
-        self._accounts = value
-    
-    @property
-    def aged_accounts_payable(self,) -> Optional[List[aged_accounts_payable.AgedAccountsPayable]]:
-        """
-        Gets the agedAccountsPayable property value. The agedAccountsPayable property
-        Returns: Optional[List[aged_accounts_payable.AgedAccountsPayable]]
-        """
-        return self._aged_accounts_payable
-    
-    @aged_accounts_payable.setter
-    def aged_accounts_payable(self,value: Optional[List[aged_accounts_payable.AgedAccountsPayable]] = None) -> None:
-        """
-        Sets the agedAccountsPayable property value. The agedAccountsPayable property
-        Args:
-            value: Value to set for the aged_accounts_payable property.
-        """
-        self._aged_accounts_payable = value
-    
-    @property
-    def aged_accounts_receivable(self,) -> Optional[List[aged_accounts_receivable.AgedAccountsReceivable]]:
-        """
-        Gets the agedAccountsReceivable property value. The agedAccountsReceivable property
-        Returns: Optional[List[aged_accounts_receivable.AgedAccountsReceivable]]
-        """
-        return self._aged_accounts_receivable
-    
-    @aged_accounts_receivable.setter
-    def aged_accounts_receivable(self,value: Optional[List[aged_accounts_receivable.AgedAccountsReceivable]] = None) -> None:
-        """
-        Sets the agedAccountsReceivable property value. The agedAccountsReceivable property
-        Args:
-            value: Value to set for the aged_accounts_receivable property.
-        """
-        self._aged_accounts_receivable = value
-    
-    @property
-    def business_profile_id(self,) -> Optional[str]:
-        """
-        Gets the businessProfileId property value. The businessProfileId property
-        Returns: Optional[str]
-        """
-        return self._business_profile_id
-    
-    @business_profile_id.setter
-    def business_profile_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the businessProfileId property value. The businessProfileId property
-        Args:
-            value: Value to set for the business_profile_id property.
-        """
-        self._business_profile_id = value
-    
-    @property
-    def company_information(self,) -> Optional[List[company_information.CompanyInformation]]:
-        """
-        Gets the companyInformation property value. The companyInformation property
-        Returns: Optional[List[company_information.CompanyInformation]]
-        """
-        return self._company_information
-    
-    @company_information.setter
-    def company_information(self,value: Optional[List[company_information.CompanyInformation]] = None) -> None:
-        """
-        Sets the companyInformation property value. The companyInformation property
-        Args:
-            value: Value to set for the company_information property.
-        """
-        self._company_information = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new company and sets the default values.
@@ -211,6 +93,91 @@ class Company(entity.Entity):
         self._units_of_measure: Optional[List[unit_of_measure.UnitOfMeasure]] = None
         # The vendors property
         self._vendors: Optional[List[vendor.Vendor]] = None
+    
+    @property
+    def accounts(self,) -> Optional[List[account.Account]]:
+        """
+        Gets the accounts property value. The accounts property
+        Returns: Optional[List[account.Account]]
+        """
+        return self._accounts
+    
+    @accounts.setter
+    def accounts(self,value: Optional[List[account.Account]] = None) -> None:
+        """
+        Sets the accounts property value. The accounts property
+        Args:
+            value: Value to set for the accounts property.
+        """
+        self._accounts = value
+    
+    @property
+    def aged_accounts_payable(self,) -> Optional[List[aged_accounts_payable.AgedAccountsPayable]]:
+        """
+        Gets the agedAccountsPayable property value. The agedAccountsPayable property
+        Returns: Optional[List[aged_accounts_payable.AgedAccountsPayable]]
+        """
+        return self._aged_accounts_payable
+    
+    @aged_accounts_payable.setter
+    def aged_accounts_payable(self,value: Optional[List[aged_accounts_payable.AgedAccountsPayable]] = None) -> None:
+        """
+        Sets the agedAccountsPayable property value. The agedAccountsPayable property
+        Args:
+            value: Value to set for the aged_accounts_payable property.
+        """
+        self._aged_accounts_payable = value
+    
+    @property
+    def aged_accounts_receivable(self,) -> Optional[List[aged_accounts_receivable.AgedAccountsReceivable]]:
+        """
+        Gets the agedAccountsReceivable property value. The agedAccountsReceivable property
+        Returns: Optional[List[aged_accounts_receivable.AgedAccountsReceivable]]
+        """
+        return self._aged_accounts_receivable
+    
+    @aged_accounts_receivable.setter
+    def aged_accounts_receivable(self,value: Optional[List[aged_accounts_receivable.AgedAccountsReceivable]] = None) -> None:
+        """
+        Sets the agedAccountsReceivable property value. The agedAccountsReceivable property
+        Args:
+            value: Value to set for the aged_accounts_receivable property.
+        """
+        self._aged_accounts_receivable = value
+    
+    @property
+    def business_profile_id(self,) -> Optional[str]:
+        """
+        Gets the businessProfileId property value. The businessProfileId property
+        Returns: Optional[str]
+        """
+        return self._business_profile_id
+    
+    @business_profile_id.setter
+    def business_profile_id(self,value: Optional[str] = None) -> None:
+        """
+        Sets the businessProfileId property value. The businessProfileId property
+        Args:
+            value: Value to set for the business_profile_id property.
+        """
+        self._business_profile_id = value
+    
+    @property
+    def company_information(self,) -> Optional[List[company_information.CompanyInformation]]:
+        """
+        Gets the companyInformation property value. The companyInformation property
+        Returns: Optional[List[company_information.CompanyInformation]]
+        """
+        return self._company_information
+    
+    @company_information.setter
+    def company_information(self,value: Optional[List[company_information.CompanyInformation]] = None) -> None:
+        """
+        Sets the companyInformation property value. The companyInformation property
+        Args:
+            value: Value to set for the company_information property.
+        """
+        self._company_information = value
     
     @property
     def countries_regions(self,) -> Optional[List[country_region.CountryRegion]]:
@@ -399,7 +366,9 @@ class Company(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import account, aged_accounts_payable, aged_accounts_receivable, company_information, country_region, currency, customer, customer_payment, customer_payment_journal, dimension, dimension_value, employee, entity, general_ledger_entry, item, item_category, journal, journal_line, payment_method, payment_term, picture, purchase_invoice, purchase_invoice_line, sales_credit_memo, sales_credit_memo_line, sales_invoice, sales_invoice_line, sales_order, sales_order_line, sales_quote, sales_quote_line, shipment_method, tax_area, tax_group, unit_of_measure, vendor
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accounts": lambda n : setattr(self, 'accounts', n.get_collection_of_object_values(account.Account)),
             "agedAccountsPayable": lambda n : setattr(self, 'aged_accounts_payable', n.get_collection_of_object_values(aged_accounts_payable.AgedAccountsPayable)),
             "agedAccountsReceivable": lambda n : setattr(self, 'aged_accounts_receivable', n.get_collection_of_object_values(aged_accounts_receivable.AgedAccountsReceivable)),

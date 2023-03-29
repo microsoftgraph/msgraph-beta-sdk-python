@@ -1,12 +1,30 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_certificate_profile_base = lazy_import('msgraph.generated.models.android_certificate_profile_base')
-managed_device_certificate_state = lazy_import('msgraph.generated.models.managed_device_certificate_state')
+if TYPE_CHECKING:
+    from . import android_certificate_profile_base, managed_device_certificate_state
+
+from . import android_certificate_profile_base
 
 class AndroidPkcsCertificateProfile(android_certificate_profile_base.AndroidCertificateProfileBase):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new AndroidPkcsCertificateProfile and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.androidPkcsCertificateProfile"
+        # PKCS Certificate Template Name
+        self._certificate_template_name: Optional[str] = None
+        # PKCS Certification Authority
+        self._certification_authority: Optional[str] = None
+        # PKCS Certification Authority Name
+        self._certification_authority_name: Optional[str] = None
+        # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
+        self._managed_device_certificate_states: Optional[List[managed_device_certificate_state.ManagedDeviceCertificateState]] = None
+        # Custom String that defines the AAD Attribute.
+        self._subject_alternative_name_format_string: Optional[str] = None
+    
     @property
     def certificate_template_name(self,) -> Optional[str]:
         """
@@ -58,23 +76,6 @@ class AndroidPkcsCertificateProfile(android_certificate_profile_base.AndroidCert
         """
         self._certification_authority_name = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AndroidPkcsCertificateProfile and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.androidPkcsCertificateProfile"
-        # PKCS Certificate Template Name
-        self._certificate_template_name: Optional[str] = None
-        # PKCS Certification Authority
-        self._certification_authority: Optional[str] = None
-        # PKCS Certification Authority Name
-        self._certification_authority_name: Optional[str] = None
-        # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
-        self._managed_device_certificate_states: Optional[List[managed_device_certificate_state.ManagedDeviceCertificateState]] = None
-        # Custom String that defines the AAD Attribute.
-        self._subject_alternative_name_format_string: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidPkcsCertificateProfile:
         """
@@ -92,7 +93,9 @@ class AndroidPkcsCertificateProfile(android_certificate_profile_base.AndroidCert
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_certificate_profile_base, managed_device_certificate_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "certificateTemplateName": lambda n : setattr(self, 'certificate_template_name', n.get_str_value()),
             "certificationAuthority": lambda n : setattr(self, 'certification_authority', n.get_str_value()),
             "certificationAuthorityName": lambda n : setattr(self, 'certification_authority_name', n.get_str_value()),

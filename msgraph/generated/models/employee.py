@@ -1,48 +1,14 @@
 from __future__ import annotations
 from datetime import date, datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-picture = lazy_import('msgraph.generated.models.picture')
-postal_address_type = lazy_import('msgraph.generated.models.postal_address_type')
+if TYPE_CHECKING:
+    from . import entity, picture, postal_address_type
+
+from . import entity
 
 class Employee(entity.Entity):
-    @property
-    def address(self,) -> Optional[postal_address_type.PostalAddressType]:
-        """
-        Gets the address property value. The address property
-        Returns: Optional[postal_address_type.PostalAddressType]
-        """
-        return self._address
-    
-    @address.setter
-    def address(self,value: Optional[postal_address_type.PostalAddressType] = None) -> None:
-        """
-        Sets the address property value. The address property
-        Args:
-            value: Value to set for the address property.
-        """
-        self._address = value
-    
-    @property
-    def birth_date(self,) -> Optional[Date]:
-        """
-        Gets the birthDate property value. The birthDate property
-        Returns: Optional[Date]
-        """
-        return self._birth_date
-    
-    @birth_date.setter
-    def birth_date(self,value: Optional[Date] = None) -> None:
-        """
-        Sets the birthDate property value. The birthDate property
-        Args:
-            value: Value to set for the birth_date property.
-        """
-        self._birth_date = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new employee and sets the default values.
@@ -51,13 +17,13 @@ class Employee(entity.Entity):
         # The address property
         self._address: Optional[postal_address_type.PostalAddressType] = None
         # The birthDate property
-        self._birth_date: Optional[Date] = None
+        self._birth_date: Optional[date] = None
         # The displayName property
         self._display_name: Optional[str] = None
         # The email property
         self._email: Optional[str] = None
         # The employmentDate property
-        self._employment_date: Optional[Date] = None
+        self._employment_date: Optional[date] = None
         # The givenName property
         self._given_name: Optional[str] = None
         # The jobTitle property
@@ -85,7 +51,41 @@ class Employee(entity.Entity):
         # The surname property
         self._surname: Optional[str] = None
         # The terminationDate property
-        self._termination_date: Optional[Date] = None
+        self._termination_date: Optional[date] = None
+    
+    @property
+    def address(self,) -> Optional[postal_address_type.PostalAddressType]:
+        """
+        Gets the address property value. The address property
+        Returns: Optional[postal_address_type.PostalAddressType]
+        """
+        return self._address
+    
+    @address.setter
+    def address(self,value: Optional[postal_address_type.PostalAddressType] = None) -> None:
+        """
+        Sets the address property value. The address property
+        Args:
+            value: Value to set for the address property.
+        """
+        self._address = value
+    
+    @property
+    def birth_date(self,) -> Optional[date]:
+        """
+        Gets the birthDate property value. The birthDate property
+        Returns: Optional[date]
+        """
+        return self._birth_date
+    
+    @birth_date.setter
+    def birth_date(self,value: Optional[date] = None) -> None:
+        """
+        Sets the birthDate property value. The birthDate property
+        Args:
+            value: Value to set for the birth_date property.
+        """
+        self._birth_date = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Employee:
@@ -134,15 +134,15 @@ class Employee(entity.Entity):
         self._email = value
     
     @property
-    def employment_date(self,) -> Optional[Date]:
+    def employment_date(self,) -> Optional[date]:
         """
         Gets the employmentDate property value. The employmentDate property
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._employment_date
     
     @employment_date.setter
-    def employment_date(self,value: Optional[Date] = None) -> None:
+    def employment_date(self,value: Optional[date] = None) -> None:
         """
         Sets the employmentDate property value. The employmentDate property
         Args:
@@ -155,12 +155,14 @@ class Employee(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, picture, postal_address_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "address": lambda n : setattr(self, 'address', n.get_object_value(postal_address_type.PostalAddressType)),
-            "birthDate": lambda n : setattr(self, 'birth_date', n.get_object_value(Date)),
+            "birthDate": lambda n : setattr(self, 'birth_date', n.get_date_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
-            "employmentDate": lambda n : setattr(self, 'employment_date', n.get_object_value(Date)),
+            "employmentDate": lambda n : setattr(self, 'employment_date', n.get_date_value()),
             "givenName": lambda n : setattr(self, 'given_name', n.get_str_value()),
             "jobTitle": lambda n : setattr(self, 'job_title', n.get_str_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
@@ -173,7 +175,7 @@ class Employee(entity.Entity):
             "statisticsGroupCode": lambda n : setattr(self, 'statistics_group_code', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_str_value()),
             "surname": lambda n : setattr(self, 'surname', n.get_str_value()),
-            "terminationDate": lambda n : setattr(self, 'termination_date', n.get_object_value(Date)),
+            "terminationDate": lambda n : setattr(self, 'termination_date', n.get_date_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -342,10 +344,10 @@ class Employee(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_object_value("address", self.address)
-        writer.write_object_value("birthDate", self.birth_date)
+        writer.write_date_value("birthDate", self.birth_date)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("email", self.email)
-        writer.write_object_value("employmentDate", self.employment_date)
+        writer.write_date_value("employmentDate", self.employment_date)
         writer.write_str_value("givenName", self.given_name)
         writer.write_str_value("jobTitle", self.job_title)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
@@ -358,7 +360,7 @@ class Employee(entity.Entity):
         writer.write_str_value("statisticsGroupCode", self.statistics_group_code)
         writer.write_str_value("status", self.status)
         writer.write_str_value("surname", self.surname)
-        writer.write_object_value("terminationDate", self.termination_date)
+        writer.write_date_value("terminationDate", self.termination_date)
     
     @property
     def statistics_group_code(self,) -> Optional[str]:
@@ -412,15 +414,15 @@ class Employee(entity.Entity):
         self._surname = value
     
     @property
-    def termination_date(self,) -> Optional[Date]:
+    def termination_date(self,) -> Optional[date]:
         """
         Gets the terminationDate property value. The terminationDate property
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._termination_date
     
     @termination_date.setter
-    def termination_date(self,value: Optional[Date] = None) -> None:
+    def termination_date(self,value: Optional[date] = None) -> None:
         """
         Sets the terminationDate property value. The terminationDate property
         Args:

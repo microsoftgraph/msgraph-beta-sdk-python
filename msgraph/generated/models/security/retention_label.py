@@ -1,54 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-identity_set = lazy_import('msgraph.generated.models.identity_set')
-action_after_retention_period = lazy_import('msgraph.generated.models.security.action_after_retention_period')
-behavior_during_retention_period = lazy_import('msgraph.generated.models.security.behavior_during_retention_period')
-default_record_behavior = lazy_import('msgraph.generated.models.security.default_record_behavior')
-disposition_review_stage = lazy_import('msgraph.generated.models.security.disposition_review_stage')
-retention_duration = lazy_import('msgraph.generated.models.security.retention_duration')
-retention_event_type = lazy_import('msgraph.generated.models.security.retention_event_type')
-retention_trigger = lazy_import('msgraph.generated.models.security.retention_trigger')
+if TYPE_CHECKING:
+    from . import action_after_retention_period, behavior_during_retention_period, default_record_behavior, disposition_review_stage, retention_duration, retention_event_type, retention_trigger
+    from .. import entity, identity_set
+
+from .. import entity
 
 class RetentionLabel(entity.Entity):
-    @property
-    def action_after_retention_period(self,) -> Optional[action_after_retention_period.ActionAfterRetentionPeriod]:
-        """
-        Gets the actionAfterRetentionPeriod property value. Specifies the action to take on a document with this label applied during the retention period. The possible values are: none, delete, startDispositionReview, unknownFutureValue.
-        Returns: Optional[action_after_retention_period.ActionAfterRetentionPeriod]
-        """
-        return self._action_after_retention_period
-    
-    @action_after_retention_period.setter
-    def action_after_retention_period(self,value: Optional[action_after_retention_period.ActionAfterRetentionPeriod] = None) -> None:
-        """
-        Sets the actionAfterRetentionPeriod property value. Specifies the action to take on a document with this label applied during the retention period. The possible values are: none, delete, startDispositionReview, unknownFutureValue.
-        Args:
-            value: Value to set for the action_after_retention_period property.
-        """
-        self._action_after_retention_period = value
-    
-    @property
-    def behavior_during_retention_period(self,) -> Optional[behavior_during_retention_period.BehaviorDuringRetentionPeriod]:
-        """
-        Gets the behaviorDuringRetentionPeriod property value. Specifies how the behavior of a document with this label should be during the retention period. The possible values are: doNotRetain, retain, retainAsRecord, retainAsRegulatoryRecord, unknownFutureValue.
-        Returns: Optional[behavior_during_retention_period.BehaviorDuringRetentionPeriod]
-        """
-        return self._behavior_during_retention_period
-    
-    @behavior_during_retention_period.setter
-    def behavior_during_retention_period(self,value: Optional[behavior_during_retention_period.BehaviorDuringRetentionPeriod] = None) -> None:
-        """
-        Sets the behaviorDuringRetentionPeriod property value. Specifies how the behavior of a document with this label should be during the retention period. The possible values are: doNotRetain, retain, retainAsRecord, retainAsRegulatoryRecord, unknownFutureValue.
-        Args:
-            value: Value to set for the behavior_during_retention_period property.
-        """
-        self._behavior_during_retention_period = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new retentionLabel and sets the default values.
@@ -88,6 +49,40 @@ class RetentionLabel(entity.Entity):
         self._retention_event_type: Optional[retention_event_type.RetentionEventType] = None
         # Specifies whether the retention duration is calculated from the content creation date, labeled date, or last modification date. The possible values are: dateLabeled, dateCreated, dateModified, dateOfEvent, unknownFutureValue.
         self._retention_trigger: Optional[retention_trigger.RetentionTrigger] = None
+    
+    @property
+    def action_after_retention_period(self,) -> Optional[action_after_retention_period.ActionAfterRetentionPeriod]:
+        """
+        Gets the actionAfterRetentionPeriod property value. Specifies the action to take on a document with this label applied during the retention period. The possible values are: none, delete, startDispositionReview, unknownFutureValue.
+        Returns: Optional[action_after_retention_period.ActionAfterRetentionPeriod]
+        """
+        return self._action_after_retention_period
+    
+    @action_after_retention_period.setter
+    def action_after_retention_period(self,value: Optional[action_after_retention_period.ActionAfterRetentionPeriod] = None) -> None:
+        """
+        Sets the actionAfterRetentionPeriod property value. Specifies the action to take on a document with this label applied during the retention period. The possible values are: none, delete, startDispositionReview, unknownFutureValue.
+        Args:
+            value: Value to set for the action_after_retention_period property.
+        """
+        self._action_after_retention_period = value
+    
+    @property
+    def behavior_during_retention_period(self,) -> Optional[behavior_during_retention_period.BehaviorDuringRetentionPeriod]:
+        """
+        Gets the behaviorDuringRetentionPeriod property value. Specifies how the behavior of a document with this label should be during the retention period. The possible values are: doNotRetain, retain, retainAsRecord, retainAsRegulatoryRecord, unknownFutureValue.
+        Returns: Optional[behavior_during_retention_period.BehaviorDuringRetentionPeriod]
+        """
+        return self._behavior_during_retention_period
+    
+    @behavior_during_retention_period.setter
+    def behavior_during_retention_period(self,value: Optional[behavior_during_retention_period.BehaviorDuringRetentionPeriod] = None) -> None:
+        """
+        Sets the behaviorDuringRetentionPeriod property value. Specifies how the behavior of a document with this label should be during the retention period. The possible values are: doNotRetain, retain, retainAsRecord, retainAsRegulatoryRecord, unknownFutureValue.
+        Args:
+            value: Value to set for the behavior_during_retention_period property.
+        """
+        self._behavior_during_retention_period = value
     
     @property
     def created_by(self,) -> Optional[identity_set.IdentitySet]:
@@ -225,7 +220,10 @@ class RetentionLabel(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import action_after_retention_period, behavior_during_retention_period, default_record_behavior, disposition_review_stage, retention_duration, retention_event_type, retention_trigger
+        from .. import entity, identity_set
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "actionAfterRetentionPeriod": lambda n : setattr(self, 'action_after_retention_period', n.get_enum_value(action_after_retention_period.ActionAfterRetentionPeriod)),
             "behaviorDuringRetentionPeriod": lambda n : setattr(self, 'behavior_during_retention_period', n.get_enum_value(behavior_during_retention_period.BehaviorDuringRetentionPeriod)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),

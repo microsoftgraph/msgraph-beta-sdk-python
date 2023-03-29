@@ -1,16 +1,54 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-file_hash = lazy_import('msgraph.generated.models.file_hash')
-malware_state = lazy_import('msgraph.generated.models.malware_state')
-security_vendor_information = lazy_import('msgraph.generated.models.security_vendor_information')
-vulnerability_state = lazy_import('msgraph.generated.models.vulnerability_state')
+if TYPE_CHECKING:
+    from . import entity, file_hash, malware_state, security_vendor_information, vulnerability_state
+
+from . import entity
 
 class FileSecurityProfile(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new fileSecurityProfile and sets the default values.
+        """
+        super().__init__()
+        # The activityGroupNames property
+        self._activity_group_names: Optional[List[str]] = None
+        # The azureSubscriptionId property
+        self._azure_subscription_id: Optional[str] = None
+        # The azureTenantId property
+        self._azure_tenant_id: Optional[str] = None
+        # The certificateThumbprint property
+        self._certificate_thumbprint: Optional[str] = None
+        # The extensions property
+        self._extensions: Optional[List[str]] = None
+        # The fileType property
+        self._file_type: Optional[str] = None
+        # The firstSeenDateTime property
+        self._first_seen_date_time: Optional[datetime] = None
+        # The hashes property
+        self._hashes: Optional[List[file_hash.FileHash]] = None
+        # The lastSeenDateTime property
+        self._last_seen_date_time: Optional[datetime] = None
+        # The malwareStates property
+        self._malware_states: Optional[List[malware_state.MalwareState]] = None
+        # The names property
+        self._names: Optional[List[str]] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The riskScore property
+        self._risk_score: Optional[str] = None
+        # The size property
+        self._size: Optional[int] = None
+        # The tags property
+        self._tags: Optional[List[str]] = None
+        # The vendorInformation property
+        self._vendor_information: Optional[security_vendor_information.SecurityVendorInformation] = None
+        # The vulnerabilityStates property
+        self._vulnerability_states: Optional[List[vulnerability_state.VulnerabilityState]] = None
+    
     @property
     def activity_group_names(self,) -> Optional[List[str]]:
         """
@@ -78,46 +116,6 @@ class FileSecurityProfile(entity.Entity):
             value: Value to set for the certificate_thumbprint property.
         """
         self._certificate_thumbprint = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new fileSecurityProfile and sets the default values.
-        """
-        super().__init__()
-        # The activityGroupNames property
-        self._activity_group_names: Optional[List[str]] = None
-        # The azureSubscriptionId property
-        self._azure_subscription_id: Optional[str] = None
-        # The azureTenantId property
-        self._azure_tenant_id: Optional[str] = None
-        # The certificateThumbprint property
-        self._certificate_thumbprint: Optional[str] = None
-        # The extensions property
-        self._extensions: Optional[List[str]] = None
-        # The fileType property
-        self._file_type: Optional[str] = None
-        # The firstSeenDateTime property
-        self._first_seen_date_time: Optional[datetime] = None
-        # The hashes property
-        self._hashes: Optional[List[file_hash.FileHash]] = None
-        # The lastSeenDateTime property
-        self._last_seen_date_time: Optional[datetime] = None
-        # The malwareStates property
-        self._malware_states: Optional[List[malware_state.MalwareState]] = None
-        # The names property
-        self._names: Optional[List[str]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The riskScore property
-        self._risk_score: Optional[str] = None
-        # The size property
-        self._size: Optional[int] = None
-        # The tags property
-        self._tags: Optional[List[str]] = None
-        # The vendorInformation property
-        self._vendor_information: Optional[security_vendor_information.SecurityVendorInformation] = None
-        # The vulnerabilityStates property
-        self._vulnerability_states: Optional[List[vulnerability_state.VulnerabilityState]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> FileSecurityProfile:
@@ -187,7 +185,9 @@ class FileSecurityProfile(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, file_hash, malware_state, security_vendor_information, vulnerability_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "activityGroupNames": lambda n : setattr(self, 'activity_group_names', n.get_collection_of_primitive_values(str)),
             "azureSubscriptionId": lambda n : setattr(self, 'azure_subscription_id', n.get_str_value()),
             "azureTenantId": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),

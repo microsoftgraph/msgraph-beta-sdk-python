@@ -7,83 +7,27 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-ediscovery_activate_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.ediscovery_activate.ediscovery_activate_request_builder')
-ediscovery_apply_hold_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.ediscovery_apply_hold.ediscovery_apply_hold_request_builder')
-ediscovery_release_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.ediscovery_release.ediscovery_release_request_builder')
-ediscovery_remove_hold_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.ediscovery_remove_hold.ediscovery_remove_hold_request_builder')
-ediscovery_update_index_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.ediscovery_update_index.ediscovery_update_index_request_builder')
-site_sources_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.site_sources.site_sources_request_builder')
-site_source_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.site_sources.item.site_source_item_request_builder')
-unified_group_sources_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.unified_group_sources.unified_group_sources_request_builder')
-unified_group_source_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.unified_group_sources.item.unified_group_source_item_request_builder')
-user_sources_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.user_sources.user_sources_request_builder')
-user_source_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.user_sources.item.user_source_item_request_builder')
-custodian = lazy_import('msgraph.generated.models.ediscovery.custodian')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from .......models.ediscovery import custodian
+    from .......models.o_data_errors import o_data_error
+    from .ediscovery_activate import ediscovery_activate_request_builder
+    from .ediscovery_apply_hold import ediscovery_apply_hold_request_builder
+    from .ediscovery_release import ediscovery_release_request_builder
+    from .ediscovery_remove_hold import ediscovery_remove_hold_request_builder
+    from .ediscovery_update_index import ediscovery_update_index_request_builder
+    from .site_sources import site_sources_request_builder
+    from .site_sources.item import site_source_item_request_builder
+    from .unified_group_sources import unified_group_sources_request_builder
+    from .unified_group_sources.item import unified_group_source_item_request_builder
+    from .user_sources import user_sources_request_builder
+    from .user_sources.item import user_source_item_request_builder
 
 class CustodianItemRequestBuilder():
     """
     Provides operations to manage the custodians property of the microsoft.graph.ediscovery.case entity.
     """
-    @property
-    def ediscovery_activate(self) -> ediscovery_activate_request_builder.EdiscoveryActivateRequestBuilder:
-        """
-        Provides operations to call the activate method.
-        """
-        return ediscovery_activate_request_builder.EdiscoveryActivateRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def ediscovery_apply_hold(self) -> ediscovery_apply_hold_request_builder.EdiscoveryApplyHoldRequestBuilder:
-        """
-        Provides operations to call the applyHold method.
-        """
-        return ediscovery_apply_hold_request_builder.EdiscoveryApplyHoldRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def ediscovery_release(self) -> ediscovery_release_request_builder.EdiscoveryReleaseRequestBuilder:
-        """
-        Provides operations to call the release method.
-        """
-        return ediscovery_release_request_builder.EdiscoveryReleaseRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def ediscovery_remove_hold(self) -> ediscovery_remove_hold_request_builder.EdiscoveryRemoveHoldRequestBuilder:
-        """
-        Provides operations to call the removeHold method.
-        """
-        return ediscovery_remove_hold_request_builder.EdiscoveryRemoveHoldRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def ediscovery_update_index(self) -> ediscovery_update_index_request_builder.EdiscoveryUpdateIndexRequestBuilder:
-        """
-        Provides operations to call the updateIndex method.
-        """
-        return ediscovery_update_index_request_builder.EdiscoveryUpdateIndexRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def site_sources(self) -> site_sources_request_builder.SiteSourcesRequestBuilder:
-        """
-        Provides operations to manage the siteSources property of the microsoft.graph.ediscovery.custodian entity.
-        """
-        return site_sources_request_builder.SiteSourcesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def unified_group_sources(self) -> unified_group_sources_request_builder.UnifiedGroupSourcesRequestBuilder:
-        """
-        Provides operations to manage the unifiedGroupSources property of the microsoft.graph.ediscovery.custodian entity.
-        """
-        return unified_group_sources_request_builder.UnifiedGroupSourcesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def user_sources(self) -> user_sources_request_builder.UserSourcesRequestBuilder:
-        """
-        Provides operations to manage the userSources property of the microsoft.graph.ediscovery.custodian entity.
-        """
-        return user_sources_request_builder.UserSourcesRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new CustodianItemRequestBuilder and sets the default values.
@@ -111,6 +55,8 @@ class CustodianItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -129,12 +75,16 @@ class CustodianItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .......models.ediscovery import custodian
+
         return await self.request_adapter.send_async(request_info, custodian.Custodian, error_mapping)
     
     async def patch(self,body: Optional[custodian.Custodian] = None, request_configuration: Optional[CustodianItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[custodian.Custodian]:
@@ -150,12 +100,16 @@ class CustodianItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .......models.ediscovery import custodian
+
         return await self.request_adapter.send_async(request_info, custodian.Custodian, error_mapping)
     
     def site_sources_by_id(self,id: str) -> site_source_item_request_builder.SiteSourceItemRequestBuilder:
@@ -167,6 +121,8 @@ class CustodianItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .site_sources.item import site_source_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["siteSource%2Did"] = id
         return site_source_item_request_builder.SiteSourceItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -235,6 +191,8 @@ class CustodianItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .unified_group_sources.item import unified_group_source_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["unifiedGroupSource%2Did"] = id
         return unified_group_source_item_request_builder.UnifiedGroupSourceItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -248,9 +206,83 @@ class CustodianItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .user_sources.item import user_source_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["userSource%2Did"] = id
         return user_source_item_request_builder.UserSourceItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    @property
+    def ediscovery_activate(self) -> ediscovery_activate_request_builder.EdiscoveryActivateRequestBuilder:
+        """
+        Provides operations to call the activate method.
+        """
+        from .ediscovery_activate import ediscovery_activate_request_builder
+
+        return ediscovery_activate_request_builder.EdiscoveryActivateRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def ediscovery_apply_hold(self) -> ediscovery_apply_hold_request_builder.EdiscoveryApplyHoldRequestBuilder:
+        """
+        Provides operations to call the applyHold method.
+        """
+        from .ediscovery_apply_hold import ediscovery_apply_hold_request_builder
+
+        return ediscovery_apply_hold_request_builder.EdiscoveryApplyHoldRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def ediscovery_release(self) -> ediscovery_release_request_builder.EdiscoveryReleaseRequestBuilder:
+        """
+        Provides operations to call the release method.
+        """
+        from .ediscovery_release import ediscovery_release_request_builder
+
+        return ediscovery_release_request_builder.EdiscoveryReleaseRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def ediscovery_remove_hold(self) -> ediscovery_remove_hold_request_builder.EdiscoveryRemoveHoldRequestBuilder:
+        """
+        Provides operations to call the removeHold method.
+        """
+        from .ediscovery_remove_hold import ediscovery_remove_hold_request_builder
+
+        return ediscovery_remove_hold_request_builder.EdiscoveryRemoveHoldRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def ediscovery_update_index(self) -> ediscovery_update_index_request_builder.EdiscoveryUpdateIndexRequestBuilder:
+        """
+        Provides operations to call the updateIndex method.
+        """
+        from .ediscovery_update_index import ediscovery_update_index_request_builder
+
+        return ediscovery_update_index_request_builder.EdiscoveryUpdateIndexRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def site_sources(self) -> site_sources_request_builder.SiteSourcesRequestBuilder:
+        """
+        Provides operations to manage the siteSources property of the microsoft.graph.ediscovery.custodian entity.
+        """
+        from .site_sources import site_sources_request_builder
+
+        return site_sources_request_builder.SiteSourcesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def unified_group_sources(self) -> unified_group_sources_request_builder.UnifiedGroupSourcesRequestBuilder:
+        """
+        Provides operations to manage the unifiedGroupSources property of the microsoft.graph.ediscovery.custodian entity.
+        """
+        from .unified_group_sources import unified_group_sources_request_builder
+
+        return unified_group_sources_request_builder.UnifiedGroupSourcesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def user_sources(self) -> user_sources_request_builder.UserSourcesRequestBuilder:
+        """
+        Provides operations to manage the userSources property of the microsoft.graph.ediscovery.custodian entity.
+        """
+        from .user_sources import user_sources_request_builder
+
+        return user_sources_request_builder.UserSourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class CustodianItemRequestBuilderDeleteRequestConfiguration():
@@ -269,12 +301,6 @@ class CustodianItemRequestBuilder():
         """
         Returns a list of case custodian objects for this case.  Nullable.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -290,6 +316,12 @@ class CustodianItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class CustodianItemRequestBuilderGetRequestConfiguration():

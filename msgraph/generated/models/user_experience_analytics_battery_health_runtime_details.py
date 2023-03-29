@@ -1,12 +1,32 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class UserExperienceAnalyticsBatteryHealthRuntimeDetails(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new userExperienceAnalyticsBatteryHealthRuntimeDetails and sets the default values.
+        """
+        super().__init__()
+        # Number of active devices within the tenant. Valid values -2147483648 to 2147483647
+        self._active_devices: Optional[int] = None
+        # Number of devices whose active runtime is greater than 3 hours but lesser than 5 hours. Valid values -2147483648 to 2147483647
+        self._battery_runtime_fair: Optional[int] = None
+        # Number of devices  whose active runtime is greater than 5 hours. Valid values -2147483648 to 2147483647
+        self._battery_runtime_good: Optional[int] = None
+        # Number of devices whose active runtime is lesser than 3 hours. Valid values -2147483648 to 2147483647
+        self._battery_runtime_poor: Optional[int] = None
+        # Recorded date time of this runtime details instance.
+        self._last_refreshed_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def active_devices(self,) -> Optional[int]:
         """
@@ -75,24 +95,6 @@ class UserExperienceAnalyticsBatteryHealthRuntimeDetails(entity.Entity):
         """
         self._battery_runtime_poor = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsBatteryHealthRuntimeDetails and sets the default values.
-        """
-        super().__init__()
-        # Number of active devices within the tenant. Valid values -2147483648 to 2147483647
-        self._active_devices: Optional[int] = None
-        # Number of devices whose active runtime is greater than 3 hours but lesser than 5 hours. Valid values -2147483648 to 2147483647
-        self._battery_runtime_fair: Optional[int] = None
-        # Number of devices  whose active runtime is greater than 5 hours. Valid values -2147483648 to 2147483647
-        self._battery_runtime_good: Optional[int] = None
-        # Number of devices whose active runtime is lesser than 3 hours. Valid values -2147483648 to 2147483647
-        self._battery_runtime_poor: Optional[int] = None
-        # Recorded date time of this runtime details instance.
-        self._last_refreshed_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsBatteryHealthRuntimeDetails:
         """
@@ -110,7 +112,9 @@ class UserExperienceAnalyticsBatteryHealthRuntimeDetails(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "activeDevices": lambda n : setattr(self, 'active_devices', n.get_int_value()),
             "batteryRuntimeFair": lambda n : setattr(self, 'battery_runtime_fair', n.get_int_value()),
             "batteryRuntimeGood": lambda n : setattr(self, 'battery_runtime_good', n.get_int_value()),

@@ -1,10 +1,12 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_health_script_time_schedule = lazy_import('msgraph.generated.models.device_health_script_time_schedule')
+if TYPE_CHECKING:
+    from . import device_health_script_time_schedule
+
+from . import device_health_script_time_schedule
 
 class DeviceHealthScriptRunOnceSchedule(device_health_script_time_schedule.DeviceHealthScriptTimeSchedule):
     def __init__(self,) -> None:
@@ -14,7 +16,7 @@ class DeviceHealthScriptRunOnceSchedule(device_health_script_time_schedule.Devic
         super().__init__()
         self.odata_type = "#microsoft.graph.deviceHealthScriptRunOnceSchedule"
         # The date the script is scheduled to run. This collection can contain a maximum of 20 elements.
-        self._date: Optional[Date] = None
+        self._date: Optional[date] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceHealthScriptRunOnceSchedule:
@@ -29,15 +31,15 @@ class DeviceHealthScriptRunOnceSchedule(device_health_script_time_schedule.Devic
         return DeviceHealthScriptRunOnceSchedule()
     
     @property
-    def date(self,) -> Optional[Date]:
+    def date(self,) -> Optional[date]:
         """
         Gets the date property value. The date the script is scheduled to run. This collection can contain a maximum of 20 elements.
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._date
     
     @date.setter
-    def date(self,value: Optional[Date] = None) -> None:
+    def date(self,value: Optional[date] = None) -> None:
         """
         Sets the date property value. The date the script is scheduled to run. This collection can contain a maximum of 20 elements.
         Args:
@@ -50,8 +52,10 @@ class DeviceHealthScriptRunOnceSchedule(device_health_script_time_schedule.Devic
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
-            "date": lambda n : setattr(self, 'date', n.get_object_value(Date)),
+        from . import device_health_script_time_schedule
+
+        fields: Dict[str, Callable[[Any], None]] = {
+            "date": lambda n : setattr(self, 'date', n.get_date_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -66,6 +70,6 @@ class DeviceHealthScriptRunOnceSchedule(device_health_script_time_schedule.Devic
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-        writer.write_object_value("date", self.date)
+        writer.write_date_value("date", self.date)
     
 

@@ -1,12 +1,44 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from .. import entity
+
+from .. import entity
 
 class AggregatedPolicyCompliance(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new aggregatedPolicyCompliance and sets the default values.
+        """
+        super().__init__()
+        # Identifier for the device compliance policy. Optional. Read-only.
+        self._compliance_policy_id: Optional[str] = None
+        # Name of the device compliance policy. Optional. Read-only.
+        self._compliance_policy_name: Optional[str] = None
+        # Platform for the device compliance policy. Possible values are: android, androidForWork, iOS, macOS, windowsPhone81, windows81AndLater, windows10AndLater, androidWorkProfile, androidAOSP, all. Optional. Read-only.
+        self._compliance_policy_platform: Optional[str] = None
+        # The type of compliance policy. Optional. Read-only.
+        self._compliance_policy_type: Optional[str] = None
+        # Date and time the entity was last updated in the multi-tenant management platform. Optional. Read-only.
+        self._last_refreshed_date_time: Optional[datetime] = None
+        # The number of devices that are in a compliant status. Optional. Read-only.
+        self._number_of_compliant_devices: Optional[int] = None
+        # The number of devices that are in an error status. Optional. Read-only.
+        self._number_of_error_devices: Optional[int] = None
+        # The number of device that are in a non-compliant status. Optional. Read-only.
+        self._number_of_non_compliant_devices: Optional[int] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The date and time the device policy was last modified. Optional. Read-only.
+        self._policy_modified_date_time: Optional[datetime] = None
+        # The display name for the managed tenant. Optional. Read-only.
+        self._tenant_display_name: Optional[str] = None
+        # The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
+        self._tenant_id: Optional[str] = None
+    
     @property
     def compliance_policy_id(self,) -> Optional[str]:
         """
@@ -75,36 +107,6 @@ class AggregatedPolicyCompliance(entity.Entity):
         """
         self._compliance_policy_type = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new aggregatedPolicyCompliance and sets the default values.
-        """
-        super().__init__()
-        # Identifier for the device compliance policy. Optional. Read-only.
-        self._compliance_policy_id: Optional[str] = None
-        # Name of the device compliance policy. Optional. Read-only.
-        self._compliance_policy_name: Optional[str] = None
-        # Platform for the device compliance policy. Possible values are: android, androidForWork, iOS, macOS, windowsPhone81, windows81AndLater, windows10AndLater, androidWorkProfile, androidAOSP, all. Optional. Read-only.
-        self._compliance_policy_platform: Optional[str] = None
-        # The type of compliance policy. Optional. Read-only.
-        self._compliance_policy_type: Optional[str] = None
-        # Date and time the entity was last updated in the multi-tenant management platform. Optional. Read-only.
-        self._last_refreshed_date_time: Optional[datetime] = None
-        # The number of devices that are in a compliant status. Optional. Read-only.
-        self._number_of_compliant_devices: Optional[int] = None
-        # The number of devices that are in an error status. Optional. Read-only.
-        self._number_of_error_devices: Optional[int] = None
-        # The number of device that are in a non-compliant status. Optional. Read-only.
-        self._number_of_non_compliant_devices: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The date and time the device policy was last modified. Optional. Read-only.
-        self._policy_modified_date_time: Optional[datetime] = None
-        # The display name for the managed tenant. Optional. Read-only.
-        self._tenant_display_name: Optional[str] = None
-        # The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
-        self._tenant_id: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AggregatedPolicyCompliance:
         """
@@ -122,7 +124,9 @@ class AggregatedPolicyCompliance(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "compliancePolicyId": lambda n : setattr(self, 'compliance_policy_id', n.get_str_value()),
             "compliancePolicyName": lambda n : setattr(self, 'compliance_policy_name', n.get_str_value()),
             "compliancePolicyPlatform": lambda n : setattr(self, 'compliance_policy_platform', n.get_str_value()),

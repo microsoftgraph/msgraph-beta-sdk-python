@@ -1,11 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_and_app_management_assignment_target = lazy_import('msgraph.generated.models.device_and_app_management_assignment_target')
-device_health_script_run_schedule = lazy_import('msgraph.generated.models.device_health_script_run_schedule')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import device_and_app_management_assignment_target, device_health_script_run_schedule, entity
+
+from . import entity
 
 class DeviceHealthScriptAssignment(entity.Entity):
     """
@@ -42,7 +42,9 @@ class DeviceHealthScriptAssignment(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_and_app_management_assignment_target, device_health_script_run_schedule, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "runRemediationScript": lambda n : setattr(self, 'run_remediation_script', n.get_bool_value()),
             "runSchedule": lambda n : setattr(self, 'run_schedule', n.get_object_value(device_health_script_run_schedule.DeviceHealthScriptRunSchedule)),
             "target": lambda n : setattr(self, 'target', n.get_object_value(device_and_app_management_assignment_target.DeviceAndAppManagementAssignmentTarget)),

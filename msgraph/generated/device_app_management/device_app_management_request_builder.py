@@ -7,260 +7,65 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_managed_app_protections_request_builder = lazy_import('msgraph.generated.device_app_management.android_managed_app_protections.android_managed_app_protections_request_builder')
-android_managed_app_protection_item_request_builder = lazy_import('msgraph.generated.device_app_management.android_managed_app_protections.item.android_managed_app_protection_item_request_builder')
-default_managed_app_protections_request_builder = lazy_import('msgraph.generated.device_app_management.default_managed_app_protections.default_managed_app_protections_request_builder')
-default_managed_app_protection_item_request_builder = lazy_import('msgraph.generated.device_app_management.default_managed_app_protections.item.default_managed_app_protection_item_request_builder')
-device_app_management_tasks_request_builder = lazy_import('msgraph.generated.device_app_management.device_app_management_tasks.device_app_management_tasks_request_builder')
-device_app_management_task_item_request_builder = lazy_import('msgraph.generated.device_app_management.device_app_management_tasks.item.device_app_management_task_item_request_builder')
-enterprise_code_signing_certificates_request_builder = lazy_import('msgraph.generated.device_app_management.enterprise_code_signing_certificates.enterprise_code_signing_certificates_request_builder')
-enterprise_code_signing_certificate_item_request_builder = lazy_import('msgraph.generated.device_app_management.enterprise_code_signing_certificates.item.enterprise_code_signing_certificate_item_request_builder')
-ios_lob_app_provisioning_configurations_request_builder = lazy_import('msgraph.generated.device_app_management.ios_lob_app_provisioning_configurations.ios_lob_app_provisioning_configurations_request_builder')
-ios_lob_app_provisioning_configuration_item_request_builder = lazy_import('msgraph.generated.device_app_management.ios_lob_app_provisioning_configurations.item.ios_lob_app_provisioning_configuration_item_request_builder')
-ios_managed_app_protections_request_builder = lazy_import('msgraph.generated.device_app_management.ios_managed_app_protections.ios_managed_app_protections_request_builder')
-ios_managed_app_protection_item_request_builder = lazy_import('msgraph.generated.device_app_management.ios_managed_app_protections.item.ios_managed_app_protection_item_request_builder')
-managed_app_policies_request_builder = lazy_import('msgraph.generated.device_app_management.managed_app_policies.managed_app_policies_request_builder')
-managed_app_policy_item_request_builder = lazy_import('msgraph.generated.device_app_management.managed_app_policies.item.managed_app_policy_item_request_builder')
-managed_app_registrations_request_builder = lazy_import('msgraph.generated.device_app_management.managed_app_registrations.managed_app_registrations_request_builder')
-managed_app_registration_item_request_builder = lazy_import('msgraph.generated.device_app_management.managed_app_registrations.item.managed_app_registration_item_request_builder')
-managed_app_statuses_request_builder = lazy_import('msgraph.generated.device_app_management.managed_app_statuses.managed_app_statuses_request_builder')
-managed_app_status_item_request_builder = lazy_import('msgraph.generated.device_app_management.managed_app_statuses.item.managed_app_status_item_request_builder')
-managed_e_book_categories_request_builder = lazy_import('msgraph.generated.device_app_management.managed_e_book_categories.managed_e_book_categories_request_builder')
-managed_e_book_category_item_request_builder = lazy_import('msgraph.generated.device_app_management.managed_e_book_categories.item.managed_e_book_category_item_request_builder')
-managed_e_books_request_builder = lazy_import('msgraph.generated.device_app_management.managed_e_books.managed_e_books_request_builder')
-managed_e_book_item_request_builder = lazy_import('msgraph.generated.device_app_management.managed_e_books.item.managed_e_book_item_request_builder')
-mdm_windows_information_protection_policies_request_builder = lazy_import('msgraph.generated.device_app_management.mdm_windows_information_protection_policies.mdm_windows_information_protection_policies_request_builder')
-mdm_windows_information_protection_policy_item_request_builder = lazy_import('msgraph.generated.device_app_management.mdm_windows_information_protection_policies.item.mdm_windows_information_protection_policy_item_request_builder')
-mobile_app_categories_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_app_categories.mobile_app_categories_request_builder')
-mobile_app_category_item_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_app_categories.item.mobile_app_category_item_request_builder')
-mobile_app_configurations_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_app_configurations.mobile_app_configurations_request_builder')
-managed_device_mobile_app_configuration_item_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_app_configurations.item.managed_device_mobile_app_configuration_item_request_builder')
-mobile_apps_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.mobile_apps_request_builder')
-mobile_app_item_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.mobile_app_item_request_builder')
-policy_sets_request_builder = lazy_import('msgraph.generated.device_app_management.policy_sets.policy_sets_request_builder')
-policy_set_item_request_builder = lazy_import('msgraph.generated.device_app_management.policy_sets.item.policy_set_item_request_builder')
-symantec_code_signing_certificate_request_builder = lazy_import('msgraph.generated.device_app_management.symantec_code_signing_certificate.symantec_code_signing_certificate_request_builder')
-sync_microsoft_store_for_business_apps_request_builder = lazy_import('msgraph.generated.device_app_management.sync_microsoft_store_for_business_apps.sync_microsoft_store_for_business_apps_request_builder')
-targeted_managed_app_configurations_request_builder = lazy_import('msgraph.generated.device_app_management.targeted_managed_app_configurations.targeted_managed_app_configurations_request_builder')
-targeted_managed_app_configuration_item_request_builder = lazy_import('msgraph.generated.device_app_management.targeted_managed_app_configurations.item.targeted_managed_app_configuration_item_request_builder')
-vpp_tokens_request_builder = lazy_import('msgraph.generated.device_app_management.vpp_tokens.vpp_tokens_request_builder')
-vpp_token_item_request_builder = lazy_import('msgraph.generated.device_app_management.vpp_tokens.item.vpp_token_item_request_builder')
-wdac_supplemental_policies_request_builder = lazy_import('msgraph.generated.device_app_management.wdac_supplemental_policies.wdac_supplemental_policies_request_builder')
-windows_defender_application_control_supplemental_policy_item_request_builder = lazy_import('msgraph.generated.device_app_management.wdac_supplemental_policies.item.windows_defender_application_control_supplemental_policy_item_request_builder')
-windows_information_protection_device_registrations_request_builder = lazy_import('msgraph.generated.device_app_management.windows_information_protection_device_registrations.windows_information_protection_device_registrations_request_builder')
-windows_information_protection_device_registration_item_request_builder = lazy_import('msgraph.generated.device_app_management.windows_information_protection_device_registrations.item.windows_information_protection_device_registration_item_request_builder')
-windows_information_protection_policies_request_builder = lazy_import('msgraph.generated.device_app_management.windows_information_protection_policies.windows_information_protection_policies_request_builder')
-windows_information_protection_policy_item_request_builder = lazy_import('msgraph.generated.device_app_management.windows_information_protection_policies.item.windows_information_protection_policy_item_request_builder')
-windows_information_protection_wipe_actions_request_builder = lazy_import('msgraph.generated.device_app_management.windows_information_protection_wipe_actions.windows_information_protection_wipe_actions_request_builder')
-windows_information_protection_wipe_action_item_request_builder = lazy_import('msgraph.generated.device_app_management.windows_information_protection_wipe_actions.item.windows_information_protection_wipe_action_item_request_builder')
-windows_managed_app_protections_request_builder = lazy_import('msgraph.generated.device_app_management.windows_managed_app_protections.windows_managed_app_protections_request_builder')
-windows_managed_app_protection_item_request_builder = lazy_import('msgraph.generated.device_app_management.windows_managed_app_protections.item.windows_managed_app_protection_item_request_builder')
-windows_management_app_request_builder = lazy_import('msgraph.generated.device_app_management.windows_management_app.windows_management_app_request_builder')
-device_app_management = lazy_import('msgraph.generated.models.device_app_management')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ..models import device_app_management
+    from ..models.o_data_errors import o_data_error
+    from .android_managed_app_protections import android_managed_app_protections_request_builder
+    from .android_managed_app_protections.item import android_managed_app_protection_item_request_builder
+    from .default_managed_app_protections import default_managed_app_protections_request_builder
+    from .default_managed_app_protections.item import default_managed_app_protection_item_request_builder
+    from .device_app_management_tasks import device_app_management_tasks_request_builder
+    from .device_app_management_tasks.item import device_app_management_task_item_request_builder
+    from .enterprise_code_signing_certificates import enterprise_code_signing_certificates_request_builder
+    from .enterprise_code_signing_certificates.item import enterprise_code_signing_certificate_item_request_builder
+    from .ios_lob_app_provisioning_configurations import ios_lob_app_provisioning_configurations_request_builder
+    from .ios_lob_app_provisioning_configurations.item import ios_lob_app_provisioning_configuration_item_request_builder
+    from .ios_managed_app_protections import ios_managed_app_protections_request_builder
+    from .ios_managed_app_protections.item import ios_managed_app_protection_item_request_builder
+    from .managed_app_policies import managed_app_policies_request_builder
+    from .managed_app_policies.item import managed_app_policy_item_request_builder
+    from .managed_app_registrations import managed_app_registrations_request_builder
+    from .managed_app_registrations.item import managed_app_registration_item_request_builder
+    from .managed_app_statuses import managed_app_statuses_request_builder
+    from .managed_app_statuses.item import managed_app_status_item_request_builder
+    from .managed_e_book_categories import managed_e_book_categories_request_builder
+    from .managed_e_book_categories.item import managed_e_book_category_item_request_builder
+    from .managed_e_books import managed_e_books_request_builder
+    from .managed_e_books.item import managed_e_book_item_request_builder
+    from .mdm_windows_information_protection_policies import mdm_windows_information_protection_policies_request_builder
+    from .mdm_windows_information_protection_policies.item import mdm_windows_information_protection_policy_item_request_builder
+    from .mobile_app_categories import mobile_app_categories_request_builder
+    from .mobile_app_categories.item import mobile_app_category_item_request_builder
+    from .mobile_app_configurations import mobile_app_configurations_request_builder
+    from .mobile_app_configurations.item import managed_device_mobile_app_configuration_item_request_builder
+    from .mobile_apps import mobile_apps_request_builder
+    from .mobile_apps.item import mobile_app_item_request_builder
+    from .policy_sets import policy_sets_request_builder
+    from .policy_sets.item import policy_set_item_request_builder
+    from .symantec_code_signing_certificate import symantec_code_signing_certificate_request_builder
+    from .sync_microsoft_store_for_business_apps import sync_microsoft_store_for_business_apps_request_builder
+    from .targeted_managed_app_configurations import targeted_managed_app_configurations_request_builder
+    from .targeted_managed_app_configurations.item import targeted_managed_app_configuration_item_request_builder
+    from .vpp_tokens import vpp_tokens_request_builder
+    from .vpp_tokens.item import vpp_token_item_request_builder
+    from .wdac_supplemental_policies import wdac_supplemental_policies_request_builder
+    from .wdac_supplemental_policies.item import windows_defender_application_control_supplemental_policy_item_request_builder
+    from .windows_information_protection_device_registrations import windows_information_protection_device_registrations_request_builder
+    from .windows_information_protection_device_registrations.item import windows_information_protection_device_registration_item_request_builder
+    from .windows_information_protection_policies import windows_information_protection_policies_request_builder
+    from .windows_information_protection_policies.item import windows_information_protection_policy_item_request_builder
+    from .windows_information_protection_wipe_actions import windows_information_protection_wipe_actions_request_builder
+    from .windows_information_protection_wipe_actions.item import windows_information_protection_wipe_action_item_request_builder
+    from .windows_managed_app_protections import windows_managed_app_protections_request_builder
+    from .windows_managed_app_protections.item import windows_managed_app_protection_item_request_builder
+    from .windows_management_app import windows_management_app_request_builder
 
 class DeviceAppManagementRequestBuilder():
     """
     Provides operations to manage the deviceAppManagement singleton.
     """
-    @property
-    def android_managed_app_protections(self) -> android_managed_app_protections_request_builder.AndroidManagedAppProtectionsRequestBuilder:
-        """
-        Provides operations to manage the androidManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.
-        """
-        return android_managed_app_protections_request_builder.AndroidManagedAppProtectionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def default_managed_app_protections(self) -> default_managed_app_protections_request_builder.DefaultManagedAppProtectionsRequestBuilder:
-        """
-        Provides operations to manage the defaultManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.
-        """
-        return default_managed_app_protections_request_builder.DefaultManagedAppProtectionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def device_app_management_tasks(self) -> device_app_management_tasks_request_builder.DeviceAppManagementTasksRequestBuilder:
-        """
-        Provides operations to manage the deviceAppManagementTasks property of the microsoft.graph.deviceAppManagement entity.
-        """
-        return device_app_management_tasks_request_builder.DeviceAppManagementTasksRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def enterprise_code_signing_certificates(self) -> enterprise_code_signing_certificates_request_builder.EnterpriseCodeSigningCertificatesRequestBuilder:
-        """
-        Provides operations to manage the enterpriseCodeSigningCertificates property of the microsoft.graph.deviceAppManagement entity.
-        """
-        return enterprise_code_signing_certificates_request_builder.EnterpriseCodeSigningCertificatesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def ios_lob_app_provisioning_configurations(self) -> ios_lob_app_provisioning_configurations_request_builder.IosLobAppProvisioningConfigurationsRequestBuilder:
-        """
-        Provides operations to manage the iosLobAppProvisioningConfigurations property of the microsoft.graph.deviceAppManagement entity.
-        """
-        return ios_lob_app_provisioning_configurations_request_builder.IosLobAppProvisioningConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def ios_managed_app_protections(self) -> ios_managed_app_protections_request_builder.IosManagedAppProtectionsRequestBuilder:
-        """
-        Provides operations to manage the iosManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.
-        """
-        return ios_managed_app_protections_request_builder.IosManagedAppProtectionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def managed_app_policies(self) -> managed_app_policies_request_builder.ManagedAppPoliciesRequestBuilder:
-        """
-        Provides operations to manage the managedAppPolicies property of the microsoft.graph.deviceAppManagement entity.
-        """
-        return managed_app_policies_request_builder.ManagedAppPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def managed_app_registrations(self) -> managed_app_registrations_request_builder.ManagedAppRegistrationsRequestBuilder:
-        """
-        Provides operations to manage the managedAppRegistrations property of the microsoft.graph.deviceAppManagement entity.
-        """
-        return managed_app_registrations_request_builder.ManagedAppRegistrationsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def managed_app_statuses(self) -> managed_app_statuses_request_builder.ManagedAppStatusesRequestBuilder:
-        """
-        Provides operations to manage the managedAppStatuses property of the microsoft.graph.deviceAppManagement entity.
-        """
-        return managed_app_statuses_request_builder.ManagedAppStatusesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def managed_e_book_categories(self) -> managed_e_book_categories_request_builder.ManagedEBookCategoriesRequestBuilder:
-        """
-        Provides operations to manage the managedEBookCategories property of the microsoft.graph.deviceAppManagement entity.
-        """
-        return managed_e_book_categories_request_builder.ManagedEBookCategoriesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def managed_e_books(self) -> managed_e_books_request_builder.ManagedEBooksRequestBuilder:
-        """
-        Provides operations to manage the managedEBooks property of the microsoft.graph.deviceAppManagement entity.
-        """
-        return managed_e_books_request_builder.ManagedEBooksRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def mdm_windows_information_protection_policies(self) -> mdm_windows_information_protection_policies_request_builder.MdmWindowsInformationProtectionPoliciesRequestBuilder:
-        """
-        Provides operations to manage the mdmWindowsInformationProtectionPolicies property of the microsoft.graph.deviceAppManagement entity.
-        """
-        return mdm_windows_information_protection_policies_request_builder.MdmWindowsInformationProtectionPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def mobile_app_categories(self) -> mobile_app_categories_request_builder.MobileAppCategoriesRequestBuilder:
-        """
-        Provides operations to manage the mobileAppCategories property of the microsoft.graph.deviceAppManagement entity.
-        """
-        return mobile_app_categories_request_builder.MobileAppCategoriesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def mobile_app_configurations(self) -> mobile_app_configurations_request_builder.MobileAppConfigurationsRequestBuilder:
-        """
-        Provides operations to manage the mobileAppConfigurations property of the microsoft.graph.deviceAppManagement entity.
-        """
-        return mobile_app_configurations_request_builder.MobileAppConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def mobile_apps(self) -> mobile_apps_request_builder.MobileAppsRequestBuilder:
-        """
-        Provides operations to manage the mobileApps property of the microsoft.graph.deviceAppManagement entity.
-        """
-        return mobile_apps_request_builder.MobileAppsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def policy_sets(self) -> policy_sets_request_builder.PolicySetsRequestBuilder:
-        """
-        Provides operations to manage the policySets property of the microsoft.graph.deviceAppManagement entity.
-        """
-        return policy_sets_request_builder.PolicySetsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def symantec_code_signing_certificate(self) -> symantec_code_signing_certificate_request_builder.SymantecCodeSigningCertificateRequestBuilder:
-        """
-        Provides operations to manage the symantecCodeSigningCertificate property of the microsoft.graph.deviceAppManagement entity.
-        """
-        return symantec_code_signing_certificate_request_builder.SymantecCodeSigningCertificateRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def sync_microsoft_store_for_business_apps(self) -> sync_microsoft_store_for_business_apps_request_builder.SyncMicrosoftStoreForBusinessAppsRequestBuilder:
-        """
-        Provides operations to call the syncMicrosoftStoreForBusinessApps method.
-        """
-        return sync_microsoft_store_for_business_apps_request_builder.SyncMicrosoftStoreForBusinessAppsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def targeted_managed_app_configurations(self) -> targeted_managed_app_configurations_request_builder.TargetedManagedAppConfigurationsRequestBuilder:
-        """
-        Provides operations to manage the targetedManagedAppConfigurations property of the microsoft.graph.deviceAppManagement entity.
-        """
-        return targeted_managed_app_configurations_request_builder.TargetedManagedAppConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def vpp_tokens(self) -> vpp_tokens_request_builder.VppTokensRequestBuilder:
-        """
-        Provides operations to manage the vppTokens property of the microsoft.graph.deviceAppManagement entity.
-        """
-        return vpp_tokens_request_builder.VppTokensRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def wdac_supplemental_policies(self) -> wdac_supplemental_policies_request_builder.WdacSupplementalPoliciesRequestBuilder:
-        """
-        Provides operations to manage the wdacSupplementalPolicies property of the microsoft.graph.deviceAppManagement entity.
-        """
-        return wdac_supplemental_policies_request_builder.WdacSupplementalPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def windows_information_protection_device_registrations(self) -> windows_information_protection_device_registrations_request_builder.WindowsInformationProtectionDeviceRegistrationsRequestBuilder:
-        """
-        Provides operations to manage the windowsInformationProtectionDeviceRegistrations property of the microsoft.graph.deviceAppManagement entity.
-        """
-        return windows_information_protection_device_registrations_request_builder.WindowsInformationProtectionDeviceRegistrationsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def windows_information_protection_policies(self) -> windows_information_protection_policies_request_builder.WindowsInformationProtectionPoliciesRequestBuilder:
-        """
-        Provides operations to manage the windowsInformationProtectionPolicies property of the microsoft.graph.deviceAppManagement entity.
-        """
-        return windows_information_protection_policies_request_builder.WindowsInformationProtectionPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def windows_information_protection_wipe_actions(self) -> windows_information_protection_wipe_actions_request_builder.WindowsInformationProtectionWipeActionsRequestBuilder:
-        """
-        Provides operations to manage the windowsInformationProtectionWipeActions property of the microsoft.graph.deviceAppManagement entity.
-        """
-        return windows_information_protection_wipe_actions_request_builder.WindowsInformationProtectionWipeActionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def windows_managed_app_protections(self) -> windows_managed_app_protections_request_builder.WindowsManagedAppProtectionsRequestBuilder:
-        """
-        Provides operations to manage the windowsManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.
-        """
-        return windows_managed_app_protections_request_builder.WindowsManagedAppProtectionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def windows_management_app(self) -> windows_management_app_request_builder.WindowsManagementAppRequestBuilder:
-        """
-        Provides operations to manage the windowsManagementApp property of the microsoft.graph.deviceAppManagement entity.
-        """
-        return windows_management_app_request_builder.WindowsManagementAppRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def android_managed_app_protections_by_id(self,id: str) -> android_managed_app_protection_item_request_builder.AndroidManagedAppProtectionItemRequestBuilder:
-        """
-        Provides operations to manage the androidManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: android_managed_app_protection_item_request_builder.AndroidManagedAppProtectionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["androidManagedAppProtection%2Did"] = id
-        return android_managed_app_protection_item_request_builder.AndroidManagedAppProtectionItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new DeviceAppManagementRequestBuilder and sets the default values.
@@ -279,6 +84,21 @@ class DeviceAppManagementRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def android_managed_app_protections_by_id(self,id: str) -> android_managed_app_protection_item_request_builder.AndroidManagedAppProtectionItemRequestBuilder:
+        """
+        Provides operations to manage the androidManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: android_managed_app_protection_item_request_builder.AndroidManagedAppProtectionItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .android_managed_app_protections.item import android_managed_app_protection_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["androidManagedAppProtection%2Did"] = id
+        return android_managed_app_protection_item_request_builder.AndroidManagedAppProtectionItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     def default_managed_app_protections_by_id(self,id: str) -> default_managed_app_protection_item_request_builder.DefaultManagedAppProtectionItemRequestBuilder:
         """
         Provides operations to manage the defaultManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.
@@ -288,6 +108,8 @@ class DeviceAppManagementRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .default_managed_app_protections.item import default_managed_app_protection_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["defaultManagedAppProtection%2Did"] = id
         return default_managed_app_protection_item_request_builder.DefaultManagedAppProtectionItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -301,6 +123,8 @@ class DeviceAppManagementRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .device_app_management_tasks.item import device_app_management_task_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["deviceAppManagementTask%2Did"] = id
         return device_app_management_task_item_request_builder.DeviceAppManagementTaskItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -314,6 +138,8 @@ class DeviceAppManagementRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .enterprise_code_signing_certificates.item import enterprise_code_signing_certificate_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["enterpriseCodeSigningCertificate%2Did"] = id
         return enterprise_code_signing_certificate_item_request_builder.EnterpriseCodeSigningCertificateItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -328,12 +154,16 @@ class DeviceAppManagementRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ..models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ..models import device_app_management
+
         return await self.request_adapter.send_async(request_info, device_app_management.DeviceAppManagement, error_mapping)
     
     def ios_lob_app_provisioning_configurations_by_id(self,id: str) -> ios_lob_app_provisioning_configuration_item_request_builder.IosLobAppProvisioningConfigurationItemRequestBuilder:
@@ -345,6 +175,8 @@ class DeviceAppManagementRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .ios_lob_app_provisioning_configurations.item import ios_lob_app_provisioning_configuration_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["iosLobAppProvisioningConfiguration%2Did"] = id
         return ios_lob_app_provisioning_configuration_item_request_builder.IosLobAppProvisioningConfigurationItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -358,6 +190,8 @@ class DeviceAppManagementRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .ios_managed_app_protections.item import ios_managed_app_protection_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["iosManagedAppProtection%2Did"] = id
         return ios_managed_app_protection_item_request_builder.IosManagedAppProtectionItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -371,6 +205,8 @@ class DeviceAppManagementRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .managed_app_policies.item import managed_app_policy_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["managedAppPolicy%2Did"] = id
         return managed_app_policy_item_request_builder.ManagedAppPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -384,6 +220,8 @@ class DeviceAppManagementRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .managed_app_registrations.item import managed_app_registration_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["managedAppRegistration%2Did"] = id
         return managed_app_registration_item_request_builder.ManagedAppRegistrationItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -397,6 +235,8 @@ class DeviceAppManagementRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .managed_app_statuses.item import managed_app_status_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["managedAppStatus%2Did"] = id
         return managed_app_status_item_request_builder.ManagedAppStatusItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -410,6 +250,8 @@ class DeviceAppManagementRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .managed_e_book_categories.item import managed_e_book_category_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["managedEBookCategory%2Did"] = id
         return managed_e_book_category_item_request_builder.ManagedEBookCategoryItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -423,6 +265,8 @@ class DeviceAppManagementRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .managed_e_books.item import managed_e_book_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["managedEBook%2Did"] = id
         return managed_e_book_item_request_builder.ManagedEBookItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -436,6 +280,8 @@ class DeviceAppManagementRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .mdm_windows_information_protection_policies.item import mdm_windows_information_protection_policy_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["mdmWindowsInformationProtectionPolicy%2Did"] = id
         return mdm_windows_information_protection_policy_item_request_builder.MdmWindowsInformationProtectionPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -449,6 +295,8 @@ class DeviceAppManagementRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .mobile_app_categories.item import mobile_app_category_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["mobileAppCategory%2Did"] = id
         return mobile_app_category_item_request_builder.MobileAppCategoryItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -462,6 +310,8 @@ class DeviceAppManagementRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .mobile_app_configurations.item import managed_device_mobile_app_configuration_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["managedDeviceMobileAppConfiguration%2Did"] = id
         return managed_device_mobile_app_configuration_item_request_builder.ManagedDeviceMobileAppConfigurationItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -475,6 +325,8 @@ class DeviceAppManagementRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .mobile_apps.item import mobile_app_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["mobileApp%2Did"] = id
         return mobile_app_item_request_builder.MobileAppItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -492,12 +344,16 @@ class DeviceAppManagementRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ..models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ..models import device_app_management
+
         return await self.request_adapter.send_async(request_info, device_app_management.DeviceAppManagement, error_mapping)
     
     def policy_sets_by_id(self,id: str) -> policy_set_item_request_builder.PolicySetItemRequestBuilder:
@@ -509,6 +365,8 @@ class DeviceAppManagementRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .policy_sets.item import policy_set_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["policySet%2Did"] = id
         return policy_set_item_request_builder.PolicySetItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -522,6 +380,8 @@ class DeviceAppManagementRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .targeted_managed_app_configurations.item import targeted_managed_app_configuration_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["targetedManagedAppConfiguration%2Did"] = id
         return targeted_managed_app_configuration_item_request_builder.TargetedManagedAppConfigurationItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -574,6 +434,8 @@ class DeviceAppManagementRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .vpp_tokens.item import vpp_token_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["vppToken%2Did"] = id
         return vpp_token_item_request_builder.VppTokenItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -587,6 +449,8 @@ class DeviceAppManagementRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .wdac_supplemental_policies.item import windows_defender_application_control_supplemental_policy_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["windowsDefenderApplicationControlSupplementalPolicy%2Did"] = id
         return windows_defender_application_control_supplemental_policy_item_request_builder.WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -600,6 +464,8 @@ class DeviceAppManagementRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .windows_information_protection_device_registrations.item import windows_information_protection_device_registration_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["windowsInformationProtectionDeviceRegistration%2Did"] = id
         return windows_information_protection_device_registration_item_request_builder.WindowsInformationProtectionDeviceRegistrationItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -613,6 +479,8 @@ class DeviceAppManagementRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .windows_information_protection_policies.item import windows_information_protection_policy_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["windowsInformationProtectionPolicy%2Did"] = id
         return windows_information_protection_policy_item_request_builder.WindowsInformationProtectionPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -626,6 +494,8 @@ class DeviceAppManagementRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .windows_information_protection_wipe_actions.item import windows_information_protection_wipe_action_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["windowsInformationProtectionWipeAction%2Did"] = id
         return windows_information_protection_wipe_action_item_request_builder.WindowsInformationProtectionWipeActionItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -639,21 +509,251 @@ class DeviceAppManagementRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .windows_managed_app_protections.item import windows_managed_app_protection_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["windowsManagedAppProtection%2Did"] = id
         return windows_managed_app_protection_item_request_builder.WindowsManagedAppProtectionItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    @property
+    def android_managed_app_protections(self) -> android_managed_app_protections_request_builder.AndroidManagedAppProtectionsRequestBuilder:
+        """
+        Provides operations to manage the androidManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.
+        """
+        from .android_managed_app_protections import android_managed_app_protections_request_builder
+
+        return android_managed_app_protections_request_builder.AndroidManagedAppProtectionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def default_managed_app_protections(self) -> default_managed_app_protections_request_builder.DefaultManagedAppProtectionsRequestBuilder:
+        """
+        Provides operations to manage the defaultManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.
+        """
+        from .default_managed_app_protections import default_managed_app_protections_request_builder
+
+        return default_managed_app_protections_request_builder.DefaultManagedAppProtectionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def device_app_management_tasks(self) -> device_app_management_tasks_request_builder.DeviceAppManagementTasksRequestBuilder:
+        """
+        Provides operations to manage the deviceAppManagementTasks property of the microsoft.graph.deviceAppManagement entity.
+        """
+        from .device_app_management_tasks import device_app_management_tasks_request_builder
+
+        return device_app_management_tasks_request_builder.DeviceAppManagementTasksRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def enterprise_code_signing_certificates(self) -> enterprise_code_signing_certificates_request_builder.EnterpriseCodeSigningCertificatesRequestBuilder:
+        """
+        Provides operations to manage the enterpriseCodeSigningCertificates property of the microsoft.graph.deviceAppManagement entity.
+        """
+        from .enterprise_code_signing_certificates import enterprise_code_signing_certificates_request_builder
+
+        return enterprise_code_signing_certificates_request_builder.EnterpriseCodeSigningCertificatesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def ios_lob_app_provisioning_configurations(self) -> ios_lob_app_provisioning_configurations_request_builder.IosLobAppProvisioningConfigurationsRequestBuilder:
+        """
+        Provides operations to manage the iosLobAppProvisioningConfigurations property of the microsoft.graph.deviceAppManagement entity.
+        """
+        from .ios_lob_app_provisioning_configurations import ios_lob_app_provisioning_configurations_request_builder
+
+        return ios_lob_app_provisioning_configurations_request_builder.IosLobAppProvisioningConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def ios_managed_app_protections(self) -> ios_managed_app_protections_request_builder.IosManagedAppProtectionsRequestBuilder:
+        """
+        Provides operations to manage the iosManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.
+        """
+        from .ios_managed_app_protections import ios_managed_app_protections_request_builder
+
+        return ios_managed_app_protections_request_builder.IosManagedAppProtectionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def managed_app_policies(self) -> managed_app_policies_request_builder.ManagedAppPoliciesRequestBuilder:
+        """
+        Provides operations to manage the managedAppPolicies property of the microsoft.graph.deviceAppManagement entity.
+        """
+        from .managed_app_policies import managed_app_policies_request_builder
+
+        return managed_app_policies_request_builder.ManagedAppPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def managed_app_registrations(self) -> managed_app_registrations_request_builder.ManagedAppRegistrationsRequestBuilder:
+        """
+        Provides operations to manage the managedAppRegistrations property of the microsoft.graph.deviceAppManagement entity.
+        """
+        from .managed_app_registrations import managed_app_registrations_request_builder
+
+        return managed_app_registrations_request_builder.ManagedAppRegistrationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def managed_app_statuses(self) -> managed_app_statuses_request_builder.ManagedAppStatusesRequestBuilder:
+        """
+        Provides operations to manage the managedAppStatuses property of the microsoft.graph.deviceAppManagement entity.
+        """
+        from .managed_app_statuses import managed_app_statuses_request_builder
+
+        return managed_app_statuses_request_builder.ManagedAppStatusesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def managed_e_book_categories(self) -> managed_e_book_categories_request_builder.ManagedEBookCategoriesRequestBuilder:
+        """
+        Provides operations to manage the managedEBookCategories property of the microsoft.graph.deviceAppManagement entity.
+        """
+        from .managed_e_book_categories import managed_e_book_categories_request_builder
+
+        return managed_e_book_categories_request_builder.ManagedEBookCategoriesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def managed_e_books(self) -> managed_e_books_request_builder.ManagedEBooksRequestBuilder:
+        """
+        Provides operations to manage the managedEBooks property of the microsoft.graph.deviceAppManagement entity.
+        """
+        from .managed_e_books import managed_e_books_request_builder
+
+        return managed_e_books_request_builder.ManagedEBooksRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def mdm_windows_information_protection_policies(self) -> mdm_windows_information_protection_policies_request_builder.MdmWindowsInformationProtectionPoliciesRequestBuilder:
+        """
+        Provides operations to manage the mdmWindowsInformationProtectionPolicies property of the microsoft.graph.deviceAppManagement entity.
+        """
+        from .mdm_windows_information_protection_policies import mdm_windows_information_protection_policies_request_builder
+
+        return mdm_windows_information_protection_policies_request_builder.MdmWindowsInformationProtectionPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def mobile_app_categories(self) -> mobile_app_categories_request_builder.MobileAppCategoriesRequestBuilder:
+        """
+        Provides operations to manage the mobileAppCategories property of the microsoft.graph.deviceAppManagement entity.
+        """
+        from .mobile_app_categories import mobile_app_categories_request_builder
+
+        return mobile_app_categories_request_builder.MobileAppCategoriesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def mobile_app_configurations(self) -> mobile_app_configurations_request_builder.MobileAppConfigurationsRequestBuilder:
+        """
+        Provides operations to manage the mobileAppConfigurations property of the microsoft.graph.deviceAppManagement entity.
+        """
+        from .mobile_app_configurations import mobile_app_configurations_request_builder
+
+        return mobile_app_configurations_request_builder.MobileAppConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def mobile_apps(self) -> mobile_apps_request_builder.MobileAppsRequestBuilder:
+        """
+        Provides operations to manage the mobileApps property of the microsoft.graph.deviceAppManagement entity.
+        """
+        from .mobile_apps import mobile_apps_request_builder
+
+        return mobile_apps_request_builder.MobileAppsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def policy_sets(self) -> policy_sets_request_builder.PolicySetsRequestBuilder:
+        """
+        Provides operations to manage the policySets property of the microsoft.graph.deviceAppManagement entity.
+        """
+        from .policy_sets import policy_sets_request_builder
+
+        return policy_sets_request_builder.PolicySetsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def symantec_code_signing_certificate(self) -> symantec_code_signing_certificate_request_builder.SymantecCodeSigningCertificateRequestBuilder:
+        """
+        Provides operations to manage the symantecCodeSigningCertificate property of the microsoft.graph.deviceAppManagement entity.
+        """
+        from .symantec_code_signing_certificate import symantec_code_signing_certificate_request_builder
+
+        return symantec_code_signing_certificate_request_builder.SymantecCodeSigningCertificateRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def sync_microsoft_store_for_business_apps(self) -> sync_microsoft_store_for_business_apps_request_builder.SyncMicrosoftStoreForBusinessAppsRequestBuilder:
+        """
+        Provides operations to call the syncMicrosoftStoreForBusinessApps method.
+        """
+        from .sync_microsoft_store_for_business_apps import sync_microsoft_store_for_business_apps_request_builder
+
+        return sync_microsoft_store_for_business_apps_request_builder.SyncMicrosoftStoreForBusinessAppsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def targeted_managed_app_configurations(self) -> targeted_managed_app_configurations_request_builder.TargetedManagedAppConfigurationsRequestBuilder:
+        """
+        Provides operations to manage the targetedManagedAppConfigurations property of the microsoft.graph.deviceAppManagement entity.
+        """
+        from .targeted_managed_app_configurations import targeted_managed_app_configurations_request_builder
+
+        return targeted_managed_app_configurations_request_builder.TargetedManagedAppConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def vpp_tokens(self) -> vpp_tokens_request_builder.VppTokensRequestBuilder:
+        """
+        Provides operations to manage the vppTokens property of the microsoft.graph.deviceAppManagement entity.
+        """
+        from .vpp_tokens import vpp_tokens_request_builder
+
+        return vpp_tokens_request_builder.VppTokensRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def wdac_supplemental_policies(self) -> wdac_supplemental_policies_request_builder.WdacSupplementalPoliciesRequestBuilder:
+        """
+        Provides operations to manage the wdacSupplementalPolicies property of the microsoft.graph.deviceAppManagement entity.
+        """
+        from .wdac_supplemental_policies import wdac_supplemental_policies_request_builder
+
+        return wdac_supplemental_policies_request_builder.WdacSupplementalPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def windows_information_protection_device_registrations(self) -> windows_information_protection_device_registrations_request_builder.WindowsInformationProtectionDeviceRegistrationsRequestBuilder:
+        """
+        Provides operations to manage the windowsInformationProtectionDeviceRegistrations property of the microsoft.graph.deviceAppManagement entity.
+        """
+        from .windows_information_protection_device_registrations import windows_information_protection_device_registrations_request_builder
+
+        return windows_information_protection_device_registrations_request_builder.WindowsInformationProtectionDeviceRegistrationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def windows_information_protection_policies(self) -> windows_information_protection_policies_request_builder.WindowsInformationProtectionPoliciesRequestBuilder:
+        """
+        Provides operations to manage the windowsInformationProtectionPolicies property of the microsoft.graph.deviceAppManagement entity.
+        """
+        from .windows_information_protection_policies import windows_information_protection_policies_request_builder
+
+        return windows_information_protection_policies_request_builder.WindowsInformationProtectionPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def windows_information_protection_wipe_actions(self) -> windows_information_protection_wipe_actions_request_builder.WindowsInformationProtectionWipeActionsRequestBuilder:
+        """
+        Provides operations to manage the windowsInformationProtectionWipeActions property of the microsoft.graph.deviceAppManagement entity.
+        """
+        from .windows_information_protection_wipe_actions import windows_information_protection_wipe_actions_request_builder
+
+        return windows_information_protection_wipe_actions_request_builder.WindowsInformationProtectionWipeActionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def windows_managed_app_protections(self) -> windows_managed_app_protections_request_builder.WindowsManagedAppProtectionsRequestBuilder:
+        """
+        Provides operations to manage the windowsManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.
+        """
+        from .windows_managed_app_protections import windows_managed_app_protections_request_builder
+
+        return windows_managed_app_protections_request_builder.WindowsManagedAppProtectionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def windows_management_app(self) -> windows_management_app_request_builder.WindowsManagementAppRequestBuilder:
+        """
+        Provides operations to manage the windowsManagementApp property of the microsoft.graph.deviceAppManagement entity.
+        """
+        from .windows_management_app import windows_management_app_request_builder
+
+        return windows_management_app_request_builder.WindowsManagementAppRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class DeviceAppManagementRequestBuilderGetQueryParameters():
         """
         Get deviceAppManagement
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -669,6 +769,12 @@ class DeviceAppManagementRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class DeviceAppManagementRequestBuilderGetRequestConfiguration():

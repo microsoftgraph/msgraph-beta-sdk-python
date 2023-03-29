@@ -1,30 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_device_owner_required_password_type = lazy_import('msgraph.generated.models.android_device_owner_required_password_type')
-device_compliance_policy = lazy_import('msgraph.generated.models.device_compliance_policy')
-device_threat_protection_level = lazy_import('msgraph.generated.models.device_threat_protection_level')
+if TYPE_CHECKING:
+    from . import android_device_owner_required_password_type, device_compliance_policy, device_threat_protection_level
+
+from . import device_compliance_policy
 
 class AndroidDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
-    @property
-    def advanced_threat_protection_required_security_level(self,) -> Optional[device_threat_protection_level.DeviceThreatProtectionLevel]:
-        """
-        Gets the advancedThreatProtectionRequiredSecurityLevel property value. MDATP Require Mobile Threat Protection minimum risk level to report noncompliance. Possible values are: unavailable, secured, low, medium, high, notSet.
-        Returns: Optional[device_threat_protection_level.DeviceThreatProtectionLevel]
-        """
-        return self._advanced_threat_protection_required_security_level
-    
-    @advanced_threat_protection_required_security_level.setter
-    def advanced_threat_protection_required_security_level(self,value: Optional[device_threat_protection_level.DeviceThreatProtectionLevel] = None) -> None:
-        """
-        Sets the advancedThreatProtectionRequiredSecurityLevel property value. MDATP Require Mobile Threat Protection minimum risk level to report noncompliance. Possible values are: unavailable, secured, low, medium, high, notSet.
-        Args:
-            value: Value to set for the advanced_threat_protection_required_security_level property.
-        """
-        self._advanced_threat_protection_required_security_level = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new AndroidDeviceOwnerCompliancePolicy and sets the default values.
@@ -75,6 +58,23 @@ class AndroidDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplian
         self._security_require_safety_net_attestation_certified_device: Optional[bool] = None
         # Require encryption on Android devices.
         self._storage_require_encryption: Optional[bool] = None
+    
+    @property
+    def advanced_threat_protection_required_security_level(self,) -> Optional[device_threat_protection_level.DeviceThreatProtectionLevel]:
+        """
+        Gets the advancedThreatProtectionRequiredSecurityLevel property value. MDATP Require Mobile Threat Protection minimum risk level to report noncompliance. Possible values are: unavailable, secured, low, medium, high, notSet.
+        Returns: Optional[device_threat_protection_level.DeviceThreatProtectionLevel]
+        """
+        return self._advanced_threat_protection_required_security_level
+    
+    @advanced_threat_protection_required_security_level.setter
+    def advanced_threat_protection_required_security_level(self,value: Optional[device_threat_protection_level.DeviceThreatProtectionLevel] = None) -> None:
+        """
+        Sets the advancedThreatProtectionRequiredSecurityLevel property value. MDATP Require Mobile Threat Protection minimum risk level to report noncompliance. Possible values are: unavailable, secured, low, medium, high, notSet.
+        Args:
+            value: Value to set for the advanced_threat_protection_required_security_level property.
+        """
+        self._advanced_threat_protection_required_security_level = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidDeviceOwnerCompliancePolicy:
@@ -127,7 +127,9 @@ class AndroidDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplian
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_device_owner_required_password_type, device_compliance_policy, device_threat_protection_level
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "advancedThreatProtectionRequiredSecurityLevel": lambda n : setattr(self, 'advanced_threat_protection_required_security_level', n.get_enum_value(device_threat_protection_level.DeviceThreatProtectionLevel)),
             "deviceThreatProtectionEnabled": lambda n : setattr(self, 'device_threat_protection_enabled', n.get_bool_value()),
             "deviceThreatProtectionRequiredSecurityLevel": lambda n : setattr(self, 'device_threat_protection_required_security_level', n.get_enum_value(device_threat_protection_level.DeviceThreatProtectionLevel)),

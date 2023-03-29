@@ -1,73 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-cryptography_suite = lazy_import('msgraph.generated.models.cryptography_suite')
-extended_key_usage = lazy_import('msgraph.generated.models.extended_key_usage')
-vpn_dns_rule = lazy_import('msgraph.generated.models.vpn_dns_rule')
-vpn_route = lazy_import('msgraph.generated.models.vpn_route')
-vpn_traffic_rule = lazy_import('msgraph.generated.models.vpn_traffic_rule')
-windows_certificate_profile_base = lazy_import('msgraph.generated.models.windows_certificate_profile_base')
-windows_vpn_configuration = lazy_import('msgraph.generated.models.windows_vpn_configuration')
-windows10_associated_apps = lazy_import('msgraph.generated.models.windows10_associated_apps')
-windows10_vpn_authentication_method = lazy_import('msgraph.generated.models.windows10_vpn_authentication_method')
-windows10_vpn_connection_type = lazy_import('msgraph.generated.models.windows10_vpn_connection_type')
-windows10_vpn_profile_target = lazy_import('msgraph.generated.models.windows10_vpn_profile_target')
-windows10_vpn_proxy_server = lazy_import('msgraph.generated.models.windows10_vpn_proxy_server')
+if TYPE_CHECKING:
+    from . import cryptography_suite, extended_key_usage, vpn_dns_rule, vpn_route, vpn_traffic_rule, windows10_associated_apps, windows10_vpn_authentication_method, windows10_vpn_connection_type, windows10_vpn_profile_target, windows10_vpn_proxy_server, windows_certificate_profile_base, windows_vpn_configuration
+
+from . import windows_vpn_configuration
 
 class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguration):
-    @property
-    def associated_apps(self,) -> Optional[List[windows10_associated_apps.Windows10AssociatedApps]]:
-        """
-        Gets the associatedApps property value. Associated Apps. This collection can contain a maximum of 10000 elements.
-        Returns: Optional[List[windows10_associated_apps.Windows10AssociatedApps]]
-        """
-        return self._associated_apps
-    
-    @associated_apps.setter
-    def associated_apps(self,value: Optional[List[windows10_associated_apps.Windows10AssociatedApps]] = None) -> None:
-        """
-        Sets the associatedApps property value. Associated Apps. This collection can contain a maximum of 10000 elements.
-        Args:
-            value: Value to set for the associated_apps property.
-        """
-        self._associated_apps = value
-    
-    @property
-    def authentication_method(self,) -> Optional[windows10_vpn_authentication_method.Windows10VpnAuthenticationMethod]:
-        """
-        Gets the authenticationMethod property value. Windows 10 VPN connection types.
-        Returns: Optional[windows10_vpn_authentication_method.Windows10VpnAuthenticationMethod]
-        """
-        return self._authentication_method
-    
-    @authentication_method.setter
-    def authentication_method(self,value: Optional[windows10_vpn_authentication_method.Windows10VpnAuthenticationMethod] = None) -> None:
-        """
-        Sets the authenticationMethod property value. Windows 10 VPN connection types.
-        Args:
-            value: Value to set for the authentication_method property.
-        """
-        self._authentication_method = value
-    
-    @property
-    def connection_type(self,) -> Optional[windows10_vpn_connection_type.Windows10VpnConnectionType]:
-        """
-        Gets the connectionType property value. VPN connection types.
-        Returns: Optional[windows10_vpn_connection_type.Windows10VpnConnectionType]
-        """
-        return self._connection_type
-    
-    @connection_type.setter
-    def connection_type(self,value: Optional[windows10_vpn_connection_type.Windows10VpnConnectionType] = None) -> None:
-        """
-        Sets the connectionType property value. VPN connection types.
-        Args:
-            value: Value to set for the connection_type property.
-        """
-        self._connection_type = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new Windows10VpnConfiguration and sets the default values.
@@ -124,6 +64,57 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         self._trusted_network_domains: Optional[List[str]] = None
         # Windows Information Protection (WIP) domain to associate with this connection.
         self._windows_information_protection_domain: Optional[str] = None
+    
+    @property
+    def associated_apps(self,) -> Optional[List[windows10_associated_apps.Windows10AssociatedApps]]:
+        """
+        Gets the associatedApps property value. Associated Apps. This collection can contain a maximum of 10000 elements.
+        Returns: Optional[List[windows10_associated_apps.Windows10AssociatedApps]]
+        """
+        return self._associated_apps
+    
+    @associated_apps.setter
+    def associated_apps(self,value: Optional[List[windows10_associated_apps.Windows10AssociatedApps]] = None) -> None:
+        """
+        Sets the associatedApps property value. Associated Apps. This collection can contain a maximum of 10000 elements.
+        Args:
+            value: Value to set for the associated_apps property.
+        """
+        self._associated_apps = value
+    
+    @property
+    def authentication_method(self,) -> Optional[windows10_vpn_authentication_method.Windows10VpnAuthenticationMethod]:
+        """
+        Gets the authenticationMethod property value. Windows 10 VPN connection types.
+        Returns: Optional[windows10_vpn_authentication_method.Windows10VpnAuthenticationMethod]
+        """
+        return self._authentication_method
+    
+    @authentication_method.setter
+    def authentication_method(self,value: Optional[windows10_vpn_authentication_method.Windows10VpnAuthenticationMethod] = None) -> None:
+        """
+        Sets the authenticationMethod property value. Windows 10 VPN connection types.
+        Args:
+            value: Value to set for the authentication_method property.
+        """
+        self._authentication_method = value
+    
+    @property
+    def connection_type(self,) -> Optional[windows10_vpn_connection_type.Windows10VpnConnectionType]:
+        """
+        Gets the connectionType property value. VPN connection types.
+        Returns: Optional[windows10_vpn_connection_type.Windows10VpnConnectionType]
+        """
+        return self._connection_type
+    
+    @connection_type.setter
+    def connection_type(self,value: Optional[windows10_vpn_connection_type.Windows10VpnConnectionType] = None) -> None:
+        """
+        Sets the connectionType property value. VPN connection types.
+        Args:
+            value: Value to set for the connection_type property.
+        """
+        self._connection_type = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10VpnConfiguration:
@@ -312,7 +303,9 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import cryptography_suite, extended_key_usage, vpn_dns_rule, vpn_route, vpn_traffic_rule, windows10_associated_apps, windows10_vpn_authentication_method, windows10_vpn_connection_type, windows10_vpn_profile_target, windows10_vpn_proxy_server, windows_certificate_profile_base, windows_vpn_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "associatedApps": lambda n : setattr(self, 'associated_apps', n.get_collection_of_object_values(windows10_associated_apps.Windows10AssociatedApps)),
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(windows10_vpn_authentication_method.Windows10VpnAuthenticationMethod)),
             "connectionType": lambda n : setattr(self, 'connection_type', n.get_enum_value(windows10_vpn_connection_type.Windows10VpnConnectionType)),

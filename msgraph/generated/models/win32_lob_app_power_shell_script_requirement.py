@@ -1,11 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-run_as_account_type = lazy_import('msgraph.generated.models.run_as_account_type')
-win32_lob_app_power_shell_script_detection_type = lazy_import('msgraph.generated.models.win32_lob_app_power_shell_script_detection_type')
-win32_lob_app_requirement = lazy_import('msgraph.generated.models.win32_lob_app_requirement')
+if TYPE_CHECKING:
+    from . import run_as_account_type, win32_lob_app_power_shell_script_detection_type, win32_lob_app_requirement
+
+from . import win32_lob_app_requirement
 
 class Win32LobAppPowerShellScriptRequirement(win32_lob_app_requirement.Win32LobAppRequirement):
     def __init__(self,) -> None:
@@ -95,7 +95,9 @@ class Win32LobAppPowerShellScriptRequirement(win32_lob_app_requirement.Win32LobA
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import run_as_account_type, win32_lob_app_power_shell_script_detection_type, win32_lob_app_requirement
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "detectionType": lambda n : setattr(self, 'detection_type', n.get_enum_value(win32_lob_app_power_shell_script_detection_type.Win32LobAppPowerShellScriptDetectionType)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "enforceSignatureCheck": lambda n : setattr(self, 'enforce_signature_check', n.get_bool_value()),

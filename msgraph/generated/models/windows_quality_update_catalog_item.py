@@ -1,12 +1,26 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-windows_quality_update_classification = lazy_import('msgraph.generated.models.windows_quality_update_classification')
-windows_update_catalog_item = lazy_import('msgraph.generated.models.windows_update_catalog_item')
+if TYPE_CHECKING:
+    from . import windows_quality_update_classification, windows_update_catalog_item
+
+from . import windows_update_catalog_item
 
 class WindowsQualityUpdateCatalogItem(windows_update_catalog_item.WindowsUpdateCatalogItem):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new WindowsQualityUpdateCatalogItem and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.windowsQualityUpdateCatalogItem"
+        # Windows quality update classification
+        self._classification: Optional[windows_quality_update_classification.WindowsQualityUpdateClassification] = None
+        # Flag indicating if update qualifies for expedite
+        self._is_expeditable: Optional[bool] = None
+        # Knowledge base article id
+        self._kb_article_id: Optional[str] = None
+    
     @property
     def classification(self,) -> Optional[windows_quality_update_classification.WindowsQualityUpdateClassification]:
         """
@@ -23,19 +37,6 @@ class WindowsQualityUpdateCatalogItem(windows_update_catalog_item.WindowsUpdateC
             value: Value to set for the classification property.
         """
         self._classification = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsQualityUpdateCatalogItem and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsQualityUpdateCatalogItem"
-        # Windows quality update classification
-        self._classification: Optional[windows_quality_update_classification.WindowsQualityUpdateClassification] = None
-        # Flag indicating if update qualifies for expedite
-        self._is_expeditable: Optional[bool] = None
-        # Knowledge base article id
-        self._kb_article_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsQualityUpdateCatalogItem:
@@ -54,7 +55,9 @@ class WindowsQualityUpdateCatalogItem(windows_update_catalog_item.WindowsUpdateC
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import windows_quality_update_classification, windows_update_catalog_item
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "classification": lambda n : setattr(self, 'classification', n.get_enum_value(windows_quality_update_classification.WindowsQualityUpdateClassification)),
             "isExpeditable": lambda n : setattr(self, 'is_expeditable', n.get_bool_value()),
             "kbArticleId": lambda n : setattr(self, 'kb_article_id', n.get_str_value()),

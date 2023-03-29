@@ -1,14 +1,79 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from uuid import UUID
 
-account = lazy_import('msgraph.generated.models.account')
-entity = lazy_import('msgraph.generated.models.entity')
-item = lazy_import('msgraph.generated.models.item')
+if TYPE_CHECKING:
+    from . import account, entity, item
+
+from . import entity
 
 class SalesOrderLine(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new salesOrderLine and sets the default values.
+        """
+        super().__init__()
+        # The account property
+        self._account: Optional[account.Account] = None
+        # The accountId property
+        self._account_id: Optional[UUID] = None
+        # The amountExcludingTax property
+        self._amount_excluding_tax: Optional[float] = None
+        # The amountIncludingTax property
+        self._amount_including_tax: Optional[float] = None
+        # The description property
+        self._description: Optional[str] = None
+        # The discountAmount property
+        self._discount_amount: Optional[float] = None
+        # The discountAppliedBeforeTax property
+        self._discount_applied_before_tax: Optional[bool] = None
+        # The discountPercent property
+        self._discount_percent: Optional[float] = None
+        # The documentId property
+        self._document_id: Optional[UUID] = None
+        # The invoiceDiscountAllocation property
+        self._invoice_discount_allocation: Optional[float] = None
+        # The invoiceQuantity property
+        self._invoice_quantity: Optional[float] = None
+        # The invoicedQuantity property
+        self._invoiced_quantity: Optional[float] = None
+        # The item property
+        self._item: Optional[item.Item] = None
+        # The itemId property
+        self._item_id: Optional[UUID] = None
+        # The lineType property
+        self._line_type: Optional[str] = None
+        # The netAmount property
+        self._net_amount: Optional[float] = None
+        # The netAmountIncludingTax property
+        self._net_amount_including_tax: Optional[float] = None
+        # The netTaxAmount property
+        self._net_tax_amount: Optional[float] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The quantity property
+        self._quantity: Optional[float] = None
+        # The sequence property
+        self._sequence: Optional[int] = None
+        # The shipQuantity property
+        self._ship_quantity: Optional[float] = None
+        # The shipmentDate property
+        self._shipment_date: Optional[date] = None
+        # The shippedQuantity property
+        self._shipped_quantity: Optional[float] = None
+        # The taxCode property
+        self._tax_code: Optional[str] = None
+        # The taxPercent property
+        self._tax_percent: Optional[float] = None
+        # The totalTaxAmount property
+        self._total_tax_amount: Optional[float] = None
+        # The unitOfMeasureId property
+        self._unit_of_measure_id: Optional[UUID] = None
+        # The unitPrice property
+        self._unit_price: Optional[float] = None
+    
     @property
     def account(self,) -> Optional[account.Account]:
         """
@@ -27,15 +92,15 @@ class SalesOrderLine(entity.Entity):
         self._account = value
     
     @property
-    def account_id(self,) -> Optional[Guid]:
+    def account_id(self,) -> Optional[UUID]:
         """
         Gets the accountId property value. The accountId property
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._account_id
     
     @account_id.setter
-    def account_id(self,value: Optional[Guid] = None) -> None:
+    def account_id(self,value: Optional[UUID] = None) -> None:
         """
         Sets the accountId property value. The accountId property
         Args:
@@ -76,70 +141,6 @@ class SalesOrderLine(entity.Entity):
             value: Value to set for the amount_including_tax property.
         """
         self._amount_including_tax = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new salesOrderLine and sets the default values.
-        """
-        super().__init__()
-        # The account property
-        self._account: Optional[account.Account] = None
-        # The accountId property
-        self._account_id: Optional[Guid] = None
-        # The amountExcludingTax property
-        self._amount_excluding_tax: Optional[float] = None
-        # The amountIncludingTax property
-        self._amount_including_tax: Optional[float] = None
-        # The description property
-        self._description: Optional[str] = None
-        # The discountAmount property
-        self._discount_amount: Optional[float] = None
-        # The discountAppliedBeforeTax property
-        self._discount_applied_before_tax: Optional[bool] = None
-        # The discountPercent property
-        self._discount_percent: Optional[float] = None
-        # The documentId property
-        self._document_id: Optional[Guid] = None
-        # The invoiceDiscountAllocation property
-        self._invoice_discount_allocation: Optional[float] = None
-        # The invoiceQuantity property
-        self._invoice_quantity: Optional[float] = None
-        # The invoicedQuantity property
-        self._invoiced_quantity: Optional[float] = None
-        # The item property
-        self._item: Optional[item.Item] = None
-        # The itemId property
-        self._item_id: Optional[Guid] = None
-        # The lineType property
-        self._line_type: Optional[str] = None
-        # The netAmount property
-        self._net_amount: Optional[float] = None
-        # The netAmountIncludingTax property
-        self._net_amount_including_tax: Optional[float] = None
-        # The netTaxAmount property
-        self._net_tax_amount: Optional[float] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The quantity property
-        self._quantity: Optional[float] = None
-        # The sequence property
-        self._sequence: Optional[int] = None
-        # The shipQuantity property
-        self._ship_quantity: Optional[float] = None
-        # The shipmentDate property
-        self._shipment_date: Optional[Date] = None
-        # The shippedQuantity property
-        self._shipped_quantity: Optional[float] = None
-        # The taxCode property
-        self._tax_code: Optional[str] = None
-        # The taxPercent property
-        self._tax_percent: Optional[float] = None
-        # The totalTaxAmount property
-        self._total_tax_amount: Optional[float] = None
-        # The unitOfMeasureId property
-        self._unit_of_measure_id: Optional[Guid] = None
-        # The unitPrice property
-        self._unit_price: Optional[float] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SalesOrderLine:
@@ -222,15 +223,15 @@ class SalesOrderLine(entity.Entity):
         self._discount_percent = value
     
     @property
-    def document_id(self,) -> Optional[Guid]:
+    def document_id(self,) -> Optional[UUID]:
         """
         Gets the documentId property value. The documentId property
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._document_id
     
     @document_id.setter
-    def document_id(self,value: Optional[Guid] = None) -> None:
+    def document_id(self,value: Optional[UUID] = None) -> None:
         """
         Sets the documentId property value. The documentId property
         Args:
@@ -243,34 +244,36 @@ class SalesOrderLine(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import account, entity, item
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "account": lambda n : setattr(self, 'account', n.get_object_value(account.Account)),
-            "accountId": lambda n : setattr(self, 'account_id', n.get_object_value(Guid)),
+            "accountId": lambda n : setattr(self, 'account_id', n.get_uuid_value()),
             "amountExcludingTax": lambda n : setattr(self, 'amount_excluding_tax', n.get_float_value()),
             "amountIncludingTax": lambda n : setattr(self, 'amount_including_tax', n.get_float_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "discountAmount": lambda n : setattr(self, 'discount_amount', n.get_float_value()),
             "discountAppliedBeforeTax": lambda n : setattr(self, 'discount_applied_before_tax', n.get_bool_value()),
             "discountPercent": lambda n : setattr(self, 'discount_percent', n.get_float_value()),
-            "documentId": lambda n : setattr(self, 'document_id', n.get_object_value(Guid)),
+            "documentId": lambda n : setattr(self, 'document_id', n.get_uuid_value()),
             "invoicedQuantity": lambda n : setattr(self, 'invoiced_quantity', n.get_float_value()),
             "invoiceDiscountAllocation": lambda n : setattr(self, 'invoice_discount_allocation', n.get_float_value()),
             "invoiceQuantity": lambda n : setattr(self, 'invoice_quantity', n.get_float_value()),
             "item": lambda n : setattr(self, 'item', n.get_object_value(item.Item)),
-            "itemId": lambda n : setattr(self, 'item_id', n.get_object_value(Guid)),
+            "itemId": lambda n : setattr(self, 'item_id', n.get_uuid_value()),
             "lineType": lambda n : setattr(self, 'line_type', n.get_str_value()),
             "netAmount": lambda n : setattr(self, 'net_amount', n.get_float_value()),
             "netAmountIncludingTax": lambda n : setattr(self, 'net_amount_including_tax', n.get_float_value()),
             "netTaxAmount": lambda n : setattr(self, 'net_tax_amount', n.get_float_value()),
             "quantity": lambda n : setattr(self, 'quantity', n.get_float_value()),
             "sequence": lambda n : setattr(self, 'sequence', n.get_int_value()),
-            "shipmentDate": lambda n : setattr(self, 'shipment_date', n.get_object_value(Date)),
+            "shipmentDate": lambda n : setattr(self, 'shipment_date', n.get_date_value()),
             "shippedQuantity": lambda n : setattr(self, 'shipped_quantity', n.get_float_value()),
             "shipQuantity": lambda n : setattr(self, 'ship_quantity', n.get_float_value()),
             "taxCode": lambda n : setattr(self, 'tax_code', n.get_str_value()),
             "taxPercent": lambda n : setattr(self, 'tax_percent', n.get_float_value()),
             "totalTaxAmount": lambda n : setattr(self, 'total_tax_amount', n.get_float_value()),
-            "unitOfMeasureId": lambda n : setattr(self, 'unit_of_measure_id', n.get_object_value(Guid)),
+            "unitOfMeasureId": lambda n : setattr(self, 'unit_of_measure_id', n.get_uuid_value()),
             "unitPrice": lambda n : setattr(self, 'unit_price', n.get_float_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -346,15 +349,15 @@ class SalesOrderLine(entity.Entity):
         self._item = value
     
     @property
-    def item_id(self,) -> Optional[Guid]:
+    def item_id(self,) -> Optional[UUID]:
         """
         Gets the itemId property value. The itemId property
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._item_id
     
     @item_id.setter
-    def item_id(self,value: Optional[Guid] = None) -> None:
+    def item_id(self,value: Optional[UUID] = None) -> None:
         """
         Sets the itemId property value. The itemId property
         Args:
@@ -474,32 +477,32 @@ class SalesOrderLine(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_object_value("account", self.account)
-        writer.write_object_value("accountId", self.account_id)
+        writer.write_uuid_value("accountId", self.account_id)
         writer.write_float_value("amountExcludingTax", self.amount_excluding_tax)
         writer.write_float_value("amountIncludingTax", self.amount_including_tax)
         writer.write_str_value("description", self.description)
         writer.write_float_value("discountAmount", self.discount_amount)
         writer.write_bool_value("discountAppliedBeforeTax", self.discount_applied_before_tax)
         writer.write_float_value("discountPercent", self.discount_percent)
-        writer.write_object_value("documentId", self.document_id)
+        writer.write_uuid_value("documentId", self.document_id)
         writer.write_float_value("invoicedQuantity", self.invoiced_quantity)
         writer.write_float_value("invoiceDiscountAllocation", self.invoice_discount_allocation)
         writer.write_float_value("invoiceQuantity", self.invoice_quantity)
         writer.write_object_value("item", self.item)
-        writer.write_object_value("itemId", self.item_id)
+        writer.write_uuid_value("itemId", self.item_id)
         writer.write_str_value("lineType", self.line_type)
         writer.write_float_value("netAmount", self.net_amount)
         writer.write_float_value("netAmountIncludingTax", self.net_amount_including_tax)
         writer.write_float_value("netTaxAmount", self.net_tax_amount)
         writer.write_float_value("quantity", self.quantity)
         writer.write_int_value("sequence", self.sequence)
-        writer.write_object_value("shipmentDate", self.shipment_date)
+        writer.write_date_value("shipmentDate", self.shipment_date)
         writer.write_float_value("shippedQuantity", self.shipped_quantity)
         writer.write_float_value("shipQuantity", self.ship_quantity)
         writer.write_str_value("taxCode", self.tax_code)
         writer.write_float_value("taxPercent", self.tax_percent)
         writer.write_float_value("totalTaxAmount", self.total_tax_amount)
-        writer.write_object_value("unitOfMeasureId", self.unit_of_measure_id)
+        writer.write_uuid_value("unitOfMeasureId", self.unit_of_measure_id)
         writer.write_float_value("unitPrice", self.unit_price)
     
     @property
@@ -520,15 +523,15 @@ class SalesOrderLine(entity.Entity):
         self._ship_quantity = value
     
     @property
-    def shipment_date(self,) -> Optional[Date]:
+    def shipment_date(self,) -> Optional[date]:
         """
         Gets the shipmentDate property value. The shipmentDate property
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._shipment_date
     
     @shipment_date.setter
-    def shipment_date(self,value: Optional[Date] = None) -> None:
+    def shipment_date(self,value: Optional[date] = None) -> None:
         """
         Sets the shipmentDate property value. The shipmentDate property
         Args:
@@ -605,15 +608,15 @@ class SalesOrderLine(entity.Entity):
         self._total_tax_amount = value
     
     @property
-    def unit_of_measure_id(self,) -> Optional[Guid]:
+    def unit_of_measure_id(self,) -> Optional[UUID]:
         """
         Gets the unitOfMeasureId property value. The unitOfMeasureId property
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._unit_of_measure_id
     
     @unit_of_measure_id.setter
-    def unit_of_measure_id(self,value: Optional[Guid] = None) -> None:
+    def unit_of_measure_id(self,value: Optional[UUID] = None) -> None:
         """
         Sets the unitOfMeasureId property value. The unitOfMeasureId property
         Args:

@@ -7,43 +7,22 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-authentication_methods_root = lazy_import('msgraph.generated.models.authentication_methods_root')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-user_registration_details_request_builder = lazy_import('msgraph.generated.print.reports.authentication_methods.user_registration_details.user_registration_details_request_builder')
-user_registration_details_item_request_builder = lazy_import('msgraph.generated.print.reports.authentication_methods.user_registration_details.item.user_registration_details_item_request_builder')
-users_registered_by_feature_request_builder = lazy_import('msgraph.generated.print.reports.authentication_methods.users_registered_by_feature.users_registered_by_feature_request_builder')
-users_registered_by_feature_with_included_user_types_with_included_user_roles_request_builder = lazy_import('msgraph.generated.print.reports.authentication_methods.users_registered_by_feature_with_included_user_types_with_included_user_roles.users_registered_by_feature_with_included_user_types_with_included_user_roles_request_builder')
-users_registered_by_method_request_builder = lazy_import('msgraph.generated.print.reports.authentication_methods.users_registered_by_method.users_registered_by_method_request_builder')
-users_registered_by_method_with_included_user_types_with_included_user_roles_request_builder = lazy_import('msgraph.generated.print.reports.authentication_methods.users_registered_by_method_with_included_user_types_with_included_user_roles.users_registered_by_method_with_included_user_types_with_included_user_roles_request_builder')
+if TYPE_CHECKING:
+    from ....models import authentication_methods_root
+    from ....models.o_data_errors import o_data_error
+    from .user_registration_details import user_registration_details_request_builder
+    from .user_registration_details.item import user_registration_details_item_request_builder
+    from .users_registered_by_feature import users_registered_by_feature_request_builder
+    from .users_registered_by_feature_with_included_user_types_with_included_user_roles import users_registered_by_feature_with_included_user_types_with_included_user_roles_request_builder
+    from .users_registered_by_method import users_registered_by_method_request_builder
+    from .users_registered_by_method_with_included_user_types_with_included_user_roles import users_registered_by_method_with_included_user_types_with_included_user_roles_request_builder
 
 class AuthenticationMethodsRequestBuilder():
     """
     Provides operations to manage the authenticationMethods property of the microsoft.graph.reportRoot entity.
     """
-    @property
-    def user_registration_details(self) -> user_registration_details_request_builder.UserRegistrationDetailsRequestBuilder:
-        """
-        Provides operations to manage the userRegistrationDetails property of the microsoft.graph.authenticationMethodsRoot entity.
-        """
-        return user_registration_details_request_builder.UserRegistrationDetailsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def users_registered_by_feature(self) -> users_registered_by_feature_request_builder.UsersRegisteredByFeatureRequestBuilder:
-        """
-        Provides operations to call the usersRegisteredByFeature method.
-        """
-        return users_registered_by_feature_request_builder.UsersRegisteredByFeatureRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def users_registered_by_method(self) -> users_registered_by_method_request_builder.UsersRegisteredByMethodRequestBuilder:
-        """
-        Provides operations to call the usersRegisteredByMethod method.
-        """
-        return users_registered_by_method_request_builder.UsersRegisteredByMethodRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new AuthenticationMethodsRequestBuilder and sets the default values.
@@ -71,6 +50,8 @@ class AuthenticationMethodsRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -89,12 +70,16 @@ class AuthenticationMethodsRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import authentication_methods_root
+
         return await self.request_adapter.send_async(request_info, authentication_methods_root.AuthenticationMethodsRoot, error_mapping)
     
     async def patch(self,body: Optional[authentication_methods_root.AuthenticationMethodsRoot] = None, request_configuration: Optional[AuthenticationMethodsRequestBuilderPatchRequestConfiguration] = None) -> Optional[authentication_methods_root.AuthenticationMethodsRoot]:
@@ -110,12 +95,16 @@ class AuthenticationMethodsRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import authentication_methods_root
+
         return await self.request_adapter.send_async(request_info, authentication_methods_root.AuthenticationMethodsRoot, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AuthenticationMethodsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -182,6 +171,8 @@ class AuthenticationMethodsRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .user_registration_details.item import user_registration_details_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["userRegistrationDetails%2Did"] = id
         return user_registration_details_item_request_builder.UserRegistrationDetailsItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -198,7 +189,9 @@ class AuthenticationMethodsRequestBuilder():
             raise Exception("included_user_roles cannot be undefined")
         if included_user_types is None:
             raise Exception("included_user_types cannot be undefined")
-        return users_registered_by_feature_with_included_user_types_with_included_user_roles_request_builder.UsersRegisteredByFeatureWithIncludedUserTypesWithIncludedUserRolesRequestBuilder(self.request_adapter, self.path_parameters, includedUserRoles, includedUserTypes)
+        from .users_registered_by_feature_with_included_user_types_with_included_user_roles import users_registered_by_feature_with_included_user_types_with_included_user_roles_request_builder
+
+        return users_registered_by_feature_with_included_user_types_with_included_user_roles_request_builder.UsersRegisteredByFeatureWithIncludedUserTypesWithIncludedUserRolesRequestBuilder(self.request_adapter, self.path_parameters, included_user_roles, included_user_types)
     
     def users_registered_by_method_with_included_user_types_with_included_user_roles(self,included_user_roles: Optional[str] = None, included_user_types: Optional[str] = None) -> users_registered_by_method_with_included_user_types_with_included_user_roles_request_builder.UsersRegisteredByMethodWithIncludedUserTypesWithIncludedUserRolesRequestBuilder:
         """
@@ -212,7 +205,36 @@ class AuthenticationMethodsRequestBuilder():
             raise Exception("included_user_roles cannot be undefined")
         if included_user_types is None:
             raise Exception("included_user_types cannot be undefined")
-        return users_registered_by_method_with_included_user_types_with_included_user_roles_request_builder.UsersRegisteredByMethodWithIncludedUserTypesWithIncludedUserRolesRequestBuilder(self.request_adapter, self.path_parameters, includedUserRoles, includedUserTypes)
+        from .users_registered_by_method_with_included_user_types_with_included_user_roles import users_registered_by_method_with_included_user_types_with_included_user_roles_request_builder
+
+        return users_registered_by_method_with_included_user_types_with_included_user_roles_request_builder.UsersRegisteredByMethodWithIncludedUserTypesWithIncludedUserRolesRequestBuilder(self.request_adapter, self.path_parameters, included_user_roles, included_user_types)
+    
+    @property
+    def user_registration_details(self) -> user_registration_details_request_builder.UserRegistrationDetailsRequestBuilder:
+        """
+        Provides operations to manage the userRegistrationDetails property of the microsoft.graph.authenticationMethodsRoot entity.
+        """
+        from .user_registration_details import user_registration_details_request_builder
+
+        return user_registration_details_request_builder.UserRegistrationDetailsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def users_registered_by_feature(self) -> users_registered_by_feature_request_builder.UsersRegisteredByFeatureRequestBuilder:
+        """
+        Provides operations to call the usersRegisteredByFeature method.
+        """
+        from .users_registered_by_feature import users_registered_by_feature_request_builder
+
+        return users_registered_by_feature_request_builder.UsersRegisteredByFeatureRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def users_registered_by_method(self) -> users_registered_by_method_request_builder.UsersRegisteredByMethodRequestBuilder:
+        """
+        Provides operations to call the usersRegisteredByMethod method.
+        """
+        from .users_registered_by_method import users_registered_by_method_request_builder
+
+        return users_registered_by_method_request_builder.UsersRegisteredByMethodRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AuthenticationMethodsRequestBuilderDeleteRequestConfiguration():
@@ -231,12 +253,6 @@ class AuthenticationMethodsRequestBuilder():
         """
         Container for navigation properties for Azure AD authentication methods resources.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -252,6 +268,12 @@ class AuthenticationMethodsRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class AuthenticationMethodsRequestBuilderGetRequestConfiguration():

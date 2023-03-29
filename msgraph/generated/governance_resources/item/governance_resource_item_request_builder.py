@@ -7,60 +7,25 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-parent_request_builder = lazy_import('msgraph.generated.governance_resources.item.parent.parent_request_builder')
-role_assignment_requests_request_builder = lazy_import('msgraph.generated.governance_resources.item.role_assignment_requests.role_assignment_requests_request_builder')
-governance_role_assignment_request_item_request_builder = lazy_import('msgraph.generated.governance_resources.item.role_assignment_requests.item.governance_role_assignment_request_item_request_builder')
-role_assignments_request_builder = lazy_import('msgraph.generated.governance_resources.item.role_assignments.role_assignments_request_builder')
-governance_role_assignment_item_request_builder = lazy_import('msgraph.generated.governance_resources.item.role_assignments.item.governance_role_assignment_item_request_builder')
-role_definitions_request_builder = lazy_import('msgraph.generated.governance_resources.item.role_definitions.role_definitions_request_builder')
-governance_role_definition_item_request_builder = lazy_import('msgraph.generated.governance_resources.item.role_definitions.item.governance_role_definition_item_request_builder')
-role_settings_request_builder = lazy_import('msgraph.generated.governance_resources.item.role_settings.role_settings_request_builder')
-governance_role_setting_item_request_builder = lazy_import('msgraph.generated.governance_resources.item.role_settings.item.governance_role_setting_item_request_builder')
-governance_resource = lazy_import('msgraph.generated.models.governance_resource')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ...models import governance_resource
+    from ...models.o_data_errors import o_data_error
+    from .parent import parent_request_builder
+    from .role_assignment_requests import role_assignment_requests_request_builder
+    from .role_assignment_requests.item import governance_role_assignment_request_item_request_builder
+    from .role_assignments import role_assignments_request_builder
+    from .role_assignments.item import governance_role_assignment_item_request_builder
+    from .role_definitions import role_definitions_request_builder
+    from .role_definitions.item import governance_role_definition_item_request_builder
+    from .role_settings import role_settings_request_builder
+    from .role_settings.item import governance_role_setting_item_request_builder
 
 class GovernanceResourceItemRequestBuilder():
     """
     Provides operations to manage the collection of governanceResource entities.
     """
-    @property
-    def parent(self) -> parent_request_builder.ParentRequestBuilder:
-        """
-        Provides operations to manage the parent property of the microsoft.graph.governanceResource entity.
-        """
-        return parent_request_builder.ParentRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def role_assignment_requests(self) -> role_assignment_requests_request_builder.RoleAssignmentRequestsRequestBuilder:
-        """
-        Provides operations to manage the roleAssignmentRequests property of the microsoft.graph.governanceResource entity.
-        """
-        return role_assignment_requests_request_builder.RoleAssignmentRequestsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def role_assignments(self) -> role_assignments_request_builder.RoleAssignmentsRequestBuilder:
-        """
-        Provides operations to manage the roleAssignments property of the microsoft.graph.governanceResource entity.
-        """
-        return role_assignments_request_builder.RoleAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def role_definitions(self) -> role_definitions_request_builder.RoleDefinitionsRequestBuilder:
-        """
-        Provides operations to manage the roleDefinitions property of the microsoft.graph.governanceResource entity.
-        """
-        return role_definitions_request_builder.RoleDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def role_settings(self) -> role_settings_request_builder.RoleSettingsRequestBuilder:
-        """
-        Provides operations to manage the roleSettings property of the microsoft.graph.governanceResource entity.
-        """
-        return role_settings_request_builder.RoleSettingsRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new GovernanceResourceItemRequestBuilder and sets the default values.
@@ -88,6 +53,8 @@ class GovernanceResourceItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -106,12 +73,16 @@ class GovernanceResourceItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models import governance_resource
+
         return await self.request_adapter.send_async(request_info, governance_resource.GovernanceResource, error_mapping)
     
     async def patch(self,body: Optional[governance_resource.GovernanceResource] = None, request_configuration: Optional[GovernanceResourceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[governance_resource.GovernanceResource]:
@@ -127,12 +98,16 @@ class GovernanceResourceItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models import governance_resource
+
         return await self.request_adapter.send_async(request_info, governance_resource.GovernanceResource, error_mapping)
     
     def role_assignment_requests_by_id(self,id: str) -> governance_role_assignment_request_item_request_builder.GovernanceRoleAssignmentRequestItemRequestBuilder:
@@ -144,6 +119,8 @@ class GovernanceResourceItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .role_assignment_requests.item import governance_role_assignment_request_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["governanceRoleAssignmentRequest%2Did"] = id
         return governance_role_assignment_request_item_request_builder.GovernanceRoleAssignmentRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -157,6 +134,8 @@ class GovernanceResourceItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .role_assignments.item import governance_role_assignment_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["governanceRoleAssignment%2Did"] = id
         return governance_role_assignment_item_request_builder.GovernanceRoleAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -170,6 +149,8 @@ class GovernanceResourceItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .role_definitions.item import governance_role_definition_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["governanceRoleDefinition%2Did"] = id
         return governance_role_definition_item_request_builder.GovernanceRoleDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -183,6 +164,8 @@ class GovernanceResourceItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .role_settings.item import governance_role_setting_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["governanceRoleSetting%2Did"] = id
         return governance_role_setting_item_request_builder.GovernanceRoleSettingItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -242,6 +225,51 @@ class GovernanceResourceItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def parent(self) -> parent_request_builder.ParentRequestBuilder:
+        """
+        Provides operations to manage the parent property of the microsoft.graph.governanceResource entity.
+        """
+        from .parent import parent_request_builder
+
+        return parent_request_builder.ParentRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def role_assignment_requests(self) -> role_assignment_requests_request_builder.RoleAssignmentRequestsRequestBuilder:
+        """
+        Provides operations to manage the roleAssignmentRequests property of the microsoft.graph.governanceResource entity.
+        """
+        from .role_assignment_requests import role_assignment_requests_request_builder
+
+        return role_assignment_requests_request_builder.RoleAssignmentRequestsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def role_assignments(self) -> role_assignments_request_builder.RoleAssignmentsRequestBuilder:
+        """
+        Provides operations to manage the roleAssignments property of the microsoft.graph.governanceResource entity.
+        """
+        from .role_assignments import role_assignments_request_builder
+
+        return role_assignments_request_builder.RoleAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def role_definitions(self) -> role_definitions_request_builder.RoleDefinitionsRequestBuilder:
+        """
+        Provides operations to manage the roleDefinitions property of the microsoft.graph.governanceResource entity.
+        """
+        from .role_definitions import role_definitions_request_builder
+
+        return role_definitions_request_builder.RoleDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def role_settings(self) -> role_settings_request_builder.RoleSettingsRequestBuilder:
+        """
+        Provides operations to manage the roleSettings property of the microsoft.graph.governanceResource entity.
+        """
+        from .role_settings import role_settings_request_builder
+
+        return role_settings_request_builder.RoleSettingsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class GovernanceResourceItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -259,12 +287,6 @@ class GovernanceResourceItemRequestBuilder():
         """
         Get entity from governanceResources by key
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -280,6 +302,12 @@ class GovernanceResourceItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class GovernanceResourceItemRequestBuilderGetRequestConfiguration():

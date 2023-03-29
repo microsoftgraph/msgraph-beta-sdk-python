@@ -1,29 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class UserExperienceAnalyticsAnomalySeverityOverview(AdditionalDataHolder, Parsable):
     """
     The user experience analytics anomaly severity overview entity contains the count information for each severity of anomaly.
     """
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new userExperienceAnalyticsAnomalySeverityOverview and sets the default values.
@@ -42,6 +24,23 @@ class UserExperienceAnalyticsAnomalySeverityOverview(AdditionalDataHolder, Parsa
         # The OdataType property
         self._odata_type: Optional[str] = None
     
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsAnomalySeverityOverview:
         """
@@ -59,7 +58,7 @@ class UserExperienceAnalyticsAnomalySeverityOverview(AdditionalDataHolder, Parsa
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "highSeverityAnomalyCount": lambda n : setattr(self, 'high_severity_anomaly_count', n.get_int_value()),
             "informationalSeverityAnomalyCount": lambda n : setattr(self, 'informational_severity_anomaly_count', n.get_int_value()),
             "lowSeverityAnomalyCount": lambda n : setattr(self, 'low_severity_anomaly_count', n.get_int_value()),

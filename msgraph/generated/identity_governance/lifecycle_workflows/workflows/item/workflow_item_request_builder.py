@@ -7,85 +7,29 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-execution_scope_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.execution_scope.execution_scope_request_builder')
-user_item_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.execution_scope.item.user_item_request_builder')
-identity_governance_activate_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.identity_governance_activate.identity_governance_activate_request_builder')
-identity_governance_create_new_version_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.identity_governance_create_new_version.identity_governance_create_new_version_request_builder')
-identity_governance_restore_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.identity_governance_restore.identity_governance_restore_request_builder')
-runs_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.runs.runs_request_builder')
-run_item_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.runs.item.run_item_request_builder')
-task_reports_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.task_reports.task_reports_request_builder')
-task_report_item_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.task_reports.item.task_report_item_request_builder')
-user_processing_results_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.user_processing_results.user_processing_results_request_builder')
-user_processing_result_item_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.user_processing_results.item.user_processing_result_item_request_builder')
-versions_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.versions.versions_request_builder')
-workflow_version_version_number_item_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.versions.item.workflow_version_version_number_item_request_builder')
-workflow = lazy_import('msgraph.generated.models.identity_governance.workflow')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from .....models.identity_governance import workflow
+    from .....models.o_data_errors import o_data_error
+    from .execution_scope import execution_scope_request_builder
+    from .execution_scope.item import user_item_request_builder
+    from .identity_governance_activate import identity_governance_activate_request_builder
+    from .identity_governance_create_new_version import identity_governance_create_new_version_request_builder
+    from .identity_governance_restore import identity_governance_restore_request_builder
+    from .runs import runs_request_builder
+    from .runs.item import run_item_request_builder
+    from .task_reports import task_reports_request_builder
+    from .task_reports.item import task_report_item_request_builder
+    from .user_processing_results import user_processing_results_request_builder
+    from .user_processing_results.item import user_processing_result_item_request_builder
+    from .versions import versions_request_builder
+    from .versions.item import workflow_version_version_number_item_request_builder
 
 class WorkflowItemRequestBuilder():
     """
     Provides operations to manage the workflows property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
     """
-    @property
-    def execution_scope(self) -> execution_scope_request_builder.ExecutionScopeRequestBuilder:
-        """
-        Provides operations to manage the executionScope property of the microsoft.graph.identityGovernance.workflow entity.
-        """
-        return execution_scope_request_builder.ExecutionScopeRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def identity_governance_activate(self) -> identity_governance_activate_request_builder.IdentityGovernanceActivateRequestBuilder:
-        """
-        Provides operations to call the activate method.
-        """
-        return identity_governance_activate_request_builder.IdentityGovernanceActivateRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def identity_governance_create_new_version(self) -> identity_governance_create_new_version_request_builder.IdentityGovernanceCreateNewVersionRequestBuilder:
-        """
-        Provides operations to call the createNewVersion method.
-        """
-        return identity_governance_create_new_version_request_builder.IdentityGovernanceCreateNewVersionRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def identity_governance_restore(self) -> identity_governance_restore_request_builder.IdentityGovernanceRestoreRequestBuilder:
-        """
-        Provides operations to call the restore method.
-        """
-        return identity_governance_restore_request_builder.IdentityGovernanceRestoreRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def runs(self) -> runs_request_builder.RunsRequestBuilder:
-        """
-        Provides operations to manage the runs property of the microsoft.graph.identityGovernance.workflow entity.
-        """
-        return runs_request_builder.RunsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def task_reports(self) -> task_reports_request_builder.TaskReportsRequestBuilder:
-        """
-        Provides operations to manage the taskReports property of the microsoft.graph.identityGovernance.workflow entity.
-        """
-        return task_reports_request_builder.TaskReportsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def user_processing_results(self) -> user_processing_results_request_builder.UserProcessingResultsRequestBuilder:
-        """
-        Provides operations to manage the userProcessingResults property of the microsoft.graph.identityGovernance.workflow entity.
-        """
-        return user_processing_results_request_builder.UserProcessingResultsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def versions(self) -> versions_request_builder.VersionsRequestBuilder:
-        """
-        Provides operations to manage the versions property of the microsoft.graph.identityGovernance.workflow entity.
-        """
-        return versions_request_builder.VersionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new WorkflowItemRequestBuilder and sets the default values.
@@ -113,6 +57,8 @@ class WorkflowItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -130,6 +76,8 @@ class WorkflowItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .execution_scope.item import user_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["user%2Did"] = id
         return user_item_request_builder.UserItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -144,12 +92,16 @@ class WorkflowItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .....models.identity_governance import workflow
+
         return await self.request_adapter.send_async(request_info, workflow.Workflow, error_mapping)
     
     async def patch(self,body: Optional[workflow.Workflow] = None, request_configuration: Optional[WorkflowItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[workflow.Workflow]:
@@ -165,12 +117,16 @@ class WorkflowItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .....models.identity_governance import workflow
+
         return await self.request_adapter.send_async(request_info, workflow.Workflow, error_mapping)
     
     def runs_by_id(self,id: str) -> run_item_request_builder.RunItemRequestBuilder:
@@ -182,6 +138,8 @@ class WorkflowItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .runs.item import run_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["run%2Did"] = id
         return run_item_request_builder.RunItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -195,6 +153,8 @@ class WorkflowItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .task_reports.item import task_report_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["taskReport%2Did"] = id
         return task_report_item_request_builder.TaskReportItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -263,6 +223,8 @@ class WorkflowItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .user_processing_results.item import user_processing_result_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["userProcessingResult%2Did"] = id
         return user_processing_result_item_request_builder.UserProcessingResultItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -276,9 +238,83 @@ class WorkflowItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .versions.item import workflow_version_version_number_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["workflowVersion%2DversionNumber"] = id
         return workflow_version_version_number_item_request_builder.WorkflowVersionVersionNumberItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    @property
+    def execution_scope(self) -> execution_scope_request_builder.ExecutionScopeRequestBuilder:
+        """
+        Provides operations to manage the executionScope property of the microsoft.graph.identityGovernance.workflow entity.
+        """
+        from .execution_scope import execution_scope_request_builder
+
+        return execution_scope_request_builder.ExecutionScopeRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def identity_governance_activate(self) -> identity_governance_activate_request_builder.IdentityGovernanceActivateRequestBuilder:
+        """
+        Provides operations to call the activate method.
+        """
+        from .identity_governance_activate import identity_governance_activate_request_builder
+
+        return identity_governance_activate_request_builder.IdentityGovernanceActivateRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def identity_governance_create_new_version(self) -> identity_governance_create_new_version_request_builder.IdentityGovernanceCreateNewVersionRequestBuilder:
+        """
+        Provides operations to call the createNewVersion method.
+        """
+        from .identity_governance_create_new_version import identity_governance_create_new_version_request_builder
+
+        return identity_governance_create_new_version_request_builder.IdentityGovernanceCreateNewVersionRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def identity_governance_restore(self) -> identity_governance_restore_request_builder.IdentityGovernanceRestoreRequestBuilder:
+        """
+        Provides operations to call the restore method.
+        """
+        from .identity_governance_restore import identity_governance_restore_request_builder
+
+        return identity_governance_restore_request_builder.IdentityGovernanceRestoreRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def runs(self) -> runs_request_builder.RunsRequestBuilder:
+        """
+        Provides operations to manage the runs property of the microsoft.graph.identityGovernance.workflow entity.
+        """
+        from .runs import runs_request_builder
+
+        return runs_request_builder.RunsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def task_reports(self) -> task_reports_request_builder.TaskReportsRequestBuilder:
+        """
+        Provides operations to manage the taskReports property of the microsoft.graph.identityGovernance.workflow entity.
+        """
+        from .task_reports import task_reports_request_builder
+
+        return task_reports_request_builder.TaskReportsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def user_processing_results(self) -> user_processing_results_request_builder.UserProcessingResultsRequestBuilder:
+        """
+        Provides operations to manage the userProcessingResults property of the microsoft.graph.identityGovernance.workflow entity.
+        """
+        from .user_processing_results import user_processing_results_request_builder
+
+        return user_processing_results_request_builder.UserProcessingResultsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def versions(self) -> versions_request_builder.VersionsRequestBuilder:
+        """
+        Provides operations to manage the versions property of the microsoft.graph.identityGovernance.workflow entity.
+        """
+        from .versions import versions_request_builder
+
+        return versions_request_builder.VersionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class WorkflowItemRequestBuilderDeleteRequestConfiguration():
@@ -297,12 +333,6 @@ class WorkflowItemRequestBuilder():
         """
         The workflows in the lifecycle workflows instance.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -318,6 +348,12 @@ class WorkflowItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class WorkflowItemRequestBuilderGetRequestConfiguration():

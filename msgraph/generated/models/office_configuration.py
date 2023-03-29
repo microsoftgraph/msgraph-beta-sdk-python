@@ -1,13 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-office_client_checkin_status = lazy_import('msgraph.generated.models.office_client_checkin_status')
-office_client_configuration = lazy_import('msgraph.generated.models.office_client_configuration')
-office_user_checkin_summary = lazy_import('msgraph.generated.models.office_user_checkin_summary')
+if TYPE_CHECKING:
+    from . import office_client_checkin_status, office_client_configuration, office_user_checkin_summary
 
 class OfficeConfiguration(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new OfficeConfiguration and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # List of office Client configuration.
+        self._client_configurations: Optional[List[office_client_configuration.OfficeClientConfiguration]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # List of office Client check-in status.
+        self._tenant_checkin_statuses: Optional[List[office_client_checkin_status.OfficeClientCheckinStatus]] = None
+        # Entity that describes tenant check-in statues
+        self._tenant_user_checkin_summary: Optional[office_user_checkin_summary.OfficeUserCheckinSummary] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -42,22 +56,6 @@ class OfficeConfiguration(AdditionalDataHolder, Parsable):
         """
         self._client_configurations = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new OfficeConfiguration and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # List of office Client configuration.
-        self._client_configurations: Optional[List[office_client_configuration.OfficeClientConfiguration]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # List of office Client check-in status.
-        self._tenant_checkin_statuses: Optional[List[office_client_checkin_status.OfficeClientCheckinStatus]] = None
-        # Entity that describes tenant check-in statues
-        self._tenant_user_checkin_summary: Optional[office_user_checkin_summary.OfficeUserCheckinSummary] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OfficeConfiguration:
         """
@@ -75,7 +73,9 @@ class OfficeConfiguration(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import office_client_checkin_status, office_client_configuration, office_user_checkin_summary
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "clientConfigurations": lambda n : setattr(self, 'client_configurations', n.get_collection_of_object_values(office_client_configuration.OfficeClientConfiguration)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "tenantCheckinStatuses": lambda n : setattr(self, 'tenant_checkin_statuses', n.get_collection_of_object_values(office_client_checkin_status.OfficeClientCheckinStatus)),

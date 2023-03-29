@@ -7,24 +7,17 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-passwordless_microsoft_authenticator_authentication_method = lazy_import('msgraph.generated.models.passwordless_microsoft_authenticator_authentication_method')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-device_request_builder = lazy_import('msgraph.generated.users.item.authentication.passwordless_microsoft_authenticator_methods.item.device.device_request_builder')
+if TYPE_CHECKING:
+    from ......models import passwordless_microsoft_authenticator_authentication_method
+    from ......models.o_data_errors import o_data_error
+    from .device import device_request_builder
 
 class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder():
     """
     Provides operations to manage the passwordlessMicrosoftAuthenticatorMethods property of the microsoft.graph.authentication entity.
     """
-    @property
-    def device(self) -> device_request_builder.DeviceRequestBuilder:
-        """
-        Provides operations to manage the device property of the microsoft.graph.passwordlessMicrosoftAuthenticatorAuthenticationMethod entity.
-        """
-        return device_request_builder.DeviceRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder and sets the default values.
@@ -52,6 +45,8 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder()
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -70,12 +65,16 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder()
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import passwordless_microsoft_authenticator_authentication_method
+
         return await self.request_adapter.send_async(request_info, passwordless_microsoft_authenticator_authentication_method.PasswordlessMicrosoftAuthenticatorAuthenticationMethod, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -112,6 +111,15 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder()
             request_info.add_request_options(request_configuration.options)
         return request_info
     
+    @property
+    def device(self) -> device_request_builder.DeviceRequestBuilder:
+        """
+        Provides operations to manage the device property of the microsoft.graph.passwordlessMicrosoftAuthenticatorAuthenticationMethod entity.
+        """
+        from .device import device_request_builder
+
+        return device_request_builder.DeviceRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -129,12 +137,6 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder()
         """
         Represents the Microsoft Authenticator Passwordless Phone Sign-in methods registered to a user for authentication.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -150,6 +152,12 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder()
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderGetRequestConfiguration():

@@ -1,57 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-email_identity = lazy_import('msgraph.generated.models.email_identity')
-entity = lazy_import('msgraph.generated.models.entity')
-payload_brand = lazy_import('msgraph.generated.models.payload_brand')
-payload_complexity = lazy_import('msgraph.generated.models.payload_complexity')
-payload_delivery_platform = lazy_import('msgraph.generated.models.payload_delivery_platform')
-payload_detail = lazy_import('msgraph.generated.models.payload_detail')
-payload_industry = lazy_import('msgraph.generated.models.payload_industry')
-payload_theme = lazy_import('msgraph.generated.models.payload_theme')
-simulation_attack_technique = lazy_import('msgraph.generated.models.simulation_attack_technique')
-simulation_attack_type = lazy_import('msgraph.generated.models.simulation_attack_type')
-simulation_content_source = lazy_import('msgraph.generated.models.simulation_content_source')
-simulation_content_status = lazy_import('msgraph.generated.models.simulation_content_status')
+if TYPE_CHECKING:
+    from . import email_identity, entity, payload_brand, payload_complexity, payload_delivery_platform, payload_detail, payload_industry, payload_theme, simulation_attack_technique, simulation_attack_type, simulation_content_source, simulation_content_status
+
+from . import entity
 
 class Payload(entity.Entity):
-    @property
-    def brand(self,) -> Optional[payload_brand.PayloadBrand]:
-        """
-        Gets the brand property value. The branch of a payload. Possible values are: unknown, other, americanExpress, capitalOne, dhl, docuSign, dropbox, facebook, firstAmerican, microsoft, netflix, scotiabank, stewartTitle, tesco, wellsFargo, syrinxCloud, adobe, teams, zoom, unknownFutureValue.
-        Returns: Optional[payload_brand.PayloadBrand]
-        """
-        return self._brand
-    
-    @brand.setter
-    def brand(self,value: Optional[payload_brand.PayloadBrand] = None) -> None:
-        """
-        Sets the brand property value. The branch of a payload. Possible values are: unknown, other, americanExpress, capitalOne, dhl, docuSign, dropbox, facebook, firstAmerican, microsoft, netflix, scotiabank, stewartTitle, tesco, wellsFargo, syrinxCloud, adobe, teams, zoom, unknownFutureValue.
-        Args:
-            value: Value to set for the brand property.
-        """
-        self._brand = value
-    
-    @property
-    def complexity(self,) -> Optional[payload_complexity.PayloadComplexity]:
-        """
-        Gets the complexity property value. The complexity of a payload.Possible values are: unknown, low, medium, high, unknownFutureValue
-        Returns: Optional[payload_complexity.PayloadComplexity]
-        """
-        return self._complexity
-    
-    @complexity.setter
-    def complexity(self,value: Optional[payload_complexity.PayloadComplexity] = None) -> None:
-        """
-        Sets the complexity property value. The complexity of a payload.Possible values are: unknown, low, medium, high, unknownFutureValue
-        Args:
-            value: Value to set for the complexity property.
-        """
-        self._complexity = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new payload and sets the default values.
@@ -103,6 +60,40 @@ class Payload(entity.Entity):
         self._technique: Optional[simulation_attack_technique.SimulationAttackTechnique] = None
         # The theme of a payload. Possible values are: unknown, other, accountActivation, accountVerification, billing, cleanUpMail, controversial, documentReceived, expense, incomingMessages, invoice, itemReceived, loginAlert, mailReceived, password, payment, payroll, personalizedOffer, quarantine, remoteWork, reviewMessage, securityUpdate, serviceSuspended, signatureRequired, upgradeMailboxStorage, verifyMailbox, voicemail, advertisement, employeeEngagement, unknownFutureValue.
         self._theme: Optional[payload_theme.PayloadTheme] = None
+    
+    @property
+    def brand(self,) -> Optional[payload_brand.PayloadBrand]:
+        """
+        Gets the brand property value. The branch of a payload. Possible values are: unknown, other, americanExpress, capitalOne, dhl, docuSign, dropbox, facebook, firstAmerican, microsoft, netflix, scotiabank, stewartTitle, tesco, wellsFargo, syrinxCloud, adobe, teams, zoom, unknownFutureValue.
+        Returns: Optional[payload_brand.PayloadBrand]
+        """
+        return self._brand
+    
+    @brand.setter
+    def brand(self,value: Optional[payload_brand.PayloadBrand] = None) -> None:
+        """
+        Sets the brand property value. The branch of a payload. Possible values are: unknown, other, americanExpress, capitalOne, dhl, docuSign, dropbox, facebook, firstAmerican, microsoft, netflix, scotiabank, stewartTitle, tesco, wellsFargo, syrinxCloud, adobe, teams, zoom, unknownFutureValue.
+        Args:
+            value: Value to set for the brand property.
+        """
+        self._brand = value
+    
+    @property
+    def complexity(self,) -> Optional[payload_complexity.PayloadComplexity]:
+        """
+        Gets the complexity property value. The complexity of a payload.Possible values are: unknown, low, medium, high, unknownFutureValue
+        Returns: Optional[payload_complexity.PayloadComplexity]
+        """
+        return self._complexity
+    
+    @complexity.setter
+    def complexity(self,value: Optional[payload_complexity.PayloadComplexity] = None) -> None:
+        """
+        Sets the complexity property value. The complexity of a payload.Possible values are: unknown, low, medium, high, unknownFutureValue
+        Args:
+            value: Value to set for the complexity property.
+        """
+        self._complexity = value
     
     @property
     def created_by(self,) -> Optional[email_identity.EmailIdentity]:
@@ -206,7 +197,9 @@ class Payload(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import email_identity, entity, payload_brand, payload_complexity, payload_delivery_platform, payload_detail, payload_industry, payload_theme, simulation_attack_technique, simulation_attack_type, simulation_content_source, simulation_content_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "brand": lambda n : setattr(self, 'brand', n.get_enum_value(payload_brand.PayloadBrand)),
             "complexity": lambda n : setattr(self, 'complexity', n.get_enum_value(payload_complexity.PayloadComplexity)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(email_identity.EmailIdentity)),

@@ -1,14 +1,28 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-subject_alternative_name_type = lazy_import('msgraph.generated.models.subject_alternative_name_type')
+if TYPE_CHECKING:
+    from . import subject_alternative_name_type
 
 class Windows10XCustomSubjectAlternativeName(AdditionalDataHolder, Parsable):
     """
     Base Profile Type for Authentication Certificates (SCEP or PFX Create)
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new windows10XCustomSubjectAlternativeName and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Custom SAN Name
+        self._name: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Subject Alternative Name Options.
+        self._san_type: Optional[subject_alternative_name_type.SubjectAlternativeNameType] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -25,20 +39,6 @@ class Windows10XCustomSubjectAlternativeName(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new windows10XCustomSubjectAlternativeName and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Custom SAN Name
-        self._name: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Subject Alternative Name Options.
-        self._san_type: Optional[subject_alternative_name_type.SubjectAlternativeNameType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10XCustomSubjectAlternativeName:
@@ -57,7 +57,9 @@ class Windows10XCustomSubjectAlternativeName(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import subject_alternative_name_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "sanType": lambda n : setattr(self, 'san_type', n.get_enum_value(subject_alternative_name_type.SubjectAlternativeNameType)),

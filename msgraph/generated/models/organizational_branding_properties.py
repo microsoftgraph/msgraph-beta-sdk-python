@@ -1,13 +1,81 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-login_page_layout_configuration = lazy_import('msgraph.generated.models.login_page_layout_configuration')
-login_page_text_visibility_settings = lazy_import('msgraph.generated.models.login_page_text_visibility_settings')
+if TYPE_CHECKING:
+    from . import entity, login_page_layout_configuration, login_page_text_visibility_settings, organizational_branding, organizational_branding_localization
+
+from . import entity
 
 class OrganizationalBrandingProperties(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new organizationalBrandingProperties and sets the default values.
+        """
+        super().__init__()
+        # Color that appears in place of the background image in low-bandwidth connections. We recommend that you use the primary color of your banner logo or your organization color. Specify this in hexadecimal format, for example, white is #FFFFFF.
+        self._background_color: Optional[str] = None
+        # Image that appears as the background of the sign-in page. The allowed types are PNG or JPEG not smaller than 300 KB and not larger than 1920 × 1080 pixels. A smaller image will reduce bandwidth requirements and make the page load faster.
+        self._background_image: Optional[bytes] = None
+        # A relative URL for the backgroundImage property that is combined with a CDN base URL from the cdnList to provide the version served by a CDN. Read-only.
+        self._background_image_relative_url: Optional[str] = None
+        # A banner version of your company logo that appears on the sign-in page. The allowed types are PNG or JPEG not larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.
+        self._banner_logo: Optional[bytes] = None
+        # A relative URL for the bannerLogo property that is combined with a CDN base URL from the cdnList to provide the read-only version served by a CDN. Read-only.
+        self._banner_logo_relative_url: Optional[str] = None
+        # A list of base URLs for all available CDN providers that are serving the assets of the current resource. Several CDN providers are used at the same time for high availability of read requests. Read-only.
+        self._cdn_list: Optional[List[str]] = None
+        # A custom URL for resetting account credentials. This URL must be in ASCII format or non-ASCII characters must be URL encoded, and not exceed 128 characters.
+        self._custom_account_reset_credentials_url: Optional[str] = None
+        # CSS styling that appears on the sign-in page. The allowed format is .css format only and not larger than 25 KB.
+        self._custom_c_s_s: Optional[bytes] = None
+        # A relative URL for the customCSS property that is combined with a CDN base URL from the cdnList to provide the version served by a CDN. Read-only.
+        self._custom_c_s_s_relative_url: Optional[str] = None
+        # A string to replace the default 'Can't access your account?' self-service password reset (SSPR) hyperlink text on the sign-in page. This text must be in Unicode format and not exceed 256 characters.
+        self._custom_cannot_access_your_account_text: Optional[str] = None
+        # A custom URL to replace the default URL of the self-service password reset (SSPR) 'Can't access your account?' hyperlink on the sign-in page. This URL must be in ASCII format or non-ASCII characters must be URL encoded, and not exceed 128 characters. DO NOT USE. Use customAccountResetCredentialsUrl instead.
+        self._custom_cannot_access_your_account_url: Optional[str] = None
+        # A string to replace the default 'Forgot my password' hyperlink text on the sign-in form. This text must be in Unicode format and not exceed 256 characters.
+        self._custom_forgot_my_password_text: Optional[str] = None
+        # A string to replace the default 'Privacy and Cookies' hyperlink text in the footer. This text must be in Unicode format and not exceed 256 characters.
+        self._custom_privacy_and_cookies_text: Optional[str] = None
+        # A custom URL to replace the default URL of the 'Privacy and Cookies' hyperlink in the footer. This URL must be in ASCII format or non-ASCII characters must be URL encoded, and not exceed 128 characters.
+        self._custom_privacy_and_cookies_url: Optional[str] = None
+        # A string to replace the default 'reset it now' hyperlink text on the sign-in form. This text must be in Unicode format and not exceed 256 characters. DO NOT USE: Customization of the 'reset it now' hyperlink text is currently not supported.
+        self._custom_reset_it_now_text: Optional[str] = None
+        # A string to replace the the default 'Terms of Use' hyperlink text in the footer. This text must be in Unicode format and not exceed 256 characters.
+        self._custom_terms_of_use_text: Optional[str] = None
+        # A custom URL to replace the default URL of the 'Terms of Use' hyperlink in the footer. This URL must be in ASCII format or non-ASCII characters must be URL encoded, and not exceed 128characters.
+        self._custom_terms_of_use_url: Optional[str] = None
+        # A custom icon (favicon) to replace a default Microsoft product favicon on an Azure AD tenant.
+        self._favicon: Optional[bytes] = None
+        # A relative url for the favicon above that is combined with a CDN base URL from the cdnList to provide the version served by a CDN. Read-only.
+        self._favicon_relative_url: Optional[str] = None
+        # The RGB color to apply to customize the color of the header.
+        self._header_background_color: Optional[str] = None
+        # A company logo that appears in the header of the sign-in page. The allowed types are PNG or JPEG not larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.
+        self._header_logo: Optional[bytes] = None
+        # A relative URL for the headerLogo property that is combined with a CDN base URL from the cdnList to provide the read-only version served by a CDN. Read-only.
+        self._header_logo_relative_url: Optional[str] = None
+        # Represents the layout configuration to be displayed on the login page for a tenant.
+        self._login_page_layout_configuration: Optional[login_page_layout_configuration.LoginPageLayoutConfiguration] = None
+        # Represents the various texts that can be hidden on the login page for a tenant.
+        self._login_page_text_visibility_settings: Optional[login_page_text_visibility_settings.LoginPageTextVisibilitySettings] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Text that appears at the bottom of the sign-in box. Use this to communicate additional information, such as the phone number to your help desk or a legal statement. This text must be in Unicode format and not exceed 1024 characters.
+        self._sign_in_page_text: Optional[str] = None
+        # A square version of your company logo that appears in Windows 10 out-of-box experiences (OOBE) and when Windows Autopilot is enabled for deployment. Allowed types are PNG or JPEG not larger than 240 x 240 pixels and not more than 10 KB in size. We recommend using a transparent image with no padding around the logo.
+        self._square_logo: Optional[bytes] = None
+        # A square dark version of your company logo that appears in Windows 10 out-of-box experiences (OOBE) and when Windows Autopilot is enabled for deployment. Allowed types are PNG or JPEG not larger than 240 x 240 pixels and not more than 10 KB in size. We recommend using a transparent image with no padding around the logo.
+        self._square_logo_dark: Optional[bytes] = None
+        # A relative URL for the squareLogoDark property that is combined with a CDN base URL from the cdnList to provide the version served by a CDN. Read-only.
+        self._square_logo_dark_relative_url: Optional[str] = None
+        # A relative URL for the squareLogo property that is combined with a CDN base URL from the cdnList to provide the version served by a CDN. Read-only.
+        self._square_logo_relative_url: Optional[str] = None
+        # A string that shows as the hint in the username textbox on the sign-in screen. This text must be a Unicode, without links or code, and can't exceed 64 characters.
+        self._username_hint_text: Optional[str] = None
+    
     @property
     def background_color(self,) -> Optional[str]:
         """
@@ -110,74 +178,6 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         self._cdn_list = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new organizationalBrandingProperties and sets the default values.
-        """
-        super().__init__()
-        # Color that appears in place of the background image in low-bandwidth connections. We recommend that you use the primary color of your banner logo or your organization color. Specify this in hexadecimal format, for example, white is #FFFFFF.
-        self._background_color: Optional[str] = None
-        # Image that appears as the background of the sign-in page. The allowed types are PNG or JPEG not smaller than 300 KB and not larger than 1920 × 1080 pixels. A smaller image will reduce bandwidth requirements and make the page load faster.
-        self._background_image: Optional[bytes] = None
-        # A relative URL for the backgroundImage property that is combined with a CDN base URL from the cdnList to provide the version served by a CDN. Read-only.
-        self._background_image_relative_url: Optional[str] = None
-        # A banner version of your company logo that appears on the sign-in page. The allowed types are PNG or JPEG not larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.
-        self._banner_logo: Optional[bytes] = None
-        # A relative URL for the bannerLogo property that is combined with a CDN base URL from the cdnList to provide the read-only version served by a CDN. Read-only.
-        self._banner_logo_relative_url: Optional[str] = None
-        # A list of base URLs for all available CDN providers that are serving the assets of the current resource. Several CDN providers are used at the same time for high availability of read requests. Read-only.
-        self._cdn_list: Optional[List[str]] = None
-        # A custom URL for resetting account credentials. This URL must be in ASCII format or non-ASCII characters must be URL encoded, and not exceed 128 characters.
-        self._custom_account_reset_credentials_url: Optional[str] = None
-        # CSS styling that appears on the sign-in page. The allowed format is .css format only and not larger than 25 KB.
-        self._custom_c_s_s: Optional[bytes] = None
-        # A relative URL for the customCSS property that is combined with a CDN base URL from the cdnList to provide the version served by a CDN. Read-only.
-        self._custom_c_s_s_relative_url: Optional[str] = None
-        # A string to replace the default 'Can't access your account?' self-service password reset (SSPR) hyperlink text on the sign-in page. This text must be in Unicode format and not exceed 256 characters.
-        self._custom_cannot_access_your_account_text: Optional[str] = None
-        # A custom URL to replace the default URL of the self-service password reset (SSPR) 'Can't access your account?' hyperlink on the sign-in page. This URL must be in ASCII format or non-ASCII characters must be URL encoded, and not exceed 128 characters. DO NOT USE. Use customAccountResetCredentialsUrl instead.
-        self._custom_cannot_access_your_account_url: Optional[str] = None
-        # A string to replace the default 'Forgot my password' hyperlink text on the sign-in form. This text must be in Unicode format and not exceed 256 characters.
-        self._custom_forgot_my_password_text: Optional[str] = None
-        # A string to replace the default 'Privacy and Cookies' hyperlink text in the footer. This text must be in Unicode format and not exceed 256 characters.
-        self._custom_privacy_and_cookies_text: Optional[str] = None
-        # A custom URL to replace the default URL of the 'Privacy and Cookies' hyperlink in the footer. This URL must be in ASCII format or non-ASCII characters must be URL encoded, and not exceed 128 characters.
-        self._custom_privacy_and_cookies_url: Optional[str] = None
-        # A string to replace the default 'reset it now' hyperlink text on the sign-in form. This text must be in Unicode format and not exceed 256 characters. DO NOT USE: Customization of the 'reset it now' hyperlink text is currently not supported.
-        self._custom_reset_it_now_text: Optional[str] = None
-        # A string to replace the the default 'Terms of Use' hyperlink text in the footer. This text must be in Unicode format and not exceed 256 characters.
-        self._custom_terms_of_use_text: Optional[str] = None
-        # A custom URL to replace the default URL of the 'Terms of Use' hyperlink in the footer. This URL must be in ASCII format or non-ASCII characters must be URL encoded, and not exceed 128characters.
-        self._custom_terms_of_use_url: Optional[str] = None
-        # A custom icon (favicon) to replace a default Microsoft product favicon on an Azure AD tenant.
-        self._favicon: Optional[bytes] = None
-        # A relative url for the favicon above that is combined with a CDN base URL from the cdnList to provide the version served by a CDN. Read-only.
-        self._favicon_relative_url: Optional[str] = None
-        # The RGB color to apply to customize the color of the header.
-        self._header_background_color: Optional[str] = None
-        # A company logo that appears in the header of the sign-in page. The allowed types are PNG or JPEG not larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.
-        self._header_logo: Optional[bytes] = None
-        # A relative URL for the headerLogo property that is combined with a CDN base URL from the cdnList to provide the read-only version served by a CDN. Read-only.
-        self._header_logo_relative_url: Optional[str] = None
-        # Represents the layout configuration to be displayed on the login page for a tenant.
-        self._login_page_layout_configuration: Optional[login_page_layout_configuration.LoginPageLayoutConfiguration] = None
-        # Represents the various texts that can be hidden on the login page for a tenant.
-        self._login_page_text_visibility_settings: Optional[login_page_text_visibility_settings.LoginPageTextVisibilitySettings] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Text that appears at the bottom of the sign-in box. Use this to communicate additional information, such as the phone number to your help desk or a legal statement. This text must be in Unicode format and not exceed 1024 characters.
-        self._sign_in_page_text: Optional[str] = None
-        # A square version of your company logo that appears in Windows 10 out-of-box experiences (OOBE) and when Windows Autopilot is enabled for deployment. Allowed types are PNG or JPEG not larger than 240 x 240 pixels and not more than 10 KB in size. We recommend using a transparent image with no padding around the logo.
-        self._square_logo: Optional[bytes] = None
-        # A square dark version of your company logo that appears in Windows 10 out-of-box experiences (OOBE) and when Windows Autopilot is enabled for deployment. Allowed types are PNG or JPEG not larger than 240 x 240 pixels and not more than 10 KB in size. We recommend using a transparent image with no padding around the logo.
-        self._square_logo_dark: Optional[bytes] = None
-        # A relative URL for the squareLogoDark property that is combined with a CDN base URL from the cdnList to provide the version served by a CDN. Read-only.
-        self._square_logo_dark_relative_url: Optional[str] = None
-        # A relative URL for the squareLogo property that is combined with a CDN base URL from the cdnList to provide the version served by a CDN. Read-only.
-        self._square_logo_relative_url: Optional[str] = None
-        # A string that shows as the hint in the username textbox on the sign-in screen. This text must be a Unicode, without links or code, and can't exceed 64 characters.
-        self._username_hint_text: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OrganizationalBrandingProperties:
         """
@@ -188,6 +188,17 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.organizationalBranding":
+                from . import organizational_branding
+
+                return organizational_branding.OrganizationalBranding()
+            if mapping_value == "#microsoft.graph.organizationalBrandingLocalization":
+                from . import organizational_branding_localization
+
+                return organizational_branding_localization.OrganizationalBrandingLocalization()
         return OrganizationalBrandingProperties()
     
     @property
@@ -416,7 +427,9 @@ class OrganizationalBrandingProperties(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, login_page_layout_configuration, login_page_text_visibility_settings, organizational_branding, organizational_branding_localization
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "backgroundColor": lambda n : setattr(self, 'background_color', n.get_str_value()),
             "backgroundImage": lambda n : setattr(self, 'background_image', n.get_bytes_value()),
             "backgroundImageRelativeUrl": lambda n : setattr(self, 'background_image_relative_url', n.get_str_value()),

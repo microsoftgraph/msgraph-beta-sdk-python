@@ -1,16 +1,45 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-mac_os_vpp_app_assigned_license = lazy_import('msgraph.generated.models.mac_os_vpp_app_assigned_license')
-mac_os_vpp_app_revoke_licenses_action_result = lazy_import('msgraph.generated.models.mac_os_vpp_app_revoke_licenses_action_result')
-mobile_app = lazy_import('msgraph.generated.models.mobile_app')
-vpp_licensing_type = lazy_import('msgraph.generated.models.vpp_licensing_type')
-vpp_token_account_type = lazy_import('msgraph.generated.models.vpp_token_account_type')
+if TYPE_CHECKING:
+    from . import mac_os_vpp_app_assigned_license, mac_os_vpp_app_revoke_licenses_action_result, mobile_app, vpp_licensing_type, vpp_token_account_type
+
+from . import mobile_app
 
 class MacOsVppApp(mobile_app.MobileApp):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new MacOsVppApp and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.macOsVppApp"
+        # The store URL.
+        self._app_store_url: Optional[str] = None
+        # The licenses assigned to this app.
+        self._assigned_licenses: Optional[List[mac_os_vpp_app_assigned_license.MacOsVppAppAssignedLicense]] = None
+        # The Identity Name.
+        self._bundle_id: Optional[str] = None
+        # The supported License Type.
+        self._licensing_type: Optional[vpp_licensing_type.VppLicensingType] = None
+        # The VPP application release date and time.
+        self._release_date_time: Optional[datetime] = None
+        # Results of revoke license actions on this app.
+        self._revoke_license_action_results: Optional[List[mac_os_vpp_app_revoke_licenses_action_result.MacOsVppAppRevokeLicensesActionResult]] = None
+        # The total number of VPP licenses.
+        self._total_license_count: Optional[int] = None
+        # The number of VPP licenses in use.
+        self._used_license_count: Optional[int] = None
+        # Possible types of an Apple Volume Purchase Program token.
+        self._vpp_token_account_type: Optional[vpp_token_account_type.VppTokenAccountType] = None
+        # The Apple Id associated with the given Apple Volume Purchase Program Token.
+        self._vpp_token_apple_id: Optional[str] = None
+        # Identifier of the VPP token associated with this app.
+        self._vpp_token_id: Optional[str] = None
+        # The organization associated with the Apple Volume Purchase Program Token
+        self._vpp_token_organization_name: Optional[str] = None
+    
     @property
     def app_store_url(self,) -> Optional[str]:
         """
@@ -62,37 +91,6 @@ class MacOsVppApp(mobile_app.MobileApp):
         """
         self._bundle_id = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new MacOsVppApp and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.macOsVppApp"
-        # The store URL.
-        self._app_store_url: Optional[str] = None
-        # The licenses assigned to this app.
-        self._assigned_licenses: Optional[List[mac_os_vpp_app_assigned_license.MacOsVppAppAssignedLicense]] = None
-        # The Identity Name.
-        self._bundle_id: Optional[str] = None
-        # The supported License Type.
-        self._licensing_type: Optional[vpp_licensing_type.VppLicensingType] = None
-        # The VPP application release date and time.
-        self._release_date_time: Optional[datetime] = None
-        # Results of revoke license actions on this app.
-        self._revoke_license_action_results: Optional[List[mac_os_vpp_app_revoke_licenses_action_result.MacOsVppAppRevokeLicensesActionResult]] = None
-        # The total number of VPP licenses.
-        self._total_license_count: Optional[int] = None
-        # The number of VPP licenses in use.
-        self._used_license_count: Optional[int] = None
-        # Possible types of an Apple Volume Purchase Program token.
-        self._vpp_token_account_type: Optional[vpp_token_account_type.VppTokenAccountType] = None
-        # The Apple Id associated with the given Apple Volume Purchase Program Token.
-        self._vpp_token_apple_id: Optional[str] = None
-        # Identifier of the VPP token associated with this app.
-        self._vpp_token_id: Optional[str] = None
-        # The organization associated with the Apple Volume Purchase Program Token
-        self._vpp_token_organization_name: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOsVppApp:
         """
@@ -110,7 +108,9 @@ class MacOsVppApp(mobile_app.MobileApp):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import mac_os_vpp_app_assigned_license, mac_os_vpp_app_revoke_licenses_action_result, mobile_app, vpp_licensing_type, vpp_token_account_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appStoreUrl": lambda n : setattr(self, 'app_store_url', n.get_str_value()),
             "assignedLicenses": lambda n : setattr(self, 'assigned_licenses', n.get_collection_of_object_values(mac_os_vpp_app_assigned_license.MacOsVppAppAssignedLicense)),
             "bundleId": lambda n : setattr(self, 'bundle_id', n.get_str_value()),

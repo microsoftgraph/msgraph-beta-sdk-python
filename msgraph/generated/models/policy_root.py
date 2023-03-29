@@ -1,36 +1,75 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-access_review_policy = lazy_import('msgraph.generated.models.access_review_policy')
-activity_based_timeout_policy = lazy_import('msgraph.generated.models.activity_based_timeout_policy')
-admin_consent_request_policy = lazy_import('msgraph.generated.models.admin_consent_request_policy')
-app_management_policy = lazy_import('msgraph.generated.models.app_management_policy')
-authentication_flows_policy = lazy_import('msgraph.generated.models.authentication_flows_policy')
-authentication_methods_policy = lazy_import('msgraph.generated.models.authentication_methods_policy')
-authentication_strength_policy = lazy_import('msgraph.generated.models.authentication_strength_policy')
-authorization_policy = lazy_import('msgraph.generated.models.authorization_policy')
-b2c_authentication_methods_policy = lazy_import('msgraph.generated.models.b2c_authentication_methods_policy')
-claims_mapping_policy = lazy_import('msgraph.generated.models.claims_mapping_policy')
-conditional_access_policy = lazy_import('msgraph.generated.models.conditional_access_policy')
-cross_tenant_access_policy = lazy_import('msgraph.generated.models.cross_tenant_access_policy')
-device_registration_policy = lazy_import('msgraph.generated.models.device_registration_policy')
-directory_role_access_review_policy = lazy_import('msgraph.generated.models.directory_role_access_review_policy')
-external_identities_policy = lazy_import('msgraph.generated.models.external_identities_policy')
-feature_rollout_policy = lazy_import('msgraph.generated.models.feature_rollout_policy')
-home_realm_discovery_policy = lazy_import('msgraph.generated.models.home_realm_discovery_policy')
-identity_security_defaults_enforcement_policy = lazy_import('msgraph.generated.models.identity_security_defaults_enforcement_policy')
-mobility_management_policy = lazy_import('msgraph.generated.models.mobility_management_policy')
-permission_grant_policy = lazy_import('msgraph.generated.models.permission_grant_policy')
-service_principal_creation_policy = lazy_import('msgraph.generated.models.service_principal_creation_policy')
-tenant_app_management_policy = lazy_import('msgraph.generated.models.tenant_app_management_policy')
-token_issuance_policy = lazy_import('msgraph.generated.models.token_issuance_policy')
-token_lifetime_policy = lazy_import('msgraph.generated.models.token_lifetime_policy')
-unified_role_management_policy = lazy_import('msgraph.generated.models.unified_role_management_policy')
-unified_role_management_policy_assignment = lazy_import('msgraph.generated.models.unified_role_management_policy_assignment')
+if TYPE_CHECKING:
+    from . import access_review_policy, activity_based_timeout_policy, admin_consent_request_policy, app_management_policy, authentication_flows_policy, authentication_methods_policy, authentication_strength_policy, authorization_policy, b2c_authentication_methods_policy, claims_mapping_policy, conditional_access_policy, cross_tenant_access_policy, device_registration_policy, directory_role_access_review_policy, external_identities_policy, feature_rollout_policy, home_realm_discovery_policy, identity_security_defaults_enforcement_policy, mobility_management_policy, permission_grant_policy, service_principal_creation_policy, tenant_app_management_policy, token_issuance_policy, token_lifetime_policy, unified_role_management_policy, unified_role_management_policy_assignment
 
 class PolicyRoot(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new PolicyRoot and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The policy that contains directory-level access review settings.
+        self._access_review_policy: Optional[access_review_policy.AccessReviewPolicy] = None
+        # The policy that controls the idle time out for web sessions for applications.
+        self._activity_based_timeout_policies: Optional[List[activity_based_timeout_policy.ActivityBasedTimeoutPolicy]] = None
+        # The policy by which consent requests are created and managed for the entire tenant.
+        self._admin_consent_request_policy: Optional[admin_consent_request_policy.AdminConsentRequestPolicy] = None
+        # The policies that enforce app management restrictions for specific applications and service principals, overriding the defaultAppManagementPolicy.
+        self._app_management_policies: Optional[List[app_management_policy.AppManagementPolicy]] = None
+        # The policy configuration of the self-service sign-up experience of external users.
+        self._authentication_flows_policy: Optional[authentication_flows_policy.AuthenticationFlowsPolicy] = None
+        # The authentication methods and the users that are allowed to use them to sign in and perform multi-factor authentication (MFA) in Azure Active Directory (Azure AD).
+        self._authentication_methods_policy: Optional[authentication_methods_policy.AuthenticationMethodsPolicy] = None
+        # The authentication method combinations that are to be used in scenarios defined by Azure AD Conditional Access.
+        self._authentication_strength_policies: Optional[List[authentication_strength_policy.AuthenticationStrengthPolicy]] = None
+        # The policy that controls Azure AD authorization settings.
+        self._authorization_policy: Optional[List[authorization_policy.AuthorizationPolicy]] = None
+        # The Azure AD B2C policies that define how end users register via local accounts.
+        self._b2c_authentication_methods_policy: Optional[b2c_authentication_methods_policy.B2cAuthenticationMethodsPolicy] = None
+        # The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.
+        self._claims_mapping_policies: Optional[List[claims_mapping_policy.ClaimsMappingPolicy]] = None
+        # The custom rules that define an access scenario.
+        self._conditional_access_policies: Optional[List[conditional_access_policy.ConditionalAccessPolicy]] = None
+        # The custom rules that define an access scenario when interacting with external Azure AD tenants.
+        self._cross_tenant_access_policy: Optional[cross_tenant_access_policy.CrossTenantAccessPolicy] = None
+        # The tenant-wide policy that enforces app management restrictions for all applications and service principals.
+        self._default_app_management_policy: Optional[tenant_app_management_policy.TenantAppManagementPolicy] = None
+        # The deviceRegistrationPolicy property
+        self._device_registration_policy: Optional[device_registration_policy.DeviceRegistrationPolicy] = None
+        # The directoryRoleAccessReviewPolicy property
+        self._directory_role_access_review_policy: Optional[directory_role_access_review_policy.DirectoryRoleAccessReviewPolicy] = None
+        # Represents the tenant-wide policy that controls whether external users can leave an Azure AD tenant via self-service controls.
+        self._external_identities_policy: Optional[external_identities_policy.ExternalIdentitiesPolicy] = None
+        # The feature rollout policy associated with a directory object.
+        self._feature_rollout_policies: Optional[List[feature_rollout_policy.FeatureRolloutPolicy]] = None
+        # The policy to control Azure AD authentication behavior for federated users.
+        self._home_realm_discovery_policies: Optional[List[home_realm_discovery_policy.HomeRealmDiscoveryPolicy]] = None
+        # The policy that represents the security defaults that protect against common attacks.
+        self._identity_security_defaults_enforcement_policy: Optional[identity_security_defaults_enforcement_policy.IdentitySecurityDefaultsEnforcementPolicy] = None
+        # The policy that defines auto-enrollment configuration for a mobility management (MDM or MAM) application.
+        self._mobile_app_management_policies: Optional[List[mobility_management_policy.MobilityManagementPolicy]] = None
+        # The mobileDeviceManagementPolicies property
+        self._mobile_device_management_policies: Optional[List[mobility_management_policy.MobilityManagementPolicy]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The policy that specifies the conditions under which consent can be granted.
+        self._permission_grant_policies: Optional[List[permission_grant_policy.PermissionGrantPolicy]] = None
+        # Represents the role management policies.
+        self._role_management_policies: Optional[List[unified_role_management_policy.UnifiedRoleManagementPolicy]] = None
+        # Represents the role management policy assignments.
+        self._role_management_policy_assignments: Optional[List[unified_role_management_policy_assignment.UnifiedRoleManagementPolicyAssignment]] = None
+        # The servicePrincipalCreationPolicies property
+        self._service_principal_creation_policies: Optional[List[service_principal_creation_policy.ServicePrincipalCreationPolicy]] = None
+        # The policy that specifies the characteristics of SAML tokens issued by Azure AD.
+        self._token_issuance_policies: Optional[List[token_issuance_policy.TokenIssuancePolicy]] = None
+        # The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Azure AD.
+        self._token_lifetime_policies: Optional[List[token_lifetime_policy.TokenLifetimePolicy]] = None
+    
     @property
     def access_review_policy(self,) -> Optional[access_review_policy.AccessReviewPolicy]:
         """
@@ -235,70 +274,6 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         self._conditional_access_policies = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new PolicyRoot and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The policy that contains directory-level access review settings.
-        self._access_review_policy: Optional[access_review_policy.AccessReviewPolicy] = None
-        # The policy that controls the idle time out for web sessions for applications.
-        self._activity_based_timeout_policies: Optional[List[activity_based_timeout_policy.ActivityBasedTimeoutPolicy]] = None
-        # The policy by which consent requests are created and managed for the entire tenant.
-        self._admin_consent_request_policy: Optional[admin_consent_request_policy.AdminConsentRequestPolicy] = None
-        # The policies that enforce app management restrictions for specific applications and service principals, overriding the defaultAppManagementPolicy.
-        self._app_management_policies: Optional[List[app_management_policy.AppManagementPolicy]] = None
-        # The policy configuration of the self-service sign-up experience of external users.
-        self._authentication_flows_policy: Optional[authentication_flows_policy.AuthenticationFlowsPolicy] = None
-        # The authentication methods and the users that are allowed to use them to sign in and perform multi-factor authentication (MFA) in Azure Active Directory (Azure AD).
-        self._authentication_methods_policy: Optional[authentication_methods_policy.AuthenticationMethodsPolicy] = None
-        # The authentication method combinations that are to be used in scenarios defined by Azure AD Conditional Access.
-        self._authentication_strength_policies: Optional[List[authentication_strength_policy.AuthenticationStrengthPolicy]] = None
-        # The policy that controls Azure AD authorization settings.
-        self._authorization_policy: Optional[List[authorization_policy.AuthorizationPolicy]] = None
-        # The Azure AD B2C policies that define how end users register via local accounts.
-        self._b2c_authentication_methods_policy: Optional[b2c_authentication_methods_policy.B2cAuthenticationMethodsPolicy] = None
-        # The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.
-        self._claims_mapping_policies: Optional[List[claims_mapping_policy.ClaimsMappingPolicy]] = None
-        # The custom rules that define an access scenario.
-        self._conditional_access_policies: Optional[List[conditional_access_policy.ConditionalAccessPolicy]] = None
-        # The custom rules that define an access scenario when interacting with external Azure AD tenants.
-        self._cross_tenant_access_policy: Optional[cross_tenant_access_policy.CrossTenantAccessPolicy] = None
-        # The tenant-wide policy that enforces app management restrictions for all applications and service principals.
-        self._default_app_management_policy: Optional[tenant_app_management_policy.TenantAppManagementPolicy] = None
-        # The deviceRegistrationPolicy property
-        self._device_registration_policy: Optional[device_registration_policy.DeviceRegistrationPolicy] = None
-        # The directoryRoleAccessReviewPolicy property
-        self._directory_role_access_review_policy: Optional[directory_role_access_review_policy.DirectoryRoleAccessReviewPolicy] = None
-        # Represents the tenant-wide policy that controls whether external users can leave an Azure AD tenant via self-service controls.
-        self._external_identities_policy: Optional[external_identities_policy.ExternalIdentitiesPolicy] = None
-        # The feature rollout policy associated with a directory object.
-        self._feature_rollout_policies: Optional[List[feature_rollout_policy.FeatureRolloutPolicy]] = None
-        # The policy to control Azure AD authentication behavior for federated users.
-        self._home_realm_discovery_policies: Optional[List[home_realm_discovery_policy.HomeRealmDiscoveryPolicy]] = None
-        # The policy that represents the security defaults that protect against common attacks.
-        self._identity_security_defaults_enforcement_policy: Optional[identity_security_defaults_enforcement_policy.IdentitySecurityDefaultsEnforcementPolicy] = None
-        # The policy that defines auto-enrollment configuration for a mobility management (MDM or MAM) application.
-        self._mobile_app_management_policies: Optional[List[mobility_management_policy.MobilityManagementPolicy]] = None
-        # The mobileDeviceManagementPolicies property
-        self._mobile_device_management_policies: Optional[List[mobility_management_policy.MobilityManagementPolicy]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The policy that specifies the conditions under which consent can be granted.
-        self._permission_grant_policies: Optional[List[permission_grant_policy.PermissionGrantPolicy]] = None
-        # Represents the role management policies.
-        self._role_management_policies: Optional[List[unified_role_management_policy.UnifiedRoleManagementPolicy]] = None
-        # Represents the role management policy assignments.
-        self._role_management_policy_assignments: Optional[List[unified_role_management_policy_assignment.UnifiedRoleManagementPolicyAssignment]] = None
-        # The servicePrincipalCreationPolicies property
-        self._service_principal_creation_policies: Optional[List[service_principal_creation_policy.ServicePrincipalCreationPolicy]] = None
-        # The policy that specifies the characteristics of SAML tokens issued by Azure AD.
-        self._token_issuance_policies: Optional[List[token_issuance_policy.TokenIssuancePolicy]] = None
-        # The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Azure AD.
-        self._token_lifetime_policies: Optional[List[token_lifetime_policy.TokenLifetimePolicy]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PolicyRoot:
         """
@@ -418,7 +393,9 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import access_review_policy, activity_based_timeout_policy, admin_consent_request_policy, app_management_policy, authentication_flows_policy, authentication_methods_policy, authentication_strength_policy, authorization_policy, b2c_authentication_methods_policy, claims_mapping_policy, conditional_access_policy, cross_tenant_access_policy, device_registration_policy, directory_role_access_review_policy, external_identities_policy, feature_rollout_policy, home_realm_discovery_policy, identity_security_defaults_enforcement_policy, mobility_management_policy, permission_grant_policy, service_principal_creation_policy, tenant_app_management_policy, token_issuance_policy, token_lifetime_policy, unified_role_management_policy, unified_role_management_policy_assignment
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accessReviewPolicy": lambda n : setattr(self, 'access_review_policy', n.get_object_value(access_review_policy.AccessReviewPolicy)),
             "activityBasedTimeoutPolicies": lambda n : setattr(self, 'activity_based_timeout_policies', n.get_collection_of_object_values(activity_based_timeout_policy.ActivityBasedTimeoutPolicy)),
             "adminConsentRequestPolicy": lambda n : setattr(self, 'admin_consent_request_policy', n.get_object_value(admin_consent_request_policy.AdminConsentRequestPolicy)),

@@ -1,14 +1,28 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_configuration_setting_instance_template_reference = lazy_import('msgraph.generated.models.device_management_configuration_setting_instance_template_reference')
+if TYPE_CHECKING:
+    from . import device_management_configuration_choice_setting_collection_instance, device_management_configuration_choice_setting_instance, device_management_configuration_group_setting_collection_instance, device_management_configuration_group_setting_instance, device_management_configuration_setting_group_collection_instance, device_management_configuration_setting_group_instance, device_management_configuration_setting_instance_template_reference, device_management_configuration_simple_setting_collection_instance, device_management_configuration_simple_setting_instance
 
 class DeviceManagementConfigurationSettingInstance(AdditionalDataHolder, Parsable):
     """
     Setting instance within policy
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new deviceManagementConfigurationSettingInstance and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Setting Definition Id
+        self._setting_definition_id: Optional[str] = None
+        # Setting Instance Template Reference
+        self._setting_instance_template_reference: Optional[device_management_configuration_setting_instance_template_reference.DeviceManagementConfigurationSettingInstanceTemplateReference] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -26,20 +40,6 @@ class DeviceManagementConfigurationSettingInstance(AdditionalDataHolder, Parsabl
         """
         self._additional_data = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementConfigurationSettingInstance and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Setting Definition Id
-        self._setting_definition_id: Optional[str] = None
-        # Setting Instance Template Reference
-        self._setting_instance_template_reference: Optional[device_management_configuration_setting_instance_template_reference.DeviceManagementConfigurationSettingInstanceTemplateReference] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationSettingInstance:
         """
@@ -50,6 +50,41 @@ class DeviceManagementConfigurationSettingInstance(AdditionalDataHolder, Parsabl
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.deviceManagementConfigurationChoiceSettingCollectionInstance":
+                from . import device_management_configuration_choice_setting_collection_instance
+
+                return device_management_configuration_choice_setting_collection_instance.DeviceManagementConfigurationChoiceSettingCollectionInstance()
+            if mapping_value == "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance":
+                from . import device_management_configuration_choice_setting_instance
+
+                return device_management_configuration_choice_setting_instance.DeviceManagementConfigurationChoiceSettingInstance()
+            if mapping_value == "#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstance":
+                from . import device_management_configuration_group_setting_collection_instance
+
+                return device_management_configuration_group_setting_collection_instance.DeviceManagementConfigurationGroupSettingCollectionInstance()
+            if mapping_value == "#microsoft.graph.deviceManagementConfigurationGroupSettingInstance":
+                from . import device_management_configuration_group_setting_instance
+
+                return device_management_configuration_group_setting_instance.DeviceManagementConfigurationGroupSettingInstance()
+            if mapping_value == "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionInstance":
+                from . import device_management_configuration_setting_group_collection_instance
+
+                return device_management_configuration_setting_group_collection_instance.DeviceManagementConfigurationSettingGroupCollectionInstance()
+            if mapping_value == "#microsoft.graph.deviceManagementConfigurationSettingGroupInstance":
+                from . import device_management_configuration_setting_group_instance
+
+                return device_management_configuration_setting_group_instance.DeviceManagementConfigurationSettingGroupInstance()
+            if mapping_value == "#microsoft.graph.deviceManagementConfigurationSimpleSettingCollectionInstance":
+                from . import device_management_configuration_simple_setting_collection_instance
+
+                return device_management_configuration_simple_setting_collection_instance.DeviceManagementConfigurationSimpleSettingCollectionInstance()
+            if mapping_value == "#microsoft.graph.deviceManagementConfigurationSimpleSettingInstance":
+                from . import device_management_configuration_simple_setting_instance
+
+                return device_management_configuration_simple_setting_instance.DeviceManagementConfigurationSimpleSettingInstance()
         return DeviceManagementConfigurationSettingInstance()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -57,7 +92,9 @@ class DeviceManagementConfigurationSettingInstance(AdditionalDataHolder, Parsabl
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_configuration_choice_setting_collection_instance, device_management_configuration_choice_setting_instance, device_management_configuration_group_setting_collection_instance, device_management_configuration_group_setting_instance, device_management_configuration_setting_group_collection_instance, device_management_configuration_setting_group_instance, device_management_configuration_setting_instance_template_reference, device_management_configuration_simple_setting_collection_instance, device_management_configuration_simple_setting_instance
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "settingDefinitionId": lambda n : setattr(self, 'setting_definition_id', n.get_str_value()),
             "settingInstanceTemplateReference": lambda n : setattr(self, 'setting_instance_template_reference', n.get_object_value(device_management_configuration_setting_instance_template_reference.DeviceManagementConfigurationSettingInstanceTemplateReference)),

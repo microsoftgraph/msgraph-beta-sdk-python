@@ -1,20 +1,41 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-comment_action = lazy_import('msgraph.generated.models.comment_action')
-create_action = lazy_import('msgraph.generated.models.create_action')
-delete_action = lazy_import('msgraph.generated.models.delete_action')
-edit_action = lazy_import('msgraph.generated.models.edit_action')
-mention_action = lazy_import('msgraph.generated.models.mention_action')
-move_action = lazy_import('msgraph.generated.models.move_action')
-rename_action = lazy_import('msgraph.generated.models.rename_action')
-restore_action = lazy_import('msgraph.generated.models.restore_action')
-share_action = lazy_import('msgraph.generated.models.share_action')
-version_action = lazy_import('msgraph.generated.models.version_action')
+if TYPE_CHECKING:
+    from . import comment_action, create_action, delete_action, edit_action, mention_action, move_action, rename_action, restore_action, share_action, version_action
 
 class ItemActionSet(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new itemActionSet and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # A comment was added to the item.
+        self._comment: Optional[comment_action.CommentAction] = None
+        # An item was created.
+        self._create: Optional[create_action.CreateAction] = None
+        # An item was deleted.
+        self._delete: Optional[delete_action.DeleteAction] = None
+        # An item was edited.
+        self._edit: Optional[edit_action.EditAction] = None
+        # A user was mentioned in the item.
+        self._mention: Optional[mention_action.MentionAction] = None
+        # An item was moved.
+        self._move: Optional[move_action.MoveAction] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # An item was renamed.
+        self._rename: Optional[rename_action.RenameAction] = None
+        # An item was restored.
+        self._restore: Optional[restore_action.RestoreAction] = None
+        # An item was shared.
+        self._share: Optional[share_action.ShareAction] = None
+        # An item was versioned.
+        self._version: Optional[version_action.VersionAction] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -48,36 +69,6 @@ class ItemActionSet(AdditionalDataHolder, Parsable):
             value: Value to set for the comment property.
         """
         self._comment = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new itemActionSet and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # A comment was added to the item.
-        self._comment: Optional[comment_action.CommentAction] = None
-        # An item was created.
-        self._create: Optional[create_action.CreateAction] = None
-        # An item was deleted.
-        self._delete: Optional[delete_action.DeleteAction] = None
-        # An item was edited.
-        self._edit: Optional[edit_action.EditAction] = None
-        # A user was mentioned in the item.
-        self._mention: Optional[mention_action.MentionAction] = None
-        # An item was moved.
-        self._move: Optional[move_action.MoveAction] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # An item was renamed.
-        self._rename: Optional[rename_action.RenameAction] = None
-        # An item was restored.
-        self._restore: Optional[restore_action.RestoreAction] = None
-        # An item was shared.
-        self._share: Optional[share_action.ShareAction] = None
-        # An item was versioned.
-        self._version: Optional[version_action.VersionAction] = None
     
     @property
     def create(self,) -> Optional[create_action.CreateAction]:
@@ -147,7 +138,9 @@ class ItemActionSet(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import comment_action, create_action, delete_action, edit_action, mention_action, move_action, rename_action, restore_action, share_action, version_action
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "comment": lambda n : setattr(self, 'comment', n.get_object_value(comment_action.CommentAction)),
             "create": lambda n : setattr(self, 'create', n.get_object_value(create_action.CreateAction)),
             "delete": lambda n : setattr(self, 'delete', n.get_object_value(delete_action.DeleteAction)),

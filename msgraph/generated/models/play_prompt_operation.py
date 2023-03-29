@@ -1,12 +1,23 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-comms_operation = lazy_import('msgraph.generated.models.comms_operation')
-play_prompt_completion_reason = lazy_import('msgraph.generated.models.play_prompt_completion_reason')
+if TYPE_CHECKING:
+    from . import comms_operation, play_prompt_completion_reason
+
+from . import comms_operation
 
 class PlayPromptOperation(comms_operation.CommsOperation):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new PlayPromptOperation and sets the default values.
+        """
+        super().__init__()
+        # Possible values are: unknown, completedSuccessfully, mediaOperationCanceled.
+        self._completion_reason: Optional[play_prompt_completion_reason.PlayPromptCompletionReason] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def completion_reason(self,) -> Optional[play_prompt_completion_reason.PlayPromptCompletionReason]:
         """
@@ -23,16 +34,6 @@ class PlayPromptOperation(comms_operation.CommsOperation):
             value: Value to set for the completion_reason property.
         """
         self._completion_reason = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new PlayPromptOperation and sets the default values.
-        """
-        super().__init__()
-        # Possible values are: unknown, completedSuccessfully, mediaOperationCanceled.
-        self._completion_reason: Optional[play_prompt_completion_reason.PlayPromptCompletionReason] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PlayPromptOperation:
@@ -51,7 +52,9 @@ class PlayPromptOperation(comms_operation.CommsOperation):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import comms_operation, play_prompt_completion_reason
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "completionReason": lambda n : setattr(self, 'completion_reason', n.get_enum_value(play_prompt_completion_reason.PlayPromptCompletionReason)),
         }
         super_fields = super().get_field_deserializers()

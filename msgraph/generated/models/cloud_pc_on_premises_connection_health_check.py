@@ -1,13 +1,36 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-cloud_pc_on_premises_connection_health_check_error_type = lazy_import('msgraph.generated.models.cloud_pc_on_premises_connection_health_check_error_type')
-cloud_pc_on_premises_connection_status = lazy_import('msgraph.generated.models.cloud_pc_on_premises_connection_status')
+if TYPE_CHECKING:
+    from . import cloud_pc_on_premises_connection_health_check_error_type, cloud_pc_on_premises_connection_status
 
 class CloudPcOnPremisesConnectionHealthCheck(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new cloudPcOnPremisesConnectionHealthCheck and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Additional details about the health check or the recommended action.
+        self._additional_details: Optional[str] = None
+        # The display name for this health check item.
+        self._display_name: Optional[str] = None
+        # The end time of the health check item. Read-only.
+        self._end_date_time: Optional[datetime] = None
+        # The type of error that occurred during this health check.
+        self._error_type: Optional[cloud_pc_on_premises_connection_health_check_error_type.CloudPcOnPremisesConnectionHealthCheckErrorType] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The recommended action to fix the corresponding error.
+        self._recommended_action: Optional[str] = None
+        # The start time of the health check item. Read-only.
+        self._start_date_time: Optional[datetime] = None
+        # The status property
+        self._status: Optional[cloud_pc_on_premises_connection_status.CloudPcOnPremisesConnectionStatus] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -41,30 +64,6 @@ class CloudPcOnPremisesConnectionHealthCheck(AdditionalDataHolder, Parsable):
             value: Value to set for the additional_details property.
         """
         self._additional_details = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new cloudPcOnPremisesConnectionHealthCheck and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Additional details about the health check or the recommended action.
-        self._additional_details: Optional[str] = None
-        # The display name for this health check item.
-        self._display_name: Optional[str] = None
-        # The end time of the health check item. Read-only.
-        self._end_date_time: Optional[datetime] = None
-        # The type of error that occurred during this health check.
-        self._error_type: Optional[cloud_pc_on_premises_connection_health_check_error_type.CloudPcOnPremisesConnectionHealthCheckErrorType] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The recommended action to fix the corresponding error.
-        self._recommended_action: Optional[str] = None
-        # The start time of the health check item. Read-only.
-        self._start_date_time: Optional[datetime] = None
-        # The status property
-        self._status: Optional[cloud_pc_on_premises_connection_status.CloudPcOnPremisesConnectionStatus] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcOnPremisesConnectionHealthCheck:
@@ -134,7 +133,9 @@ class CloudPcOnPremisesConnectionHealthCheck(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import cloud_pc_on_premises_connection_health_check_error_type, cloud_pc_on_premises_connection_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "additionalDetails": lambda n : setattr(self, 'additional_details', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),

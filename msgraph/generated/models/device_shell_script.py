@@ -1,21 +1,57 @@
 from __future__ import annotations
 from datetime import datetime, timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_script_assignment = lazy_import('msgraph.generated.models.device_management_script_assignment')
-device_management_script_device_state = lazy_import('msgraph.generated.models.device_management_script_device_state')
-device_management_script_group_assignment = lazy_import('msgraph.generated.models.device_management_script_group_assignment')
-device_management_script_run_summary = lazy_import('msgraph.generated.models.device_management_script_run_summary')
-device_management_script_user_state = lazy_import('msgraph.generated.models.device_management_script_user_state')
-entity = lazy_import('msgraph.generated.models.entity')
-run_as_account_type = lazy_import('msgraph.generated.models.run_as_account_type')
+if TYPE_CHECKING:
+    from . import device_management_script_assignment, device_management_script_device_state, device_management_script_group_assignment, device_management_script_run_summary, device_management_script_user_state, entity, run_as_account_type
+
+from . import entity
 
 class DeviceShellScript(entity.Entity):
     """
     Intune will provide customer the ability to run their Shell scripts on the enrolled Mac OS devices. The script can be run once or periodically.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new deviceShellScript and sets the default values.
+        """
+        super().__init__()
+        # The list of group assignments for the device management script.
+        self._assignments: Optional[List[device_management_script_assignment.DeviceManagementScriptAssignment]] = None
+        # Does not notify the user a script is being executed
+        self._block_execution_notifications: Optional[bool] = None
+        # The date and time the device management script was created. This property is read-only.
+        self._created_date_time: Optional[datetime] = None
+        # Optional description for the device management script.
+        self._description: Optional[str] = None
+        # List of run states for this script across all devices.
+        self._device_run_states: Optional[List[device_management_script_device_state.DeviceManagementScriptDeviceState]] = None
+        # Name of the device management script.
+        self._display_name: Optional[str] = None
+        # The interval for script to run. If not defined the script will run once
+        self._execution_frequency: Optional[timedelta] = None
+        # Script file name.
+        self._file_name: Optional[str] = None
+        # The list of group assignments for the device management script.
+        self._group_assignments: Optional[List[device_management_script_group_assignment.DeviceManagementScriptGroupAssignment]] = None
+        # The date and time the device management script was last modified. This property is read-only.
+        self._last_modified_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Number of times for the script to be retried if it fails
+        self._retry_count: Optional[int] = None
+        # List of Scope Tag IDs for this PowerShellScript instance.
+        self._role_scope_tag_ids: Optional[List[str]] = None
+        # Indicates the type of execution context the app runs in.
+        self._run_as_account: Optional[run_as_account_type.RunAsAccountType] = None
+        # Run summary for device management script.
+        self._run_summary: Optional[device_management_script_run_summary.DeviceManagementScriptRunSummary] = None
+        # The script content.
+        self._script_content: Optional[bytes] = None
+        # List of run states for this script across all users.
+        self._user_run_states: Optional[List[device_management_script_user_state.DeviceManagementScriptUserState]] = None
+    
     @property
     def assignments(self,) -> Optional[List[device_management_script_assignment.DeviceManagementScriptAssignment]]:
         """
@@ -49,46 +85,6 @@ class DeviceShellScript(entity.Entity):
             value: Value to set for the block_execution_notifications property.
         """
         self._block_execution_notifications = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceShellScript and sets the default values.
-        """
-        super().__init__()
-        # The list of group assignments for the device management script.
-        self._assignments: Optional[List[device_management_script_assignment.DeviceManagementScriptAssignment]] = None
-        # Does not notify the user a script is being executed
-        self._block_execution_notifications: Optional[bool] = None
-        # The date and time the device management script was created. This property is read-only.
-        self._created_date_time: Optional[datetime] = None
-        # Optional description for the device management script.
-        self._description: Optional[str] = None
-        # List of run states for this script across all devices.
-        self._device_run_states: Optional[List[device_management_script_device_state.DeviceManagementScriptDeviceState]] = None
-        # Name of the device management script.
-        self._display_name: Optional[str] = None
-        # The interval for script to run. If not defined the script will run once
-        self._execution_frequency: Optional[Timedelta] = None
-        # Script file name.
-        self._file_name: Optional[str] = None
-        # The list of group assignments for the device management script.
-        self._group_assignments: Optional[List[device_management_script_group_assignment.DeviceManagementScriptGroupAssignment]] = None
-        # The date and time the device management script was last modified. This property is read-only.
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Number of times for the script to be retried if it fails
-        self._retry_count: Optional[int] = None
-        # List of Scope Tag IDs for this PowerShellScript instance.
-        self._role_scope_tag_ids: Optional[List[str]] = None
-        # Indicates the type of execution context the app runs in.
-        self._run_as_account: Optional[run_as_account_type.RunAsAccountType] = None
-        # Run summary for device management script.
-        self._run_summary: Optional[device_management_script_run_summary.DeviceManagementScriptRunSummary] = None
-        # The script content.
-        self._script_content: Optional[bytes] = None
-        # List of run states for this script across all users.
-        self._user_run_states: Optional[List[device_management_script_user_state.DeviceManagementScriptUserState]] = None
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
@@ -171,15 +167,15 @@ class DeviceShellScript(entity.Entity):
         self._display_name = value
     
     @property
-    def execution_frequency(self,) -> Optional[Timedelta]:
+    def execution_frequency(self,) -> Optional[timedelta]:
         """
         Gets the executionFrequency property value. The interval for script to run. If not defined the script will run once
-        Returns: Optional[Timedelta]
+        Returns: Optional[timedelta]
         """
         return self._execution_frequency
     
     @execution_frequency.setter
-    def execution_frequency(self,value: Optional[Timedelta] = None) -> None:
+    def execution_frequency(self,value: Optional[timedelta] = None) -> None:
         """
         Sets the executionFrequency property value. The interval for script to run. If not defined the script will run once
         Args:
@@ -209,14 +205,16 @@ class DeviceShellScript(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_script_assignment, device_management_script_device_state, device_management_script_group_assignment, device_management_script_run_summary, device_management_script_user_state, entity, run_as_account_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(device_management_script_assignment.DeviceManagementScriptAssignment)),
             "blockExecutionNotifications": lambda n : setattr(self, 'block_execution_notifications', n.get_bool_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "deviceRunStates": lambda n : setattr(self, 'device_run_states', n.get_collection_of_object_values(device_management_script_device_state.DeviceManagementScriptDeviceState)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "executionFrequency": lambda n : setattr(self, 'execution_frequency', n.get_object_value(Timedelta)),
+            "executionFrequency": lambda n : setattr(self, 'execution_frequency', n.get_timedelta_value()),
             "fileName": lambda n : setattr(self, 'file_name', n.get_str_value()),
             "groupAssignments": lambda n : setattr(self, 'group_assignments', n.get_collection_of_object_values(device_management_script_group_assignment.DeviceManagementScriptGroupAssignment)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
@@ -364,7 +362,7 @@ class DeviceShellScript(entity.Entity):
         writer.write_str_value("description", self.description)
         writer.write_collection_of_object_values("deviceRunStates", self.device_run_states)
         writer.write_str_value("displayName", self.display_name)
-        writer.write_object_value("executionFrequency", self.execution_frequency)
+        writer.write_timedelta_value("executionFrequency", self.execution_frequency)
         writer.write_str_value("fileName", self.file_name)
         writer.write_collection_of_object_values("groupAssignments", self.group_assignments)
         writer.write_int_value("retryCount", self.retry_count)

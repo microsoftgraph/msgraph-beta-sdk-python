@@ -1,12 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class RequestRemoteHelpSessionAccessResponse(AdditionalDataHolder, Parsable):
     """
     Remote help - response we provide back to the helper after getting response from pubSub
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new requestRemoteHelpSessionAccessResponse and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # AES encryption Initialization Vector for encrypting client messages sent to PubSub
+        self._pub_sub_encryption: Optional[str] = None
+        # The unique identifier for encrypting client messages sent to PubSub
+        self._pub_sub_encryption_key: Optional[str] = None
+        # The unique identifier for a session
+        self._session_key: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,22 +38,6 @@ class RequestRemoteHelpSessionAccessResponse(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new requestRemoteHelpSessionAccessResponse and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # AES encryption Initialization Vector for encrypting client messages sent to PubSub
-        self._pub_sub_encryption: Optional[str] = None
-        # The unique identifier for encrypting client messages sent to PubSub
-        self._pub_sub_encryption_key: Optional[str] = None
-        # The unique identifier for a session
-        self._session_key: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RequestRemoteHelpSessionAccessResponse:
@@ -57,7 +56,7 @@ class RequestRemoteHelpSessionAccessResponse(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "pubSubEncryption": lambda n : setattr(self, 'pub_sub_encryption', n.get_str_value()),
             "pubSubEncryptionKey": lambda n : setattr(self, 'pub_sub_encryption_key', n.get_str_value()),

@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-internet_explorer_mode = lazy_import('msgraph.generated.models.internet_explorer_mode')
+if TYPE_CHECKING:
+    from . import entity, internet_explorer_mode
+
+from . import entity
 
 class Edge(entity.Entity):
     def __init__(self,) -> None:
@@ -34,7 +35,9 @@ class Edge(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, internet_explorer_mode
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "internetExplorerMode": lambda n : setattr(self, 'internet_explorer_mode', n.get_object_value(internet_explorer_mode.InternetExplorerMode)),
         }
         super_fields = super().get_field_deserializers()

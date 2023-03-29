@@ -7,32 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-resource_request_builder = lazy_import('msgraph.generated.governance_resources.item.role_definitions.item.resource.resource_request_builder')
-role_setting_request_builder = lazy_import('msgraph.generated.governance_resources.item.role_definitions.item.role_setting.role_setting_request_builder')
-governance_role_definition = lazy_import('msgraph.generated.models.governance_role_definition')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from .....models import governance_role_definition
+    from .....models.o_data_errors import o_data_error
+    from .resource import resource_request_builder
+    from .role_setting import role_setting_request_builder
 
 class GovernanceRoleDefinitionItemRequestBuilder():
     """
     Provides operations to manage the roleDefinitions property of the microsoft.graph.governanceResource entity.
     """
-    @property
-    def resource(self) -> resource_request_builder.ResourceRequestBuilder:
-        """
-        Provides operations to manage the resource property of the microsoft.graph.governanceRoleDefinition entity.
-        """
-        return resource_request_builder.ResourceRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def role_setting(self) -> role_setting_request_builder.RoleSettingRequestBuilder:
-        """
-        Provides operations to manage the roleSetting property of the microsoft.graph.governanceRoleDefinition entity.
-        """
-        return role_setting_request_builder.RoleSettingRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new GovernanceRoleDefinitionItemRequestBuilder and sets the default values.
@@ -60,6 +46,8 @@ class GovernanceRoleDefinitionItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -78,12 +66,16 @@ class GovernanceRoleDefinitionItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .....models import governance_role_definition
+
         return await self.request_adapter.send_async(request_info, governance_role_definition.GovernanceRoleDefinition, error_mapping)
     
     async def patch(self,body: Optional[governance_role_definition.GovernanceRoleDefinition] = None, request_configuration: Optional[GovernanceRoleDefinitionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[governance_role_definition.GovernanceRoleDefinition]:
@@ -99,12 +91,16 @@ class GovernanceRoleDefinitionItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .....models import governance_role_definition
+
         return await self.request_adapter.send_async(request_info, governance_role_definition.GovernanceRoleDefinition, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[GovernanceRoleDefinitionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -162,6 +158,24 @@ class GovernanceRoleDefinitionItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def resource(self) -> resource_request_builder.ResourceRequestBuilder:
+        """
+        Provides operations to manage the resource property of the microsoft.graph.governanceRoleDefinition entity.
+        """
+        from .resource import resource_request_builder
+
+        return resource_request_builder.ResourceRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def role_setting(self) -> role_setting_request_builder.RoleSettingRequestBuilder:
+        """
+        Provides operations to manage the roleSetting property of the microsoft.graph.governanceRoleDefinition entity.
+        """
+        from .role_setting import role_setting_request_builder
+
+        return role_setting_request_builder.RoleSettingRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class GovernanceRoleDefinitionItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -179,12 +193,6 @@ class GovernanceRoleDefinitionItemRequestBuilder():
         """
         The collection of role defintions for the resource.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -200,6 +208,12 @@ class GovernanceRoleDefinitionItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class GovernanceRoleDefinitionItemRequestBuilderGetRequestConfiguration():

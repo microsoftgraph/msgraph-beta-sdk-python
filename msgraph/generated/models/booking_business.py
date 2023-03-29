@@ -1,19 +1,54 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-booking_appointment = lazy_import('msgraph.generated.models.booking_appointment')
-booking_custom_question = lazy_import('msgraph.generated.models.booking_custom_question')
-booking_customer = lazy_import('msgraph.generated.models.booking_customer')
-booking_named_entity = lazy_import('msgraph.generated.models.booking_named_entity')
-booking_scheduling_policy = lazy_import('msgraph.generated.models.booking_scheduling_policy')
-booking_service = lazy_import('msgraph.generated.models.booking_service')
-booking_staff_member = lazy_import('msgraph.generated.models.booking_staff_member')
-booking_work_hours = lazy_import('msgraph.generated.models.booking_work_hours')
-physical_address = lazy_import('msgraph.generated.models.physical_address')
+if TYPE_CHECKING:
+    from . import booking_appointment, booking_customer, booking_custom_question, booking_named_entity, booking_scheduling_policy, booking_service, booking_staff_member, booking_work_hours, physical_address
+
+from . import booking_named_entity
 
 class BookingBusiness(booking_named_entity.BookingNamedEntity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new BookingBusiness and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.bookingBusiness"
+        # The street address of the business. The address property, together with phone and webSiteUrl, appear in the footer of a business scheduling page.
+        self._address: Optional[physical_address.PhysicalAddress] = None
+        # All the appointments of this business. Read-only. Nullable.
+        self._appointments: Optional[List[booking_appointment.BookingAppointment]] = None
+        # The hours of operation for the business.
+        self._business_hours: Optional[List[booking_work_hours.BookingWorkHours]] = None
+        # The type of business.
+        self._business_type: Optional[str] = None
+        # The set of appointments of this business in a specified date range. Read-only. Nullable.
+        self._calendar_view: Optional[List[booking_appointment.BookingAppointment]] = None
+        # All the custom questions of this business. Read-only. Nullable.
+        self._custom_questions: Optional[List[booking_custom_question.BookingCustomQuestion]] = None
+        # All the customers of this business. Read-only. Nullable.
+        self._customers: Optional[List[booking_customer.BookingCustomer]] = None
+        # The code for the currency that the business operates in on Microsoft Bookings.
+        self._default_currency_iso: Optional[str] = None
+        # The email address for the business.
+        self._email: Optional[str] = None
+        # The scheduling page has been made available to external customers. Use the publish and unpublish actions to set this property. Read-only.
+        self._is_published: Optional[bool] = None
+        # The language of the self service booking page
+        self._language_tag: Optional[str] = None
+        # The telephone number for the business. The phone property, together with address and webSiteUrl, appear in the footer of a business scheduling page.
+        self._phone: Optional[str] = None
+        # The URL for the scheduling page, which is set after you publish or unpublish the page. Read-only.
+        self._public_url: Optional[str] = None
+        # Specifies how bookings can be created for this business.
+        self._scheduling_policy: Optional[booking_scheduling_policy.BookingSchedulingPolicy] = None
+        # All the services offered by this business. Read-only. Nullable.
+        self._services: Optional[List[booking_service.BookingService]] = None
+        # All the staff members that provide services in this business. Read-only. Nullable.
+        self._staff_members: Optional[List[booking_staff_member.BookingStaffMember]] = None
+        # The URL of the business web site. The webSiteUrl property, together with address, phone, appear in the footer of a business scheduling page.
+        self._web_site_url: Optional[str] = None
+    
     @property
     def address(self,) -> Optional[physical_address.PhysicalAddress]:
         """
@@ -98,47 +133,6 @@ class BookingBusiness(booking_named_entity.BookingNamedEntity):
             value: Value to set for the calendar_view property.
         """
         self._calendar_view = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new BookingBusiness and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.bookingBusiness"
-        # The street address of the business. The address property, together with phone and webSiteUrl, appear in the footer of a business scheduling page.
-        self._address: Optional[physical_address.PhysicalAddress] = None
-        # All the appointments of this business. Read-only. Nullable.
-        self._appointments: Optional[List[booking_appointment.BookingAppointment]] = None
-        # The hours of operation for the business.
-        self._business_hours: Optional[List[booking_work_hours.BookingWorkHours]] = None
-        # The type of business.
-        self._business_type: Optional[str] = None
-        # The set of appointments of this business in a specified date range. Read-only. Nullable.
-        self._calendar_view: Optional[List[booking_appointment.BookingAppointment]] = None
-        # All the custom questions of this business. Read-only. Nullable.
-        self._custom_questions: Optional[List[booking_custom_question.BookingCustomQuestion]] = None
-        # All the customers of this business. Read-only. Nullable.
-        self._customers: Optional[List[booking_customer.BookingCustomer]] = None
-        # The code for the currency that the business operates in on Microsoft Bookings.
-        self._default_currency_iso: Optional[str] = None
-        # The email address for the business.
-        self._email: Optional[str] = None
-        # The scheduling page has been made available to external customers. Use the publish and unpublish actions to set this property. Read-only.
-        self._is_published: Optional[bool] = None
-        # The language of the self service booking page
-        self._language_tag: Optional[str] = None
-        # The telephone number for the business. The phone property, together with address and webSiteUrl, appear in the footer of a business scheduling page.
-        self._phone: Optional[str] = None
-        # The URL for the scheduling page, which is set after you publish or unpublish the page. Read-only.
-        self._public_url: Optional[str] = None
-        # Specifies how bookings can be created for this business.
-        self._scheduling_policy: Optional[booking_scheduling_policy.BookingSchedulingPolicy] = None
-        # All the services offered by this business. Read-only. Nullable.
-        self._services: Optional[List[booking_service.BookingService]] = None
-        # All the staff members that provide services in this business. Read-only. Nullable.
-        self._staff_members: Optional[List[booking_staff_member.BookingStaffMember]] = None
-        # The URL of the business web site. The webSiteUrl property, together with address, phone, appear in the footer of a business scheduling page.
-        self._web_site_url: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> BookingBusiness:
@@ -225,7 +219,9 @@ class BookingBusiness(booking_named_entity.BookingNamedEntity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import booking_appointment, booking_customer, booking_custom_question, booking_named_entity, booking_scheduling_policy, booking_service, booking_staff_member, booking_work_hours, physical_address
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "address": lambda n : setattr(self, 'address', n.get_object_value(physical_address.PhysicalAddress)),
             "appointments": lambda n : setattr(self, 'appointments', n.get_collection_of_object_values(booking_appointment.BookingAppointment)),
             "businessHours": lambda n : setattr(self, 'business_hours', n.get_collection_of_object_values(booking_work_hours.BookingWorkHours)),

@@ -1,12 +1,28 @@
 from __future__ import annotations
 from datetime import datetime, timedelta
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-app_key_credential_restriction_type = lazy_import('msgraph.generated.models.app_key_credential_restriction_type')
+if TYPE_CHECKING:
+    from . import app_key_credential_restriction_type
 
 class KeyCredentialConfiguration(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new keyCredentialConfiguration and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The maxLifetime property
+        self._max_lifetime: Optional[timedelta] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Timestamp when the policy is enforced for all apps created on or after the specified date. For existing applications, the enforcement date would be back dated. To apply to all applications regardless of their creation date, this property would be null. Nullable.
+        self._restrict_for_apps_created_after_date_time: Optional[datetime] = None
+        # The type of restriction being applied. Possible values are asymmetricKeyLifetime, unknownFutureValue. Each value of restrictionType can be used only once per policy.
+        self._restriction_type: Optional[app_key_credential_restriction_type.AppKeyCredentialRestrictionType] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,22 +39,6 @@ class KeyCredentialConfiguration(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new keyCredentialConfiguration and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The maxLifetime property
-        self._max_lifetime: Optional[Timedelta] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Timestamp when the policy is enforced for all apps created on or after the specified date. For existing applications, the enforcement date would be back dated. To apply to all applications regardless of their creation date, this property would be null. Nullable.
-        self._restrict_for_apps_created_after_date_time: Optional[datetime] = None
-        # The type of restriction being applied. Possible values are asymmetricKeyLifetime, unknownFutureValue. Each value of restrictionType can be used only once per policy.
-        self._restriction_type: Optional[app_key_credential_restriction_type.AppKeyCredentialRestrictionType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> KeyCredentialConfiguration:
@@ -57,8 +57,10 @@ class KeyCredentialConfiguration(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
-            "maxLifetime": lambda n : setattr(self, 'max_lifetime', n.get_object_value(Timedelta)),
+        from . import app_key_credential_restriction_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
+            "maxLifetime": lambda n : setattr(self, 'max_lifetime', n.get_timedelta_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "restrictionType": lambda n : setattr(self, 'restriction_type', n.get_enum_value(app_key_credential_restriction_type.AppKeyCredentialRestrictionType)),
             "restrictForAppsCreatedAfterDateTime": lambda n : setattr(self, 'restrict_for_apps_created_after_date_time', n.get_datetime_value()),
@@ -66,15 +68,15 @@ class KeyCredentialConfiguration(AdditionalDataHolder, Parsable):
         return fields
     
     @property
-    def max_lifetime(self,) -> Optional[Timedelta]:
+    def max_lifetime(self,) -> Optional[timedelta]:
         """
         Gets the maxLifetime property value. The maxLifetime property
-        Returns: Optional[Timedelta]
+        Returns: Optional[timedelta]
         """
         return self._max_lifetime
     
     @max_lifetime.setter
-    def max_lifetime(self,value: Optional[Timedelta] = None) -> None:
+    def max_lifetime(self,value: Optional[timedelta] = None) -> None:
         """
         Sets the maxLifetime property value. The maxLifetime property
         Args:
@@ -141,7 +143,7 @@ class KeyCredentialConfiguration(AdditionalDataHolder, Parsable):
         """
         if writer is None:
             raise Exception("writer cannot be undefined")
-        writer.write_object_value("maxLifetime", self.max_lifetime)
+        writer.write_timedelta_value("maxLifetime", self.max_lifetime)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("restrictionType", self.restriction_type)
         writer.write_datetime_value("restrictForAppsCreatedAfterDateTime", self.restrict_for_apps_created_after_date_time)

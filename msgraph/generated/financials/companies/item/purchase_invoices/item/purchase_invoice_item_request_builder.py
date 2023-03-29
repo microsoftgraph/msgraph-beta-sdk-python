@@ -7,49 +7,21 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-currency_request_builder = lazy_import('msgraph.generated.financials.companies.item.purchase_invoices.item.currency.currency_request_builder')
-post_request_builder = lazy_import('msgraph.generated.financials.companies.item.purchase_invoices.item.post.post_request_builder')
-purchase_invoice_lines_request_builder = lazy_import('msgraph.generated.financials.companies.item.purchase_invoices.item.purchase_invoice_lines.purchase_invoice_lines_request_builder')
-purchase_invoice_line_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.purchase_invoices.item.purchase_invoice_lines.item.purchase_invoice_line_item_request_builder')
-vendor_request_builder = lazy_import('msgraph.generated.financials.companies.item.purchase_invoices.item.vendor.vendor_request_builder')
-purchase_invoice = lazy_import('msgraph.generated.models.purchase_invoice')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ......models import purchase_invoice
+    from ......models.o_data_errors import o_data_error
+    from .currency import currency_request_builder
+    from .post import post_request_builder
+    from .purchase_invoice_lines import purchase_invoice_lines_request_builder
+    from .purchase_invoice_lines.item import purchase_invoice_line_item_request_builder
+    from .vendor import vendor_request_builder
 
 class PurchaseInvoiceItemRequestBuilder():
     """
     Provides operations to manage the purchaseInvoices property of the microsoft.graph.company entity.
     """
-    @property
-    def currency(self) -> currency_request_builder.CurrencyRequestBuilder:
-        """
-        Provides operations to manage the currency property of the microsoft.graph.purchaseInvoice entity.
-        """
-        return currency_request_builder.CurrencyRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def post_path(self) -> post_request_builder.PostRequestBuilder:
-        """
-        Provides operations to call the post method.
-        """
-        return post_request_builder.PostRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def purchase_invoice_lines(self) -> purchase_invoice_lines_request_builder.PurchaseInvoiceLinesRequestBuilder:
-        """
-        Provides operations to manage the purchaseInvoiceLines property of the microsoft.graph.purchaseInvoice entity.
-        """
-        return purchase_invoice_lines_request_builder.PurchaseInvoiceLinesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def vendor(self) -> vendor_request_builder.VendorRequestBuilder:
-        """
-        Provides operations to manage the vendor property of the microsoft.graph.purchaseInvoice entity.
-        """
-        return vendor_request_builder.VendorRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new PurchaseInvoiceItemRequestBuilder and sets the default values.
@@ -78,12 +50,16 @@ class PurchaseInvoiceItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import purchase_invoice
+
         return await self.request_adapter.send_async(request_info, purchase_invoice.PurchaseInvoice, error_mapping)
     
     async def patch(self,body: Optional[purchase_invoice.PurchaseInvoice] = None, request_configuration: Optional[PurchaseInvoiceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[purchase_invoice.PurchaseInvoice]:
@@ -99,12 +75,16 @@ class PurchaseInvoiceItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import purchase_invoice
+
         return await self.request_adapter.send_async(request_info, purchase_invoice.PurchaseInvoice, error_mapping)
     
     def purchase_invoice_lines_by_id(self,id: str) -> purchase_invoice_line_item_request_builder.PurchaseInvoiceLineItemRequestBuilder:
@@ -116,6 +96,8 @@ class PurchaseInvoiceItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .purchase_invoice_lines.item import purchase_invoice_line_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["purchaseInvoiceLine%2Did"] = id
         return purchase_invoice_line_item_request_builder.PurchaseInvoiceLineItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -159,17 +141,47 @@ class PurchaseInvoiceItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def currency(self) -> currency_request_builder.CurrencyRequestBuilder:
+        """
+        Provides operations to manage the currency property of the microsoft.graph.purchaseInvoice entity.
+        """
+        from .currency import currency_request_builder
+
+        return currency_request_builder.CurrencyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def post_path(self) -> post_request_builder.PostRequestBuilder:
+        """
+        Provides operations to call the post method.
+        """
+        from .post import post_request_builder
+
+        return post_request_builder.PostRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def purchase_invoice_lines(self) -> purchase_invoice_lines_request_builder.PurchaseInvoiceLinesRequestBuilder:
+        """
+        Provides operations to manage the purchaseInvoiceLines property of the microsoft.graph.purchaseInvoice entity.
+        """
+        from .purchase_invoice_lines import purchase_invoice_lines_request_builder
+
+        return purchase_invoice_lines_request_builder.PurchaseInvoiceLinesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def vendor(self) -> vendor_request_builder.VendorRequestBuilder:
+        """
+        Provides operations to manage the vendor property of the microsoft.graph.purchaseInvoice entity.
+        """
+        from .vendor import vendor_request_builder
+
+        return vendor_request_builder.VendorRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class PurchaseInvoiceItemRequestBuilderGetQueryParameters():
         """
         Get purchaseInvoices from financials
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -185,6 +197,12 @@ class PurchaseInvoiceItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class PurchaseInvoiceItemRequestBuilderGetRequestConfiguration():

@@ -7,55 +7,21 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-assignments_request_builder = lazy_import('msgraph.generated.device_app_management.policy_sets.item.assignments.assignments_request_builder')
-policy_set_assignment_item_request_builder = lazy_import('msgraph.generated.device_app_management.policy_sets.item.assignments.item.policy_set_assignment_item_request_builder')
-items_request_builder = lazy_import('msgraph.generated.device_app_management.policy_sets.item.items.items_request_builder')
-policy_set_item_item_request_builder = lazy_import('msgraph.generated.device_app_management.policy_sets.item.items.item.policy_set_item_item_request_builder')
-update_request_builder = lazy_import('msgraph.generated.device_app_management.policy_sets.item.update.update_request_builder')
-policy_set = lazy_import('msgraph.generated.models.policy_set')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ....models import policy_set
+    from ....models.o_data_errors import o_data_error
+    from .assignments import assignments_request_builder
+    from .assignments.item import policy_set_assignment_item_request_builder
+    from .items import items_request_builder
+    from .items.item import policy_set_item_item_request_builder
+    from .update import update_request_builder
 
 class PolicySetItemRequestBuilder():
     """
     Provides operations to manage the policySets property of the microsoft.graph.deviceAppManagement entity.
     """
-    @property
-    def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.policySet entity.
-        """
-        return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def items(self) -> items_request_builder.ItemsRequestBuilder:
-        """
-        Provides operations to manage the items property of the microsoft.graph.policySet entity.
-        """
-        return items_request_builder.ItemsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def update(self) -> update_request_builder.UpdateRequestBuilder:
-        """
-        Provides operations to call the update method.
-        """
-        return update_request_builder.UpdateRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def assignments_by_id(self,id: str) -> policy_set_assignment_item_request_builder.PolicySetAssignmentItemRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.policySet entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: policy_set_assignment_item_request_builder.PolicySetAssignmentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["policySetAssignment%2Did"] = id
-        return policy_set_assignment_item_request_builder.PolicySetAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new PolicySetItemRequestBuilder and sets the default values.
@@ -74,6 +40,21 @@ class PolicySetItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def assignments_by_id(self,id: str) -> policy_set_assignment_item_request_builder.PolicySetAssignmentItemRequestBuilder:
+        """
+        Provides operations to manage the assignments property of the microsoft.graph.policySet entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: policy_set_assignment_item_request_builder.PolicySetAssignmentItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .assignments.item import policy_set_assignment_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["policySetAssignment%2Did"] = id
+        return policy_set_assignment_item_request_builder.PolicySetAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def delete(self,request_configuration: Optional[PolicySetItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property policySets for deviceAppManagement
@@ -83,6 +64,8 @@ class PolicySetItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -101,12 +84,16 @@ class PolicySetItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import policy_set
+
         return await self.request_adapter.send_async(request_info, policy_set.PolicySet, error_mapping)
     
     def items_by_id(self,id: str) -> policy_set_item_item_request_builder.PolicySetItemItemRequestBuilder:
@@ -118,6 +105,8 @@ class PolicySetItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .items.item import policy_set_item_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["policySetItem%2Did"] = id
         return policy_set_item_item_request_builder.PolicySetItemItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -135,12 +124,16 @@ class PolicySetItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import policy_set
+
         return await self.request_adapter.send_async(request_info, policy_set.PolicySet, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PolicySetItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -198,6 +191,33 @@ class PolicySetItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
+        """
+        Provides operations to manage the assignments property of the microsoft.graph.policySet entity.
+        """
+        from .assignments import assignments_request_builder
+
+        return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def items(self) -> items_request_builder.ItemsRequestBuilder:
+        """
+        Provides operations to manage the items property of the microsoft.graph.policySet entity.
+        """
+        from .items import items_request_builder
+
+        return items_request_builder.ItemsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def update(self) -> update_request_builder.UpdateRequestBuilder:
+        """
+        Provides operations to call the update method.
+        """
+        from .update import update_request_builder
+
+        return update_request_builder.UpdateRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class PolicySetItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -215,12 +235,6 @@ class PolicySetItemRequestBuilder():
         """
         The PolicySet of Policies and Applications
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -236,6 +250,12 @@ class PolicySetItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class PolicySetItemRequestBuilderGetRequestConfiguration():

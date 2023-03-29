@@ -1,10 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-planner_task_creation = lazy_import('msgraph.generated.models.planner_task_creation')
+if TYPE_CHECKING:
+    from . import planner_task_creation
+
+from . import planner_task_creation
 
 class PlannerTeamsPublicationInfo(planner_task_creation.PlannerTaskCreation):
     def __init__(self,) -> None:
@@ -41,7 +43,9 @@ class PlannerTeamsPublicationInfo(planner_task_creation.PlannerTaskCreation):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import planner_task_creation
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "publicationId": lambda n : setattr(self, 'publication_id', n.get_str_value()),

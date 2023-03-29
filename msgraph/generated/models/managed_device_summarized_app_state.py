@@ -1,14 +1,28 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-run_state = lazy_import('msgraph.generated.models.run_state')
+if TYPE_CHECKING:
+    from . import run_state
 
 class ManagedDeviceSummarizedAppState(AdditionalDataHolder, Parsable):
     """
     Event representing a user's devices with failed or pending apps.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new managedDeviceSummarizedAppState and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # DeviceId of device represented by this object
+        self._device_id: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Indicates the type of execution status of the device management script.
+        self._summarized_app_state: Optional[run_state.RunState] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -25,20 +39,6 @@ class ManagedDeviceSummarizedAppState(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new managedDeviceSummarizedAppState and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # DeviceId of device represented by this object
-        self._device_id: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Indicates the type of execution status of the device management script.
-        self._summarized_app_state: Optional[run_state.RunState] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ManagedDeviceSummarizedAppState:
@@ -74,7 +74,9 @@ class ManagedDeviceSummarizedAppState(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import run_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "summarizedAppState": lambda n : setattr(self, 'summarized_app_state', n.get_enum_value(run_state.RunState)),

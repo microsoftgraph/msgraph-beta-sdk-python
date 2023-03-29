@@ -1,60 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-cloud_p_c = lazy_import('msgraph.generated.models.cloud_p_c')
-cloud_pc_audit_event = lazy_import('msgraph.generated.models.cloud_pc_audit_event')
-cloud_pc_cross_cloud_government_organization_mapping = lazy_import('msgraph.generated.models.cloud_pc_cross_cloud_government_organization_mapping')
-cloud_pc_device_image = lazy_import('msgraph.generated.models.cloud_pc_device_image')
-cloud_pc_external_partner_setting = lazy_import('msgraph.generated.models.cloud_pc_external_partner_setting')
-cloud_pc_gallery_image = lazy_import('msgraph.generated.models.cloud_pc_gallery_image')
-cloud_pc_on_premises_connection = lazy_import('msgraph.generated.models.cloud_pc_on_premises_connection')
-cloud_pc_organization_settings = lazy_import('msgraph.generated.models.cloud_pc_organization_settings')
-cloud_pc_provisioning_policy = lazy_import('msgraph.generated.models.cloud_pc_provisioning_policy')
-cloud_pc_reports = lazy_import('msgraph.generated.models.cloud_pc_reports')
-cloud_pc_service_plan = lazy_import('msgraph.generated.models.cloud_pc_service_plan')
-cloud_pc_shared_use_service_plan = lazy_import('msgraph.generated.models.cloud_pc_shared_use_service_plan')
-cloud_pc_snapshot = lazy_import('msgraph.generated.models.cloud_pc_snapshot')
-cloud_pc_supported_region = lazy_import('msgraph.generated.models.cloud_pc_supported_region')
-cloud_pc_user_setting = lazy_import('msgraph.generated.models.cloud_pc_user_setting')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import cloud_pc_audit_event, cloud_pc_cross_cloud_government_organization_mapping, cloud_pc_device_image, cloud_pc_external_partner_setting, cloud_pc_gallery_image, cloud_pc_on_premises_connection, cloud_pc_organization_settings, cloud_pc_provisioning_policy, cloud_pc_reports, cloud_pc_service_plan, cloud_pc_shared_use_service_plan, cloud_pc_snapshot, cloud_pc_supported_region, cloud_pc_user_setting, cloud_p_c, entity
+
+from . import entity
 
 class VirtualEndpoint(entity.Entity):
-    @property
-    def audit_events(self,) -> Optional[List[cloud_pc_audit_event.CloudPcAuditEvent]]:
-        """
-        Gets the auditEvents property value. Cloud PC audit event.
-        Returns: Optional[List[cloud_pc_audit_event.CloudPcAuditEvent]]
-        """
-        return self._audit_events
-    
-    @audit_events.setter
-    def audit_events(self,value: Optional[List[cloud_pc_audit_event.CloudPcAuditEvent]] = None) -> None:
-        """
-        Sets the auditEvents property value. Cloud PC audit event.
-        Args:
-            value: Value to set for the audit_events property.
-        """
-        self._audit_events = value
-    
-    @property
-    def cloud_p_cs(self,) -> Optional[List[cloud_p_c.CloudPC]]:
-        """
-        Gets the cloudPCs property value. Cloud managed virtual desktops.
-        Returns: Optional[List[cloud_p_c.CloudPC]]
-        """
-        return self._cloud_p_cs
-    
-    @cloud_p_cs.setter
-    def cloud_p_cs(self,value: Optional[List[cloud_p_c.CloudPC]] = None) -> None:
-        """
-        Sets the cloudPCs property value. Cloud managed virtual desktops.
-        Args:
-            value: Value to set for the cloud_p_cs property.
-        """
-        self._cloud_p_cs = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new virtualEndpoint and sets the default values.
@@ -92,6 +45,40 @@ class VirtualEndpoint(entity.Entity):
         self._supported_regions: Optional[List[cloud_pc_supported_region.CloudPcSupportedRegion]] = None
         # Cloud PC user settings.
         self._user_settings: Optional[List[cloud_pc_user_setting.CloudPcUserSetting]] = None
+    
+    @property
+    def audit_events(self,) -> Optional[List[cloud_pc_audit_event.CloudPcAuditEvent]]:
+        """
+        Gets the auditEvents property value. Cloud PC audit event.
+        Returns: Optional[List[cloud_pc_audit_event.CloudPcAuditEvent]]
+        """
+        return self._audit_events
+    
+    @audit_events.setter
+    def audit_events(self,value: Optional[List[cloud_pc_audit_event.CloudPcAuditEvent]] = None) -> None:
+        """
+        Sets the auditEvents property value. Cloud PC audit event.
+        Args:
+            value: Value to set for the audit_events property.
+        """
+        self._audit_events = value
+    
+    @property
+    def cloud_p_cs(self,) -> Optional[List[cloud_p_c.CloudPC]]:
+        """
+        Gets the cloudPCs property value. Cloud managed virtual desktops.
+        Returns: Optional[List[cloud_p_c.CloudPC]]
+        """
+        return self._cloud_p_cs
+    
+    @cloud_p_cs.setter
+    def cloud_p_cs(self,value: Optional[List[cloud_p_c.CloudPC]] = None) -> None:
+        """
+        Sets the cloudPCs property value. Cloud managed virtual desktops.
+        Args:
+            value: Value to set for the cloud_p_cs property.
+        """
+        self._cloud_p_cs = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> VirtualEndpoint:
@@ -178,7 +165,9 @@ class VirtualEndpoint(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import cloud_pc_audit_event, cloud_pc_cross_cloud_government_organization_mapping, cloud_pc_device_image, cloud_pc_external_partner_setting, cloud_pc_gallery_image, cloud_pc_on_premises_connection, cloud_pc_organization_settings, cloud_pc_provisioning_policy, cloud_pc_reports, cloud_pc_service_plan, cloud_pc_shared_use_service_plan, cloud_pc_snapshot, cloud_pc_supported_region, cloud_pc_user_setting, cloud_p_c, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "auditEvents": lambda n : setattr(self, 'audit_events', n.get_collection_of_object_values(cloud_pc_audit_event.CloudPcAuditEvent)),
             "cloudPCs": lambda n : setattr(self, 'cloud_p_cs', n.get_collection_of_object_values(cloud_p_c.CloudPC)),
             "crossCloudGovernmentOrganizationMapping": lambda n : setattr(self, 'cross_cloud_government_organization_mapping', n.get_object_value(cloud_pc_cross_cloud_government_organization_mapping.CloudPcCrossCloudGovernmentOrganizationMapping)),

@@ -1,15 +1,38 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-bit_locker_recovery_information_type = lazy_import('msgraph.generated.models.bit_locker_recovery_information_type')
-configuration_usage = lazy_import('msgraph.generated.models.configuration_usage')
+if TYPE_CHECKING:
+    from . import bit_locker_recovery_information_type, configuration_usage
 
 class BitLockerRecoveryOptions(AdditionalDataHolder, Parsable):
     """
     BitLocker Recovery Options.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new bitLockerRecoveryOptions and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Indicates whether to block certificate-based data recovery agent.
+        self._block_data_recovery_agent: Optional[bool] = None
+        # Indicates whether or not to enable BitLocker until recovery information is stored in AD DS.
+        self._enable_bit_locker_after_recovery_information_to_store: Optional[bool] = None
+        # Indicates whether or not to allow BitLocker recovery information to store in AD DS.
+        self._enable_recovery_information_save_to_store: Optional[bool] = None
+        # Indicates whether or not to allow showing recovery options in BitLocker Setup Wizard for fixed or system disk.
+        self._hide_recovery_options: Optional[bool] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # BitLockerRecoveryInformationType types
+        self._recovery_information_to_store: Optional[bit_locker_recovery_information_type.BitLockerRecoveryInformationType] = None
+        # Possible values of the ConfigurationUsage list.
+        self._recovery_key_usage: Optional[configuration_usage.ConfigurationUsage] = None
+        # Possible values of the ConfigurationUsage list.
+        self._recovery_password_usage: Optional[configuration_usage.ConfigurationUsage] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -43,30 +66,6 @@ class BitLockerRecoveryOptions(AdditionalDataHolder, Parsable):
             value: Value to set for the block_data_recovery_agent property.
         """
         self._block_data_recovery_agent = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new bitLockerRecoveryOptions and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Indicates whether to block certificate-based data recovery agent.
-        self._block_data_recovery_agent: Optional[bool] = None
-        # Indicates whether or not to enable BitLocker until recovery information is stored in AD DS.
-        self._enable_bit_locker_after_recovery_information_to_store: Optional[bool] = None
-        # Indicates whether or not to allow BitLocker recovery information to store in AD DS.
-        self._enable_recovery_information_save_to_store: Optional[bool] = None
-        # Indicates whether or not to allow showing recovery options in BitLocker Setup Wizard for fixed or system disk.
-        self._hide_recovery_options: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # BitLockerRecoveryInformationType types
-        self._recovery_information_to_store: Optional[bit_locker_recovery_information_type.BitLockerRecoveryInformationType] = None
-        # Possible values of the ConfigurationUsage list.
-        self._recovery_key_usage: Optional[configuration_usage.ConfigurationUsage] = None
-        # Possible values of the ConfigurationUsage list.
-        self._recovery_password_usage: Optional[configuration_usage.ConfigurationUsage] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> BitLockerRecoveryOptions:
@@ -119,7 +118,9 @@ class BitLockerRecoveryOptions(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import bit_locker_recovery_information_type, configuration_usage
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "blockDataRecoveryAgent": lambda n : setattr(self, 'block_data_recovery_agent', n.get_bool_value()),
             "enableBitLockerAfterRecoveryInformationToStore": lambda n : setattr(self, 'enable_bit_locker_after_recovery_information_to_store', n.get_bool_value()),
             "enableRecoveryInformationSaveToStore": lambda n : setattr(self, 'enable_recovery_information_save_to_store', n.get_bool_value()),

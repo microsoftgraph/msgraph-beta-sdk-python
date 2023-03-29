@@ -1,11 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-group_policy_definition_value = lazy_import('msgraph.generated.models.group_policy_definition_value')
+if TYPE_CHECKING:
+    from .....models import group_policy_definition_value
 
 class UpdateDefinitionValuesPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new updateDefinitionValuesPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The added property
+        self._added: Optional[List[group_policy_definition_value.GroupPolicyDefinitionValue]] = None
+        # The deletedIds property
+        self._deleted_ids: Optional[List[str]] = None
+        # The updated property
+        self._updated: Optional[List[group_policy_definition_value.GroupPolicyDefinitionValue]] = None
+    
     @property
     def added(self,) -> Optional[List[group_policy_definition_value.GroupPolicyDefinitionValue]]:
         """
@@ -39,20 +53,6 @@ class UpdateDefinitionValuesPostRequestBody(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new updateDefinitionValuesPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The added property
-        self._added: Optional[List[group_policy_definition_value.GroupPolicyDefinitionValue]] = None
-        # The deletedIds property
-        self._deleted_ids: Optional[List[str]] = None
-        # The updated property
-        self._updated: Optional[List[group_policy_definition_value.GroupPolicyDefinitionValue]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UpdateDefinitionValuesPostRequestBody:
@@ -88,7 +88,9 @@ class UpdateDefinitionValuesPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .....models import group_policy_definition_value
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "added": lambda n : setattr(self, 'added', n.get_collection_of_object_values(group_policy_definition_value.GroupPolicyDefinitionValue)),
             "deletedIds": lambda n : setattr(self, 'deleted_ids', n.get_collection_of_primitive_values(str)),
             "updated": lambda n : setattr(self, 'updated', n.get_collection_of_object_values(group_policy_definition_value.GroupPolicyDefinitionValue)),

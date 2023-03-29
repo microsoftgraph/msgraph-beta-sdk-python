@@ -1,13 +1,29 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-assignment_method = lazy_import('msgraph.generated.models.security.assignment_method')
-downgrade_justification = lazy_import('msgraph.generated.models.security.downgrade_justification')
-key_value_pair = lazy_import('msgraph.generated.models.security.key_value_pair')
+if TYPE_CHECKING:
+    from . import assignment_method, downgrade_justification, key_value_pair
 
 class LabelingOptions(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new labelingOptions and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The assignmentMethod property
+        self._assignment_method: Optional[assignment_method.AssignmentMethod] = None
+        # The downgrade justification object that indicates if downgrade was justified and, if so, the reason.
+        self._downgrade_justification: Optional[downgrade_justification.DowngradeJustification] = None
+        # Extended properties will be parsed and returned in the standard Microsoft Purview Information Protection labeled metadata format as part of the label information.
+        self._extended_properties: Optional[List[key_value_pair.KeyValuePair]] = None
+        # The GUID of the label that should be applied to the information.
+        self._label_id: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -41,24 +57,6 @@ class LabelingOptions(AdditionalDataHolder, Parsable):
             value: Value to set for the assignment_method property.
         """
         self._assignment_method = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new labelingOptions and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The assignmentMethod property
-        self._assignment_method: Optional[assignment_method.AssignmentMethod] = None
-        # The downgrade justification object that indicates if downgrade was justified and, if so, the reason.
-        self._downgrade_justification: Optional[downgrade_justification.DowngradeJustification] = None
-        # Extended properties will be parsed and returned in the standard Microsoft Purview Information Protection labeled metadata format as part of the label information.
-        self._extended_properties: Optional[List[key_value_pair.KeyValuePair]] = None
-        # The GUID of the label that should be applied to the information.
-        self._label_id: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> LabelingOptions:
@@ -111,7 +109,9 @@ class LabelingOptions(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import assignment_method, downgrade_justification, key_value_pair
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignmentMethod": lambda n : setattr(self, 'assignment_method', n.get_enum_value(assignment_method.AssignmentMethod)),
             "downgradeJustification": lambda n : setattr(self, 'downgrade_justification', n.get_object_value(downgrade_justification.DowngradeJustification)),
             "extendedProperties": lambda n : setattr(self, 'extended_properties', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),

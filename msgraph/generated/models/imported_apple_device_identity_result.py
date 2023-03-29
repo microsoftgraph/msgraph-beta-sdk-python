@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-imported_apple_device_identity = lazy_import('msgraph.generated.models.imported_apple_device_identity')
+if TYPE_CHECKING:
+    from . import imported_apple_device_identity
+
+from . import imported_apple_device_identity
 
 class ImportedAppleDeviceIdentityResult(imported_apple_device_identity.ImportedAppleDeviceIdentity):
     def __init__(self,) -> None:
@@ -33,7 +35,9 @@ class ImportedAppleDeviceIdentityResult(imported_apple_device_identity.ImportedA
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import imported_apple_device_identity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "status": lambda n : setattr(self, 'status', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()

@@ -1,28 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from .. import entity
+
+from .. import entity
 
 class TenantDetailedInformation(entity.Entity):
-    @property
-    def city(self,) -> Optional[str]:
-        """
-        Gets the city property value. The city where the managed tenant is located. Optional. Read-only.
-        Returns: Optional[str]
-        """
-        return self._city
-    
-    @city.setter
-    def city(self,value: Optional[str] = None) -> None:
-        """
-        Sets the city property value. The city where the managed tenant is located. Optional. Read-only.
-        Args:
-            value: Value to set for the city property.
-        """
-        self._city = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new tenantDetailedInformation and sets the default values.
@@ -50,6 +35,23 @@ class TenantDetailedInformation(entity.Entity):
         self._tenant_id: Optional[str] = None
         # The vertical associated with the managed tenant. Optional. Read-only.
         self._vertical_name: Optional[str] = None
+    
+    @property
+    def city(self,) -> Optional[str]:
+        """
+        Gets the city property value. The city where the managed tenant is located. Optional. Read-only.
+        Returns: Optional[str]
+        """
+        return self._city
+    
+    @city.setter
+    def city(self,value: Optional[str] = None) -> None:
+        """
+        Sets the city property value. The city where the managed tenant is located. Optional. Read-only.
+        Args:
+            value: Value to set for the city property.
+        """
+        self._city = value
     
     @property
     def country_code(self,) -> Optional[str]:
@@ -136,7 +138,9 @@ class TenantDetailedInformation(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "city": lambda n : setattr(self, 'city', n.get_str_value()),
             "countryCode": lambda n : setattr(self, 'country_code', n.get_str_value()),
             "countryName": lambda n : setattr(self, 'country_name', n.get_str_value()),

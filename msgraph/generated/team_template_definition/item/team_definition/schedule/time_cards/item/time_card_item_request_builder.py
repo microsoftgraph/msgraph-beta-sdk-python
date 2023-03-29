@@ -7,48 +7,20 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-time_card = lazy_import('msgraph.generated.models.time_card')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-clock_out_request_builder = lazy_import('msgraph.generated.team_template_definition.item.team_definition.schedule.time_cards.item.clock_out.clock_out_request_builder')
-confirm_request_builder = lazy_import('msgraph.generated.team_template_definition.item.team_definition.schedule.time_cards.item.confirm.confirm_request_builder')
-end_break_request_builder = lazy_import('msgraph.generated.team_template_definition.item.team_definition.schedule.time_cards.item.end_break.end_break_request_builder')
-start_break_request_builder = lazy_import('msgraph.generated.team_template_definition.item.team_definition.schedule.time_cards.item.start_break.start_break_request_builder')
+if TYPE_CHECKING:
+    from .......models import time_card
+    from .......models.o_data_errors import o_data_error
+    from .clock_out import clock_out_request_builder
+    from .confirm import confirm_request_builder
+    from .end_break import end_break_request_builder
+    from .start_break import start_break_request_builder
 
 class TimeCardItemRequestBuilder():
     """
     Provides operations to manage the timeCards property of the microsoft.graph.schedule entity.
     """
-    @property
-    def clock_out(self) -> clock_out_request_builder.ClockOutRequestBuilder:
-        """
-        Provides operations to call the clockOut method.
-        """
-        return clock_out_request_builder.ClockOutRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def confirm(self) -> confirm_request_builder.ConfirmRequestBuilder:
-        """
-        Provides operations to call the confirm method.
-        """
-        return confirm_request_builder.ConfirmRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def end_break(self) -> end_break_request_builder.EndBreakRequestBuilder:
-        """
-        Provides operations to call the endBreak method.
-        """
-        return end_break_request_builder.EndBreakRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def start_break(self) -> start_break_request_builder.StartBreakRequestBuilder:
-        """
-        Provides operations to call the startBreak method.
-        """
-        return start_break_request_builder.StartBreakRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new TimeCardItemRequestBuilder and sets the default values.
@@ -76,6 +48,8 @@ class TimeCardItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -94,12 +68,16 @@ class TimeCardItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .......models import time_card
+
         return await self.request_adapter.send_async(request_info, time_card.TimeCard, error_mapping)
     
     async def patch(self,body: Optional[time_card.TimeCard] = None, request_configuration: Optional[TimeCardItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[time_card.TimeCard]:
@@ -115,12 +93,16 @@ class TimeCardItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .......models import time_card
+
         return await self.request_adapter.send_async(request_info, time_card.TimeCard, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[TimeCardItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -178,6 +160,42 @@ class TimeCardItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def clock_out(self) -> clock_out_request_builder.ClockOutRequestBuilder:
+        """
+        Provides operations to call the clockOut method.
+        """
+        from .clock_out import clock_out_request_builder
+
+        return clock_out_request_builder.ClockOutRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def confirm(self) -> confirm_request_builder.ConfirmRequestBuilder:
+        """
+        Provides operations to call the confirm method.
+        """
+        from .confirm import confirm_request_builder
+
+        return confirm_request_builder.ConfirmRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def end_break(self) -> end_break_request_builder.EndBreakRequestBuilder:
+        """
+        Provides operations to call the endBreak method.
+        """
+        from .end_break import end_break_request_builder
+
+        return end_break_request_builder.EndBreakRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def start_break(self) -> start_break_request_builder.StartBreakRequestBuilder:
+        """
+        Provides operations to call the startBreak method.
+        """
+        from .start_break import start_break_request_builder
+
+        return start_break_request_builder.StartBreakRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class TimeCardItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -195,12 +213,6 @@ class TimeCardItemRequestBuilder():
         """
         Get timeCards from teamTemplateDefinition
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -216,6 +228,12 @@ class TimeCardItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class TimeCardItemRequestBuilderGetRequestConfiguration():

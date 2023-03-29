@@ -7,25 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-webparts_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.pages.item.canvas_layout.horizontal_sections.item.columns.item.webparts.webparts_request_builder')
-web_part_item_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.pages.item.canvas_layout.horizontal_sections.item.columns.item.webparts.item.web_part_item_request_builder')
-horizontal_section_column = lazy_import('msgraph.generated.models.horizontal_section_column')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ............models import horizontal_section_column
+    from ............models.o_data_errors import o_data_error
+    from .webparts import webparts_request_builder
+    from .webparts.item import web_part_item_request_builder
 
 class HorizontalSectionColumnItemRequestBuilder():
     """
     Provides operations to manage the columns property of the microsoft.graph.horizontalSection entity.
     """
-    @property
-    def webparts(self) -> webparts_request_builder.WebpartsRequestBuilder:
-        """
-        Provides operations to manage the webparts property of the microsoft.graph.horizontalSectionColumn entity.
-        """
-        return webparts_request_builder.WebpartsRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new HorizontalSectionColumnItemRequestBuilder and sets the default values.
@@ -53,6 +46,8 @@ class HorizontalSectionColumnItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ............models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -71,12 +66,16 @@ class HorizontalSectionColumnItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ............models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ............models import horizontal_section_column
+
         return await self.request_adapter.send_async(request_info, horizontal_section_column.HorizontalSectionColumn, error_mapping)
     
     async def patch(self,body: Optional[horizontal_section_column.HorizontalSectionColumn] = None, request_configuration: Optional[HorizontalSectionColumnItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[horizontal_section_column.HorizontalSectionColumn]:
@@ -92,12 +91,16 @@ class HorizontalSectionColumnItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ............models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ............models import horizontal_section_column
+
         return await self.request_adapter.send_async(request_info, horizontal_section_column.HorizontalSectionColumn, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[HorizontalSectionColumnItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -164,9 +167,20 @@ class HorizontalSectionColumnItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .webparts.item import web_part_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["webPart%2Did"] = id
         return web_part_item_request_builder.WebPartItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    @property
+    def webparts(self) -> webparts_request_builder.WebpartsRequestBuilder:
+        """
+        Provides operations to manage the webparts property of the microsoft.graph.horizontalSectionColumn entity.
+        """
+        from .webparts import webparts_request_builder
+
+        return webparts_request_builder.WebpartsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class HorizontalSectionColumnItemRequestBuilderDeleteRequestConfiguration():
@@ -185,12 +199,6 @@ class HorizontalSectionColumnItemRequestBuilder():
         """
         The set of vertical columns in this section.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -206,6 +214,12 @@ class HorizontalSectionColumnItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class HorizontalSectionColumnItemRequestBuilderGetRequestConfiguration():

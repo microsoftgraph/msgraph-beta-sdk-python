@@ -1,12 +1,35 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class WindowsEnrollmentStatusScreenSettings(AdditionalDataHolder, Parsable):
     """
     Enrollment status screen setting
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new windowsEnrollmentStatusScreenSettings and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Allow or block user to use device before profile and app installation complete
+        self._allow_device_use_before_profile_and_app_install_complete: Optional[bool] = None
+        # Allow the user to continue using the device on installation failure
+        self._allow_device_use_on_install_failure: Optional[bool] = None
+        # Allow or block log collection on installation failure
+        self._allow_log_collection_on_install_failure: Optional[bool] = None
+        # Allow the user to retry the setup on installation failure
+        self._block_device_setup_retry_by_user: Optional[bool] = None
+        # Set custom error message to show upon installation failure
+        self._custom_error_message: Optional[str] = None
+        # Show or hide installation progress to user
+        self._hide_installation_progress: Optional[bool] = None
+        # Set installation progress timeout in minutes
+        self._install_progress_timeout_in_minutes: Optional[int] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -92,30 +115,6 @@ class WindowsEnrollmentStatusScreenSettings(AdditionalDataHolder, Parsable):
         """
         self._block_device_setup_retry_by_user = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new windowsEnrollmentStatusScreenSettings and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Allow or block user to use device before profile and app installation complete
-        self._allow_device_use_before_profile_and_app_install_complete: Optional[bool] = None
-        # Allow the user to continue using the device on installation failure
-        self._allow_device_use_on_install_failure: Optional[bool] = None
-        # Allow or block log collection on installation failure
-        self._allow_log_collection_on_install_failure: Optional[bool] = None
-        # Allow the user to retry the setup on installation failure
-        self._block_device_setup_retry_by_user: Optional[bool] = None
-        # Set custom error message to show upon installation failure
-        self._custom_error_message: Optional[str] = None
-        # Show or hide installation progress to user
-        self._hide_installation_progress: Optional[bool] = None
-        # Set installation progress timeout in minutes
-        self._install_progress_timeout_in_minutes: Optional[int] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsEnrollmentStatusScreenSettings:
         """
@@ -150,7 +149,7 @@ class WindowsEnrollmentStatusScreenSettings(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowDeviceUseBeforeProfileAndAppInstallComplete": lambda n : setattr(self, 'allow_device_use_before_profile_and_app_install_complete', n.get_bool_value()),
             "allowDeviceUseOnInstallFailure": lambda n : setattr(self, 'allow_device_use_on_install_failure', n.get_bool_value()),
             "allowLogCollectionOnInstallFailure": lambda n : setattr(self, 'allow_log_collection_on_install_failure', n.get_bool_value()),

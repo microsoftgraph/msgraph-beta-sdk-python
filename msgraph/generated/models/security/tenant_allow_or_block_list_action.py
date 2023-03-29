@@ -1,13 +1,30 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-tenant_allow_block_list_action = lazy_import('msgraph.generated.models.security.tenant_allow_block_list_action')
-tenant_allow_block_list_entry_result = lazy_import('msgraph.generated.models.security.tenant_allow_block_list_entry_result')
+if TYPE_CHECKING:
+    from . import tenant_allow_block_list_action, tenant_allow_block_list_entry_result
 
 class TenantAllowOrBlockListAction(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new tenantAllowOrBlockListAction and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Specifies whether the tenant allow block list is an allow or block. The possible values are: allow, block, and unkownFutureValue.
+        self._action: Optional[tenant_allow_block_list_action.TenantAllowBlockListAction] = None
+        # Specifies when the tenant allow-block-list expires in date time.
+        self._expiration_date_time: Optional[datetime] = None
+        # Specifies the note added to the tenant allow block list entry in the format of string.
+        self._note: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Contains the result of the submission that lead to the tenant allow-block-list entry creation.
+        self._results: Optional[List[tenant_allow_block_list_entry_result.TenantAllowBlockListEntryResult]] = None
+    
     @property
     def action(self,) -> Optional[tenant_allow_block_list_action.TenantAllowBlockListAction]:
         """
@@ -41,24 +58,6 @@ class TenantAllowOrBlockListAction(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new tenantAllowOrBlockListAction and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Specifies whether the tenant allow block list is an allow or block. The possible values are: allow, block, and unkownFutureValue.
-        self._action: Optional[tenant_allow_block_list_action.TenantAllowBlockListAction] = None
-        # Specifies when the tenant allow-block-list expires in date time.
-        self._expiration_date_time: Optional[datetime] = None
-        # Specifies the note added to the tenant allow block list entry in the format of string.
-        self._note: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Contains the result of the submission that lead to the tenant allow-block-list entry creation.
-        self._results: Optional[List[tenant_allow_block_list_entry_result.TenantAllowBlockListEntryResult]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TenantAllowOrBlockListAction:
@@ -94,7 +93,9 @@ class TenantAllowOrBlockListAction(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import tenant_allow_block_list_action, tenant_allow_block_list_entry_result
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "action": lambda n : setattr(self, 'action', n.get_enum_value(tenant_allow_block_list_action.TenantAllowBlockListAction)),
             "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
             "note": lambda n : setattr(self, 'note', n.get_str_value()),

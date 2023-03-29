@@ -7,24 +7,17 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-definition_request_builder = lazy_import('msgraph.generated.device_management.group_policy_definitions.item.previous_version_definition.presentations.item.definition.definition_request_builder')
-group_policy_presentation = lazy_import('msgraph.generated.models.group_policy_presentation')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from .......models import group_policy_presentation
+    from .......models.o_data_errors import o_data_error
+    from .definition import definition_request_builder
 
 class GroupPolicyPresentationItemRequestBuilder():
     """
     Provides operations to manage the presentations property of the microsoft.graph.groupPolicyDefinition entity.
     """
-    @property
-    def definition(self) -> definition_request_builder.DefinitionRequestBuilder:
-        """
-        Provides operations to manage the definition property of the microsoft.graph.groupPolicyPresentation entity.
-        """
-        return definition_request_builder.DefinitionRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new GroupPolicyPresentationItemRequestBuilder and sets the default values.
@@ -52,6 +45,8 @@ class GroupPolicyPresentationItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -70,12 +65,16 @@ class GroupPolicyPresentationItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .......models import group_policy_presentation
+
         return await self.request_adapter.send_async(request_info, group_policy_presentation.GroupPolicyPresentation, error_mapping)
     
     async def patch(self,body: Optional[group_policy_presentation.GroupPolicyPresentation] = None, request_configuration: Optional[GroupPolicyPresentationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[group_policy_presentation.GroupPolicyPresentation]:
@@ -91,12 +90,16 @@ class GroupPolicyPresentationItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .......models import group_policy_presentation
+
         return await self.request_adapter.send_async(request_info, group_policy_presentation.GroupPolicyPresentation, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[GroupPolicyPresentationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -154,6 +157,15 @@ class GroupPolicyPresentationItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def definition(self) -> definition_request_builder.DefinitionRequestBuilder:
+        """
+        Provides operations to manage the definition property of the microsoft.graph.groupPolicyPresentation entity.
+        """
+        from .definition import definition_request_builder
+
+        return definition_request_builder.DefinitionRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class GroupPolicyPresentationItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -171,12 +183,6 @@ class GroupPolicyPresentationItemRequestBuilder():
         """
         The group policy presentations associated with the definition.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -192,6 +198,12 @@ class GroupPolicyPresentationItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class GroupPolicyPresentationItemRequestBuilderGetRequestConfiguration():

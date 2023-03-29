@@ -1,33 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-mac_o_s_software_update_category_summary = lazy_import('msgraph.generated.models.mac_o_s_software_update_category_summary')
+if TYPE_CHECKING:
+    from . import entity, mac_o_s_software_update_category_summary
+
+from . import entity
 
 class MacOSSoftwareUpdateAccountSummary(entity.Entity):
     """
     MacOS software update account summary report for a device and user
     """
-    @property
-    def category_summaries(self,) -> Optional[List[mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary]]:
-        """
-        Gets the categorySummaries property value. Summary of the updates by category.
-        Returns: Optional[List[mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary]]
-        """
-        return self._category_summaries
-    
-    @category_summaries.setter
-    def category_summaries(self,value: Optional[List[mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary]] = None) -> None:
-        """
-        Sets the categorySummaries property value. Summary of the updates by category.
-        Args:
-            value: Value to set for the category_summaries property.
-        """
-        self._category_summaries = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new macOSSoftwareUpdateAccountSummary and sets the default values.
@@ -57,6 +41,23 @@ class MacOSSoftwareUpdateAccountSummary(entity.Entity):
         self._user_id: Optional[str] = None
         # The user principal name
         self._user_principal_name: Optional[str] = None
+    
+    @property
+    def category_summaries(self,) -> Optional[List[mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary]]:
+        """
+        Gets the categorySummaries property value. Summary of the updates by category.
+        Returns: Optional[List[mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary]]
+        """
+        return self._category_summaries
+    
+    @category_summaries.setter
+    def category_summaries(self,value: Optional[List[mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary]] = None) -> None:
+        """
+        Sets the categorySummaries property value. Summary of the updates by category.
+        Args:
+            value: Value to set for the category_summaries property.
+        """
+        self._category_summaries = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSSoftwareUpdateAccountSummary:
@@ -143,7 +144,9 @@ class MacOSSoftwareUpdateAccountSummary(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, mac_o_s_software_update_category_summary
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "categorySummaries": lambda n : setattr(self, 'category_summaries', n.get_collection_of_object_values(mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary)),
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
             "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),

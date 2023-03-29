@@ -1,12 +1,28 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-membership_rule_processing_status_details = lazy_import('msgraph.generated.models.membership_rule_processing_status_details')
+if TYPE_CHECKING:
+    from . import membership_rule_processing_status_details
 
 class MembershipRuleProcessingStatus(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new membershipRuleProcessingStatus and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Detailed error message if dynamic group processing ran into an error.  Optional. Read-only.
+        self._error_message: Optional[str] = None
+        # Most recent date and time when membership of a dynamic group was updated.  Optional. Read-only.
+        self._last_membership_updated: Optional[datetime] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Current status of a dynamic group processing. Possible values are: NotStarted, Running, Succeeded, Failed, and UnknownFutureValue.  Required. Read-only.
+        self._status: Optional[membership_rule_processing_status_details.MembershipRuleProcessingStatusDetails] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,22 +39,6 @@ class MembershipRuleProcessingStatus(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new membershipRuleProcessingStatus and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Detailed error message if dynamic group processing ran into an error.  Optional. Read-only.
-        self._error_message: Optional[str] = None
-        # Most recent date and time when membership of a dynamic group was updated.  Optional. Read-only.
-        self._last_membership_updated: Optional[datetime] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Current status of a dynamic group processing. Possible values are: NotStarted, Running, Succeeded, Failed, and UnknownFutureValue.  Required. Read-only.
-        self._status: Optional[membership_rule_processing_status_details.MembershipRuleProcessingStatusDetails] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MembershipRuleProcessingStatus:
@@ -74,7 +74,9 @@ class MembershipRuleProcessingStatus(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import membership_rule_processing_status_details
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "errorMessage": lambda n : setattr(self, 'error_message', n.get_str_value()),
             "lastMembershipUpdated": lambda n : setattr(self, 'last_membership_updated', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

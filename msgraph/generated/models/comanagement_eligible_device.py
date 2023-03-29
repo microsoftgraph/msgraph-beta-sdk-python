@@ -1,37 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-comanagement_eligible_type = lazy_import('msgraph.generated.models.comanagement_eligible_type')
-device_registration_state = lazy_import('msgraph.generated.models.device_registration_state')
-device_type = lazy_import('msgraph.generated.models.device_type')
-entity = lazy_import('msgraph.generated.models.entity')
-management_agent_type = lazy_import('msgraph.generated.models.management_agent_type')
-management_state = lazy_import('msgraph.generated.models.management_state')
-owner_type = lazy_import('msgraph.generated.models.owner_type')
+if TYPE_CHECKING:
+    from . import comanagement_eligible_type, device_registration_state, device_type, entity, management_agent_type, management_state, owner_type
+
+from . import entity
 
 class ComanagementEligibleDevice(entity.Entity):
     """
     Device Co-Management eligibility state
     """
-    @property
-    def client_registration_status(self,) -> Optional[device_registration_state.DeviceRegistrationState]:
-        """
-        Gets the clientRegistrationStatus property value. Device registration status.
-        Returns: Optional[device_registration_state.DeviceRegistrationState]
-        """
-        return self._client_registration_status
-    
-    @client_registration_status.setter
-    def client_registration_status(self,value: Optional[device_registration_state.DeviceRegistrationState] = None) -> None:
-        """
-        Sets the clientRegistrationStatus property value. Device registration status.
-        Args:
-            value: Value to set for the client_registration_status property.
-        """
-        self._client_registration_status = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new comanagementEligibleDevice and sets the default values.
@@ -77,6 +56,23 @@ class ComanagementEligibleDevice(entity.Entity):
         self._user_id: Optional[str] = None
         # UserName
         self._user_name: Optional[str] = None
+    
+    @property
+    def client_registration_status(self,) -> Optional[device_registration_state.DeviceRegistrationState]:
+        """
+        Gets the clientRegistrationStatus property value. Device registration status.
+        Returns: Optional[device_registration_state.DeviceRegistrationState]
+        """
+        return self._client_registration_status
+    
+    @client_registration_status.setter
+    def client_registration_status(self,value: Optional[device_registration_state.DeviceRegistrationState] = None) -> None:
+        """
+        Sets the clientRegistrationStatus property value. Device registration status.
+        Args:
+            value: Value to set for the client_registration_status property.
+        """
+        self._client_registration_status = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ComanagementEligibleDevice:
@@ -146,7 +142,9 @@ class ComanagementEligibleDevice(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import comanagement_eligible_type, device_registration_state, device_type, entity, management_agent_type, management_state, owner_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "clientRegistrationStatus": lambda n : setattr(self, 'client_registration_status', n.get_enum_value(device_registration_state.DeviceRegistrationState)),
             "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
             "deviceType": lambda n : setattr(self, 'device_type', n.get_enum_value(device_type.DeviceType)),

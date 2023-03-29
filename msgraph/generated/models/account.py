@@ -1,12 +1,34 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class Account(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new account and sets the default values.
+        """
+        super().__init__()
+        # The blocked property
+        self._blocked: Optional[bool] = None
+        # The category property
+        self._category: Optional[str] = None
+        # The displayName property
+        self._display_name: Optional[str] = None
+        # The lastModifiedDateTime property
+        self._last_modified_date_time: Optional[datetime] = None
+        # The number property
+        self._number: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The subCategory property
+        self._sub_category: Optional[str] = None
+    
     @property
     def blocked(self,) -> Optional[bool]:
         """
@@ -40,26 +62,6 @@ class Account(entity.Entity):
             value: Value to set for the category property.
         """
         self._category = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new account and sets the default values.
-        """
-        super().__init__()
-        # The blocked property
-        self._blocked: Optional[bool] = None
-        # The category property
-        self._category: Optional[str] = None
-        # The displayName property
-        self._display_name: Optional[str] = None
-        # The lastModifiedDateTime property
-        self._last_modified_date_time: Optional[datetime] = None
-        # The number property
-        self._number: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The subCategory property
-        self._sub_category: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Account:
@@ -95,7 +97,9 @@ class Account(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "blocked": lambda n : setattr(self, 'blocked', n.get_bool_value()),
             "category": lambda n : setattr(self, 'category', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

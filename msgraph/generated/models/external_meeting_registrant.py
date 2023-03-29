@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-meeting_registrant_base = lazy_import('msgraph.generated.models.meeting_registrant_base')
+if TYPE_CHECKING:
+    from . import meeting_registrant_base
+
+from . import meeting_registrant_base
 
 class ExternalMeetingRegistrant(meeting_registrant_base.MeetingRegistrantBase):
     def __init__(self,) -> None:
@@ -34,7 +36,9 @@ class ExternalMeetingRegistrant(meeting_registrant_base.MeetingRegistrantBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import meeting_registrant_base
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
             "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }

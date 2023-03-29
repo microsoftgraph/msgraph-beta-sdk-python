@@ -1,13 +1,53 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from uuid import UUID
 
-entity = lazy_import('msgraph.generated.models.entity')
-oath_token_metadata = lazy_import('msgraph.generated.models.oath_token_metadata')
+if TYPE_CHECKING:
+    from . import entity, oath_token_metadata
+
+from . import entity
 
 class StrongAuthenticationPhoneAppDetail(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new StrongAuthenticationPhoneAppDetail and sets the default values.
+        """
+        super().__init__()
+        # The authenticationType property
+        self._authentication_type: Optional[str] = None
+        # The authenticatorFlavor property
+        self._authenticator_flavor: Optional[str] = None
+        # The deviceId property
+        self._device_id: Optional[UUID] = None
+        # The deviceName property
+        self._device_name: Optional[str] = None
+        # The deviceTag property
+        self._device_tag: Optional[str] = None
+        # The deviceToken property
+        self._device_token: Optional[str] = None
+        # The hashFunction property
+        self._hash_function: Optional[str] = None
+        # The lastAuthenticatedDateTime property
+        self._last_authenticated_date_time: Optional[datetime] = None
+        # The notificationType property
+        self._notification_type: Optional[str] = None
+        # The oathSecretKey property
+        self._oath_secret_key: Optional[str] = None
+        # The oathTokenMetadata property
+        self._oath_token_metadata: Optional[oath_token_metadata.OathTokenMetadata] = None
+        # The oathTokenTimeDriftInSeconds property
+        self._oath_token_time_drift_in_seconds: Optional[int] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The phoneAppVersion property
+        self._phone_app_version: Optional[str] = None
+        # The tenantDeviceId property
+        self._tenant_device_id: Optional[str] = None
+        # The tokenGenerationIntervalInSeconds property
+        self._token_generation_interval_in_seconds: Optional[int] = None
+    
     @property
     def authentication_type(self,) -> Optional[str]:
         """
@@ -42,44 +82,6 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
         """
         self._authenticator_flavor = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new StrongAuthenticationPhoneAppDetail and sets the default values.
-        """
-        super().__init__()
-        # The authenticationType property
-        self._authentication_type: Optional[str] = None
-        # The authenticatorFlavor property
-        self._authenticator_flavor: Optional[str] = None
-        # The deviceId property
-        self._device_id: Optional[Guid] = None
-        # The deviceName property
-        self._device_name: Optional[str] = None
-        # The deviceTag property
-        self._device_tag: Optional[str] = None
-        # The deviceToken property
-        self._device_token: Optional[str] = None
-        # The hashFunction property
-        self._hash_function: Optional[str] = None
-        # The lastAuthenticatedDateTime property
-        self._last_authenticated_date_time: Optional[datetime] = None
-        # The notificationType property
-        self._notification_type: Optional[str] = None
-        # The oathSecretKey property
-        self._oath_secret_key: Optional[str] = None
-        # The oathTokenMetadata property
-        self._oath_token_metadata: Optional[oath_token_metadata.OathTokenMetadata] = None
-        # The oathTokenTimeDriftInSeconds property
-        self._oath_token_time_drift_in_seconds: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The phoneAppVersion property
-        self._phone_app_version: Optional[str] = None
-        # The tenantDeviceId property
-        self._tenant_device_id: Optional[str] = None
-        # The tokenGenerationIntervalInSeconds property
-        self._token_generation_interval_in_seconds: Optional[int] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> StrongAuthenticationPhoneAppDetail:
         """
@@ -93,15 +95,15 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
         return StrongAuthenticationPhoneAppDetail()
     
     @property
-    def device_id(self,) -> Optional[Guid]:
+    def device_id(self,) -> Optional[UUID]:
         """
         Gets the deviceId property value. The deviceId property
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._device_id
     
     @device_id.setter
-    def device_id(self,value: Optional[Guid] = None) -> None:
+    def device_id(self,value: Optional[UUID] = None) -> None:
         """
         Sets the deviceId property value. The deviceId property
         Args:
@@ -165,10 +167,12 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, oath_token_metadata
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "authenticationType": lambda n : setattr(self, 'authentication_type', n.get_str_value()),
             "authenticatorFlavor": lambda n : setattr(self, 'authenticator_flavor', n.get_str_value()),
-            "deviceId": lambda n : setattr(self, 'device_id', n.get_object_value(Guid)),
+            "deviceId": lambda n : setattr(self, 'device_id', n.get_uuid_value()),
             "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
             "deviceTag": lambda n : setattr(self, 'device_tag', n.get_str_value()),
             "deviceToken": lambda n : setattr(self, 'device_token', n.get_str_value()),
@@ -316,7 +320,7 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
         super().serialize(writer)
         writer.write_str_value("authenticationType", self.authentication_type)
         writer.write_str_value("authenticatorFlavor", self.authenticator_flavor)
-        writer.write_object_value("deviceId", self.device_id)
+        writer.write_uuid_value("deviceId", self.device_id)
         writer.write_str_value("deviceName", self.device_name)
         writer.write_str_value("deviceTag", self.device_tag)
         writer.write_str_value("deviceToken", self.device_token)

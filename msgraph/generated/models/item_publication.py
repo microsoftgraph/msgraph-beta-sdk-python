@@ -1,10 +1,12 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-item_facet = lazy_import('msgraph.generated.models.item_facet')
+if TYPE_CHECKING:
+    from . import item_facet
+
+from . import item_facet
 
 class ItemPublication(item_facet.ItemFacet):
     def __init__(self,) -> None:
@@ -18,7 +20,7 @@ class ItemPublication(item_facet.ItemFacet):
         # Title of the publication.
         self._display_name: Optional[str] = None
         # The date that the publication was published.
-        self._published_date: Optional[Date] = None
+        self._published_date: Optional[date] = None
         # Publication or publisher for the publication.
         self._publisher: Optional[str] = None
         # URL referencing a thumbnail of the publication.
@@ -77,10 +79,12 @@ class ItemPublication(item_facet.ItemFacet):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import item_facet
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "publishedDate": lambda n : setattr(self, 'published_date', n.get_object_value(Date)),
+            "publishedDate": lambda n : setattr(self, 'published_date', n.get_date_value()),
             "publisher": lambda n : setattr(self, 'publisher', n.get_str_value()),
             "thumbnailUrl": lambda n : setattr(self, 'thumbnail_url', n.get_str_value()),
             "webUrl": lambda n : setattr(self, 'web_url', n.get_str_value()),
@@ -90,15 +94,15 @@ class ItemPublication(item_facet.ItemFacet):
         return fields
     
     @property
-    def published_date(self,) -> Optional[Date]:
+    def published_date(self,) -> Optional[date]:
         """
         Gets the publishedDate property value. The date that the publication was published.
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._published_date
     
     @published_date.setter
-    def published_date(self,value: Optional[Date] = None) -> None:
+    def published_date(self,value: Optional[date] = None) -> None:
         """
         Sets the publishedDate property value. The date that the publication was published.
         Args:
@@ -134,7 +138,7 @@ class ItemPublication(item_facet.ItemFacet):
         super().serialize(writer)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
-        writer.write_object_value("publishedDate", self.published_date)
+        writer.write_date_value("publishedDate", self.published_date)
         writer.write_str_value("publisher", self.publisher)
         writer.write_str_value("thumbnailUrl", self.thumbnail_url)
         writer.write_str_value("webUrl", self.web_url)

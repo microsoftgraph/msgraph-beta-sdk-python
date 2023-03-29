@@ -1,51 +1,209 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-assignment_filter_evaluation_status_details = lazy_import('msgraph.generated.models.assignment_filter_evaluation_status_details')
-chassis_type = lazy_import('msgraph.generated.models.chassis_type')
-chrome_o_s_device_property = lazy_import('msgraph.generated.models.chrome_o_s_device_property')
-cloud_pc_remote_action_result = lazy_import('msgraph.generated.models.cloud_pc_remote_action_result')
-compliance_state = lazy_import('msgraph.generated.models.compliance_state')
-configuration_manager_client_enabled_features = lazy_import('msgraph.generated.models.configuration_manager_client_enabled_features')
-configuration_manager_client_health_state = lazy_import('msgraph.generated.models.configuration_manager_client_health_state')
-configuration_manager_client_information = lazy_import('msgraph.generated.models.configuration_manager_client_information')
-detected_app = lazy_import('msgraph.generated.models.detected_app')
-device_action_result = lazy_import('msgraph.generated.models.device_action_result')
-device_category = lazy_import('msgraph.generated.models.device_category')
-device_compliance_policy_state = lazy_import('msgraph.generated.models.device_compliance_policy_state')
-device_configuration_state = lazy_import('msgraph.generated.models.device_configuration_state')
-device_enrollment_type = lazy_import('msgraph.generated.models.device_enrollment_type')
-device_health_attestation_state = lazy_import('msgraph.generated.models.device_health_attestation_state')
-device_health_script_policy_state = lazy_import('msgraph.generated.models.device_health_script_policy_state')
-device_log_collection_response = lazy_import('msgraph.generated.models.device_log_collection_response')
-device_management_exchange_access_state = lazy_import('msgraph.generated.models.device_management_exchange_access_state')
-device_management_exchange_access_state_reason = lazy_import('msgraph.generated.models.device_management_exchange_access_state_reason')
-device_registration_state = lazy_import('msgraph.generated.models.device_registration_state')
-device_type = lazy_import('msgraph.generated.models.device_type')
-entity = lazy_import('msgraph.generated.models.entity')
-hardware_information = lazy_import('msgraph.generated.models.hardware_information')
-join_type = lazy_import('msgraph.generated.models.join_type')
-logged_on_user = lazy_import('msgraph.generated.models.logged_on_user')
-lost_mode_state = lazy_import('msgraph.generated.models.lost_mode_state')
-managed_device_architecture = lazy_import('msgraph.generated.models.managed_device_architecture')
-managed_device_management_features = lazy_import('msgraph.generated.models.managed_device_management_features')
-managed_device_mobile_app_configuration_state = lazy_import('msgraph.generated.models.managed_device_mobile_app_configuration_state')
-managed_device_owner_type = lazy_import('msgraph.generated.models.managed_device_owner_type')
-managed_device_partner_reported_health_state = lazy_import('msgraph.generated.models.managed_device_partner_reported_health_state')
-management_agent_type = lazy_import('msgraph.generated.models.management_agent_type')
-management_state = lazy_import('msgraph.generated.models.management_state')
-owner_type = lazy_import('msgraph.generated.models.owner_type')
-security_baseline_state = lazy_import('msgraph.generated.models.security_baseline_state')
-user = lazy_import('msgraph.generated.models.user')
-windows_protection_state = lazy_import('msgraph.generated.models.windows_protection_state')
+if TYPE_CHECKING:
+    from . import assignment_filter_evaluation_status_details, chassis_type, chrome_o_s_device_property, cloud_pc_remote_action_result, compliance_state, configuration_manager_client_enabled_features, configuration_manager_client_health_state, configuration_manager_client_information, detected_app, device_action_result, device_category, device_compliance_policy_state, device_configuration_state, device_enrollment_type, device_health_attestation_state, device_health_script_policy_state, device_log_collection_response, device_management_exchange_access_state, device_management_exchange_access_state_reason, device_registration_state, device_type, entity, hardware_information, join_type, logged_on_user, lost_mode_state, managed_device_architecture, managed_device_management_features, managed_device_mobile_app_configuration_state, managed_device_owner_type, managed_device_partner_reported_health_state, management_agent_type, management_state, owner_type, security_baseline_state, user, windows_managed_device, windows_protection_state
+
+from . import entity
 
 class ManagedDevice(entity.Entity):
     """
     Devices that are managed or pre-enrolled through Intune
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new managedDevice and sets the default values.
+        """
+        super().__init__()
+        # Whether the device is Azure Active Directory registered. This property is read-only.
+        self._aad_registered: Optional[bool] = None
+        # The code that allows the Activation Lock on managed device to be bypassed. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity in LIST call. Individual GET call with select query options is needed to retrieve actual values. Supports: $select. $Search is not supported. Read-only. This property is read-only.
+        self._activation_lock_bypass_code: Optional[str] = None
+        # Android security patch level. This property is read-only.
+        self._android_security_patch_level: Optional[str] = None
+        # Managed device mobile app configuration states for this device.
+        self._assignment_filter_evaluation_status_details: Optional[List[assignment_filter_evaluation_status_details.AssignmentFilterEvaluationStatusDetails]] = None
+        # Reports if the managed device is enrolled via auto-pilot. This property is read-only.
+        self._autopilot_enrolled: Optional[bool] = None
+        # The unique identifier for the Azure Active Directory device. Read only. This property is read-only.
+        self._azure_a_d_device_id: Optional[str] = None
+        # Whether the device is Azure Active Directory registered. This property is read-only.
+        self._azure_a_d_registered: Optional[bool] = None
+        # The unique identifier for the Azure Active Directory device. Read only. This property is read-only.
+        self._azure_active_directory_device_id: Optional[str] = None
+        # Reports if the managed device has an escrowed Bootstrap Token. This is only for macOS devices. To get, include BootstrapTokenEscrowed in the select clause and query with a device id. If FALSE, no bootstrap token is escrowed. If TRUE, the device has escrowed a bootstrap token with Intune. This property is read-only.
+        self._bootstrap_token_escrowed: Optional[bool] = None
+        # Chassis type.
+        self._chassis_type: Optional[chassis_type.ChassisType] = None
+        # List of properties of the ChromeOS Device.
+        self._chrome_o_s_device_info: Optional[List[chrome_o_s_device_property.ChromeOSDeviceProperty]] = None
+        # The cloudPcRemoteActionResults property
+        self._cloud_pc_remote_action_results: Optional[List[cloud_pc_remote_action_result.CloudPcRemoteActionResult]] = None
+        # The DateTime when device compliance grace period expires. This property is read-only.
+        self._compliance_grace_period_expiration_date_time: Optional[datetime] = None
+        # Compliance state.
+        self._compliance_state: Optional[compliance_state.ComplianceState] = None
+        # ConfigrMgr client enabled features. This property is read-only.
+        self._configuration_manager_client_enabled_features: Optional[configuration_manager_client_enabled_features.ConfigurationManagerClientEnabledFeatures] = None
+        # Configuration manager client health state, valid only for devices managed by MDM/ConfigMgr Agent
+        self._configuration_manager_client_health_state: Optional[configuration_manager_client_health_state.ConfigurationManagerClientHealthState] = None
+        # Configuration manager client information, valid only for devices managed, duel-managed or tri-managed by ConfigMgr Agent
+        self._configuration_manager_client_information: Optional[configuration_manager_client_information.ConfigurationManagerClientInformation] = None
+        # All applications currently installed on the device
+        self._detected_apps: Optional[List[detected_app.DetectedApp]] = None
+        # List of ComplexType deviceActionResult objects. This property is read-only.
+        self._device_action_results: Optional[List[device_action_result.DeviceActionResult]] = None
+        # Device category
+        self._device_category: Optional[device_category.DeviceCategory] = None
+        # Device category display name. This property is read-only.
+        self._device_category_display_name: Optional[str] = None
+        # Device compliance policy states for this device.
+        self._device_compliance_policy_states: Optional[List[device_compliance_policy_state.DeviceCompliancePolicyState]] = None
+        # Device configuration states for this device.
+        self._device_configuration_states: Optional[List[device_configuration_state.DeviceConfigurationState]] = None
+        # Possible ways of adding a mobile device to management.
+        self._device_enrollment_type: Optional[device_enrollment_type.DeviceEnrollmentType] = None
+        # Indicates whether the device is DFCI managed. When TRUE the device is DFCI managed. When FALSE, the device is not DFCI managed. The default value is FALSE.
+        self._device_firmware_configuration_interface_managed: Optional[bool] = None
+        # The device health attestation state. This property is read-only.
+        self._device_health_attestation_state: Optional[device_health_attestation_state.DeviceHealthAttestationState] = None
+        # Results of device health scripts that ran for this device. Default is empty list. This property is read-only.
+        self._device_health_script_states: Optional[List[device_health_script_policy_state.DeviceHealthScriptPolicyState]] = None
+        # Name of the device. This property is read-only.
+        self._device_name: Optional[str] = None
+        # Device registration status.
+        self._device_registration_state: Optional[device_registration_state.DeviceRegistrationState] = None
+        # Device type.
+        self._device_type: Optional[device_type.DeviceType] = None
+        # Whether the device is Exchange ActiveSync activated. This property is read-only.
+        self._eas_activated: Optional[bool] = None
+        # Exchange ActivationSync activation time of the device. This property is read-only.
+        self._eas_activation_date_time: Optional[datetime] = None
+        # Exchange ActiveSync Id of the device. This property is read-only.
+        self._eas_device_id: Optional[str] = None
+        # Email(s) for the user associated with the device. This property is read-only.
+        self._email_address: Optional[str] = None
+        # Enrollment time of the device. This property is read-only.
+        self._enrolled_date_time: Optional[datetime] = None
+        # Name of the enrollment profile assigned to the device. Default value is empty string, indicating no enrollment profile was assgined. This property is read-only.
+        self._enrollment_profile_name: Optional[str] = None
+        # Indicates Ethernet MAC Address of the device. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity. Individual get call with select query options is needed to retrieve actual values. Example: deviceManagement/managedDevices({managedDeviceId})?$select=ethernetMacAddress Supports: $select. $Search is not supported. Read-only. This property is read-only.
+        self._ethernet_mac_address: Optional[str] = None
+        # Device Exchange Access State.
+        self._exchange_access_state: Optional[device_management_exchange_access_state.DeviceManagementExchangeAccessState] = None
+        # Device Exchange Access State Reason.
+        self._exchange_access_state_reason: Optional[device_management_exchange_access_state_reason.DeviceManagementExchangeAccessStateReason] = None
+        # Last time the device contacted Exchange. This property is read-only.
+        self._exchange_last_successful_sync_date_time: Optional[datetime] = None
+        # Free Storage in Bytes. Default value is 0. Read-only. This property is read-only.
+        self._free_storage_space_in_bytes: Optional[int] = None
+        # The hardward details for the device.  Includes information such as storage space, manufacturer, serial number, etc. Return default value in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
+        self._hardware_information: Optional[hardware_information.HardwareInformation] = None
+        # Integrated Circuit Card Identifier, it is A SIM card's unique identification number. Return default value null in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
+        self._iccid: Optional[str] = None
+        # IMEI. This property is read-only.
+        self._imei: Optional[str] = None
+        # Device encryption status. This property is read-only.
+        self._is_encrypted: Optional[bool] = None
+        # Device supervised status. This property is read-only.
+        self._is_supervised: Optional[bool] = None
+        # whether the device is jail broken or rooted. This property is read-only.
+        self._jail_broken: Optional[str] = None
+        # Device enrollment join type.
+        self._join_type: Optional[join_type.JoinType] = None
+        # The date and time that the device last completed a successful sync with Intune. This property is read-only.
+        self._last_sync_date_time: Optional[datetime] = None
+        # List of log collection requests
+        self._log_collection_requests: Optional[List[device_log_collection_response.DeviceLogCollectionResponse]] = None
+        # State of lost mode, indicating if lost mode is enabled or disabled
+        self._lost_mode_state: Optional[lost_mode_state.LostModeState] = None
+        # Managed device mobile app configuration states for this device.
+        self._managed_device_mobile_app_configuration_states: Optional[List[managed_device_mobile_app_configuration_state.ManagedDeviceMobileAppConfigurationState]] = None
+        # Automatically generated name to identify a device. Can be overwritten to a user friendly name.
+        self._managed_device_name: Optional[str] = None
+        # Owner type of device.
+        self._managed_device_owner_type: Optional[managed_device_owner_type.ManagedDeviceOwnerType] = None
+        # Management agent type.
+        self._management_agent: Optional[management_agent_type.ManagementAgentType] = None
+        # Reports device management certificate expiration date. This property is read-only.
+        self._management_certificate_expiration_date: Optional[datetime] = None
+        # Device management features.
+        self._management_features: Optional[managed_device_management_features.ManagedDeviceManagementFeatures] = None
+        # Management state of device in Microsoft Intune.
+        self._management_state: Optional[management_state.ManagementState] = None
+        # Manufacturer of the device. This property is read-only.
+        self._manufacturer: Optional[str] = None
+        # MEID. This property is read-only.
+        self._meid: Optional[str] = None
+        # Model of the device. This property is read-only.
+        self._model: Optional[str] = None
+        # Notes on the device created by IT Admin. Return default value null in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select.  $Search is not supported.
+        self._notes: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Operating system of the device. Windows, iOS, etc. This property is read-only.
+        self._operating_system: Optional[str] = None
+        # Operating system version of the device. This property is read-only.
+        self._os_version: Optional[str] = None
+        # Owner type of device.
+        self._owner_type: Optional[owner_type.OwnerType] = None
+        # Available health states for the Device Health API
+        self._partner_reported_threat_state: Optional[managed_device_partner_reported_health_state.ManagedDevicePartnerReportedHealthState] = None
+        # Phone number of the device. This property is read-only.
+        self._phone_number: Optional[str] = None
+        # Total Memory in Bytes. Return default value 0 in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. Default value is 0. Read-only. This property is read-only.
+        self._physical_memory_in_bytes: Optional[int] = None
+        # Reports the DateTime the preferMdmOverGroupPolicy setting was set.  When set, the Intune MDM settings will override Group Policy settings if there is a conflict. Read Only. This property is read-only.
+        self._prefer_mdm_over_group_policy_applied_date_time: Optional[datetime] = None
+        # Processor architecture
+        self._processor_architecture: Optional[managed_device_architecture.ManagedDeviceArchitecture] = None
+        # An error string that identifies issues when creating Remote Assistance session objects. This property is read-only.
+        self._remote_assistance_session_error_details: Optional[str] = None
+        # Url that allows a Remote Assistance session to be established with the device. This property is read-only.
+        self._remote_assistance_session_url: Optional[str] = None
+        # Reports if the managed iOS device is user approval enrollment. This property is read-only.
+        self._require_user_enrollment_approval: Optional[bool] = None
+        # Indicates the time after when a device will be auto retired because of scheduled action. This property is read-only.
+        self._retire_after_date_time: Optional[datetime] = None
+        # List of Scope Tag IDs for this Device instance.
+        self._role_scope_tag_ids: Optional[List[str]] = None
+        # Security baseline states for this device.
+        self._security_baseline_states: Optional[List[security_baseline_state.SecurityBaselineState]] = None
+        # SerialNumber. This property is read-only.
+        self._serial_number: Optional[str] = None
+        # Device sku family
+        self._sku_family: Optional[str] = None
+        # Device sku number, see also: https://learn.microsoft.com/windows/win32/api/sysinfoapi/nf-sysinfoapi-getproductinfo. Valid values 0 to 2147483647. This property is read-only.
+        self._sku_number: Optional[int] = None
+        # Specification version. This property is read-only.
+        self._specification_version: Optional[str] = None
+        # Subscriber Carrier. This property is read-only.
+        self._subscriber_carrier: Optional[str] = None
+        # Total Storage in Bytes. This property is read-only.
+        self._total_storage_space_in_bytes: Optional[int] = None
+        # Unique Device Identifier for iOS and macOS devices. Return default value null in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
+        self._udid: Optional[str] = None
+        # User display name. This property is read-only.
+        self._user_display_name: Optional[str] = None
+        # Unique Identifier for the user associated with the device. This property is read-only.
+        self._user_id: Optional[str] = None
+        # Device user principal name. This property is read-only.
+        self._user_principal_name: Optional[str] = None
+        # The primary users associated with the managed device.
+        self._users: Optional[List[user.User]] = None
+        # Indicates the last logged on users of a device. This property is read-only.
+        self._users_logged_on: Optional[List[logged_on_user.LoggedOnUser]] = None
+        # Wi-Fi MAC. This property is read-only.
+        self._wi_fi_mac_address: Optional[str] = None
+        # Count of active malware for this windows device. This property is read-only.
+        self._windows_active_malware_count: Optional[int] = None
+        # The device protection status. This property is read-only.
+        self._windows_protection_state: Optional[windows_protection_state.WindowsProtectionState] = None
+        # Count of remediated malware for this windows device. This property is read-only.
+        self._windows_remediated_malware_count: Optional[int] = None
+    
     @property
     def aad_registered(self,) -> Optional[bool]:
         """
@@ -335,198 +493,6 @@ class ManagedDevice(entity.Entity):
         """
         self._configuration_manager_client_information = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new managedDevice and sets the default values.
-        """
-        super().__init__()
-        # Whether the device is Azure Active Directory registered. This property is read-only.
-        self._aad_registered: Optional[bool] = None
-        # The code that allows the Activation Lock on managed device to be bypassed. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity in LIST call. Individual GET call with select query options is needed to retrieve actual values. Supports: $select. $Search is not supported. Read-only. This property is read-only.
-        self._activation_lock_bypass_code: Optional[str] = None
-        # Android security patch level. This property is read-only.
-        self._android_security_patch_level: Optional[str] = None
-        # Managed device mobile app configuration states for this device.
-        self._assignment_filter_evaluation_status_details: Optional[List[assignment_filter_evaluation_status_details.AssignmentFilterEvaluationStatusDetails]] = None
-        # Reports if the managed device is enrolled via auto-pilot. This property is read-only.
-        self._autopilot_enrolled: Optional[bool] = None
-        # The unique identifier for the Azure Active Directory device. Read only. This property is read-only.
-        self._azure_a_d_device_id: Optional[str] = None
-        # Whether the device is Azure Active Directory registered. This property is read-only.
-        self._azure_a_d_registered: Optional[bool] = None
-        # The unique identifier for the Azure Active Directory device. Read only. This property is read-only.
-        self._azure_active_directory_device_id: Optional[str] = None
-        # Reports if the managed device has an escrowed Bootstrap Token. This is only for macOS devices. To get, include BootstrapTokenEscrowed in the select clause and query with a device id. If FALSE, no bootstrap token is escrowed. If TRUE, the device has escrowed a bootstrap token with Intune. This property is read-only.
-        self._bootstrap_token_escrowed: Optional[bool] = None
-        # Chassis type.
-        self._chassis_type: Optional[chassis_type.ChassisType] = None
-        # List of properties of the ChromeOS Device.
-        self._chrome_o_s_device_info: Optional[List[chrome_o_s_device_property.ChromeOSDeviceProperty]] = None
-        # The cloudPcRemoteActionResults property
-        self._cloud_pc_remote_action_results: Optional[List[cloud_pc_remote_action_result.CloudPcRemoteActionResult]] = None
-        # The DateTime when device compliance grace period expires. This property is read-only.
-        self._compliance_grace_period_expiration_date_time: Optional[datetime] = None
-        # Compliance state.
-        self._compliance_state: Optional[compliance_state.ComplianceState] = None
-        # ConfigrMgr client enabled features. This property is read-only.
-        self._configuration_manager_client_enabled_features: Optional[configuration_manager_client_enabled_features.ConfigurationManagerClientEnabledFeatures] = None
-        # Configuration manager client health state, valid only for devices managed by MDM/ConfigMgr Agent
-        self._configuration_manager_client_health_state: Optional[configuration_manager_client_health_state.ConfigurationManagerClientHealthState] = None
-        # Configuration manager client information, valid only for devices managed, duel-managed or tri-managed by ConfigMgr Agent
-        self._configuration_manager_client_information: Optional[configuration_manager_client_information.ConfigurationManagerClientInformation] = None
-        # All applications currently installed on the device
-        self._detected_apps: Optional[List[detected_app.DetectedApp]] = None
-        # List of ComplexType deviceActionResult objects. This property is read-only.
-        self._device_action_results: Optional[List[device_action_result.DeviceActionResult]] = None
-        # Device category
-        self._device_category: Optional[device_category.DeviceCategory] = None
-        # Device category display name. This property is read-only.
-        self._device_category_display_name: Optional[str] = None
-        # Device compliance policy states for this device.
-        self._device_compliance_policy_states: Optional[List[device_compliance_policy_state.DeviceCompliancePolicyState]] = None
-        # Device configuration states for this device.
-        self._device_configuration_states: Optional[List[device_configuration_state.DeviceConfigurationState]] = None
-        # Possible ways of adding a mobile device to management.
-        self._device_enrollment_type: Optional[device_enrollment_type.DeviceEnrollmentType] = None
-        # Indicates whether the device is DFCI managed. When TRUE the device is DFCI managed. When FALSE, the device is not DFCI managed. The default value is FALSE.
-        self._device_firmware_configuration_interface_managed: Optional[bool] = None
-        # The device health attestation state. This property is read-only.
-        self._device_health_attestation_state: Optional[device_health_attestation_state.DeviceHealthAttestationState] = None
-        # Results of device health scripts that ran for this device. Default is empty list. This property is read-only.
-        self._device_health_script_states: Optional[List[device_health_script_policy_state.DeviceHealthScriptPolicyState]] = None
-        # Name of the device. This property is read-only.
-        self._device_name: Optional[str] = None
-        # Device registration status.
-        self._device_registration_state: Optional[device_registration_state.DeviceRegistrationState] = None
-        # Device type.
-        self._device_type: Optional[device_type.DeviceType] = None
-        # Whether the device is Exchange ActiveSync activated. This property is read-only.
-        self._eas_activated: Optional[bool] = None
-        # Exchange ActivationSync activation time of the device. This property is read-only.
-        self._eas_activation_date_time: Optional[datetime] = None
-        # Exchange ActiveSync Id of the device. This property is read-only.
-        self._eas_device_id: Optional[str] = None
-        # Email(s) for the user associated with the device. This property is read-only.
-        self._email_address: Optional[str] = None
-        # Enrollment time of the device. This property is read-only.
-        self._enrolled_date_time: Optional[datetime] = None
-        # Name of the enrollment profile assigned to the device. Default value is empty string, indicating no enrollment profile was assgined. This property is read-only.
-        self._enrollment_profile_name: Optional[str] = None
-        # Indicates Ethernet MAC Address of the device. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity. Individual get call with select query options is needed to retrieve actual values. Example: deviceManagement/managedDevices({managedDeviceId})?$select=ethernetMacAddress Supports: $select. $Search is not supported. Read-only. This property is read-only.
-        self._ethernet_mac_address: Optional[str] = None
-        # Device Exchange Access State.
-        self._exchange_access_state: Optional[device_management_exchange_access_state.DeviceManagementExchangeAccessState] = None
-        # Device Exchange Access State Reason.
-        self._exchange_access_state_reason: Optional[device_management_exchange_access_state_reason.DeviceManagementExchangeAccessStateReason] = None
-        # Last time the device contacted Exchange. This property is read-only.
-        self._exchange_last_successful_sync_date_time: Optional[datetime] = None
-        # Free Storage in Bytes. Default value is 0. Read-only. This property is read-only.
-        self._free_storage_space_in_bytes: Optional[int] = None
-        # The hardward details for the device.  Includes information such as storage space, manufacturer, serial number, etc. Return default value in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
-        self._hardware_information: Optional[hardware_information.HardwareInformation] = None
-        # Integrated Circuit Card Identifier, it is A SIM card's unique identification number. Return default value null in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
-        self._iccid: Optional[str] = None
-        # IMEI. This property is read-only.
-        self._imei: Optional[str] = None
-        # Device encryption status. This property is read-only.
-        self._is_encrypted: Optional[bool] = None
-        # Device supervised status. This property is read-only.
-        self._is_supervised: Optional[bool] = None
-        # whether the device is jail broken or rooted. This property is read-only.
-        self._jail_broken: Optional[str] = None
-        # Device enrollment join type.
-        self._join_type: Optional[join_type.JoinType] = None
-        # The date and time that the device last completed a successful sync with Intune. This property is read-only.
-        self._last_sync_date_time: Optional[datetime] = None
-        # List of log collection requests
-        self._log_collection_requests: Optional[List[device_log_collection_response.DeviceLogCollectionResponse]] = None
-        # State of lost mode, indicating if lost mode is enabled or disabled
-        self._lost_mode_state: Optional[lost_mode_state.LostModeState] = None
-        # Managed device mobile app configuration states for this device.
-        self._managed_device_mobile_app_configuration_states: Optional[List[managed_device_mobile_app_configuration_state.ManagedDeviceMobileAppConfigurationState]] = None
-        # Automatically generated name to identify a device. Can be overwritten to a user friendly name.
-        self._managed_device_name: Optional[str] = None
-        # Owner type of device.
-        self._managed_device_owner_type: Optional[managed_device_owner_type.ManagedDeviceOwnerType] = None
-        # Management agent type.
-        self._management_agent: Optional[management_agent_type.ManagementAgentType] = None
-        # Reports device management certificate expiration date. This property is read-only.
-        self._management_certificate_expiration_date: Optional[datetime] = None
-        # Device management features.
-        self._management_features: Optional[managed_device_management_features.ManagedDeviceManagementFeatures] = None
-        # Management state of device in Microsoft Intune.
-        self._management_state: Optional[management_state.ManagementState] = None
-        # Manufacturer of the device. This property is read-only.
-        self._manufacturer: Optional[str] = None
-        # MEID. This property is read-only.
-        self._meid: Optional[str] = None
-        # Model of the device. This property is read-only.
-        self._model: Optional[str] = None
-        # Notes on the device created by IT Admin. Return default value null in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select.  $Search is not supported.
-        self._notes: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Operating system of the device. Windows, iOS, etc. This property is read-only.
-        self._operating_system: Optional[str] = None
-        # Operating system version of the device. This property is read-only.
-        self._os_version: Optional[str] = None
-        # Owner type of device.
-        self._owner_type: Optional[owner_type.OwnerType] = None
-        # Available health states for the Device Health API
-        self._partner_reported_threat_state: Optional[managed_device_partner_reported_health_state.ManagedDevicePartnerReportedHealthState] = None
-        # Phone number of the device. This property is read-only.
-        self._phone_number: Optional[str] = None
-        # Total Memory in Bytes. Return default value 0 in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. Default value is 0. Read-only. This property is read-only.
-        self._physical_memory_in_bytes: Optional[int] = None
-        # Reports the DateTime the preferMdmOverGroupPolicy setting was set.  When set, the Intune MDM settings will override Group Policy settings if there is a conflict. Read Only. This property is read-only.
-        self._prefer_mdm_over_group_policy_applied_date_time: Optional[datetime] = None
-        # Processor architecture
-        self._processor_architecture: Optional[managed_device_architecture.ManagedDeviceArchitecture] = None
-        # An error string that identifies issues when creating Remote Assistance session objects. This property is read-only.
-        self._remote_assistance_session_error_details: Optional[str] = None
-        # Url that allows a Remote Assistance session to be established with the device. This property is read-only.
-        self._remote_assistance_session_url: Optional[str] = None
-        # Reports if the managed iOS device is user approval enrollment. This property is read-only.
-        self._require_user_enrollment_approval: Optional[bool] = None
-        # Indicates the time after when a device will be auto retired because of scheduled action. This property is read-only.
-        self._retire_after_date_time: Optional[datetime] = None
-        # List of Scope Tag IDs for this Device instance.
-        self._role_scope_tag_ids: Optional[List[str]] = None
-        # Security baseline states for this device.
-        self._security_baseline_states: Optional[List[security_baseline_state.SecurityBaselineState]] = None
-        # SerialNumber. This property is read-only.
-        self._serial_number: Optional[str] = None
-        # Device sku family
-        self._sku_family: Optional[str] = None
-        # Device sku number, see also: https://learn.microsoft.com/windows/win32/api/sysinfoapi/nf-sysinfoapi-getproductinfo. Valid values 0 to 2147483647. This property is read-only.
-        self._sku_number: Optional[int] = None
-        # Specification version. This property is read-only.
-        self._specification_version: Optional[str] = None
-        # Subscriber Carrier. This property is read-only.
-        self._subscriber_carrier: Optional[str] = None
-        # Total Storage in Bytes. This property is read-only.
-        self._total_storage_space_in_bytes: Optional[int] = None
-        # Unique Device Identifier for iOS and macOS devices. Return default value null in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
-        self._udid: Optional[str] = None
-        # User display name. This property is read-only.
-        self._user_display_name: Optional[str] = None
-        # Unique Identifier for the user associated with the device. This property is read-only.
-        self._user_id: Optional[str] = None
-        # Device user principal name. This property is read-only.
-        self._user_principal_name: Optional[str] = None
-        # The primary users associated with the managed device.
-        self._users: Optional[List[user.User]] = None
-        # Indicates the last logged on users of a device. This property is read-only.
-        self._users_logged_on: Optional[List[logged_on_user.LoggedOnUser]] = None
-        # Wi-Fi MAC. This property is read-only.
-        self._wi_fi_mac_address: Optional[str] = None
-        # Count of active malware for this windows device. This property is read-only.
-        self._windows_active_malware_count: Optional[int] = None
-        # The device protection status. This property is read-only.
-        self._windows_protection_state: Optional[windows_protection_state.WindowsProtectionState] = None
-        # Count of remediated malware for this windows device. This property is read-only.
-        self._windows_remediated_malware_count: Optional[int] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ManagedDevice:
         """
@@ -537,6 +503,13 @@ class ManagedDevice(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.windowsManagedDevice":
+                from . import windows_managed_device
+
+                return windows_managed_device.WindowsManagedDevice()
         return ManagedDevice()
     
     @property
@@ -952,7 +925,9 @@ class ManagedDevice(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import assignment_filter_evaluation_status_details, chassis_type, chrome_o_s_device_property, cloud_pc_remote_action_result, compliance_state, configuration_manager_client_enabled_features, configuration_manager_client_health_state, configuration_manager_client_information, detected_app, device_action_result, device_category, device_compliance_policy_state, device_configuration_state, device_enrollment_type, device_health_attestation_state, device_health_script_policy_state, device_log_collection_response, device_management_exchange_access_state, device_management_exchange_access_state_reason, device_registration_state, device_type, entity, hardware_information, join_type, logged_on_user, lost_mode_state, managed_device_architecture, managed_device_management_features, managed_device_mobile_app_configuration_state, managed_device_owner_type, managed_device_partner_reported_health_state, management_agent_type, management_state, owner_type, security_baseline_state, user, windows_managed_device, windows_protection_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "aadRegistered": lambda n : setattr(self, 'aad_registered', n.get_bool_value()),
             "activationLockBypassCode": lambda n : setattr(self, 'activation_lock_bypass_code', n.get_str_value()),
             "androidSecurityPatchLevel": lambda n : setattr(self, 'android_security_patch_level', n.get_str_value()),

@@ -1,11 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-teamwork_connection = lazy_import('msgraph.generated.models.teamwork_connection')
+if TYPE_CHECKING:
+    from . import teamwork_connection
 
 class TeamworkLoginStatus(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new teamworkLoginStatus and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Information about the Exchange connection.
+        self._exchange_connection: Optional[teamwork_connection.TeamworkConnection] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Information about the Skype for Business connection.
+        self._skype_connection: Optional[teamwork_connection.TeamworkConnection] = None
+        # Information about the Teams connection.
+        self._teams_connection: Optional[teamwork_connection.TeamworkConnection] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -22,22 +38,6 @@ class TeamworkLoginStatus(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new teamworkLoginStatus and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Information about the Exchange connection.
-        self._exchange_connection: Optional[teamwork_connection.TeamworkConnection] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Information about the Skype for Business connection.
-        self._skype_connection: Optional[teamwork_connection.TeamworkConnection] = None
-        # Information about the Teams connection.
-        self._teams_connection: Optional[teamwork_connection.TeamworkConnection] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeamworkLoginStatus:
@@ -73,7 +73,9 @@ class TeamworkLoginStatus(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import teamwork_connection
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "exchangeConnection": lambda n : setattr(self, 'exchange_connection', n.get_object_value(teamwork_connection.TeamworkConnection)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "skypeConnection": lambda n : setattr(self, 'skype_connection', n.get_object_value(teamwork_connection.TeamworkConnection)),

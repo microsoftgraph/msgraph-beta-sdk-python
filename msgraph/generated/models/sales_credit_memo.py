@@ -1,27 +1,97 @@
 from __future__ import annotations
 from datetime import date, datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from uuid import UUID
 
-currency = lazy_import('msgraph.generated.models.currency')
-customer = lazy_import('msgraph.generated.models.customer')
-entity = lazy_import('msgraph.generated.models.entity')
-payment_term = lazy_import('msgraph.generated.models.payment_term')
-postal_address_type = lazy_import('msgraph.generated.models.postal_address_type')
-sales_credit_memo_line = lazy_import('msgraph.generated.models.sales_credit_memo_line')
+if TYPE_CHECKING:
+    from . import currency, customer, entity, payment_term, postal_address_type, sales_credit_memo_line
+
+from . import entity
 
 class SalesCreditMemo(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new salesCreditMemo and sets the default values.
+        """
+        super().__init__()
+        # The billToCustomerId property
+        self._bill_to_customer_id: Optional[UUID] = None
+        # The billToCustomerNumber property
+        self._bill_to_customer_number: Optional[str] = None
+        # The billToName property
+        self._bill_to_name: Optional[str] = None
+        # The billingPostalAddress property
+        self._billing_postal_address: Optional[postal_address_type.PostalAddressType] = None
+        # The creditMemoDate property
+        self._credit_memo_date: Optional[date] = None
+        # The currency property
+        self._currency: Optional[currency.Currency] = None
+        # The currencyCode property
+        self._currency_code: Optional[str] = None
+        # The currencyId property
+        self._currency_id: Optional[UUID] = None
+        # The customer property
+        self._customer: Optional[customer.Customer] = None
+        # The customerId property
+        self._customer_id: Optional[UUID] = None
+        # The customerName property
+        self._customer_name: Optional[str] = None
+        # The customerNumber property
+        self._customer_number: Optional[str] = None
+        # The discountAmount property
+        self._discount_amount: Optional[float] = None
+        # The discountAppliedBeforeTax property
+        self._discount_applied_before_tax: Optional[bool] = None
+        # The dueDate property
+        self._due_date: Optional[date] = None
+        # The email property
+        self._email: Optional[str] = None
+        # The externalDocumentNumber property
+        self._external_document_number: Optional[str] = None
+        # The invoiceId property
+        self._invoice_id: Optional[UUID] = None
+        # The invoiceNumber property
+        self._invoice_number: Optional[str] = None
+        # The lastModifiedDateTime property
+        self._last_modified_date_time: Optional[datetime] = None
+        # The number property
+        self._number: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The paymentTerm property
+        self._payment_term: Optional[payment_term.PaymentTerm] = None
+        # The paymentTermsId property
+        self._payment_terms_id: Optional[UUID] = None
+        # The phoneNumber property
+        self._phone_number: Optional[str] = None
+        # The pricesIncludeTax property
+        self._prices_include_tax: Optional[bool] = None
+        # The salesCreditMemoLines property
+        self._sales_credit_memo_lines: Optional[List[sales_credit_memo_line.SalesCreditMemoLine]] = None
+        # The salesperson property
+        self._salesperson: Optional[str] = None
+        # The sellingPostalAddress property
+        self._selling_postal_address: Optional[postal_address_type.PostalAddressType] = None
+        # The status property
+        self._status: Optional[str] = None
+        # The totalAmountExcludingTax property
+        self._total_amount_excluding_tax: Optional[float] = None
+        # The totalAmountIncludingTax property
+        self._total_amount_including_tax: Optional[float] = None
+        # The totalTaxAmount property
+        self._total_tax_amount: Optional[float] = None
+    
     @property
-    def bill_to_customer_id(self,) -> Optional[Guid]:
+    def bill_to_customer_id(self,) -> Optional[UUID]:
         """
         Gets the billToCustomerId property value. The billToCustomerId property
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._bill_to_customer_id
     
     @bill_to_customer_id.setter
-    def bill_to_customer_id(self,value: Optional[Guid] = None) -> None:
+    def bill_to_customer_id(self,value: Optional[UUID] = None) -> None:
         """
         Sets the billToCustomerId property value. The billToCustomerId property
         Args:
@@ -80,78 +150,6 @@ class SalesCreditMemo(entity.Entity):
         """
         self._billing_postal_address = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new salesCreditMemo and sets the default values.
-        """
-        super().__init__()
-        # The billToCustomerId property
-        self._bill_to_customer_id: Optional[Guid] = None
-        # The billToCustomerNumber property
-        self._bill_to_customer_number: Optional[str] = None
-        # The billToName property
-        self._bill_to_name: Optional[str] = None
-        # The billingPostalAddress property
-        self._billing_postal_address: Optional[postal_address_type.PostalAddressType] = None
-        # The creditMemoDate property
-        self._credit_memo_date: Optional[Date] = None
-        # The currency property
-        self._currency: Optional[currency.Currency] = None
-        # The currencyCode property
-        self._currency_code: Optional[str] = None
-        # The currencyId property
-        self._currency_id: Optional[Guid] = None
-        # The customer property
-        self._customer: Optional[customer.Customer] = None
-        # The customerId property
-        self._customer_id: Optional[Guid] = None
-        # The customerName property
-        self._customer_name: Optional[str] = None
-        # The customerNumber property
-        self._customer_number: Optional[str] = None
-        # The discountAmount property
-        self._discount_amount: Optional[float] = None
-        # The discountAppliedBeforeTax property
-        self._discount_applied_before_tax: Optional[bool] = None
-        # The dueDate property
-        self._due_date: Optional[Date] = None
-        # The email property
-        self._email: Optional[str] = None
-        # The externalDocumentNumber property
-        self._external_document_number: Optional[str] = None
-        # The invoiceId property
-        self._invoice_id: Optional[Guid] = None
-        # The invoiceNumber property
-        self._invoice_number: Optional[str] = None
-        # The lastModifiedDateTime property
-        self._last_modified_date_time: Optional[datetime] = None
-        # The number property
-        self._number: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The paymentTerm property
-        self._payment_term: Optional[payment_term.PaymentTerm] = None
-        # The paymentTermsId property
-        self._payment_terms_id: Optional[Guid] = None
-        # The phoneNumber property
-        self._phone_number: Optional[str] = None
-        # The pricesIncludeTax property
-        self._prices_include_tax: Optional[bool] = None
-        # The salesCreditMemoLines property
-        self._sales_credit_memo_lines: Optional[List[sales_credit_memo_line.SalesCreditMemoLine]] = None
-        # The salesperson property
-        self._salesperson: Optional[str] = None
-        # The sellingPostalAddress property
-        self._selling_postal_address: Optional[postal_address_type.PostalAddressType] = None
-        # The status property
-        self._status: Optional[str] = None
-        # The totalAmountExcludingTax property
-        self._total_amount_excluding_tax: Optional[float] = None
-        # The totalAmountIncludingTax property
-        self._total_amount_including_tax: Optional[float] = None
-        # The totalTaxAmount property
-        self._total_tax_amount: Optional[float] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SalesCreditMemo:
         """
@@ -165,15 +163,15 @@ class SalesCreditMemo(entity.Entity):
         return SalesCreditMemo()
     
     @property
-    def credit_memo_date(self,) -> Optional[Date]:
+    def credit_memo_date(self,) -> Optional[date]:
         """
         Gets the creditMemoDate property value. The creditMemoDate property
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._credit_memo_date
     
     @credit_memo_date.setter
-    def credit_memo_date(self,value: Optional[Date] = None) -> None:
+    def credit_memo_date(self,value: Optional[date] = None) -> None:
         """
         Sets the creditMemoDate property value. The creditMemoDate property
         Args:
@@ -216,15 +214,15 @@ class SalesCreditMemo(entity.Entity):
         self._currency_code = value
     
     @property
-    def currency_id(self,) -> Optional[Guid]:
+    def currency_id(self,) -> Optional[UUID]:
         """
         Gets the currencyId property value. The currencyId property
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._currency_id
     
     @currency_id.setter
-    def currency_id(self,value: Optional[Guid] = None) -> None:
+    def currency_id(self,value: Optional[UUID] = None) -> None:
         """
         Sets the currencyId property value. The currencyId property
         Args:
@@ -250,15 +248,15 @@ class SalesCreditMemo(entity.Entity):
         self._customer = value
     
     @property
-    def customer_id(self,) -> Optional[Guid]:
+    def customer_id(self,) -> Optional[UUID]:
         """
         Gets the customerId property value. The customerId property
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._customer_id
     
     @customer_id.setter
-    def customer_id(self,value: Optional[Guid] = None) -> None:
+    def customer_id(self,value: Optional[UUID] = None) -> None:
         """
         Sets the customerId property value. The customerId property
         Args:
@@ -335,15 +333,15 @@ class SalesCreditMemo(entity.Entity):
         self._discount_applied_before_tax = value
     
     @property
-    def due_date(self,) -> Optional[Date]:
+    def due_date(self,) -> Optional[date]:
         """
         Gets the dueDate property value. The dueDate property
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._due_date
     
     @due_date.setter
-    def due_date(self,value: Optional[Date] = None) -> None:
+    def due_date(self,value: Optional[date] = None) -> None:
         """
         Sets the dueDate property value. The dueDate property
         Args:
@@ -390,30 +388,32 @@ class SalesCreditMemo(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import currency, customer, entity, payment_term, postal_address_type, sales_credit_memo_line
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "billingPostalAddress": lambda n : setattr(self, 'billing_postal_address', n.get_object_value(postal_address_type.PostalAddressType)),
-            "billToCustomerId": lambda n : setattr(self, 'bill_to_customer_id', n.get_object_value(Guid)),
+            "billToCustomerId": lambda n : setattr(self, 'bill_to_customer_id', n.get_uuid_value()),
             "billToCustomerNumber": lambda n : setattr(self, 'bill_to_customer_number', n.get_str_value()),
             "billToName": lambda n : setattr(self, 'bill_to_name', n.get_str_value()),
-            "creditMemoDate": lambda n : setattr(self, 'credit_memo_date', n.get_object_value(Date)),
+            "creditMemoDate": lambda n : setattr(self, 'credit_memo_date', n.get_date_value()),
             "currency": lambda n : setattr(self, 'currency', n.get_object_value(currency.Currency)),
             "currencyCode": lambda n : setattr(self, 'currency_code', n.get_str_value()),
-            "currencyId": lambda n : setattr(self, 'currency_id', n.get_object_value(Guid)),
+            "currencyId": lambda n : setattr(self, 'currency_id', n.get_uuid_value()),
             "customer": lambda n : setattr(self, 'customer', n.get_object_value(customer.Customer)),
-            "customerId": lambda n : setattr(self, 'customer_id', n.get_object_value(Guid)),
+            "customerId": lambda n : setattr(self, 'customer_id', n.get_uuid_value()),
             "customerName": lambda n : setattr(self, 'customer_name', n.get_str_value()),
             "customerNumber": lambda n : setattr(self, 'customer_number', n.get_str_value()),
             "discountAmount": lambda n : setattr(self, 'discount_amount', n.get_float_value()),
             "discountAppliedBeforeTax": lambda n : setattr(self, 'discount_applied_before_tax', n.get_bool_value()),
-            "dueDate": lambda n : setattr(self, 'due_date', n.get_object_value(Date)),
+            "dueDate": lambda n : setattr(self, 'due_date', n.get_date_value()),
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
             "externalDocumentNumber": lambda n : setattr(self, 'external_document_number', n.get_str_value()),
-            "invoiceId": lambda n : setattr(self, 'invoice_id', n.get_object_value(Guid)),
+            "invoiceId": lambda n : setattr(self, 'invoice_id', n.get_uuid_value()),
             "invoiceNumber": lambda n : setattr(self, 'invoice_number', n.get_str_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "number": lambda n : setattr(self, 'number', n.get_str_value()),
             "paymentTerm": lambda n : setattr(self, 'payment_term', n.get_object_value(payment_term.PaymentTerm)),
-            "paymentTermsId": lambda n : setattr(self, 'payment_terms_id', n.get_object_value(Guid)),
+            "paymentTermsId": lambda n : setattr(self, 'payment_terms_id', n.get_uuid_value()),
             "phoneNumber": lambda n : setattr(self, 'phone_number', n.get_str_value()),
             "pricesIncludeTax": lambda n : setattr(self, 'prices_include_tax', n.get_bool_value()),
             "salesperson": lambda n : setattr(self, 'salesperson', n.get_str_value()),
@@ -429,15 +429,15 @@ class SalesCreditMemo(entity.Entity):
         return fields
     
     @property
-    def invoice_id(self,) -> Optional[Guid]:
+    def invoice_id(self,) -> Optional[UUID]:
         """
         Gets the invoiceId property value. The invoiceId property
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._invoice_id
     
     @invoice_id.setter
-    def invoice_id(self,value: Optional[Guid] = None) -> None:
+    def invoice_id(self,value: Optional[UUID] = None) -> None:
         """
         Sets the invoiceId property value. The invoiceId property
         Args:
@@ -514,15 +514,15 @@ class SalesCreditMemo(entity.Entity):
         self._payment_term = value
     
     @property
-    def payment_terms_id(self,) -> Optional[Guid]:
+    def payment_terms_id(self,) -> Optional[UUID]:
         """
         Gets the paymentTermsId property value. The paymentTermsId property
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._payment_terms_id
     
     @payment_terms_id.setter
-    def payment_terms_id(self,value: Optional[Guid] = None) -> None:
+    def payment_terms_id(self,value: Optional[UUID] = None) -> None:
         """
         Sets the paymentTermsId property value. The paymentTermsId property
         Args:
@@ -625,28 +625,28 @@ class SalesCreditMemo(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_object_value("billingPostalAddress", self.billing_postal_address)
-        writer.write_object_value("billToCustomerId", self.bill_to_customer_id)
+        writer.write_uuid_value("billToCustomerId", self.bill_to_customer_id)
         writer.write_str_value("billToCustomerNumber", self.bill_to_customer_number)
         writer.write_str_value("billToName", self.bill_to_name)
-        writer.write_object_value("creditMemoDate", self.credit_memo_date)
+        writer.write_date_value("creditMemoDate", self.credit_memo_date)
         writer.write_object_value("currency", self.currency)
         writer.write_str_value("currencyCode", self.currency_code)
-        writer.write_object_value("currencyId", self.currency_id)
+        writer.write_uuid_value("currencyId", self.currency_id)
         writer.write_object_value("customer", self.customer)
-        writer.write_object_value("customerId", self.customer_id)
+        writer.write_uuid_value("customerId", self.customer_id)
         writer.write_str_value("customerName", self.customer_name)
         writer.write_str_value("customerNumber", self.customer_number)
         writer.write_float_value("discountAmount", self.discount_amount)
         writer.write_bool_value("discountAppliedBeforeTax", self.discount_applied_before_tax)
-        writer.write_object_value("dueDate", self.due_date)
+        writer.write_date_value("dueDate", self.due_date)
         writer.write_str_value("email", self.email)
         writer.write_str_value("externalDocumentNumber", self.external_document_number)
-        writer.write_object_value("invoiceId", self.invoice_id)
+        writer.write_uuid_value("invoiceId", self.invoice_id)
         writer.write_str_value("invoiceNumber", self.invoice_number)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("number", self.number)
         writer.write_object_value("paymentTerm", self.payment_term)
-        writer.write_object_value("paymentTermsId", self.payment_terms_id)
+        writer.write_uuid_value("paymentTermsId", self.payment_terms_id)
         writer.write_str_value("phoneNumber", self.phone_number)
         writer.write_bool_value("pricesIncludeTax", self.prices_include_tax)
         writer.write_str_value("salesperson", self.salesperson)

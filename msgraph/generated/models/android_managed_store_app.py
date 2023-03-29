@@ -1,12 +1,38 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_managed_store_app_track = lazy_import('msgraph.generated.models.android_managed_store_app_track')
-mobile_app = lazy_import('msgraph.generated.models.mobile_app')
+if TYPE_CHECKING:
+    from . import android_managed_store_app_track, android_managed_store_web_app, mobile_app
+
+from . import mobile_app
 
 class AndroidManagedStoreApp(mobile_app.MobileApp):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new AndroidManagedStoreApp and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.androidManagedStoreApp"
+        # The Identity Name.
+        self._app_identifier: Optional[str] = None
+        # The Play for Work Store app URL.
+        self._app_store_url: Optional[str] = None
+        # The tracks that are visible to this enterprise.
+        self._app_tracks: Optional[List[android_managed_store_app_track.AndroidManagedStoreAppTrack]] = None
+        # Indicates whether the app is only available to a given enterprise's users.
+        self._is_private: Optional[bool] = None
+        # Indicates whether the app is a preinstalled system app.
+        self._is_system_app: Optional[bool] = None
+        # The package identifier.
+        self._package_id: Optional[str] = None
+        # Whether this app supports OEMConfig policy.
+        self._supports_oem_config: Optional[bool] = None
+        # The total number of VPP licenses.
+        self._total_license_count: Optional[int] = None
+        # The number of VPP licenses in use.
+        self._used_license_count: Optional[int] = None
+    
     @property
     def app_identifier(self,) -> Optional[str]:
         """
@@ -58,31 +84,6 @@ class AndroidManagedStoreApp(mobile_app.MobileApp):
         """
         self._app_tracks = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AndroidManagedStoreApp and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.androidManagedStoreApp"
-        # The Identity Name.
-        self._app_identifier: Optional[str] = None
-        # The Play for Work Store app URL.
-        self._app_store_url: Optional[str] = None
-        # The tracks that are visible to this enterprise.
-        self._app_tracks: Optional[List[android_managed_store_app_track.AndroidManagedStoreAppTrack]] = None
-        # Indicates whether the app is only available to a given enterprise's users.
-        self._is_private: Optional[bool] = None
-        # Indicates whether the app is a preinstalled system app.
-        self._is_system_app: Optional[bool] = None
-        # The package identifier.
-        self._package_id: Optional[str] = None
-        # Whether this app supports OEMConfig policy.
-        self._supports_oem_config: Optional[bool] = None
-        # The total number of VPP licenses.
-        self._total_license_count: Optional[int] = None
-        # The number of VPP licenses in use.
-        self._used_license_count: Optional[int] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidManagedStoreApp:
         """
@@ -93,6 +94,13 @@ class AndroidManagedStoreApp(mobile_app.MobileApp):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.androidManagedStoreWebApp":
+                from . import android_managed_store_web_app
+
+                return android_managed_store_web_app.AndroidManagedStoreWebApp()
         return AndroidManagedStoreApp()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -100,7 +108,9 @@ class AndroidManagedStoreApp(mobile_app.MobileApp):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_managed_store_app_track, android_managed_store_web_app, mobile_app
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appIdentifier": lambda n : setattr(self, 'app_identifier', n.get_str_value()),
             "appStoreUrl": lambda n : setattr(self, 'app_store_url', n.get_str_value()),
             "appTracks": lambda n : setattr(self, 'app_tracks', n.get_collection_of_object_values(android_managed_store_app_track.AndroidManagedStoreAppTrack)),

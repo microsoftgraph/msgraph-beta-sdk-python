@@ -1,10 +1,12 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-item_facet = lazy_import('msgraph.generated.models.item_facet')
+if TYPE_CHECKING:
+    from . import item_facet
+
+from . import item_facet
 
 class ItemPatent(item_facet.ItemFacet):
     def __init__(self,) -> None:
@@ -20,7 +22,7 @@ class ItemPatent(item_facet.ItemFacet):
         # Indicates the patent is pending.
         self._is_pending: Optional[bool] = None
         # The date that the patent was granted.
-        self._issued_date: Optional[Date] = None
+        self._issued_date: Optional[date] = None
         # Authority which granted the patent.
         self._issuing_authority: Optional[str] = None
         # The patent number.
@@ -79,10 +81,12 @@ class ItemPatent(item_facet.ItemFacet):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import item_facet
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "issuedDate": lambda n : setattr(self, 'issued_date', n.get_object_value(Date)),
+            "issuedDate": lambda n : setattr(self, 'issued_date', n.get_date_value()),
             "issuingAuthority": lambda n : setattr(self, 'issuing_authority', n.get_str_value()),
             "isPending": lambda n : setattr(self, 'is_pending', n.get_bool_value()),
             "number": lambda n : setattr(self, 'number', n.get_str_value()),
@@ -110,15 +114,15 @@ class ItemPatent(item_facet.ItemFacet):
         self._is_pending = value
     
     @property
-    def issued_date(self,) -> Optional[Date]:
+    def issued_date(self,) -> Optional[date]:
         """
         Gets the issuedDate property value. The date that the patent was granted.
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._issued_date
     
     @issued_date.setter
-    def issued_date(self,value: Optional[Date] = None) -> None:
+    def issued_date(self,value: Optional[date] = None) -> None:
         """
         Sets the issuedDate property value. The date that the patent was granted.
         Args:
@@ -171,7 +175,7 @@ class ItemPatent(item_facet.ItemFacet):
         super().serialize(writer)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
-        writer.write_object_value("issuedDate", self.issued_date)
+        writer.write_date_value("issuedDate", self.issued_date)
         writer.write_str_value("issuingAuthority", self.issuing_authority)
         writer.write_bool_value("isPending", self.is_pending)
         writer.write_str_value("number", self.number)

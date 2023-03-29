@@ -1,12 +1,26 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-public_error = lazy_import('msgraph.generated.models.public_error')
-event_status_type = lazy_import('msgraph.generated.models.security.event_status_type')
+if TYPE_CHECKING:
+    from . import event_status_type
+    from .. import public_error
 
 class RetentionEventStatus(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new retentionEventStatus and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The error if the status is not successful.
+        self._error: Optional[public_error.PublicError] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The status of the distribution. The possible values are: pending, error, success, notAvaliable.
+        self._status: Optional[event_status_type.EventStatusType] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,20 +37,6 @@ class RetentionEventStatus(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new retentionEventStatus and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The error if the status is not successful.
-        self._error: Optional[public_error.PublicError] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The status of the distribution. The possible values are: pending, error, success, notAvaliable.
-        self._status: Optional[event_status_type.EventStatusType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RetentionEventStatus:
@@ -72,7 +72,10 @@ class RetentionEventStatus(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import event_status_type
+        from .. import public_error
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "error": lambda n : setattr(self, 'error', n.get_object_value(public_error.PublicError)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(event_status_type.EventStatusType)),

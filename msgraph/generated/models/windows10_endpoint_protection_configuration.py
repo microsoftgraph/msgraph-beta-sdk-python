@@ -1,51 +1,473 @@
 from __future__ import annotations
 from datetime import time
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-app_locker_application_control_type = lazy_import('msgraph.generated.models.app_locker_application_control_type')
-application_guard_block_clipboard_sharing_type = lazy_import('msgraph.generated.models.application_guard_block_clipboard_sharing_type')
-application_guard_block_file_transfer_type = lazy_import('msgraph.generated.models.application_guard_block_file_transfer_type')
-application_guard_enabled_options = lazy_import('msgraph.generated.models.application_guard_enabled_options')
-bit_locker_fixed_drive_policy = lazy_import('msgraph.generated.models.bit_locker_fixed_drive_policy')
-bit_locker_recovery_password_rotation_type = lazy_import('msgraph.generated.models.bit_locker_recovery_password_rotation_type')
-bit_locker_removable_drive_policy = lazy_import('msgraph.generated.models.bit_locker_removable_drive_policy')
-bit_locker_system_drive_policy = lazy_import('msgraph.generated.models.bit_locker_system_drive_policy')
-defender_attack_surface_type = lazy_import('msgraph.generated.models.defender_attack_surface_type')
-defender_cloud_block_level_type = lazy_import('msgraph.generated.models.defender_cloud_block_level_type')
-defender_detected_malware_actions = lazy_import('msgraph.generated.models.defender_detected_malware_actions')
-defender_protection_type = lazy_import('msgraph.generated.models.defender_protection_type')
-defender_realtime_scan_direction = lazy_import('msgraph.generated.models.defender_realtime_scan_direction')
-defender_scan_type = lazy_import('msgraph.generated.models.defender_scan_type')
-defender_security_center_i_t_contact_display_type = lazy_import('msgraph.generated.models.defender_security_center_i_t_contact_display_type')
-defender_security_center_notifications_from_app_type = lazy_import('msgraph.generated.models.defender_security_center_notifications_from_app_type')
-defender_submit_samples_consent_type = lazy_import('msgraph.generated.models.defender_submit_samples_consent_type')
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-device_guard_local_system_authority_credential_guard_type = lazy_import('msgraph.generated.models.device_guard_local_system_authority_credential_guard_type')
-device_management_user_rights_setting = lazy_import('msgraph.generated.models.device_management_user_rights_setting')
-dma_guard_device_enumeration_policy_type = lazy_import('msgraph.generated.models.dma_guard_device_enumeration_policy_type')
-enablement = lazy_import('msgraph.generated.models.enablement')
-firewall_certificate_revocation_list_check_method_type = lazy_import('msgraph.generated.models.firewall_certificate_revocation_list_check_method_type')
-firewall_packet_queueing_method_type = lazy_import('msgraph.generated.models.firewall_packet_queueing_method_type')
-firewall_pre_shared_key_encoding_method_type = lazy_import('msgraph.generated.models.firewall_pre_shared_key_encoding_method_type')
-folder_protection_type = lazy_import('msgraph.generated.models.folder_protection_type')
-lan_manager_authentication_level = lazy_import('msgraph.generated.models.lan_manager_authentication_level')
-local_security_options_administrator_elevation_prompt_behavior_type = lazy_import('msgraph.generated.models.local_security_options_administrator_elevation_prompt_behavior_type')
-local_security_options_format_and_eject_of_removable_media_allowed_user_type = lazy_import('msgraph.generated.models.local_security_options_format_and_eject_of_removable_media_allowed_user_type')
-local_security_options_information_displayed_on_lock_screen_type = lazy_import('msgraph.generated.models.local_security_options_information_displayed_on_lock_screen_type')
-local_security_options_information_shown_on_lock_screen_type = lazy_import('msgraph.generated.models.local_security_options_information_shown_on_lock_screen_type')
-local_security_options_minimum_session_security = lazy_import('msgraph.generated.models.local_security_options_minimum_session_security')
-local_security_options_smart_card_removal_behavior_type = lazy_import('msgraph.generated.models.local_security_options_smart_card_removal_behavior_type')
-local_security_options_standard_user_elevation_prompt_behavior_type = lazy_import('msgraph.generated.models.local_security_options_standard_user_elevation_prompt_behavior_type')
-secure_boot_with_d_m_a_type = lazy_import('msgraph.generated.models.secure_boot_with_d_m_a_type')
-service_start_type = lazy_import('msgraph.generated.models.service_start_type')
-weekly_schedule = lazy_import('msgraph.generated.models.weekly_schedule')
-windows_defender_tamper_protection_options = lazy_import('msgraph.generated.models.windows_defender_tamper_protection_options')
-windows_firewall_network_profile = lazy_import('msgraph.generated.models.windows_firewall_network_profile')
-windows_firewall_rule = lazy_import('msgraph.generated.models.windows_firewall_rule')
+if TYPE_CHECKING:
+    from . import application_guard_block_clipboard_sharing_type, application_guard_block_file_transfer_type, application_guard_enabled_options, app_locker_application_control_type, bit_locker_fixed_drive_policy, bit_locker_recovery_password_rotation_type, bit_locker_removable_drive_policy, bit_locker_system_drive_policy, defender_attack_surface_type, defender_cloud_block_level_type, defender_detected_malware_actions, defender_protection_type, defender_realtime_scan_direction, defender_scan_type, defender_security_center_i_t_contact_display_type, defender_security_center_notifications_from_app_type, defender_submit_samples_consent_type, device_configuration, device_guard_local_system_authority_credential_guard_type, device_management_user_rights_setting, dma_guard_device_enumeration_policy_type, enablement, firewall_certificate_revocation_list_check_method_type, firewall_packet_queueing_method_type, firewall_pre_shared_key_encoding_method_type, folder_protection_type, lan_manager_authentication_level, local_security_options_administrator_elevation_prompt_behavior_type, local_security_options_format_and_eject_of_removable_media_allowed_user_type, local_security_options_information_displayed_on_lock_screen_type, local_security_options_information_shown_on_lock_screen_type, local_security_options_minimum_session_security, local_security_options_smart_card_removal_behavior_type, local_security_options_standard_user_elevation_prompt_behavior_type, secure_boot_with_d_m_a_type, service_start_type, weekly_schedule, windows_defender_tamper_protection_options, windows_firewall_network_profile, windows_firewall_rule
+
+from . import device_configuration
 
 class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new Windows10EndpointProtectionConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.windows10EndpointProtectionConfiguration"
+        # Possible values of AppLocker Application Control Types
+        self._app_locker_application_control: Optional[app_locker_application_control_type.AppLockerApplicationControlType] = None
+        # Gets or sets whether applications inside Microsoft Defender Application Guard can access the device’s camera and microphone.
+        self._application_guard_allow_camera_microphone_redirection: Optional[bool] = None
+        # Allow users to download files from Edge in the application guard container and save them on the host file system
+        self._application_guard_allow_file_save_on_host: Optional[bool] = None
+        # Allow persisting user generated data inside the App Guard Containter (favorites, cookies, web passwords, etc.)
+        self._application_guard_allow_persistence: Optional[bool] = None
+        # Allow printing to Local Printers from Container
+        self._application_guard_allow_print_to_local_printers: Optional[bool] = None
+        # Allow printing to Network Printers from Container
+        self._application_guard_allow_print_to_network_printers: Optional[bool] = None
+        # Allow printing to PDF from Container
+        self._application_guard_allow_print_to_p_d_f: Optional[bool] = None
+        # Allow printing to XPS from Container
+        self._application_guard_allow_print_to_x_p_s: Optional[bool] = None
+        # Allow application guard to use virtual GPU
+        self._application_guard_allow_virtual_g_p_u: Optional[bool] = None
+        # Possible values for applicationGuardBlockClipboardSharingType
+        self._application_guard_block_clipboard_sharing: Optional[application_guard_block_clipboard_sharing_type.ApplicationGuardBlockClipboardSharingType] = None
+        # Possible values for applicationGuardBlockFileTransfer
+        self._application_guard_block_file_transfer: Optional[application_guard_block_file_transfer_type.ApplicationGuardBlockFileTransferType] = None
+        # Block enterprise sites to load non-enterprise content, such as third party plug-ins
+        self._application_guard_block_non_enterprise_content: Optional[bool] = None
+        # Allows certain device level Root Certificates to be shared with the Microsoft Defender Application Guard container.
+        self._application_guard_certificate_thumbprints: Optional[List[str]] = None
+        # Enable Windows Defender Application Guard
+        self._application_guard_enabled: Optional[bool] = None
+        # Possible values for ApplicationGuardEnabledOptions
+        self._application_guard_enabled_options: Optional[application_guard_enabled_options.ApplicationGuardEnabledOptions] = None
+        # Force auditing will persist Windows logs and events to meet security/compliance criteria (sample events are user login-logoff, use of privilege rights, software installation, system changes, etc.)
+        self._application_guard_force_auditing: Optional[bool] = None
+        # Allows the admin to allow standard users to enable encrpytion during Azure AD Join.
+        self._bit_locker_allow_standard_user_encryption: Optional[bool] = None
+        # Allows the Admin to disable the warning prompt for other disk encryption on the user machines.
+        self._bit_locker_disable_warning_for_other_disk_encryption: Optional[bool] = None
+        # Allows the admin to require encryption to be turned on using BitLocker. This policy is valid only for a mobile SKU.
+        self._bit_locker_enable_storage_card_encryption_on_mobile: Optional[bool] = None
+        # Allows the admin to require encryption to be turned on using BitLocker.
+        self._bit_locker_encrypt_device: Optional[bool] = None
+        # BitLocker Fixed Drive Policy.
+        self._bit_locker_fixed_drive_policy: Optional[bit_locker_fixed_drive_policy.BitLockerFixedDrivePolicy] = None
+        # BitLocker recovery password rotation type
+        self._bit_locker_recovery_password_rotation: Optional[bit_locker_recovery_password_rotation_type.BitLockerRecoveryPasswordRotationType] = None
+        # BitLocker Removable Drive Policy.
+        self._bit_locker_removable_drive_policy: Optional[bit_locker_removable_drive_policy.BitLockerRemovableDrivePolicy] = None
+        # BitLocker System Drive Policy.
+        self._bit_locker_system_drive_policy: Optional[bit_locker_system_drive_policy.BitLockerSystemDrivePolicy] = None
+        # List of folder paths to be added to the list of protected folders
+        self._defender_additional_guarded_folders: Optional[List[str]] = None
+        # Possible values of Defender PUA Protection
+        self._defender_adobe_reader_launch_child_process: Optional[defender_protection_type.DefenderProtectionType] = None
+        # Possible values of Defender PUA Protection
+        self._defender_advanced_ransomeware_protection_type: Optional[defender_protection_type.DefenderProtectionType] = None
+        # Allows or disallows Windows Defender Behavior Monitoring functionality.
+        self._defender_allow_behavior_monitoring: Optional[bool] = None
+        # To best protect your PC, Windows Defender will send information to Microsoft about any problems it finds. Microsoft will analyze that information, learn more about problems affecting you and other customers, and offer improved solutions.
+        self._defender_allow_cloud_protection: Optional[bool] = None
+        # Allows or disallows user access to the Windows Defender UI. If disallowed, all Windows Defender notifications will also be suppressed.
+        self._defender_allow_end_user_access: Optional[bool] = None
+        # Allows or disallows Windows Defender Intrusion Prevention functionality.
+        self._defender_allow_intrusion_prevention_system: Optional[bool] = None
+        # Allows or disallows Windows Defender On Access Protection functionality.
+        self._defender_allow_on_access_protection: Optional[bool] = None
+        # Allows or disallows Windows Defender Realtime Monitoring functionality.
+        self._defender_allow_real_time_monitoring: Optional[bool] = None
+        # Allows or disallows scanning of archives.
+        self._defender_allow_scan_archive_files: Optional[bool] = None
+        # Allows or disallows Windows Defender IOAVP Protection functionality.
+        self._defender_allow_scan_downloads: Optional[bool] = None
+        # Allows or disallows a scanning of network files.
+        self._defender_allow_scan_network_files: Optional[bool] = None
+        # Allows or disallows a full scan of removable drives. During a quick scan, removable drives may still be scanned.
+        self._defender_allow_scan_removable_drives_during_full_scan: Optional[bool] = None
+        # Allows or disallows Windows Defender Script Scanning functionality.
+        self._defender_allow_scan_scripts_loaded_in_internet_explorer: Optional[bool] = None
+        # List of exe files and folders to be excluded from attack surface reduction rules
+        self._defender_attack_surface_reduction_excluded_paths: Optional[List[str]] = None
+        # Allows or disallows user access to the Windows Defender UI. If disallowed, all Windows Defender notifications will also be suppressed.
+        self._defender_block_end_user_access: Optional[bool] = None
+        # Possible values of Defender Attack Surface Reduction Rules
+        self._defender_block_persistence_through_wmi_type: Optional[defender_attack_surface_type.DefenderAttackSurfaceType] = None
+        # This policy setting allows you to manage whether a check for new virus and spyware definitions will occur before running a scan.
+        self._defender_check_for_signatures_before_running_scan: Optional[bool] = None
+        # Added in Windows 10, version 1709. This policy setting determines how aggressive Windows Defender Antivirus will be in blocking and scanning suspicious files. Value type is integer. This feature requires the 'Join Microsoft MAPS' setting enabled in order to function. Possible values are: notConfigured, high, highPlus, zeroTolerance.
+        self._defender_cloud_block_level: Optional[defender_cloud_block_level_type.DefenderCloudBlockLevelType] = None
+        # Added in Windows 10, version 1709. This feature allows Windows Defender Antivirus to block a suspicious file for up to 60 seconds, and scan it in the cloud to make sure it's safe. Value type is integer, range is 0 - 50. This feature depends on three other MAPS settings the must all be enabled- 'Configure the 'Block at First Sight' feature; 'Join Microsoft MAPS'; 'Send file samples when further analysis is required'. Valid values 0 to 50
+        self._defender_cloud_extended_timeout_in_seconds: Optional[int] = None
+        # Time period (in days) that quarantine items will be stored on the system. Valid values 0 to 90
+        self._defender_days_before_deleting_quarantined_malware: Optional[int] = None
+        # Allows an administrator to specify any valid threat severity levels and the corresponding default action ID to take.
+        self._defender_detected_malware_actions: Optional[defender_detected_malware_actions.DefenderDetectedMalwareActions] = None
+        # Allows or disallows Windows Defender Behavior Monitoring functionality.
+        self._defender_disable_behavior_monitoring: Optional[bool] = None
+        # This policy setting allows you to configure catch-up scans for scheduled full scans. A catch-up scan is a scan that is initiated because a regularly scheduled scan was missed. Usually these scheduled scans are missed because the computer was turned off at the scheduled time.
+        self._defender_disable_catchup_full_scan: Optional[bool] = None
+        # This policy setting allows you to configure catch-up scans for scheduled quick scans. A catch-up scan is a scan that is initiated because a regularly scheduled scan was missed. Usually these scheduled scans are missed because the computer was turned off at the scheduled time.
+        self._defender_disable_catchup_quick_scan: Optional[bool] = None
+        # To best protect your PC, Windows Defender will send information to Microsoft about any problems it finds. Microsoft will analyze that information, learn more about problems affecting you and other customers, and offer improved solutions.
+        self._defender_disable_cloud_protection: Optional[bool] = None
+        # Allows or disallows Windows Defender Intrusion Prevention functionality.
+        self._defender_disable_intrusion_prevention_system: Optional[bool] = None
+        # Allows or disallows Windows Defender On Access Protection functionality.
+        self._defender_disable_on_access_protection: Optional[bool] = None
+        # Allows or disallows Windows Defender Realtime Monitoring functionality.
+        self._defender_disable_real_time_monitoring: Optional[bool] = None
+        # Allows or disallows scanning of archives.
+        self._defender_disable_scan_archive_files: Optional[bool] = None
+        # Allows or disallows Windows Defender IOAVP Protection functionality.
+        self._defender_disable_scan_downloads: Optional[bool] = None
+        # Allows or disallows a scanning of network files.
+        self._defender_disable_scan_network_files: Optional[bool] = None
+        # Allows or disallows a full scan of removable drives. During a quick scan, removable drives may still be scanned.
+        self._defender_disable_scan_removable_drives_during_full_scan: Optional[bool] = None
+        # Allows or disallows Windows Defender Script Scanning functionality.
+        self._defender_disable_scan_scripts_loaded_in_internet_explorer: Optional[bool] = None
+        # Possible values of Defender PUA Protection
+        self._defender_email_content_execution: Optional[defender_protection_type.DefenderProtectionType] = None
+        # Possible values of Defender Attack Surface Reduction Rules
+        self._defender_email_content_execution_type: Optional[defender_attack_surface_type.DefenderAttackSurfaceType] = None
+        # This policy setting allows you to enable or disable low CPU priority for scheduled scans.
+        self._defender_enable_low_cpu_priority: Optional[bool] = None
+        # Allows or disallows scanning of email.
+        self._defender_enable_scan_incoming_mail: Optional[bool] = None
+        # Allows or disallows a full scan of mapped network drives.
+        self._defender_enable_scan_mapped_network_drives_during_full_scan: Optional[bool] = None
+        # Xml content containing information regarding exploit protection details.
+        self._defender_exploit_protection_xml: Optional[bytes] = None
+        # Name of the file from which DefenderExploitProtectionXml was obtained.
+        self._defender_exploit_protection_xml_file_name: Optional[str] = None
+        # File extensions to exclude from scans and real time protection.
+        self._defender_file_extensions_to_exclude: Optional[List[str]] = None
+        # Files and folder to exclude from scans and real time protection.
+        self._defender_files_and_folders_to_exclude: Optional[List[str]] = None
+        # Possible values of Folder Protection
+        self._defender_guard_my_folders_type: Optional[folder_protection_type.FolderProtectionType] = None
+        # List of paths to exe that are allowed to access protected folders
+        self._defender_guarded_folders_allowed_app_paths: Optional[List[str]] = None
+        # Possible values of Defender PUA Protection
+        self._defender_network_protection_type: Optional[defender_protection_type.DefenderProtectionType] = None
+        # Possible values of Defender PUA Protection
+        self._defender_office_apps_executable_content_creation_or_launch: Optional[defender_protection_type.DefenderProtectionType] = None
+        # Possible values of Defender Attack Surface Reduction Rules
+        self._defender_office_apps_executable_content_creation_or_launch_type: Optional[defender_attack_surface_type.DefenderAttackSurfaceType] = None
+        # Possible values of Defender PUA Protection
+        self._defender_office_apps_launch_child_process: Optional[defender_protection_type.DefenderProtectionType] = None
+        # Possible values of Defender Attack Surface Reduction Rules
+        self._defender_office_apps_launch_child_process_type: Optional[defender_attack_surface_type.DefenderAttackSurfaceType] = None
+        # Possible values of Defender PUA Protection
+        self._defender_office_apps_other_process_injection: Optional[defender_protection_type.DefenderProtectionType] = None
+        # Possible values of Defender Attack Surface Reduction Rules
+        self._defender_office_apps_other_process_injection_type: Optional[defender_attack_surface_type.DefenderAttackSurfaceType] = None
+        # Possible values of Defender PUA Protection
+        self._defender_office_communication_apps_launch_child_process: Optional[defender_protection_type.DefenderProtectionType] = None
+        # Possible values of Defender PUA Protection
+        self._defender_office_macro_code_allow_win32_imports: Optional[defender_protection_type.DefenderProtectionType] = None
+        # Possible values of Defender Attack Surface Reduction Rules
+        self._defender_office_macro_code_allow_win32_imports_type: Optional[defender_attack_surface_type.DefenderAttackSurfaceType] = None
+        # Added in Windows 10, version 1607. Specifies the level of detection for potentially unwanted applications (PUAs). Windows Defender alerts you when potentially unwanted software is being downloaded or attempts to install itself on your computer. Possible values are: userDefined, enable, auditMode, warn, notConfigured.
+        self._defender_potentially_unwanted_app_action: Optional[defender_protection_type.DefenderProtectionType] = None
+        # Possible values of Defender PUA Protection
+        self._defender_prevent_credential_stealing_type: Optional[defender_protection_type.DefenderProtectionType] = None
+        # Possible values of Defender PUA Protection
+        self._defender_process_creation: Optional[defender_protection_type.DefenderProtectionType] = None
+        # Possible values of Defender Attack Surface Reduction Rules
+        self._defender_process_creation_type: Optional[defender_attack_surface_type.DefenderAttackSurfaceType] = None
+        # Processes to exclude from scans and real time protection.
+        self._defender_processes_to_exclude: Optional[List[str]] = None
+        # Controls which sets of files should be monitored. Possible values are: monitorAllFiles, monitorIncomingFilesOnly, monitorOutgoingFilesOnly.
+        self._defender_scan_direction: Optional[defender_realtime_scan_direction.DefenderRealtimeScanDirection] = None
+        # Represents the average CPU load factor for the Windows Defender scan (in percent). The default value is 50. Valid values 0 to 100
+        self._defender_scan_max_cpu_percentage: Optional[int] = None
+        # Selects whether to perform a quick scan or full scan. Possible values are: userDefined, disabled, quick, full.
+        self._defender_scan_type: Optional[defender_scan_type.DefenderScanType] = None
+        # Selects the time of day that the Windows Defender quick scan should run. For example, a value of 0=12:00AM, a value of 60=1:00AM, a value of 120=2:00, and so on, up to a value of 1380=11:00PM. The default value is 120
+        self._defender_scheduled_quick_scan_time: Optional[time] = None
+        # Selects the day that the Windows Defender scan should run. Possible values are: userDefined, everyday, sunday, monday, tuesday, wednesday, thursday, friday, saturday, noScheduledScan.
+        self._defender_scheduled_scan_day: Optional[weekly_schedule.WeeklySchedule] = None
+        # Selects the time of day that the Windows Defender scan should run.
+        self._defender_scheduled_scan_time: Optional[time] = None
+        # Possible values of Defender PUA Protection
+        self._defender_script_downloaded_payload_execution: Optional[defender_protection_type.DefenderProtectionType] = None
+        # Possible values of Defender Attack Surface Reduction Rules
+        self._defender_script_downloaded_payload_execution_type: Optional[defender_attack_surface_type.DefenderAttackSurfaceType] = None
+        # Possible values of Defender PUA Protection
+        self._defender_script_obfuscated_macro_code: Optional[defender_protection_type.DefenderProtectionType] = None
+        # Possible values of Defender Attack Surface Reduction Rules
+        self._defender_script_obfuscated_macro_code_type: Optional[defender_attack_surface_type.DefenderAttackSurfaceType] = None
+        # Indicates whether or not to block user from overriding Exploit Protection settings.
+        self._defender_security_center_block_exploit_protection_override: Optional[bool] = None
+        # Used to disable the display of the account protection area.
+        self._defender_security_center_disable_account_u_i: Optional[bool] = None
+        # Used to disable the display of the app and browser protection area.
+        self._defender_security_center_disable_app_browser_u_i: Optional[bool] = None
+        # Used to disable the display of the Clear TPM button.
+        self._defender_security_center_disable_clear_tpm_u_i: Optional[bool] = None
+        # Used to disable the display of the family options area.
+        self._defender_security_center_disable_family_u_i: Optional[bool] = None
+        # Used to disable the display of the hardware protection area.
+        self._defender_security_center_disable_hardware_u_i: Optional[bool] = None
+        # Used to disable the display of the device performance and health area.
+        self._defender_security_center_disable_health_u_i: Optional[bool] = None
+        # Used to disable the display of the firewall and network protection area.
+        self._defender_security_center_disable_network_u_i: Optional[bool] = None
+        # Used to disable the display of the notification area control. The user needs to either sign out and sign in or reboot the computer for this setting to take effect.
+        self._defender_security_center_disable_notification_area_u_i: Optional[bool] = None
+        # Used to disable the display of the ransomware protection area.
+        self._defender_security_center_disable_ransomware_u_i: Optional[bool] = None
+        # Used to disable the display of the secure boot area under Device security.
+        self._defender_security_center_disable_secure_boot_u_i: Optional[bool] = None
+        # Used to disable the display of the security process troubleshooting under Device security.
+        self._defender_security_center_disable_troubleshooting_u_i: Optional[bool] = None
+        # Used to disable the display of the virus and threat protection area.
+        self._defender_security_center_disable_virus_u_i: Optional[bool] = None
+        # Used to disable the display of update TPM Firmware when a vulnerable firmware is detected.
+        self._defender_security_center_disable_vulnerable_tpm_firmware_update_u_i: Optional[bool] = None
+        # The email address that is displayed to users.
+        self._defender_security_center_help_email: Optional[str] = None
+        # The phone number or Skype ID that is displayed to users.
+        self._defender_security_center_help_phone: Optional[str] = None
+        # The help portal URL this is displayed to users.
+        self._defender_security_center_help_u_r_l: Optional[str] = None
+        # Possible values for defenderSecurityCenterITContactDisplay
+        self._defender_security_center_i_t_contact_display: Optional[defender_security_center_i_t_contact_display_type.DefenderSecurityCenterITContactDisplayType] = None
+        # Possible values for defenderSecurityCenterNotificationsFromApp
+        self._defender_security_center_notifications_from_app: Optional[defender_security_center_notifications_from_app_type.DefenderSecurityCenterNotificationsFromAppType] = None
+        # The company name that is displayed to the users.
+        self._defender_security_center_organization_display_name: Optional[str] = None
+        # Specifies the interval (in hours) that will be used to check for signatures, so instead of using the ScheduleDay and ScheduleTime the check for new signatures will be set according to the interval. Valid values 0 to 24
+        self._defender_signature_update_interval_in_hours: Optional[int] = None
+        # Checks for the user consent level in Windows Defender to send data. Possible values are: sendSafeSamplesAutomatically, alwaysPrompt, neverSend, sendAllSamplesAutomatically.
+        self._defender_submit_samples_consent_type: Optional[defender_submit_samples_consent_type.DefenderSubmitSamplesConsentType] = None
+        # Possible values of Defender PUA Protection
+        self._defender_untrusted_executable: Optional[defender_protection_type.DefenderProtectionType] = None
+        # Possible values of Defender Attack Surface Reduction Rules
+        self._defender_untrusted_executable_type: Optional[defender_attack_surface_type.DefenderAttackSurfaceType] = None
+        # Possible values of Defender PUA Protection
+        self._defender_untrusted_u_s_b_process: Optional[defender_protection_type.DefenderProtectionType] = None
+        # Possible values of Defender Attack Surface Reduction Rules
+        self._defender_untrusted_u_s_b_process_type: Optional[defender_attack_surface_type.DefenderAttackSurfaceType] = None
+        # This property will be deprecated in May 2019 and will be replaced with property DeviceGuardSecureBootWithDMA. Specifies whether Platform Security Level is enabled at next reboot.
+        self._device_guard_enable_secure_boot_with_d_m_a: Optional[bool] = None
+        # Turns On Virtualization Based Security(VBS).
+        self._device_guard_enable_virtualization_based_security: Optional[bool] = None
+        # Possible values of a property
+        self._device_guard_launch_system_guard: Optional[enablement.Enablement] = None
+        # Possible values of Credential Guard settings.
+        self._device_guard_local_system_authority_credential_guard_settings: Optional[device_guard_local_system_authority_credential_guard_type.DeviceGuardLocalSystemAuthorityCredentialGuardType] = None
+        # Possible values of Secure Boot with DMA
+        self._device_guard_secure_boot_with_d_m_a: Optional[secure_boot_with_d_m_a_type.SecureBootWithDMAType] = None
+        # Possible values of the DmaGuardDeviceEnumerationPolicy.
+        self._dma_guard_device_enumeration_policy: Optional[dma_guard_device_enumeration_policy_type.DmaGuardDeviceEnumerationPolicyType] = None
+        # Blocks stateful FTP connections to the device
+        self._firewall_block_stateful_f_t_p: Optional[bool] = None
+        # Possible values for firewallCertificateRevocationListCheckMethod
+        self._firewall_certificate_revocation_list_check_method: Optional[firewall_certificate_revocation_list_check_method_type.FirewallCertificateRevocationListCheckMethodType] = None
+        # Configures IPSec exemptions to allow both IPv4 and IPv6 DHCP traffic
+        self._firewall_i_p_sec_exemptions_allow_d_h_c_p: Optional[bool] = None
+        # Configures IPSec exemptions to allow ICMP
+        self._firewall_i_p_sec_exemptions_allow_i_c_m_p: Optional[bool] = None
+        # Configures IPSec exemptions to allow neighbor discovery IPv6 ICMP type-codes
+        self._firewall_i_p_sec_exemptions_allow_neighbor_discovery: Optional[bool] = None
+        # Configures IPSec exemptions to allow router discovery IPv6 ICMP type-codes
+        self._firewall_i_p_sec_exemptions_allow_router_discovery: Optional[bool] = None
+        # Configures IPSec exemptions to no exemptions
+        self._firewall_i_p_sec_exemptions_none: Optional[bool] = None
+        # Configures the idle timeout for security associations, in seconds, from 300 to 3600 inclusive. This is the period after which security associations will expire and be deleted. Valid values 300 to 3600
+        self._firewall_idle_timeout_for_security_association_in_seconds: Optional[int] = None
+        # If an authentication set is not fully supported by a keying module, direct the module to ignore only unsupported authentication suites rather than the entire set
+        self._firewall_merge_keying_module_settings: Optional[bool] = None
+        # Possible values for firewallPacketQueueingMethod
+        self._firewall_packet_queueing_method: Optional[firewall_packet_queueing_method_type.FirewallPacketQueueingMethodType] = None
+        # Possible values for firewallPreSharedKeyEncodingMethod
+        self._firewall_pre_shared_key_encoding_method: Optional[firewall_pre_shared_key_encoding_method_type.FirewallPreSharedKeyEncodingMethodType] = None
+        # Configures the firewall profile settings for domain networks
+        self._firewall_profile_domain: Optional[windows_firewall_network_profile.WindowsFirewallNetworkProfile] = None
+        # Configures the firewall profile settings for private networks
+        self._firewall_profile_private: Optional[windows_firewall_network_profile.WindowsFirewallNetworkProfile] = None
+        # Configures the firewall profile settings for public networks
+        self._firewall_profile_public: Optional[windows_firewall_network_profile.WindowsFirewallNetworkProfile] = None
+        # Configures the firewall rule settings. This collection can contain a maximum of 150 elements.
+        self._firewall_rules: Optional[List[windows_firewall_rule.WindowsFirewallRule]] = None
+        # Possible values for LanManagerAuthenticationLevel
+        self._lan_manager_authentication_level: Optional[lan_manager_authentication_level.LanManagerAuthenticationLevel] = None
+        # If enabled,the SMB client will allow insecure guest logons. If not configured, the SMB client will reject insecure guest logons.
+        self._lan_manager_workstation_disable_insecure_guest_logons: Optional[bool] = None
+        # Define a different account name to be associated with the security identifier (SID) for the account 'Administrator'.
+        self._local_security_options_administrator_account_name: Optional[str] = None
+        # Possible values for LocalSecurityOptionsAdministratorElevationPromptBehavior
+        self._local_security_options_administrator_elevation_prompt_behavior: Optional[local_security_options_administrator_elevation_prompt_behavior_type.LocalSecurityOptionsAdministratorElevationPromptBehaviorType] = None
+        # This security setting determines whether to allows anonymous users to perform certain activities, such as enumerating the names of domain accounts and network shares.
+        self._local_security_options_allow_anonymous_enumeration_of_s_a_m_accounts_and_shares: Optional[bool] = None
+        # Block PKU2U authentication requests to this device to use online identities.
+        self._local_security_options_allow_p_k_u2_u_authentication_requests: Optional[bool] = None
+        # Edit the default Security Descriptor Definition Language string to allow or deny users and groups to make remote calls to the SAM.
+        self._local_security_options_allow_remote_calls_to_security_accounts_manager: Optional[str] = None
+        # UI helper boolean for LocalSecurityOptionsAllowRemoteCallsToSecurityAccountsManager entity
+        self._local_security_options_allow_remote_calls_to_security_accounts_manager_helper_bool: Optional[bool] = None
+        # This security setting determines whether a computer can be shut down without having to log on to Windows.
+        self._local_security_options_allow_system_to_be_shut_down_without_having_to_log_on: Optional[bool] = None
+        # Allow UIAccess apps to prompt for elevation without using the secure desktop.
+        self._local_security_options_allow_u_i_access_application_elevation: Optional[bool] = None
+        # Allow UIAccess apps to prompt for elevation without using the secure desktop.Default is enabled
+        self._local_security_options_allow_u_i_access_applications_for_secure_locations: Optional[bool] = None
+        # Prevent a portable computer from being undocked without having to log in.
+        self._local_security_options_allow_undock_without_having_to_logon: Optional[bool] = None
+        # Prevent users from adding new Microsoft accounts to this computer.
+        self._local_security_options_block_microsoft_accounts: Optional[bool] = None
+        # Enable Local accounts that are not password protected to log on from locations other than the physical device.Default is enabled
+        self._local_security_options_block_remote_logon_with_blank_password: Optional[bool] = None
+        # Enabling this settings allows only interactively logged on user to access CD-ROM media.
+        self._local_security_options_block_remote_optical_drive_access: Optional[bool] = None
+        # Restrict installing printer drivers as part of connecting to a shared printer to admins only.
+        self._local_security_options_block_users_installing_printer_drivers: Optional[bool] = None
+        # This security setting determines whether the virtual memory pagefile is cleared when the system is shut down.
+        self._local_security_options_clear_virtual_memory_page_file: Optional[bool] = None
+        # This security setting determines whether packet signing is required by the SMB client component.
+        self._local_security_options_client_digitally_sign_communications_always: Optional[bool] = None
+        # If this security setting is enabled, the Server Message Block (SMB) redirector is allowed to send plaintext passwords to non-Microsoft SMB servers that do not support password encryption during authentication.
+        self._local_security_options_client_send_unencrypted_password_to_third_party_s_m_b_servers: Optional[bool] = None
+        # App installations requiring elevated privileges will prompt for admin credentials.Default is enabled
+        self._local_security_options_detect_application_installations_and_prompt_for_elevation: Optional[bool] = None
+        # Determines whether the Local Administrator account is enabled or disabled.
+        self._local_security_options_disable_administrator_account: Optional[bool] = None
+        # This security setting determines whether the SMB client attempts to negotiate SMB packet signing.
+        self._local_security_options_disable_client_digitally_sign_communications_if_server_agrees: Optional[bool] = None
+        # Determines if the Guest account is enabled or disabled.
+        self._local_security_options_disable_guest_account: Optional[bool] = None
+        # This security setting determines whether packet signing is required by the SMB server component.
+        self._local_security_options_disable_server_digitally_sign_communications_always: Optional[bool] = None
+        # This security setting determines whether the SMB server will negotiate SMB packet signing with clients that request it.
+        self._local_security_options_disable_server_digitally_sign_communications_if_client_agrees: Optional[bool] = None
+        # This security setting determines what additional permissions will be granted for anonymous connections to the computer.
+        self._local_security_options_do_not_allow_anonymous_enumeration_of_s_a_m_accounts: Optional[bool] = None
+        # Require CTRL+ALT+DEL to be pressed before a user can log on.
+        self._local_security_options_do_not_require_ctrl_alt_del: Optional[bool] = None
+        # This security setting determines if, at the next password change, the LAN Manager (LM) hash value for the new password is stored. It’s not stored by default.
+        self._local_security_options_do_not_store_l_a_n_manager_hash_value_on_next_password_change: Optional[bool] = None
+        # Possible values for LocalSecurityOptionsFormatAndEjectOfRemovableMediaAllowedUser
+        self._local_security_options_format_and_eject_of_removable_media_allowed_user: Optional[local_security_options_format_and_eject_of_removable_media_allowed_user_type.LocalSecurityOptionsFormatAndEjectOfRemovableMediaAllowedUserType] = None
+        # Define a different account name to be associated with the security identifier (SID) for the account 'Guest'.
+        self._local_security_options_guest_account_name: Optional[str] = None
+        # Do not display the username of the last person who signed in on this device.
+        self._local_security_options_hide_last_signed_in_user: Optional[bool] = None
+        # Do not display the username of the person signing in to this device after credentials are entered and before the device’s desktop is shown.
+        self._local_security_options_hide_username_at_sign_in: Optional[bool] = None
+        # Possible values for LocalSecurityOptionsInformationDisplayedOnLockScreen
+        self._local_security_options_information_displayed_on_lock_screen: Optional[local_security_options_information_displayed_on_lock_screen_type.LocalSecurityOptionsInformationDisplayedOnLockScreenType] = None
+        # Possible values for LocalSecurityOptionsInformationShownOnLockScreenType
+        self._local_security_options_information_shown_on_lock_screen: Optional[local_security_options_information_shown_on_lock_screen_type.LocalSecurityOptionsInformationShownOnLockScreenType] = None
+        # Set message text for users attempting to log in.
+        self._local_security_options_log_on_message_text: Optional[str] = None
+        # Set message title for users attempting to log in.
+        self._local_security_options_log_on_message_title: Optional[str] = None
+        # Define maximum minutes of inactivity on the interactive desktop’s login screen until the screen saver runs. Valid values 0 to 9999
+        self._local_security_options_machine_inactivity_limit: Optional[int] = None
+        # Define maximum minutes of inactivity on the interactive desktop’s login screen until the screen saver runs. Valid values 0 to 9999
+        self._local_security_options_machine_inactivity_limit_in_minutes: Optional[int] = None
+        # Possible values for LocalSecurityOptionsMinimumSessionSecurity
+        self._local_security_options_minimum_session_security_for_ntlm_ssp_based_clients: Optional[local_security_options_minimum_session_security.LocalSecurityOptionsMinimumSessionSecurity] = None
+        # Possible values for LocalSecurityOptionsMinimumSessionSecurity
+        self._local_security_options_minimum_session_security_for_ntlm_ssp_based_servers: Optional[local_security_options_minimum_session_security.LocalSecurityOptionsMinimumSessionSecurity] = None
+        # Enforce PKI certification path validation for a given executable file before it is permitted to run.
+        self._local_security_options_only_elevate_signed_executables: Optional[bool] = None
+        # By default, this security setting restricts anonymous access to shares and pipes to the settings for named pipes that can be accessed anonymously and Shares that can be accessed anonymously
+        self._local_security_options_restrict_anonymous_access_to_named_pipes_and_shares: Optional[bool] = None
+        # Possible values for LocalSecurityOptionsSmartCardRemovalBehaviorType
+        self._local_security_options_smart_card_removal_behavior: Optional[local_security_options_smart_card_removal_behavior_type.LocalSecurityOptionsSmartCardRemovalBehaviorType] = None
+        # Possible values for LocalSecurityOptionsStandardUserElevationPromptBehavior
+        self._local_security_options_standard_user_elevation_prompt_behavior: Optional[local_security_options_standard_user_elevation_prompt_behavior_type.LocalSecurityOptionsStandardUserElevationPromptBehaviorType] = None
+        # Enable all elevation requests to go to the interactive user's desktop rather than the secure desktop. Prompt behavior policy settings for admins and standard users are used.
+        self._local_security_options_switch_to_secure_desktop_when_prompting_for_elevation: Optional[bool] = None
+        # Defines whether the built-in admin account uses Admin Approval Mode or runs all apps with full admin privileges.Default is enabled
+        self._local_security_options_use_admin_approval_mode: Optional[bool] = None
+        # Define whether Admin Approval Mode and all UAC policy settings are enabled, default is enabled
+        self._local_security_options_use_admin_approval_mode_for_administrators: Optional[bool] = None
+        # Virtualize file and registry write failures to per user locations
+        self._local_security_options_virtualize_file_and_registry_write_failures_to_per_user_locations: Optional[bool] = None
+        # Allows IT Admins to control whether users can can ignore SmartScreen warnings and run malicious files.
+        self._smart_screen_block_override_for_files: Optional[bool] = None
+        # Allows IT Admins to configure SmartScreen for Windows.
+        self._smart_screen_enable_in_shell: Optional[bool] = None
+        # This user right is used by Credential Manager during Backup/Restore. Users' saved credentials might be compromised if this privilege is given to other entities. Only states NotConfigured and Allowed are supported
+        self._user_rights_access_credential_manager_as_trusted_caller: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # This user right allows a process to impersonate any user without authentication. The process can therefore gain access to the same local resources as that user. Only states NotConfigured and Allowed are supported
+        self._user_rights_act_as_part_of_the_operating_system: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # This user right determines which users and groups are allowed to connect to the computer over the network. State Allowed is supported.
+        self._user_rights_allow_access_from_network: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # This user right determines which users can bypass file, directory, registry, and other persistent objects permissions when backing up files and directories. Only states NotConfigured and Allowed are supported
+        self._user_rights_backup_data: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # This user right determines which users and groups are block from connecting to the computer over the network. State Block is supported.
+        self._user_rights_block_access_from_network: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # This user right determines which users and groups can change the time and date on the internal clock of the computer. Only states NotConfigured and Allowed are supported
+        self._user_rights_change_system_time: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # This security setting determines whether users can create global objects that are available to all sessions. Users who can create global objects could affect processes that run under other users' sessions, which could lead to application failure or data corruption. Only states NotConfigured and Allowed are supported
+        self._user_rights_create_global_objects: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # This user right determines which users and groups can call an internal API to create and change the size of a page file. Only states NotConfigured and Allowed are supported
+        self._user_rights_create_page_file: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # This user right determines which accounts can be used by processes to create a directory object using the object manager. Only states NotConfigured and Allowed are supported
+        self._user_rights_create_permanent_shared_objects: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # This user right determines if the user can create a symbolic link from the computer to which they are logged on. Only states NotConfigured and Allowed are supported
+        self._user_rights_create_symbolic_links: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # This user right determines which users/groups can be used by processes to create a token that can then be used to get access to any local resources when the process uses an internal API to create an access token. Only states NotConfigured and Allowed are supported
+        self._user_rights_create_token: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # This user right determines which users can attach a debugger to any process or to the kernel. Only states NotConfigured and Allowed are supported
+        self._user_rights_debug_programs: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # This user right determines which users can set the Trusted for Delegation setting on a user or computer object. Only states NotConfigured and Allowed are supported.
+        self._user_rights_delegation: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # This user right determines which users cannot log on to the computer. States NotConfigured, Blocked are supported
+        self._user_rights_deny_local_log_on: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # This user right determines which accounts can be used by a process to add entries to the security log. The security log is used to trace unauthorized system access.  Only states NotConfigured and Allowed are supported.
+        self._user_rights_generate_security_audits: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # Assigning this user right to a user allows programs running on behalf of that user to impersonate a client. Requiring this user right for this kind of impersonation prevents an unauthorized user from convincing a client to connect to a service that they have created and then impersonating that client, which can elevate the unauthorized user's permissions to administrative or system levels. Only states NotConfigured and Allowed are supported.
+        self._user_rights_impersonate_client: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # This user right determines which accounts can use a process with Write Property access to another process to increase the execution priority assigned to the other process. Only states NotConfigured and Allowed are supported.
+        self._user_rights_increase_scheduling_priority: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # This user right determines which users can dynamically load and unload device drivers or other code in to kernel mode. Only states NotConfigured and Allowed are supported.
+        self._user_rights_load_unload_drivers: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # This user right determines which users can log on to the computer. States NotConfigured, Allowed are supported
+        self._user_rights_local_log_on: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # This user right determines which accounts can use a process to keep data in physical memory, which prevents the system from paging the data to virtual memory on disk. Only states NotConfigured and Allowed are supported.
+        self._user_rights_lock_memory: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # This user right determines which users can specify object access auditing options for individual resources, such as files, Active Directory objects, and registry keys. Only states NotConfigured and Allowed are supported.
+        self._user_rights_manage_auditing_and_security_logs: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # This user right determines which users and groups can run maintenance tasks on a volume, such as remote defragmentation. Only states NotConfigured and Allowed are supported.
+        self._user_rights_manage_volumes: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # This user right determines who can modify firmware environment values. Only states NotConfigured and Allowed are supported.
+        self._user_rights_modify_firmware_environment: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # This user right determines which user accounts can modify the integrity label of objects, such as files, registry keys, or processes owned by other users. Only states NotConfigured and Allowed are supported.
+        self._user_rights_modify_object_labels: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # This user right determines which users can use performance monitoring tools to monitor the performance of system processes. Only states NotConfigured and Allowed are supported.
+        self._user_rights_profile_single_process: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # This user right determines which users and groups are prohibited from logging on as a Remote Desktop Services client. Only states NotConfigured and Blocked are supported
+        self._user_rights_remote_desktop_services_log_on: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # This user right determines which users are allowed to shut down a computer from a remote location on the network. Misuse of this user right can result in a denial of service. Only states NotConfigured and Allowed are supported.
+        self._user_rights_remote_shutdown: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # This user right determines which users can bypass file, directory, registry, and other persistent objects permissions when restoring backed up files and directories, and determines which users can set any valid security principal as the owner of an object. Only states NotConfigured and Allowed are supported.
+        self._user_rights_restore_data: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # This user right determines which users can take ownership of any securable object in the system, including Active Directory objects, files and folders, printers, registry keys, processes, and threads. Only states NotConfigured and Allowed are supported.
+        self._user_rights_take_ownership: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
+        # Defender TamperProtection setting options
+        self._windows_defender_tamper_protection: Optional[windows_defender_tamper_protection_options.WindowsDefenderTamperProtectionOptions] = None
+        # Possible values of xbox service start type
+        self._xbox_services_accessory_management_service_startup_mode: Optional[service_start_type.ServiceStartType] = None
+        # This setting determines whether xbox game save is enabled (1) or disabled (0).
+        self._xbox_services_enable_xbox_game_save_task: Optional[bool] = None
+        # Possible values of xbox service start type
+        self._xbox_services_live_auth_manager_service_startup_mode: Optional[service_start_type.ServiceStartType] = None
+        # Possible values of xbox service start type
+        self._xbox_services_live_game_save_service_startup_mode: Optional[service_start_type.ServiceStartType] = None
+        # Possible values of xbox service start type
+        self._xbox_services_live_networking_service_startup_mode: Optional[service_start_type.ServiceStartType] = None
+    
     @property
     def app_locker_application_control(self,) -> Optional[app_locker_application_control_type.AppLockerApplicationControlType]:
         """
@@ -453,465 +875,6 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
             value: Value to set for the bit_locker_system_drive_policy property.
         """
         self._bit_locker_system_drive_policy = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Windows10EndpointProtectionConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windows10EndpointProtectionConfiguration"
-        # Possible values of AppLocker Application Control Types
-        self._app_locker_application_control: Optional[app_locker_application_control_type.AppLockerApplicationControlType] = None
-        # Gets or sets whether applications inside Microsoft Defender Application Guard can access the device’s camera and microphone.
-        self._application_guard_allow_camera_microphone_redirection: Optional[bool] = None
-        # Allow users to download files from Edge in the application guard container and save them on the host file system
-        self._application_guard_allow_file_save_on_host: Optional[bool] = None
-        # Allow persisting user generated data inside the App Guard Containter (favorites, cookies, web passwords, etc.)
-        self._application_guard_allow_persistence: Optional[bool] = None
-        # Allow printing to Local Printers from Container
-        self._application_guard_allow_print_to_local_printers: Optional[bool] = None
-        # Allow printing to Network Printers from Container
-        self._application_guard_allow_print_to_network_printers: Optional[bool] = None
-        # Allow printing to PDF from Container
-        self._application_guard_allow_print_to_p_d_f: Optional[bool] = None
-        # Allow printing to XPS from Container
-        self._application_guard_allow_print_to_x_p_s: Optional[bool] = None
-        # Allow application guard to use virtual GPU
-        self._application_guard_allow_virtual_g_p_u: Optional[bool] = None
-        # Possible values for applicationGuardBlockClipboardSharingType
-        self._application_guard_block_clipboard_sharing: Optional[application_guard_block_clipboard_sharing_type.ApplicationGuardBlockClipboardSharingType] = None
-        # Possible values for applicationGuardBlockFileTransfer
-        self._application_guard_block_file_transfer: Optional[application_guard_block_file_transfer_type.ApplicationGuardBlockFileTransferType] = None
-        # Block enterprise sites to load non-enterprise content, such as third party plug-ins
-        self._application_guard_block_non_enterprise_content: Optional[bool] = None
-        # Allows certain device level Root Certificates to be shared with the Microsoft Defender Application Guard container.
-        self._application_guard_certificate_thumbprints: Optional[List[str]] = None
-        # Enable Windows Defender Application Guard
-        self._application_guard_enabled: Optional[bool] = None
-        # Possible values for ApplicationGuardEnabledOptions
-        self._application_guard_enabled_options: Optional[application_guard_enabled_options.ApplicationGuardEnabledOptions] = None
-        # Force auditing will persist Windows logs and events to meet security/compliance criteria (sample events are user login-logoff, use of privilege rights, software installation, system changes, etc.)
-        self._application_guard_force_auditing: Optional[bool] = None
-        # Allows the admin to allow standard users to enable encrpytion during Azure AD Join.
-        self._bit_locker_allow_standard_user_encryption: Optional[bool] = None
-        # Allows the Admin to disable the warning prompt for other disk encryption on the user machines.
-        self._bit_locker_disable_warning_for_other_disk_encryption: Optional[bool] = None
-        # Allows the admin to require encryption to be turned on using BitLocker. This policy is valid only for a mobile SKU.
-        self._bit_locker_enable_storage_card_encryption_on_mobile: Optional[bool] = None
-        # Allows the admin to require encryption to be turned on using BitLocker.
-        self._bit_locker_encrypt_device: Optional[bool] = None
-        # BitLocker Fixed Drive Policy.
-        self._bit_locker_fixed_drive_policy: Optional[bit_locker_fixed_drive_policy.BitLockerFixedDrivePolicy] = None
-        # BitLocker recovery password rotation type
-        self._bit_locker_recovery_password_rotation: Optional[bit_locker_recovery_password_rotation_type.BitLockerRecoveryPasswordRotationType] = None
-        # BitLocker Removable Drive Policy.
-        self._bit_locker_removable_drive_policy: Optional[bit_locker_removable_drive_policy.BitLockerRemovableDrivePolicy] = None
-        # BitLocker System Drive Policy.
-        self._bit_locker_system_drive_policy: Optional[bit_locker_system_drive_policy.BitLockerSystemDrivePolicy] = None
-        # List of folder paths to be added to the list of protected folders
-        self._defender_additional_guarded_folders: Optional[List[str]] = None
-        # Possible values of Defender PUA Protection
-        self._defender_adobe_reader_launch_child_process: Optional[defender_protection_type.DefenderProtectionType] = None
-        # Possible values of Defender PUA Protection
-        self._defender_advanced_ransomeware_protection_type: Optional[defender_protection_type.DefenderProtectionType] = None
-        # Allows or disallows Windows Defender Behavior Monitoring functionality.
-        self._defender_allow_behavior_monitoring: Optional[bool] = None
-        # To best protect your PC, Windows Defender will send information to Microsoft about any problems it finds. Microsoft will analyze that information, learn more about problems affecting you and other customers, and offer improved solutions.
-        self._defender_allow_cloud_protection: Optional[bool] = None
-        # Allows or disallows user access to the Windows Defender UI. If disallowed, all Windows Defender notifications will also be suppressed.
-        self._defender_allow_end_user_access: Optional[bool] = None
-        # Allows or disallows Windows Defender Intrusion Prevention functionality.
-        self._defender_allow_intrusion_prevention_system: Optional[bool] = None
-        # Allows or disallows Windows Defender On Access Protection functionality.
-        self._defender_allow_on_access_protection: Optional[bool] = None
-        # Allows or disallows Windows Defender Realtime Monitoring functionality.
-        self._defender_allow_real_time_monitoring: Optional[bool] = None
-        # Allows or disallows scanning of archives.
-        self._defender_allow_scan_archive_files: Optional[bool] = None
-        # Allows or disallows Windows Defender IOAVP Protection functionality.
-        self._defender_allow_scan_downloads: Optional[bool] = None
-        # Allows or disallows a scanning of network files.
-        self._defender_allow_scan_network_files: Optional[bool] = None
-        # Allows or disallows a full scan of removable drives. During a quick scan, removable drives may still be scanned.
-        self._defender_allow_scan_removable_drives_during_full_scan: Optional[bool] = None
-        # Allows or disallows Windows Defender Script Scanning functionality.
-        self._defender_allow_scan_scripts_loaded_in_internet_explorer: Optional[bool] = None
-        # List of exe files and folders to be excluded from attack surface reduction rules
-        self._defender_attack_surface_reduction_excluded_paths: Optional[List[str]] = None
-        # Allows or disallows user access to the Windows Defender UI. If disallowed, all Windows Defender notifications will also be suppressed.
-        self._defender_block_end_user_access: Optional[bool] = None
-        # Possible values of Defender Attack Surface Reduction Rules
-        self._defender_block_persistence_through_wmi_type: Optional[defender_attack_surface_type.DefenderAttackSurfaceType] = None
-        # This policy setting allows you to manage whether a check for new virus and spyware definitions will occur before running a scan.
-        self._defender_check_for_signatures_before_running_scan: Optional[bool] = None
-        # Added in Windows 10, version 1709. This policy setting determines how aggressive Windows Defender Antivirus will be in blocking and scanning suspicious files. Value type is integer. This feature requires the 'Join Microsoft MAPS' setting enabled in order to function. Possible values are: notConfigured, high, highPlus, zeroTolerance.
-        self._defender_cloud_block_level: Optional[defender_cloud_block_level_type.DefenderCloudBlockLevelType] = None
-        # Added in Windows 10, version 1709. This feature allows Windows Defender Antivirus to block a suspicious file for up to 60 seconds, and scan it in the cloud to make sure it's safe. Value type is integer, range is 0 - 50. This feature depends on three other MAPS settings the must all be enabled- 'Configure the 'Block at First Sight' feature; 'Join Microsoft MAPS'; 'Send file samples when further analysis is required'. Valid values 0 to 50
-        self._defender_cloud_extended_timeout_in_seconds: Optional[int] = None
-        # Time period (in days) that quarantine items will be stored on the system. Valid values 0 to 90
-        self._defender_days_before_deleting_quarantined_malware: Optional[int] = None
-        # Allows an administrator to specify any valid threat severity levels and the corresponding default action ID to take.
-        self._defender_detected_malware_actions: Optional[defender_detected_malware_actions.DefenderDetectedMalwareActions] = None
-        # Allows or disallows Windows Defender Behavior Monitoring functionality.
-        self._defender_disable_behavior_monitoring: Optional[bool] = None
-        # This policy setting allows you to configure catch-up scans for scheduled full scans. A catch-up scan is a scan that is initiated because a regularly scheduled scan was missed. Usually these scheduled scans are missed because the computer was turned off at the scheduled time.
-        self._defender_disable_catchup_full_scan: Optional[bool] = None
-        # This policy setting allows you to configure catch-up scans for scheduled quick scans. A catch-up scan is a scan that is initiated because a regularly scheduled scan was missed. Usually these scheduled scans are missed because the computer was turned off at the scheduled time.
-        self._defender_disable_catchup_quick_scan: Optional[bool] = None
-        # To best protect your PC, Windows Defender will send information to Microsoft about any problems it finds. Microsoft will analyze that information, learn more about problems affecting you and other customers, and offer improved solutions.
-        self._defender_disable_cloud_protection: Optional[bool] = None
-        # Allows or disallows Windows Defender Intrusion Prevention functionality.
-        self._defender_disable_intrusion_prevention_system: Optional[bool] = None
-        # Allows or disallows Windows Defender On Access Protection functionality.
-        self._defender_disable_on_access_protection: Optional[bool] = None
-        # Allows or disallows Windows Defender Realtime Monitoring functionality.
-        self._defender_disable_real_time_monitoring: Optional[bool] = None
-        # Allows or disallows scanning of archives.
-        self._defender_disable_scan_archive_files: Optional[bool] = None
-        # Allows or disallows Windows Defender IOAVP Protection functionality.
-        self._defender_disable_scan_downloads: Optional[bool] = None
-        # Allows or disallows a scanning of network files.
-        self._defender_disable_scan_network_files: Optional[bool] = None
-        # Allows or disallows a full scan of removable drives. During a quick scan, removable drives may still be scanned.
-        self._defender_disable_scan_removable_drives_during_full_scan: Optional[bool] = None
-        # Allows or disallows Windows Defender Script Scanning functionality.
-        self._defender_disable_scan_scripts_loaded_in_internet_explorer: Optional[bool] = None
-        # Possible values of Defender PUA Protection
-        self._defender_email_content_execution: Optional[defender_protection_type.DefenderProtectionType] = None
-        # Possible values of Defender Attack Surface Reduction Rules
-        self._defender_email_content_execution_type: Optional[defender_attack_surface_type.DefenderAttackSurfaceType] = None
-        # This policy setting allows you to enable or disable low CPU priority for scheduled scans.
-        self._defender_enable_low_cpu_priority: Optional[bool] = None
-        # Allows or disallows scanning of email.
-        self._defender_enable_scan_incoming_mail: Optional[bool] = None
-        # Allows or disallows a full scan of mapped network drives.
-        self._defender_enable_scan_mapped_network_drives_during_full_scan: Optional[bool] = None
-        # Xml content containing information regarding exploit protection details.
-        self._defender_exploit_protection_xml: Optional[bytes] = None
-        # Name of the file from which DefenderExploitProtectionXml was obtained.
-        self._defender_exploit_protection_xml_file_name: Optional[str] = None
-        # File extensions to exclude from scans and real time protection.
-        self._defender_file_extensions_to_exclude: Optional[List[str]] = None
-        # Files and folder to exclude from scans and real time protection.
-        self._defender_files_and_folders_to_exclude: Optional[List[str]] = None
-        # Possible values of Folder Protection
-        self._defender_guard_my_folders_type: Optional[folder_protection_type.FolderProtectionType] = None
-        # List of paths to exe that are allowed to access protected folders
-        self._defender_guarded_folders_allowed_app_paths: Optional[List[str]] = None
-        # Possible values of Defender PUA Protection
-        self._defender_network_protection_type: Optional[defender_protection_type.DefenderProtectionType] = None
-        # Possible values of Defender PUA Protection
-        self._defender_office_apps_executable_content_creation_or_launch: Optional[defender_protection_type.DefenderProtectionType] = None
-        # Possible values of Defender Attack Surface Reduction Rules
-        self._defender_office_apps_executable_content_creation_or_launch_type: Optional[defender_attack_surface_type.DefenderAttackSurfaceType] = None
-        # Possible values of Defender PUA Protection
-        self._defender_office_apps_launch_child_process: Optional[defender_protection_type.DefenderProtectionType] = None
-        # Possible values of Defender Attack Surface Reduction Rules
-        self._defender_office_apps_launch_child_process_type: Optional[defender_attack_surface_type.DefenderAttackSurfaceType] = None
-        # Possible values of Defender PUA Protection
-        self._defender_office_apps_other_process_injection: Optional[defender_protection_type.DefenderProtectionType] = None
-        # Possible values of Defender Attack Surface Reduction Rules
-        self._defender_office_apps_other_process_injection_type: Optional[defender_attack_surface_type.DefenderAttackSurfaceType] = None
-        # Possible values of Defender PUA Protection
-        self._defender_office_communication_apps_launch_child_process: Optional[defender_protection_type.DefenderProtectionType] = None
-        # Possible values of Defender PUA Protection
-        self._defender_office_macro_code_allow_win32_imports: Optional[defender_protection_type.DefenderProtectionType] = None
-        # Possible values of Defender Attack Surface Reduction Rules
-        self._defender_office_macro_code_allow_win32_imports_type: Optional[defender_attack_surface_type.DefenderAttackSurfaceType] = None
-        # Added in Windows 10, version 1607. Specifies the level of detection for potentially unwanted applications (PUAs). Windows Defender alerts you when potentially unwanted software is being downloaded or attempts to install itself on your computer. Possible values are: userDefined, enable, auditMode, warn, notConfigured.
-        self._defender_potentially_unwanted_app_action: Optional[defender_protection_type.DefenderProtectionType] = None
-        # Possible values of Defender PUA Protection
-        self._defender_prevent_credential_stealing_type: Optional[defender_protection_type.DefenderProtectionType] = None
-        # Possible values of Defender PUA Protection
-        self._defender_process_creation: Optional[defender_protection_type.DefenderProtectionType] = None
-        # Possible values of Defender Attack Surface Reduction Rules
-        self._defender_process_creation_type: Optional[defender_attack_surface_type.DefenderAttackSurfaceType] = None
-        # Processes to exclude from scans and real time protection.
-        self._defender_processes_to_exclude: Optional[List[str]] = None
-        # Controls which sets of files should be monitored. Possible values are: monitorAllFiles, monitorIncomingFilesOnly, monitorOutgoingFilesOnly.
-        self._defender_scan_direction: Optional[defender_realtime_scan_direction.DefenderRealtimeScanDirection] = None
-        # Represents the average CPU load factor for the Windows Defender scan (in percent). The default value is 50. Valid values 0 to 100
-        self._defender_scan_max_cpu_percentage: Optional[int] = None
-        # Selects whether to perform a quick scan or full scan. Possible values are: userDefined, disabled, quick, full.
-        self._defender_scan_type: Optional[defender_scan_type.DefenderScanType] = None
-        # Selects the time of day that the Windows Defender quick scan should run. For example, a value of 0=12:00AM, a value of 60=1:00AM, a value of 120=2:00, and so on, up to a value of 1380=11:00PM. The default value is 120
-        self._defender_scheduled_quick_scan_time: Optional[Time] = None
-        # Selects the day that the Windows Defender scan should run. Possible values are: userDefined, everyday, sunday, monday, tuesday, wednesday, thursday, friday, saturday, noScheduledScan.
-        self._defender_scheduled_scan_day: Optional[weekly_schedule.WeeklySchedule] = None
-        # Selects the time of day that the Windows Defender scan should run.
-        self._defender_scheduled_scan_time: Optional[Time] = None
-        # Possible values of Defender PUA Protection
-        self._defender_script_downloaded_payload_execution: Optional[defender_protection_type.DefenderProtectionType] = None
-        # Possible values of Defender Attack Surface Reduction Rules
-        self._defender_script_downloaded_payload_execution_type: Optional[defender_attack_surface_type.DefenderAttackSurfaceType] = None
-        # Possible values of Defender PUA Protection
-        self._defender_script_obfuscated_macro_code: Optional[defender_protection_type.DefenderProtectionType] = None
-        # Possible values of Defender Attack Surface Reduction Rules
-        self._defender_script_obfuscated_macro_code_type: Optional[defender_attack_surface_type.DefenderAttackSurfaceType] = None
-        # Indicates whether or not to block user from overriding Exploit Protection settings.
-        self._defender_security_center_block_exploit_protection_override: Optional[bool] = None
-        # Used to disable the display of the account protection area.
-        self._defender_security_center_disable_account_u_i: Optional[bool] = None
-        # Used to disable the display of the app and browser protection area.
-        self._defender_security_center_disable_app_browser_u_i: Optional[bool] = None
-        # Used to disable the display of the Clear TPM button.
-        self._defender_security_center_disable_clear_tpm_u_i: Optional[bool] = None
-        # Used to disable the display of the family options area.
-        self._defender_security_center_disable_family_u_i: Optional[bool] = None
-        # Used to disable the display of the hardware protection area.
-        self._defender_security_center_disable_hardware_u_i: Optional[bool] = None
-        # Used to disable the display of the device performance and health area.
-        self._defender_security_center_disable_health_u_i: Optional[bool] = None
-        # Used to disable the display of the firewall and network protection area.
-        self._defender_security_center_disable_network_u_i: Optional[bool] = None
-        # Used to disable the display of the notification area control. The user needs to either sign out and sign in or reboot the computer for this setting to take effect.
-        self._defender_security_center_disable_notification_area_u_i: Optional[bool] = None
-        # Used to disable the display of the ransomware protection area.
-        self._defender_security_center_disable_ransomware_u_i: Optional[bool] = None
-        # Used to disable the display of the secure boot area under Device security.
-        self._defender_security_center_disable_secure_boot_u_i: Optional[bool] = None
-        # Used to disable the display of the security process troubleshooting under Device security.
-        self._defender_security_center_disable_troubleshooting_u_i: Optional[bool] = None
-        # Used to disable the display of the virus and threat protection area.
-        self._defender_security_center_disable_virus_u_i: Optional[bool] = None
-        # Used to disable the display of update TPM Firmware when a vulnerable firmware is detected.
-        self._defender_security_center_disable_vulnerable_tpm_firmware_update_u_i: Optional[bool] = None
-        # The email address that is displayed to users.
-        self._defender_security_center_help_email: Optional[str] = None
-        # The phone number or Skype ID that is displayed to users.
-        self._defender_security_center_help_phone: Optional[str] = None
-        # The help portal URL this is displayed to users.
-        self._defender_security_center_help_u_r_l: Optional[str] = None
-        # Possible values for defenderSecurityCenterITContactDisplay
-        self._defender_security_center_i_t_contact_display: Optional[defender_security_center_i_t_contact_display_type.DefenderSecurityCenterITContactDisplayType] = None
-        # Possible values for defenderSecurityCenterNotificationsFromApp
-        self._defender_security_center_notifications_from_app: Optional[defender_security_center_notifications_from_app_type.DefenderSecurityCenterNotificationsFromAppType] = None
-        # The company name that is displayed to the users.
-        self._defender_security_center_organization_display_name: Optional[str] = None
-        # Specifies the interval (in hours) that will be used to check for signatures, so instead of using the ScheduleDay and ScheduleTime the check for new signatures will be set according to the interval. Valid values 0 to 24
-        self._defender_signature_update_interval_in_hours: Optional[int] = None
-        # Checks for the user consent level in Windows Defender to send data. Possible values are: sendSafeSamplesAutomatically, alwaysPrompt, neverSend, sendAllSamplesAutomatically.
-        self._defender_submit_samples_consent_type: Optional[defender_submit_samples_consent_type.DefenderSubmitSamplesConsentType] = None
-        # Possible values of Defender PUA Protection
-        self._defender_untrusted_executable: Optional[defender_protection_type.DefenderProtectionType] = None
-        # Possible values of Defender Attack Surface Reduction Rules
-        self._defender_untrusted_executable_type: Optional[defender_attack_surface_type.DefenderAttackSurfaceType] = None
-        # Possible values of Defender PUA Protection
-        self._defender_untrusted_u_s_b_process: Optional[defender_protection_type.DefenderProtectionType] = None
-        # Possible values of Defender Attack Surface Reduction Rules
-        self._defender_untrusted_u_s_b_process_type: Optional[defender_attack_surface_type.DefenderAttackSurfaceType] = None
-        # This property will be deprecated in May 2019 and will be replaced with property DeviceGuardSecureBootWithDMA. Specifies whether Platform Security Level is enabled at next reboot.
-        self._device_guard_enable_secure_boot_with_d_m_a: Optional[bool] = None
-        # Turns On Virtualization Based Security(VBS).
-        self._device_guard_enable_virtualization_based_security: Optional[bool] = None
-        # Possible values of a property
-        self._device_guard_launch_system_guard: Optional[enablement.Enablement] = None
-        # Possible values of Credential Guard settings.
-        self._device_guard_local_system_authority_credential_guard_settings: Optional[device_guard_local_system_authority_credential_guard_type.DeviceGuardLocalSystemAuthorityCredentialGuardType] = None
-        # Possible values of Secure Boot with DMA
-        self._device_guard_secure_boot_with_d_m_a: Optional[secure_boot_with_d_m_a_type.SecureBootWithDMAType] = None
-        # Possible values of the DmaGuardDeviceEnumerationPolicy.
-        self._dma_guard_device_enumeration_policy: Optional[dma_guard_device_enumeration_policy_type.DmaGuardDeviceEnumerationPolicyType] = None
-        # Blocks stateful FTP connections to the device
-        self._firewall_block_stateful_f_t_p: Optional[bool] = None
-        # Possible values for firewallCertificateRevocationListCheckMethod
-        self._firewall_certificate_revocation_list_check_method: Optional[firewall_certificate_revocation_list_check_method_type.FirewallCertificateRevocationListCheckMethodType] = None
-        # Configures IPSec exemptions to allow both IPv4 and IPv6 DHCP traffic
-        self._firewall_i_p_sec_exemptions_allow_d_h_c_p: Optional[bool] = None
-        # Configures IPSec exemptions to allow ICMP
-        self._firewall_i_p_sec_exemptions_allow_i_c_m_p: Optional[bool] = None
-        # Configures IPSec exemptions to allow neighbor discovery IPv6 ICMP type-codes
-        self._firewall_i_p_sec_exemptions_allow_neighbor_discovery: Optional[bool] = None
-        # Configures IPSec exemptions to allow router discovery IPv6 ICMP type-codes
-        self._firewall_i_p_sec_exemptions_allow_router_discovery: Optional[bool] = None
-        # Configures IPSec exemptions to no exemptions
-        self._firewall_i_p_sec_exemptions_none: Optional[bool] = None
-        # Configures the idle timeout for security associations, in seconds, from 300 to 3600 inclusive. This is the period after which security associations will expire and be deleted. Valid values 300 to 3600
-        self._firewall_idle_timeout_for_security_association_in_seconds: Optional[int] = None
-        # If an authentication set is not fully supported by a keying module, direct the module to ignore only unsupported authentication suites rather than the entire set
-        self._firewall_merge_keying_module_settings: Optional[bool] = None
-        # Possible values for firewallPacketQueueingMethod
-        self._firewall_packet_queueing_method: Optional[firewall_packet_queueing_method_type.FirewallPacketQueueingMethodType] = None
-        # Possible values for firewallPreSharedKeyEncodingMethod
-        self._firewall_pre_shared_key_encoding_method: Optional[firewall_pre_shared_key_encoding_method_type.FirewallPreSharedKeyEncodingMethodType] = None
-        # Configures the firewall profile settings for domain networks
-        self._firewall_profile_domain: Optional[windows_firewall_network_profile.WindowsFirewallNetworkProfile] = None
-        # Configures the firewall profile settings for private networks
-        self._firewall_profile_private: Optional[windows_firewall_network_profile.WindowsFirewallNetworkProfile] = None
-        # Configures the firewall profile settings for public networks
-        self._firewall_profile_public: Optional[windows_firewall_network_profile.WindowsFirewallNetworkProfile] = None
-        # Configures the firewall rule settings. This collection can contain a maximum of 150 elements.
-        self._firewall_rules: Optional[List[windows_firewall_rule.WindowsFirewallRule]] = None
-        # Possible values for LanManagerAuthenticationLevel
-        self._lan_manager_authentication_level: Optional[lan_manager_authentication_level.LanManagerAuthenticationLevel] = None
-        # If enabled,the SMB client will allow insecure guest logons. If not configured, the SMB client will reject insecure guest logons.
-        self._lan_manager_workstation_disable_insecure_guest_logons: Optional[bool] = None
-        # Define a different account name to be associated with the security identifier (SID) for the account 'Administrator'.
-        self._local_security_options_administrator_account_name: Optional[str] = None
-        # Possible values for LocalSecurityOptionsAdministratorElevationPromptBehavior
-        self._local_security_options_administrator_elevation_prompt_behavior: Optional[local_security_options_administrator_elevation_prompt_behavior_type.LocalSecurityOptionsAdministratorElevationPromptBehaviorType] = None
-        # This security setting determines whether to allows anonymous users to perform certain activities, such as enumerating the names of domain accounts and network shares.
-        self._local_security_options_allow_anonymous_enumeration_of_s_a_m_accounts_and_shares: Optional[bool] = None
-        # Block PKU2U authentication requests to this device to use online identities.
-        self._local_security_options_allow_p_k_u2_u_authentication_requests: Optional[bool] = None
-        # Edit the default Security Descriptor Definition Language string to allow or deny users and groups to make remote calls to the SAM.
-        self._local_security_options_allow_remote_calls_to_security_accounts_manager: Optional[str] = None
-        # UI helper boolean for LocalSecurityOptionsAllowRemoteCallsToSecurityAccountsManager entity
-        self._local_security_options_allow_remote_calls_to_security_accounts_manager_helper_bool: Optional[bool] = None
-        # This security setting determines whether a computer can be shut down without having to log on to Windows.
-        self._local_security_options_allow_system_to_be_shut_down_without_having_to_log_on: Optional[bool] = None
-        # Allow UIAccess apps to prompt for elevation without using the secure desktop.
-        self._local_security_options_allow_u_i_access_application_elevation: Optional[bool] = None
-        # Allow UIAccess apps to prompt for elevation without using the secure desktop.Default is enabled
-        self._local_security_options_allow_u_i_access_applications_for_secure_locations: Optional[bool] = None
-        # Prevent a portable computer from being undocked without having to log in.
-        self._local_security_options_allow_undock_without_having_to_logon: Optional[bool] = None
-        # Prevent users from adding new Microsoft accounts to this computer.
-        self._local_security_options_block_microsoft_accounts: Optional[bool] = None
-        # Enable Local accounts that are not password protected to log on from locations other than the physical device.Default is enabled
-        self._local_security_options_block_remote_logon_with_blank_password: Optional[bool] = None
-        # Enabling this settings allows only interactively logged on user to access CD-ROM media.
-        self._local_security_options_block_remote_optical_drive_access: Optional[bool] = None
-        # Restrict installing printer drivers as part of connecting to a shared printer to admins only.
-        self._local_security_options_block_users_installing_printer_drivers: Optional[bool] = None
-        # This security setting determines whether the virtual memory pagefile is cleared when the system is shut down.
-        self._local_security_options_clear_virtual_memory_page_file: Optional[bool] = None
-        # This security setting determines whether packet signing is required by the SMB client component.
-        self._local_security_options_client_digitally_sign_communications_always: Optional[bool] = None
-        # If this security setting is enabled, the Server Message Block (SMB) redirector is allowed to send plaintext passwords to non-Microsoft SMB servers that do not support password encryption during authentication.
-        self._local_security_options_client_send_unencrypted_password_to_third_party_s_m_b_servers: Optional[bool] = None
-        # App installations requiring elevated privileges will prompt for admin credentials.Default is enabled
-        self._local_security_options_detect_application_installations_and_prompt_for_elevation: Optional[bool] = None
-        # Determines whether the Local Administrator account is enabled or disabled.
-        self._local_security_options_disable_administrator_account: Optional[bool] = None
-        # This security setting determines whether the SMB client attempts to negotiate SMB packet signing.
-        self._local_security_options_disable_client_digitally_sign_communications_if_server_agrees: Optional[bool] = None
-        # Determines if the Guest account is enabled or disabled.
-        self._local_security_options_disable_guest_account: Optional[bool] = None
-        # This security setting determines whether packet signing is required by the SMB server component.
-        self._local_security_options_disable_server_digitally_sign_communications_always: Optional[bool] = None
-        # This security setting determines whether the SMB server will negotiate SMB packet signing with clients that request it.
-        self._local_security_options_disable_server_digitally_sign_communications_if_client_agrees: Optional[bool] = None
-        # This security setting determines what additional permissions will be granted for anonymous connections to the computer.
-        self._local_security_options_do_not_allow_anonymous_enumeration_of_s_a_m_accounts: Optional[bool] = None
-        # Require CTRL+ALT+DEL to be pressed before a user can log on.
-        self._local_security_options_do_not_require_ctrl_alt_del: Optional[bool] = None
-        # This security setting determines if, at the next password change, the LAN Manager (LM) hash value for the new password is stored. It’s not stored by default.
-        self._local_security_options_do_not_store_l_a_n_manager_hash_value_on_next_password_change: Optional[bool] = None
-        # Possible values for LocalSecurityOptionsFormatAndEjectOfRemovableMediaAllowedUser
-        self._local_security_options_format_and_eject_of_removable_media_allowed_user: Optional[local_security_options_format_and_eject_of_removable_media_allowed_user_type.LocalSecurityOptionsFormatAndEjectOfRemovableMediaAllowedUserType] = None
-        # Define a different account name to be associated with the security identifier (SID) for the account 'Guest'.
-        self._local_security_options_guest_account_name: Optional[str] = None
-        # Do not display the username of the last person who signed in on this device.
-        self._local_security_options_hide_last_signed_in_user: Optional[bool] = None
-        # Do not display the username of the person signing in to this device after credentials are entered and before the device’s desktop is shown.
-        self._local_security_options_hide_username_at_sign_in: Optional[bool] = None
-        # Possible values for LocalSecurityOptionsInformationDisplayedOnLockScreen
-        self._local_security_options_information_displayed_on_lock_screen: Optional[local_security_options_information_displayed_on_lock_screen_type.LocalSecurityOptionsInformationDisplayedOnLockScreenType] = None
-        # Possible values for LocalSecurityOptionsInformationShownOnLockScreenType
-        self._local_security_options_information_shown_on_lock_screen: Optional[local_security_options_information_shown_on_lock_screen_type.LocalSecurityOptionsInformationShownOnLockScreenType] = None
-        # Set message text for users attempting to log in.
-        self._local_security_options_log_on_message_text: Optional[str] = None
-        # Set message title for users attempting to log in.
-        self._local_security_options_log_on_message_title: Optional[str] = None
-        # Define maximum minutes of inactivity on the interactive desktop’s login screen until the screen saver runs. Valid values 0 to 9999
-        self._local_security_options_machine_inactivity_limit: Optional[int] = None
-        # Define maximum minutes of inactivity on the interactive desktop’s login screen until the screen saver runs. Valid values 0 to 9999
-        self._local_security_options_machine_inactivity_limit_in_minutes: Optional[int] = None
-        # Possible values for LocalSecurityOptionsMinimumSessionSecurity
-        self._local_security_options_minimum_session_security_for_ntlm_ssp_based_clients: Optional[local_security_options_minimum_session_security.LocalSecurityOptionsMinimumSessionSecurity] = None
-        # Possible values for LocalSecurityOptionsMinimumSessionSecurity
-        self._local_security_options_minimum_session_security_for_ntlm_ssp_based_servers: Optional[local_security_options_minimum_session_security.LocalSecurityOptionsMinimumSessionSecurity] = None
-        # Enforce PKI certification path validation for a given executable file before it is permitted to run.
-        self._local_security_options_only_elevate_signed_executables: Optional[bool] = None
-        # By default, this security setting restricts anonymous access to shares and pipes to the settings for named pipes that can be accessed anonymously and Shares that can be accessed anonymously
-        self._local_security_options_restrict_anonymous_access_to_named_pipes_and_shares: Optional[bool] = None
-        # Possible values for LocalSecurityOptionsSmartCardRemovalBehaviorType
-        self._local_security_options_smart_card_removal_behavior: Optional[local_security_options_smart_card_removal_behavior_type.LocalSecurityOptionsSmartCardRemovalBehaviorType] = None
-        # Possible values for LocalSecurityOptionsStandardUserElevationPromptBehavior
-        self._local_security_options_standard_user_elevation_prompt_behavior: Optional[local_security_options_standard_user_elevation_prompt_behavior_type.LocalSecurityOptionsStandardUserElevationPromptBehaviorType] = None
-        # Enable all elevation requests to go to the interactive user's desktop rather than the secure desktop. Prompt behavior policy settings for admins and standard users are used.
-        self._local_security_options_switch_to_secure_desktop_when_prompting_for_elevation: Optional[bool] = None
-        # Defines whether the built-in admin account uses Admin Approval Mode or runs all apps with full admin privileges.Default is enabled
-        self._local_security_options_use_admin_approval_mode: Optional[bool] = None
-        # Define whether Admin Approval Mode and all UAC policy settings are enabled, default is enabled
-        self._local_security_options_use_admin_approval_mode_for_administrators: Optional[bool] = None
-        # Virtualize file and registry write failures to per user locations
-        self._local_security_options_virtualize_file_and_registry_write_failures_to_per_user_locations: Optional[bool] = None
-        # Allows IT Admins to control whether users can can ignore SmartScreen warnings and run malicious files.
-        self._smart_screen_block_override_for_files: Optional[bool] = None
-        # Allows IT Admins to configure SmartScreen for Windows.
-        self._smart_screen_enable_in_shell: Optional[bool] = None
-        # This user right is used by Credential Manager during Backup/Restore. Users' saved credentials might be compromised if this privilege is given to other entities. Only states NotConfigured and Allowed are supported
-        self._user_rights_access_credential_manager_as_trusted_caller: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # This user right allows a process to impersonate any user without authentication. The process can therefore gain access to the same local resources as that user. Only states NotConfigured and Allowed are supported
-        self._user_rights_act_as_part_of_the_operating_system: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # This user right determines which users and groups are allowed to connect to the computer over the network. State Allowed is supported.
-        self._user_rights_allow_access_from_network: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # This user right determines which users can bypass file, directory, registry, and other persistent objects permissions when backing up files and directories. Only states NotConfigured and Allowed are supported
-        self._user_rights_backup_data: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # This user right determines which users and groups are block from connecting to the computer over the network. State Block is supported.
-        self._user_rights_block_access_from_network: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # This user right determines which users and groups can change the time and date on the internal clock of the computer. Only states NotConfigured and Allowed are supported
-        self._user_rights_change_system_time: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # This security setting determines whether users can create global objects that are available to all sessions. Users who can create global objects could affect processes that run under other users' sessions, which could lead to application failure or data corruption. Only states NotConfigured and Allowed are supported
-        self._user_rights_create_global_objects: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # This user right determines which users and groups can call an internal API to create and change the size of a page file. Only states NotConfigured and Allowed are supported
-        self._user_rights_create_page_file: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # This user right determines which accounts can be used by processes to create a directory object using the object manager. Only states NotConfigured and Allowed are supported
-        self._user_rights_create_permanent_shared_objects: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # This user right determines if the user can create a symbolic link from the computer to which they are logged on. Only states NotConfigured and Allowed are supported
-        self._user_rights_create_symbolic_links: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # This user right determines which users/groups can be used by processes to create a token that can then be used to get access to any local resources when the process uses an internal API to create an access token. Only states NotConfigured and Allowed are supported
-        self._user_rights_create_token: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # This user right determines which users can attach a debugger to any process or to the kernel. Only states NotConfigured and Allowed are supported
-        self._user_rights_debug_programs: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # This user right determines which users can set the Trusted for Delegation setting on a user or computer object. Only states NotConfigured and Allowed are supported.
-        self._user_rights_delegation: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # This user right determines which users cannot log on to the computer. States NotConfigured, Blocked are supported
-        self._user_rights_deny_local_log_on: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # This user right determines which accounts can be used by a process to add entries to the security log. The security log is used to trace unauthorized system access.  Only states NotConfigured and Allowed are supported.
-        self._user_rights_generate_security_audits: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # Assigning this user right to a user allows programs running on behalf of that user to impersonate a client. Requiring this user right for this kind of impersonation prevents an unauthorized user from convincing a client to connect to a service that they have created and then impersonating that client, which can elevate the unauthorized user's permissions to administrative or system levels. Only states NotConfigured and Allowed are supported.
-        self._user_rights_impersonate_client: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # This user right determines which accounts can use a process with Write Property access to another process to increase the execution priority assigned to the other process. Only states NotConfigured and Allowed are supported.
-        self._user_rights_increase_scheduling_priority: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # This user right determines which users can dynamically load and unload device drivers or other code in to kernel mode. Only states NotConfigured and Allowed are supported.
-        self._user_rights_load_unload_drivers: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # This user right determines which users can log on to the computer. States NotConfigured, Allowed are supported
-        self._user_rights_local_log_on: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # This user right determines which accounts can use a process to keep data in physical memory, which prevents the system from paging the data to virtual memory on disk. Only states NotConfigured and Allowed are supported.
-        self._user_rights_lock_memory: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # This user right determines which users can specify object access auditing options for individual resources, such as files, Active Directory objects, and registry keys. Only states NotConfigured and Allowed are supported.
-        self._user_rights_manage_auditing_and_security_logs: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # This user right determines which users and groups can run maintenance tasks on a volume, such as remote defragmentation. Only states NotConfigured and Allowed are supported.
-        self._user_rights_manage_volumes: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # This user right determines who can modify firmware environment values. Only states NotConfigured and Allowed are supported.
-        self._user_rights_modify_firmware_environment: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # This user right determines which user accounts can modify the integrity label of objects, such as files, registry keys, or processes owned by other users. Only states NotConfigured and Allowed are supported.
-        self._user_rights_modify_object_labels: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # This user right determines which users can use performance monitoring tools to monitor the performance of system processes. Only states NotConfigured and Allowed are supported.
-        self._user_rights_profile_single_process: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # This user right determines which users and groups are prohibited from logging on as a Remote Desktop Services client. Only states NotConfigured and Blocked are supported
-        self._user_rights_remote_desktop_services_log_on: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # This user right determines which users are allowed to shut down a computer from a remote location on the network. Misuse of this user right can result in a denial of service. Only states NotConfigured and Allowed are supported.
-        self._user_rights_remote_shutdown: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # This user right determines which users can bypass file, directory, registry, and other persistent objects permissions when restoring backed up files and directories, and determines which users can set any valid security principal as the owner of an object. Only states NotConfigured and Allowed are supported.
-        self._user_rights_restore_data: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # This user right determines which users can take ownership of any securable object in the system, including Active Directory objects, files and folders, printers, registry keys, processes, and threads. Only states NotConfigured and Allowed are supported.
-        self._user_rights_take_ownership: Optional[device_management_user_rights_setting.DeviceManagementUserRightsSetting] = None
-        # Defender TamperProtection setting options
-        self._windows_defender_tamper_protection: Optional[windows_defender_tamper_protection_options.WindowsDefenderTamperProtectionOptions] = None
-        # Possible values of xbox service start type
-        self._xbox_services_accessory_management_service_startup_mode: Optional[service_start_type.ServiceStartType] = None
-        # This setting determines whether xbox game save is enabled (1) or disabled (0).
-        self._xbox_services_enable_xbox_game_save_task: Optional[bool] = None
-        # Possible values of xbox service start type
-        self._xbox_services_live_auth_manager_service_startup_mode: Optional[service_start_type.ServiceStartType] = None
-        # Possible values of xbox service start type
-        self._xbox_services_live_game_save_service_startup_mode: Optional[service_start_type.ServiceStartType] = None
-        # Possible values of xbox service start type
-        self._xbox_services_live_networking_service_startup_mode: Optional[service_start_type.ServiceStartType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10EndpointProtectionConfiguration:
@@ -1997,15 +1960,15 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         self._defender_scan_type = value
     
     @property
-    def defender_scheduled_quick_scan_time(self,) -> Optional[Time]:
+    def defender_scheduled_quick_scan_time(self,) -> Optional[time]:
         """
         Gets the defenderScheduledQuickScanTime property value. Selects the time of day that the Windows Defender quick scan should run. For example, a value of 0=12:00AM, a value of 60=1:00AM, a value of 120=2:00, and so on, up to a value of 1380=11:00PM. The default value is 120
-        Returns: Optional[Time]
+        Returns: Optional[time]
         """
         return self._defender_scheduled_quick_scan_time
     
     @defender_scheduled_quick_scan_time.setter
-    def defender_scheduled_quick_scan_time(self,value: Optional[Time] = None) -> None:
+    def defender_scheduled_quick_scan_time(self,value: Optional[time] = None) -> None:
         """
         Sets the defenderScheduledQuickScanTime property value. Selects the time of day that the Windows Defender quick scan should run. For example, a value of 0=12:00AM, a value of 60=1:00AM, a value of 120=2:00, and so on, up to a value of 1380=11:00PM. The default value is 120
         Args:
@@ -2031,15 +1994,15 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         self._defender_scheduled_scan_day = value
     
     @property
-    def defender_scheduled_scan_time(self,) -> Optional[Time]:
+    def defender_scheduled_scan_time(self,) -> Optional[time]:
         """
         Gets the defenderScheduledScanTime property value. Selects the time of day that the Windows Defender scan should run.
-        Returns: Optional[Time]
+        Returns: Optional[time]
         """
         return self._defender_scheduled_scan_time
     
     @defender_scheduled_scan_time.setter
-    def defender_scheduled_scan_time(self,value: Optional[Time] = None) -> None:
+    def defender_scheduled_scan_time(self,value: Optional[time] = None) -> None:
         """
         Sets the defenderScheduledScanTime property value. Selects the time of day that the Windows Defender scan should run.
         Args:
@@ -2919,7 +2882,9 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import application_guard_block_clipboard_sharing_type, application_guard_block_file_transfer_type, application_guard_enabled_options, app_locker_application_control_type, bit_locker_fixed_drive_policy, bit_locker_recovery_password_rotation_type, bit_locker_removable_drive_policy, bit_locker_system_drive_policy, defender_attack_surface_type, defender_cloud_block_level_type, defender_detected_malware_actions, defender_protection_type, defender_realtime_scan_direction, defender_scan_type, defender_security_center_i_t_contact_display_type, defender_security_center_notifications_from_app_type, defender_submit_samples_consent_type, device_configuration, device_guard_local_system_authority_credential_guard_type, device_management_user_rights_setting, dma_guard_device_enumeration_policy_type, enablement, firewall_certificate_revocation_list_check_method_type, firewall_packet_queueing_method_type, firewall_pre_shared_key_encoding_method_type, folder_protection_type, lan_manager_authentication_level, local_security_options_administrator_elevation_prompt_behavior_type, local_security_options_format_and_eject_of_removable_media_allowed_user_type, local_security_options_information_displayed_on_lock_screen_type, local_security_options_information_shown_on_lock_screen_type, local_security_options_minimum_session_security, local_security_options_smart_card_removal_behavior_type, local_security_options_standard_user_elevation_prompt_behavior_type, secure_boot_with_d_m_a_type, service_start_type, weekly_schedule, windows_defender_tamper_protection_options, windows_firewall_network_profile, windows_firewall_rule
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "applicationGuardAllowCameraMicrophoneRedirection": lambda n : setattr(self, 'application_guard_allow_camera_microphone_redirection', n.get_bool_value()),
             "applicationGuardAllowFileSaveOnHost": lambda n : setattr(self, 'application_guard_allow_file_save_on_host', n.get_bool_value()),
             "applicationGuardAllowPersistence": lambda n : setattr(self, 'application_guard_allow_persistence', n.get_bool_value()),
@@ -3007,9 +2972,9 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
             "defenderScanDirection": lambda n : setattr(self, 'defender_scan_direction', n.get_enum_value(defender_realtime_scan_direction.DefenderRealtimeScanDirection)),
             "defenderScanMaxCpuPercentage": lambda n : setattr(self, 'defender_scan_max_cpu_percentage', n.get_int_value()),
             "defenderScanType": lambda n : setattr(self, 'defender_scan_type', n.get_enum_value(defender_scan_type.DefenderScanType)),
-            "defenderScheduledQuickScanTime": lambda n : setattr(self, 'defender_scheduled_quick_scan_time', n.get_object_value(Time)),
+            "defenderScheduledQuickScanTime": lambda n : setattr(self, 'defender_scheduled_quick_scan_time', n.get_time_value()),
             "defenderScheduledScanDay": lambda n : setattr(self, 'defender_scheduled_scan_day', n.get_enum_value(weekly_schedule.WeeklySchedule)),
-            "defenderScheduledScanTime": lambda n : setattr(self, 'defender_scheduled_scan_time', n.get_object_value(Time)),
+            "defenderScheduledScanTime": lambda n : setattr(self, 'defender_scheduled_scan_time', n.get_time_value()),
             "defenderScriptDownloadedPayloadExecution": lambda n : setattr(self, 'defender_script_downloaded_payload_execution', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
             "defenderScriptDownloadedPayloadExecutionType": lambda n : setattr(self, 'defender_script_downloaded_payload_execution_type', n.get_enum_value(defender_attack_surface_type.DefenderAttackSurfaceType)),
             "defenderScriptObfuscatedMacroCode": lambda n : setattr(self, 'defender_script_obfuscated_macro_code', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
@@ -4063,9 +4028,9 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         writer.write_enum_value("defenderScanDirection", self.defender_scan_direction)
         writer.write_int_value("defenderScanMaxCpuPercentage", self.defender_scan_max_cpu_percentage)
         writer.write_enum_value("defenderScanType", self.defender_scan_type)
-        writer.write_object_value("defenderScheduledQuickScanTime", self.defender_scheduled_quick_scan_time)
+        writer.write_time_value("defenderScheduledQuickScanTime", self.defender_scheduled_quick_scan_time)
         writer.write_enum_value("defenderScheduledScanDay", self.defender_scheduled_scan_day)
-        writer.write_object_value("defenderScheduledScanTime", self.defender_scheduled_scan_time)
+        writer.write_time_value("defenderScheduledScanTime", self.defender_scheduled_scan_time)
         writer.write_enum_value("defenderScriptDownloadedPayloadExecution", self.defender_script_downloaded_payload_execution)
         writer.write_enum_value("defenderScriptDownloadedPayloadExecutionType", self.defender_script_downloaded_payload_execution_type)
         writer.write_enum_value("defenderScriptObfuscatedMacroCode", self.defender_script_obfuscated_macro_code)

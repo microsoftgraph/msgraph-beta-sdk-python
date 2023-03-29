@@ -1,11 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-microsoft_managed_desktop_type = lazy_import('msgraph.generated.models.microsoft_managed_desktop_type')
+if TYPE_CHECKING:
+    from . import microsoft_managed_desktop_type
 
 class MicrosoftManagedDesktop(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new microsoftManagedDesktop and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The name of the Microsoft Managed Desktop profile that the Windows 365 Cloud PC is associated with.
+        self._profile: Optional[str] = None
+        # Indicates whether the provisioning policy enables Microsoft Managed Desktop. It indicates the type of plan under which the device is managed if the provisioning policy is enabled. Possible values are: notManaged, premiumManaged, standardManaged, starterManaged, unknownFutureValue.
+        self._type: Optional[microsoft_managed_desktop_type.MicrosoftManagedDesktopType] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -22,20 +36,6 @@ class MicrosoftManagedDesktop(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new microsoftManagedDesktop and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The name of the Microsoft Managed Desktop profile that the Windows 365 Cloud PC is associated with.
-        self._profile: Optional[str] = None
-        # Indicates whether the provisioning policy enables Microsoft Managed Desktop. It indicates the type of plan under which the device is managed if the provisioning policy is enabled. Possible values are: notManaged, premiumManaged, standardManaged, starterManaged, unknownFutureValue.
-        self._type: Optional[microsoft_managed_desktop_type.MicrosoftManagedDesktopType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MicrosoftManagedDesktop:
@@ -54,7 +54,9 @@ class MicrosoftManagedDesktop(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import microsoft_managed_desktop_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "profile": lambda n : setattr(self, 'profile', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(microsoft_managed_desktop_type.MicrosoftManagedDesktopType)),

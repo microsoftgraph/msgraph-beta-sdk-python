@@ -1,11 +1,31 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-identity = lazy_import('msgraph.generated.models.identity')
+if TYPE_CHECKING:
+    from . import identity
 
 class UserPrintUsageSummary(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new userPrintUsageSummary and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The completedJobCount property
+        self._completed_job_count: Optional[int] = None
+        # The incompleteJobCount property
+        self._incomplete_job_count: Optional[int] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The user property
+        self._user: Optional[identity.Identity] = None
+        # The userDisplayName property
+        self._user_display_name: Optional[str] = None
+        # The userPrincipalName property
+        self._user_principal_name: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -40,26 +60,6 @@ class UserPrintUsageSummary(AdditionalDataHolder, Parsable):
         """
         self._completed_job_count = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userPrintUsageSummary and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The completedJobCount property
-        self._completed_job_count: Optional[int] = None
-        # The incompleteJobCount property
-        self._incomplete_job_count: Optional[int] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The user property
-        self._user: Optional[identity.Identity] = None
-        # The userDisplayName property
-        self._user_display_name: Optional[str] = None
-        # The userPrincipalName property
-        self._user_principal_name: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserPrintUsageSummary:
         """
@@ -77,7 +77,9 @@ class UserPrintUsageSummary(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import identity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "completedJobCount": lambda n : setattr(self, 'completed_job_count', n.get_int_value()),
             "incompleteJobCount": lambda n : setattr(self, 'incomplete_job_count', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

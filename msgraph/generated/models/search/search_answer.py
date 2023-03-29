@@ -1,11 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-identity_set = lazy_import('msgraph.generated.models.search.identity_set')
+if TYPE_CHECKING:
+    from . import acronym, bookmark, identity_set, qna
+    from .. import entity
+
+from .. import entity
 
 class SearchAnswer(entity.Entity):
     def __init__(self,) -> None:
@@ -36,6 +38,21 @@ class SearchAnswer(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.search.acronym":
+                from . import acronym
+
+                return acronym.Acronym()
+            if mapping_value == "#microsoft.graph.search.bookmark":
+                from . import bookmark
+
+                return bookmark.Bookmark()
+            if mapping_value == "#microsoft.graph.search.qna":
+                from . import qna
+
+                return qna.Qna()
         return SearchAnswer()
     
     @property
@@ -77,7 +94,10 @@ class SearchAnswer(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import acronym, bookmark, identity_set, qna
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),

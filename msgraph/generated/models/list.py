@@ -1,21 +1,42 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-base_item = lazy_import('msgraph.generated.models.base_item')
-column_definition = lazy_import('msgraph.generated.models.column_definition')
-content_type = lazy_import('msgraph.generated.models.content_type')
-drive = lazy_import('msgraph.generated.models.drive')
-item_activity_o_l_d = lazy_import('msgraph.generated.models.item_activity_o_l_d')
-list_info = lazy_import('msgraph.generated.models.list_info')
-list_item = lazy_import('msgraph.generated.models.list_item')
-rich_long_running_operation = lazy_import('msgraph.generated.models.rich_long_running_operation')
-sharepoint_ids = lazy_import('msgraph.generated.models.sharepoint_ids')
-subscription = lazy_import('msgraph.generated.models.subscription')
-system_facet = lazy_import('msgraph.generated.models.system_facet')
+if TYPE_CHECKING:
+    from . import base_item, column_definition, content_type, drive, item_activity_o_l_d, list_info, list_item, rich_long_running_operation, sharepoint_ids, subscription, system_facet
+
+from . import base_item
 
 class List(base_item.BaseItem):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new list and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.list"
+        # The recent activities that took place within this list.
+        self._activities: Optional[List[item_activity_o_l_d.ItemActivityOLD]] = None
+        # The columns property
+        self._columns: Optional[List[column_definition.ColumnDefinition]] = None
+        # The contentTypes property
+        self._content_types: Optional[List[content_type.ContentType]] = None
+        # The displayable title of the list.
+        self._display_name: Optional[str] = None
+        # Only present on document libraries. Allows access to the list as a [drive][] resource with [driveItems][driveItem].
+        self._drive: Optional[drive.Drive] = None
+        # All items contained in the list.
+        self._items: Optional[List[list_item.ListItem]] = None
+        # Provides additional details about the list.
+        self._list: Optional[list_info.ListInfo] = None
+        # The collection of long running operations for the list.
+        self._operations: Optional[List[rich_long_running_operation.RichLongRunningOperation]] = None
+        # The sharepointIds property
+        self._sharepoint_ids: Optional[sharepoint_ids.SharepointIds] = None
+        # The set of subscriptions on the list.
+        self._subscriptions: Optional[List[subscription.Subscription]] = None
+        # If present, indicates that this is a system-managed list. Read-only.
+        self._system: Optional[system_facet.SystemFacet] = None
+    
     @property
     def activities(self,) -> Optional[List[item_activity_o_l_d.ItemActivityOLD]]:
         """
@@ -49,35 +70,6 @@ class List(base_item.BaseItem):
             value: Value to set for the columns property.
         """
         self._columns = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new list and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.list"
-        # The recent activities that took place within this list.
-        self._activities: Optional[List[item_activity_o_l_d.ItemActivityOLD]] = None
-        # The columns property
-        self._columns: Optional[List[column_definition.ColumnDefinition]] = None
-        # The contentTypes property
-        self._content_types: Optional[List[content_type.ContentType]] = None
-        # The displayable title of the list.
-        self._display_name: Optional[str] = None
-        # Only present on document libraries. Allows access to the list as a [drive][] resource with [driveItems][driveItem].
-        self._drive: Optional[drive.Drive] = None
-        # All items contained in the list.
-        self._items: Optional[List[list_item.ListItem]] = None
-        # Provides additional details about the list.
-        self._list: Optional[list_info.ListInfo] = None
-        # The collection of long running operations for the list.
-        self._operations: Optional[List[rich_long_running_operation.RichLongRunningOperation]] = None
-        # The sharepointIds property
-        self._sharepoint_ids: Optional[sharepoint_ids.SharepointIds] = None
-        # The set of subscriptions on the list.
-        self._subscriptions: Optional[List[subscription.Subscription]] = None
-        # If present, indicates that this is a system-managed list. Read-only.
-        self._system: Optional[system_facet.SystemFacet] = None
     
     @property
     def content_types(self,) -> Optional[List[content_type.ContentType]]:
@@ -147,7 +139,9 @@ class List(base_item.BaseItem):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import base_item, column_definition, content_type, drive, item_activity_o_l_d, list_info, list_item, rich_long_running_operation, sharepoint_ids, subscription, system_facet
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "activities": lambda n : setattr(self, 'activities', n.get_collection_of_object_values(item_activity_o_l_d.ItemActivityOLD)),
             "columns": lambda n : setattr(self, 'columns', n.get_collection_of_object_values(column_definition.ColumnDefinition)),
             "contentTypes": lambda n : setattr(self, 'content_types', n.get_collection_of_object_values(content_type.ContentType)),

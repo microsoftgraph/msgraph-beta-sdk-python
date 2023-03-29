@@ -1,9 +1,28 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class TeamworkDeviceSoftwareVersions(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new teamworkDeviceSoftwareVersions and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The software version for the admin agent running on the device.
+        self._admin_agent_software_version: Optional[str] = None
+        # The software version for the firmware running on the device.
+        self._firmware_software_version: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The software version for the operating system on the device.
+        self._operating_system_software_version: Optional[str] = None
+        # The software version for the partner agent running on the device.
+        self._partner_agent_software_version: Optional[str] = None
+        # The software version for the Teams client running on the device.
+        self._teams_client_software_version: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -37,26 +56,6 @@ class TeamworkDeviceSoftwareVersions(AdditionalDataHolder, Parsable):
             value: Value to set for the admin_agent_software_version property.
         """
         self._admin_agent_software_version = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new teamworkDeviceSoftwareVersions and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The software version for the admin agent running on the device.
-        self._admin_agent_software_version: Optional[str] = None
-        # The software version for the firmware running on the device.
-        self._firmware_software_version: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The software version for the operating system on the device.
-        self._operating_system_software_version: Optional[str] = None
-        # The software version for the partner agent running on the device.
-        self._partner_agent_software_version: Optional[str] = None
-        # The software version for the Teams client running on the device.
-        self._teams_client_software_version: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeamworkDeviceSoftwareVersions:
@@ -92,7 +91,7 @@ class TeamworkDeviceSoftwareVersions(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "adminAgentSoftwareVersion": lambda n : setattr(self, 'admin_agent_software_version', n.get_str_value()),
             "firmwareSoftwareVersion": lambda n : setattr(self, 'firmware_software_version', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

@@ -1,16 +1,46 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_enrollment_company_code = lazy_import('msgraph.generated.models.android_enrollment_company_code')
-android_managed_store_account_app_sync_status = lazy_import('msgraph.generated.models.android_managed_store_account_app_sync_status')
-android_managed_store_account_bind_status = lazy_import('msgraph.generated.models.android_managed_store_account_bind_status')
-android_managed_store_account_enrollment_target = lazy_import('msgraph.generated.models.android_managed_store_account_enrollment_target')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import android_enrollment_company_code, android_managed_store_account_app_sync_status, android_managed_store_account_bind_status, android_managed_store_account_enrollment_target, entity
+
+from . import entity
 
 class AndroidManagedStoreAccountEnterpriseSettings(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new androidManagedStoreAccountEnterpriseSettings and sets the default values.
+        """
+        super().__init__()
+        # Company codes for AndroidManagedStoreAccountEnterpriseSettings
+        self._android_device_owner_fully_managed_enrollment_enabled: Optional[bool] = None
+        # Bind status of the tenant with the Google EMM API
+        self._bind_status: Optional[android_managed_store_account_bind_status.AndroidManagedStoreAccountBindStatus] = None
+        # Company codes for AndroidManagedStoreAccountEnterpriseSettings
+        self._company_codes: Optional[List[android_enrollment_company_code.AndroidEnrollmentCompanyCode]] = None
+        # Indicates if this account is flighting for Android Device Owner Management with CloudDPC.
+        self._device_owner_management_enabled: Optional[bool] = None
+        # Android for Work device management targeting type for the account
+        self._enrollment_target: Optional[android_managed_store_account_enrollment_target.AndroidManagedStoreAccountEnrollmentTarget] = None
+        # Last completion time for app sync
+        self._last_app_sync_date_time: Optional[datetime] = None
+        # Sync status of the tenant with the Google EMM API
+        self._last_app_sync_status: Optional[android_managed_store_account_app_sync_status.AndroidManagedStoreAccountAppSyncStatus] = None
+        # Last modification time for Android enterprise settings
+        self._last_modified_date_time: Optional[datetime] = None
+        # Initial scope tags for MGP apps
+        self._managed_google_play_initial_scope_tag_ids: Optional[List[str]] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Organization name used when onboarding Android Enterprise
+        self._owner_organization_name: Optional[str] = None
+        # Owner UPN that created the enterprise
+        self._owner_user_principal_name: Optional[str] = None
+        # Specifies which AAD groups can enroll devices in Android for Work device management if enrollmentTarget is set to 'Targeted'
+        self._target_group_ids: Optional[List[str]] = None
+    
     @property
     def android_device_owner_fully_managed_enrollment_enabled(self,) -> Optional[bool]:
         """
@@ -61,38 +91,6 @@ class AndroidManagedStoreAccountEnterpriseSettings(entity.Entity):
             value: Value to set for the company_codes property.
         """
         self._company_codes = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new androidManagedStoreAccountEnterpriseSettings and sets the default values.
-        """
-        super().__init__()
-        # Company codes for AndroidManagedStoreAccountEnterpriseSettings
-        self._android_device_owner_fully_managed_enrollment_enabled: Optional[bool] = None
-        # Bind status of the tenant with the Google EMM API
-        self._bind_status: Optional[android_managed_store_account_bind_status.AndroidManagedStoreAccountBindStatus] = None
-        # Company codes for AndroidManagedStoreAccountEnterpriseSettings
-        self._company_codes: Optional[List[android_enrollment_company_code.AndroidEnrollmentCompanyCode]] = None
-        # Indicates if this account is flighting for Android Device Owner Management with CloudDPC.
-        self._device_owner_management_enabled: Optional[bool] = None
-        # Android for Work device management targeting type for the account
-        self._enrollment_target: Optional[android_managed_store_account_enrollment_target.AndroidManagedStoreAccountEnrollmentTarget] = None
-        # Last completion time for app sync
-        self._last_app_sync_date_time: Optional[datetime] = None
-        # Sync status of the tenant with the Google EMM API
-        self._last_app_sync_status: Optional[android_managed_store_account_app_sync_status.AndroidManagedStoreAccountAppSyncStatus] = None
-        # Last modification time for Android enterprise settings
-        self._last_modified_date_time: Optional[datetime] = None
-        # Initial scope tags for MGP apps
-        self._managed_google_play_initial_scope_tag_ids: Optional[List[str]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Organization name used when onboarding Android Enterprise
-        self._owner_organization_name: Optional[str] = None
-        # Owner UPN that created the enterprise
-        self._owner_user_principal_name: Optional[str] = None
-        # Specifies which AAD groups can enroll devices in Android for Work device management if enrollmentTarget is set to 'Targeted'
-        self._target_group_ids: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidManagedStoreAccountEnterpriseSettings:
@@ -145,7 +143,9 @@ class AndroidManagedStoreAccountEnterpriseSettings(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_enrollment_company_code, android_managed_store_account_app_sync_status, android_managed_store_account_bind_status, android_managed_store_account_enrollment_target, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "androidDeviceOwnerFullyManagedEnrollmentEnabled": lambda n : setattr(self, 'android_device_owner_fully_managed_enrollment_enabled', n.get_bool_value()),
             "bindStatus": lambda n : setattr(self, 'bind_status', n.get_enum_value(android_managed_store_account_bind_status.AndroidManagedStoreAccountBindStatus)),
             "companyCodes": lambda n : setattr(self, 'company_codes', n.get_collection_of_object_values(android_enrollment_company_code.AndroidEnrollmentCompanyCode)),

@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-web_part = lazy_import('msgraph.generated.models.web_part')
+if TYPE_CHECKING:
+    from . import web_part
+
+from . import web_part
 
 class TextWebPart(web_part.WebPart):
     def __init__(self,) -> None:
@@ -32,7 +34,9 @@ class TextWebPart(web_part.WebPart):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import web_part
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "innerHtml": lambda n : setattr(self, 'inner_html', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

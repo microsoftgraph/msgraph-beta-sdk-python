@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-ios_vpp_app_assigned_license = lazy_import('msgraph.generated.models.ios_vpp_app_assigned_license')
+if TYPE_CHECKING:
+    from . import ios_vpp_app_assigned_license
+
+from . import ios_vpp_app_assigned_license
 
 class IosVppAppAssignedDeviceLicense(ios_vpp_app_assigned_license.IosVppAppAssignedLicense):
     def __init__(self,) -> None:
@@ -52,7 +54,9 @@ class IosVppAppAssignedDeviceLicense(ios_vpp_app_assigned_license.IosVppAppAssig
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import ios_vpp_app_assigned_license
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
             "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
         }

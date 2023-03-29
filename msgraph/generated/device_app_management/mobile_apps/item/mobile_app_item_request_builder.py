@@ -7,128 +7,32 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-assign_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.assign.assign_request_builder')
-assignments_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.assignments.assignments_request_builder')
-mobile_app_assignment_item_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.assignments.item.mobile_app_assignment_item_request_builder')
-categories_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.categories.categories_request_builder')
-mobile_app_category_item_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.categories.item.mobile_app_category_item_request_builder')
-device_statuses_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.device_statuses.device_statuses_request_builder')
-mobile_app_install_status_item_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.device_statuses.item.mobile_app_install_status_item_request_builder')
-get_related_app_states_with_user_principal_name_with_device_id_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.get_related_app_states_with_user_principal_name_with_device_id.get_related_app_states_with_user_principal_name_with_device_id_request_builder')
-graph_managed_mobile_lob_app_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.graph_managed_mobile_lob_app.graph_managed_mobile_lob_app_request_builder')
-graph_mobile_lob_app_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.graph_mobile_lob_app.graph_mobile_lob_app_request_builder')
-install_summary_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.install_summary.install_summary_request_builder')
-relationships_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.relationships.relationships_request_builder')
-mobile_app_relationship_item_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.relationships.item.mobile_app_relationship_item_request_builder')
-update_relationships_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.update_relationships.update_relationships_request_builder')
-user_statuses_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.user_statuses.user_statuses_request_builder')
-user_app_install_status_item_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.user_statuses.item.user_app_install_status_item_request_builder')
-mobile_app = lazy_import('msgraph.generated.models.mobile_app')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ....models import mobile_app
+    from ....models.o_data_errors import o_data_error
+    from .assign import assign_request_builder
+    from .assignments import assignments_request_builder
+    from .assignments.item import mobile_app_assignment_item_request_builder
+    from .categories import categories_request_builder
+    from .categories.item import mobile_app_category_item_request_builder
+    from .device_statuses import device_statuses_request_builder
+    from .device_statuses.item import mobile_app_install_status_item_request_builder
+    from .get_related_app_states_with_user_principal_name_with_device_id import get_related_app_states_with_user_principal_name_with_device_id_request_builder
+    from .graph_managed_mobile_lob_app import graph_managed_mobile_lob_app_request_builder
+    from .graph_mobile_lob_app import graph_mobile_lob_app_request_builder
+    from .install_summary import install_summary_request_builder
+    from .relationships import relationships_request_builder
+    from .relationships.item import mobile_app_relationship_item_request_builder
+    from .update_relationships import update_relationships_request_builder
+    from .user_statuses import user_statuses_request_builder
+    from .user_statuses.item import user_app_install_status_item_request_builder
 
 class MobileAppItemRequestBuilder():
     """
     Provides operations to manage the mobileApps property of the microsoft.graph.deviceAppManagement entity.
     """
-    @property
-    def assign(self) -> assign_request_builder.AssignRequestBuilder:
-        """
-        Provides operations to call the assign method.
-        """
-        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.
-        """
-        return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def categories(self) -> categories_request_builder.CategoriesRequestBuilder:
-        """
-        Provides operations to manage the categories property of the microsoft.graph.mobileApp entity.
-        """
-        return categories_request_builder.CategoriesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def device_statuses(self) -> device_statuses_request_builder.DeviceStatusesRequestBuilder:
-        """
-        Provides operations to manage the deviceStatuses property of the microsoft.graph.mobileApp entity.
-        """
-        return device_statuses_request_builder.DeviceStatusesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def graph_managed_mobile_lob_app(self) -> graph_managed_mobile_lob_app_request_builder.GraphManagedMobileLobAppRequestBuilder:
-        """
-        Casts the previous resource to managedMobileLobApp.
-        """
-        return graph_managed_mobile_lob_app_request_builder.GraphManagedMobileLobAppRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def graph_mobile_lob_app(self) -> graph_mobile_lob_app_request_builder.GraphMobileLobAppRequestBuilder:
-        """
-        Casts the previous resource to mobileLobApp.
-        """
-        return graph_mobile_lob_app_request_builder.GraphMobileLobAppRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def install_summary(self) -> install_summary_request_builder.InstallSummaryRequestBuilder:
-        """
-        Provides operations to manage the installSummary property of the microsoft.graph.mobileApp entity.
-        """
-        return install_summary_request_builder.InstallSummaryRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def relationships(self) -> relationships_request_builder.RelationshipsRequestBuilder:
-        """
-        Provides operations to manage the relationships property of the microsoft.graph.mobileApp entity.
-        """
-        return relationships_request_builder.RelationshipsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def update_relationships(self) -> update_relationships_request_builder.UpdateRelationshipsRequestBuilder:
-        """
-        Provides operations to call the updateRelationships method.
-        """
-        return update_relationships_request_builder.UpdateRelationshipsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def user_statuses(self) -> user_statuses_request_builder.UserStatusesRequestBuilder:
-        """
-        Provides operations to manage the userStatuses property of the microsoft.graph.mobileApp entity.
-        """
-        return user_statuses_request_builder.UserStatusesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def assignments_by_id(self,id: str) -> mobile_app_assignment_item_request_builder.MobileAppAssignmentItemRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: mobile_app_assignment_item_request_builder.MobileAppAssignmentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["mobileAppAssignment%2Did"] = id
-        return mobile_app_assignment_item_request_builder.MobileAppAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def categories_by_id(self,id: str) -> mobile_app_category_item_request_builder.MobileAppCategoryItemRequestBuilder:
-        """
-        Provides operations to manage the categories property of the microsoft.graph.mobileApp entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: mobile_app_category_item_request_builder.MobileAppCategoryItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["mobileAppCategory%2Did"] = id
-        return mobile_app_category_item_request_builder.MobileAppCategoryItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new MobileAppItemRequestBuilder and sets the default values.
@@ -147,6 +51,36 @@ class MobileAppItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def assignments_by_id(self,id: str) -> mobile_app_assignment_item_request_builder.MobileAppAssignmentItemRequestBuilder:
+        """
+        Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: mobile_app_assignment_item_request_builder.MobileAppAssignmentItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .assignments.item import mobile_app_assignment_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["mobileAppAssignment%2Did"] = id
+        return mobile_app_assignment_item_request_builder.MobileAppAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    def categories_by_id(self,id: str) -> mobile_app_category_item_request_builder.MobileAppCategoryItemRequestBuilder:
+        """
+        Provides operations to manage the categories property of the microsoft.graph.mobileApp entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: mobile_app_category_item_request_builder.MobileAppCategoryItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .categories.item import mobile_app_category_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["mobileAppCategory%2Did"] = id
+        return mobile_app_category_item_request_builder.MobileAppCategoryItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def delete(self,request_configuration: Optional[MobileAppItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property mobileApps for deviceAppManagement
@@ -156,6 +90,8 @@ class MobileAppItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -173,6 +109,8 @@ class MobileAppItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .device_statuses.item import mobile_app_install_status_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["mobileAppInstallStatus%2Did"] = id
         return mobile_app_install_status_item_request_builder.MobileAppInstallStatusItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -187,12 +125,16 @@ class MobileAppItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import mobile_app
+
         return await self.request_adapter.send_async(request_info, mobile_app.MobileApp, error_mapping)
     
     def get_related_app_states_with_user_principal_name_with_device_id(self,device_id: Optional[str] = None, user_principal_name: Optional[str] = None) -> get_related_app_states_with_user_principal_name_with_device_id_request_builder.GetRelatedAppStatesWithUserPrincipalNameWithDeviceIdRequestBuilder:
@@ -207,7 +149,9 @@ class MobileAppItemRequestBuilder():
             raise Exception("device_id cannot be undefined")
         if user_principal_name is None:
             raise Exception("user_principal_name cannot be undefined")
-        return get_related_app_states_with_user_principal_name_with_device_id_request_builder.GetRelatedAppStatesWithUserPrincipalNameWithDeviceIdRequestBuilder(self.request_adapter, self.path_parameters, deviceId, userPrincipalName)
+        from .get_related_app_states_with_user_principal_name_with_device_id import get_related_app_states_with_user_principal_name_with_device_id_request_builder
+
+        return get_related_app_states_with_user_principal_name_with_device_id_request_builder.GetRelatedAppStatesWithUserPrincipalNameWithDeviceIdRequestBuilder(self.request_adapter, self.path_parameters, device_id, user_principal_name)
     
     async def patch(self,body: Optional[mobile_app.MobileApp] = None, request_configuration: Optional[MobileAppItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[mobile_app.MobileApp]:
         """
@@ -222,12 +166,16 @@ class MobileAppItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import mobile_app
+
         return await self.request_adapter.send_async(request_info, mobile_app.MobileApp, error_mapping)
     
     def relationships_by_id(self,id: str) -> mobile_app_relationship_item_request_builder.MobileAppRelationshipItemRequestBuilder:
@@ -239,6 +187,8 @@ class MobileAppItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .relationships.item import mobile_app_relationship_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["mobileAppRelationship%2Did"] = id
         return mobile_app_relationship_item_request_builder.MobileAppRelationshipItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -307,9 +257,101 @@ class MobileAppItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .user_statuses.item import user_app_install_status_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["userAppInstallStatus%2Did"] = id
         return user_app_install_status_item_request_builder.UserAppInstallStatusItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    @property
+    def assign(self) -> assign_request_builder.AssignRequestBuilder:
+        """
+        Provides operations to call the assign method.
+        """
+        from .assign import assign_request_builder
+
+        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
+        """
+        Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.
+        """
+        from .assignments import assignments_request_builder
+
+        return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def categories(self) -> categories_request_builder.CategoriesRequestBuilder:
+        """
+        Provides operations to manage the categories property of the microsoft.graph.mobileApp entity.
+        """
+        from .categories import categories_request_builder
+
+        return categories_request_builder.CategoriesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def device_statuses(self) -> device_statuses_request_builder.DeviceStatusesRequestBuilder:
+        """
+        Provides operations to manage the deviceStatuses property of the microsoft.graph.mobileApp entity.
+        """
+        from .device_statuses import device_statuses_request_builder
+
+        return device_statuses_request_builder.DeviceStatusesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_managed_mobile_lob_app(self) -> graph_managed_mobile_lob_app_request_builder.GraphManagedMobileLobAppRequestBuilder:
+        """
+        Casts the previous resource to managedMobileLobApp.
+        """
+        from .graph_managed_mobile_lob_app import graph_managed_mobile_lob_app_request_builder
+
+        return graph_managed_mobile_lob_app_request_builder.GraphManagedMobileLobAppRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_mobile_lob_app(self) -> graph_mobile_lob_app_request_builder.GraphMobileLobAppRequestBuilder:
+        """
+        Casts the previous resource to mobileLobApp.
+        """
+        from .graph_mobile_lob_app import graph_mobile_lob_app_request_builder
+
+        return graph_mobile_lob_app_request_builder.GraphMobileLobAppRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def install_summary(self) -> install_summary_request_builder.InstallSummaryRequestBuilder:
+        """
+        Provides operations to manage the installSummary property of the microsoft.graph.mobileApp entity.
+        """
+        from .install_summary import install_summary_request_builder
+
+        return install_summary_request_builder.InstallSummaryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def relationships(self) -> relationships_request_builder.RelationshipsRequestBuilder:
+        """
+        Provides operations to manage the relationships property of the microsoft.graph.mobileApp entity.
+        """
+        from .relationships import relationships_request_builder
+
+        return relationships_request_builder.RelationshipsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def update_relationships(self) -> update_relationships_request_builder.UpdateRelationshipsRequestBuilder:
+        """
+        Provides operations to call the updateRelationships method.
+        """
+        from .update_relationships import update_relationships_request_builder
+
+        return update_relationships_request_builder.UpdateRelationshipsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def user_statuses(self) -> user_statuses_request_builder.UserStatusesRequestBuilder:
+        """
+        Provides operations to manage the userStatuses property of the microsoft.graph.mobileApp entity.
+        """
+        from .user_statuses import user_statuses_request_builder
+
+        return user_statuses_request_builder.UserStatusesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class MobileAppItemRequestBuilderDeleteRequestConfiguration():
@@ -328,12 +370,6 @@ class MobileAppItemRequestBuilder():
         """
         The mobile apps.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -349,6 +385,12 @@ class MobileAppItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class MobileAppItemRequestBuilderGetRequestConfiguration():

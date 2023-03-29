@@ -1,16 +1,33 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-group = lazy_import('msgraph.generated.models.group')
-printer = lazy_import('msgraph.generated.models.printer')
-printer_base = lazy_import('msgraph.generated.models.printer_base')
-printer_share_viewpoint = lazy_import('msgraph.generated.models.printer_share_viewpoint')
-user = lazy_import('msgraph.generated.models.user')
+if TYPE_CHECKING:
+    from . import group, printer, printer_base, printer_share_viewpoint, user
+
+from . import printer_base
 
 class PrinterShare(printer_base.PrinterBase):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new PrinterShare and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.printerShare"
+        # If true, all users and groups will be granted access to this printer share. This supersedes the allow lists defined by the allowedUsers and allowedGroups navigation properties.
+        self._allow_all_users: Optional[bool] = None
+        # The groups whose users have access to print using the printer.
+        self._allowed_groups: Optional[List[group.Group]] = None
+        # The users who have access to print using the printer.
+        self._allowed_users: Optional[List[user.User]] = None
+        # The DateTimeOffset when the printer share was created. Read-only.
+        self._created_date_time: Optional[datetime] = None
+        # The printer that this printer share is related to.
+        self._printer: Optional[printer.Printer] = None
+        # Additional data for a printer share as viewed by the signed-in user.
+        self._view_point: Optional[printer_share_viewpoint.PrinterShareViewpoint] = None
+    
     @property
     def allow_all_users(self,) -> Optional[bool]:
         """
@@ -62,25 +79,6 @@ class PrinterShare(printer_base.PrinterBase):
         """
         self._allowed_users = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new PrinterShare and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.printerShare"
-        # If true, all users and groups will be granted access to this printer share. This supersedes the allow lists defined by the allowedUsers and allowedGroups navigation properties.
-        self._allow_all_users: Optional[bool] = None
-        # The groups whose users have access to print using the printer.
-        self._allowed_groups: Optional[List[group.Group]] = None
-        # The users who have access to print using the printer.
-        self._allowed_users: Optional[List[user.User]] = None
-        # The DateTimeOffset when the printer share was created. Read-only.
-        self._created_date_time: Optional[datetime] = None
-        # The printer that this printer share is related to.
-        self._printer: Optional[printer.Printer] = None
-        # Additional data for a printer share as viewed by the signed-in user.
-        self._view_point: Optional[printer_share_viewpoint.PrinterShareViewpoint] = None
-    
     @property
     def created_date_time(self,) -> Optional[datetime]:
         """
@@ -115,7 +113,9 @@ class PrinterShare(printer_base.PrinterBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import group, printer, printer_base, printer_share_viewpoint, user
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowedGroups": lambda n : setattr(self, 'allowed_groups', n.get_collection_of_object_values(group.Group)),
             "allowedUsers": lambda n : setattr(self, 'allowed_users', n.get_collection_of_object_values(user.User)),
             "allowAllUsers": lambda n : setattr(self, 'allow_all_users', n.get_bool_value()),

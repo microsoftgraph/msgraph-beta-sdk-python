@@ -1,30 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-management_category = lazy_import('msgraph.generated.models.managed_tenants.management_category')
-workload_action = lazy_import('msgraph.generated.models.managed_tenants.workload_action')
+if TYPE_CHECKING:
+    from . import management_category, workload_action
+    from .. import entity
+
+from .. import entity
 
 class ManagementAction(entity.Entity):
-    @property
-    def category(self,) -> Optional[management_category.ManagementCategory]:
-        """
-        Gets the category property value. The category property
-        Returns: Optional[management_category.ManagementCategory]
-        """
-        return self._category
-    
-    @category.setter
-    def category(self,value: Optional[management_category.ManagementCategory] = None) -> None:
-        """
-        Sets the category property value. The category property
-        Args:
-            value: Value to set for the category property.
-        """
-        self._category = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new managementAction and sets the default values.
@@ -44,6 +28,23 @@ class ManagementAction(entity.Entity):
         self._reference_template_version: Optional[int] = None
         # The collection of workload actions associated with the management action. Required. Read-only.
         self._workload_actions: Optional[List[workload_action.WorkloadAction]] = None
+    
+    @property
+    def category(self,) -> Optional[management_category.ManagementCategory]:
+        """
+        Gets the category property value. The category property
+        Returns: Optional[management_category.ManagementCategory]
+        """
+        return self._category
+    
+    @category.setter
+    def category(self,value: Optional[management_category.ManagementCategory] = None) -> None:
+        """
+        Sets the category property value. The category property
+        Args:
+            value: Value to set for the category property.
+        """
+        self._category = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ManagementAction:
@@ -96,7 +97,10 @@ class ManagementAction(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import management_category, workload_action
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "category": lambda n : setattr(self, 'category', n.get_enum_value(management_category.ManagementCategory)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

@@ -1,29 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-windows_edge_kiosk_type = lazy_import('msgraph.generated.models.windows_edge_kiosk_type')
-windows_kiosk_app_base = lazy_import('msgraph.generated.models.windows_kiosk_app_base')
+if TYPE_CHECKING:
+    from . import windows_edge_kiosk_type, windows_kiosk_app_base
+
+from . import windows_kiosk_app_base
 
 class WindowsKioskWin32App(windows_kiosk_app_base.WindowsKioskAppBase):
-    @property
-    def classic_app_path(self,) -> Optional[str]:
-        """
-        Gets the classicAppPath property value. This is the classicapppath to be used by v4 Win32 app while in Kiosk Mode
-        Returns: Optional[str]
-        """
-        return self._classic_app_path
-    
-    @classic_app_path.setter
-    def classic_app_path(self,value: Optional[str] = None) -> None:
-        """
-        Sets the classicAppPath property value. This is the classicapppath to be used by v4 Win32 app while in Kiosk Mode
-        Args:
-            value: Value to set for the classic_app_path property.
-        """
-        self._classic_app_path = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new WindowsKioskWin32App and sets the default values.
@@ -40,6 +24,23 @@ class WindowsKioskWin32App(windows_kiosk_app_base.WindowsKioskAppBase):
         self._edge_kiosk_type: Optional[windows_edge_kiosk_type.WindowsEdgeKioskType] = None
         # Edge first run flag for Edge kiosk mode
         self._edge_no_first_run: Optional[bool] = None
+    
+    @property
+    def classic_app_path(self,) -> Optional[str]:
+        """
+        Gets the classicAppPath property value. This is the classicapppath to be used by v4 Win32 app while in Kiosk Mode
+        Returns: Optional[str]
+        """
+        return self._classic_app_path
+    
+    @classic_app_path.setter
+    def classic_app_path(self,value: Optional[str] = None) -> None:
+        """
+        Sets the classicAppPath property value. This is the classicapppath to be used by v4 Win32 app while in Kiosk Mode
+        Args:
+            value: Value to set for the classic_app_path property.
+        """
+        self._classic_app_path = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsKioskWin32App:
@@ -126,7 +127,9 @@ class WindowsKioskWin32App(windows_kiosk_app_base.WindowsKioskAppBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import windows_edge_kiosk_type, windows_kiosk_app_base
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "classicAppPath": lambda n : setattr(self, 'classic_app_path', n.get_str_value()),
             "edgeKiosk": lambda n : setattr(self, 'edge_kiosk', n.get_str_value()),
             "edgeKioskIdleTimeoutMinutes": lambda n : setattr(self, 'edge_kiosk_idle_timeout_minutes', n.get_int_value()),

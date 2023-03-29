@@ -1,11 +1,31 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-teamwork_peripheral = lazy_import('msgraph.generated.models.teamwork_peripheral')
+if TYPE_CHECKING:
+    from . import teamwork_peripheral
 
 class TeamworkActivePeripherals(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new teamworkActivePeripherals and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The communicationSpeaker property
+        self._communication_speaker: Optional[teamwork_peripheral.TeamworkPeripheral] = None
+        # The contentCamera property
+        self._content_camera: Optional[teamwork_peripheral.TeamworkPeripheral] = None
+        # The microphone property
+        self._microphone: Optional[teamwork_peripheral.TeamworkPeripheral] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The roomCamera property
+        self._room_camera: Optional[teamwork_peripheral.TeamworkPeripheral] = None
+        # The speaker property
+        self._speaker: Optional[teamwork_peripheral.TeamworkPeripheral] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -39,26 +59,6 @@ class TeamworkActivePeripherals(AdditionalDataHolder, Parsable):
             value: Value to set for the communication_speaker property.
         """
         self._communication_speaker = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new teamworkActivePeripherals and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The communicationSpeaker property
-        self._communication_speaker: Optional[teamwork_peripheral.TeamworkPeripheral] = None
-        # The contentCamera property
-        self._content_camera: Optional[teamwork_peripheral.TeamworkPeripheral] = None
-        # The microphone property
-        self._microphone: Optional[teamwork_peripheral.TeamworkPeripheral] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The roomCamera property
-        self._room_camera: Optional[teamwork_peripheral.TeamworkPeripheral] = None
-        # The speaker property
-        self._speaker: Optional[teamwork_peripheral.TeamworkPeripheral] = None
     
     @property
     def content_camera(self,) -> Optional[teamwork_peripheral.TeamworkPeripheral]:
@@ -94,7 +94,9 @@ class TeamworkActivePeripherals(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import teamwork_peripheral
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "communicationSpeaker": lambda n : setattr(self, 'communication_speaker', n.get_object_value(teamwork_peripheral.TeamworkPeripheral)),
             "contentCamera": lambda n : setattr(self, 'content_camera', n.get_object_value(teamwork_peripheral.TeamworkPeripheral)),
             "microphone": lambda n : setattr(self, 'microphone', n.get_object_value(teamwork_peripheral.TeamworkPeripheral)),

@@ -1,11 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-validation_result = lazy_import('msgraph.generated.models.validation_result')
+if TYPE_CHECKING:
+    from . import validation_result
 
 class PasswordValidationInformation(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new passwordValidationInformation and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Specifies whether the password is valid based on the calculation of the results in the validationResults property. Not nullable. Read-only.
+        self._is_valid: Optional[bool] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The list of password validation rules and whether the password passed those rules. Not nullable. Read-only.
+        self._validation_results: Optional[List[validation_result.ValidationResult]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -22,20 +36,6 @@ class PasswordValidationInformation(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new passwordValidationInformation and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Specifies whether the password is valid based on the calculation of the results in the validationResults property. Not nullable. Read-only.
-        self._is_valid: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The list of password validation rules and whether the password passed those rules. Not nullable. Read-only.
-        self._validation_results: Optional[List[validation_result.ValidationResult]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PasswordValidationInformation:
@@ -54,7 +54,9 @@ class PasswordValidationInformation(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import validation_result
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "isValid": lambda n : setattr(self, 'is_valid', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "validationResults": lambda n : setattr(self, 'validation_results', n.get_collection_of_object_values(validation_result.ValidationResult)),

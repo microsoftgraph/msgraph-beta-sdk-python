@@ -1,10 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
-url_to_item_resolver_base = lazy_import('msgraph.generated.models.external_connectors.url_to_item_resolver_base')
+if TYPE_CHECKING:
+    from . import url_to_item_resolver_base
+    from .. import base_collection_pagination_count_response
+
+from .. import base_collection_pagination_count_response
 
 class UrlToItemResolverBaseCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
     def __init__(self,) -> None:
@@ -32,7 +34,10 @@ class UrlToItemResolverBaseCollectionResponse(base_collection_pagination_count_r
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import url_to_item_resolver_base
+        from .. import base_collection_pagination_count_response
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "value": lambda n : setattr(self, 'value', n.get_collection_of_object_values(url_to_item_resolver_base.UrlToItemResolverBase)),
         }
         super_fields = super().get_field_deserializers()

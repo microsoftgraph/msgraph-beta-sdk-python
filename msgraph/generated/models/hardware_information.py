@@ -1,18 +1,104 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_guard_local_system_authority_credential_guard_state = lazy_import('msgraph.generated.models.device_guard_local_system_authority_credential_guard_state')
-device_guard_virtualization_based_security_hardware_requirement_state = lazy_import('msgraph.generated.models.device_guard_virtualization_based_security_hardware_requirement_state')
-device_guard_virtualization_based_security_state = lazy_import('msgraph.generated.models.device_guard_virtualization_based_security_state')
-device_licensing_status = lazy_import('msgraph.generated.models.device_licensing_status')
-shared_apple_device_user = lazy_import('msgraph.generated.models.shared_apple_device_user')
+if TYPE_CHECKING:
+    from . import device_guard_local_system_authority_credential_guard_state, device_guard_virtualization_based_security_hardware_requirement_state, device_guard_virtualization_based_security_state, device_licensing_status, shared_apple_device_user
 
 class HardwareInformation(AdditionalDataHolder, Parsable):
     """
     Hardware information of a given device.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new hardwareInformation and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The number of charge cycles the device’s current battery has gone through. Valid values 0 to 2147483647
+        self._battery_charge_cycles: Optional[int] = None
+        # The device’s current battery’s health percentage. Valid values 0 to 100
+        self._battery_health_percentage: Optional[int] = None
+        # The battery level, between 0.0 and 100, or null if the battery level cannot be determined. The update frequency of this property is per-checkin. Note this property is currently supported only on devices running iOS 5.0 and later, and is available only when Device Information access right is obtained. Valid values 0 to 100
+        self._battery_level_percentage: Optional[float] = None
+        # The serial number of the device’s current battery
+        self._battery_serial_number: Optional[str] = None
+        # Cellular technology of the device
+        self._cellular_technology: Optional[str] = None
+        # Returns the fully qualified domain name of the device (if any). If the device is not domain-joined, it returns an empty string.
+        self._device_full_qualified_domain_name: Optional[str] = None
+        # The deviceGuardLocalSystemAuthorityCredentialGuardState property
+        self._device_guard_local_system_authority_credential_guard_state: Optional[device_guard_local_system_authority_credential_guard_state.DeviceGuardLocalSystemAuthorityCredentialGuardState] = None
+        # The deviceGuardVirtualizationBasedSecurityHardwareRequirementState property
+        self._device_guard_virtualization_based_security_hardware_requirement_state: Optional[device_guard_virtualization_based_security_hardware_requirement_state.DeviceGuardVirtualizationBasedSecurityHardwareRequirementState] = None
+        # The deviceGuardVirtualizationBasedSecurityState property
+        self._device_guard_virtualization_based_security_state: Optional[device_guard_virtualization_based_security_state.DeviceGuardVirtualizationBasedSecurityState] = None
+        # A standard error code indicating the last error, or 0 indicating no error (default). The update frequency of this property is daily. Note this property is currently supported only for Windows based Device based subscription licensing. Valid values 0 to 2147483647
+        self._device_licensing_last_error_code: Optional[int] = None
+        # Error text message as a descripition for deviceLicensingLastErrorCode. The update frequency of this property is daily. Note this property is currently supported only for Windows based Device based subscription licensing.
+        self._device_licensing_last_error_description: Optional[str] = None
+        # Indicates the device licensing status after Windows device based subscription has been enabled.
+        self._device_licensing_status: Optional[device_licensing_status.DeviceLicensingStatus] = None
+        # eSIM identifier
+        self._esim_identifier: Optional[str] = None
+        # Free storage space of the device.
+        self._free_storage_space: Optional[int] = None
+        # IMEI
+        self._imei: Optional[str] = None
+        # IPAddressV4
+        self._ip_address_v4: Optional[str] = None
+        # Encryption status of the device
+        self._is_encrypted: Optional[bool] = None
+        # Shared iPad
+        self._is_shared_device: Optional[bool] = None
+        # Supervised mode of the device
+        self._is_supervised: Optional[bool] = None
+        # Manufacturer of the device
+        self._manufacturer: Optional[str] = None
+        # MEID
+        self._meid: Optional[str] = None
+        # Model of the device
+        self._model: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # String that specifies the OS edition.
+        self._operating_system_edition: Optional[str] = None
+        # Operating system language of the device
+        self._operating_system_language: Optional[str] = None
+        # Int that specifies the Windows Operating System ProductType. More details here https://go.microsoft.com/fwlink/?linkid=2126950. Valid values 0 to 2147483647
+        self._operating_system_product_type: Optional[int] = None
+        # Operating System Build Number on Android device
+        self._os_build_number: Optional[str] = None
+        # Phone number of the device
+        self._phone_number: Optional[str] = None
+        # The product name, e.g. iPad8,12 etc. The update frequency of this property is weekly. Note this property is currently supported only on iOS/MacOS devices, and is available only when Device Information access right is obtained.
+        self._product_name: Optional[str] = None
+        # The number of users currently on this device, or null (default) if the value of this property cannot be determined. The update frequency of this property is per-checkin. Note this property is currently supported only on devices running iOS 13.4 and later, and is available only when Device Information access right is obtained. Valid values 0 to 2147483647
+        self._resident_users_count: Optional[int] = None
+        # Serial number.
+        self._serial_number: Optional[str] = None
+        # All users on the shared Apple device
+        self._shared_device_cached_users: Optional[List[shared_apple_device_user.SharedAppleDeviceUser]] = None
+        # SubnetAddress
+        self._subnet_address: Optional[str] = None
+        # Subscriber carrier of the device
+        self._subscriber_carrier: Optional[str] = None
+        # BIOS version as reported by SMBIOS
+        self._system_management_b_i_o_s_version: Optional[str] = None
+        # Total storage space of the device.
+        self._total_storage_space: Optional[int] = None
+        # The identifying information that uniquely names the TPM manufacturer
+        self._tpm_manufacturer: Optional[str] = None
+        # String that specifies the specification version.
+        self._tpm_specification_version: Optional[str] = None
+        # The version of the TPM, as specified by the manufacturer
+        self._tpm_version: Optional[str] = None
+        # WiFi MAC address of the device
+        self._wifi_mac: Optional[str] = None
+        # A list of wired IPv4 addresses. The update frequency (the maximum delay for the change of property value to be synchronized from the device to the cloud storage) of this property is daily. Note this property is currently supported only on devices running on Windows.
+        self._wired_i_pv4_addresses: Optional[List[str]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -114,96 +200,6 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
             value: Value to set for the cellular_technology property.
         """
         self._cellular_technology = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new hardwareInformation and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The number of charge cycles the device’s current battery has gone through. Valid values 0 to 2147483647
-        self._battery_charge_cycles: Optional[int] = None
-        # The device’s current battery’s health percentage. Valid values 0 to 100
-        self._battery_health_percentage: Optional[int] = None
-        # The battery level, between 0.0 and 100, or null if the battery level cannot be determined. The update frequency of this property is per-checkin. Note this property is currently supported only on devices running iOS 5.0 and later, and is available only when Device Information access right is obtained. Valid values 0 to 100
-        self._battery_level_percentage: Optional[float] = None
-        # The serial number of the device’s current battery
-        self._battery_serial_number: Optional[str] = None
-        # Cellular technology of the device
-        self._cellular_technology: Optional[str] = None
-        # Returns the fully qualified domain name of the device (if any). If the device is not domain-joined, it returns an empty string.
-        self._device_full_qualified_domain_name: Optional[str] = None
-        # The deviceGuardLocalSystemAuthorityCredentialGuardState property
-        self._device_guard_local_system_authority_credential_guard_state: Optional[device_guard_local_system_authority_credential_guard_state.DeviceGuardLocalSystemAuthorityCredentialGuardState] = None
-        # The deviceGuardVirtualizationBasedSecurityHardwareRequirementState property
-        self._device_guard_virtualization_based_security_hardware_requirement_state: Optional[device_guard_virtualization_based_security_hardware_requirement_state.DeviceGuardVirtualizationBasedSecurityHardwareRequirementState] = None
-        # The deviceGuardVirtualizationBasedSecurityState property
-        self._device_guard_virtualization_based_security_state: Optional[device_guard_virtualization_based_security_state.DeviceGuardVirtualizationBasedSecurityState] = None
-        # A standard error code indicating the last error, or 0 indicating no error (default). The update frequency of this property is daily. Note this property is currently supported only for Windows based Device based subscription licensing. Valid values 0 to 2147483647
-        self._device_licensing_last_error_code: Optional[int] = None
-        # Error text message as a descripition for deviceLicensingLastErrorCode. The update frequency of this property is daily. Note this property is currently supported only for Windows based Device based subscription licensing.
-        self._device_licensing_last_error_description: Optional[str] = None
-        # Indicates the device licensing status after Windows device based subscription has been enabled.
-        self._device_licensing_status: Optional[device_licensing_status.DeviceLicensingStatus] = None
-        # eSIM identifier
-        self._esim_identifier: Optional[str] = None
-        # Free storage space of the device.
-        self._free_storage_space: Optional[int] = None
-        # IMEI
-        self._imei: Optional[str] = None
-        # IPAddressV4
-        self._ip_address_v4: Optional[str] = None
-        # Encryption status of the device
-        self._is_encrypted: Optional[bool] = None
-        # Shared iPad
-        self._is_shared_device: Optional[bool] = None
-        # Supervised mode of the device
-        self._is_supervised: Optional[bool] = None
-        # Manufacturer of the device
-        self._manufacturer: Optional[str] = None
-        # MEID
-        self._meid: Optional[str] = None
-        # Model of the device
-        self._model: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # String that specifies the OS edition.
-        self._operating_system_edition: Optional[str] = None
-        # Operating system language of the device
-        self._operating_system_language: Optional[str] = None
-        # Int that specifies the Windows Operating System ProductType. More details here https://go.microsoft.com/fwlink/?linkid=2126950. Valid values 0 to 2147483647
-        self._operating_system_product_type: Optional[int] = None
-        # Operating System Build Number on Android device
-        self._os_build_number: Optional[str] = None
-        # Phone number of the device
-        self._phone_number: Optional[str] = None
-        # The product name, e.g. iPad8,12 etc. The update frequency of this property is weekly. Note this property is currently supported only on iOS/MacOS devices, and is available only when Device Information access right is obtained.
-        self._product_name: Optional[str] = None
-        # The number of users currently on this device, or null (default) if the value of this property cannot be determined. The update frequency of this property is per-checkin. Note this property is currently supported only on devices running iOS 13.4 and later, and is available only when Device Information access right is obtained. Valid values 0 to 2147483647
-        self._resident_users_count: Optional[int] = None
-        # Serial number.
-        self._serial_number: Optional[str] = None
-        # All users on the shared Apple device
-        self._shared_device_cached_users: Optional[List[shared_apple_device_user.SharedAppleDeviceUser]] = None
-        # SubnetAddress
-        self._subnet_address: Optional[str] = None
-        # Subscriber carrier of the device
-        self._subscriber_carrier: Optional[str] = None
-        # BIOS version as reported by SMBIOS
-        self._system_management_b_i_o_s_version: Optional[str] = None
-        # Total storage space of the device.
-        self._total_storage_space: Optional[int] = None
-        # The identifying information that uniquely names the TPM manufacturer
-        self._tpm_manufacturer: Optional[str] = None
-        # String that specifies the specification version.
-        self._tpm_specification_version: Optional[str] = None
-        # The version of the TPM, as specified by the manufacturer
-        self._tpm_version: Optional[str] = None
-        # WiFi MAC address of the device
-        self._wifi_mac: Optional[str] = None
-        # A list of wired IPv4 addresses. The update frequency (the maximum delay for the change of property value to be synchronized from the device to the cloud storage) of this property is daily. Note this property is currently supported only on devices running on Windows.
-        self._wired_i_pv4_addresses: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> HardwareInformation:
@@ -375,7 +371,9 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_guard_local_system_authority_credential_guard_state, device_guard_virtualization_based_security_hardware_requirement_state, device_guard_virtualization_based_security_state, device_licensing_status, shared_apple_device_user
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "batteryChargeCycles": lambda n : setattr(self, 'battery_charge_cycles', n.get_int_value()),
             "batteryHealthPercentage": lambda n : setattr(self, 'battery_health_percentage', n.get_int_value()),
             "batteryLevelPercentage": lambda n : setattr(self, 'battery_level_percentage', n.get_float_value()),

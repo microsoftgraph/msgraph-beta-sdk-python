@@ -1,10 +1,27 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class EducationSynchronizationCustomization(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new educationSynchronizationCustomization and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Indicates whether the display name of the resource can be overwritten by the sync.
+        self._allow_display_name_update: Optional[bool] = None
+        # Indicates whether synchronization of the parent entity is deferred to a later date.
+        self._is_sync_deferred: Optional[bool] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The collection of property names to sync. If set to null, all properties will be synchronized. Does not apply to Student Enrollments or Teacher Rosters
+        self._optional_properties_to_sync: Optional[List[str]] = None
+        # The date that the synchronization should start. This value should be set to a future date. If set to null, the resource will be synchronized when the profile setup completes. Only applies to Student Enrollments
+        self._synchronization_start_date: Optional[datetime] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -39,24 +56,6 @@ class EducationSynchronizationCustomization(AdditionalDataHolder, Parsable):
         """
         self._allow_display_name_update = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new educationSynchronizationCustomization and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Indicates whether the display name of the resource can be overwritten by the sync.
-        self._allow_display_name_update: Optional[bool] = None
-        # Indicates whether synchronization of the parent entity is deferred to a later date.
-        self._is_sync_deferred: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The collection of property names to sync. If set to null, all properties will be synchronized. Does not apply to Student Enrollments or Teacher Rosters
-        self._optional_properties_to_sync: Optional[List[str]] = None
-        # The date that the synchronization should start. This value should be set to a future date. If set to null, the resource will be synchronized when the profile setup completes. Only applies to Student Enrollments
-        self._synchronization_start_date: Optional[datetime] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EducationSynchronizationCustomization:
         """
@@ -74,7 +73,7 @@ class EducationSynchronizationCustomization(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowDisplayNameUpdate": lambda n : setattr(self, 'allow_display_name_update', n.get_bool_value()),
             "isSyncDeferred": lambda n : setattr(self, 'is_sync_deferred', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

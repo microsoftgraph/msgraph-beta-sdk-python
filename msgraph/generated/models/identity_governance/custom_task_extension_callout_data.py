@@ -1,13 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-custom_extension_data = lazy_import('msgraph.generated.models.custom_extension_data')
-user = lazy_import('msgraph.generated.models.user')
-task = lazy_import('msgraph.generated.models.identity_governance.task')
-task_processing_result = lazy_import('msgraph.generated.models.identity_governance.task_processing_result')
-workflow = lazy_import('msgraph.generated.models.identity_governance.workflow')
+if TYPE_CHECKING:
+    from . import task, task_processing_result, workflow
+    from .. import custom_extension_data, user
+
+from .. import custom_extension_data
 
 class CustomTaskExtensionCalloutData(custom_extension_data.CustomExtensionData):
     def __init__(self,) -> None:
@@ -42,7 +41,10 @@ class CustomTaskExtensionCalloutData(custom_extension_data.CustomExtensionData):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import task, task_processing_result, workflow
+        from .. import custom_extension_data, user
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "subject": lambda n : setattr(self, 'subject', n.get_object_value(user.User)),
             "task": lambda n : setattr(self, 'task', n.get_object_value(task.Task)),
             "taskProcessingresult": lambda n : setattr(self, 'task_processingresult', n.get_object_value(task_processing_result.TaskProcessingResult)),

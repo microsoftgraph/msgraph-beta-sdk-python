@@ -1,31 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-lifecycle_workflow_category = lazy_import('msgraph.generated.models.identity_governance.lifecycle_workflow_category')
-task = lazy_import('msgraph.generated.models.identity_governance.task')
-workflow_execution_conditions = lazy_import('msgraph.generated.models.identity_governance.workflow_execution_conditions')
+if TYPE_CHECKING:
+    from . import lifecycle_workflow_category, task, workflow_execution_conditions
+    from .. import entity
+
+from .. import entity
 
 class WorkflowTemplate(entity.Entity):
-    @property
-    def category(self,) -> Optional[lifecycle_workflow_category.LifecycleWorkflowCategory]:
-        """
-        Gets the category property value. The category property
-        Returns: Optional[lifecycle_workflow_category.LifecycleWorkflowCategory]
-        """
-        return self._category
-    
-    @category.setter
-    def category(self,value: Optional[lifecycle_workflow_category.LifecycleWorkflowCategory] = None) -> None:
-        """
-        Sets the category property value. The category property
-        Args:
-            value: Value to set for the category property.
-        """
-        self._category = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new workflowTemplate and sets the default values.
@@ -43,6 +26,23 @@ class WorkflowTemplate(entity.Entity):
         self.odata_type: Optional[str] = None
         # Represents the configured tasks to execute and their execution sequence within a workflow. This relationship is expanded by default.
         self._tasks: Optional[List[task.Task]] = None
+    
+    @property
+    def category(self,) -> Optional[lifecycle_workflow_category.LifecycleWorkflowCategory]:
+        """
+        Gets the category property value. The category property
+        Returns: Optional[lifecycle_workflow_category.LifecycleWorkflowCategory]
+        """
+        return self._category
+    
+    @category.setter
+    def category(self,value: Optional[lifecycle_workflow_category.LifecycleWorkflowCategory] = None) -> None:
+        """
+        Sets the category property value. The category property
+        Args:
+            value: Value to set for the category property.
+        """
+        self._category = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WorkflowTemplate:
@@ -112,7 +112,10 @@ class WorkflowTemplate(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import lifecycle_workflow_category, task, workflow_execution_conditions
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "category": lambda n : setattr(self, 'category', n.get_enum_value(lifecycle_workflow_category.LifecycleWorkflowCategory)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

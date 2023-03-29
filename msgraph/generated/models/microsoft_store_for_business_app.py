@@ -1,12 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-microsoft_store_for_business_license_type = lazy_import('msgraph.generated.models.microsoft_store_for_business_license_type')
-mobile_app = lazy_import('msgraph.generated.models.mobile_app')
-mobile_contained_app = lazy_import('msgraph.generated.models.mobile_contained_app')
-vpp_licensing_type = lazy_import('msgraph.generated.models.vpp_licensing_type')
+if TYPE_CHECKING:
+    from . import microsoft_store_for_business_license_type, mobile_app, mobile_contained_app, vpp_licensing_type
+
+from . import mobile_app
 
 class MicrosoftStoreForBusinessApp(mobile_app.MobileApp):
     def __init__(self,) -> None:
@@ -64,7 +63,9 @@ class MicrosoftStoreForBusinessApp(mobile_app.MobileApp):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import microsoft_store_for_business_license_type, mobile_app, mobile_contained_app, vpp_licensing_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "containedApps": lambda n : setattr(self, 'contained_apps', n.get_collection_of_object_values(mobile_contained_app.MobileContainedApp)),
             "licenseType": lambda n : setattr(self, 'license_type', n.get_enum_value(microsoft_store_for_business_license_type.MicrosoftStoreForBusinessLicenseType)),
             "licensingType": lambda n : setattr(self, 'licensing_type', n.get_object_value(vpp_licensing_type.VppLicensingType)),

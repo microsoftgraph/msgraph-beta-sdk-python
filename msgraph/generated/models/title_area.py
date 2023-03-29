@@ -1,13 +1,41 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-server_processed_content = lazy_import('msgraph.generated.models.server_processed_content')
-title_area_layout_type = lazy_import('msgraph.generated.models.title_area_layout_type')
-title_area_text_alignment_type = lazy_import('msgraph.generated.models.title_area_text_alignment_type')
+if TYPE_CHECKING:
+    from . import server_processed_content, title_area_layout_type, title_area_text_alignment_type
 
 class TitleArea(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new titleArea and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Alternative text on the title area.
+        self._alternative_text: Optional[str] = None
+        # Indicates whether the title area has a gradient effect enabled.
+        self._enable_gradient_effect: Optional[bool] = None
+        # URL of the image in the title area.
+        self._image_web_url: Optional[str] = None
+        # Enumeration value that indicates the layout of the title area. The possible values are: imageAndTitle, plain, colorBlock, overlap, unknownFutureValue.
+        self._layout: Optional[title_area_layout_type.TitleAreaLayoutType] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Contains collections of data that can be processed by server side services like search index and link fixup.
+        self._server_processed_content: Optional[server_processed_content.ServerProcessedContent] = None
+        # Indicates whether the author should be shown in title area.
+        self._show_author: Optional[bool] = None
+        # Indicates whether the published date should be shown in title area.
+        self._show_published_date: Optional[bool] = None
+        # Indicates whether the text block above title should be shown in title area.
+        self._show_text_block_above_title: Optional[bool] = None
+        # The text above title line.
+        self._text_above_title: Optional[str] = None
+        # Enumeration value that indicates the text alignment of the title area. The possible values are: left, center, unknownFutureValue.
+        self._text_alignment: Optional[title_area_text_alignment_type.TitleAreaTextAlignmentType] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -41,36 +69,6 @@ class TitleArea(AdditionalDataHolder, Parsable):
             value: Value to set for the alternative_text property.
         """
         self._alternative_text = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new titleArea and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Alternative text on the title area.
-        self._alternative_text: Optional[str] = None
-        # Indicates whether the title area has a gradient effect enabled.
-        self._enable_gradient_effect: Optional[bool] = None
-        # URL of the image in the title area.
-        self._image_web_url: Optional[str] = None
-        # Enumeration value that indicates the layout of the title area. The possible values are: imageAndTitle, plain, colorBlock, overlap, unknownFutureValue.
-        self._layout: Optional[title_area_layout_type.TitleAreaLayoutType] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Contains collections of data that can be processed by server side services like search index and link fixup.
-        self._server_processed_content: Optional[server_processed_content.ServerProcessedContent] = None
-        # Indicates whether the author should be shown in title area.
-        self._show_author: Optional[bool] = None
-        # Indicates whether the published date should be shown in title area.
-        self._show_published_date: Optional[bool] = None
-        # Indicates whether the text block above title should be shown in title area.
-        self._show_text_block_above_title: Optional[bool] = None
-        # The text above title line.
-        self._text_above_title: Optional[str] = None
-        # Enumeration value that indicates the text alignment of the title area. The possible values are: left, center, unknownFutureValue.
-        self._text_alignment: Optional[title_area_text_alignment_type.TitleAreaTextAlignmentType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TitleArea:
@@ -106,7 +104,9 @@ class TitleArea(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import server_processed_content, title_area_layout_type, title_area_text_alignment_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "alternativeText": lambda n : setattr(self, 'alternative_text', n.get_str_value()),
             "enableGradientEffect": lambda n : setattr(self, 'enable_gradient_effect', n.get_bool_value()),
             "imageWebUrl": lambda n : setattr(self, 'image_web_url', n.get_str_value()),

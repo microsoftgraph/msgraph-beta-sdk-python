@@ -1,32 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-governance_resource = lazy_import('msgraph.generated.models.governance_resource')
-governance_role_definition = lazy_import('msgraph.generated.models.governance_role_definition')
-governance_subject = lazy_import('msgraph.generated.models.governance_subject')
+if TYPE_CHECKING:
+    from . import entity, governance_resource, governance_role_definition, governance_subject
+
+from . import entity
 
 class GovernanceRoleAssignment(entity.Entity):
-    @property
-    def assignment_state(self,) -> Optional[str]:
-        """
-        Gets the assignmentState property value. The state of the assignment. The value can be Eligible for eligible assignment or Active if it is directly assigned Active by administrators, or activated on an eligible assignment by the users.
-        Returns: Optional[str]
-        """
-        return self._assignment_state
-    
-    @assignment_state.setter
-    def assignment_state(self,value: Optional[str] = None) -> None:
-        """
-        Sets the assignmentState property value. The state of the assignment. The value can be Eligible for eligible assignment or Active if it is directly assigned Active by administrators, or activated on an eligible assignment by the users.
-        Args:
-            value: Value to set for the assignment_state property.
-        """
-        self._assignment_state = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new governanceRoleAssignment and sets the default values.
@@ -62,6 +44,23 @@ class GovernanceRoleAssignment(entity.Entity):
         self._subject: Optional[governance_subject.GovernanceSubject] = None
         # Required. The ID of the subject which the role assignment is associated with.
         self._subject_id: Optional[str] = None
+    
+    @property
+    def assignment_state(self,) -> Optional[str]:
+        """
+        Gets the assignmentState property value. The state of the assignment. The value can be Eligible for eligible assignment or Active if it is directly assigned Active by administrators, or activated on an eligible assignment by the users.
+        Returns: Optional[str]
+        """
+        return self._assignment_state
+    
+    @assignment_state.setter
+    def assignment_state(self,value: Optional[str] = None) -> None:
+        """
+        Sets the assignmentState property value. The state of the assignment. The value can be Eligible for eligible assignment or Active if it is directly assigned Active by administrators, or activated on an eligible assignment by the users.
+        Args:
+            value: Value to set for the assignment_state property.
+        """
+        self._assignment_state = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GovernanceRoleAssignment:
@@ -114,7 +113,9 @@ class GovernanceRoleAssignment(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, governance_resource, governance_role_definition, governance_subject
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignmentState": lambda n : setattr(self, 'assignment_state', n.get_str_value()),
             "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
             "externalId": lambda n : setattr(self, 'external_id', n.get_str_value()),

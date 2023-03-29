@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-content_properties = lazy_import('msgraph.generated.models.content_properties')
-current_label = lazy_import('msgraph.generated.models.current_label')
+if TYPE_CHECKING:
+    from . import content_properties, current_label
+
+from . import content_properties
 
 class AttachmentContentProperties(content_properties.ContentProperties):
     def __init__(self,) -> None:
@@ -50,7 +51,9 @@ class AttachmentContentProperties(content_properties.ContentProperties):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import content_properties, current_label
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "currentLabel": lambda n : setattr(self, 'current_label', n.get_object_value(current_label.CurrentLabel)),
         }
         super_fields = super().get_field_deserializers()

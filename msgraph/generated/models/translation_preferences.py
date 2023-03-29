@@ -1,12 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-translation_behavior = lazy_import('msgraph.generated.models.translation_behavior')
-translation_language_override = lazy_import('msgraph.generated.models.translation_language_override')
+if TYPE_CHECKING:
+    from . import translation_behavior, translation_language_override
 
 class TranslationPreferences(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new translationPreferences and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Translation override behavior for languages, if any.Returned by default.
+        self._language_overrides: Optional[List[translation_language_override.TranslationLanguageOverride]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The user's preferred translation behavior.Returned by default. Not nullable.
+        self._translation_behavior: Optional[translation_behavior.TranslationBehavior] = None
+        # The list of languages the user does not need translated. This is computed from the authoringLanguages collection in regionalAndLanguageSettings, and the languageOverrides collection in translationPreferences. The list specifies neutral culture values that include the language code without any country or region association. For example, it would specify 'fr' for the neutral French culture, but not 'fr-FR' for the French culture in France. Returned by default. Read only.
+        self._untranslated_languages: Optional[List[str]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,22 +38,6 @@ class TranslationPreferences(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new translationPreferences and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Translation override behavior for languages, if any.Returned by default.
-        self._language_overrides: Optional[List[translation_language_override.TranslationLanguageOverride]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The user's preferred translation behavior.Returned by default. Not nullable.
-        self._translation_behavior: Optional[translation_behavior.TranslationBehavior] = None
-        # The list of languages the user does not need translated. This is computed from the authoringLanguages collection in regionalAndLanguageSettings, and the languageOverrides collection in translationPreferences. The list specifies neutral culture values that include the language code without any country or region association. For example, it would specify 'fr' for the neutral French culture, but not 'fr-FR' for the French culture in France. Returned by default. Read only.
-        self._untranslated_languages: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TranslationPreferences:
@@ -57,7 +56,9 @@ class TranslationPreferences(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import translation_behavior, translation_language_override
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "languageOverrides": lambda n : setattr(self, 'language_overrides', n.get_collection_of_object_values(translation_language_override.TranslationLanguageOverride)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "translationBehavior": lambda n : setattr(self, 'translation_behavior', n.get_enum_value(translation_behavior.TranslationBehavior)),

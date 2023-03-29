@@ -1,18 +1,53 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-alert_severity = lazy_import('msgraph.generated.models.managed_tenants.alert_severity')
-managed_tenant_alert = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_alert')
-managed_tenant_alert_rule_definition = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_alert_rule_definition')
-notification_destination = lazy_import('msgraph.generated.models.managed_tenants.notification_destination')
-notification_target = lazy_import('msgraph.generated.models.managed_tenants.notification_target')
-tenant_info = lazy_import('msgraph.generated.models.managed_tenants.tenant_info')
+if TYPE_CHECKING:
+    from . import alert_severity, managed_tenant_alert, managed_tenant_alert_rule_definition, notification_destination, notification_target, tenant_info
+    from .. import entity
+
+from .. import entity
 
 class ManagedTenantAlertRule(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new managedTenantAlertRule and sets the default values.
+        """
+        super().__init__()
+        # The alertDisplayName property
+        self._alert_display_name: Optional[str] = None
+        # The alertTTL property
+        self._alert_t_t_l: Optional[int] = None
+        # The alerts property
+        self._alerts: Optional[List[managed_tenant_alert.ManagedTenantAlert]] = None
+        # The createdByUserId property
+        self._created_by_user_id: Optional[str] = None
+        # The createdDateTime property
+        self._created_date_time: Optional[datetime] = None
+        # The description property
+        self._description: Optional[str] = None
+        # The displayName property
+        self._display_name: Optional[str] = None
+        # The lastActionByUserId property
+        self._last_action_by_user_id: Optional[str] = None
+        # The lastActionDateTime property
+        self._last_action_date_time: Optional[datetime] = None
+        # The lastRunDateTime property
+        self._last_run_date_time: Optional[datetime] = None
+        # The notificationFinalDestinations property
+        self._notification_final_destinations: Optional[notification_destination.NotificationDestination] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The ruleDefinition property
+        self._rule_definition: Optional[managed_tenant_alert_rule_definition.ManagedTenantAlertRuleDefinition] = None
+        # The severity property
+        self._severity: Optional[alert_severity.AlertSeverity] = None
+        # The targets property
+        self._targets: Optional[List[notification_target.NotificationTarget]] = None
+        # The tenantIds property
+        self._tenant_ids: Optional[List[tenant_info.TenantInfo]] = None
+    
     @property
     def alert_display_name(self,) -> Optional[str]:
         """
@@ -63,44 +98,6 @@ class ManagedTenantAlertRule(entity.Entity):
             value: Value to set for the alerts property.
         """
         self._alerts = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new managedTenantAlertRule and sets the default values.
-        """
-        super().__init__()
-        # The alertDisplayName property
-        self._alert_display_name: Optional[str] = None
-        # The alertTTL property
-        self._alert_t_t_l: Optional[int] = None
-        # The alerts property
-        self._alerts: Optional[List[managed_tenant_alert.ManagedTenantAlert]] = None
-        # The createdByUserId property
-        self._created_by_user_id: Optional[str] = None
-        # The createdDateTime property
-        self._created_date_time: Optional[datetime] = None
-        # The description property
-        self._description: Optional[str] = None
-        # The displayName property
-        self._display_name: Optional[str] = None
-        # The lastActionByUserId property
-        self._last_action_by_user_id: Optional[str] = None
-        # The lastActionDateTime property
-        self._last_action_date_time: Optional[datetime] = None
-        # The lastRunDateTime property
-        self._last_run_date_time: Optional[datetime] = None
-        # The notificationFinalDestinations property
-        self._notification_final_destinations: Optional[notification_destination.NotificationDestination] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The ruleDefinition property
-        self._rule_definition: Optional[managed_tenant_alert_rule_definition.ManagedTenantAlertRuleDefinition] = None
-        # The severity property
-        self._severity: Optional[alert_severity.AlertSeverity] = None
-        # The targets property
-        self._targets: Optional[List[notification_target.NotificationTarget]] = None
-        # The tenantIds property
-        self._tenant_ids: Optional[List[tenant_info.TenantInfo]] = None
     
     @property
     def created_by_user_id(self,) -> Optional[str]:
@@ -187,7 +184,10 @@ class ManagedTenantAlertRule(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import alert_severity, managed_tenant_alert, managed_tenant_alert_rule_definition, notification_destination, notification_target, tenant_info
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "alerts": lambda n : setattr(self, 'alerts', n.get_collection_of_object_values(managed_tenant_alert.ManagedTenantAlert)),
             "alertDisplayName": lambda n : setattr(self, 'alert_display_name', n.get_str_value()),
             "alertTTL": lambda n : setattr(self, 'alert_t_t_l', n.get_int_value()),

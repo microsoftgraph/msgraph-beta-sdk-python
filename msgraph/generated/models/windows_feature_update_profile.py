@@ -1,34 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-windows_feature_update_profile_assignment = lazy_import('msgraph.generated.models.windows_feature_update_profile_assignment')
-windows_update_rollout_settings = lazy_import('msgraph.generated.models.windows_update_rollout_settings')
+if TYPE_CHECKING:
+    from . import entity, windows_feature_update_profile_assignment, windows_update_rollout_settings
+
+from . import entity
 
 class WindowsFeatureUpdateProfile(entity.Entity):
     """
     Windows Feature Update Profile
     """
-    @property
-    def assignments(self,) -> Optional[List[windows_feature_update_profile_assignment.WindowsFeatureUpdateProfileAssignment]]:
-        """
-        Gets the assignments property value. The list of group assignments of the profile.
-        Returns: Optional[List[windows_feature_update_profile_assignment.WindowsFeatureUpdateProfileAssignment]]
-        """
-        return self._assignments
-    
-    @assignments.setter
-    def assignments(self,value: Optional[List[windows_feature_update_profile_assignment.WindowsFeatureUpdateProfileAssignment]] = None) -> None:
-        """
-        Sets the assignments property value. The list of group assignments of the profile.
-        Args:
-            value: Value to set for the assignments property.
-        """
-        self._assignments = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new windowsFeatureUpdateProfile and sets the default values.
@@ -56,6 +39,23 @@ class WindowsFeatureUpdateProfile(entity.Entity):
         self._role_scope_tag_ids: Optional[List[str]] = None
         # The windows update rollout settings, including offer start date time, offer end date time, and days between each set of offers.
         self._rollout_settings: Optional[windows_update_rollout_settings.WindowsUpdateRolloutSettings] = None
+    
+    @property
+    def assignments(self,) -> Optional[List[windows_feature_update_profile_assignment.WindowsFeatureUpdateProfileAssignment]]:
+        """
+        Gets the assignments property value. The list of group assignments of the profile.
+        Returns: Optional[List[windows_feature_update_profile_assignment.WindowsFeatureUpdateProfileAssignment]]
+        """
+        return self._assignments
+    
+    @assignments.setter
+    def assignments(self,value: Optional[List[windows_feature_update_profile_assignment.WindowsFeatureUpdateProfileAssignment]] = None) -> None:
+        """
+        Sets the assignments property value. The list of group assignments of the profile.
+        Args:
+            value: Value to set for the assignments property.
+        """
+        self._assignments = value
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
@@ -176,7 +176,9 @@ class WindowsFeatureUpdateProfile(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, windows_feature_update_profile_assignment, windows_update_rollout_settings
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(windows_feature_update_profile_assignment.WindowsFeatureUpdateProfileAssignment)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "deployableContentDisplayName": lambda n : setattr(self, 'deployable_content_display_name', n.get_str_value()),

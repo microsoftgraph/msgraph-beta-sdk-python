@@ -1,13 +1,36 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-action_state = lazy_import('msgraph.generated.models.action_state')
-cloud_pc_status_details = lazy_import('msgraph.generated.models.cloud_pc_status_details')
+if TYPE_CHECKING:
+    from . import action_state, cloud_pc_status_details
 
 class CloudPcRemoteActionResult(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new cloudPcRemoteActionResult and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The specified action. Supported values in the Microsoft Endpoint Manager portal are: Reprovision, Resize, Restore. Supported values in enterprise Cloud PC devices are: Reboot, Rename, Reprovision, Troubleshoot.
+        self._action_name: Optional[str] = None
+        # State of the action. Possible values are: None, pending, canceled, active, done, failed, notSupported. Read-only.
+        self._action_state: Optional[action_state.ActionState] = None
+        # The ID of the Cloud PC device on which the remote action is performed. Read-only.
+        self._cloud_pc_id: Optional[str] = None
+        # Last update time for action. The Timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as '2014-01-01T00:00:00Z'.
+        self._last_updated_date_time: Optional[datetime] = None
+        # The ID of the Intune managed device on which the remote action is performed. Read-only.
+        self._managed_device_id: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Time the action was initiated. The Timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as '2014-01-01T00:00:00Z'.
+        self._start_date_time: Optional[datetime] = None
+        # The details of the Cloud PC status.
+        self._status_details: Optional[cloud_pc_status_details.CloudPcStatusDetails] = None
+    
     @property
     def action_name(self,) -> Optional[str]:
         """
@@ -76,30 +99,6 @@ class CloudPcRemoteActionResult(AdditionalDataHolder, Parsable):
         """
         self._cloud_pc_id = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new cloudPcRemoteActionResult and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The specified action. Supported values in the Microsoft Endpoint Manager portal are: Reprovision, Resize, Restore. Supported values in enterprise Cloud PC devices are: Reboot, Rename, Reprovision, Troubleshoot.
-        self._action_name: Optional[str] = None
-        # State of the action. Possible values are: None, pending, canceled, active, done, failed, notSupported. Read-only.
-        self._action_state: Optional[action_state.ActionState] = None
-        # The ID of the Cloud PC device on which the remote action is performed. Read-only.
-        self._cloud_pc_id: Optional[str] = None
-        # Last update time for action. The Timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as '2014-01-01T00:00:00Z'.
-        self._last_updated_date_time: Optional[datetime] = None
-        # The ID of the Intune managed device on which the remote action is performed. Read-only.
-        self._managed_device_id: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Time the action was initiated. The Timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as '2014-01-01T00:00:00Z'.
-        self._start_date_time: Optional[datetime] = None
-        # The details of the Cloud PC status.
-        self._status_details: Optional[cloud_pc_status_details.CloudPcStatusDetails] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcRemoteActionResult:
         """
@@ -117,7 +116,9 @@ class CloudPcRemoteActionResult(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import action_state, cloud_pc_status_details
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "actionName": lambda n : setattr(self, 'action_name', n.get_str_value()),
             "actionState": lambda n : setattr(self, 'action_state', n.get_enum_value(action_state.ActionState)),
             "cloudPcId": lambda n : setattr(self, 'cloud_pc_id', n.get_str_value()),

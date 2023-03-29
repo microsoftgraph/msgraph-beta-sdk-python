@@ -1,13 +1,39 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from uuid import UUID
 
 class PowerliftIncidentMetadata(AdditionalDataHolder, Parsable):
     """
     Collection of app diagnostics associated with a user.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new powerliftIncidentMetadata and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The name of the application the diagnostic is from. Example: com.microsoft.CompanyPortal
+        self._application: Optional[str] = None
+        # The version of the application. Example: 5.2203.1
+        self._client_version: Optional[str] = None
+        # The time the app diagnostic was created. Example: 2022-04-19T17:24:45.313Z
+        self._created_at_date_time: Optional[datetime] = None
+        # The unique app diagnostic identifier as a user friendly 8 character hexadecimal string. Example: 8520467A
+        self._easy_id: Optional[str] = None
+        # A list of files that are associated with the diagnostic.
+        self._file_names: Optional[List[str]] = None
+        # The locale information of the application. Example: en-US
+        self._locale: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The device's OS the diagnostic is from. Example: iOS
+        self._platform: Optional[str] = None
+        # The unique identifier of the app diagnostic. Example: 8520467a-49a9-44a4-8447-8dfb8bec6726
+        self._powerlift_id: Optional[UUID] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -58,32 +84,6 @@ class PowerliftIncidentMetadata(AdditionalDataHolder, Parsable):
             value: Value to set for the client_version property.
         """
         self._client_version = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new powerliftIncidentMetadata and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The name of the application the diagnostic is from. Example: com.microsoft.CompanyPortal
-        self._application: Optional[str] = None
-        # The version of the application. Example: 5.2203.1
-        self._client_version: Optional[str] = None
-        # The time the app diagnostic was created. Example: 2022-04-19T17:24:45.313Z
-        self._created_at_date_time: Optional[datetime] = None
-        # The unique app diagnostic identifier as a user friendly 8 character hexadecimal string. Example: 8520467A
-        self._easy_id: Optional[str] = None
-        # A list of files that are associated with the diagnostic.
-        self._file_names: Optional[List[str]] = None
-        # The locale information of the application. Example: en-US
-        self._locale: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The device's OS the diagnostic is from. Example: iOS
-        self._platform: Optional[str] = None
-        # The unique identifier of the app diagnostic. Example: 8520467a-49a9-44a4-8447-8dfb8bec6726
-        self._powerlift_id: Optional[Guid] = None
     
     @property
     def created_at_date_time(self,) -> Optional[datetime]:
@@ -153,7 +153,7 @@ class PowerliftIncidentMetadata(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "application": lambda n : setattr(self, 'application', n.get_str_value()),
             "clientVersion": lambda n : setattr(self, 'client_version', n.get_str_value()),
             "createdAtDateTime": lambda n : setattr(self, 'created_at_date_time', n.get_datetime_value()),
@@ -162,7 +162,7 @@ class PowerliftIncidentMetadata(AdditionalDataHolder, Parsable):
             "locale": lambda n : setattr(self, 'locale', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "platform": lambda n : setattr(self, 'platform', n.get_str_value()),
-            "powerliftId": lambda n : setattr(self, 'powerlift_id', n.get_object_value(Guid)),
+            "powerliftId": lambda n : setattr(self, 'powerlift_id', n.get_uuid_value()),
         }
         return fields
     
@@ -218,15 +218,15 @@ class PowerliftIncidentMetadata(AdditionalDataHolder, Parsable):
         self._platform = value
     
     @property
-    def powerlift_id(self,) -> Optional[Guid]:
+    def powerlift_id(self,) -> Optional[UUID]:
         """
         Gets the powerliftId property value. The unique identifier of the app diagnostic. Example: 8520467a-49a9-44a4-8447-8dfb8bec6726
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._powerlift_id
     
     @powerlift_id.setter
-    def powerlift_id(self,value: Optional[Guid] = None) -> None:
+    def powerlift_id(self,value: Optional[UUID] = None) -> None:
         """
         Sets the powerliftId property value. The unique identifier of the app diagnostic. Example: 8520467a-49a9-44a4-8447-8dfb8bec6726
         Args:
@@ -250,7 +250,7 @@ class PowerliftIncidentMetadata(AdditionalDataHolder, Parsable):
         writer.write_str_value("locale", self.locale)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("platform", self.platform)
-        writer.write_object_value("powerliftId", self.powerlift_id)
+        writer.write_uuid_value("powerliftId", self.powerlift_id)
         writer.write_additional_data_value(self.additional_data)
     
 

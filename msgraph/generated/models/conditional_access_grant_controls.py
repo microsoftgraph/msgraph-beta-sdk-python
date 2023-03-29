@@ -1,12 +1,31 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-authentication_strength_policy = lazy_import('msgraph.generated.models.authentication_strength_policy')
-conditional_access_grant_control = lazy_import('msgraph.generated.models.conditional_access_grant_control')
+if TYPE_CHECKING:
+    from . import authentication_strength_policy, conditional_access_grant_control
 
 class ConditionalAccessGrantControls(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new conditionalAccessGrantControls and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The authenticationStrength property
+        self._authentication_strength: Optional[authentication_strength_policy.AuthenticationStrengthPolicy] = None
+        # List of values of built-in controls required by the policy. Possible values: block, mfa, compliantDevice, domainJoinedDevice, approvedApplication, compliantApplication, passwordChange, unknownFutureValue.
+        self._built_in_controls: Optional[List[conditional_access_grant_control.ConditionalAccessGrantControl]] = None
+        # List of custom controls IDs required by the policy. To learn more about custom control, see Custom controls (preview).
+        self._custom_authentication_factors: Optional[List[str]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Defines the relationship of the grant controls. Possible values: AND, OR.
+        self._operator: Optional[str] = None
+        # List of terms of use IDs required by the policy.
+        self._terms_of_use: Optional[List[str]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -58,26 +77,6 @@ class ConditionalAccessGrantControls(AdditionalDataHolder, Parsable):
         """
         self._built_in_controls = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new conditionalAccessGrantControls and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The authenticationStrength property
-        self._authentication_strength: Optional[authentication_strength_policy.AuthenticationStrengthPolicy] = None
-        # List of values of built-in controls required by the policy. Possible values: block, mfa, compliantDevice, domainJoinedDevice, approvedApplication, compliantApplication, passwordChange, unknownFutureValue.
-        self._built_in_controls: Optional[List[conditional_access_grant_control.ConditionalAccessGrantControl]] = None
-        # List of custom controls IDs required by the policy. To learn more about custom control, see Custom controls (preview).
-        self._custom_authentication_factors: Optional[List[str]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Defines the relationship of the grant controls. Possible values: AND, OR.
-        self._operator: Optional[str] = None
-        # List of terms of use IDs required by the policy.
-        self._terms_of_use: Optional[List[str]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ConditionalAccessGrantControls:
         """
@@ -112,7 +111,9 @@ class ConditionalAccessGrantControls(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import authentication_strength_policy, conditional_access_grant_control
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "authenticationStrength": lambda n : setattr(self, 'authentication_strength', n.get_object_value(authentication_strength_policy.AuthenticationStrengthPolicy)),
             "builtInControls": lambda n : setattr(self, 'built_in_controls', n.get_collection_of_enum_values(conditional_access_grant_control.ConditionalAccessGrantControl)),
             "customAuthenticationFactors": lambda n : setattr(self, 'custom_authentication_factors', n.get_collection_of_primitive_values(str)),

@@ -1,35 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-identity_set = lazy_import('msgraph.generated.models.identity_set')
-teamwork_connection = lazy_import('msgraph.generated.models.teamwork_connection')
-teamwork_hardware_health = lazy_import('msgraph.generated.models.teamwork_hardware_health')
-teamwork_login_status = lazy_import('msgraph.generated.models.teamwork_login_status')
-teamwork_peripherals_health = lazy_import('msgraph.generated.models.teamwork_peripherals_health')
-teamwork_software_update_health = lazy_import('msgraph.generated.models.teamwork_software_update_health')
+if TYPE_CHECKING:
+    from . import entity, identity_set, teamwork_connection, teamwork_hardware_health, teamwork_login_status, teamwork_peripherals_health, teamwork_software_update_health
+
+from . import entity
 
 class TeamworkDeviceHealth(entity.Entity):
-    @property
-    def connection(self,) -> Optional[teamwork_connection.TeamworkConnection]:
-        """
-        Gets the connection property value. The connection property
-        Returns: Optional[teamwork_connection.TeamworkConnection]
-        """
-        return self._connection
-    
-    @connection.setter
-    def connection(self,value: Optional[teamwork_connection.TeamworkConnection] = None) -> None:
-        """
-        Sets the connection property value. The connection property
-        Args:
-            value: Value to set for the connection property.
-        """
-        self._connection = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new teamworkDeviceHealth and sets the default values.
@@ -55,6 +34,23 @@ class TeamworkDeviceHealth(entity.Entity):
         self._peripherals_health: Optional[teamwork_peripherals_health.TeamworkPeripheralsHealth] = None
         # Software updates available for the device.
         self._software_update_health: Optional[teamwork_software_update_health.TeamworkSoftwareUpdateHealth] = None
+    
+    @property
+    def connection(self,) -> Optional[teamwork_connection.TeamworkConnection]:
+        """
+        Gets the connection property value. The connection property
+        Returns: Optional[teamwork_connection.TeamworkConnection]
+        """
+        return self._connection
+    
+    @connection.setter
+    def connection(self,value: Optional[teamwork_connection.TeamworkConnection] = None) -> None:
+        """
+        Sets the connection property value. The connection property
+        Args:
+            value: Value to set for the connection property.
+        """
+        self._connection = value
     
     @property
     def created_by(self,) -> Optional[identity_set.IdentitySet]:
@@ -107,7 +103,9 @@ class TeamworkDeviceHealth(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, identity_set, teamwork_connection, teamwork_hardware_health, teamwork_login_status, teamwork_peripherals_health, teamwork_software_update_health
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "connection": lambda n : setattr(self, 'connection', n.get_object_value(teamwork_connection.TeamworkConnection)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),

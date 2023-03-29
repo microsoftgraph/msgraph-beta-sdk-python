@@ -1,11 +1,29 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-cors_configuration = lazy_import('msgraph.generated.models.cors_configuration')
+if TYPE_CHECKING:
+    from . import cors_configuration
 
 class OnPremisesApplicationSegment(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new onPremisesApplicationSegment and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # If you're configuring a traffic manager in front of multiple App Proxy application segments, contains the user-friendly URL that will point to the traffic manager.
+        self._alternate_url: Optional[str] = None
+        # CORS Rule definition for a particular application segment.
+        self._cors_configurations: Optional[List[cors_configuration.CorsConfiguration]] = None
+        # The published external URL for the application segment; for example, https://intranet.contoso.com./
+        self._external_url: Optional[str] = None
+        # The internal URL of the application segment; for example, https://intranet/.
+        self._internal_url: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -39,24 +57,6 @@ class OnPremisesApplicationSegment(AdditionalDataHolder, Parsable):
             value: Value to set for the alternate_url property.
         """
         self._alternate_url = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new onPremisesApplicationSegment and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # If you're configuring a traffic manager in front of multiple App Proxy application segments, contains the user-friendly URL that will point to the traffic manager.
-        self._alternate_url: Optional[str] = None
-        # CORS Rule definition for a particular application segment.
-        self._cors_configurations: Optional[List[cors_configuration.CorsConfiguration]] = None
-        # The published external URL for the application segment; for example, https://intranet.contoso.com./
-        self._external_url: Optional[str] = None
-        # The internal URL of the application segment; for example, https://intranet/.
-        self._internal_url: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
     
     @property
     def cors_configurations(self,) -> Optional[List[cors_configuration.CorsConfiguration]]:
@@ -109,7 +109,9 @@ class OnPremisesApplicationSegment(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import cors_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "alternateUrl": lambda n : setattr(self, 'alternate_url', n.get_str_value()),
             "corsConfigurations": lambda n : setattr(self, 'cors_configurations', n.get_collection_of_object_values(cors_configuration.CorsConfiguration)),
             "externalUrl": lambda n : setattr(self, 'external_url', n.get_str_value()),

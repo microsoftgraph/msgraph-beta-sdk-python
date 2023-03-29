@@ -7,11 +7,11 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-send_custom_notification_to_company_portal_post_request_body = lazy_import('msgraph.generated.device_management.comanaged_devices.item.send_custom_notification_to_company_portal.send_custom_notification_to_company_portal_post_request_body')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from . import send_custom_notification_to_company_portal_post_request_body
+    from .....models.o_data_errors import o_data_error
 
 class SendCustomNotificationToCompanyPortalRequestBuilder():
     """
@@ -47,6 +47,8 @@ class SendCustomNotificationToCompanyPortalRequestBuilder():
         request_info = self.to_post_request_information(
             body, request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,

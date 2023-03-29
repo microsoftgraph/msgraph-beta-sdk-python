@@ -1,14 +1,38 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-certificate_store = lazy_import('msgraph.generated.models.certificate_store')
-custom_subject_alternative_name = lazy_import('msgraph.generated.models.custom_subject_alternative_name')
-mac_o_s_certificate_profile_base = lazy_import('msgraph.generated.models.mac_o_s_certificate_profile_base')
-managed_device_certificate_state = lazy_import('msgraph.generated.models.managed_device_certificate_state')
+if TYPE_CHECKING:
+    from . import certificate_store, custom_subject_alternative_name, mac_o_s_certificate_profile_base, managed_device_certificate_state
+
+from . import mac_o_s_certificate_profile_base
 
 class MacOSPkcsCertificateProfile(mac_o_s_certificate_profile_base.MacOSCertificateProfileBase):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new MacOSPkcsCertificateProfile and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.macOSPkcsCertificateProfile"
+        # AllowAllAppsAccess setting
+        self._allow_all_apps_access: Optional[bool] = None
+        # Target store certificate. Possible values are: user, machine.
+        self._certificate_store: Optional[certificate_store.CertificateStore] = None
+        # PKCS certificate template name.
+        self._certificate_template_name: Optional[str] = None
+        # PKCS certification authority FQDN.
+        self._certification_authority: Optional[str] = None
+        # PKCS certification authority Name.
+        self._certification_authority_name: Optional[str] = None
+        # Custom Subject Alternative Name Settings. This collection can contain a maximum of 500 elements.
+        self._custom_subject_alternative_names: Optional[List[custom_subject_alternative_name.CustomSubjectAlternativeName]] = None
+        # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
+        self._managed_device_certificate_states: Optional[List[managed_device_certificate_state.ManagedDeviceCertificateState]] = None
+        # Format string that defines the subject alternative name.
+        self._subject_alternative_name_format_string: Optional[str] = None
+        # Format string that defines the subject name. Example: CN={{EmailAddress}},E={{EmailAddress}},OU=Enterprise Users,O=Contoso Corporation,L=Redmond,ST=WA,C=US
+        self._subject_name_format_string: Optional[str] = None
+    
     @property
     def allow_all_apps_access(self,) -> Optional[bool]:
         """
@@ -94,31 +118,6 @@ class MacOSPkcsCertificateProfile(mac_o_s_certificate_profile_base.MacOSCertific
         """
         self._certification_authority_name = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new MacOSPkcsCertificateProfile and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.macOSPkcsCertificateProfile"
-        # AllowAllAppsAccess setting
-        self._allow_all_apps_access: Optional[bool] = None
-        # Target store certificate. Possible values are: user, machine.
-        self._certificate_store: Optional[certificate_store.CertificateStore] = None
-        # PKCS certificate template name.
-        self._certificate_template_name: Optional[str] = None
-        # PKCS certification authority FQDN.
-        self._certification_authority: Optional[str] = None
-        # PKCS certification authority Name.
-        self._certification_authority_name: Optional[str] = None
-        # Custom Subject Alternative Name Settings. This collection can contain a maximum of 500 elements.
-        self._custom_subject_alternative_names: Optional[List[custom_subject_alternative_name.CustomSubjectAlternativeName]] = None
-        # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
-        self._managed_device_certificate_states: Optional[List[managed_device_certificate_state.ManagedDeviceCertificateState]] = None
-        # Format string that defines the subject alternative name.
-        self._subject_alternative_name_format_string: Optional[str] = None
-        # Format string that defines the subject name. Example: CN={{EmailAddress}},E={{EmailAddress}},OU=Enterprise Users,O=Contoso Corporation,L=Redmond,ST=WA,C=US
-        self._subject_name_format_string: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSPkcsCertificateProfile:
         """
@@ -153,7 +152,9 @@ class MacOSPkcsCertificateProfile(mac_o_s_certificate_profile_base.MacOSCertific
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import certificate_store, custom_subject_alternative_name, mac_o_s_certificate_profile_base, managed_device_certificate_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowAllAppsAccess": lambda n : setattr(self, 'allow_all_apps_access', n.get_bool_value()),
             "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(certificate_store.CertificateStore)),
             "certificateTemplateName": lambda n : setattr(self, 'certificate_template_name', n.get_str_value()),

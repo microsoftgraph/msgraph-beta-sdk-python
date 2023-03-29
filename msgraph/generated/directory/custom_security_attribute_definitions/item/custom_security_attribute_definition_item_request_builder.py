@@ -7,38 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-allowed_values_request_builder = lazy_import('msgraph.generated.directory.custom_security_attribute_definitions.item.allowed_values.allowed_values_request_builder')
-allowed_value_item_request_builder = lazy_import('msgraph.generated.directory.custom_security_attribute_definitions.item.allowed_values.item.allowed_value_item_request_builder')
-custom_security_attribute_definition = lazy_import('msgraph.generated.models.custom_security_attribute_definition')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ....models import custom_security_attribute_definition
+    from ....models.o_data_errors import o_data_error
+    from .allowed_values import allowed_values_request_builder
+    from .allowed_values.item import allowed_value_item_request_builder
 
 class CustomSecurityAttributeDefinitionItemRequestBuilder():
     """
     Provides operations to manage the customSecurityAttributeDefinitions property of the microsoft.graph.directory entity.
     """
-    @property
-    def allowed_values(self) -> allowed_values_request_builder.AllowedValuesRequestBuilder:
-        """
-        Provides operations to manage the allowedValues property of the microsoft.graph.customSecurityAttributeDefinition entity.
-        """
-        return allowed_values_request_builder.AllowedValuesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def allowed_values_by_id(self,id: str) -> allowed_value_item_request_builder.AllowedValueItemRequestBuilder:
-        """
-        Provides operations to manage the allowedValues property of the microsoft.graph.customSecurityAttributeDefinition entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: allowed_value_item_request_builder.AllowedValueItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["allowedValue%2Did"] = id
-        return allowed_value_item_request_builder.AllowedValueItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new CustomSecurityAttributeDefinitionItemRequestBuilder and sets the default values.
@@ -57,6 +37,21 @@ class CustomSecurityAttributeDefinitionItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def allowed_values_by_id(self,id: str) -> allowed_value_item_request_builder.AllowedValueItemRequestBuilder:
+        """
+        Provides operations to manage the allowedValues property of the microsoft.graph.customSecurityAttributeDefinition entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: allowed_value_item_request_builder.AllowedValueItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .allowed_values.item import allowed_value_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["allowedValue%2Did"] = id
+        return allowed_value_item_request_builder.AllowedValueItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def delete(self,request_configuration: Optional[CustomSecurityAttributeDefinitionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property customSecurityAttributeDefinitions for directory
@@ -66,6 +61,8 @@ class CustomSecurityAttributeDefinitionItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -84,12 +81,16 @@ class CustomSecurityAttributeDefinitionItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import custom_security_attribute_definition
+
         return await self.request_adapter.send_async(request_info, custom_security_attribute_definition.CustomSecurityAttributeDefinition, error_mapping)
     
     async def patch(self,body: Optional[custom_security_attribute_definition.CustomSecurityAttributeDefinition] = None, request_configuration: Optional[CustomSecurityAttributeDefinitionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[custom_security_attribute_definition.CustomSecurityAttributeDefinition]:
@@ -105,12 +106,16 @@ class CustomSecurityAttributeDefinitionItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import custom_security_attribute_definition
+
         return await self.request_adapter.send_async(request_info, custom_security_attribute_definition.CustomSecurityAttributeDefinition, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CustomSecurityAttributeDefinitionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -168,6 +173,15 @@ class CustomSecurityAttributeDefinitionItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def allowed_values(self) -> allowed_values_request_builder.AllowedValuesRequestBuilder:
+        """
+        Provides operations to manage the allowedValues property of the microsoft.graph.customSecurityAttributeDefinition entity.
+        """
+        from .allowed_values import allowed_values_request_builder
+
+        return allowed_values_request_builder.AllowedValuesRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class CustomSecurityAttributeDefinitionItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -185,12 +199,6 @@ class CustomSecurityAttributeDefinitionItemRequestBuilder():
         """
         Schema of a custom security attributes (key-value pairs).
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -206,6 +214,12 @@ class CustomSecurityAttributeDefinitionItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class CustomSecurityAttributeDefinitionItemRequestBuilderGetRequestConfiguration():

@@ -1,12 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-delegated_privilege_status = lazy_import('msgraph.generated.models.managed_tenants.delegated_privilege_status')
-role_definition = lazy_import('msgraph.generated.models.managed_tenants.role_definition')
+if TYPE_CHECKING:
+    from . import delegated_privilege_status, role_definition
 
 class RoleAssignment(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new roleAssignment and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The type of the admin relationship(s) associated with the role assignment. Possible values are: none, delegatedAdminPrivileges, unknownFutureValue, granularDelegatedAdminPrivileges, delegatedAndGranularDelegetedAdminPrivileges. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: granularDelegatedAdminPrivileges , delegatedAndGranularDelegetedAdminPrivileges.
+        self._assignment_type: Optional[delegated_privilege_status.DelegatedPrivilegeStatus] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The collection of roles assigned.
+        self._roles: Optional[List[role_definition.RoleDefinition]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -41,20 +54,6 @@ class RoleAssignment(AdditionalDataHolder, Parsable):
         """
         self._assignment_type = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new roleAssignment and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The type of the admin relationship(s) associated with the role assignment. Possible values are: none, delegatedAdminPrivileges, unknownFutureValue, granularDelegatedAdminPrivileges, delegatedAndGranularDelegetedAdminPrivileges. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: granularDelegatedAdminPrivileges , delegatedAndGranularDelegetedAdminPrivileges.
-        self._assignment_type: Optional[delegated_privilege_status.DelegatedPrivilegeStatus] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The collection of roles assigned.
-        self._roles: Optional[List[role_definition.RoleDefinition]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RoleAssignment:
         """
@@ -72,7 +71,9 @@ class RoleAssignment(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import delegated_privilege_status, role_definition
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignmentType": lambda n : setattr(self, 'assignment_type', n.get_enum_value(delegated_privilege_status.DelegatedPrivilegeStatus)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "roles": lambda n : setattr(self, 'roles', n.get_collection_of_object_values(role_definition.RoleDefinition)),

@@ -1,14 +1,26 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_template = lazy_import('msgraph.generated.models.device_management_template')
-security_baseline_category_state_summary = lazy_import('msgraph.generated.models.security_baseline_category_state_summary')
-security_baseline_device_state = lazy_import('msgraph.generated.models.security_baseline_device_state')
-security_baseline_state_summary = lazy_import('msgraph.generated.models.security_baseline_state_summary')
+if TYPE_CHECKING:
+    from . import device_management_template, security_baseline_category_state_summary, security_baseline_device_state, security_baseline_state_summary
+
+from . import device_management_template
 
 class SecurityBaselineTemplate(device_management_template.DeviceManagementTemplate):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new SecurityBaselineTemplate and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.securityBaselineTemplate"
+        # The security baseline per category device state summary
+        self._category_device_state_summaries: Optional[List[security_baseline_category_state_summary.SecurityBaselineCategoryStateSummary]] = None
+        # The security baseline device state summary
+        self._device_state_summary: Optional[security_baseline_state_summary.SecurityBaselineStateSummary] = None
+        # The security baseline device states
+        self._device_states: Optional[List[security_baseline_device_state.SecurityBaselineDeviceState]] = None
+    
     @property
     def category_device_state_summaries(self,) -> Optional[List[security_baseline_category_state_summary.SecurityBaselineCategoryStateSummary]]:
         """
@@ -25,19 +37,6 @@ class SecurityBaselineTemplate(device_management_template.DeviceManagementTempla
             value: Value to set for the category_device_state_summaries property.
         """
         self._category_device_state_summaries = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new SecurityBaselineTemplate and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.securityBaselineTemplate"
-        # The security baseline per category device state summary
-        self._category_device_state_summaries: Optional[List[security_baseline_category_state_summary.SecurityBaselineCategoryStateSummary]] = None
-        # The security baseline device state summary
-        self._device_state_summary: Optional[security_baseline_state_summary.SecurityBaselineStateSummary] = None
-        # The security baseline device states
-        self._device_states: Optional[List[security_baseline_device_state.SecurityBaselineDeviceState]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SecurityBaselineTemplate:
@@ -90,7 +89,9 @@ class SecurityBaselineTemplate(device_management_template.DeviceManagementTempla
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_template, security_baseline_category_state_summary, security_baseline_device_state, security_baseline_state_summary
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "categoryDeviceStateSummaries": lambda n : setattr(self, 'category_device_state_summaries', n.get_collection_of_object_values(security_baseline_category_state_summary.SecurityBaselineCategoryStateSummary)),
             "deviceStates": lambda n : setattr(self, 'device_states', n.get_collection_of_object_values(security_baseline_device_state.SecurityBaselineDeviceState)),
             "deviceStateSummary": lambda n : setattr(self, 'device_state_summary', n.get_object_value(security_baseline_state_summary.SecurityBaselineStateSummary)),

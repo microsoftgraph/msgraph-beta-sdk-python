@@ -1,9 +1,30 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class IpReferenceData(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new ipReferenceData and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The asn property
+        self._asn: Optional[int] = None
+        # The city property
+        self._city: Optional[str] = None
+        # The countryOrRegionCode property
+        self._country_or_region_code: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The organization property
+        self._organization: Optional[str] = None
+        # The state property
+        self._state: Optional[str] = None
+        # The vendor property
+        self._vendor: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -55,28 +76,6 @@ class IpReferenceData(AdditionalDataHolder, Parsable):
         """
         self._city = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ipReferenceData and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The asn property
-        self._asn: Optional[int] = None
-        # The city property
-        self._city: Optional[str] = None
-        # The countryOrRegionCode property
-        self._country_or_region_code: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The organization property
-        self._organization: Optional[str] = None
-        # The state property
-        self._state: Optional[str] = None
-        # The vendor property
-        self._vendor: Optional[str] = None
-    
     @property
     def country_or_region_code(self,) -> Optional[str]:
         """
@@ -111,7 +110,7 @@ class IpReferenceData(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "asn": lambda n : setattr(self, 'asn', n.get_int_value()),
             "city": lambda n : setattr(self, 'city', n.get_str_value()),
             "countryOrRegionCode": lambda n : setattr(self, 'country_or_region_code', n.get_str_value()),

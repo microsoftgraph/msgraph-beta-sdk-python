@@ -1,31 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-request = lazy_import('msgraph.generated.models.request')
-request_schedule = lazy_import('msgraph.generated.models.request_schedule')
-schedule_request_actions = lazy_import('msgraph.generated.models.schedule_request_actions')
-ticket_info = lazy_import('msgraph.generated.models.ticket_info')
+if TYPE_CHECKING:
+    from . import privileged_access_group_assignment_schedule_request, privileged_access_group_eligibility_schedule_request, request, request_schedule, schedule_request_actions, ticket_info
+
+from . import request
 
 class PrivilegedAccessScheduleRequest(request.Request):
-    @property
-    def action(self,) -> Optional[schedule_request_actions.ScheduleRequestActions]:
-        """
-        Gets the action property value. The action property
-        Returns: Optional[schedule_request_actions.ScheduleRequestActions]
-        """
-        return self._action
-    
-    @action.setter
-    def action(self,value: Optional[schedule_request_actions.ScheduleRequestActions] = None) -> None:
-        """
-        Sets the action property value. The action property
-        Args:
-            value: Value to set for the action property.
-        """
-        self._action = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new PrivilegedAccessScheduleRequest and sets the default values.
@@ -43,6 +25,23 @@ class PrivilegedAccessScheduleRequest(request.Request):
         # The ticketInfo property
         self._ticket_info: Optional[ticket_info.TicketInfo] = None
     
+    @property
+    def action(self,) -> Optional[schedule_request_actions.ScheduleRequestActions]:
+        """
+        Gets the action property value. The action property
+        Returns: Optional[schedule_request_actions.ScheduleRequestActions]
+        """
+        return self._action
+    
+    @action.setter
+    def action(self,value: Optional[schedule_request_actions.ScheduleRequestActions] = None) -> None:
+        """
+        Sets the action property value. The action property
+        Args:
+            value: Value to set for the action property.
+        """
+        self._action = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PrivilegedAccessScheduleRequest:
         """
@@ -53,6 +52,17 @@ class PrivilegedAccessScheduleRequest(request.Request):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.privilegedAccessGroupAssignmentScheduleRequest":
+                from . import privileged_access_group_assignment_schedule_request
+
+                return privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest()
+            if mapping_value == "#microsoft.graph.privilegedAccessGroupEligibilityScheduleRequest":
+                from . import privileged_access_group_eligibility_schedule_request
+
+                return privileged_access_group_eligibility_schedule_request.PrivilegedAccessGroupEligibilityScheduleRequest()
         return PrivilegedAccessScheduleRequest()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -60,7 +70,9 @@ class PrivilegedAccessScheduleRequest(request.Request):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import privileged_access_group_assignment_schedule_request, privileged_access_group_eligibility_schedule_request, request, request_schedule, schedule_request_actions, ticket_info
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "action": lambda n : setattr(self, 'action', n.get_enum_value(schedule_request_actions.ScheduleRequestActions)),
             "isValidationOnly": lambda n : setattr(self, 'is_validation_only', n.get_bool_value()),
             "justification": lambda n : setattr(self, 'justification', n.get_str_value()),

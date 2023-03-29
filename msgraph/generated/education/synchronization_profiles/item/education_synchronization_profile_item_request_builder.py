@@ -7,73 +7,24 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-errors_request_builder = lazy_import('msgraph.generated.education.synchronization_profiles.item.errors.errors_request_builder')
-education_synchronization_error_item_request_builder = lazy_import('msgraph.generated.education.synchronization_profiles.item.errors.item.education_synchronization_error_item_request_builder')
-pause_request_builder = lazy_import('msgraph.generated.education.synchronization_profiles.item.pause.pause_request_builder')
-profile_status_request_builder = lazy_import('msgraph.generated.education.synchronization_profiles.item.profile_status.profile_status_request_builder')
-reset_request_builder = lazy_import('msgraph.generated.education.synchronization_profiles.item.reset.reset_request_builder')
-resume_request_builder = lazy_import('msgraph.generated.education.synchronization_profiles.item.resume.resume_request_builder')
-start_request_builder = lazy_import('msgraph.generated.education.synchronization_profiles.item.start.start_request_builder')
-upload_url_request_builder = lazy_import('msgraph.generated.education.synchronization_profiles.item.upload_url.upload_url_request_builder')
-education_synchronization_profile = lazy_import('msgraph.generated.models.education_synchronization_profile')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ....models import education_synchronization_profile
+    from ....models.o_data_errors import o_data_error
+    from .errors import errors_request_builder
+    from .errors.item import education_synchronization_error_item_request_builder
+    from .pause import pause_request_builder
+    from .profile_status import profile_status_request_builder
+    from .reset import reset_request_builder
+    from .resume import resume_request_builder
+    from .start import start_request_builder
+    from .upload_url import upload_url_request_builder
 
 class EducationSynchronizationProfileItemRequestBuilder():
     """
     Provides operations to manage the synchronizationProfiles property of the microsoft.graph.educationRoot entity.
     """
-    @property
-    def errors(self) -> errors_request_builder.ErrorsRequestBuilder:
-        """
-        Provides operations to manage the errors property of the microsoft.graph.educationSynchronizationProfile entity.
-        """
-        return errors_request_builder.ErrorsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def pause(self) -> pause_request_builder.PauseRequestBuilder:
-        """
-        Provides operations to call the pause method.
-        """
-        return pause_request_builder.PauseRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def profile_status(self) -> profile_status_request_builder.ProfileStatusRequestBuilder:
-        """
-        Provides operations to manage the profileStatus property of the microsoft.graph.educationSynchronizationProfile entity.
-        """
-        return profile_status_request_builder.ProfileStatusRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def reset(self) -> reset_request_builder.ResetRequestBuilder:
-        """
-        Provides operations to call the reset method.
-        """
-        return reset_request_builder.ResetRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def resume(self) -> resume_request_builder.ResumeRequestBuilder:
-        """
-        Provides operations to call the resume method.
-        """
-        return resume_request_builder.ResumeRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def start(self) -> start_request_builder.StartRequestBuilder:
-        """
-        Provides operations to call the start method.
-        """
-        return start_request_builder.StartRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def upload_url(self) -> upload_url_request_builder.UploadUrlRequestBuilder:
-        """
-        Provides operations to call the uploadUrl method.
-        """
-        return upload_url_request_builder.UploadUrlRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new EducationSynchronizationProfileItemRequestBuilder and sets the default values.
@@ -101,6 +52,8 @@ class EducationSynchronizationProfileItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -118,6 +71,8 @@ class EducationSynchronizationProfileItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .errors.item import education_synchronization_error_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["educationSynchronizationError%2Did"] = id
         return education_synchronization_error_item_request_builder.EducationSynchronizationErrorItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -132,12 +87,16 @@ class EducationSynchronizationProfileItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import education_synchronization_profile
+
         return await self.request_adapter.send_async(request_info, education_synchronization_profile.EducationSynchronizationProfile, error_mapping)
     
     async def patch(self,body: Optional[education_synchronization_profile.EducationSynchronizationProfile] = None, request_configuration: Optional[EducationSynchronizationProfileItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[education_synchronization_profile.EducationSynchronizationProfile]:
@@ -153,12 +112,16 @@ class EducationSynchronizationProfileItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import education_synchronization_profile
+
         return await self.request_adapter.send_async(request_info, education_synchronization_profile.EducationSynchronizationProfile, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[EducationSynchronizationProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -216,6 +179,69 @@ class EducationSynchronizationProfileItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def errors(self) -> errors_request_builder.ErrorsRequestBuilder:
+        """
+        Provides operations to manage the errors property of the microsoft.graph.educationSynchronizationProfile entity.
+        """
+        from .errors import errors_request_builder
+
+        return errors_request_builder.ErrorsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def pause(self) -> pause_request_builder.PauseRequestBuilder:
+        """
+        Provides operations to call the pause method.
+        """
+        from .pause import pause_request_builder
+
+        return pause_request_builder.PauseRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def profile_status(self) -> profile_status_request_builder.ProfileStatusRequestBuilder:
+        """
+        Provides operations to manage the profileStatus property of the microsoft.graph.educationSynchronizationProfile entity.
+        """
+        from .profile_status import profile_status_request_builder
+
+        return profile_status_request_builder.ProfileStatusRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def reset(self) -> reset_request_builder.ResetRequestBuilder:
+        """
+        Provides operations to call the reset method.
+        """
+        from .reset import reset_request_builder
+
+        return reset_request_builder.ResetRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def resume(self) -> resume_request_builder.ResumeRequestBuilder:
+        """
+        Provides operations to call the resume method.
+        """
+        from .resume import resume_request_builder
+
+        return resume_request_builder.ResumeRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def start(self) -> start_request_builder.StartRequestBuilder:
+        """
+        Provides operations to call the start method.
+        """
+        from .start import start_request_builder
+
+        return start_request_builder.StartRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def upload_url(self) -> upload_url_request_builder.UploadUrlRequestBuilder:
+        """
+        Provides operations to call the uploadUrl method.
+        """
+        from .upload_url import upload_url_request_builder
+
+        return upload_url_request_builder.UploadUrlRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class EducationSynchronizationProfileItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -233,12 +259,6 @@ class EducationSynchronizationProfileItemRequestBuilder():
         """
         Get synchronizationProfiles from education
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -254,6 +274,12 @@ class EducationSynchronizationProfileItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class EducationSynchronizationProfileItemRequestBuilderGetRequestConfiguration():

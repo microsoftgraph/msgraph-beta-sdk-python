@@ -1,11 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-mac_o_s_included_app = lazy_import('msgraph.generated.models.mac_o_s_included_app')
-mac_o_s_minimum_operating_system = lazy_import('msgraph.generated.models.mac_o_s_minimum_operating_system')
-mobile_lob_app = lazy_import('msgraph.generated.models.mobile_lob_app')
+if TYPE_CHECKING:
+    from . import mac_o_s_included_app, mac_o_s_minimum_operating_system, mobile_lob_app
+
+from . import mobile_lob_app
 
 class MacOSDmgApp(mobile_lob_app.MobileLobApp):
     def __init__(self,) -> None:
@@ -42,7 +42,9 @@ class MacOSDmgApp(mobile_lob_app.MobileLobApp):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import mac_o_s_included_app, mac_o_s_minimum_operating_system, mobile_lob_app
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "ignoreVersionDetection": lambda n : setattr(self, 'ignore_version_detection', n.get_bool_value()),
             "includedApps": lambda n : setattr(self, 'included_apps', n.get_collection_of_object_values(mac_o_s_included_app.MacOSIncludedApp)),
             "minimumSupportedOperatingSystem": lambda n : setattr(self, 'minimum_supported_operating_system', n.get_object_value(mac_o_s_minimum_operating_system.MacOSMinimumOperatingSystem)),

@@ -1,13 +1,28 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class TimeSeriesParameter(AdditionalDataHolder, Parsable):
     """
     Parameter passed to GetHealthMetricTimeSeries when requesting snapshot time series.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new timeSeriesParameter and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # End time of the series being requested. Optional; if not specified, current time is used.
+        self._end_date_time: Optional[datetime] = None
+        # The name of the metric for which a time series is requested.
+        self._metric_name: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Start time of the series being requested.
+        self._start_date_time: Optional[datetime] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -24,22 +39,6 @@ class TimeSeriesParameter(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new timeSeriesParameter and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # End time of the series being requested. Optional; if not specified, current time is used.
-        self._end_date_time: Optional[datetime] = None
-        # The name of the metric for which a time series is requested.
-        self._metric_name: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Start time of the series being requested.
-        self._start_date_time: Optional[datetime] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TimeSeriesParameter:
@@ -75,7 +74,7 @@ class TimeSeriesParameter(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
             "metricName": lambda n : setattr(self, 'metric_name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

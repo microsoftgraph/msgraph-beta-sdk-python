@@ -1,13 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_for_work_cross_profile_data_sharing_type = lazy_import('msgraph.generated.models.android_for_work_cross_profile_data_sharing_type')
-android_for_work_default_app_permission_policy_type = lazy_import('msgraph.generated.models.android_for_work_default_app_permission_policy_type')
-android_for_work_required_password_type = lazy_import('msgraph.generated.models.android_for_work_required_password_type')
-android_required_password_complexity = lazy_import('msgraph.generated.models.android_required_password_complexity')
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+if TYPE_CHECKING:
+    from . import android_for_work_cross_profile_data_sharing_type, android_for_work_default_app_permission_policy_type, android_for_work_required_password_type, android_required_password_complexity, android_work_profile_account_use, device_configuration
+
+from . import device_configuration
 
 class AndroidForWorkGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
     def __init__(self,) -> None:
@@ -16,6 +14,8 @@ class AndroidForWorkGeneralDeviceConfiguration(device_configuration.DeviceConfig
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.androidForWorkGeneralDeviceConfiguration"
+        # Determine domains allow-list for accounts that can be added to work profile.
+        self._allowed_google_account_domains: Optional[List[str]] = None
         # Indicates whether or not to block face unlock.
         self._password_block_face_unlock: Optional[bool] = None
         # Indicates whether or not to block fingerprint unlock.
@@ -44,6 +44,8 @@ class AndroidForWorkGeneralDeviceConfiguration(device_configuration.DeviceConfig
         self._vpn_always_on_package_identifier: Optional[str] = None
         # Enable lockdown mode for always-on VPN.
         self._vpn_enable_always_on_lockdown_mode: Optional[bool] = None
+        # An enum representing possible values for account use in work profile.
+        self._work_profile_account_use: Optional[android_work_profile_account_use.AndroidWorkProfileAccountUse] = None
         # Allow widgets from work profile apps.
         self._work_profile_allow_widgets: Optional[bool] = None
         # Block users from adding/removing accounts in work profile.
@@ -105,6 +107,23 @@ class AndroidForWorkGeneralDeviceConfiguration(device_configuration.DeviceConfig
         # The password complexity types that can be set on Android. One of: NONE, LOW, MEDIUM, HIGH. This is an API targeted to Android 11+.
         self._work_profile_required_password_complexity: Optional[android_required_password_complexity.AndroidRequiredPasswordComplexity] = None
     
+    @property
+    def allowed_google_account_domains(self,) -> Optional[List[str]]:
+        """
+        Gets the allowedGoogleAccountDomains property value. Determine domains allow-list for accounts that can be added to work profile.
+        Returns: Optional[List[str]]
+        """
+        return self._allowed_google_account_domains
+    
+    @allowed_google_account_domains.setter
+    def allowed_google_account_domains(self,value: Optional[List[str]] = None) -> None:
+        """
+        Sets the allowedGoogleAccountDomains property value. Determine domains allow-list for accounts that can be added to work profile.
+        Args:
+            value: Value to set for the allowed_google_account_domains property.
+        """
+        self._allowed_google_account_domains = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidForWorkGeneralDeviceConfiguration:
         """
@@ -122,7 +141,10 @@ class AndroidForWorkGeneralDeviceConfiguration(device_configuration.DeviceConfig
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_for_work_cross_profile_data_sharing_type, android_for_work_default_app_permission_policy_type, android_for_work_required_password_type, android_required_password_complexity, android_work_profile_account_use, device_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
+            "allowedGoogleAccountDomains": lambda n : setattr(self, 'allowed_google_account_domains', n.get_collection_of_primitive_values(str)),
             "passwordBlockFaceUnlock": lambda n : setattr(self, 'password_block_face_unlock', n.get_bool_value()),
             "passwordBlockFingerprintUnlock": lambda n : setattr(self, 'password_block_fingerprint_unlock', n.get_bool_value()),
             "passwordBlockIrisUnlock": lambda n : setattr(self, 'password_block_iris_unlock', n.get_bool_value()),
@@ -137,6 +159,7 @@ class AndroidForWorkGeneralDeviceConfiguration(device_configuration.DeviceConfig
             "securityRequireVerifyApps": lambda n : setattr(self, 'security_require_verify_apps', n.get_bool_value()),
             "vpnAlwaysOnPackageIdentifier": lambda n : setattr(self, 'vpn_always_on_package_identifier', n.get_str_value()),
             "vpnEnableAlwaysOnLockdownMode": lambda n : setattr(self, 'vpn_enable_always_on_lockdown_mode', n.get_bool_value()),
+            "workProfileAccountUse": lambda n : setattr(self, 'work_profile_account_use', n.get_enum_value(android_work_profile_account_use.AndroidWorkProfileAccountUse)),
             "workProfileAllowWidgets": lambda n : setattr(self, 'work_profile_allow_widgets', n.get_bool_value()),
             "workProfileBlockAddingAccounts": lambda n : setattr(self, 'work_profile_block_adding_accounts', n.get_bool_value()),
             "workProfileBlockCamera": lambda n : setattr(self, 'work_profile_block_camera', n.get_bool_value()),
@@ -385,6 +408,7 @@ class AndroidForWorkGeneralDeviceConfiguration(device_configuration.DeviceConfig
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
+        writer.write_collection_of_primitive_values("allowedGoogleAccountDomains", self.allowed_google_account_domains)
         writer.write_bool_value("passwordBlockFaceUnlock", self.password_block_face_unlock)
         writer.write_bool_value("passwordBlockFingerprintUnlock", self.password_block_fingerprint_unlock)
         writer.write_bool_value("passwordBlockIrisUnlock", self.password_block_iris_unlock)
@@ -399,6 +423,7 @@ class AndroidForWorkGeneralDeviceConfiguration(device_configuration.DeviceConfig
         writer.write_bool_value("securityRequireVerifyApps", self.security_require_verify_apps)
         writer.write_str_value("vpnAlwaysOnPackageIdentifier", self.vpn_always_on_package_identifier)
         writer.write_bool_value("vpnEnableAlwaysOnLockdownMode", self.vpn_enable_always_on_lockdown_mode)
+        writer.write_enum_value("workProfileAccountUse", self.work_profile_account_use)
         writer.write_bool_value("workProfileAllowWidgets", self.work_profile_allow_widgets)
         writer.write_bool_value("workProfileBlockAddingAccounts", self.work_profile_block_adding_accounts)
         writer.write_bool_value("workProfileBlockCamera", self.work_profile_block_camera)
@@ -463,6 +488,23 @@ class AndroidForWorkGeneralDeviceConfiguration(device_configuration.DeviceConfig
             value: Value to set for the vpn_enable_always_on_lockdown_mode property.
         """
         self._vpn_enable_always_on_lockdown_mode = value
+    
+    @property
+    def work_profile_account_use(self,) -> Optional[android_work_profile_account_use.AndroidWorkProfileAccountUse]:
+        """
+        Gets the workProfileAccountUse property value. An enum representing possible values for account use in work profile.
+        Returns: Optional[android_work_profile_account_use.AndroidWorkProfileAccountUse]
+        """
+        return self._work_profile_account_use
+    
+    @work_profile_account_use.setter
+    def work_profile_account_use(self,value: Optional[android_work_profile_account_use.AndroidWorkProfileAccountUse] = None) -> None:
+        """
+        Sets the workProfileAccountUse property value. An enum representing possible values for account use in work profile.
+        Args:
+            value: Value to set for the work_profile_account_use property.
+        """
+        self._work_profile_account_use = value
     
     @property
     def work_profile_allow_widgets(self,) -> Optional[bool]:

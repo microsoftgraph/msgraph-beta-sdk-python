@@ -1,30 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_permission_action = lazy_import('msgraph.generated.models.android_permission_action')
-android_profile_applicability = lazy_import('msgraph.generated.models.android_profile_applicability')
-managed_device_mobile_app_configuration = lazy_import('msgraph.generated.models.managed_device_mobile_app_configuration')
+if TYPE_CHECKING:
+    from . import android_permission_action, android_profile_applicability, managed_device_mobile_app_configuration
+
+from . import managed_device_mobile_app_configuration
 
 class AndroidForWorkMobileAppConfiguration(managed_device_mobile_app_configuration.ManagedDeviceMobileAppConfiguration):
-    @property
-    def connected_apps_enabled(self,) -> Optional[bool]:
-        """
-        Gets the connectedAppsEnabled property value. Setting to specify whether to allow ConnectedApps experience for this app.
-        Returns: Optional[bool]
-        """
-        return self._connected_apps_enabled
-    
-    @connected_apps_enabled.setter
-    def connected_apps_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the connectedAppsEnabled property value. Setting to specify whether to allow ConnectedApps experience for this app.
-        Args:
-            value: Value to set for the connected_apps_enabled property.
-        """
-        self._connected_apps_enabled = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new AndroidForWorkMobileAppConfiguration and sets the default values.
@@ -41,6 +24,23 @@ class AndroidForWorkMobileAppConfiguration(managed_device_mobile_app_configurati
         self._permission_actions: Optional[List[android_permission_action.AndroidPermissionAction]] = None
         # Android profile applicability
         self._profile_applicability: Optional[android_profile_applicability.AndroidProfileApplicability] = None
+    
+    @property
+    def connected_apps_enabled(self,) -> Optional[bool]:
+        """
+        Gets the connectedAppsEnabled property value. Setting to specify whether to allow ConnectedApps experience for this app.
+        Returns: Optional[bool]
+        """
+        return self._connected_apps_enabled
+    
+    @connected_apps_enabled.setter
+    def connected_apps_enabled(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the connectedAppsEnabled property value. Setting to specify whether to allow ConnectedApps experience for this app.
+        Args:
+            value: Value to set for the connected_apps_enabled property.
+        """
+        self._connected_apps_enabled = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidForWorkMobileAppConfiguration:
@@ -59,7 +59,9 @@ class AndroidForWorkMobileAppConfiguration(managed_device_mobile_app_configurati
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_permission_action, android_profile_applicability, managed_device_mobile_app_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "connectedAppsEnabled": lambda n : setattr(self, 'connected_apps_enabled', n.get_bool_value()),
             "packageId": lambda n : setattr(self, 'package_id', n.get_str_value()),
             "payloadJson": lambda n : setattr(self, 'payload_json', n.get_str_value()),

@@ -1,11 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-windows_autopilot_sync_status = lazy_import('msgraph.generated.models.windows_autopilot_sync_status')
+if TYPE_CHECKING:
+    from . import entity, windows_autopilot_sync_status
+
+from . import entity
 
 class WindowsAutopilotSettings(entity.Entity):
     def __init__(self,) -> None:
@@ -39,7 +40,9 @@ class WindowsAutopilotSettings(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, windows_autopilot_sync_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "lastManualSyncTriggerDateTime": lambda n : setattr(self, 'last_manual_sync_trigger_date_time', n.get_datetime_value()),
             "lastSyncDateTime": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
             "syncStatus": lambda n : setattr(self, 'sync_status', n.get_enum_value(windows_autopilot_sync_status.WindowsAutopilotSyncStatus)),

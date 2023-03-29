@@ -1,13 +1,40 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class RetrieveRemoteHelpSessionResponse(AdditionalDataHolder, Parsable):
     """
     Remote help - response we provide back to the helper on retrieve session API call
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new retrieveRemoteHelpSessionResponse and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # ACS Group Id
+        self._acs_group_id: Optional[str] = None
+        # Helper ACS User Id
+        self._acs_helper_user_id: Optional[str] = None
+        # Helper ACS User Token
+        self._acs_helper_user_token: Optional[str] = None
+        # Sharer ACS User Id
+        self._acs_sharer_user_id: Optional[str] = None
+        # Android Device Name
+        self._device_name: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Azure Pubsub Group Id
+        self._pub_sub_group_id: Optional[str] = None
+        # Azure Pubsub Group Id
+        self._pub_sub_helper_access_uri: Optional[str] = None
+        # Azure Pubsub Session Expiration Date Time.
+        self._session_expiration_date_time: Optional[datetime] = None
+        # The unique identifier for a session
+        self._session_key: Optional[str] = None
+    
     @property
     def acs_group_id(self,) -> Optional[str]:
         """
@@ -93,34 +120,6 @@ class RetrieveRemoteHelpSessionResponse(AdditionalDataHolder, Parsable):
         """
         self._additional_data = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new retrieveRemoteHelpSessionResponse and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # ACS Group Id
-        self._acs_group_id: Optional[str] = None
-        # Helper ACS User Id
-        self._acs_helper_user_id: Optional[str] = None
-        # Helper ACS User Token
-        self._acs_helper_user_token: Optional[str] = None
-        # Sharer ACS User Id
-        self._acs_sharer_user_id: Optional[str] = None
-        # Android Device Name
-        self._device_name: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Azure Pubsub Group Id
-        self._pub_sub_group_id: Optional[str] = None
-        # Azure Pubsub Group Id
-        self._pub_sub_helper_access_uri: Optional[str] = None
-        # Azure Pubsub Session Expiration Date Time.
-        self._session_expiration_date_time: Optional[datetime] = None
-        # The unique identifier for a session
-        self._session_key: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RetrieveRemoteHelpSessionResponse:
         """
@@ -155,7 +154,7 @@ class RetrieveRemoteHelpSessionResponse(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "acsGroupId": lambda n : setattr(self, 'acs_group_id', n.get_str_value()),
             "acsHelperUserId": lambda n : setattr(self, 'acs_helper_user_id', n.get_str_value()),
             "acsHelperUserToken": lambda n : setattr(self, 'acs_helper_user_token', n.get_str_value()),

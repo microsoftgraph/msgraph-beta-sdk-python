@@ -1,13 +1,31 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-virtual_appointment_settings = lazy_import('msgraph.generated.models.virtual_appointment_settings')
-virtual_appointment_user = lazy_import('msgraph.generated.models.virtual_appointment_user')
+if TYPE_CHECKING:
+    from . import entity, virtual_appointment_settings, virtual_appointment_user
+
+from . import entity
 
 class VirtualAppointment(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new virtualAppointment and sets the default values.
+        """
+        super().__init__()
+        # The join web URL of the virtual appointment for clients with waiting room and browser join. Optional.
+        self._appointment_client_join_web_url: Optional[str] = None
+        # The client information for the virtual appointment, including name, email, and SMS phone number. Optional.
+        self._appointment_clients: Optional[List[virtual_appointment_user.VirtualAppointmentUser]] = None
+        # The identifier of the appointment from the scheduling system, associated with the current virtual appointment. Optional.
+        self._external_appointment_id: Optional[str] = None
+        # The URL of the appointment resource from the scheduling system, associated with the current virtual appointment. Optional.
+        self._external_appointment_url: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The settings associated with the virtual appointment resource. Optional.
+        self._settings: Optional[virtual_appointment_settings.VirtualAppointmentSettings] = None
+    
     @property
     def appointment_client_join_web_url(self,) -> Optional[str]:
         """
@@ -41,24 +59,6 @@ class VirtualAppointment(entity.Entity):
             value: Value to set for the appointment_clients property.
         """
         self._appointment_clients = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new virtualAppointment and sets the default values.
-        """
-        super().__init__()
-        # The join web URL of the virtual appointment for clients with waiting room and browser join. Optional.
-        self._appointment_client_join_web_url: Optional[str] = None
-        # The client information for the virtual appointment, including name, email, and SMS phone number. Optional.
-        self._appointment_clients: Optional[List[virtual_appointment_user.VirtualAppointmentUser]] = None
-        # The identifier of the appointment from the scheduling system, associated with the current virtual appointment. Optional.
-        self._external_appointment_id: Optional[str] = None
-        # The URL of the appointment resource from the scheduling system, associated with the current virtual appointment. Optional.
-        self._external_appointment_url: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The settings associated with the virtual appointment resource. Optional.
-        self._settings: Optional[virtual_appointment_settings.VirtualAppointmentSettings] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> VirtualAppointment:
@@ -111,7 +111,9 @@ class VirtualAppointment(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, virtual_appointment_settings, virtual_appointment_user
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appointmentClients": lambda n : setattr(self, 'appointment_clients', n.get_collection_of_object_values(virtual_appointment_user.VirtualAppointmentUser)),
             "appointmentClientJoinWebUrl": lambda n : setattr(self, 'appointment_client_join_web_url', n.get_str_value()),
             "externalAppointmentId": lambda n : setattr(self, 'external_appointment_id', n.get_str_value()),

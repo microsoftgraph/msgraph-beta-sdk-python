@@ -1,12 +1,30 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-windows_kiosk_app_base = lazy_import('msgraph.generated.models.windows_kiosk_app_base')
-windows_kiosk_app_configuration = lazy_import('msgraph.generated.models.windows_kiosk_app_configuration')
+if TYPE_CHECKING:
+    from . import windows_kiosk_app_base, windows_kiosk_app_configuration
+
+from . import windows_kiosk_app_configuration
 
 class WindowsKioskMultipleApps(windows_kiosk_app_configuration.WindowsKioskAppConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new WindowsKioskMultipleApps and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.windowsKioskMultipleApps"
+        # This setting allows access to Downloads folder in file explorer.
+        self._allow_access_to_downloads_folder: Optional[bool] = None
+        # These are the only Windows Store Apps that will be available to launch from the Start menu. This collection can contain a maximum of 128 elements.
+        self._apps: Optional[List[windows_kiosk_app_base.WindowsKioskAppBase]] = None
+        # This setting indicates that desktop apps are allowed. Default to true.
+        self._disallow_desktop_apps: Optional[bool] = None
+        # This setting allows the admin to specify whether the Task Bar is shown or not.
+        self._show_task_bar: Optional[bool] = None
+        # Allows admins to override the default Start layout and prevents the user from changing it. The layout is modified by specifying an XML file based on a layout modification schema. XML needs to be in Binary format.
+        self._start_menu_layout_xml: Optional[bytes] = None
+    
     @property
     def allow_access_to_downloads_folder(self,) -> Optional[bool]:
         """
@@ -40,23 +58,6 @@ class WindowsKioskMultipleApps(windows_kiosk_app_configuration.WindowsKioskAppCo
             value: Value to set for the apps property.
         """
         self._apps = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsKioskMultipleApps and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsKioskMultipleApps"
-        # This setting allows access to Downloads folder in file explorer.
-        self._allow_access_to_downloads_folder: Optional[bool] = None
-        # These are the only Windows Store Apps that will be available to launch from the Start menu. This collection can contain a maximum of 128 elements.
-        self._apps: Optional[List[windows_kiosk_app_base.WindowsKioskAppBase]] = None
-        # This setting indicates that desktop apps are allowed. Default to true.
-        self._disallow_desktop_apps: Optional[bool] = None
-        # This setting allows the admin to specify whether the Task Bar is shown or not.
-        self._show_task_bar: Optional[bool] = None
-        # Allows admins to override the default Start layout and prevents the user from changing it. The layout is modified by specifying an XML file based on a layout modification schema. XML needs to be in Binary format.
-        self._start_menu_layout_xml: Optional[bytes] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsKioskMultipleApps:
@@ -92,7 +93,9 @@ class WindowsKioskMultipleApps(windows_kiosk_app_configuration.WindowsKioskAppCo
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import windows_kiosk_app_base, windows_kiosk_app_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowAccessToDownloadsFolder": lambda n : setattr(self, 'allow_access_to_downloads_folder', n.get_bool_value()),
             "apps": lambda n : setattr(self, 'apps', n.get_collection_of_object_values(windows_kiosk_app_base.WindowsKioskAppBase)),
             "disallowDesktopApps": lambda n : setattr(self, 'disallow_desktop_apps', n.get_bool_value()),

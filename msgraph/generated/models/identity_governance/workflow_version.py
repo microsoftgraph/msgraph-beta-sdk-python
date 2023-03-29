@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-workflow_base = lazy_import('msgraph.generated.models.identity_governance.workflow_base')
+if TYPE_CHECKING:
+    from . import workflow_base
+
+from . import workflow_base
 
 class WorkflowVersion(workflow_base.WorkflowBase):
     def __init__(self,) -> None:
@@ -32,7 +34,9 @@ class WorkflowVersion(workflow_base.WorkflowBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import workflow_base
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "versionNumber": lambda n : setattr(self, 'version_number', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()

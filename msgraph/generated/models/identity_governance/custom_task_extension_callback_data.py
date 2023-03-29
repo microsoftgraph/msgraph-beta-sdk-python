@@ -1,10 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-custom_extension_data = lazy_import('msgraph.generated.models.custom_extension_data')
-custom_task_extension_operation_status = lazy_import('msgraph.generated.models.identity_governance.custom_task_extension_operation_status')
+if TYPE_CHECKING:
+    from . import custom_task_extension_operation_status
+    from .. import custom_extension_data
+
+from .. import custom_extension_data
 
 class CustomTaskExtensionCallbackData(custom_extension_data.CustomExtensionData):
     def __init__(self,) -> None:
@@ -33,7 +35,10 @@ class CustomTaskExtensionCallbackData(custom_extension_data.CustomExtensionData)
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import custom_task_extension_operation_status
+        from .. import custom_extension_data
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "operationStatus": lambda n : setattr(self, 'operation_status', n.get_enum_value(custom_task_extension_operation_status.CustomTaskExtensionOperationStatus)),
         }
         super_fields = super().get_field_deserializers()

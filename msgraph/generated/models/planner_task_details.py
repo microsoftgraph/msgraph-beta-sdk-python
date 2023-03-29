@@ -1,32 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-item_body = lazy_import('msgraph.generated.models.item_body')
-planner_checklist_items = lazy_import('msgraph.generated.models.planner_checklist_items')
-planner_delta = lazy_import('msgraph.generated.models.planner_delta')
-planner_external_references = lazy_import('msgraph.generated.models.planner_external_references')
-planner_preview_type = lazy_import('msgraph.generated.models.planner_preview_type')
+if TYPE_CHECKING:
+    from . import item_body, planner_checklist_items, planner_delta, planner_external_references, planner_preview_type
+
+from . import planner_delta
 
 class PlannerTaskDetails(planner_delta.PlannerDelta):
-    @property
-    def checklist(self,) -> Optional[planner_checklist_items.PlannerChecklistItems]:
-        """
-        Gets the checklist property value. The collection of checklist items on the task.
-        Returns: Optional[planner_checklist_items.PlannerChecklistItems]
-        """
-        return self._checklist
-    
-    @checklist.setter
-    def checklist(self,value: Optional[planner_checklist_items.PlannerChecklistItems] = None) -> None:
-        """
-        Sets the checklist property value. The collection of checklist items on the task.
-        Args:
-            value: Value to set for the checklist property.
-        """
-        self._checklist = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new plannerTaskDetails and sets the default values.
@@ -44,6 +25,23 @@ class PlannerTaskDetails(planner_delta.PlannerDelta):
         self._preview_type: Optional[planner_preview_type.PlannerPreviewType] = None
         # The collection of references on the task.
         self._references: Optional[planner_external_references.PlannerExternalReferences] = None
+    
+    @property
+    def checklist(self,) -> Optional[planner_checklist_items.PlannerChecklistItems]:
+        """
+        Gets the checklist property value. The collection of checklist items on the task.
+        Returns: Optional[planner_checklist_items.PlannerChecklistItems]
+        """
+        return self._checklist
+    
+    @checklist.setter
+    def checklist(self,value: Optional[planner_checklist_items.PlannerChecklistItems] = None) -> None:
+        """
+        Sets the checklist property value. The collection of checklist items on the task.
+        Args:
+            value: Value to set for the checklist property.
+        """
+        self._checklist = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PlannerTaskDetails:
@@ -79,7 +77,9 @@ class PlannerTaskDetails(planner_delta.PlannerDelta):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import item_body, planner_checklist_items, planner_delta, planner_external_references, planner_preview_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "checklist": lambda n : setattr(self, 'checklist', n.get_object_value(planner_checklist_items.PlannerChecklistItems)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "notes": lambda n : setattr(self, 'notes', n.get_object_value(item_body.ItemBody)),

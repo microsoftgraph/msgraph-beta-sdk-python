@@ -1,16 +1,33 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-compliance_change = lazy_import('msgraph.generated.models.windows_updates.compliance_change')
-compliance_change_rule = lazy_import('msgraph.generated.models.windows_updates.compliance_change_rule')
-deployment_audience = lazy_import('msgraph.generated.models.windows_updates.deployment_audience')
-deployment_settings = lazy_import('msgraph.generated.models.windows_updates.deployment_settings')
+if TYPE_CHECKING:
+    from . import compliance_change, compliance_change_rule, deployment_audience, deployment_settings
+    from .. import entity
+
+from .. import entity
 
 class UpdatePolicy(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new updatePolicy and sets the default values.
+        """
+        super().__init__()
+        # Specifies the audience to target.
+        self._audience: Optional[deployment_audience.DeploymentAudience] = None
+        # Rules for governing the automatic creation of compliance changes.
+        self._compliance_change_rules: Optional[List[compliance_change_rule.ComplianceChangeRule]] = None
+        # Compliance changes like content approvals which result in the automatic creation of deployments using the audience and deploymentSettings of the policy.
+        self._compliance_changes: Optional[List[compliance_change.ComplianceChange]] = None
+        # The date and time when the update policy was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+        self._created_date_time: Optional[datetime] = None
+        # Settings for governing how to deploy content.
+        self._deployment_settings: Optional[deployment_settings.DeploymentSettings] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def audience(self,) -> Optional[deployment_audience.DeploymentAudience]:
         """
@@ -61,24 +78,6 @@ class UpdatePolicy(entity.Entity):
             value: Value to set for the compliance_changes property.
         """
         self._compliance_changes = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new updatePolicy and sets the default values.
-        """
-        super().__init__()
-        # Specifies the audience to target.
-        self._audience: Optional[deployment_audience.DeploymentAudience] = None
-        # Rules for governing the automatic creation of compliance changes.
-        self._compliance_change_rules: Optional[List[compliance_change_rule.ComplianceChangeRule]] = None
-        # Compliance changes like content approvals which result in the automatic creation of deployments using the audience and deploymentSettings of the policy.
-        self._compliance_changes: Optional[List[compliance_change.ComplianceChange]] = None
-        # The date and time when the update policy was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        self._created_date_time: Optional[datetime] = None
-        # Settings for governing how to deploy content.
-        self._deployment_settings: Optional[deployment_settings.DeploymentSettings] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
@@ -131,7 +130,10 @@ class UpdatePolicy(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import compliance_change, compliance_change_rule, deployment_audience, deployment_settings
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "audience": lambda n : setattr(self, 'audience', n.get_object_value(deployment_audience.DeploymentAudience)),
             "complianceChanges": lambda n : setattr(self, 'compliance_changes', n.get_collection_of_object_values(compliance_change.ComplianceChange)),
             "complianceChangeRules": lambda n : setattr(self, 'compliance_change_rules', n.get_collection_of_object_values(compliance_change_rule.ComplianceChangeRule)),

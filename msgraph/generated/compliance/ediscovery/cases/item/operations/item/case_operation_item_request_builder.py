@@ -7,24 +7,17 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-microsoft_graph_ediscovery_case_export_operation_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.operations.item.microsoft_graph_ediscovery_case_export_operation.microsoft_graph_ediscovery_case_export_operation_request_builder')
-case_operation = lazy_import('msgraph.generated.models.ediscovery.case_operation')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from .......models.ediscovery import case_operation
+    from .......models.o_data_errors import o_data_error
+    from .microsoft_graph_ediscovery_case_export_operation import microsoft_graph_ediscovery_case_export_operation_request_builder
 
 class CaseOperationItemRequestBuilder():
     """
     Provides operations to manage the operations property of the microsoft.graph.ediscovery.case entity.
     """
-    @property
-    def microsoft_graph_ediscovery_case_export_operation(self) -> microsoft_graph_ediscovery_case_export_operation_request_builder.MicrosoftGraphEdiscoveryCaseExportOperationRequestBuilder:
-        """
-        Casts the previous resource to caseExportOperation.
-        """
-        return microsoft_graph_ediscovery_case_export_operation_request_builder.MicrosoftGraphEdiscoveryCaseExportOperationRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new CaseOperationItemRequestBuilder and sets the default values.
@@ -52,6 +45,8 @@ class CaseOperationItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -70,12 +65,16 @@ class CaseOperationItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .......models.ediscovery import case_operation
+
         return await self.request_adapter.send_async(request_info, case_operation.CaseOperation, error_mapping)
     
     async def patch(self,body: Optional[case_operation.CaseOperation] = None, request_configuration: Optional[CaseOperationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[case_operation.CaseOperation]:
@@ -91,12 +90,16 @@ class CaseOperationItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .......models.ediscovery import case_operation
+
         return await self.request_adapter.send_async(request_info, case_operation.CaseOperation, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CaseOperationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -154,6 +157,15 @@ class CaseOperationItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def microsoft_graph_ediscovery_case_export_operation(self) -> microsoft_graph_ediscovery_case_export_operation_request_builder.MicrosoftGraphEdiscoveryCaseExportOperationRequestBuilder:
+        """
+        Casts the previous resource to caseExportOperation.
+        """
+        from .microsoft_graph_ediscovery_case_export_operation import microsoft_graph_ediscovery_case_export_operation_request_builder
+
+        return microsoft_graph_ediscovery_case_export_operation_request_builder.MicrosoftGraphEdiscoveryCaseExportOperationRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class CaseOperationItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -171,12 +183,6 @@ class CaseOperationItemRequestBuilder():
         """
         Returns a list of case operation objects for this case. Nullable.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -192,6 +198,12 @@ class CaseOperationItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class CaseOperationItemRequestBuilderGetRequestConfiguration():

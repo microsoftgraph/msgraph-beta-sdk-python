@@ -1,46 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from .. import entity
+
+from .. import entity
 
 class ManagementTemplateStepTenantSummary(entity.Entity):
-    @property
-    def assigned_tenants_count(self,) -> Optional[int]:
-        """
-        Gets the assignedTenantsCount property value. The assignedTenantsCount property
-        Returns: Optional[int]
-        """
-        return self._assigned_tenants_count
-    
-    @assigned_tenants_count.setter
-    def assigned_tenants_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the assignedTenantsCount property value. The assignedTenantsCount property
-        Args:
-            value: Value to set for the assigned_tenants_count property.
-        """
-        self._assigned_tenants_count = value
-    
-    @property
-    def compliant_tenants_count(self,) -> Optional[int]:
-        """
-        Gets the compliantTenantsCount property value. The compliantTenantsCount property
-        Returns: Optional[int]
-        """
-        return self._compliant_tenants_count
-    
-    @compliant_tenants_count.setter
-    def compliant_tenants_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the compliantTenantsCount property value. The compliantTenantsCount property
-        Args:
-            value: Value to set for the compliant_tenants_count property.
-        """
-        self._compliant_tenants_count = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new managementTemplateStepTenantSummary and sets the default values.
@@ -78,6 +46,40 @@ class ManagementTemplateStepTenantSummary(entity.Entity):
         self._not_compliant_tenants_count: Optional[int] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
+    
+    @property
+    def assigned_tenants_count(self,) -> Optional[int]:
+        """
+        Gets the assignedTenantsCount property value. The assignedTenantsCount property
+        Returns: Optional[int]
+        """
+        return self._assigned_tenants_count
+    
+    @assigned_tenants_count.setter
+    def assigned_tenants_count(self,value: Optional[int] = None) -> None:
+        """
+        Sets the assignedTenantsCount property value. The assignedTenantsCount property
+        Args:
+            value: Value to set for the assigned_tenants_count property.
+        """
+        self._assigned_tenants_count = value
+    
+    @property
+    def compliant_tenants_count(self,) -> Optional[int]:
+        """
+        Gets the compliantTenantsCount property value. The compliantTenantsCount property
+        Returns: Optional[int]
+        """
+        return self._compliant_tenants_count
+    
+    @compliant_tenants_count.setter
+    def compliant_tenants_count(self,value: Optional[int] = None) -> None:
+        """
+        Sets the compliantTenantsCount property value. The compliantTenantsCount property
+        Args:
+            value: Value to set for the compliant_tenants_count property.
+        """
+        self._compliant_tenants_count = value
     
     @property
     def created_by_user_id(self,) -> Optional[str]:
@@ -147,7 +149,9 @@ class ManagementTemplateStepTenantSummary(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignedTenantsCount": lambda n : setattr(self, 'assigned_tenants_count', n.get_int_value()),
             "compliantTenantsCount": lambda n : setattr(self, 'compliant_tenants_count', n.get_int_value()),
             "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),

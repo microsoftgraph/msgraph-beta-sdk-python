@@ -1,19 +1,59 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-vpp_token_account_type = lazy_import('msgraph.generated.models.vpp_token_account_type')
-vpp_token_action_result = lazy_import('msgraph.generated.models.vpp_token_action_result')
-vpp_token_state = lazy_import('msgraph.generated.models.vpp_token_state')
-vpp_token_sync_status = lazy_import('msgraph.generated.models.vpp_token_sync_status')
+if TYPE_CHECKING:
+    from . import entity, vpp_token_account_type, vpp_token_action_result, vpp_token_state, vpp_token_sync_status
+
+from . import entity
 
 class VppToken(entity.Entity):
     """
     You purchase multiple licenses for iOS apps through the Apple Volume Purchase Program for Business or Education. This involves setting up an Apple VPP account from the Apple website and uploading the Apple VPP Business or Education token to Intune. You can then synchronize your volume purchase information with Intune and track your volume-purchased app use. You can upload multiple Apple VPP Business or Education tokens.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new vppToken and sets the default values.
+        """
+        super().__init__()
+        # The apple Id associated with the given Apple Volume Purchase Program Token.
+        self._apple_id: Optional[str] = None
+        # Whether or not apps for the VPP token will be automatically updated.
+        self._automatically_update_apps: Optional[bool] = None
+        # Admin consent to allow claiming token management from external MDM.
+        self._claim_token_management_from_external_mdm: Optional[bool] = None
+        # Whether or not apps for the VPP token will be automatically updated.
+        self._country_or_region: Optional[str] = None
+        # Consent granted for data sharing with the Apple Volume Purchase Program.
+        self._data_sharing_consent_granted: Optional[bool] = None
+        # An admin specified token friendly name.
+        self._display_name: Optional[str] = None
+        # The expiration date time of the Apple Volume Purchase Program Token.
+        self._expiration_date_time: Optional[datetime] = None
+        # Last modification date time associated with the Apple Volume Purchase Program Token.
+        self._last_modified_date_time: Optional[datetime] = None
+        # The last time when an application sync was done with the Apple volume purchase program service using the the Apple Volume Purchase Program Token.
+        self._last_sync_date_time: Optional[datetime] = None
+        # Possible sync statuses associated with an Apple Volume Purchase Program token.
+        self._last_sync_status: Optional[vpp_token_sync_status.VppTokenSyncStatus] = None
+        # Token location returned from Apple VPP.
+        self._location_name: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The organization associated with the Apple Volume Purchase Program Token
+        self._organization_name: Optional[str] = None
+        # Role Scope Tags IDs assigned to this entity.
+        self._role_scope_tag_ids: Optional[List[str]] = None
+        # Possible states associated with an Apple Volume Purchase Program token.
+        self._state: Optional[vpp_token_state.VppTokenState] = None
+        # The Apple Volume Purchase Program Token string downloaded from the Apple Volume Purchase Program.
+        self._token: Optional[str] = None
+        # The collection of statuses of the actions performed on the Apple Volume Purchase Program Token.
+        self._token_action_results: Optional[List[vpp_token_action_result.VppTokenActionResult]] = None
+        # Possible types of an Apple Volume Purchase Program token.
+        self._vpp_token_account_type: Optional[vpp_token_account_type.VppTokenAccountType] = None
+    
     @property
     def apple_id(self,) -> Optional[str]:
         """
@@ -64,48 +104,6 @@ class VppToken(entity.Entity):
             value: Value to set for the claim_token_management_from_external_mdm property.
         """
         self._claim_token_management_from_external_mdm = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new vppToken and sets the default values.
-        """
-        super().__init__()
-        # The apple Id associated with the given Apple Volume Purchase Program Token.
-        self._apple_id: Optional[str] = None
-        # Whether or not apps for the VPP token will be automatically updated.
-        self._automatically_update_apps: Optional[bool] = None
-        # Admin consent to allow claiming token management from external MDM.
-        self._claim_token_management_from_external_mdm: Optional[bool] = None
-        # Whether or not apps for the VPP token will be automatically updated.
-        self._country_or_region: Optional[str] = None
-        # Consent granted for data sharing with the Apple Volume Purchase Program.
-        self._data_sharing_consent_granted: Optional[bool] = None
-        # An admin specified token friendly name.
-        self._display_name: Optional[str] = None
-        # The expiration date time of the Apple Volume Purchase Program Token.
-        self._expiration_date_time: Optional[datetime] = None
-        # Last modification date time associated with the Apple Volume Purchase Program Token.
-        self._last_modified_date_time: Optional[datetime] = None
-        # The last time when an application sync was done with the Apple volume purchase program service using the the Apple Volume Purchase Program Token.
-        self._last_sync_date_time: Optional[datetime] = None
-        # Possible sync statuses associated with an Apple Volume Purchase Program token.
-        self._last_sync_status: Optional[vpp_token_sync_status.VppTokenSyncStatus] = None
-        # Token location returned from Apple VPP.
-        self._location_name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The organization associated with the Apple Volume Purchase Program Token
-        self._organization_name: Optional[str] = None
-        # Role Scope Tags IDs assigned to this entity.
-        self._role_scope_tag_ids: Optional[List[str]] = None
-        # Possible states associated with an Apple Volume Purchase Program token.
-        self._state: Optional[vpp_token_state.VppTokenState] = None
-        # The Apple Volume Purchase Program Token string downloaded from the Apple Volume Purchase Program.
-        self._token: Optional[str] = None
-        # The collection of statuses of the actions performed on the Apple Volume Purchase Program Token.
-        self._token_action_results: Optional[List[vpp_token_action_result.VppTokenActionResult]] = None
-        # Possible types of an Apple Volume Purchase Program token.
-        self._vpp_token_account_type: Optional[vpp_token_account_type.VppTokenAccountType] = None
     
     @property
     def country_or_region(self,) -> Optional[str]:
@@ -192,7 +190,9 @@ class VppToken(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, vpp_token_account_type, vpp_token_action_result, vpp_token_state, vpp_token_sync_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appleId": lambda n : setattr(self, 'apple_id', n.get_str_value()),
             "automaticallyUpdateApps": lambda n : setattr(self, 'automatically_update_apps', n.get_bool_value()),
             "claimTokenManagementFromExternalMdm": lambda n : setattr(self, 'claim_token_management_from_external_mdm', n.get_bool_value()),

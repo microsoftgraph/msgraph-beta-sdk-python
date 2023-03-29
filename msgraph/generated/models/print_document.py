@@ -1,30 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-printer_document_configuration = lazy_import('msgraph.generated.models.printer_document_configuration')
+if TYPE_CHECKING:
+    from . import entity, printer_document_configuration
+
+from . import entity
 
 class PrintDocument(entity.Entity):
-    @property
-    def configuration(self,) -> Optional[printer_document_configuration.PrinterDocumentConfiguration]:
-        """
-        Gets the configuration property value. The configuration property
-        Returns: Optional[printer_document_configuration.PrinterDocumentConfiguration]
-        """
-        return self._configuration
-    
-    @configuration.setter
-    def configuration(self,value: Optional[printer_document_configuration.PrinterDocumentConfiguration] = None) -> None:
-        """
-        Sets the configuration property value. The configuration property
-        Args:
-            value: Value to set for the configuration property.
-        """
-        self._configuration = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new printDocument and sets the default values.
@@ -44,6 +28,23 @@ class PrintDocument(entity.Entity):
         self._size: Optional[int] = None
         # The uploadedDateTime property
         self._uploaded_date_time: Optional[datetime] = None
+    
+    @property
+    def configuration(self,) -> Optional[printer_document_configuration.PrinterDocumentConfiguration]:
+        """
+        Gets the configuration property value. The configuration property
+        Returns: Optional[printer_document_configuration.PrinterDocumentConfiguration]
+        """
+        return self._configuration
+    
+    @configuration.setter
+    def configuration(self,value: Optional[printer_document_configuration.PrinterDocumentConfiguration] = None) -> None:
+        """
+        Sets the configuration property value. The configuration property
+        Args:
+            value: Value to set for the configuration property.
+        """
+        self._configuration = value
     
     @property
     def content_type(self,) -> Optional[str]:
@@ -113,7 +114,9 @@ class PrintDocument(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, printer_document_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "configuration": lambda n : setattr(self, 'configuration', n.get_object_value(printer_document_configuration.PrinterDocumentConfiguration)),
             "contentType": lambda n : setattr(self, 'content_type', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

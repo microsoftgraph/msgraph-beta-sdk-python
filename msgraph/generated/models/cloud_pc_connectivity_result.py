@@ -1,13 +1,28 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-cloud_pc_connectivity_status = lazy_import('msgraph.generated.models.cloud_pc_connectivity_status')
-cloud_pc_health_check_item = lazy_import('msgraph.generated.models.cloud_pc_health_check_item')
+if TYPE_CHECKING:
+    from . import cloud_pc_connectivity_status, cloud_pc_health_check_item
 
 class CloudPcConnectivityResult(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new cloudPcConnectivityResult and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # A list of failed health check items. If the status property is available, this property will be empty.
+        self._failed_health_check_items: Optional[List[cloud_pc_health_check_item.CloudPcHealthCheckItem]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The status property
+        self._status: Optional[cloud_pc_connectivity_status.CloudPcConnectivityStatus] = None
+        # Datetime when the status was updated. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z.
+        self._updated_date_time: Optional[datetime] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -24,22 +39,6 @@ class CloudPcConnectivityResult(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new cloudPcConnectivityResult and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # A list of failed health check items. If the status property is available, this property will be empty.
-        self._failed_health_check_items: Optional[List[cloud_pc_health_check_item.CloudPcHealthCheckItem]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The status property
-        self._status: Optional[cloud_pc_connectivity_status.CloudPcConnectivityStatus] = None
-        # Datetime when the status was updated. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z.
-        self._updated_date_time: Optional[datetime] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcConnectivityResult:
@@ -75,7 +74,9 @@ class CloudPcConnectivityResult(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import cloud_pc_connectivity_status, cloud_pc_health_check_item
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "failedHealthCheckItems": lambda n : setattr(self, 'failed_health_check_items', n.get_collection_of_object_values(cloud_pc_health_check_item.CloudPcHealthCheckItem)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(cloud_pc_connectivity_status.CloudPcConnectivityStatus)),

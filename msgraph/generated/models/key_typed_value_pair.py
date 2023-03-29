@@ -1,12 +1,26 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+
+if TYPE_CHECKING:
+    from . import key_boolean_value_pair, key_integer_value_pair, key_real_value_pair, key_string_value_pair
 
 class KeyTypedValuePair(AdditionalDataHolder, Parsable):
     """
     A key-value pair with a string key and a typed value.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new keyTypedValuePair and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The string key of the key-value pair.
+        self._key: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -24,18 +38,6 @@ class KeyTypedValuePair(AdditionalDataHolder, Parsable):
         """
         self._additional_data = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new keyTypedValuePair and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The string key of the key-value pair.
-        self._key: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> KeyTypedValuePair:
         """
@@ -46,6 +48,25 @@ class KeyTypedValuePair(AdditionalDataHolder, Parsable):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.keyBooleanValuePair":
+                from . import key_boolean_value_pair
+
+                return key_boolean_value_pair.KeyBooleanValuePair()
+            if mapping_value == "#microsoft.graph.keyIntegerValuePair":
+                from . import key_integer_value_pair
+
+                return key_integer_value_pair.KeyIntegerValuePair()
+            if mapping_value == "#microsoft.graph.keyRealValuePair":
+                from . import key_real_value_pair
+
+                return key_real_value_pair.KeyRealValuePair()
+            if mapping_value == "#microsoft.graph.keyStringValuePair":
+                from . import key_string_value_pair
+
+                return key_string_value_pair.KeyStringValuePair()
         return KeyTypedValuePair()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -53,7 +74,9 @@ class KeyTypedValuePair(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import key_boolean_value_pair, key_integer_value_pair, key_real_value_pair, key_string_value_pair
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "key": lambda n : setattr(self, 'key', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }

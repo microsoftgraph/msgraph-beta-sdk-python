@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-planner_relationship_user_roles = lazy_import('msgraph.generated.models.planner_relationship_user_roles')
-planner_task_configuration_role_base = lazy_import('msgraph.generated.models.planner_task_configuration_role_base')
+if TYPE_CHECKING:
+    from . import planner_relationship_user_roles, planner_task_configuration_role_base
+
+from . import planner_task_configuration_role_base
 
 class PlannerRelationshipBasedUserType(planner_task_configuration_role_base.PlannerTaskConfigurationRoleBase):
     def __init__(self,) -> None:
@@ -33,7 +34,9 @@ class PlannerRelationshipBasedUserType(planner_task_configuration_role_base.Plan
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import planner_relationship_user_roles, planner_task_configuration_role_base
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "role": lambda n : setattr(self, 'role', n.get_enum_value(planner_relationship_user_roles.PlannerRelationshipUserRoles)),
         }
         super_fields = super().get_field_deserializers()

@@ -1,11 +1,33 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-user_set = lazy_import('msgraph.generated.models.user_set')
+if TYPE_CHECKING:
+    from . import user_set
 
 class ApprovalStage(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new approvalStage and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The number of days that a request can be pending a response before it is automatically denied.
+        self._approval_stage_time_out_in_days: Optional[int] = None
+        # If escalation is enabled and the primary approvers do not respond before the escalation time, the escalationApprovers are the users who will be asked to approve requests. This can be a collection of singleUser, groupMembers, requestorManager, internalSponsors and externalSponsors.  When creating or updating a policy, if there are no escalation approvers, or escalation approvers are not required for the stage, the value of this property should be an empty collection.
+        self._escalation_approvers: Optional[List[user_set.UserSet]] = None
+        # If escalation is required, the time a request can be pending a response from a primary approver.
+        self._escalation_time_in_minutes: Optional[int] = None
+        # Indicates whether the approver is required to provide a justification for approving a request.
+        self._is_approver_justification_required: Optional[bool] = None
+        # If true, then one or more escalation approvers are configured in this approval stage.
+        self._is_escalation_enabled: Optional[bool] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The users who will be asked to approve requests. A collection of singleUser, groupMembers, requestorManager, internalSponsors and externalSponsors. When creating or updating a policy, include at least one userSet in this collection.
+        self._primary_approvers: Optional[List[user_set.UserSet]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -39,28 +61,6 @@ class ApprovalStage(AdditionalDataHolder, Parsable):
             value: Value to set for the approval_stage_time_out_in_days property.
         """
         self._approval_stage_time_out_in_days = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new approvalStage and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The number of days that a request can be pending a response before it is automatically denied.
-        self._approval_stage_time_out_in_days: Optional[int] = None
-        # If escalation is enabled and the primary approvers do not respond before the escalation time, the escalationApprovers are the users who will be asked to approve requests. This can be a collection of singleUser, groupMembers, requestorManager, internalSponsors and externalSponsors.  When creating or updating a policy, if there are no escalation approvers, or escalation approvers are not required for the stage, the value of this property should be an empty collection.
-        self._escalation_approvers: Optional[List[user_set.UserSet]] = None
-        # If escalation is required, the time a request can be pending a response from a primary approver.
-        self._escalation_time_in_minutes: Optional[int] = None
-        # Indicates whether the approver is required to provide a justification for approving a request.
-        self._is_approver_justification_required: Optional[bool] = None
-        # If true, then one or more escalation approvers are configured in this approval stage.
-        self._is_escalation_enabled: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The users who will be asked to approve requests. A collection of singleUser, groupMembers, requestorManager, internalSponsors and externalSponsors. When creating or updating a policy, include at least one userSet in this collection.
-        self._primary_approvers: Optional[List[user_set.UserSet]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ApprovalStage:
@@ -113,7 +113,9 @@ class ApprovalStage(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import user_set
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "approvalStageTimeOutInDays": lambda n : setattr(self, 'approval_stage_time_out_in_days', n.get_int_value()),
             "escalationApprovers": lambda n : setattr(self, 'escalation_approvers', n.get_collection_of_object_values(user_set.UserSet)),
             "escalationTimeInMinutes": lambda n : setattr(self, 'escalation_time_in_minutes', n.get_int_value()),

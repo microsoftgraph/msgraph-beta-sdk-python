@@ -1,36 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-ios_lob_app_provisioning_configuration_assignment = lazy_import('msgraph.generated.models.ios_lob_app_provisioning_configuration_assignment')
-managed_device_mobile_app_configuration_device_status = lazy_import('msgraph.generated.models.managed_device_mobile_app_configuration_device_status')
-managed_device_mobile_app_configuration_user_status = lazy_import('msgraph.generated.models.managed_device_mobile_app_configuration_user_status')
-mobile_app_provisioning_config_group_assignment = lazy_import('msgraph.generated.models.mobile_app_provisioning_config_group_assignment')
+if TYPE_CHECKING:
+    from . import entity, ios_lob_app_provisioning_configuration_assignment, managed_device_mobile_app_configuration_device_status, managed_device_mobile_app_configuration_user_status, mobile_app_provisioning_config_group_assignment
+
+from . import entity
 
 class IosLobAppProvisioningConfiguration(entity.Entity):
     """
     This topic provides descriptions of the declared methods, properties and relationships exposed by the iOS Lob App Provisioning Configuration resource.
     """
-    @property
-    def assignments(self,) -> Optional[List[ios_lob_app_provisioning_configuration_assignment.IosLobAppProvisioningConfigurationAssignment]]:
-        """
-        Gets the assignments property value. The associated group assignments for IosLobAppProvisioningConfiguration.
-        Returns: Optional[List[ios_lob_app_provisioning_configuration_assignment.IosLobAppProvisioningConfigurationAssignment]]
-        """
-        return self._assignments
-    
-    @assignments.setter
-    def assignments(self,value: Optional[List[ios_lob_app_provisioning_configuration_assignment.IosLobAppProvisioningConfigurationAssignment]] = None) -> None:
-        """
-        Sets the assignments property value. The associated group assignments for IosLobAppProvisioningConfiguration.
-        Args:
-            value: Value to set for the assignments property.
-        """
-        self._assignments = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new iosLobAppProvisioningConfiguration and sets the default values.
@@ -64,6 +45,23 @@ class IosLobAppProvisioningConfiguration(entity.Entity):
         self._user_statuses: Optional[List[managed_device_mobile_app_configuration_user_status.ManagedDeviceMobileAppConfigurationUserStatus]] = None
         # Version of the device configuration.
         self._version: Optional[int] = None
+    
+    @property
+    def assignments(self,) -> Optional[List[ios_lob_app_provisioning_configuration_assignment.IosLobAppProvisioningConfigurationAssignment]]:
+        """
+        Gets the assignments property value. The associated group assignments for IosLobAppProvisioningConfiguration.
+        Returns: Optional[List[ios_lob_app_provisioning_configuration_assignment.IosLobAppProvisioningConfigurationAssignment]]
+        """
+        return self._assignments
+    
+    @assignments.setter
+    def assignments(self,value: Optional[List[ios_lob_app_provisioning_configuration_assignment.IosLobAppProvisioningConfigurationAssignment]] = None) -> None:
+        """
+        Sets the assignments property value. The associated group assignments for IosLobAppProvisioningConfiguration.
+        Args:
+            value: Value to set for the assignments property.
+        """
+        self._assignments = value
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
@@ -167,7 +165,9 @@ class IosLobAppProvisioningConfiguration(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, ios_lob_app_provisioning_configuration_assignment, managed_device_mobile_app_configuration_device_status, managed_device_mobile_app_configuration_user_status, mobile_app_provisioning_config_group_assignment
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(ios_lob_app_provisioning_configuration_assignment.IosLobAppProvisioningConfigurationAssignment)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

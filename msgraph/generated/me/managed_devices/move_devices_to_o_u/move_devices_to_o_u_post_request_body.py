@@ -1,9 +1,21 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from uuid import UUID
 
 class MoveDevicesToOUPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new moveDevicesToOUPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The deviceIds property
+        self._device_ids: Optional[List[UUID]] = None
+        # The organizationalUnitPath property
+        self._organizational_unit_path: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -21,18 +33,6 @@ class MoveDevicesToOUPostRequestBody(AdditionalDataHolder, Parsable):
         """
         self._additional_data = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new moveDevicesToOUPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The deviceIds property
-        self._device_ids: Optional[List[Guid]] = None
-        # The organizationalUnitPath property
-        self._organizational_unit_path: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MoveDevicesToOUPostRequestBody:
         """
@@ -46,15 +46,15 @@ class MoveDevicesToOUPostRequestBody(AdditionalDataHolder, Parsable):
         return MoveDevicesToOUPostRequestBody()
     
     @property
-    def device_ids(self,) -> Optional[List[Guid]]:
+    def device_ids(self,) -> Optional[List[UUID]]:
         """
         Gets the deviceIds property value. The deviceIds property
-        Returns: Optional[List[Guid]]
+        Returns: Optional[List[UUID]]
         """
         return self._device_ids
     
     @device_ids.setter
-    def device_ids(self,value: Optional[List[Guid]] = None) -> None:
+    def device_ids(self,value: Optional[List[UUID]] = None) -> None:
         """
         Sets the deviceIds property value. The deviceIds property
         Args:
@@ -67,8 +67,8 @@ class MoveDevicesToOUPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
-            "deviceIds": lambda n : setattr(self, 'device_ids', n.get_collection_of_primitive_values(guid)),
+        fields: Dict[str, Callable[[Any], None]] = {
+            "deviceIds": lambda n : setattr(self, 'device_ids', n.get_collection_of_primitive_values(u_u_i_d)),
             "organizationalUnitPath": lambda n : setattr(self, 'organizational_unit_path', n.get_str_value()),
         }
         return fields

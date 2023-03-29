@@ -1,14 +1,44 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class UserExperienceAnalyticsAppHealthApplicationPerformance(entity.Entity):
     """
     The user experience analytics application performance entity contains app performance details.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new userExperienceAnalyticsAppHealthApplicationPerformance and sets the default values.
+        """
+        super().__init__()
+        # The number of devices where the app has been active. Valid values -2147483648 to 2147483647
+        self._active_device_count: Optional[int] = None
+        # The number of crashes for the app. Valid values -2147483648 to 2147483647
+        self._app_crash_count: Optional[int] = None
+        # The friendly name of the application.
+        self._app_display_name: Optional[str] = None
+        # The number of hangs for the app. Valid values -2147483648 to 2147483647
+        self._app_hang_count: Optional[int] = None
+        # The health score of the app. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+        self._app_health_score: Optional[float] = None
+        # The overall health status of the app.
+        self._app_health_status: Optional[str] = None
+        # The name of the application.
+        self._app_name: Optional[str] = None
+        # The publisher of the application.
+        self._app_publisher: Optional[str] = None
+        # The total usage time of the application in minutes. Valid values -2147483648 to 2147483647
+        self._app_usage_duration: Optional[int] = None
+        # The mean time to failure for the app in minutes. Valid values -2147483648 to 2147483647
+        self._mean_time_to_failure_in_minutes: Optional[int] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def active_device_count(self,) -> Optional[int]:
         """
@@ -162,34 +192,6 @@ class UserExperienceAnalyticsAppHealthApplicationPerformance(entity.Entity):
         """
         self._app_usage_duration = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsAppHealthApplicationPerformance and sets the default values.
-        """
-        super().__init__()
-        # The number of devices where the app has been active. Valid values -2147483648 to 2147483647
-        self._active_device_count: Optional[int] = None
-        # The number of crashes for the app. Valid values -2147483648 to 2147483647
-        self._app_crash_count: Optional[int] = None
-        # The friendly name of the application.
-        self._app_display_name: Optional[str] = None
-        # The number of hangs for the app. Valid values -2147483648 to 2147483647
-        self._app_hang_count: Optional[int] = None
-        # The health score of the app. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._app_health_score: Optional[float] = None
-        # The overall health status of the app.
-        self._app_health_status: Optional[str] = None
-        # The name of the application.
-        self._app_name: Optional[str] = None
-        # The publisher of the application.
-        self._app_publisher: Optional[str] = None
-        # The total usage time of the application in minutes. Valid values -2147483648 to 2147483647
-        self._app_usage_duration: Optional[int] = None
-        # The mean time to failure for the app in minutes. Valid values -2147483648 to 2147483647
-        self._mean_time_to_failure_in_minutes: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsAppHealthApplicationPerformance:
         """
@@ -207,7 +209,9 @@ class UserExperienceAnalyticsAppHealthApplicationPerformance(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "activeDeviceCount": lambda n : setattr(self, 'active_device_count', n.get_int_value()),
             "appCrashCount": lambda n : setattr(self, 'app_crash_count', n.get_int_value()),
             "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),

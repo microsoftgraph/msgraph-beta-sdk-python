@@ -1,11 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-authentication_method_configuration = lazy_import('msgraph.generated.models.authentication_method_configuration')
-microsoft_authenticator_authentication_method_target = lazy_import('msgraph.generated.models.microsoft_authenticator_authentication_method_target')
-microsoft_authenticator_feature_settings = lazy_import('msgraph.generated.models.microsoft_authenticator_feature_settings')
+if TYPE_CHECKING:
+    from . import authentication_method_configuration, microsoft_authenticator_authentication_method_target, microsoft_authenticator_feature_settings
+
+from . import authentication_method_configuration
 
 class MicrosoftAuthenticatorAuthenticationMethodConfiguration(authentication_method_configuration.AuthenticationMethodConfiguration):
     def __init__(self,) -> None:
@@ -55,7 +55,9 @@ class MicrosoftAuthenticatorAuthenticationMethodConfiguration(authentication_met
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import authentication_method_configuration, microsoft_authenticator_authentication_method_target, microsoft_authenticator_feature_settings
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "featureSettings": lambda n : setattr(self, 'feature_settings', n.get_object_value(microsoft_authenticator_feature_settings.MicrosoftAuthenticatorFeatureSettings)),
             "includeTargets": lambda n : setattr(self, 'include_targets', n.get_collection_of_object_values(microsoft_authenticator_authentication_method_target.MicrosoftAuthenticatorAuthenticationMethodTarget)),
             "isSoftwareOathEnabled": lambda n : setattr(self, 'is_software_oath_enabled', n.get_bool_value()),

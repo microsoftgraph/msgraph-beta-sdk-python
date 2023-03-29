@@ -1,13 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-business_scenario_properties = lazy_import('msgraph.generated.models.business_scenario_properties')
-business_scenario_task_target_base = lazy_import('msgraph.generated.models.business_scenario_task_target_base')
-planner_task = lazy_import('msgraph.generated.models.planner_task')
+if TYPE_CHECKING:
+    from . import business_scenario_properties, business_scenario_task_target_base, planner_task
+
+from . import planner_task
 
 class BusinessScenarioTask(planner_task.PlannerTask):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new BusinessScenarioTask and sets the default values.
+        """
+        super().__init__()
+        # Scenario-specific properties of the task. externalObjectId and externalBucketId properties must be specified when creating a task.
+        self._business_scenario_properties: Optional[business_scenario_properties.BusinessScenarioProperties] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Target of the task that specifies where the task should be placed. Must be specified when creating a task.
+        self._target: Optional[business_scenario_task_target_base.BusinessScenarioTaskTargetBase] = None
+    
     @property
     def business_scenario_properties(self,) -> Optional[business_scenario_properties.BusinessScenarioProperties]:
         """
@@ -24,18 +36,6 @@ class BusinessScenarioTask(planner_task.PlannerTask):
             value: Value to set for the business_scenario_properties property.
         """
         self._business_scenario_properties = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new BusinessScenarioTask and sets the default values.
-        """
-        super().__init__()
-        # Scenario-specific properties of the task. externalObjectId and externalBucketId properties must be specified when creating a task.
-        self._business_scenario_properties: Optional[business_scenario_properties.BusinessScenarioProperties] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Target of the task that specifies where the task should be placed. Must be specified when creating a task.
-        self._target: Optional[business_scenario_task_target_base.BusinessScenarioTaskTargetBase] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> BusinessScenarioTask:
@@ -54,7 +54,9 @@ class BusinessScenarioTask(planner_task.PlannerTask):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import business_scenario_properties, business_scenario_task_target_base, planner_task
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "businessScenarioProperties": lambda n : setattr(self, 'business_scenario_properties', n.get_object_value(business_scenario_properties.BusinessScenarioProperties)),
             "target": lambda n : setattr(self, 'target', n.get_object_value(business_scenario_task_target_base.BusinessScenarioTaskTargetBase)),
         }

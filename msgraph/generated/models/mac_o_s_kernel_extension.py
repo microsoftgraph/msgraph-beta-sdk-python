@@ -1,12 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class MacOSKernelExtension(AdditionalDataHolder, Parsable):
     """
     Represents a specific macOS kernel extension. A macOS kernel extension can be described by its team identifier plus its bundle identifier.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new macOSKernelExtension and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Bundle ID of the kernel extension.
+        self._bundle_id: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The team identifier that was used to sign the kernel extension.
+        self._team_identifier: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -41,20 +54,6 @@ class MacOSKernelExtension(AdditionalDataHolder, Parsable):
         """
         self._bundle_id = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new macOSKernelExtension and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Bundle ID of the kernel extension.
-        self._bundle_id: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The team identifier that was used to sign the kernel extension.
-        self._team_identifier: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSKernelExtension:
         """
@@ -72,7 +71,7 @@ class MacOSKernelExtension(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "bundleId": lambda n : setattr(self, 'bundle_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "teamIdentifier": lambda n : setattr(self, 'team_identifier', n.get_str_value()),

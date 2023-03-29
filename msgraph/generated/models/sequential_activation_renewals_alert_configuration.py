@@ -1,10 +1,12 @@
 from __future__ import annotations
 from datetime import timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-unified_role_management_alert_configuration = lazy_import('msgraph.generated.models.unified_role_management_alert_configuration')
+if TYPE_CHECKING:
+    from . import unified_role_management_alert_configuration
+
+from . import unified_role_management_alert_configuration
 
 class SequentialActivationRenewalsAlertConfiguration(unified_role_management_alert_configuration.UnifiedRoleManagementAlertConfiguration):
     def __init__(self,) -> None:
@@ -16,7 +18,7 @@ class SequentialActivationRenewalsAlertConfiguration(unified_role_management_ale
         # The sequentialActivationCounterThreshold property
         self._sequential_activation_counter_threshold: Optional[int] = None
         # The timeIntervalBetweenActivations property
-        self._time_interval_between_activations: Optional[Timedelta] = None
+        self._time_interval_between_activations: Optional[timedelta] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SequentialActivationRenewalsAlertConfiguration:
@@ -35,9 +37,11 @@ class SequentialActivationRenewalsAlertConfiguration(unified_role_management_ale
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import unified_role_management_alert_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "sequentialActivationCounterThreshold": lambda n : setattr(self, 'sequential_activation_counter_threshold', n.get_int_value()),
-            "timeIntervalBetweenActivations": lambda n : setattr(self, 'time_interval_between_activations', n.get_object_value(Timedelta)),
+            "timeIntervalBetweenActivations": lambda n : setattr(self, 'time_interval_between_activations', n.get_timedelta_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -70,18 +74,18 @@ class SequentialActivationRenewalsAlertConfiguration(unified_role_management_ale
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_int_value("sequentialActivationCounterThreshold", self.sequential_activation_counter_threshold)
-        writer.write_object_value("timeIntervalBetweenActivations", self.time_interval_between_activations)
+        writer.write_timedelta_value("timeIntervalBetweenActivations", self.time_interval_between_activations)
     
     @property
-    def time_interval_between_activations(self,) -> Optional[Timedelta]:
+    def time_interval_between_activations(self,) -> Optional[timedelta]:
         """
         Gets the timeIntervalBetweenActivations property value. The timeIntervalBetweenActivations property
-        Returns: Optional[Timedelta]
+        Returns: Optional[timedelta]
         """
         return self._time_interval_between_activations
     
     @time_interval_between_activations.setter
-    def time_interval_between_activations(self,value: Optional[Timedelta] = None) -> None:
+    def time_interval_between_activations(self,value: Optional[timedelta] = None) -> None:
         """
         Sets the timeIntervalBetweenActivations property value. The timeIntervalBetweenActivations property
         Args:

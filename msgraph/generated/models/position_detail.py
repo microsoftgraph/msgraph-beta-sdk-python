@@ -1,12 +1,36 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-company_detail = lazy_import('msgraph.generated.models.company_detail')
+if TYPE_CHECKING:
+    from . import company_detail
 
 class PositionDetail(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new positionDetail and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Detail about the company or employer.
+        self._company: Optional[company_detail.CompanyDetail] = None
+        # Description of the position in question.
+        self._description: Optional[str] = None
+        # When the position ended.
+        self._end_month_year: Optional[date] = None
+        # The title held when in that position.
+        self._job_title: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The role the position entailed.
+        self._role: Optional[str] = None
+        # The start month and year of the position.
+        self._start_month_year: Optional[date] = None
+        # Short summary of the position.
+        self._summary: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -41,30 +65,6 @@ class PositionDetail(AdditionalDataHolder, Parsable):
         """
         self._company = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new positionDetail and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Detail about the company or employer.
-        self._company: Optional[company_detail.CompanyDetail] = None
-        # Description of the position in question.
-        self._description: Optional[str] = None
-        # When the position ended.
-        self._end_month_year: Optional[Date] = None
-        # The title held when in that position.
-        self._job_title: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The role the position entailed.
-        self._role: Optional[str] = None
-        # The start month and year of the position.
-        self._start_month_year: Optional[Date] = None
-        # Short summary of the position.
-        self._summary: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PositionDetail:
         """
@@ -95,15 +95,15 @@ class PositionDetail(AdditionalDataHolder, Parsable):
         self._description = value
     
     @property
-    def end_month_year(self,) -> Optional[Date]:
+    def end_month_year(self,) -> Optional[date]:
         """
         Gets the endMonthYear property value. When the position ended.
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._end_month_year
     
     @end_month_year.setter
-    def end_month_year(self,value: Optional[Date] = None) -> None:
+    def end_month_year(self,value: Optional[date] = None) -> None:
         """
         Sets the endMonthYear property value. When the position ended.
         Args:
@@ -116,14 +116,16 @@ class PositionDetail(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import company_detail
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "company": lambda n : setattr(self, 'company', n.get_object_value(company_detail.CompanyDetail)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "endMonthYear": lambda n : setattr(self, 'end_month_year', n.get_object_value(Date)),
+            "endMonthYear": lambda n : setattr(self, 'end_month_year', n.get_date_value()),
             "jobTitle": lambda n : setattr(self, 'job_title', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "role": lambda n : setattr(self, 'role', n.get_str_value()),
-            "startMonthYear": lambda n : setattr(self, 'start_month_year', n.get_object_value(Date)),
+            "startMonthYear": lambda n : setattr(self, 'start_month_year', n.get_date_value()),
             "summary": lambda n : setattr(self, 'summary', n.get_str_value()),
         }
         return fields
@@ -189,24 +191,24 @@ class PositionDetail(AdditionalDataHolder, Parsable):
             raise Exception("writer cannot be undefined")
         writer.write_object_value("company", self.company)
         writer.write_str_value("description", self.description)
-        writer.write_object_value("endMonthYear", self.end_month_year)
+        writer.write_date_value("endMonthYear", self.end_month_year)
         writer.write_str_value("jobTitle", self.job_title)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("role", self.role)
-        writer.write_object_value("startMonthYear", self.start_month_year)
+        writer.write_date_value("startMonthYear", self.start_month_year)
         writer.write_str_value("summary", self.summary)
         writer.write_additional_data_value(self.additional_data)
     
     @property
-    def start_month_year(self,) -> Optional[Date]:
+    def start_month_year(self,) -> Optional[date]:
         """
         Gets the startMonthYear property value. The start month and year of the position.
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._start_month_year
     
     @start_month_year.setter
-    def start_month_year(self,value: Optional[Date] = None) -> None:
+    def start_month_year(self,value: Optional[date] = None) -> None:
         """
         Sets the startMonthYear property value. The start month and year of the position.
         Args:

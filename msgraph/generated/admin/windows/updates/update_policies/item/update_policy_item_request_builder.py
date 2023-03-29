@@ -7,46 +7,19 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-audience_request_builder = lazy_import('msgraph.generated.admin.windows.updates.update_policies.item.audience.audience_request_builder')
-compliance_changes_request_builder = lazy_import('msgraph.generated.admin.windows.updates.update_policies.item.compliance_changes.compliance_changes_request_builder')
-compliance_change_item_request_builder = lazy_import('msgraph.generated.admin.windows.updates.update_policies.item.compliance_changes.item.compliance_change_item_request_builder')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-update_policy = lazy_import('msgraph.generated.models.windows_updates.update_policy')
+if TYPE_CHECKING:
+    from ......models.o_data_errors import o_data_error
+    from ......models.windows_updates import update_policy
+    from .audience import audience_request_builder
+    from .compliance_changes import compliance_changes_request_builder
+    from .compliance_changes.item import compliance_change_item_request_builder
 
 class UpdatePolicyItemRequestBuilder():
     """
     Provides operations to manage the updatePolicies property of the microsoft.graph.adminWindowsUpdates entity.
     """
-    @property
-    def audience(self) -> audience_request_builder.AudienceRequestBuilder:
-        """
-        Provides operations to manage the audience property of the microsoft.graph.windowsUpdates.updatePolicy entity.
-        """
-        return audience_request_builder.AudienceRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def compliance_changes(self) -> compliance_changes_request_builder.ComplianceChangesRequestBuilder:
-        """
-        Provides operations to manage the complianceChanges property of the microsoft.graph.windowsUpdates.updatePolicy entity.
-        """
-        return compliance_changes_request_builder.ComplianceChangesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def compliance_changes_by_id(self,id: str) -> compliance_change_item_request_builder.ComplianceChangeItemRequestBuilder:
-        """
-        Provides operations to manage the complianceChanges property of the microsoft.graph.windowsUpdates.updatePolicy entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: compliance_change_item_request_builder.ComplianceChangeItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["complianceChange%2Did"] = id
-        return compliance_change_item_request_builder.ComplianceChangeItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new UpdatePolicyItemRequestBuilder and sets the default values.
@@ -65,6 +38,21 @@ class UpdatePolicyItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def compliance_changes_by_id(self,id: str) -> compliance_change_item_request_builder.ComplianceChangeItemRequestBuilder:
+        """
+        Provides operations to manage the complianceChanges property of the microsoft.graph.windowsUpdates.updatePolicy entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: compliance_change_item_request_builder.ComplianceChangeItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .compliance_changes.item import compliance_change_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["complianceChange%2Did"] = id
+        return compliance_change_item_request_builder.ComplianceChangeItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def delete(self,request_configuration: Optional[UpdatePolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property updatePolicies for admin
@@ -74,6 +62,8 @@ class UpdatePolicyItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -92,12 +82,16 @@ class UpdatePolicyItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models.windows_updates import update_policy
+
         return await self.request_adapter.send_async(request_info, update_policy.UpdatePolicy, error_mapping)
     
     async def patch(self,body: Optional[update_policy.UpdatePolicy] = None, request_configuration: Optional[UpdatePolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[update_policy.UpdatePolicy]:
@@ -113,12 +107,16 @@ class UpdatePolicyItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models.windows_updates import update_policy
+
         return await self.request_adapter.send_async(request_info, update_policy.UpdatePolicy, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[UpdatePolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -176,6 +174,24 @@ class UpdatePolicyItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def audience(self) -> audience_request_builder.AudienceRequestBuilder:
+        """
+        Provides operations to manage the audience property of the microsoft.graph.windowsUpdates.updatePolicy entity.
+        """
+        from .audience import audience_request_builder
+
+        return audience_request_builder.AudienceRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def compliance_changes(self) -> compliance_changes_request_builder.ComplianceChangesRequestBuilder:
+        """
+        Provides operations to manage the complianceChanges property of the microsoft.graph.windowsUpdates.updatePolicy entity.
+        """
+        from .compliance_changes import compliance_changes_request_builder
+
+        return compliance_changes_request_builder.ComplianceChangesRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class UpdatePolicyItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -193,12 +209,6 @@ class UpdatePolicyItemRequestBuilder():
         """
         A collection of policies for approving the deployment of different content to an audience over time.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -214,6 +224,12 @@ class UpdatePolicyItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class UpdatePolicyItemRequestBuilderGetRequestConfiguration():

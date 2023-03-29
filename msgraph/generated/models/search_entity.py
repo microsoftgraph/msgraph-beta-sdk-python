@@ -1,14 +1,28 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-acronym = lazy_import('msgraph.generated.models.search.acronym')
-bookmark = lazy_import('msgraph.generated.models.search.bookmark')
-qna = lazy_import('msgraph.generated.models.search.qna')
+if TYPE_CHECKING:
+    from . import entity
+    from .search import acronym, bookmark, qna
+
+from . import entity
 
 class SearchEntity(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new SearchEntity and sets the default values.
+        """
+        super().__init__()
+        # Administrative answer in Microsoft Search results to define common acronyms in a organization.
+        self._acronyms: Optional[List[acronym.Acronym]] = None
+        # Administrative answer in Microsoft Search results for common search queries in an organization.
+        self._bookmarks: Optional[List[bookmark.Bookmark]] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Administrative answer in Microsoft Search results which provide answers for specific search keywords in an organization.
+        self._qnas: Optional[List[qna.Qna]] = None
+    
     @property
     def acronyms(self,) -> Optional[List[acronym.Acronym]]:
         """
@@ -43,20 +57,6 @@ class SearchEntity(entity.Entity):
         """
         self._bookmarks = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new SearchEntity and sets the default values.
-        """
-        super().__init__()
-        # Administrative answer in Microsoft Search results to define common acronyms in a organization.
-        self._acronyms: Optional[List[acronym.Acronym]] = None
-        # Administrative answer in Microsoft Search results for common search queries in an organization.
-        self._bookmarks: Optional[List[bookmark.Bookmark]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Administrative answer in Microsoft Search results which provide answers for specific search keywords in an organization.
-        self._qnas: Optional[List[qna.Qna]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SearchEntity:
         """
@@ -74,7 +74,10 @@ class SearchEntity(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+        from .search import acronym, bookmark, qna
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "acronyms": lambda n : setattr(self, 'acronyms', n.get_collection_of_object_values(acronym.Acronym)),
             "bookmarks": lambda n : setattr(self, 'bookmarks', n.get_collection_of_object_values(bookmark.Bookmark)),
             "qnas": lambda n : setattr(self, 'qnas', n.get_collection_of_object_values(qna.Qna)),

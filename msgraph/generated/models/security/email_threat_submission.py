@@ -1,32 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-attack_simulation_info = lazy_import('msgraph.generated.models.security.attack_simulation_info')
-submission_category = lazy_import('msgraph.generated.models.security.submission_category')
-tenant_allow_or_block_list_action = lazy_import('msgraph.generated.models.security.tenant_allow_or_block_list_action')
-threat_submission = lazy_import('msgraph.generated.models.security.threat_submission')
+if TYPE_CHECKING:
+    from . import attack_simulation_info, email_content_threat_submission, email_url_threat_submission, submission_category, tenant_allow_or_block_list_action, threat_submission
+
+from . import threat_submission
 
 class EmailThreatSubmission(threat_submission.ThreatSubmission):
-    @property
-    def attack_simulation_info(self,) -> Optional[attack_simulation_info.AttackSimulationInfo]:
-        """
-        Gets the attackSimulationInfo property value. If the email is phishing simulation, this field will not be null.
-        Returns: Optional[attack_simulation_info.AttackSimulationInfo]
-        """
-        return self._attack_simulation_info
-    
-    @attack_simulation_info.setter
-    def attack_simulation_info(self,value: Optional[attack_simulation_info.AttackSimulationInfo] = None) -> None:
-        """
-        Sets the attackSimulationInfo property value. If the email is phishing simulation, this field will not be null.
-        Args:
-            value: Value to set for the attack_simulation_info property.
-        """
-        self._attack_simulation_info = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new EmailThreatSubmission and sets the default values.
@@ -52,6 +34,23 @@ class EmailThreatSubmission(threat_submission.ThreatSubmission):
         # It is used to automatically add allows for the components such as URL, file, sender; which are deemed bad by Microsoft so that similar messages in the future can be allowed.
         self._tenant_allow_or_block_list_action: Optional[tenant_allow_or_block_list_action.TenantAllowOrBlockListAction] = None
     
+    @property
+    def attack_simulation_info(self,) -> Optional[attack_simulation_info.AttackSimulationInfo]:
+        """
+        Gets the attackSimulationInfo property value. If the email is phishing simulation, this field will not be null.
+        Returns: Optional[attack_simulation_info.AttackSimulationInfo]
+        """
+        return self._attack_simulation_info
+    
+    @attack_simulation_info.setter
+    def attack_simulation_info(self,value: Optional[attack_simulation_info.AttackSimulationInfo] = None) -> None:
+        """
+        Sets the attackSimulationInfo property value. If the email is phishing simulation, this field will not be null.
+        Args:
+            value: Value to set for the attack_simulation_info property.
+        """
+        self._attack_simulation_info = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EmailThreatSubmission:
         """
@@ -62,6 +61,17 @@ class EmailThreatSubmission(threat_submission.ThreatSubmission):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.security.emailContentThreatSubmission":
+                from . import email_content_threat_submission
+
+                return email_content_threat_submission.EmailContentThreatSubmission()
+            if mapping_value == "#microsoft.graph.security.emailUrlThreatSubmission":
+                from . import email_url_threat_submission
+
+                return email_url_threat_submission.EmailUrlThreatSubmission()
         return EmailThreatSubmission()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -69,7 +79,9 @@ class EmailThreatSubmission(threat_submission.ThreatSubmission):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import attack_simulation_info, email_content_threat_submission, email_url_threat_submission, submission_category, tenant_allow_or_block_list_action, threat_submission
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "attackSimulationInfo": lambda n : setattr(self, 'attack_simulation_info', n.get_object_value(attack_simulation_info.AttackSimulationInfo)),
             "internetMessageId": lambda n : setattr(self, 'internet_message_id', n.get_str_value()),
             "originalCategory": lambda n : setattr(self, 'original_category', n.get_enum_value(submission_category.SubmissionCategory)),

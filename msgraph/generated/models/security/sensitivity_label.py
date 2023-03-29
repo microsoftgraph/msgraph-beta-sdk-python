@@ -1,28 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from .. import entity
+
+from .. import entity
 
 class SensitivityLabel(entity.Entity):
-    @property
-    def color(self,) -> Optional[str]:
-        """
-        Gets the color property value. The color that the UI should display for the label, if configured.
-        Returns: Optional[str]
-        """
-        return self._color
-    
-    @color.setter
-    def color(self,value: Optional[str] = None) -> None:
-        """
-        Sets the color property value. The color that the UI should display for the label, if configured.
-        Args:
-            value: Value to set for the color property.
-        """
-        self._color = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new sensitivityLabel and sets the default values.
@@ -50,6 +35,23 @@ class SensitivityLabel(entity.Entity):
         self._sensitivity: Optional[int] = None
         # The tooltip that should be displayed for the label in a UI.
         self._tooltip: Optional[str] = None
+    
+    @property
+    def color(self,) -> Optional[str]:
+        """
+        Gets the color property value. The color that the UI should display for the label, if configured.
+        Returns: Optional[str]
+        """
+        return self._color
+    
+    @color.setter
+    def color(self,value: Optional[str] = None) -> None:
+        """
+        Sets the color property value. The color that the UI should display for the label, if configured.
+        Args:
+            value: Value to set for the color property.
+        """
+        self._color = value
     
     @property
     def content_formats(self,) -> Optional[List[str]]:
@@ -102,7 +104,9 @@ class SensitivityLabel(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "color": lambda n : setattr(self, 'color', n.get_str_value()),
             "contentFormats": lambda n : setattr(self, 'content_formats', n.get_collection_of_primitive_values(str)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

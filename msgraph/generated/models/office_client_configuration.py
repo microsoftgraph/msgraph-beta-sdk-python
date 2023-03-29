@@ -1,14 +1,37 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-office_client_checkin_status = lazy_import('msgraph.generated.models.office_client_checkin_status')
-office_client_configuration_assignment = lazy_import('msgraph.generated.models.office_client_configuration_assignment')
-office_user_checkin_summary = lazy_import('msgraph.generated.models.office_user_checkin_summary')
+if TYPE_CHECKING:
+    from . import entity, office_client_checkin_status, office_client_configuration_assignment, office_user_checkin_summary, windows_office_client_configuration, windows_office_client_security_configuration
+
+from . import entity
 
 class OfficeClientConfiguration(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new officeClientConfiguration and sets the default values.
+        """
+        super().__init__()
+        # The list of group assignments for the policy.
+        self._assignments: Optional[List[office_client_configuration_assignment.OfficeClientConfigurationAssignment]] = None
+        # List of office Client check-in status.
+        self._checkin_statuses: Optional[List[office_client_checkin_status.OfficeClientCheckinStatus]] = None
+        # Not yet documented
+        self._description: Optional[str] = None
+        # Admin provided description of the office client configuration policy.
+        self._display_name: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Policy settings JSON string in binary format, these values cannot be changed by the user.
+        self._policy_payload: Optional[bytes] = None
+        # Priority value should be unique value for each policy under a tenant and will be used for conflict resolution, lower values mean priority is high.
+        self._priority: Optional[int] = None
+        # User check-in summary for the policy.
+        self._user_checkin_summary: Optional[office_user_checkin_summary.OfficeUserCheckinSummary] = None
+        # Preference settings JSON string in binary format, these values can be overridden by the user.
+        self._user_preference_payload: Optional[bytes] = None
+    
     @property
     def assignments(self,) -> Optional[List[office_client_configuration_assignment.OfficeClientConfigurationAssignment]]:
         """
@@ -43,30 +66,6 @@ class OfficeClientConfiguration(entity.Entity):
         """
         self._checkin_statuses = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new officeClientConfiguration and sets the default values.
-        """
-        super().__init__()
-        # The list of group assignments for the policy.
-        self._assignments: Optional[List[office_client_configuration_assignment.OfficeClientConfigurationAssignment]] = None
-        # List of office Client check-in status.
-        self._checkin_statuses: Optional[List[office_client_checkin_status.OfficeClientCheckinStatus]] = None
-        # Not yet documented
-        self._description: Optional[str] = None
-        # Admin provided description of the office client configuration policy.
-        self._display_name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Policy settings JSON string in binary format, these values cannot be changed by the user.
-        self._policy_payload: Optional[bytes] = None
-        # Priority value should be unique value for each policy under a tenant and will be used for conflict resolution, lower values mean priority is high.
-        self._priority: Optional[int] = None
-        # User check-in summary for the policy.
-        self._user_checkin_summary: Optional[office_user_checkin_summary.OfficeUserCheckinSummary] = None
-        # Preference settings JSON string in binary format, these values can be overridden by the user.
-        self._user_preference_payload: Optional[bytes] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OfficeClientConfiguration:
         """
@@ -77,6 +76,17 @@ class OfficeClientConfiguration(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.windowsOfficeClientConfiguration":
+                from . import windows_office_client_configuration
+
+                return windows_office_client_configuration.WindowsOfficeClientConfiguration()
+            if mapping_value == "#microsoft.graph.windowsOfficeClientSecurityConfiguration":
+                from . import windows_office_client_security_configuration
+
+                return windows_office_client_security_configuration.WindowsOfficeClientSecurityConfiguration()
         return OfficeClientConfiguration()
     
     @property
@@ -118,7 +128,9 @@ class OfficeClientConfiguration(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, office_client_checkin_status, office_client_configuration_assignment, office_user_checkin_summary, windows_office_client_configuration, windows_office_client_security_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(office_client_configuration_assignment.OfficeClientConfigurationAssignment)),
             "checkinStatuses": lambda n : setattr(self, 'checkin_statuses', n.get_collection_of_object_values(office_client_checkin_status.OfficeClientCheckinStatus)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

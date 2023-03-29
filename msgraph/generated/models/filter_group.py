@@ -1,11 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-filter_clause = lazy_import('msgraph.generated.models.filter_clause')
+if TYPE_CHECKING:
+    from . import filter_clause
 
 class FilterGroup(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new filterGroup and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Filter clauses (conditions) of this group. All clauses in a group must be satisfied in order for the filter group to evaluate to true.
+        self._clauses: Optional[List[filter_clause.FilterClause]] = None
+        # Human-readable name of the filter group.
+        self._name: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -40,20 +54,6 @@ class FilterGroup(AdditionalDataHolder, Parsable):
         """
         self._clauses = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new filterGroup and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Filter clauses (conditions) of this group. All clauses in a group must be satisfied in order for the filter group to evaluate to true.
-        self._clauses: Optional[List[filter_clause.FilterClause]] = None
-        # Human-readable name of the filter group.
-        self._name: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> FilterGroup:
         """
@@ -71,7 +71,9 @@ class FilterGroup(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import filter_clause
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "clauses": lambda n : setattr(self, 'clauses', n.get_collection_of_object_values(filter_clause.FilterClause)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

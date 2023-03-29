@@ -1,11 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-media_source = lazy_import('msgraph.generated.models.media_source')
+if TYPE_CHECKING:
+    from . import media_source
 
 class Media(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new media and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # If a file has a transcript, this setting controls if the closed captions / transcription for the media file should be shown to people during viewing. Read-Write.
+        self._is_transcription_shown: Optional[bool] = None
+        # Information about the source of media. Read-only.
+        self._media_source: Optional[media_source.MediaSource] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -22,20 +36,6 @@ class Media(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new media and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # If a file has a transcript, this setting controls if the closed captions / transcription for the media file should be shown to people during viewing. Read-Write.
-        self._is_transcription_shown: Optional[bool] = None
-        # Information about the source of media. Read-only.
-        self._media_source: Optional[media_source.MediaSource] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Media:
@@ -54,7 +54,9 @@ class Media(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import media_source
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "isTranscriptionShown": lambda n : setattr(self, 'is_transcription_shown', n.get_bool_value()),
             "mediaSource": lambda n : setattr(self, 'media_source', n.get_object_value(media_source.MediaSource)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

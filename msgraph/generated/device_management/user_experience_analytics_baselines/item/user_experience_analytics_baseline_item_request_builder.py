@@ -7,72 +7,23 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-app_health_metrics_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_baselines.item.app_health_metrics.app_health_metrics_request_builder')
-battery_health_metrics_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_baselines.item.battery_health_metrics.battery_health_metrics_request_builder')
-best_practices_metrics_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_baselines.item.best_practices_metrics.best_practices_metrics_request_builder')
-device_boot_performance_metrics_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_baselines.item.device_boot_performance_metrics.device_boot_performance_metrics_request_builder')
-reboot_analytics_metrics_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_baselines.item.reboot_analytics_metrics.reboot_analytics_metrics_request_builder')
-resource_performance_metrics_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_baselines.item.resource_performance_metrics.resource_performance_metrics_request_builder')
-work_from_anywhere_metrics_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_baselines.item.work_from_anywhere_metrics.work_from_anywhere_metrics_request_builder')
-user_experience_analytics_baseline = lazy_import('msgraph.generated.models.user_experience_analytics_baseline')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ....models import user_experience_analytics_baseline
+    from ....models.o_data_errors import o_data_error
+    from .app_health_metrics import app_health_metrics_request_builder
+    from .battery_health_metrics import battery_health_metrics_request_builder
+    from .best_practices_metrics import best_practices_metrics_request_builder
+    from .device_boot_performance_metrics import device_boot_performance_metrics_request_builder
+    from .reboot_analytics_metrics import reboot_analytics_metrics_request_builder
+    from .resource_performance_metrics import resource_performance_metrics_request_builder
+    from .work_from_anywhere_metrics import work_from_anywhere_metrics_request_builder
 
 class UserExperienceAnalyticsBaselineItemRequestBuilder():
     """
     Provides operations to manage the userExperienceAnalyticsBaselines property of the microsoft.graph.deviceManagement entity.
     """
-    @property
-    def app_health_metrics(self) -> app_health_metrics_request_builder.AppHealthMetricsRequestBuilder:
-        """
-        Provides operations to manage the appHealthMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
-        """
-        return app_health_metrics_request_builder.AppHealthMetricsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def battery_health_metrics(self) -> battery_health_metrics_request_builder.BatteryHealthMetricsRequestBuilder:
-        """
-        Provides operations to manage the batteryHealthMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
-        """
-        return battery_health_metrics_request_builder.BatteryHealthMetricsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def best_practices_metrics(self) -> best_practices_metrics_request_builder.BestPracticesMetricsRequestBuilder:
-        """
-        Provides operations to manage the bestPracticesMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
-        """
-        return best_practices_metrics_request_builder.BestPracticesMetricsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def device_boot_performance_metrics(self) -> device_boot_performance_metrics_request_builder.DeviceBootPerformanceMetricsRequestBuilder:
-        """
-        Provides operations to manage the deviceBootPerformanceMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
-        """
-        return device_boot_performance_metrics_request_builder.DeviceBootPerformanceMetricsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def reboot_analytics_metrics(self) -> reboot_analytics_metrics_request_builder.RebootAnalyticsMetricsRequestBuilder:
-        """
-        Provides operations to manage the rebootAnalyticsMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
-        """
-        return reboot_analytics_metrics_request_builder.RebootAnalyticsMetricsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def resource_performance_metrics(self) -> resource_performance_metrics_request_builder.ResourcePerformanceMetricsRequestBuilder:
-        """
-        Provides operations to manage the resourcePerformanceMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
-        """
-        return resource_performance_metrics_request_builder.ResourcePerformanceMetricsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def work_from_anywhere_metrics(self) -> work_from_anywhere_metrics_request_builder.WorkFromAnywhereMetricsRequestBuilder:
-        """
-        Provides operations to manage the workFromAnywhereMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
-        """
-        return work_from_anywhere_metrics_request_builder.WorkFromAnywhereMetricsRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new UserExperienceAnalyticsBaselineItemRequestBuilder and sets the default values.
@@ -100,6 +51,8 @@ class UserExperienceAnalyticsBaselineItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -118,12 +71,16 @@ class UserExperienceAnalyticsBaselineItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import user_experience_analytics_baseline
+
         return await self.request_adapter.send_async(request_info, user_experience_analytics_baseline.UserExperienceAnalyticsBaseline, error_mapping)
     
     async def patch(self,body: Optional[user_experience_analytics_baseline.UserExperienceAnalyticsBaseline] = None, request_configuration: Optional[UserExperienceAnalyticsBaselineItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[user_experience_analytics_baseline.UserExperienceAnalyticsBaseline]:
@@ -139,12 +96,16 @@ class UserExperienceAnalyticsBaselineItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import user_experience_analytics_baseline
+
         return await self.request_adapter.send_async(request_info, user_experience_analytics_baseline.UserExperienceAnalyticsBaseline, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[UserExperienceAnalyticsBaselineItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -202,6 +163,69 @@ class UserExperienceAnalyticsBaselineItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def app_health_metrics(self) -> app_health_metrics_request_builder.AppHealthMetricsRequestBuilder:
+        """
+        Provides operations to manage the appHealthMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
+        """
+        from .app_health_metrics import app_health_metrics_request_builder
+
+        return app_health_metrics_request_builder.AppHealthMetricsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def battery_health_metrics(self) -> battery_health_metrics_request_builder.BatteryHealthMetricsRequestBuilder:
+        """
+        Provides operations to manage the batteryHealthMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
+        """
+        from .battery_health_metrics import battery_health_metrics_request_builder
+
+        return battery_health_metrics_request_builder.BatteryHealthMetricsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def best_practices_metrics(self) -> best_practices_metrics_request_builder.BestPracticesMetricsRequestBuilder:
+        """
+        Provides operations to manage the bestPracticesMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
+        """
+        from .best_practices_metrics import best_practices_metrics_request_builder
+
+        return best_practices_metrics_request_builder.BestPracticesMetricsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def device_boot_performance_metrics(self) -> device_boot_performance_metrics_request_builder.DeviceBootPerformanceMetricsRequestBuilder:
+        """
+        Provides operations to manage the deviceBootPerformanceMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
+        """
+        from .device_boot_performance_metrics import device_boot_performance_metrics_request_builder
+
+        return device_boot_performance_metrics_request_builder.DeviceBootPerformanceMetricsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def reboot_analytics_metrics(self) -> reboot_analytics_metrics_request_builder.RebootAnalyticsMetricsRequestBuilder:
+        """
+        Provides operations to manage the rebootAnalyticsMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
+        """
+        from .reboot_analytics_metrics import reboot_analytics_metrics_request_builder
+
+        return reboot_analytics_metrics_request_builder.RebootAnalyticsMetricsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def resource_performance_metrics(self) -> resource_performance_metrics_request_builder.ResourcePerformanceMetricsRequestBuilder:
+        """
+        Provides operations to manage the resourcePerformanceMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
+        """
+        from .resource_performance_metrics import resource_performance_metrics_request_builder
+
+        return resource_performance_metrics_request_builder.ResourcePerformanceMetricsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def work_from_anywhere_metrics(self) -> work_from_anywhere_metrics_request_builder.WorkFromAnywhereMetricsRequestBuilder:
+        """
+        Provides operations to manage the workFromAnywhereMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
+        """
+        from .work_from_anywhere_metrics import work_from_anywhere_metrics_request_builder
+
+        return work_from_anywhere_metrics_request_builder.WorkFromAnywhereMetricsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class UserExperienceAnalyticsBaselineItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -219,12 +243,6 @@ class UserExperienceAnalyticsBaselineItemRequestBuilder():
         """
         User experience analytics baselines
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -240,6 +258,12 @@ class UserExperienceAnalyticsBaselineItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class UserExperienceAnalyticsBaselineItemRequestBuilderGetRequestConfiguration():

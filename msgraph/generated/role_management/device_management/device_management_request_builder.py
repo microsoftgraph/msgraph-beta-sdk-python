@@ -7,43 +7,22 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-rbac_application_multiple = lazy_import('msgraph.generated.models.rbac_application_multiple')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-resource_namespaces_request_builder = lazy_import('msgraph.generated.role_management.device_management.resource_namespaces.resource_namespaces_request_builder')
-unified_rbac_resource_namespace_item_request_builder = lazy_import('msgraph.generated.role_management.device_management.resource_namespaces.item.unified_rbac_resource_namespace_item_request_builder')
-role_assignments_request_builder = lazy_import('msgraph.generated.role_management.device_management.role_assignments.role_assignments_request_builder')
-unified_role_assignment_multiple_item_request_builder = lazy_import('msgraph.generated.role_management.device_management.role_assignments.item.unified_role_assignment_multiple_item_request_builder')
-role_definitions_request_builder = lazy_import('msgraph.generated.role_management.device_management.role_definitions.role_definitions_request_builder')
-unified_role_definition_item_request_builder = lazy_import('msgraph.generated.role_management.device_management.role_definitions.item.unified_role_definition_item_request_builder')
+if TYPE_CHECKING:
+    from ...models import rbac_application_multiple
+    from ...models.o_data_errors import o_data_error
+    from .resource_namespaces import resource_namespaces_request_builder
+    from .resource_namespaces.item import unified_rbac_resource_namespace_item_request_builder
+    from .role_assignments import role_assignments_request_builder
+    from .role_assignments.item import unified_role_assignment_multiple_item_request_builder
+    from .role_definitions import role_definitions_request_builder
+    from .role_definitions.item import unified_role_definition_item_request_builder
 
 class DeviceManagementRequestBuilder():
     """
     Provides operations to manage the deviceManagement property of the microsoft.graph.roleManagement entity.
     """
-    @property
-    def resource_namespaces(self) -> resource_namespaces_request_builder.ResourceNamespacesRequestBuilder:
-        """
-        Provides operations to manage the resourceNamespaces property of the microsoft.graph.rbacApplicationMultiple entity.
-        """
-        return resource_namespaces_request_builder.ResourceNamespacesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def role_assignments(self) -> role_assignments_request_builder.RoleAssignmentsRequestBuilder:
-        """
-        Provides operations to manage the roleAssignments property of the microsoft.graph.rbacApplicationMultiple entity.
-        """
-        return role_assignments_request_builder.RoleAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def role_definitions(self) -> role_definitions_request_builder.RoleDefinitionsRequestBuilder:
-        """
-        Provides operations to manage the roleDefinitions property of the microsoft.graph.rbacApplicationMultiple entity.
-        """
-        return role_definitions_request_builder.RoleDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new DeviceManagementRequestBuilder and sets the default values.
@@ -71,6 +50,8 @@ class DeviceManagementRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -89,12 +70,16 @@ class DeviceManagementRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models import rbac_application_multiple
+
         return await self.request_adapter.send_async(request_info, rbac_application_multiple.RbacApplicationMultiple, error_mapping)
     
     async def patch(self,body: Optional[rbac_application_multiple.RbacApplicationMultiple] = None, request_configuration: Optional[DeviceManagementRequestBuilderPatchRequestConfiguration] = None) -> Optional[rbac_application_multiple.RbacApplicationMultiple]:
@@ -110,12 +95,16 @@ class DeviceManagementRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models import rbac_application_multiple
+
         return await self.request_adapter.send_async(request_info, rbac_application_multiple.RbacApplicationMultiple, error_mapping)
     
     def resource_namespaces_by_id(self,id: str) -> unified_rbac_resource_namespace_item_request_builder.UnifiedRbacResourceNamespaceItemRequestBuilder:
@@ -127,6 +116,8 @@ class DeviceManagementRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .resource_namespaces.item import unified_rbac_resource_namespace_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["unifiedRbacResourceNamespace%2Did"] = id
         return unified_rbac_resource_namespace_item_request_builder.UnifiedRbacResourceNamespaceItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -140,6 +131,8 @@ class DeviceManagementRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .role_assignments.item import unified_role_assignment_multiple_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["unifiedRoleAssignmentMultiple%2Did"] = id
         return unified_role_assignment_multiple_item_request_builder.UnifiedRoleAssignmentMultipleItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -153,6 +146,8 @@ class DeviceManagementRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .role_definitions.item import unified_role_definition_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["unifiedRoleDefinition%2Did"] = id
         return unified_role_definition_item_request_builder.UnifiedRoleDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -212,6 +207,33 @@ class DeviceManagementRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def resource_namespaces(self) -> resource_namespaces_request_builder.ResourceNamespacesRequestBuilder:
+        """
+        Provides operations to manage the resourceNamespaces property of the microsoft.graph.rbacApplicationMultiple entity.
+        """
+        from .resource_namespaces import resource_namespaces_request_builder
+
+        return resource_namespaces_request_builder.ResourceNamespacesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def role_assignments(self) -> role_assignments_request_builder.RoleAssignmentsRequestBuilder:
+        """
+        Provides operations to manage the roleAssignments property of the microsoft.graph.rbacApplicationMultiple entity.
+        """
+        from .role_assignments import role_assignments_request_builder
+
+        return role_assignments_request_builder.RoleAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def role_definitions(self) -> role_definitions_request_builder.RoleDefinitionsRequestBuilder:
+        """
+        Provides operations to manage the roleDefinitions property of the microsoft.graph.rbacApplicationMultiple entity.
+        """
+        from .role_definitions import role_definitions_request_builder
+
+        return role_definitions_request_builder.RoleDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class DeviceManagementRequestBuilderDeleteRequestConfiguration():
         """
@@ -229,12 +251,6 @@ class DeviceManagementRequestBuilder():
         """
         The RbacApplication for Device Management
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -250,6 +266,12 @@ class DeviceManagementRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class DeviceManagementRequestBuilderGetRequestConfiguration():

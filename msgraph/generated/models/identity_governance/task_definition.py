@@ -1,30 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-lifecycle_task_category = lazy_import('msgraph.generated.models.identity_governance.lifecycle_task_category')
-parameter = lazy_import('msgraph.generated.models.identity_governance.parameter')
+if TYPE_CHECKING:
+    from . import lifecycle_task_category, parameter
+    from .. import entity
+
+from .. import entity
 
 class TaskDefinition(entity.Entity):
-    @property
-    def category(self,) -> Optional[lifecycle_task_category.LifecycleTaskCategory]:
-        """
-        Gets the category property value. The category property
-        Returns: Optional[lifecycle_task_category.LifecycleTaskCategory]
-        """
-        return self._category
-    
-    @category.setter
-    def category(self,value: Optional[lifecycle_task_category.LifecycleTaskCategory] = None) -> None:
-        """
-        Sets the category property value. The category property
-        Args:
-            value: Value to set for the category property.
-        """
-        self._category = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new taskDefinition and sets the default values.
@@ -44,6 +28,23 @@ class TaskDefinition(entity.Entity):
         self._parameters: Optional[List[parameter.Parameter]] = None
         # The version number of the taskDefinition. New records are pushed when we add support for new parameters.Supports $filter(ge, gt, le, lt, eq, ne) and $orderby.
         self._version: Optional[int] = None
+    
+    @property
+    def category(self,) -> Optional[lifecycle_task_category.LifecycleTaskCategory]:
+        """
+        Gets the category property value. The category property
+        Returns: Optional[lifecycle_task_category.LifecycleTaskCategory]
+        """
+        return self._category
+    
+    @category.setter
+    def category(self,value: Optional[lifecycle_task_category.LifecycleTaskCategory] = None) -> None:
+        """
+        Sets the category property value. The category property
+        Args:
+            value: Value to set for the category property.
+        """
+        self._category = value
     
     @property
     def continue_on_error(self,) -> Optional[bool]:
@@ -113,7 +114,10 @@ class TaskDefinition(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import lifecycle_task_category, parameter
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "category": lambda n : setattr(self, 'category', n.get_enum_value(lifecycle_task_category.LifecycleTaskCategory)),
             "continueOnError": lambda n : setattr(self, 'continue_on_error', n.get_bool_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

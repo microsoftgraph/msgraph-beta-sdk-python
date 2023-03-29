@@ -1,38 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-identity_set = lazy_import('msgraph.generated.models.identity_set')
-teamwork_camera_configuration = lazy_import('msgraph.generated.models.teamwork_camera_configuration')
-teamwork_device_software_versions = lazy_import('msgraph.generated.models.teamwork_device_software_versions')
-teamwork_display_configuration = lazy_import('msgraph.generated.models.teamwork_display_configuration')
-teamwork_hardware_configuration = lazy_import('msgraph.generated.models.teamwork_hardware_configuration')
-teamwork_microphone_configuration = lazy_import('msgraph.generated.models.teamwork_microphone_configuration')
-teamwork_speaker_configuration = lazy_import('msgraph.generated.models.teamwork_speaker_configuration')
-teamwork_system_configuration = lazy_import('msgraph.generated.models.teamwork_system_configuration')
-teamwork_teams_client_configuration = lazy_import('msgraph.generated.models.teamwork_teams_client_configuration')
+if TYPE_CHECKING:
+    from . import entity, identity_set, teamwork_camera_configuration, teamwork_device_software_versions, teamwork_display_configuration, teamwork_hardware_configuration, teamwork_microphone_configuration, teamwork_speaker_configuration, teamwork_system_configuration, teamwork_teams_client_configuration
+
+from . import entity
 
 class TeamworkDeviceConfiguration(entity.Entity):
-    @property
-    def camera_configuration(self,) -> Optional[teamwork_camera_configuration.TeamworkCameraConfiguration]:
-        """
-        Gets the cameraConfiguration property value. The camera configuration. Applicable only for Microsoft Teams Rooms-enabled devices.
-        Returns: Optional[teamwork_camera_configuration.TeamworkCameraConfiguration]
-        """
-        return self._camera_configuration
-    
-    @camera_configuration.setter
-    def camera_configuration(self,value: Optional[teamwork_camera_configuration.TeamworkCameraConfiguration] = None) -> None:
-        """
-        Sets the cameraConfiguration property value. The camera configuration. Applicable only for Microsoft Teams Rooms-enabled devices.
-        Args:
-            value: Value to set for the camera_configuration property.
-        """
-        self._camera_configuration = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new teamworkDeviceConfiguration and sets the default values.
@@ -64,6 +40,23 @@ class TeamworkDeviceConfiguration(entity.Entity):
         self._system_configuration: Optional[teamwork_system_configuration.TeamworkSystemConfiguration] = None
         # The Teams client configuration. Applicable only for Teams Rooms-enabled devices.
         self._teams_client_configuration: Optional[teamwork_teams_client_configuration.TeamworkTeamsClientConfiguration] = None
+    
+    @property
+    def camera_configuration(self,) -> Optional[teamwork_camera_configuration.TeamworkCameraConfiguration]:
+        """
+        Gets the cameraConfiguration property value. The camera configuration. Applicable only for Microsoft Teams Rooms-enabled devices.
+        Returns: Optional[teamwork_camera_configuration.TeamworkCameraConfiguration]
+        """
+        return self._camera_configuration
+    
+    @camera_configuration.setter
+    def camera_configuration(self,value: Optional[teamwork_camera_configuration.TeamworkCameraConfiguration] = None) -> None:
+        """
+        Sets the cameraConfiguration property value. The camera configuration. Applicable only for Microsoft Teams Rooms-enabled devices.
+        Args:
+            value: Value to set for the camera_configuration property.
+        """
+        self._camera_configuration = value
     
     @property
     def created_by(self,) -> Optional[identity_set.IdentitySet]:
@@ -133,7 +126,9 @@ class TeamworkDeviceConfiguration(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, identity_set, teamwork_camera_configuration, teamwork_device_software_versions, teamwork_display_configuration, teamwork_hardware_configuration, teamwork_microphone_configuration, teamwork_speaker_configuration, teamwork_system_configuration, teamwork_teams_client_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "cameraConfiguration": lambda n : setattr(self, 'camera_configuration', n.get_object_value(teamwork_camera_configuration.TeamworkCameraConfiguration)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),

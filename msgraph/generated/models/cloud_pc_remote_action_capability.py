@@ -1,12 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-action_capability = lazy_import('msgraph.generated.models.action_capability')
-cloud_pc_remote_action_name = lazy_import('msgraph.generated.models.cloud_pc_remote_action_name')
+if TYPE_CHECKING:
+    from . import action_capability, cloud_pc_remote_action_name
 
 class CloudPcRemoteActionCapability(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new cloudPcRemoteActionCapability and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Indicates the state of the supported action capability to perform a Cloud PC remote action. Possible values are: enabled, disabled. Default value is enabled.
+        self._action_capability: Optional[action_capability.ActionCapability] = None
+        # The name of the supported Cloud PC remote action. Possible values are: unknown, restart, rename, restore, resize, reprovision, troubleShoot, changeUserAccountType, placeUnderReview. Default value is unknown.
+        self._action_name: Optional[cloud_pc_remote_action_name.CloudPcRemoteActionName] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def action_capability(self,) -> Optional[action_capability.ActionCapability]:
         """
@@ -58,20 +71,6 @@ class CloudPcRemoteActionCapability(AdditionalDataHolder, Parsable):
         """
         self._additional_data = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new cloudPcRemoteActionCapability and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Indicates the state of the supported action capability to perform a Cloud PC remote action. Possible values are: enabled, disabled. Default value is enabled.
-        self._action_capability: Optional[action_capability.ActionCapability] = None
-        # The name of the supported Cloud PC remote action. Possible values are: unknown, restart, rename, restore, resize, reprovision, troubleShoot, changeUserAccountType, placeUnderReview. Default value is unknown.
-        self._action_name: Optional[cloud_pc_remote_action_name.CloudPcRemoteActionName] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcRemoteActionCapability:
         """
@@ -89,7 +88,9 @@ class CloudPcRemoteActionCapability(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import action_capability, cloud_pc_remote_action_name
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "actionCapability": lambda n : setattr(self, 'action_capability', n.get_enum_value(action_capability.ActionCapability)),
             "actionName": lambda n : setattr(self, 'action_name', n.get_enum_value(cloud_pc_remote_action_name.CloudPcRemoteActionName)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

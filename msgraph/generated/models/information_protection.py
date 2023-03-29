@@ -1,34 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-bitlocker = lazy_import('msgraph.generated.models.bitlocker')
-data_loss_prevention_policy = lazy_import('msgraph.generated.models.data_loss_prevention_policy')
-entity = lazy_import('msgraph.generated.models.entity')
-information_protection_policy = lazy_import('msgraph.generated.models.information_protection_policy')
-sensitivity_label = lazy_import('msgraph.generated.models.sensitivity_label')
-sensitivity_policy_settings = lazy_import('msgraph.generated.models.sensitivity_policy_settings')
-threat_assessment_request = lazy_import('msgraph.generated.models.threat_assessment_request')
+if TYPE_CHECKING:
+    from . import bitlocker, data_loss_prevention_policy, entity, information_protection_policy, sensitivity_label, sensitivity_policy_settings, threat_assessment_request
+
+from . import entity
 
 class InformationProtection(entity.Entity):
-    @property
-    def bitlocker(self,) -> Optional[bitlocker.Bitlocker]:
-        """
-        Gets the bitlocker property value. The bitlocker property
-        Returns: Optional[bitlocker.Bitlocker]
-        """
-        return self._bitlocker
-    
-    @bitlocker.setter
-    def bitlocker(self,value: Optional[bitlocker.Bitlocker] = None) -> None:
-        """
-        Sets the bitlocker property value. The bitlocker property
-        Args:
-            value: Value to set for the bitlocker property.
-        """
-        self._bitlocker = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new informationProtection and sets the default values.
@@ -48,6 +27,23 @@ class InformationProtection(entity.Entity):
         self._sensitivity_policy_settings: Optional[sensitivity_policy_settings.SensitivityPolicySettings] = None
         # The threatAssessmentRequests property
         self._threat_assessment_requests: Optional[List[threat_assessment_request.ThreatAssessmentRequest]] = None
+    
+    @property
+    def bitlocker(self,) -> Optional[bitlocker.Bitlocker]:
+        """
+        Gets the bitlocker property value. The bitlocker property
+        Returns: Optional[bitlocker.Bitlocker]
+        """
+        return self._bitlocker
+    
+    @bitlocker.setter
+    def bitlocker(self,value: Optional[bitlocker.Bitlocker] = None) -> None:
+        """
+        Sets the bitlocker property value. The bitlocker property
+        Args:
+            value: Value to set for the bitlocker property.
+        """
+        self._bitlocker = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> InformationProtection:
@@ -83,7 +79,9 @@ class InformationProtection(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import bitlocker, data_loss_prevention_policy, entity, information_protection_policy, sensitivity_label, sensitivity_policy_settings, threat_assessment_request
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "bitlocker": lambda n : setattr(self, 'bitlocker', n.get_object_value(bitlocker.Bitlocker)),
             "dataLossPreventionPolicies": lambda n : setattr(self, 'data_loss_prevention_policies', n.get_collection_of_object_values(data_loss_prevention_policy.DataLossPreventionPolicy)),
             "policy": lambda n : setattr(self, 'policy', n.get_object_value(information_protection_policy.InformationProtectionPolicy)),

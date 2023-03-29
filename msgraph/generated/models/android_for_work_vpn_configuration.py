@@ -1,17 +1,40 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_for_work_certificate_profile_base = lazy_import('msgraph.generated.models.android_for_work_certificate_profile_base')
-android_for_work_vpn_connection_type = lazy_import('msgraph.generated.models.android_for_work_vpn_connection_type')
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-key_value = lazy_import('msgraph.generated.models.key_value')
-key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
-vpn_authentication_method = lazy_import('msgraph.generated.models.vpn_authentication_method')
-vpn_server = lazy_import('msgraph.generated.models.vpn_server')
+if TYPE_CHECKING:
+    from . import android_for_work_certificate_profile_base, android_for_work_vpn_connection_type, device_configuration, key_value, key_value_pair, vpn_authentication_method, vpn_server
+
+from . import device_configuration
 
 class AndroidForWorkVpnConfiguration(device_configuration.DeviceConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new AndroidForWorkVpnConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.androidForWorkVpnConfiguration"
+        # VPN Authentication Method.
+        self._authentication_method: Optional[vpn_authentication_method.VpnAuthenticationMethod] = None
+        # Connection name displayed to the user.
+        self._connection_name: Optional[str] = None
+        # Android For Work VPN connection type.
+        self._connection_type: Optional[android_for_work_vpn_connection_type.AndroidForWorkVpnConnectionType] = None
+        # Custom data when connection type is set to Citrix. This collection can contain a maximum of 25 elements.
+        self._custom_data: Optional[List[key_value.KeyValue]] = None
+        # Custom data when connection type is set to Citrix. This collection can contain a maximum of 25 elements.
+        self._custom_key_value_data: Optional[List[key_value_pair.KeyValuePair]] = None
+        # Fingerprint is a string that will be used to verify the VPN server can be trusted, which is only applicable when connection type is Check Point Capsule VPN.
+        self._fingerprint: Optional[str] = None
+        # Identity certificate for client authentication when authentication method is certificate.
+        self._identity_certificate: Optional[android_for_work_certificate_profile_base.AndroidForWorkCertificateProfileBase] = None
+        # Realm when connection type is set to Pulse Secure.
+        self._realm: Optional[str] = None
+        # Role when connection type is set to Pulse Secure.
+        self._role: Optional[str] = None
+        # List of VPN Servers on the network. Make sure end users can access these network locations. This collection can contain a maximum of 500 elements.
+        self._servers: Optional[List[vpn_server.VpnServer]] = None
+    
     @property
     def authentication_method(self,) -> Optional[vpn_authentication_method.VpnAuthenticationMethod]:
         """
@@ -62,33 +85,6 @@ class AndroidForWorkVpnConfiguration(device_configuration.DeviceConfiguration):
             value: Value to set for the connection_type property.
         """
         self._connection_type = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AndroidForWorkVpnConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.androidForWorkVpnConfiguration"
-        # VPN Authentication Method.
-        self._authentication_method: Optional[vpn_authentication_method.VpnAuthenticationMethod] = None
-        # Connection name displayed to the user.
-        self._connection_name: Optional[str] = None
-        # Android For Work VPN connection type.
-        self._connection_type: Optional[android_for_work_vpn_connection_type.AndroidForWorkVpnConnectionType] = None
-        # Custom data when connection type is set to Citrix. This collection can contain a maximum of 25 elements.
-        self._custom_data: Optional[List[key_value.KeyValue]] = None
-        # Custom data when connection type is set to Citrix. This collection can contain a maximum of 25 elements.
-        self._custom_key_value_data: Optional[List[key_value_pair.KeyValuePair]] = None
-        # Fingerprint is a string that will be used to verify the VPN server can be trusted, which is only applicable when connection type is Check Point Capsule VPN.
-        self._fingerprint: Optional[str] = None
-        # Identity certificate for client authentication when authentication method is certificate.
-        self._identity_certificate: Optional[android_for_work_certificate_profile_base.AndroidForWorkCertificateProfileBase] = None
-        # Realm when connection type is set to Pulse Secure.
-        self._realm: Optional[str] = None
-        # Role when connection type is set to Pulse Secure.
-        self._role: Optional[str] = None
-        # List of VPN Servers on the network. Make sure end users can access these network locations. This collection can contain a maximum of 500 elements.
-        self._servers: Optional[List[vpn_server.VpnServer]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidForWorkVpnConfiguration:
@@ -158,7 +154,9 @@ class AndroidForWorkVpnConfiguration(device_configuration.DeviceConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_for_work_certificate_profile_base, android_for_work_vpn_connection_type, device_configuration, key_value, key_value_pair, vpn_authentication_method, vpn_server
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(vpn_authentication_method.VpnAuthenticationMethod)),
             "connectionName": lambda n : setattr(self, 'connection_name', n.get_str_value()),
             "connectionType": lambda n : setattr(self, 'connection_type', n.get_enum_value(android_for_work_vpn_connection_type.AndroidForWorkVpnConnectionType)),

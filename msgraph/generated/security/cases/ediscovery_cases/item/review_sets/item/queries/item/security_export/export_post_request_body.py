@@ -1,12 +1,31 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-export_file_structure = lazy_import('msgraph.generated.models.security.export_file_structure')
-export_options = lazy_import('msgraph.generated.models.security.export_options')
+if TYPE_CHECKING:
+    from ..........models.security import export_file_structure, export_options
 
 class ExportPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new exportPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The azureBlobContainer property
+        self._azure_blob_container: Optional[str] = None
+        # The azureBlobToken property
+        self._azure_blob_token: Optional[str] = None
+        # The description property
+        self._description: Optional[str] = None
+        # The exportOptions property
+        self._export_options: Optional[export_options.ExportOptions] = None
+        # The exportStructure property
+        self._export_structure: Optional[export_file_structure.ExportFileStructure] = None
+        # The outputName property
+        self._output_name: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -57,26 +76,6 @@ class ExportPostRequestBody(AdditionalDataHolder, Parsable):
             value: Value to set for the azure_blob_token property.
         """
         self._azure_blob_token = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new exportPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The azureBlobContainer property
-        self._azure_blob_container: Optional[str] = None
-        # The azureBlobToken property
-        self._azure_blob_token: Optional[str] = None
-        # The description property
-        self._description: Optional[str] = None
-        # The exportOptions property
-        self._export_options: Optional[export_options.ExportOptions] = None
-        # The exportStructure property
-        self._export_structure: Optional[export_file_structure.ExportFileStructure] = None
-        # The outputName property
-        self._output_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ExportPostRequestBody:
@@ -146,7 +145,9 @@ class ExportPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from ..........models.security import export_file_structure, export_options
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "azureBlobContainer": lambda n : setattr(self, 'azure_blob_container', n.get_str_value()),
             "azureBlobToken": lambda n : setattr(self, 'azure_blob_token', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

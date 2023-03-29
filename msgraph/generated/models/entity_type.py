@@ -13,5 +13,6 @@ class EntityType(Enum):
     Acronym = "acronym",
     Bookmark = "bookmark",
     ChatMessage = "chatMessage",
+    Person = "person",
     Qna = "qna",
 

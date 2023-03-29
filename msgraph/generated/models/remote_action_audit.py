@@ -1,17 +1,43 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-action_state = lazy_import('msgraph.generated.models.action_state')
-entity = lazy_import('msgraph.generated.models.entity')
-remote_action = lazy_import('msgraph.generated.models.remote_action')
+if TYPE_CHECKING:
+    from . import action_state, entity, remote_action
+
+from . import entity
 
 class RemoteActionAudit(entity.Entity):
     """
     Report of remote actions initiated on the devices belonging to a certain tenant.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new remoteActionAudit and sets the default values.
+        """
+        super().__init__()
+        # Remote actions Intune supports.
+        self._action: Optional[remote_action.RemoteAction] = None
+        # The actionState property
+        self._action_state: Optional[action_state.ActionState] = None
+        # Intune device name.
+        self._device_display_name: Optional[str] = None
+        # IMEI of the device.
+        self._device_i_m_e_i: Optional[str] = None
+        # Upn of the device owner.
+        self._device_owner_user_principal_name: Optional[str] = None
+        # User who initiated the device action, format is UPN.
+        self._initiated_by_user_principal_name: Optional[str] = None
+        # Action target.
+        self._managed_device_id: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Time when the action was issued, given in UTC.
+        self._request_date_time: Optional[datetime] = None
+        # [deprecated] Please use InitiatedByUserPrincipalName instead.
+        self._user_name: Optional[str] = None
+    
     @property
     def action(self,) -> Optional[remote_action.RemoteAction]:
         """
@@ -45,32 +71,6 @@ class RemoteActionAudit(entity.Entity):
             value: Value to set for the action_state property.
         """
         self._action_state = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new remoteActionAudit and sets the default values.
-        """
-        super().__init__()
-        # Remote actions Intune supports.
-        self._action: Optional[remote_action.RemoteAction] = None
-        # The actionState property
-        self._action_state: Optional[action_state.ActionState] = None
-        # Intune device name.
-        self._device_display_name: Optional[str] = None
-        # IMEI of the device.
-        self._device_i_m_e_i: Optional[str] = None
-        # Upn of the device owner.
-        self._device_owner_user_principal_name: Optional[str] = None
-        # User who initiated the device action, format is UPN.
-        self._initiated_by_user_principal_name: Optional[str] = None
-        # Action target.
-        self._managed_device_id: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Time when the action was issued, given in UTC.
-        self._request_date_time: Optional[datetime] = None
-        # [deprecated] Please use InitiatedByUserPrincipalName instead.
-        self._user_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RemoteActionAudit:
@@ -140,7 +140,9 @@ class RemoteActionAudit(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import action_state, entity, remote_action
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "action": lambda n : setattr(self, 'action', n.get_enum_value(remote_action.RemoteAction)),
             "actionState": lambda n : setattr(self, 'action_state', n.get_enum_value(action_state.ActionState)),
             "deviceDisplayName": lambda n : setattr(self, 'device_display_name', n.get_str_value()),

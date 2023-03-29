@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_work_profile_eas_email_profile_base = lazy_import('msgraph.generated.models.android_work_profile_eas_email_profile_base')
+if TYPE_CHECKING:
+    from . import android_work_profile_eas_email_profile_base
+
+from . import android_work_profile_eas_email_profile_base
 
 class AndroidWorkProfileNineWorkEasConfiguration(android_work_profile_eas_email_profile_base.AndroidWorkProfileEasEmailProfileBase):
     def __init__(self,) -> None:
@@ -36,7 +38,9 @@ class AndroidWorkProfileNineWorkEasConfiguration(android_work_profile_eas_email_
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_work_profile_eas_email_profile_base
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "syncCalendar": lambda n : setattr(self, 'sync_calendar', n.get_bool_value()),
             "syncContacts": lambda n : setattr(self, 'sync_contacts', n.get_bool_value()),
             "syncTasks": lambda n : setattr(self, 'sync_tasks', n.get_bool_value()),

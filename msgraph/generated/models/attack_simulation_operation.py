@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-attack_simulation_operation_type = lazy_import('msgraph.generated.models.attack_simulation_operation_type')
-long_running_operation = lazy_import('msgraph.generated.models.long_running_operation')
+if TYPE_CHECKING:
+    from . import attack_simulation_operation_type, long_running_operation
+
+from . import long_running_operation
 
 class AttackSimulationOperation(long_running_operation.LongRunningOperation):
     def __init__(self,) -> None:
@@ -38,7 +39,9 @@ class AttackSimulationOperation(long_running_operation.LongRunningOperation):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import attack_simulation_operation_type, long_running_operation
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "percentageCompleted": lambda n : setattr(self, 'percentage_completed', n.get_int_value()),
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(attack_simulation_operation_type.AttackSimulationOperationType)),

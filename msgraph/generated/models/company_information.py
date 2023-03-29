@@ -1,30 +1,14 @@
 from __future__ import annotations
 from datetime import date, datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-postal_address_type = lazy_import('msgraph.generated.models.postal_address_type')
+if TYPE_CHECKING:
+    from . import entity, postal_address_type
+
+from . import entity
 
 class CompanyInformation(entity.Entity):
-    @property
-    def address(self,) -> Optional[postal_address_type.PostalAddressType]:
-        """
-        Gets the address property value. The address property
-        Returns: Optional[postal_address_type.PostalAddressType]
-        """
-        return self._address
-    
-    @address.setter
-    def address(self,value: Optional[postal_address_type.PostalAddressType] = None) -> None:
-        """
-        Sets the address property value. The address property
-        Args:
-            value: Value to set for the address property.
-        """
-        self._address = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new companyInformation and sets the default values.
@@ -35,7 +19,7 @@ class CompanyInformation(entity.Entity):
         # The currencyCode property
         self._currency_code: Optional[str] = None
         # The currentFiscalYearStartDate property
-        self._current_fiscal_year_start_date: Optional[Date] = None
+        self._current_fiscal_year_start_date: Optional[date] = None
         # The displayName property
         self._display_name: Optional[str] = None
         # The email property
@@ -56,6 +40,23 @@ class CompanyInformation(entity.Entity):
         self._tax_registration_number: Optional[str] = None
         # The website property
         self._website: Optional[str] = None
+    
+    @property
+    def address(self,) -> Optional[postal_address_type.PostalAddressType]:
+        """
+        Gets the address property value. The address property
+        Returns: Optional[postal_address_type.PostalAddressType]
+        """
+        return self._address
+    
+    @address.setter
+    def address(self,value: Optional[postal_address_type.PostalAddressType] = None) -> None:
+        """
+        Sets the address property value. The address property
+        Args:
+            value: Value to set for the address property.
+        """
+        self._address = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CompanyInformation:
@@ -87,15 +88,15 @@ class CompanyInformation(entity.Entity):
         self._currency_code = value
     
     @property
-    def current_fiscal_year_start_date(self,) -> Optional[Date]:
+    def current_fiscal_year_start_date(self,) -> Optional[date]:
         """
         Gets the currentFiscalYearStartDate property value. The currentFiscalYearStartDate property
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._current_fiscal_year_start_date
     
     @current_fiscal_year_start_date.setter
-    def current_fiscal_year_start_date(self,value: Optional[Date] = None) -> None:
+    def current_fiscal_year_start_date(self,value: Optional[date] = None) -> None:
         """
         Sets the currentFiscalYearStartDate property value. The currentFiscalYearStartDate property
         Args:
@@ -159,10 +160,12 @@ class CompanyInformation(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, postal_address_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "address": lambda n : setattr(self, 'address', n.get_object_value(postal_address_type.PostalAddressType)),
             "currencyCode": lambda n : setattr(self, 'currency_code', n.get_str_value()),
-            "currentFiscalYearStartDate": lambda n : setattr(self, 'current_fiscal_year_start_date', n.get_object_value(Date)),
+            "currentFiscalYearStartDate": lambda n : setattr(self, 'current_fiscal_year_start_date', n.get_date_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
             "faxNumber": lambda n : setattr(self, 'fax_number', n.get_str_value()),
@@ -256,7 +259,7 @@ class CompanyInformation(entity.Entity):
         super().serialize(writer)
         writer.write_object_value("address", self.address)
         writer.write_str_value("currencyCode", self.currency_code)
-        writer.write_object_value("currentFiscalYearStartDate", self.current_fiscal_year_start_date)
+        writer.write_date_value("currentFiscalYearStartDate", self.current_fiscal_year_start_date)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("email", self.email)
         writer.write_str_value("faxNumber", self.fax_number)

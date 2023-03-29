@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-delivery_optimization_bandwidth = lazy_import('msgraph.generated.models.delivery_optimization_bandwidth')
+if TYPE_CHECKING:
+    from . import delivery_optimization_bandwidth
+
+from . import delivery_optimization_bandwidth
 
 class DeliveryOptimizationBandwidthPercentage(delivery_optimization_bandwidth.DeliveryOptimizationBandwidth):
     def __init__(self,) -> None:
@@ -34,7 +36,9 @@ class DeliveryOptimizationBandwidthPercentage(delivery_optimization_bandwidth.De
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import delivery_optimization_bandwidth
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "maximumBackgroundBandwidthPercentage": lambda n : setattr(self, 'maximum_background_bandwidth_percentage', n.get_int_value()),
             "maximumForegroundBandwidthPercentage": lambda n : setattr(self, 'maximum_foreground_bandwidth_percentage', n.get_int_value()),
         }

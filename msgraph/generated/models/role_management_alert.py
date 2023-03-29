@@ -1,15 +1,29 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-long_running_operation = lazy_import('msgraph.generated.models.long_running_operation')
-unified_role_management_alert = lazy_import('msgraph.generated.models.unified_role_management_alert')
-unified_role_management_alert_configuration = lazy_import('msgraph.generated.models.unified_role_management_alert_configuration')
-unified_role_management_alert_definition = lazy_import('msgraph.generated.models.unified_role_management_alert_definition')
+if TYPE_CHECKING:
+    from . import entity, long_running_operation, unified_role_management_alert, unified_role_management_alert_configuration, unified_role_management_alert_definition
+
+from . import entity
 
 class RoleManagementAlert(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new RoleManagementAlert and sets the default values.
+        """
+        super().__init__()
+        # The alertConfigurations property
+        self._alert_configurations: Optional[List[unified_role_management_alert_configuration.UnifiedRoleManagementAlertConfiguration]] = None
+        # The alertDefinitions property
+        self._alert_definitions: Optional[List[unified_role_management_alert_definition.UnifiedRoleManagementAlertDefinition]] = None
+        # The alerts property
+        self._alerts: Optional[List[unified_role_management_alert.UnifiedRoleManagementAlert]] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The operations property
+        self._operations: Optional[List[long_running_operation.LongRunningOperation]] = None
+    
     @property
     def alert_configurations(self,) -> Optional[List[unified_role_management_alert_configuration.UnifiedRoleManagementAlertConfiguration]]:
         """
@@ -61,22 +75,6 @@ class RoleManagementAlert(entity.Entity):
         """
         self._alerts = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new RoleManagementAlert and sets the default values.
-        """
-        super().__init__()
-        # The alertConfigurations property
-        self._alert_configurations: Optional[List[unified_role_management_alert_configuration.UnifiedRoleManagementAlertConfiguration]] = None
-        # The alertDefinitions property
-        self._alert_definitions: Optional[List[unified_role_management_alert_definition.UnifiedRoleManagementAlertDefinition]] = None
-        # The alerts property
-        self._alerts: Optional[List[unified_role_management_alert.UnifiedRoleManagementAlert]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The operations property
-        self._operations: Optional[List[long_running_operation.LongRunningOperation]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RoleManagementAlert:
         """
@@ -94,7 +92,9 @@ class RoleManagementAlert(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, long_running_operation, unified_role_management_alert, unified_role_management_alert_configuration, unified_role_management_alert_definition
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "alerts": lambda n : setattr(self, 'alerts', n.get_collection_of_object_values(unified_role_management_alert.UnifiedRoleManagementAlert)),
             "alertConfigurations": lambda n : setattr(self, 'alert_configurations', n.get_collection_of_object_values(unified_role_management_alert_configuration.UnifiedRoleManagementAlertConfiguration)),
             "alertDefinitions": lambda n : setattr(self, 'alert_definitions', n.get_collection_of_object_values(unified_role_management_alert_definition.UnifiedRoleManagementAlertDefinition)),

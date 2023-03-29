@@ -1,31 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-alert_log_content = lazy_import('msgraph.generated.models.managed_tenants.alert_log_content')
-managed_tenant_alert = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_alert')
+if TYPE_CHECKING:
+    from . import alert_log_content, managed_tenant_alert
+    from .. import entity
+
+from .. import entity
 
 class ManagedTenantAlertLog(entity.Entity):
-    @property
-    def alert(self,) -> Optional[managed_tenant_alert.ManagedTenantAlert]:
-        """
-        Gets the alert property value. The alert property
-        Returns: Optional[managed_tenant_alert.ManagedTenantAlert]
-        """
-        return self._alert
-    
-    @alert.setter
-    def alert(self,value: Optional[managed_tenant_alert.ManagedTenantAlert] = None) -> None:
-        """
-        Sets the alert property value. The alert property
-        Args:
-            value: Value to set for the alert property.
-        """
-        self._alert = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new managedTenantAlertLog and sets the default values.
@@ -45,6 +29,23 @@ class ManagedTenantAlertLog(entity.Entity):
         self._last_action_date_time: Optional[datetime] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
+    
+    @property
+    def alert(self,) -> Optional[managed_tenant_alert.ManagedTenantAlert]:
+        """
+        Gets the alert property value. The alert property
+        Returns: Optional[managed_tenant_alert.ManagedTenantAlert]
+        """
+        return self._alert
+    
+    @alert.setter
+    def alert(self,value: Optional[managed_tenant_alert.ManagedTenantAlert] = None) -> None:
+        """
+        Sets the alert property value. The alert property
+        Args:
+            value: Value to set for the alert property.
+        """
+        self._alert = value
     
     @property
     def content(self,) -> Optional[alert_log_content.AlertLogContent]:
@@ -114,7 +115,10 @@ class ManagedTenantAlertLog(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import alert_log_content, managed_tenant_alert
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "alert": lambda n : setattr(self, 'alert', n.get_object_value(managed_tenant_alert.ManagedTenantAlert)),
             "content": lambda n : setattr(self, 'content', n.get_object_value(alert_log_content.AlertLogContent)),
             "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),

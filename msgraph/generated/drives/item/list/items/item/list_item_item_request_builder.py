@@ -7,89 +7,27 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-activities_request_builder = lazy_import('msgraph.generated.drives.item.list.items.item.activities.activities_request_builder')
-item_activity_o_l_d_item_request_builder = lazy_import('msgraph.generated.drives.item.list.items.item.activities.item.item_activity_o_l_d_item_request_builder')
-analytics_request_builder = lazy_import('msgraph.generated.drives.item.list.items.item.analytics.analytics_request_builder')
-create_link_request_builder = lazy_import('msgraph.generated.drives.item.list.items.item.create_link.create_link_request_builder')
-document_set_versions_request_builder = lazy_import('msgraph.generated.drives.item.list.items.item.document_set_versions.document_set_versions_request_builder')
-document_set_version_item_request_builder = lazy_import('msgraph.generated.drives.item.list.items.item.document_set_versions.item.document_set_version_item_request_builder')
-drive_item_request_builder = lazy_import('msgraph.generated.drives.item.list.items.item.drive_item.drive_item_request_builder')
-fields_request_builder = lazy_import('msgraph.generated.drives.item.list.items.item.fields.fields_request_builder')
-get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder = lazy_import('msgraph.generated.drives.item.list.items.item.get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval.get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder')
-versions_request_builder = lazy_import('msgraph.generated.drives.item.list.items.item.versions.versions_request_builder')
-list_item_version_item_request_builder = lazy_import('msgraph.generated.drives.item.list.items.item.versions.item.list_item_version_item_request_builder')
-list_item = lazy_import('msgraph.generated.models.list_item')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ......models import list_item
+    from ......models.o_data_errors import o_data_error
+    from .activities import activities_request_builder
+    from .activities.item import item_activity_o_l_d_item_request_builder
+    from .analytics import analytics_request_builder
+    from .create_link import create_link_request_builder
+    from .document_set_versions import document_set_versions_request_builder
+    from .document_set_versions.item import document_set_version_item_request_builder
+    from .drive_item import drive_item_request_builder
+    from .fields import fields_request_builder
+    from .get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval import get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder
+    from .versions import versions_request_builder
+    from .versions.item import list_item_version_item_request_builder
 
 class ListItemItemRequestBuilder():
     """
     Provides operations to manage the items property of the microsoft.graph.list entity.
     """
-    @property
-    def activities(self) -> activities_request_builder.ActivitiesRequestBuilder:
-        """
-        Provides operations to manage the activities property of the microsoft.graph.listItem entity.
-        """
-        return activities_request_builder.ActivitiesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def analytics(self) -> analytics_request_builder.AnalyticsRequestBuilder:
-        """
-        Provides operations to manage the analytics property of the microsoft.graph.listItem entity.
-        """
-        return analytics_request_builder.AnalyticsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def create_link(self) -> create_link_request_builder.CreateLinkRequestBuilder:
-        """
-        Provides operations to call the createLink method.
-        """
-        return create_link_request_builder.CreateLinkRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def document_set_versions(self) -> document_set_versions_request_builder.DocumentSetVersionsRequestBuilder:
-        """
-        Provides operations to manage the documentSetVersions property of the microsoft.graph.listItem entity.
-        """
-        return document_set_versions_request_builder.DocumentSetVersionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def drive_item(self) -> drive_item_request_builder.DriveItemRequestBuilder:
-        """
-        Provides operations to manage the driveItem property of the microsoft.graph.listItem entity.
-        """
-        return drive_item_request_builder.DriveItemRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def fields(self) -> fields_request_builder.FieldsRequestBuilder:
-        """
-        Provides operations to manage the fields property of the microsoft.graph.listItem entity.
-        """
-        return fields_request_builder.FieldsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def versions(self) -> versions_request_builder.VersionsRequestBuilder:
-        """
-        Provides operations to manage the versions property of the microsoft.graph.listItem entity.
-        """
-        return versions_request_builder.VersionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def activities_by_id(self,id: str) -> item_activity_o_l_d_item_request_builder.ItemActivityOLDItemRequestBuilder:
-        """
-        Provides operations to manage the activities property of the microsoft.graph.listItem entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: item_activity_o_l_d_item_request_builder.ItemActivityOLDItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["itemActivityOLD%2Did"] = id
-        return item_activity_o_l_d_item_request_builder.ItemActivityOLDItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new ListItemItemRequestBuilder and sets the default values.
@@ -108,6 +46,21 @@ class ListItemItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def activities_by_id(self,id: str) -> item_activity_o_l_d_item_request_builder.ItemActivityOLDItemRequestBuilder:
+        """
+        Provides operations to manage the activities property of the microsoft.graph.listItem entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: item_activity_o_l_d_item_request_builder.ItemActivityOLDItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .activities.item import item_activity_o_l_d_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["itemActivityOLD%2Did"] = id
+        return item_activity_o_l_d_item_request_builder.ItemActivityOLDItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def delete(self,request_configuration: Optional[ListItemItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property items for drives
@@ -117,6 +70,8 @@ class ListItemItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -134,6 +89,8 @@ class ListItemItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .document_set_versions.item import document_set_version_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["documentSetVersion%2Did"] = id
         return document_set_version_item_request_builder.DocumentSetVersionItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -148,12 +105,16 @@ class ListItemItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import list_item
+
         return await self.request_adapter.send_async(request_info, list_item.ListItem, error_mapping)
     
     def get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval(self,end_date_time: Optional[str] = None, interval: Optional[str] = None, start_date_time: Optional[str] = None) -> get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder:
@@ -171,7 +132,9 @@ class ListItemItemRequestBuilder():
             raise Exception("interval cannot be undefined")
         if start_date_time is None:
             raise Exception("start_date_time cannot be undefined")
-        return get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder(self.request_adapter, self.path_parameters, endDateTime, interval, startDateTime)
+        from .get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval import get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder
+
+        return get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, interval, start_date_time)
     
     async def patch(self,body: Optional[list_item.ListItem] = None, request_configuration: Optional[ListItemItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[list_item.ListItem]:
         """
@@ -186,12 +149,16 @@ class ListItemItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import list_item
+
         return await self.request_adapter.send_async(request_info, list_item.ListItem, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ListItemItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -258,9 +225,74 @@ class ListItemItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .versions.item import list_item_version_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["listItemVersion%2Did"] = id
         return list_item_version_item_request_builder.ListItemVersionItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    @property
+    def activities(self) -> activities_request_builder.ActivitiesRequestBuilder:
+        """
+        Provides operations to manage the activities property of the microsoft.graph.listItem entity.
+        """
+        from .activities import activities_request_builder
+
+        return activities_request_builder.ActivitiesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def analytics(self) -> analytics_request_builder.AnalyticsRequestBuilder:
+        """
+        Provides operations to manage the analytics property of the microsoft.graph.listItem entity.
+        """
+        from .analytics import analytics_request_builder
+
+        return analytics_request_builder.AnalyticsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def create_link(self) -> create_link_request_builder.CreateLinkRequestBuilder:
+        """
+        Provides operations to call the createLink method.
+        """
+        from .create_link import create_link_request_builder
+
+        return create_link_request_builder.CreateLinkRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def document_set_versions(self) -> document_set_versions_request_builder.DocumentSetVersionsRequestBuilder:
+        """
+        Provides operations to manage the documentSetVersions property of the microsoft.graph.listItem entity.
+        """
+        from .document_set_versions import document_set_versions_request_builder
+
+        return document_set_versions_request_builder.DocumentSetVersionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def drive_item(self) -> drive_item_request_builder.DriveItemRequestBuilder:
+        """
+        Provides operations to manage the driveItem property of the microsoft.graph.listItem entity.
+        """
+        from .drive_item import drive_item_request_builder
+
+        return drive_item_request_builder.DriveItemRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def fields(self) -> fields_request_builder.FieldsRequestBuilder:
+        """
+        Provides operations to manage the fields property of the microsoft.graph.listItem entity.
+        """
+        from .fields import fields_request_builder
+
+        return fields_request_builder.FieldsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def versions(self) -> versions_request_builder.VersionsRequestBuilder:
+        """
+        Provides operations to manage the versions property of the microsoft.graph.listItem entity.
+        """
+        from .versions import versions_request_builder
+
+        return versions_request_builder.VersionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ListItemItemRequestBuilderDeleteRequestConfiguration():
@@ -279,12 +311,6 @@ class ListItemItemRequestBuilder():
         """
         All items contained in the list.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -300,6 +326,12 @@ class ListItemItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class ListItemItemRequestBuilderGetRequestConfiguration():

@@ -1,12 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-managed_device_reported_app = lazy_import('msgraph.generated.models.managed_device_reported_app')
-policy_platform_type = lazy_import('msgraph.generated.models.policy_platform_type')
-restricted_apps_state = lazy_import('msgraph.generated.models.restricted_apps_state')
+if TYPE_CHECKING:
+    from . import entity, managed_device_reported_app, policy_platform_type, restricted_apps_state
+
+from . import entity
 
 class RestrictedAppsViolation(entity.Entity):
     """
@@ -106,7 +105,9 @@ class RestrictedAppsViolation(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, managed_device_reported_app, policy_platform_type, restricted_apps_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "deviceConfigurationId": lambda n : setattr(self, 'device_configuration_id', n.get_str_value()),
             "deviceConfigurationName": lambda n : setattr(self, 'device_configuration_name', n.get_str_value()),
             "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),

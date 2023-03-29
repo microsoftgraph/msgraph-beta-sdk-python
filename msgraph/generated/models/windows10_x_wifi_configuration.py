@@ -1,28 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from uuid import UUID
 
-device_management_resource_access_profile_base = lazy_import('msgraph.generated.models.device_management_resource_access_profile_base')
+if TYPE_CHECKING:
+    from . import device_management_resource_access_profile_base
+
+from . import device_management_resource_access_profile_base
 
 class Windows10XWifiConfiguration(device_management_resource_access_profile_base.DeviceManagementResourceAccessProfileBase):
-    @property
-    def authentication_certificate_id(self,) -> Optional[Guid]:
-        """
-        Gets the authenticationCertificateId property value. ID to the Authentication Certificate
-        Returns: Optional[Guid]
-        """
-        return self._authentication_certificate_id
-    
-    @authentication_certificate_id.setter
-    def authentication_certificate_id(self,value: Optional[Guid] = None) -> None:
-        """
-        Sets the authenticationCertificateId property value. ID to the Authentication Certificate
-        Args:
-            value: Value to set for the authentication_certificate_id property.
-        """
-        self._authentication_certificate_id = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new Windows10XWifiConfiguration and sets the default values.
@@ -30,11 +16,28 @@ class Windows10XWifiConfiguration(device_management_resource_access_profile_base
         super().__init__()
         self.odata_type = "#microsoft.graph.windows10XWifiConfiguration"
         # ID to the Authentication Certificate
-        self._authentication_certificate_id: Optional[Guid] = None
+        self._authentication_certificate_id: Optional[UUID] = None
         # Custom XML commands that configures the VPN connection. (UTF8 byte encoding)
         self._custom_xml: Optional[bytes] = None
         # Custom Xml file name.
         self._custom_xml_file_name: Optional[str] = None
+    
+    @property
+    def authentication_certificate_id(self,) -> Optional[UUID]:
+        """
+        Gets the authenticationCertificateId property value. ID to the Authentication Certificate
+        Returns: Optional[UUID]
+        """
+        return self._authentication_certificate_id
+    
+    @authentication_certificate_id.setter
+    def authentication_certificate_id(self,value: Optional[UUID] = None) -> None:
+        """
+        Sets the authenticationCertificateId property value. ID to the Authentication Certificate
+        Args:
+            value: Value to set for the authentication_certificate_id property.
+        """
+        self._authentication_certificate_id = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10XWifiConfiguration:
@@ -87,8 +90,10 @@ class Windows10XWifiConfiguration(device_management_resource_access_profile_base
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
-            "authenticationCertificateId": lambda n : setattr(self, 'authentication_certificate_id', n.get_object_value(Guid)),
+        from . import device_management_resource_access_profile_base
+
+        fields: Dict[str, Callable[[Any], None]] = {
+            "authenticationCertificateId": lambda n : setattr(self, 'authentication_certificate_id', n.get_uuid_value()),
             "customXml": lambda n : setattr(self, 'custom_xml', n.get_bytes_value()),
             "customXmlFileName": lambda n : setattr(self, 'custom_xml_file_name', n.get_str_value()),
         }
@@ -105,7 +110,7 @@ class Windows10XWifiConfiguration(device_management_resource_access_profile_base
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-        writer.write_object_value("authenticationCertificateId", self.authentication_certificate_id)
+        writer.write_uuid_value("authenticationCertificateId", self.authentication_certificate_id)
         writer.write_object_value("customXml", self.custom_xml)
         writer.write_str_value("customXmlFileName", self.custom_xml_file_name)
     

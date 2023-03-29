@@ -1,17 +1,36 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-change_tracked_entity = lazy_import('msgraph.generated.models.change_tracked_entity')
-confirmed_by = lazy_import('msgraph.generated.models.confirmed_by')
-item_body = lazy_import('msgraph.generated.models.item_body')
-time_card_break = lazy_import('msgraph.generated.models.time_card_break')
-time_card_entry = lazy_import('msgraph.generated.models.time_card_entry')
-time_card_event = lazy_import('msgraph.generated.models.time_card_event')
-time_card_state = lazy_import('msgraph.generated.models.time_card_state')
+if TYPE_CHECKING:
+    from . import change_tracked_entity, confirmed_by, item_body, time_card_break, time_card_entry, time_card_event, time_card_state
+
+from . import change_tracked_entity
 
 class TimeCard(change_tracked_entity.ChangeTrackedEntity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new TimeCard and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.timeCard"
+        # The list of breaks associated with the timeCard.
+        self._breaks: Optional[List[time_card_break.TimeCardBreak]] = None
+        # The clock-in event of the timeCard.
+        self._clock_in_event: Optional[time_card_event.TimeCardEvent] = None
+        # The clock-out event of the timeCard.
+        self._clock_out_event: Optional[time_card_event.TimeCardEvent] = None
+        # Indicate if this timeCard entry is confirmed. Possible values are none, user, manager, unknownFutureValue.
+        self._confirmed_by: Optional[confirmed_by.ConfirmedBy] = None
+        # Notes about the timeCard.
+        self._notes: Optional[item_body.ItemBody] = None
+        # The original timeCardEntry of the timeCard, before user edits.
+        self._original_entry: Optional[time_card_entry.TimeCardEntry] = None
+        # The current state of the timeCard during its life cycle.Possible values are: clockedIn, onBreak, clockedOut, unknownFutureValue.
+        self._state: Optional[time_card_state.TimeCardState] = None
+        # User ID to which  the timeCard belongs.
+        self._user_id: Optional[str] = None
+    
     @property
     def breaks(self,) -> Optional[List[time_card_break.TimeCardBreak]]:
         """
@@ -80,29 +99,6 @@ class TimeCard(change_tracked_entity.ChangeTrackedEntity):
         """
         self._confirmed_by = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new TimeCard and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.timeCard"
-        # The list of breaks associated with the timeCard.
-        self._breaks: Optional[List[time_card_break.TimeCardBreak]] = None
-        # The clock-in event of the timeCard.
-        self._clock_in_event: Optional[time_card_event.TimeCardEvent] = None
-        # The clock-out event of the timeCard.
-        self._clock_out_event: Optional[time_card_event.TimeCardEvent] = None
-        # Indicate if this timeCard entry is confirmed. Possible values are none, user, manager, unknownFutureValue.
-        self._confirmed_by: Optional[confirmed_by.ConfirmedBy] = None
-        # Notes about the timeCard.
-        self._notes: Optional[item_body.ItemBody] = None
-        # The original timeCardEntry of the timeCard, before user edits.
-        self._original_entry: Optional[time_card_entry.TimeCardEntry] = None
-        # The current state of the timeCard during its life cycle.Possible values are: clockedIn, onBreak, clockedOut, unknownFutureValue.
-        self._state: Optional[time_card_state.TimeCardState] = None
-        # User ID to which  the timeCard belongs.
-        self._user_id: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TimeCard:
         """
@@ -120,7 +116,9 @@ class TimeCard(change_tracked_entity.ChangeTrackedEntity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import change_tracked_entity, confirmed_by, item_body, time_card_break, time_card_entry, time_card_event, time_card_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "breaks": lambda n : setattr(self, 'breaks', n.get_collection_of_object_values(time_card_break.TimeCardBreak)),
             "clockInEvent": lambda n : setattr(self, 'clock_in_event', n.get_object_value(time_card_event.TimeCardEvent)),
             "clockOutEvent": lambda n : setattr(self, 'clock_out_event', n.get_object_value(time_card_event.TimeCardEvent)),

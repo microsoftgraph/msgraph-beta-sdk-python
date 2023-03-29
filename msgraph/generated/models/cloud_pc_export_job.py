@@ -1,12 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-cloud_pc_export_job_status = lazy_import('msgraph.generated.models.cloud_pc_export_job_status')
-cloud_pc_report_name = lazy_import('msgraph.generated.models.cloud_pc_report_name')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import cloud_pc_export_job_status, cloud_pc_report_name, entity
+
+from . import entity
 
 class CloudPcExportJob(entity.Entity):
     def __init__(self,) -> None:
@@ -135,7 +135,9 @@ class CloudPcExportJob(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import cloud_pc_export_job_status, cloud_pc_report_name, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
             "exportJobStatus": lambda n : setattr(self, 'export_job_status', n.get_enum_value(cloud_pc_export_job_status.CloudPcExportJobStatus)),
             "exportUrl": lambda n : setattr(self, 'export_url', n.get_str_value()),

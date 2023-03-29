@@ -1,32 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-planner_delta = lazy_import('msgraph.generated.models.planner_delta')
-planner_favorite_plan_reference_collection = lazy_import('msgraph.generated.models.planner_favorite_plan_reference_collection')
-planner_plan = lazy_import('msgraph.generated.models.planner_plan')
-planner_recent_plan_reference_collection = lazy_import('msgraph.generated.models.planner_recent_plan_reference_collection')
-planner_task = lazy_import('msgraph.generated.models.planner_task')
+if TYPE_CHECKING:
+    from . import planner_delta, planner_favorite_plan_reference_collection, planner_plan, planner_recent_plan_reference_collection, planner_task
+
+from . import planner_delta
 
 class PlannerUser(planner_delta.PlannerDelta):
-    @property
-    def all(self,) -> Optional[List[planner_delta.PlannerDelta]]:
-        """
-        Gets the all property value. The all property
-        Returns: Optional[List[planner_delta.PlannerDelta]]
-        """
-        return self._all
-    
-    @all.setter
-    def all(self,value: Optional[List[planner_delta.PlannerDelta]] = None) -> None:
-        """
-        Sets the all property value. The all property
-        Args:
-            value: Value to set for the all property.
-        """
-        self._all = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new PlannerUser and sets the default values.
@@ -50,6 +31,23 @@ class PlannerUser(planner_delta.PlannerDelta):
         self._roster_plans: Optional[List[planner_plan.PlannerPlan]] = None
         # Read-only. Nullable. Returns the plannerTasks assigned to the user.
         self._tasks: Optional[List[planner_task.PlannerTask]] = None
+    
+    @property
+    def all(self,) -> Optional[List[planner_delta.PlannerDelta]]:
+        """
+        Gets the all property value. The all property
+        Returns: Optional[List[planner_delta.PlannerDelta]]
+        """
+        return self._all
+    
+    @all.setter
+    def all(self,value: Optional[List[planner_delta.PlannerDelta]] = None) -> None:
+        """
+        Sets the all property value. The all property
+        Args:
+            value: Value to set for the all property.
+        """
+        self._all = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PlannerUser:
@@ -102,7 +100,9 @@ class PlannerUser(planner_delta.PlannerDelta):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import planner_delta, planner_favorite_plan_reference_collection, planner_plan, planner_recent_plan_reference_collection, planner_task
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "all": lambda n : setattr(self, 'all', n.get_collection_of_object_values(planner_delta.PlannerDelta)),
             "favoritePlans": lambda n : setattr(self, 'favorite_plans', n.get_collection_of_object_values(planner_plan.PlannerPlan)),
             "favoritePlanReferences": lambda n : setattr(self, 'favorite_plan_references', n.get_object_value(planner_favorite_plan_reference_collection.PlannerFavoritePlanReferenceCollection)),

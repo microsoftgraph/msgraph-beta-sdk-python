@@ -1,28 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class WindowsAssignedAccessProfile(entity.Entity):
-    @property
-    def app_user_model_ids(self,) -> Optional[List[str]]:
-        """
-        Gets the appUserModelIds property value. These are the only Windows Store Apps that will be available to launch from the Start menu.
-        Returns: Optional[List[str]]
-        """
-        return self._app_user_model_ids
-    
-    @app_user_model_ids.setter
-    def app_user_model_ids(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the appUserModelIds property value. These are the only Windows Store Apps that will be available to launch from the Start menu.
-        Args:
-            value: Value to set for the app_user_model_ids property.
-        """
-        self._app_user_model_ids = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new WindowsAssignedAccessProfile and sets the default values.
@@ -42,6 +27,23 @@ class WindowsAssignedAccessProfile(entity.Entity):
         self._start_menu_layout_xml: Optional[bytes] = None
         # The user accounts that will be locked to this kiosk configuration.
         self._user_accounts: Optional[List[str]] = None
+    
+    @property
+    def app_user_model_ids(self,) -> Optional[List[str]]:
+        """
+        Gets the appUserModelIds property value. These are the only Windows Store Apps that will be available to launch from the Start menu.
+        Returns: Optional[List[str]]
+        """
+        return self._app_user_model_ids
+    
+    @app_user_model_ids.setter
+    def app_user_model_ids(self,value: Optional[List[str]] = None) -> None:
+        """
+        Sets the appUserModelIds property value. These are the only Windows Store Apps that will be available to launch from the Start menu.
+        Args:
+            value: Value to set for the app_user_model_ids property.
+        """
+        self._app_user_model_ids = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsAssignedAccessProfile:
@@ -77,7 +79,9 @@ class WindowsAssignedAccessProfile(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appUserModelIds": lambda n : setattr(self, 'app_user_model_ids', n.get_collection_of_primitive_values(str)),
             "desktopAppPaths": lambda n : setattr(self, 'desktop_app_paths', n.get_collection_of_primitive_values(str)),
             "profileName": lambda n : setattr(self, 'profile_name', n.get_str_value()),

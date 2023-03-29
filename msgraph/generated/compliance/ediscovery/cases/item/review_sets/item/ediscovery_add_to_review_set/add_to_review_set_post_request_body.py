@@ -1,12 +1,23 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-additional_data_options = lazy_import('msgraph.generated.models.ediscovery.additional_data_options')
-source_collection = lazy_import('msgraph.generated.models.ediscovery.source_collection')
+if TYPE_CHECKING:
+    from ........models.ediscovery import additional_data_options, source_collection
 
 class AddToReviewSetPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new addToReviewSetPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The additionalDataOptions property
+        self._additional_data_options: Optional[additional_data_options.AdditionalDataOptions] = None
+        # The sourceCollection property
+        self._source_collection: Optional[source_collection.SourceCollection] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -41,18 +52,6 @@ class AddToReviewSetPostRequestBody(AdditionalDataHolder, Parsable):
         """
         self._additional_data_options = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new addToReviewSetPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The additionalDataOptions property
-        self._additional_data_options: Optional[additional_data_options.AdditionalDataOptions] = None
-        # The sourceCollection property
-        self._source_collection: Optional[source_collection.SourceCollection] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AddToReviewSetPostRequestBody:
         """
@@ -70,7 +69,9 @@ class AddToReviewSetPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from ........models.ediscovery import additional_data_options, source_collection
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "additionalDataOptions": lambda n : setattr(self, 'additional_data_options', n.get_enum_value(additional_data_options.AdditionalDataOptions)),
             "sourceCollection": lambda n : setattr(self, 'source_collection', n.get_object_value(source_collection.SourceCollection)),
         }

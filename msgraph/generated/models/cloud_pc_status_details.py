@@ -1,11 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
+if TYPE_CHECKING:
+    from . import key_value_pair
 
 class CloudPcStatusDetails(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new cloudPcStatusDetails and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Any additional information about the Cloud PC status.
+        self._additional_information: Optional[List[key_value_pair.KeyValuePair]] = None
+        # The code associated with the Cloud PC status.
+        self._code: Optional[str] = None
+        # The status message.
+        self._message: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -57,22 +73,6 @@ class CloudPcStatusDetails(AdditionalDataHolder, Parsable):
         """
         self._code = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new cloudPcStatusDetails and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Any additional information about the Cloud PC status.
-        self._additional_information: Optional[List[key_value_pair.KeyValuePair]] = None
-        # The code associated with the Cloud PC status.
-        self._code: Optional[str] = None
-        # The status message.
-        self._message: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcStatusDetails:
         """
@@ -90,7 +90,9 @@ class CloudPcStatusDetails(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import key_value_pair
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "additionalInformation": lambda n : setattr(self, 'additional_information', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
             "code": lambda n : setattr(self, 'code', n.get_str_value()),
             "message": lambda n : setattr(self, 'message', n.get_str_value()),

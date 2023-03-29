@@ -1,225 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_device_owner_app_auto_update_policy_type = lazy_import('msgraph.generated.models.android_device_owner_app_auto_update_policy_type')
-android_device_owner_battery_plugged_mode = lazy_import('msgraph.generated.models.android_device_owner_battery_plugged_mode')
-android_device_owner_cross_profile_data_sharing = lazy_import('msgraph.generated.models.android_device_owner_cross_profile_data_sharing')
-android_device_owner_default_app_permission_policy_type = lazy_import('msgraph.generated.models.android_device_owner_default_app_permission_policy_type')
-android_device_owner_enrollment_profile_type = lazy_import('msgraph.generated.models.android_device_owner_enrollment_profile_type')
-android_device_owner_global_proxy = lazy_import('msgraph.generated.models.android_device_owner_global_proxy')
-android_device_owner_kiosk_customization_status_bar = lazy_import('msgraph.generated.models.android_device_owner_kiosk_customization_status_bar')
-android_device_owner_kiosk_customization_system_navigation = lazy_import('msgraph.generated.models.android_device_owner_kiosk_customization_system_navigation')
-android_device_owner_kiosk_mode_app_position_item = lazy_import('msgraph.generated.models.android_device_owner_kiosk_mode_app_position_item')
-android_device_owner_kiosk_mode_folder_icon = lazy_import('msgraph.generated.models.android_device_owner_kiosk_mode_folder_icon')
-android_device_owner_kiosk_mode_icon_size = lazy_import('msgraph.generated.models.android_device_owner_kiosk_mode_icon_size')
-android_device_owner_kiosk_mode_managed_folder = lazy_import('msgraph.generated.models.android_device_owner_kiosk_mode_managed_folder')
-android_device_owner_kiosk_mode_screen_orientation = lazy_import('msgraph.generated.models.android_device_owner_kiosk_mode_screen_orientation')
-android_device_owner_play_store_mode = lazy_import('msgraph.generated.models.android_device_owner_play_store_mode')
-android_device_owner_required_password_type = lazy_import('msgraph.generated.models.android_device_owner_required_password_type')
-android_device_owner_required_password_unlock = lazy_import('msgraph.generated.models.android_device_owner_required_password_unlock')
-android_device_owner_system_update_freeze_period = lazy_import('msgraph.generated.models.android_device_owner_system_update_freeze_period')
-android_device_owner_system_update_install_type = lazy_import('msgraph.generated.models.android_device_owner_system_update_install_type')
-android_device_owner_user_facing_message = lazy_import('msgraph.generated.models.android_device_owner_user_facing_message')
-android_device_owner_virtual_home_button_type = lazy_import('msgraph.generated.models.android_device_owner_virtual_home_button_type')
-android_keyguard_feature = lazy_import('msgraph.generated.models.android_keyguard_feature')
-app_list_item = lazy_import('msgraph.generated.models.app_list_item')
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-kiosk_mode_managed_home_screen_pin_complexity = lazy_import('msgraph.generated.models.kiosk_mode_managed_home_screen_pin_complexity')
-kiosk_mode_type = lazy_import('msgraph.generated.models.kiosk_mode_type')
-microsoft_launcher_dock_presence = lazy_import('msgraph.generated.models.microsoft_launcher_dock_presence')
-microsoft_launcher_search_bar_placement = lazy_import('msgraph.generated.models.microsoft_launcher_search_bar_placement')
-personal_profile_personal_play_store_mode = lazy_import('msgraph.generated.models.personal_profile_personal_play_store_mode')
+if TYPE_CHECKING:
+    from . import android_device_owner_app_auto_update_policy_type, android_device_owner_battery_plugged_mode, android_device_owner_cross_profile_data_sharing, android_device_owner_default_app_permission_policy_type, android_device_owner_enrollment_profile_type, android_device_owner_global_proxy, android_device_owner_kiosk_customization_status_bar, android_device_owner_kiosk_customization_system_navigation, android_device_owner_kiosk_mode_app_position_item, android_device_owner_kiosk_mode_folder_icon, android_device_owner_kiosk_mode_icon_size, android_device_owner_kiosk_mode_managed_folder, android_device_owner_kiosk_mode_screen_orientation, android_device_owner_play_store_mode, android_device_owner_required_password_type, android_device_owner_required_password_unlock, android_device_owner_system_update_freeze_period, android_device_owner_system_update_install_type, android_device_owner_user_facing_message, android_device_owner_virtual_home_button_type, android_keyguard_feature, app_list_item, device_configuration, kiosk_mode_managed_home_screen_pin_complexity, kiosk_mode_type, microsoft_launcher_dock_presence, microsoft_launcher_search_bar_placement, personal_profile_personal_play_store_mode
+
+from . import device_configuration
 
 class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
-    @property
-    def accounts_block_modification(self,) -> Optional[bool]:
-        """
-        Gets the accountsBlockModification property value. Indicates whether or not adding or removing accounts is disabled.
-        Returns: Optional[bool]
-        """
-        return self._accounts_block_modification
-    
-    @accounts_block_modification.setter
-    def accounts_block_modification(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the accountsBlockModification property value. Indicates whether or not adding or removing accounts is disabled.
-        Args:
-            value: Value to set for the accounts_block_modification property.
-        """
-        self._accounts_block_modification = value
-    
-    @property
-    def apps_allow_install_from_unknown_sources(self,) -> Optional[bool]:
-        """
-        Gets the appsAllowInstallFromUnknownSources property value. Indicates whether or not the user is allowed to enable to unknown sources setting.
-        Returns: Optional[bool]
-        """
-        return self._apps_allow_install_from_unknown_sources
-    
-    @apps_allow_install_from_unknown_sources.setter
-    def apps_allow_install_from_unknown_sources(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the appsAllowInstallFromUnknownSources property value. Indicates whether or not the user is allowed to enable to unknown sources setting.
-        Args:
-            value: Value to set for the apps_allow_install_from_unknown_sources property.
-        """
-        self._apps_allow_install_from_unknown_sources = value
-    
-    @property
-    def apps_auto_update_policy(self,) -> Optional[android_device_owner_app_auto_update_policy_type.AndroidDeviceOwnerAppAutoUpdatePolicyType]:
-        """
-        Gets the appsAutoUpdatePolicy property value. Indicates the value of the app auto update policy. Possible values are: notConfigured, userChoice, never, wiFiOnly, always.
-        Returns: Optional[android_device_owner_app_auto_update_policy_type.AndroidDeviceOwnerAppAutoUpdatePolicyType]
-        """
-        return self._apps_auto_update_policy
-    
-    @apps_auto_update_policy.setter
-    def apps_auto_update_policy(self,value: Optional[android_device_owner_app_auto_update_policy_type.AndroidDeviceOwnerAppAutoUpdatePolicyType] = None) -> None:
-        """
-        Sets the appsAutoUpdatePolicy property value. Indicates the value of the app auto update policy. Possible values are: notConfigured, userChoice, never, wiFiOnly, always.
-        Args:
-            value: Value to set for the apps_auto_update_policy property.
-        """
-        self._apps_auto_update_policy = value
-    
-    @property
-    def apps_default_permission_policy(self,) -> Optional[android_device_owner_default_app_permission_policy_type.AndroidDeviceOwnerDefaultAppPermissionPolicyType]:
-        """
-        Gets the appsDefaultPermissionPolicy property value. Indicates the permission policy for requests for runtime permissions if one is not defined for the app specifically. Possible values are: deviceDefault, prompt, autoGrant, autoDeny.
-        Returns: Optional[android_device_owner_default_app_permission_policy_type.AndroidDeviceOwnerDefaultAppPermissionPolicyType]
-        """
-        return self._apps_default_permission_policy
-    
-    @apps_default_permission_policy.setter
-    def apps_default_permission_policy(self,value: Optional[android_device_owner_default_app_permission_policy_type.AndroidDeviceOwnerDefaultAppPermissionPolicyType] = None) -> None:
-        """
-        Sets the appsDefaultPermissionPolicy property value. Indicates the permission policy for requests for runtime permissions if one is not defined for the app specifically. Possible values are: deviceDefault, prompt, autoGrant, autoDeny.
-        Args:
-            value: Value to set for the apps_default_permission_policy property.
-        """
-        self._apps_default_permission_policy = value
-    
-    @property
-    def apps_recommend_skipping_first_use_hints(self,) -> Optional[bool]:
-        """
-        Gets the appsRecommendSkippingFirstUseHints property value. Whether or not to recommend all apps skip any first-time-use hints they may have added.
-        Returns: Optional[bool]
-        """
-        return self._apps_recommend_skipping_first_use_hints
-    
-    @apps_recommend_skipping_first_use_hints.setter
-    def apps_recommend_skipping_first_use_hints(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the appsRecommendSkippingFirstUseHints property value. Whether or not to recommend all apps skip any first-time-use hints they may have added.
-        Args:
-            value: Value to set for the apps_recommend_skipping_first_use_hints property.
-        """
-        self._apps_recommend_skipping_first_use_hints = value
-    
-    @property
-    def azure_ad_shared_device_data_clear_apps(self,) -> Optional[List[app_list_item.AppListItem]]:
-        """
-        Gets the azureAdSharedDeviceDataClearApps property value. A list of managed apps that will have their data cleared during a global sign-out in AAD shared device mode. This collection can contain a maximum of 500 elements.
-        Returns: Optional[List[app_list_item.AppListItem]]
-        """
-        return self._azure_ad_shared_device_data_clear_apps
-    
-    @azure_ad_shared_device_data_clear_apps.setter
-    def azure_ad_shared_device_data_clear_apps(self,value: Optional[List[app_list_item.AppListItem]] = None) -> None:
-        """
-        Sets the azureAdSharedDeviceDataClearApps property value. A list of managed apps that will have their data cleared during a global sign-out in AAD shared device mode. This collection can contain a maximum of 500 elements.
-        Args:
-            value: Value to set for the azure_ad_shared_device_data_clear_apps property.
-        """
-        self._azure_ad_shared_device_data_clear_apps = value
-    
-    @property
-    def bluetooth_block_configuration(self,) -> Optional[bool]:
-        """
-        Gets the bluetoothBlockConfiguration property value. Indicates whether or not to block a user from configuring bluetooth.
-        Returns: Optional[bool]
-        """
-        return self._bluetooth_block_configuration
-    
-    @bluetooth_block_configuration.setter
-    def bluetooth_block_configuration(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the bluetoothBlockConfiguration property value. Indicates whether or not to block a user from configuring bluetooth.
-        Args:
-            value: Value to set for the bluetooth_block_configuration property.
-        """
-        self._bluetooth_block_configuration = value
-    
-    @property
-    def bluetooth_block_contact_sharing(self,) -> Optional[bool]:
-        """
-        Gets the bluetoothBlockContactSharing property value. Indicates whether or not to block a user from sharing contacts via bluetooth.
-        Returns: Optional[bool]
-        """
-        return self._bluetooth_block_contact_sharing
-    
-    @bluetooth_block_contact_sharing.setter
-    def bluetooth_block_contact_sharing(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the bluetoothBlockContactSharing property value. Indicates whether or not to block a user from sharing contacts via bluetooth.
-        Args:
-            value: Value to set for the bluetooth_block_contact_sharing property.
-        """
-        self._bluetooth_block_contact_sharing = value
-    
-    @property
-    def camera_blocked(self,) -> Optional[bool]:
-        """
-        Gets the cameraBlocked property value. Indicates whether or not to disable the use of the camera.
-        Returns: Optional[bool]
-        """
-        return self._camera_blocked
-    
-    @camera_blocked.setter
-    def camera_blocked(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the cameraBlocked property value. Indicates whether or not to disable the use of the camera.
-        Args:
-            value: Value to set for the camera_blocked property.
-        """
-        self._camera_blocked = value
-    
-    @property
-    def cellular_block_wi_fi_tethering(self,) -> Optional[bool]:
-        """
-        Gets the cellularBlockWiFiTethering property value. Indicates whether or not to block Wi-Fi tethering.
-        Returns: Optional[bool]
-        """
-        return self._cellular_block_wi_fi_tethering
-    
-    @cellular_block_wi_fi_tethering.setter
-    def cellular_block_wi_fi_tethering(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the cellularBlockWiFiTethering property value. Indicates whether or not to block Wi-Fi tethering.
-        Args:
-            value: Value to set for the cellular_block_wi_fi_tethering property.
-        """
-        self._cellular_block_wi_fi_tethering = value
-    
-    @property
-    def certificate_credential_configuration_disabled(self,) -> Optional[bool]:
-        """
-        Gets the certificateCredentialConfigurationDisabled property value. Indicates whether or not to block users from any certificate credential configuration.
-        Returns: Optional[bool]
-        """
-        return self._certificate_credential_configuration_disabled
-    
-    @certificate_credential_configuration_disabled.setter
-    def certificate_credential_configuration_disabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the certificateCredentialConfigurationDisabled property value. Indicates whether or not to block users from any certificate credential configuration.
-        Args:
-            value: Value to set for the certificate_credential_configuration_disabled property.
-        """
-        self._certificate_credential_configuration_disabled = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new AndroidDeviceOwnerGeneralDeviceConfiguration and sets the default values.
@@ -499,6 +287,193 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         # Indicates the number of times a user can enter an incorrect work profile password before the device is wiped. Valid values 4 to 11
         self._work_profile_password_sign_in_failure_count_before_factory_reset: Optional[int] = None
     
+    @property
+    def accounts_block_modification(self,) -> Optional[bool]:
+        """
+        Gets the accountsBlockModification property value. Indicates whether or not adding or removing accounts is disabled.
+        Returns: Optional[bool]
+        """
+        return self._accounts_block_modification
+    
+    @accounts_block_modification.setter
+    def accounts_block_modification(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the accountsBlockModification property value. Indicates whether or not adding or removing accounts is disabled.
+        Args:
+            value: Value to set for the accounts_block_modification property.
+        """
+        self._accounts_block_modification = value
+    
+    @property
+    def apps_allow_install_from_unknown_sources(self,) -> Optional[bool]:
+        """
+        Gets the appsAllowInstallFromUnknownSources property value. Indicates whether or not the user is allowed to enable to unknown sources setting.
+        Returns: Optional[bool]
+        """
+        return self._apps_allow_install_from_unknown_sources
+    
+    @apps_allow_install_from_unknown_sources.setter
+    def apps_allow_install_from_unknown_sources(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the appsAllowInstallFromUnknownSources property value. Indicates whether or not the user is allowed to enable to unknown sources setting.
+        Args:
+            value: Value to set for the apps_allow_install_from_unknown_sources property.
+        """
+        self._apps_allow_install_from_unknown_sources = value
+    
+    @property
+    def apps_auto_update_policy(self,) -> Optional[android_device_owner_app_auto_update_policy_type.AndroidDeviceOwnerAppAutoUpdatePolicyType]:
+        """
+        Gets the appsAutoUpdatePolicy property value. Indicates the value of the app auto update policy. Possible values are: notConfigured, userChoice, never, wiFiOnly, always.
+        Returns: Optional[android_device_owner_app_auto_update_policy_type.AndroidDeviceOwnerAppAutoUpdatePolicyType]
+        """
+        return self._apps_auto_update_policy
+    
+    @apps_auto_update_policy.setter
+    def apps_auto_update_policy(self,value: Optional[android_device_owner_app_auto_update_policy_type.AndroidDeviceOwnerAppAutoUpdatePolicyType] = None) -> None:
+        """
+        Sets the appsAutoUpdatePolicy property value. Indicates the value of the app auto update policy. Possible values are: notConfigured, userChoice, never, wiFiOnly, always.
+        Args:
+            value: Value to set for the apps_auto_update_policy property.
+        """
+        self._apps_auto_update_policy = value
+    
+    @property
+    def apps_default_permission_policy(self,) -> Optional[android_device_owner_default_app_permission_policy_type.AndroidDeviceOwnerDefaultAppPermissionPolicyType]:
+        """
+        Gets the appsDefaultPermissionPolicy property value. Indicates the permission policy for requests for runtime permissions if one is not defined for the app specifically. Possible values are: deviceDefault, prompt, autoGrant, autoDeny.
+        Returns: Optional[android_device_owner_default_app_permission_policy_type.AndroidDeviceOwnerDefaultAppPermissionPolicyType]
+        """
+        return self._apps_default_permission_policy
+    
+    @apps_default_permission_policy.setter
+    def apps_default_permission_policy(self,value: Optional[android_device_owner_default_app_permission_policy_type.AndroidDeviceOwnerDefaultAppPermissionPolicyType] = None) -> None:
+        """
+        Sets the appsDefaultPermissionPolicy property value. Indicates the permission policy for requests for runtime permissions if one is not defined for the app specifically. Possible values are: deviceDefault, prompt, autoGrant, autoDeny.
+        Args:
+            value: Value to set for the apps_default_permission_policy property.
+        """
+        self._apps_default_permission_policy = value
+    
+    @property
+    def apps_recommend_skipping_first_use_hints(self,) -> Optional[bool]:
+        """
+        Gets the appsRecommendSkippingFirstUseHints property value. Whether or not to recommend all apps skip any first-time-use hints they may have added.
+        Returns: Optional[bool]
+        """
+        return self._apps_recommend_skipping_first_use_hints
+    
+    @apps_recommend_skipping_first_use_hints.setter
+    def apps_recommend_skipping_first_use_hints(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the appsRecommendSkippingFirstUseHints property value. Whether or not to recommend all apps skip any first-time-use hints they may have added.
+        Args:
+            value: Value to set for the apps_recommend_skipping_first_use_hints property.
+        """
+        self._apps_recommend_skipping_first_use_hints = value
+    
+    @property
+    def azure_ad_shared_device_data_clear_apps(self,) -> Optional[List[app_list_item.AppListItem]]:
+        """
+        Gets the azureAdSharedDeviceDataClearApps property value. A list of managed apps that will have their data cleared during a global sign-out in AAD shared device mode. This collection can contain a maximum of 500 elements.
+        Returns: Optional[List[app_list_item.AppListItem]]
+        """
+        return self._azure_ad_shared_device_data_clear_apps
+    
+    @azure_ad_shared_device_data_clear_apps.setter
+    def azure_ad_shared_device_data_clear_apps(self,value: Optional[List[app_list_item.AppListItem]] = None) -> None:
+        """
+        Sets the azureAdSharedDeviceDataClearApps property value. A list of managed apps that will have their data cleared during a global sign-out in AAD shared device mode. This collection can contain a maximum of 500 elements.
+        Args:
+            value: Value to set for the azure_ad_shared_device_data_clear_apps property.
+        """
+        self._azure_ad_shared_device_data_clear_apps = value
+    
+    @property
+    def bluetooth_block_configuration(self,) -> Optional[bool]:
+        """
+        Gets the bluetoothBlockConfiguration property value. Indicates whether or not to block a user from configuring bluetooth.
+        Returns: Optional[bool]
+        """
+        return self._bluetooth_block_configuration
+    
+    @bluetooth_block_configuration.setter
+    def bluetooth_block_configuration(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the bluetoothBlockConfiguration property value. Indicates whether or not to block a user from configuring bluetooth.
+        Args:
+            value: Value to set for the bluetooth_block_configuration property.
+        """
+        self._bluetooth_block_configuration = value
+    
+    @property
+    def bluetooth_block_contact_sharing(self,) -> Optional[bool]:
+        """
+        Gets the bluetoothBlockContactSharing property value. Indicates whether or not to block a user from sharing contacts via bluetooth.
+        Returns: Optional[bool]
+        """
+        return self._bluetooth_block_contact_sharing
+    
+    @bluetooth_block_contact_sharing.setter
+    def bluetooth_block_contact_sharing(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the bluetoothBlockContactSharing property value. Indicates whether or not to block a user from sharing contacts via bluetooth.
+        Args:
+            value: Value to set for the bluetooth_block_contact_sharing property.
+        """
+        self._bluetooth_block_contact_sharing = value
+    
+    @property
+    def camera_blocked(self,) -> Optional[bool]:
+        """
+        Gets the cameraBlocked property value. Indicates whether or not to disable the use of the camera.
+        Returns: Optional[bool]
+        """
+        return self._camera_blocked
+    
+    @camera_blocked.setter
+    def camera_blocked(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the cameraBlocked property value. Indicates whether or not to disable the use of the camera.
+        Args:
+            value: Value to set for the camera_blocked property.
+        """
+        self._camera_blocked = value
+    
+    @property
+    def cellular_block_wi_fi_tethering(self,) -> Optional[bool]:
+        """
+        Gets the cellularBlockWiFiTethering property value. Indicates whether or not to block Wi-Fi tethering.
+        Returns: Optional[bool]
+        """
+        return self._cellular_block_wi_fi_tethering
+    
+    @cellular_block_wi_fi_tethering.setter
+    def cellular_block_wi_fi_tethering(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the cellularBlockWiFiTethering property value. Indicates whether or not to block Wi-Fi tethering.
+        Args:
+            value: Value to set for the cellular_block_wi_fi_tethering property.
+        """
+        self._cellular_block_wi_fi_tethering = value
+    
+    @property
+    def certificate_credential_configuration_disabled(self,) -> Optional[bool]:
+        """
+        Gets the certificateCredentialConfigurationDisabled property value. Indicates whether or not to block users from any certificate credential configuration.
+        Returns: Optional[bool]
+        """
+        return self._certificate_credential_configuration_disabled
+    
+    @certificate_credential_configuration_disabled.setter
+    def certificate_credential_configuration_disabled(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the certificateCredentialConfigurationDisabled property value. Indicates whether or not to block users from any certificate credential configuration.
+        Args:
+            value: Value to set for the certificate_credential_configuration_disabled property.
+        """
+        self._certificate_credential_configuration_disabled = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidDeviceOwnerGeneralDeviceConfiguration:
         """
@@ -686,7 +661,9 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_device_owner_app_auto_update_policy_type, android_device_owner_battery_plugged_mode, android_device_owner_cross_profile_data_sharing, android_device_owner_default_app_permission_policy_type, android_device_owner_enrollment_profile_type, android_device_owner_global_proxy, android_device_owner_kiosk_customization_status_bar, android_device_owner_kiosk_customization_system_navigation, android_device_owner_kiosk_mode_app_position_item, android_device_owner_kiosk_mode_folder_icon, android_device_owner_kiosk_mode_icon_size, android_device_owner_kiosk_mode_managed_folder, android_device_owner_kiosk_mode_screen_orientation, android_device_owner_play_store_mode, android_device_owner_required_password_type, android_device_owner_required_password_unlock, android_device_owner_system_update_freeze_period, android_device_owner_system_update_install_type, android_device_owner_user_facing_message, android_device_owner_virtual_home_button_type, android_keyguard_feature, app_list_item, device_configuration, kiosk_mode_managed_home_screen_pin_complexity, kiosk_mode_type, microsoft_launcher_dock_presence, microsoft_launcher_search_bar_placement, personal_profile_personal_play_store_mode
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accountsBlockModification": lambda n : setattr(self, 'accounts_block_modification', n.get_bool_value()),
             "appsAllowInstallFromUnknownSources": lambda n : setattr(self, 'apps_allow_install_from_unknown_sources', n.get_bool_value()),
             "appsAutoUpdatePolicy": lambda n : setattr(self, 'apps_auto_update_policy', n.get_enum_value(android_device_owner_app_auto_update_policy_type.AndroidDeviceOwnerAppAutoUpdatePolicyType)),

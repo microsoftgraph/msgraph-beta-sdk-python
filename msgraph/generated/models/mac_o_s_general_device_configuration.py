@@ -1,16 +1,157 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-app_list_item = lazy_import('msgraph.generated.models.app_list_item')
-app_list_type = lazy_import('msgraph.generated.models.app_list_type')
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-mac_o_s_privacy_access_control_item = lazy_import('msgraph.generated.models.mac_o_s_privacy_access_control_item')
-mac_o_s_software_update_delay_policy = lazy_import('msgraph.generated.models.mac_o_s_software_update_delay_policy')
-required_password_type = lazy_import('msgraph.generated.models.required_password_type')
+if TYPE_CHECKING:
+    from . import app_list_item, app_list_type, device_configuration, mac_o_s_privacy_access_control_item, mac_o_s_software_update_delay_policy, required_password_type
+
+from . import device_configuration
 
 class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new MacOSGeneralDeviceConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.macOSGeneralDeviceConfiguration"
+        # When TRUE, activation lock is allowed when the devices is in the supervised mode. When FALSE, activation lock is not allowed. Default is false.
+        self._activation_lock_when_supervised_allowed: Optional[bool] = None
+        # Yes prevents users from adding friends to Game Center. Available for devices running macOS versions 10.13 and later.
+        self._adding_game_center_friends_blocked: Optional[bool] = None
+        # Indicates whether or not to allow AirDrop.
+        self._air_drop_blocked: Optional[bool] = None
+        # Indicates whether or to block users from unlocking their Mac with Apple Watch.
+        self._apple_watch_block_auto_unlock: Optional[bool] = None
+        # Indicates whether or not to block the user from accessing the camera of the device.
+        self._camera_blocked: Optional[bool] = None
+        # Indicates whether or not to allow remote screen observation by Classroom app. Requires MDM enrollment via Apple School Manager or Apple Business Manager.
+        self._classroom_app_block_remote_screen_observation: Optional[bool] = None
+        # Indicates whether or not to automatically give permission to the teacher of a managed course on the Classroom app to view a student's screen without prompting. Requires MDM enrollment via Apple School Manager or Apple Business Manager.
+        self._classroom_app_force_unprompted_screen_observation: Optional[bool] = None
+        # Indicates whether or not to automatically give permission to the teacher's requests, without prompting the student. Requires MDM enrollment via Apple School Manager or Apple Business Manager.
+        self._classroom_force_automatically_join_classes: Optional[bool] = None
+        # Indicates whether a student enrolled in an unmanaged course via Classroom will be required to request permission from the teacher when attempting to leave the course. Requires MDM enrollment via Apple School Manager or Apple Business Manager.
+        self._classroom_force_request_permission_to_leave_classes: Optional[bool] = None
+        # Indicates whether or not to allow the teacher to lock apps or the device without prompting the student. Requires MDM enrollment via Apple School Manager or Apple Business Manager.
+        self._classroom_force_unprompted_app_and_device_lock: Optional[bool] = None
+        # Possible values of the compliance app list.
+        self._compliant_app_list_type: Optional[app_list_type.AppListType] = None
+        # List of apps in the compliance (either allow list or block list, controlled by CompliantAppListType). This collection can contain a maximum of 10000 elements.
+        self._compliant_apps_list: Optional[List[app_list_item.AppListItem]] = None
+        # Indicates whether or not to allow content caching.
+        self._content_caching_blocked: Optional[bool] = None
+        # Indicates whether or not to block definition lookup.
+        self._definition_lookup_blocked: Optional[bool] = None
+        # An email address lacking a suffix that matches any of these strings will be considered out-of-domain.
+        self._email_in_domain_suffixes: Optional[List[str]] = None
+        # TRUE disables the reset option on supervised devices. FALSE enables the reset option on supervised devices. Available for devices running macOS versions 12.0 and later.
+        self._erase_content_and_settings_blocked: Optional[bool] = None
+        # Yes disables Game Center, and the Game Center icon is removed from the Home screen. Available for devices running macOS versions 10.13 and later.
+        self._game_center_blocked: Optional[bool] = None
+        # Indicates whether or not to block the user from continuing work that they started on a MacOS device on another iOS or MacOS device (MacOS 10.15 or later).
+        self._i_cloud_block_activity_continuation: Optional[bool] = None
+        # Indicates whether or not to block iCloud from syncing contacts.
+        self._i_cloud_block_address_book: Optional[bool] = None
+        # Indicates whether or not to block iCloud from syncing bookmarks.
+        self._i_cloud_block_bookmarks: Optional[bool] = None
+        # Indicates whether or not to block iCloud from syncing calendars.
+        self._i_cloud_block_calendar: Optional[bool] = None
+        # Indicates whether or not to block iCloud document sync.
+        self._i_cloud_block_document_sync: Optional[bool] = None
+        # Indicates whether or not to block iCloud from syncing mail.
+        self._i_cloud_block_mail: Optional[bool] = None
+        # Indicates whether or not to block iCloud from syncing notes.
+        self._i_cloud_block_notes: Optional[bool] = None
+        # Indicates whether or not to block iCloud Photo Library.
+        self._i_cloud_block_photo_library: Optional[bool] = None
+        # Indicates whether or not to block iCloud from syncing reminders.
+        self._i_cloud_block_reminders: Optional[bool] = None
+        # When TRUE the synchronization of cloud desktop and documents is blocked. When FALSE, synchronization of the cloud desktop and documents are allowed. Available for devices running macOS 10.12.4 and later.
+        self._i_cloud_desktop_and_documents_blocked: Optional[bool] = None
+        # iCloud private relay is an iCloud+ service that prevents networks and servers from monitoring a person's activity across the internet. By blocking iCloud private relay, Apple will not encrypt the traffic leaving the device. Available for devices running macOS 12 and later.
+        self._i_cloud_private_relay_blocked: Optional[bool] = None
+        # Indicates whether or not to block files from being transferred using iTunes.
+        self._i_tunes_block_file_sharing: Optional[bool] = None
+        # Indicates whether or not to block Music service and revert Music app to classic mode.
+        self._i_tunes_block_music_service: Optional[bool] = None
+        # Indicates whether or not to block the user from using dictation input.
+        self._keyboard_block_dictation: Optional[bool] = None
+        # Indicates whether or not iCloud keychain synchronization is blocked (macOS 10.12 and later).
+        self._keychain_block_cloud_sync: Optional[bool] = None
+        # TRUE prevents multiplayer gaming when using Game Center. FALSE allows multiplayer gaming when using Game Center. Available for devices running macOS versions 10.13 and later.
+        self._multiplayer_gaming_blocked: Optional[bool] = None
+        # Indicates whether or not to block sharing passwords with the AirDrop passwords feature.
+        self._password_block_air_drop_sharing: Optional[bool] = None
+        # Indicates whether or not to block the AutoFill Passwords feature.
+        self._password_block_auto_fill: Optional[bool] = None
+        # Indicates whether or not to block fingerprint unlock.
+        self._password_block_fingerprint_unlock: Optional[bool] = None
+        # Indicates whether or not to allow passcode modification.
+        self._password_block_modification: Optional[bool] = None
+        # Indicates whether or not to block requesting passwords from nearby devices.
+        self._password_block_proximity_requests: Optional[bool] = None
+        # Block simple passwords.
+        self._password_block_simple: Optional[bool] = None
+        # Number of days before the password expires.
+        self._password_expiration_days: Optional[int] = None
+        # The number of allowed failed attempts to enter the passcode at the device's lock screen. Valid values 2 to 11
+        self._password_maximum_attempt_count: Optional[int] = None
+        # Number of character sets a password must contain. Valid values 0 to 4
+        self._password_minimum_character_set_count: Optional[int] = None
+        # Minimum length of passwords.
+        self._password_minimum_length: Optional[int] = None
+        # Minutes of inactivity required before a password is required.
+        self._password_minutes_of_inactivity_before_lock: Optional[int] = None
+        # Minutes of inactivity required before the screen times out.
+        self._password_minutes_of_inactivity_before_screen_timeout: Optional[int] = None
+        # The number of minutes before the login is reset after the maximum number of unsuccessful login attempts is reached.
+        self._password_minutes_until_failed_login_reset: Optional[int] = None
+        # Number of previous passwords to block.
+        self._password_previous_password_block_count: Optional[int] = None
+        # Whether or not to require a password.
+        self._password_required: Optional[bool] = None
+        # Possible values of required passwords.
+        self._password_required_type: Optional[required_password_type.RequiredPasswordType] = None
+        # List of privacy preference policy controls. This collection can contain a maximum of 10000 elements.
+        self._privacy_access_controls: Optional[List[mac_o_s_privacy_access_control_item.MacOSPrivacyAccessControlItem]] = None
+        # Indicates whether or not to block the user from using Auto fill in Safari.
+        self._safari_block_autofill: Optional[bool] = None
+        # Indicates whether or not to block the user from taking Screenshots.
+        self._screen_capture_blocked: Optional[bool] = None
+        # Specify the number of days (1-90) to delay visibility of major OS software updates. Available for devices running macOS versions 11.3 and later. Valid values 0 to 90
+        self._software_update_major_o_s_deferred_install_delay_in_days: Optional[int] = None
+        # Specify the number of days (1-90) to delay visibility of minor OS software updates. Available for devices running macOS versions 11.3 and later. Valid values 0 to 90
+        self._software_update_minor_o_s_deferred_install_delay_in_days: Optional[int] = None
+        # Specify the number of days (1-90) to delay visibility of non-OS software updates. Available for devices running macOS versions 11.3 and later. Valid values 0 to 90
+        self._software_update_non_o_s_deferred_install_delay_in_days: Optional[int] = None
+        # Sets how many days a software update will be delyed for a supervised device. Valid values 0 to 90
+        self._software_updates_enforced_delay_in_days: Optional[int] = None
+        # Indicates whether or not to block Spotlight from returning any results from an Internet search.
+        self._spotlight_block_internet_results: Optional[bool] = None
+        # Maximum hours after which the user must enter their password to unlock the device instead of using Touch ID. Available for devices running macOS 12 and later. Valid values 0 to 2147483647
+        self._touch_id_timeout_in_hours: Optional[int] = None
+        # Determines whether to delay OS and/or app updates for macOS. Possible values are: none, delayOSUpdateVisibility, delayAppUpdateVisibility, unknownFutureValue, delayMajorOsUpdateVisibility.
+        self._update_delay_policy: Optional[mac_o_s_software_update_delay_policy.MacOSSoftwareUpdateDelayPolicy] = None
+        # TRUE prevents the wallpaper from being changed. FALSE allows the wallpaper to be changed. Available for devices running macOS versions 10.13 and later.
+        self._wallpaper_modification_blocked: Optional[bool] = None
+    
+    @property
+    def activation_lock_when_supervised_allowed(self,) -> Optional[bool]:
+        """
+        Gets the activationLockWhenSupervisedAllowed property value. When TRUE, activation lock is allowed when the devices is in the supervised mode. When FALSE, activation lock is not allowed. Default is false.
+        Returns: Optional[bool]
+        """
+        return self._activation_lock_when_supervised_allowed
+    
+    @activation_lock_when_supervised_allowed.setter
+    def activation_lock_when_supervised_allowed(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the activationLockWhenSupervisedAllowed property value. When TRUE, activation lock is allowed when the devices is in the supervised mode. When FALSE, activation lock is not allowed. Default is false.
+        Args:
+            value: Value to set for the activation_lock_when_supervised_allowed property.
+        """
+        self._activation_lock_when_supervised_allowed = value
+    
     @property
     def adding_game_center_friends_blocked(self,) -> Optional[bool]:
         """
@@ -198,131 +339,6 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         self._compliant_apps_list = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new MacOSGeneralDeviceConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.macOSGeneralDeviceConfiguration"
-        # Yes prevents users from adding friends to Game Center. Available for devices running macOS versions 10.13 and later.
-        self._adding_game_center_friends_blocked: Optional[bool] = None
-        # Indicates whether or not to allow AirDrop.
-        self._air_drop_blocked: Optional[bool] = None
-        # Indicates whether or to block users from unlocking their Mac with Apple Watch.
-        self._apple_watch_block_auto_unlock: Optional[bool] = None
-        # Indicates whether or not to block the user from accessing the camera of the device.
-        self._camera_blocked: Optional[bool] = None
-        # Indicates whether or not to allow remote screen observation by Classroom app. Requires MDM enrollment via Apple School Manager or Apple Business Manager.
-        self._classroom_app_block_remote_screen_observation: Optional[bool] = None
-        # Indicates whether or not to automatically give permission to the teacher of a managed course on the Classroom app to view a student's screen without prompting. Requires MDM enrollment via Apple School Manager or Apple Business Manager.
-        self._classroom_app_force_unprompted_screen_observation: Optional[bool] = None
-        # Indicates whether or not to automatically give permission to the teacher's requests, without prompting the student. Requires MDM enrollment via Apple School Manager or Apple Business Manager.
-        self._classroom_force_automatically_join_classes: Optional[bool] = None
-        # Indicates whether a student enrolled in an unmanaged course via Classroom will be required to request permission from the teacher when attempting to leave the course. Requires MDM enrollment via Apple School Manager or Apple Business Manager.
-        self._classroom_force_request_permission_to_leave_classes: Optional[bool] = None
-        # Indicates whether or not to allow the teacher to lock apps or the device without prompting the student. Requires MDM enrollment via Apple School Manager or Apple Business Manager.
-        self._classroom_force_unprompted_app_and_device_lock: Optional[bool] = None
-        # Possible values of the compliance app list.
-        self._compliant_app_list_type: Optional[app_list_type.AppListType] = None
-        # List of apps in the compliance (either allow list or block list, controlled by CompliantAppListType). This collection can contain a maximum of 10000 elements.
-        self._compliant_apps_list: Optional[List[app_list_item.AppListItem]] = None
-        # Indicates whether or not to allow content caching.
-        self._content_caching_blocked: Optional[bool] = None
-        # Indicates whether or not to block definition lookup.
-        self._definition_lookup_blocked: Optional[bool] = None
-        # An email address lacking a suffix that matches any of these strings will be considered out-of-domain.
-        self._email_in_domain_suffixes: Optional[List[str]] = None
-        # TRUE disables the reset option on supervised devices. FALSE enables the reset option on supervised devices. Available for devices running macOS versions 12.0 and later.
-        self._erase_content_and_settings_blocked: Optional[bool] = None
-        # Yes disables Game Center, and the Game Center icon is removed from the Home screen. Available for devices running macOS versions 10.13 and later.
-        self._game_center_blocked: Optional[bool] = None
-        # Indicates whether or not to block the user from continuing work that they started on a MacOS device on another iOS or MacOS device (MacOS 10.15 or later).
-        self._i_cloud_block_activity_continuation: Optional[bool] = None
-        # Indicates whether or not to block iCloud from syncing contacts.
-        self._i_cloud_block_address_book: Optional[bool] = None
-        # Indicates whether or not to block iCloud from syncing bookmarks.
-        self._i_cloud_block_bookmarks: Optional[bool] = None
-        # Indicates whether or not to block iCloud from syncing calendars.
-        self._i_cloud_block_calendar: Optional[bool] = None
-        # Indicates whether or not to block iCloud document sync.
-        self._i_cloud_block_document_sync: Optional[bool] = None
-        # Indicates whether or not to block iCloud from syncing mail.
-        self._i_cloud_block_mail: Optional[bool] = None
-        # Indicates whether or not to block iCloud from syncing notes.
-        self._i_cloud_block_notes: Optional[bool] = None
-        # Indicates whether or not to block iCloud Photo Library.
-        self._i_cloud_block_photo_library: Optional[bool] = None
-        # Indicates whether or not to block iCloud from syncing reminders.
-        self._i_cloud_block_reminders: Optional[bool] = None
-        # When TRUE the synchronization of cloud desktop and documents is blocked. When FALSE, synchronization of the cloud desktop and documents are allowed. Available for devices running macOS 10.12.4 and later.
-        self._i_cloud_desktop_and_documents_blocked: Optional[bool] = None
-        # iCloud private relay is an iCloud+ service that prevents networks and servers from monitoring a person's activity across the internet. By blocking iCloud private relay, Apple will not encrypt the traffic leaving the device. Available for devices running macOS 12 and later.
-        self._i_cloud_private_relay_blocked: Optional[bool] = None
-        # Indicates whether or not to block files from being transferred using iTunes.
-        self._i_tunes_block_file_sharing: Optional[bool] = None
-        # Indicates whether or not to block Music service and revert Music app to classic mode.
-        self._i_tunes_block_music_service: Optional[bool] = None
-        # Indicates whether or not to block the user from using dictation input.
-        self._keyboard_block_dictation: Optional[bool] = None
-        # Indicates whether or not iCloud keychain synchronization is blocked (macOS 10.12 and later).
-        self._keychain_block_cloud_sync: Optional[bool] = None
-        # TRUE prevents multiplayer gaming when using Game Center. FALSE allows multiplayer gaming when using Game Center. Available for devices running macOS versions 10.13 and later.
-        self._multiplayer_gaming_blocked: Optional[bool] = None
-        # Indicates whether or not to block sharing passwords with the AirDrop passwords feature.
-        self._password_block_air_drop_sharing: Optional[bool] = None
-        # Indicates whether or not to block the AutoFill Passwords feature.
-        self._password_block_auto_fill: Optional[bool] = None
-        # Indicates whether or not to block fingerprint unlock.
-        self._password_block_fingerprint_unlock: Optional[bool] = None
-        # Indicates whether or not to allow passcode modification.
-        self._password_block_modification: Optional[bool] = None
-        # Indicates whether or not to block requesting passwords from nearby devices.
-        self._password_block_proximity_requests: Optional[bool] = None
-        # Block simple passwords.
-        self._password_block_simple: Optional[bool] = None
-        # Number of days before the password expires.
-        self._password_expiration_days: Optional[int] = None
-        # The number of allowed failed attempts to enter the passcode at the device's lock screen. Valid values 2 to 11
-        self._password_maximum_attempt_count: Optional[int] = None
-        # Number of character sets a password must contain. Valid values 0 to 4
-        self._password_minimum_character_set_count: Optional[int] = None
-        # Minimum length of passwords.
-        self._password_minimum_length: Optional[int] = None
-        # Minutes of inactivity required before a password is required.
-        self._password_minutes_of_inactivity_before_lock: Optional[int] = None
-        # Minutes of inactivity required before the screen times out.
-        self._password_minutes_of_inactivity_before_screen_timeout: Optional[int] = None
-        # The number of minutes before the login is reset after the maximum number of unsuccessful login attempts is reached.
-        self._password_minutes_until_failed_login_reset: Optional[int] = None
-        # Number of previous passwords to block.
-        self._password_previous_password_block_count: Optional[int] = None
-        # Whether or not to require a password.
-        self._password_required: Optional[bool] = None
-        # Possible values of required passwords.
-        self._password_required_type: Optional[required_password_type.RequiredPasswordType] = None
-        # List of privacy preference policy controls. This collection can contain a maximum of 10000 elements.
-        self._privacy_access_controls: Optional[List[mac_o_s_privacy_access_control_item.MacOSPrivacyAccessControlItem]] = None
-        # Indicates whether or not to block the user from using Auto fill in Safari.
-        self._safari_block_autofill: Optional[bool] = None
-        # Indicates whether or not to block the user from taking Screenshots.
-        self._screen_capture_blocked: Optional[bool] = None
-        # Specify the number of days (1-90) to delay visibility of major OS software updates. Available for devices running macOS versions 11.3 and later. Valid values 0 to 90
-        self._software_update_major_o_s_deferred_install_delay_in_days: Optional[int] = None
-        # Specify the number of days (1-90) to delay visibility of minor OS software updates. Available for devices running macOS versions 11.3 and later. Valid values 0 to 90
-        self._software_update_minor_o_s_deferred_install_delay_in_days: Optional[int] = None
-        # Specify the number of days (1-90) to delay visibility of non-OS software updates. Available for devices running macOS versions 11.3 and later. Valid values 0 to 90
-        self._software_update_non_o_s_deferred_install_delay_in_days: Optional[int] = None
-        # Sets how many days a software update will be delyed for a supervised device. Valid values 0 to 90
-        self._software_updates_enforced_delay_in_days: Optional[int] = None
-        # Indicates whether or not to block Spotlight from returning any results from an Internet search.
-        self._spotlight_block_internet_results: Optional[bool] = None
-        # Maximum hours after which the user must enter their password to unlock the device instead of using Touch ID. Available for devices running macOS 12 and later. Valid values 0 to 2147483647
-        self._touch_id_timeout_in_hours: Optional[int] = None
-        # Determines whether to delay OS and/or app updates for macOS. Possible values are: none, delayOSUpdateVisibility, delayAppUpdateVisibility, unknownFutureValue, delayMajorOsUpdateVisibility.
-        self._update_delay_policy: Optional[mac_o_s_software_update_delay_policy.MacOSSoftwareUpdateDelayPolicy] = None
-        # TRUE prevents the wallpaper from being changed. FALSE allows the wallpaper to be changed. Available for devices running macOS versions 10.13 and later.
-        self._wallpaper_modification_blocked: Optional[bool] = None
-    
     @property
     def content_caching_blocked(self,) -> Optional[bool]:
         """
@@ -425,7 +441,10 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import app_list_item, app_list_type, device_configuration, mac_o_s_privacy_access_control_item, mac_o_s_software_update_delay_policy, required_password_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
+            "activationLockWhenSupervisedAllowed": lambda n : setattr(self, 'activation_lock_when_supervised_allowed', n.get_bool_value()),
             "addingGameCenterFriendsBlocked": lambda n : setattr(self, 'adding_game_center_friends_blocked', n.get_bool_value()),
             "airDropBlocked": lambda n : setattr(self, 'air_drop_blocked', n.get_bool_value()),
             "appleWatchBlockAutoUnlock": lambda n : setattr(self, 'apple_watch_block_auto_unlock', n.get_bool_value()),
@@ -1094,6 +1113,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
+        writer.write_bool_value("activationLockWhenSupervisedAllowed", self.activation_lock_when_supervised_allowed)
         writer.write_bool_value("addingGameCenterFriendsBlocked", self.adding_game_center_friends_blocked)
         writer.write_bool_value("airDropBlocked", self.air_drop_blocked)
         writer.write_bool_value("appleWatchBlockAutoUnlock", self.apple_watch_block_auto_unlock)

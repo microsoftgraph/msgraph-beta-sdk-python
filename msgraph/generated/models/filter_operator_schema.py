@@ -1,14 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-attribute_type = lazy_import('msgraph.generated.models.attribute_type')
-entity = lazy_import('msgraph.generated.models.entity')
-scope_operator_multi_valued_comparison_type = lazy_import('msgraph.generated.models.scope_operator_multi_valued_comparison_type')
-scope_operator_type = lazy_import('msgraph.generated.models.scope_operator_type')
+if TYPE_CHECKING:
+    from . import attribute_type, entity, scope_operator_multi_valued_comparison_type, scope_operator_type
+
+from . import entity
 
 class FilterOperatorSchema(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new FilterOperatorSchema and sets the default values.
+        """
+        super().__init__()
+        # The arity property
+        self._arity: Optional[scope_operator_type.ScopeOperatorType] = None
+        # The multivaluedComparisonType property
+        self._multivalued_comparison_type: Optional[scope_operator_multi_valued_comparison_type.ScopeOperatorMultiValuedComparisonType] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Attribute types supported by the operator. Possible values are: Boolean, Binary, Reference, Integer, String.
+        self._supported_attribute_types: Optional[List[attribute_type.AttributeType]] = None
+    
     @property
     def arity(self,) -> Optional[scope_operator_type.ScopeOperatorType]:
         """
@@ -25,20 +38,6 @@ class FilterOperatorSchema(entity.Entity):
             value: Value to set for the arity property.
         """
         self._arity = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new FilterOperatorSchema and sets the default values.
-        """
-        super().__init__()
-        # The arity property
-        self._arity: Optional[scope_operator_type.ScopeOperatorType] = None
-        # The multivaluedComparisonType property
-        self._multivalued_comparison_type: Optional[scope_operator_multi_valued_comparison_type.ScopeOperatorMultiValuedComparisonType] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Attribute types supported by the operator. Possible values are: Boolean, Binary, Reference, Integer, String.
-        self._supported_attribute_types: Optional[List[attribute_type.AttributeType]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> FilterOperatorSchema:
@@ -57,7 +56,9 @@ class FilterOperatorSchema(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import attribute_type, entity, scope_operator_multi_valued_comparison_type, scope_operator_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "arity": lambda n : setattr(self, 'arity', n.get_enum_value(scope_operator_type.ScopeOperatorType)),
             "multivaluedComparisonType": lambda n : setattr(self, 'multivalued_comparison_type', n.get_enum_value(scope_operator_multi_valued_comparison_type.ScopeOperatorMultiValuedComparisonType)),
             "supportedAttributeTypes": lambda n : setattr(self, 'supported_attribute_types', n.get_collection_of_enum_values(attribute_type.AttributeType)),

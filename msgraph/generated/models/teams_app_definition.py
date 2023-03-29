@@ -1,17 +1,50 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-identity_set = lazy_import('msgraph.generated.models.identity_set')
-teams_app_icon = lazy_import('msgraph.generated.models.teams_app_icon')
-teams_app_installation_scopes = lazy_import('msgraph.generated.models.teams_app_installation_scopes')
-teams_app_publishing_state = lazy_import('msgraph.generated.models.teams_app_publishing_state')
-teamwork_bot = lazy_import('msgraph.generated.models.teamwork_bot')
+if TYPE_CHECKING:
+    from . import entity, identity_set, teams_app_authorization, teams_app_icon, teams_app_installation_scopes, teams_app_publishing_state, teamwork_bot
+
+from . import entity
 
 class TeamsAppDefinition(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new teamsAppDefinition and sets the default values.
+        """
+        super().__init__()
+        # A collection of scopes where the Teams app can be installed. Possible values are:team — Indicates that the Teams app can be installed within a team and is authorized to access that team's data. groupChat  — Indicates that the Teams app can be installed within a group chat and is authorized to access that group chat's data.  personal — Indicates that the Teams app can be installed in the personal scope of a user and is authorized to access that user's data.
+        self._allowed_installation_scopes: Optional[teams_app_installation_scopes.TeamsAppInstallationScopes] = None
+        # The authorization property
+        self._authorization: Optional[teams_app_authorization.TeamsAppAuthorization] = None
+        # The WebApplicationInfo.Id from the Teams app manifest.
+        self._azure_a_d_app_id: Optional[str] = None
+        # The details of the bot specified in the Teams app manifest.
+        self._bot: Optional[teamwork_bot.TeamworkBot] = None
+        # The color version of the Teams app's icon.
+        self._color_icon: Optional[teams_app_icon.TeamsAppIcon] = None
+        # The createdBy property
+        self._created_by: Optional[identity_set.IdentitySet] = None
+        # The description property
+        self._description: Optional[str] = None
+        # The name of the app provided by the app developer.
+        self._display_name: Optional[str] = None
+        # The lastModifiedDateTime property
+        self._last_modified_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The outline version of the Teams app's icon.
+        self._outline_icon: Optional[teams_app_icon.TeamsAppIcon] = None
+        # The published status of a specific version of a Teams app. Possible values are:submitted — The specific version of the Teams app has been submitted and is under review. published  — The request to publish the specific version of the Teams app has been approved by the admin and the app is published.  rejected — The request to publish the specific version of the Teams app was rejected by the admin.
+        self._publishing_state: Optional[teams_app_publishing_state.TeamsAppPublishingState] = None
+        # The shortdescription property
+        self._shortdescription: Optional[str] = None
+        # The ID from the Teams app manifest.
+        self._teams_app_id: Optional[str] = None
+        # The version number of the application.
+        self._version: Optional[str] = None
+    
     @property
     def allowed_installation_scopes(self,) -> Optional[teams_app_installation_scopes.TeamsAppInstallationScopes]:
         """
@@ -28,6 +61,23 @@ class TeamsAppDefinition(entity.Entity):
             value: Value to set for the allowed_installation_scopes property.
         """
         self._allowed_installation_scopes = value
+    
+    @property
+    def authorization(self,) -> Optional[teams_app_authorization.TeamsAppAuthorization]:
+        """
+        Gets the authorization property value. The authorization property
+        Returns: Optional[teams_app_authorization.TeamsAppAuthorization]
+        """
+        return self._authorization
+    
+    @authorization.setter
+    def authorization(self,value: Optional[teams_app_authorization.TeamsAppAuthorization] = None) -> None:
+        """
+        Sets the authorization property value. The authorization property
+        Args:
+            value: Value to set for the authorization property.
+        """
+        self._authorization = value
     
     @property
     def azure_a_d_app_id(self,) -> Optional[str]:
@@ -79,40 +129,6 @@ class TeamsAppDefinition(entity.Entity):
             value: Value to set for the color_icon property.
         """
         self._color_icon = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new teamsAppDefinition and sets the default values.
-        """
-        super().__init__()
-        # A collection of scopes where the Teams app can be installed. Possible values are:team — Indicates that the Teams app can be installed within a team and is authorized to access that team's data. groupChat  — Indicates that the Teams app can be installed within a group chat and is authorized to access that group chat's data.  personal — Indicates that the Teams app can be installed in the personal scope of a user and is authorized to access that user's data.
-        self._allowed_installation_scopes: Optional[teams_app_installation_scopes.TeamsAppInstallationScopes] = None
-        # The WebApplicationInfo.Id from the Teams app manifest.
-        self._azure_a_d_app_id: Optional[str] = None
-        # The details of the bot specified in the Teams app manifest.
-        self._bot: Optional[teamwork_bot.TeamworkBot] = None
-        # The color version of the Teams app's icon.
-        self._color_icon: Optional[teams_app_icon.TeamsAppIcon] = None
-        # The createdBy property
-        self._created_by: Optional[identity_set.IdentitySet] = None
-        # The description property
-        self._description: Optional[str] = None
-        # The name of the app provided by the app developer.
-        self._display_name: Optional[str] = None
-        # The lastModifiedDateTime property
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The outline version of the Teams app's icon.
-        self._outline_icon: Optional[teams_app_icon.TeamsAppIcon] = None
-        # The published status of a specific version of a Teams app. Possible values are:submitted — The specific version of the Teams app has been submitted and is under review. published  — The request to publish the specific version of the Teams app has been approved by the admin and the app is published.  rejected — The request to publish the specific version of the Teams app was rejected by the admin.
-        self._publishing_state: Optional[teams_app_publishing_state.TeamsAppPublishingState] = None
-        # The shortdescription property
-        self._shortdescription: Optional[str] = None
-        # The ID from the Teams app manifest.
-        self._teams_app_id: Optional[str] = None
-        # The version number of the application.
-        self._version: Optional[str] = None
     
     @property
     def created_by(self,) -> Optional[identity_set.IdentitySet]:
@@ -182,8 +198,11 @@ class TeamsAppDefinition(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, identity_set, teams_app_authorization, teams_app_icon, teams_app_installation_scopes, teams_app_publishing_state, teamwork_bot
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowedInstallationScopes": lambda n : setattr(self, 'allowed_installation_scopes', n.get_enum_value(teams_app_installation_scopes.TeamsAppInstallationScopes)),
+            "authorization": lambda n : setattr(self, 'authorization', n.get_object_value(teams_app_authorization.TeamsAppAuthorization)),
             "azureADAppId": lambda n : setattr(self, 'azure_a_d_app_id', n.get_str_value()),
             "bot": lambda n : setattr(self, 'bot', n.get_object_value(teamwork_bot.TeamworkBot)),
             "colorIcon": lambda n : setattr(self, 'color_icon', n.get_object_value(teams_app_icon.TeamsAppIcon)),
@@ -262,6 +281,7 @@ class TeamsAppDefinition(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_enum_value("allowedInstallationScopes", self.allowed_installation_scopes)
+        writer.write_object_value("authorization", self.authorization)
         writer.write_str_value("azureADAppId", self.azure_a_d_app_id)
         writer.write_object_value("bot", self.bot)
         writer.write_object_value("colorIcon", self.color_icon)

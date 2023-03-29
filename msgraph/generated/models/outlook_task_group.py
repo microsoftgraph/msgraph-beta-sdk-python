@@ -1,12 +1,32 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from uuid import UUID
 
-entity = lazy_import('msgraph.generated.models.entity')
-outlook_task_folder = lazy_import('msgraph.generated.models.outlook_task_folder')
+if TYPE_CHECKING:
+    from . import entity, outlook_task_folder
+
+from . import entity
 
 class OutlookTaskGroup(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new outlookTaskGroup and sets the default values.
+        """
+        super().__init__()
+        # The version of the task group.
+        self._change_key: Optional[str] = None
+        # The unique GUID identifier for the task group.
+        self._group_key: Optional[UUID] = None
+        # True if the task group is the default task group.
+        self._is_default_group: Optional[bool] = None
+        # The name of the task group.
+        self._name: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The collection of task folders in the task group. Read-only. Nullable.
+        self._task_folders: Optional[List[outlook_task_folder.OutlookTaskFolder]] = None
+    
     @property
     def change_key(self,) -> Optional[str]:
         """
@@ -23,24 +43,6 @@ class OutlookTaskGroup(entity.Entity):
             value: Value to set for the change_key property.
         """
         self._change_key = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new outlookTaskGroup and sets the default values.
-        """
-        super().__init__()
-        # The version of the task group.
-        self._change_key: Optional[str] = None
-        # The unique GUID identifier for the task group.
-        self._group_key: Optional[Guid] = None
-        # True if the task group is the default task group.
-        self._is_default_group: Optional[bool] = None
-        # The name of the task group.
-        self._name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The collection of task folders in the task group. Read-only. Nullable.
-        self._task_folders: Optional[List[outlook_task_folder.OutlookTaskFolder]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OutlookTaskGroup:
@@ -59,9 +61,11 @@ class OutlookTaskGroup(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, outlook_task_folder
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "changeKey": lambda n : setattr(self, 'change_key', n.get_str_value()),
-            "groupKey": lambda n : setattr(self, 'group_key', n.get_object_value(Guid)),
+            "groupKey": lambda n : setattr(self, 'group_key', n.get_uuid_value()),
             "isDefaultGroup": lambda n : setattr(self, 'is_default_group', n.get_bool_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "taskFolders": lambda n : setattr(self, 'task_folders', n.get_collection_of_object_values(outlook_task_folder.OutlookTaskFolder)),
@@ -71,15 +75,15 @@ class OutlookTaskGroup(entity.Entity):
         return fields
     
     @property
-    def group_key(self,) -> Optional[Guid]:
+    def group_key(self,) -> Optional[UUID]:
         """
         Gets the groupKey property value. The unique GUID identifier for the task group.
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._group_key
     
     @group_key.setter
-    def group_key(self,value: Optional[Guid] = None) -> None:
+    def group_key(self,value: Optional[UUID] = None) -> None:
         """
         Sets the groupKey property value. The unique GUID identifier for the task group.
         Args:
@@ -131,7 +135,7 @@ class OutlookTaskGroup(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_str_value("changeKey", self.change_key)
-        writer.write_object_value("groupKey", self.group_key)
+        writer.write_uuid_value("groupKey", self.group_key)
         writer.write_bool_value("isDefaultGroup", self.is_default_group)
         writer.write_str_value("name", self.name)
         writer.write_collection_of_object_values("taskFolders", self.task_folders)

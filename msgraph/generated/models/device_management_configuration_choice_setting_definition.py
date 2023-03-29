@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_configuration_option_definition = lazy_import('msgraph.generated.models.device_management_configuration_option_definition')
-device_management_configuration_setting_definition = lazy_import('msgraph.generated.models.device_management_configuration_setting_definition')
+if TYPE_CHECKING:
+    from . import device_management_configuration_choice_setting_collection_definition, device_management_configuration_option_definition, device_management_configuration_setting_definition
+
+from . import device_management_configuration_setting_definition
 
 class DeviceManagementConfigurationChoiceSettingDefinition(device_management_configuration_setting_definition.DeviceManagementConfigurationSettingDefinition):
     def __init__(self,) -> None:
@@ -29,6 +30,13 @@ class DeviceManagementConfigurationChoiceSettingDefinition(device_management_con
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.deviceManagementConfigurationChoiceSettingCollectionDefinition":
+                from . import device_management_configuration_choice_setting_collection_definition
+
+                return device_management_configuration_choice_setting_collection_definition.DeviceManagementConfigurationChoiceSettingCollectionDefinition()
         return DeviceManagementConfigurationChoiceSettingDefinition()
     
     @property
@@ -53,7 +61,9 @@ class DeviceManagementConfigurationChoiceSettingDefinition(device_management_con
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_configuration_choice_setting_collection_definition, device_management_configuration_option_definition, device_management_configuration_setting_definition
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "defaultOptionId": lambda n : setattr(self, 'default_option_id', n.get_str_value()),
             "options": lambda n : setattr(self, 'options', n.get_collection_of_object_values(device_management_configuration_option_definition.DeviceManagementConfigurationOptionDefinition)),
         }

@@ -1,57 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-cloud_pc_connectivity_result = lazy_import('msgraph.generated.models.cloud_pc_connectivity_result')
-cloud_pc_disk_encryption_state = lazy_import('msgraph.generated.models.cloud_pc_disk_encryption_state')
-cloud_pc_login_result = lazy_import('msgraph.generated.models.cloud_pc_login_result')
-cloud_pc_operating_system = lazy_import('msgraph.generated.models.cloud_pc_operating_system')
-cloud_pc_partner_agent_install_result = lazy_import('msgraph.generated.models.cloud_pc_partner_agent_install_result')
-cloud_pc_provisioning_type = lazy_import('msgraph.generated.models.cloud_pc_provisioning_type')
-cloud_pc_remote_action_result = lazy_import('msgraph.generated.models.cloud_pc_remote_action_result')
-cloud_pc_service_plan_type = lazy_import('msgraph.generated.models.cloud_pc_service_plan_type')
-cloud_pc_status = lazy_import('msgraph.generated.models.cloud_pc_status')
-cloud_pc_status_details = lazy_import('msgraph.generated.models.cloud_pc_status_details')
-cloud_pc_user_account_type = lazy_import('msgraph.generated.models.cloud_pc_user_account_type')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import cloud_pc_connectivity_result, cloud_pc_disk_encryption_state, cloud_pc_login_result, cloud_pc_operating_system, cloud_pc_partner_agent_install_result, cloud_pc_provisioning_type, cloud_pc_remote_action_result, cloud_pc_service_plan_type, cloud_pc_status, cloud_pc_status_details, cloud_pc_user_account_type, entity
+
+from . import entity
 
 class CloudPC(entity.Entity):
-    @property
-    def aad_device_id(self,) -> Optional[str]:
-        """
-        Gets the aadDeviceId property value. The Azure Active Directory (Azure AD) device ID of the Cloud PC.
-        Returns: Optional[str]
-        """
-        return self._aad_device_id
-    
-    @aad_device_id.setter
-    def aad_device_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the aadDeviceId property value. The Azure Active Directory (Azure AD) device ID of the Cloud PC.
-        Args:
-            value: Value to set for the aad_device_id property.
-        """
-        self._aad_device_id = value
-    
-    @property
-    def connectivity_result(self,) -> Optional[cloud_pc_connectivity_result.CloudPcConnectivityResult]:
-        """
-        Gets the connectivityResult property value. The connectivity health check result of a Cloud PC, including the updated timestamp and whether the Cloud PC is able to be connected or not.
-        Returns: Optional[cloud_pc_connectivity_result.CloudPcConnectivityResult]
-        """
-        return self._connectivity_result
-    
-    @connectivity_result.setter
-    def connectivity_result(self,value: Optional[cloud_pc_connectivity_result.CloudPcConnectivityResult] = None) -> None:
-        """
-        Sets the connectivityResult property value. The connectivity health check result of a Cloud PC, including the updated timestamp and whether the Cloud PC is able to be connected or not.
-        Args:
-            value: Value to set for the connectivity_result property.
-        """
-        self._connectivity_result = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new cloudPC and sets the default values.
@@ -59,7 +16,7 @@ class CloudPC(entity.Entity):
         super().__init__()
         # The Azure Active Directory (Azure AD) device ID of the Cloud PC.
         self._aad_device_id: Optional[str] = None
-        # The connectivity health check result of a Cloud PC, including the updated timestamp and whether the Cloud PC is able to be connected or not.
+        # The connectivity health check result of a Cloud PC, including the updated timestamp and whether the Cloud PC can be connected.
         self._connectivity_result: Optional[cloud_pc_connectivity_result.CloudPcConnectivityResult] = None
         # The disk encryption applied to the Cloud PC. Possible values: notAvailable, notEncrypted, encryptedUsingPlatformManagedKey, encryptedUsingCustomerManagedKey, and unknownFutureValue.
         self._disk_encryption_state: Optional[cloud_pc_disk_encryption_state.CloudPcDiskEncryptionState] = None
@@ -91,7 +48,7 @@ class CloudPC(entity.Entity):
         self._provisioning_policy_id: Optional[str] = None
         # The provisioning policy that is applied during the provisioning of Cloud PCs.
         self._provisioning_policy_name: Optional[str] = None
-        # The provisioningType property
+        # The type of licenses to be used when provisioning Cloud PCs using this policy. Possible values are: dedicated, shared, unknownFutureValue. Default value is dedicated.
         self._provisioning_type: Optional[cloud_pc_provisioning_type.CloudPcProvisioningType] = None
         # The service plan ID of the Cloud PC.
         self._service_plan_id: Optional[str] = None
@@ -107,6 +64,40 @@ class CloudPC(entity.Entity):
         self._user_account_type: Optional[cloud_pc_user_account_type.CloudPcUserAccountType] = None
         # The user principal name (UPN) of the user assigned to the Cloud PC.
         self._user_principal_name: Optional[str] = None
+    
+    @property
+    def aad_device_id(self,) -> Optional[str]:
+        """
+        Gets the aadDeviceId property value. The Azure Active Directory (Azure AD) device ID of the Cloud PC.
+        Returns: Optional[str]
+        """
+        return self._aad_device_id
+    
+    @aad_device_id.setter
+    def aad_device_id(self,value: Optional[str] = None) -> None:
+        """
+        Sets the aadDeviceId property value. The Azure Active Directory (Azure AD) device ID of the Cloud PC.
+        Args:
+            value: Value to set for the aad_device_id property.
+        """
+        self._aad_device_id = value
+    
+    @property
+    def connectivity_result(self,) -> Optional[cloud_pc_connectivity_result.CloudPcConnectivityResult]:
+        """
+        Gets the connectivityResult property value. The connectivity health check result of a Cloud PC, including the updated timestamp and whether the Cloud PC can be connected.
+        Returns: Optional[cloud_pc_connectivity_result.CloudPcConnectivityResult]
+        """
+        return self._connectivity_result
+    
+    @connectivity_result.setter
+    def connectivity_result(self,value: Optional[cloud_pc_connectivity_result.CloudPcConnectivityResult] = None) -> None:
+        """
+        Sets the connectivityResult property value. The connectivity health check result of a Cloud PC, including the updated timestamp and whether the Cloud PC can be connected.
+        Args:
+            value: Value to set for the connectivity_result property.
+        """
+        self._connectivity_result = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPC:
@@ -159,7 +150,9 @@ class CloudPC(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import cloud_pc_connectivity_result, cloud_pc_disk_encryption_state, cloud_pc_login_result, cloud_pc_operating_system, cloud_pc_partner_agent_install_result, cloud_pc_provisioning_type, cloud_pc_remote_action_result, cloud_pc_service_plan_type, cloud_pc_status, cloud_pc_status_details, cloud_pc_user_account_type, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "aadDeviceId": lambda n : setattr(self, 'aad_device_id', n.get_str_value()),
             "connectivityResult": lambda n : setattr(self, 'connectivity_result', n.get_object_value(cloud_pc_connectivity_result.CloudPcConnectivityResult)),
             "diskEncryptionState": lambda n : setattr(self, 'disk_encryption_state', n.get_enum_value(cloud_pc_disk_encryption_state.CloudPcDiskEncryptionState)),
@@ -396,7 +389,7 @@ class CloudPC(entity.Entity):
     @property
     def provisioning_type(self,) -> Optional[cloud_pc_provisioning_type.CloudPcProvisioningType]:
         """
-        Gets the provisioningType property value. The provisioningType property
+        Gets the provisioningType property value. The type of licenses to be used when provisioning Cloud PCs using this policy. Possible values are: dedicated, shared, unknownFutureValue. Default value is dedicated.
         Returns: Optional[cloud_pc_provisioning_type.CloudPcProvisioningType]
         """
         return self._provisioning_type
@@ -404,7 +397,7 @@ class CloudPC(entity.Entity):
     @provisioning_type.setter
     def provisioning_type(self,value: Optional[cloud_pc_provisioning_type.CloudPcProvisioningType] = None) -> None:
         """
-        Sets the provisioningType property value. The provisioningType property
+        Sets the provisioningType property value. The type of licenses to be used when provisioning Cloud PCs using this policy. Possible values are: dedicated, shared, unknownFutureValue. Default value is dedicated.
         Args:
             value: Value to set for the provisioning_type property.
         """

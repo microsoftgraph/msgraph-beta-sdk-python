@@ -1,10 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from uuid import UUID
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class GroupPolicyObjectFile(entity.Entity):
     """
@@ -20,7 +23,7 @@ class GroupPolicyObjectFile(entity.Entity):
         # The date and time at which the GroupPolicy was first uploaded.
         self._created_date_time: Optional[datetime] = None
         # The Group Policy Object GUID from GPO Xml content
-        self._group_policy_object_id: Optional[Guid] = None
+        self._group_policy_object_id: Optional[UUID] = None
         # The date and time at which the GroupPolicyObjectFile was last modified.
         self._last_modified_date_time: Optional[datetime] = None
         # The OdataType property
@@ -81,10 +84,12 @@ class GroupPolicyObjectFile(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "content": lambda n : setattr(self, 'content', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "groupPolicyObjectId": lambda n : setattr(self, 'group_policy_object_id', n.get_object_value(Guid)),
+            "groupPolicyObjectId": lambda n : setattr(self, 'group_policy_object_id', n.get_uuid_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "ouDistinguishedName": lambda n : setattr(self, 'ou_distinguished_name', n.get_str_value()),
             "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
@@ -94,15 +99,15 @@ class GroupPolicyObjectFile(entity.Entity):
         return fields
     
     @property
-    def group_policy_object_id(self,) -> Optional[Guid]:
+    def group_policy_object_id(self,) -> Optional[UUID]:
         """
         Gets the groupPolicyObjectId property value. The Group Policy Object GUID from GPO Xml content
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._group_policy_object_id
     
     @group_policy_object_id.setter
-    def group_policy_object_id(self,value: Optional[Guid] = None) -> None:
+    def group_policy_object_id(self,value: Optional[UUID] = None) -> None:
         """
         Sets the groupPolicyObjectId property value. The Group Policy Object GUID from GPO Xml content
         Args:
@@ -172,7 +177,7 @@ class GroupPolicyObjectFile(entity.Entity):
         super().serialize(writer)
         writer.write_str_value("content", self.content)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
-        writer.write_object_value("groupPolicyObjectId", self.group_policy_object_id)
+        writer.write_uuid_value("groupPolicyObjectId", self.group_policy_object_id)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("ouDistinguishedName", self.ou_distinguished_name)
         writer.write_collection_of_primitive_values("roleScopeTagIds", self.role_scope_tag_ids)

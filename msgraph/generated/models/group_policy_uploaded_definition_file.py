@@ -1,13 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-group_policy_definition_file = lazy_import('msgraph.generated.models.group_policy_definition_file')
-group_policy_operation = lazy_import('msgraph.generated.models.group_policy_operation')
-group_policy_uploaded_definition_file_status = lazy_import('msgraph.generated.models.group_policy_uploaded_definition_file_status')
-group_policy_uploaded_language_file = lazy_import('msgraph.generated.models.group_policy_uploaded_language_file')
+if TYPE_CHECKING:
+    from . import group_policy_definition_file, group_policy_operation, group_policy_uploaded_definition_file_status, group_policy_uploaded_language_file
+
+from . import group_policy_definition_file
 
 class GroupPolicyUploadedDefinitionFile(group_policy_definition_file.GroupPolicyDefinitionFile):
     def __init__(self,) -> None:
@@ -80,7 +79,9 @@ class GroupPolicyUploadedDefinitionFile(group_policy_definition_file.GroupPolicy
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import group_policy_definition_file, group_policy_operation, group_policy_uploaded_definition_file_status, group_policy_uploaded_language_file
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "content": lambda n : setattr(self, 'content', n.get_bytes_value()),
             "defaultLanguageCode": lambda n : setattr(self, 'default_language_code', n.get_str_value()),
             "groupPolicyOperations": lambda n : setattr(self, 'group_policy_operations', n.get_collection_of_object_values(group_policy_operation.GroupPolicyOperation)),

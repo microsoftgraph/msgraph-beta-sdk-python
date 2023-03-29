@@ -1,64 +1,28 @@
 from __future__ import annotations
 from datetime import datetime, timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_autopilot_policy_status_detail = lazy_import('msgraph.generated.models.device_management_autopilot_policy_status_detail')
-enrollment_state = lazy_import('msgraph.generated.models.enrollment_state')
-entity = lazy_import('msgraph.generated.models.entity')
-windows_autopilot_deployment_state = lazy_import('msgraph.generated.models.windows_autopilot_deployment_state')
-windows_autopilot_enrollment_type = lazy_import('msgraph.generated.models.windows_autopilot_enrollment_type')
+if TYPE_CHECKING:
+    from . import device_management_autopilot_policy_status_detail, enrollment_state, entity, windows_autopilot_deployment_state, windows_autopilot_enrollment_type
+
+from . import entity
 
 class DeviceManagementAutopilotEvent(entity.Entity):
     """
     Represents an Autopilot flow event.
     """
-    @property
-    def account_setup_duration(self,) -> Optional[Timedelta]:
-        """
-        Gets the accountSetupDuration property value. Time spent in user ESP.
-        Returns: Optional[Timedelta]
-        """
-        return self._account_setup_duration
-    
-    @account_setup_duration.setter
-    def account_setup_duration(self,value: Optional[Timedelta] = None) -> None:
-        """
-        Sets the accountSetupDuration property value. Time spent in user ESP.
-        Args:
-            value: Value to set for the account_setup_duration property.
-        """
-        self._account_setup_duration = value
-    
-    @property
-    def account_setup_status(self,) -> Optional[windows_autopilot_deployment_state.WindowsAutopilotDeploymentState]:
-        """
-        Gets the accountSetupStatus property value. Deployment states for Autopilot devices
-        Returns: Optional[windows_autopilot_deployment_state.WindowsAutopilotDeploymentState]
-        """
-        return self._account_setup_status
-    
-    @account_setup_status.setter
-    def account_setup_status(self,value: Optional[windows_autopilot_deployment_state.WindowsAutopilotDeploymentState] = None) -> None:
-        """
-        Sets the accountSetupStatus property value. Deployment states for Autopilot devices
-        Args:
-            value: Value to set for the account_setup_status property.
-        """
-        self._account_setup_status = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new deviceManagementAutopilotEvent and sets the default values.
         """
         super().__init__()
         # Time spent in user ESP.
-        self._account_setup_duration: Optional[Timedelta] = None
+        self._account_setup_duration: Optional[timedelta] = None
         # Deployment states for Autopilot devices
         self._account_setup_status: Optional[windows_autopilot_deployment_state.WindowsAutopilotDeploymentState] = None
         # Autopilot deployment duration including enrollment.
-        self._deployment_duration: Optional[Timedelta] = None
+        self._deployment_duration: Optional[timedelta] = None
         # Deployment end time.
         self._deployment_end_date_time: Optional[datetime] = None
         # Deployment start time.
@@ -66,17 +30,17 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         # Deployment states for Autopilot devices
         self._deployment_state: Optional[windows_autopilot_deployment_state.WindowsAutopilotDeploymentState] = None
         # Total deployment duration from enrollment to Desktop screen.
-        self._deployment_total_duration: Optional[Timedelta] = None
+        self._deployment_total_duration: Optional[timedelta] = None
         # Device id associated with the object
         self._device_id: Optional[str] = None
         # Time spent in device enrollment.
-        self._device_preparation_duration: Optional[Timedelta] = None
+        self._device_preparation_duration: Optional[timedelta] = None
         # Device registration date.
         self._device_registered_date_time: Optional[datetime] = None
         # Device serial number.
         self._device_serial_number: Optional[str] = None
         # Time spent in device ESP.
-        self._device_setup_duration: Optional[Timedelta] = None
+        self._device_setup_duration: Optional[timedelta] = None
         # Deployment states for Autopilot devices
         self._device_setup_status: Optional[windows_autopilot_deployment_state.WindowsAutopilotDeploymentState] = None
         # Enrollment failure details.
@@ -110,6 +74,40 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         # Enrollment Status Page profile ID
         self._windows10_enrollment_completion_page_configuration_id: Optional[str] = None
     
+    @property
+    def account_setup_duration(self,) -> Optional[timedelta]:
+        """
+        Gets the accountSetupDuration property value. Time spent in user ESP.
+        Returns: Optional[timedelta]
+        """
+        return self._account_setup_duration
+    
+    @account_setup_duration.setter
+    def account_setup_duration(self,value: Optional[timedelta] = None) -> None:
+        """
+        Sets the accountSetupDuration property value. Time spent in user ESP.
+        Args:
+            value: Value to set for the account_setup_duration property.
+        """
+        self._account_setup_duration = value
+    
+    @property
+    def account_setup_status(self,) -> Optional[windows_autopilot_deployment_state.WindowsAutopilotDeploymentState]:
+        """
+        Gets the accountSetupStatus property value. Deployment states for Autopilot devices
+        Returns: Optional[windows_autopilot_deployment_state.WindowsAutopilotDeploymentState]
+        """
+        return self._account_setup_status
+    
+    @account_setup_status.setter
+    def account_setup_status(self,value: Optional[windows_autopilot_deployment_state.WindowsAutopilotDeploymentState] = None) -> None:
+        """
+        Sets the accountSetupStatus property value. Deployment states for Autopilot devices
+        Args:
+            value: Value to set for the account_setup_status property.
+        """
+        self._account_setup_status = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementAutopilotEvent:
         """
@@ -123,15 +121,15 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         return DeviceManagementAutopilotEvent()
     
     @property
-    def deployment_duration(self,) -> Optional[Timedelta]:
+    def deployment_duration(self,) -> Optional[timedelta]:
         """
         Gets the deploymentDuration property value. Autopilot deployment duration including enrollment.
-        Returns: Optional[Timedelta]
+        Returns: Optional[timedelta]
         """
         return self._deployment_duration
     
     @deployment_duration.setter
-    def deployment_duration(self,value: Optional[Timedelta] = None) -> None:
+    def deployment_duration(self,value: Optional[timedelta] = None) -> None:
         """
         Sets the deploymentDuration property value. Autopilot deployment duration including enrollment.
         Args:
@@ -191,15 +189,15 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         self._deployment_state = value
     
     @property
-    def deployment_total_duration(self,) -> Optional[Timedelta]:
+    def deployment_total_duration(self,) -> Optional[timedelta]:
         """
         Gets the deploymentTotalDuration property value. Total deployment duration from enrollment to Desktop screen.
-        Returns: Optional[Timedelta]
+        Returns: Optional[timedelta]
         """
         return self._deployment_total_duration
     
     @deployment_total_duration.setter
-    def deployment_total_duration(self,value: Optional[Timedelta] = None) -> None:
+    def deployment_total_duration(self,value: Optional[timedelta] = None) -> None:
         """
         Sets the deploymentTotalDuration property value. Total deployment duration from enrollment to Desktop screen.
         Args:
@@ -225,15 +223,15 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         self._device_id = value
     
     @property
-    def device_preparation_duration(self,) -> Optional[Timedelta]:
+    def device_preparation_duration(self,) -> Optional[timedelta]:
         """
         Gets the devicePreparationDuration property value. Time spent in device enrollment.
-        Returns: Optional[Timedelta]
+        Returns: Optional[timedelta]
         """
         return self._device_preparation_duration
     
     @device_preparation_duration.setter
-    def device_preparation_duration(self,value: Optional[Timedelta] = None) -> None:
+    def device_preparation_duration(self,value: Optional[timedelta] = None) -> None:
         """
         Sets the devicePreparationDuration property value. Time spent in device enrollment.
         Args:
@@ -276,15 +274,15 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         self._device_serial_number = value
     
     @property
-    def device_setup_duration(self,) -> Optional[Timedelta]:
+    def device_setup_duration(self,) -> Optional[timedelta]:
         """
         Gets the deviceSetupDuration property value. Time spent in device ESP.
-        Returns: Optional[Timedelta]
+        Returns: Optional[timedelta]
         """
         return self._device_setup_duration
     
     @device_setup_duration.setter
-    def device_setup_duration(self,value: Optional[Timedelta] = None) -> None:
+    def device_setup_duration(self,value: Optional[timedelta] = None) -> None:
         """
         Sets the deviceSetupDuration property value. Time spent in device ESP.
         Args:
@@ -399,19 +397,21 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
-            "accountSetupDuration": lambda n : setattr(self, 'account_setup_duration', n.get_object_value(Timedelta)),
+        from . import device_management_autopilot_policy_status_detail, enrollment_state, entity, windows_autopilot_deployment_state, windows_autopilot_enrollment_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
+            "accountSetupDuration": lambda n : setattr(self, 'account_setup_duration', n.get_timedelta_value()),
             "accountSetupStatus": lambda n : setattr(self, 'account_setup_status', n.get_enum_value(windows_autopilot_deployment_state.WindowsAutopilotDeploymentState)),
-            "deploymentDuration": lambda n : setattr(self, 'deployment_duration', n.get_object_value(Timedelta)),
+            "deploymentDuration": lambda n : setattr(self, 'deployment_duration', n.get_timedelta_value()),
             "deploymentEndDateTime": lambda n : setattr(self, 'deployment_end_date_time', n.get_datetime_value()),
             "deploymentStartDateTime": lambda n : setattr(self, 'deployment_start_date_time', n.get_datetime_value()),
             "deploymentState": lambda n : setattr(self, 'deployment_state', n.get_enum_value(windows_autopilot_deployment_state.WindowsAutopilotDeploymentState)),
-            "deploymentTotalDuration": lambda n : setattr(self, 'deployment_total_duration', n.get_object_value(Timedelta)),
+            "deploymentTotalDuration": lambda n : setattr(self, 'deployment_total_duration', n.get_timedelta_value()),
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
-            "devicePreparationDuration": lambda n : setattr(self, 'device_preparation_duration', n.get_object_value(Timedelta)),
+            "devicePreparationDuration": lambda n : setattr(self, 'device_preparation_duration', n.get_timedelta_value()),
             "deviceRegisteredDateTime": lambda n : setattr(self, 'device_registered_date_time', n.get_datetime_value()),
             "deviceSerialNumber": lambda n : setattr(self, 'device_serial_number', n.get_str_value()),
-            "deviceSetupDuration": lambda n : setattr(self, 'device_setup_duration', n.get_object_value(Timedelta)),
+            "deviceSetupDuration": lambda n : setattr(self, 'device_setup_duration', n.get_timedelta_value()),
             "deviceSetupStatus": lambda n : setattr(self, 'device_setup_status', n.get_enum_value(windows_autopilot_deployment_state.WindowsAutopilotDeploymentState)),
             "enrollmentFailureDetails": lambda n : setattr(self, 'enrollment_failure_details', n.get_str_value()),
             "enrollmentStartDateTime": lambda n : setattr(self, 'enrollment_start_date_time', n.get_datetime_value()),
@@ -492,18 +492,18 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-        writer.write_object_value("accountSetupDuration", self.account_setup_duration)
+        writer.write_timedelta_value("accountSetupDuration", self.account_setup_duration)
         writer.write_enum_value("accountSetupStatus", self.account_setup_status)
-        writer.write_object_value("deploymentDuration", self.deployment_duration)
+        writer.write_timedelta_value("deploymentDuration", self.deployment_duration)
         writer.write_datetime_value("deploymentEndDateTime", self.deployment_end_date_time)
         writer.write_datetime_value("deploymentStartDateTime", self.deployment_start_date_time)
         writer.write_enum_value("deploymentState", self.deployment_state)
-        writer.write_object_value("deploymentTotalDuration", self.deployment_total_duration)
+        writer.write_timedelta_value("deploymentTotalDuration", self.deployment_total_duration)
         writer.write_str_value("deviceId", self.device_id)
-        writer.write_object_value("devicePreparationDuration", self.device_preparation_duration)
+        writer.write_timedelta_value("devicePreparationDuration", self.device_preparation_duration)
         writer.write_datetime_value("deviceRegisteredDateTime", self.device_registered_date_time)
         writer.write_str_value("deviceSerialNumber", self.device_serial_number)
-        writer.write_object_value("deviceSetupDuration", self.device_setup_duration)
+        writer.write_timedelta_value("deviceSetupDuration", self.device_setup_duration)
         writer.write_enum_value("deviceSetupStatus", self.device_setup_status)
         writer.write_str_value("enrollmentFailureDetails", self.enrollment_failure_details)
         writer.write_datetime_value("enrollmentStartDateTime", self.enrollment_start_date_time)

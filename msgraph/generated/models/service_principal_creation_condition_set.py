@@ -1,11 +1,31 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class ServicePrincipalCreationConditionSet(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new servicePrincipalCreationConditionSet and sets the default values.
+        """
+        super().__init__()
+        # The applicationIds property
+        self._application_ids: Optional[List[str]] = None
+        # The applicationPublisherIds property
+        self._application_publisher_ids: Optional[List[str]] = None
+        # The applicationTenantIds property
+        self._application_tenant_ids: Optional[List[str]] = None
+        # The applicationsFromVerifiedPublisherOnly property
+        self._applications_from_verified_publisher_only: Optional[bool] = None
+        # The certifiedApplicationsOnly property
+        self._certified_applications_only: Optional[bool] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def application_ids(self,) -> Optional[List[str]]:
         """
@@ -91,24 +111,6 @@ class ServicePrincipalCreationConditionSet(entity.Entity):
         """
         self._certified_applications_only = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new servicePrincipalCreationConditionSet and sets the default values.
-        """
-        super().__init__()
-        # The applicationIds property
-        self._application_ids: Optional[List[str]] = None
-        # The applicationPublisherIds property
-        self._application_publisher_ids: Optional[List[str]] = None
-        # The applicationTenantIds property
-        self._application_tenant_ids: Optional[List[str]] = None
-        # The applicationsFromVerifiedPublisherOnly property
-        self._applications_from_verified_publisher_only: Optional[bool] = None
-        # The certifiedApplicationsOnly property
-        self._certified_applications_only: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ServicePrincipalCreationConditionSet:
         """
@@ -126,7 +128,9 @@ class ServicePrincipalCreationConditionSet(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "applicationsFromVerifiedPublisherOnly": lambda n : setattr(self, 'applications_from_verified_publisher_only', n.get_bool_value()),
             "applicationIds": lambda n : setattr(self, 'application_ids', n.get_collection_of_primitive_values(str)),
             "applicationPublisherIds": lambda n : setattr(self, 'application_publisher_ids', n.get_collection_of_primitive_values(str)),

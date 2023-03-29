@@ -1,16 +1,47 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-action_url = lazy_import('msgraph.generated.models.action_url')
-entity = lazy_import('msgraph.generated.models.entity')
-management_category = lazy_import('msgraph.generated.models.managed_tenants.management_category')
-management_template = lazy_import('msgraph.generated.models.managed_tenants.management_template')
-management_template_step_version = lazy_import('msgraph.generated.models.managed_tenants.management_template_step_version')
+if TYPE_CHECKING:
+    from . import management_category, management_template, management_template_step_version
+    from .. import action_url, entity
+
+from .. import entity
 
 class ManagementTemplateStep(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new managementTemplateStep and sets the default values.
+        """
+        super().__init__()
+        # The acceptedVersion property
+        self._accepted_version: Optional[management_template_step_version.ManagementTemplateStepVersion] = None
+        # The category property
+        self._category: Optional[management_category.ManagementCategory] = None
+        # The createdByUserId property
+        self._created_by_user_id: Optional[str] = None
+        # The createdDateTime property
+        self._created_date_time: Optional[datetime] = None
+        # The description property
+        self._description: Optional[str] = None
+        # The displayName property
+        self._display_name: Optional[str] = None
+        # The lastActionByUserId property
+        self._last_action_by_user_id: Optional[str] = None
+        # The lastActionDateTime property
+        self._last_action_date_time: Optional[datetime] = None
+        # The managementTemplate property
+        self._management_template: Optional[management_template.ManagementTemplate] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The portalLink property
+        self._portal_link: Optional[action_url.ActionUrl] = None
+        # The priority property
+        self._priority: Optional[int] = None
+        # The versions property
+        self._versions: Optional[List[management_template_step_version.ManagementTemplateStepVersion]] = None
+    
     @property
     def accepted_version(self,) -> Optional[management_template_step_version.ManagementTemplateStepVersion]:
         """
@@ -44,38 +75,6 @@ class ManagementTemplateStep(entity.Entity):
             value: Value to set for the category property.
         """
         self._category = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new managementTemplateStep and sets the default values.
-        """
-        super().__init__()
-        # The acceptedVersion property
-        self._accepted_version: Optional[management_template_step_version.ManagementTemplateStepVersion] = None
-        # The category property
-        self._category: Optional[management_category.ManagementCategory] = None
-        # The createdByUserId property
-        self._created_by_user_id: Optional[str] = None
-        # The createdDateTime property
-        self._created_date_time: Optional[datetime] = None
-        # The description property
-        self._description: Optional[str] = None
-        # The displayName property
-        self._display_name: Optional[str] = None
-        # The lastActionByUserId property
-        self._last_action_by_user_id: Optional[str] = None
-        # The lastActionDateTime property
-        self._last_action_date_time: Optional[datetime] = None
-        # The managementTemplate property
-        self._management_template: Optional[management_template.ManagementTemplate] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The portalLink property
-        self._portal_link: Optional[action_url.ActionUrl] = None
-        # The priority property
-        self._priority: Optional[int] = None
-        # The versions property
-        self._versions: Optional[List[management_template_step_version.ManagementTemplateStepVersion]] = None
     
     @property
     def created_by_user_id(self,) -> Optional[str]:
@@ -162,7 +161,10 @@ class ManagementTemplateStep(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import management_category, management_template, management_template_step_version
+        from .. import action_url, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "acceptedVersion": lambda n : setattr(self, 'accepted_version', n.get_object_value(management_template_step_version.ManagementTemplateStepVersion)),
             "category": lambda n : setattr(self, 'category', n.get_enum_value(management_category.ManagementCategory)),
             "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),

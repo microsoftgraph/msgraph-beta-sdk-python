@@ -1,14 +1,42 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class UserExperienceAnalyticsNotAutopilotReadyDevice(entity.Entity):
     """
     The user experience analytics Device not windows autopilot ready.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new userExperienceAnalyticsNotAutopilotReadyDevice and sets the default values.
+        """
+        super().__init__()
+        # The intune device's autopilotProfileAssigned.
+        self._auto_pilot_profile_assigned: Optional[bool] = None
+        # The intune device's autopilotRegistered.
+        self._auto_pilot_registered: Optional[bool] = None
+        # The intune device's azure Ad joinType.
+        self._azure_ad_join_type: Optional[str] = None
+        # The intune device's azureAdRegistered.
+        self._azure_ad_registered: Optional[bool] = None
+        # The intune device's name.
+        self._device_name: Optional[str] = None
+        # The intune device's managed by.
+        self._managed_by: Optional[str] = None
+        # The intune device's manufacturer.
+        self._manufacturer: Optional[str] = None
+        # The intune device's model.
+        self._model: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The intune device's serial number.
+        self._serial_number: Optional[str] = None
+    
     @property
     def auto_pilot_profile_assigned(self,) -> Optional[bool]:
         """
@@ -77,32 +105,6 @@ class UserExperienceAnalyticsNotAutopilotReadyDevice(entity.Entity):
         """
         self._azure_ad_registered = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsNotAutopilotReadyDevice and sets the default values.
-        """
-        super().__init__()
-        # The intune device's autopilotProfileAssigned.
-        self._auto_pilot_profile_assigned: Optional[bool] = None
-        # The intune device's autopilotRegistered.
-        self._auto_pilot_registered: Optional[bool] = None
-        # The intune device's azure Ad joinType.
-        self._azure_ad_join_type: Optional[str] = None
-        # The intune device's azureAdRegistered.
-        self._azure_ad_registered: Optional[bool] = None
-        # The intune device's name.
-        self._device_name: Optional[str] = None
-        # The intune device's managed by.
-        self._managed_by: Optional[str] = None
-        # The intune device's manufacturer.
-        self._manufacturer: Optional[str] = None
-        # The intune device's model.
-        self._model: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The intune device's serial number.
-        self._serial_number: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsNotAutopilotReadyDevice:
         """
@@ -137,7 +139,9 @@ class UserExperienceAnalyticsNotAutopilotReadyDevice(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "autoPilotProfileAssigned": lambda n : setattr(self, 'auto_pilot_profile_assigned', n.get_bool_value()),
             "autoPilotRegistered": lambda n : setattr(self, 'auto_pilot_registered', n.get_bool_value()),
             "azureAdJoinType": lambda n : setattr(self, 'azure_ad_join_type', n.get_str_value()),

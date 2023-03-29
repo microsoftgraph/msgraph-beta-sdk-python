@@ -1,18 +1,51 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-user_experience_analytics_anomaly_severity = lazy_import('msgraph.generated.models.user_experience_analytics_anomaly_severity')
-user_experience_analytics_anomaly_state = lazy_import('msgraph.generated.models.user_experience_analytics_anomaly_state')
-user_experience_analytics_anomaly_type = lazy_import('msgraph.generated.models.user_experience_analytics_anomaly_type')
+if TYPE_CHECKING:
+    from . import entity, user_experience_analytics_anomaly_severity, user_experience_analytics_anomaly_state, user_experience_analytics_anomaly_type
+
+from . import entity
 
 class UserExperienceAnalyticsAnomaly(entity.Entity):
     """
     The user experience analytics anomaly entity contains anomaly details.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new userExperienceAnalyticsAnomaly and sets the default values.
+        """
+        super().__init__()
+        # Indicates the first occurrence date and time for the anomaly.
+        self._anomaly_first_occurrence_date_time: Optional[datetime] = None
+        # The unique identifier of the anomaly.
+        self._anomaly_id: Optional[str] = None
+        # Indicates the latest occurrence date and time for the anomaly.
+        self._anomaly_latest_occurrence_date_time: Optional[datetime] = None
+        # The name of the anomaly.
+        self._anomaly_name: Optional[str] = None
+        # Indicates the category of the anomaly. Eg: anomaly type can be device, application, stop error, driver or other.
+        self._anomaly_type: Optional[user_experience_analytics_anomaly_type.UserExperienceAnalyticsAnomalyType] = None
+        # The name of the application or module that caused the anomaly.
+        self._asset_name: Optional[str] = None
+        # The publisher of the application or module that caused the anomaly.
+        self._asset_publisher: Optional[str] = None
+        # The version of the application or module that caused the anomaly.
+        self._asset_version: Optional[str] = None
+        # The unique identifier of the anomaly detection model.
+        self._detection_model_id: Optional[str] = None
+        # The number of devices impacted by the anomaly. Valid values -2147483648 to 2147483647
+        self._device_impacted_count: Optional[int] = None
+        # The unique identifier of the anomaly detection model.
+        self._issue_id: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Indicates the severity of the anomaly. Eg: anomaly severity can be high, medium, low, informational or other.
+        self._severity: Optional[user_experience_analytics_anomaly_severity.UserExperienceAnalyticsAnomalySeverity] = None
+        # Indicates the state of the anomaly. Eg: anomaly severity can be new, active, disabled, removed or other.
+        self._state: Optional[user_experience_analytics_anomaly_state.UserExperienceAnalyticsAnomalyState] = None
+    
     @property
     def anomaly_first_occurrence_date_time(self,) -> Optional[datetime]:
         """
@@ -149,40 +182,6 @@ class UserExperienceAnalyticsAnomaly(entity.Entity):
         """
         self._asset_version = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsAnomaly and sets the default values.
-        """
-        super().__init__()
-        # Indicates the first occurrence date and time for the anomaly.
-        self._anomaly_first_occurrence_date_time: Optional[datetime] = None
-        # The unique identifier of the anomaly.
-        self._anomaly_id: Optional[str] = None
-        # Indicates the latest occurrence date and time for the anomaly.
-        self._anomaly_latest_occurrence_date_time: Optional[datetime] = None
-        # The name of the anomaly.
-        self._anomaly_name: Optional[str] = None
-        # Indicates the category of the anomaly. Eg: anomaly type can be device, application, stop error, driver or other.
-        self._anomaly_type: Optional[user_experience_analytics_anomaly_type.UserExperienceAnalyticsAnomalyType] = None
-        # The name of the application or module that caused the anomaly.
-        self._asset_name: Optional[str] = None
-        # The publisher of the application or module that caused the anomaly.
-        self._asset_publisher: Optional[str] = None
-        # The version of the application or module that caused the anomaly.
-        self._asset_version: Optional[str] = None
-        # The unique identifier of the anomaly detection model.
-        self._detection_model_id: Optional[str] = None
-        # The number of devices impacted by the anomaly. Valid values -2147483648 to 2147483647
-        self._device_impacted_count: Optional[int] = None
-        # The unique identifier of the anomaly detection model.
-        self._issue_id: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Indicates the severity of the anomaly. Eg: anomaly severity can be high, medium, low, informational or other.
-        self._severity: Optional[user_experience_analytics_anomaly_severity.UserExperienceAnalyticsAnomalySeverity] = None
-        # Indicates the state of the anomaly. Eg: anomaly severity can be new, active, disabled, removed or other.
-        self._state: Optional[user_experience_analytics_anomaly_state.UserExperienceAnalyticsAnomalyState] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsAnomaly:
         """
@@ -234,7 +233,9 @@ class UserExperienceAnalyticsAnomaly(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, user_experience_analytics_anomaly_severity, user_experience_analytics_anomaly_state, user_experience_analytics_anomaly_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "anomalyFirstOccurrenceDateTime": lambda n : setattr(self, 'anomaly_first_occurrence_date_time', n.get_datetime_value()),
             "anomalyId": lambda n : setattr(self, 'anomaly_id', n.get_str_value()),
             "anomalyLatestOccurrenceDateTime": lambda n : setattr(self, 'anomaly_latest_occurrence_date_time', n.get_datetime_value()),

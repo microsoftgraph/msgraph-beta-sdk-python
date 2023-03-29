@@ -1,14 +1,30 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-apple_subject_name_format = lazy_import('msgraph.generated.models.apple_subject_name_format')
-certificate_validity_period_scale = lazy_import('msgraph.generated.models.certificate_validity_period_scale')
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-subject_alternative_name_type = lazy_import('msgraph.generated.models.subject_alternative_name_type')
+if TYPE_CHECKING:
+    from . import apple_subject_name_format, certificate_validity_period_scale, device_configuration, mac_o_s_imported_p_f_x_certificate_profile, mac_o_s_pkcs_certificate_profile, mac_o_s_scep_certificate_profile, subject_alternative_name_type
+
+from . import device_configuration
 
 class MacOSCertificateProfileBase(device_configuration.DeviceConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new macOSCertificateProfileBase and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.macOSCertificateProfileBase"
+        # Certificate Validity Period Options.
+        self._certificate_validity_period_scale: Optional[certificate_validity_period_scale.CertificateValidityPeriodScale] = None
+        # Value for the Certificate Validity Period.
+        self._certificate_validity_period_value: Optional[int] = None
+        # Certificate renewal threshold percentage.
+        self._renewal_threshold_percentage: Optional[int] = None
+        # Certificate Subject Alternative Name Type. Possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
+        self._subject_alternative_name_type: Optional[subject_alternative_name_type.SubjectAlternativeNameType] = None
+        # Subject Name Format Options for Apple devices.
+        self._subject_name_format: Optional[apple_subject_name_format.AppleSubjectNameFormat] = None
+    
     @property
     def certificate_validity_period_scale(self,) -> Optional[certificate_validity_period_scale.CertificateValidityPeriodScale]:
         """
@@ -43,23 +59,6 @@ class MacOSCertificateProfileBase(device_configuration.DeviceConfiguration):
         """
         self._certificate_validity_period_value = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new macOSCertificateProfileBase and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.macOSCertificateProfileBase"
-        # Certificate Validity Period Options.
-        self._certificate_validity_period_scale: Optional[certificate_validity_period_scale.CertificateValidityPeriodScale] = None
-        # Value for the Certificate Validity Period.
-        self._certificate_validity_period_value: Optional[int] = None
-        # Certificate renewal threshold percentage.
-        self._renewal_threshold_percentage: Optional[int] = None
-        # Certificate Subject Alternative Name Type. Possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
-        self._subject_alternative_name_type: Optional[subject_alternative_name_type.SubjectAlternativeNameType] = None
-        # Subject Name Format Options for Apple devices.
-        self._subject_name_format: Optional[apple_subject_name_format.AppleSubjectNameFormat] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSCertificateProfileBase:
         """
@@ -70,6 +69,21 @@ class MacOSCertificateProfileBase(device_configuration.DeviceConfiguration):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.macOSImportedPFXCertificateProfile":
+                from . import mac_o_s_imported_p_f_x_certificate_profile
+
+                return mac_o_s_imported_p_f_x_certificate_profile.MacOSImportedPFXCertificateProfile()
+            if mapping_value == "#microsoft.graph.macOSPkcsCertificateProfile":
+                from . import mac_o_s_pkcs_certificate_profile
+
+                return mac_o_s_pkcs_certificate_profile.MacOSPkcsCertificateProfile()
+            if mapping_value == "#microsoft.graph.macOSScepCertificateProfile":
+                from . import mac_o_s_scep_certificate_profile
+
+                return mac_o_s_scep_certificate_profile.MacOSScepCertificateProfile()
         return MacOSCertificateProfileBase()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -77,7 +91,9 @@ class MacOSCertificateProfileBase(device_configuration.DeviceConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import apple_subject_name_format, certificate_validity_period_scale, device_configuration, mac_o_s_imported_p_f_x_certificate_profile, mac_o_s_pkcs_certificate_profile, mac_o_s_scep_certificate_profile, subject_alternative_name_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "certificateValidityPeriodScale": lambda n : setattr(self, 'certificate_validity_period_scale', n.get_enum_value(certificate_validity_period_scale.CertificateValidityPeriodScale)),
             "certificateValidityPeriodValue": lambda n : setattr(self, 'certificate_validity_period_value', n.get_int_value()),
             "renewalThresholdPercentage": lambda n : setattr(self, 'renewal_threshold_percentage', n.get_int_value()),

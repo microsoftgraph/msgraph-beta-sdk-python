@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import device_management_abstract_complex_setting_instance, device_management_boolean_setting_instance, device_management_collection_setting_instance, device_management_complex_setting_instance, device_management_integer_setting_instance, device_management_string_setting_instance, entity
+
+from . import entity
 
 class DeviceManagementSettingInstance(entity.Entity):
     """
@@ -31,6 +33,33 @@ class DeviceManagementSettingInstance(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.deviceManagementAbstractComplexSettingInstance":
+                from . import device_management_abstract_complex_setting_instance
+
+                return device_management_abstract_complex_setting_instance.DeviceManagementAbstractComplexSettingInstance()
+            if mapping_value == "#microsoft.graph.deviceManagementBooleanSettingInstance":
+                from . import device_management_boolean_setting_instance
+
+                return device_management_boolean_setting_instance.DeviceManagementBooleanSettingInstance()
+            if mapping_value == "#microsoft.graph.deviceManagementCollectionSettingInstance":
+                from . import device_management_collection_setting_instance
+
+                return device_management_collection_setting_instance.DeviceManagementCollectionSettingInstance()
+            if mapping_value == "#microsoft.graph.deviceManagementComplexSettingInstance":
+                from . import device_management_complex_setting_instance
+
+                return device_management_complex_setting_instance.DeviceManagementComplexSettingInstance()
+            if mapping_value == "#microsoft.graph.deviceManagementIntegerSettingInstance":
+                from . import device_management_integer_setting_instance
+
+                return device_management_integer_setting_instance.DeviceManagementIntegerSettingInstance()
+            if mapping_value == "#microsoft.graph.deviceManagementStringSettingInstance":
+                from . import device_management_string_setting_instance
+
+                return device_management_string_setting_instance.DeviceManagementStringSettingInstance()
         return DeviceManagementSettingInstance()
     
     @property
@@ -55,7 +84,9 @@ class DeviceManagementSettingInstance(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_abstract_complex_setting_instance, device_management_boolean_setting_instance, device_management_collection_setting_instance, device_management_complex_setting_instance, device_management_integer_setting_instance, device_management_string_setting_instance, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "definitionId": lambda n : setattr(self, 'definition_id', n.get_str_value()),
             "valueJson": lambda n : setattr(self, 'value_json', n.get_str_value()),
         }
