@@ -57,11 +57,12 @@ class WindowsDriverUpdateProfileItemRequestBuilder():
         url_tpl_params["windowsDriverUpdateProfileAssignment%2Did"] = id
         return windows_driver_update_profile_assignment_item_request_builder.WindowsDriverUpdateProfileAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[WindowsDriverUpdateProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[WindowsDriverUpdateProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> bytes:
         """
         Delete navigation property windowsDriverUpdateProfiles for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: bytes
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -74,7 +75,7 @@ class WindowsDriverUpdateProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_primitive_async(request_info, "bytes", error_mapping)
     
     def driver_inventories_by_id(self,id: str) -> windows_driver_update_inventory_item_request_builder.WindowsDriverUpdateInventoryItemRequestBuilder:
         """

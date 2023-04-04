@@ -36,11 +36,12 @@ class BookingAppointmentItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[BookingAppointmentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[BookingAppointmentItemRequestBuilderDeleteRequestConfiguration] = None) -> bytes:
         """
         Delete navigation property calendarView for bookingBusinesses
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: bytes
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -53,7 +54,7 @@ class BookingAppointmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_primitive_async(request_info, "bytes", error_mapping)
     
     async def get(self,request_configuration: Optional[BookingAppointmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[booking_appointment.BookingAppointment]:
         """
@@ -196,6 +197,10 @@ class BookingAppointmentItemRequestBuilder():
                 return "%24expand"
             if original_name == "select":
                 return "%24select"
+            if original_name == "end":
+                return "end"
+            if original_name == "start":
+                return "start"
             return original_name
         
         # The end date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T20:00:00-08:00

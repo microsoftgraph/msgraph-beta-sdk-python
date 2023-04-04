@@ -11,7 +11,7 @@ from . import entity
 class ApplicationSignInDetailedSummary(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new applicationSignInDetailedSummary and sets the default values.
+        Instantiates a new ApplicationSignInDetailedSummary and sets the default values.
         """
         super().__init__()
         # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.

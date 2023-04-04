@@ -103,6 +103,12 @@ class AssignedPrincipalsWithTransitivedirectoryScopeTypeDirectoryScopeTypeDirect
                 return "%24skip"
             if original_name == "top":
                 return "%24top"
+            if original_name == "directory_scope_id":
+                return "directoryScopeId"
+            if original_name == "directory_scope_type":
+                return "directoryScopeType"
+            if original_name == "transitive":
+                return "transitive"
             return original_name
         
         # Include count of items

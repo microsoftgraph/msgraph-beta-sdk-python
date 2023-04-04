@@ -8,9 +8,12 @@ if TYPE_CHECKING:
 from . import device_management_configuration_setting_value
 
 class DeviceManagementConfigurationSimpleSettingValue(device_management_configuration_setting_value.DeviceManagementConfigurationSettingValue):
+    """
+    Simple setting value
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new DeviceManagementConfigurationSimpleSettingValue and sets the default values.
+        Instantiates a new deviceManagementConfigurationSimpleSettingValue and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.deviceManagementConfigurationSimpleSettingValue"

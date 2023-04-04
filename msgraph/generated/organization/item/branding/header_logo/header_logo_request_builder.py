@@ -54,12 +54,13 @@ class HeaderLogoRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_primitive_async(request_info, "bytes", error_mapping)
     
-    async def put(self,body: bytes, request_configuration: Optional[HeaderLogoRequestBuilderPutRequestConfiguration] = None) -> None:
+    async def put(self,body: bytes, request_configuration: Optional[HeaderLogoRequestBuilderPutRequestConfiguration] = None) -> bytes:
         """
         A company logo that appears in the header of the sign-in page. The allowed types are PNG or JPEG not larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.
         Args:
             body: Binary request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: bytes
         """
         if body is None:
             raise Exception("body cannot be undefined")
@@ -74,7 +75,7 @@ class HeaderLogoRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_primitive_async(request_info, "bytes", error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[HeaderLogoRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

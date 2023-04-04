@@ -10,7 +10,7 @@ from . import authentication_method_configuration
 class TemporaryAccessPassAuthenticationMethodConfiguration(authentication_method_configuration.AuthenticationMethodConfiguration):
     def __init__(self,) -> None:
         """
-        Instantiates a new TemporaryAccessPassAuthenticationMethodConfiguration and sets the default values.
+        Instantiates a new temporaryAccessPassAuthenticationMethodConfiguration and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.temporaryAccessPassAuthenticationMethodConfiguration"

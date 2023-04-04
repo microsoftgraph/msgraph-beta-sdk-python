@@ -52,11 +52,12 @@ class MobileAppTroubleshootingEventItemRequestBuilder():
         url_tpl_params["appLogCollectionRequest%2Did"] = id
         return app_log_collection_request_item_request_builder.AppLogCollectionRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[MobileAppTroubleshootingEventItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[MobileAppTroubleshootingEventItemRequestBuilderDeleteRequestConfiguration] = None) -> bytes:
         """
         Delete navigation property mobileAppTroubleshootingEvents for users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: bytes
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -69,7 +70,7 @@ class MobileAppTroubleshootingEventItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_primitive_async(request_info, "bytes", error_mapping)
     
     async def get(self,request_configuration: Optional[MobileAppTroubleshootingEventItemRequestBuilderGetRequestConfiguration] = None) -> Optional[mobile_app_troubleshooting_event.MobileAppTroubleshootingEvent]:
         """

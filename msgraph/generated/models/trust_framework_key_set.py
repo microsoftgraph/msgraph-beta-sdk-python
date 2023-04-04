@@ -10,7 +10,7 @@ from . import entity
 class TrustFrameworkKeySet(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new TrustFrameworkKeySet and sets the default values.
+        Instantiates a new trustFrameworkKeySet and sets the default values.
         """
         super().__init__()
         # A collection of the keys.

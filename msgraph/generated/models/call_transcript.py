@@ -18,6 +18,8 @@ class CallTranscript(entity.Entity):
         self._content: Optional[bytes] = None
         # Date and time at which the transcript was created. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
         self._created_date_time: Optional[datetime] = None
+        # The metadataContent property
+        self._metadata_content: Optional[bytes] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
     
@@ -77,10 +79,28 @@ class CallTranscript(entity.Entity):
         fields: Dict[str, Callable[[Any], None]] = {
             "content": lambda n : setattr(self, 'content', n.get_bytes_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "metadataContent": lambda n : setattr(self, 'metadata_content', n.get_bytes_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
+    
+    @property
+    def metadata_content(self,) -> Optional[bytes]:
+        """
+        Gets the metadataContent property value. The metadataContent property
+        Returns: Optional[bytes]
+        """
+        return self._metadata_content
+    
+    @metadata_content.setter
+    def metadata_content(self,value: Optional[bytes] = None) -> None:
+        """
+        Sets the metadataContent property value. The metadataContent property
+        Args:
+            value: Value to set for the metadata_content property.
+        """
+        self._metadata_content = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -93,5 +113,6 @@ class CallTranscript(entity.Entity):
         super().serialize(writer)
         writer.write_object_value("content", self.content)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
+        writer.write_object_value("metadataContent", self.metadata_content)
     
 

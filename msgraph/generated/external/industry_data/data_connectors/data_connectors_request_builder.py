@@ -38,7 +38,7 @@ class DataConnectorsRequestBuilder():
     
     async def get(self,request_configuration: Optional[DataConnectorsRequestBuilderGetRequestConfiguration] = None) -> Optional[industry_data_connector_collection_response.IndustryDataConnectorCollectionResponse]:
         """
-        Get a list of the azureDataLakeConnector objects and their properties.
+        Get the industryDataConnector resources from the **dataConnector** navigation property.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[industry_data_connector_collection_response.IndustryDataConnectorCollectionResponse]
@@ -85,7 +85,7 @@ class DataConnectorsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[DataConnectorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the azureDataLakeConnector objects and their properties.
+        Get the industryDataConnector resources from the **dataConnector** navigation property.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +134,7 @@ class DataConnectorsRequestBuilder():
     @dataclass
     class DataConnectorsRequestBuilderGetQueryParameters():
         """
-        Get a list of the azureDataLakeConnector objects and their properties.
+        Get the industryDataConnector resources from the **dataConnector** navigation property.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

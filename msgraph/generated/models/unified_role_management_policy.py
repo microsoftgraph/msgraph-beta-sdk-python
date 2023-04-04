@@ -11,7 +11,7 @@ from . import entity
 class UnifiedRoleManagementPolicy(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new UnifiedRoleManagementPolicy and sets the default values.
+        Instantiates a new unifiedRoleManagementPolicy and sets the default values.
         """
         super().__init__()
         # Description for the policy.

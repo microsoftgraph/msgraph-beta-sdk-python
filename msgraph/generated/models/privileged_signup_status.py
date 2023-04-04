@@ -10,7 +10,7 @@ from . import entity
 class PrivilegedSignupStatus(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new privilegedSignupStatus and sets the default values.
+        Instantiates a new PrivilegedSignupStatus and sets the default values.
         """
         super().__init__()
         # The isRegistered property

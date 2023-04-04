@@ -52,11 +52,12 @@ class RegistrationRequestBuilder():
         url_tpl_params["meetingRegistrationQuestion%2Did"] = id
         return meeting_registration_question_item_request_builder.MeetingRegistrationQuestionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[RegistrationRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RegistrationRequestBuilderDeleteRequestConfiguration] = None) -> bytes:
         """
         Disable and delete the meetingRegistration of an onlineMeeting on behalf of the organizer.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: bytes
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -69,11 +70,11 @@ class RegistrationRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_primitive_async(request_info, "bytes", error_mapping)
     
     async def get(self,request_configuration: Optional[RegistrationRequestBuilderGetRequestConfiguration] = None) -> Optional[meeting_registration.MeetingRegistration]:
         """
-        Get the meetingRegistration details associated with an onlineMeeting on behalf of the organizer.
+        Get the externalMeetingRegistration details associated with an onlineMeeting.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[meeting_registration.MeetingRegistration]
@@ -136,7 +137,7 @@ class RegistrationRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RegistrationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the meetingRegistration details associated with an onlineMeeting on behalf of the organizer.
+        Get the externalMeetingRegistration details associated with an onlineMeeting.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -197,7 +198,7 @@ class RegistrationRequestBuilder():
     @dataclass
     class RegistrationRequestBuilderGetQueryParameters():
         """
-        Get the meetingRegistration details associated with an onlineMeeting on behalf of the organizer.
+        Get the externalMeetingRegistration details associated with an onlineMeeting.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

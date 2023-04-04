@@ -52,11 +52,12 @@ class AuthorizationPolicyItemRequestBuilder():
         url_tpl_params["defaultUserRoleOverride%2Did"] = id
         return default_user_role_override_item_request_builder.DefaultUserRoleOverrideItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[AuthorizationPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[AuthorizationPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> bytes:
         """
         Delete navigation property authorizationPolicy for policies
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: bytes
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -69,7 +70,7 @@ class AuthorizationPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_primitive_async(request_info, "bytes", error_mapping)
     
     async def get(self,request_configuration: Optional[AuthorizationPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[authorization_policy.AuthorizationPolicy]:
         """

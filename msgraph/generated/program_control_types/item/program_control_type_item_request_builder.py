@@ -35,11 +35,12 @@ class ProgramControlTypeItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ProgramControlTypeItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[ProgramControlTypeItemRequestBuilderDeleteRequestConfiguration] = None) -> bytes:
         """
         Delete entity from programControlTypes
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: bytes
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -52,7 +53,7 @@ class ProgramControlTypeItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_primitive_async(request_info, "bytes", error_mapping)
     
     async def get(self,request_configuration: Optional[ProgramControlTypeItemRequestBuilderGetRequestConfiguration] = None) -> Optional[program_control_type.ProgramControlType]:
         """

@@ -56,11 +56,12 @@ class WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder():
         url_tpl_params["windowsDefenderApplicationControlSupplementalPolicyAssignment%2Did"] = id
         return windows_defender_application_control_supplemental_policy_assignment_item_request_builder.WindowsDefenderApplicationControlSupplementalPolicyAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> bytes:
         """
         Delete navigation property wdacSupplementalPolicies for deviceAppManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: bytes
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -73,7 +74,7 @@ class WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_primitive_async(request_info, "bytes", error_mapping)
     
     def device_statuses_by_id(self,id: str) -> windows_defender_application_control_supplemental_policy_deployment_status_item_request_builder.WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusItemRequestBuilder:
         """

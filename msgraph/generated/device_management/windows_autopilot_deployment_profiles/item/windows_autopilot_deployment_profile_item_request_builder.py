@@ -70,11 +70,12 @@ class WindowsAutopilotDeploymentProfileItemRequestBuilder():
         url_tpl_params["windowsAutopilotDeploymentProfileAssignment%2Did"] = id
         return windows_autopilot_deployment_profile_assignment_item_request_builder.WindowsAutopilotDeploymentProfileAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[WindowsAutopilotDeploymentProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[WindowsAutopilotDeploymentProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> bytes:
         """
         Delete navigation property windowsAutopilotDeploymentProfiles for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: bytes
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -87,7 +88,7 @@ class WindowsAutopilotDeploymentProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_primitive_async(request_info, "bytes", error_mapping)
     
     async def get(self,request_configuration: Optional[WindowsAutopilotDeploymentProfileItemRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_autopilot_deployment_profile.WindowsAutopilotDeploymentProfile]:
         """

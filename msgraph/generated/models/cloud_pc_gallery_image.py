@@ -11,7 +11,7 @@ from . import entity
 class CloudPcGalleryImage(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new CloudPcGalleryImage and sets the default values.
+        Instantiates a new cloudPcGalleryImage and sets the default values.
         """
         super().__init__()
         # The official display name of the gallery image. Read-only.

@@ -98,11 +98,12 @@ class DeviceManagementIntentItemRequestBuilder():
 
         return compare_with_template_id_request_builder.CompareWithTemplateIdRequestBuilder(self.request_adapter, self.path_parameters, template_id)
     
-    async def delete(self,request_configuration: Optional[DeviceManagementIntentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[DeviceManagementIntentItemRequestBuilderDeleteRequestConfiguration] = None) -> bytes:
         """
         Delete navigation property intents for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: bytes
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -115,7 +116,7 @@ class DeviceManagementIntentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_primitive_async(request_info, "bytes", error_mapping)
     
     def device_setting_state_summaries_by_id(self,id: str) -> device_management_intent_device_setting_state_summary_item_request_builder.DeviceManagementIntentDeviceSettingStateSummaryItemRequestBuilder:
         """

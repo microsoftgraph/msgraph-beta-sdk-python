@@ -38,7 +38,7 @@ class TenantsRequestBuilder():
     
     async def get(self,request_configuration: Optional[TenantsRequestBuilderGetRequestConfiguration] = None) -> Optional[tenant_reference_collection_response.TenantReferenceCollectionResponse]:
         """
-        Get tenants from directory
+        List the tenant references of an outboundSharedUserProfile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[tenant_reference_collection_response.TenantReferenceCollectionResponse]
@@ -85,7 +85,7 @@ class TenantsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TenantsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get tenants from directory
+        List the tenant references of an outboundSharedUserProfile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +134,7 @@ class TenantsRequestBuilder():
     @dataclass
     class TenantsRequestBuilderGetQueryParameters():
         """
-        Get tenants from directory
+        List the tenant references of an outboundSharedUserProfile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

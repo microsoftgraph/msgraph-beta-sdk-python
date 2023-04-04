@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models import call_transcript
     from ......models.o_data_errors import o_data_error
     from .content import content_request_builder
+    from .metadata_content import metadata_content_request_builder
 
 class CallTranscriptItemRequestBuilder():
     """
@@ -36,11 +37,12 @@ class CallTranscriptItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CallTranscriptItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[CallTranscriptItemRequestBuilderDeleteRequestConfiguration] = None) -> bytes:
         """
         Delete navigation property transcripts for me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: bytes
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -53,7 +55,7 @@ class CallTranscriptItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_primitive_async(request_info, "bytes", error_mapping)
     
     async def get(self,request_configuration: Optional[CallTranscriptItemRequestBuilderGetRequestConfiguration] = None) -> Optional[call_transcript.CallTranscript]:
         """
@@ -165,6 +167,15 @@ class CallTranscriptItemRequestBuilder():
         from .content import content_request_builder
 
         return content_request_builder.ContentRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def metadata_content(self) -> metadata_content_request_builder.MetadataContentRequestBuilder:
+        """
+        Provides operations to manage the media for the user entity.
+        """
+        from .metadata_content import metadata_content_request_builder
+
+        return metadata_content_request_builder.MetadataContentRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class CallTranscriptItemRequestBuilderDeleteRequestConfiguration():

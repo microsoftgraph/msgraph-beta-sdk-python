@@ -73,11 +73,12 @@ class ApprovalWorkflowProviderItemRequestBuilder():
         url_tpl_params["businessFlow%2Did"] = id
         return business_flow_item_request_builder.BusinessFlowItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[ApprovalWorkflowProviderItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[ApprovalWorkflowProviderItemRequestBuilderDeleteRequestConfiguration] = None) -> bytes:
         """
         Delete entity from approvalWorkflowProviders
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: bytes
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -90,7 +91,7 @@ class ApprovalWorkflowProviderItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_primitive_async(request_info, "bytes", error_mapping)
     
     async def get(self,request_configuration: Optional[ApprovalWorkflowProviderItemRequestBuilderGetRequestConfiguration] = None) -> Optional[approval_workflow_provider.ApprovalWorkflowProvider]:
         """
