@@ -3,7 +3,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity, ml_classification_match_tolerance, sensitive_type_scope
+    from . import classification_request_content_meta_data, entity, ml_classification_match_tolerance, sensitive_type_scope
 
 from . import entity
 
@@ -13,6 +13,8 @@ class TextClassificationRequest(entity.Entity):
         Instantiates a new TextClassificationRequest and sets the default values.
         """
         super().__init__()
+        # The contentMetaData property
+        self._content_meta_data: Optional[classification_request_content_meta_data.ClassificationRequestContentMetaData] = None
         # The fileExtension property
         self._file_extension: Optional[str] = None
         # The matchTolerancesToInclude property
@@ -25,6 +27,23 @@ class TextClassificationRequest(entity.Entity):
         self._sensitive_type_ids: Optional[List[str]] = None
         # The text property
         self._text: Optional[str] = None
+    
+    @property
+    def content_meta_data(self,) -> Optional[classification_request_content_meta_data.ClassificationRequestContentMetaData]:
+        """
+        Gets the contentMetaData property value. The contentMetaData property
+        Returns: Optional[classification_request_content_meta_data.ClassificationRequestContentMetaData]
+        """
+        return self._content_meta_data
+    
+    @content_meta_data.setter
+    def content_meta_data(self,value: Optional[classification_request_content_meta_data.ClassificationRequestContentMetaData] = None) -> None:
+        """
+        Sets the contentMetaData property value. The contentMetaData property
+        Args:
+            value: Value to set for the content_meta_data property.
+        """
+        self._content_meta_data = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TextClassificationRequest:
@@ -60,9 +79,10 @@ class TextClassificationRequest(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, ml_classification_match_tolerance, sensitive_type_scope
+        from . import classification_request_content_meta_data, entity, ml_classification_match_tolerance, sensitive_type_scope
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "contentMetaData": lambda n : setattr(self, 'content_meta_data', n.get_object_value(classification_request_content_meta_data.ClassificationRequestContentMetaData)),
             "fileExtension": lambda n : setattr(self, 'file_extension', n.get_str_value()),
             "matchTolerancesToInclude": lambda n : setattr(self, 'match_tolerances_to_include', n.get_enum_value(ml_classification_match_tolerance.MlClassificationMatchTolerance)),
             "scopesToRun": lambda n : setattr(self, 'scopes_to_run', n.get_enum_value(sensitive_type_scope.SensitiveTypeScope)),
@@ -133,6 +153,7 @@ class TextClassificationRequest(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
+        writer.write_object_value("contentMetaData", self.content_meta_data)
         writer.write_str_value("fileExtension", self.file_extension)
         writer.write_enum_value("matchTolerancesToInclude", self.match_tolerances_to_include)
         writer.write_enum_value("scopesToRun", self.scopes_to_run)

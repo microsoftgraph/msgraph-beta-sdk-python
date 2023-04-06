@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models import call_transcript
     from ......models.o_data_errors import o_data_error
     from .content import content_request_builder
+    from .metadata_content import metadata_content_request_builder
 
 class CallTranscriptItemRequestBuilder():
     """
@@ -165,6 +166,15 @@ class CallTranscriptItemRequestBuilder():
         from .content import content_request_builder
 
         return content_request_builder.ContentRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def metadata_content(self) -> metadata_content_request_builder.MetadataContentRequestBuilder:
+        """
+        Provides operations to manage the media for the user entity.
+        """
+        from .metadata_content import metadata_content_request_builder
+
+        return metadata_content_request_builder.MetadataContentRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class CallTranscriptItemRequestBuilderDeleteRequestConfiguration():

@@ -18,6 +18,8 @@ if TYPE_CHECKING:
     from .get_cloud_pc_launch_info import get_cloud_pc_launch_info_request_builder
     from .get_shift_work_cloud_pc_access_state import get_shift_work_cloud_pc_access_state_request_builder
     from .get_supported_cloud_pc_remote_actions import get_supported_cloud_pc_remote_actions_request_builder
+    from .power_off import power_off_request_builder
+    from .power_on import power_on_request_builder
     from .reboot import reboot_request_builder
     from .rename import rename_request_builder
     from .reprovision import reprovision_request_builder
@@ -223,6 +225,24 @@ class CloudPCItemRequestBuilder():
         from .get_supported_cloud_pc_remote_actions import get_supported_cloud_pc_remote_actions_request_builder
 
         return get_supported_cloud_pc_remote_actions_request_builder.GetSupportedCloudPcRemoteActionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def power_off(self) -> power_off_request_builder.PowerOffRequestBuilder:
+        """
+        Provides operations to call the powerOff method.
+        """
+        from .power_off import power_off_request_builder
+
+        return power_off_request_builder.PowerOffRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def power_on(self) -> power_on_request_builder.PowerOnRequestBuilder:
+        """
+        Provides operations to call the powerOn method.
+        """
+        from .power_on import power_on_request_builder
+
+        return power_on_request_builder.PowerOnRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def reboot(self) -> reboot_request_builder.RebootRequestBuilder:

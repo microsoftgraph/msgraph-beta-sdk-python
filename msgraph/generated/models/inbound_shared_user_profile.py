@@ -10,15 +10,15 @@ class InboundSharedUserProfile(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The displayName property
+        # The name displayed in the address book for teh user at the time when the sharing record was created. Read-only.
         self._display_name: Optional[str] = None
-        # The homeTenantId property
+        # The home tenant id of the external user. Read-only.
         self._home_tenant_id: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The userId property
+        # The object id of the external user. Read-only.
         self._user_id: Optional[str] = None
-        # The userPrincipalName property
+        # The user principal name (UPN) of the external user. Read-only.
         self._user_principal_name: Optional[str] = None
     
     @property
@@ -53,7 +53,7 @@ class InboundSharedUserProfile(AdditionalDataHolder, Parsable):
     @property
     def display_name(self,) -> Optional[str]:
         """
-        Gets the displayName property value. The displayName property
+        Gets the displayName property value. The name displayed in the address book for teh user at the time when the sharing record was created. Read-only.
         Returns: Optional[str]
         """
         return self._display_name
@@ -61,7 +61,7 @@ class InboundSharedUserProfile(AdditionalDataHolder, Parsable):
     @display_name.setter
     def display_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the displayName property value. The displayName property
+        Sets the displayName property value. The name displayed in the address book for teh user at the time when the sharing record was created. Read-only.
         Args:
             value: Value to set for the display_name property.
         """
@@ -84,7 +84,7 @@ class InboundSharedUserProfile(AdditionalDataHolder, Parsable):
     @property
     def home_tenant_id(self,) -> Optional[str]:
         """
-        Gets the homeTenantId property value. The homeTenantId property
+        Gets the homeTenantId property value. The home tenant id of the external user. Read-only.
         Returns: Optional[str]
         """
         return self._home_tenant_id
@@ -92,7 +92,7 @@ class InboundSharedUserProfile(AdditionalDataHolder, Parsable):
     @home_tenant_id.setter
     def home_tenant_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the homeTenantId property value. The homeTenantId property
+        Sets the homeTenantId property value. The home tenant id of the external user. Read-only.
         Args:
             value: Value to set for the home_tenant_id property.
         """
@@ -133,7 +133,7 @@ class InboundSharedUserProfile(AdditionalDataHolder, Parsable):
     @property
     def user_id(self,) -> Optional[str]:
         """
-        Gets the userId property value. The userId property
+        Gets the userId property value. The object id of the external user. Read-only.
         Returns: Optional[str]
         """
         return self._user_id
@@ -141,7 +141,7 @@ class InboundSharedUserProfile(AdditionalDataHolder, Parsable):
     @user_id.setter
     def user_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the userId property value. The userId property
+        Sets the userId property value. The object id of the external user. Read-only.
         Args:
             value: Value to set for the user_id property.
         """
@@ -150,7 +150,7 @@ class InboundSharedUserProfile(AdditionalDataHolder, Parsable):
     @property
     def user_principal_name(self,) -> Optional[str]:
         """
-        Gets the userPrincipalName property value. The userPrincipalName property
+        Gets the userPrincipalName property value. The user principal name (UPN) of the external user. Read-only.
         Returns: Optional[str]
         """
         return self._user_principal_name
@@ -158,7 +158,7 @@ class InboundSharedUserProfile(AdditionalDataHolder, Parsable):
     @user_principal_name.setter
     def user_principal_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the userPrincipalName property value. The userPrincipalName property
+        Sets the userPrincipalName property value. The user principal name (UPN) of the external user. Read-only.
         Args:
             value: Value to set for the user_principal_name property.
         """

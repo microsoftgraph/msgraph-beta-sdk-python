@@ -13,9 +13,9 @@ class DeviceManagementConfigurationChoiceSettingCollectionDefinition(device_mana
         Instantiates a new DeviceManagementConfigurationChoiceSettingCollectionDefinition and sets the default values.
         """
         super().__init__()
-        # Maximum number of choices in the collection
+        # Maximum number of choices in the collection. Valid values 1 to 100
         self._maximum_count: Optional[int] = None
-        # Minimum number of choices in the collection
+        # Minimum number of choices in the collection. Valid values 1 to 100
         self._minimum_count: Optional[int] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
@@ -50,7 +50,7 @@ class DeviceManagementConfigurationChoiceSettingCollectionDefinition(device_mana
     @property
     def maximum_count(self,) -> Optional[int]:
         """
-        Gets the maximumCount property value. Maximum number of choices in the collection
+        Gets the maximumCount property value. Maximum number of choices in the collection. Valid values 1 to 100
         Returns: Optional[int]
         """
         return self._maximum_count
@@ -58,7 +58,7 @@ class DeviceManagementConfigurationChoiceSettingCollectionDefinition(device_mana
     @maximum_count.setter
     def maximum_count(self,value: Optional[int] = None) -> None:
         """
-        Sets the maximumCount property value. Maximum number of choices in the collection
+        Sets the maximumCount property value. Maximum number of choices in the collection. Valid values 1 to 100
         Args:
             value: Value to set for the maximum_count property.
         """
@@ -67,7 +67,7 @@ class DeviceManagementConfigurationChoiceSettingCollectionDefinition(device_mana
     @property
     def minimum_count(self,) -> Optional[int]:
         """
-        Gets the minimumCount property value. Minimum number of choices in the collection
+        Gets the minimumCount property value. Minimum number of choices in the collection. Valid values 1 to 100
         Returns: Optional[int]
         """
         return self._minimum_count
@@ -75,7 +75,7 @@ class DeviceManagementConfigurationChoiceSettingCollectionDefinition(device_mana
     @minimum_count.setter
     def minimum_count(self,value: Optional[int] = None) -> None:
         """
-        Sets the minimumCount property value. Minimum number of choices in the collection
+        Sets the minimumCount property value. Minimum number of choices in the collection. Valid values 1 to 100
         Args:
             value: Value to set for the minimum_count property.
         """

@@ -13,7 +13,7 @@ class TeamsAppInstallation(entity.Entity):
         Instantiates a new teamsAppInstallation and sets the default values.
         """
         super().__init__()
-        # The consentedPermissionSet property
+        # The set of resource-specific permissions consented to while installing or upgrading the teamsApp.
         self._consented_permission_set: Optional[teams_app_permission_set.TeamsAppPermissionSet] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
@@ -25,7 +25,7 @@ class TeamsAppInstallation(entity.Entity):
     @property
     def consented_permission_set(self,) -> Optional[teams_app_permission_set.TeamsAppPermissionSet]:
         """
-        Gets the consentedPermissionSet property value. The consentedPermissionSet property
+        Gets the consentedPermissionSet property value. The set of resource-specific permissions consented to while installing or upgrading the teamsApp.
         Returns: Optional[teams_app_permission_set.TeamsAppPermissionSet]
         """
         return self._consented_permission_set
@@ -33,7 +33,7 @@ class TeamsAppInstallation(entity.Entity):
     @consented_permission_set.setter
     def consented_permission_set(self,value: Optional[teams_app_permission_set.TeamsAppPermissionSet] = None) -> None:
         """
-        Sets the consentedPermissionSet property value. The consentedPermissionSet property
+        Sets the consentedPermissionSet property value. The set of resource-specific permissions consented to while installing or upgrading the teamsApp.
         Args:
             value: Value to set for the consented_permission_set property.
         """

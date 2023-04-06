@@ -57,7 +57,7 @@ class TenantReferenceTenantItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[TenantReferenceTenantItemRequestBuilderGetRequestConfiguration] = None) -> Optional[tenant_reference.TenantReference]:
         """
-        Get tenants from directory
+        The collection of external Azure AD tenants that the user has shared profile data with. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[tenant_reference.TenantReference]
@@ -120,7 +120,7 @@ class TenantReferenceTenantItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TenantReferenceTenantItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get tenants from directory
+        The collection of external Azure AD tenants that the user has shared profile data with. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -181,7 +181,7 @@ class TenantReferenceTenantItemRequestBuilder():
     @dataclass
     class TenantReferenceTenantItemRequestBuilderGetQueryParameters():
         """
-        Get tenants from directory
+        The collection of external Azure AD tenants that the user has shared profile data with. Read-only.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -12,4 +12,6 @@ class CloudPcStatus(Enum):
     Restoring = "restoring",
     PendingProvision = "pendingProvision",
     UnknownFutureValue = "unknownFutureValue",
+    MovingRegion = "movingRegion",
+    ResizePendingLicense = "resizePendingLicense",
 

@@ -15,7 +15,7 @@ class TeamsAppAuthorization(AdditionalDataHolder, Parsable):
 
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The requiredPermissionSet property
+        # Set of permissions required by the teamsApp.
         self._required_permission_set: Optional[teams_app_permission_set.TeamsAppPermissionSet] = None
     
     @property
@@ -80,7 +80,7 @@ class TeamsAppAuthorization(AdditionalDataHolder, Parsable):
     @property
     def required_permission_set(self,) -> Optional[teams_app_permission_set.TeamsAppPermissionSet]:
         """
-        Gets the requiredPermissionSet property value. The requiredPermissionSet property
+        Gets the requiredPermissionSet property value. Set of permissions required by the teamsApp.
         Returns: Optional[teams_app_permission_set.TeamsAppPermissionSet]
         """
         return self._required_permission_set
@@ -88,7 +88,7 @@ class TeamsAppAuthorization(AdditionalDataHolder, Parsable):
     @required_permission_set.setter
     def required_permission_set(self,value: Optional[teams_app_permission_set.TeamsAppPermissionSet] = None) -> None:
         """
-        Sets the requiredPermissionSet property value. The requiredPermissionSet property
+        Sets the requiredPermissionSet property value. Set of permissions required by the teamsApp.
         Args:
             value: Value to set for the required_permission_set property.
         """

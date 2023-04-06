@@ -10,7 +10,7 @@ from . import entity
 class BusinessFlowTemplate(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new BusinessFlowTemplate and sets the default values.
+        Instantiates a new businessFlowTemplate and sets the default values.
         """
         super().__init__()
         # The name of the business flow template

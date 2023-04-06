@@ -60,7 +60,7 @@ class InboundFlowsRequestBuilder():
     
     async def post(self,body: Optional[inbound_flow.InboundFlow] = None, request_configuration: Optional[InboundFlowsRequestBuilderPostRequestConfiguration] = None) -> Optional[inbound_flow.InboundFlow]:
         """
-        Create a new inboundFileFlow object. The following prerequisite resources are required when you create an **inboundFileFlow**:
+        Create a new inboundFlow object. The following prerequisite resources are required when you create an **inboundFlow**:
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class InboundFlowsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[inbound_flow.InboundFlow] = None, request_configuration: Optional[InboundFlowsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new inboundFileFlow object. The following prerequisite resources are required when you create an **inboundFileFlow**:
+        Create a new inboundFlow object. The following prerequisite resources are required when you create an **inboundFlow**:
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

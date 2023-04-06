@@ -38,7 +38,7 @@ class TeamTemplatesRequestBuilder():
     
     async def get(self,request_configuration: Optional[TeamTemplatesRequestBuilderGetRequestConfiguration] = None) -> Optional[team_template_collection_response.TeamTemplateCollectionResponse]:
         """
-        Get the list of teamTemplate objects that are available for a tenant. 
+        List the teamTemplateDefinition objects associated with a teamTemplate. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[team_template_collection_response.TeamTemplateCollectionResponse]
@@ -85,7 +85,7 @@ class TeamTemplatesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TeamTemplatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the list of teamTemplate objects that are available for a tenant. 
+        List the teamTemplateDefinition objects associated with a teamTemplate. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +134,7 @@ class TeamTemplatesRequestBuilder():
     @dataclass
     class TeamTemplatesRequestBuilderGetQueryParameters():
         """
-        Get the list of teamTemplate objects that are available for a tenant. 
+        List the teamTemplateDefinition objects associated with a teamTemplate. 
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
