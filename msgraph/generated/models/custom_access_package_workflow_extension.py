@@ -11,7 +11,7 @@ from . import custom_callout_extension
 class CustomAccessPackageWorkflowExtension(custom_callout_extension.CustomCalloutExtension):
     def __init__(self,) -> None:
         """
-        Instantiates a new CustomAccessPackageWorkflowExtension and sets the default values.
+        Instantiates a new customAccessPackageWorkflowExtension and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.customAccessPackageWorkflowExtension"

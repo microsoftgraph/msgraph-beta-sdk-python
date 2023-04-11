@@ -27,7 +27,7 @@ class Directory(entity.Entity):
         self._federation_configurations: Optional[List[identity_provider_base.IdentityProviderBase]] = None
         # The impactedResources property
         self._impacted_resources: Optional[List[impacted_resource.ImpactedResource]] = None
-        # The inboundSharedUserProfiles property
+        # A collection of external Azure AD users whose profile data has been shared with the Azure AD tenant. Nullable.
         self._inbound_shared_user_profiles: Optional[List[inbound_shared_user_profile.InboundSharedUserProfile]] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
@@ -199,7 +199,7 @@ class Directory(entity.Entity):
     @property
     def inbound_shared_user_profiles(self,) -> Optional[List[inbound_shared_user_profile.InboundSharedUserProfile]]:
         """
-        Gets the inboundSharedUserProfiles property value. The inboundSharedUserProfiles property
+        Gets the inboundSharedUserProfiles property value. A collection of external Azure AD users whose profile data has been shared with the Azure AD tenant. Nullable.
         Returns: Optional[List[inbound_shared_user_profile.InboundSharedUserProfile]]
         """
         return self._inbound_shared_user_profiles
@@ -207,7 +207,7 @@ class Directory(entity.Entity):
     @inbound_shared_user_profiles.setter
     def inbound_shared_user_profiles(self,value: Optional[List[inbound_shared_user_profile.InboundSharedUserProfile]] = None) -> None:
         """
-        Sets the inboundSharedUserProfiles property value. The inboundSharedUserProfiles property
+        Sets the inboundSharedUserProfiles property value. A collection of external Azure AD users whose profile data has been shared with the Azure AD tenant. Nullable.
         Args:
             value: Value to set for the inbound_shared_user_profiles property.
         """

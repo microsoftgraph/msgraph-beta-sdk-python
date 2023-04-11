@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from ..models import admin
     from ..models.o_data_errors import o_data_error
-    from ..models.tenant_admin import admin
     from .edge import edge_request_builder
     from .report_settings import report_settings_request_builder
     from .service_announcement import service_announcement_request_builder
@@ -58,7 +58,7 @@ class AdminRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models.tenant_admin import admin
+        from ..models import admin
 
         return await self.request_adapter.send_async(request_info, admin.Admin, error_mapping)
     
@@ -83,7 +83,7 @@ class AdminRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models.tenant_admin import admin
+        from ..models import admin
 
         return await self.request_adapter.send_async(request_info, admin.Admin, error_mapping)
     

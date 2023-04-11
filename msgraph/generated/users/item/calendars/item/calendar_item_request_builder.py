@@ -41,7 +41,7 @@ class CalendarItemRequestBuilder():
         if request_adapter is None:
             raise Exception("request_adapter cannot be undefined")
         # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/users/{user%2Did}/calendars/{calendar%2Did}{?%24select}"
+        self.url_template: str = "{+baseurl}/users/{user%2Did}/calendars/{calendar%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
@@ -338,10 +338,15 @@ class CalendarItemRequestBuilder():
             """
             if original_name is None:
                 raise Exception("original_name cannot be undefined")
+            if original_name == "expand":
+                return "%24expand"
             if original_name == "select":
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
         # Select properties to be returned
         select: Optional[List[str]] = None
 

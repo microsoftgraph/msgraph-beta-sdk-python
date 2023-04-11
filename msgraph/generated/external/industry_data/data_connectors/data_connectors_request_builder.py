@@ -60,7 +60,7 @@ class DataConnectorsRequestBuilder():
     
     async def post(self,body: Optional[industry_data_connector.IndustryDataConnector] = None, request_configuration: Optional[DataConnectorsRequestBuilderPostRequestConfiguration] = None) -> Optional[industry_data_connector.IndustryDataConnector]:
         """
-        Create a new azureDataLakeConnector object.
+        Create a new industryDataConnector object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class DataConnectorsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[industry_data_connector.IndustryDataConnector] = None, request_configuration: Optional[DataConnectorsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new azureDataLakeConnector object.
+        Create a new industryDataConnector object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

@@ -12,7 +12,7 @@ from . import directory_object
 class ServicePrincipal(directory_object.DirectoryObject):
     def __init__(self,) -> None:
         """
-        Instantiates a new ServicePrincipal and sets the default values.
+        Instantiates a new servicePrincipal and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.servicePrincipal"
@@ -116,7 +116,7 @@ class ServicePrincipal(directory_object.DirectoryObject):
         self._sign_in_audience: Optional[str] = None
         # Represents the capability for Azure Active Directory (Azure AD) identity synchronization through the Microsoft Graph API.
         self._synchronization: Optional[synchronization.Synchronization] = None
-        # Custom strings that can be used to categorize and identify the service principal. Not nullable. Supports $filter (eq, not, ge, le, startsWith).
+        # Custom strings that can be used to categorize and identify the service principal. Not nullable. The value is the union of strings set here and on the associated application entity's tags property.Supports $filter (eq, not, ge, le, startsWith).
         self._tags: Optional[List[str]] = None
         # Specifies the keyId of a public key from the keyCredentials collection. When configured, Azure AD issues tokens for this application encrypted using the key specified by this property. The application code that receives the encrypted token must use the matching private key to decrypt the token before it can be used for the signed-in user.
         self._token_encryption_key_id: Optional[UUID] = None
@@ -1129,7 +1129,7 @@ class ServicePrincipal(directory_object.DirectoryObject):
     @property
     def tags(self,) -> Optional[List[str]]:
         """
-        Gets the tags property value. Custom strings that can be used to categorize and identify the service principal. Not nullable. Supports $filter (eq, not, ge, le, startsWith).
+        Gets the tags property value. Custom strings that can be used to categorize and identify the service principal. Not nullable. The value is the union of strings set here and on the associated application entity's tags property.Supports $filter (eq, not, ge, le, startsWith).
         Returns: Optional[List[str]]
         """
         return self._tags
@@ -1137,7 +1137,7 @@ class ServicePrincipal(directory_object.DirectoryObject):
     @tags.setter
     def tags(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the tags property value. Custom strings that can be used to categorize and identify the service principal. Not nullable. Supports $filter (eq, not, ge, le, startsWith).
+        Sets the tags property value. Custom strings that can be used to categorize and identify the service principal. Not nullable. The value is the union of strings set here and on the associated application entity's tags property.Supports $filter (eq, not, ge, le, startsWith).
         Args:
             value: Value to set for the tags property.
         """

@@ -10,11 +10,11 @@ class StringKeyLongValuePair(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # Key.
+        # The mapping of the user type from the source system to the target system. For example:User to User - For Azure AD to Azure AD synchronization worker to user - For Workday to Azure AD synchronization.
         self._key: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # Value.
+        # Total number of synchronized objects.
         self._value: Optional[int] = None
     
     @property
@@ -61,7 +61,7 @@ class StringKeyLongValuePair(AdditionalDataHolder, Parsable):
     @property
     def key(self,) -> Optional[str]:
         """
-        Gets the key property value. Key.
+        Gets the key property value. The mapping of the user type from the source system to the target system. For example:User to User - For Azure AD to Azure AD synchronization worker to user - For Workday to Azure AD synchronization.
         Returns: Optional[str]
         """
         return self._key
@@ -69,7 +69,7 @@ class StringKeyLongValuePair(AdditionalDataHolder, Parsable):
     @key.setter
     def key(self,value: Optional[str] = None) -> None:
         """
-        Sets the key property value. Key.
+        Sets the key property value. The mapping of the user type from the source system to the target system. For example:User to User - For Azure AD to Azure AD synchronization worker to user - For Workday to Azure AD synchronization.
         Args:
             value: Value to set for the key property.
         """
@@ -108,7 +108,7 @@ class StringKeyLongValuePair(AdditionalDataHolder, Parsable):
     @property
     def value(self,) -> Optional[int]:
         """
-        Gets the value property value. Value.
+        Gets the value property value. Total number of synchronized objects.
         Returns: Optional[int]
         """
         return self._value
@@ -116,7 +116,7 @@ class StringKeyLongValuePair(AdditionalDataHolder, Parsable):
     @value.setter
     def value(self,value: Optional[int] = None) -> None:
         """
-        Sets the value property value. Value.
+        Sets the value property value. Total number of synchronized objects.
         Args:
             value: Value to set for the value property.
         """

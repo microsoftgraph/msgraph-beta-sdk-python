@@ -10,12 +10,12 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from ....models import sharepoint_settings
     from ....models.o_data_errors import o_data_error
-    from ....models.tenant_admin import settings
 
 class SettingsRequestBuilder():
     """
-    Provides operations to manage the settings property of the microsoft.graph.tenantAdmin.sharepoint entity.
+    Provides operations to manage the settings property of the microsoft.graph.sharepoint entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -54,12 +54,12 @@ class SettingsRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[SettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[settings.Settings]:
+    async def get(self,request_configuration: Optional[SettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[sharepoint_settings.SharepointSettings]:
         """
         Get the tenant-level settings for SharePoint and OneDrive.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[settings.Settings]
+        Returns: Optional[sharepoint_settings.SharepointSettings]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -72,17 +72,17 @@ class SettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models.tenant_admin import settings
+        from ....models import sharepoint_settings
 
-        return await self.request_adapter.send_async(request_info, settings.Settings, error_mapping)
+        return await self.request_adapter.send_async(request_info, sharepoint_settings.SharepointSettings, error_mapping)
     
-    async def patch(self,body: Optional[settings.Settings] = None, request_configuration: Optional[SettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[settings.Settings]:
+    async def patch(self,body: Optional[sharepoint_settings.SharepointSettings] = None, request_configuration: Optional[SettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[sharepoint_settings.SharepointSettings]:
         """
         Update one or more tenant-level settings for SharePoint and OneDrive.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[settings.Settings]
+        Returns: Optional[sharepoint_settings.SharepointSettings]
         """
         if body is None:
             raise Exception("body cannot be undefined")
@@ -97,9 +97,9 @@ class SettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models.tenant_admin import settings
+        from ....models import sharepoint_settings
 
-        return await self.request_adapter.send_async(request_info, settings.Settings, error_mapping)
+        return await self.request_adapter.send_async(request_info, sharepoint_settings.SharepointSettings, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SettingsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -135,7 +135,7 @@ class SettingsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[settings.Settings] = None, request_configuration: Optional[SettingsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[sharepoint_settings.SharepointSettings] = None, request_configuration: Optional[SettingsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update one or more tenant-level settings for SharePoint and OneDrive.
         Args:

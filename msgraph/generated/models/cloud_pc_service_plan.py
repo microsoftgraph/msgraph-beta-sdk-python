@@ -3,7 +3,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import cloud_pc_management_service, cloud_pc_service_plan_type, entity
+    from . import cloud_pc_management_service, cloud_pc_provisioning_type, cloud_pc_service_plan_type, entity
 
 from . import entity
 
@@ -17,6 +17,8 @@ class CloudPcServicePlan(entity.Entity):
         self._display_name: Optional[str] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
+        # Specifies the type of license used when provisioning Cloud PCs. By default, the license type is dedicated. Possible values are: dedicated, shared, unknownFutureValue.
+        self._provisioning_type: Optional[cloud_pc_provisioning_type.CloudPcProvisioningType] = None
         # The size of the RAM in GB. Read-only.
         self._ram_in_g_b: Optional[int] = None
         # The size of the OS Disk in GB. Read-only.
@@ -64,10 +66,11 @@ class CloudPcServicePlan(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import cloud_pc_management_service, cloud_pc_service_plan_type, entity
+        from . import cloud_pc_management_service, cloud_pc_provisioning_type, cloud_pc_service_plan_type, entity
 
         fields: Dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "provisioningType": lambda n : setattr(self, 'provisioning_type', n.get_enum_value(cloud_pc_provisioning_type.CloudPcProvisioningType)),
             "ramInGB": lambda n : setattr(self, 'ram_in_g_b', n.get_int_value()),
             "storageInGB": lambda n : setattr(self, 'storage_in_g_b', n.get_int_value()),
             "supportedSolution": lambda n : setattr(self, 'supported_solution', n.get_enum_value(cloud_pc_management_service.CloudPcManagementService)),
@@ -78,6 +81,23 @@ class CloudPcServicePlan(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
+    
+    @property
+    def provisioning_type(self,) -> Optional[cloud_pc_provisioning_type.CloudPcProvisioningType]:
+        """
+        Gets the provisioningType property value. Specifies the type of license used when provisioning Cloud PCs. By default, the license type is dedicated. Possible values are: dedicated, shared, unknownFutureValue.
+        Returns: Optional[cloud_pc_provisioning_type.CloudPcProvisioningType]
+        """
+        return self._provisioning_type
+    
+    @provisioning_type.setter
+    def provisioning_type(self,value: Optional[cloud_pc_provisioning_type.CloudPcProvisioningType] = None) -> None:
+        """
+        Sets the provisioningType property value. Specifies the type of license used when provisioning Cloud PCs. By default, the license type is dedicated. Possible values are: dedicated, shared, unknownFutureValue.
+        Args:
+            value: Value to set for the provisioning_type property.
+        """
+        self._provisioning_type = value
     
     @property
     def ram_in_g_b(self,) -> Optional[int]:
@@ -106,6 +126,7 @@ class CloudPcServicePlan(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_str_value("displayName", self.display_name)
+        writer.write_enum_value("provisioningType", self.provisioning_type)
         writer.write_int_value("ramInGB", self.ram_in_g_b)
         writer.write_int_value("storageInGB", self.storage_in_g_b)
         writer.write_enum_value("supportedSolution", self.supported_solution)

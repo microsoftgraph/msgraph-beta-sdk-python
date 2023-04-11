@@ -11,7 +11,7 @@ from . import entity
 class ProvisioningObjectSummary(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new ProvisioningObjectSummary and sets the default values.
+        Instantiates a new provisioningObjectSummary and sets the default values.
         """
         super().__init__()
         # The action property

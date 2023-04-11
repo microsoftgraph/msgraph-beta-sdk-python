@@ -16,7 +16,7 @@ class TeamsAppDefinition(entity.Entity):
         super().__init__()
         # A collection of scopes where the Teams app can be installed. Possible values are:team — Indicates that the Teams app can be installed within a team and is authorized to access that team's data. groupChat  — Indicates that the Teams app can be installed within a group chat and is authorized to access that group chat's data.  personal — Indicates that the Teams app can be installed in the personal scope of a user and is authorized to access that user's data.
         self._allowed_installation_scopes: Optional[teams_app_installation_scopes.TeamsAppInstallationScopes] = None
-        # The authorization property
+        # Authorization requirements specified in the Teams app manifest.
         self._authorization: Optional[teams_app_authorization.TeamsAppAuthorization] = None
         # The WebApplicationInfo.Id from the Teams app manifest.
         self._azure_a_d_app_id: Optional[str] = None
@@ -65,7 +65,7 @@ class TeamsAppDefinition(entity.Entity):
     @property
     def authorization(self,) -> Optional[teams_app_authorization.TeamsAppAuthorization]:
         """
-        Gets the authorization property value. The authorization property
+        Gets the authorization property value. Authorization requirements specified in the Teams app manifest.
         Returns: Optional[teams_app_authorization.TeamsAppAuthorization]
         """
         return self._authorization
@@ -73,7 +73,7 @@ class TeamsAppDefinition(entity.Entity):
     @authorization.setter
     def authorization(self,value: Optional[teams_app_authorization.TeamsAppAuthorization] = None) -> None:
         """
-        Sets the authorization property value. The authorization property
+        Sets the authorization property value. Authorization requirements specified in the Teams app manifest.
         Args:
             value: Value to set for the authorization property.
         """

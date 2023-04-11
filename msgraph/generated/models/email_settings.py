@@ -12,7 +12,7 @@ class EmailSettings(AdditionalDataHolder, Parsable):
 
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # Specifies the domain that should be used when sending email notifications. This domain must be verified in order to be used.
+        # Specifies the domain that should be used when sending email notifications. This domain must be verified in order to be used. We recommend that you use a domain that has the appropriate DNS records to facilitate email validation, like SPF, DKIM, DMARC, and MX, because this then complies with the RFC compliance for sending and receiving email. For details, see Learn more about Exchange Online Email Routing.
         self._sender_domain: Optional[str] = None
         # Specifies if the organization’s banner logo should be included in email notifications. The banner logo will replace the Microsoft logo at the top of the email notification. If true the banner logo will be taken from the tenant’s branding settings. This value can only be set to true if the organizationalBranding bannerLogo property is set.
         self._use_company_branding: Optional[bool] = None
@@ -78,7 +78,7 @@ class EmailSettings(AdditionalDataHolder, Parsable):
     @property
     def sender_domain(self,) -> Optional[str]:
         """
-        Gets the senderDomain property value. Specifies the domain that should be used when sending email notifications. This domain must be verified in order to be used.
+        Gets the senderDomain property value. Specifies the domain that should be used when sending email notifications. This domain must be verified in order to be used. We recommend that you use a domain that has the appropriate DNS records to facilitate email validation, like SPF, DKIM, DMARC, and MX, because this then complies with the RFC compliance for sending and receiving email. For details, see Learn more about Exchange Online Email Routing.
         Returns: Optional[str]
         """
         return self._sender_domain
@@ -86,7 +86,7 @@ class EmailSettings(AdditionalDataHolder, Parsable):
     @sender_domain.setter
     def sender_domain(self,value: Optional[str] = None) -> None:
         """
-        Sets the senderDomain property value. Specifies the domain that should be used when sending email notifications. This domain must be verified in order to be used.
+        Sets the senderDomain property value. Specifies the domain that should be used when sending email notifications. This domain must be verified in order to be used. We recommend that you use a domain that has the appropriate DNS records to facilitate email validation, like SPF, DKIM, DMARC, and MX, because this then complies with the RFC compliance for sending and receiving email. For details, see Learn more about Exchange Online Email Routing.
         Args:
             value: Value to set for the sender_domain property.
         """

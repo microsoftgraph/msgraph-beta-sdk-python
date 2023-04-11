@@ -10,7 +10,7 @@ from . import entity
 class MessageRecipient(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new MessageRecipient and sets the default values.
+        Instantiates a new messageRecipient and sets the default values.
         """
         super().__init__()
         # The deliveryStatus property

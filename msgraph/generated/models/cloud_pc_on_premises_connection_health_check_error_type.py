@@ -60,6 +60,7 @@ class CloudPcOnPremisesConnectionHealthCheckErrorType(Enum):
     InternalServerErrorAllocateResourceFailed = "internalServerErrorAllocateResourceFailed",
     InternalServerErrorVMDeploymentTimeout = "internalServerErrorVMDeploymentTimeout",
     InternalServerErrorUnableToRunDscScript = "internalServerErrorUnableToRunDscScript",
+    SsoCheckKerberosConfigurationError = "ssoCheckKerberosConfigurationError",
     InternalServerUnknownError = "internalServerUnknownError",
     UnknownFutureValue = "unknownFutureValue",
 

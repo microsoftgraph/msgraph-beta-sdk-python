@@ -41,6 +41,8 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
         self._media_path_location: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
+        # The otherPartyCountryCode property
+        self._other_party_country_code: Optional[str] = None
         # The datacenter used for signaling for both bypass and non-bypass calls.
         self._signaling_location: Optional[str] = None
         # Call start time.For failed and unanswered calls, this can be equal to invite or failure time.
@@ -49,6 +51,8 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
         self._successful_call: Optional[bool] = None
         # Fully qualified domain name of the session border controller.
         self._trunk_fully_qualified_domain_name: Optional[str] = None
+        # The userCountryCode property
+        self._user_country_code: Optional[str] = None
         # Display name of the user.
         self._user_display_name: Optional[str] = None
         # Calling user's ID in Graph. This and other user info will be null/empty for bot call types. GUID.
@@ -276,10 +280,12 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
             "mediaBypassEnabled": lambda n : setattr(self, 'media_bypass_enabled', n.get_bool_value()),
             "mediaPathLocation": lambda n : setattr(self, 'media_path_location', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "otherPartyCountryCode": lambda n : setattr(self, 'other_party_country_code', n.get_str_value()),
             "signalingLocation": lambda n : setattr(self, 'signaling_location', n.get_str_value()),
             "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
             "successfulCall": lambda n : setattr(self, 'successful_call', n.get_bool_value()),
             "trunkFullyQualifiedDomainName": lambda n : setattr(self, 'trunk_fully_qualified_domain_name', n.get_str_value()),
+            "userCountryCode": lambda n : setattr(self, 'user_country_code', n.get_str_value()),
             "userDisplayName": lambda n : setattr(self, 'user_display_name', n.get_str_value()),
             "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
             "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
@@ -371,6 +377,23 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
         """
         self._odata_type = value
     
+    @property
+    def other_party_country_code(self,) -> Optional[str]:
+        """
+        Gets the otherPartyCountryCode property value. The otherPartyCountryCode property
+        Returns: Optional[str]
+        """
+        return self._other_party_country_code
+    
+    @other_party_country_code.setter
+    def other_party_country_code(self,value: Optional[str] = None) -> None:
+        """
+        Sets the otherPartyCountryCode property value. The otherPartyCountryCode property
+        Args:
+            value: Value to set for the other_party_country_code property.
+        """
+        self._other_party_country_code = value
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -394,10 +417,12 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
         writer.write_bool_value("mediaBypassEnabled", self.media_bypass_enabled)
         writer.write_str_value("mediaPathLocation", self.media_path_location)
         writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("otherPartyCountryCode", self.other_party_country_code)
         writer.write_str_value("signalingLocation", self.signaling_location)
         writer.write_datetime_value("startDateTime", self.start_date_time)
         writer.write_bool_value("successfulCall", self.successful_call)
         writer.write_str_value("trunkFullyQualifiedDomainName", self.trunk_fully_qualified_domain_name)
+        writer.write_str_value("userCountryCode", self.user_country_code)
         writer.write_str_value("userDisplayName", self.user_display_name)
         writer.write_str_value("userId", self.user_id)
         writer.write_str_value("userPrincipalName", self.user_principal_name)
@@ -470,6 +495,23 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
             value: Value to set for the trunk_fully_qualified_domain_name property.
         """
         self._trunk_fully_qualified_domain_name = value
+    
+    @property
+    def user_country_code(self,) -> Optional[str]:
+        """
+        Gets the userCountryCode property value. The userCountryCode property
+        Returns: Optional[str]
+        """
+        return self._user_country_code
+    
+    @user_country_code.setter
+    def user_country_code(self,value: Optional[str] = None) -> None:
+        """
+        Sets the userCountryCode property value. The userCountryCode property
+        Args:
+            value: Value to set for the user_country_code property.
+        """
+        self._user_country_code = value
     
     @property
     def user_display_name(self,) -> Optional[str]:

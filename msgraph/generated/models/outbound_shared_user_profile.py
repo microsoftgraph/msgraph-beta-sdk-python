@@ -15,9 +15,9 @@ class OutboundSharedUserProfile(AdditionalDataHolder, Parsable):
 
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The tenants property
+        # The collection of external Azure AD tenants that the user has shared profile data with. Read-only.
         self._tenants: Optional[List[tenant_reference.TenantReference]] = None
-        # The userId property
+        # The object id of the external user. Read-only.
         self._user_id: Optional[str] = None
     
     @property
@@ -96,7 +96,7 @@ class OutboundSharedUserProfile(AdditionalDataHolder, Parsable):
     @property
     def tenants(self,) -> Optional[List[tenant_reference.TenantReference]]:
         """
-        Gets the tenants property value. The tenants property
+        Gets the tenants property value. The collection of external Azure AD tenants that the user has shared profile data with. Read-only.
         Returns: Optional[List[tenant_reference.TenantReference]]
         """
         return self._tenants
@@ -104,7 +104,7 @@ class OutboundSharedUserProfile(AdditionalDataHolder, Parsable):
     @tenants.setter
     def tenants(self,value: Optional[List[tenant_reference.TenantReference]] = None) -> None:
         """
-        Sets the tenants property value. The tenants property
+        Sets the tenants property value. The collection of external Azure AD tenants that the user has shared profile data with. Read-only.
         Args:
             value: Value to set for the tenants property.
         """
@@ -113,7 +113,7 @@ class OutboundSharedUserProfile(AdditionalDataHolder, Parsable):
     @property
     def user_id(self,) -> Optional[str]:
         """
-        Gets the userId property value. The userId property
+        Gets the userId property value. The object id of the external user. Read-only.
         Returns: Optional[str]
         """
         return self._user_id
@@ -121,7 +121,7 @@ class OutboundSharedUserProfile(AdditionalDataHolder, Parsable):
     @user_id.setter
     def user_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the userId property value. The userId property
+        Sets the userId property value. The object id of the external user. Read-only.
         Args:
             value: Value to set for the user_id property.
         """

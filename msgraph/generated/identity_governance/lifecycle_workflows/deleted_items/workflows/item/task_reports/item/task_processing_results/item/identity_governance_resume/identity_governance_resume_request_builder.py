@@ -37,7 +37,7 @@ class IdentityGovernanceResumeRequestBuilder():
     
     async def post(self,body: Optional[resume_post_request_body.ResumePostRequestBody] = None, request_configuration: Optional[IdentityGovernanceResumeRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Resume a task processing result that's `inProgress`. An Azure Logic Apps system-assigned managed identity calls this API.
+        Resume a task processing result that's `inProgress`. In the default case an Azure Logic Apps system-assigned managed identity calls this API. For more information read about Lifecycle Workflows extensibility approach.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -59,7 +59,7 @@ class IdentityGovernanceResumeRequestBuilder():
     
     def to_post_request_information(self,body: Optional[resume_post_request_body.ResumePostRequestBody] = None, request_configuration: Optional[IdentityGovernanceResumeRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Resume a task processing result that's `inProgress`. An Azure Logic Apps system-assigned managed identity calls this API.
+        Resume a task processing result that's `inProgress`. In the default case an Azure Logic Apps system-assigned managed identity calls this API. For more information read about Lifecycle Workflows extensibility approach.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

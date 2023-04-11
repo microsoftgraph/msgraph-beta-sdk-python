@@ -12,7 +12,10 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ...models import cloud_p_c, cloud_p_c_collection_response
     from ...models.o_data_errors import o_data_error
+    from .bulk_resize import bulk_resize_request_builder
     from .count import count_request_builder
+    from .get_provisioned_cloud_p_cs_with_group_id_with_service_plan_id import get_provisioned_cloud_p_cs_with_group_id_with_service_plan_id_request_builder
+    from .validate_bulk_resize import validate_bulk_resize_request_builder
 
 class CloudPCsRequestBuilder():
     """
@@ -57,6 +60,22 @@ class CloudPCsRequestBuilder():
         from ...models import cloud_p_c_collection_response
 
         return await self.request_adapter.send_async(request_info, cloud_p_c_collection_response.CloudPCCollectionResponse, error_mapping)
+    
+    def get_provisioned_cloud_p_cs_with_group_id_with_service_plan_id(self,group_id: Optional[str] = None, service_plan_id: Optional[str] = None) -> get_provisioned_cloud_p_cs_with_group_id_with_service_plan_id_request_builder.GetProvisionedCloudPCsWithGroupIdWithServicePlanIdRequestBuilder:
+        """
+        Provides operations to call the getProvisionedCloudPCs method.
+        Args:
+            groupId: Usage: groupId='{groupId}'
+            servicePlanId: Usage: servicePlanId='{servicePlanId}'
+        Returns: get_provisioned_cloud_p_cs_with_group_id_with_service_plan_id_request_builder.GetProvisionedCloudPCsWithGroupIdWithServicePlanIdRequestBuilder
+        """
+        if group_id is None:
+            raise Exception("group_id cannot be undefined")
+        if service_plan_id is None:
+            raise Exception("service_plan_id cannot be undefined")
+        from .get_provisioned_cloud_p_cs_with_group_id_with_service_plan_id import get_provisioned_cloud_p_cs_with_group_id_with_service_plan_id_request_builder
+
+        return get_provisioned_cloud_p_cs_with_group_id_with_service_plan_id_request_builder.GetProvisionedCloudPCsWithGroupIdWithServicePlanIdRequestBuilder(self.request_adapter, self.path_parameters, group_id, service_plan_id)
     
     async def post(self,body: Optional[cloud_p_c.CloudPC] = None, request_configuration: Optional[CloudPCsRequestBuilderPostRequestConfiguration] = None) -> Optional[cloud_p_c.CloudPC]:
         """
@@ -123,6 +142,15 @@ class CloudPCsRequestBuilder():
         return request_info
     
     @property
+    def bulk_resize(self) -> bulk_resize_request_builder.BulkResizeRequestBuilder:
+        """
+        Provides operations to call the bulkResize method.
+        """
+        from .bulk_resize import bulk_resize_request_builder
+
+        return bulk_resize_request_builder.BulkResizeRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
@@ -130,6 +158,15 @@ class CloudPCsRequestBuilder():
         from .count import count_request_builder
 
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def validate_bulk_resize(self) -> validate_bulk_resize_request_builder.ValidateBulkResizeRequestBuilder:
+        """
+        Provides operations to call the validateBulkResize method.
+        """
+        from .validate_bulk_resize import validate_bulk_resize_request_builder
+
+        return validate_bulk_resize_request_builder.ValidateBulkResizeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class CloudPCsRequestBuilderGetQueryParameters():

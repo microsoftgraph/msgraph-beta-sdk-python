@@ -10,7 +10,7 @@ from . import custom_callout_extension
 class CustomAuthenticationExtension(custom_callout_extension.CustomCalloutExtension):
     def __init__(self,) -> None:
         """
-        Instantiates a new customAuthenticationExtension and sets the default values.
+        Instantiates a new CustomAuthenticationExtension and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.customAuthenticationExtension"

@@ -14,19 +14,19 @@ class PlannerTaskRecurrence(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The nextInSeriesTaskId property
+        # The taskId of the next task in this series. This value is assigned at the time the next task in the series is created, and is null prior to that time.
         self._next_in_series_task_id: Optional[str] = None
-        # The occurrenceId property
+        # The 1-based index of this task within the recurrence series. The first task in a series has the value 1, the next task in the series has the value 2, and so on.
         self._occurrence_id: Optional[int] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The previousInSeriesTaskId property
+        # The taskId of the previous task in this series. null for the first task in a series since it has no predecessor. All subsequent tasks in the series have a value that corresponds to their predecessors.
         self._previous_in_series_task_id: Optional[str] = None
-        # The recurrenceStartDateTime property
+        # The date and time when this recurrence series begin. For the first task in a series (occurrenceId = 1) this value is copied from schedule.patternStartDateTime. For subsequent tasks in the series (occurrenceId >= 2) this value is copied from the previous task and never changes; it preserves the start date of the recurring series. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         self._recurrence_start_date_time: Optional[datetime] = None
-        # The schedule property
+        # The schedule for recurrence. Clients define and edit recurrence by specifying the schedule. If nextInSeriesTaskId isn't assigned, clients may terminate the series by assigning null to this property.
         self._schedule: Optional[planner_recurrence_schedule.PlannerRecurrenceSchedule] = None
-        # The seriesId property
+        # The recurrence series this task belongs to. A GUID-based value that serves as the unique identifier for a series.
         self._series_id: Optional[str] = None
     
     @property
@@ -79,7 +79,7 @@ class PlannerTaskRecurrence(AdditionalDataHolder, Parsable):
     @property
     def next_in_series_task_id(self,) -> Optional[str]:
         """
-        Gets the nextInSeriesTaskId property value. The nextInSeriesTaskId property
+        Gets the nextInSeriesTaskId property value. The taskId of the next task in this series. This value is assigned at the time the next task in the series is created, and is null prior to that time.
         Returns: Optional[str]
         """
         return self._next_in_series_task_id
@@ -87,7 +87,7 @@ class PlannerTaskRecurrence(AdditionalDataHolder, Parsable):
     @next_in_series_task_id.setter
     def next_in_series_task_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the nextInSeriesTaskId property value. The nextInSeriesTaskId property
+        Sets the nextInSeriesTaskId property value. The taskId of the next task in this series. This value is assigned at the time the next task in the series is created, and is null prior to that time.
         Args:
             value: Value to set for the next_in_series_task_id property.
         """
@@ -96,7 +96,7 @@ class PlannerTaskRecurrence(AdditionalDataHolder, Parsable):
     @property
     def occurrence_id(self,) -> Optional[int]:
         """
-        Gets the occurrenceId property value. The occurrenceId property
+        Gets the occurrenceId property value. The 1-based index of this task within the recurrence series. The first task in a series has the value 1, the next task in the series has the value 2, and so on.
         Returns: Optional[int]
         """
         return self._occurrence_id
@@ -104,7 +104,7 @@ class PlannerTaskRecurrence(AdditionalDataHolder, Parsable):
     @occurrence_id.setter
     def occurrence_id(self,value: Optional[int] = None) -> None:
         """
-        Sets the occurrenceId property value. The occurrenceId property
+        Sets the occurrenceId property value. The 1-based index of this task within the recurrence series. The first task in a series has the value 1, the next task in the series has the value 2, and so on.
         Args:
             value: Value to set for the occurrence_id property.
         """
@@ -130,7 +130,7 @@ class PlannerTaskRecurrence(AdditionalDataHolder, Parsable):
     @property
     def previous_in_series_task_id(self,) -> Optional[str]:
         """
-        Gets the previousInSeriesTaskId property value. The previousInSeriesTaskId property
+        Gets the previousInSeriesTaskId property value. The taskId of the previous task in this series. null for the first task in a series since it has no predecessor. All subsequent tasks in the series have a value that corresponds to their predecessors.
         Returns: Optional[str]
         """
         return self._previous_in_series_task_id
@@ -138,7 +138,7 @@ class PlannerTaskRecurrence(AdditionalDataHolder, Parsable):
     @previous_in_series_task_id.setter
     def previous_in_series_task_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the previousInSeriesTaskId property value. The previousInSeriesTaskId property
+        Sets the previousInSeriesTaskId property value. The taskId of the previous task in this series. null for the first task in a series since it has no predecessor. All subsequent tasks in the series have a value that corresponds to their predecessors.
         Args:
             value: Value to set for the previous_in_series_task_id property.
         """
@@ -147,7 +147,7 @@ class PlannerTaskRecurrence(AdditionalDataHolder, Parsable):
     @property
     def recurrence_start_date_time(self,) -> Optional[datetime]:
         """
-        Gets the recurrenceStartDateTime property value. The recurrenceStartDateTime property
+        Gets the recurrenceStartDateTime property value. The date and time when this recurrence series begin. For the first task in a series (occurrenceId = 1) this value is copied from schedule.patternStartDateTime. For subsequent tasks in the series (occurrenceId >= 2) this value is copied from the previous task and never changes; it preserves the start date of the recurring series. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Returns: Optional[datetime]
         """
         return self._recurrence_start_date_time
@@ -155,7 +155,7 @@ class PlannerTaskRecurrence(AdditionalDataHolder, Parsable):
     @recurrence_start_date_time.setter
     def recurrence_start_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the recurrenceStartDateTime property value. The recurrenceStartDateTime property
+        Sets the recurrenceStartDateTime property value. The date and time when this recurrence series begin. For the first task in a series (occurrenceId = 1) this value is copied from schedule.patternStartDateTime. For subsequent tasks in the series (occurrenceId >= 2) this value is copied from the previous task and never changes; it preserves the start date of the recurring series. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
             value: Value to set for the recurrence_start_date_time property.
         """
@@ -164,7 +164,7 @@ class PlannerTaskRecurrence(AdditionalDataHolder, Parsable):
     @property
     def schedule(self,) -> Optional[planner_recurrence_schedule.PlannerRecurrenceSchedule]:
         """
-        Gets the schedule property value. The schedule property
+        Gets the schedule property value. The schedule for recurrence. Clients define and edit recurrence by specifying the schedule. If nextInSeriesTaskId isn't assigned, clients may terminate the series by assigning null to this property.
         Returns: Optional[planner_recurrence_schedule.PlannerRecurrenceSchedule]
         """
         return self._schedule
@@ -172,7 +172,7 @@ class PlannerTaskRecurrence(AdditionalDataHolder, Parsable):
     @schedule.setter
     def schedule(self,value: Optional[planner_recurrence_schedule.PlannerRecurrenceSchedule] = None) -> None:
         """
-        Sets the schedule property value. The schedule property
+        Sets the schedule property value. The schedule for recurrence. Clients define and edit recurrence by specifying the schedule. If nextInSeriesTaskId isn't assigned, clients may terminate the series by assigning null to this property.
         Args:
             value: Value to set for the schedule property.
         """
@@ -198,7 +198,7 @@ class PlannerTaskRecurrence(AdditionalDataHolder, Parsable):
     @property
     def series_id(self,) -> Optional[str]:
         """
-        Gets the seriesId property value. The seriesId property
+        Gets the seriesId property value. The recurrence series this task belongs to. A GUID-based value that serves as the unique identifier for a series.
         Returns: Optional[str]
         """
         return self._series_id
@@ -206,7 +206,7 @@ class PlannerTaskRecurrence(AdditionalDataHolder, Parsable):
     @series_id.setter
     def series_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the seriesId property value. The seriesId property
+        Sets the seriesId property value. The recurrence series this task belongs to. A GUID-based value that serves as the unique identifier for a series.
         Args:
             value: Value to set for the series_id property.
         """

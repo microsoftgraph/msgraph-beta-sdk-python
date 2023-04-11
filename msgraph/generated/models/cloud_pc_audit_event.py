@@ -11,7 +11,7 @@ from . import entity
 class CloudPcAuditEvent(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new cloudPcAuditEvent and sets the default values.
+        Instantiates a new CloudPcAuditEvent and sets the default values.
         """
         super().__init__()
         # Friendly name of the activity. Optional.
