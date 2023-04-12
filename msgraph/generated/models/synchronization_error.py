@@ -10,13 +10,13 @@ class SynchronizationError(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The error code.
+        # The error code. For example, AzureDirectoryB2BManagementPolicyCheckFailure.
         self._code: Optional[str] = None
-        # The error message.
+        # The error message. For example, Policy permitting auto-redemption of invitations not configured.
         self._message: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The action to take to resolve the error.
+        # The action to take to resolve the error. For example, false.
         self._tenant_actionable: Optional[bool] = None
     
     @property
@@ -39,7 +39,7 @@ class SynchronizationError(AdditionalDataHolder, Parsable):
     @property
     def code(self,) -> Optional[str]:
         """
-        Gets the code property value. The error code.
+        Gets the code property value. The error code. For example, AzureDirectoryB2BManagementPolicyCheckFailure.
         Returns: Optional[str]
         """
         return self._code
@@ -47,7 +47,7 @@ class SynchronizationError(AdditionalDataHolder, Parsable):
     @code.setter
     def code(self,value: Optional[str] = None) -> None:
         """
-        Sets the code property value. The error code.
+        Sets the code property value. The error code. For example, AzureDirectoryB2BManagementPolicyCheckFailure.
         Args:
             value: Value to set for the code property.
         """
@@ -81,7 +81,7 @@ class SynchronizationError(AdditionalDataHolder, Parsable):
     @property
     def message(self,) -> Optional[str]:
         """
-        Gets the message property value. The error message.
+        Gets the message property value. The error message. For example, Policy permitting auto-redemption of invitations not configured.
         Returns: Optional[str]
         """
         return self._message
@@ -89,7 +89,7 @@ class SynchronizationError(AdditionalDataHolder, Parsable):
     @message.setter
     def message(self,value: Optional[str] = None) -> None:
         """
-        Sets the message property value. The error message.
+        Sets the message property value. The error message. For example, Policy permitting auto-redemption of invitations not configured.
         Args:
             value: Value to set for the message property.
         """
@@ -129,7 +129,7 @@ class SynchronizationError(AdditionalDataHolder, Parsable):
     @property
     def tenant_actionable(self,) -> Optional[bool]:
         """
-        Gets the tenantActionable property value. The action to take to resolve the error.
+        Gets the tenantActionable property value. The action to take to resolve the error. For example, false.
         Returns: Optional[bool]
         """
         return self._tenant_actionable
@@ -137,7 +137,7 @@ class SynchronizationError(AdditionalDataHolder, Parsable):
     @tenant_actionable.setter
     def tenant_actionable(self,value: Optional[bool] = None) -> None:
         """
-        Sets the tenantActionable property value. The action to take to resolve the error.
+        Sets the tenantActionable property value. The action to take to resolve the error. For example, false.
         Args:
             value: Value to set for the tenant_actionable property.
         """

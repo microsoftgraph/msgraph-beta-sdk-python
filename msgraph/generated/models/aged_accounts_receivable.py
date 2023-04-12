@@ -11,7 +11,7 @@ from . import entity
 class AgedAccountsReceivable(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new agedAccountsReceivable and sets the default values.
+        Instantiates a new AgedAccountsReceivable and sets the default values.
         """
         super().__init__()
         # The agedAsOfDate property

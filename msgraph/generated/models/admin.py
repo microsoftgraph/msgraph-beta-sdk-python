@@ -3,8 +3,7 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import sharepoint
-    from .. import admin_report_settings, admin_windows, edge, service_announcement
+    from . import admin_report_settings, admin_windows, edge, service_announcement, sharepoint
 
 class Admin(AdditionalDataHolder, Parsable):
     def __init__(self,) -> None:
@@ -78,8 +77,7 @@ class Admin(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import sharepoint
-        from .. import admin_report_settings, admin_windows, edge, service_announcement
+        from . import admin_report_settings, admin_windows, edge, service_announcement, sharepoint
 
         fields: Dict[str, Callable[[Any], None]] = {
             "edge": lambda n : setattr(self, 'edge', n.get_object_value(edge.Edge)),

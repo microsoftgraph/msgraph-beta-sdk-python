@@ -86,7 +86,7 @@ class OnlineMeeting(entity.Entity):
         self._video_teleconference_id: Optional[str] = None
         # The virtualAppointment property
         self._virtual_appointment: Optional[virtual_appointment.VirtualAppointment] = None
-        # Specifies whether a watermark applies for different entities.
+        # Specifies whether a watermark should be applied to a content type by the client application.
         self._watermark_protection: Optional[watermark_protection_values.WatermarkProtectionValues] = None
     
     @property
@@ -794,7 +794,7 @@ class OnlineMeeting(entity.Entity):
     @property
     def watermark_protection(self,) -> Optional[watermark_protection_values.WatermarkProtectionValues]:
         """
-        Gets the watermarkProtection property value. Specifies whether a watermark applies for different entities.
+        Gets the watermarkProtection property value. Specifies whether a watermark should be applied to a content type by the client application.
         Returns: Optional[watermark_protection_values.WatermarkProtectionValues]
         """
         return self._watermark_protection
@@ -802,7 +802,7 @@ class OnlineMeeting(entity.Entity):
     @watermark_protection.setter
     def watermark_protection(self,value: Optional[watermark_protection_values.WatermarkProtectionValues] = None) -> None:
         """
-        Sets the watermarkProtection property value. Specifies whether a watermark applies for different entities.
+        Sets the watermarkProtection property value. Specifies whether a watermark should be applied to a content type by the client application.
         Args:
             value: Value to set for the watermark_protection property.
         """

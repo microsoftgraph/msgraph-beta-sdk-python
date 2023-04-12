@@ -4,7 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import applied_authentication_event_listener, applied_conditional_access_policy, authentication_app_device_details, authentication_app_policy_details, authentication_context, authentication_detail, authentication_requirement_policy, client_credential_type, conditional_access_status, device_detail, entity, incoming_token_type, key_value, mfa_detail, network_location_detail, private_link_details, protocol_type, risk_detail, risk_level, risk_state, session_lifetime_policy, sign_in_access_type, sign_in_identifier_type, sign_in_location, sign_in_status, sign_in_user_type, token_issuer_type
+    from . import applied_authentication_event_listener, applied_conditional_access_policy, authentication_app_device_details, authentication_app_policy_details, authentication_context, authentication_detail, authentication_requirement_policy, client_credential_type, conditional_access_status, device_detail, entity, incoming_token_type, key_value, managed_identity, mfa_detail, network_location_detail, private_link_details, protocol_type, risk_detail, risk_level, risk_state, session_lifetime_policy, sign_in_access_type, sign_in_identifier_type, sign_in_location, sign_in_status, sign_in_user_type, token_issuer_type
 
 from . import entity
 
@@ -78,6 +78,8 @@ class SignIn(entity.Entity):
         self._is_tenant_restricted: Optional[bool] = None
         # The city, state, and 2 letter country code from where the sign-in occurred. Supports $filter (eq and startsWith operators only) on city, state, and countryOrRegion properties.
         self._location: Optional[sign_in_location.SignInLocation] = None
+        # Contains information about the managed identity used for the sign in, including its type and associated Azure Resource Manager (ARM) resource ID.
+        self._managed_service_identity: Optional[managed_identity.ManagedIdentity] = None
         # The mfaDetail property
         self._mfa_detail: Optional[mfa_detail.MfaDetail] = None
         # The network location details including the type of network used and its names.
@@ -568,7 +570,7 @@ class SignIn(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import applied_authentication_event_listener, applied_conditional_access_policy, authentication_app_device_details, authentication_app_policy_details, authentication_context, authentication_detail, authentication_requirement_policy, client_credential_type, conditional_access_status, device_detail, entity, incoming_token_type, key_value, mfa_detail, network_location_detail, private_link_details, protocol_type, risk_detail, risk_level, risk_state, session_lifetime_policy, sign_in_access_type, sign_in_identifier_type, sign_in_location, sign_in_status, sign_in_user_type, token_issuer_type
+        from . import applied_authentication_event_listener, applied_conditional_access_policy, authentication_app_device_details, authentication_app_policy_details, authentication_context, authentication_detail, authentication_requirement_policy, client_credential_type, conditional_access_status, device_detail, entity, incoming_token_type, key_value, managed_identity, mfa_detail, network_location_detail, private_link_details, protocol_type, risk_detail, risk_level, risk_state, session_lifetime_policy, sign_in_access_type, sign_in_identifier_type, sign_in_location, sign_in_status, sign_in_user_type, token_issuer_type
 
         fields: Dict[str, Callable[[Any], None]] = {
             "appliedConditionalAccessPolicies": lambda n : setattr(self, 'applied_conditional_access_policies', n.get_collection_of_object_values(applied_conditional_access_policy.AppliedConditionalAccessPolicy)),
@@ -603,6 +605,7 @@ class SignIn(entity.Entity):
             "isInteractive": lambda n : setattr(self, 'is_interactive', n.get_bool_value()),
             "isTenantRestricted": lambda n : setattr(self, 'is_tenant_restricted', n.get_bool_value()),
             "location": lambda n : setattr(self, 'location', n.get_object_value(sign_in_location.SignInLocation)),
+            "managedServiceIdentity": lambda n : setattr(self, 'managed_service_identity', n.get_object_value(managed_identity.ManagedIdentity)),
             "mfaDetail": lambda n : setattr(self, 'mfa_detail', n.get_object_value(mfa_detail.MfaDetail)),
             "networkLocationDetails": lambda n : setattr(self, 'network_location_details', n.get_collection_of_object_values(network_location_detail.NetworkLocationDetail)),
             "originalRequestId": lambda n : setattr(self, 'original_request_id', n.get_str_value()),
@@ -774,6 +777,23 @@ class SignIn(entity.Entity):
             value: Value to set for the location property.
         """
         self._location = value
+    
+    @property
+    def managed_service_identity(self,) -> Optional[managed_identity.ManagedIdentity]:
+        """
+        Gets the managedServiceIdentity property value. Contains information about the managed identity used for the sign in, including its type and associated Azure Resource Manager (ARM) resource ID.
+        Returns: Optional[managed_identity.ManagedIdentity]
+        """
+        return self._managed_service_identity
+    
+    @managed_service_identity.setter
+    def managed_service_identity(self,value: Optional[managed_identity.ManagedIdentity] = None) -> None:
+        """
+        Sets the managedServiceIdentity property value. Contains information about the managed identity used for the sign in, including its type and associated Azure Resource Manager (ARM) resource ID.
+        Args:
+            value: Value to set for the managed_service_identity property.
+        """
+        self._managed_service_identity = value
     
     @property
     def mfa_detail(self,) -> Optional[mfa_detail.MfaDetail]:
@@ -1054,6 +1074,7 @@ class SignIn(entity.Entity):
         writer.write_bool_value("isInteractive", self.is_interactive)
         writer.write_bool_value("isTenantRestricted", self.is_tenant_restricted)
         writer.write_object_value("location", self.location)
+        writer.write_object_value("managedServiceIdentity", self.managed_service_identity)
         writer.write_object_value("mfaDetail", self.mfa_detail)
         writer.write_collection_of_object_values("networkLocationDetails", self.network_location_details)
         writer.write_str_value("originalRequestId", self.original_request_id)

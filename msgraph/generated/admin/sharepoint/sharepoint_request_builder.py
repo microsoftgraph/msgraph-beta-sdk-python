@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from ...models import sharepoint
     from ...models.o_data_errors import o_data_error
-    from ...models.tenant_admin import sharepoint
     from .settings import settings_request_builder
 
 class SharepointRequestBuilder():
@@ -73,7 +73,7 @@ class SharepointRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models.tenant_admin import sharepoint
+        from ...models import sharepoint
 
         return await self.request_adapter.send_async(request_info, sharepoint.Sharepoint, error_mapping)
     
@@ -98,7 +98,7 @@ class SharepointRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models.tenant_admin import sharepoint
+        from ...models import sharepoint
 
         return await self.request_adapter.send_async(request_info, sharepoint.Sharepoint, error_mapping)
     
@@ -160,7 +160,7 @@ class SharepointRequestBuilder():
     @property
     def settings(self) -> settings_request_builder.SettingsRequestBuilder:
         """
-        Provides operations to manage the settings property of the microsoft.graph.tenantAdmin.sharepoint entity.
+        Provides operations to manage the settings property of the microsoft.graph.sharepoint entity.
         """
         from .settings import settings_request_builder
 

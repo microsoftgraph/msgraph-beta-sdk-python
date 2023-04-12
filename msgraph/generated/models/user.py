@@ -12,7 +12,7 @@ from . import directory_object
 class User(directory_object.DirectoryObject):
     def __init__(self,) -> None:
         """
-        Instantiates a new user and sets the default values.
+        Instantiates a new User and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.user"
