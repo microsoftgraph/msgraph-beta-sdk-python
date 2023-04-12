@@ -15,9 +15,9 @@ class TeamsAppResourceSpecificPermission(AdditionalDataHolder, Parsable):
 
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The permissionType property
+        # The type of resource-specific permission.
         self._permission_type: Optional[teams_app_resource_specific_permission_type.TeamsAppResourceSpecificPermissionType] = None
-        # The permissionValue property
+        # The name of the resource-specific permission.
         self._permission_value: Optional[str] = None
     
     @property
@@ -83,7 +83,7 @@ class TeamsAppResourceSpecificPermission(AdditionalDataHolder, Parsable):
     @property
     def permission_type(self,) -> Optional[teams_app_resource_specific_permission_type.TeamsAppResourceSpecificPermissionType]:
         """
-        Gets the permissionType property value. The permissionType property
+        Gets the permissionType property value. The type of resource-specific permission.
         Returns: Optional[teams_app_resource_specific_permission_type.TeamsAppResourceSpecificPermissionType]
         """
         return self._permission_type
@@ -91,7 +91,7 @@ class TeamsAppResourceSpecificPermission(AdditionalDataHolder, Parsable):
     @permission_type.setter
     def permission_type(self,value: Optional[teams_app_resource_specific_permission_type.TeamsAppResourceSpecificPermissionType] = None) -> None:
         """
-        Sets the permissionType property value. The permissionType property
+        Sets the permissionType property value. The type of resource-specific permission.
         Args:
             value: Value to set for the permission_type property.
         """
@@ -100,7 +100,7 @@ class TeamsAppResourceSpecificPermission(AdditionalDataHolder, Parsable):
     @property
     def permission_value(self,) -> Optional[str]:
         """
-        Gets the permissionValue property value. The permissionValue property
+        Gets the permissionValue property value. The name of the resource-specific permission.
         Returns: Optional[str]
         """
         return self._permission_value
@@ -108,7 +108,7 @@ class TeamsAppResourceSpecificPermission(AdditionalDataHolder, Parsable):
     @permission_value.setter
     def permission_value(self,value: Optional[str] = None) -> None:
         """
-        Sets the permissionValue property value. The permissionValue property
+        Sets the permissionValue property value. The name of the resource-specific permission.
         Args:
             value: Value to set for the permission_value property.
         """

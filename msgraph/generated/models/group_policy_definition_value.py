@@ -9,6 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class GroupPolicyDefinitionValue(entity.Entity):
+    """
+    The definition value entity stores the value for a single group policy definition.
+    """
     def __init__(self,) -> None:
         """
         Instantiates a new groupPolicyDefinitionValue and sets the default values.

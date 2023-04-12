@@ -15,7 +15,7 @@ class TeamsAppPermissionSet(AdditionalDataHolder, Parsable):
 
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The resourceSpecificPermissions property
+        # A collection of resource-specific permissions.
         self._resource_specific_permissions: Optional[List[teams_app_resource_specific_permission.TeamsAppResourceSpecificPermission]] = None
     
     @property
@@ -80,7 +80,7 @@ class TeamsAppPermissionSet(AdditionalDataHolder, Parsable):
     @property
     def resource_specific_permissions(self,) -> Optional[List[teams_app_resource_specific_permission.TeamsAppResourceSpecificPermission]]:
         """
-        Gets the resourceSpecificPermissions property value. The resourceSpecificPermissions property
+        Gets the resourceSpecificPermissions property value. A collection of resource-specific permissions.
         Returns: Optional[List[teams_app_resource_specific_permission.TeamsAppResourceSpecificPermission]]
         """
         return self._resource_specific_permissions
@@ -88,7 +88,7 @@ class TeamsAppPermissionSet(AdditionalDataHolder, Parsable):
     @resource_specific_permissions.setter
     def resource_specific_permissions(self,value: Optional[List[teams_app_resource_specific_permission.TeamsAppResourceSpecificPermission]] = None) -> None:
         """
-        Sets the resourceSpecificPermissions property value. The resourceSpecificPermissions property
+        Sets the resourceSpecificPermissions property value. A collection of resource-specific permissions.
         Args:
             value: Value to set for the resource_specific_permissions property.
         """

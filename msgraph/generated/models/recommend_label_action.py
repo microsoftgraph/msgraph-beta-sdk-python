@@ -81,7 +81,7 @@ class RecommendLabelAction(information_protection_action.InformationProtectionAc
             "actions": lambda n : setattr(self, 'actions', n.get_collection_of_object_values(information_protection_action.InformationProtectionAction)),
             "actionSource": lambda n : setattr(self, 'action_source', n.get_enum_value(action_source.ActionSource)),
             "label": lambda n : setattr(self, 'label', n.get_object_value(label_details.LabelDetails)),
-            "responsibleSensitiveTypeIds": lambda n : setattr(self, 'responsible_sensitive_type_ids', n.get_collection_of_primitive_values(u_u_i_d)),
+            "responsibleSensitiveTypeIds": lambda n : setattr(self, 'responsible_sensitive_type_ids', n.get_collection_of_primitive_values(UUID)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

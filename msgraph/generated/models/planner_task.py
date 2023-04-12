@@ -62,7 +62,7 @@ class PlannerTask(planner_delta.PlannerDelta):
         self._priority: Optional[int] = None
         # Read-only. Nullable. Used to render the task correctly in the task board view when grouped by progress.
         self._progress_task_board_format: Optional[planner_progress_task_board_task_format.PlannerProgressTaskBoardTaskFormat] = None
-        # The recurrence property
+        # Defines active or inactive recurrence for the task. null when the recurrence has never been defined for the task.
         self._recurrence: Optional[planner_task_recurrence.PlannerTaskRecurrence] = None
         # Number of external references that exist on the task.
         self._reference_count: Optional[int] = None
@@ -524,7 +524,7 @@ class PlannerTask(planner_delta.PlannerDelta):
     @property
     def recurrence(self,) -> Optional[planner_task_recurrence.PlannerTaskRecurrence]:
         """
-        Gets the recurrence property value. The recurrence property
+        Gets the recurrence property value. Defines active or inactive recurrence for the task. null when the recurrence has never been defined for the task.
         Returns: Optional[planner_task_recurrence.PlannerTaskRecurrence]
         """
         return self._recurrence
@@ -532,7 +532,7 @@ class PlannerTask(planner_delta.PlannerDelta):
     @recurrence.setter
     def recurrence(self,value: Optional[planner_task_recurrence.PlannerTaskRecurrence] = None) -> None:
         """
-        Sets the recurrence property value. The recurrence property
+        Sets the recurrence property value. Defines active or inactive recurrence for the task. null when the recurrence has never been defined for the task.
         Args:
             value: Value to set for the recurrence property.
         """

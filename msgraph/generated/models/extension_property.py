@@ -18,6 +18,8 @@ class ExtensionProperty(directory_object.DirectoryObject):
         self._app_display_name: Optional[str] = None
         # Specifies the data type of the value the extension property can hold. Following values are supported. Not nullable. Binary - 256 bytes maximumBooleanDateTime - Must be specified in ISO 8601 format. Will be stored in UTC.Integer - 32-bit value.LargeInteger - 64-bit value.String - 256 characters maximum
         self._data_type: Optional[str] = None
+        # The isMultiValued property
+        self._is_multi_valued: Optional[bool] = None
         # Indicates if this extension property was synced from on-premises active directory using Azure AD Connect. Read-only.
         self._is_synced_from_on_premises: Optional[bool] = None
         # Name of the extension property. Not nullable. Supports $filter (eq).
@@ -81,6 +83,7 @@ class ExtensionProperty(directory_object.DirectoryObject):
         fields: Dict[str, Callable[[Any], None]] = {
             "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
             "dataType": lambda n : setattr(self, 'data_type', n.get_str_value()),
+            "isMultiValued": lambda n : setattr(self, 'is_multi_valued', n.get_bool_value()),
             "isSyncedFromOnPremises": lambda n : setattr(self, 'is_synced_from_on_premises', n.get_bool_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "targetObjects": lambda n : setattr(self, 'target_objects', n.get_collection_of_primitive_values(str)),
@@ -88,6 +91,23 @@ class ExtensionProperty(directory_object.DirectoryObject):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
+    
+    @property
+    def is_multi_valued(self,) -> Optional[bool]:
+        """
+        Gets the isMultiValued property value. The isMultiValued property
+        Returns: Optional[bool]
+        """
+        return self._is_multi_valued
+    
+    @is_multi_valued.setter
+    def is_multi_valued(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the isMultiValued property value. The isMultiValued property
+        Args:
+            value: Value to set for the is_multi_valued property.
+        """
+        self._is_multi_valued = value
     
     @property
     def is_synced_from_on_premises(self,) -> Optional[bool]:
@@ -134,6 +154,7 @@ class ExtensionProperty(directory_object.DirectoryObject):
         super().serialize(writer)
         writer.write_str_value("appDisplayName", self.app_display_name)
         writer.write_str_value("dataType", self.data_type)
+        writer.write_bool_value("isMultiValued", self.is_multi_valued)
         writer.write_bool_value("isSyncedFromOnPremises", self.is_synced_from_on_premises)
         writer.write_str_value("name", self.name)
         writer.write_collection_of_primitive_values("targetObjects", self.target_objects)

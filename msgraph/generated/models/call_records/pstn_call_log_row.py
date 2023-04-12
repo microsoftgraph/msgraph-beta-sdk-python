@@ -50,6 +50,8 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
         self._odata_type: Optional[str] = None
         # The telecommunications operator which provided PSTN services for this call. This may be Microsoft, or it may be a third-party operator via the Operator Connect Program.
         self._operator: Optional[str] = None
+        # The otherPartyCountryCode property
+        self._other_party_country_code: Optional[str] = None
         # Call start time.
         self._start_date_time: Optional[datetime] = None
         # Country code of the tenant. For details, see ISO 3166-1 alpha-2.
@@ -339,6 +341,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
             "licenseCapability": lambda n : setattr(self, 'license_capability', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "operator": lambda n : setattr(self, 'operator', n.get_str_value()),
+            "otherPartyCountryCode": lambda n : setattr(self, 'other_party_country_code', n.get_str_value()),
             "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
             "tenantCountryCode": lambda n : setattr(self, 'tenant_country_code', n.get_str_value()),
             "usageCountryCode": lambda n : setattr(self, 'usage_country_code', n.get_str_value()),
@@ -433,6 +436,23 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
         """
         self._operator = value
     
+    @property
+    def other_party_country_code(self,) -> Optional[str]:
+        """
+        Gets the otherPartyCountryCode property value. The otherPartyCountryCode property
+        Returns: Optional[str]
+        """
+        return self._other_party_country_code
+    
+    @other_party_country_code.setter
+    def other_party_country_code(self,value: Optional[str] = None) -> None:
+        """
+        Sets the otherPartyCountryCode property value. The otherPartyCountryCode property
+        Args:
+            value: Value to set for the other_party_country_code property.
+        """
+        self._other_party_country_code = value
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -459,6 +479,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
         writer.write_str_value("licenseCapability", self.license_capability)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("operator", self.operator)
+        writer.write_str_value("otherPartyCountryCode", self.other_party_country_code)
         writer.write_datetime_value("startDateTime", self.start_date_time)
         writer.write_str_value("tenantCountryCode", self.tenant_country_code)
         writer.write_str_value("usageCountryCode", self.usage_country_code)

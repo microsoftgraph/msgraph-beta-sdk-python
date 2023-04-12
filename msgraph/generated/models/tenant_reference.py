@@ -12,7 +12,7 @@ class TenantReference(AdditionalDataHolder, Parsable):
 
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The tenantId property
+        # The identifier of the Azure AD tenant. Read-only. Key.
         self._tenant_id: Optional[str] = None
     
     @property
@@ -87,7 +87,7 @@ class TenantReference(AdditionalDataHolder, Parsable):
     @property
     def tenant_id(self,) -> Optional[str]:
         """
-        Gets the tenantId property value. The tenantId property
+        Gets the tenantId property value. The identifier of the Azure AD tenant. Read-only. Key.
         Returns: Optional[str]
         """
         return self._tenant_id
@@ -95,7 +95,7 @@ class TenantReference(AdditionalDataHolder, Parsable):
     @tenant_id.setter
     def tenant_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the tenantId property value. The tenantId property
+        Sets the tenantId property value. The identifier of the Azure AD tenant. Read-only. Key.
         Args:
             value: Value to set for the tenant_id property.
         """

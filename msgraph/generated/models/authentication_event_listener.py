@@ -10,7 +10,7 @@ from . import entity
 class AuthenticationEventListener(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new authenticationEventListener and sets the default values.
+        Instantiates a new AuthenticationEventListener and sets the default values.
         """
         super().__init__()
         # The authenticationEventsFlowId property

@@ -4,7 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import cloud_pc_connectivity_result, cloud_pc_disk_encryption_state, cloud_pc_login_result, cloud_pc_operating_system, cloud_pc_partner_agent_install_result, cloud_pc_provisioning_type, cloud_pc_remote_action_result, cloud_pc_service_plan_type, cloud_pc_status, cloud_pc_status_details, cloud_pc_user_account_type, entity
+    from . import cloud_pc_connectivity_result, cloud_pc_disk_encryption_state, cloud_pc_login_result, cloud_pc_operating_system, cloud_pc_partner_agent_install_result, cloud_pc_power_state, cloud_pc_provisioning_type, cloud_pc_remote_action_result, cloud_pc_service_plan_type, cloud_pc_status, cloud_pc_status_details, cloud_pc_user_account_type, entity
 
 from . import entity
 
@@ -44,6 +44,8 @@ class CloudPC(entity.Entity):
         self._os_version: Optional[cloud_pc_operating_system.CloudPcOperatingSystem] = None
         # The results of every partner agent's installation status on Cloud PC.
         self._partner_agent_install_results: Optional[List[cloud_pc_partner_agent_install_result.CloudPcPartnerAgentInstallResult]] = None
+        # The powerState property
+        self._power_state: Optional[cloud_pc_power_state.CloudPcPowerState] = None
         # The provisioning policy ID of the Cloud PC.
         self._provisioning_policy_id: Optional[str] = None
         # The provisioning policy that is applied during the provisioning of Cloud PCs.
@@ -150,7 +152,7 @@ class CloudPC(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import cloud_pc_connectivity_result, cloud_pc_disk_encryption_state, cloud_pc_login_result, cloud_pc_operating_system, cloud_pc_partner_agent_install_result, cloud_pc_provisioning_type, cloud_pc_remote_action_result, cloud_pc_service_plan_type, cloud_pc_status, cloud_pc_status_details, cloud_pc_user_account_type, entity
+        from . import cloud_pc_connectivity_result, cloud_pc_disk_encryption_state, cloud_pc_login_result, cloud_pc_operating_system, cloud_pc_partner_agent_install_result, cloud_pc_power_state, cloud_pc_provisioning_type, cloud_pc_remote_action_result, cloud_pc_service_plan_type, cloud_pc_status, cloud_pc_status_details, cloud_pc_user_account_type, entity
 
         fields: Dict[str, Callable[[Any], None]] = {
             "aadDeviceId": lambda n : setattr(self, 'aad_device_id', n.get_str_value()),
@@ -167,6 +169,7 @@ class CloudPC(entity.Entity):
             "onPremisesConnectionName": lambda n : setattr(self, 'on_premises_connection_name', n.get_str_value()),
             "osVersion": lambda n : setattr(self, 'os_version', n.get_enum_value(cloud_pc_operating_system.CloudPcOperatingSystem)),
             "partnerAgentInstallResults": lambda n : setattr(self, 'partner_agent_install_results', n.get_collection_of_object_values(cloud_pc_partner_agent_install_result.CloudPcPartnerAgentInstallResult)),
+            "powerState": lambda n : setattr(self, 'power_state', n.get_enum_value(cloud_pc_power_state.CloudPcPowerState)),
             "provisioningPolicyId": lambda n : setattr(self, 'provisioning_policy_id', n.get_str_value()),
             "provisioningPolicyName": lambda n : setattr(self, 'provisioning_policy_name', n.get_str_value()),
             "provisioningType": lambda n : setattr(self, 'provisioning_type', n.get_enum_value(cloud_pc_provisioning_type.CloudPcProvisioningType)),
@@ -353,6 +356,23 @@ class CloudPC(entity.Entity):
         self._partner_agent_install_results = value
     
     @property
+    def power_state(self,) -> Optional[cloud_pc_power_state.CloudPcPowerState]:
+        """
+        Gets the powerState property value. The powerState property
+        Returns: Optional[cloud_pc_power_state.CloudPcPowerState]
+        """
+        return self._power_state
+    
+    @power_state.setter
+    def power_state(self,value: Optional[cloud_pc_power_state.CloudPcPowerState] = None) -> None:
+        """
+        Sets the powerState property value. The powerState property
+        Args:
+            value: Value to set for the power_state property.
+        """
+        self._power_state = value
+    
+    @property
     def provisioning_policy_id(self,) -> Optional[str]:
         """
         Gets the provisioningPolicyId property value. The provisioning policy ID of the Cloud PC.
@@ -426,6 +446,7 @@ class CloudPC(entity.Entity):
         writer.write_str_value("onPremisesConnectionName", self.on_premises_connection_name)
         writer.write_enum_value("osVersion", self.os_version)
         writer.write_collection_of_object_values("partnerAgentInstallResults", self.partner_agent_install_results)
+        writer.write_enum_value("powerState", self.power_state)
         writer.write_str_value("provisioningPolicyId", self.provisioning_policy_id)
         writer.write_str_value("provisioningPolicyName", self.provisioning_policy_name)
         writer.write_enum_value("provisioningType", self.provisioning_type)

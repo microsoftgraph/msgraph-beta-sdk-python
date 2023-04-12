@@ -68,7 +68,7 @@ class MoveDevicesToOUPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields: Dict[str, Callable[[Any], None]] = {
-            "deviceIds": lambda n : setattr(self, 'device_ids', n.get_collection_of_primitive_values(u_u_i_d)),
+            "deviceIds": lambda n : setattr(self, 'device_ids', n.get_collection_of_primitive_values(UUID)),
             "organizationalUnitPath": lambda n : setattr(self, 'organizational_unit_path', n.get_str_value()),
         }
         return fields

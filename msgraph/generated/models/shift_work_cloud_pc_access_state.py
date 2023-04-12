@@ -8,4 +8,5 @@ class ShiftWorkCloudPcAccessState(Enum):
     Activating = "activating",
     Waitlisted = "waitlisted",
     UnknownFutureValue = "unknownFutureValue",
+    StandbyMode = "standbyMode",
 

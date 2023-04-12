@@ -103,6 +103,14 @@ class RoleScheduleInstancesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdP
                 return "%24skip"
             if original_name == "top":
                 return "%24top"
+            if original_name == "app_scope_id":
+                return "appScopeId"
+            if original_name == "directory_scope_id":
+                return "directoryScopeId"
+            if original_name == "principal_id":
+                return "principalId"
+            if original_name == "role_definition_id":
+                return "roleDefinitionId"
             return original_name
         
         # Usage: appScopeId='@appScopeId'

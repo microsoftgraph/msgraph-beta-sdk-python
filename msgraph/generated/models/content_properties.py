@@ -4,7 +4,7 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import attachment_content_properties, content_metadata
+    from . import attachment_content_properties, content_metadata, file_content_properties
 
 class ContentProperties(AdditionalDataHolder, Parsable):
     def __init__(self,) -> None:
@@ -59,6 +59,10 @@ class ContentProperties(AdditionalDataHolder, Parsable):
                 from . import attachment_content_properties
 
                 return attachment_content_properties.AttachmentContentProperties()
+            if mapping_value == "#microsoft.graph.fileContentProperties":
+                from . import file_content_properties
+
+                return file_content_properties.FileContentProperties()
         return ContentProperties()
     
     @property
@@ -83,7 +87,7 @@ class ContentProperties(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import attachment_content_properties, content_metadata
+        from . import attachment_content_properties, content_metadata, file_content_properties
 
         fields: Dict[str, Callable[[Any], None]] = {
             "extensions": lambda n : setattr(self, 'extensions', n.get_collection_of_primitive_values(str)),
