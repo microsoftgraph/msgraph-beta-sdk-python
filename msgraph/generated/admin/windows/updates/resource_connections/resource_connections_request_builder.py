@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .....models.windows_updates import resource_connection, resource_connection_collection_response
     from .count import count_request_builder
+    from .item import resource_connection_item_request_builder
 
 class ResourceConnectionsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ResourceConnectionsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_resource_connection_id(self,resource_connection_id: str) -> resource_connection_item_request_builder.ResourceConnectionItemRequestBuilder:
+        """
+        Provides operations to manage the resourceConnections property of the microsoft.graph.adminWindowsUpdates entity.
+        Args:
+            resource_connection_id: Unique identifier of the item
+        Returns: resource_connection_item_request_builder.ResourceConnectionItemRequestBuilder
+        """
+        if resource_connection_id is None:
+            raise Exception("resource_connection_id cannot be undefined")
+        from .item import resource_connection_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["resourceConnection%2Did"] = resource_connection_id
+        return resource_connection_item_request_builder.ResourceConnectionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ResourceConnectionsRequestBuilderGetRequestConfiguration] = None) -> Optional[resource_connection_collection_response.ResourceConnectionCollectionResponse]:
         """

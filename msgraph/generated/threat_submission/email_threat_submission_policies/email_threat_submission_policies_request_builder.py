@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors import o_data_error
     from ...models.security import email_threat_submission_policy, email_threat_submission_policy_collection_response
     from .count import count_request_builder
+    from .item import email_threat_submission_policy_item_request_builder
 
 class EmailThreatSubmissionPoliciesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class EmailThreatSubmissionPoliciesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_email_threat_submission_policy_id(self,email_threat_submission_policy_id: str) -> email_threat_submission_policy_item_request_builder.EmailThreatSubmissionPolicyItemRequestBuilder:
+        """
+        Provides operations to manage the emailThreatSubmissionPolicies property of the microsoft.graph.security.threatSubmissionRoot entity.
+        Args:
+            email_threat_submission_policy_id: Unique identifier of the item
+        Returns: email_threat_submission_policy_item_request_builder.EmailThreatSubmissionPolicyItemRequestBuilder
+        """
+        if email_threat_submission_policy_id is None:
+            raise Exception("email_threat_submission_policy_id cannot be undefined")
+        from .item import email_threat_submission_policy_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["emailThreatSubmissionPolicy%2Did"] = email_threat_submission_policy_id
+        return email_threat_submission_policy_item_request_builder.EmailThreatSubmissionPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[EmailThreatSubmissionPoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[email_threat_submission_policy_collection_response.EmailThreatSubmissionPolicyCollectionResponse]:
         """

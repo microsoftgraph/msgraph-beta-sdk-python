@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import device_management_resource_access_profile_base, device_management_resource_access_profile_base_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import device_management_resource_access_profile_base_item_request_builder
     from .query_by_platform_type import query_by_platform_type_request_builder
 
 class ResourceAccessProfilesRequestBuilder():
@@ -36,6 +37,21 @@ class ResourceAccessProfilesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_device_management_resource_access_profile_base_id(self,device_management_resource_access_profile_base_id: str) -> device_management_resource_access_profile_base_item_request_builder.DeviceManagementResourceAccessProfileBaseItemRequestBuilder:
+        """
+        Provides operations to manage the resourceAccessProfiles property of the microsoft.graph.deviceManagement entity.
+        Args:
+            device_management_resource_access_profile_base_id: Unique identifier of the item
+        Returns: device_management_resource_access_profile_base_item_request_builder.DeviceManagementResourceAccessProfileBaseItemRequestBuilder
+        """
+        if device_management_resource_access_profile_base_id is None:
+            raise Exception("device_management_resource_access_profile_base_id cannot be undefined")
+        from .item import device_management_resource_access_profile_base_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["deviceManagementResourceAccessProfileBase%2Did"] = device_management_resource_access_profile_base_id
+        return device_management_resource_access_profile_base_item_request_builder.DeviceManagementResourceAccessProfileBaseItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ResourceAccessProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_resource_access_profile_base_collection_response.DeviceManagementResourceAccessProfileBaseCollectionResponse]:
         """

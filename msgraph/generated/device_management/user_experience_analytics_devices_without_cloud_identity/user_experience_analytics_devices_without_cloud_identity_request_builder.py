@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import user_experience_analytics_device_without_cloud_identity, user_experience_analytics_device_without_cloud_identity_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import user_experience_analytics_device_without_cloud_identity_item_request_builder
 
 class UserExperienceAnalyticsDevicesWithoutCloudIdentityRequestBuilder():
     """
@@ -35,6 +36,21 @@ class UserExperienceAnalyticsDevicesWithoutCloudIdentityRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_user_experience_analytics_device_without_cloud_identity_id(self,user_experience_analytics_device_without_cloud_identity_id: str) -> user_experience_analytics_device_without_cloud_identity_item_request_builder.UserExperienceAnalyticsDeviceWithoutCloudIdentityItemRequestBuilder:
+        """
+        Provides operations to manage the userExperienceAnalyticsDevicesWithoutCloudIdentity property of the microsoft.graph.deviceManagement entity.
+        Args:
+            user_experience_analytics_device_without_cloud_identity_id: Unique identifier of the item
+        Returns: user_experience_analytics_device_without_cloud_identity_item_request_builder.UserExperienceAnalyticsDeviceWithoutCloudIdentityItemRequestBuilder
+        """
+        if user_experience_analytics_device_without_cloud_identity_id is None:
+            raise Exception("user_experience_analytics_device_without_cloud_identity_id cannot be undefined")
+        from .item import user_experience_analytics_device_without_cloud_identity_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["userExperienceAnalyticsDeviceWithoutCloudIdentity%2Did"] = user_experience_analytics_device_without_cloud_identity_id
+        return user_experience_analytics_device_without_cloud_identity_item_request_builder.UserExperienceAnalyticsDeviceWithoutCloudIdentityItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[UserExperienceAnalyticsDevicesWithoutCloudIdentityRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_device_without_cloud_identity_collection_response.UserExperienceAnalyticsDeviceWithoutCloudIdentityCollectionResponse]:
         """

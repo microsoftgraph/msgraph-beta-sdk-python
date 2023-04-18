@@ -13,16 +13,11 @@ if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .....models.security import host
     from .components import components_request_builder
-    from .components.item import host_component_item_request_builder
     from .cookies import cookies_request_builder
-    from .cookies.item import host_cookie_item_request_builder
     from .passive_dns import passive_dns_request_builder
-    from .passive_dns.item import passive_dns_record_item_request_builder
     from .passive_dns_reverse import passive_dns_reverse_request_builder
-    from .passive_dns_reverse.item import passive_dns_record_item_request_builder
     from .reputation import reputation_request_builder
     from .trackers import trackers_request_builder
-    from .trackers.item import host_tracker_item_request_builder
 
 class HostItemRequestBuilder():
     """
@@ -45,36 +40,6 @@ class HostItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def components_by_id(self,id: str) -> host_component_item_request_builder.HostComponentItemRequestBuilder:
-        """
-        Provides operations to manage the components property of the microsoft.graph.security.host entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: host_component_item_request_builder.HostComponentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .components.item import host_component_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["hostComponent%2Did"] = id
-        return host_component_item_request_builder.HostComponentItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def cookies_by_id(self,id: str) -> host_cookie_item_request_builder.HostCookieItemRequestBuilder:
-        """
-        Provides operations to manage the cookies property of the microsoft.graph.security.host entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: host_cookie_item_request_builder.HostCookieItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .cookies.item import host_cookie_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["hostCookie%2Did"] = id
-        return host_cookie_item_request_builder.HostCookieItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[HostItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
@@ -116,38 +81,6 @@ class HostItemRequestBuilder():
         from .....models.security import host
 
         return await self.request_adapter.send_async(request_info, host.Host, error_mapping)
-    
-    def passive_dns_by_id(self,id: str) -> passive_dns_record_item_request_builder.PassiveDnsRecordItemRequestBuilder:
-        """
-        Provides operations to manage the passiveDns property of the microsoft.graph.security.host entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: passive_dns_record_item_request_builder.PassiveDnsRecordItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .passive_dns.item import passive_dns_record_item_request_builder
-        from .passive_dns_reverse.item import passive_dns_record_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["passiveDnsRecord%2Did"] = id
-        return passive_dns_record_item_request_builder.PassiveDnsRecordItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def passive_dns_reverse_by_id(self,id: str) -> passive_dns_record_item_request_builder.PassiveDnsRecordItemRequestBuilder:
-        """
-        Provides operations to manage the passiveDnsReverse property of the microsoft.graph.security.host entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: passive_dns_record_item_request_builder.PassiveDnsRecordItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .passive_dns.item import passive_dns_record_item_request_builder
-        from .passive_dns_reverse.item import passive_dns_record_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["passiveDnsRecord%2Did"] = id
-        return passive_dns_record_item_request_builder.PassiveDnsRecordItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[host.Host] = None, request_configuration: Optional[HostItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[host.Host]:
         """
@@ -228,21 +161,6 @@ class HostItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
-    
-    def trackers_by_id(self,id: str) -> host_tracker_item_request_builder.HostTrackerItemRequestBuilder:
-        """
-        Provides operations to manage the trackers property of the microsoft.graph.security.host entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: host_tracker_item_request_builder.HostTrackerItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .trackers.item import host_tracker_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["hostTracker%2Did"] = id
-        return host_tracker_item_request_builder.HostTrackerItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     @property
     def components(self) -> components_request_builder.ComponentsRequestBuilder:

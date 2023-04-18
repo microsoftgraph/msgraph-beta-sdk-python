@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .....models.security import retention_label
     from .disposition_review_stages import disposition_review_stages_request_builder
-    from .disposition_review_stages.item import disposition_review_stage_item_request_builder
     from .retention_event_type import retention_event_type_request_builder
 
 class RetentionLabelItemRequestBuilder():
@@ -56,21 +55,6 @@ class RetentionLabelItemRequestBuilder():
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
-    
-    def disposition_review_stages_by_id(self,id: str) -> disposition_review_stage_item_request_builder.DispositionReviewStageItemRequestBuilder:
-        """
-        Provides operations to manage the dispositionReviewStages property of the microsoft.graph.security.retentionLabel entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: disposition_review_stage_item_request_builder.DispositionReviewStageItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .disposition_review_stages.item import disposition_review_stage_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["dispositionReviewStage%2Did"] = id
-        return disposition_review_stage_item_request_builder.DispositionReviewStageItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[RetentionLabelItemRequestBuilderGetRequestConfiguration] = None) -> Optional[retention_label.RetentionLabel]:
         """

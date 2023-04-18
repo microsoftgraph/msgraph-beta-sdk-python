@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .connect import connect_request_builder
     from .count import count_request_builder
     from .disconnect import disconnect_request_builder
+    from .item import chrome_o_s_onboarding_settings_item_request_builder
 
 class ChromeOSOnboardingSettingsRequestBuilder():
     """
@@ -37,6 +38,21 @@ class ChromeOSOnboardingSettingsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_chrome_o_s_onboarding_settings_id(self,chrome_o_s_onboarding_settings_id: str) -> chrome_o_s_onboarding_settings_item_request_builder.ChromeOSOnboardingSettingsItemRequestBuilder:
+        """
+        Provides operations to manage the chromeOSOnboardingSettings property of the microsoft.graph.deviceManagement entity.
+        Args:
+            chrome_o_s_onboarding_settings_id: Unique identifier of the item
+        Returns: chrome_o_s_onboarding_settings_item_request_builder.ChromeOSOnboardingSettingsItemRequestBuilder
+        """
+        if chrome_o_s_onboarding_settings_id is None:
+            raise Exception("chrome_o_s_onboarding_settings_id cannot be undefined")
+        from .item import chrome_o_s_onboarding_settings_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["chromeOSOnboardingSettings%2Did"] = chrome_o_s_onboarding_settings_id
+        return chrome_o_s_onboarding_settings_item_request_builder.ChromeOSOnboardingSettingsItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ChromeOSOnboardingSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[chrome_o_s_onboarding_settings_collection_response.ChromeOSOnboardingSettingsCollectionResponse]:
         """

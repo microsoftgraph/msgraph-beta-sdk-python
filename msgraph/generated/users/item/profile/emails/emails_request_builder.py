@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import item_email, item_email_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import item_email_item_request_builder
 
 class EmailsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class EmailsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_item_email_id(self,item_email_id: str) -> item_email_item_request_builder.ItemEmailItemRequestBuilder:
+        """
+        Provides operations to manage the emails property of the microsoft.graph.profile entity.
+        Args:
+            item_email_id: Unique identifier of the item
+        Returns: item_email_item_request_builder.ItemEmailItemRequestBuilder
+        """
+        if item_email_id is None:
+            raise Exception("item_email_id cannot be undefined")
+        from .item import item_email_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["itemEmail%2Did"] = item_email_id
+        return item_email_item_request_builder.ItemEmailItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[EmailsRequestBuilderGetRequestConfiguration] = None) -> Optional[item_email_collection_response.ItemEmailCollectionResponse]:
         """

@@ -13,9 +13,7 @@ if TYPE_CHECKING:
     from ....models import service_principal_creation_policy
     from ....models.o_data_errors import o_data_error
     from .excludes import excludes_request_builder
-    from .excludes.item import service_principal_creation_condition_set_item_request_builder
     from .includes import includes_request_builder
-    from .includes.item import service_principal_creation_condition_set_item_request_builder
 
 class ServicePrincipalCreationPolicyItemRequestBuilder():
     """
@@ -58,22 +56,6 @@ class ServicePrincipalCreationPolicyItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    def excludes_by_id(self,id: str) -> service_principal_creation_condition_set_item_request_builder.ServicePrincipalCreationConditionSetItemRequestBuilder:
-        """
-        Provides operations to manage the excludes property of the microsoft.graph.servicePrincipalCreationPolicy entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: service_principal_creation_condition_set_item_request_builder.ServicePrincipalCreationConditionSetItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .excludes.item import service_principal_creation_condition_set_item_request_builder
-        from .includes.item import service_principal_creation_condition_set_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["servicePrincipalCreationConditionSet%2Did"] = id
-        return service_principal_creation_condition_set_item_request_builder.ServicePrincipalCreationConditionSetItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     async def get(self,request_configuration: Optional[ServicePrincipalCreationPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[service_principal_creation_policy.ServicePrincipalCreationPolicy]:
         """
         Get servicePrincipalCreationPolicies from policies
@@ -95,22 +77,6 @@ class ServicePrincipalCreationPolicyItemRequestBuilder():
         from ....models import service_principal_creation_policy
 
         return await self.request_adapter.send_async(request_info, service_principal_creation_policy.ServicePrincipalCreationPolicy, error_mapping)
-    
-    def includes_by_id(self,id: str) -> service_principal_creation_condition_set_item_request_builder.ServicePrincipalCreationConditionSetItemRequestBuilder:
-        """
-        Provides operations to manage the includes property of the microsoft.graph.servicePrincipalCreationPolicy entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: service_principal_creation_condition_set_item_request_builder.ServicePrincipalCreationConditionSetItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .excludes.item import service_principal_creation_condition_set_item_request_builder
-        from .includes.item import service_principal_creation_condition_set_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["servicePrincipalCreationConditionSet%2Did"] = id
-        return service_principal_creation_condition_set_item_request_builder.ServicePrincipalCreationConditionSetItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[service_principal_creation_policy.ServicePrincipalCreationPolicy] = None, request_configuration: Optional[ServicePrincipalCreationPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[service_principal_creation_policy.ServicePrincipalCreationPolicy]:
         """

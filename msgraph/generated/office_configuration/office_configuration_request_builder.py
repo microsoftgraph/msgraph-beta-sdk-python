@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ..models import office_configuration
     from ..models.o_data_errors import o_data_error
     from .client_configurations import client_configurations_request_builder
-    from .client_configurations.item import office_client_configuration_item_request_builder
 
 class OfficeConfigurationRequestBuilder():
     """
@@ -36,21 +35,6 @@ class OfficeConfigurationRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def client_configurations_by_id(self,id: str) -> office_client_configuration_item_request_builder.OfficeClientConfigurationItemRequestBuilder:
-        """
-        Provides operations to manage the clientConfigurations property of the microsoft.graph.officeConfiguration entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: office_client_configuration_item_request_builder.OfficeClientConfigurationItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .client_configurations.item import office_client_configuration_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["officeClientConfiguration%2Did"] = id
-        return office_client_configuration_item_request_builder.OfficeClientConfigurationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[OfficeConfigurationRequestBuilderGetRequestConfiguration] = None) -> Optional[office_configuration.OfficeConfiguration]:
         """

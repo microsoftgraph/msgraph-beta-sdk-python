@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .........models import custom_extension_handler, custom_extension_handler_collection_response
     from .........models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import custom_extension_handler_item_request_builder
 
 class CustomExtensionHandlersRequestBuilder():
     """
@@ -35,6 +36,21 @@ class CustomExtensionHandlersRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_custom_extension_handler_id(self,custom_extension_handler_id: str) -> custom_extension_handler_item_request_builder.CustomExtensionHandlerItemRequestBuilder:
+        """
+        Provides operations to manage the customExtensionHandlers property of the microsoft.graph.accessPackageAssignmentPolicy entity.
+        Args:
+            custom_extension_handler_id: Unique identifier of the item
+        Returns: custom_extension_handler_item_request_builder.CustomExtensionHandlerItemRequestBuilder
+        """
+        if custom_extension_handler_id is None:
+            raise Exception("custom_extension_handler_id cannot be undefined")
+        from .item import custom_extension_handler_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["customExtensionHandler%2Did"] = custom_extension_handler_id
+        return custom_extension_handler_item_request_builder.CustomExtensionHandlerItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[CustomExtensionHandlersRequestBuilderGetRequestConfiguration] = None) -> Optional[custom_extension_handler_collection_response.CustomExtensionHandlerCollectionResponse]:
         """

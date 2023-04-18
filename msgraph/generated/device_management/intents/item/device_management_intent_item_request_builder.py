@@ -14,23 +14,17 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .assign import assign_request_builder
     from .assignments import assignments_request_builder
-    from .assignments.item import device_management_intent_assignment_item_request_builder
     from .categories import categories_request_builder
-    from .categories.item import device_management_intent_setting_category_item_request_builder
     from .compare_with_template_id import compare_with_template_id_request_builder
     from .create_copy import create_copy_request_builder
     from .device_setting_state_summaries import device_setting_state_summaries_request_builder
-    from .device_setting_state_summaries.item import device_management_intent_device_setting_state_summary_item_request_builder
     from .device_states import device_states_request_builder
-    from .device_states.item import device_management_intent_device_state_item_request_builder
     from .device_state_summary import device_state_summary_request_builder
     from .get_customized_settings import get_customized_settings_request_builder
     from .migrate_to_template import migrate_to_template_request_builder
     from .settings import settings_request_builder
-    from .settings.item import device_management_setting_instance_item_request_builder
     from .update_settings import update_settings_request_builder
     from .user_states import user_states_request_builder
-    from .user_states.item import device_management_intent_user_state_item_request_builder
     from .user_state_summary import user_state_summary_request_builder
 
 class DeviceManagementIntentItemRequestBuilder():
@@ -54,36 +48,6 @@ class DeviceManagementIntentItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def assignments_by_id(self,id: str) -> device_management_intent_assignment_item_request_builder.DeviceManagementIntentAssignmentItemRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.deviceManagementIntent entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: device_management_intent_assignment_item_request_builder.DeviceManagementIntentAssignmentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .assignments.item import device_management_intent_assignment_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["deviceManagementIntentAssignment%2Did"] = id
-        return device_management_intent_assignment_item_request_builder.DeviceManagementIntentAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def categories_by_id(self,id: str) -> device_management_intent_setting_category_item_request_builder.DeviceManagementIntentSettingCategoryItemRequestBuilder:
-        """
-        Provides operations to manage the categories property of the microsoft.graph.deviceManagementIntent entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: device_management_intent_setting_category_item_request_builder.DeviceManagementIntentSettingCategoryItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .categories.item import device_management_intent_setting_category_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["deviceManagementIntentSettingCategory%2Did"] = id
-        return device_management_intent_setting_category_item_request_builder.DeviceManagementIntentSettingCategoryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def compare_with_template_id(self,template_id: Optional[str] = None) -> compare_with_template_id_request_builder.CompareWithTemplateIdRequestBuilder:
         """
@@ -116,36 +80,6 @@ class DeviceManagementIntentItemRequestBuilder():
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
-    
-    def device_setting_state_summaries_by_id(self,id: str) -> device_management_intent_device_setting_state_summary_item_request_builder.DeviceManagementIntentDeviceSettingStateSummaryItemRequestBuilder:
-        """
-        Provides operations to manage the deviceSettingStateSummaries property of the microsoft.graph.deviceManagementIntent entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: device_management_intent_device_setting_state_summary_item_request_builder.DeviceManagementIntentDeviceSettingStateSummaryItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .device_setting_state_summaries.item import device_management_intent_device_setting_state_summary_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["deviceManagementIntentDeviceSettingStateSummary%2Did"] = id
-        return device_management_intent_device_setting_state_summary_item_request_builder.DeviceManagementIntentDeviceSettingStateSummaryItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def device_states_by_id(self,id: str) -> device_management_intent_device_state_item_request_builder.DeviceManagementIntentDeviceStateItemRequestBuilder:
-        """
-        Provides operations to manage the deviceStates property of the microsoft.graph.deviceManagementIntent entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: device_management_intent_device_state_item_request_builder.DeviceManagementIntentDeviceStateItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .device_states.item import device_management_intent_device_state_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["deviceManagementIntentDeviceState%2Did"] = id
-        return device_management_intent_device_state_item_request_builder.DeviceManagementIntentDeviceStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[DeviceManagementIntentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_intent.DeviceManagementIntent]:
         """
@@ -193,21 +127,6 @@ class DeviceManagementIntentItemRequestBuilder():
         from ....models import device_management_intent
 
         return await self.request_adapter.send_async(request_info, device_management_intent.DeviceManagementIntent, error_mapping)
-    
-    def settings_by_id(self,id: str) -> device_management_setting_instance_item_request_builder.DeviceManagementSettingInstanceItemRequestBuilder:
-        """
-        Provides operations to manage the settings property of the microsoft.graph.deviceManagementIntent entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: device_management_setting_instance_item_request_builder.DeviceManagementSettingInstanceItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .settings.item import device_management_setting_instance_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["deviceManagementSettingInstance%2Did"] = id
-        return device_management_setting_instance_item_request_builder.DeviceManagementSettingInstanceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceManagementIntentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -263,21 +182,6 @@ class DeviceManagementIntentItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
-    
-    def user_states_by_id(self,id: str) -> device_management_intent_user_state_item_request_builder.DeviceManagementIntentUserStateItemRequestBuilder:
-        """
-        Provides operations to manage the userStates property of the microsoft.graph.deviceManagementIntent entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: device_management_intent_user_state_item_request_builder.DeviceManagementIntentUserStateItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .user_states.item import device_management_intent_user_state_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["deviceManagementIntentUserState%2Did"] = id
-        return device_management_intent_user_state_item_request_builder.DeviceManagementIntentUserStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     @property
     def assign(self) -> assign_request_builder.AssignRequestBuilder:

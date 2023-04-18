@@ -14,23 +14,23 @@ class PstnBlockedUsersLogRow(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The blockDateTime property
+        # The date and time when the user was blocked/unblocked from making PSTN calls. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         self._block_date_time: Optional[datetime] = None
-        # The blockReason property
+        # The reason why the user is blocked/unblocked from making calls.
         self._block_reason: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The remediationId property
+        # Unique identifier (GUID) for the blocking/unblocking action.
         self._remediation_id: Optional[str] = None
-        # The userBlockMode property
+        # Indicates whether the user is blocked or unblocked from making PSTN calls in Microsoft Teams. The possible values are: blocked, unblocked, unknownFutureValue.
         self._user_block_mode: Optional[pstn_user_block_mode.PstnUserBlockMode] = None
-        # The userDisplayName property
+        # Display name of the user.
         self._user_display_name: Optional[str] = None
-        # The userId property
+        # The unique identifier (GUID) of the user in Azure Active Directory.
         self._user_id: Optional[str] = None
-        # The userPrincipalName property
+        # The user principal name (sign-in name) in Azure Active Directory. This is usually the same as the user's SIP address, and can be same as the user's e-mail address.
         self._user_principal_name: Optional[str] = None
-        # The userTelephoneNumber property
+        # User's blocked number. For details, see E.164.
         self._user_telephone_number: Optional[str] = None
     
     @property
@@ -53,7 +53,7 @@ class PstnBlockedUsersLogRow(AdditionalDataHolder, Parsable):
     @property
     def block_date_time(self,) -> Optional[datetime]:
         """
-        Gets the blockDateTime property value. The blockDateTime property
+        Gets the blockDateTime property value. The date and time when the user was blocked/unblocked from making PSTN calls. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Returns: Optional[datetime]
         """
         return self._block_date_time
@@ -61,7 +61,7 @@ class PstnBlockedUsersLogRow(AdditionalDataHolder, Parsable):
     @block_date_time.setter
     def block_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the blockDateTime property value. The blockDateTime property
+        Sets the blockDateTime property value. The date and time when the user was blocked/unblocked from making PSTN calls. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
             value: Value to set for the block_date_time property.
         """
@@ -70,7 +70,7 @@ class PstnBlockedUsersLogRow(AdditionalDataHolder, Parsable):
     @property
     def block_reason(self,) -> Optional[str]:
         """
-        Gets the blockReason property value. The blockReason property
+        Gets the blockReason property value. The reason why the user is blocked/unblocked from making calls.
         Returns: Optional[str]
         """
         return self._block_reason
@@ -78,7 +78,7 @@ class PstnBlockedUsersLogRow(AdditionalDataHolder, Parsable):
     @block_reason.setter
     def block_reason(self,value: Optional[str] = None) -> None:
         """
-        Sets the blockReason property value. The blockReason property
+        Sets the blockReason property value. The reason why the user is blocked/unblocked from making calls.
         Args:
             value: Value to set for the block_reason property.
         """
@@ -136,7 +136,7 @@ class PstnBlockedUsersLogRow(AdditionalDataHolder, Parsable):
     @property
     def remediation_id(self,) -> Optional[str]:
         """
-        Gets the remediationId property value. The remediationId property
+        Gets the remediationId property value. Unique identifier (GUID) for the blocking/unblocking action.
         Returns: Optional[str]
         """
         return self._remediation_id
@@ -144,7 +144,7 @@ class PstnBlockedUsersLogRow(AdditionalDataHolder, Parsable):
     @remediation_id.setter
     def remediation_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the remediationId property value. The remediationId property
+        Sets the remediationId property value. Unique identifier (GUID) for the blocking/unblocking action.
         Args:
             value: Value to set for the remediation_id property.
         """
@@ -172,7 +172,7 @@ class PstnBlockedUsersLogRow(AdditionalDataHolder, Parsable):
     @property
     def user_block_mode(self,) -> Optional[pstn_user_block_mode.PstnUserBlockMode]:
         """
-        Gets the userBlockMode property value. The userBlockMode property
+        Gets the userBlockMode property value. Indicates whether the user is blocked or unblocked from making PSTN calls in Microsoft Teams. The possible values are: blocked, unblocked, unknownFutureValue.
         Returns: Optional[pstn_user_block_mode.PstnUserBlockMode]
         """
         return self._user_block_mode
@@ -180,7 +180,7 @@ class PstnBlockedUsersLogRow(AdditionalDataHolder, Parsable):
     @user_block_mode.setter
     def user_block_mode(self,value: Optional[pstn_user_block_mode.PstnUserBlockMode] = None) -> None:
         """
-        Sets the userBlockMode property value. The userBlockMode property
+        Sets the userBlockMode property value. Indicates whether the user is blocked or unblocked from making PSTN calls in Microsoft Teams. The possible values are: blocked, unblocked, unknownFutureValue.
         Args:
             value: Value to set for the user_block_mode property.
         """
@@ -189,7 +189,7 @@ class PstnBlockedUsersLogRow(AdditionalDataHolder, Parsable):
     @property
     def user_display_name(self,) -> Optional[str]:
         """
-        Gets the userDisplayName property value. The userDisplayName property
+        Gets the userDisplayName property value. Display name of the user.
         Returns: Optional[str]
         """
         return self._user_display_name
@@ -197,7 +197,7 @@ class PstnBlockedUsersLogRow(AdditionalDataHolder, Parsable):
     @user_display_name.setter
     def user_display_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the userDisplayName property value. The userDisplayName property
+        Sets the userDisplayName property value. Display name of the user.
         Args:
             value: Value to set for the user_display_name property.
         """
@@ -206,7 +206,7 @@ class PstnBlockedUsersLogRow(AdditionalDataHolder, Parsable):
     @property
     def user_id(self,) -> Optional[str]:
         """
-        Gets the userId property value. The userId property
+        Gets the userId property value. The unique identifier (GUID) of the user in Azure Active Directory.
         Returns: Optional[str]
         """
         return self._user_id
@@ -214,7 +214,7 @@ class PstnBlockedUsersLogRow(AdditionalDataHolder, Parsable):
     @user_id.setter
     def user_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the userId property value. The userId property
+        Sets the userId property value. The unique identifier (GUID) of the user in Azure Active Directory.
         Args:
             value: Value to set for the user_id property.
         """
@@ -223,7 +223,7 @@ class PstnBlockedUsersLogRow(AdditionalDataHolder, Parsable):
     @property
     def user_principal_name(self,) -> Optional[str]:
         """
-        Gets the userPrincipalName property value. The userPrincipalName property
+        Gets the userPrincipalName property value. The user principal name (sign-in name) in Azure Active Directory. This is usually the same as the user's SIP address, and can be same as the user's e-mail address.
         Returns: Optional[str]
         """
         return self._user_principal_name
@@ -231,7 +231,7 @@ class PstnBlockedUsersLogRow(AdditionalDataHolder, Parsable):
     @user_principal_name.setter
     def user_principal_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the userPrincipalName property value. The userPrincipalName property
+        Sets the userPrincipalName property value. The user principal name (sign-in name) in Azure Active Directory. This is usually the same as the user's SIP address, and can be same as the user's e-mail address.
         Args:
             value: Value to set for the user_principal_name property.
         """
@@ -240,7 +240,7 @@ class PstnBlockedUsersLogRow(AdditionalDataHolder, Parsable):
     @property
     def user_telephone_number(self,) -> Optional[str]:
         """
-        Gets the userTelephoneNumber property value. The userTelephoneNumber property
+        Gets the userTelephoneNumber property value. User's blocked number. For details, see E.164.
         Returns: Optional[str]
         """
         return self._user_telephone_number
@@ -248,7 +248,7 @@ class PstnBlockedUsersLogRow(AdditionalDataHolder, Parsable):
     @user_telephone_number.setter
     def user_telephone_number(self,value: Optional[str] = None) -> None:
         """
-        Sets the userTelephoneNumber property value. The userTelephoneNumber property
+        Sets the userTelephoneNumber property value. User's blocked number. For details, see E.164.
         Args:
             value: Value to set for the user_telephone_number property.
         """

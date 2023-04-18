@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import team_template, team_template_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import team_template_item_request_builder
 
 class TeamTemplatesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class TeamTemplatesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_team_template_id(self,team_template_id: str) -> team_template_item_request_builder.TeamTemplateItemRequestBuilder:
+        """
+        Provides operations to manage the teamTemplates property of the microsoft.graph.teamwork entity.
+        Args:
+            team_template_id: Unique identifier of the item
+        Returns: team_template_item_request_builder.TeamTemplateItemRequestBuilder
+        """
+        if team_template_id is None:
+            raise Exception("team_template_id cannot be undefined")
+        from .item import team_template_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["teamTemplate%2Did"] = team_template_id
+        return team_template_item_request_builder.TeamTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[TeamTemplatesRequestBuilderGetRequestConfiguration] = None) -> Optional[team_template_collection_response.TeamTemplateCollectionResponse]:
         """

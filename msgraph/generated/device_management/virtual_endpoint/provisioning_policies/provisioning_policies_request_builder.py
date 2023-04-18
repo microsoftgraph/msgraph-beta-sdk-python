@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .apply_config import apply_config_request_builder
     from .count import count_request_builder
+    from .item import cloud_pc_provisioning_policy_item_request_builder
 
 class ProvisioningPoliciesRequestBuilder():
     """
@@ -36,6 +37,21 @@ class ProvisioningPoliciesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_cloud_pc_provisioning_policy_id(self,cloud_pc_provisioning_policy_id: str) -> cloud_pc_provisioning_policy_item_request_builder.CloudPcProvisioningPolicyItemRequestBuilder:
+        """
+        Provides operations to manage the provisioningPolicies property of the microsoft.graph.virtualEndpoint entity.
+        Args:
+            cloud_pc_provisioning_policy_id: Unique identifier of the item
+        Returns: cloud_pc_provisioning_policy_item_request_builder.CloudPcProvisioningPolicyItemRequestBuilder
+        """
+        if cloud_pc_provisioning_policy_id is None:
+            raise Exception("cloud_pc_provisioning_policy_id cannot be undefined")
+        from .item import cloud_pc_provisioning_policy_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["cloudPcProvisioningPolicy%2Did"] = cloud_pc_provisioning_policy_id
+        return cloud_pc_provisioning_policy_item_request_builder.CloudPcProvisioningPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ProvisioningPoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_provisioning_policy_collection_response.CloudPcProvisioningPolicyCollectionResponse]:
         """

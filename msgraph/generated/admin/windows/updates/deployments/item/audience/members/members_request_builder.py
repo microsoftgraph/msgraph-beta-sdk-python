@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ........models.o_data_errors import o_data_error
     from ........models.windows_updates import updatable_asset, updatable_asset_collection_response
     from .count import count_request_builder
+    from .item import updatable_asset_item_request_builder
     from .windows_updates_enroll_assets import windows_updates_enroll_assets_request_builder
     from .windows_updates_enroll_assets_by_id import windows_updates_enroll_assets_by_id_request_builder
     from .windows_updates_unenroll_assets import windows_updates_unenroll_assets_request_builder
@@ -39,6 +40,21 @@ class MembersRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_updatable_asset_id(self,updatable_asset_id: str) -> updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder:
+        """
+        Provides operations to manage the members property of the microsoft.graph.windowsUpdates.deploymentAudience entity.
+        Args:
+            updatable_asset_id: Unique identifier of the item
+        Returns: updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder
+        """
+        if updatable_asset_id is None:
+            raise Exception("updatable_asset_id cannot be undefined")
+        from .item import updatable_asset_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["updatableAsset%2Did"] = updatable_asset_id
+        return updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[MembersRequestBuilderGetRequestConfiguration] = None) -> Optional[updatable_asset_collection_response.UpdatableAssetCollectionResponse]:
         """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import governance_role_setting, governance_role_setting_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import governance_role_setting_item_request_builder
 
 class RoleSettingsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class RoleSettingsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_governance_role_setting_id(self,governance_role_setting_id: str) -> governance_role_setting_item_request_builder.GovernanceRoleSettingItemRequestBuilder:
+        """
+        Provides operations to manage the roleSettings property of the microsoft.graph.governanceResource entity.
+        Args:
+            governance_role_setting_id: Unique identifier of the item
+        Returns: governance_role_setting_item_request_builder.GovernanceRoleSettingItemRequestBuilder
+        """
+        if governance_role_setting_id is None:
+            raise Exception("governance_role_setting_id cannot be undefined")
+        from .item import governance_role_setting_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["governanceRoleSetting%2Did"] = governance_role_setting_id
+        return governance_role_setting_item_request_builder.GovernanceRoleSettingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[RoleSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[governance_role_setting_collection_response.GovernanceRoleSettingCollectionResponse]:
         """

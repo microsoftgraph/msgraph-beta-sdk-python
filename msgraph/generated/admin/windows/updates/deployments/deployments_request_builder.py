@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .....models.windows_updates import deployment, deployment_collection_response
     from .count import count_request_builder
+    from .item import deployment_item_request_builder
 
 class DeploymentsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class DeploymentsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_deployment_id(self,deployment_id: str) -> deployment_item_request_builder.DeploymentItemRequestBuilder:
+        """
+        Provides operations to manage the deployments property of the microsoft.graph.adminWindowsUpdates entity.
+        Args:
+            deployment_id: Unique identifier of the item
+        Returns: deployment_item_request_builder.DeploymentItemRequestBuilder
+        """
+        if deployment_id is None:
+            raise Exception("deployment_id cannot be undefined")
+        from .item import deployment_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["deployment%2Did"] = deployment_id
+        return deployment_item_request_builder.DeploymentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[DeploymentsRequestBuilderGetRequestConfiguration] = None) -> Optional[deployment_collection_response.DeploymentCollectionResponse]:
         """

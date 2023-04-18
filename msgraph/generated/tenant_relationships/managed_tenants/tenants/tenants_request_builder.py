@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.managed_tenants import tenant, tenant_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import tenant_item_request_builder
 
 class TenantsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class TenantsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_tenant_id(self,tenant_id: str) -> tenant_item_request_builder.TenantItemRequestBuilder:
+        """
+        Provides operations to manage the tenants property of the microsoft.graph.managedTenants.managedTenant entity.
+        Args:
+            tenant_id: Unique identifier of the item
+        Returns: tenant_item_request_builder.TenantItemRequestBuilder
+        """
+        if tenant_id is None:
+            raise Exception("tenant_id cannot be undefined")
+        from .item import tenant_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["tenant%2Did"] = tenant_id
+        return tenant_item_request_builder.TenantItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[TenantsRequestBuilderGetRequestConfiguration] = None) -> Optional[tenant_collection_response.TenantCollectionResponse]:
         """

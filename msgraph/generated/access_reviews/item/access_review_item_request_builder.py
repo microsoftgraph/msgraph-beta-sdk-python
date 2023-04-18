@@ -14,14 +14,10 @@ if TYPE_CHECKING:
     from ...models.o_data_errors import o_data_error
     from .apply_decisions import apply_decisions_request_builder
     from .decisions import decisions_request_builder
-    from .decisions.item import access_review_decision_item_request_builder
     from .instances import instances_request_builder
-    from .instances.item import access_review_item_request_builder
     from .my_decisions import my_decisions_request_builder
-    from .my_decisions.item import access_review_decision_item_request_builder
     from .reset_decisions import reset_decisions_request_builder
     from .reviewers import reviewers_request_builder
-    from .reviewers.item import access_review_reviewer_item_request_builder
     from .send_reminder import send_reminder_request_builder
     from .stop import stop_request_builder
 
@@ -46,22 +42,6 @@ class AccessReviewItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def decisions_by_id(self,id: str) -> access_review_decision_item_request_builder.AccessReviewDecisionItemRequestBuilder:
-        """
-        Provides operations to manage the decisions property of the microsoft.graph.accessReview entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: access_review_decision_item_request_builder.AccessReviewDecisionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .decisions.item import access_review_decision_item_request_builder
-        from .my_decisions.item import access_review_decision_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["accessReviewDecision%2Did"] = id
-        return access_review_decision_item_request_builder.AccessReviewDecisionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[AccessReviewItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
@@ -104,37 +84,6 @@ class AccessReviewItemRequestBuilder():
 
         return await self.request_adapter.send_async(request_info, access_review.AccessReview, error_mapping)
     
-    def instances_by_id(self,id: str) -> AccessReviewItemRequestBuilder:
-        """
-        Provides operations to manage the instances property of the microsoft.graph.accessReview entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: AccessReviewItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .instances.item import access_review_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["accessReview%2Did1"] = id
-        return AccessReviewItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def my_decisions_by_id(self,id: str) -> access_review_decision_item_request_builder.AccessReviewDecisionItemRequestBuilder:
-        """
-        Provides operations to manage the myDecisions property of the microsoft.graph.accessReview entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: access_review_decision_item_request_builder.AccessReviewDecisionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .decisions.item import access_review_decision_item_request_builder
-        from .my_decisions.item import access_review_decision_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["accessReviewDecision%2Did"] = id
-        return access_review_decision_item_request_builder.AccessReviewDecisionItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     async def patch(self,body: Optional[access_review.AccessReview] = None, request_configuration: Optional[AccessReviewItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[access_review.AccessReview]:
         """
         In the Azure AD access reviews feature, update an existing accessReview object to change one or more of its properties. This API is not intended to change the reviewers or decisions of a review.  To change the reviewers, use the addReviewer or removeReviewer APIs.  To stop an already-started one-time review, or an already-started instance of a recurring review, early, use the stop API. To apply the decisions to the target group or app access rights, use the apply API. 
@@ -159,21 +108,6 @@ class AccessReviewItemRequestBuilder():
         from ...models import access_review
 
         return await self.request_adapter.send_async(request_info, access_review.AccessReview, error_mapping)
-    
-    def reviewers_by_id(self,id: str) -> access_review_reviewer_item_request_builder.AccessReviewReviewerItemRequestBuilder:
-        """
-        Provides operations to manage the reviewers property of the microsoft.graph.accessReview entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: access_review_reviewer_item_request_builder.AccessReviewReviewerItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .reviewers.item import access_review_reviewer_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["accessReviewReviewer%2Did"] = id
-        return access_review_reviewer_item_request_builder.AccessReviewReviewerItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[AccessReviewItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

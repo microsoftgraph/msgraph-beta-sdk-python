@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ....models import privileged_role
     from ....models.o_data_errors import o_data_error
     from .assignments import assignments_request_builder
-    from .assignments.item import privileged_role_assignment_item_request_builder
     from .self_activate import self_activate_request_builder
     from .self_deactivate import self_deactivate_request_builder
     from .settings import settings_request_builder
@@ -40,21 +39,6 @@ class RoleInfoRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def assignments_by_id(self,id: str) -> privileged_role_assignment_item_request_builder.PrivilegedRoleAssignmentItemRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.privilegedRole entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: privileged_role_assignment_item_request_builder.PrivilegedRoleAssignmentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .assignments.item import privileged_role_assignment_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["privilegedRoleAssignment%2Did"] = id
-        return privileged_role_assignment_item_request_builder.PrivilegedRoleAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[RoleInfoRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

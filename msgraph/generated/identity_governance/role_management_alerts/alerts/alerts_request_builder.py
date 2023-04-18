@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import unified_role_management_alert, unified_role_management_alert_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import unified_role_management_alert_item_request_builder
     from .refresh import refresh_request_builder
 
 class AlertsRequestBuilder():
@@ -36,6 +37,21 @@ class AlertsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_unified_role_management_alert_id(self,unified_role_management_alert_id: str) -> unified_role_management_alert_item_request_builder.UnifiedRoleManagementAlertItemRequestBuilder:
+        """
+        Provides operations to manage the alerts property of the microsoft.graph.roleManagementAlert entity.
+        Args:
+            unified_role_management_alert_id: Unique identifier of the item
+        Returns: unified_role_management_alert_item_request_builder.UnifiedRoleManagementAlertItemRequestBuilder
+        """
+        if unified_role_management_alert_id is None:
+            raise Exception("unified_role_management_alert_id cannot be undefined")
+        from .item import unified_role_management_alert_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["unifiedRoleManagementAlert%2Did"] = unified_role_management_alert_id
+        return unified_role_management_alert_item_request_builder.UnifiedRoleManagementAlertItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[AlertsRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_management_alert_collection_response.UnifiedRoleManagementAlertCollectionResponse]:
         """

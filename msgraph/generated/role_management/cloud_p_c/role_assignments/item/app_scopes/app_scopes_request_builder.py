@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models import app_scope, app_scope_collection_response
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import app_scope_item_request_builder
 
 class AppScopesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class AppScopesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_app_scope_id(self,app_scope_id: str) -> app_scope_item_request_builder.AppScopeItemRequestBuilder:
+        """
+        Provides operations to manage the appScopes property of the microsoft.graph.unifiedRoleAssignmentMultiple entity.
+        Args:
+            app_scope_id: Unique identifier of the item
+        Returns: app_scope_item_request_builder.AppScopeItemRequestBuilder
+        """
+        if app_scope_id is None:
+            raise Exception("app_scope_id cannot be undefined")
+        from .item import app_scope_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["appScope%2Did"] = app_scope_id
+        return app_scope_item_request_builder.AppScopeItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[AppScopesRequestBuilderGetRequestConfiguration] = None) -> Optional[app_scope_collection_response.AppScopeCollectionResponse]:
         """

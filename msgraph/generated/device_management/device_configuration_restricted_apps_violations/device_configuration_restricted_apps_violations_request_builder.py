@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import restricted_apps_violation, restricted_apps_violation_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import restricted_apps_violation_item_request_builder
 
 class DeviceConfigurationRestrictedAppsViolationsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class DeviceConfigurationRestrictedAppsViolationsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_restricted_apps_violation_id(self,restricted_apps_violation_id: str) -> restricted_apps_violation_item_request_builder.RestrictedAppsViolationItemRequestBuilder:
+        """
+        Provides operations to manage the deviceConfigurationRestrictedAppsViolations property of the microsoft.graph.deviceManagement entity.
+        Args:
+            restricted_apps_violation_id: Unique identifier of the item
+        Returns: restricted_apps_violation_item_request_builder.RestrictedAppsViolationItemRequestBuilder
+        """
+        if restricted_apps_violation_id is None:
+            raise Exception("restricted_apps_violation_id cannot be undefined")
+        from .item import restricted_apps_violation_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["restrictedAppsViolation%2Did"] = restricted_apps_violation_id
+        return restricted_apps_violation_item_request_builder.RestrictedAppsViolationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[DeviceConfigurationRestrictedAppsViolationsRequestBuilderGetRequestConfiguration] = None) -> Optional[restricted_apps_violation_collection_response.RestrictedAppsViolationCollectionResponse]:
         """

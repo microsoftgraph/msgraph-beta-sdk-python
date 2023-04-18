@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ..models import governance_subject, governance_subject_collection_response
     from ..models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import governance_subject_item_request_builder
 
 class GovernanceSubjectsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class GovernanceSubjectsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_governance_subject_id(self,governance_subject_id: str) -> governance_subject_item_request_builder.GovernanceSubjectItemRequestBuilder:
+        """
+        Provides operations to manage the collection of governanceSubject entities.
+        Args:
+            governance_subject_id: Unique identifier of the item
+        Returns: governance_subject_item_request_builder.GovernanceSubjectItemRequestBuilder
+        """
+        if governance_subject_id is None:
+            raise Exception("governance_subject_id cannot be undefined")
+        from .item import governance_subject_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["governanceSubject%2Did"] = governance_subject_id
+        return governance_subject_item_request_builder.GovernanceSubjectItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[GovernanceSubjectsRequestBuilderGetRequestConfiguration] = None) -> Optional[governance_subject_collection_response.GovernanceSubjectCollectionResponse]:
         """

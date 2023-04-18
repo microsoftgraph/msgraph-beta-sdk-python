@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ............models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .delta import delta_request_builder
+    from .item import chat_message_item_request_builder
 
 class RepliesRequestBuilder():
     """
@@ -36,6 +37,21 @@ class RepliesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_chat_message_id1(self,chat_message_id1: str) -> chat_message_item_request_builder.ChatMessageItemRequestBuilder:
+        """
+        Provides operations to manage the replies property of the microsoft.graph.chatMessage entity.
+        Args:
+            chat_message_id1: Unique identifier of the item
+        Returns: chat_message_item_request_builder.ChatMessageItemRequestBuilder
+        """
+        if chat_message_id1 is None:
+            raise Exception("chat_message_id1 cannot be undefined")
+        from .item import chat_message_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["chatMessage%2Did1"] = chat_message_id1
+        return chat_message_item_request_builder.ChatMessageItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[RepliesRequestBuilderGetRequestConfiguration] = None) -> Optional[chat_message_collection_response.ChatMessageCollectionResponse]:
         """

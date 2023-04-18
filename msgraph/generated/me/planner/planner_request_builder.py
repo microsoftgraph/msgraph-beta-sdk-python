@@ -13,17 +13,11 @@ if TYPE_CHECKING:
     from ...models import planner_user
     from ...models.o_data_errors import o_data_error
     from .all import all_request_builder
-    from .all.item import planner_delta_item_request_builder
     from .favorite_plans import favorite_plans_request_builder
-    from .favorite_plans.item import planner_plan_item_request_builder
     from .plans import plans_request_builder
-    from .plans.item import planner_plan_item_request_builder
     from .recent_plans import recent_plans_request_builder
-    from .recent_plans.item import planner_plan_item_request_builder
     from .roster_plans import roster_plans_request_builder
-    from .roster_plans.item import planner_plan_item_request_builder
     from .tasks import tasks_request_builder
-    from .tasks.item import planner_task_item_request_builder
 
 class PlannerRequestBuilder():
     """
@@ -47,21 +41,6 @@ class PlannerRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def all_by_id(self,id: str) -> planner_delta_item_request_builder.PlannerDeltaItemRequestBuilder:
-        """
-        Provides operations to manage the all property of the microsoft.graph.plannerUser entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: planner_delta_item_request_builder.PlannerDeltaItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .all.item import planner_delta_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["plannerDelta%2Did"] = id
-        return planner_delta_item_request_builder.PlannerDeltaItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     async def delete(self,request_configuration: Optional[PlannerRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property planner for me
@@ -80,24 +59,6 @@ class PlannerRequestBuilder():
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
-    
-    def favorite_plans_by_id(self,id: str) -> planner_plan_item_request_builder.PlannerPlanItemRequestBuilder:
-        """
-        Provides operations to manage the favoritePlans property of the microsoft.graph.plannerUser entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: planner_plan_item_request_builder.PlannerPlanItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .favorite_plans.item import planner_plan_item_request_builder
-        from .plans.item import planner_plan_item_request_builder
-        from .recent_plans.item import planner_plan_item_request_builder
-        from .roster_plans.item import planner_plan_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["plannerPlan%2Did"] = id
-        return planner_plan_item_request_builder.PlannerPlanItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[PlannerRequestBuilderGetRequestConfiguration] = None) -> Optional[planner_user.PlannerUser]:
         """
@@ -145,75 +106,6 @@ class PlannerRequestBuilder():
         from ...models import planner_user
 
         return await self.request_adapter.send_async(request_info, planner_user.PlannerUser, error_mapping)
-    
-    def plans_by_id(self,id: str) -> planner_plan_item_request_builder.PlannerPlanItemRequestBuilder:
-        """
-        Provides operations to manage the plans property of the microsoft.graph.plannerUser entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: planner_plan_item_request_builder.PlannerPlanItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .favorite_plans.item import planner_plan_item_request_builder
-        from .plans.item import planner_plan_item_request_builder
-        from .recent_plans.item import planner_plan_item_request_builder
-        from .roster_plans.item import planner_plan_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["plannerPlan%2Did"] = id
-        return planner_plan_item_request_builder.PlannerPlanItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def recent_plans_by_id(self,id: str) -> planner_plan_item_request_builder.PlannerPlanItemRequestBuilder:
-        """
-        Provides operations to manage the recentPlans property of the microsoft.graph.plannerUser entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: planner_plan_item_request_builder.PlannerPlanItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .favorite_plans.item import planner_plan_item_request_builder
-        from .plans.item import planner_plan_item_request_builder
-        from .recent_plans.item import planner_plan_item_request_builder
-        from .roster_plans.item import planner_plan_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["plannerPlan%2Did"] = id
-        return planner_plan_item_request_builder.PlannerPlanItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def roster_plans_by_id(self,id: str) -> planner_plan_item_request_builder.PlannerPlanItemRequestBuilder:
-        """
-        Provides operations to manage the rosterPlans property of the microsoft.graph.plannerUser entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: planner_plan_item_request_builder.PlannerPlanItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .favorite_plans.item import planner_plan_item_request_builder
-        from .plans.item import planner_plan_item_request_builder
-        from .recent_plans.item import planner_plan_item_request_builder
-        from .roster_plans.item import planner_plan_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["plannerPlan%2Did"] = id
-        return planner_plan_item_request_builder.PlannerPlanItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def tasks_by_id(self,id: str) -> planner_task_item_request_builder.PlannerTaskItemRequestBuilder:
-        """
-        Provides operations to manage the tasks property of the microsoft.graph.plannerUser entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: planner_task_item_request_builder.PlannerTaskItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .tasks.item import planner_task_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["plannerTask%2Did"] = id
-        return planner_task_item_request_builder.PlannerTaskItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[PlannerRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

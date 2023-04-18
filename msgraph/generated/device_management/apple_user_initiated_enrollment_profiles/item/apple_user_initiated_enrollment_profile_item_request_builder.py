@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ....models import apple_user_initiated_enrollment_profile
     from ....models.o_data_errors import o_data_error
     from .assignments import assignments_request_builder
-    from .assignments.item import apple_enrollment_profile_assignment_item_request_builder
     from .set_priority import set_priority_request_builder
 
 class AppleUserInitiatedEnrollmentProfileItemRequestBuilder():
@@ -37,21 +36,6 @@ class AppleUserInitiatedEnrollmentProfileItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def assignments_by_id(self,id: str) -> apple_enrollment_profile_assignment_item_request_builder.AppleEnrollmentProfileAssignmentItemRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.appleUserInitiatedEnrollmentProfile entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: apple_enrollment_profile_assignment_item_request_builder.AppleEnrollmentProfileAssignmentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .assignments.item import apple_enrollment_profile_assignment_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["appleEnrollmentProfileAssignment%2Did"] = id
-        return apple_enrollment_profile_assignment_item_request_builder.AppleEnrollmentProfileAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[AppleUserInitiatedEnrollmentProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

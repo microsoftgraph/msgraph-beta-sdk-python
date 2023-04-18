@@ -4,14 +4,14 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import app_role_assignment, assigned_label, assigned_license, calendar, conversation, conversation_thread, directory_object, directory_setting, drive, endpoint, event, extension, group_access_type, group_lifecycle_policy, group_writeback_configuration, license_processing_state, membership_rule_processing_status, onenote, on_premises_provisioning_error, planner_group, profile_photo, resource_specific_permission_grant, site, team
+    from . import app_role_assignment, assigned_label, assigned_license, calendar, conversation, conversation_thread, directory_object, directory_setting, drive, endpoint, event, extension, group_access_type, group_lifecycle_policy, group_writeback_configuration, license_processing_state, membership_rule_processing_status, onenote, on_premises_provisioning_error, planner_group, profile_photo, resource_specific_permission_grant, service_provisioning_error, site, team
 
 from . import directory_object
 
 class Group(directory_object.DirectoryObject):
     def __init__(self,) -> None:
         """
-        Instantiates a new group and sets the default values.
+        Instantiates a new Group and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.group"
@@ -147,6 +147,8 @@ class Group(directory_object.DirectoryObject):
         self._security_enabled: Optional[bool] = None
         # Security identifier of the group, used in Windows scenarios. Returned by default.
         self._security_identifier: Optional[str] = None
+        # The serviceProvisioningErrors property
+        self._service_provisioning_errors: Optional[List[service_provisioning_error.ServiceProvisioningError]] = None
         # Settings that can govern this group's behavior, like whether members can invite guest users to the group. Nullable.
         self._settings: Optional[List[directory_setting.DirectorySetting]] = None
         # The list of SharePoint sites in this group. Access the default site with /sites/root.
@@ -563,7 +565,7 @@ class Group(directory_object.DirectoryObject):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import app_role_assignment, assigned_label, assigned_license, calendar, conversation, conversation_thread, directory_object, directory_setting, drive, endpoint, event, extension, group_access_type, group_lifecycle_policy, group_writeback_configuration, license_processing_state, membership_rule_processing_status, onenote, on_premises_provisioning_error, planner_group, profile_photo, resource_specific_permission_grant, site, team
+        from . import app_role_assignment, assigned_label, assigned_license, calendar, conversation, conversation_thread, directory_object, directory_setting, drive, endpoint, event, extension, group_access_type, group_lifecycle_policy, group_writeback_configuration, license_processing_state, membership_rule_processing_status, onenote, on_premises_provisioning_error, planner_group, profile_photo, resource_specific_permission_grant, service_provisioning_error, site, team
 
         fields: Dict[str, Callable[[Any], None]] = {
             "acceptedSenders": lambda n : setattr(self, 'accepted_senders', n.get_collection_of_object_values(directory_object.DirectoryObject)),
@@ -632,6 +634,7 @@ class Group(directory_object.DirectoryObject):
             "resourceProvisioningOptions": lambda n : setattr(self, 'resource_provisioning_options', n.get_collection_of_primitive_values(str)),
             "securityEnabled": lambda n : setattr(self, 'security_enabled', n.get_bool_value()),
             "securityIdentifier": lambda n : setattr(self, 'security_identifier', n.get_str_value()),
+            "serviceProvisioningErrors": lambda n : setattr(self, 'service_provisioning_errors', n.get_collection_of_object_values(service_provisioning_error.ServiceProvisioningError)),
             "settings": lambda n : setattr(self, 'settings', n.get_collection_of_object_values(directory_setting.DirectorySetting)),
             "sites": lambda n : setattr(self, 'sites', n.get_collection_of_object_values(site.Site)),
             "team": lambda n : setattr(self, 'team', n.get_object_value(team.Team)),
@@ -1472,6 +1475,7 @@ class Group(directory_object.DirectoryObject):
         writer.write_collection_of_primitive_values("resourceProvisioningOptions", self.resource_provisioning_options)
         writer.write_bool_value("securityEnabled", self.security_enabled)
         writer.write_str_value("securityIdentifier", self.security_identifier)
+        writer.write_collection_of_object_values("serviceProvisioningErrors", self.service_provisioning_errors)
         writer.write_collection_of_object_values("settings", self.settings)
         writer.write_collection_of_object_values("sites", self.sites)
         writer.write_object_value("team", self.team)
@@ -1484,6 +1488,23 @@ class Group(directory_object.DirectoryObject):
         writer.write_int_value("unseenMessagesCount", self.unseen_messages_count)
         writer.write_str_value("visibility", self.visibility)
         writer.write_object_value("writebackConfiguration", self.writeback_configuration)
+    
+    @property
+    def service_provisioning_errors(self,) -> Optional[List[service_provisioning_error.ServiceProvisioningError]]:
+        """
+        Gets the serviceProvisioningErrors property value. The serviceProvisioningErrors property
+        Returns: Optional[List[service_provisioning_error.ServiceProvisioningError]]
+        """
+        return self._service_provisioning_errors
+    
+    @service_provisioning_errors.setter
+    def service_provisioning_errors(self,value: Optional[List[service_provisioning_error.ServiceProvisioningError]] = None) -> None:
+        """
+        Sets the serviceProvisioningErrors property value. The serviceProvisioningErrors property
+        Args:
+            value: Value to set for the service_provisioning_errors property.
+        """
+        self._service_provisioning_errors = value
     
     @property
     def settings(self,) -> Optional[List[directory_setting.DirectorySetting]]:

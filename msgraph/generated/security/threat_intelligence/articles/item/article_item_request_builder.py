@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .....models.security import article
     from .indicators import indicators_request_builder
-    from .indicators.item import article_indicator_item_request_builder
 
 class ArticleItemRequestBuilder():
     """
@@ -77,21 +76,6 @@ class ArticleItemRequestBuilder():
         from .....models.security import article
 
         return await self.request_adapter.send_async(request_info, article.Article, error_mapping)
-    
-    def indicators_by_id(self,id: str) -> article_indicator_item_request_builder.ArticleIndicatorItemRequestBuilder:
-        """
-        Provides operations to manage the indicators property of the microsoft.graph.security.article entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: article_indicator_item_request_builder.ArticleIndicatorItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .indicators.item import article_indicator_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["articleIndicator%2Did"] = id
-        return article_indicator_item_request_builder.ArticleIndicatorItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[article.Article] = None, request_configuration: Optional[ArticleItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[article.Article]:
         """

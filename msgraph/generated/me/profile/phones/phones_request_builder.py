@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import item_phone, item_phone_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import item_phone_item_request_builder
 
 class PhonesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class PhonesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_item_phone_id(self,item_phone_id: str) -> item_phone_item_request_builder.ItemPhoneItemRequestBuilder:
+        """
+        Provides operations to manage the phones property of the microsoft.graph.profile entity.
+        Args:
+            item_phone_id: Unique identifier of the item
+        Returns: item_phone_item_request_builder.ItemPhoneItemRequestBuilder
+        """
+        if item_phone_id is None:
+            raise Exception("item_phone_id cannot be undefined")
+        from .item import item_phone_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["itemPhone%2Did"] = item_phone_id
+        return item_phone_item_request_builder.ItemPhoneItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[PhonesRequestBuilderGetRequestConfiguration] = None) -> Optional[item_phone_collection_response.ItemPhoneCollectionResponse]:
         """

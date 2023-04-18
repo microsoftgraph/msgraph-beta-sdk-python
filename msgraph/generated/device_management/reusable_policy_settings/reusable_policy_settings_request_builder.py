@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import device_management_reusable_policy_setting, device_management_reusable_policy_setting_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import device_management_reusable_policy_setting_item_request_builder
 
 class ReusablePolicySettingsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ReusablePolicySettingsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_device_management_reusable_policy_setting_id(self,device_management_reusable_policy_setting_id: str) -> device_management_reusable_policy_setting_item_request_builder.DeviceManagementReusablePolicySettingItemRequestBuilder:
+        """
+        Provides operations to manage the reusablePolicySettings property of the microsoft.graph.deviceManagement entity.
+        Args:
+            device_management_reusable_policy_setting_id: Unique identifier of the item
+        Returns: device_management_reusable_policy_setting_item_request_builder.DeviceManagementReusablePolicySettingItemRequestBuilder
+        """
+        if device_management_reusable_policy_setting_id is None:
+            raise Exception("device_management_reusable_policy_setting_id cannot be undefined")
+        from .item import device_management_reusable_policy_setting_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["deviceManagementReusablePolicySetting%2Did"] = device_management_reusable_policy_setting_id
+        return device_management_reusable_policy_setting_item_request_builder.DeviceManagementReusablePolicySettingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ReusablePolicySettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_reusable_policy_setting_collection_response.DeviceManagementReusablePolicySettingCollectionResponse]:
         """

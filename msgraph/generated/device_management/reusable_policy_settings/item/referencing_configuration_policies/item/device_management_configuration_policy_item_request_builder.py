@@ -14,11 +14,9 @@ if TYPE_CHECKING:
     from ......models.o_data_errors import o_data_error
     from .assign import assign_request_builder
     from .assignments import assignments_request_builder
-    from .assignments.item import device_management_configuration_policy_assignment_item_request_builder
     from .create_copy import create_copy_request_builder
     from .reorder import reorder_request_builder
     from .settings import settings_request_builder
-    from .settings.item import device_management_configuration_setting_item_request_builder
 
 class DeviceManagementConfigurationPolicyItemRequestBuilder():
     """
@@ -41,21 +39,6 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def assignments_by_id(self,id: str) -> device_management_configuration_policy_assignment_item_request_builder.DeviceManagementConfigurationPolicyAssignmentItemRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.deviceManagementConfigurationPolicy entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: device_management_configuration_policy_assignment_item_request_builder.DeviceManagementConfigurationPolicyAssignmentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .assignments.item import device_management_configuration_policy_assignment_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["deviceManagementConfigurationPolicyAssignment%2Did"] = id
-        return device_management_configuration_policy_assignment_item_request_builder.DeviceManagementConfigurationPolicyAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[DeviceManagementConfigurationPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
@@ -122,21 +105,6 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder():
         from ......models import device_management_configuration_policy
 
         return await self.request_adapter.send_async(request_info, device_management_configuration_policy.DeviceManagementConfigurationPolicy, error_mapping)
-    
-    def settings_by_id(self,id: str) -> device_management_configuration_setting_item_request_builder.DeviceManagementConfigurationSettingItemRequestBuilder:
-        """
-        Provides operations to manage the settings property of the microsoft.graph.deviceManagementConfigurationPolicy entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: device_management_configuration_setting_item_request_builder.DeviceManagementConfigurationSettingItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .settings.item import device_management_configuration_setting_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["deviceManagementConfigurationSetting%2Did"] = id
-        return device_management_configuration_setting_item_request_builder.DeviceManagementConfigurationSettingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceManagementConfigurationPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

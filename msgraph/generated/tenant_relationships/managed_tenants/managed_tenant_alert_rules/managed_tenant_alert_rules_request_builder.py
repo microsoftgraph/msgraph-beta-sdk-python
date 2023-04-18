@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.managed_tenants import managed_tenant_alert_rule, managed_tenant_alert_rule_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import managed_tenant_alert_rule_item_request_builder
 
 class ManagedTenantAlertRulesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ManagedTenantAlertRulesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_managed_tenant_alert_rule_id(self,managed_tenant_alert_rule_id: str) -> managed_tenant_alert_rule_item_request_builder.ManagedTenantAlertRuleItemRequestBuilder:
+        """
+        Provides operations to manage the managedTenantAlertRules property of the microsoft.graph.managedTenants.managedTenant entity.
+        Args:
+            managed_tenant_alert_rule_id: Unique identifier of the item
+        Returns: managed_tenant_alert_rule_item_request_builder.ManagedTenantAlertRuleItemRequestBuilder
+        """
+        if managed_tenant_alert_rule_id is None:
+            raise Exception("managed_tenant_alert_rule_id cannot be undefined")
+        from .item import managed_tenant_alert_rule_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["managedTenantAlertRule%2Did"] = managed_tenant_alert_rule_id
+        return managed_tenant_alert_rule_item_request_builder.ManagedTenantAlertRuleItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ManagedTenantAlertRulesRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_tenant_alert_rule_collection_response.ManagedTenantAlertRuleCollectionResponse]:
         """

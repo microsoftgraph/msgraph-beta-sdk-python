@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import user_experience_analytics_score_history, user_experience_analytics_score_history_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import user_experience_analytics_score_history_item_request_builder
 
 class UserExperienceAnalyticsScoreHistoryRequestBuilder():
     """
@@ -35,6 +36,21 @@ class UserExperienceAnalyticsScoreHistoryRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_user_experience_analytics_score_history_id(self,user_experience_analytics_score_history_id: str) -> user_experience_analytics_score_history_item_request_builder.UserExperienceAnalyticsScoreHistoryItemRequestBuilder:
+        """
+        Provides operations to manage the userExperienceAnalyticsScoreHistory property of the microsoft.graph.deviceManagement entity.
+        Args:
+            user_experience_analytics_score_history_id: Unique identifier of the item
+        Returns: user_experience_analytics_score_history_item_request_builder.UserExperienceAnalyticsScoreHistoryItemRequestBuilder
+        """
+        if user_experience_analytics_score_history_id is None:
+            raise Exception("user_experience_analytics_score_history_id cannot be undefined")
+        from .item import user_experience_analytics_score_history_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["userExperienceAnalyticsScoreHistory%2Did"] = user_experience_analytics_score_history_id
+        return user_experience_analytics_score_history_item_request_builder.UserExperienceAnalyticsScoreHistoryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[UserExperienceAnalyticsScoreHistoryRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_score_history_collection_response.UserExperienceAnalyticsScoreHistoryCollectionResponse]:
         """

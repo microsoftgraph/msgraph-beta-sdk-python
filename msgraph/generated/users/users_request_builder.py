@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from .get_by_ids import get_by_ids_request_builder
     from .get_managed_app_blocked_users import get_managed_app_blocked_users_request_builder
     from .get_user_owned_objects import get_user_owned_objects_request_builder
+    from .item import user_item_request_builder
     from .validate_password import validate_password_request_builder
     from .validate_properties import validate_properties_request_builder
 
@@ -42,9 +43,24 @@ class UsersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_user_id(self,user_id: str) -> user_item_request_builder.UserItemRequestBuilder:
+        """
+        Provides operations to manage the collection of user entities.
+        Args:
+            user_id: Unique identifier of the item
+        Returns: user_item_request_builder.UserItemRequestBuilder
+        """
+        if user_id is None:
+            raise Exception("user_id cannot be undefined")
+        from .item import user_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["user%2Did"] = user_id
+        return user_item_request_builder.UserItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[UsersRequestBuilderGetRequestConfiguration] = None) -> Optional[user_collection_response.UserCollectionResponse]:
         """
-        Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the user and specify the properties in a `$select` OData query option. Because the **user** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **user** instance.
+        Retrieve a list of user objects. This operation returns by default only a subset of the more commonly used properties for each user. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the user and specify the properties in a `$select` OData query option.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[user_collection_response.UserCollectionResponse]
@@ -91,7 +107,7 @@ class UsersRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UsersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the user and specify the properties in a `$select` OData query option. Because the **user** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **user** instance.
+        Retrieve a list of user objects. This operation returns by default only a subset of the more commonly used properties for each user. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the user and specify the properties in a `$select` OData query option.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -194,7 +210,7 @@ class UsersRequestBuilder():
     @dataclass
     class UsersRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the user and specify the properties in a `$select` OData query option. Because the **user** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **user** instance.
+        Retrieve a list of user objects. This operation returns by default only a subset of the more commonly used properties for each user. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the user and specify the properties in a `$select` OData query option.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

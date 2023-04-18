@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ....models import user_analytics
     from ....models.o_data_errors import o_data_error
     from .activity_statistics import activity_statistics_request_builder
-    from .activity_statistics.item import activity_statistics_item_request_builder
 
 class AnalyticsRequestBuilder():
     """
@@ -36,21 +35,6 @@ class AnalyticsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def activity_statistics_by_id(self,id: str) -> activity_statistics_item_request_builder.ActivityStatisticsItemRequestBuilder:
-        """
-        Provides operations to manage the activityStatistics property of the microsoft.graph.userAnalytics entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: activity_statistics_item_request_builder.ActivityStatisticsItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .activity_statistics.item import activity_statistics_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["activityStatistics%2Did"] = id
-        return activity_statistics_item_request_builder.ActivityStatisticsItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[AnalyticsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

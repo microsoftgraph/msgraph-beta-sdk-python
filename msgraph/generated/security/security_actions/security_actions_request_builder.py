@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import security_action, security_action_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import security_action_item_request_builder
 
 class SecurityActionsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class SecurityActionsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_security_action_id(self,security_action_id: str) -> security_action_item_request_builder.SecurityActionItemRequestBuilder:
+        """
+        Provides operations to manage the securityActions property of the microsoft.graph.security entity.
+        Args:
+            security_action_id: Unique identifier of the item
+        Returns: security_action_item_request_builder.SecurityActionItemRequestBuilder
+        """
+        if security_action_id is None:
+            raise Exception("security_action_id cannot be undefined")
+        from .item import security_action_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["securityAction%2Did"] = security_action_id
+        return security_action_item_request_builder.SecurityActionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[SecurityActionsRequestBuilderGetRequestConfiguration] = None) -> Optional[security_action_collection_response.SecurityActionCollectionResponse]:
         """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.ediscovery import case, case_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import case_item_request_builder
 
 class CasesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class CasesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_case_id(self,case_id: str) -> case_item_request_builder.CaseItemRequestBuilder:
+        """
+        Provides operations to manage the cases property of the microsoft.graph.ediscovery.ediscoveryroot entity.
+        Args:
+            case_id: Unique identifier of the item
+        Returns: case_item_request_builder.CaseItemRequestBuilder
+        """
+        if case_id is None:
+            raise Exception("case_id cannot be undefined")
+        from .item import case_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["case%2Did"] = case_id
+        return case_item_request_builder.CaseItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[CasesRequestBuilderGetRequestConfiguration] = None) -> Optional[case_collection_response.CaseCollectionResponse]:
         """

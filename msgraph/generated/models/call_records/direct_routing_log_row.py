@@ -15,11 +15,11 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
         self._call_end_sub_reason: Optional[int] = None
         # Call type and direction.
         self._call_type: Optional[str] = None
-        # Number of the user or bot who received the call. E.164 format, but may include additional data.
+        # Number of the user or bot who received the call (E.164 format, but may include additional data).
         self._callee_number: Optional[str] = None
-        # Number of the user or bot who made the call. E.164 format, but may include additional data.
+        # Number of the user or bot who made the call (E.164 format, but may include additional data).
         self._caller_number: Optional[str] = None
-        # Identifier for the call that you can use when calling Microsoft Support. GUID.
+        # Identifier (GUID) for the call that you can use when calling Microsoft Support.
         self._correlation_id: Optional[str] = None
         # Duration of the call in seconds.
         self._duration: Optional[int] = None
@@ -27,23 +27,23 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
         self._end_date_time: Optional[datetime] = None
         # Only exists for failed (not fully established) calls.
         self._failure_date_time: Optional[datetime] = None
-        # The code with which the call ended, RFC 3261.
+        # The code with which the call ended (RFC 3261).
         self._final_sip_code: Optional[int] = None
         # Description of the SIP code and Microsoft subcode.
         self._final_sip_code_phrase: Optional[str] = None
-        # Unique call identifier. GUID.
+        # Unique call identifier (GUID).
         self._id: Optional[str] = None
         # When the initial invite was sent.
         self._invite_date_time: Optional[datetime] = None
         # Indicates if the trunk was enabled for media bypass or not.
         self._media_bypass_enabled: Optional[bool] = None
-        # The datacenter used for media path in non-bypass call.
+        # The data center used for media path in non-bypass call.
         self._media_path_location: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The otherPartyCountryCode property
+        # Country code of the caller in case of an incoming call, or callee in case of an outgoing call. For details, see ISO 3166-1 alpha-2.
         self._other_party_country_code: Optional[str] = None
-        # The datacenter used for signaling for both bypass and non-bypass calls.
+        # The data center used for signaling for both bypass and non-bypass calls.
         self._signaling_location: Optional[str] = None
         # Call start time.For failed and unanswered calls, this can be equal to invite or failure time.
         self._start_date_time: Optional[datetime] = None
@@ -51,13 +51,13 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
         self._successful_call: Optional[bool] = None
         # Fully qualified domain name of the session border controller.
         self._trunk_fully_qualified_domain_name: Optional[str] = None
-        # The userCountryCode property
+        # Country code of the user. For details, see ISO 3166-1 alpha-2.
         self._user_country_code: Optional[str] = None
         # Display name of the user.
         self._user_display_name: Optional[str] = None
-        # Calling user's ID in Graph. This and other user info will be null/empty for bot call types. GUID.
+        # The unique identifier (GUID) of the user in Azure Active Directory. This and other user info will be null/empty for bot call types.
         self._user_id: Optional[str] = None
-        # UserPrincipalName (sign-in name) in Azure Active Directory. This is usually the same as user's SIP Address, and can be same as user's e-mail address.
+        # The user principal name (sign-in name) in Azure Active Directory. This is usually the same as the user's SIP address, and can be same as the user's e-mail address.
         self._user_principal_name: Optional[str] = None
     
     @property
@@ -114,7 +114,7 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
     @property
     def callee_number(self,) -> Optional[str]:
         """
-        Gets the calleeNumber property value. Number of the user or bot who received the call. E.164 format, but may include additional data.
+        Gets the calleeNumber property value. Number of the user or bot who received the call (E.164 format, but may include additional data).
         Returns: Optional[str]
         """
         return self._callee_number
@@ -122,7 +122,7 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
     @callee_number.setter
     def callee_number(self,value: Optional[str] = None) -> None:
         """
-        Sets the calleeNumber property value. Number of the user or bot who received the call. E.164 format, but may include additional data.
+        Sets the calleeNumber property value. Number of the user or bot who received the call (E.164 format, but may include additional data).
         Args:
             value: Value to set for the callee_number property.
         """
@@ -131,7 +131,7 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
     @property
     def caller_number(self,) -> Optional[str]:
         """
-        Gets the callerNumber property value. Number of the user or bot who made the call. E.164 format, but may include additional data.
+        Gets the callerNumber property value. Number of the user or bot who made the call (E.164 format, but may include additional data).
         Returns: Optional[str]
         """
         return self._caller_number
@@ -139,7 +139,7 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
     @caller_number.setter
     def caller_number(self,value: Optional[str] = None) -> None:
         """
-        Sets the callerNumber property value. Number of the user or bot who made the call. E.164 format, but may include additional data.
+        Sets the callerNumber property value. Number of the user or bot who made the call (E.164 format, but may include additional data).
         Args:
             value: Value to set for the caller_number property.
         """
@@ -148,7 +148,7 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
     @property
     def correlation_id(self,) -> Optional[str]:
         """
-        Gets the correlationId property value. Identifier for the call that you can use when calling Microsoft Support. GUID.
+        Gets the correlationId property value. Identifier (GUID) for the call that you can use when calling Microsoft Support.
         Returns: Optional[str]
         """
         return self._correlation_id
@@ -156,7 +156,7 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
     @correlation_id.setter
     def correlation_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the correlationId property value. Identifier for the call that you can use when calling Microsoft Support. GUID.
+        Sets the correlationId property value. Identifier (GUID) for the call that you can use when calling Microsoft Support.
         Args:
             value: Value to set for the correlation_id property.
         """
@@ -228,7 +228,7 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
     @property
     def final_sip_code(self,) -> Optional[int]:
         """
-        Gets the finalSipCode property value. The code with which the call ended, RFC 3261.
+        Gets the finalSipCode property value. The code with which the call ended (RFC 3261).
         Returns: Optional[int]
         """
         return self._final_sip_code
@@ -236,7 +236,7 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
     @final_sip_code.setter
     def final_sip_code(self,value: Optional[int] = None) -> None:
         """
-        Sets the finalSipCode property value. The code with which the call ended, RFC 3261.
+        Sets the finalSipCode property value. The code with which the call ended (RFC 3261).
         Args:
             value: Value to set for the final_sip_code property.
         """
@@ -295,7 +295,7 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
     @property
     def id(self,) -> Optional[str]:
         """
-        Gets the id property value. Unique call identifier. GUID.
+        Gets the id property value. Unique call identifier (GUID).
         Returns: Optional[str]
         """
         return self._id
@@ -303,7 +303,7 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
     @id.setter
     def id(self,value: Optional[str] = None) -> None:
         """
-        Sets the id property value. Unique call identifier. GUID.
+        Sets the id property value. Unique call identifier (GUID).
         Args:
             value: Value to set for the id property.
         """
@@ -346,7 +346,7 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
     @property
     def media_path_location(self,) -> Optional[str]:
         """
-        Gets the mediaPathLocation property value. The datacenter used for media path in non-bypass call.
+        Gets the mediaPathLocation property value. The data center used for media path in non-bypass call.
         Returns: Optional[str]
         """
         return self._media_path_location
@@ -354,7 +354,7 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
     @media_path_location.setter
     def media_path_location(self,value: Optional[str] = None) -> None:
         """
-        Sets the mediaPathLocation property value. The datacenter used for media path in non-bypass call.
+        Sets the mediaPathLocation property value. The data center used for media path in non-bypass call.
         Args:
             value: Value to set for the media_path_location property.
         """
@@ -380,7 +380,7 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
     @property
     def other_party_country_code(self,) -> Optional[str]:
         """
-        Gets the otherPartyCountryCode property value. The otherPartyCountryCode property
+        Gets the otherPartyCountryCode property value. Country code of the caller in case of an incoming call, or callee in case of an outgoing call. For details, see ISO 3166-1 alpha-2.
         Returns: Optional[str]
         """
         return self._other_party_country_code
@@ -388,7 +388,7 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
     @other_party_country_code.setter
     def other_party_country_code(self,value: Optional[str] = None) -> None:
         """
-        Sets the otherPartyCountryCode property value. The otherPartyCountryCode property
+        Sets the otherPartyCountryCode property value. Country code of the caller in case of an incoming call, or callee in case of an outgoing call. For details, see ISO 3166-1 alpha-2.
         Args:
             value: Value to set for the other_party_country_code property.
         """
@@ -431,7 +431,7 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
     @property
     def signaling_location(self,) -> Optional[str]:
         """
-        Gets the signalingLocation property value. The datacenter used for signaling for both bypass and non-bypass calls.
+        Gets the signalingLocation property value. The data center used for signaling for both bypass and non-bypass calls.
         Returns: Optional[str]
         """
         return self._signaling_location
@@ -439,7 +439,7 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
     @signaling_location.setter
     def signaling_location(self,value: Optional[str] = None) -> None:
         """
-        Sets the signalingLocation property value. The datacenter used for signaling for both bypass and non-bypass calls.
+        Sets the signalingLocation property value. The data center used for signaling for both bypass and non-bypass calls.
         Args:
             value: Value to set for the signaling_location property.
         """
@@ -499,7 +499,7 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
     @property
     def user_country_code(self,) -> Optional[str]:
         """
-        Gets the userCountryCode property value. The userCountryCode property
+        Gets the userCountryCode property value. Country code of the user. For details, see ISO 3166-1 alpha-2.
         Returns: Optional[str]
         """
         return self._user_country_code
@@ -507,7 +507,7 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
     @user_country_code.setter
     def user_country_code(self,value: Optional[str] = None) -> None:
         """
-        Sets the userCountryCode property value. The userCountryCode property
+        Sets the userCountryCode property value. Country code of the user. For details, see ISO 3166-1 alpha-2.
         Args:
             value: Value to set for the user_country_code property.
         """
@@ -533,7 +533,7 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
     @property
     def user_id(self,) -> Optional[str]:
         """
-        Gets the userId property value. Calling user's ID in Graph. This and other user info will be null/empty for bot call types. GUID.
+        Gets the userId property value. The unique identifier (GUID) of the user in Azure Active Directory. This and other user info will be null/empty for bot call types.
         Returns: Optional[str]
         """
         return self._user_id
@@ -541,7 +541,7 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
     @user_id.setter
     def user_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the userId property value. Calling user's ID in Graph. This and other user info will be null/empty for bot call types. GUID.
+        Sets the userId property value. The unique identifier (GUID) of the user in Azure Active Directory. This and other user info will be null/empty for bot call types.
         Args:
             value: Value to set for the user_id property.
         """
@@ -550,7 +550,7 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
     @property
     def user_principal_name(self,) -> Optional[str]:
         """
-        Gets the userPrincipalName property value. UserPrincipalName (sign-in name) in Azure Active Directory. This is usually the same as user's SIP Address, and can be same as user's e-mail address.
+        Gets the userPrincipalName property value. The user principal name (sign-in name) in Azure Active Directory. This is usually the same as the user's SIP address, and can be same as the user's e-mail address.
         Returns: Optional[str]
         """
         return self._user_principal_name
@@ -558,7 +558,7 @@ class DirectRoutingLogRow(AdditionalDataHolder, Parsable):
     @user_principal_name.setter
     def user_principal_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the userPrincipalName property value. UserPrincipalName (sign-in name) in Azure Active Directory. This is usually the same as user's SIP Address, and can be same as user's e-mail address.
+        Sets the userPrincipalName property value. The user principal name (sign-in name) in Azure Active Directory. This is usually the same as the user's SIP address, and can be same as the user's e-mail address.
         Args:
             value: Value to set for the user_principal_name property.
         """

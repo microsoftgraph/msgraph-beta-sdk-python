@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import unit_of_measure, unit_of_measure_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import unit_of_measure_item_request_builder
 
 class UnitsOfMeasureRequestBuilder():
     """
@@ -35,6 +36,21 @@ class UnitsOfMeasureRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_unit_of_measure_id(self,unit_of_measure_id: str) -> unit_of_measure_item_request_builder.UnitOfMeasureItemRequestBuilder:
+        """
+        Provides operations to manage the unitsOfMeasure property of the microsoft.graph.company entity.
+        Args:
+            unit_of_measure_id: Unique identifier of the item
+        Returns: unit_of_measure_item_request_builder.UnitOfMeasureItemRequestBuilder
+        """
+        if unit_of_measure_id is None:
+            raise Exception("unit_of_measure_id cannot be undefined")
+        from .item import unit_of_measure_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["unitOfMeasure%2Did"] = unit_of_measure_id
+        return unit_of_measure_item_request_builder.UnitOfMeasureItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[UnitsOfMeasureRequestBuilderGetRequestConfiguration] = None) -> Optional[unit_of_measure_collection_response.UnitOfMeasureCollectionResponse]:
         """

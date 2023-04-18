@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import service_now_connection, service_now_connection_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import service_now_connection_item_request_builder
 
 class ServiceNowConnectionsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ServiceNowConnectionsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_service_now_connection_id(self,service_now_connection_id: str) -> service_now_connection_item_request_builder.ServiceNowConnectionItemRequestBuilder:
+        """
+        Provides operations to manage the serviceNowConnections property of the microsoft.graph.deviceManagement entity.
+        Args:
+            service_now_connection_id: Unique identifier of the item
+        Returns: service_now_connection_item_request_builder.ServiceNowConnectionItemRequestBuilder
+        """
+        if service_now_connection_id is None:
+            raise Exception("service_now_connection_id cannot be undefined")
+        from .item import service_now_connection_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["serviceNowConnection%2Did"] = service_now_connection_id
+        return service_now_connection_item_request_builder.ServiceNowConnectionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ServiceNowConnectionsRequestBuilderGetRequestConfiguration] = None) -> Optional[service_now_connection_collection_response.ServiceNowConnectionCollectionResponse]:
         """

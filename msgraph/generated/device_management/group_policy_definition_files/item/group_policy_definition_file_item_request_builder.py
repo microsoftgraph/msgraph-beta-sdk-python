@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ....models import group_policy_definition_file
     from ....models.o_data_errors import o_data_error
     from .definitions import definitions_request_builder
-    from .definitions.item import group_policy_definition_item_request_builder
 
 class GroupPolicyDefinitionFileItemRequestBuilder():
     """
@@ -36,21 +35,6 @@ class GroupPolicyDefinitionFileItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def definitions_by_id(self,id: str) -> group_policy_definition_item_request_builder.GroupPolicyDefinitionItemRequestBuilder:
-        """
-        Provides operations to manage the definitions property of the microsoft.graph.groupPolicyDefinitionFile entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: group_policy_definition_item_request_builder.GroupPolicyDefinitionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .definitions.item import group_policy_definition_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["groupPolicyDefinition%2Did"] = id
-        return group_policy_definition_item_request_builder.GroupPolicyDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[GroupPolicyDefinitionFileItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

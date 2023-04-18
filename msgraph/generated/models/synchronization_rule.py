@@ -3,7 +3,7 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import object_mapping, string_key_string_value_pair
+    from . import container_filter, group_filter, object_mapping, string_key_string_value_pair
 
 class SynchronizationRule(AdditionalDataHolder, Parsable):
     def __init__(self,) -> None:
@@ -13,8 +13,12 @@ class SynchronizationRule(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
+        # The containerFilter property
+        self._container_filter: Optional[container_filter.ContainerFilter] = None
         # true if the synchronization rule can be customized; false if this rule is read-only and should not be changed.
         self._editable: Optional[bool] = None
+        # The groupFilter property
+        self._group_filter: Optional[group_filter.GroupFilter] = None
         # Synchronization rule identifier. Must be one of the identifiers recognized by the synchronization engine. Supported rule identifiers can be found in the synchronization template returned by the API.
         self._id: Optional[str] = None
         # Additional extension properties. Unless instructed explicitly by the support team, metadata values should not be changed.
@@ -48,6 +52,23 @@ class SynchronizationRule(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
+    
+    @property
+    def container_filter(self,) -> Optional[container_filter.ContainerFilter]:
+        """
+        Gets the containerFilter property value. The containerFilter property
+        Returns: Optional[container_filter.ContainerFilter]
+        """
+        return self._container_filter
+    
+    @container_filter.setter
+    def container_filter(self,value: Optional[container_filter.ContainerFilter] = None) -> None:
+        """
+        Sets the containerFilter property value. The containerFilter property
+        Args:
+            value: Value to set for the container_filter property.
+        """
+        self._container_filter = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SynchronizationRule:
@@ -83,10 +104,12 @@ class SynchronizationRule(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import object_mapping, string_key_string_value_pair
+        from . import container_filter, group_filter, object_mapping, string_key_string_value_pair
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "containerFilter": lambda n : setattr(self, 'container_filter', n.get_object_value(container_filter.ContainerFilter)),
             "editable": lambda n : setattr(self, 'editable', n.get_bool_value()),
+            "groupFilter": lambda n : setattr(self, 'group_filter', n.get_object_value(group_filter.GroupFilter)),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "metadata": lambda n : setattr(self, 'metadata', n.get_collection_of_object_values(string_key_string_value_pair.StringKeyStringValuePair)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
@@ -97,6 +120,23 @@ class SynchronizationRule(AdditionalDataHolder, Parsable):
             "targetDirectoryName": lambda n : setattr(self, 'target_directory_name', n.get_str_value()),
         }
         return fields
+    
+    @property
+    def group_filter(self,) -> Optional[group_filter.GroupFilter]:
+        """
+        Gets the groupFilter property value. The groupFilter property
+        Returns: Optional[group_filter.GroupFilter]
+        """
+        return self._group_filter
+    
+    @group_filter.setter
+    def group_filter(self,value: Optional[group_filter.GroupFilter] = None) -> None:
+        """
+        Sets the groupFilter property value. The groupFilter property
+        Args:
+            value: Value to set for the group_filter property.
+        """
+        self._group_filter = value
     
     @property
     def id(self,) -> Optional[str]:
@@ -208,7 +248,9 @@ class SynchronizationRule(AdditionalDataHolder, Parsable):
         """
         if writer is None:
             raise Exception("writer cannot be undefined")
+        writer.write_object_value("containerFilter", self.container_filter)
         writer.write_bool_value("editable", self.editable)
+        writer.write_object_value("groupFilter", self.group_filter)
         writer.write_str_value("id", self.id)
         writer.write_collection_of_object_values("metadata", self.metadata)
         writer.write_str_value("name", self.name)

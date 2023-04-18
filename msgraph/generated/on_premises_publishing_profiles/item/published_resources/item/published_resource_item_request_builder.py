@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from .....models import published_resource
     from .....models.o_data_errors import o_data_error
     from .agent_groups import agent_groups_request_builder
-    from .agent_groups.item import on_premises_agent_group_item_request_builder
 
 class PublishedResourceItemRequestBuilder():
     """
@@ -36,21 +35,6 @@ class PublishedResourceItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def agent_groups_by_id(self,id: str) -> on_premises_agent_group_item_request_builder.OnPremisesAgentGroupItemRequestBuilder:
-        """
-        Gets an item from the msgraph.generated.onPremisesPublishingProfiles.item.publishedResources.item.agentGroups.item collection
-        Args:
-            id: Unique identifier of the item
-        Returns: on_premises_agent_group_item_request_builder.OnPremisesAgentGroupItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .agent_groups.item import on_premises_agent_group_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["onPremisesAgentGroup%2Did"] = id
-        return on_premises_agent_group_item_request_builder.OnPremisesAgentGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[PublishedResourceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

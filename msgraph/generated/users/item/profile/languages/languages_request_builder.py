@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import language_proficiency, language_proficiency_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import language_proficiency_item_request_builder
 
 class LanguagesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class LanguagesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_language_proficiency_id(self,language_proficiency_id: str) -> language_proficiency_item_request_builder.LanguageProficiencyItemRequestBuilder:
+        """
+        Provides operations to manage the languages property of the microsoft.graph.profile entity.
+        Args:
+            language_proficiency_id: Unique identifier of the item
+        Returns: language_proficiency_item_request_builder.LanguageProficiencyItemRequestBuilder
+        """
+        if language_proficiency_id is None:
+            raise Exception("language_proficiency_id cannot be undefined")
+        from .item import language_proficiency_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["languageProficiency%2Did"] = language_proficiency_id
+        return language_proficiency_item_request_builder.LanguageProficiencyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[LanguagesRequestBuilderGetRequestConfiguration] = None) -> Optional[language_proficiency_collection_response.LanguageProficiencyCollectionResponse]:
         """

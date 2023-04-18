@@ -13,12 +13,9 @@ if TYPE_CHECKING:
     from .....models.managed_tenants import managed_tenant_alert
     from .....models.o_data_errors import o_data_error
     from .alert_logs import alert_logs_request_builder
-    from .alert_logs.item import managed_tenant_alert_log_item_request_builder
     from .alert_rule import alert_rule_request_builder
     from .api_notifications import api_notifications_request_builder
-    from .api_notifications.item import managed_tenant_api_notification_item_request_builder
     from .email_notifications import email_notifications_request_builder
-    from .email_notifications.item import managed_tenant_email_notification_item_request_builder
     from .managed_tenants_add_user_input_log import managed_tenants_add_user_input_log_request_builder
 
 class ManagedTenantAlertItemRequestBuilder():
@@ -43,36 +40,6 @@ class ManagedTenantAlertItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def alert_logs_by_id(self,id: str) -> managed_tenant_alert_log_item_request_builder.ManagedTenantAlertLogItemRequestBuilder:
-        """
-        Provides operations to manage the alertLogs property of the microsoft.graph.managedTenants.managedTenantAlert entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: managed_tenant_alert_log_item_request_builder.ManagedTenantAlertLogItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .alert_logs.item import managed_tenant_alert_log_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["managedTenantAlertLog%2Did"] = id
-        return managed_tenant_alert_log_item_request_builder.ManagedTenantAlertLogItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def api_notifications_by_id(self,id: str) -> managed_tenant_api_notification_item_request_builder.ManagedTenantApiNotificationItemRequestBuilder:
-        """
-        Provides operations to manage the apiNotifications property of the microsoft.graph.managedTenants.managedTenantAlert entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: managed_tenant_api_notification_item_request_builder.ManagedTenantApiNotificationItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .api_notifications.item import managed_tenant_api_notification_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["managedTenantApiNotification%2Did"] = id
-        return managed_tenant_api_notification_item_request_builder.ManagedTenantApiNotificationItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     async def delete(self,request_configuration: Optional[ManagedTenantAlertItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property managedTenantAlerts for tenantRelationships
@@ -91,21 +58,6 @@ class ManagedTenantAlertItemRequestBuilder():
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
-    
-    def email_notifications_by_id(self,id: str) -> managed_tenant_email_notification_item_request_builder.ManagedTenantEmailNotificationItemRequestBuilder:
-        """
-        Provides operations to manage the emailNotifications property of the microsoft.graph.managedTenants.managedTenantAlert entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: managed_tenant_email_notification_item_request_builder.ManagedTenantEmailNotificationItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .email_notifications.item import managed_tenant_email_notification_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["managedTenantEmailNotification%2Did"] = id
-        return managed_tenant_email_notification_item_request_builder.ManagedTenantEmailNotificationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ManagedTenantAlertItemRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_tenant_alert.ManagedTenantAlert]:
         """

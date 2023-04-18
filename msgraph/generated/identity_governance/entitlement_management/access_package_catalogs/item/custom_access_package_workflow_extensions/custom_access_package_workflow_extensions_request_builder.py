@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models import custom_access_package_workflow_extension, custom_access_package_workflow_extension_collection_response
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import custom_access_package_workflow_extension_item_request_builder
 
 class CustomAccessPackageWorkflowExtensionsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class CustomAccessPackageWorkflowExtensionsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_custom_access_package_workflow_extension_id(self,custom_access_package_workflow_extension_id: str) -> custom_access_package_workflow_extension_item_request_builder.CustomAccessPackageWorkflowExtensionItemRequestBuilder:
+        """
+        Provides operations to manage the customAccessPackageWorkflowExtensions property of the microsoft.graph.accessPackageCatalog entity.
+        Args:
+            custom_access_package_workflow_extension_id: Unique identifier of the item
+        Returns: custom_access_package_workflow_extension_item_request_builder.CustomAccessPackageWorkflowExtensionItemRequestBuilder
+        """
+        if custom_access_package_workflow_extension_id is None:
+            raise Exception("custom_access_package_workflow_extension_id cannot be undefined")
+        from .item import custom_access_package_workflow_extension_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["customAccessPackageWorkflowExtension%2Did"] = custom_access_package_workflow_extension_id
+        return custom_access_package_workflow_extension_item_request_builder.CustomAccessPackageWorkflowExtensionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[CustomAccessPackageWorkflowExtensionsRequestBuilderGetRequestConfiguration] = None) -> Optional[custom_access_package_workflow_extension_collection_response.CustomAccessPackageWorkflowExtensionCollectionResponse]:
         """

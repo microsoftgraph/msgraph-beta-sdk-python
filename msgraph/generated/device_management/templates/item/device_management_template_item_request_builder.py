@@ -13,13 +13,10 @@ if TYPE_CHECKING:
     from ....models import device_management_template
     from ....models.o_data_errors import o_data_error
     from .categories import categories_request_builder
-    from .categories.item import device_management_template_setting_category_item_request_builder
     from .compare_with_template_id import compare_with_template_id_request_builder
     from .create_instance import create_instance_request_builder
     from .migratable_to import migratable_to_request_builder
-    from .migratable_to.item import device_management_template_item_request_builder
     from .settings import settings_request_builder
-    from .settings.item import device_management_setting_instance_item_request_builder
 
 class DeviceManagementTemplateItemRequestBuilder():
     """
@@ -42,21 +39,6 @@ class DeviceManagementTemplateItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def categories_by_id(self,id: str) -> device_management_template_setting_category_item_request_builder.DeviceManagementTemplateSettingCategoryItemRequestBuilder:
-        """
-        Provides operations to manage the categories property of the microsoft.graph.deviceManagementTemplate entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: device_management_template_setting_category_item_request_builder.DeviceManagementTemplateSettingCategoryItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .categories.item import device_management_template_setting_category_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["deviceManagementTemplateSettingCategory%2Did"] = id
-        return device_management_template_setting_category_item_request_builder.DeviceManagementTemplateSettingCategoryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def compare_with_template_id(self,template_id: Optional[str] = None) -> compare_with_template_id_request_builder.CompareWithTemplateIdRequestBuilder:
         """
@@ -112,21 +94,6 @@ class DeviceManagementTemplateItemRequestBuilder():
 
         return await self.request_adapter.send_async(request_info, device_management_template.DeviceManagementTemplate, error_mapping)
     
-    def migratable_to_by_id(self,id: str) -> DeviceManagementTemplateItemRequestBuilder:
-        """
-        Provides operations to manage the migratableTo property of the microsoft.graph.deviceManagementTemplate entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: DeviceManagementTemplateItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .migratable_to.item import device_management_template_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["deviceManagementTemplate%2Did1"] = id
-        return DeviceManagementTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     async def patch(self,body: Optional[device_management_template.DeviceManagementTemplate] = None, request_configuration: Optional[DeviceManagementTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_management_template.DeviceManagementTemplate]:
         """
         Update the navigation property templates in deviceManagement
@@ -151,21 +118,6 @@ class DeviceManagementTemplateItemRequestBuilder():
         from ....models import device_management_template
 
         return await self.request_adapter.send_async(request_info, device_management_template.DeviceManagementTemplate, error_mapping)
-    
-    def settings_by_id(self,id: str) -> device_management_setting_instance_item_request_builder.DeviceManagementSettingInstanceItemRequestBuilder:
-        """
-        Provides operations to manage the settings property of the microsoft.graph.deviceManagementTemplate entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: device_management_setting_instance_item_request_builder.DeviceManagementSettingInstanceItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .settings.item import device_management_setting_instance_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["deviceManagementSettingInstance%2Did"] = id
-        return device_management_setting_instance_item_request_builder.DeviceManagementSettingInstanceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceManagementTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

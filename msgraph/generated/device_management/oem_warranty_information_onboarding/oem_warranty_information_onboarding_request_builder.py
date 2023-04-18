@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import oem_warranty_information_onboarding, oem_warranty_information_onboarding_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import oem_warranty_information_onboarding_item_request_builder
 
 class OemWarrantyInformationOnboardingRequestBuilder():
     """
@@ -35,6 +36,21 @@ class OemWarrantyInformationOnboardingRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_oem_warranty_information_onboarding_id(self,oem_warranty_information_onboarding_id: str) -> oem_warranty_information_onboarding_item_request_builder.OemWarrantyInformationOnboardingItemRequestBuilder:
+        """
+        Provides operations to manage the oemWarrantyInformationOnboarding property of the microsoft.graph.deviceManagement entity.
+        Args:
+            oem_warranty_information_onboarding_id: Unique identifier of the item
+        Returns: oem_warranty_information_onboarding_item_request_builder.OemWarrantyInformationOnboardingItemRequestBuilder
+        """
+        if oem_warranty_information_onboarding_id is None:
+            raise Exception("oem_warranty_information_onboarding_id cannot be undefined")
+        from .item import oem_warranty_information_onboarding_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["oemWarrantyInformationOnboarding%2Did"] = oem_warranty_information_onboarding_id
+        return oem_warranty_information_onboarding_item_request_builder.OemWarrantyInformationOnboardingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[OemWarrantyInformationOnboardingRequestBuilderGetRequestConfiguration] = None) -> Optional[oem_warranty_information_onboarding_collection_response.OemWarrantyInformationOnboardingCollectionResponse]:
         """

@@ -15,9 +15,7 @@ if TYPE_CHECKING:
     from .access_package import access_package_request_builder
     from .access_package_catalog import access_package_catalog_request_builder
     from .custom_extension_handlers import custom_extension_handlers_request_builder
-    from .custom_extension_handlers.item import custom_extension_handler_item_request_builder
     from .custom_extension_stage_settings import custom_extension_stage_settings_request_builder
-    from .custom_extension_stage_settings.item import custom_extension_stage_setting_item_request_builder
 
 class AccessPackageAssignmentPolicyItemRequestBuilder():
     """
@@ -40,36 +38,6 @@ class AccessPackageAssignmentPolicyItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def custom_extension_handlers_by_id(self,id: str) -> custom_extension_handler_item_request_builder.CustomExtensionHandlerItemRequestBuilder:
-        """
-        Provides operations to manage the customExtensionHandlers property of the microsoft.graph.accessPackageAssignmentPolicy entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: custom_extension_handler_item_request_builder.CustomExtensionHandlerItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .custom_extension_handlers.item import custom_extension_handler_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["customExtensionHandler%2Did"] = id
-        return custom_extension_handler_item_request_builder.CustomExtensionHandlerItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def custom_extension_stage_settings_by_id(self,id: str) -> custom_extension_stage_setting_item_request_builder.CustomExtensionStageSettingItemRequestBuilder:
-        """
-        Provides operations to manage the customExtensionStageSettings property of the microsoft.graph.accessPackageAssignmentPolicy entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: custom_extension_stage_setting_item_request_builder.CustomExtensionStageSettingItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .custom_extension_stage_settings.item import custom_extension_stage_setting_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["customExtensionStageSetting%2Did"] = id
-        return custom_extension_stage_setting_item_request_builder.CustomExtensionStageSettingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[AccessPackageAssignmentPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

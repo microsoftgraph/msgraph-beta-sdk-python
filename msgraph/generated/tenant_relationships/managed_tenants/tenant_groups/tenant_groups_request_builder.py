@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.managed_tenants import tenant_group, tenant_group_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import tenant_group_item_request_builder
     from .managed_tenants_tenant_search import managed_tenants_tenant_search_request_builder
 
 class TenantGroupsRequestBuilder():
@@ -36,6 +37,21 @@ class TenantGroupsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_tenant_group_id(self,tenant_group_id: str) -> tenant_group_item_request_builder.TenantGroupItemRequestBuilder:
+        """
+        Provides operations to manage the tenantGroups property of the microsoft.graph.managedTenants.managedTenant entity.
+        Args:
+            tenant_group_id: Unique identifier of the item
+        Returns: tenant_group_item_request_builder.TenantGroupItemRequestBuilder
+        """
+        if tenant_group_id is None:
+            raise Exception("tenant_group_id cannot be undefined")
+        from .item import tenant_group_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["tenantGroup%2Did"] = tenant_group_id
+        return tenant_group_item_request_builder.TenantGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[TenantGroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[tenant_group_collection_response.TenantGroupCollectionResponse]:
         """

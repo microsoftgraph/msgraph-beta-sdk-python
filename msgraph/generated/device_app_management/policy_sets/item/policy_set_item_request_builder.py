@@ -13,9 +13,7 @@ if TYPE_CHECKING:
     from ....models import policy_set
     from ....models.o_data_errors import o_data_error
     from .assignments import assignments_request_builder
-    from .assignments.item import policy_set_assignment_item_request_builder
     from .items import items_request_builder
-    from .items.item import policy_set_item_item_request_builder
     from .update import update_request_builder
 
 class PolicySetItemRequestBuilder():
@@ -39,21 +37,6 @@ class PolicySetItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def assignments_by_id(self,id: str) -> policy_set_assignment_item_request_builder.PolicySetAssignmentItemRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.policySet entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: policy_set_assignment_item_request_builder.PolicySetAssignmentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .assignments.item import policy_set_assignment_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["policySetAssignment%2Did"] = id
-        return policy_set_assignment_item_request_builder.PolicySetAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[PolicySetItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
@@ -95,21 +78,6 @@ class PolicySetItemRequestBuilder():
         from ....models import policy_set
 
         return await self.request_adapter.send_async(request_info, policy_set.PolicySet, error_mapping)
-    
-    def items_by_id(self,id: str) -> policy_set_item_item_request_builder.PolicySetItemItemRequestBuilder:
-        """
-        Provides operations to manage the items property of the microsoft.graph.policySet entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: policy_set_item_item_request_builder.PolicySetItemItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .items.item import policy_set_item_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["policySetItem%2Did"] = id
-        return policy_set_item_item_request_builder.PolicySetItemItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[policy_set.PolicySet] = None, request_configuration: Optional[PolicySetItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[policy_set.PolicySet]:
         """

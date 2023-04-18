@@ -3,7 +3,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import audio, base_item, bundle, deleted, drive_item_source, drive_item_version, file, file_system_info, folder, geo_coordinates, image, item_activity_o_l_d, item_analytics, list_item, malware, media, package, pending_operations, permission, photo, publication_facet, remote_item, root, search_result, shared, sharepoint_ids, special_folder, subscription, thumbnail_set, video, workbook
+    from . import audio, base_item, bundle, deleted, drive_item_source, drive_item_version, file, file_system_info, folder, geo_coordinates, image, item_activity_o_l_d, item_analytics, item_retention_label, list_item, malware, media, package, pending_operations, permission, photo, publication_facet, remote_item, root, search_result, shared, sharepoint_ids, special_folder, subscription, thumbnail_set, video, workbook
 
 from . import base_item
 
@@ -58,6 +58,8 @@ class DriveItem(base_item.BaseItem):
         self._publication: Optional[publication_facet.PublicationFacet] = None
         # Remote item data, if the item is shared from a drive other than the one being accessed. Read-only.
         self._remote_item: Optional[remote_item.RemoteItem] = None
+        # The retentionLabel property
+        self._retention_label: Optional[item_retention_label.ItemRetentionLabel] = None
         # If this property is non-null, it indicates that the driveItem is the top-most driveItem in the drive.
         self._root: Optional[root.Root] = None
         # Search metadata, if the item is from a search result. Read-only.
@@ -289,7 +291,7 @@ class DriveItem(base_item.BaseItem):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import audio, base_item, bundle, deleted, drive_item_source, drive_item_version, file, file_system_info, folder, geo_coordinates, image, item_activity_o_l_d, item_analytics, list_item, malware, media, package, pending_operations, permission, photo, publication_facet, remote_item, root, search_result, shared, sharepoint_ids, special_folder, subscription, thumbnail_set, video, workbook
+        from . import audio, base_item, bundle, deleted, drive_item_source, drive_item_version, file, file_system_info, folder, geo_coordinates, image, item_activity_o_l_d, item_analytics, item_retention_label, list_item, malware, media, package, pending_operations, permission, photo, publication_facet, remote_item, root, search_result, shared, sharepoint_ids, special_folder, subscription, thumbnail_set, video, workbook
 
         fields: Dict[str, Callable[[Any], None]] = {
             "activities": lambda n : setattr(self, 'activities', n.get_collection_of_object_values(item_activity_o_l_d.ItemActivityOLD)),
@@ -314,6 +316,7 @@ class DriveItem(base_item.BaseItem):
             "photo": lambda n : setattr(self, 'photo', n.get_object_value(photo.Photo)),
             "publication": lambda n : setattr(self, 'publication', n.get_object_value(publication_facet.PublicationFacet)),
             "remoteItem": lambda n : setattr(self, 'remote_item', n.get_object_value(remote_item.RemoteItem)),
+            "retentionLabel": lambda n : setattr(self, 'retention_label', n.get_object_value(item_retention_label.ItemRetentionLabel)),
             "root": lambda n : setattr(self, 'root', n.get_object_value(root.Root)),
             "searchResult": lambda n : setattr(self, 'search_result', n.get_object_value(search_result.SearchResult)),
             "shared": lambda n : setattr(self, 'shared', n.get_object_value(shared.Shared)),
@@ -520,6 +523,23 @@ class DriveItem(base_item.BaseItem):
         self._remote_item = value
     
     @property
+    def retention_label(self,) -> Optional[item_retention_label.ItemRetentionLabel]:
+        """
+        Gets the retentionLabel property value. The retentionLabel property
+        Returns: Optional[item_retention_label.ItemRetentionLabel]
+        """
+        return self._retention_label
+    
+    @retention_label.setter
+    def retention_label(self,value: Optional[item_retention_label.ItemRetentionLabel] = None) -> None:
+        """
+        Sets the retentionLabel property value. The retentionLabel property
+        Args:
+            value: Value to set for the retention_label property.
+        """
+        self._retention_label = value
+    
+    @property
     def root(self,) -> Optional[root.Root]:
         """
         Gets the root property value. If this property is non-null, it indicates that the driveItem is the top-most driveItem in the drive.
@@ -584,6 +604,7 @@ class DriveItem(base_item.BaseItem):
         writer.write_object_value("photo", self.photo)
         writer.write_object_value("publication", self.publication)
         writer.write_object_value("remoteItem", self.remote_item)
+        writer.write_object_value("retentionLabel", self.retention_label)
         writer.write_object_value("root", self.root)
         writer.write_object_value("searchResult", self.search_result)
         writer.write_object_value("shared", self.shared)

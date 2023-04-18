@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .delta import delta_request_builder
+    from .item import planner_delta_item_request_builder
 
 class AllRequestBuilder():
     """
@@ -36,6 +37,21 @@ class AllRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_planner_delta_id(self,planner_delta_id: str) -> planner_delta_item_request_builder.PlannerDeltaItemRequestBuilder:
+        """
+        Provides operations to manage the all property of the microsoft.graph.plannerUser entity.
+        Args:
+            planner_delta_id: Unique identifier of the item
+        Returns: planner_delta_item_request_builder.PlannerDeltaItemRequestBuilder
+        """
+        if planner_delta_id is None:
+            raise Exception("planner_delta_id cannot be undefined")
+        from .item import planner_delta_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["plannerDelta%2Did"] = planner_delta_id
+        return planner_delta_item_request_builder.PlannerDeltaItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[AllRequestBuilderGetRequestConfiguration] = None) -> Optional[planner_delta_collection_response.PlannerDeltaCollectionResponse]:
         """

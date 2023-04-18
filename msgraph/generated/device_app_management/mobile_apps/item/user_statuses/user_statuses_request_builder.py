@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import user_app_install_status, user_app_install_status_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import user_app_install_status_item_request_builder
 
 class UserStatusesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class UserStatusesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_user_app_install_status_id(self,user_app_install_status_id: str) -> user_app_install_status_item_request_builder.UserAppInstallStatusItemRequestBuilder:
+        """
+        Provides operations to manage the userStatuses property of the microsoft.graph.mobileApp entity.
+        Args:
+            user_app_install_status_id: Unique identifier of the item
+        Returns: user_app_install_status_item_request_builder.UserAppInstallStatusItemRequestBuilder
+        """
+        if user_app_install_status_id is None:
+            raise Exception("user_app_install_status_id cannot be undefined")
+        from .item import user_app_install_status_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["userAppInstallStatus%2Did"] = user_app_install_status_id
+        return user_app_install_status_item_request_builder.UserAppInstallStatusItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[UserStatusesRequestBuilderGetRequestConfiguration] = None) -> Optional[user_app_install_status_collection_response.UserAppInstallStatusCollectionResponse]:
         """

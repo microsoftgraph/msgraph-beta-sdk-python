@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import android_for_work_app_configuration_schema, android_for_work_app_configuration_schema_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import android_for_work_app_configuration_schema_item_request_builder
 
 class AndroidForWorkAppConfigurationSchemasRequestBuilder():
     """
@@ -35,6 +36,21 @@ class AndroidForWorkAppConfigurationSchemasRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_android_for_work_app_configuration_schema_id(self,android_for_work_app_configuration_schema_id: str) -> android_for_work_app_configuration_schema_item_request_builder.AndroidForWorkAppConfigurationSchemaItemRequestBuilder:
+        """
+        Provides operations to manage the androidForWorkAppConfigurationSchemas property of the microsoft.graph.deviceManagement entity.
+        Args:
+            android_for_work_app_configuration_schema_id: Unique identifier of the item
+        Returns: android_for_work_app_configuration_schema_item_request_builder.AndroidForWorkAppConfigurationSchemaItemRequestBuilder
+        """
+        if android_for_work_app_configuration_schema_id is None:
+            raise Exception("android_for_work_app_configuration_schema_id cannot be undefined")
+        from .item import android_for_work_app_configuration_schema_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["androidForWorkAppConfigurationSchema%2Did"] = android_for_work_app_configuration_schema_id
+        return android_for_work_app_configuration_schema_item_request_builder.AndroidForWorkAppConfigurationSchemaItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[AndroidForWorkAppConfigurationSchemasRequestBuilderGetRequestConfiguration] = None) -> Optional[android_for_work_app_configuration_schema_collection_response.AndroidForWorkAppConfigurationSchemaCollectionResponse]:
         """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import shared_email_domain, shared_email_domain_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import shared_email_domain_item_request_builder
 
 class SharedEmailDomainsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class SharedEmailDomainsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_shared_email_domain_id(self,shared_email_domain_id: str) -> shared_email_domain_item_request_builder.SharedEmailDomainItemRequestBuilder:
+        """
+        Provides operations to manage the sharedEmailDomains property of the microsoft.graph.directory entity.
+        Args:
+            shared_email_domain_id: Unique identifier of the item
+        Returns: shared_email_domain_item_request_builder.SharedEmailDomainItemRequestBuilder
+        """
+        if shared_email_domain_id is None:
+            raise Exception("shared_email_domain_id cannot be undefined")
+        from .item import shared_email_domain_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["sharedEmailDomain%2Did"] = shared_email_domain_id
+        return shared_email_domain_item_request_builder.SharedEmailDomainItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[SharedEmailDomainsRequestBuilderGetRequestConfiguration] = None) -> Optional[shared_email_domain_collection_response.SharedEmailDomainCollectionResponse]:
         """

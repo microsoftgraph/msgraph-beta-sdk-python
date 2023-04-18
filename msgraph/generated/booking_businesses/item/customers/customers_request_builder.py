@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import booking_customer, booking_customer_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import booking_customer_item_request_builder
 
 class CustomersRequestBuilder():
     """
@@ -35,6 +36,21 @@ class CustomersRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_booking_customer_id(self,booking_customer_id: str) -> booking_customer_item_request_builder.BookingCustomerItemRequestBuilder:
+        """
+        Provides operations to manage the customers property of the microsoft.graph.bookingBusiness entity.
+        Args:
+            booking_customer_id: Unique identifier of the item
+        Returns: booking_customer_item_request_builder.BookingCustomerItemRequestBuilder
+        """
+        if booking_customer_id is None:
+            raise Exception("booking_customer_id cannot be undefined")
+        from .item import booking_customer_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["bookingCustomer%2Did"] = booking_customer_id
+        return booking_customer_item_request_builder.BookingCustomerItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[CustomersRequestBuilderGetRequestConfiguration] = None) -> Optional[booking_customer_collection_response.BookingCustomerCollectionResponse]:
         """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import teamwork_device_operation, teamwork_device_operation_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import teamwork_device_operation_item_request_builder
 
 class OperationsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class OperationsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_teamwork_device_operation_id(self,teamwork_device_operation_id: str) -> teamwork_device_operation_item_request_builder.TeamworkDeviceOperationItemRequestBuilder:
+        """
+        Provides operations to manage the operations property of the microsoft.graph.teamworkDevice entity.
+        Args:
+            teamwork_device_operation_id: Unique identifier of the item
+        Returns: teamwork_device_operation_item_request_builder.TeamworkDeviceOperationItemRequestBuilder
+        """
+        if teamwork_device_operation_id is None:
+            raise Exception("teamwork_device_operation_id cannot be undefined")
+        from .item import teamwork_device_operation_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["teamworkDeviceOperation%2Did"] = teamwork_device_operation_id
+        return teamwork_device_operation_item_request_builder.TeamworkDeviceOperationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[OperationsRequestBuilderGetRequestConfiguration] = None) -> Optional[teamwork_device_operation_collection_response.TeamworkDeviceOperationCollectionResponse]:
         """

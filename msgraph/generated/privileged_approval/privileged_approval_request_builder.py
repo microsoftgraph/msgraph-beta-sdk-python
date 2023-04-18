@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ..models import privileged_approval, privileged_approval_collection_response
     from ..models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import privileged_approval_item_request_builder
     from .my_requests import my_requests_request_builder
 
 class PrivilegedApprovalRequestBuilder():
@@ -36,6 +37,21 @@ class PrivilegedApprovalRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_privileged_approval_id(self,privileged_approval_id: str) -> privileged_approval_item_request_builder.PrivilegedApprovalItemRequestBuilder:
+        """
+        Provides operations to manage the collection of privilegedApproval entities.
+        Args:
+            privileged_approval_id: Unique identifier of the item
+        Returns: privileged_approval_item_request_builder.PrivilegedApprovalItemRequestBuilder
+        """
+        if privileged_approval_id is None:
+            raise Exception("privileged_approval_id cannot be undefined")
+        from .item import privileged_approval_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["privilegedApproval%2Did"] = privileged_approval_id
+        return privileged_approval_item_request_builder.PrivilegedApprovalItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[PrivilegedApprovalRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_approval_collection_response.PrivilegedApprovalCollectionResponse]:
         """

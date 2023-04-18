@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .get_expiring_vpp_token_count_with_expiring_before_date_time import get_expiring_vpp_token_count_with_expiring_before_date_time_request_builder
+    from .item import dep_onboarding_setting_item_request_builder
 
 class DepOnboardingSettingsRequestBuilder():
     """
@@ -36,6 +37,21 @@ class DepOnboardingSettingsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_dep_onboarding_setting_id(self,dep_onboarding_setting_id: str) -> dep_onboarding_setting_item_request_builder.DepOnboardingSettingItemRequestBuilder:
+        """
+        Provides operations to manage the depOnboardingSettings property of the microsoft.graph.deviceManagement entity.
+        Args:
+            dep_onboarding_setting_id: Unique identifier of the item
+        Returns: dep_onboarding_setting_item_request_builder.DepOnboardingSettingItemRequestBuilder
+        """
+        if dep_onboarding_setting_id is None:
+            raise Exception("dep_onboarding_setting_id cannot be undefined")
+        from .item import dep_onboarding_setting_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["depOnboardingSetting%2Did"] = dep_onboarding_setting_id
+        return dep_onboarding_setting_item_request_builder.DepOnboardingSettingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[DepOnboardingSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[dep_onboarding_setting_collection_response.DepOnboardingSettingCollectionResponse]:
         """

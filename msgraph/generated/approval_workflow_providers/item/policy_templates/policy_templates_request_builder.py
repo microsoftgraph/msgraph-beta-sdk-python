@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import governance_policy_template, governance_policy_template_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import governance_policy_template_item_request_builder
 
 class PolicyTemplatesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class PolicyTemplatesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_governance_policy_template_id(self,governance_policy_template_id: str) -> governance_policy_template_item_request_builder.GovernancePolicyTemplateItemRequestBuilder:
+        """
+        Provides operations to manage the policyTemplates property of the microsoft.graph.approvalWorkflowProvider entity.
+        Args:
+            governance_policy_template_id: Unique identifier of the item
+        Returns: governance_policy_template_item_request_builder.GovernancePolicyTemplateItemRequestBuilder
+        """
+        if governance_policy_template_id is None:
+            raise Exception("governance_policy_template_id cannot be undefined")
+        from .item import governance_policy_template_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["governancePolicyTemplate%2Did"] = governance_policy_template_id
+        return governance_policy_template_item_request_builder.GovernancePolicyTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[PolicyTemplatesRequestBuilderGetRequestConfiguration] = None) -> Optional[governance_policy_template_collection_response.GovernancePolicyTemplateCollectionResponse]:
         """

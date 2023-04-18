@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ..models import financials
     from ..models.o_data_errors import o_data_error
     from .companies import companies_request_builder
-    from .companies.item import company_item_request_builder
 
 class FinancialsRequestBuilder():
     """
@@ -36,21 +35,6 @@ class FinancialsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def companies_by_id(self,id: str) -> company_item_request_builder.CompanyItemRequestBuilder:
-        """
-        Provides operations to manage the companies property of the microsoft.graph.financials entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: company_item_request_builder.CompanyItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .companies.item import company_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["company%2Did"] = id
-        return company_item_request_builder.CompanyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[FinancialsRequestBuilderGetRequestConfiguration] = None) -> Optional[financials.Financials]:
         """

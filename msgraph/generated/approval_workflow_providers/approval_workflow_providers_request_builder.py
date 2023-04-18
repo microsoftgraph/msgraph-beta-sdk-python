@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ..models import approval_workflow_provider, approval_workflow_provider_collection_response
     from ..models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import approval_workflow_provider_item_request_builder
 
 class ApprovalWorkflowProvidersRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ApprovalWorkflowProvidersRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_approval_workflow_provider_id(self,approval_workflow_provider_id: str) -> approval_workflow_provider_item_request_builder.ApprovalWorkflowProviderItemRequestBuilder:
+        """
+        Provides operations to manage the collection of approvalWorkflowProvider entities.
+        Args:
+            approval_workflow_provider_id: Unique identifier of the item
+        Returns: approval_workflow_provider_item_request_builder.ApprovalWorkflowProviderItemRequestBuilder
+        """
+        if approval_workflow_provider_id is None:
+            raise Exception("approval_workflow_provider_id cannot be undefined")
+        from .item import approval_workflow_provider_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["approvalWorkflowProvider%2Did"] = approval_workflow_provider_id
+        return approval_workflow_provider_item_request_builder.ApprovalWorkflowProviderItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ApprovalWorkflowProvidersRequestBuilderGetRequestConfiguration] = None) -> Optional[approval_workflow_provider_collection_response.ApprovalWorkflowProviderCollectionResponse]:
         """

@@ -13,44 +13,29 @@ if TYPE_CHECKING:
     from ..models.o_data_errors import o_data_error
     from ..models.security import security
     from .alerts import alerts_request_builder
-    from .alerts.item import alert_item_request_builder
     from .alerts_v2 import alerts_v2_request_builder
-    from .alerts_v2.item import alert_item_request_builder
     from .attack_simulation import attack_simulation_request_builder
     from .cases import cases_request_builder
     from .cloud_app_security_profiles import cloud_app_security_profiles_request_builder
-    from .cloud_app_security_profiles.item import cloud_app_security_profile_item_request_builder
     from .domain_security_profiles import domain_security_profiles_request_builder
-    from .domain_security_profiles.item import domain_security_profile_item_request_builder
     from .file_security_profiles import file_security_profiles_request_builder
-    from .file_security_profiles.item import file_security_profile_item_request_builder
     from .host_security_profiles import host_security_profiles_request_builder
-    from .host_security_profiles.item import host_security_profile_item_request_builder
     from .incidents import incidents_request_builder
-    from .incidents.item import incident_item_request_builder
     from .information_protection import information_protection_request_builder
     from .ip_security_profiles import ip_security_profiles_request_builder
-    from .ip_security_profiles.item import ip_security_profile_item_request_builder
     from .labels import labels_request_builder
     from .provider_tenant_settings import provider_tenant_settings_request_builder
-    from .provider_tenant_settings.item import provider_tenant_setting_item_request_builder
     from .secure_score_control_profiles import secure_score_control_profiles_request_builder
-    from .secure_score_control_profiles.item import secure_score_control_profile_item_request_builder
     from .secure_scores import secure_scores_request_builder
-    from .secure_scores.item import secure_score_item_request_builder
     from .security_actions import security_actions_request_builder
-    from .security_actions.item import security_action_item_request_builder
     from .security_run_hunting_query import security_run_hunting_query_request_builder
     from .subject_rights_requests import subject_rights_requests_request_builder
-    from .subject_rights_requests.item import subject_rights_request_item_request_builder
     from .threat_intelligence import threat_intelligence_request_builder
     from .threat_submission import threat_submission_request_builder
     from .ti_indicators import ti_indicators_request_builder
-    from .ti_indicators.item import ti_indicator_item_request_builder
     from .triggers import triggers_request_builder
     from .trigger_types import trigger_types_request_builder
     from .user_security_profiles import user_security_profiles_request_builder
-    from .user_security_profiles.item import user_security_profile_item_request_builder
 
 class SecurityRequestBuilder():
     """
@@ -74,83 +59,6 @@ class SecurityRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def alerts_by_id(self,id: str) -> alert_item_request_builder.AlertItemRequestBuilder:
-        """
-        Provides operations to manage the alerts property of the microsoft.graph.security entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: alert_item_request_builder.AlertItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .alerts.item import alert_item_request_builder
-        from .alerts_v2.item import alert_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["alert%2Did"] = id
-        return alert_item_request_builder.AlertItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def alerts_v2_by_id(self,id: str) -> alert_item_request_builder.AlertItemRequestBuilder:
-        """
-        Provides operations to manage the alerts_v2 property of the microsoft.graph.security entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: alert_item_request_builder.AlertItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .alerts.item import alert_item_request_builder
-        from .alerts_v2.item import alert_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["alert%2Did"] = id
-        return alert_item_request_builder.AlertItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def cloud_app_security_profiles_by_id(self,id: str) -> cloud_app_security_profile_item_request_builder.CloudAppSecurityProfileItemRequestBuilder:
-        """
-        Provides operations to manage the cloudAppSecurityProfiles property of the microsoft.graph.security entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: cloud_app_security_profile_item_request_builder.CloudAppSecurityProfileItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .cloud_app_security_profiles.item import cloud_app_security_profile_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["cloudAppSecurityProfile%2Did"] = id
-        return cloud_app_security_profile_item_request_builder.CloudAppSecurityProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def domain_security_profiles_by_id(self,id: str) -> domain_security_profile_item_request_builder.DomainSecurityProfileItemRequestBuilder:
-        """
-        Provides operations to manage the domainSecurityProfiles property of the microsoft.graph.security entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: domain_security_profile_item_request_builder.DomainSecurityProfileItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .domain_security_profiles.item import domain_security_profile_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["domainSecurityProfile%2Did"] = id
-        return domain_security_profile_item_request_builder.DomainSecurityProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def file_security_profiles_by_id(self,id: str) -> file_security_profile_item_request_builder.FileSecurityProfileItemRequestBuilder:
-        """
-        Provides operations to manage the fileSecurityProfiles property of the microsoft.graph.security entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: file_security_profile_item_request_builder.FileSecurityProfileItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .file_security_profiles.item import file_security_profile_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["fileSecurityProfile%2Did"] = id
-        return file_security_profile_item_request_builder.FileSecurityProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     async def get(self,request_configuration: Optional[SecurityRequestBuilderGetRequestConfiguration] = None) -> Optional[security.Security]:
         """
         Get security
@@ -172,51 +80,6 @@ class SecurityRequestBuilder():
         from ..models.security import security
 
         return await self.request_adapter.send_async(request_info, security.Security, error_mapping)
-    
-    def host_security_profiles_by_id(self,id: str) -> host_security_profile_item_request_builder.HostSecurityProfileItemRequestBuilder:
-        """
-        Provides operations to manage the hostSecurityProfiles property of the microsoft.graph.security entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: host_security_profile_item_request_builder.HostSecurityProfileItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .host_security_profiles.item import host_security_profile_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["hostSecurityProfile%2Did"] = id
-        return host_security_profile_item_request_builder.HostSecurityProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def incidents_by_id(self,id: str) -> incident_item_request_builder.IncidentItemRequestBuilder:
-        """
-        Provides operations to manage the incidents property of the microsoft.graph.security entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: incident_item_request_builder.IncidentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .incidents.item import incident_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["incident%2Did"] = id
-        return incident_item_request_builder.IncidentItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def ip_security_profiles_by_id(self,id: str) -> ip_security_profile_item_request_builder.IpSecurityProfileItemRequestBuilder:
-        """
-        Provides operations to manage the ipSecurityProfiles property of the microsoft.graph.security entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: ip_security_profile_item_request_builder.IpSecurityProfileItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .ip_security_profiles.item import ip_security_profile_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["ipSecurityProfile%2Did"] = id
-        return ip_security_profile_item_request_builder.IpSecurityProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[security.Security] = None, request_configuration: Optional[SecurityRequestBuilderPatchRequestConfiguration] = None) -> Optional[security.Security]:
         """
@@ -242,96 +105,6 @@ class SecurityRequestBuilder():
         from ..models.security import security
 
         return await self.request_adapter.send_async(request_info, security.Security, error_mapping)
-    
-    def provider_tenant_settings_by_id(self,id: str) -> provider_tenant_setting_item_request_builder.ProviderTenantSettingItemRequestBuilder:
-        """
-        Provides operations to manage the providerTenantSettings property of the microsoft.graph.security entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: provider_tenant_setting_item_request_builder.ProviderTenantSettingItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .provider_tenant_settings.item import provider_tenant_setting_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["providerTenantSetting%2Did"] = id
-        return provider_tenant_setting_item_request_builder.ProviderTenantSettingItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def secure_score_control_profiles_by_id(self,id: str) -> secure_score_control_profile_item_request_builder.SecureScoreControlProfileItemRequestBuilder:
-        """
-        Provides operations to manage the secureScoreControlProfiles property of the microsoft.graph.security entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: secure_score_control_profile_item_request_builder.SecureScoreControlProfileItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .secure_score_control_profiles.item import secure_score_control_profile_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["secureScoreControlProfile%2Did"] = id
-        return secure_score_control_profile_item_request_builder.SecureScoreControlProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def secure_scores_by_id(self,id: str) -> secure_score_item_request_builder.SecureScoreItemRequestBuilder:
-        """
-        Provides operations to manage the secureScores property of the microsoft.graph.security entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: secure_score_item_request_builder.SecureScoreItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .secure_scores.item import secure_score_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["secureScore%2Did"] = id
-        return secure_score_item_request_builder.SecureScoreItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def security_actions_by_id(self,id: str) -> security_action_item_request_builder.SecurityActionItemRequestBuilder:
-        """
-        Provides operations to manage the securityActions property of the microsoft.graph.security entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: security_action_item_request_builder.SecurityActionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .security_actions.item import security_action_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["securityAction%2Did"] = id
-        return security_action_item_request_builder.SecurityActionItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def subject_rights_requests_by_id(self,id: str) -> subject_rights_request_item_request_builder.SubjectRightsRequestItemRequestBuilder:
-        """
-        Provides operations to manage the subjectRightsRequests property of the microsoft.graph.security entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: subject_rights_request_item_request_builder.SubjectRightsRequestItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .subject_rights_requests.item import subject_rights_request_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["subjectRightsRequest%2Did"] = id
-        return subject_rights_request_item_request_builder.SubjectRightsRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def ti_indicators_by_id(self,id: str) -> ti_indicator_item_request_builder.TiIndicatorItemRequestBuilder:
-        """
-        Provides operations to manage the tiIndicators property of the microsoft.graph.security entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: ti_indicator_item_request_builder.TiIndicatorItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .ti_indicators.item import ti_indicator_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["tiIndicator%2Did"] = id
-        return ti_indicator_item_request_builder.TiIndicatorItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_get_request_information(self,request_configuration: Optional[SecurityRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -371,21 +144,6 @@ class SecurityRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
-    
-    def user_security_profiles_by_id(self,id: str) -> user_security_profile_item_request_builder.UserSecurityProfileItemRequestBuilder:
-        """
-        Provides operations to manage the userSecurityProfiles property of the microsoft.graph.security entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: user_security_profile_item_request_builder.UserSecurityProfileItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .user_security_profiles.item import user_security_profile_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["userSecurityProfile%2Did"] = id
-        return user_security_profile_item_request_builder.UserSecurityProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     @property
     def alerts(self) -> alerts_request_builder.AlertsRequestBuilder:

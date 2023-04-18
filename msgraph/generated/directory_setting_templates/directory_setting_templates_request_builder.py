@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from .delta import delta_request_builder
     from .get_by_ids import get_by_ids_request_builder
     from .get_user_owned_objects import get_user_owned_objects_request_builder
+    from .item import directory_setting_template_item_request_builder
     from .validate_properties import validate_properties_request_builder
 
 class DirectorySettingTemplatesRequestBuilder():
@@ -39,6 +40,21 @@ class DirectorySettingTemplatesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_directory_setting_template_id(self,directory_setting_template_id: str) -> directory_setting_template_item_request_builder.DirectorySettingTemplateItemRequestBuilder:
+        """
+        Provides operations to manage the collection of directorySettingTemplate entities.
+        Args:
+            directory_setting_template_id: Unique identifier of the item
+        Returns: directory_setting_template_item_request_builder.DirectorySettingTemplateItemRequestBuilder
+        """
+        if directory_setting_template_id is None:
+            raise Exception("directory_setting_template_id cannot be undefined")
+        from .item import directory_setting_template_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["directorySettingTemplate%2Did"] = directory_setting_template_id
+        return directory_setting_template_item_request_builder.DirectorySettingTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[DirectorySettingTemplatesRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_setting_template_collection_response.DirectorySettingTemplateCollectionResponse]:
         """

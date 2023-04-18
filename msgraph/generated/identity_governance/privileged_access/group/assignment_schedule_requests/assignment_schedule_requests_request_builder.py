@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .filter_by_current_user_with_on import filter_by_current_user_with_on_request_builder
+    from .item import privileged_access_group_assignment_schedule_request_item_request_builder
 
 class AssignmentScheduleRequestsRequestBuilder():
     """
@@ -36,6 +37,21 @@ class AssignmentScheduleRequestsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_privileged_access_group_assignment_schedule_request_id(self,privileged_access_group_assignment_schedule_request_id: str) -> privileged_access_group_assignment_schedule_request_item_request_builder.PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder:
+        """
+        Provides operations to manage the assignmentScheduleRequests property of the microsoft.graph.privilegedAccessGroup entity.
+        Args:
+            privileged_access_group_assignment_schedule_request_id: Unique identifier of the item
+        Returns: privileged_access_group_assignment_schedule_request_item_request_builder.PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder
+        """
+        if privileged_access_group_assignment_schedule_request_id is None:
+            raise Exception("privileged_access_group_assignment_schedule_request_id cannot be undefined")
+        from .item import privileged_access_group_assignment_schedule_request_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["privilegedAccessGroupAssignmentScheduleRequest%2Did"] = privileged_access_group_assignment_schedule_request_id
+        return privileged_access_group_assignment_schedule_request_item_request_builder.PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def filter_by_current_user_with_on(self,on: Optional[str] = None) -> filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder:
         """

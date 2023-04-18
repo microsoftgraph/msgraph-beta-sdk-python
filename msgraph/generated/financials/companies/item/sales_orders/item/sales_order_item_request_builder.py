@@ -16,7 +16,6 @@ if TYPE_CHECKING:
     from .customer import customer_request_builder
     from .payment_term import payment_term_request_builder
     from .sales_order_lines import sales_order_lines_request_builder
-    from .sales_order_lines.item import sales_order_line_item_request_builder
 
 class SalesOrderItemRequestBuilder():
     """
@@ -86,21 +85,6 @@ class SalesOrderItemRequestBuilder():
         from ......models import sales_order
 
         return await self.request_adapter.send_async(request_info, sales_order.SalesOrder, error_mapping)
-    
-    def sales_order_lines_by_id(self,id: str) -> sales_order_line_item_request_builder.SalesOrderLineItemRequestBuilder:
-        """
-        Provides operations to manage the salesOrderLines property of the microsoft.graph.salesOrder entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: sales_order_line_item_request_builder.SalesOrderLineItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .sales_order_lines.item import sales_order_line_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["salesOrderLine%2Did"] = id
-        return sales_order_line_item_request_builder.SalesOrderLineItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_get_request_information(self,request_configuration: Optional[SalesOrderItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

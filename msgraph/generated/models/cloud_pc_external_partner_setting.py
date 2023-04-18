@@ -11,7 +11,7 @@ from . import entity
 class CloudPcExternalPartnerSetting(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new CloudPcExternalPartnerSetting and sets the default values.
+        Instantiates a new cloudPcExternalPartnerSetting and sets the default values.
         """
         super().__init__()
         # Enable or disable the connection to an external partner. If true, an external partner API will accept incoming calls from external partners. Required. Supports $filter (eq).

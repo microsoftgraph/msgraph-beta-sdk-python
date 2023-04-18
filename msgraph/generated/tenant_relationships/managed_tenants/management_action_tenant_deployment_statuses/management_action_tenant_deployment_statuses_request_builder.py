@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.managed_tenants import management_action_tenant_deployment_status, management_action_tenant_deployment_status_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import management_action_tenant_deployment_status_item_request_builder
     from .managed_tenants_change_deployment_status import managed_tenants_change_deployment_status_request_builder
 
 class ManagementActionTenantDeploymentStatusesRequestBuilder():
@@ -36,6 +37,21 @@ class ManagementActionTenantDeploymentStatusesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_management_action_tenant_deployment_status_id(self,management_action_tenant_deployment_status_id: str) -> management_action_tenant_deployment_status_item_request_builder.ManagementActionTenantDeploymentStatusItemRequestBuilder:
+        """
+        Provides operations to manage the managementActionTenantDeploymentStatuses property of the microsoft.graph.managedTenants.managedTenant entity.
+        Args:
+            management_action_tenant_deployment_status_id: Unique identifier of the item
+        Returns: management_action_tenant_deployment_status_item_request_builder.ManagementActionTenantDeploymentStatusItemRequestBuilder
+        """
+        if management_action_tenant_deployment_status_id is None:
+            raise Exception("management_action_tenant_deployment_status_id cannot be undefined")
+        from .item import management_action_tenant_deployment_status_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["managementActionTenantDeploymentStatus%2Did"] = management_action_tenant_deployment_status_id
+        return management_action_tenant_deployment_status_item_request_builder.ManagementActionTenantDeploymentStatusItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ManagementActionTenantDeploymentStatusesRequestBuilderGetRequestConfiguration] = None) -> Optional[management_action_tenant_deployment_status_collection_response.ManagementActionTenantDeploymentStatusCollectionResponse]:
         """

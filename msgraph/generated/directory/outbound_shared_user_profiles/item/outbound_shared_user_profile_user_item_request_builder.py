@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ....models import outbound_shared_user_profile
     from ....models.o_data_errors import o_data_error
     from .tenants import tenants_request_builder
-    from .tenants.item import tenant_reference_tenant_item_request_builder
 
 class OutboundSharedUserProfileUserItemRequestBuilder():
     """
@@ -102,21 +101,6 @@ class OutboundSharedUserProfileUserItemRequestBuilder():
         from ....models import outbound_shared_user_profile
 
         return await self.request_adapter.send_async(request_info, outbound_shared_user_profile.OutboundSharedUserProfile, error_mapping)
-    
-    def tenants_by_id(self,id: str) -> tenant_reference_tenant_item_request_builder.TenantReferenceTenantItemRequestBuilder:
-        """
-        Provides operations to manage the tenants property of the microsoft.graph.outboundSharedUserProfile entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: tenant_reference_tenant_item_request_builder.TenantReferenceTenantItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .tenants.item import tenant_reference_tenant_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["tenantReference%2DtenantId"] = id
-        return tenant_reference_tenant_item_request_builder.TenantReferenceTenantItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[OutboundSharedUserProfileUserItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

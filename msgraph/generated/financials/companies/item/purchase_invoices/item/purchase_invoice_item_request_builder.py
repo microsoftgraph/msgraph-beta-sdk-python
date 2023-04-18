@@ -15,7 +15,6 @@ if TYPE_CHECKING:
     from .currency import currency_request_builder
     from .post import post_request_builder
     from .purchase_invoice_lines import purchase_invoice_lines_request_builder
-    from .purchase_invoice_lines.item import purchase_invoice_line_item_request_builder
     from .vendor import vendor_request_builder
 
 class PurchaseInvoiceItemRequestBuilder():
@@ -86,21 +85,6 @@ class PurchaseInvoiceItemRequestBuilder():
         from ......models import purchase_invoice
 
         return await self.request_adapter.send_async(request_info, purchase_invoice.PurchaseInvoice, error_mapping)
-    
-    def purchase_invoice_lines_by_id(self,id: str) -> purchase_invoice_line_item_request_builder.PurchaseInvoiceLineItemRequestBuilder:
-        """
-        Provides operations to manage the purchaseInvoiceLines property of the microsoft.graph.purchaseInvoice entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: purchase_invoice_line_item_request_builder.PurchaseInvoiceLineItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .purchase_invoice_lines.item import purchase_invoice_line_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["purchaseInvoiceLine%2Did"] = id
-        return purchase_invoice_line_item_request_builder.PurchaseInvoiceLineItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_get_request_information(self,request_configuration: Optional[PurchaseInvoiceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -13,15 +13,12 @@ if TYPE_CHECKING:
     from .......models.ediscovery import source_collection
     from .......models.o_data_errors import o_data_error
     from .additional_sources import additional_sources_request_builder
-    from .additional_sources.item import data_source_item_request_builder
     from .add_to_review_set_operation import add_to_review_set_operation_request_builder
     from .custodian_sources import custodian_sources_request_builder
-    from .custodian_sources.item import data_source_item_request_builder
     from .ediscovery_estimate_statistics import ediscovery_estimate_statistics_request_builder
     from .ediscovery_purge_data import ediscovery_purge_data_request_builder
     from .last_estimate_statistics_operation import last_estimate_statistics_operation_request_builder
     from .noncustodial_sources import noncustodial_sources_request_builder
-    from .noncustodial_sources.item import noncustodial_data_source_item_request_builder
 
 class SourceCollectionItemRequestBuilder():
     """
@@ -44,38 +41,6 @@ class SourceCollectionItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def additional_sources_by_id(self,id: str) -> data_source_item_request_builder.DataSourceItemRequestBuilder:
-        """
-        Provides operations to manage the additionalSources property of the microsoft.graph.ediscovery.sourceCollection entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: data_source_item_request_builder.DataSourceItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .additional_sources.item import data_source_item_request_builder
-        from .custodian_sources.item import data_source_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["dataSource%2Did"] = id
-        return data_source_item_request_builder.DataSourceItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def custodian_sources_by_id(self,id: str) -> data_source_item_request_builder.DataSourceItemRequestBuilder:
-        """
-        Provides operations to manage the custodianSources property of the microsoft.graph.ediscovery.sourceCollection entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: data_source_item_request_builder.DataSourceItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .additional_sources.item import data_source_item_request_builder
-        from .custodian_sources.item import data_source_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["dataSource%2Did"] = id
-        return data_source_item_request_builder.DataSourceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[SourceCollectionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
@@ -117,21 +82,6 @@ class SourceCollectionItemRequestBuilder():
         from .......models.ediscovery import source_collection
 
         return await self.request_adapter.send_async(request_info, source_collection.SourceCollection, error_mapping)
-    
-    def noncustodial_sources_by_id(self,id: str) -> noncustodial_data_source_item_request_builder.NoncustodialDataSourceItemRequestBuilder:
-        """
-        Provides operations to manage the noncustodialSources property of the microsoft.graph.ediscovery.sourceCollection entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: noncustodial_data_source_item_request_builder.NoncustodialDataSourceItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .noncustodial_sources.item import noncustodial_data_source_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["noncustodialDataSource%2Did"] = id
-        return noncustodial_data_source_item_request_builder.NoncustodialDataSourceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[source_collection.SourceCollection] = None, request_configuration: Optional[SourceCollectionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[source_collection.SourceCollection]:
         """

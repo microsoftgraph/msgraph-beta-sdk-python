@@ -13,13 +13,10 @@ if TYPE_CHECKING:
     from ....models import subject_rights_request
     from ....models.o_data_errors import o_data_error
     from .approvers import approvers_request_builder
-    from .approvers.item import user_item_request_builder
     from .collaborators import collaborators_request_builder
-    from .collaborators.item import user_item_request_builder
     from .get_final_attachment import get_final_attachment_request_builder
     from .get_final_report import get_final_report_request_builder
     from .notes import notes_request_builder
-    from .notes.item import authored_note_item_request_builder
     from .team import team_request_builder
 
 class SubjectRightsRequestItemRequestBuilder():
@@ -43,38 +40,6 @@ class SubjectRightsRequestItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def approvers_by_id(self,id: str) -> user_item_request_builder.UserItemRequestBuilder:
-        """
-        Provides operations to manage the approvers property of the microsoft.graph.subjectRightsRequest entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: user_item_request_builder.UserItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .approvers.item import user_item_request_builder
-        from .collaborators.item import user_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["user%2Did"] = id
-        return user_item_request_builder.UserItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def collaborators_by_id(self,id: str) -> user_item_request_builder.UserItemRequestBuilder:
-        """
-        Provides operations to manage the collaborators property of the microsoft.graph.subjectRightsRequest entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: user_item_request_builder.UserItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .approvers.item import user_item_request_builder
-        from .collaborators.item import user_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["user%2Did"] = id
-        return user_item_request_builder.UserItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[SubjectRightsRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
@@ -116,21 +81,6 @@ class SubjectRightsRequestItemRequestBuilder():
         from ....models import subject_rights_request
 
         return await self.request_adapter.send_async(request_info, subject_rights_request.SubjectRightsRequest, error_mapping)
-    
-    def notes_by_id(self,id: str) -> authored_note_item_request_builder.AuthoredNoteItemRequestBuilder:
-        """
-        Provides operations to manage the notes property of the microsoft.graph.subjectRightsRequest entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: authored_note_item_request_builder.AuthoredNoteItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .notes.item import authored_note_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["authoredNote%2Did"] = id
-        return authored_note_item_request_builder.AuthoredNoteItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[subject_rights_request.SubjectRightsRequest] = None, request_configuration: Optional[SubjectRightsRequestItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[subject_rights_request.SubjectRightsRequest]:
         """

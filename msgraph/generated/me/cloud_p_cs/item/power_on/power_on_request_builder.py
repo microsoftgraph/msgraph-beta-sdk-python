@@ -36,7 +36,7 @@ class PowerOnRequestBuilder():
     
     async def post(self,request_configuration: Optional[PowerOnRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Invoke action powerOn
+        Power on a Windows 365 Frontline Cloud PC. This action supports Microsoft Endpoint Manager (MEM) admin scenarios.  After a Windows 365 Frontline Cloud PC is powered on, it is allocated to a user, and licenses are assigned immediately. Only IT admin users can perform this action. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class PowerOnRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[PowerOnRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action powerOn
+        Power on a Windows 365 Frontline Cloud PC. This action supports Microsoft Endpoint Manager (MEM) admin scenarios.  After a Windows 365 Frontline Cloud PC is powered on, it is allocated to a user, and licenses are assigned immediately. Only IT admin users can perform this action. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ........models import device_management_configuration_setting
     from ........models.o_data_errors import o_data_error
     from .setting_definitions import setting_definitions_request_builder
-    from .setting_definitions.item import device_management_configuration_setting_definition_item_request_builder
 
 class DeviceManagementConfigurationSettingItemRequestBuilder():
     """
@@ -102,21 +101,6 @@ class DeviceManagementConfigurationSettingItemRequestBuilder():
         from ........models import device_management_configuration_setting
 
         return await self.request_adapter.send_async(request_info, device_management_configuration_setting.DeviceManagementConfigurationSetting, error_mapping)
-    
-    def setting_definitions_by_id(self,id: str) -> device_management_configuration_setting_definition_item_request_builder.DeviceManagementConfigurationSettingDefinitionItemRequestBuilder:
-        """
-        Provides operations to manage the settingDefinitions property of the microsoft.graph.deviceManagementConfigurationSetting entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: device_management_configuration_setting_definition_item_request_builder.DeviceManagementConfigurationSettingDefinitionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .setting_definitions.item import device_management_configuration_setting_definition_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["deviceManagementConfigurationSettingDefinition%2Did"] = id
-        return device_management_configuration_setting_definition_item_request_builder.DeviceManagementConfigurationSettingDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceManagementConfigurationSettingItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

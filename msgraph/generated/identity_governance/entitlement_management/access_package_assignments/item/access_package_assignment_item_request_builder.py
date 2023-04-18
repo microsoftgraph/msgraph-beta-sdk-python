@@ -15,9 +15,7 @@ if TYPE_CHECKING:
     from .access_package import access_package_request_builder
     from .access_package_assignment_policy import access_package_assignment_policy_request_builder
     from .access_package_assignment_requests import access_package_assignment_requests_request_builder
-    from .access_package_assignment_requests.item import access_package_assignment_request_item_request_builder
     from .access_package_assignment_resource_roles import access_package_assignment_resource_roles_request_builder
-    from .access_package_assignment_resource_roles.item import access_package_assignment_resource_role_item_request_builder
     from .reprocess import reprocess_request_builder
     from .target import target_request_builder
 
@@ -42,36 +40,6 @@ class AccessPackageAssignmentItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def access_package_assignment_requests_by_id(self,id: str) -> access_package_assignment_request_item_request_builder.AccessPackageAssignmentRequestItemRequestBuilder:
-        """
-        Provides operations to manage the accessPackageAssignmentRequests property of the microsoft.graph.accessPackageAssignment entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: access_package_assignment_request_item_request_builder.AccessPackageAssignmentRequestItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .access_package_assignment_requests.item import access_package_assignment_request_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["accessPackageAssignmentRequest%2Did"] = id
-        return access_package_assignment_request_item_request_builder.AccessPackageAssignmentRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def access_package_assignment_resource_roles_by_id(self,id: str) -> access_package_assignment_resource_role_item_request_builder.AccessPackageAssignmentResourceRoleItemRequestBuilder:
-        """
-        Provides operations to manage the accessPackageAssignmentResourceRoles property of the microsoft.graph.accessPackageAssignment entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: access_package_assignment_resource_role_item_request_builder.AccessPackageAssignmentResourceRoleItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .access_package_assignment_resource_roles.item import access_package_assignment_resource_role_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["accessPackageAssignmentResourceRole%2Did"] = id
-        return access_package_assignment_resource_role_item_request_builder.AccessPackageAssignmentResourceRoleItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[AccessPackageAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

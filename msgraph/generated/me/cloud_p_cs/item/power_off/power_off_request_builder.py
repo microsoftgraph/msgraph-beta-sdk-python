@@ -36,7 +36,7 @@ class PowerOffRequestBuilder():
     
     async def post(self,request_configuration: Optional[PowerOffRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Invoke action powerOff
+        Power off a Windows 365 Frontline Cloud PC. This action supports Microsoft Endpoint Manager (MEM) admin scenarios.  After a Windows 365 Frontline Cloud PC is powered off, it is de-allocated, and licenses are revoked immediately. Only IT admin users can perform this action. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class PowerOffRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[PowerOffRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action powerOff
+        Power off a Windows 365 Frontline Cloud PC. This action supports Microsoft Endpoint Manager (MEM) admin scenarios.  After a Windows 365 Frontline Cloud PC is powered off, it is de-allocated, and licenses are revoked immediately. Only IT admin users can perform this action. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

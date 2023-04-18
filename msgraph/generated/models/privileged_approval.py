@@ -11,7 +11,7 @@ from . import entity
 class PrivilegedApproval(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new PrivilegedApproval and sets the default values.
+        Instantiates a new privilegedApproval and sets the default values.
         """
         super().__init__()
         # The approvalDuration property

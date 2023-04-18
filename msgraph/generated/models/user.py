@@ -4,7 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import access_review_instance, agreement_acceptance, approval, app_consent_request, app_role_assignment, assigned_license, assigned_plan, authentication, authorization_info, calendar, calendar_group, chat, cloud_p_c, contact, contact_folder, custom_security_attribute_value, device, device_enrollment_configuration, device_key, device_management_troubleshooting_event, directory_object, drive, employee_org_data, event, extension, group, inference_classification, information_protection, item_insights, license_assignment_state, license_details, mailbox_settings, mail_folder, managed_app_registration, managed_device, message, mobile_app_intent_and_state, mobile_app_troubleshooting_event, notification, object_identity, onenote, online_meeting, on_premises_extension_attributes, on_premises_provisioning_error, outlook_user, o_auth2_permission_grant, password_profile, person, planner_user, presence, profile, profile_photo, provisioned_plan, scoped_role_membership, service_principal, sign_in_activity, site, team, todo, usage_right, user_activity, user_analytics, user_print, user_settings, user_teamwork, windows_information_protection_device_registration
+    from . import access_review_instance, agreement_acceptance, approval, app_consent_request, app_role_assignment, assigned_license, assigned_plan, authentication, authorization_info, calendar, calendar_group, chat, cloud_p_c, contact, contact_folder, custom_security_attribute_value, device, device_enrollment_configuration, device_key, device_management_troubleshooting_event, directory_object, drive, employee_org_data, event, extension, group, inference_classification, information_protection, item_insights, license_assignment_state, license_details, mailbox_settings, mail_folder, managed_app_registration, managed_device, message, mobile_app_intent_and_state, mobile_app_troubleshooting_event, notification, object_identity, onenote, online_meeting, on_premises_extension_attributes, on_premises_provisioning_error, outlook_user, o_auth2_permission_grant, password_profile, person, planner_user, presence, profile, profile_photo, provisioned_plan, scoped_role_membership, service_principal, service_provisioning_error, sign_in_activity, site, team, todo, usage_right, user_activity, user_analytics, user_print, user_settings, user_teamwork, windows_information_protection_device_registration
     from .security import security
 
 from . import directory_object
@@ -12,7 +12,7 @@ from . import directory_object
 class User(directory_object.DirectoryObject):
     def __init__(self,) -> None:
         """
-        Instantiates a new User and sets the default values.
+        Instantiates a new user and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.user"
@@ -270,11 +270,13 @@ class User(directory_object.DirectoryObject):
         self._security: Optional[security.Security] = None
         # Security identifier (SID) of the user, used in Windows scenarios. Read-only. Returned by default. Supports $select and $filter (eq, not, ge, le, startsWith).
         self._security_identifier: Optional[str] = None
+        # The serviceProvisioningErrors property
+        self._service_provisioning_errors: Optional[List[service_provisioning_error.ServiceProvisioningError]] = None
         # The settings property
         self._settings: Optional[user_settings.UserSettings] = None
         # Do not use in Microsoft Graph. Manage this property through the Microsoft 365 admin center instead. Represents whether the user should be included in the Outlook global address list. See Known issue.
         self._show_in_address_list: Optional[bool] = None
-        # Get the last signed-in date and request ID of the sign-in for a given user. Read-only.Returned only on $select. Supports $filter (eq, ne, not, ge, le) but not with any other filterable properties. Note:  Details for this property require an Azure AD Premium P1/P2 license and the AuditLog.Read.All permission.When you specify $select=signInActivity or $filter=signInActivity while listing users, the maximum page size is 120 users. Requests with $top set higher than 120 will fail.This property is not returned for a user who has never signed in or last signed in before April 2020.
+        # Get the last signed-in date and request ID of the sign-in for a given user. Read-only.Returned only on $select. Supports $filter (eq, ne, not, ge, le) but not with any other filterable properties. Note:  Details for this property require an Azure AD Premium P1/P2 license and the AuditLog.Read.All permission.When you specify $select=signInActivity or $filter=signInActivity while listing users, the maximum page size is 120 users. Requests with $top set higher than 120 will return pages with up to 120 users.This property is not returned for a user who has never signed in or last signed in before April 2020.
         self._sign_in_activity: Optional[sign_in_activity.SignInActivity] = None
         # Any refresh tokens or sessions tokens (session cookies) issued before this time are invalid, and applications will get an error when using an invalid refresh or sessions token to acquire a delegated access token (to access APIs such as Microsoft Graph).  If this happens, the application will need to acquire a new refresh token by making a request to the authorize endpoint. Read-only. Use revokeSignInSessions to reset.
         self._sign_in_sessions_valid_from_date_time: Optional[datetime] = None
@@ -1223,7 +1225,7 @@ class User(directory_object.DirectoryObject):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import access_review_instance, agreement_acceptance, approval, app_consent_request, app_role_assignment, assigned_license, assigned_plan, authentication, authorization_info, calendar, calendar_group, chat, cloud_p_c, contact, contact_folder, custom_security_attribute_value, device, device_enrollment_configuration, device_key, device_management_troubleshooting_event, directory_object, drive, employee_org_data, event, extension, group, inference_classification, information_protection, item_insights, license_assignment_state, license_details, mailbox_settings, mail_folder, managed_app_registration, managed_device, message, mobile_app_intent_and_state, mobile_app_troubleshooting_event, notification, object_identity, onenote, online_meeting, on_premises_extension_attributes, on_premises_provisioning_error, outlook_user, o_auth2_permission_grant, password_profile, person, planner_user, presence, profile, profile_photo, provisioned_plan, scoped_role_membership, service_principal, sign_in_activity, site, team, todo, usage_right, user_activity, user_analytics, user_print, user_settings, user_teamwork, windows_information_protection_device_registration
+        from . import access_review_instance, agreement_acceptance, approval, app_consent_request, app_role_assignment, assigned_license, assigned_plan, authentication, authorization_info, calendar, calendar_group, chat, cloud_p_c, contact, contact_folder, custom_security_attribute_value, device, device_enrollment_configuration, device_key, device_management_troubleshooting_event, directory_object, drive, employee_org_data, event, extension, group, inference_classification, information_protection, item_insights, license_assignment_state, license_details, mailbox_settings, mail_folder, managed_app_registration, managed_device, message, mobile_app_intent_and_state, mobile_app_troubleshooting_event, notification, object_identity, onenote, online_meeting, on_premises_extension_attributes, on_premises_provisioning_error, outlook_user, o_auth2_permission_grant, password_profile, person, planner_user, presence, profile, profile_photo, provisioned_plan, scoped_role_membership, service_principal, service_provisioning_error, sign_in_activity, site, team, todo, usage_right, user_activity, user_analytics, user_print, user_settings, user_teamwork, windows_information_protection_device_registration
         from .security import security
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -1354,6 +1356,7 @@ class User(directory_object.DirectoryObject):
             "scopedRoleMemberOf": lambda n : setattr(self, 'scoped_role_member_of', n.get_collection_of_object_values(scoped_role_membership.ScopedRoleMembership)),
             "security": lambda n : setattr(self, 'security', n.get_object_value(security.Security)),
             "securityIdentifier": lambda n : setattr(self, 'security_identifier', n.get_str_value()),
+            "serviceProvisioningErrors": lambda n : setattr(self, 'service_provisioning_errors', n.get_collection_of_object_values(service_provisioning_error.ServiceProvisioningError)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(user_settings.UserSettings)),
             "showInAddressList": lambda n : setattr(self, 'show_in_address_list', n.get_bool_value()),
             "signInActivity": lambda n : setattr(self, 'sign_in_activity', n.get_object_value(sign_in_activity.SignInActivity)),
@@ -2770,6 +2773,7 @@ class User(directory_object.DirectoryObject):
         writer.write_collection_of_object_values("scopedRoleMemberOf", self.scoped_role_member_of)
         writer.write_object_value("security", self.security)
         writer.write_str_value("securityIdentifier", self.security_identifier)
+        writer.write_collection_of_object_values("serviceProvisioningErrors", self.service_provisioning_errors)
         writer.write_object_value("settings", self.settings)
         writer.write_bool_value("showInAddressList", self.show_in_address_list)
         writer.write_object_value("signInActivity", self.sign_in_activity)
@@ -2787,6 +2791,23 @@ class User(directory_object.DirectoryObject):
         writer.write_str_value("userPrincipalName", self.user_principal_name)
         writer.write_str_value("userType", self.user_type)
         writer.write_collection_of_object_values("windowsInformationProtectionDeviceRegistrations", self.windows_information_protection_device_registrations)
+    
+    @property
+    def service_provisioning_errors(self,) -> Optional[List[service_provisioning_error.ServiceProvisioningError]]:
+        """
+        Gets the serviceProvisioningErrors property value. The serviceProvisioningErrors property
+        Returns: Optional[List[service_provisioning_error.ServiceProvisioningError]]
+        """
+        return self._service_provisioning_errors
+    
+    @service_provisioning_errors.setter
+    def service_provisioning_errors(self,value: Optional[List[service_provisioning_error.ServiceProvisioningError]] = None) -> None:
+        """
+        Sets the serviceProvisioningErrors property value. The serviceProvisioningErrors property
+        Args:
+            value: Value to set for the service_provisioning_errors property.
+        """
+        self._service_provisioning_errors = value
     
     @property
     def settings(self,) -> Optional[user_settings.UserSettings]:
@@ -2825,7 +2846,7 @@ class User(directory_object.DirectoryObject):
     @property
     def sign_in_activity(self,) -> Optional[sign_in_activity.SignInActivity]:
         """
-        Gets the signInActivity property value. Get the last signed-in date and request ID of the sign-in for a given user. Read-only.Returned only on $select. Supports $filter (eq, ne, not, ge, le) but not with any other filterable properties. Note:  Details for this property require an Azure AD Premium P1/P2 license and the AuditLog.Read.All permission.When you specify $select=signInActivity or $filter=signInActivity while listing users, the maximum page size is 120 users. Requests with $top set higher than 120 will fail.This property is not returned for a user who has never signed in or last signed in before April 2020.
+        Gets the signInActivity property value. Get the last signed-in date and request ID of the sign-in for a given user. Read-only.Returned only on $select. Supports $filter (eq, ne, not, ge, le) but not with any other filterable properties. Note:  Details for this property require an Azure AD Premium P1/P2 license and the AuditLog.Read.All permission.When you specify $select=signInActivity or $filter=signInActivity while listing users, the maximum page size is 120 users. Requests with $top set higher than 120 will return pages with up to 120 users.This property is not returned for a user who has never signed in or last signed in before April 2020.
         Returns: Optional[sign_in_activity.SignInActivity]
         """
         return self._sign_in_activity
@@ -2833,7 +2854,7 @@ class User(directory_object.DirectoryObject):
     @sign_in_activity.setter
     def sign_in_activity(self,value: Optional[sign_in_activity.SignInActivity] = None) -> None:
         """
-        Sets the signInActivity property value. Get the last signed-in date and request ID of the sign-in for a given user. Read-only.Returned only on $select. Supports $filter (eq, ne, not, ge, le) but not with any other filterable properties. Note:  Details for this property require an Azure AD Premium P1/P2 license and the AuditLog.Read.All permission.When you specify $select=signInActivity or $filter=signInActivity while listing users, the maximum page size is 120 users. Requests with $top set higher than 120 will fail.This property is not returned for a user who has never signed in or last signed in before April 2020.
+        Sets the signInActivity property value. Get the last signed-in date and request ID of the sign-in for a given user. Read-only.Returned only on $select. Supports $filter (eq, ne, not, ge, le) but not with any other filterable properties. Note:  Details for this property require an Azure AD Premium P1/P2 license and the AuditLog.Read.All permission.When you specify $select=signInActivity or $filter=signInActivity while listing users, the maximum page size is 120 users. Requests with $top set higher than 120 will return pages with up to 120 users.This property is not returned for a user who has never signed in or last signed in before April 2020.
         Args:
             value: Value to set for the sign_in_activity property.
         """

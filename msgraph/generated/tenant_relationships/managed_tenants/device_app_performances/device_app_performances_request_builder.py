@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.managed_tenants import device_app_performance, device_app_performance_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import device_app_performance_item_request_builder
 
 class DeviceAppPerformancesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class DeviceAppPerformancesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_device_app_performance_id(self,device_app_performance_id: str) -> device_app_performance_item_request_builder.DeviceAppPerformanceItemRequestBuilder:
+        """
+        Provides operations to manage the deviceAppPerformances property of the microsoft.graph.managedTenants.managedTenant entity.
+        Args:
+            device_app_performance_id: Unique identifier of the item
+        Returns: device_app_performance_item_request_builder.DeviceAppPerformanceItemRequestBuilder
+        """
+        if device_app_performance_id is None:
+            raise Exception("device_app_performance_id cannot be undefined")
+        from .item import device_app_performance_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["deviceAppPerformance%2Did"] = device_app_performance_id
+        return device_app_performance_item_request_builder.DeviceAppPerformanceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[DeviceAppPerformancesRequestBuilderGetRequestConfiguration] = None) -> Optional[device_app_performance_collection_response.DeviceAppPerformanceCollectionResponse]:
         """

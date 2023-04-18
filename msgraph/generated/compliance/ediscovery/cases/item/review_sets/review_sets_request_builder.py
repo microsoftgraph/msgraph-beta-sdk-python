@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models.ediscovery import review_set, review_set_collection_response
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import review_set_item_request_builder
 
 class ReviewSetsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ReviewSetsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_review_set_id(self,review_set_id: str) -> review_set_item_request_builder.ReviewSetItemRequestBuilder:
+        """
+        Provides operations to manage the reviewSets property of the microsoft.graph.ediscovery.case entity.
+        Args:
+            review_set_id: Unique identifier of the item
+        Returns: review_set_item_request_builder.ReviewSetItemRequestBuilder
+        """
+        if review_set_id is None:
+            raise Exception("review_set_id cannot be undefined")
+        from .item import review_set_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["reviewSet%2Did"] = review_set_id
+        return review_set_item_request_builder.ReviewSetItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ReviewSetsRequestBuilderGetRequestConfiguration] = None) -> Optional[review_set_collection_response.ReviewSetCollectionResponse]:
         """

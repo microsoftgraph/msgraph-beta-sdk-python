@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.identity_governance import workflow, workflow_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import workflow_item_request_builder
 
 class WorkflowsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class WorkflowsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_workflow_id(self,workflow_id: str) -> workflow_item_request_builder.WorkflowItemRequestBuilder:
+        """
+        Provides operations to manage the workflows property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
+        Args:
+            workflow_id: Unique identifier of the item
+        Returns: workflow_item_request_builder.WorkflowItemRequestBuilder
+        """
+        if workflow_id is None:
+            raise Exception("workflow_id cannot be undefined")
+        from .item import workflow_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["workflow%2Did"] = workflow_id
+        return workflow_item_request_builder.WorkflowItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[WorkflowsRequestBuilderGetRequestConfiguration] = None) -> Optional[workflow_collection_response.WorkflowCollectionResponse]:
         """

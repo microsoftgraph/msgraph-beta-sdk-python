@@ -9,9 +9,12 @@ if TYPE_CHECKING:
 from . import entity
 
 class ManagedDeviceMobileAppConfiguration(entity.Entity):
+    """
+    An abstract class for Mobile app configuration for enrolled devices.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new ManagedDeviceMobileAppConfiguration and sets the default values.
+        Instantiates a new managedDeviceMobileAppConfiguration and sets the default values.
         """
         super().__init__()
         # The list of group assignemenets for app configration.

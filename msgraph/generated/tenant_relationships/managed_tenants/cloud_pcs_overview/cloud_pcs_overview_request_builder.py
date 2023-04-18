@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.managed_tenants import cloud_pc_overview, cloud_pc_overview_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import cloud_pc_overview_tenant_item_request_builder
 
 class CloudPcsOverviewRequestBuilder():
     """
@@ -35,6 +36,21 @@ class CloudPcsOverviewRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_cloud_pc_overview_tenant_id(self,cloud_pc_overview_tenant_id: str) -> cloud_pc_overview_tenant_item_request_builder.CloudPcOverviewTenantItemRequestBuilder:
+        """
+        Provides operations to manage the cloudPcsOverview property of the microsoft.graph.managedTenants.managedTenant entity.
+        Args:
+            cloud_pc_overview_tenant_id: Unique identifier of the item
+        Returns: cloud_pc_overview_tenant_item_request_builder.CloudPcOverviewTenantItemRequestBuilder
+        """
+        if cloud_pc_overview_tenant_id is None:
+            raise Exception("cloud_pc_overview_tenant_id cannot be undefined")
+        from .item import cloud_pc_overview_tenant_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["cloudPcOverview%2DtenantId"] = cloud_pc_overview_tenant_id
+        return cloud_pc_overview_tenant_item_request_builder.CloudPcOverviewTenantItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[CloudPcsOverviewRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_overview_collection_response.CloudPcOverviewCollectionResponse]:
         """

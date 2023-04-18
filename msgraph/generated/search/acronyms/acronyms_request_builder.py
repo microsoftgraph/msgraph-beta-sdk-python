@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors import o_data_error
     from ...models.search import acronym, acronym_collection_response
     from .count import count_request_builder
+    from .item import acronym_item_request_builder
 
 class AcronymsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class AcronymsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_acronym_id(self,acronym_id: str) -> acronym_item_request_builder.AcronymItemRequestBuilder:
+        """
+        Provides operations to manage the acronyms property of the microsoft.graph.searchEntity entity.
+        Args:
+            acronym_id: Unique identifier of the item
+        Returns: acronym_item_request_builder.AcronymItemRequestBuilder
+        """
+        if acronym_id is None:
+            raise Exception("acronym_id cannot be undefined")
+        from .item import acronym_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["acronym%2Did"] = acronym_id
+        return acronym_item_request_builder.AcronymItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[AcronymsRequestBuilderGetRequestConfiguration] = None) -> Optional[acronym_collection_response.AcronymCollectionResponse]:
         """

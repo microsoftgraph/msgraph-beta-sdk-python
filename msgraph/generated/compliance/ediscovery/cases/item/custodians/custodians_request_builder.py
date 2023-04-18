@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .count import count_request_builder
     from .ediscovery_apply_hold import ediscovery_apply_hold_request_builder
     from .ediscovery_remove_hold import ediscovery_remove_hold_request_builder
+    from .item import custodian_item_request_builder
 
 class CustodiansRequestBuilder():
     """
@@ -37,6 +38,21 @@ class CustodiansRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_custodian_id(self,custodian_id: str) -> custodian_item_request_builder.CustodianItemRequestBuilder:
+        """
+        Provides operations to manage the custodians property of the microsoft.graph.ediscovery.case entity.
+        Args:
+            custodian_id: Unique identifier of the item
+        Returns: custodian_item_request_builder.CustodianItemRequestBuilder
+        """
+        if custodian_id is None:
+            raise Exception("custodian_id cannot be undefined")
+        from .item import custodian_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["custodian%2Did"] = custodian_id
+        return custodian_item_request_builder.CustodianItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[CustodiansRequestBuilderGetRequestConfiguration] = None) -> Optional[custodian_collection_response.CustodianCollectionResponse]:
         """

@@ -13,9 +13,7 @@ if TYPE_CHECKING:
     from ....models import planner_roster
     from ....models.o_data_errors import o_data_error
     from .members import members_request_builder
-    from .members.item import planner_roster_member_item_request_builder
     from .plans import plans_request_builder
-    from .plans.item import planner_plan_item_request_builder
 
 class PlannerRosterItemRequestBuilder():
     """
@@ -80,21 +78,6 @@ class PlannerRosterItemRequestBuilder():
 
         return await self.request_adapter.send_async(request_info, planner_roster.PlannerRoster, error_mapping)
     
-    def members_by_id(self,id: str) -> planner_roster_member_item_request_builder.PlannerRosterMemberItemRequestBuilder:
-        """
-        Provides operations to manage the members property of the microsoft.graph.plannerRoster entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: planner_roster_member_item_request_builder.PlannerRosterMemberItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .members.item import planner_roster_member_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["plannerRosterMember%2Did"] = id
-        return planner_roster_member_item_request_builder.PlannerRosterMemberItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     async def patch(self,body: Optional[planner_roster.PlannerRoster] = None, request_configuration: Optional[PlannerRosterItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[planner_roster.PlannerRoster]:
         """
         Update the navigation property rosters in planner
@@ -119,21 +102,6 @@ class PlannerRosterItemRequestBuilder():
         from ....models import planner_roster
 
         return await self.request_adapter.send_async(request_info, planner_roster.PlannerRoster, error_mapping)
-    
-    def plans_by_id(self,id: str) -> planner_plan_item_request_builder.PlannerPlanItemRequestBuilder:
-        """
-        Provides operations to manage the plans property of the microsoft.graph.plannerRoster entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: planner_plan_item_request_builder.PlannerPlanItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .plans.item import planner_plan_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["plannerPlan%2Did"] = id
-        return planner_plan_item_request_builder.PlannerPlanItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[PlannerRosterItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

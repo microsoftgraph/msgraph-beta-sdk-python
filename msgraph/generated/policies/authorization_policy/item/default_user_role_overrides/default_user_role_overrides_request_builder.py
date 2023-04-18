@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import default_user_role_override, default_user_role_override_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import default_user_role_override_item_request_builder
 
 class DefaultUserRoleOverridesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class DefaultUserRoleOverridesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_default_user_role_override_id(self,default_user_role_override_id: str) -> default_user_role_override_item_request_builder.DefaultUserRoleOverrideItemRequestBuilder:
+        """
+        Provides operations to manage the defaultUserRoleOverrides property of the microsoft.graph.authorizationPolicy entity.
+        Args:
+            default_user_role_override_id: Unique identifier of the item
+        Returns: default_user_role_override_item_request_builder.DefaultUserRoleOverrideItemRequestBuilder
+        """
+        if default_user_role_override_id is None:
+            raise Exception("default_user_role_override_id cannot be undefined")
+        from .item import default_user_role_override_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["defaultUserRoleOverride%2Did"] = default_user_role_override_id
+        return default_user_role_override_item_request_builder.DefaultUserRoleOverrideItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[DefaultUserRoleOverridesRequestBuilderGetRequestConfiguration] = None) -> Optional[default_user_role_override_collection_response.DefaultUserRoleOverrideCollectionResponse]:
         """

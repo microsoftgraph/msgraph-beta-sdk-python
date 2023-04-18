@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import user_experience_analytics_impacting_process, user_experience_analytics_impacting_process_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import user_experience_analytics_impacting_process_item_request_builder
 
 class UserExperienceAnalyticsImpactingProcessRequestBuilder():
     """
@@ -35,6 +36,21 @@ class UserExperienceAnalyticsImpactingProcessRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_user_experience_analytics_impacting_process_id(self,user_experience_analytics_impacting_process_id: str) -> user_experience_analytics_impacting_process_item_request_builder.UserExperienceAnalyticsImpactingProcessItemRequestBuilder:
+        """
+        Provides operations to manage the userExperienceAnalyticsImpactingProcess property of the microsoft.graph.deviceManagement entity.
+        Args:
+            user_experience_analytics_impacting_process_id: Unique identifier of the item
+        Returns: user_experience_analytics_impacting_process_item_request_builder.UserExperienceAnalyticsImpactingProcessItemRequestBuilder
+        """
+        if user_experience_analytics_impacting_process_id is None:
+            raise Exception("user_experience_analytics_impacting_process_id cannot be undefined")
+        from .item import user_experience_analytics_impacting_process_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["userExperienceAnalyticsImpactingProcess%2Did"] = user_experience_analytics_impacting_process_id
+        return user_experience_analytics_impacting_process_item_request_builder.UserExperienceAnalyticsImpactingProcessItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[UserExperienceAnalyticsImpactingProcessRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_impacting_process_collection_response.UserExperienceAnalyticsImpactingProcessCollectionResponse]:
         """

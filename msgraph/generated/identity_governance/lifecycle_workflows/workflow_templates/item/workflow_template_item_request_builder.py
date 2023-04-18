@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from .....models.identity_governance import workflow_template
     from .....models.o_data_errors import o_data_error
     from .tasks import tasks_request_builder
-    from .tasks.item import task_item_request_builder
 
 class WorkflowTemplateItemRequestBuilder():
     """
@@ -58,21 +57,6 @@ class WorkflowTemplateItemRequestBuilder():
         from .....models.identity_governance import workflow_template
 
         return await self.request_adapter.send_async(request_info, workflow_template.WorkflowTemplate, error_mapping)
-    
-    def tasks_by_id(self,id: str) -> task_item_request_builder.TaskItemRequestBuilder:
-        """
-        Provides operations to manage the tasks property of the microsoft.graph.identityGovernance.workflowTemplate entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: task_item_request_builder.TaskItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .tasks.item import task_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["task%2Did"] = id
-        return task_item_request_builder.TaskItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_get_request_information(self,request_configuration: Optional[WorkflowTemplateItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

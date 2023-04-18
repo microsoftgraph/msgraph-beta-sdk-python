@@ -13,9 +13,7 @@ if TYPE_CHECKING:
     from ..models import trust_framework
     from ..models.o_data_errors import o_data_error
     from .key_sets import key_sets_request_builder
-    from .key_sets.item import trust_framework_key_set_item_request_builder
     from .policies import policies_request_builder
-    from .policies.item import trust_framework_policy_item_request_builder
 
 class TrustFrameworkRequestBuilder():
     """
@@ -61,21 +59,6 @@ class TrustFrameworkRequestBuilder():
 
         return await self.request_adapter.send_async(request_info, trust_framework.TrustFramework, error_mapping)
     
-    def key_sets_by_id(self,id: str) -> trust_framework_key_set_item_request_builder.TrustFrameworkKeySetItemRequestBuilder:
-        """
-        Provides operations to manage the keySets property of the microsoft.graph.trustFramework entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: trust_framework_key_set_item_request_builder.TrustFrameworkKeySetItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .key_sets.item import trust_framework_key_set_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["trustFrameworkKeySet%2Did"] = id
-        return trust_framework_key_set_item_request_builder.TrustFrameworkKeySetItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     async def patch(self,body: Optional[trust_framework.TrustFramework] = None, request_configuration: Optional[TrustFrameworkRequestBuilderPatchRequestConfiguration] = None) -> Optional[trust_framework.TrustFramework]:
         """
         Update trustFramework
@@ -100,21 +83,6 @@ class TrustFrameworkRequestBuilder():
         from ..models import trust_framework
 
         return await self.request_adapter.send_async(request_info, trust_framework.TrustFramework, error_mapping)
-    
-    def policies_by_id(self,id: str) -> trust_framework_policy_item_request_builder.TrustFrameworkPolicyItemRequestBuilder:
-        """
-        Provides operations to manage the policies property of the microsoft.graph.trustFramework entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: trust_framework_policy_item_request_builder.TrustFrameworkPolicyItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .policies.item import trust_framework_policy_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["trustFrameworkPolicy%2Did"] = id
-        return trust_framework_policy_item_request_builder.TrustFrameworkPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_get_request_information(self,request_configuration: Optional[TrustFrameworkRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

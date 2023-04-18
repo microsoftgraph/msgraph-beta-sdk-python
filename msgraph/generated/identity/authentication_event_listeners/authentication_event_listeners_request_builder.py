@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import authentication_event_listener, authentication_event_listener_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import authentication_event_listener_item_request_builder
 
 class AuthenticationEventListenersRequestBuilder():
     """
@@ -35,6 +36,21 @@ class AuthenticationEventListenersRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_authentication_event_listener_id(self,authentication_event_listener_id: str) -> authentication_event_listener_item_request_builder.AuthenticationEventListenerItemRequestBuilder:
+        """
+        Provides operations to manage the authenticationEventListeners property of the microsoft.graph.identityContainer entity.
+        Args:
+            authentication_event_listener_id: Unique identifier of the item
+        Returns: authentication_event_listener_item_request_builder.AuthenticationEventListenerItemRequestBuilder
+        """
+        if authentication_event_listener_id is None:
+            raise Exception("authentication_event_listener_id cannot be undefined")
+        from .item import authentication_event_listener_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["authenticationEventListener%2Did"] = authentication_event_listener_id
+        return authentication_event_listener_item_request_builder.AuthenticationEventListenerItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[AuthenticationEventListenersRequestBuilderGetRequestConfiguration] = None) -> Optional[authentication_event_listener_collection_response.AuthenticationEventListenerCollectionResponse]:
         """

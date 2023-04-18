@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .....models.windows_updates import deployment_audience, deployment_audience_collection_response
     from .count import count_request_builder
+    from .item import deployment_audience_item_request_builder
 
 class DeploymentAudiencesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class DeploymentAudiencesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_deployment_audience_id(self,deployment_audience_id: str) -> deployment_audience_item_request_builder.DeploymentAudienceItemRequestBuilder:
+        """
+        Provides operations to manage the deploymentAudiences property of the microsoft.graph.adminWindowsUpdates entity.
+        Args:
+            deployment_audience_id: Unique identifier of the item
+        Returns: deployment_audience_item_request_builder.DeploymentAudienceItemRequestBuilder
+        """
+        if deployment_audience_id is None:
+            raise Exception("deployment_audience_id cannot be undefined")
+        from .item import deployment_audience_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["deploymentAudience%2Did"] = deployment_audience_id
+        return deployment_audience_item_request_builder.DeploymentAudienceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[DeploymentAudiencesRequestBuilderGetRequestConfiguration] = None) -> Optional[deployment_audience_collection_response.DeploymentAudienceCollectionResponse]:
         """

@@ -13,15 +13,11 @@ if TYPE_CHECKING:
     from ...models.identity_governance import lifecycle_workflows_container
     from ...models.o_data_errors import o_data_error
     from .custom_task_extensions import custom_task_extensions_request_builder
-    from .custom_task_extensions.item import custom_task_extension_item_request_builder
     from .deleted_items import deleted_items_request_builder
     from .settings import settings_request_builder
     from .task_definitions import task_definitions_request_builder
-    from .task_definitions.item import task_definition_item_request_builder
     from .workflows import workflows_request_builder
-    from .workflows.item import workflow_item_request_builder
     from .workflow_templates import workflow_templates_request_builder
-    from .workflow_templates.item import workflow_template_item_request_builder
 
 class LifecycleWorkflowsRequestBuilder():
     """
@@ -44,21 +40,6 @@ class LifecycleWorkflowsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def custom_task_extensions_by_id(self,id: str) -> custom_task_extension_item_request_builder.CustomTaskExtensionItemRequestBuilder:
-        """
-        Provides operations to manage the customTaskExtensions property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: custom_task_extension_item_request_builder.CustomTaskExtensionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .custom_task_extensions.item import custom_task_extension_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["customTaskExtension%2Did"] = id
-        return custom_task_extension_item_request_builder.CustomTaskExtensionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[LifecycleWorkflowsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
@@ -126,21 +107,6 @@ class LifecycleWorkflowsRequestBuilder():
 
         return await self.request_adapter.send_async(request_info, lifecycle_workflows_container.LifecycleWorkflowsContainer, error_mapping)
     
-    def task_definitions_by_id(self,id: str) -> task_definition_item_request_builder.TaskDefinitionItemRequestBuilder:
-        """
-        Provides operations to manage the taskDefinitions property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: task_definition_item_request_builder.TaskDefinitionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .task_definitions.item import task_definition_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["taskDefinition%2Did"] = id
-        return task_definition_item_request_builder.TaskDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def to_delete_request_information(self,request_configuration: Optional[LifecycleWorkflowsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property lifecycleWorkflows for identityGovernance
@@ -195,36 +161,6 @@ class LifecycleWorkflowsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
-    
-    def workflows_by_id(self,id: str) -> workflow_item_request_builder.WorkflowItemRequestBuilder:
-        """
-        Provides operations to manage the workflows property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: workflow_item_request_builder.WorkflowItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .workflows.item import workflow_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["workflow%2Did"] = id
-        return workflow_item_request_builder.WorkflowItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def workflow_templates_by_id(self,id: str) -> workflow_template_item_request_builder.WorkflowTemplateItemRequestBuilder:
-        """
-        Provides operations to manage the workflowTemplates property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: workflow_template_item_request_builder.WorkflowTemplateItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .workflow_templates.item import workflow_template_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["workflowTemplate%2Did"] = id
-        return workflow_template_item_request_builder.WorkflowTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     @property
     def custom_task_extensions(self) -> custom_task_extensions_request_builder.CustomTaskExtensionsRequestBuilder:

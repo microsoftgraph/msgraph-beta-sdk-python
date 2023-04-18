@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors import o_data_error
     from ...models.search import qna, qna_collection_response
     from .count import count_request_builder
+    from .item import qna_item_request_builder
 
 class QnasRequestBuilder():
     """
@@ -35,6 +36,21 @@ class QnasRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_qna_id(self,qna_id: str) -> qna_item_request_builder.QnaItemRequestBuilder:
+        """
+        Provides operations to manage the qnas property of the microsoft.graph.searchEntity entity.
+        Args:
+            qna_id: Unique identifier of the item
+        Returns: qna_item_request_builder.QnaItemRequestBuilder
+        """
+        if qna_id is None:
+            raise Exception("qna_id cannot be undefined")
+        from .item import qna_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["qna%2Did"] = qna_id
+        return qna_item_request_builder.QnaItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[QnasRequestBuilderGetRequestConfiguration] = None) -> Optional[qna_collection_response.QnaCollectionResponse]:
         """

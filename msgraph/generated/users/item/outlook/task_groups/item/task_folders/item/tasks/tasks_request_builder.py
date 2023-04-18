@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .........models import outlook_task, outlook_task_collection_response
     from .........models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import outlook_task_item_request_builder
 
 class TasksRequestBuilder():
     """
@@ -35,6 +36,21 @@ class TasksRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_outlook_task_id(self,outlook_task_id: str) -> outlook_task_item_request_builder.OutlookTaskItemRequestBuilder:
+        """
+        Provides operations to manage the tasks property of the microsoft.graph.outlookTaskFolder entity.
+        Args:
+            outlook_task_id: Unique identifier of the item
+        Returns: outlook_task_item_request_builder.OutlookTaskItemRequestBuilder
+        """
+        if outlook_task_id is None:
+            raise Exception("outlook_task_id cannot be undefined")
+        from .item import outlook_task_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["outlookTask%2Did"] = outlook_task_id
+        return outlook_task_item_request_builder.OutlookTaskItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[TasksRequestBuilderGetRequestConfiguration] = None) -> Optional[outlook_task_collection_response.OutlookTaskCollectionResponse]:
         """
@@ -60,7 +76,7 @@ class TasksRequestBuilder():
     
     async def post(self,body: Optional[outlook_task.OutlookTask] = None, request_configuration: Optional[TasksRequestBuilderPostRequestConfiguration] = None) -> Optional[outlook_task.OutlookTask]:
         """
-        Create new navigation property to tasks for users
+        Create an Outlook task in the specified task folder. The POST method always ignores the time portion of **startDateTime** and **dueDateTime** in the request body, and assumes the time to be always midnight in the specified time zone.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +119,7 @@ class TasksRequestBuilder():
     
     def to_post_request_information(self,body: Optional[outlook_task.OutlookTask] = None, request_configuration: Optional[TasksRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to tasks for users
+        Create an Outlook task in the specified task folder. The POST method always ignores the time portion of **startDateTime** and **dueDateTime** in the request body, and assumes the time to be always midnight in the specified time zone.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

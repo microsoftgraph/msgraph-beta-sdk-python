@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import custom_security_attribute_definition, custom_security_attribute_definition_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import custom_security_attribute_definition_item_request_builder
 
 class CustomSecurityAttributeDefinitionsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class CustomSecurityAttributeDefinitionsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_custom_security_attribute_definition_id(self,custom_security_attribute_definition_id: str) -> custom_security_attribute_definition_item_request_builder.CustomSecurityAttributeDefinitionItemRequestBuilder:
+        """
+        Provides operations to manage the customSecurityAttributeDefinitions property of the microsoft.graph.directory entity.
+        Args:
+            custom_security_attribute_definition_id: Unique identifier of the item
+        Returns: custom_security_attribute_definition_item_request_builder.CustomSecurityAttributeDefinitionItemRequestBuilder
+        """
+        if custom_security_attribute_definition_id is None:
+            raise Exception("custom_security_attribute_definition_id cannot be undefined")
+        from .item import custom_security_attribute_definition_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["customSecurityAttributeDefinition%2Did"] = custom_security_attribute_definition_id
+        return custom_security_attribute_definition_item_request_builder.CustomSecurityAttributeDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[CustomSecurityAttributeDefinitionsRequestBuilderGetRequestConfiguration] = None) -> Optional[custom_security_attribute_definition_collection_response.CustomSecurityAttributeDefinitionCollectionResponse]:
         """

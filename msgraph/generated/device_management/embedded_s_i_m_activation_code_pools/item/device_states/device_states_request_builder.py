@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import embedded_s_i_m_device_state, embedded_s_i_m_device_state_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import embedded_s_i_m_device_state_item_request_builder
 
 class DeviceStatesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class DeviceStatesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_embedded_s_i_m_device_state_id(self,embedded_s_i_m_device_state_id: str) -> embedded_s_i_m_device_state_item_request_builder.EmbeddedSIMDeviceStateItemRequestBuilder:
+        """
+        Provides operations to manage the deviceStates property of the microsoft.graph.embeddedSIMActivationCodePool entity.
+        Args:
+            embedded_s_i_m_device_state_id: Unique identifier of the item
+        Returns: embedded_s_i_m_device_state_item_request_builder.EmbeddedSIMDeviceStateItemRequestBuilder
+        """
+        if embedded_s_i_m_device_state_id is None:
+            raise Exception("embedded_s_i_m_device_state_id cannot be undefined")
+        from .item import embedded_s_i_m_device_state_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["embeddedSIMDeviceState%2Did"] = embedded_s_i_m_device_state_id
+        return embedded_s_i_m_device_state_item_request_builder.EmbeddedSIMDeviceStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[DeviceStatesRequestBuilderGetRequestConfiguration] = None) -> Optional[embedded_s_i_m_device_state_collection_response.EmbeddedSIMDeviceStateCollectionResponse]:
         """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.managed_tenants import managed_tenant_ticketing_endpoint, managed_tenant_ticketing_endpoint_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import managed_tenant_ticketing_endpoint_item_request_builder
 
 class ManagedTenantTicketingEndpointsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ManagedTenantTicketingEndpointsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_managed_tenant_ticketing_endpoint_id(self,managed_tenant_ticketing_endpoint_id: str) -> managed_tenant_ticketing_endpoint_item_request_builder.ManagedTenantTicketingEndpointItemRequestBuilder:
+        """
+        Provides operations to manage the managedTenantTicketingEndpoints property of the microsoft.graph.managedTenants.managedTenant entity.
+        Args:
+            managed_tenant_ticketing_endpoint_id: Unique identifier of the item
+        Returns: managed_tenant_ticketing_endpoint_item_request_builder.ManagedTenantTicketingEndpointItemRequestBuilder
+        """
+        if managed_tenant_ticketing_endpoint_id is None:
+            raise Exception("managed_tenant_ticketing_endpoint_id cannot be undefined")
+        from .item import managed_tenant_ticketing_endpoint_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["managedTenantTicketingEndpoint%2Did"] = managed_tenant_ticketing_endpoint_id
+        return managed_tenant_ticketing_endpoint_item_request_builder.ManagedTenantTicketingEndpointItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ManagedTenantTicketingEndpointsRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_tenant_ticketing_endpoint_collection_response.ManagedTenantTicketingEndpointCollectionResponse]:
         """

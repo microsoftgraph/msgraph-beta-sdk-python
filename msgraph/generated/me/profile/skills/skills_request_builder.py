@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import skill_proficiency, skill_proficiency_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import skill_proficiency_item_request_builder
 
 class SkillsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class SkillsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_skill_proficiency_id(self,skill_proficiency_id: str) -> skill_proficiency_item_request_builder.SkillProficiencyItemRequestBuilder:
+        """
+        Provides operations to manage the skills property of the microsoft.graph.profile entity.
+        Args:
+            skill_proficiency_id: Unique identifier of the item
+        Returns: skill_proficiency_item_request_builder.SkillProficiencyItemRequestBuilder
+        """
+        if skill_proficiency_id is None:
+            raise Exception("skill_proficiency_id cannot be undefined")
+        from .item import skill_proficiency_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["skillProficiency%2Did"] = skill_proficiency_id
+        return skill_proficiency_item_request_builder.SkillProficiencyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[SkillsRequestBuilderGetRequestConfiguration] = None) -> Optional[skill_proficiency_collection_response.SkillProficiencyCollectionResponse]:
         """

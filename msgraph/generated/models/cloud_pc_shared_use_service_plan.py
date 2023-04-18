@@ -10,7 +10,7 @@ from . import entity
 class CloudPcSharedUseServicePlan(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new cloudPcSharedUseServicePlan and sets the default values.
+        Instantiates a new CloudPcSharedUseServicePlan and sets the default values.
         """
         super().__init__()
         # The display name of the shared-use service plan.

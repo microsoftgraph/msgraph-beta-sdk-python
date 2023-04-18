@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from .......models import cloud_pc_provisioning_policy_assignment
     from .......models.o_data_errors import o_data_error
     from .assigned_users import assigned_users_request_builder
-    from .assigned_users.item import user_item_request_builder
 
 class CloudPcProvisioningPolicyAssignmentItemRequestBuilder():
     """
@@ -36,21 +35,6 @@ class CloudPcProvisioningPolicyAssignmentItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def assigned_users_by_id(self,id: str) -> user_item_request_builder.UserItemRequestBuilder:
-        """
-        Provides operations to manage the assignedUsers property of the microsoft.graph.cloudPcProvisioningPolicyAssignment entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: user_item_request_builder.UserItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .assigned_users.item import user_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["user%2Did"] = id
-        return user_item_request_builder.UserItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[CloudPcProvisioningPolicyAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

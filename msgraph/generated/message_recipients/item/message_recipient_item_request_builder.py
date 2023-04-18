@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ...models import message_recipient
     from ...models.o_data_errors import o_data_error
     from .events import events_request_builder
-    from .events.item import message_event_item_request_builder
 
 class MessageRecipientItemRequestBuilder():
     """
@@ -55,21 +54,6 @@ class MessageRecipientItemRequestBuilder():
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
-    
-    def events_by_id(self,id: str) -> message_event_item_request_builder.MessageEventItemRequestBuilder:
-        """
-        Provides operations to manage the events property of the microsoft.graph.messageRecipient entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: message_event_item_request_builder.MessageEventItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .events.item import message_event_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["messageEvent%2Did"] = id
-        return message_event_item_request_builder.MessageEventItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[MessageRecipientItemRequestBuilderGetRequestConfiguration] = None) -> Optional[message_recipient.MessageRecipient]:
         """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .....models.windows_updates import update_policy, update_policy_collection_response
     from .count import count_request_builder
+    from .item import update_policy_item_request_builder
 
 class UpdatePoliciesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class UpdatePoliciesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_update_policy_id(self,update_policy_id: str) -> update_policy_item_request_builder.UpdatePolicyItemRequestBuilder:
+        """
+        Provides operations to manage the updatePolicies property of the microsoft.graph.adminWindowsUpdates entity.
+        Args:
+            update_policy_id: Unique identifier of the item
+        Returns: update_policy_item_request_builder.UpdatePolicyItemRequestBuilder
+        """
+        if update_policy_id is None:
+            raise Exception("update_policy_id cannot be undefined")
+        from .item import update_policy_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["updatePolicy%2Did"] = update_policy_id
+        return update_policy_item_request_builder.UpdatePolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[UpdatePoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[update_policy_collection_response.UpdatePolicyCollectionResponse]:
         """

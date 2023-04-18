@@ -14,7 +14,6 @@ if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .accepted_for import accepted_for_request_builder
     from .deployments import deployments_request_builder
-    from .deployments.item import management_template_step_deployment_item_request_builder
     from .template_step import template_step_request_builder
 
 class ManagementTemplateStepVersionItemRequestBuilder():
@@ -57,21 +56,6 @@ class ManagementTemplateStepVersionItemRequestBuilder():
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
-    
-    def deployments_by_id(self,id: str) -> management_template_step_deployment_item_request_builder.ManagementTemplateStepDeploymentItemRequestBuilder:
-        """
-        Provides operations to manage the deployments property of the microsoft.graph.managedTenants.managementTemplateStepVersion entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: management_template_step_deployment_item_request_builder.ManagementTemplateStepDeploymentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .deployments.item import management_template_step_deployment_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["managementTemplateStepDeployment%2Did"] = id
-        return management_template_step_deployment_item_request_builder.ManagementTemplateStepDeploymentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ManagementTemplateStepVersionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[management_template_step_version.ManagementTemplateStepVersion]:
         """

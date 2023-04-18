@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import enterprise_code_signing_certificate, enterprise_code_signing_certificate_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import enterprise_code_signing_certificate_item_request_builder
 
 class EnterpriseCodeSigningCertificatesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class EnterpriseCodeSigningCertificatesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_enterprise_code_signing_certificate_id(self,enterprise_code_signing_certificate_id: str) -> enterprise_code_signing_certificate_item_request_builder.EnterpriseCodeSigningCertificateItemRequestBuilder:
+        """
+        Provides operations to manage the enterpriseCodeSigningCertificates property of the microsoft.graph.deviceAppManagement entity.
+        Args:
+            enterprise_code_signing_certificate_id: Unique identifier of the item
+        Returns: enterprise_code_signing_certificate_item_request_builder.EnterpriseCodeSigningCertificateItemRequestBuilder
+        """
+        if enterprise_code_signing_certificate_id is None:
+            raise Exception("enterprise_code_signing_certificate_id cannot be undefined")
+        from .item import enterprise_code_signing_certificate_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["enterpriseCodeSigningCertificate%2Did"] = enterprise_code_signing_certificate_id
+        return enterprise_code_signing_certificate_item_request_builder.EnterpriseCodeSigningCertificateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[EnterpriseCodeSigningCertificatesRequestBuilderGetRequestConfiguration] = None) -> Optional[enterprise_code_signing_certificate_collection_response.EnterpriseCodeSigningCertificateCollectionResponse]:
         """

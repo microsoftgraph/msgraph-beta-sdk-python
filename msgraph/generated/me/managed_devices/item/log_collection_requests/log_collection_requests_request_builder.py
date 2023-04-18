@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import device_log_collection_response, device_log_collection_response_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import device_log_collection_response_item_request_builder
 
 class LogCollectionRequestsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class LogCollectionRequestsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_device_log_collection_response_id(self,device_log_collection_response_id: str) -> device_log_collection_response_item_request_builder.DeviceLogCollectionResponseItemRequestBuilder:
+        """
+        Provides operations to manage the logCollectionRequests property of the microsoft.graph.managedDevice entity.
+        Args:
+            device_log_collection_response_id: Unique identifier of the item
+        Returns: device_log_collection_response_item_request_builder.DeviceLogCollectionResponseItemRequestBuilder
+        """
+        if device_log_collection_response_id is None:
+            raise Exception("device_log_collection_response_id cannot be undefined")
+        from .item import device_log_collection_response_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["deviceLogCollectionResponse%2Did"] = device_log_collection_response_id
+        return device_log_collection_response_item_request_builder.DeviceLogCollectionResponseItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[LogCollectionRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[device_log_collection_response_collection_response.DeviceLogCollectionResponseCollectionResponse]:
         """

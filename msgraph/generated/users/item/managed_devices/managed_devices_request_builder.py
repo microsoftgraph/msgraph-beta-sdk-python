@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     from .count import count_request_builder
     from .download_app_diagnostics import download_app_diagnostics_request_builder
     from .execute_action import execute_action_request_builder
+    from .item import managed_device_item_request_builder
     from .move_devices_to_o_u import move_devices_to_o_u_request_builder
 
 class ManagedDevicesRequestBuilder():
@@ -55,6 +56,21 @@ class ManagedDevicesRequestBuilder():
         from .app_diagnostics_with_upn import app_diagnostics_with_upn_request_builder
 
         return app_diagnostics_with_upn_request_builder.AppDiagnosticsWithUpnRequestBuilder(self.request_adapter, self.path_parameters, upn)
+    
+    def by_managed_device_id(self,managed_device_id: str) -> managed_device_item_request_builder.ManagedDeviceItemRequestBuilder:
+        """
+        Provides operations to manage the managedDevices property of the microsoft.graph.user entity.
+        Args:
+            managed_device_id: Unique identifier of the item
+        Returns: managed_device_item_request_builder.ManagedDeviceItemRequestBuilder
+        """
+        if managed_device_id is None:
+            raise Exception("managed_device_id cannot be undefined")
+        from .item import managed_device_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["managedDevice%2Did"] = managed_device_id
+        return managed_device_item_request_builder.ManagedDeviceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ManagedDevicesRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_device_collection_response.ManagedDeviceCollectionResponse]:
         """

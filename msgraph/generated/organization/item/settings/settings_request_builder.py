@@ -17,7 +17,6 @@ if TYPE_CHECKING:
     from .microsoft_application_data_access import microsoft_application_data_access_request_builder
     from .people_insights import people_insights_request_builder
     from .profile_card_properties import profile_card_properties_request_builder
-    from .profile_card_properties.item import profile_card_property_item_request_builder
     from .pronouns import pronouns_request_builder
 
 class SettingsRequestBuilder():
@@ -107,21 +106,6 @@ class SettingsRequestBuilder():
         from ....models import organization_settings
 
         return await self.request_adapter.send_async(request_info, organization_settings.OrganizationSettings, error_mapping)
-    
-    def profile_card_properties_by_id(self,id: str) -> profile_card_property_item_request_builder.ProfileCardPropertyItemRequestBuilder:
-        """
-        Provides operations to manage the profileCardProperties property of the microsoft.graph.organizationSettings entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: profile_card_property_item_request_builder.ProfileCardPropertyItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .profile_card_properties.item import profile_card_property_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["profileCardProperty%2Did"] = id
-        return profile_card_property_item_request_builder.ProfileCardPropertyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[SettingsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

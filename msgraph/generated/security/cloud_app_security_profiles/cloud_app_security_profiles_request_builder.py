@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import cloud_app_security_profile, cloud_app_security_profile_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import cloud_app_security_profile_item_request_builder
 
 class CloudAppSecurityProfilesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class CloudAppSecurityProfilesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_cloud_app_security_profile_id(self,cloud_app_security_profile_id: str) -> cloud_app_security_profile_item_request_builder.CloudAppSecurityProfileItemRequestBuilder:
+        """
+        Provides operations to manage the cloudAppSecurityProfiles property of the microsoft.graph.security entity.
+        Args:
+            cloud_app_security_profile_id: Unique identifier of the item
+        Returns: cloud_app_security_profile_item_request_builder.CloudAppSecurityProfileItemRequestBuilder
+        """
+        if cloud_app_security_profile_id is None:
+            raise Exception("cloud_app_security_profile_id cannot be undefined")
+        from .item import cloud_app_security_profile_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["cloudAppSecurityProfile%2Did"] = cloud_app_security_profile_id
+        return cloud_app_security_profile_item_request_builder.CloudAppSecurityProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[CloudAppSecurityProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_app_security_profile_collection_response.CloudAppSecurityProfileCollectionResponse]:
         """

@@ -13,13 +13,9 @@ if TYPE_CHECKING:
     from ...models.o_data_errors import o_data_error
     from ...models.security import threat_submission_root
     from .email_threats import email_threats_request_builder
-    from .email_threats.item import email_threat_submission_item_request_builder
     from .email_threat_submission_policies import email_threat_submission_policies_request_builder
-    from .email_threat_submission_policies.item import email_threat_submission_policy_item_request_builder
     from .file_threats import file_threats_request_builder
-    from .file_threats.item import file_threat_submission_item_request_builder
     from .url_threats import url_threats_request_builder
-    from .url_threats.item import url_threat_submission_item_request_builder
 
 class ThreatSubmissionRequestBuilder():
     """
@@ -61,51 +57,6 @@ class ThreatSubmissionRequestBuilder():
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
-    
-    def email_threats_by_id(self,id: str) -> email_threat_submission_item_request_builder.EmailThreatSubmissionItemRequestBuilder:
-        """
-        Provides operations to manage the emailThreats property of the microsoft.graph.security.threatSubmissionRoot entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: email_threat_submission_item_request_builder.EmailThreatSubmissionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .email_threats.item import email_threat_submission_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["emailThreatSubmission%2Did"] = id
-        return email_threat_submission_item_request_builder.EmailThreatSubmissionItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def email_threat_submission_policies_by_id(self,id: str) -> email_threat_submission_policy_item_request_builder.EmailThreatSubmissionPolicyItemRequestBuilder:
-        """
-        Provides operations to manage the emailThreatSubmissionPolicies property of the microsoft.graph.security.threatSubmissionRoot entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: email_threat_submission_policy_item_request_builder.EmailThreatSubmissionPolicyItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .email_threat_submission_policies.item import email_threat_submission_policy_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["emailThreatSubmissionPolicy%2Did"] = id
-        return email_threat_submission_policy_item_request_builder.EmailThreatSubmissionPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def file_threats_by_id(self,id: str) -> file_threat_submission_item_request_builder.FileThreatSubmissionItemRequestBuilder:
-        """
-        Provides operations to manage the fileThreats property of the microsoft.graph.security.threatSubmissionRoot entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: file_threat_submission_item_request_builder.FileThreatSubmissionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .file_threats.item import file_threat_submission_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["fileThreatSubmission%2Did"] = id
-        return file_threat_submission_item_request_builder.FileThreatSubmissionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ThreatSubmissionRequestBuilderGetRequestConfiguration] = None) -> Optional[threat_submission_root.ThreatSubmissionRoot]:
         """
@@ -208,21 +159,6 @@ class ThreatSubmissionRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
-    
-    def url_threats_by_id(self,id: str) -> url_threat_submission_item_request_builder.UrlThreatSubmissionItemRequestBuilder:
-        """
-        Provides operations to manage the urlThreats property of the microsoft.graph.security.threatSubmissionRoot entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: url_threat_submission_item_request_builder.UrlThreatSubmissionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .url_threats.item import url_threat_submission_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["urlThreatSubmission%2Did"] = id
-        return url_threat_submission_item_request_builder.UrlThreatSubmissionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     @property
     def email_threats(self) -> email_threats_request_builder.EmailThreatsRequestBuilder:

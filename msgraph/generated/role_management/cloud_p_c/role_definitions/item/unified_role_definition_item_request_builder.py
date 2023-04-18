@@ -14,7 +14,6 @@ if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id import assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id_request_builder
     from .inherits_permissions_from import inherits_permissions_from_request_builder
-    from .inherits_permissions_from.item import unified_role_definition_item_request_builder
 
 class UnifiedRoleDefinitionItemRequestBuilder():
     """
@@ -78,21 +77,6 @@ class UnifiedRoleDefinitionItemRequestBuilder():
         from .....models import unified_role_definition
 
         return await self.request_adapter.send_async(request_info, unified_role_definition.UnifiedRoleDefinition, error_mapping)
-    
-    def inherits_permissions_from_by_id(self,id: str) -> UnifiedRoleDefinitionItemRequestBuilder:
-        """
-        Provides operations to manage the inheritsPermissionsFrom property of the microsoft.graph.unifiedRoleDefinition entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: UnifiedRoleDefinitionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .inherits_permissions_from.item import unified_role_definition_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["unifiedRoleDefinition%2Did1"] = id
-        return UnifiedRoleDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[unified_role_definition.UnifiedRoleDefinition] = None, request_configuration: Optional[UnifiedRoleDefinitionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[unified_role_definition.UnifiedRoleDefinition]:
         """

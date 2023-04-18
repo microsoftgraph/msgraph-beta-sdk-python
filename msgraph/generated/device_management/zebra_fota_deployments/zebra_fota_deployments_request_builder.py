@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import zebra_fota_deployment, zebra_fota_deployment_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import zebra_fota_deployment_item_request_builder
 
 class ZebraFotaDeploymentsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ZebraFotaDeploymentsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_zebra_fota_deployment_id(self,zebra_fota_deployment_id: str) -> zebra_fota_deployment_item_request_builder.ZebraFotaDeploymentItemRequestBuilder:
+        """
+        Provides operations to manage the zebraFotaDeployments property of the microsoft.graph.deviceManagement entity.
+        Args:
+            zebra_fota_deployment_id: Unique identifier of the item
+        Returns: zebra_fota_deployment_item_request_builder.ZebraFotaDeploymentItemRequestBuilder
+        """
+        if zebra_fota_deployment_id is None:
+            raise Exception("zebra_fota_deployment_id cannot be undefined")
+        from .item import zebra_fota_deployment_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["zebraFotaDeployment%2Did"] = zebra_fota_deployment_id
+        return zebra_fota_deployment_item_request_builder.ZebraFotaDeploymentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ZebraFotaDeploymentsRequestBuilderGetRequestConfiguration] = None) -> Optional[zebra_fota_deployment_collection_response.ZebraFotaDeploymentCollectionResponse]:
         """

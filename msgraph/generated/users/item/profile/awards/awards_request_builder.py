@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import person_award, person_award_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import person_award_item_request_builder
 
 class AwardsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class AwardsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_person_award_id(self,person_award_id: str) -> person_award_item_request_builder.PersonAwardItemRequestBuilder:
+        """
+        Provides operations to manage the awards property of the microsoft.graph.profile entity.
+        Args:
+            person_award_id: Unique identifier of the item
+        Returns: person_award_item_request_builder.PersonAwardItemRequestBuilder
+        """
+        if person_award_id is None:
+            raise Exception("person_award_id cannot be undefined")
+        from .item import person_award_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["personAward%2Did"] = person_award_id
+        return person_award_item_request_builder.PersonAwardItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[AwardsRequestBuilderGetRequestConfiguration] = None) -> Optional[person_award_collection_response.PersonAwardCollectionResponse]:
         """

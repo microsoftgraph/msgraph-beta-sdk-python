@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.managed_tenants import management_template, management_template_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import management_template_item_request_builder
 
 class ManagementTemplatesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ManagementTemplatesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_management_template_id(self,management_template_id: str) -> management_template_item_request_builder.ManagementTemplateItemRequestBuilder:
+        """
+        Provides operations to manage the managementTemplates property of the microsoft.graph.managedTenants.managedTenant entity.
+        Args:
+            management_template_id: Unique identifier of the item
+        Returns: management_template_item_request_builder.ManagementTemplateItemRequestBuilder
+        """
+        if management_template_id is None:
+            raise Exception("management_template_id cannot be undefined")
+        from .item import management_template_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["managementTemplate%2Did"] = management_template_id
+        return management_template_item_request_builder.ManagementTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ManagementTemplatesRequestBuilderGetRequestConfiguration] = None) -> Optional[management_template_collection_response.ManagementTemplateCollectionResponse]:
         """

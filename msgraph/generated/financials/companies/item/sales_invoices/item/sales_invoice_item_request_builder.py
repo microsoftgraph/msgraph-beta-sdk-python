@@ -20,7 +20,6 @@ if TYPE_CHECKING:
     from .post import post_request_builder
     from .post_and_send import post_and_send_request_builder
     from .sales_invoice_lines import sales_invoice_lines_request_builder
-    from .sales_invoice_lines.item import sales_invoice_line_item_request_builder
     from .send import send_request_builder
     from .shipment_method import shipment_method_request_builder
 
@@ -92,21 +91,6 @@ class SalesInvoiceItemRequestBuilder():
         from ......models import sales_invoice
 
         return await self.request_adapter.send_async(request_info, sales_invoice.SalesInvoice, error_mapping)
-    
-    def sales_invoice_lines_by_id(self,id: str) -> sales_invoice_line_item_request_builder.SalesInvoiceLineItemRequestBuilder:
-        """
-        Provides operations to manage the salesInvoiceLines property of the microsoft.graph.salesInvoice entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: sales_invoice_line_item_request_builder.SalesInvoiceLineItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .sales_invoice_lines.item import sales_invoice_line_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["salesInvoiceLine%2Did"] = id
-        return sales_invoice_line_item_request_builder.SalesInvoiceLineItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_get_request_information(self,request_configuration: Optional[SalesInvoiceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

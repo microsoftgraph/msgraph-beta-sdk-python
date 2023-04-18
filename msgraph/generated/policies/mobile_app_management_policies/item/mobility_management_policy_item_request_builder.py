@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ....models import mobility_management_policy
     from ....models.o_data_errors import o_data_error
     from .included_groups import included_groups_request_builder
-    from .included_groups.item import group_item_request_builder
 
 class MobilityManagementPolicyItemRequestBuilder():
     """
@@ -77,21 +76,6 @@ class MobilityManagementPolicyItemRequestBuilder():
         from ....models import mobility_management_policy
 
         return await self.request_adapter.send_async(request_info, mobility_management_policy.MobilityManagementPolicy, error_mapping)
-    
-    def included_groups_by_id(self,id: str) -> group_item_request_builder.GroupItemRequestBuilder:
-        """
-        Gets an item from the msgraph.generated.policies.mobileAppManagementPolicies.item.includedGroups.item collection
-        Args:
-            id: Unique identifier of the item
-        Returns: group_item_request_builder.GroupItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .included_groups.item import group_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["group%2Did"] = id
-        return group_item_request_builder.GroupItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[mobility_management_policy.MobilityManagementPolicy] = None, request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[mobility_management_policy.MobilityManagementPolicy]:
         """

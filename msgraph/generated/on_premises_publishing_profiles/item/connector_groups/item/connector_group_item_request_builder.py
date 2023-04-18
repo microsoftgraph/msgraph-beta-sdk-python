@@ -13,9 +13,7 @@ if TYPE_CHECKING:
     from .....models import connector_group
     from .....models.o_data_errors import o_data_error
     from .applications import applications_request_builder
-    from .applications.item import application_item_request_builder
     from .members import members_request_builder
-    from .members.item import connector_item_request_builder
 
 class ConnectorGroupItemRequestBuilder():
     """
@@ -38,21 +36,6 @@ class ConnectorGroupItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def applications_by_id(self,id: str) -> application_item_request_builder.ApplicationItemRequestBuilder:
-        """
-        Provides operations to manage the applications property of the microsoft.graph.connectorGroup entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: application_item_request_builder.ApplicationItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .applications.item import application_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["application%2Did"] = id
-        return application_item_request_builder.ApplicationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[ConnectorGroupItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
@@ -94,21 +77,6 @@ class ConnectorGroupItemRequestBuilder():
         from .....models import connector_group
 
         return await self.request_adapter.send_async(request_info, connector_group.ConnectorGroup, error_mapping)
-    
-    def members_by_id(self,id: str) -> connector_item_request_builder.ConnectorItemRequestBuilder:
-        """
-        Gets an item from the msgraph.generated.onPremisesPublishingProfiles.item.connectorGroups.item.members.item collection
-        Args:
-            id: Unique identifier of the item
-        Returns: connector_item_request_builder.ConnectorItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .members.item import connector_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["connector%2Did"] = id
-        return connector_item_request_builder.ConnectorItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[connector_group.ConnectorGroup] = None, request_configuration: Optional[ConnectorGroupItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[connector_group.ConnectorGroup]:
         """

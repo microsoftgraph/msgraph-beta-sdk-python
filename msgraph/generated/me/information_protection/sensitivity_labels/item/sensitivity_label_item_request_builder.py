@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from .....models import sensitivity_label
     from .....models.o_data_errors import o_data_error
     from .sublabels import sublabels_request_builder
-    from .sublabels.item import sensitivity_label_item_request_builder
 
 class SensitivityLabelItemRequestBuilder():
     """
@@ -102,21 +101,6 @@ class SensitivityLabelItemRequestBuilder():
         from .....models import sensitivity_label
 
         return await self.request_adapter.send_async(request_info, sensitivity_label.SensitivityLabel, error_mapping)
-    
-    def sublabels_by_id(self,id: str) -> SensitivityLabelItemRequestBuilder:
-        """
-        Provides operations to manage the sublabels property of the microsoft.graph.sensitivityLabel entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: SensitivityLabelItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .sublabels.item import sensitivity_label_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["sensitivityLabel%2Did1"] = id
-        return SensitivityLabelItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[SensitivityLabelItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

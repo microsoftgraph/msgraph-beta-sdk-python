@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import managed_device_encryption_state, managed_device_encryption_state_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import managed_device_encryption_state_item_request_builder
 
 class ManagedDeviceEncryptionStatesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ManagedDeviceEncryptionStatesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_managed_device_encryption_state_id(self,managed_device_encryption_state_id: str) -> managed_device_encryption_state_item_request_builder.ManagedDeviceEncryptionStateItemRequestBuilder:
+        """
+        Provides operations to manage the managedDeviceEncryptionStates property of the microsoft.graph.deviceManagement entity.
+        Args:
+            managed_device_encryption_state_id: Unique identifier of the item
+        Returns: managed_device_encryption_state_item_request_builder.ManagedDeviceEncryptionStateItemRequestBuilder
+        """
+        if managed_device_encryption_state_id is None:
+            raise Exception("managed_device_encryption_state_id cannot be undefined")
+        from .item import managed_device_encryption_state_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["managedDeviceEncryptionState%2Did"] = managed_device_encryption_state_id
+        return managed_device_encryption_state_item_request_builder.ManagedDeviceEncryptionStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ManagedDeviceEncryptionStatesRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_device_encryption_state_collection_response.ManagedDeviceEncryptionStateCollectionResponse]:
         """

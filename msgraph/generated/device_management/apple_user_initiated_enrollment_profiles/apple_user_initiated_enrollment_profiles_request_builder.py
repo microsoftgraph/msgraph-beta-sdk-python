@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import apple_user_initiated_enrollment_profile, apple_user_initiated_enrollment_profile_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import apple_user_initiated_enrollment_profile_item_request_builder
 
 class AppleUserInitiatedEnrollmentProfilesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class AppleUserInitiatedEnrollmentProfilesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_apple_user_initiated_enrollment_profile_id(self,apple_user_initiated_enrollment_profile_id: str) -> apple_user_initiated_enrollment_profile_item_request_builder.AppleUserInitiatedEnrollmentProfileItemRequestBuilder:
+        """
+        Provides operations to manage the appleUserInitiatedEnrollmentProfiles property of the microsoft.graph.deviceManagement entity.
+        Args:
+            apple_user_initiated_enrollment_profile_id: Unique identifier of the item
+        Returns: apple_user_initiated_enrollment_profile_item_request_builder.AppleUserInitiatedEnrollmentProfileItemRequestBuilder
+        """
+        if apple_user_initiated_enrollment_profile_id is None:
+            raise Exception("apple_user_initiated_enrollment_profile_id cannot be undefined")
+        from .item import apple_user_initiated_enrollment_profile_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["appleUserInitiatedEnrollmentProfile%2Did"] = apple_user_initiated_enrollment_profile_id
+        return apple_user_initiated_enrollment_profile_item_request_builder.AppleUserInitiatedEnrollmentProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[AppleUserInitiatedEnrollmentProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[apple_user_initiated_enrollment_profile_collection_response.AppleUserInitiatedEnrollmentProfileCollectionResponse]:
         """

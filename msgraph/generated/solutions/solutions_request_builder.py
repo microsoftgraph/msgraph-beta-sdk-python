@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ..models import solutions_root
     from ..models.o_data_errors import o_data_error
     from .business_scenarios import business_scenarios_request_builder
-    from .business_scenarios.item import business_scenario_item_request_builder
 
 class SolutionsRequestBuilder():
     """
@@ -36,21 +35,6 @@ class SolutionsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def business_scenarios_by_id(self,id: str) -> business_scenario_item_request_builder.BusinessScenarioItemRequestBuilder:
-        """
-        Provides operations to manage the businessScenarios property of the microsoft.graph.solutionsRoot entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: business_scenario_item_request_builder.BusinessScenarioItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .business_scenarios.item import business_scenario_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["businessScenario%2Did"] = id
-        return business_scenario_item_request_builder.BusinessScenarioItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[SolutionsRequestBuilderGetRequestConfiguration] = None) -> Optional[solutions_root.SolutionsRoot]:
         """

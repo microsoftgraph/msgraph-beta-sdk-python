@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import team_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import team_item_request_builder
 
 class JoinedTeamsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class JoinedTeamsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_team_id(self,team_id: str) -> team_item_request_builder.TeamItemRequestBuilder:
+        """
+        Provides operations to manage the joinedTeams property of the microsoft.graph.user entity.
+        Args:
+            team_id: Unique identifier of the item
+        Returns: team_item_request_builder.TeamItemRequestBuilder
+        """
+        if team_id is None:
+            raise Exception("team_id cannot be undefined")
+        from .item import team_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["team%2Did"] = team_id
+        return team_item_request_builder.TeamItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[JoinedTeamsRequestBuilderGetRequestConfiguration] = None) -> Optional[team_collection_response.TeamCollectionResponse]:
         """

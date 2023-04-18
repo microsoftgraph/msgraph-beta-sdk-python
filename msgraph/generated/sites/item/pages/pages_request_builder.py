@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import site_page, site_page_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import site_page_item_request_builder
 
 class PagesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class PagesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_site_page_id(self,site_page_id: str) -> site_page_item_request_builder.SitePageItemRequestBuilder:
+        """
+        Provides operations to manage the pages property of the microsoft.graph.site entity.
+        Args:
+            site_page_id: Unique identifier of the item
+        Returns: site_page_item_request_builder.SitePageItemRequestBuilder
+        """
+        if site_page_id is None:
+            raise Exception("site_page_id cannot be undefined")
+        from .item import site_page_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["sitePage%2Did"] = site_page_id
+        return site_page_item_request_builder.SitePageItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[PagesRequestBuilderGetRequestConfiguration] = None) -> Optional[site_page_collection_response.SitePageCollectionResponse]:
         """

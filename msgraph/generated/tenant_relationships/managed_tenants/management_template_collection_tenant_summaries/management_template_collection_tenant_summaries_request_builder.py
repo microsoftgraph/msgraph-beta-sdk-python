@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.managed_tenants import management_template_collection_tenant_summary, management_template_collection_tenant_summary_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import management_template_collection_tenant_summary_item_request_builder
 
 class ManagementTemplateCollectionTenantSummariesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ManagementTemplateCollectionTenantSummariesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_management_template_collection_tenant_summary_id(self,management_template_collection_tenant_summary_id: str) -> management_template_collection_tenant_summary_item_request_builder.ManagementTemplateCollectionTenantSummaryItemRequestBuilder:
+        """
+        Provides operations to manage the managementTemplateCollectionTenantSummaries property of the microsoft.graph.managedTenants.managedTenant entity.
+        Args:
+            management_template_collection_tenant_summary_id: Unique identifier of the item
+        Returns: management_template_collection_tenant_summary_item_request_builder.ManagementTemplateCollectionTenantSummaryItemRequestBuilder
+        """
+        if management_template_collection_tenant_summary_id is None:
+            raise Exception("management_template_collection_tenant_summary_id cannot be undefined")
+        from .item import management_template_collection_tenant_summary_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["managementTemplateCollectionTenantSummary%2Did"] = management_template_collection_tenant_summary_id
+        return management_template_collection_tenant_summary_item_request_builder.ManagementTemplateCollectionTenantSummaryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ManagementTemplateCollectionTenantSummariesRequestBuilderGetRequestConfiguration] = None) -> Optional[management_template_collection_tenant_summary_collection_response.ManagementTemplateCollectionTenantSummaryCollectionResponse]:
         """

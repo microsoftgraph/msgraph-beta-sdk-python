@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ......models import planner_plan_configuration
     from ......models.o_data_errors import o_data_error
     from .localizations import localizations_request_builder
-    from .localizations.item import planner_plan_configuration_localization_item_request_builder
 
 class PlanConfigurationRequestBuilder():
     """
@@ -77,21 +76,6 @@ class PlanConfigurationRequestBuilder():
         from ......models import planner_plan_configuration
 
         return await self.request_adapter.send_async(request_info, planner_plan_configuration.PlannerPlanConfiguration, error_mapping)
-    
-    def localizations_by_id(self,id: str) -> planner_plan_configuration_localization_item_request_builder.PlannerPlanConfigurationLocalizationItemRequestBuilder:
-        """
-        Provides operations to manage the localizations property of the microsoft.graph.plannerPlanConfiguration entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: planner_plan_configuration_localization_item_request_builder.PlannerPlanConfigurationLocalizationItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .localizations.item import planner_plan_configuration_localization_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["plannerPlanConfigurationLocalization%2Did"] = id
-        return planner_plan_configuration_localization_item_request_builder.PlannerPlanConfigurationLocalizationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[planner_plan_configuration.PlannerPlanConfiguration] = None, request_configuration: Optional[PlanConfigurationRequestBuilderPatchRequestConfiguration] = None) -> Optional[planner_plan_configuration.PlannerPlanConfiguration]:
         """

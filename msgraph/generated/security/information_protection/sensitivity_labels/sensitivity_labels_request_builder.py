@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from ....models.security import sensitivity_label, sensitivity_label_collection_response
     from .count import count_request_builder
+    from .item import sensitivity_label_item_request_builder
     from .security_evaluate_application import security_evaluate_application_request_builder
     from .security_evaluate_classification_results import security_evaluate_classification_results_request_builder
     from .security_evaluate_removal import security_evaluate_removal_request_builder
@@ -39,6 +40,21 @@ class SensitivityLabelsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_sensitivity_label_id(self,sensitivity_label_id: str) -> sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder:
+        """
+        Provides operations to manage the sensitivityLabels property of the microsoft.graph.security.informationProtection entity.
+        Args:
+            sensitivity_label_id: Unique identifier of the item
+        Returns: sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder
+        """
+        if sensitivity_label_id is None:
+            raise Exception("sensitivity_label_id cannot be undefined")
+        from .item import sensitivity_label_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["sensitivityLabel%2Did"] = sensitivity_label_id
+        return sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[SensitivityLabelsRequestBuilderGetRequestConfiguration] = None) -> Optional[sensitivity_label_collection_response.SensitivityLabelCollectionResponse]:
         """

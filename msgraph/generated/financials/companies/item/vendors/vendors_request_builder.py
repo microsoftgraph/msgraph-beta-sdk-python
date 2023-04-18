@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import vendor, vendor_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import vendor_item_request_builder
 
 class VendorsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class VendorsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_vendor_id(self,vendor_id: str) -> vendor_item_request_builder.VendorItemRequestBuilder:
+        """
+        Provides operations to manage the vendors property of the microsoft.graph.company entity.
+        Args:
+            vendor_id: Unique identifier of the item
+        Returns: vendor_item_request_builder.VendorItemRequestBuilder
+        """
+        if vendor_id is None:
+            raise Exception("vendor_id cannot be undefined")
+        from .item import vendor_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["vendor%2Did"] = vendor_id
+        return vendor_item_request_builder.VendorItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[VendorsRequestBuilderGetRequestConfiguration] = None) -> Optional[vendor_collection_response.VendorCollectionResponse]:
         """

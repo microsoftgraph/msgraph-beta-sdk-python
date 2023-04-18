@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import user_experience_analytics_app_health_app_performance_by_app_version_details, user_experience_analytics_app_health_app_performance_by_app_version_details_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import user_experience_analytics_app_health_app_performance_by_app_version_details_item_request_builder
 
 class UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetailsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetailsR
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_user_experience_analytics_app_health_app_performance_by_app_version_details_id(self,user_experience_analytics_app_health_app_performance_by_app_version_details_id: str) -> user_experience_analytics_app_health_app_performance_by_app_version_details_item_request_builder.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsItemRequestBuilder:
+        """
+        Provides operations to manage the userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails property of the microsoft.graph.deviceManagement entity.
+        Args:
+            user_experience_analytics_app_health_app_performance_by_app_version_details_id: Unique identifier of the item
+        Returns: user_experience_analytics_app_health_app_performance_by_app_version_details_item_request_builder.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsItemRequestBuilder
+        """
+        if user_experience_analytics_app_health_app_performance_by_app_version_details_id is None:
+            raise Exception("user_experience_analytics_app_health_app_performance_by_app_version_details_id cannot be undefined")
+        from .item import user_experience_analytics_app_health_app_performance_by_app_version_details_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails%2Did"] = user_experience_analytics_app_health_app_performance_by_app_version_details_id
+        return user_experience_analytics_app_health_app_performance_by_app_version_details_item_request_builder.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetailsRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_app_health_app_performance_by_app_version_details_collection_response.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsCollectionResponse]:
         """

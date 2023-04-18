@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .......models import mac_o_s_software_update_state_summary, mac_o_s_software_update_state_summary_collection_response
     from .......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import mac_o_s_software_update_state_summary_item_request_builder
 
 class UpdateStateSummariesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class UpdateStateSummariesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_mac_o_s_software_update_state_summary_id(self,mac_o_s_software_update_state_summary_id: str) -> mac_o_s_software_update_state_summary_item_request_builder.MacOSSoftwareUpdateStateSummaryItemRequestBuilder:
+        """
+        Provides operations to manage the updateStateSummaries property of the microsoft.graph.macOSSoftwareUpdateCategorySummary entity.
+        Args:
+            mac_o_s_software_update_state_summary_id: Unique identifier of the item
+        Returns: mac_o_s_software_update_state_summary_item_request_builder.MacOSSoftwareUpdateStateSummaryItemRequestBuilder
+        """
+        if mac_o_s_software_update_state_summary_id is None:
+            raise Exception("mac_o_s_software_update_state_summary_id cannot be undefined")
+        from .item import mac_o_s_software_update_state_summary_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["macOSSoftwareUpdateStateSummary%2Did"] = mac_o_s_software_update_state_summary_id
+        return mac_o_s_software_update_state_summary_item_request_builder.MacOSSoftwareUpdateStateSummaryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[UpdateStateSummariesRequestBuilderGetRequestConfiguration] = None) -> Optional[mac_o_s_software_update_state_summary_collection_response.MacOSSoftwareUpdateStateSummaryCollectionResponse]:
         """

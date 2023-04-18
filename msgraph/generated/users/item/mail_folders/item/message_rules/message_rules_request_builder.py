@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models import message_rule, message_rule_collection_response
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import message_rule_item_request_builder
 
 class MessageRulesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class MessageRulesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_message_rule_id(self,message_rule_id: str) -> message_rule_item_request_builder.MessageRuleItemRequestBuilder:
+        """
+        Provides operations to manage the messageRules property of the microsoft.graph.mailFolder entity.
+        Args:
+            message_rule_id: Unique identifier of the item
+        Returns: message_rule_item_request_builder.MessageRuleItemRequestBuilder
+        """
+        if message_rule_id is None:
+            raise Exception("message_rule_id cannot be undefined")
+        from .item import message_rule_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["messageRule%2Did"] = message_rule_id
+        return message_rule_item_request_builder.MessageRuleItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[MessageRulesRequestBuilderGetRequestConfiguration] = None) -> Optional[message_rule_collection_response.MessageRuleCollectionResponse]:
         """
-        The collection of rules that apply to the user's Inbox folder.
+        Get all the messageRule objects defined for the user's inbox.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[message_rule_collection_response.MessageRuleCollectionResponse]
@@ -60,7 +76,7 @@ class MessageRulesRequestBuilder():
     
     async def post(self,body: Optional[message_rule.MessageRule] = None, request_configuration: Optional[MessageRulesRequestBuilderPostRequestConfiguration] = None) -> Optional[message_rule.MessageRule]:
         """
-        Create new navigation property to messageRules for users
+        Create a messageRule object by specifying a set of conditions and actions.  Outlook carries out those actions if an incoming message in the user's Inbox meets the specified conditions.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class MessageRulesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[MessageRulesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection of rules that apply to the user's Inbox folder.
+        Get all the messageRule objects defined for the user's inbox.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class MessageRulesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[message_rule.MessageRule] = None, request_configuration: Optional[MessageRulesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to messageRules for users
+        Create a messageRule object by specifying a set of conditions and actions.  Outlook carries out those actions if an incoming message in the user's Inbox meets the specified conditions.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class MessageRulesRequestBuilder():
     @dataclass
     class MessageRulesRequestBuilderGetQueryParameters():
         """
-        The collection of rules that apply to the user's Inbox folder.
+        Get all the messageRule objects defined for the user's inbox.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

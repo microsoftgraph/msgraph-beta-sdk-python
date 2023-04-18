@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import managed_all_device_certificate_state, managed_all_device_certificate_state_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import managed_all_device_certificate_state_item_request_builder
 
 class DeviceConfigurationsAllManagedDeviceCertificateStatesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class DeviceConfigurationsAllManagedDeviceCertificateStatesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_managed_all_device_certificate_state_id(self,managed_all_device_certificate_state_id: str) -> managed_all_device_certificate_state_item_request_builder.ManagedAllDeviceCertificateStateItemRequestBuilder:
+        """
+        Provides operations to manage the deviceConfigurationsAllManagedDeviceCertificateStates property of the microsoft.graph.deviceManagement entity.
+        Args:
+            managed_all_device_certificate_state_id: Unique identifier of the item
+        Returns: managed_all_device_certificate_state_item_request_builder.ManagedAllDeviceCertificateStateItemRequestBuilder
+        """
+        if managed_all_device_certificate_state_id is None:
+            raise Exception("managed_all_device_certificate_state_id cannot be undefined")
+        from .item import managed_all_device_certificate_state_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["managedAllDeviceCertificateState%2Did"] = managed_all_device_certificate_state_id
+        return managed_all_device_certificate_state_item_request_builder.ManagedAllDeviceCertificateStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[DeviceConfigurationsAllManagedDeviceCertificateStatesRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_all_device_certificate_state_collection_response.ManagedAllDeviceCertificateStateCollectionResponse]:
         """

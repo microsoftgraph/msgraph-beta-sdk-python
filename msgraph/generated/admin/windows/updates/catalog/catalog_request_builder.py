@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .....models.windows_updates import catalog
     from .entries import entries_request_builder
-    from .entries.item import catalog_entry_item_request_builder
 
 class CatalogRequestBuilder():
     """
@@ -55,21 +54,6 @@ class CatalogRequestBuilder():
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
-    
-    def entries_by_id(self,id: str) -> catalog_entry_item_request_builder.CatalogEntryItemRequestBuilder:
-        """
-        Provides operations to manage the entries property of the microsoft.graph.windowsUpdates.catalog entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: catalog_entry_item_request_builder.CatalogEntryItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .entries.item import catalog_entry_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["catalogEntry%2Did"] = id
-        return catalog_entry_item_request_builder.CatalogEntryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[CatalogRequestBuilderGetRequestConfiguration] = None) -> Optional[catalog.Catalog]:
         """

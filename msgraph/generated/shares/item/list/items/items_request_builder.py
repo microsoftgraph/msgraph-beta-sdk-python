@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .count import count_request_builder
     from .delta import delta_request_builder
     from .delta_with_token import delta_with_token_request_builder
+    from .item import list_item_item_request_builder
 
 class ItemsRequestBuilder():
     """
@@ -37,6 +38,21 @@ class ItemsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_list_item_id(self,list_item_id: str) -> list_item_item_request_builder.ListItemItemRequestBuilder:
+        """
+        Provides operations to manage the items property of the microsoft.graph.list entity.
+        Args:
+            list_item_id: Unique identifier of the item
+        Returns: list_item_item_request_builder.ListItemItemRequestBuilder
+        """
+        if list_item_id is None:
+            raise Exception("list_item_id cannot be undefined")
+        from .item import list_item_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["listItem%2Did"] = list_item_id
+        return list_item_item_request_builder.ListItemItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def delta_with_token(self,token: Optional[str] = None) -> delta_with_token_request_builder.DeltaWithTokenRequestBuilder:
         """

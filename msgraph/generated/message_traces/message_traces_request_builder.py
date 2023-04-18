@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ..models import message_trace, message_trace_collection_response
     from ..models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import message_trace_item_request_builder
 
 class MessageTracesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class MessageTracesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_message_trace_id(self,message_trace_id: str) -> message_trace_item_request_builder.MessageTraceItemRequestBuilder:
+        """
+        Provides operations to manage the collection of messageTrace entities.
+        Args:
+            message_trace_id: Unique identifier of the item
+        Returns: message_trace_item_request_builder.MessageTraceItemRequestBuilder
+        """
+        if message_trace_id is None:
+            raise Exception("message_trace_id cannot be undefined")
+        from .item import message_trace_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["messageTrace%2Did"] = message_trace_id
+        return message_trace_item_request_builder.MessageTraceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[MessageTracesRequestBuilderGetRequestConfiguration] = None) -> Optional[message_trace_collection_response.MessageTraceCollectionResponse]:
         """

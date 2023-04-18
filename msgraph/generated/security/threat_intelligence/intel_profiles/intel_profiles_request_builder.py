@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from ....models.security import intelligence_profile, intelligence_profile_collection_response
     from .count import count_request_builder
+    from .item import intelligence_profile_item_request_builder
 
 class IntelProfilesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class IntelProfilesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_intelligence_profile_id(self,intelligence_profile_id: str) -> intelligence_profile_item_request_builder.IntelligenceProfileItemRequestBuilder:
+        """
+        Provides operations to manage the intelProfiles property of the microsoft.graph.security.threatIntelligence entity.
+        Args:
+            intelligence_profile_id: Unique identifier of the item
+        Returns: intelligence_profile_item_request_builder.IntelligenceProfileItemRequestBuilder
+        """
+        if intelligence_profile_id is None:
+            raise Exception("intelligence_profile_id cannot be undefined")
+        from .item import intelligence_profile_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["intelligenceProfile%2Did"] = intelligence_profile_id
+        return intelligence_profile_item_request_builder.IntelligenceProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[IntelProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[intelligence_profile_collection_response.IntelligenceProfileCollectionResponse]:
         """

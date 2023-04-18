@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import journal_line, journal_line_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import journal_line_item_request_builder
 
 class JournalLinesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class JournalLinesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_journal_line_id(self,journal_line_id: str) -> journal_line_item_request_builder.JournalLineItemRequestBuilder:
+        """
+        Provides operations to manage the journalLines property of the microsoft.graph.company entity.
+        Args:
+            journal_line_id: Unique identifier of the item
+        Returns: journal_line_item_request_builder.JournalLineItemRequestBuilder
+        """
+        if journal_line_id is None:
+            raise Exception("journal_line_id cannot be undefined")
+        from .item import journal_line_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["journalLine%2Did"] = journal_line_id
+        return journal_line_item_request_builder.JournalLineItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[JournalLinesRequestBuilderGetRequestConfiguration] = None) -> Optional[journal_line_collection_response.JournalLineCollectionResponse]:
         """

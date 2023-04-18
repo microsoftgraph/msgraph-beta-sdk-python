@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import person_website, person_website_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import person_website_item_request_builder
 
 class WebsitesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class WebsitesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_person_website_id(self,person_website_id: str) -> person_website_item_request_builder.PersonWebsiteItemRequestBuilder:
+        """
+        Provides operations to manage the websites property of the microsoft.graph.profile entity.
+        Args:
+            person_website_id: Unique identifier of the item
+        Returns: person_website_item_request_builder.PersonWebsiteItemRequestBuilder
+        """
+        if person_website_id is None:
+            raise Exception("person_website_id cannot be undefined")
+        from .item import person_website_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["personWebsite%2Did"] = person_website_id
+        return person_website_item_request_builder.PersonWebsiteItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[WebsitesRequestBuilderGetRequestConfiguration] = None) -> Optional[person_website_collection_response.PersonWebsiteCollectionResponse]:
         """

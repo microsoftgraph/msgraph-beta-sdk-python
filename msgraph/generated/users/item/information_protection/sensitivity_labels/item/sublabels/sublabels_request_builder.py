@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .......models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .evaluate import evaluate_request_builder
+    from .item import sensitivity_label_item_request_builder
 
 class SublabelsRequestBuilder():
     """
@@ -36,6 +37,21 @@ class SublabelsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_sensitivity_label_id1(self,sensitivity_label_id1: str) -> sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder:
+        """
+        Provides operations to manage the sublabels property of the microsoft.graph.sensitivityLabel entity.
+        Args:
+            sensitivity_label_id1: Unique identifier of the item
+        Returns: sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder
+        """
+        if sensitivity_label_id1 is None:
+            raise Exception("sensitivity_label_id1 cannot be undefined")
+        from .item import sensitivity_label_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["sensitivityLabel%2Did1"] = sensitivity_label_id1
+        return sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[SublabelsRequestBuilderGetRequestConfiguration] = None) -> Optional[sensitivity_label_collection_response.SensitivityLabelCollectionResponse]:
         """

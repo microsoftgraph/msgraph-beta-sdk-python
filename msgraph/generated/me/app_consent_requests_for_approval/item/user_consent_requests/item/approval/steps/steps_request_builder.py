@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ........models import approval_step, approval_step_collection_response
     from ........models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import approval_step_item_request_builder
 
 class StepsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class StepsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_approval_step_id(self,approval_step_id: str) -> approval_step_item_request_builder.ApprovalStepItemRequestBuilder:
+        """
+        Provides operations to manage the steps property of the microsoft.graph.approval entity.
+        Args:
+            approval_step_id: Unique identifier of the item
+        Returns: approval_step_item_request_builder.ApprovalStepItemRequestBuilder
+        """
+        if approval_step_id is None:
+            raise Exception("approval_step_id cannot be undefined")
+        from .item import approval_step_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["approvalStep%2Did"] = approval_step_id
+        return approval_step_item_request_builder.ApprovalStepItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[StepsRequestBuilderGetRequestConfiguration] = None) -> Optional[approval_step_collection_response.ApprovalStepCollectionResponse]:
         """

@@ -14,15 +14,10 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .catalog import catalog_request_builder
     from .deployment_audiences import deployment_audiences_request_builder
-    from .deployment_audiences.item import deployment_audience_item_request_builder
     from .deployments import deployments_request_builder
-    from .deployments.item import deployment_item_request_builder
     from .resource_connections import resource_connections_request_builder
-    from .resource_connections.item import resource_connection_item_request_builder
     from .updatable_assets import updatable_assets_request_builder
-    from .updatable_assets.item import updatable_asset_item_request_builder
     from .update_policies import update_policies_request_builder
-    from .update_policies.item import update_policy_item_request_builder
 
 class UpdatesRequestBuilder():
     """
@@ -64,36 +59,6 @@ class UpdatesRequestBuilder():
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
-    
-    def deployment_audiences_by_id(self,id: str) -> deployment_audience_item_request_builder.DeploymentAudienceItemRequestBuilder:
-        """
-        Provides operations to manage the deploymentAudiences property of the microsoft.graph.adminWindowsUpdates entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: deployment_audience_item_request_builder.DeploymentAudienceItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .deployment_audiences.item import deployment_audience_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["deploymentAudience%2Did"] = id
-        return deployment_audience_item_request_builder.DeploymentAudienceItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def deployments_by_id(self,id: str) -> deployment_item_request_builder.DeploymentItemRequestBuilder:
-        """
-        Provides operations to manage the deployments property of the microsoft.graph.adminWindowsUpdates entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: deployment_item_request_builder.DeploymentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .deployments.item import deployment_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["deployment%2Did"] = id
-        return deployment_item_request_builder.DeploymentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[UpdatesRequestBuilderGetRequestConfiguration] = None) -> Optional[admin_windows_updates.AdminWindowsUpdates]:
         """
@@ -141,21 +106,6 @@ class UpdatesRequestBuilder():
         from ....models import admin_windows_updates
 
         return await self.request_adapter.send_async(request_info, admin_windows_updates.AdminWindowsUpdates, error_mapping)
-    
-    def resource_connections_by_id(self,id: str) -> resource_connection_item_request_builder.ResourceConnectionItemRequestBuilder:
-        """
-        Provides operations to manage the resourceConnections property of the microsoft.graph.adminWindowsUpdates entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: resource_connection_item_request_builder.ResourceConnectionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .resource_connections.item import resource_connection_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["resourceConnection%2Did"] = id
-        return resource_connection_item_request_builder.ResourceConnectionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[UpdatesRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -211,36 +161,6 @@ class UpdatesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
-    
-    def updatable_assets_by_id(self,id: str) -> updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder:
-        """
-        Provides operations to manage the updatableAssets property of the microsoft.graph.adminWindowsUpdates entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .updatable_assets.item import updatable_asset_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["updatableAsset%2Did"] = id
-        return updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def update_policies_by_id(self,id: str) -> update_policy_item_request_builder.UpdatePolicyItemRequestBuilder:
-        """
-        Provides operations to manage the updatePolicies property of the microsoft.graph.adminWindowsUpdates entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: update_policy_item_request_builder.UpdatePolicyItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .update_policies.item import update_policy_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["updatePolicy%2Did"] = id
-        return update_policy_item_request_builder.UpdatePolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     @property
     def catalog(self) -> catalog_request_builder.CatalogRequestBuilder:

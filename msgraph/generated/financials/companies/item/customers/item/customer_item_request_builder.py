@@ -16,7 +16,6 @@ if TYPE_CHECKING:
     from .payment_method import payment_method_request_builder
     from .payment_term import payment_term_request_builder
     from .picture import picture_request_builder
-    from .picture.item import picture_item_request_builder
     from .shipment_method import shipment_method_request_builder
 
 class CustomerItemRequestBuilder():
@@ -106,21 +105,6 @@ class CustomerItemRequestBuilder():
         from ......models import customer
 
         return await self.request_adapter.send_async(request_info, customer.Customer, error_mapping)
-    
-    def picture_by_id(self,id: str) -> picture_item_request_builder.PictureItemRequestBuilder:
-        """
-        Provides operations to manage the picture property of the microsoft.graph.customer entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: picture_item_request_builder.PictureItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .picture.item import picture_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["picture%2Did"] = id
-        return picture_item_request_builder.PictureItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[CustomerItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

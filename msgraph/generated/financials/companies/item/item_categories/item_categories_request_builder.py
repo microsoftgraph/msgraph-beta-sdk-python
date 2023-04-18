@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import item_category, item_category_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import item_category_item_request_builder
 
 class ItemCategoriesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ItemCategoriesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_item_category_id(self,item_category_id: str) -> item_category_item_request_builder.ItemCategoryItemRequestBuilder:
+        """
+        Provides operations to manage the itemCategories property of the microsoft.graph.company entity.
+        Args:
+            item_category_id: Unique identifier of the item
+        Returns: item_category_item_request_builder.ItemCategoryItemRequestBuilder
+        """
+        if item_category_id is None:
+            raise Exception("item_category_id cannot be undefined")
+        from .item import item_category_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["itemCategory%2Did"] = item_category_id
+        return item_category_item_request_builder.ItemCategoryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ItemCategoriesRequestBuilderGetRequestConfiguration] = None) -> Optional[item_category_collection_response.ItemCategoryCollectionResponse]:
         """

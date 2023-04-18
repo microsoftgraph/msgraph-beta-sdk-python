@@ -36,7 +36,7 @@ class StartRequestBuilder():
     
     async def post(self,request_configuration: Optional[StartRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Invoke action start
+        Start a specific Cloud PC for a user. Currently, only Windows 365 Frontline Cloud PCs are supported.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class StartRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[StartRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action start
+        Start a specific Cloud PC for a user. Currently, only Windows 365 Frontline Cloud PCs are supported.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

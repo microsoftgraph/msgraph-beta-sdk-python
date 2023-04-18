@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import item, item_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import item_item_request_builder
 
 class ItemsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ItemsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_item_id(self,item_id: str) -> item_item_request_builder.ItemItemRequestBuilder:
+        """
+        Provides operations to manage the items property of the microsoft.graph.company entity.
+        Args:
+            item_id: Unique identifier of the item
+        Returns: item_item_request_builder.ItemItemRequestBuilder
+        """
+        if item_id is None:
+            raise Exception("item_id cannot be undefined")
+        from .item import item_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["item%2Did"] = item_id
+        return item_item_request_builder.ItemItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ItemsRequestBuilderGetRequestConfiguration] = None) -> Optional[item_collection_response.ItemCollectionResponse]:
         """

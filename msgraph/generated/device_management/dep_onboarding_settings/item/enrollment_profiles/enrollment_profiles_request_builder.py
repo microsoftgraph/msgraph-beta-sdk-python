@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import enrollment_profile, enrollment_profile_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import enrollment_profile_item_request_builder
 
 class EnrollmentProfilesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class EnrollmentProfilesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_enrollment_profile_id(self,enrollment_profile_id: str) -> enrollment_profile_item_request_builder.EnrollmentProfileItemRequestBuilder:
+        """
+        Provides operations to manage the enrollmentProfiles property of the microsoft.graph.depOnboardingSetting entity.
+        Args:
+            enrollment_profile_id: Unique identifier of the item
+        Returns: enrollment_profile_item_request_builder.EnrollmentProfileItemRequestBuilder
+        """
+        if enrollment_profile_id is None:
+            raise Exception("enrollment_profile_id cannot be undefined")
+        from .item import enrollment_profile_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["enrollmentProfile%2Did"] = enrollment_profile_id
+        return enrollment_profile_item_request_builder.EnrollmentProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[EnrollmentProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[enrollment_profile_collection_response.EnrollmentProfileCollectionResponse]:
         """

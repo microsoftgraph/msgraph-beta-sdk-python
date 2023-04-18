@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import outbound_shared_user_profile, outbound_shared_user_profile_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import outbound_shared_user_profile_user_item_request_builder
 
 class OutboundSharedUserProfilesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class OutboundSharedUserProfilesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_outbound_shared_user_profile_user_id(self,outbound_shared_user_profile_user_id: str) -> outbound_shared_user_profile_user_item_request_builder.OutboundSharedUserProfileUserItemRequestBuilder:
+        """
+        Provides operations to manage the outboundSharedUserProfiles property of the microsoft.graph.directory entity.
+        Args:
+            outbound_shared_user_profile_user_id: Unique identifier of the item
+        Returns: outbound_shared_user_profile_user_item_request_builder.OutboundSharedUserProfileUserItemRequestBuilder
+        """
+        if outbound_shared_user_profile_user_id is None:
+            raise Exception("outbound_shared_user_profile_user_id cannot be undefined")
+        from .item import outbound_shared_user_profile_user_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["outboundSharedUserProfile%2DuserId"] = outbound_shared_user_profile_user_id
+        return outbound_shared_user_profile_user_item_request_builder.OutboundSharedUserProfileUserItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[OutboundSharedUserProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[outbound_shared_user_profile_collection_response.OutboundSharedUserProfileCollectionResponse]:
         """

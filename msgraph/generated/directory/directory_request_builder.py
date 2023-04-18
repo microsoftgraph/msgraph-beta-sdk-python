@@ -13,29 +13,17 @@ if TYPE_CHECKING:
     from ..models import directory
     from ..models.o_data_errors import o_data_error
     from .administrative_units import administrative_units_request_builder
-    from .administrative_units.item import administrative_unit_item_request_builder
     from .attribute_sets import attribute_sets_request_builder
-    from .attribute_sets.item import attribute_set_item_request_builder
     from .custom_security_attribute_definitions import custom_security_attribute_definitions_request_builder
-    from .custom_security_attribute_definitions.item import custom_security_attribute_definition_item_request_builder
     from .deleted_items import deleted_items_request_builder
-    from .deleted_items.item import directory_object_item_request_builder
     from .feature_rollout_policies import feature_rollout_policies_request_builder
-    from .feature_rollout_policies.item import feature_rollout_policy_item_request_builder
     from .federation_configurations import federation_configurations_request_builder
-    from .federation_configurations.item import identity_provider_base_item_request_builder
     from .impacted_resources import impacted_resources_request_builder
-    from .impacted_resources.item import impacted_resource_item_request_builder
     from .inbound_shared_user_profiles import inbound_shared_user_profiles_request_builder
-    from .inbound_shared_user_profiles.item import inbound_shared_user_profile_user_item_request_builder
     from .on_premises_synchronization import on_premises_synchronization_request_builder
-    from .on_premises_synchronization.item import on_premises_directory_synchronization_item_request_builder
     from .outbound_shared_user_profiles import outbound_shared_user_profiles_request_builder
-    from .outbound_shared_user_profiles.item import outbound_shared_user_profile_user_item_request_builder
     from .recommendations import recommendations_request_builder
-    from .recommendations.item import recommendation_item_request_builder
     from .shared_email_domains import shared_email_domains_request_builder
-    from .shared_email_domains.item import shared_email_domain_item_request_builder
 
 class DirectoryRequestBuilder():
     """
@@ -59,96 +47,6 @@ class DirectoryRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def administrative_units_by_id(self,id: str) -> administrative_unit_item_request_builder.AdministrativeUnitItemRequestBuilder:
-        """
-        Provides operations to manage the administrativeUnits property of the microsoft.graph.directory entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: administrative_unit_item_request_builder.AdministrativeUnitItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .administrative_units.item import administrative_unit_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["administrativeUnit%2Did"] = id
-        return administrative_unit_item_request_builder.AdministrativeUnitItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def attribute_sets_by_id(self,id: str) -> attribute_set_item_request_builder.AttributeSetItemRequestBuilder:
-        """
-        Provides operations to manage the attributeSets property of the microsoft.graph.directory entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: attribute_set_item_request_builder.AttributeSetItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .attribute_sets.item import attribute_set_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["attributeSet%2Did"] = id
-        return attribute_set_item_request_builder.AttributeSetItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def custom_security_attribute_definitions_by_id(self,id: str) -> custom_security_attribute_definition_item_request_builder.CustomSecurityAttributeDefinitionItemRequestBuilder:
-        """
-        Provides operations to manage the customSecurityAttributeDefinitions property of the microsoft.graph.directory entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: custom_security_attribute_definition_item_request_builder.CustomSecurityAttributeDefinitionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .custom_security_attribute_definitions.item import custom_security_attribute_definition_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["customSecurityAttributeDefinition%2Did"] = id
-        return custom_security_attribute_definition_item_request_builder.CustomSecurityAttributeDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def deleted_items_by_id(self,id: str) -> directory_object_item_request_builder.DirectoryObjectItemRequestBuilder:
-        """
-        Provides operations to manage the deletedItems property of the microsoft.graph.directory entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: directory_object_item_request_builder.DirectoryObjectItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .deleted_items.item import directory_object_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["directoryObject%2Did"] = id
-        return directory_object_item_request_builder.DirectoryObjectItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def feature_rollout_policies_by_id(self,id: str) -> feature_rollout_policy_item_request_builder.FeatureRolloutPolicyItemRequestBuilder:
-        """
-        Provides operations to manage the featureRolloutPolicies property of the microsoft.graph.directory entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: feature_rollout_policy_item_request_builder.FeatureRolloutPolicyItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .feature_rollout_policies.item import feature_rollout_policy_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["featureRolloutPolicy%2Did"] = id
-        return feature_rollout_policy_item_request_builder.FeatureRolloutPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def federation_configurations_by_id(self,id: str) -> identity_provider_base_item_request_builder.IdentityProviderBaseItemRequestBuilder:
-        """
-        Provides operations to manage the federationConfigurations property of the microsoft.graph.directory entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: identity_provider_base_item_request_builder.IdentityProviderBaseItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .federation_configurations.item import identity_provider_base_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["identityProviderBase%2Did"] = id
-        return identity_provider_base_item_request_builder.IdentityProviderBaseItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     async def get(self,request_configuration: Optional[DirectoryRequestBuilderGetRequestConfiguration] = None) -> Optional[directory.Directory]:
         """
         Get directory
@@ -170,66 +68,6 @@ class DirectoryRequestBuilder():
         from ..models import directory
 
         return await self.request_adapter.send_async(request_info, directory.Directory, error_mapping)
-    
-    def impacted_resources_by_id(self,id: str) -> impacted_resource_item_request_builder.ImpactedResourceItemRequestBuilder:
-        """
-        Provides operations to manage the impactedResources property of the microsoft.graph.directory entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: impacted_resource_item_request_builder.ImpactedResourceItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .impacted_resources.item import impacted_resource_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["impactedResource%2Did"] = id
-        return impacted_resource_item_request_builder.ImpactedResourceItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def inbound_shared_user_profiles_by_id(self,id: str) -> inbound_shared_user_profile_user_item_request_builder.InboundSharedUserProfileUserItemRequestBuilder:
-        """
-        Provides operations to manage the inboundSharedUserProfiles property of the microsoft.graph.directory entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: inbound_shared_user_profile_user_item_request_builder.InboundSharedUserProfileUserItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .inbound_shared_user_profiles.item import inbound_shared_user_profile_user_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["inboundSharedUserProfile%2DuserId"] = id
-        return inbound_shared_user_profile_user_item_request_builder.InboundSharedUserProfileUserItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def on_premises_synchronization_by_id(self,id: str) -> on_premises_directory_synchronization_item_request_builder.OnPremisesDirectorySynchronizationItemRequestBuilder:
-        """
-        Provides operations to manage the onPremisesSynchronization property of the microsoft.graph.directory entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: on_premises_directory_synchronization_item_request_builder.OnPremisesDirectorySynchronizationItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .on_premises_synchronization.item import on_premises_directory_synchronization_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["onPremisesDirectorySynchronization%2Did"] = id
-        return on_premises_directory_synchronization_item_request_builder.OnPremisesDirectorySynchronizationItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def outbound_shared_user_profiles_by_id(self,id: str) -> outbound_shared_user_profile_user_item_request_builder.OutboundSharedUserProfileUserItemRequestBuilder:
-        """
-        Provides operations to manage the outboundSharedUserProfiles property of the microsoft.graph.directory entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: outbound_shared_user_profile_user_item_request_builder.OutboundSharedUserProfileUserItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .outbound_shared_user_profiles.item import outbound_shared_user_profile_user_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["outboundSharedUserProfile%2DuserId"] = id
-        return outbound_shared_user_profile_user_item_request_builder.OutboundSharedUserProfileUserItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[directory.Directory] = None, request_configuration: Optional[DirectoryRequestBuilderPatchRequestConfiguration] = None) -> Optional[directory.Directory]:
         """
@@ -255,36 +93,6 @@ class DirectoryRequestBuilder():
         from ..models import directory
 
         return await self.request_adapter.send_async(request_info, directory.Directory, error_mapping)
-    
-    def recommendations_by_id(self,id: str) -> recommendation_item_request_builder.RecommendationItemRequestBuilder:
-        """
-        Provides operations to manage the recommendations property of the microsoft.graph.directory entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: recommendation_item_request_builder.RecommendationItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .recommendations.item import recommendation_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["recommendation%2Did"] = id
-        return recommendation_item_request_builder.RecommendationItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def shared_email_domains_by_id(self,id: str) -> shared_email_domain_item_request_builder.SharedEmailDomainItemRequestBuilder:
-        """
-        Provides operations to manage the sharedEmailDomains property of the microsoft.graph.directory entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: shared_email_domain_item_request_builder.SharedEmailDomainItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .shared_email_domains.item import shared_email_domain_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["sharedEmailDomain%2Did"] = id
-        return shared_email_domain_item_request_builder.SharedEmailDomainItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_get_request_information(self,request_configuration: Optional[DirectoryRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

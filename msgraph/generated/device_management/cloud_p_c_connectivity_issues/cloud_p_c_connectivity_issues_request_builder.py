@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import cloud_p_c_connectivity_issue, cloud_p_c_connectivity_issue_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import cloud_p_c_connectivity_issue_item_request_builder
 
 class CloudPCConnectivityIssuesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class CloudPCConnectivityIssuesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_cloud_p_c_connectivity_issue_id(self,cloud_p_c_connectivity_issue_id: str) -> cloud_p_c_connectivity_issue_item_request_builder.CloudPCConnectivityIssueItemRequestBuilder:
+        """
+        Provides operations to manage the cloudPCConnectivityIssues property of the microsoft.graph.deviceManagement entity.
+        Args:
+            cloud_p_c_connectivity_issue_id: Unique identifier of the item
+        Returns: cloud_p_c_connectivity_issue_item_request_builder.CloudPCConnectivityIssueItemRequestBuilder
+        """
+        if cloud_p_c_connectivity_issue_id is None:
+            raise Exception("cloud_p_c_connectivity_issue_id cannot be undefined")
+        from .item import cloud_p_c_connectivity_issue_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["cloudPCConnectivityIssue%2Did"] = cloud_p_c_connectivity_issue_id
+        return cloud_p_c_connectivity_issue_item_request_builder.CloudPCConnectivityIssueItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[CloudPCConnectivityIssuesRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_p_c_connectivity_issue_collection_response.CloudPCConnectivityIssueCollectionResponse]:
         """

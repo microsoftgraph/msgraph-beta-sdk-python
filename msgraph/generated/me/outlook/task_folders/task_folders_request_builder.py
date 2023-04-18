@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import outlook_task_folder, outlook_task_folder_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import outlook_task_folder_item_request_builder
 
 class TaskFoldersRequestBuilder():
     """
@@ -35,6 +36,21 @@ class TaskFoldersRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_outlook_task_folder_id(self,outlook_task_folder_id: str) -> outlook_task_folder_item_request_builder.OutlookTaskFolderItemRequestBuilder:
+        """
+        Provides operations to manage the taskFolders property of the microsoft.graph.outlookUser entity.
+        Args:
+            outlook_task_folder_id: Unique identifier of the item
+        Returns: outlook_task_folder_item_request_builder.OutlookTaskFolderItemRequestBuilder
+        """
+        if outlook_task_folder_id is None:
+            raise Exception("outlook_task_folder_id cannot be undefined")
+        from .item import outlook_task_folder_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["outlookTaskFolder%2Did"] = outlook_task_folder_id
+        return outlook_task_folder_item_request_builder.OutlookTaskFolderItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[TaskFoldersRequestBuilderGetRequestConfiguration] = None) -> Optional[outlook_task_folder_collection_response.OutlookTaskFolderCollectionResponse]:
         """
@@ -60,7 +76,7 @@ class TaskFoldersRequestBuilder():
     
     async def post(self,body: Optional[outlook_task_folder.OutlookTaskFolder] = None, request_configuration: Optional[TaskFoldersRequestBuilderPostRequestConfiguration] = None) -> Optional[outlook_task_folder.OutlookTaskFolder]:
         """
-        Create new navigation property to taskFolders for me
+        Create a task folder in the default task group (`My Tasks`) of the user's mailbox.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +119,7 @@ class TaskFoldersRequestBuilder():
     
     def to_post_request_information(self,body: Optional[outlook_task_folder.OutlookTaskFolder] = None, request_configuration: Optional[TaskFoldersRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to taskFolders for me
+        Create a task folder in the default task group (`My Tasks`) of the user's mailbox.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import dimension_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import dimension_item_request_builder
 
 class DimensionsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class DimensionsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_dimension_id(self,dimension_id: str) -> dimension_item_request_builder.DimensionItemRequestBuilder:
+        """
+        Provides operations to manage the dimensions property of the microsoft.graph.company entity.
+        Args:
+            dimension_id: Unique identifier of the item
+        Returns: dimension_item_request_builder.DimensionItemRequestBuilder
+        """
+        if dimension_id is None:
+            raise Exception("dimension_id cannot be undefined")
+        from .item import dimension_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["dimension%2Did"] = dimension_id
+        return dimension_item_request_builder.DimensionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[DimensionsRequestBuilderGetRequestConfiguration] = None) -> Optional[dimension_collection_response.DimensionCollectionResponse]:
         """

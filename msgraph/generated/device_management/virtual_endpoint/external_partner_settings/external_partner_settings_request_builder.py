@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import cloud_pc_external_partner_setting, cloud_pc_external_partner_setting_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import cloud_pc_external_partner_setting_item_request_builder
 
 class ExternalPartnerSettingsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ExternalPartnerSettingsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_cloud_pc_external_partner_setting_id(self,cloud_pc_external_partner_setting_id: str) -> cloud_pc_external_partner_setting_item_request_builder.CloudPcExternalPartnerSettingItemRequestBuilder:
+        """
+        Provides operations to manage the externalPartnerSettings property of the microsoft.graph.virtualEndpoint entity.
+        Args:
+            cloud_pc_external_partner_setting_id: Unique identifier of the item
+        Returns: cloud_pc_external_partner_setting_item_request_builder.CloudPcExternalPartnerSettingItemRequestBuilder
+        """
+        if cloud_pc_external_partner_setting_id is None:
+            raise Exception("cloud_pc_external_partner_setting_id cannot be undefined")
+        from .item import cloud_pc_external_partner_setting_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["cloudPcExternalPartnerSetting%2Did"] = cloud_pc_external_partner_setting_id
+        return cloud_pc_external_partner_setting_item_request_builder.CloudPcExternalPartnerSettingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ExternalPartnerSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_external_partner_setting_collection_response.CloudPcExternalPartnerSettingCollectionResponse]:
         """

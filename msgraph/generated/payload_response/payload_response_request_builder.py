@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ..models import payload_response, payload_response_collection_response
     from ..models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import payload_response_item_request_builder
 
 class PayloadResponseRequestBuilder():
     """
@@ -35,6 +36,21 @@ class PayloadResponseRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_payload_response_id(self,payload_response_id: str) -> payload_response_item_request_builder.PayloadResponseItemRequestBuilder:
+        """
+        Provides operations to manage the collection of payloadResponse entities.
+        Args:
+            payload_response_id: Unique identifier of the item
+        Returns: payload_response_item_request_builder.PayloadResponseItemRequestBuilder
+        """
+        if payload_response_id is None:
+            raise Exception("payload_response_id cannot be undefined")
+        from .item import payload_response_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["payloadResponse%2Did"] = payload_response_id
+        return payload_response_item_request_builder.PayloadResponseItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[PayloadResponseRequestBuilderGetRequestConfiguration] = None) -> Optional[payload_response_collection_response.PayloadResponseCollectionResponse]:
         """

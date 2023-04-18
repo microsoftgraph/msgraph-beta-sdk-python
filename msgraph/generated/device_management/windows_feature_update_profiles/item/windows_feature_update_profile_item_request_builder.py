@@ -14,7 +14,6 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .assign import assign_request_builder
     from .assignments import assignments_request_builder
-    from .assignments.item import windows_feature_update_profile_assignment_item_request_builder
 
 class WindowsFeatureUpdateProfileItemRequestBuilder():
     """
@@ -37,21 +36,6 @@ class WindowsFeatureUpdateProfileItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def assignments_by_id(self,id: str) -> windows_feature_update_profile_assignment_item_request_builder.WindowsFeatureUpdateProfileAssignmentItemRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.windowsFeatureUpdateProfile entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: windows_feature_update_profile_assignment_item_request_builder.WindowsFeatureUpdateProfileAssignmentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .assignments.item import windows_feature_update_profile_assignment_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["windowsFeatureUpdateProfileAssignment%2Did"] = id
-        return windows_feature_update_profile_assignment_item_request_builder.WindowsFeatureUpdateProfileAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[WindowsFeatureUpdateProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
