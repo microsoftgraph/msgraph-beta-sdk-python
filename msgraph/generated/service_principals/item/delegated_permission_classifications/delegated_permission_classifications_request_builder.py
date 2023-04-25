@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import delegated_permission_classification, delegated_permission_classification_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import delegated_permission_classification_item_request_builder
 
 class DelegatedPermissionClassificationsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class DelegatedPermissionClassificationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_delegated_permission_classification_id(self,delegated_permission_classification_id: str) -> delegated_permission_classification_item_request_builder.DelegatedPermissionClassificationItemRequestBuilder:
+        """
+        Provides operations to manage the delegatedPermissionClassifications property of the microsoft.graph.servicePrincipal entity.
+        Args:
+            delegated_permission_classification_id: Unique identifier of the item
+        Returns: delegated_permission_classification_item_request_builder.DelegatedPermissionClassificationItemRequestBuilder
+        """
+        if delegated_permission_classification_id is None:
+            raise Exception("delegated_permission_classification_id cannot be undefined")
+        from .item import delegated_permission_classification_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["delegatedPermissionClassification%2Did"] = delegated_permission_classification_id
+        return delegated_permission_classification_item_request_builder.DelegatedPermissionClassificationItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[DelegatedPermissionClassificationsRequestBuilderGetRequestConfiguration] = None) -> Optional[delegated_permission_classification_collection_response.DelegatedPermissionClassificationCollectionResponse]:
         """
-        Retrieve the list of delegatedPermissionClassification currently configured for the delegated permissions exposed by an API.
+        The permission classifications for delegated permissions exposed by the app that this service principal represents. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[delegated_permission_classification_collection_response.DelegatedPermissionClassificationCollectionResponse]
@@ -60,7 +76,7 @@ class DelegatedPermissionClassificationsRequestBuilder():
     
     async def post(self,body: Optional[delegated_permission_classification.DelegatedPermissionClassification] = None, request_configuration: Optional[DelegatedPermissionClassificationsRequestBuilderPostRequestConfiguration] = None) -> Optional[delegated_permission_classification.DelegatedPermissionClassification]:
         """
-        Classify a delegated permission by adding a delegatedPermissionClassification to the servicePrincipal representing the API.
+        Create new navigation property to delegatedPermissionClassifications for servicePrincipals
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class DelegatedPermissionClassificationsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[DelegatedPermissionClassificationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the list of delegatedPermissionClassification currently configured for the delegated permissions exposed by an API.
+        The permission classifications for delegated permissions exposed by the app that this service principal represents. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class DelegatedPermissionClassificationsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[delegated_permission_classification.DelegatedPermissionClassification] = None, request_configuration: Optional[DelegatedPermissionClassificationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Classify a delegated permission by adding a delegatedPermissionClassification to the servicePrincipal representing the API.
+        Create new navigation property to delegatedPermissionClassifications for servicePrincipals
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class DelegatedPermissionClassificationsRequestBuilder():
     @dataclass
     class DelegatedPermissionClassificationsRequestBuilderGetQueryParameters():
         """
-        Retrieve the list of delegatedPermissionClassification currently configured for the delegated permissions exposed by an API.
+        The permission classifications for delegated permissions exposed by the app that this service principal represents. Supports $expand.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

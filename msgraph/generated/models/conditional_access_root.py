@@ -15,9 +15,9 @@ class ConditionalAccessRoot(entity.Entity):
         super().__init__()
         # Read-only. Nullable. Returns a collection of the specified authentication context class references.
         self._authentication_context_class_references: Optional[List[authentication_context_class_reference.AuthenticationContextClassReference]] = None
-        # The authenticationStrength property
+        # Defines the authentication strength policies, valid authentication method combinations, and authentication method mode details that can be required by a conditional access policy.
         self._authentication_strength: Optional[authentication_strength_root.AuthenticationStrengthRoot] = None
-        # Defines the authentication strength policies, valid authentication method combinations, and authentication method mode details that can be required by a conditional access policy .
+        # The authenticationStrengths property
         self._authentication_strengths: Optional[authentication_strength_root.AuthenticationStrengthRoot] = None
         # Read-only. Nullable. Returns a collection of the specified named locations.
         self._named_locations: Optional[List[named_location.NamedLocation]] = None
@@ -48,7 +48,7 @@ class ConditionalAccessRoot(entity.Entity):
     @property
     def authentication_strength(self,) -> Optional[authentication_strength_root.AuthenticationStrengthRoot]:
         """
-        Gets the authenticationStrength property value. The authenticationStrength property
+        Gets the authenticationStrength property value. Defines the authentication strength policies, valid authentication method combinations, and authentication method mode details that can be required by a conditional access policy.
         Returns: Optional[authentication_strength_root.AuthenticationStrengthRoot]
         """
         return self._authentication_strength
@@ -56,7 +56,7 @@ class ConditionalAccessRoot(entity.Entity):
     @authentication_strength.setter
     def authentication_strength(self,value: Optional[authentication_strength_root.AuthenticationStrengthRoot] = None) -> None:
         """
-        Sets the authenticationStrength property value. The authenticationStrength property
+        Sets the authenticationStrength property value. Defines the authentication strength policies, valid authentication method combinations, and authentication method mode details that can be required by a conditional access policy.
         Args:
             value: Value to set for the authentication_strength property.
         """
@@ -65,7 +65,7 @@ class ConditionalAccessRoot(entity.Entity):
     @property
     def authentication_strengths(self,) -> Optional[authentication_strength_root.AuthenticationStrengthRoot]:
         """
-        Gets the authenticationStrengths property value. Defines the authentication strength policies, valid authentication method combinations, and authentication method mode details that can be required by a conditional access policy .
+        Gets the authenticationStrengths property value. The authenticationStrengths property
         Returns: Optional[authentication_strength_root.AuthenticationStrengthRoot]
         """
         return self._authentication_strengths
@@ -73,7 +73,7 @@ class ConditionalAccessRoot(entity.Entity):
     @authentication_strengths.setter
     def authentication_strengths(self,value: Optional[authentication_strength_root.AuthenticationStrengthRoot] = None) -> None:
         """
-        Sets the authenticationStrengths property value. Defines the authentication strength policies, valid authentication method combinations, and authentication method mode details that can be required by a conditional access policy .
+        Sets the authenticationStrengths property value. The authenticationStrengths property
         Args:
             value: Value to set for the authentication_strengths property.
         """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import organizational_branding_localization, organizational_branding_localization_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import organizational_branding_localization_item_request_builder
 
 class LocalizationsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class LocalizationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_organizational_branding_localization_id(self,organizational_branding_localization_id: str) -> organizational_branding_localization_item_request_builder.OrganizationalBrandingLocalizationItemRequestBuilder:
+        """
+        Provides operations to manage the localizations property of the microsoft.graph.organizationalBranding entity.
+        Args:
+            organizational_branding_localization_id: Unique identifier of the item
+        Returns: organizational_branding_localization_item_request_builder.OrganizationalBrandingLocalizationItemRequestBuilder
+        """
+        if organizational_branding_localization_id is None:
+            raise Exception("organizational_branding_localization_id cannot be undefined")
+        from .item import organizational_branding_localization_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["organizationalBrandingLocalization%2Did"] = organizational_branding_localization_id
+        return organizational_branding_localization_item_request_builder.OrganizationalBrandingLocalizationItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[LocalizationsRequestBuilderGetRequestConfiguration] = None) -> Optional[organizational_branding_localization_collection_response.OrganizationalBrandingLocalizationCollectionResponse]:
         """
-        Retrieve all localization branding objects, including the default branding.
+        Add different branding based on a locale.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[organizational_branding_localization_collection_response.OrganizationalBrandingLocalizationCollectionResponse]
@@ -60,7 +76,7 @@ class LocalizationsRequestBuilder():
     
     async def post(self,body: Optional[organizational_branding_localization.OrganizationalBrandingLocalization] = None, request_configuration: Optional[LocalizationsRequestBuilderPostRequestConfiguration] = None) -> Optional[organizational_branding_localization.OrganizationalBrandingLocalization]:
         """
-        Create a new organizationalBrandingLocalization object. This creates a localized branding and at the same time, the default branding if it doesn't exist. The default branding is created only once. It's loaded when a localized branding isn't configured for the user's browser language. To retrieve the default branding, see Get branding.
+        Create new navigation property to localizations for organization
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class LocalizationsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[LocalizationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve all localization branding objects, including the default branding.
+        Add different branding based on a locale.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class LocalizationsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[organizational_branding_localization.OrganizationalBrandingLocalization] = None, request_configuration: Optional[LocalizationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new organizationalBrandingLocalization object. This creates a localized branding and at the same time, the default branding if it doesn't exist. The default branding is created only once. It's loaded when a localized branding isn't configured for the user's browser language. To retrieve the default branding, see Get branding.
+        Create new navigation property to localizations for organization
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class LocalizationsRequestBuilder():
     @dataclass
     class LocalizationsRequestBuilderGetQueryParameters():
         """
-        Retrieve all localization branding objects, including the default branding.
+        Add different branding based on a locale.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

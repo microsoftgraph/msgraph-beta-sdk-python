@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ........models.ediscovery import data_source_collection_response
     from ........models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import data_source_item_request_builder
 
 class CustodianSourcesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class CustodianSourcesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_data_source_id(self,data_source_id: str) -> data_source_item_request_builder.DataSourceItemRequestBuilder:
+        """
+        Provides operations to manage the custodianSources property of the microsoft.graph.ediscovery.sourceCollection entity.
+        Args:
+            data_source_id: Unique identifier of the item
+        Returns: data_source_item_request_builder.DataSourceItemRequestBuilder
+        """
+        if data_source_id is None:
+            raise Exception("data_source_id cannot be undefined")
+        from .item import data_source_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["dataSource%2Did"] = data_source_id
+        return data_source_item_request_builder.DataSourceItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[CustodianSourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[data_source_collection_response.DataSourceCollectionResponse]:
         """
-        Get the list of dataSource objects associated with a source collection.
+        Custodian sources that are included in the sourceCollection.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[data_source_collection_response.DataSourceCollectionResponse]
@@ -60,7 +76,7 @@ class CustodianSourcesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CustodianSourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the list of dataSource objects associated with a source collection.
+        Custodian sources that are included in the sourceCollection.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -88,7 +104,7 @@ class CustodianSourcesRequestBuilder():
     @dataclass
     class CustodianSourcesRequestBuilderGetQueryParameters():
         """
-        Get the list of dataSource objects associated with a source collection.
+        Custodian sources that are included in the sourceCollection.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

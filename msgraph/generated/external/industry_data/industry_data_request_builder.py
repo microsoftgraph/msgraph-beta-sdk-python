@@ -13,21 +13,13 @@ if TYPE_CHECKING:
     from ...models.industry_data import industry_data_root
     from ...models.o_data_errors import o_data_error
     from .data_connectors import data_connectors_request_builder
-    from .data_connectors.item import industry_data_connector_item_request_builder
     from .inbound_flows import inbound_flows_request_builder
-    from .inbound_flows.item import inbound_flow_item_request_builder
     from .operations import operations_request_builder
-    from .operations.item import long_running_operation_item_request_builder
     from .reference_definitions import reference_definitions_request_builder
-    from .reference_definitions.item import reference_definition_item_request_builder
     from .role_groups import role_groups_request_builder
-    from .role_groups.item import role_group_item_request_builder
     from .runs import runs_request_builder
-    from .runs.item import industry_data_run_item_request_builder
     from .source_systems import source_systems_request_builder
-    from .source_systems.item import source_system_definition_item_request_builder
     from .years import years_request_builder
-    from .years.item import year_time_period_definition_item_request_builder
 
 class IndustryDataRequestBuilder():
     """
@@ -51,21 +43,6 @@ class IndustryDataRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def data_connectors_by_id(self,id: str) -> industry_data_connector_item_request_builder.IndustryDataConnectorItemRequestBuilder:
-        """
-        Provides operations to manage the dataConnectors property of the microsoft.graph.industryData.industryDataRoot entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: industry_data_connector_item_request_builder.IndustryDataConnectorItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .data_connectors.item import industry_data_connector_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["industryDataConnector%2Did"] = id
-        return industry_data_connector_item_request_builder.IndustryDataConnectorItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     async def get(self,request_configuration: Optional[IndustryDataRequestBuilderGetRequestConfiguration] = None) -> Optional[industry_data_root.IndustryDataRoot]:
         """
         Get industryData from external
@@ -88,96 +65,6 @@ class IndustryDataRequestBuilder():
 
         return await self.request_adapter.send_async(request_info, industry_data_root.IndustryDataRoot, error_mapping)
     
-    def inbound_flows_by_id(self,id: str) -> inbound_flow_item_request_builder.InboundFlowItemRequestBuilder:
-        """
-        Provides operations to manage the inboundFlows property of the microsoft.graph.industryData.industryDataRoot entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: inbound_flow_item_request_builder.InboundFlowItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .inbound_flows.item import inbound_flow_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["inboundFlow%2Did"] = id
-        return inbound_flow_item_request_builder.InboundFlowItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def operations_by_id(self,id: str) -> long_running_operation_item_request_builder.LongRunningOperationItemRequestBuilder:
-        """
-        Provides operations to manage the operations property of the microsoft.graph.industryData.industryDataRoot entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: long_running_operation_item_request_builder.LongRunningOperationItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .operations.item import long_running_operation_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["longRunningOperation%2Did"] = id
-        return long_running_operation_item_request_builder.LongRunningOperationItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def reference_definitions_by_id(self,id: str) -> reference_definition_item_request_builder.ReferenceDefinitionItemRequestBuilder:
-        """
-        Provides operations to manage the referenceDefinitions property of the microsoft.graph.industryData.industryDataRoot entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: reference_definition_item_request_builder.ReferenceDefinitionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .reference_definitions.item import reference_definition_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["referenceDefinition%2Did"] = id
-        return reference_definition_item_request_builder.ReferenceDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def role_groups_by_id(self,id: str) -> role_group_item_request_builder.RoleGroupItemRequestBuilder:
-        """
-        Provides operations to manage the roleGroups property of the microsoft.graph.industryData.industryDataRoot entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: role_group_item_request_builder.RoleGroupItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .role_groups.item import role_group_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["roleGroup%2Did"] = id
-        return role_group_item_request_builder.RoleGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def runs_by_id(self,id: str) -> industry_data_run_item_request_builder.IndustryDataRunItemRequestBuilder:
-        """
-        Provides operations to manage the runs property of the microsoft.graph.industryData.industryDataRoot entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: industry_data_run_item_request_builder.IndustryDataRunItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .runs.item import industry_data_run_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["industryDataRun%2Did"] = id
-        return industry_data_run_item_request_builder.IndustryDataRunItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def source_systems_by_id(self,id: str) -> source_system_definition_item_request_builder.SourceSystemDefinitionItemRequestBuilder:
-        """
-        Provides operations to manage the sourceSystems property of the microsoft.graph.industryData.industryDataRoot entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: source_system_definition_item_request_builder.SourceSystemDefinitionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .source_systems.item import source_system_definition_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["sourceSystemDefinition%2Did"] = id
-        return source_system_definition_item_request_builder.SourceSystemDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def to_get_request_information(self,request_configuration: Optional[IndustryDataRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get industryData from external
@@ -195,21 +82,6 @@ class IndustryDataRequestBuilder():
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
             request_info.add_request_options(request_configuration.options)
         return request_info
-    
-    def years_by_id(self,id: str) -> year_time_period_definition_item_request_builder.YearTimePeriodDefinitionItemRequestBuilder:
-        """
-        Provides operations to manage the years property of the microsoft.graph.industryData.industryDataRoot entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: year_time_period_definition_item_request_builder.YearTimePeriodDefinitionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .years.item import year_time_period_definition_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["yearTimePeriodDefinition%2Did"] = id
-        return year_time_period_definition_item_request_builder.YearTimePeriodDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     @property
     def data_connectors(self) -> data_connectors_request_builder.DataConnectorsRequestBuilder:

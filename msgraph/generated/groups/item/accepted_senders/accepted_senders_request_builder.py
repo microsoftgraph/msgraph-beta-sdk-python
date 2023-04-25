@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import directory_object_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import directory_object_item_request_builder
     from .ref import ref_request_builder
 
 class AcceptedSendersRequestBuilder():
@@ -37,9 +38,24 @@ class AcceptedSendersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_directory_object_id(self,directory_object_id: str) -> directory_object_item_request_builder.DirectoryObjectItemRequestBuilder:
+        """
+        Gets an item from the msgraph.generated.groups.item.acceptedSenders.item collection
+        Args:
+            directory_object_id: Unique identifier of the item
+        Returns: directory_object_item_request_builder.DirectoryObjectItemRequestBuilder
+        """
+        if directory_object_id is None:
+            raise Exception("directory_object_id cannot be undefined")
+        from .item import directory_object_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["directoryObject%2Did"] = directory_object_id
+        return directory_object_item_request_builder.DirectoryObjectItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[AcceptedSendersRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]:
         """
-        Get a list of users or groups that are in the accepted-senders list for this group. Users in the accepted senders list can post to conversations of the group (identified in the GET request URL). Make sure you do not specify the same user or group in the accepted senders and rejected senders lists, otherwise you will get an error.
+        The list of users or groups that are allowed to create post's or calendar events in this group. If this list is non-empty then only users or groups listed here are allowed to post.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]
@@ -61,7 +77,7 @@ class AcceptedSendersRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AcceptedSendersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of users or groups that are in the accepted-senders list for this group. Users in the accepted senders list can post to conversations of the group (identified in the GET request URL). Make sure you do not specify the same user or group in the accepted senders and rejected senders lists, otherwise you will get an error.
+        The list of users or groups that are allowed to create post's or calendar events in this group. If this list is non-empty then only users or groups listed here are allowed to post.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -98,7 +114,7 @@ class AcceptedSendersRequestBuilder():
     @dataclass
     class AcceptedSendersRequestBuilderGetQueryParameters():
         """
-        Get a list of users or groups that are in the accepted-senders list for this group. Users in the accepted senders list can post to conversations of the group (identified in the GET request URL). Make sure you do not specify the same user or group in the accepted senders and rejected senders lists, otherwise you will get an error.
+        The list of users or groups that are allowed to create post's or calendar events in this group. If this list is non-empty then only users or groups listed here are allowed to post.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

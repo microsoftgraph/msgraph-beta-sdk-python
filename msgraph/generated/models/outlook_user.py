@@ -10,7 +10,7 @@ from . import entity
 class OutlookUser(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new outlookUser and sets the default values.
+        Instantiates a new OutlookUser and sets the default values.
         """
         super().__init__()
         # A list of categories defined for the user.

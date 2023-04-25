@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .....models.windows_updates import resource_connection, resource_connection_collection_response
     from .count import count_request_builder
+    from .item import resource_connection_item_request_builder
 
 class ResourceConnectionsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ResourceConnectionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_resource_connection_id(self,resource_connection_id: str) -> resource_connection_item_request_builder.ResourceConnectionItemRequestBuilder:
+        """
+        Provides operations to manage the resourceConnections property of the microsoft.graph.adminWindowsUpdates entity.
+        Args:
+            resource_connection_id: Unique identifier of the item
+        Returns: resource_connection_item_request_builder.ResourceConnectionItemRequestBuilder
+        """
+        if resource_connection_id is None:
+            raise Exception("resource_connection_id cannot be undefined")
+        from .item import resource_connection_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["resourceConnection%2Did"] = resource_connection_id
+        return resource_connection_item_request_builder.ResourceConnectionItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ResourceConnectionsRequestBuilderGetRequestConfiguration] = None) -> Optional[resource_connection_collection_response.ResourceConnectionCollectionResponse]:
         """
-        Get a list of the resourceConnection objects and their properties.
+        Service connections to external resources such as analytics workspaces.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[resource_connection_collection_response.ResourceConnectionCollectionResponse]
@@ -60,7 +76,7 @@ class ResourceConnectionsRequestBuilder():
     
     async def post(self,body: Optional[resource_connection.ResourceConnection] = None, request_configuration: Optional[ResourceConnectionsRequestBuilderPostRequestConfiguration] = None) -> Optional[resource_connection.ResourceConnection]:
         """
-        Create a new operationalInsightsConnection object.
+        Create new navigation property to resourceConnections for admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class ResourceConnectionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ResourceConnectionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the resourceConnection objects and their properties.
+        Service connections to external resources such as analytics workspaces.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class ResourceConnectionsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[resource_connection.ResourceConnection] = None, request_configuration: Optional[ResourceConnectionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new operationalInsightsConnection object.
+        Create new navigation property to resourceConnections for admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class ResourceConnectionsRequestBuilder():
     @dataclass
     class ResourceConnectionsRequestBuilderGetQueryParameters():
         """
-        Get a list of the resourceConnection objects and their properties.
+        Service connections to external resources such as analytics workspaces.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -8,12 +8,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class OemWarrantyInformationOnboarding(entity.Entity):
-    """
-    Warranty status entity for a given OEM
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new oemWarrantyInformationOnboarding and sets the default values.
+        Instantiates a new OemWarrantyInformationOnboarding and sets the default values.
         """
         super().__init__()
         # Specifies whether warranty API is available. This property is read-only.

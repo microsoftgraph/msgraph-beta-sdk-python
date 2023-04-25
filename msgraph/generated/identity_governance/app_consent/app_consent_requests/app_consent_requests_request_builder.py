@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .filter_by_current_user_with_on import filter_by_current_user_with_on_request_builder
+    from .item import app_consent_request_item_request_builder
 
 class AppConsentRequestsRequestBuilder():
     """
@@ -37,6 +38,21 @@ class AppConsentRequestsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_app_consent_request_id(self,app_consent_request_id: str) -> app_consent_request_item_request_builder.AppConsentRequestItemRequestBuilder:
+        """
+        Provides operations to manage the appConsentRequests property of the microsoft.graph.appConsentApprovalRoute entity.
+        Args:
+            app_consent_request_id: Unique identifier of the item
+        Returns: app_consent_request_item_request_builder.AppConsentRequestItemRequestBuilder
+        """
+        if app_consent_request_id is None:
+            raise Exception("app_consent_request_id cannot be undefined")
+        from .item import app_consent_request_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["appConsentRequest%2Did"] = app_consent_request_id
+        return app_consent_request_item_request_builder.AppConsentRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     def filter_by_current_user_with_on(self,on: Optional[str] = None) -> filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder:
         """
         Provides operations to call the filterByCurrentUser method.
@@ -52,7 +68,7 @@ class AppConsentRequestsRequestBuilder():
     
     async def get(self,request_configuration: Optional[AppConsentRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[app_consent_request_collection_response.AppConsentRequestCollectionResponse]:
         """
-        Retrieve appConsentRequest objects and their properties.
+        A collection of userConsentRequest objects for a specific application.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[app_consent_request_collection_response.AppConsentRequestCollectionResponse]
@@ -99,7 +115,7 @@ class AppConsentRequestsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AppConsentRequestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve appConsentRequest objects and their properties.
+        A collection of userConsentRequest objects for a specific application.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -148,7 +164,7 @@ class AppConsentRequestsRequestBuilder():
     @dataclass
     class AppConsentRequestsRequestBuilderGetQueryParameters():
         """
-        Retrieve appConsentRequest objects and their properties.
+        A collection of userConsentRequest objects for a specific application.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

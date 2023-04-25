@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import teams_app_installation, teams_app_installation_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import teams_app_installation_item_request_builder
 
 class InstalledAppsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class InstalledAppsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_teams_app_installation_id(self,teams_app_installation_id: str) -> teams_app_installation_item_request_builder.TeamsAppInstallationItemRequestBuilder:
+        """
+        Provides operations to manage the installedApps property of the microsoft.graph.chat entity.
+        Args:
+            teams_app_installation_id: Unique identifier of the item
+        Returns: teams_app_installation_item_request_builder.TeamsAppInstallationItemRequestBuilder
+        """
+        if teams_app_installation_id is None:
+            raise Exception("teams_app_installation_id cannot be undefined")
+        from .item import teams_app_installation_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["teamsAppInstallation%2Did"] = teams_app_installation_id
+        return teams_app_installation_item_request_builder.TeamsAppInstallationItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[InstalledAppsRequestBuilderGetRequestConfiguration] = None) -> Optional[teams_app_installation_collection_response.TeamsAppInstallationCollectionResponse]:
         """
-        List all app installations within a chat. If the chat is associated with an onlineMeeting instance, then, effectively, the **teamsApp**s installed in the meeting will be listed.
+        A collection of all the apps in the chat. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[teams_app_installation_collection_response.TeamsAppInstallationCollectionResponse]
@@ -60,7 +76,7 @@ class InstalledAppsRequestBuilder():
     
     async def post(self,body: Optional[teams_app_installation.TeamsAppInstallation] = None, request_configuration: Optional[InstalledAppsRequestBuilderPostRequestConfiguration] = None) -> Optional[teams_app_installation.TeamsAppInstallation]:
         """
-        Install a teamsApp to the specified chat.
+        Create new navigation property to installedApps for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class InstalledAppsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[InstalledAppsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List all app installations within a chat. If the chat is associated with an onlineMeeting instance, then, effectively, the **teamsApp**s installed in the meeting will be listed.
+        A collection of all the apps in the chat. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class InstalledAppsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[teams_app_installation.TeamsAppInstallation] = None, request_configuration: Optional[InstalledAppsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Install a teamsApp to the specified chat.
+        Create new navigation property to installedApps for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class InstalledAppsRequestBuilder():
     @dataclass
     class InstalledAppsRequestBuilderGetQueryParameters():
         """
-        List all app installations within a chat. If the chat is associated with an onlineMeeting instance, then, effectively, the **teamsApp**s installed in the meeting will be listed.
+        A collection of all the apps in the chat. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

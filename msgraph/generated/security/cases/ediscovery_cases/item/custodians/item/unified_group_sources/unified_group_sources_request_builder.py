@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ........models.o_data_errors import o_data_error
     from ........models.security import unified_group_source, unified_group_source_collection_response
     from .count import count_request_builder
+    from .item import unified_group_source_item_request_builder
 
 class UnifiedGroupSourcesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class UnifiedGroupSourcesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_unified_group_source_id(self,unified_group_source_id: str) -> unified_group_source_item_request_builder.UnifiedGroupSourceItemRequestBuilder:
+        """
+        Provides operations to manage the unifiedGroupSources property of the microsoft.graph.security.ediscoveryCustodian entity.
+        Args:
+            unified_group_source_id: Unique identifier of the item
+        Returns: unified_group_source_item_request_builder.UnifiedGroupSourceItemRequestBuilder
+        """
+        if unified_group_source_id is None:
+            raise Exception("unified_group_source_id cannot be undefined")
+        from .item import unified_group_source_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["unifiedGroupSource%2Did"] = unified_group_source_id
+        return unified_group_source_item_request_builder.UnifiedGroupSourceItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[UnifiedGroupSourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_group_source_collection_response.UnifiedGroupSourceCollectionResponse]:
         """
-        Get a list of the unifiedGroupSource objects associated with an ediscoveryCustodian.
+        Data source entity for groups associated with the custodian.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[unified_group_source_collection_response.UnifiedGroupSourceCollectionResponse]
@@ -60,7 +76,7 @@ class UnifiedGroupSourcesRequestBuilder():
     
     async def post(self,body: Optional[unified_group_source.UnifiedGroupSource] = None, request_configuration: Optional[UnifiedGroupSourcesRequestBuilderPostRequestConfiguration] = None) -> Optional[unified_group_source.UnifiedGroupSource]:
         """
-        Create a new unifiedGroupSource object associated with an eDiscovery custodian.
+        Create new navigation property to unifiedGroupSources for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class UnifiedGroupSourcesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UnifiedGroupSourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the unifiedGroupSource objects associated with an ediscoveryCustodian.
+        Data source entity for groups associated with the custodian.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class UnifiedGroupSourcesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[unified_group_source.UnifiedGroupSource] = None, request_configuration: Optional[UnifiedGroupSourcesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new unifiedGroupSource object associated with an eDiscovery custodian.
+        Create new navigation property to unifiedGroupSources for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class UnifiedGroupSourcesRequestBuilder():
     @dataclass
     class UnifiedGroupSourcesRequestBuilderGetQueryParameters():
         """
-        Get a list of the unifiedGroupSource objects associated with an ediscoveryCustodian.
+        Data source entity for groups associated with the custodian.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

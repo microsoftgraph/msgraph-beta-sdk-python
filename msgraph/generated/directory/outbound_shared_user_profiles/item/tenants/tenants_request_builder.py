@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import tenant_reference, tenant_reference_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import tenant_reference_tenant_item_request_builder
 
 class TenantsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class TenantsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_tenant_reference_tenant_id(self,tenant_reference_tenant_id: str) -> tenant_reference_tenant_item_request_builder.TenantReferenceTenantItemRequestBuilder:
+        """
+        Provides operations to manage the tenants property of the microsoft.graph.outboundSharedUserProfile entity.
+        Args:
+            tenant_reference_tenant_id: Unique identifier of the item
+        Returns: tenant_reference_tenant_item_request_builder.TenantReferenceTenantItemRequestBuilder
+        """
+        if tenant_reference_tenant_id is None:
+            raise Exception("tenant_reference_tenant_id cannot be undefined")
+        from .item import tenant_reference_tenant_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["tenantReference%2DtenantId"] = tenant_reference_tenant_id
+        return tenant_reference_tenant_item_request_builder.TenantReferenceTenantItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[TenantsRequestBuilderGetRequestConfiguration] = None) -> Optional[tenant_reference_collection_response.TenantReferenceCollectionResponse]:
         """
-        List the tenant references of an outboundSharedUserProfile.
+        The collection of external Azure AD tenants that the user has shared profile data with. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[tenant_reference_collection_response.TenantReferenceCollectionResponse]
@@ -85,7 +101,7 @@ class TenantsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TenantsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List the tenant references of an outboundSharedUserProfile.
+        The collection of external Azure AD tenants that the user has shared profile data with. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class TenantsRequestBuilder():
     @dataclass
     class TenantsRequestBuilderGetQueryParameters():
         """
-        List the tenant references of an outboundSharedUserProfile.
+        The collection of external Azure AD tenants that the user has shared profile data with. Read-only.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

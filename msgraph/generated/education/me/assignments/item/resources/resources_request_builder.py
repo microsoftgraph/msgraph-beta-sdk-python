@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models import education_assignment_resource, education_assignment_resource_collection_response
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import education_assignment_resource_item_request_builder
 
 class ResourcesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ResourcesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_education_assignment_resource_id(self,education_assignment_resource_id: str) -> education_assignment_resource_item_request_builder.EducationAssignmentResourceItemRequestBuilder:
+        """
+        Provides operations to manage the resources property of the microsoft.graph.educationAssignment entity.
+        Args:
+            education_assignment_resource_id: Unique identifier of the item
+        Returns: education_assignment_resource_item_request_builder.EducationAssignmentResourceItemRequestBuilder
+        """
+        if education_assignment_resource_id is None:
+            raise Exception("education_assignment_resource_id cannot be undefined")
+        from .item import education_assignment_resource_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["educationAssignmentResource%2Did"] = education_assignment_resource_id
+        return education_assignment_resource_item_request_builder.EducationAssignmentResourceItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ResourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[education_assignment_resource_collection_response.EducationAssignmentResourceCollectionResponse]:
         """
-        Get all the educationAssignmentResource objects associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
+        Learning objects that are associated with this assignment.  Only teachers can modify this list. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[education_assignment_resource_collection_response.EducationAssignmentResourceCollectionResponse]
@@ -60,7 +76,7 @@ class ResourcesRequestBuilder():
     
     async def post(self,body: Optional[education_assignment_resource.EducationAssignmentResource] = None, request_configuration: Optional[ResourcesRequestBuilderPostRequestConfiguration] = None) -> Optional[education_assignment_resource.EducationAssignmentResource]:
         """
-        Create an assignment resource. Only teachers can perform this operation. You can create the following types of assignment resources: Every resource has an **@odata.type** property to indicate which type of resource is being created. 
+        Create new navigation property to resources for education
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class ResourcesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ResourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get all the educationAssignmentResource objects associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
+        Learning objects that are associated with this assignment.  Only teachers can modify this list. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class ResourcesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[education_assignment_resource.EducationAssignmentResource] = None, request_configuration: Optional[ResourcesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create an assignment resource. Only teachers can perform this operation. You can create the following types of assignment resources: Every resource has an **@odata.type** property to indicate which type of resource is being created. 
+        Create new navigation property to resources for education
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class ResourcesRequestBuilder():
     @dataclass
     class ResourcesRequestBuilderGetQueryParameters():
         """
-        Get all the educationAssignmentResource objects associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
+        Learning objects that are associated with this assignment.  Only teachers can modify this list. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

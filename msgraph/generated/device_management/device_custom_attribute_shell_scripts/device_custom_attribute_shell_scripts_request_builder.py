@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import device_custom_attribute_shell_script, device_custom_attribute_shell_script_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import device_custom_attribute_shell_script_item_request_builder
 
 class DeviceCustomAttributeShellScriptsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class DeviceCustomAttributeShellScriptsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_device_custom_attribute_shell_script_id(self,device_custom_attribute_shell_script_id: str) -> device_custom_attribute_shell_script_item_request_builder.DeviceCustomAttributeShellScriptItemRequestBuilder:
+        """
+        Provides operations to manage the deviceCustomAttributeShellScripts property of the microsoft.graph.deviceManagement entity.
+        Args:
+            device_custom_attribute_shell_script_id: Unique identifier of the item
+        Returns: device_custom_attribute_shell_script_item_request_builder.DeviceCustomAttributeShellScriptItemRequestBuilder
+        """
+        if device_custom_attribute_shell_script_id is None:
+            raise Exception("device_custom_attribute_shell_script_id cannot be undefined")
+        from .item import device_custom_attribute_shell_script_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["deviceCustomAttributeShellScript%2Did"] = device_custom_attribute_shell_script_id
+        return device_custom_attribute_shell_script_item_request_builder.DeviceCustomAttributeShellScriptItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[DeviceCustomAttributeShellScriptsRequestBuilderGetRequestConfiguration] = None) -> Optional[device_custom_attribute_shell_script_collection_response.DeviceCustomAttributeShellScriptCollectionResponse]:
         """

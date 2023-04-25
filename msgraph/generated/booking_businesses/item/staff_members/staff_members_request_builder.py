@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import booking_staff_member, booking_staff_member_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import booking_staff_member_item_request_builder
 
 class StaffMembersRequestBuilder():
     """
@@ -36,9 +37,24 @@ class StaffMembersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_booking_staff_member_id(self,booking_staff_member_id: str) -> booking_staff_member_item_request_builder.BookingStaffMemberItemRequestBuilder:
+        """
+        Provides operations to manage the staffMembers property of the microsoft.graph.bookingBusiness entity.
+        Args:
+            booking_staff_member_id: Unique identifier of the item
+        Returns: booking_staff_member_item_request_builder.BookingStaffMemberItemRequestBuilder
+        """
+        if booking_staff_member_id is None:
+            raise Exception("booking_staff_member_id cannot be undefined")
+        from .item import booking_staff_member_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["bookingStaffMember%2Did"] = booking_staff_member_id
+        return booking_staff_member_item_request_builder.BookingStaffMemberItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[StaffMembersRequestBuilderGetRequestConfiguration] = None) -> Optional[booking_staff_member_collection_response.BookingStaffMemberCollectionResponse]:
         """
-        Get a list of bookingStaffMember objects in the specified bookingBusiness.
+        All the staff members that provide services in this business. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[booking_staff_member_collection_response.BookingStaffMemberCollectionResponse]
@@ -60,7 +76,7 @@ class StaffMembersRequestBuilder():
     
     async def post(self,body: Optional[booking_staff_member.BookingStaffMember] = None, request_configuration: Optional[StaffMembersRequestBuilderPostRequestConfiguration] = None) -> Optional[booking_staff_member.BookingStaffMember]:
         """
-        Create a new staff member in the specified bookingBusiness.
+        Create new navigation property to staffMembers for bookingBusinesses
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class StaffMembersRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[StaffMembersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of bookingStaffMember objects in the specified bookingBusiness.
+        All the staff members that provide services in this business. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class StaffMembersRequestBuilder():
     
     def to_post_request_information(self,body: Optional[booking_staff_member.BookingStaffMember] = None, request_configuration: Optional[StaffMembersRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new staff member in the specified bookingBusiness.
+        Create new navigation property to staffMembers for bookingBusinesses
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class StaffMembersRequestBuilder():
     @dataclass
     class StaffMembersRequestBuilderGetQueryParameters():
         """
-        Get a list of bookingStaffMember objects in the specified bookingBusiness.
+        All the staff members that provide services in this business. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

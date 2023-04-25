@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import trust_framework_key_set, trust_framework_key_set_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import trust_framework_key_set_item_request_builder
 
 class KeySetsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class KeySetsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_trust_framework_key_set_id(self,trust_framework_key_set_id: str) -> trust_framework_key_set_item_request_builder.TrustFrameworkKeySetItemRequestBuilder:
+        """
+        Provides operations to manage the keySets property of the microsoft.graph.trustFramework entity.
+        Args:
+            trust_framework_key_set_id: Unique identifier of the item
+        Returns: trust_framework_key_set_item_request_builder.TrustFrameworkKeySetItemRequestBuilder
+        """
+        if trust_framework_key_set_id is None:
+            raise Exception("trust_framework_key_set_id cannot be undefined")
+        from .item import trust_framework_key_set_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["trustFrameworkKeySet%2Did"] = trust_framework_key_set_id
+        return trust_framework_key_set_item_request_builder.TrustFrameworkKeySetItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[KeySetsRequestBuilderGetRequestConfiguration] = None) -> Optional[trust_framework_key_set_collection_response.TrustFrameworkKeySetCollectionResponse]:
         """
-        Retrieve a list of trustFrameworkKeySets.
+        Get keySets from trustFramework
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[trust_framework_key_set_collection_response.TrustFrameworkKeySetCollectionResponse]
@@ -60,7 +76,7 @@ class KeySetsRequestBuilder():
     
     async def post(self,body: Optional[trust_framework_key_set.TrustFrameworkKeySet] = None, request_configuration: Optional[KeySetsRequestBuilderPostRequestConfiguration] = None) -> Optional[trust_framework_key_set.TrustFrameworkKeySet]:
         """
-        Create a new trustFrameworkKeySet. The ID of the **trustFrameworkKeySet** is expected in the create request; however, it can be modified by the service. The modified ID will be available in the response and in the location header.
+        Create new navigation property to keySets for trustFramework
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class KeySetsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[KeySetsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of trustFrameworkKeySets.
+        Get keySets from trustFramework
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class KeySetsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[trust_framework_key_set.TrustFrameworkKeySet] = None, request_configuration: Optional[KeySetsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new trustFrameworkKeySet. The ID of the **trustFrameworkKeySet** is expected in the create request; however, it can be modified by the service. The modified ID will be available in the response and in the location header.
+        Create new navigation property to keySets for trustFramework
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class KeySetsRequestBuilder():
     @dataclass
     class KeySetsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of trustFrameworkKeySets.
+        Get keySets from trustFramework
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

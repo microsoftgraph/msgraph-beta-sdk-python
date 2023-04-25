@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models import published_resource, published_resource_collection_response
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import published_resource_item_request_builder
 
 class PublishedResourcesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class PublishedResourcesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_published_resource_id(self,published_resource_id: str) -> published_resource_item_request_builder.PublishedResourceItemRequestBuilder:
+        """
+        Provides operations to manage the publishedResources property of the microsoft.graph.onPremisesAgentGroup entity.
+        Args:
+            published_resource_id: Unique identifier of the item
+        Returns: published_resource_item_request_builder.PublishedResourceItemRequestBuilder
+        """
+        if published_resource_id is None:
+            raise Exception("published_resource_id cannot be undefined")
+        from .item import published_resource_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["publishedResource%2Did"] = published_resource_id
+        return published_resource_item_request_builder.PublishedResourceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[PublishedResourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[published_resource_collection_response.PublishedResourceCollectionResponse]:
         """

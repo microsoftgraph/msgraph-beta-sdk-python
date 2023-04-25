@@ -12,18 +12,13 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ....models import privileged_access_group
     from ....models.o_data_errors import o_data_error
+    from .assignment_approvals import assignment_approvals_request_builder
     from .assignment_schedule_instances import assignment_schedule_instances_request_builder
-    from .assignment_schedule_instances.item import privileged_access_group_assignment_schedule_instance_item_request_builder
     from .assignment_schedule_requests import assignment_schedule_requests_request_builder
-    from .assignment_schedule_requests.item import privileged_access_group_assignment_schedule_request_item_request_builder
     from .assignment_schedules import assignment_schedules_request_builder
-    from .assignment_schedules.item import privileged_access_group_assignment_schedule_item_request_builder
     from .eligibility_schedule_instances import eligibility_schedule_instances_request_builder
-    from .eligibility_schedule_instances.item import privileged_access_group_eligibility_schedule_instance_item_request_builder
     from .eligibility_schedule_requests import eligibility_schedule_requests_request_builder
-    from .eligibility_schedule_requests.item import privileged_access_group_eligibility_schedule_request_item_request_builder
     from .eligibility_schedules import eligibility_schedules_request_builder
-    from .eligibility_schedules.item import privileged_access_group_eligibility_schedule_item_request_builder
 
 class GroupRequestBuilder():
     """
@@ -47,51 +42,6 @@ class GroupRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def assignment_schedule_instances_by_id(self,id: str) -> privileged_access_group_assignment_schedule_instance_item_request_builder.PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilder:
-        """
-        Provides operations to manage the assignmentScheduleInstances property of the microsoft.graph.privilegedAccessGroup entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: privileged_access_group_assignment_schedule_instance_item_request_builder.PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .assignment_schedule_instances.item import privileged_access_group_assignment_schedule_instance_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["privilegedAccessGroupAssignmentScheduleInstance%2Did"] = id
-        return privileged_access_group_assignment_schedule_instance_item_request_builder.PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def assignment_schedule_requests_by_id(self,id: str) -> privileged_access_group_assignment_schedule_request_item_request_builder.PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder:
-        """
-        Provides operations to manage the assignmentScheduleRequests property of the microsoft.graph.privilegedAccessGroup entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: privileged_access_group_assignment_schedule_request_item_request_builder.PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .assignment_schedule_requests.item import privileged_access_group_assignment_schedule_request_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["privilegedAccessGroupAssignmentScheduleRequest%2Did"] = id
-        return privileged_access_group_assignment_schedule_request_item_request_builder.PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def assignment_schedules_by_id(self,id: str) -> privileged_access_group_assignment_schedule_item_request_builder.PrivilegedAccessGroupAssignmentScheduleItemRequestBuilder:
-        """
-        Provides operations to manage the assignmentSchedules property of the microsoft.graph.privilegedAccessGroup entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: privileged_access_group_assignment_schedule_item_request_builder.PrivilegedAccessGroupAssignmentScheduleItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .assignment_schedules.item import privileged_access_group_assignment_schedule_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["privilegedAccessGroupAssignmentSchedule%2Did"] = id
-        return privileged_access_group_assignment_schedule_item_request_builder.PrivilegedAccessGroupAssignmentScheduleItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     async def delete(self,request_configuration: Optional[GroupRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property group for identityGovernance
@@ -110,51 +60,6 @@ class GroupRequestBuilder():
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
-    
-    def eligibility_schedule_instances_by_id(self,id: str) -> privileged_access_group_eligibility_schedule_instance_item_request_builder.PrivilegedAccessGroupEligibilityScheduleInstanceItemRequestBuilder:
-        """
-        Provides operations to manage the eligibilityScheduleInstances property of the microsoft.graph.privilegedAccessGroup entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: privileged_access_group_eligibility_schedule_instance_item_request_builder.PrivilegedAccessGroupEligibilityScheduleInstanceItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .eligibility_schedule_instances.item import privileged_access_group_eligibility_schedule_instance_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["privilegedAccessGroupEligibilityScheduleInstance%2Did"] = id
-        return privileged_access_group_eligibility_schedule_instance_item_request_builder.PrivilegedAccessGroupEligibilityScheduleInstanceItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def eligibility_schedule_requests_by_id(self,id: str) -> privileged_access_group_eligibility_schedule_request_item_request_builder.PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilder:
-        """
-        Provides operations to manage the eligibilityScheduleRequests property of the microsoft.graph.privilegedAccessGroup entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: privileged_access_group_eligibility_schedule_request_item_request_builder.PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .eligibility_schedule_requests.item import privileged_access_group_eligibility_schedule_request_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["privilegedAccessGroupEligibilityScheduleRequest%2Did"] = id
-        return privileged_access_group_eligibility_schedule_request_item_request_builder.PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def eligibility_schedules_by_id(self,id: str) -> privileged_access_group_eligibility_schedule_item_request_builder.PrivilegedAccessGroupEligibilityScheduleItemRequestBuilder:
-        """
-        Provides operations to manage the eligibilitySchedules property of the microsoft.graph.privilegedAccessGroup entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: privileged_access_group_eligibility_schedule_item_request_builder.PrivilegedAccessGroupEligibilityScheduleItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .eligibility_schedules.item import privileged_access_group_eligibility_schedule_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["privilegedAccessGroupEligibilitySchedule%2Did"] = id
-        return privileged_access_group_eligibility_schedule_item_request_builder.PrivilegedAccessGroupEligibilityScheduleItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[GroupRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_access_group.PrivilegedAccessGroup]:
         """
@@ -257,6 +162,15 @@ class GroupRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
+    
+    @property
+    def assignment_approvals(self) -> assignment_approvals_request_builder.AssignmentApprovalsRequestBuilder:
+        """
+        Provides operations to manage the assignmentApprovals property of the microsoft.graph.privilegedAccessGroup entity.
+        """
+        from .assignment_approvals import assignment_approvals_request_builder
+
+        return assignment_approvals_request_builder.AssignmentApprovalsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def assignment_schedule_instances(self) -> assignment_schedule_instances_request_builder.AssignmentScheduleInstancesRequestBuilder:

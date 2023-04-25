@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import access_package_resource_request, access_package_resource_request_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import access_package_resource_request_item_request_builder
 
 class AccessPackageResourceRequestsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class AccessPackageResourceRequestsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_access_package_resource_request_id(self,access_package_resource_request_id: str) -> access_package_resource_request_item_request_builder.AccessPackageResourceRequestItemRequestBuilder:
+        """
+        Provides operations to manage the accessPackageResourceRequests property of the microsoft.graph.entitlementManagement entity.
+        Args:
+            access_package_resource_request_id: Unique identifier of the item
+        Returns: access_package_resource_request_item_request_builder.AccessPackageResourceRequestItemRequestBuilder
+        """
+        if access_package_resource_request_id is None:
+            raise Exception("access_package_resource_request_id cannot be undefined")
+        from .item import access_package_resource_request_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["accessPackageResourceRequest%2Did"] = access_package_resource_request_id
+        return access_package_resource_request_item_request_builder.AccessPackageResourceRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[AccessPackageResourceRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_resource_request_collection_response.AccessPackageResourceRequestCollectionResponse]:
         """
-        Retrieve a list of accessPackageResourceRequest objects.
+        Represents a request to add or remove a resource to or from a catalog respectively.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_package_resource_request_collection_response.AccessPackageResourceRequestCollectionResponse]
@@ -60,7 +76,7 @@ class AccessPackageResourceRequestsRequestBuilder():
     
     async def post(self,body: Optional[access_package_resource_request.AccessPackageResourceRequest] = None, request_configuration: Optional[AccessPackageResourceRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[access_package_resource_request.AccessPackageResourceRequest]:
         """
-        Create a new accessPackageResourceRequest object to request the addition of a resource to an access package catalog, update of a resource, or the removal of a resource from a catalog.  A resource must be included in an access package catalog before a role of that resource can be added to an access package.
+        Create new navigation property to accessPackageResourceRequests for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class AccessPackageResourceRequestsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageResourceRequestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of accessPackageResourceRequest objects.
+        Represents a request to add or remove a resource to or from a catalog respectively.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class AccessPackageResourceRequestsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[access_package_resource_request.AccessPackageResourceRequest] = None, request_configuration: Optional[AccessPackageResourceRequestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new accessPackageResourceRequest object to request the addition of a resource to an access package catalog, update of a resource, or the removal of a resource from a catalog.  A resource must be included in an access package catalog before a role of that resource can be added to an access package.
+        Create new navigation property to accessPackageResourceRequests for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class AccessPackageResourceRequestsRequestBuilder():
     @dataclass
     class AccessPackageResourceRequestsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of accessPackageResourceRequest objects.
+        Represents a request to add or remove a resource to or from a catalog respectively.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

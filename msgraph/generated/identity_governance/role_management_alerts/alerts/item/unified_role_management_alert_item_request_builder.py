@@ -15,7 +15,6 @@ if TYPE_CHECKING:
     from .alert_configuration import alert_configuration_request_builder
     from .alert_definition import alert_definition_request_builder
     from .alert_incidents import alert_incidents_request_builder
-    from .alert_incidents.item import unified_role_management_alert_incident_item_request_builder
     from .refresh import refresh_request_builder
 
 class UnifiedRoleManagementAlertItemRequestBuilder():
@@ -39,21 +38,6 @@ class UnifiedRoleManagementAlertItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def alert_incidents_by_id(self,id: str) -> unified_role_management_alert_incident_item_request_builder.UnifiedRoleManagementAlertIncidentItemRequestBuilder:
-        """
-        Provides operations to manage the alertIncidents property of the microsoft.graph.unifiedRoleManagementAlert entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: unified_role_management_alert_incident_item_request_builder.UnifiedRoleManagementAlertIncidentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .alert_incidents.item import unified_role_management_alert_incident_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["unifiedRoleManagementAlertIncident%2Did"] = id
-        return unified_role_management_alert_incident_item_request_builder.UnifiedRoleManagementAlertIncidentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[UnifiedRoleManagementAlertItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

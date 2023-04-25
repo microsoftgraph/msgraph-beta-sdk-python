@@ -13,26 +13,16 @@ if TYPE_CHECKING:
     from .....models import schedule
     from .....models.o_data_errors import o_data_error
     from .offer_shift_requests import offer_shift_requests_request_builder
-    from .offer_shift_requests.item import offer_shift_request_item_request_builder
     from .open_shift_change_requests import open_shift_change_requests_request_builder
-    from .open_shift_change_requests.item import open_shift_change_request_item_request_builder
     from .open_shifts import open_shifts_request_builder
-    from .open_shifts.item import open_shift_item_request_builder
     from .scheduling_groups import scheduling_groups_request_builder
-    from .scheduling_groups.item import scheduling_group_item_request_builder
     from .share import share_request_builder
     from .shifts import shifts_request_builder
-    from .shifts.item import shift_item_request_builder
     from .swap_shifts_change_requests import swap_shifts_change_requests_request_builder
-    from .swap_shifts_change_requests.item import swap_shifts_change_request_item_request_builder
     from .time_cards import time_cards_request_builder
-    from .time_cards.item import time_card_item_request_builder
     from .time_off_reasons import time_off_reasons_request_builder
-    from .time_off_reasons.item import time_off_reason_item_request_builder
     from .time_off_requests import time_off_requests_request_builder
-    from .time_off_requests.item import time_off_request_item_request_builder
     from .times_off import times_off_request_builder
-    from .times_off.item import time_off_item_request_builder
 
 class ScheduleRequestBuilder():
     """
@@ -77,7 +67,7 @@ class ScheduleRequestBuilder():
     
     async def get(self,request_configuration: Optional[ScheduleRequestBuilderGetRequestConfiguration] = None) -> Optional[schedule.Schedule]:
         """
-        Retrieve the properties and relationships of a schedule object. The schedule creation process conforms to the One API guideline for resource based long running operations (RELO).When clients use the PUT method, if the schedule is provisioned, the operation updates the schedule; otherwise, the operation starts the schedule provisioning process in the background. During schedule provisioning, clients can use the GET method to get the schedule and look at the `provisionStatus` property for the current state of the provisioning. If the provisioning failed, clients can get additional information from the `provisionStatusCode` property. Clients can also inspect the configuration of the schedule.
+        The schedule of shifts for this team.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[schedule.Schedule]
@@ -96,51 +86,6 @@ class ScheduleRequestBuilder():
         from .....models import schedule
 
         return await self.request_adapter.send_async(request_info, schedule.Schedule, error_mapping)
-    
-    def offer_shift_requests_by_id(self,id: str) -> offer_shift_request_item_request_builder.OfferShiftRequestItemRequestBuilder:
-        """
-        Provides operations to manage the offerShiftRequests property of the microsoft.graph.schedule entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: offer_shift_request_item_request_builder.OfferShiftRequestItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .offer_shift_requests.item import offer_shift_request_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["offerShiftRequest%2Did"] = id
-        return offer_shift_request_item_request_builder.OfferShiftRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def open_shift_change_requests_by_id(self,id: str) -> open_shift_change_request_item_request_builder.OpenShiftChangeRequestItemRequestBuilder:
-        """
-        Provides operations to manage the openShiftChangeRequests property of the microsoft.graph.schedule entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: open_shift_change_request_item_request_builder.OpenShiftChangeRequestItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .open_shift_change_requests.item import open_shift_change_request_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["openShiftChangeRequest%2Did"] = id
-        return open_shift_change_request_item_request_builder.OpenShiftChangeRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def open_shifts_by_id(self,id: str) -> open_shift_item_request_builder.OpenShiftItemRequestBuilder:
-        """
-        Provides operations to manage the openShifts property of the microsoft.graph.schedule entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: open_shift_item_request_builder.OpenShiftItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .open_shifts.item import open_shift_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["openShift%2Did"] = id
-        return open_shift_item_request_builder.OpenShiftItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def put(self,body: Optional[schedule.Schedule] = None, request_configuration: Optional[ScheduleRequestBuilderPutRequestConfiguration] = None) -> Optional[schedule.Schedule]:
         """
@@ -167,111 +112,6 @@ class ScheduleRequestBuilder():
 
         return await self.request_adapter.send_async(request_info, schedule.Schedule, error_mapping)
     
-    def scheduling_groups_by_id(self,id: str) -> scheduling_group_item_request_builder.SchedulingGroupItemRequestBuilder:
-        """
-        Provides operations to manage the schedulingGroups property of the microsoft.graph.schedule entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: scheduling_group_item_request_builder.SchedulingGroupItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .scheduling_groups.item import scheduling_group_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["schedulingGroup%2Did"] = id
-        return scheduling_group_item_request_builder.SchedulingGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def shifts_by_id(self,id: str) -> shift_item_request_builder.ShiftItemRequestBuilder:
-        """
-        Provides operations to manage the shifts property of the microsoft.graph.schedule entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: shift_item_request_builder.ShiftItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .shifts.item import shift_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["shift%2Did"] = id
-        return shift_item_request_builder.ShiftItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def swap_shifts_change_requests_by_id(self,id: str) -> swap_shifts_change_request_item_request_builder.SwapShiftsChangeRequestItemRequestBuilder:
-        """
-        Provides operations to manage the swapShiftsChangeRequests property of the microsoft.graph.schedule entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: swap_shifts_change_request_item_request_builder.SwapShiftsChangeRequestItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .swap_shifts_change_requests.item import swap_shifts_change_request_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["swapShiftsChangeRequest%2Did"] = id
-        return swap_shifts_change_request_item_request_builder.SwapShiftsChangeRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def time_cards_by_id(self,id: str) -> time_card_item_request_builder.TimeCardItemRequestBuilder:
-        """
-        Provides operations to manage the timeCards property of the microsoft.graph.schedule entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: time_card_item_request_builder.TimeCardItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .time_cards.item import time_card_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["timeCard%2Did"] = id
-        return time_card_item_request_builder.TimeCardItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def time_off_reasons_by_id(self,id: str) -> time_off_reason_item_request_builder.TimeOffReasonItemRequestBuilder:
-        """
-        Provides operations to manage the timeOffReasons property of the microsoft.graph.schedule entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: time_off_reason_item_request_builder.TimeOffReasonItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .time_off_reasons.item import time_off_reason_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["timeOffReason%2Did"] = id
-        return time_off_reason_item_request_builder.TimeOffReasonItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def time_off_requests_by_id(self,id: str) -> time_off_request_item_request_builder.TimeOffRequestItemRequestBuilder:
-        """
-        Provides operations to manage the timeOffRequests property of the microsoft.graph.schedule entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: time_off_request_item_request_builder.TimeOffRequestItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .time_off_requests.item import time_off_request_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["timeOffRequest%2Did"] = id
-        return time_off_request_item_request_builder.TimeOffRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def times_off_by_id(self,id: str) -> time_off_item_request_builder.TimeOffItemRequestBuilder:
-        """
-        Provides operations to manage the timesOff property of the microsoft.graph.schedule entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: time_off_item_request_builder.TimeOffItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .times_off.item import time_off_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["timeOff%2Did"] = id
-        return time_off_item_request_builder.TimeOffItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def to_delete_request_information(self,request_configuration: Optional[ScheduleRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property schedule for teamTemplateDefinition
@@ -290,7 +130,7 @@ class ScheduleRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ScheduleRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a schedule object. The schedule creation process conforms to the One API guideline for resource based long running operations (RELO).When clients use the PUT method, if the schedule is provisioned, the operation updates the schedule; otherwise, the operation starts the schedule provisioning process in the background. During schedule provisioning, clients can use the GET method to get the schedule and look at the `provisionStatus` property for the current state of the provisioning. If the provisioning failed, clients can get additional information from the `provisionStatusCode` property. Clients can also inspect the configuration of the schedule.
+        The schedule of shifts for this team.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -441,7 +281,7 @@ class ScheduleRequestBuilder():
     @dataclass
     class ScheduleRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a schedule object. The schedule creation process conforms to the One API guideline for resource based long running operations (RELO).When clients use the PUT method, if the schedule is provisioned, the operation updates the schedule; otherwise, the operation starts the schedule provisioning process in the background. During schedule provisioning, clients can use the GET method to get the schedule and look at the `provisionStatus` property for the current state of the provisioning. If the provisioning failed, clients can get additional information from the `provisionStatusCode` property. Clients can also inspect the configuration of the schedule.
+        The schedule of shifts for this team.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -36,7 +36,7 @@ class PolicyPayloadRequestBuilder():
     
     async def get(self,request_configuration: Optional[PolicyPayloadRequestBuilderGetRequestConfiguration] = None) -> bytes:
         """
-        Policy settings JSON string in binary format, these values cannot be changed by the user.
+        Get policyPayload for the navigation property clientConfigurations from officeConfiguration
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: bytes
@@ -56,7 +56,7 @@ class PolicyPayloadRequestBuilder():
     
     async def put(self,body: bytes, request_configuration: Optional[PolicyPayloadRequestBuilderPutRequestConfiguration] = None) -> bytes:
         """
-        Policy settings JSON string in binary format, these values cannot be changed by the user.
+        Update policyPayload for the navigation property clientConfigurations in officeConfiguration
         Args:
             body: Binary request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -79,7 +79,7 @@ class PolicyPayloadRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PolicyPayloadRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Policy settings JSON string in binary format, these values cannot be changed by the user.
+        Get policyPayload for the navigation property clientConfigurations from officeConfiguration
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -95,7 +95,7 @@ class PolicyPayloadRequestBuilder():
     
     def to_put_request_information(self,body: bytes, request_configuration: Optional[PolicyPayloadRequestBuilderPutRequestConfiguration] = None) -> RequestInformation:
         """
-        Policy settings JSON string in binary format, these values cannot be changed by the user.
+        Update policyPayload for the navigation property clientConfigurations in officeConfiguration
         Args:
             body: Binary request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

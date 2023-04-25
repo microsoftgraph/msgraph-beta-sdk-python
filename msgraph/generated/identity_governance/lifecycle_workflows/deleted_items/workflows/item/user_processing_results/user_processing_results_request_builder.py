@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .......models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .identity_governance_summary_with_start_date_time_with_end_date_time import identity_governance_summary_with_start_date_time_with_end_date_time_request_builder
+    from .item import user_processing_result_item_request_builder
 
 class UserProcessingResultsRequestBuilder():
     """
@@ -38,9 +39,24 @@ class UserProcessingResultsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_user_processing_result_id(self,user_processing_result_id: str) -> user_processing_result_item_request_builder.UserProcessingResultItemRequestBuilder:
+        """
+        Provides operations to manage the userProcessingResults property of the microsoft.graph.identityGovernance.workflow entity.
+        Args:
+            user_processing_result_id: Unique identifier of the item
+        Returns: user_processing_result_item_request_builder.UserProcessingResultItemRequestBuilder
+        """
+        if user_processing_result_id is None:
+            raise Exception("user_processing_result_id cannot be undefined")
+        from .item import user_processing_result_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["userProcessingResult%2Did"] = user_processing_result_id
+        return user_processing_result_item_request_builder.UserProcessingResultItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[UserProcessingResultsRequestBuilderGetRequestConfiguration] = None) -> Optional[user_processing_result_collection_response.UserProcessingResultCollectionResponse]:
         """
-        Get the **userProcessingResult** resources for a workflow.
+        Per-user workflow execution results.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[user_processing_result_collection_response.UserProcessingResultCollectionResponse]
@@ -78,7 +94,7 @@ class UserProcessingResultsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UserProcessingResultsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the **userProcessingResult** resources for a workflow.
+        Per-user workflow execution results.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -106,7 +122,7 @@ class UserProcessingResultsRequestBuilder():
     @dataclass
     class UserProcessingResultsRequestBuilderGetQueryParameters():
         """
-        Get the **userProcessingResult** resources for a workflow.
+        Per-user workflow execution results.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

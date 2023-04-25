@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .filter_by_current_user_with_on import filter_by_current_user_with_on_request_builder
+    from .item import privileged_access_group_eligibility_schedule_instance_item_request_builder
 
 class EligibilityScheduleInstancesRequestBuilder():
     """
@@ -36,6 +37,21 @@ class EligibilityScheduleInstancesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_privileged_access_group_eligibility_schedule_instance_id(self,privileged_access_group_eligibility_schedule_instance_id: str) -> privileged_access_group_eligibility_schedule_instance_item_request_builder.PrivilegedAccessGroupEligibilityScheduleInstanceItemRequestBuilder:
+        """
+        Provides operations to manage the eligibilityScheduleInstances property of the microsoft.graph.privilegedAccessGroup entity.
+        Args:
+            privileged_access_group_eligibility_schedule_instance_id: Unique identifier of the item
+        Returns: privileged_access_group_eligibility_schedule_instance_item_request_builder.PrivilegedAccessGroupEligibilityScheduleInstanceItemRequestBuilder
+        """
+        if privileged_access_group_eligibility_schedule_instance_id is None:
+            raise Exception("privileged_access_group_eligibility_schedule_instance_id cannot be undefined")
+        from .item import privileged_access_group_eligibility_schedule_instance_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["privilegedAccessGroupEligibilityScheduleInstance%2Did"] = privileged_access_group_eligibility_schedule_instance_id
+        return privileged_access_group_eligibility_schedule_instance_item_request_builder.PrivilegedAccessGroupEligibilityScheduleInstanceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def filter_by_current_user_with_on(self,on: Optional[str] = None) -> filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder:
         """

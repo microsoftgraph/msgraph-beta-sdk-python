@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from .......models import synchronization_schema
     from .......models.o_data_errors import o_data_error
     from .directories import directories_request_builder
-    from .directories.item import directory_definition_item_request_builder
     from .filter_operators import filter_operators_request_builder
     from .functions import functions_request_builder
     from .parse_expression import parse_expression_request_builder
@@ -59,24 +58,9 @@ class SchemaRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    def directories_by_id(self,id: str) -> directory_definition_item_request_builder.DirectoryDefinitionItemRequestBuilder:
-        """
-        Provides operations to manage the directories property of the microsoft.graph.synchronizationSchema entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: directory_definition_item_request_builder.DirectoryDefinitionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .directories.item import directory_definition_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["directoryDefinition%2Did"] = id
-        return directory_definition_item_request_builder.DirectoryDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     async def get(self,request_configuration: Optional[SchemaRequestBuilderGetRequestConfiguration] = None) -> Optional[synchronization_schema.SynchronizationSchema]:
         """
-        Retrieve the schema for a given synchronization job or template.
+        The synchronization schema configured for the job.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[synchronization_schema.SynchronizationSchema]
@@ -98,7 +82,7 @@ class SchemaRequestBuilder():
     
     async def patch(self,body: Optional[synchronization_schema.SynchronizationSchema] = None, request_configuration: Optional[SchemaRequestBuilderPatchRequestConfiguration] = None) -> Optional[synchronization_schema.SynchronizationSchema]:
         """
-        Update the synchronization schema for a given job or template. This method fully replaces the current schema with the one provided in the request. To update the schema of a template, make the call on the application object. You must be the owner of the application.
+        Update the navigation property schema in applications
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -139,7 +123,7 @@ class SchemaRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SchemaRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the schema for a given synchronization job or template.
+        The synchronization schema configured for the job.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -157,7 +141,7 @@ class SchemaRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[synchronization_schema.SynchronizationSchema] = None, request_configuration: Optional[SchemaRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the synchronization schema for a given job or template. This method fully replaces the current schema with the one provided in the request. To update the schema of a template, make the call on the application object. You must be the owner of the application.
+        Update the navigation property schema in applications
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -227,7 +211,7 @@ class SchemaRequestBuilder():
     @dataclass
     class SchemaRequestBuilderGetQueryParameters():
         """
-        Retrieve the schema for a given synchronization job or template.
+        The synchronization schema configured for the job.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

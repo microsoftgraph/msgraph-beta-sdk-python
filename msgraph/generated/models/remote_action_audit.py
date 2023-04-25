@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class RemoteActionAudit(entity.Entity):
-    """
-    Report of remote actions initiated on the devices belonging to a certain tenant.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new remoteActionAudit and sets the default values.
+        Instantiates a new RemoteActionAudit and sets the default values.
         """
         super().__init__()
         # Remote actions Intune supports.

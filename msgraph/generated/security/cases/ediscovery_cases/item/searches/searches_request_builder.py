@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models.o_data_errors import o_data_error
     from ......models.security import ediscovery_search, ediscovery_search_collection_response
     from .count import count_request_builder
+    from .item import ediscovery_search_item_request_builder
 
 class SearchesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class SearchesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_ediscovery_search_id(self,ediscovery_search_id: str) -> ediscovery_search_item_request_builder.EdiscoverySearchItemRequestBuilder:
+        """
+        Provides operations to manage the searches property of the microsoft.graph.security.ediscoveryCase entity.
+        Args:
+            ediscovery_search_id: Unique identifier of the item
+        Returns: ediscovery_search_item_request_builder.EdiscoverySearchItemRequestBuilder
+        """
+        if ediscovery_search_id is None:
+            raise Exception("ediscovery_search_id cannot be undefined")
+        from .item import ediscovery_search_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["ediscoverySearch%2Did"] = ediscovery_search_id
+        return ediscovery_search_item_request_builder.EdiscoverySearchItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[SearchesRequestBuilderGetRequestConfiguration] = None) -> Optional[ediscovery_search_collection_response.EdiscoverySearchCollectionResponse]:
         """
-        Get the list of ediscoverySearch resources from an eDiscoveryCase object.
+        Returns a list of eDiscoverySearch objects associated with this case.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ediscovery_search_collection_response.EdiscoverySearchCollectionResponse]
@@ -60,7 +76,7 @@ class SearchesRequestBuilder():
     
     async def post(self,body: Optional[ediscovery_search.EdiscoverySearch] = None, request_configuration: Optional[SearchesRequestBuilderPostRequestConfiguration] = None) -> Optional[ediscovery_search.EdiscoverySearch]:
         """
-        Create a new ediscoverySearch object.
+        Create new navigation property to searches for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class SearchesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SearchesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the list of ediscoverySearch resources from an eDiscoveryCase object.
+        Returns a list of eDiscoverySearch objects associated with this case.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class SearchesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[ediscovery_search.EdiscoverySearch] = None, request_configuration: Optional[SearchesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new ediscoverySearch object.
+        Create new navigation property to searches for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class SearchesRequestBuilder():
     @dataclass
     class SearchesRequestBuilderGetQueryParameters():
         """
-        Get the list of ediscoverySearch resources from an eDiscoveryCase object.
+        Returns a list of eDiscoverySearch objects associated with this case.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

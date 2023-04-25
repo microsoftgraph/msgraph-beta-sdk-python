@@ -37,7 +37,7 @@ class SubmitTiIndicatorsRequestBuilder():
     
     async def post(self,body: Optional[submit_ti_indicators_post_request_body.SubmitTiIndicatorsPostRequestBody] = None, request_configuration: Optional[SubmitTiIndicatorsRequestBuilderPostRequestConfiguration] = None) -> Optional[submit_ti_indicators_response.SubmitTiIndicatorsResponse]:
         """
-        Upload multiple threat intelligence (TI) indicators in one request instead of multiple requests.
+        Invoke action submitTiIndicators
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -62,7 +62,7 @@ class SubmitTiIndicatorsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[submit_ti_indicators_post_request_body.SubmitTiIndicatorsPostRequestBody] = None, request_configuration: Optional[SubmitTiIndicatorsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Upload multiple threat intelligence (TI) indicators in one request instead of multiple requests.
+        Invoke action submitTiIndicators
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

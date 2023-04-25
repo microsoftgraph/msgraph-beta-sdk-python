@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.identity_governance import custom_task_extension, custom_task_extension_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import custom_task_extension_item_request_builder
 
 class CustomTaskExtensionsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class CustomTaskExtensionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_custom_task_extension_id(self,custom_task_extension_id: str) -> custom_task_extension_item_request_builder.CustomTaskExtensionItemRequestBuilder:
+        """
+        Provides operations to manage the customTaskExtensions property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
+        Args:
+            custom_task_extension_id: Unique identifier of the item
+        Returns: custom_task_extension_item_request_builder.CustomTaskExtensionItemRequestBuilder
+        """
+        if custom_task_extension_id is None:
+            raise Exception("custom_task_extension_id cannot be undefined")
+        from .item import custom_task_extension_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["customTaskExtension%2Did"] = custom_task_extension_id
+        return custom_task_extension_item_request_builder.CustomTaskExtensionItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[CustomTaskExtensionsRequestBuilderGetRequestConfiguration] = None) -> Optional[custom_task_extension_collection_response.CustomTaskExtensionCollectionResponse]:
         """
-        Get a list of the customTaskExtension objects and their properties.
+        The customTaskExtension instance.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[custom_task_extension_collection_response.CustomTaskExtensionCollectionResponse]
@@ -60,7 +76,7 @@ class CustomTaskExtensionsRequestBuilder():
     
     async def post(self,body: Optional[custom_task_extension.CustomTaskExtension] = None, request_configuration: Optional[CustomTaskExtensionsRequestBuilderPostRequestConfiguration] = None) -> Optional[custom_task_extension.CustomTaskExtension]:
         """
-        Create a new customTaskExtension object.
+        Create new navigation property to customTaskExtensions for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class CustomTaskExtensionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CustomTaskExtensionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the customTaskExtension objects and their properties.
+        The customTaskExtension instance.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class CustomTaskExtensionsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[custom_task_extension.CustomTaskExtension] = None, request_configuration: Optional[CustomTaskExtensionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new customTaskExtension object.
+        Create new navigation property to customTaskExtensions for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class CustomTaskExtensionsRequestBuilder():
     @dataclass
     class CustomTaskExtensionsRequestBuilderGetQueryParameters():
         """
-        Get a list of the customTaskExtension objects and their properties.
+        The customTaskExtension instance.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

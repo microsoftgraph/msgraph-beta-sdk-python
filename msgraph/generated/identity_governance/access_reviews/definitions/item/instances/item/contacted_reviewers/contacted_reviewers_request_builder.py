@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ........models import access_review_reviewer, access_review_reviewer_collection_response
     from ........models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import access_review_reviewer_item_request_builder
 
 class ContactedReviewersRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ContactedReviewersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_access_review_reviewer_id(self,access_review_reviewer_id: str) -> access_review_reviewer_item_request_builder.AccessReviewReviewerItemRequestBuilder:
+        """
+        Provides operations to manage the contactedReviewers property of the microsoft.graph.accessReviewInstance entity.
+        Args:
+            access_review_reviewer_id: Unique identifier of the item
+        Returns: access_review_reviewer_item_request_builder.AccessReviewReviewerItemRequestBuilder
+        """
+        if access_review_reviewer_id is None:
+            raise Exception("access_review_reviewer_id cannot be undefined")
+        from .item import access_review_reviewer_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["accessReviewReviewer%2Did"] = access_review_reviewer_id
+        return access_review_reviewer_item_request_builder.AccessReviewReviewerItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ContactedReviewersRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_reviewer_collection_response.AccessReviewReviewerCollectionResponse]:
         """
-        Get the reviewers for an access review instance, irrespective of whether or not they have received a notification. The reviewers are represented by an accessReviewReviewer object. A list of zero or more objects are returned, including all of their nested properties.
+        Returns the collection of reviewers who were contacted to complete this review. While the reviewers and fallbackReviewers properties of the accessReviewScheduleDefinition might specify group owners or managers as reviewers, contactedReviewers returns their individual identities. Supports $select. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_review_reviewer_collection_response.AccessReviewReviewerCollectionResponse]
@@ -85,7 +101,7 @@ class ContactedReviewersRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ContactedReviewersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the reviewers for an access review instance, irrespective of whether or not they have received a notification. The reviewers are represented by an accessReviewReviewer object. A list of zero or more objects are returned, including all of their nested properties.
+        Returns the collection of reviewers who were contacted to complete this review. While the reviewers and fallbackReviewers properties of the accessReviewScheduleDefinition might specify group owners or managers as reviewers, contactedReviewers returns their individual identities. Supports $select. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class ContactedReviewersRequestBuilder():
     @dataclass
     class ContactedReviewersRequestBuilderGetQueryParameters():
         """
-        Get the reviewers for an access review instance, irrespective of whether or not they have received a notification. The reviewers are represented by an accessReviewReviewer object. A list of zero or more objects are returned, including all of their nested properties.
+        Returns the collection of reviewers who were contacted to complete this review. While the reviewers and fallbackReviewers properties of the accessReviewScheduleDefinition might specify group owners or managers as reviewers, contactedReviewers returns their individual identities. Supports $select. Read-only.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

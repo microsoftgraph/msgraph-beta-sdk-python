@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .delta import delta_request_builder
+    from .item import todo_task_list_item_request_builder
 
 class ListsRequestBuilder():
     """
@@ -37,9 +38,24 @@ class ListsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_todo_task_list_id(self,todo_task_list_id: str) -> todo_task_list_item_request_builder.TodoTaskListItemRequestBuilder:
+        """
+        Provides operations to manage the lists property of the microsoft.graph.todo entity.
+        Args:
+            todo_task_list_id: Unique identifier of the item
+        Returns: todo_task_list_item_request_builder.TodoTaskListItemRequestBuilder
+        """
+        if todo_task_list_id is None:
+            raise Exception("todo_task_list_id cannot be undefined")
+        from .item import todo_task_list_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["todoTaskList%2Did"] = todo_task_list_id
+        return todo_task_list_item_request_builder.TodoTaskListItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ListsRequestBuilderGetRequestConfiguration] = None) -> Optional[todo_task_list_collection_response.TodoTaskListCollectionResponse]:
         """
-        Get a list of the todoTaskList objects and their properties.
+        The task lists in the users mailbox.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[todo_task_list_collection_response.TodoTaskListCollectionResponse]
@@ -61,7 +77,7 @@ class ListsRequestBuilder():
     
     async def post(self,body: Optional[todo_task_list.TodoTaskList] = None, request_configuration: Optional[ListsRequestBuilderPostRequestConfiguration] = None) -> Optional[todo_task_list.TodoTaskList]:
         """
-        Create a new lists object.
+        Create new navigation property to lists for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -86,7 +102,7 @@ class ListsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ListsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the todoTaskList objects and their properties.
+        The task lists in the users mailbox.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +120,7 @@ class ListsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[todo_task_list.TodoTaskList] = None, request_configuration: Optional[ListsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new lists object.
+        Create new navigation property to lists for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -144,7 +160,7 @@ class ListsRequestBuilder():
     @dataclass
     class ListsRequestBuilderGetQueryParameters():
         """
-        Get a list of the todoTaskList objects and their properties.
+        The task lists in the users mailbox.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

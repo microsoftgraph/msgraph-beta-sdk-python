@@ -13,9 +13,7 @@ if TYPE_CHECKING:
     from .......models.o_data_errors import o_data_error
     from .......models.windows_updates import deployment_audience
     from .exclusions import exclusions_request_builder
-    from .exclusions.item import updatable_asset_item_request_builder
     from .members import members_request_builder
-    from .members.item import updatable_asset_item_request_builder
     from .windows_updates_update_audience import windows_updates_update_audience_request_builder
     from .windows_updates_update_audience_by_id import windows_updates_update_audience_by_id_request_builder
 
@@ -60,22 +58,6 @@ class AudienceRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    def exclusions_by_id(self,id: str) -> updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder:
-        """
-        Provides operations to manage the exclusions property of the microsoft.graph.windowsUpdates.deploymentAudience entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .exclusions.item import updatable_asset_item_request_builder
-        from .members.item import updatable_asset_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["updatableAsset%2Did"] = id
-        return updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     async def get(self,request_configuration: Optional[AudienceRequestBuilderGetRequestConfiguration] = None) -> Optional[deployment_audience.DeploymentAudience]:
         """
         Specifies the audience to target.
@@ -97,22 +79,6 @@ class AudienceRequestBuilder():
         from .......models.windows_updates import deployment_audience
 
         return await self.request_adapter.send_async(request_info, deployment_audience.DeploymentAudience, error_mapping)
-    
-    def members_by_id(self,id: str) -> updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder:
-        """
-        Provides operations to manage the members property of the microsoft.graph.windowsUpdates.deploymentAudience entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .exclusions.item import updatable_asset_item_request_builder
-        from .members.item import updatable_asset_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["updatableAsset%2Did"] = id
-        return updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[deployment_audience.DeploymentAudience] = None, request_configuration: Optional[AudienceRequestBuilderPatchRequestConfiguration] = None) -> Optional[deployment_audience.DeploymentAudience]:
         """

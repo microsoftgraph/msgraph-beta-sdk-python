@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models import drive_item_version, drive_item_version_collection_response
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import drive_item_version_item_request_builder
 
 class VersionsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class VersionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_drive_item_version_id(self,drive_item_version_id: str) -> drive_item_version_item_request_builder.DriveItemVersionItemRequestBuilder:
+        """
+        Provides operations to manage the versions property of the microsoft.graph.driveItem entity.
+        Args:
+            drive_item_version_id: Unique identifier of the item
+        Returns: drive_item_version_item_request_builder.DriveItemVersionItemRequestBuilder
+        """
+        if drive_item_version_id is None:
+            raise Exception("drive_item_version_id cannot be undefined")
+        from .item import drive_item_version_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["driveItemVersion%2Did"] = drive_item_version_id
+        return drive_item_version_item_request_builder.DriveItemVersionItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[VersionsRequestBuilderGetRequestConfiguration] = None) -> Optional[drive_item_version_collection_response.DriveItemVersionCollectionResponse]:
         """
-        OneDrive and SharePoint can be configured to retain the history for files.Depending on the service and configuration, a new version can be created for each edit, each time the file is saved, manually, or never. Previous versions of a document may be retained for a finite period of time depending on admin settings which may be unique per user or location.
+        The list of previous versions of the item. For more info, see [getting previous versions][]. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[drive_item_version_collection_response.DriveItemVersionCollectionResponse]
@@ -85,7 +101,7 @@ class VersionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[VersionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        OneDrive and SharePoint can be configured to retain the history for files.Depending on the service and configuration, a new version can be created for each edit, each time the file is saved, manually, or never. Previous versions of a document may be retained for a finite period of time depending on admin settings which may be unique per user or location.
+        The list of previous versions of the item. For more info, see [getting previous versions][]. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class VersionsRequestBuilder():
     @dataclass
     class VersionsRequestBuilderGetQueryParameters():
         """
-        OneDrive and SharePoint can be configured to retain the history for files.Depending on the service and configuration, a new version can be created for each edit, each time the file is saved, manually, or never. Previous versions of a document may be retained for a finite period of time depending on admin settings which may be unique per user or location.
+        The list of previous versions of the item. For more info, see [getting previous versions][]. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

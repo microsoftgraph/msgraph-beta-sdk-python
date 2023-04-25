@@ -11,25 +11,25 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # List of policies delivered to the device as last checkin.
+        # The appliedPolicies property
         self._applied_policies: Optional[List[str]] = None
-        # Last device check-in time in UTC.
+        # The checkinDateTime property
         self._checkin_date_time: Optional[datetime] = None
-        # Device name trying to check-in.
+        # The deviceName property
         self._device_name: Optional[str] = None
-        # Device platform trying to check-in.
+        # The devicePlatform property
         self._device_platform: Optional[str] = None
-        # Device platform version trying to check-in.
+        # The devicePlatformVersion property
         self._device_platform_version: Optional[str] = None
-        # Error message if any associated for the last checkin.
+        # The errorMessage property
         self._error_message: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # User identifier using the device.
+        # The userId property
         self._user_id: Optional[str] = None
-        # User principal name using the device.
+        # The userPrincipalName property
         self._user_principal_name: Optional[str] = None
-        # If the last checkin was successful.
+        # The wasSuccessful property
         self._was_successful: Optional[bool] = None
     
     @property
@@ -52,7 +52,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
     @property
     def applied_policies(self,) -> Optional[List[str]]:
         """
-        Gets the appliedPolicies property value. List of policies delivered to the device as last checkin.
+        Gets the appliedPolicies property value. The appliedPolicies property
         Returns: Optional[List[str]]
         """
         return self._applied_policies
@@ -60,7 +60,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
     @applied_policies.setter
     def applied_policies(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the appliedPolicies property value. List of policies delivered to the device as last checkin.
+        Sets the appliedPolicies property value. The appliedPolicies property
         Args:
             value: Value to set for the applied_policies property.
         """
@@ -69,7 +69,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
     @property
     def checkin_date_time(self,) -> Optional[datetime]:
         """
-        Gets the checkinDateTime property value. Last device check-in time in UTC.
+        Gets the checkinDateTime property value. The checkinDateTime property
         Returns: Optional[datetime]
         """
         return self._checkin_date_time
@@ -77,7 +77,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
     @checkin_date_time.setter
     def checkin_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the checkinDateTime property value. Last device check-in time in UTC.
+        Sets the checkinDateTime property value. The checkinDateTime property
         Args:
             value: Value to set for the checkin_date_time property.
         """
@@ -98,7 +98,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
     @property
     def device_name(self,) -> Optional[str]:
         """
-        Gets the deviceName property value. Device name trying to check-in.
+        Gets the deviceName property value. The deviceName property
         Returns: Optional[str]
         """
         return self._device_name
@@ -106,7 +106,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
     @device_name.setter
     def device_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the deviceName property value. Device name trying to check-in.
+        Sets the deviceName property value. The deviceName property
         Args:
             value: Value to set for the device_name property.
         """
@@ -115,7 +115,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
     @property
     def device_platform(self,) -> Optional[str]:
         """
-        Gets the devicePlatform property value. Device platform trying to check-in.
+        Gets the devicePlatform property value. The devicePlatform property
         Returns: Optional[str]
         """
         return self._device_platform
@@ -123,7 +123,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
     @device_platform.setter
     def device_platform(self,value: Optional[str] = None) -> None:
         """
-        Sets the devicePlatform property value. Device platform trying to check-in.
+        Sets the devicePlatform property value. The devicePlatform property
         Args:
             value: Value to set for the device_platform property.
         """
@@ -132,7 +132,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
     @property
     def device_platform_version(self,) -> Optional[str]:
         """
-        Gets the devicePlatformVersion property value. Device platform version trying to check-in.
+        Gets the devicePlatformVersion property value. The devicePlatformVersion property
         Returns: Optional[str]
         """
         return self._device_platform_version
@@ -140,7 +140,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
     @device_platform_version.setter
     def device_platform_version(self,value: Optional[str] = None) -> None:
         """
-        Sets the devicePlatformVersion property value. Device platform version trying to check-in.
+        Sets the devicePlatformVersion property value. The devicePlatformVersion property
         Args:
             value: Value to set for the device_platform_version property.
         """
@@ -149,7 +149,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
     @property
     def error_message(self,) -> Optional[str]:
         """
-        Gets the errorMessage property value. Error message if any associated for the last checkin.
+        Gets the errorMessage property value. The errorMessage property
         Returns: Optional[str]
         """
         return self._error_message
@@ -157,7 +157,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
     @error_message.setter
     def error_message(self,value: Optional[str] = None) -> None:
         """
-        Sets the errorMessage property value. Error message if any associated for the last checkin.
+        Sets the errorMessage property value. The errorMessage property
         Args:
             value: Value to set for the error_message property.
         """
@@ -222,7 +222,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
     @property
     def user_id(self,) -> Optional[str]:
         """
-        Gets the userId property value. User identifier using the device.
+        Gets the userId property value. The userId property
         Returns: Optional[str]
         """
         return self._user_id
@@ -230,7 +230,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
     @user_id.setter
     def user_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the userId property value. User identifier using the device.
+        Sets the userId property value. The userId property
         Args:
             value: Value to set for the user_id property.
         """
@@ -239,7 +239,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
     @property
     def user_principal_name(self,) -> Optional[str]:
         """
-        Gets the userPrincipalName property value. User principal name using the device.
+        Gets the userPrincipalName property value. The userPrincipalName property
         Returns: Optional[str]
         """
         return self._user_principal_name
@@ -247,7 +247,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
     @user_principal_name.setter
     def user_principal_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the userPrincipalName property value. User principal name using the device.
+        Sets the userPrincipalName property value. The userPrincipalName property
         Args:
             value: Value to set for the user_principal_name property.
         """
@@ -256,7 +256,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
     @property
     def was_successful(self,) -> Optional[bool]:
         """
-        Gets the wasSuccessful property value. If the last checkin was successful.
+        Gets the wasSuccessful property value. The wasSuccessful property
         Returns: Optional[bool]
         """
         return self._was_successful
@@ -264,7 +264,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
     @was_successful.setter
     def was_successful(self,value: Optional[bool] = None) -> None:
         """
-        Sets the wasSuccessful property value. If the last checkin was successful.
+        Sets the wasSuccessful property value. The wasSuccessful property
         Args:
             value: Value to set for the was_successful property.
         """

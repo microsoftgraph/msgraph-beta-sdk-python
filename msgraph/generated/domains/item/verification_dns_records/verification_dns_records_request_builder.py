@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import domain_dns_record, domain_dns_record_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import domain_dns_record_item_request_builder
 
 class VerificationDnsRecordsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class VerificationDnsRecordsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_domain_dns_record_id(self,domain_dns_record_id: str) -> domain_dns_record_item_request_builder.DomainDnsRecordItemRequestBuilder:
+        """
+        Provides operations to manage the verificationDnsRecords property of the microsoft.graph.domain entity.
+        Args:
+            domain_dns_record_id: Unique identifier of the item
+        Returns: domain_dns_record_item_request_builder.DomainDnsRecordItemRequestBuilder
+        """
+        if domain_dns_record_id is None:
+            raise Exception("domain_dns_record_id cannot be undefined")
+        from .item import domain_dns_record_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["domainDnsRecord%2Did"] = domain_dns_record_id
+        return domain_dns_record_item_request_builder.DomainDnsRecordItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[VerificationDnsRecordsRequestBuilderGetRequestConfiguration] = None) -> Optional[domain_dns_record_collection_response.DomainDnsRecordCollectionResponse]:
         """
-        Retrieve a list of domainDnsRecord objects. You cannot use an associated domain with your Azure AD tenant until ownership is verified. To verify the ownership of the domain, retrieve the domain verification records and add the details to the zone file of the domain. This can be done through the domain registrar or DNS server configuration. Root domains require verification. For example, contoso.com requires verification. If a root domain is verified, subdomains of the root domain are automatically verified. For example, subdomain.contoso.com is automatically be verified if contoso.com has been verified.
+        DNS records that the customer adds to the DNS zone file of the domain before the customer can complete domain ownership verification with Azure AD. Read-only, Nullable. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[domain_dns_record_collection_response.DomainDnsRecordCollectionResponse]
@@ -85,7 +101,7 @@ class VerificationDnsRecordsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[VerificationDnsRecordsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of domainDnsRecord objects. You cannot use an associated domain with your Azure AD tenant until ownership is verified. To verify the ownership of the domain, retrieve the domain verification records and add the details to the zone file of the domain. This can be done through the domain registrar or DNS server configuration. Root domains require verification. For example, contoso.com requires verification. If a root domain is verified, subdomains of the root domain are automatically verified. For example, subdomain.contoso.com is automatically be verified if contoso.com has been verified.
+        DNS records that the customer adds to the DNS zone file of the domain before the customer can complete domain ownership verification with Azure AD. Read-only, Nullable. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class VerificationDnsRecordsRequestBuilder():
     @dataclass
     class VerificationDnsRecordsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of domainDnsRecord objects. You cannot use an associated domain with your Azure AD tenant until ownership is verified. To verify the ownership of the domain, retrieve the domain verification records and add the details to the zone file of the domain. This can be done through the domain registrar or DNS server configuration. Root domains require verification. For example, contoso.com requires verification. If a root domain is verified, subdomains of the root domain are automatically verified. For example, subdomain.contoso.com is automatically be verified if contoso.com has been verified.
+        DNS records that the customer adds to the DNS zone file of the domain before the customer can complete domain ownership verification with Azure AD. Read-only, Nullable. Supports $expand.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

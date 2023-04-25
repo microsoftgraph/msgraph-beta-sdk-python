@@ -14,7 +14,6 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .clone import clone_request_builder
     from .referencing_configuration_policies import referencing_configuration_policies_request_builder
-    from .referencing_configuration_policies.item import device_management_configuration_policy_item_request_builder
 
 class DeviceManagementReusablePolicySettingItemRequestBuilder():
     """
@@ -103,21 +102,6 @@ class DeviceManagementReusablePolicySettingItemRequestBuilder():
         from ....models import device_management_reusable_policy_setting
 
         return await self.request_adapter.send_async(request_info, device_management_reusable_policy_setting.DeviceManagementReusablePolicySetting, error_mapping)
-    
-    def referencing_configuration_policies_by_id(self,id: str) -> device_management_configuration_policy_item_request_builder.DeviceManagementConfigurationPolicyItemRequestBuilder:
-        """
-        Provides operations to manage the referencingConfigurationPolicies property of the microsoft.graph.deviceManagementReusablePolicySetting entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: device_management_configuration_policy_item_request_builder.DeviceManagementConfigurationPolicyItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .referencing_configuration_policies.item import device_management_configuration_policy_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["deviceManagementConfigurationPolicy%2Did"] = id
-        return device_management_configuration_policy_item_request_builder.DeviceManagementConfigurationPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceManagementReusablePolicySettingItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

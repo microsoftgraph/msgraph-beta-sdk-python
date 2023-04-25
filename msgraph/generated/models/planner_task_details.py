@@ -10,7 +10,7 @@ from . import planner_delta
 class PlannerTaskDetails(planner_delta.PlannerDelta):
     def __init__(self,) -> None:
         """
-        Instantiates a new plannerTaskDetails and sets the default values.
+        Instantiates a new PlannerTaskDetails and sets the default values.
         """
         super().__init__()
         # The collection of checklist items on the task.

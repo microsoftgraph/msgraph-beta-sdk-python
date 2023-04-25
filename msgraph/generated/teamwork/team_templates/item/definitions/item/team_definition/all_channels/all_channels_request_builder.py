@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ........models import channel_collection_response
     from ........models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import channel_item_request_builder
 
 class AllChannelsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class AllChannelsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_channel_id(self,channel_id: str) -> channel_item_request_builder.ChannelItemRequestBuilder:
+        """
+        Provides operations to manage the allChannels property of the microsoft.graph.team entity.
+        Args:
+            channel_id: Unique identifier of the item
+        Returns: channel_item_request_builder.ChannelItemRequestBuilder
+        """
+        if channel_id is None:
+            raise Exception("channel_id cannot be undefined")
+        from .item import channel_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["channel%2Did"] = channel_id
+        return channel_item_request_builder.ChannelItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[AllChannelsRequestBuilderGetRequestConfiguration] = None) -> Optional[channel_collection_response.ChannelCollectionResponse]:
         """
-        Get the list of channels either in this team or shared with this team (incoming channels).
+        List of channels either hosted in or shared with the team (incoming channels).
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[channel_collection_response.ChannelCollectionResponse]
@@ -60,7 +76,7 @@ class AllChannelsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AllChannelsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the list of channels either in this team or shared with this team (incoming channels).
+        List of channels either hosted in or shared with the team (incoming channels).
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -88,7 +104,7 @@ class AllChannelsRequestBuilder():
     @dataclass
     class AllChannelsRequestBuilderGetQueryParameters():
         """
-        Get the list of channels either in this team or shared with this team (incoming channels).
+        List of channels either hosted in or shared with the team (incoming channels).
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import person_award, person_award_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import person_award_item_request_builder
 
 class AwardsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class AwardsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_person_award_id(self,person_award_id: str) -> person_award_item_request_builder.PersonAwardItemRequestBuilder:
+        """
+        Provides operations to manage the awards property of the microsoft.graph.profile entity.
+        Args:
+            person_award_id: Unique identifier of the item
+        Returns: person_award_item_request_builder.PersonAwardItemRequestBuilder
+        """
+        if person_award_id is None:
+            raise Exception("person_award_id cannot be undefined")
+        from .item import person_award_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["personAward%2Did"] = person_award_id
+        return person_award_item_request_builder.PersonAwardItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[AwardsRequestBuilderGetRequestConfiguration] = None) -> Optional[person_award_collection_response.PersonAwardCollectionResponse]:
         """
-        Retrieve a list of personAward objects from a user's profile.
+        Represents the details of awards or honors associated with a person.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[person_award_collection_response.PersonAwardCollectionResponse]
@@ -60,7 +76,7 @@ class AwardsRequestBuilder():
     
     async def post(self,body: Optional[person_award.PersonAward] = None, request_configuration: Optional[AwardsRequestBuilderPostRequestConfiguration] = None) -> Optional[person_award.PersonAward]:
         """
-        Create a new personAward object in a user's profile.
+        Create new navigation property to awards for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class AwardsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AwardsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of personAward objects from a user's profile.
+        Represents the details of awards or honors associated with a person.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class AwardsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[person_award.PersonAward] = None, request_configuration: Optional[AwardsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new personAward object in a user's profile.
+        Create new navigation property to awards for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class AwardsRequestBuilder():
     @dataclass
     class AwardsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of personAward objects from a user's profile.
+        Represents the details of awards or honors associated with a person.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

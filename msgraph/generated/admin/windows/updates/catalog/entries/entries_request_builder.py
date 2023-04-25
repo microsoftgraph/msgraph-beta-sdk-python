@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models.o_data_errors import o_data_error
     from ......models.windows_updates import catalog_entry, catalog_entry_collection_response
     from .count import count_request_builder
+    from .item import catalog_entry_item_request_builder
 
 class EntriesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class EntriesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_catalog_entry_id(self,catalog_entry_id: str) -> catalog_entry_item_request_builder.CatalogEntryItemRequestBuilder:
+        """
+        Provides operations to manage the entries property of the microsoft.graph.windowsUpdates.catalog entity.
+        Args:
+            catalog_entry_id: Unique identifier of the item
+        Returns: catalog_entry_item_request_builder.CatalogEntryItemRequestBuilder
+        """
+        if catalog_entry_id is None:
+            raise Exception("catalog_entry_id cannot be undefined")
+        from .item import catalog_entry_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["catalogEntry%2Did"] = catalog_entry_id
+        return catalog_entry_item_request_builder.CatalogEntryItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[EntriesRequestBuilderGetRequestConfiguration] = None) -> Optional[catalog_entry_collection_response.CatalogEntryCollectionResponse]:
         """
-        Get a list of catalogEntry resources from the catalog. Currently, this operation returns entries of the featureUpdateCatalogEntry or qualityUpdateCatalog types, inherited from **catalogEntry**. 
+        Lists the content that you can approve for deployment. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[catalog_entry_collection_response.CatalogEntryCollectionResponse]
@@ -85,7 +101,7 @@ class EntriesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[EntriesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of catalogEntry resources from the catalog. Currently, this operation returns entries of the featureUpdateCatalogEntry or qualityUpdateCatalog types, inherited from **catalogEntry**. 
+        Lists the content that you can approve for deployment. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class EntriesRequestBuilder():
     @dataclass
     class EntriesRequestBuilderGetQueryParameters():
         """
-        Get a list of catalogEntry resources from the catalog. Currently, this operation returns entries of the featureUpdateCatalogEntry or qualityUpdateCatalog types, inherited from **catalogEntry**. 
+        Lists the content that you can approve for deployment. Read-only.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

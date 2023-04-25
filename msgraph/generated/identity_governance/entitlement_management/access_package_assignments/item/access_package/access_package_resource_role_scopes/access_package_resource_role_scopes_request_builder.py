@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .......models import access_package_resource_role_scope, access_package_resource_role_scope_collection_response
     from .......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import access_package_resource_role_scope_item_request_builder
 
 class AccessPackageResourceRoleScopesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class AccessPackageResourceRoleScopesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_access_package_resource_role_scope_id(self,access_package_resource_role_scope_id: str) -> access_package_resource_role_scope_item_request_builder.AccessPackageResourceRoleScopeItemRequestBuilder:
+        """
+        Provides operations to manage the accessPackageResourceRoleScopes property of the microsoft.graph.accessPackage entity.
+        Args:
+            access_package_resource_role_scope_id: Unique identifier of the item
+        Returns: access_package_resource_role_scope_item_request_builder.AccessPackageResourceRoleScopeItemRequestBuilder
+        """
+        if access_package_resource_role_scope_id is None:
+            raise Exception("access_package_resource_role_scope_id cannot be undefined")
+        from .item import access_package_resource_role_scope_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["accessPackageResourceRoleScope%2Did"] = access_package_resource_role_scope_id
+        return access_package_resource_role_scope_item_request_builder.AccessPackageResourceRoleScopeItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[AccessPackageResourceRoleScopesRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_resource_role_scope_collection_response.AccessPackageResourceRoleScopeCollectionResponse]:
         """
@@ -60,7 +76,7 @@ class AccessPackageResourceRoleScopesRequestBuilder():
     
     async def post(self,body: Optional[access_package_resource_role_scope.AccessPackageResourceRoleScope] = None, request_configuration: Optional[AccessPackageResourceRoleScopesRequestBuilderPostRequestConfiguration] = None) -> Optional[access_package_resource_role_scope.AccessPackageResourceRoleScope]:
         """
-        Create a new accessPackageResourceRoleScope for adding a resource role to an access package. The access package resource, for a group, an app, or a SharePoint Online site, must already exist in the access package catalog, and the **originId** for the resource role retrieved from the list of the resource roles. Once you add the resource role scope to the access package, the user will receive this resource role through any current and future access package assignments.
+        Create new navigation property to accessPackageResourceRoleScopes for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +119,7 @@ class AccessPackageResourceRoleScopesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[access_package_resource_role_scope.AccessPackageResourceRoleScope] = None, request_configuration: Optional[AccessPackageResourceRoleScopesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new accessPackageResourceRoleScope for adding a resource role to an access package. The access package resource, for a group, an app, or a SharePoint Online site, must already exist in the access package catalog, and the **originId** for the resource role retrieved from the list of the resource roles. Once you add the resource role scope to the access package, the user will receive this resource role through any current and future access package assignments.
+        Create new navigation property to accessPackageResourceRoleScopes for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

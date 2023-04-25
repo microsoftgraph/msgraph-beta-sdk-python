@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import connector_group, connector_group_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import connector_group_item_request_builder
 
 class ConnectorGroupsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ConnectorGroupsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_connector_group_id(self,connector_group_id: str) -> connector_group_item_request_builder.ConnectorGroupItemRequestBuilder:
+        """
+        Provides operations to manage the connectorGroups property of the microsoft.graph.onPremisesPublishingProfile entity.
+        Args:
+            connector_group_id: Unique identifier of the item
+        Returns: connector_group_item_request_builder.ConnectorGroupItemRequestBuilder
+        """
+        if connector_group_id is None:
+            raise Exception("connector_group_id cannot be undefined")
+        from .item import connector_group_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["connectorGroup%2Did"] = connector_group_id
+        return connector_group_item_request_builder.ConnectorGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ConnectorGroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[connector_group_collection_response.ConnectorGroupCollectionResponse]:
         """
-        Retrieve a list of connectorGroup objects.
+        List of existing connectorGroup objects for applications published through Application Proxy. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[connector_group_collection_response.ConnectorGroupCollectionResponse]
@@ -60,7 +76,7 @@ class ConnectorGroupsRequestBuilder():
     
     async def post(self,body: Optional[connector_group.ConnectorGroup] = None, request_configuration: Optional[ConnectorGroupsRequestBuilderPostRequestConfiguration] = None) -> Optional[connector_group.ConnectorGroup]:
         """
-        Create a connectorGroup object.
+        Create new navigation property to connectorGroups for onPremisesPublishingProfiles
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class ConnectorGroupsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ConnectorGroupsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of connectorGroup objects.
+        List of existing connectorGroup objects for applications published through Application Proxy. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class ConnectorGroupsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[connector_group.ConnectorGroup] = None, request_configuration: Optional[ConnectorGroupsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a connectorGroup object.
+        Create new navigation property to connectorGroups for onPremisesPublishingProfiles
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class ConnectorGroupsRequestBuilder():
     @dataclass
     class ConnectorGroupsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of connectorGroup objects.
+        List of existing connectorGroup objects for applications published through Application Proxy. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

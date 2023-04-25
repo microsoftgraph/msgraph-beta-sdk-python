@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .get_all_messages import get_all_messages_request_builder
+    from .item import deleted_team_item_request_builder
 
 class DeletedTeamsRequestBuilder():
     """
@@ -37,9 +38,24 @@ class DeletedTeamsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_deleted_team_id(self,deleted_team_id: str) -> deleted_team_item_request_builder.DeletedTeamItemRequestBuilder:
+        """
+        Provides operations to manage the deletedTeams property of the microsoft.graph.teamwork entity.
+        Args:
+            deleted_team_id: Unique identifier of the item
+        Returns: deleted_team_item_request_builder.DeletedTeamItemRequestBuilder
+        """
+        if deleted_team_id is None:
+            raise Exception("deleted_team_id cannot be undefined")
+        from .item import deleted_team_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["deletedTeam%2Did"] = deleted_team_id
+        return deleted_team_item_request_builder.DeletedTeamItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[DeletedTeamsRequestBuilderGetRequestConfiguration] = None) -> Optional[deleted_team_collection_response.DeletedTeamCollectionResponse]:
         """
-        Get a list of the deletedTeam objects and their properties.
+        A collection of deleted teams.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[deleted_team_collection_response.DeletedTeamCollectionResponse]
@@ -86,7 +102,7 @@ class DeletedTeamsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[DeletedTeamsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the deletedTeam objects and their properties.
+        A collection of deleted teams.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -144,7 +160,7 @@ class DeletedTeamsRequestBuilder():
     @dataclass
     class DeletedTeamsRequestBuilderGetQueryParameters():
         """
-        Get a list of the deletedTeam objects and their properties.
+        A collection of deleted teams.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

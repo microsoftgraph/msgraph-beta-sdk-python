@@ -8,12 +8,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class WindowsInformationProtectionNetworkLearningSummary(entity.Entity):
-    """
-    Windows Information Protection Network learning Summary entity.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new windowsInformationProtectionNetworkLearningSummary and sets the default values.
+        Instantiates a new WindowsInformationProtectionNetworkLearningSummary and sets the default values.
         """
         super().__init__()
         # Device Count

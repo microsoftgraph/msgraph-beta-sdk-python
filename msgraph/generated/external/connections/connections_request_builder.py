@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models.external_connectors import external_connection, external_connection_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import external_connection_item_request_builder
 
 class ConnectionsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ConnectionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_external_connection_id(self,external_connection_id: str) -> external_connection_item_request_builder.ExternalConnectionItemRequestBuilder:
+        """
+        Provides operations to manage the connections property of the microsoft.graph.externalConnectors.external entity.
+        Args:
+            external_connection_id: Unique identifier of the item
+        Returns: external_connection_item_request_builder.ExternalConnectionItemRequestBuilder
+        """
+        if external_connection_id is None:
+            raise Exception("external_connection_id cannot be undefined")
+        from .item import external_connection_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["externalConnection%2Did"] = external_connection_id
+        return external_connection_item_request_builder.ExternalConnectionItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ConnectionsRequestBuilderGetRequestConfiguration] = None) -> Optional[external_connection_collection_response.ExternalConnectionCollectionResponse]:
         """
-        Retrieve a list of externalConnections.
+        Get connections from external
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[external_connection_collection_response.ExternalConnectionCollectionResponse]
@@ -60,7 +76,7 @@ class ConnectionsRequestBuilder():
     
     async def post(self,body: Optional[external_connection.ExternalConnection] = None, request_configuration: Optional[ConnectionsRequestBuilderPostRequestConfiguration] = None) -> Optional[external_connection.ExternalConnection]:
         """
-        Create a new externalConnection.
+        Create new navigation property to connections for external
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class ConnectionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ConnectionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of externalConnections.
+        Get connections from external
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class ConnectionsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[external_connection.ExternalConnection] = None, request_configuration: Optional[ConnectionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new externalConnection.
+        Create new navigation property to connections for external
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class ConnectionsRequestBuilder():
     @dataclass
     class ConnectionsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of externalConnections.
+        Get connections from external
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

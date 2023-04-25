@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ....models import authorization_policy
     from ....models.o_data_errors import o_data_error
     from .default_user_role_overrides import default_user_role_overrides_request_builder
-    from .default_user_role_overrides.item import default_user_role_override_item_request_builder
 
 class AuthorizationPolicyItemRequestBuilder():
     """
@@ -36,21 +35,6 @@ class AuthorizationPolicyItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def default_user_role_overrides_by_id(self,id: str) -> default_user_role_override_item_request_builder.DefaultUserRoleOverrideItemRequestBuilder:
-        """
-        Provides operations to manage the defaultUserRoleOverrides property of the microsoft.graph.authorizationPolicy entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: default_user_role_override_item_request_builder.DefaultUserRoleOverrideItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .default_user_role_overrides.item import default_user_role_override_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["defaultUserRoleOverride%2Did"] = id
-        return default_user_role_override_item_request_builder.DefaultUserRoleOverrideItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[AuthorizationPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

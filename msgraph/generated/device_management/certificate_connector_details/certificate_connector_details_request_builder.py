@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import certificate_connector_details, certificate_connector_details_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import certificate_connector_details_item_request_builder
 
 class CertificateConnectorDetailsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class CertificateConnectorDetailsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_certificate_connector_details_id(self,certificate_connector_details_id: str) -> certificate_connector_details_item_request_builder.CertificateConnectorDetailsItemRequestBuilder:
+        """
+        Provides operations to manage the certificateConnectorDetails property of the microsoft.graph.deviceManagement entity.
+        Args:
+            certificate_connector_details_id: Unique identifier of the item
+        Returns: certificate_connector_details_item_request_builder.CertificateConnectorDetailsItemRequestBuilder
+        """
+        if certificate_connector_details_id is None:
+            raise Exception("certificate_connector_details_id cannot be undefined")
+        from .item import certificate_connector_details_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["certificateConnectorDetails%2Did"] = certificate_connector_details_id
+        return certificate_connector_details_item_request_builder.CertificateConnectorDetailsItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[CertificateConnectorDetailsRequestBuilderGetRequestConfiguration] = None) -> Optional[certificate_connector_details_collection_response.CertificateConnectorDetailsCollectionResponse]:
         """

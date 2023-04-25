@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import risky_service_principal_history_item, risky_service_principal_history_item_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import risky_service_principal_history_item_item_request_builder
 
 class HistoryRequestBuilder():
     """
@@ -36,9 +37,24 @@ class HistoryRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_risky_service_principal_history_item_id(self,risky_service_principal_history_item_id: str) -> risky_service_principal_history_item_item_request_builder.RiskyServicePrincipalHistoryItemItemRequestBuilder:
+        """
+        Provides operations to manage the history property of the microsoft.graph.riskyServicePrincipal entity.
+        Args:
+            risky_service_principal_history_item_id: Unique identifier of the item
+        Returns: risky_service_principal_history_item_item_request_builder.RiskyServicePrincipalHistoryItemItemRequestBuilder
+        """
+        if risky_service_principal_history_item_id is None:
+            raise Exception("risky_service_principal_history_item_id cannot be undefined")
+        from .item import risky_service_principal_history_item_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["riskyServicePrincipalHistoryItem%2Did"] = risky_service_principal_history_item_id
+        return risky_service_principal_history_item_item_request_builder.RiskyServicePrincipalHistoryItemItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[HistoryRequestBuilderGetRequestConfiguration] = None) -> Optional[risky_service_principal_history_item_collection_response.RiskyServicePrincipalHistoryItemCollectionResponse]:
         """
-        Get the risk history of a riskyServicePrincipal object.
+        Represents the risk history of Azure AD service principals.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[risky_service_principal_history_item_collection_response.RiskyServicePrincipalHistoryItemCollectionResponse]
@@ -85,7 +101,7 @@ class HistoryRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[HistoryRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the risk history of a riskyServicePrincipal object.
+        Represents the risk history of Azure AD service principals.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class HistoryRequestBuilder():
     @dataclass
     class HistoryRequestBuilderGetQueryParameters():
         """
-        Get the risk history of a riskyServicePrincipal object.
+        Represents the risk history of Azure AD service principals.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

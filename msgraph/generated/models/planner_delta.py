@@ -10,7 +10,7 @@ from . import entity
 class PlannerDelta(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new plannerDelta and sets the default values.
+        Instantiates a new PlannerDelta and sets the default values.
         """
         super().__init__()
         # The OdataType property

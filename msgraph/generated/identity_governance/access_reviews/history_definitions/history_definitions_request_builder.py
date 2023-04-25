@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import access_review_history_definition, access_review_history_definition_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import access_review_history_definition_item_request_builder
 
 class HistoryDefinitionsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class HistoryDefinitionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_access_review_history_definition_id(self,access_review_history_definition_id: str) -> access_review_history_definition_item_request_builder.AccessReviewHistoryDefinitionItemRequestBuilder:
+        """
+        Provides operations to manage the historyDefinitions property of the microsoft.graph.accessReviewSet entity.
+        Args:
+            access_review_history_definition_id: Unique identifier of the item
+        Returns: access_review_history_definition_item_request_builder.AccessReviewHistoryDefinitionItemRequestBuilder
+        """
+        if access_review_history_definition_id is None:
+            raise Exception("access_review_history_definition_id cannot be undefined")
+        from .item import access_review_history_definition_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["accessReviewHistoryDefinition%2Did"] = access_review_history_definition_id
+        return access_review_history_definition_item_request_builder.AccessReviewHistoryDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[HistoryDefinitionsRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_history_definition_collection_response.AccessReviewHistoryDefinitionCollectionResponse]:
         """
-        Retrieve the accessReviewHistoryDefinition objects created in the last 30 days, including all nested properties.
+        Represents a collection of access review history data and the scopes used to collect that data.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_review_history_definition_collection_response.AccessReviewHistoryDefinitionCollectionResponse]
@@ -60,7 +76,7 @@ class HistoryDefinitionsRequestBuilder():
     
     async def post(self,body: Optional[access_review_history_definition.AccessReviewHistoryDefinition] = None, request_configuration: Optional[HistoryDefinitionsRequestBuilderPostRequestConfiguration] = None) -> Optional[access_review_history_definition.AccessReviewHistoryDefinition]:
         """
-        Create a new accessReviewHistoryDefinition object.
+        Create new navigation property to historyDefinitions for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class HistoryDefinitionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[HistoryDefinitionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the accessReviewHistoryDefinition objects created in the last 30 days, including all nested properties.
+        Represents a collection of access review history data and the scopes used to collect that data.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class HistoryDefinitionsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[access_review_history_definition.AccessReviewHistoryDefinition] = None, request_configuration: Optional[HistoryDefinitionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new accessReviewHistoryDefinition object.
+        Create new navigation property to historyDefinitions for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class HistoryDefinitionsRequestBuilder():
     @dataclass
     class HistoryDefinitionsRequestBuilderGetQueryParameters():
         """
-        Retrieve the accessReviewHistoryDefinition objects created in the last 30 days, including all nested properties.
+        Represents a collection of access review history data and the scopes used to collect that data.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

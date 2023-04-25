@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import planner_plan_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import planner_plan_item_request_builder
 
 class RecentPlansRequestBuilder():
     """
@@ -36,9 +37,24 @@ class RecentPlansRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_planner_plan_id(self,planner_plan_id: str) -> planner_plan_item_request_builder.PlannerPlanItemRequestBuilder:
+        """
+        Provides operations to manage the recentPlans property of the microsoft.graph.plannerUser entity.
+        Args:
+            planner_plan_id: Unique identifier of the item
+        Returns: planner_plan_item_request_builder.PlannerPlanItemRequestBuilder
+        """
+        if planner_plan_id is None:
+            raise Exception("planner_plan_id cannot be undefined")
+        from .item import planner_plan_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["plannerPlan%2Did"] = planner_plan_id
+        return planner_plan_item_request_builder.PlannerPlanItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[RecentPlansRequestBuilderGetRequestConfiguration] = None) -> Optional[planner_plan_collection_response.PlannerPlanCollectionResponse]:
         """
-        Retrieve a list of plannerPlans recently viewed by a user. You can update recently viewed plans by updating the plannerUser resource.
+        Read-only. Nullable. Returns the plannerPlans that have been recently viewed by the user in apps that support recent plans.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[planner_plan_collection_response.PlannerPlanCollectionResponse]
@@ -60,7 +76,7 @@ class RecentPlansRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RecentPlansRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of plannerPlans recently viewed by a user. You can update recently viewed plans by updating the plannerUser resource.
+        Read-only. Nullable. Returns the plannerPlans that have been recently viewed by the user in apps that support recent plans.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -88,7 +104,7 @@ class RecentPlansRequestBuilder():
     @dataclass
     class RecentPlansRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of plannerPlans recently viewed by a user. You can update recently viewed plans by updating the plannerUser resource.
+        Read-only. Nullable. Returns the plannerPlans that have been recently viewed by the user in apps that support recent plans.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

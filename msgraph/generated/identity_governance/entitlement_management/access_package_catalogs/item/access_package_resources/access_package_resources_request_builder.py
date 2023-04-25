@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models import access_package_resource, access_package_resource_collection_response
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import access_package_resource_item_request_builder
 
 class AccessPackageResourcesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class AccessPackageResourcesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_access_package_resource_id(self,access_package_resource_id: str) -> access_package_resource_item_request_builder.AccessPackageResourceItemRequestBuilder:
+        """
+        Provides operations to manage the accessPackageResources property of the microsoft.graph.accessPackageCatalog entity.
+        Args:
+            access_package_resource_id: Unique identifier of the item
+        Returns: access_package_resource_item_request_builder.AccessPackageResourceItemRequestBuilder
+        """
+        if access_package_resource_id is None:
+            raise Exception("access_package_resource_id cannot be undefined")
+        from .item import access_package_resource_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["accessPackageResource%2Did"] = access_package_resource_id
+        return access_package_resource_item_request_builder.AccessPackageResourceItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[AccessPackageResourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_resource_collection_response.AccessPackageResourceCollectionResponse]:
         """
-        Retrieve a list of accessPackageResource objects in an accessPackageCatalog.  To request to add or remove an accessPackageResource, use create accessPackageResourceRequest.
+        Get accessPackageResources from identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_package_resource_collection_response.AccessPackageResourceCollectionResponse]
@@ -85,7 +101,7 @@ class AccessPackageResourcesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageResourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of accessPackageResource objects in an accessPackageCatalog.  To request to add or remove an accessPackageResource, use create accessPackageResourceRequest.
+        Get accessPackageResources from identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class AccessPackageResourcesRequestBuilder():
     @dataclass
     class AccessPackageResourcesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of accessPackageResource objects in an accessPackageCatalog.  To request to add or remove an accessPackageResource, use create accessPackageResourceRequest.
+        Get accessPackageResources from identityGovernance
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

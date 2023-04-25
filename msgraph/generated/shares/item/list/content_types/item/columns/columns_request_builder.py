@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .......models import column_definition, column_definition_collection_response
     from .......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import column_definition_item_request_builder
 
 class ColumnsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ColumnsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_column_definition_id(self,column_definition_id: str) -> column_definition_item_request_builder.ColumnDefinitionItemRequestBuilder:
+        """
+        Provides operations to manage the columns property of the microsoft.graph.contentType entity.
+        Args:
+            column_definition_id: Unique identifier of the item
+        Returns: column_definition_item_request_builder.ColumnDefinitionItemRequestBuilder
+        """
+        if column_definition_id is None:
+            raise Exception("column_definition_id cannot be undefined")
+        from .item import column_definition_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["columnDefinition%2Did"] = column_definition_id
+        return column_definition_item_request_builder.ColumnDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ColumnsRequestBuilderGetRequestConfiguration] = None) -> Optional[column_definition_collection_response.ColumnDefinitionCollectionResponse]:
         """
-        Get the collection of columns, represented as [columnDefinition][columnDefinition] resources, in a [content type][contentType].
+        The collection of column definitions for this contentType.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[column_definition_collection_response.ColumnDefinitionCollectionResponse]
@@ -60,7 +76,7 @@ class ColumnsRequestBuilder():
     
     async def post(self,body: Optional[column_definition.ColumnDefinition] = None, request_configuration: Optional[ColumnsRequestBuilderPostRequestConfiguration] = None) -> Optional[column_definition.ColumnDefinition]:
         """
-        Add a column to a [content type][contentType] in a site or list by specifying a [columnDefinition][columnDefinition].
+        Create new navigation property to columns for shares
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class ColumnsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ColumnsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the collection of columns, represented as [columnDefinition][columnDefinition] resources, in a [content type][contentType].
+        The collection of column definitions for this contentType.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class ColumnsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[column_definition.ColumnDefinition] = None, request_configuration: Optional[ColumnsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Add a column to a [content type][contentType] in a site or list by specifying a [columnDefinition][columnDefinition].
+        Create new navigation property to columns for shares
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class ColumnsRequestBuilder():
     @dataclass
     class ColumnsRequestBuilderGetQueryParameters():
         """
-        Get the collection of columns, represented as [columnDefinition][columnDefinition] resources, in a [content type][contentType].
+        The collection of column definitions for this contentType.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

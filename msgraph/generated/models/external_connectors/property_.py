@@ -3,7 +3,7 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import label, property_type
+    from . import label, property_type, ranking_hint
 
 class Property_(AdditionalDataHolder, Parsable):
     def __init__(self,) -> None:
@@ -31,6 +31,8 @@ class Property_(AdditionalDataHolder, Parsable):
         self._name: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
+        # Specifies the property ranking hint. Developers can specify which properties are most important, allowing Microsoft Search to determine the search relevance of the content.
+        self._ranking_hint: Optional[ranking_hint.RankingHint] = None
         # The type property
         self._type: Optional[property_type.PropertyType] = None
     
@@ -85,7 +87,7 @@ class Property_(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import label, property_type
+        from . import label, property_type, ranking_hint
 
         fields: Dict[str, Callable[[Any], None]] = {
             "aliases": lambda n : setattr(self, 'aliases', n.get_collection_of_primitive_values(str)),
@@ -97,6 +99,7 @@ class Property_(AdditionalDataHolder, Parsable):
             "labels": lambda n : setattr(self, 'labels', n.get_collection_of_enum_values(label.Label)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "rankingHint": lambda n : setattr(self, 'ranking_hint', n.get_object_value(ranking_hint.RankingHint)),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(property_type.PropertyType)),
         }
         return fields
@@ -237,6 +240,23 @@ class Property_(AdditionalDataHolder, Parsable):
         """
         self._odata_type = value
     
+    @property
+    def ranking_hint(self,) -> Optional[ranking_hint.RankingHint]:
+        """
+        Gets the rankingHint property value. Specifies the property ranking hint. Developers can specify which properties are most important, allowing Microsoft Search to determine the search relevance of the content.
+        Returns: Optional[ranking_hint.RankingHint]
+        """
+        return self._ranking_hint
+    
+    @ranking_hint.setter
+    def ranking_hint(self,value: Optional[ranking_hint.RankingHint] = None) -> None:
+        """
+        Sets the rankingHint property value. Specifies the property ranking hint. Developers can specify which properties are most important, allowing Microsoft Search to determine the search relevance of the content.
+        Args:
+            value: Value to set for the ranking_hint property.
+        """
+        self._ranking_hint = value
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -254,6 +274,7 @@ class Property_(AdditionalDataHolder, Parsable):
         writer.write_enum_value("labels", self.labels)
         writer.write_str_value("name", self.name)
         writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_object_value("rankingHint", self.ranking_hint)
         writer.write_enum_value("type", self.type)
         writer.write_additional_data_value(self.additional_data)
     

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from ....models.security import retention_event_type, retention_event_type_collection_response
     from .count import count_request_builder
+    from .item import retention_event_type_item_request_builder
 
 class RetentionEventTypesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class RetentionEventTypesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_retention_event_type_id(self,retention_event_type_id: str) -> retention_event_type_item_request_builder.RetentionEventTypeItemRequestBuilder:
+        """
+        Provides operations to manage the retentionEventTypes property of the microsoft.graph.security.triggerTypesRoot entity.
+        Args:
+            retention_event_type_id: Unique identifier of the item
+        Returns: retention_event_type_item_request_builder.RetentionEventTypeItemRequestBuilder
+        """
+        if retention_event_type_id is None:
+            raise Exception("retention_event_type_id cannot be undefined")
+        from .item import retention_event_type_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["retentionEventType%2Did"] = retention_event_type_id
+        return retention_event_type_item_request_builder.RetentionEventTypeItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[RetentionEventTypesRequestBuilderGetRequestConfiguration] = None) -> Optional[retention_event_type_collection_response.RetentionEventTypeCollectionResponse]:
         """
-        Get a list of the retentionEventType objects and their properties.
+        Get retentionEventTypes from security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[retention_event_type_collection_response.RetentionEventTypeCollectionResponse]
@@ -60,7 +76,7 @@ class RetentionEventTypesRequestBuilder():
     
     async def post(self,body: Optional[retention_event_type.RetentionEventType] = None, request_configuration: Optional[RetentionEventTypesRequestBuilderPostRequestConfiguration] = None) -> Optional[retention_event_type.RetentionEventType]:
         """
-        Create a new retentionEventType object.
+        Create new navigation property to retentionEventTypes for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class RetentionEventTypesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RetentionEventTypesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the retentionEventType objects and their properties.
+        Get retentionEventTypes from security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class RetentionEventTypesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[retention_event_type.RetentionEventType] = None, request_configuration: Optional[RetentionEventTypesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new retentionEventType object.
+        Create new navigation property to retentionEventTypes for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class RetentionEventTypesRequestBuilder():
     @dataclass
     class RetentionEventTypesRequestBuilderGetQueryParameters():
         """
-        Get a list of the retentionEventType objects and their properties.
+        Get retentionEventTypes from security
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

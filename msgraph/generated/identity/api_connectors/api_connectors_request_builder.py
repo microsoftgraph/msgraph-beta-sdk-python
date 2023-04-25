@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import identity_api_connector, identity_api_connector_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import identity_api_connector_item_request_builder
 
 class ApiConnectorsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ApiConnectorsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_identity_api_connector_id(self,identity_api_connector_id: str) -> identity_api_connector_item_request_builder.IdentityApiConnectorItemRequestBuilder:
+        """
+        Provides operations to manage the apiConnectors property of the microsoft.graph.identityContainer entity.
+        Args:
+            identity_api_connector_id: Unique identifier of the item
+        Returns: identity_api_connector_item_request_builder.IdentityApiConnectorItemRequestBuilder
+        """
+        if identity_api_connector_id is None:
+            raise Exception("identity_api_connector_id cannot be undefined")
+        from .item import identity_api_connector_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["identityApiConnector%2Did"] = identity_api_connector_id
+        return identity_api_connector_item_request_builder.IdentityApiConnectorItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ApiConnectorsRequestBuilderGetRequestConfiguration] = None) -> Optional[identity_api_connector_collection_response.IdentityApiConnectorCollectionResponse]:
         """
-        Read the properties of an identityApiConnector object.
+        Represents entry point for API connectors.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[identity_api_connector_collection_response.IdentityApiConnectorCollectionResponse]
@@ -60,7 +76,7 @@ class ApiConnectorsRequestBuilder():
     
     async def post(self,body: Optional[identity_api_connector.IdentityApiConnector] = None, request_configuration: Optional[ApiConnectorsRequestBuilderPostRequestConfiguration] = None) -> Optional[identity_api_connector.IdentityApiConnector]:
         """
-        Create a new identityApiConnector object.
+        Create new navigation property to apiConnectors for identity
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class ApiConnectorsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ApiConnectorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties of an identityApiConnector object.
+        Represents entry point for API connectors.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class ApiConnectorsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[identity_api_connector.IdentityApiConnector] = None, request_configuration: Optional[ApiConnectorsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new identityApiConnector object.
+        Create new navigation property to apiConnectors for identity
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class ApiConnectorsRequestBuilder():
     @dataclass
     class ApiConnectorsRequestBuilderGetQueryParameters():
         """
-        Read the properties of an identityApiConnector object.
+        Represents entry point for API connectors.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

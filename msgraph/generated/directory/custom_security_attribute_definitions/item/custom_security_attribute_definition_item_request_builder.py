@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ....models import custom_security_attribute_definition
     from ....models.o_data_errors import o_data_error
     from .allowed_values import allowed_values_request_builder
-    from .allowed_values.item import allowed_value_item_request_builder
 
 class CustomSecurityAttributeDefinitionItemRequestBuilder():
     """
@@ -36,21 +35,6 @@ class CustomSecurityAttributeDefinitionItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def allowed_values_by_id(self,id: str) -> allowed_value_item_request_builder.AllowedValueItemRequestBuilder:
-        """
-        Provides operations to manage the allowedValues property of the microsoft.graph.customSecurityAttributeDefinition entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: allowed_value_item_request_builder.AllowedValueItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .allowed_values.item import allowed_value_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["allowedValue%2Did"] = id
-        return allowed_value_item_request_builder.AllowedValueItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[CustomSecurityAttributeDefinitionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

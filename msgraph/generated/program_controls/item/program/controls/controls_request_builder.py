@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import program_control, program_control_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import program_control_item_request_builder
 
 class ControlsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ControlsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_program_control_id1(self,program_control_id1: str) -> program_control_item_request_builder.ProgramControlItemRequestBuilder:
+        """
+        Provides operations to manage the controls property of the microsoft.graph.program entity.
+        Args:
+            program_control_id1: Unique identifier of the item
+        Returns: program_control_item_request_builder.ProgramControlItemRequestBuilder
+        """
+        if program_control_id1 is None:
+            raise Exception("program_control_id1 cannot be undefined")
+        from .item import program_control_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["programControl%2Did1"] = program_control_id1
+        return program_control_item_request_builder.ProgramControlItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ControlsRequestBuilderGetRequestConfiguration] = None) -> Optional[program_control_collection_response.ProgramControlCollectionResponse]:
         """
-        In the Azure AD access reviews feature, list all the programControl objects, linked to a particular program.
+        Controls associated with the program.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[program_control_collection_response.ProgramControlCollectionResponse]
@@ -85,7 +101,7 @@ class ControlsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ControlsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        In the Azure AD access reviews feature, list all the programControl objects, linked to a particular program.
+        Controls associated with the program.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class ControlsRequestBuilder():
     @dataclass
     class ControlsRequestBuilderGetQueryParameters():
         """
-        In the Azure AD access reviews feature, list all the programControl objects, linked to a particular program.
+        Controls associated with the program.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

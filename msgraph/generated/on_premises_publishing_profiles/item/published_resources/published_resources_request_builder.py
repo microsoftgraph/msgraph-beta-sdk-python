@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import published_resource, published_resource_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import published_resource_item_request_builder
 
 class PublishedResourcesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class PublishedResourcesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_published_resource_id(self,published_resource_id: str) -> published_resource_item_request_builder.PublishedResourceItemRequestBuilder:
+        """
+        Provides operations to manage the publishedResources property of the microsoft.graph.onPremisesPublishingProfile entity.
+        Args:
+            published_resource_id: Unique identifier of the item
+        Returns: published_resource_item_request_builder.PublishedResourceItemRequestBuilder
+        """
+        if published_resource_id is None:
+            raise Exception("published_resource_id cannot be undefined")
+        from .item import published_resource_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["publishedResource%2Did"] = published_resource_id
+        return published_resource_item_request_builder.PublishedResourceItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[PublishedResourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[published_resource_collection_response.PublishedResourceCollectionResponse]:
         """
-        Retrieve a list of publishedResource objects.
+        List of existing publishedResource objects. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[published_resource_collection_response.PublishedResourceCollectionResponse]
@@ -60,7 +76,7 @@ class PublishedResourcesRequestBuilder():
     
     async def post(self,body: Optional[published_resource.PublishedResource] = None, request_configuration: Optional[PublishedResourcesRequestBuilderPostRequestConfiguration] = None) -> Optional[published_resource.PublishedResource]:
         """
-        Create a new publishedResource object.
+        Create new navigation property to publishedResources for onPremisesPublishingProfiles
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class PublishedResourcesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PublishedResourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of publishedResource objects.
+        List of existing publishedResource objects. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class PublishedResourcesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[published_resource.PublishedResource] = None, request_configuration: Optional[PublishedResourcesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new publishedResource object.
+        Create new navigation property to publishedResources for onPremisesPublishingProfiles
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class PublishedResourcesRequestBuilder():
     @dataclass
     class PublishedResourcesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of publishedResource objects.
+        List of existing publishedResource objects. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

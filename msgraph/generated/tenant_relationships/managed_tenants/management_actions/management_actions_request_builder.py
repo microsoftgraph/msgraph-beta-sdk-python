@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.managed_tenants import management_action, management_action_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import management_action_item_request_builder
 
 class ManagementActionsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ManagementActionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_management_action_id(self,management_action_id: str) -> management_action_item_request_builder.ManagementActionItemRequestBuilder:
+        """
+        Provides operations to manage the managementActions property of the microsoft.graph.managedTenants.managedTenant entity.
+        Args:
+            management_action_id: Unique identifier of the item
+        Returns: management_action_item_request_builder.ManagementActionItemRequestBuilder
+        """
+        if management_action_id is None:
+            raise Exception("management_action_id cannot be undefined")
+        from .item import management_action_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["managementAction%2Did"] = management_action_id
+        return management_action_item_request_builder.ManagementActionItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ManagementActionsRequestBuilderGetRequestConfiguration] = None) -> Optional[management_action_collection_response.ManagementActionCollectionResponse]:
         """
-        Get a list of the managementAction objects and their properties.
+        The collection of baseline management actions across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[management_action_collection_response.ManagementActionCollectionResponse]
@@ -85,7 +101,7 @@ class ManagementActionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ManagementActionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the managementAction objects and their properties.
+        The collection of baseline management actions across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class ManagementActionsRequestBuilder():
     @dataclass
     class ManagementActionsRequestBuilderGetQueryParameters():
         """
-        Get a list of the managementAction objects and their properties.
+        The collection of baseline management actions across managed tenants.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

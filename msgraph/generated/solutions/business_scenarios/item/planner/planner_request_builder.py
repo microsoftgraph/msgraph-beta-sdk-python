@@ -16,7 +16,6 @@ if TYPE_CHECKING:
     from .plan_configuration import plan_configuration_request_builder
     from .task_configuration import task_configuration_request_builder
     from .tasks import tasks_request_builder
-    from .tasks.item import business_scenario_task_item_request_builder
 
 class PlannerRequestBuilder():
     """
@@ -61,7 +60,7 @@ class PlannerRequestBuilder():
     
     async def get(self,request_configuration: Optional[PlannerRequestBuilderGetRequestConfiguration] = None) -> Optional[business_scenario_planner.BusinessScenarioPlanner]:
         """
-        Read the properties and relationships of a businessScenarioPlanner object.
+        Planner content related to the scenario.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[business_scenario_planner.BusinessScenarioPlanner]
@@ -106,21 +105,6 @@ class PlannerRequestBuilder():
 
         return await self.request_adapter.send_async(request_info, business_scenario_planner.BusinessScenarioPlanner, error_mapping)
     
-    def tasks_by_id(self,id: str) -> business_scenario_task_item_request_builder.BusinessScenarioTaskItemRequestBuilder:
-        """
-        Provides operations to manage the tasks property of the microsoft.graph.businessScenarioPlanner entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: business_scenario_task_item_request_builder.BusinessScenarioTaskItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .tasks.item import business_scenario_task_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["businessScenarioTask%2Did"] = id
-        return business_scenario_task_item_request_builder.BusinessScenarioTaskItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def to_delete_request_information(self,request_configuration: Optional[PlannerRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property planner for solutions
@@ -139,7 +123,7 @@ class PlannerRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PlannerRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a businessScenarioPlanner object.
+        Planner content related to the scenario.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -227,7 +211,7 @@ class PlannerRequestBuilder():
     @dataclass
     class PlannerRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a businessScenarioPlanner object.
+        Planner content related to the scenario.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

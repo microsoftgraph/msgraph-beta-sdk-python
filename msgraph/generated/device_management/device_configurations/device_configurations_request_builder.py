@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from .get_ios_available_update_versions import get_ios_available_update_versions_request_builder
     from .get_targeted_users_and_devices import get_targeted_users_and_devices_request_builder
     from .has_payload_links import has_payload_links_request_builder
+    from .item import device_configuration_item_request_builder
 
 class DeviceConfigurationsRequestBuilder():
     """
@@ -38,6 +39,21 @@ class DeviceConfigurationsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_device_configuration_id(self,device_configuration_id: str) -> device_configuration_item_request_builder.DeviceConfigurationItemRequestBuilder:
+        """
+        Provides operations to manage the deviceConfigurations property of the microsoft.graph.deviceManagement entity.
+        Args:
+            device_configuration_id: Unique identifier of the item
+        Returns: device_configuration_item_request_builder.DeviceConfigurationItemRequestBuilder
+        """
+        if device_configuration_id is None:
+            raise Exception("device_configuration_id cannot be undefined")
+        from .item import device_configuration_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["deviceConfiguration%2Did"] = device_configuration_id
+        return device_configuration_item_request_builder.DeviceConfigurationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[DeviceConfigurationsRequestBuilderGetRequestConfiguration] = None) -> Optional[device_configuration_collection_response.DeviceConfigurationCollectionResponse]:
         """

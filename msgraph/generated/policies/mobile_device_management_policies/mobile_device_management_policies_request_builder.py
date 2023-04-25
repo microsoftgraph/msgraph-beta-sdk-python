@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import mobility_management_policy, mobility_management_policy_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import mobility_management_policy_item_request_builder
 
 class MobileDeviceManagementPoliciesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class MobileDeviceManagementPoliciesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_mobility_management_policy_id(self,mobility_management_policy_id: str) -> mobility_management_policy_item_request_builder.MobilityManagementPolicyItemRequestBuilder:
+        """
+        Provides operations to manage the mobileDeviceManagementPolicies property of the microsoft.graph.policyRoot entity.
+        Args:
+            mobility_management_policy_id: Unique identifier of the item
+        Returns: mobility_management_policy_item_request_builder.MobilityManagementPolicyItemRequestBuilder
+        """
+        if mobility_management_policy_id is None:
+            raise Exception("mobility_management_policy_id cannot be undefined")
+        from .item import mobility_management_policy_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["mobilityManagementPolicy%2Did"] = mobility_management_policy_id
+        return mobility_management_policy_item_request_builder.MobilityManagementPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[MobileDeviceManagementPoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[mobility_management_policy_collection_response.MobilityManagementPolicyCollectionResponse]:
         """
-        Get a list of the mobilityManagementPolicy objects and their properties.
+        Get mobileDeviceManagementPolicies from policies
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[mobility_management_policy_collection_response.MobilityManagementPolicyCollectionResponse]
@@ -85,7 +101,7 @@ class MobileDeviceManagementPoliciesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[MobileDeviceManagementPoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the mobilityManagementPolicy objects and their properties.
+        Get mobileDeviceManagementPolicies from policies
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class MobileDeviceManagementPoliciesRequestBuilder():
     @dataclass
     class MobileDeviceManagementPoliciesRequestBuilderGetQueryParameters():
         """
-        Get a list of the mobilityManagementPolicy objects and their properties.
+        Get mobileDeviceManagementPolicies from policies
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import authentication_method_mode_detail, authentication_method_mode_detail_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import authentication_method_mode_detail_item_request_builder
 
 class AuthenticationMethodModesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class AuthenticationMethodModesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_authentication_method_mode_detail_id(self,authentication_method_mode_detail_id: str) -> authentication_method_mode_detail_item_request_builder.AuthenticationMethodModeDetailItemRequestBuilder:
+        """
+        Provides operations to manage the authenticationMethodModes property of the microsoft.graph.authenticationStrengthRoot entity.
+        Args:
+            authentication_method_mode_detail_id: Unique identifier of the item
+        Returns: authentication_method_mode_detail_item_request_builder.AuthenticationMethodModeDetailItemRequestBuilder
+        """
+        if authentication_method_mode_detail_id is None:
+            raise Exception("authentication_method_mode_detail_id cannot be undefined")
+        from .item import authentication_method_mode_detail_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["authenticationMethodModeDetail%2Did"] = authentication_method_mode_detail_id
+        return authentication_method_mode_detail_item_request_builder.AuthenticationMethodModeDetailItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[AuthenticationMethodModesRequestBuilderGetRequestConfiguration] = None) -> Optional[authentication_method_mode_detail_collection_response.AuthenticationMethodModeDetailCollectionResponse]:
         """
-        Get a list of all supported authentication methods, or all supported authentication method combinations as a list of **authenticationMethodModes** objects and their properties.
+        Names and descriptions of all valid authentication method modes in the system.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[authentication_method_mode_detail_collection_response.AuthenticationMethodModeDetailCollectionResponse]
@@ -85,7 +101,7 @@ class AuthenticationMethodModesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AuthenticationMethodModesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of all supported authentication methods, or all supported authentication method combinations as a list of **authenticationMethodModes** objects and their properties.
+        Names and descriptions of all valid authentication method modes in the system.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class AuthenticationMethodModesRequestBuilder():
     @dataclass
     class AuthenticationMethodModesRequestBuilderGetQueryParameters():
         """
-        Get a list of all supported authentication methods, or all supported authentication method combinations as a list of **authenticationMethodModes** objects and their properties.
+        Names and descriptions of all valid authentication method modes in the system.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -13,13 +13,11 @@ if TYPE_CHECKING:
     from .....models import drive_item
     from .....models.o_data_errors import o_data_error
     from .activities import activities_request_builder
-    from .activities.item import item_activity_o_l_d_item_request_builder
     from .analytics import analytics_request_builder
     from .assign_sensitivity_label import assign_sensitivity_label_request_builder
     from .checkin import checkin_request_builder
     from .checkout import checkout_request_builder
     from .children import children_request_builder
-    from .children.item import drive_item_item_request_builder
     from .content import content_request_builder
     from .copy import copy_request_builder
     from .create_link import create_link_request_builder
@@ -32,18 +30,15 @@ if TYPE_CHECKING:
     from .invite import invite_request_builder
     from .list_item import list_item_request_builder
     from .permissions import permissions_request_builder
-    from .permissions.item import permission_item_request_builder
     from .preview import preview_request_builder
     from .restore import restore_request_builder
+    from .retention_label import retention_label_request_builder
     from .search_with_q import search_with_q_request_builder
     from .subscriptions import subscriptions_request_builder
-    from .subscriptions.item import subscription_item_request_builder
     from .thumbnails import thumbnails_request_builder
-    from .thumbnails.item import thumbnail_set_item_request_builder
     from .unfollow import unfollow_request_builder
     from .validate_permission import validate_permission_request_builder
     from .versions import versions_request_builder
-    from .versions.item import drive_item_version_item_request_builder
     from .workbook import workbook_request_builder
 
 class DriveItemItemRequestBuilder():
@@ -67,36 +62,6 @@ class DriveItemItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def activities_by_id(self,id: str) -> item_activity_o_l_d_item_request_builder.ItemActivityOLDItemRequestBuilder:
-        """
-        Provides operations to manage the activities property of the microsoft.graph.driveItem entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: item_activity_o_l_d_item_request_builder.ItemActivityOLDItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .activities.item import item_activity_o_l_d_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["itemActivityOLD%2Did"] = id
-        return item_activity_o_l_d_item_request_builder.ItemActivityOLDItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def children_by_id(self,id: str) -> DriveItemItemRequestBuilder:
-        """
-        Provides operations to manage the children property of the microsoft.graph.driveItem entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: DriveItemItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .children.item import drive_item_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["driveItem%2Did1"] = id
-        return DriveItemItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[DriveItemItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
@@ -196,21 +161,6 @@ class DriveItemItemRequestBuilder():
 
         return await self.request_adapter.send_async(request_info, drive_item.DriveItem, error_mapping)
     
-    def permissions_by_id(self,id: str) -> permission_item_request_builder.PermissionItemRequestBuilder:
-        """
-        Provides operations to manage the permissions property of the microsoft.graph.driveItem entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: permission_item_request_builder.PermissionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .permissions.item import permission_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["permission%2Did"] = id
-        return permission_item_request_builder.PermissionItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def search_with_q(self,q: Optional[str] = None) -> search_with_q_request_builder.SearchWithQRequestBuilder:
         """
         Provides operations to call the search method.
@@ -223,36 +173,6 @@ class DriveItemItemRequestBuilder():
         from .search_with_q import search_with_q_request_builder
 
         return search_with_q_request_builder.SearchWithQRequestBuilder(self.request_adapter, self.path_parameters, q)
-    
-    def subscriptions_by_id(self,id: str) -> subscription_item_request_builder.SubscriptionItemRequestBuilder:
-        """
-        Provides operations to manage the subscriptions property of the microsoft.graph.driveItem entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: subscription_item_request_builder.SubscriptionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .subscriptions.item import subscription_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["subscription%2Did"] = id
-        return subscription_item_request_builder.SubscriptionItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def thumbnails_by_id(self,id: str) -> thumbnail_set_item_request_builder.ThumbnailSetItemRequestBuilder:
-        """
-        Provides operations to manage the thumbnails property of the microsoft.graph.driveItem entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: thumbnail_set_item_request_builder.ThumbnailSetItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .thumbnails.item import thumbnail_set_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["thumbnailSet%2Did"] = id
-        return thumbnail_set_item_request_builder.ThumbnailSetItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[DriveItemItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -308,21 +228,6 @@ class DriveItemItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
-    
-    def versions_by_id(self,id: str) -> drive_item_version_item_request_builder.DriveItemVersionItemRequestBuilder:
-        """
-        Provides operations to manage the versions property of the microsoft.graph.driveItem entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: drive_item_version_item_request_builder.DriveItemVersionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .versions.item import drive_item_version_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["driveItemVersion%2Did"] = id
-        return drive_item_version_item_request_builder.DriveItemVersionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     @property
     def activities(self) -> activities_request_builder.ActivitiesRequestBuilder:
@@ -485,6 +390,15 @@ class DriveItemItemRequestBuilder():
         from .restore import restore_request_builder
 
         return restore_request_builder.RestoreRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retention_label(self) -> retention_label_request_builder.RetentionLabelRequestBuilder:
+        """
+        Provides operations to manage the retentionLabel property of the microsoft.graph.driveItem entity.
+        """
+        from .retention_label import retention_label_request_builder
+
+        return retention_label_request_builder.RetentionLabelRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def subscriptions(self) -> subscriptions_request_builder.SubscriptionsRequestBuilder:

@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ......models import planner_plan_configuration
     from ......models.o_data_errors import o_data_error
     from .localizations import localizations_request_builder
-    from .localizations.item import planner_plan_configuration_localization_item_request_builder
 
 class PlanConfigurationRequestBuilder():
     """
@@ -58,7 +57,7 @@ class PlanConfigurationRequestBuilder():
     
     async def get(self,request_configuration: Optional[PlanConfigurationRequestBuilderGetRequestConfiguration] = None) -> Optional[planner_plan_configuration.PlannerPlanConfiguration]:
         """
-        Read the properties and relationships of a plannerPlanConfiguration object.
+        The configuration of Planner plans that will be created for the scenario.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[planner_plan_configuration.PlannerPlanConfiguration]
@@ -78,24 +77,9 @@ class PlanConfigurationRequestBuilder():
 
         return await self.request_adapter.send_async(request_info, planner_plan_configuration.PlannerPlanConfiguration, error_mapping)
     
-    def localizations_by_id(self,id: str) -> planner_plan_configuration_localization_item_request_builder.PlannerPlanConfigurationLocalizationItemRequestBuilder:
-        """
-        Provides operations to manage the localizations property of the microsoft.graph.plannerPlanConfiguration entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: planner_plan_configuration_localization_item_request_builder.PlannerPlanConfigurationLocalizationItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .localizations.item import planner_plan_configuration_localization_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["plannerPlanConfigurationLocalization%2Did"] = id
-        return planner_plan_configuration_localization_item_request_builder.PlannerPlanConfigurationLocalizationItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     async def patch(self,body: Optional[planner_plan_configuration.PlannerPlanConfiguration] = None, request_configuration: Optional[PlanConfigurationRequestBuilderPatchRequestConfiguration] = None) -> Optional[planner_plan_configuration.PlannerPlanConfiguration]:
         """
-        Update the properties of a plannerPlanConfiguration object for a businessScenario.
+        Update the navigation property planConfiguration in solutions
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -136,7 +120,7 @@ class PlanConfigurationRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PlanConfigurationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a plannerPlanConfiguration object.
+        The configuration of Planner plans that will be created for the scenario.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -154,7 +138,7 @@ class PlanConfigurationRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[planner_plan_configuration.PlannerPlanConfiguration] = None, request_configuration: Optional[PlanConfigurationRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a plannerPlanConfiguration object for a businessScenario.
+        Update the navigation property planConfiguration in solutions
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -197,7 +181,7 @@ class PlanConfigurationRequestBuilder():
     @dataclass
     class PlanConfigurationRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a plannerPlanConfiguration object.
+        The configuration of Planner plans that will be created for the scenario.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

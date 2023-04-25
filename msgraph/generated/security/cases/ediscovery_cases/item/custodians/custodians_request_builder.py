@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models.o_data_errors import o_data_error
     from ......models.security import ediscovery_custodian, ediscovery_custodian_collection_response
     from .count import count_request_builder
+    from .item import ediscovery_custodian_item_request_builder
     from .security_apply_hold import security_apply_hold_request_builder
     from .security_remove_hold import security_remove_hold_request_builder
 
@@ -38,9 +39,24 @@ class CustodiansRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_ediscovery_custodian_id(self,ediscovery_custodian_id: str) -> ediscovery_custodian_item_request_builder.EdiscoveryCustodianItemRequestBuilder:
+        """
+        Provides operations to manage the custodians property of the microsoft.graph.security.ediscoveryCase entity.
+        Args:
+            ediscovery_custodian_id: Unique identifier of the item
+        Returns: ediscovery_custodian_item_request_builder.EdiscoveryCustodianItemRequestBuilder
+        """
+        if ediscovery_custodian_id is None:
+            raise Exception("ediscovery_custodian_id cannot be undefined")
+        from .item import ediscovery_custodian_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["ediscoveryCustodian%2Did"] = ediscovery_custodian_id
+        return ediscovery_custodian_item_request_builder.EdiscoveryCustodianItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[CustodiansRequestBuilderGetRequestConfiguration] = None) -> Optional[ediscovery_custodian_collection_response.EdiscoveryCustodianCollectionResponse]:
         """
-        Get a list of the custodian objects and their properties.
+        Returns a list of case ediscoveryCustodian objects for this case.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ediscovery_custodian_collection_response.EdiscoveryCustodianCollectionResponse]
@@ -62,7 +78,7 @@ class CustodiansRequestBuilder():
     
     async def post(self,body: Optional[ediscovery_custodian.EdiscoveryCustodian] = None, request_configuration: Optional[CustodiansRequestBuilderPostRequestConfiguration] = None) -> Optional[ediscovery_custodian.EdiscoveryCustodian]:
         """
-        Create a new ediscoveryCustodian object.After the custodian object is created, you will need to create the custodian's userSource to reference their mailbox and OneDrive for Business site.
+        Create new navigation property to custodians for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -87,7 +103,7 @@ class CustodiansRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CustodiansRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the custodian objects and their properties.
+        Returns a list of case ediscoveryCustodian objects for this case.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -105,7 +121,7 @@ class CustodiansRequestBuilder():
     
     def to_post_request_information(self,body: Optional[ediscovery_custodian.EdiscoveryCustodian] = None, request_configuration: Optional[CustodiansRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new ediscoveryCustodian object.After the custodian object is created, you will need to create the custodian's userSource to reference their mailbox and OneDrive for Business site.
+        Create new navigation property to custodians for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -154,7 +170,7 @@ class CustodiansRequestBuilder():
     @dataclass
     class CustodiansRequestBuilderGetQueryParameters():
         """
-        Get a list of the custodian objects and their properties.
+        Returns a list of case ediscoveryCustodian objects for this case.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

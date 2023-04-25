@@ -14,9 +14,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .assign import assign_request_builder
     from .assignments import assignments_request_builder
-    from .assignments.item import group_policy_configuration_assignment_item_request_builder
     from .definition_values import definition_values_request_builder
-    from .definition_values.item import group_policy_definition_value_item_request_builder
     from .update_definition_values import update_definition_values_request_builder
 
 class GroupPolicyConfigurationItemRequestBuilder():
@@ -40,36 +38,6 @@ class GroupPolicyConfigurationItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def assignments_by_id(self,id: str) -> group_policy_configuration_assignment_item_request_builder.GroupPolicyConfigurationAssignmentItemRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.groupPolicyConfiguration entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: group_policy_configuration_assignment_item_request_builder.GroupPolicyConfigurationAssignmentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .assignments.item import group_policy_configuration_assignment_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["groupPolicyConfigurationAssignment%2Did"] = id
-        return group_policy_configuration_assignment_item_request_builder.GroupPolicyConfigurationAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def definition_values_by_id(self,id: str) -> group_policy_definition_value_item_request_builder.GroupPolicyDefinitionValueItemRequestBuilder:
-        """
-        Provides operations to manage the definitionValues property of the microsoft.graph.groupPolicyConfiguration entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: group_policy_definition_value_item_request_builder.GroupPolicyDefinitionValueItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .definition_values.item import group_policy_definition_value_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["groupPolicyDefinitionValue%2Did"] = id
-        return group_policy_definition_value_item_request_builder.GroupPolicyDefinitionValueItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[GroupPolicyConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

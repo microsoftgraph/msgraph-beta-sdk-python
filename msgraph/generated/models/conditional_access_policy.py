@@ -11,7 +11,7 @@ from . import entity
 class ConditionalAccessPolicy(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new conditionalAccessPolicy and sets the default values.
+        Instantiates a new ConditionalAccessPolicy and sets the default values.
         """
         super().__init__()
         # The conditions property

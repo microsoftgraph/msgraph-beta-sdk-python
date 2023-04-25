@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .bulk_resize import bulk_resize_request_builder
     from .count import count_request_builder
     from .get_provisioned_cloud_p_cs_with_group_id_with_service_plan_id import get_provisioned_cloud_p_cs_with_group_id_with_service_plan_id_request_builder
+    from .item import cloud_p_c_item_request_builder
     from .validate_bulk_resize import validate_bulk_resize_request_builder
 
 class CloudPCsRequestBuilder():
@@ -39,9 +40,24 @@ class CloudPCsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_cloud_p_c_id(self,cloud_p_c_id: str) -> cloud_p_c_item_request_builder.CloudPCItemRequestBuilder:
+        """
+        Provides operations to manage the cloudPCs property of the microsoft.graph.user entity.
+        Args:
+            cloud_p_c_id: Unique identifier of the item
+        Returns: cloud_p_c_item_request_builder.CloudPCItemRequestBuilder
+        """
+        if cloud_p_c_id is None:
+            raise Exception("cloud_p_c_id cannot be undefined")
+        from .item import cloud_p_c_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["cloudPC%2Did"] = cloud_p_c_id
+        return cloud_p_c_item_request_builder.CloudPCItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[CloudPCsRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_p_c_collection_response.CloudPCCollectionResponse]:
         """
-        List the cloudPC devices that are attributed to the signed-in user. 
+        Get cloudPCs from users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cloud_p_c_collection_response.CloudPCCollectionResponse]
@@ -104,7 +120,7 @@ class CloudPCsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CloudPCsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List the cloudPC devices that are attributed to the signed-in user. 
+        Get cloudPCs from users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +187,7 @@ class CloudPCsRequestBuilder():
     @dataclass
     class CloudPCsRequestBuilderGetQueryParameters():
         """
-        List the cloudPC devices that are attributed to the signed-in user. 
+        Get cloudPCs from users
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

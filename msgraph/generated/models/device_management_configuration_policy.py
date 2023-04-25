@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class DeviceManagementConfigurationPolicy(entity.Entity):
-    """
-    Device Management Configuration Policy
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceManagementConfigurationPolicy and sets the default values.
+        Instantiates a new DeviceManagementConfigurationPolicy and sets the default values.
         """
         super().__init__()
         # Policy assignments

@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .delta import delta_request_builder
+    from .item import contact_folder_item_request_builder
 
 class ContactFoldersRequestBuilder():
     """
@@ -37,9 +38,24 @@ class ContactFoldersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_contact_folder_id(self,contact_folder_id: str) -> contact_folder_item_request_builder.ContactFolderItemRequestBuilder:
+        """
+        Provides operations to manage the contactFolders property of the microsoft.graph.user entity.
+        Args:
+            contact_folder_id: Unique identifier of the item
+        Returns: contact_folder_item_request_builder.ContactFolderItemRequestBuilder
+        """
+        if contact_folder_id is None:
+            raise Exception("contact_folder_id cannot be undefined")
+        from .item import contact_folder_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["contactFolder%2Did"] = contact_folder_id
+        return contact_folder_item_request_builder.ContactFolderItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ContactFoldersRequestBuilderGetRequestConfiguration] = None) -> Optional[contact_folder_collection_response.ContactFolderCollectionResponse]:
         """
-        Get all the contact folders in the signed-in user's mailbox.
+        The user's contacts folders. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[contact_folder_collection_response.ContactFolderCollectionResponse]
@@ -61,7 +77,7 @@ class ContactFoldersRequestBuilder():
     
     async def post(self,body: Optional[contact_folder.ContactFolder] = None, request_configuration: Optional[ContactFoldersRequestBuilderPostRequestConfiguration] = None) -> Optional[contact_folder.ContactFolder]:
         """
-        Create a new contactFolder under the user's default contacts folder. You can also create a new contactfolder as a child of any specified contact folder.
+        Create new navigation property to contactFolders for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -86,7 +102,7 @@ class ContactFoldersRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ContactFoldersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get all the contact folders in the signed-in user's mailbox.
+        The user's contacts folders. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +120,7 @@ class ContactFoldersRequestBuilder():
     
     def to_post_request_information(self,body: Optional[contact_folder.ContactFolder] = None, request_configuration: Optional[ContactFoldersRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new contactFolder under the user's default contacts folder. You can also create a new contactfolder as a child of any specified contact folder.
+        Create new navigation property to contactFolders for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -144,7 +160,7 @@ class ContactFoldersRequestBuilder():
     @dataclass
     class ContactFoldersRequestBuilderGetQueryParameters():
         """
-        Get all the contact folders in the signed-in user's mailbox.
+        The user's contacts folders. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -14,7 +14,7 @@ class OfficeConfigurationGroupAssignmentTarget(office_configuration_assignment_t
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.officeConfigurationGroupAssignmentTarget"
-        # The Id of the AAD group we are targeting the device configuration to.
+        # The groupId property
         self._group_id: Optional[str] = None
     
     @staticmethod
@@ -46,7 +46,7 @@ class OfficeConfigurationGroupAssignmentTarget(office_configuration_assignment_t
     @property
     def group_id(self,) -> Optional[str]:
         """
-        Gets the groupId property value. The Id of the AAD group we are targeting the device configuration to.
+        Gets the groupId property value. The groupId property
         Returns: Optional[str]
         """
         return self._group_id
@@ -54,7 +54,7 @@ class OfficeConfigurationGroupAssignmentTarget(office_configuration_assignment_t
     @group_id.setter
     def group_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the groupId property value. The Id of the AAD group we are targeting the device configuration to.
+        Sets the groupId property value. The groupId property
         Args:
             value: Value to set for the group_id property.
         """

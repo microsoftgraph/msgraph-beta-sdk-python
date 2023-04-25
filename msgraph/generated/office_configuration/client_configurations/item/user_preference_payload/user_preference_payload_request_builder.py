@@ -36,7 +36,7 @@ class UserPreferencePayloadRequestBuilder():
     
     async def get(self,request_configuration: Optional[UserPreferencePayloadRequestBuilderGetRequestConfiguration] = None) -> bytes:
         """
-        Preference settings JSON string in binary format, these values can be overridden by the user.
+        Get userPreferencePayload for the navigation property clientConfigurations from officeConfiguration
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: bytes
@@ -56,7 +56,7 @@ class UserPreferencePayloadRequestBuilder():
     
     async def put(self,body: bytes, request_configuration: Optional[UserPreferencePayloadRequestBuilderPutRequestConfiguration] = None) -> bytes:
         """
-        Preference settings JSON string in binary format, these values can be overridden by the user.
+        Update userPreferencePayload for the navigation property clientConfigurations in officeConfiguration
         Args:
             body: Binary request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -79,7 +79,7 @@ class UserPreferencePayloadRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UserPreferencePayloadRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Preference settings JSON string in binary format, these values can be overridden by the user.
+        Get userPreferencePayload for the navigation property clientConfigurations from officeConfiguration
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -95,7 +95,7 @@ class UserPreferencePayloadRequestBuilder():
     
     def to_put_request_information(self,body: bytes, request_configuration: Optional[UserPreferencePayloadRequestBuilderPutRequestConfiguration] = None) -> RequestInformation:
         """
-        Preference settings JSON string in binary format, these values can be overridden by the user.
+        Update userPreferencePayload for the navigation property clientConfigurations in officeConfiguration
         Args:
             body: Binary request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

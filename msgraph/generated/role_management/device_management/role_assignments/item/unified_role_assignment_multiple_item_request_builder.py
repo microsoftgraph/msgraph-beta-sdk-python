@@ -13,11 +13,8 @@ if TYPE_CHECKING:
     from .....models import unified_role_assignment_multiple
     from .....models.o_data_errors import o_data_error
     from .app_scopes import app_scopes_request_builder
-    from .app_scopes.item import app_scope_item_request_builder
     from .directory_scopes import directory_scopes_request_builder
-    from .directory_scopes.item import directory_object_item_request_builder
     from .principals import principals_request_builder
-    from .principals.item import directory_object_item_request_builder
     from .role_definition import role_definition_request_builder
 
 class UnifiedRoleAssignmentMultipleItemRequestBuilder():
@@ -42,21 +39,6 @@ class UnifiedRoleAssignmentMultipleItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def app_scopes_by_id(self,id: str) -> app_scope_item_request_builder.AppScopeItemRequestBuilder:
-        """
-        Provides operations to manage the appScopes property of the microsoft.graph.unifiedRoleAssignmentMultiple entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: app_scope_item_request_builder.AppScopeItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .app_scopes.item import app_scope_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["appScope%2Did"] = id
-        return app_scope_item_request_builder.AppScopeItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     async def delete(self,request_configuration: Optional[UnifiedRoleAssignmentMultipleItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property roleAssignments for roleManagement
@@ -75,22 +57,6 @@ class UnifiedRoleAssignmentMultipleItemRequestBuilder():
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
-    
-    def directory_scopes_by_id(self,id: str) -> directory_object_item_request_builder.DirectoryObjectItemRequestBuilder:
-        """
-        Provides operations to manage the directoryScopes property of the microsoft.graph.unifiedRoleAssignmentMultiple entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: directory_object_item_request_builder.DirectoryObjectItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .directory_scopes.item import directory_object_item_request_builder
-        from .principals.item import directory_object_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["directoryObject%2Did"] = id
-        return directory_object_item_request_builder.DirectoryObjectItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[UnifiedRoleAssignmentMultipleItemRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple]:
         """
@@ -138,22 +104,6 @@ class UnifiedRoleAssignmentMultipleItemRequestBuilder():
         from .....models import unified_role_assignment_multiple
 
         return await self.request_adapter.send_async(request_info, unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple, error_mapping)
-    
-    def principals_by_id(self,id: str) -> directory_object_item_request_builder.DirectoryObjectItemRequestBuilder:
-        """
-        Provides operations to manage the principals property of the microsoft.graph.unifiedRoleAssignmentMultiple entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: directory_object_item_request_builder.DirectoryObjectItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .directory_scopes.item import directory_object_item_request_builder
-        from .principals.item import directory_object_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["directoryObject%2Did"] = id
-        return directory_object_item_request_builder.DirectoryObjectItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[UnifiedRoleAssignmentMultipleItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

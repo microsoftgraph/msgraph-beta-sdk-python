@@ -37,7 +37,7 @@ class GetRemoteConnectionHistoricalReportsRequestBuilder():
     
     async def post(self,body: Optional[get_remote_connection_historical_reports_post_request_body.GetRemoteConnectionHistoricalReportsPostRequestBody] = None, request_configuration: Optional[GetRemoteConnectionHistoricalReportsRequestBuilderPostRequestConfiguration] = None) -> bytes:
         """
-        Get the remote connection history records of a Cloud PC during a given period.
+        Invoke action getRemoteConnectionHistoricalReports
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -60,7 +60,7 @@ class GetRemoteConnectionHistoricalReportsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[get_remote_connection_historical_reports_post_request_body.GetRemoteConnectionHistoricalReportsPostRequestBody] = None, request_configuration: Optional[GetRemoteConnectionHistoricalReportsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the remote connection history records of a Cloud PC during a given period.
+        Invoke action getRemoteConnectionHistoricalReports
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

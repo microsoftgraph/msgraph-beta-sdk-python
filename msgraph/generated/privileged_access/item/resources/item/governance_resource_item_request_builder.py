@@ -14,13 +14,9 @@ if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .parent import parent_request_builder
     from .role_assignment_requests import role_assignment_requests_request_builder
-    from .role_assignment_requests.item import governance_role_assignment_request_item_request_builder
     from .role_assignments import role_assignments_request_builder
-    from .role_assignments.item import governance_role_assignment_item_request_builder
     from .role_definitions import role_definitions_request_builder
-    from .role_definitions.item import governance_role_definition_item_request_builder
     from .role_settings import role_settings_request_builder
-    from .role_settings.item import governance_role_setting_item_request_builder
 
 class GovernanceResourceItemRequestBuilder():
     """
@@ -109,66 +105,6 @@ class GovernanceResourceItemRequestBuilder():
         from .....models import governance_resource
 
         return await self.request_adapter.send_async(request_info, governance_resource.GovernanceResource, error_mapping)
-    
-    def role_assignment_requests_by_id(self,id: str) -> governance_role_assignment_request_item_request_builder.GovernanceRoleAssignmentRequestItemRequestBuilder:
-        """
-        Provides operations to manage the roleAssignmentRequests property of the microsoft.graph.governanceResource entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: governance_role_assignment_request_item_request_builder.GovernanceRoleAssignmentRequestItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .role_assignment_requests.item import governance_role_assignment_request_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["governanceRoleAssignmentRequest%2Did"] = id
-        return governance_role_assignment_request_item_request_builder.GovernanceRoleAssignmentRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def role_assignments_by_id(self,id: str) -> governance_role_assignment_item_request_builder.GovernanceRoleAssignmentItemRequestBuilder:
-        """
-        Provides operations to manage the roleAssignments property of the microsoft.graph.governanceResource entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: governance_role_assignment_item_request_builder.GovernanceRoleAssignmentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .role_assignments.item import governance_role_assignment_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["governanceRoleAssignment%2Did"] = id
-        return governance_role_assignment_item_request_builder.GovernanceRoleAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def role_definitions_by_id(self,id: str) -> governance_role_definition_item_request_builder.GovernanceRoleDefinitionItemRequestBuilder:
-        """
-        Provides operations to manage the roleDefinitions property of the microsoft.graph.governanceResource entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: governance_role_definition_item_request_builder.GovernanceRoleDefinitionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .role_definitions.item import governance_role_definition_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["governanceRoleDefinition%2Did"] = id
-        return governance_role_definition_item_request_builder.GovernanceRoleDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def role_settings_by_id(self,id: str) -> governance_role_setting_item_request_builder.GovernanceRoleSettingItemRequestBuilder:
-        """
-        Provides operations to manage the roleSettings property of the microsoft.graph.governanceResource entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: governance_role_setting_item_request_builder.GovernanceRoleSettingItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .role_settings.item import governance_role_setting_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["governanceRoleSetting%2Did"] = id
-        return governance_role_setting_item_request_builder.GovernanceRoleSettingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[GovernanceResourceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

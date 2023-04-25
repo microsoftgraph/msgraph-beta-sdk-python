@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models.o_data_errors import o_data_error
     from ......models.security import intelligence_profile_indicator_collection_response
     from .count import count_request_builder
+    from .item import intelligence_profile_indicator_item_request_builder
 
 class IndicatorsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class IndicatorsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_intelligence_profile_indicator_id(self,intelligence_profile_indicator_id: str) -> intelligence_profile_indicator_item_request_builder.IntelligenceProfileIndicatorItemRequestBuilder:
+        """
+        Provides operations to manage the indicators property of the microsoft.graph.security.intelligenceProfile entity.
+        Args:
+            intelligence_profile_indicator_id: Unique identifier of the item
+        Returns: intelligence_profile_indicator_item_request_builder.IntelligenceProfileIndicatorItemRequestBuilder
+        """
+        if intelligence_profile_indicator_id is None:
+            raise Exception("intelligence_profile_indicator_id cannot be undefined")
+        from .item import intelligence_profile_indicator_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["intelligenceProfileIndicator%2Did"] = intelligence_profile_indicator_id
+        return intelligence_profile_indicator_item_request_builder.IntelligenceProfileIndicatorItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[IndicatorsRequestBuilderGetRequestConfiguration] = None) -> Optional[intelligence_profile_indicator_collection_response.IntelligenceProfileIndicatorCollectionResponse]:
         """
-        Get the intelligenceProfileIndicator resources from the **indicators** navigation property of an intelligenceProfile.
+        Includes an assemblage of high-fidelity network indicators of compromise.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[intelligence_profile_indicator_collection_response.IntelligenceProfileIndicatorCollectionResponse]
@@ -60,7 +76,7 @@ class IndicatorsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[IndicatorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the intelligenceProfileIndicator resources from the **indicators** navigation property of an intelligenceProfile.
+        Includes an assemblage of high-fidelity network indicators of compromise.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -88,7 +104,7 @@ class IndicatorsRequestBuilder():
     @dataclass
     class IndicatorsRequestBuilderGetQueryParameters():
         """
-        Get the intelligenceProfileIndicator resources from the **indicators** navigation property of an intelligenceProfile.
+        Includes an assemblage of high-fidelity network indicators of compromise.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

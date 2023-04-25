@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models import teams_tab, teams_tab_collection_response
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import teams_tab_item_request_builder
 
 class TabsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class TabsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_teams_tab_id(self,teams_tab_id: str) -> teams_tab_item_request_builder.TeamsTabItemRequestBuilder:
+        """
+        Provides operations to manage the tabs property of the microsoft.graph.channel entity.
+        Args:
+            teams_tab_id: Unique identifier of the item
+        Returns: teams_tab_item_request_builder.TeamsTabItemRequestBuilder
+        """
+        if teams_tab_id is None:
+            raise Exception("teams_tab_id cannot be undefined")
+        from .item import teams_tab_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["teamsTab%2Did"] = teams_tab_id
+        return teams_tab_item_request_builder.TeamsTabItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[TabsRequestBuilderGetRequestConfiguration] = None) -> Optional[teams_tab_collection_response.TeamsTabCollectionResponse]:
         """
-        Retrieve the list of tabs in the specified channel within a team. 
+        A collection of all the tabs in the channel. A navigation property.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[teams_tab_collection_response.TeamsTabCollectionResponse]
@@ -85,7 +101,7 @@ class TabsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TabsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the list of tabs in the specified channel within a team. 
+        A collection of all the tabs in the channel. A navigation property.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class TabsRequestBuilder():
     @dataclass
     class TabsRequestBuilderGetQueryParameters():
         """
-        Retrieve the list of tabs in the specified channel within a team. 
+        A collection of all the tabs in the channel. A navigation property.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

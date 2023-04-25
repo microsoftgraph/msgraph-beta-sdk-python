@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .has_payload_links import has_payload_links_request_builder
+    from .item import windows_autopilot_deployment_profile_item_request_builder
 
 class WindowsAutopilotDeploymentProfilesRequestBuilder():
     """
@@ -36,6 +37,21 @@ class WindowsAutopilotDeploymentProfilesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_windows_autopilot_deployment_profile_id(self,windows_autopilot_deployment_profile_id: str) -> windows_autopilot_deployment_profile_item_request_builder.WindowsAutopilotDeploymentProfileItemRequestBuilder:
+        """
+        Provides operations to manage the windowsAutopilotDeploymentProfiles property of the microsoft.graph.deviceManagement entity.
+        Args:
+            windows_autopilot_deployment_profile_id: Unique identifier of the item
+        Returns: windows_autopilot_deployment_profile_item_request_builder.WindowsAutopilotDeploymentProfileItemRequestBuilder
+        """
+        if windows_autopilot_deployment_profile_id is None:
+            raise Exception("windows_autopilot_deployment_profile_id cannot be undefined")
+        from .item import windows_autopilot_deployment_profile_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["windowsAutopilotDeploymentProfile%2Did"] = windows_autopilot_deployment_profile_id
+        return windows_autopilot_deployment_profile_item_request_builder.WindowsAutopilotDeploymentProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[WindowsAutopilotDeploymentProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_autopilot_deployment_profile_collection_response.WindowsAutopilotDeploymentProfileCollectionResponse]:
         """

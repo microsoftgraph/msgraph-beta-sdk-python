@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import office_client_configuration_assignment, office_client_configuration_assignment_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import office_client_configuration_assignment_item_request_builder
 
 class AssignmentsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class AssignmentsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_office_client_configuration_assignment_id(self,office_client_configuration_assignment_id: str) -> office_client_configuration_assignment_item_request_builder.OfficeClientConfigurationAssignmentItemRequestBuilder:
+        """
+        Provides operations to manage the assignments property of the microsoft.graph.officeClientConfiguration entity.
+        Args:
+            office_client_configuration_assignment_id: Unique identifier of the item
+        Returns: office_client_configuration_assignment_item_request_builder.OfficeClientConfigurationAssignmentItemRequestBuilder
+        """
+        if office_client_configuration_assignment_id is None:
+            raise Exception("office_client_configuration_assignment_id cannot be undefined")
+        from .item import office_client_configuration_assignment_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["officeClientConfigurationAssignment%2Did"] = office_client_configuration_assignment_id
+        return office_client_configuration_assignment_item_request_builder.OfficeClientConfigurationAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[AssignmentsRequestBuilderGetRequestConfiguration] = None) -> Optional[office_client_configuration_assignment_collection_response.OfficeClientConfigurationAssignmentCollectionResponse]:
         """
-        The list of group assignments for the policy.
+        Get assignments from officeConfiguration
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[office_client_configuration_assignment_collection_response.OfficeClientConfigurationAssignmentCollectionResponse]
@@ -85,7 +101,7 @@ class AssignmentsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AssignmentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The list of group assignments for the policy.
+        Get assignments from officeConfiguration
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class AssignmentsRequestBuilder():
     @dataclass
     class AssignmentsRequestBuilderGetQueryParameters():
         """
-        The list of group assignments for the policy.
+        Get assignments from officeConfiguration
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

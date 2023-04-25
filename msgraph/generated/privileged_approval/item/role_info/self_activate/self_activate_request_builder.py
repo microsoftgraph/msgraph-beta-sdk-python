@@ -38,7 +38,7 @@ class SelfActivateRequestBuilder():
     
     async def post(self,body: Optional[self_activate_post_request_body.SelfActivatePostRequestBody] = None, request_configuration: Optional[SelfActivateRequestBuilderPostRequestConfiguration] = None) -> Optional[privileged_role_assignment.PrivilegedRoleAssignment]:
         """
-        Activate the role that is assigned to the requester.
+        Invoke action selfActivate
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +63,7 @@ class SelfActivateRequestBuilder():
     
     def to_post_request_information(self,body: Optional[self_activate_post_request_body.SelfActivatePostRequestBody] = None, request_configuration: Optional[SelfActivateRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Activate the role that is assigned to the requester.
+        Invoke action selfActivate
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

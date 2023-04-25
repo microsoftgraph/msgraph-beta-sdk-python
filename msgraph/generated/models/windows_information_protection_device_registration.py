@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class WindowsInformationProtectionDeviceRegistration(entity.Entity):
-    """
-    Represents device registration records for Bring-Your-Own-Device(BYOD) Windows devices.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new windowsInformationProtectionDeviceRegistration and sets the default values.
+        Instantiates a new WindowsInformationProtectionDeviceRegistration and sets the default values.
         """
         super().__init__()
         # Device Mac address.

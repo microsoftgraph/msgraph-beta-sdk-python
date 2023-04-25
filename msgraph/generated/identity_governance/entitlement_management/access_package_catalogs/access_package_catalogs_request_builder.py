@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import access_package_catalog, access_package_catalog_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import access_package_catalog_item_request_builder
     from .search import search_request_builder
 
 class AccessPackageCatalogsRequestBuilder():
@@ -37,9 +38,24 @@ class AccessPackageCatalogsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_access_package_catalog_id(self,access_package_catalog_id: str) -> access_package_catalog_item_request_builder.AccessPackageCatalogItemRequestBuilder:
+        """
+        Provides operations to manage the accessPackageCatalogs property of the microsoft.graph.entitlementManagement entity.
+        Args:
+            access_package_catalog_id: Unique identifier of the item
+        Returns: access_package_catalog_item_request_builder.AccessPackageCatalogItemRequestBuilder
+        """
+        if access_package_catalog_id is None:
+            raise Exception("access_package_catalog_id cannot be undefined")
+        from .item import access_package_catalog_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["accessPackageCatalog%2Did"] = access_package_catalog_id
+        return access_package_catalog_item_request_builder.AccessPackageCatalogItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[AccessPackageCatalogsRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_catalog_collection_response.AccessPackageCatalogCollectionResponse]:
         """
-        Retrieve a list of accessPackageCatalog objects.
+        A container of access packages.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_package_catalog_collection_response.AccessPackageCatalogCollectionResponse]
@@ -61,7 +77,7 @@ class AccessPackageCatalogsRequestBuilder():
     
     async def post(self,body: Optional[access_package_catalog.AccessPackageCatalog] = None, request_configuration: Optional[AccessPackageCatalogsRequestBuilderPostRequestConfiguration] = None) -> Optional[access_package_catalog.AccessPackageCatalog]:
         """
-        Create a new accessPackageCatalog object.
+        Create new navigation property to accessPackageCatalogs for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -86,7 +102,7 @@ class AccessPackageCatalogsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageCatalogsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of accessPackageCatalog objects.
+        A container of access packages.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +120,7 @@ class AccessPackageCatalogsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[access_package_catalog.AccessPackageCatalog] = None, request_configuration: Optional[AccessPackageCatalogsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new accessPackageCatalog object.
+        Create new navigation property to accessPackageCatalogs for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -144,7 +160,7 @@ class AccessPackageCatalogsRequestBuilder():
     @dataclass
     class AccessPackageCatalogsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of accessPackageCatalog objects.
+        A container of access packages.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

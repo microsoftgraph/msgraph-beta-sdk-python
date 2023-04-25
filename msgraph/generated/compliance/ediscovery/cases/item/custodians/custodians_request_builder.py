@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .count import count_request_builder
     from .ediscovery_apply_hold import ediscovery_apply_hold_request_builder
     from .ediscovery_remove_hold import ediscovery_remove_hold_request_builder
+    from .item import custodian_item_request_builder
 
 class CustodiansRequestBuilder():
     """
@@ -38,9 +39,24 @@ class CustodiansRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_custodian_id(self,custodian_id: str) -> custodian_item_request_builder.CustodianItemRequestBuilder:
+        """
+        Provides operations to manage the custodians property of the microsoft.graph.ediscovery.case entity.
+        Args:
+            custodian_id: Unique identifier of the item
+        Returns: custodian_item_request_builder.CustodianItemRequestBuilder
+        """
+        if custodian_id is None:
+            raise Exception("custodian_id cannot be undefined")
+        from .item import custodian_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["custodian%2Did"] = custodian_id
+        return custodian_item_request_builder.CustodianItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[CustodiansRequestBuilderGetRequestConfiguration] = None) -> Optional[custodian_collection_response.CustodianCollectionResponse]:
         """
-        Get a list of the custodian objects and their properties.
+        Returns a list of case custodian objects for this case.  Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[custodian_collection_response.CustodianCollectionResponse]
@@ -62,7 +78,7 @@ class CustodiansRequestBuilder():
     
     async def post(self,body: Optional[custodian.Custodian] = None, request_configuration: Optional[CustodiansRequestBuilderPostRequestConfiguration] = None) -> Optional[custodian.Custodian]:
         """
-        Create a new custodian object. After the custodian object is created, you will need to create the custodian's userSource to reference their mailbox and OneDrive for Business site.
+        Create new navigation property to custodians for compliance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -87,7 +103,7 @@ class CustodiansRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CustodiansRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the custodian objects and their properties.
+        Returns a list of case custodian objects for this case.  Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -105,7 +121,7 @@ class CustodiansRequestBuilder():
     
     def to_post_request_information(self,body: Optional[custodian.Custodian] = None, request_configuration: Optional[CustodiansRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new custodian object. After the custodian object is created, you will need to create the custodian's userSource to reference their mailbox and OneDrive for Business site.
+        Create new navigation property to custodians for compliance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -154,7 +170,7 @@ class CustodiansRequestBuilder():
     @dataclass
     class CustodiansRequestBuilderGetQueryParameters():
         """
-        Get a list of the custodian objects and their properties.
+        Returns a list of case custodian objects for this case.  Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

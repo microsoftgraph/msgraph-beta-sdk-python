@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import unified_rbac_resource_namespace, unified_rbac_resource_namespace_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import unified_rbac_resource_namespace_item_request_builder
 
 class ResourceNamespacesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ResourceNamespacesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_unified_rbac_resource_namespace_id(self,unified_rbac_resource_namespace_id: str) -> unified_rbac_resource_namespace_item_request_builder.UnifiedRbacResourceNamespaceItemRequestBuilder:
+        """
+        Provides operations to manage the resourceNamespaces property of the microsoft.graph.rbacApplication entity.
+        Args:
+            unified_rbac_resource_namespace_id: Unique identifier of the item
+        Returns: unified_rbac_resource_namespace_item_request_builder.UnifiedRbacResourceNamespaceItemRequestBuilder
+        """
+        if unified_rbac_resource_namespace_id is None:
+            raise Exception("unified_rbac_resource_namespace_id cannot be undefined")
+        from .item import unified_rbac_resource_namespace_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["unifiedRbacResourceNamespace%2Did"] = unified_rbac_resource_namespace_id
+        return unified_rbac_resource_namespace_item_request_builder.UnifiedRbacResourceNamespaceItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ResourceNamespacesRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_rbac_resource_namespace_collection_response.UnifiedRbacResourceNamespaceCollectionResponse]:
         """
-        Get a list of the unifiedRbacResourceNamespace objects and their properties.
+        Get resourceNamespaces from roleManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[unified_rbac_resource_namespace_collection_response.UnifiedRbacResourceNamespaceCollectionResponse]
@@ -85,7 +101,7 @@ class ResourceNamespacesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ResourceNamespacesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the unifiedRbacResourceNamespace objects and their properties.
+        Get resourceNamespaces from roleManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class ResourceNamespacesRequestBuilder():
     @dataclass
     class ResourceNamespacesRequestBuilderGetQueryParameters():
         """
-        Get a list of the unifiedRbacResourceNamespace objects and their properties.
+        Get resourceNamespaces from roleManagement
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

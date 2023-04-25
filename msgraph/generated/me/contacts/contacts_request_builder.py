@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .delta import delta_request_builder
+    from .item import contact_item_request_builder
 
 class ContactsRequestBuilder():
     """
@@ -37,9 +38,24 @@ class ContactsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_contact_id(self,contact_id: str) -> contact_item_request_builder.ContactItemRequestBuilder:
+        """
+        Provides operations to manage the contacts property of the microsoft.graph.user entity.
+        Args:
+            contact_id: Unique identifier of the item
+        Returns: contact_item_request_builder.ContactItemRequestBuilder
+        """
+        if contact_id is None:
+            raise Exception("contact_id cannot be undefined")
+        from .item import contact_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["contact%2Did"] = contact_id
+        return contact_item_request_builder.ContactItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ContactsRequestBuilderGetRequestConfiguration] = None) -> Optional[contact_collection_response.ContactCollectionResponse]:
         """
-        Get contacts in the user's mailbox. There are two scenarios where an app can get contacts in another user's contact folder:
+        The user's contacts. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[contact_collection_response.ContactCollectionResponse]
@@ -61,7 +77,7 @@ class ContactsRequestBuilder():
     
     async def post(self,body: Optional[contact.Contact] = None, request_configuration: Optional[ContactsRequestBuilderPostRequestConfiguration] = None) -> Optional[contact.Contact]:
         """
-        Add a contact to the root Contacts folder or to the contacts endpoint of another contact folder.
+        Create new navigation property to contacts for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -86,7 +102,7 @@ class ContactsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ContactsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get contacts in the user's mailbox. There are two scenarios where an app can get contacts in another user's contact folder:
+        The user's contacts. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +120,7 @@ class ContactsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[contact.Contact] = None, request_configuration: Optional[ContactsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Add a contact to the root Contacts folder or to the contacts endpoint of another contact folder.
+        Create new navigation property to contacts for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -144,7 +160,7 @@ class ContactsRequestBuilder():
     @dataclass
     class ContactsRequestBuilderGetQueryParameters():
         """
-        Get contacts in the user's mailbox. There are two scenarios where an app can get contacts in another user's contact folder:
+        The user's contacts. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

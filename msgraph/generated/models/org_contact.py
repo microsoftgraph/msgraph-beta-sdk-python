@@ -4,7 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import directory_object, on_premises_provisioning_error, phone, physical_office_address
+    from . import directory_object, on_premises_provisioning_error, phone, physical_office_address, service_provisioning_error
 
 from . import directory_object
 
@@ -47,6 +47,8 @@ class OrgContact(directory_object.DirectoryObject):
         self._phones: Optional[List[phone.Phone]] = None
         # For example: 'SMTP: bob@contoso.com', 'smtp: bob@sales.contoso.com'. The any operator is required for filter expressions on multi-valued properties. Supports $filter (eq, not, ge, le, startsWith, /$count eq 0, /$count ne 0).
         self._proxy_addresses: Optional[List[str]] = None
+        # The serviceProvisioningErrors property
+        self._service_provisioning_errors: Optional[List[service_provisioning_error.ServiceProvisioningError]] = None
         # Last name for this organizational contact. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq for null values)
         self._surname: Optional[str] = None
         # The transitiveMemberOf property
@@ -156,7 +158,7 @@ class OrgContact(directory_object.DirectoryObject):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import directory_object, on_premises_provisioning_error, phone, physical_office_address
+        from . import directory_object, on_premises_provisioning_error, phone, physical_office_address, service_provisioning_error
 
         fields: Dict[str, Callable[[Any], None]] = {
             "addresses": lambda n : setattr(self, 'addresses', n.get_collection_of_object_values(physical_office_address.PhysicalOfficeAddress)),
@@ -175,6 +177,7 @@ class OrgContact(directory_object.DirectoryObject):
             "onPremisesSyncEnabled": lambda n : setattr(self, 'on_premises_sync_enabled', n.get_bool_value()),
             "phones": lambda n : setattr(self, 'phones', n.get_collection_of_object_values(phone.Phone)),
             "proxyAddresses": lambda n : setattr(self, 'proxy_addresses', n.get_collection_of_primitive_values(str)),
+            "serviceProvisioningErrors": lambda n : setattr(self, 'service_provisioning_errors', n.get_collection_of_object_values(service_provisioning_error.ServiceProvisioningError)),
             "surname": lambda n : setattr(self, 'surname', n.get_str_value()),
             "transitiveMemberOf": lambda n : setattr(self, 'transitive_member_of', n.get_collection_of_object_values(directory_object.DirectoryObject)),
             "transitiveReports": lambda n : setattr(self, 'transitive_reports', n.get_collection_of_object_values(directory_object.DirectoryObject)),
@@ -395,9 +398,27 @@ class OrgContact(directory_object.DirectoryObject):
         writer.write_bool_value("onPremisesSyncEnabled", self.on_premises_sync_enabled)
         writer.write_collection_of_object_values("phones", self.phones)
         writer.write_collection_of_primitive_values("proxyAddresses", self.proxy_addresses)
+        writer.write_collection_of_object_values("serviceProvisioningErrors", self.service_provisioning_errors)
         writer.write_str_value("surname", self.surname)
         writer.write_collection_of_object_values("transitiveMemberOf", self.transitive_member_of)
         writer.write_collection_of_object_values("transitiveReports", self.transitive_reports)
+    
+    @property
+    def service_provisioning_errors(self,) -> Optional[List[service_provisioning_error.ServiceProvisioningError]]:
+        """
+        Gets the serviceProvisioningErrors property value. The serviceProvisioningErrors property
+        Returns: Optional[List[service_provisioning_error.ServiceProvisioningError]]
+        """
+        return self._service_provisioning_errors
+    
+    @service_provisioning_errors.setter
+    def service_provisioning_errors(self,value: Optional[List[service_provisioning_error.ServiceProvisioningError]] = None) -> None:
+        """
+        Sets the serviceProvisioningErrors property value. The serviceProvisioningErrors property
+        Args:
+            value: Value to set for the service_provisioning_errors property.
+        """
+        self._service_provisioning_errors = value
     
     @property
     def surname(self,) -> Optional[str]:

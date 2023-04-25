@@ -12,7 +12,7 @@ from . import workflow_base
 class Workflow(workflow_base.WorkflowBase):
     def __init__(self,) -> None:
         """
-        Instantiates a new Workflow and sets the default values.
+        Instantiates a new workflow and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.identityGovernance.workflow"
@@ -94,6 +94,7 @@ class Workflow(workflow_base.WorkflowBase):
             "executionScope": lambda n : setattr(self, 'execution_scope', n.get_collection_of_object_values(user.User)),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "nextScheduleRunDateTime": lambda n : setattr(self, 'next_schedule_run_date_time', n.get_datetime_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "runs": lambda n : setattr(self, 'runs', n.get_collection_of_object_values(run.Run)),
             "taskReports": lambda n : setattr(self, 'task_reports', n.get_collection_of_object_values(task_report.TaskReport)),
             "userProcessingResults": lambda n : setattr(self, 'user_processing_results', n.get_collection_of_object_values(user_processing_result.UserProcessingResult)),
@@ -139,6 +140,23 @@ class Workflow(workflow_base.WorkflowBase):
         self._next_schedule_run_date_time = value
     
     @property
+    def odata_type(self,) -> Optional[str]:
+        """
+        Gets the @odata.type property value. The OdataType property
+        Returns: Optional[str]
+        """
+        return self._odata_type
+    
+    @odata_type.setter
+    def odata_type(self,value: Optional[str] = None) -> None:
+        """
+        Sets the @odata.type property value. The OdataType property
+        Args:
+            value: Value to set for the odata_type property.
+        """
+        self._odata_type = value
+    
+    @property
     def runs(self,) -> Optional[List[run.Run]]:
         """
         Gets the runs property value. Workflow runs.
@@ -168,6 +186,7 @@ class Workflow(workflow_base.WorkflowBase):
         writer.write_collection_of_object_values("executionScope", self.execution_scope)
         writer.write_str_value("id", self.id)
         writer.write_datetime_value("nextScheduleRunDateTime", self.next_schedule_run_date_time)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("runs", self.runs)
         writer.write_collection_of_object_values("taskReports", self.task_reports)
         writer.write_collection_of_object_values("userProcessingResults", self.user_processing_results)

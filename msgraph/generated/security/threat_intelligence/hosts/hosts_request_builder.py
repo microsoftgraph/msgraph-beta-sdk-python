@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from ....models.security import host, host_collection_response
     from .count import count_request_builder
+    from .item import host_item_request_builder
 
 class HostsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class HostsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_host_id(self,host_id: str) -> host_item_request_builder.HostItemRequestBuilder:
+        """
+        Provides operations to manage the hosts property of the microsoft.graph.security.threatIntelligence entity.
+        Args:
+            host_id: Unique identifier of the item
+        Returns: host_item_request_builder.HostItemRequestBuilder
+        """
+        if host_id is None:
+            raise Exception("host_id cannot be undefined")
+        from .item import host_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["host%2Did"] = host_id
+        return host_item_request_builder.HostItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[HostsRequestBuilderGetRequestConfiguration] = None) -> Optional[host_collection_response.HostCollectionResponse]:
         """

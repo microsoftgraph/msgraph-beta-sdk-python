@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import cloud_pc_export_job, cloud_pc_export_job_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import cloud_pc_export_job_item_request_builder
 
 class ExportJobsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ExportJobsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_cloud_pc_export_job_id(self,cloud_pc_export_job_id: str) -> cloud_pc_export_job_item_request_builder.CloudPcExportJobItemRequestBuilder:
+        """
+        Provides operations to manage the exportJobs property of the microsoft.graph.cloudPcReports entity.
+        Args:
+            cloud_pc_export_job_id: Unique identifier of the item
+        Returns: cloud_pc_export_job_item_request_builder.CloudPcExportJobItemRequestBuilder
+        """
+        if cloud_pc_export_job_id is None:
+            raise Exception("cloud_pc_export_job_id cannot be undefined")
+        from .item import cloud_pc_export_job_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["cloudPcExportJob%2Did"] = cloud_pc_export_job_id
+        return cloud_pc_export_job_item_request_builder.CloudPcExportJobItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ExportJobsRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_export_job_collection_response.CloudPcExportJobCollectionResponse]:
         """
@@ -60,7 +76,7 @@ class ExportJobsRequestBuilder():
     
     async def post(self,body: Optional[cloud_pc_export_job.CloudPcExportJob] = None, request_configuration: Optional[ExportJobsRequestBuilderPostRequestConfiguration] = None) -> Optional[cloud_pc_export_job.CloudPcExportJob]:
         """
-        Create a new cloudPcExportJob resource to initiate downloading the entire or specified portion of a report. Use the GET cloudPcExportJob operation to verify the **exportJobStatus** property of the **cloudPcExportJob** resource. When the property becomes `completed`, the report has finished downloading in the location specified by the **exportUrl** property. 
+        Create new navigation property to exportJobs for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +119,7 @@ class ExportJobsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[cloud_pc_export_job.CloudPcExportJob] = None, request_configuration: Optional[ExportJobsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new cloudPcExportJob resource to initiate downloading the entire or specified portion of a report. Use the GET cloudPcExportJob operation to verify the **exportJobStatus** property of the **cloudPcExportJob** resource. When the property becomes `completed`, the report has finished downloading in the location specified by the **exportUrl** property. 
+        Create new navigation property to exportJobs for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import educational_activity, educational_activity_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import educational_activity_item_request_builder
 
 class EducationalActivitiesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class EducationalActivitiesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_educational_activity_id(self,educational_activity_id: str) -> educational_activity_item_request_builder.EducationalActivityItemRequestBuilder:
+        """
+        Provides operations to manage the educationalActivities property of the microsoft.graph.profile entity.
+        Args:
+            educational_activity_id: Unique identifier of the item
+        Returns: educational_activity_item_request_builder.EducationalActivityItemRequestBuilder
+        """
+        if educational_activity_id is None:
+            raise Exception("educational_activity_id cannot be undefined")
+        from .item import educational_activity_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["educationalActivity%2Did"] = educational_activity_id
+        return educational_activity_item_request_builder.EducationalActivityItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[EducationalActivitiesRequestBuilderGetRequestConfiguration] = None) -> Optional[educational_activity_collection_response.EducationalActivityCollectionResponse]:
         """
-        Retrieve a list of educationalActivity objects from a user's profile.
+        Represents data that a user has supplied related to undergraduate, graduate, postgraduate or other educational activities.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[educational_activity_collection_response.EducationalActivityCollectionResponse]
@@ -60,7 +76,7 @@ class EducationalActivitiesRequestBuilder():
     
     async def post(self,body: Optional[educational_activity.EducationalActivity] = None, request_configuration: Optional[EducationalActivitiesRequestBuilderPostRequestConfiguration] = None) -> Optional[educational_activity.EducationalActivity]:
         """
-        Create a new educationalActivity in a user's profile.
+        Create new navigation property to educationalActivities for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class EducationalActivitiesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[EducationalActivitiesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of educationalActivity objects from a user's profile.
+        Represents data that a user has supplied related to undergraduate, graduate, postgraduate or other educational activities.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class EducationalActivitiesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[educational_activity.EducationalActivity] = None, request_configuration: Optional[EducationalActivitiesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new educationalActivity in a user's profile.
+        Create new navigation property to educationalActivities for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class EducationalActivitiesRequestBuilder():
     @dataclass
     class EducationalActivitiesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of educationalActivity objects from a user's profile.
+        Represents data that a user has supplied related to undergraduate, graduate, postgraduate or other educational activities.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

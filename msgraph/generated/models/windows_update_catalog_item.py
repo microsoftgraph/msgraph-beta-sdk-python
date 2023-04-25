@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class WindowsUpdateCatalogItem(entity.Entity):
-    """
-    Windows update catalog item entity
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new windowsUpdateCatalogItem and sets the default values.
+        Instantiates a new WindowsUpdateCatalogItem and sets the default values.
         """
         super().__init__()
         # The display name for the catalog item.

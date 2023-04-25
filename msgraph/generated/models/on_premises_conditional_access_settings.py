@@ -11,7 +11,7 @@ from . import entity
 class OnPremisesConditionalAccessSettings(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new onPremisesConditionalAccessSettings and sets the default values.
+        Instantiates a new OnPremisesConditionalAccessSettings and sets the default values.
         """
         super().__init__()
         # Indicates if on premises conditional access is enabled for this organization

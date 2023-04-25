@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class MobileThreatDefenseConnector(entity.Entity):
-    """
-    Entity which represents a connection to Mobile Threat Defense partner.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new mobileThreatDefenseConnector and sets the default values.
+        Instantiates a new MobileThreatDefenseConnector and sets the default values.
         """
         super().__init__()
         # When TRUE, indicates the Mobile Threat Defense partner may collect metadata about installed applications from Intune for IOS devices. When FALSE, indicates the Mobile Threat Defense partner may not collect metadata about installed applications from Intune for IOS devices. Default value is FALSE.

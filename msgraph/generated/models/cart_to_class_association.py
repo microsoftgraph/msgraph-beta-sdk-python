@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class CartToClassAssociation(entity.Entity):
-    """
-    CartToClassAssociation for associating device carts with classrooms.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new cartToClassAssociation and sets the default values.
+        Instantiates a new CartToClassAssociation and sets the default values.
         """
         super().__init__()
         # Identifiers of classrooms to be associated with device carts.

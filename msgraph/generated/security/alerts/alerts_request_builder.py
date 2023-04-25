@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import alert, alert_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import alert_item_request_builder
     from .update_alerts import update_alerts_request_builder
 
 class AlertsRequestBuilder():
@@ -37,9 +38,24 @@ class AlertsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_alert_id(self,alert_id: str) -> alert_item_request_builder.AlertItemRequestBuilder:
+        """
+        Provides operations to manage the alerts property of the microsoft.graph.security entity.
+        Args:
+            alert_id: Unique identifier of the item
+        Returns: alert_item_request_builder.AlertItemRequestBuilder
+        """
+        if alert_id is None:
+            raise Exception("alert_id cannot be undefined")
+        from .item import alert_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["alert%2Did"] = alert_id
+        return alert_item_request_builder.AlertItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[AlertsRequestBuilderGetRequestConfiguration] = None) -> Optional[alert_collection_response.AlertCollectionResponse]:
         """
-        Retrieve a list of alert objects.
+        Notifications for suspicious or potential security issues in a customer’s tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[alert_collection_response.AlertCollectionResponse]
@@ -86,7 +102,7 @@ class AlertsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AlertsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of alert objects.
+        Notifications for suspicious or potential security issues in a customer’s tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -144,7 +160,7 @@ class AlertsRequestBuilder():
     @dataclass
     class AlertsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of alert objects.
+        Notifications for suspicious or potential security issues in a customer’s tenant.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.industry_data import role_group, role_group_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import role_group_item_request_builder
 
 class RoleGroupsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class RoleGroupsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_role_group_id(self,role_group_id: str) -> role_group_item_request_builder.RoleGroupItemRequestBuilder:
+        """
+        Provides operations to manage the roleGroups property of the microsoft.graph.industryData.industryDataRoot entity.
+        Args:
+            role_group_id: Unique identifier of the item
+        Returns: role_group_item_request_builder.RoleGroupItemRequestBuilder
+        """
+        if role_group_id is None:
+            raise Exception("role_group_id cannot be undefined")
+        from .item import role_group_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["roleGroup%2Did"] = role_group_id
+        return role_group_item_request_builder.RoleGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[RoleGroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[role_group_collection_response.RoleGroupCollectionResponse]:
         """
-        Get a list of the roleGroup objects and their properties.
+        Set of groups of individual roles that makes role-based admin simpler.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[role_group_collection_response.RoleGroupCollectionResponse]
@@ -85,7 +101,7 @@ class RoleGroupsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RoleGroupsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the roleGroup objects and their properties.
+        Set of groups of individual roles that makes role-based admin simpler.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class RoleGroupsRequestBuilder():
     @dataclass
     class RoleGroupsRequestBuilderGetQueryParameters():
         """
-        Get a list of the roleGroup objects and their properties.
+        Set of groups of individual roles that makes role-based admin simpler.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

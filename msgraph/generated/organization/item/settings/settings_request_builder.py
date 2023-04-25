@@ -17,7 +17,6 @@ if TYPE_CHECKING:
     from .microsoft_application_data_access import microsoft_application_data_access_request_builder
     from .people_insights import people_insights_request_builder
     from .profile_card_properties import profile_card_properties_request_builder
-    from .profile_card_properties.item import profile_card_property_item_request_builder
     from .pronouns import pronouns_request_builder
 
 class SettingsRequestBuilder():
@@ -63,7 +62,7 @@ class SettingsRequestBuilder():
     
     async def get(self,request_configuration: Optional[SettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[organization_settings.OrganizationSettings]:
         """
-        Retrieve the properties and relationships of an organizationSettings object, including **profileCardProperties**. This operation does not return insightsSettings. Depending on the type of insights, you can get their settings by using list itemInsights or list peopleInsights. This operation does not return microsoftApplicationDataAccessSettings. To get microsoftApplicationDataAccessSettings, use list microsoftApplicationDataAccessSettings.
+        Retrieve the properties and relationships of organizationSettings object. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[organization_settings.OrganizationSettings]
@@ -108,21 +107,6 @@ class SettingsRequestBuilder():
 
         return await self.request_adapter.send_async(request_info, organization_settings.OrganizationSettings, error_mapping)
     
-    def profile_card_properties_by_id(self,id: str) -> profile_card_property_item_request_builder.ProfileCardPropertyItemRequestBuilder:
-        """
-        Provides operations to manage the profileCardProperties property of the microsoft.graph.organizationSettings entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: profile_card_property_item_request_builder.ProfileCardPropertyItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .profile_card_properties.item import profile_card_property_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["profileCardProperty%2Did"] = id
-        return profile_card_property_item_request_builder.ProfileCardPropertyItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def to_delete_request_information(self,request_configuration: Optional[SettingsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property settings for organization
@@ -141,7 +125,7 @@ class SettingsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of an organizationSettings object, including **profileCardProperties**. This operation does not return insightsSettings. Depending on the type of insights, you can get their settings by using list itemInsights or list peopleInsights. This operation does not return microsoftApplicationDataAccessSettings. To get microsoftApplicationDataAccessSettings, use list microsoftApplicationDataAccessSettings.
+        Retrieve the properties and relationships of organizationSettings object. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -247,7 +231,7 @@ class SettingsRequestBuilder():
     @dataclass
     class SettingsRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of an organizationSettings object, including **profileCardProperties**. This operation does not return insightsSettings. Depending on the type of insights, you can get their settings by using list itemInsights or list peopleInsights. This operation does not return microsoftApplicationDataAccessSettings. To get microsoftApplicationDataAccessSettings, use list microsoftApplicationDataAccessSettings.
+        Retrieve the properties and relationships of organizationSettings object. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import directory_object_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import directory_object_item_request_builder
     from .ref import ref_request_builder
 
 class RejectedSendersRequestBuilder():
@@ -37,9 +38,24 @@ class RejectedSendersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_directory_object_id(self,directory_object_id: str) -> directory_object_item_request_builder.DirectoryObjectItemRequestBuilder:
+        """
+        Gets an item from the msgraph.generated.groups.item.rejectedSenders.item collection
+        Args:
+            directory_object_id: Unique identifier of the item
+        Returns: directory_object_item_request_builder.DirectoryObjectItemRequestBuilder
+        """
+        if directory_object_id is None:
+            raise Exception("directory_object_id cannot be undefined")
+        from .item import directory_object_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["directoryObject%2Did"] = directory_object_id
+        return directory_object_item_request_builder.DirectoryObjectItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[RejectedSendersRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]:
         """
-        Get a list of users or groups that are in the rejected-senders list for this group. Users in the rejected senders list cannot post to conversations of the group (identified in the GET request URL). Make sure you do not specify the same user or group in the rejected senders and accepted senders lists, otherwise you will get an error.
+        The list of users or groups that are not allowed to create posts or calendar events in this group. Nullable
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]
@@ -61,7 +77,7 @@ class RejectedSendersRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RejectedSendersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of users or groups that are in the rejected-senders list for this group. Users in the rejected senders list cannot post to conversations of the group (identified in the GET request URL). Make sure you do not specify the same user or group in the rejected senders and accepted senders lists, otherwise you will get an error.
+        The list of users or groups that are not allowed to create posts or calendar events in this group. Nullable
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -98,7 +114,7 @@ class RejectedSendersRequestBuilder():
     @dataclass
     class RejectedSendersRequestBuilderGetQueryParameters():
         """
-        Get a list of users or groups that are in the rejected-senders list for this group. Users in the rejected senders list cannot post to conversations of the group (identified in the GET request URL). Make sure you do not specify the same user or group in the rejected senders and accepted senders lists, otherwise you will get an error.
+        The list of users or groups that are not allowed to create posts or calendar events in this group. Nullable
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

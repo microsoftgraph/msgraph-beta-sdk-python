@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models.o_data_errors import o_data_error
     from ......models.security import vulnerability_component, vulnerability_component_collection_response
     from .count import count_request_builder
+    from .item import vulnerability_component_item_request_builder
 
 class ComponentsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ComponentsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_vulnerability_component_id(self,vulnerability_component_id: str) -> vulnerability_component_item_request_builder.VulnerabilityComponentItemRequestBuilder:
+        """
+        Provides operations to manage the components property of the microsoft.graph.security.vulnerability entity.
+        Args:
+            vulnerability_component_id: Unique identifier of the item
+        Returns: vulnerability_component_item_request_builder.VulnerabilityComponentItemRequestBuilder
+        """
+        if vulnerability_component_id is None:
+            raise Exception("vulnerability_component_id cannot be undefined")
+        from .item import vulnerability_component_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["vulnerabilityComponent%2Did"] = vulnerability_component_id
+        return vulnerability_component_item_request_builder.VulnerabilityComponentItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ComponentsRequestBuilderGetRequestConfiguration] = None) -> Optional[vulnerability_component_collection_response.VulnerabilityComponentCollectionResponse]:
         """
-        Get a list of the microsoft.graph.security.vulnerabilityComponent objects and their properties.
+        Components related to this vulnerability article.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[vulnerability_component_collection_response.VulnerabilityComponentCollectionResponse]
@@ -85,7 +101,7 @@ class ComponentsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ComponentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the microsoft.graph.security.vulnerabilityComponent objects and their properties.
+        Components related to this vulnerability article.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class ComponentsRequestBuilder():
     @dataclass
     class ComponentsRequestBuilderGetQueryParameters():
         """
-        Get a list of the microsoft.graph.security.vulnerabilityComponent objects and their properties.
+        Components related to this vulnerability article.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

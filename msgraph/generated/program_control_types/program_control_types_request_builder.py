@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ..models import program_control_type, program_control_type_collection_response
     from ..models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import program_control_type_item_request_builder
 
 class ProgramControlTypesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ProgramControlTypesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_program_control_type_id(self,program_control_type_id: str) -> program_control_type_item_request_builder.ProgramControlTypeItemRequestBuilder:
+        """
+        Provides operations to manage the collection of programControlType entities.
+        Args:
+            program_control_type_id: Unique identifier of the item
+        Returns: program_control_type_item_request_builder.ProgramControlTypeItemRequestBuilder
+        """
+        if program_control_type_id is None:
+            raise Exception("program_control_type_id cannot be undefined")
+        from .item import program_control_type_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["programControlType%2Did"] = program_control_type_id
+        return program_control_type_item_request_builder.ProgramControlTypeItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ProgramControlTypesRequestBuilderGetRequestConfiguration] = None) -> Optional[program_control_type_collection_response.ProgramControlTypeCollectionResponse]:
         """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import credential_user_registration_details, credential_user_registration_details_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import credential_user_registration_details_item_request_builder
 
 class CredentialUserRegistrationDetailsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class CredentialUserRegistrationDetailsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_credential_user_registration_details_id(self,credential_user_registration_details_id: str) -> credential_user_registration_details_item_request_builder.CredentialUserRegistrationDetailsItemRequestBuilder:
+        """
+        Provides operations to manage the credentialUserRegistrationDetails property of the microsoft.graph.reportRoot entity.
+        Args:
+            credential_user_registration_details_id: Unique identifier of the item
+        Returns: credential_user_registration_details_item_request_builder.CredentialUserRegistrationDetailsItemRequestBuilder
+        """
+        if credential_user_registration_details_id is None:
+            raise Exception("credential_user_registration_details_id cannot be undefined")
+        from .item import credential_user_registration_details_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["credentialUserRegistrationDetails%2Did"] = credential_user_registration_details_id
+        return credential_user_registration_details_item_request_builder.CredentialUserRegistrationDetailsItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[CredentialUserRegistrationDetailsRequestBuilderGetRequestConfiguration] = None) -> Optional[credential_user_registration_details_collection_response.CredentialUserRegistrationDetailsCollectionResponse]:
         """
-        Get a list of credentialUserRegistrationDetails objects for a given tenant.
+        Details of the usage of self-service password reset and multi-factor authentication (MFA) for all registered users.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[credential_user_registration_details_collection_response.CredentialUserRegistrationDetailsCollectionResponse]
@@ -85,7 +101,7 @@ class CredentialUserRegistrationDetailsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CredentialUserRegistrationDetailsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of credentialUserRegistrationDetails objects for a given tenant.
+        Details of the usage of self-service password reset and multi-factor authentication (MFA) for all registered users.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class CredentialUserRegistrationDetailsRequestBuilder():
     @dataclass
     class CredentialUserRegistrationDetailsRequestBuilderGetQueryParameters():
         """
-        Get a list of credentialUserRegistrationDetails objects for a given tenant.
+        Details of the usage of self-service password reset and multi-factor authentication (MFA) for all registered users.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import service_health, service_health_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import service_health_item_request_builder
 
 class HealthOverviewsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class HealthOverviewsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_service_health_id(self,service_health_id: str) -> service_health_item_request_builder.ServiceHealthItemRequestBuilder:
+        """
+        Provides operations to manage the healthOverviews property of the microsoft.graph.serviceAnnouncement entity.
+        Args:
+            service_health_id: Unique identifier of the item
+        Returns: service_health_item_request_builder.ServiceHealthItemRequestBuilder
+        """
+        if service_health_id is None:
+            raise Exception("service_health_id cannot be undefined")
+        from .item import service_health_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["serviceHealth%2Did"] = service_health_id
+        return service_health_item_request_builder.ServiceHealthItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[HealthOverviewsRequestBuilderGetRequestConfiguration] = None) -> Optional[service_health_collection_response.ServiceHealthCollectionResponse]:
         """
-        Retrieve the serviceHealth resources from the **healthOverviews** navigation property. This operation provides the health report of all subscribed services for a tenant.
+        A collection of service health information for tenant. This property is a contained navigation property, it is nullable and readonly.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[service_health_collection_response.ServiceHealthCollectionResponse]
@@ -85,7 +101,7 @@ class HealthOverviewsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[HealthOverviewsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the serviceHealth resources from the **healthOverviews** navigation property. This operation provides the health report of all subscribed services for a tenant.
+        A collection of service health information for tenant. This property is a contained navigation property, it is nullable and readonly.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class HealthOverviewsRequestBuilder():
     @dataclass
     class HealthOverviewsRequestBuilderGetQueryParameters():
         """
-        Retrieve the serviceHealth resources from the **healthOverviews** navigation property. This operation provides the health report of all subscribed services for a tenant.
+        A collection of service health information for tenant. This property is a contained navigation property, it is nullable and readonly.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

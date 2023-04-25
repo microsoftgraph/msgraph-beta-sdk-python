@@ -37,7 +37,7 @@ class GetSharedUseLicenseUsageReportRequestBuilder():
     
     async def post(self,body: Optional[get_shared_use_license_usage_report_post_request_body.GetSharedUseLicenseUsageReportPostRequestBody] = None, request_configuration: Optional[GetSharedUseLicenseUsageReportRequestBuilderPostRequestConfiguration] = None) -> bytes:
         """
-        Get a usage report on shared-use licenses, such as **servicePlanId**, **licenseCount**, and **claimedLicenseCount**, for real-time, 7 days, or 28 days trend.
+        Invoke action getSharedUseLicenseUsageReport
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -60,7 +60,7 @@ class GetSharedUseLicenseUsageReportRequestBuilder():
     
     def to_post_request_information(self,body: Optional[get_shared_use_license_usage_report_post_request_body.GetSharedUseLicenseUsageReportPostRequestBody] = None, request_configuration: Optional[GetSharedUseLicenseUsageReportRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a usage report on shared-use licenses, such as **servicePlanId**, **licenseCount**, and **claimedLicenseCount**, for real-time, 7 days, or 28 days trend.
+        Invoke action getSharedUseLicenseUsageReport
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

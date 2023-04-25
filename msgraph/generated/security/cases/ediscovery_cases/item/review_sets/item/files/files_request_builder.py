@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ........models.o_data_errors import o_data_error
     from ........models.security import ediscovery_file, ediscovery_file_collection_response
     from .count import count_request_builder
+    from .item import ediscovery_file_item_request_builder
 
 class FilesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class FilesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_ediscovery_file_id(self,ediscovery_file_id: str) -> ediscovery_file_item_request_builder.EdiscoveryFileItemRequestBuilder:
+        """
+        Provides operations to manage the files property of the microsoft.graph.security.ediscoveryReviewSet entity.
+        Args:
+            ediscovery_file_id: Unique identifier of the item
+        Returns: ediscovery_file_item_request_builder.EdiscoveryFileItemRequestBuilder
+        """
+        if ediscovery_file_id is None:
+            raise Exception("ediscovery_file_id cannot be undefined")
+        from .item import ediscovery_file_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["ediscoveryFile%2Did"] = ediscovery_file_id
+        return ediscovery_file_item_request_builder.EdiscoveryFileItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[FilesRequestBuilderGetRequestConfiguration] = None) -> Optional[ediscovery_file_collection_response.EdiscoveryFileCollectionResponse]:
         """
-        Get a list of the ediscoveryFile objects and their properties.
+        Represents files within the review set.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ediscovery_file_collection_response.EdiscoveryFileCollectionResponse]
@@ -85,7 +101,7 @@ class FilesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[FilesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the ediscoveryFile objects and their properties.
+        Represents files within the review set.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class FilesRequestBuilder():
     @dataclass
     class FilesRequestBuilderGetQueryParameters():
         """
-        Get a list of the ediscoveryFile objects and their properties.
+        Represents files within the review set.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

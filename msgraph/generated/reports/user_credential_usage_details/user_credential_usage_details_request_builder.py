@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import user_credential_usage_details, user_credential_usage_details_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import user_credential_usage_details_item_request_builder
 
 class UserCredentialUsageDetailsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class UserCredentialUsageDetailsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_user_credential_usage_details_id(self,user_credential_usage_details_id: str) -> user_credential_usage_details_item_request_builder.UserCredentialUsageDetailsItemRequestBuilder:
+        """
+        Provides operations to manage the userCredentialUsageDetails property of the microsoft.graph.reportRoot entity.
+        Args:
+            user_credential_usage_details_id: Unique identifier of the item
+        Returns: user_credential_usage_details_item_request_builder.UserCredentialUsageDetailsItemRequestBuilder
+        """
+        if user_credential_usage_details_id is None:
+            raise Exception("user_credential_usage_details_id cannot be undefined")
+        from .item import user_credential_usage_details_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["userCredentialUsageDetails%2Did"] = user_credential_usage_details_id
+        return user_credential_usage_details_item_request_builder.UserCredentialUsageDetailsItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[UserCredentialUsageDetailsRequestBuilderGetRequestConfiguration] = None) -> Optional[user_credential_usage_details_collection_response.UserCredentialUsageDetailsCollectionResponse]:
         """
-        Get a list of userCredentialUsageDetails objects for a given tenant. Details include user information, status of the reset, and the reason for failure.
+        Represents the self-service password reset (SSPR) usage for a given tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[user_credential_usage_details_collection_response.UserCredentialUsageDetailsCollectionResponse]
@@ -85,7 +101,7 @@ class UserCredentialUsageDetailsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UserCredentialUsageDetailsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of userCredentialUsageDetails objects for a given tenant. Details include user information, status of the reset, and the reason for failure.
+        Represents the self-service password reset (SSPR) usage for a given tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class UserCredentialUsageDetailsRequestBuilder():
     @dataclass
     class UserCredentialUsageDetailsRequestBuilderGetQueryParameters():
         """
-        Get a list of userCredentialUsageDetails objects for a given tenant. Details include user information, status of the reset, and the reason for failure.
+        Represents the self-service password reset (SSPR) usage for a given tenant.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import user_experience_analytics_device_timeline_event, user_experience_analytics_device_timeline_event_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import user_experience_analytics_device_timeline_event_item_request_builder
 
 class UserExperienceAnalyticsDeviceTimelineEventRequestBuilder():
     """
@@ -35,6 +36,21 @@ class UserExperienceAnalyticsDeviceTimelineEventRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_user_experience_analytics_device_timeline_event_id(self,user_experience_analytics_device_timeline_event_id: str) -> user_experience_analytics_device_timeline_event_item_request_builder.UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilder:
+        """
+        Provides operations to manage the userExperienceAnalyticsDeviceTimelineEvent property of the microsoft.graph.deviceManagement entity.
+        Args:
+            user_experience_analytics_device_timeline_event_id: Unique identifier of the item
+        Returns: user_experience_analytics_device_timeline_event_item_request_builder.UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilder
+        """
+        if user_experience_analytics_device_timeline_event_id is None:
+            raise Exception("user_experience_analytics_device_timeline_event_id cannot be undefined")
+        from .item import user_experience_analytics_device_timeline_event_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["userExperienceAnalyticsDeviceTimelineEvent%2Did"] = user_experience_analytics_device_timeline_event_id
+        return user_experience_analytics_device_timeline_event_item_request_builder.UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[UserExperienceAnalyticsDeviceTimelineEventRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_device_timeline_event_collection_response.UserExperienceAnalyticsDeviceTimelineEventCollectionResponse]:
         """

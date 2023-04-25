@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ........models.o_data_errors import o_data_error
     from ........models.security import data_source, data_source_collection_response
     from .count import count_request_builder
+    from .item import data_source_item_request_builder
 
 class AdditionalSourcesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class AdditionalSourcesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_data_source_id(self,data_source_id: str) -> data_source_item_request_builder.DataSourceItemRequestBuilder:
+        """
+        Provides operations to manage the additionalSources property of the microsoft.graph.security.ediscoverySearch entity.
+        Args:
+            data_source_id: Unique identifier of the item
+        Returns: data_source_item_request_builder.DataSourceItemRequestBuilder
+        """
+        if data_source_id is None:
+            raise Exception("data_source_id cannot be undefined")
+        from .item import data_source_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["dataSource%2Did"] = data_source_id
+        return data_source_item_request_builder.DataSourceItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[AdditionalSourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[data_source_collection_response.DataSourceCollectionResponse]:
         """
-        Get the list of additional sources associated with an eDiscovery search.
+        Adds an additional source to the eDiscovery search.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[data_source_collection_response.DataSourceCollectionResponse]
@@ -60,7 +76,7 @@ class AdditionalSourcesRequestBuilder():
     
     async def post(self,body: Optional[data_source.DataSource] = None, request_configuration: Optional[AdditionalSourcesRequestBuilderPostRequestConfiguration] = None) -> Optional[data_source.DataSource]:
         """
-        Create a new additional source associated with an eDiscovery search.
+        Create new navigation property to additionalSources for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class AdditionalSourcesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AdditionalSourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the list of additional sources associated with an eDiscovery search.
+        Adds an additional source to the eDiscovery search.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class AdditionalSourcesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[data_source.DataSource] = None, request_configuration: Optional[AdditionalSourcesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new additional source associated with an eDiscovery search.
+        Create new navigation property to additionalSources for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class AdditionalSourcesRequestBuilder():
     @dataclass
     class AdditionalSourcesRequestBuilderGetQueryParameters():
         """
-        Get the list of additional sources associated with an eDiscovery search.
+        Adds an additional source to the eDiscovery search.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import claims_mapping_policy_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import claims_mapping_policy_item_request_builder
     from .ref import ref_request_builder
 
 class ClaimsMappingPoliciesRequestBuilder():
@@ -37,9 +38,24 @@ class ClaimsMappingPoliciesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_claims_mapping_policy_id(self,claims_mapping_policy_id: str) -> claims_mapping_policy_item_request_builder.ClaimsMappingPolicyItemRequestBuilder:
+        """
+        Gets an item from the msgraph.generated.servicePrincipals.item.claimsMappingPolicies.item collection
+        Args:
+            claims_mapping_policy_id: Unique identifier of the item
+        Returns: claims_mapping_policy_item_request_builder.ClaimsMappingPolicyItemRequestBuilder
+        """
+        if claims_mapping_policy_id is None:
+            raise Exception("claims_mapping_policy_id cannot be undefined")
+        from .item import claims_mapping_policy_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["claimsMappingPolicy%2Did"] = claims_mapping_policy_id
+        return claims_mapping_policy_item_request_builder.ClaimsMappingPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ClaimsMappingPoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[claims_mapping_policy_collection_response.ClaimsMappingPolicyCollectionResponse]:
         """
-        List the claimsMappingPolicy objects that are assigned to a servicePrincipal.
+        The claimsMappingPolicies assigned to this service principal. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[claims_mapping_policy_collection_response.ClaimsMappingPolicyCollectionResponse]
@@ -61,7 +77,7 @@ class ClaimsMappingPoliciesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ClaimsMappingPoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List the claimsMappingPolicy objects that are assigned to a servicePrincipal.
+        The claimsMappingPolicies assigned to this service principal. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -98,7 +114,7 @@ class ClaimsMappingPoliciesRequestBuilder():
     @dataclass
     class ClaimsMappingPoliciesRequestBuilderGetQueryParameters():
         """
-        List the claimsMappingPolicy objects that are assigned to a servicePrincipal.
+        The claimsMappingPolicies assigned to this service principal. Supports $expand.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -10,11 +10,11 @@ class OfficeUserCheckinSummary(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # Total failed user check ins for the last 3 months.
+        # The failedUserCount property
         self._failed_user_count: Optional[int] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # Total successful user check ins for the last 3 months.
+        # The succeededUserCount property
         self._succeeded_user_count: Optional[int] = None
     
     @property
@@ -49,7 +49,7 @@ class OfficeUserCheckinSummary(AdditionalDataHolder, Parsable):
     @property
     def failed_user_count(self,) -> Optional[int]:
         """
-        Gets the failedUserCount property value. Total failed user check ins for the last 3 months.
+        Gets the failedUserCount property value. The failedUserCount property
         Returns: Optional[int]
         """
         return self._failed_user_count
@@ -57,7 +57,7 @@ class OfficeUserCheckinSummary(AdditionalDataHolder, Parsable):
     @failed_user_count.setter
     def failed_user_count(self,value: Optional[int] = None) -> None:
         """
-        Sets the failedUserCount property value. Total failed user check ins for the last 3 months.
+        Sets the failedUserCount property value. The failedUserCount property
         Args:
             value: Value to set for the failed_user_count property.
         """
@@ -108,7 +108,7 @@ class OfficeUserCheckinSummary(AdditionalDataHolder, Parsable):
     @property
     def succeeded_user_count(self,) -> Optional[int]:
         """
-        Gets the succeededUserCount property value. Total successful user check ins for the last 3 months.
+        Gets the succeededUserCount property value. The succeededUserCount property
         Returns: Optional[int]
         """
         return self._succeeded_user_count
@@ -116,7 +116,7 @@ class OfficeUserCheckinSummary(AdditionalDataHolder, Parsable):
     @succeeded_user_count.setter
     def succeeded_user_count(self,value: Optional[int] = None) -> None:
         """
-        Sets the succeededUserCount property value. Total successful user check ins for the last 3 months.
+        Sets the succeededUserCount property value. The succeededUserCount property
         Args:
             value: Value to set for the succeeded_user_count property.
         """

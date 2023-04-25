@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ......models.o_data_errors import o_data_error
     from .clock_in import clock_in_request_builder
     from .count import count_request_builder
+    from .item import time_card_item_request_builder
 
 class TimeCardsRequestBuilder():
     """
@@ -37,9 +38,24 @@ class TimeCardsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_time_card_id(self,time_card_id: str) -> time_card_item_request_builder.TimeCardItemRequestBuilder:
+        """
+        Provides operations to manage the timeCards property of the microsoft.graph.schedule entity.
+        Args:
+            time_card_id: Unique identifier of the item
+        Returns: time_card_item_request_builder.TimeCardItemRequestBuilder
+        """
+        if time_card_id is None:
+            raise Exception("time_card_id cannot be undefined")
+        from .item import time_card_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["timeCard%2Did"] = time_card_id
+        return time_card_item_request_builder.TimeCardItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[TimeCardsRequestBuilderGetRequestConfiguration] = None) -> Optional[time_card_collection_response.TimeCardCollectionResponse]:
         """
-        Retrieve a list of timeCard entries in a schedule.
+        Get timeCards from teamTemplateDefinition
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[time_card_collection_response.TimeCardCollectionResponse]
@@ -86,7 +102,7 @@ class TimeCardsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TimeCardsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of timeCard entries in a schedule.
+        Get timeCards from teamTemplateDefinition
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -144,7 +160,7 @@ class TimeCardsRequestBuilder():
     @dataclass
     class TimeCardsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of timeCard entries in a schedule.
+        Get timeCards from teamTemplateDefinition
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

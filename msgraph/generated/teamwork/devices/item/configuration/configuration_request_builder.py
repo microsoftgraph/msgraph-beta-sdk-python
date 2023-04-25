@@ -56,7 +56,7 @@ class ConfigurationRequestBuilder():
     
     async def get(self,request_configuration: Optional[ConfigurationRequestBuilderGetRequestConfiguration] = None) -> Optional[teamwork_device_configuration.TeamworkDeviceConfiguration]:
         """
-        Get the configuration details of a Microsoft Teams-enabled device, including software versions, peripheral device configuration (for example, camera, display, microphone, and speaker), hardware configuration, and Microsoft Teams client configuration.
+        The configuration properties of the device.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[teamwork_device_configuration.TeamworkDeviceConfiguration]
@@ -119,7 +119,7 @@ class ConfigurationRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ConfigurationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the configuration details of a Microsoft Teams-enabled device, including software versions, peripheral device configuration (for example, camera, display, microphone, and speaker), hardware configuration, and Microsoft Teams client configuration.
+        The configuration properties of the device.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class ConfigurationRequestBuilder():
     @dataclass
     class ConfigurationRequestBuilderGetQueryParameters():
         """
-        Get the configuration details of a Microsoft Teams-enabled device, including software versions, peripheral device configuration (for example, camera, display, microphone, and speaker), hardware configuration, and Microsoft Teams client configuration.
+        The configuration properties of the device.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

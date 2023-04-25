@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...........models import conversation_member_collection_response
     from ...........models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import conversation_member_item_request_builder
 
 class AllowedMembersRequestBuilder():
     """
@@ -36,9 +37,24 @@ class AllowedMembersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_conversation_member_id(self,conversation_member_id: str) -> conversation_member_item_request_builder.ConversationMemberItemRequestBuilder:
+        """
+        Provides operations to manage the allowedMembers property of the microsoft.graph.sharedWithChannelTeamInfo entity.
+        Args:
+            conversation_member_id: Unique identifier of the item
+        Returns: conversation_member_item_request_builder.ConversationMemberItemRequestBuilder
+        """
+        if conversation_member_id is None:
+            raise Exception("conversation_member_id cannot be undefined")
+        from .item import conversation_member_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["conversationMember%2Did"] = conversation_member_id
+        return conversation_member_item_request_builder.ConversationMemberItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[AllowedMembersRequestBuilderGetRequestConfiguration] = None) -> Optional[conversation_member_collection_response.ConversationMemberCollectionResponse]:
         """
-        Get the list of conversationMembers who can access a shared channel. This method does not return the following conversationMembers from the team:- Users with `Guest` role- Users who are externally authenticated in the tenant
+        A collection of team members who have access to the shared channel.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[conversation_member_collection_response.ConversationMemberCollectionResponse]
@@ -60,7 +76,7 @@ class AllowedMembersRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AllowedMembersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the list of conversationMembers who can access a shared channel. This method does not return the following conversationMembers from the team:- Users with `Guest` role- Users who are externally authenticated in the tenant
+        A collection of team members who have access to the shared channel.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -88,7 +104,7 @@ class AllowedMembersRequestBuilder():
     @dataclass
     class AllowedMembersRequestBuilderGetQueryParameters():
         """
-        Get the list of conversationMembers who can access a shared channel. This method does not return the following conversationMembers from the team:- Users with `Guest` role- Users who are externally authenticated in the tenant
+        A collection of team members who have access to the shared channel.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

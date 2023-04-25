@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .........models.o_data_errors import o_data_error
     from .........models.term_store import term, term_collection_response
     from .count import count_request_builder
+    from .item import term_item_request_builder
 
 class ChildrenRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ChildrenRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_term_id(self,term_id: str) -> term_item_request_builder.TermItemRequestBuilder:
+        """
+        Provides operations to manage the children property of the microsoft.graph.termStore.set entity.
+        Args:
+            term_id: Unique identifier of the item
+        Returns: term_item_request_builder.TermItemRequestBuilder
+        """
+        if term_id is None:
+            raise Exception("term_id cannot be undefined")
+        from .item import term_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["term%2Did"] = term_id
+        return term_item_request_builder.TermItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ChildrenRequestBuilderGetRequestConfiguration] = None) -> Optional[term_collection_response.TermCollectionResponse]:
         """
-        Get the first level children of a [set] or [term] resource using the children navigation property.
+        Children terms of set in term [store].
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[term_collection_response.TermCollectionResponse]
@@ -60,7 +76,7 @@ class ChildrenRequestBuilder():
     
     async def post(self,body: Optional[term.Term] = None, request_configuration: Optional[ChildrenRequestBuilderPostRequestConfiguration] = None) -> Optional[term.Term]:
         """
-        Create a new term object.
+        Create new navigation property to children for groups
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class ChildrenRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ChildrenRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the first level children of a [set] or [term] resource using the children navigation property.
+        Children terms of set in term [store].
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class ChildrenRequestBuilder():
     
     def to_post_request_information(self,body: Optional[term.Term] = None, request_configuration: Optional[ChildrenRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new term object.
+        Create new navigation property to children for groups
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class ChildrenRequestBuilder():
     @dataclass
     class ChildrenRequestBuilderGetQueryParameters():
         """
-        Get the first level children of a [set] or [term] resource using the children navigation property.
+        Children terms of set in term [store].
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

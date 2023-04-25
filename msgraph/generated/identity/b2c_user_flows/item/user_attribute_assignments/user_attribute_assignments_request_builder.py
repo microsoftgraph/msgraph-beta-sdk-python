@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .get_order import get_order_request_builder
+    from .item import identity_user_flow_attribute_assignment_item_request_builder
     from .set_order import set_order_request_builder
 
 class UserAttributeAssignmentsRequestBuilder():
@@ -38,9 +39,24 @@ class UserAttributeAssignmentsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_identity_user_flow_attribute_assignment_id(self,identity_user_flow_attribute_assignment_id: str) -> identity_user_flow_attribute_assignment_item_request_builder.IdentityUserFlowAttributeAssignmentItemRequestBuilder:
+        """
+        Provides operations to manage the userAttributeAssignments property of the microsoft.graph.b2cIdentityUserFlow entity.
+        Args:
+            identity_user_flow_attribute_assignment_id: Unique identifier of the item
+        Returns: identity_user_flow_attribute_assignment_item_request_builder.IdentityUserFlowAttributeAssignmentItemRequestBuilder
+        """
+        if identity_user_flow_attribute_assignment_id is None:
+            raise Exception("identity_user_flow_attribute_assignment_id cannot be undefined")
+        from .item import identity_user_flow_attribute_assignment_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["identityUserFlowAttributeAssignment%2Did"] = identity_user_flow_attribute_assignment_id
+        return identity_user_flow_attribute_assignment_item_request_builder.IdentityUserFlowAttributeAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[UserAttributeAssignmentsRequestBuilderGetRequestConfiguration] = None) -> Optional[identity_user_flow_attribute_assignment_collection_response.IdentityUserFlowAttributeAssignmentCollectionResponse]:
         """
-        Get the identityUserFlowAttributeAssignment resources from the userAttributeAssignments navigation property in a b2cIdentityUserFlow.
+        The user attribute assignments included in the user flow.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[identity_user_flow_attribute_assignment_collection_response.IdentityUserFlowAttributeAssignmentCollectionResponse]
@@ -62,7 +78,7 @@ class UserAttributeAssignmentsRequestBuilder():
     
     async def post(self,body: Optional[identity_user_flow_attribute_assignment.IdentityUserFlowAttributeAssignment] = None, request_configuration: Optional[UserAttributeAssignmentsRequestBuilderPostRequestConfiguration] = None) -> Optional[identity_user_flow_attribute_assignment.IdentityUserFlowAttributeAssignment]:
         """
-        Create a new identityUserFlowAttributeAssignment object in a b2cIdentityUserFlow.
+        Create new navigation property to userAttributeAssignments for identity
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -87,7 +103,7 @@ class UserAttributeAssignmentsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UserAttributeAssignmentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the identityUserFlowAttributeAssignment resources from the userAttributeAssignments navigation property in a b2cIdentityUserFlow.
+        The user attribute assignments included in the user flow.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -105,7 +121,7 @@ class UserAttributeAssignmentsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[identity_user_flow_attribute_assignment.IdentityUserFlowAttributeAssignment] = None, request_configuration: Optional[UserAttributeAssignmentsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new identityUserFlowAttributeAssignment object in a b2cIdentityUserFlow.
+        Create new navigation property to userAttributeAssignments for identity
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -154,7 +170,7 @@ class UserAttributeAssignmentsRequestBuilder():
     @dataclass
     class UserAttributeAssignmentsRequestBuilderGetQueryParameters():
         """
-        Get the identityUserFlowAttributeAssignment resources from the userAttributeAssignments navigation property in a b2cIdentityUserFlow.
+        The user attribute assignments included in the user flow.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

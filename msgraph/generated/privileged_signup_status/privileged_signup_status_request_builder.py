@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from .complete_setup import complete_setup_request_builder
     from .count import count_request_builder
     from .is_signed_up import is_signed_up_request_builder
+    from .item import privileged_signup_status_item_request_builder
     from .sign_up import sign_up_request_builder
 
 class PrivilegedSignupStatusRequestBuilder():
@@ -39,6 +40,21 @@ class PrivilegedSignupStatusRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_privileged_signup_status_id(self,privileged_signup_status_id: str) -> privileged_signup_status_item_request_builder.PrivilegedSignupStatusItemRequestBuilder:
+        """
+        Provides operations to manage the collection of privilegedSignupStatus entities.
+        Args:
+            privileged_signup_status_id: Unique identifier of the item
+        Returns: privileged_signup_status_item_request_builder.PrivilegedSignupStatusItemRequestBuilder
+        """
+        if privileged_signup_status_id is None:
+            raise Exception("privileged_signup_status_id cannot be undefined")
+        from .item import privileged_signup_status_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["privilegedSignupStatus%2Did"] = privileged_signup_status_id
+        return privileged_signup_status_item_request_builder.PrivilegedSignupStatusItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[PrivilegedSignupStatusRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_signup_status_collection_response.PrivilegedSignupStatusCollectionResponse]:
         """

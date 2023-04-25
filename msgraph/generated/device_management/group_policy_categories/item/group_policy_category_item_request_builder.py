@@ -13,10 +13,8 @@ if TYPE_CHECKING:
     from ....models import group_policy_category
     from ....models.o_data_errors import o_data_error
     from .children import children_request_builder
-    from .children.item import group_policy_category_item_request_builder
     from .definition_file import definition_file_request_builder
     from .definitions import definitions_request_builder
-    from .definitions.item import group_policy_definition_item_request_builder
     from .parent import parent_request_builder
 
 class GroupPolicyCategoryItemRequestBuilder():
@@ -40,36 +38,6 @@ class GroupPolicyCategoryItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def children_by_id(self,id: str) -> GroupPolicyCategoryItemRequestBuilder:
-        """
-        Provides operations to manage the children property of the microsoft.graph.groupPolicyCategory entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: GroupPolicyCategoryItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .children.item import group_policy_category_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["groupPolicyCategory%2Did1"] = id
-        return GroupPolicyCategoryItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def definitions_by_id(self,id: str) -> group_policy_definition_item_request_builder.GroupPolicyDefinitionItemRequestBuilder:
-        """
-        Provides operations to manage the definitions property of the microsoft.graph.groupPolicyCategory entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: group_policy_definition_item_request_builder.GroupPolicyDefinitionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .definitions.item import group_policy_definition_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["groupPolicyDefinition%2Did"] = id
-        return group_policy_definition_item_request_builder.GroupPolicyDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[GroupPolicyCategoryItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId(entity.Entity):
-    """
-    The user experience analytics application performance entity contains app performance by app version device id.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId and sets the default values.
+        Instantiates a new UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId and sets the default values.
         """
         super().__init__()
         # The number of crashes for the app. Valid values -2147483648 to 2147483647

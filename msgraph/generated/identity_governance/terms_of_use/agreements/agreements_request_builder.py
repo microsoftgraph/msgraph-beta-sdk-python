@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import agreement, agreement_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import agreement_item_request_builder
 
 class AgreementsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class AgreementsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_agreement_id(self,agreement_id: str) -> agreement_item_request_builder.AgreementItemRequestBuilder:
+        """
+        Provides operations to manage the agreements property of the microsoft.graph.termsOfUseContainer entity.
+        Args:
+            agreement_id: Unique identifier of the item
+        Returns: agreement_item_request_builder.AgreementItemRequestBuilder
+        """
+        if agreement_id is None:
+            raise Exception("agreement_id cannot be undefined")
+        from .item import agreement_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["agreement%2Did"] = agreement_id
+        return agreement_item_request_builder.AgreementItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[AgreementsRequestBuilderGetRequestConfiguration] = None) -> Optional[agreement_collection_response.AgreementCollectionResponse]:
         """
-        Retrieve a list of agreement objects.
+        Represents a tenant's customizable terms of use agreement that's created and managed with Azure Active Directory (Azure AD).
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[agreement_collection_response.AgreementCollectionResponse]
@@ -60,7 +76,7 @@ class AgreementsRequestBuilder():
     
     async def post(self,body: Optional[agreement.Agreement] = None, request_configuration: Optional[AgreementsRequestBuilderPostRequestConfiguration] = None) -> Optional[agreement.Agreement]:
         """
-        Create a new agreement object.
+        Create new navigation property to agreements for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class AgreementsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AgreementsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of agreement objects.
+        Represents a tenant's customizable terms of use agreement that's created and managed with Azure Active Directory (Azure AD).
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class AgreementsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[agreement.Agreement] = None, request_configuration: Optional[AgreementsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new agreement object.
+        Create new navigation property to agreements for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class AgreementsRequestBuilder():
     @dataclass
     class AgreementsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of agreement objects.
+        Represents a tenant's customizable terms of use agreement that's created and managed with Azure Active Directory (Azure AD).
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

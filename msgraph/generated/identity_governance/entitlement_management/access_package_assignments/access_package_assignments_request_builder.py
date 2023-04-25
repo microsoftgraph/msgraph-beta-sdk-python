@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from .additional_access_with_access_package_id_with_incompatible_access_package_id import additional_access_with_access_package_id_with_incompatible_access_package_id_request_builder
     from .count import count_request_builder
     from .filter_by_current_user_with_on import filter_by_current_user_with_on_request_builder
+    from .item import access_package_assignment_item_request_builder
 
 class AccessPackageAssignmentsRequestBuilder():
     """
@@ -55,6 +56,21 @@ class AccessPackageAssignmentsRequestBuilder():
 
         return additional_access_with_access_package_id_with_incompatible_access_package_id_request_builder.AdditionalAccessWithAccessPackageIdWithIncompatibleAccessPackageIdRequestBuilder(self.request_adapter, self.path_parameters, access_package_id, incompatible_access_package_id)
     
+    def by_access_package_assignment_id(self,access_package_assignment_id: str) -> access_package_assignment_item_request_builder.AccessPackageAssignmentItemRequestBuilder:
+        """
+        Provides operations to manage the accessPackageAssignments property of the microsoft.graph.entitlementManagement entity.
+        Args:
+            access_package_assignment_id: Unique identifier of the item
+        Returns: access_package_assignment_item_request_builder.AccessPackageAssignmentItemRequestBuilder
+        """
+        if access_package_assignment_id is None:
+            raise Exception("access_package_assignment_id cannot be undefined")
+        from .item import access_package_assignment_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["accessPackageAssignment%2Did"] = access_package_assignment_id
+        return access_package_assignment_item_request_builder.AccessPackageAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     def filter_by_current_user_with_on(self,on: Optional[str] = None) -> filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder:
         """
         Provides operations to call the filterByCurrentUser method.
@@ -70,7 +86,7 @@ class AccessPackageAssignmentsRequestBuilder():
     
     async def get(self,request_configuration: Optional[AccessPackageAssignmentsRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_assignment_collection_response.AccessPackageAssignmentCollectionResponse]:
         """
-        In Azure AD entitlement management, retrieve a list of accessPackageAssignment objects. For directory-wide administrators, the resulting list includes all the assignments, current and well as expired, that the caller has access to read, across all catalogs and access packages.  If the caller is on behalf of a delegated user who is assigned only to catalog-specific delegated administrative roles, the request must supply a filter to indicate a specific access package, such as: `$filter=accessPackage/id eq 'a914b616-e04e-476b-aa37-91038f0b165b'`.
+        The assignment of an access package to a subject for a period of time.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_package_assignment_collection_response.AccessPackageAssignmentCollectionResponse]
@@ -117,7 +133,7 @@ class AccessPackageAssignmentsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageAssignmentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        In Azure AD entitlement management, retrieve a list of accessPackageAssignment objects. For directory-wide administrators, the resulting list includes all the assignments, current and well as expired, that the caller has access to read, across all catalogs and access packages.  If the caller is on behalf of a delegated user who is assigned only to catalog-specific delegated administrative roles, the request must supply a filter to indicate a specific access package, such as: `$filter=accessPackage/id eq 'a914b616-e04e-476b-aa37-91038f0b165b'`.
+        The assignment of an access package to a subject for a period of time.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -175,7 +191,7 @@ class AccessPackageAssignmentsRequestBuilder():
     @dataclass
     class AccessPackageAssignmentsRequestBuilderGetQueryParameters():
         """
-        In Azure AD entitlement management, retrieve a list of accessPackageAssignment objects. For directory-wide administrators, the resulting list includes all the assignments, current and well as expired, that the caller has access to read, across all catalogs and access packages.  If the caller is on behalf of a delegated user who is assigned only to catalog-specific delegated administrative roles, the request must supply a filter to indicate a specific access package, such as: `$filter=accessPackage/id eq 'a914b616-e04e-476b-aa37-91038f0b165b'`.
+        The assignment of an access package to a subject for a period of time.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

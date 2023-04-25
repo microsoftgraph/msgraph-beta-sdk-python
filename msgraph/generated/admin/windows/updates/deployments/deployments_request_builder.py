@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .....models.windows_updates import deployment, deployment_collection_response
     from .count import count_request_builder
+    from .item import deployment_item_request_builder
 
 class DeploymentsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class DeploymentsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_deployment_id(self,deployment_id: str) -> deployment_item_request_builder.DeploymentItemRequestBuilder:
+        """
+        Provides operations to manage the deployments property of the microsoft.graph.adminWindowsUpdates entity.
+        Args:
+            deployment_id: Unique identifier of the item
+        Returns: deployment_item_request_builder.DeploymentItemRequestBuilder
+        """
+        if deployment_id is None:
+            raise Exception("deployment_id cannot be undefined")
+        from .item import deployment_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["deployment%2Did"] = deployment_id
+        return deployment_item_request_builder.DeploymentItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[DeploymentsRequestBuilderGetRequestConfiguration] = None) -> Optional[deployment_collection_response.DeploymentCollectionResponse]:
         """
-        Get a list of deployment objects and their properties.
+        Deployments created using the deployment service.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[deployment_collection_response.DeploymentCollectionResponse]
@@ -60,7 +76,7 @@ class DeploymentsRequestBuilder():
     
     async def post(self,body: Optional[deployment.Deployment] = None, request_configuration: Optional[DeploymentsRequestBuilderPostRequestConfiguration] = None) -> Optional[deployment.Deployment]:
         """
-        Create a new deployment object.
+        Create new navigation property to deployments for admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class DeploymentsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[DeploymentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of deployment objects and their properties.
+        Deployments created using the deployment service.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class DeploymentsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[deployment.Deployment] = None, request_configuration: Optional[DeploymentsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new deployment object.
+        Create new navigation property to deployments for admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class DeploymentsRequestBuilder():
     @dataclass
     class DeploymentsRequestBuilderGetQueryParameters():
         """
-        Get a list of deployment objects and their properties.
+        Deployments created using the deployment service.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

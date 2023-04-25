@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import on_premises_agent, on_premises_agent_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import on_premises_agent_item_request_builder
 
 class AgentsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class AgentsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_on_premises_agent_id(self,on_premises_agent_id: str) -> on_premises_agent_item_request_builder.OnPremisesAgentItemRequestBuilder:
+        """
+        Provides operations to manage the agents property of the microsoft.graph.onPremisesPublishingProfile entity.
+        Args:
+            on_premises_agent_id: Unique identifier of the item
+        Returns: on_premises_agent_item_request_builder.OnPremisesAgentItemRequestBuilder
+        """
+        if on_premises_agent_id is None:
+            raise Exception("on_premises_agent_id cannot be undefined")
+        from .item import on_premises_agent_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["onPremisesAgent%2Did"] = on_premises_agent_id
+        return on_premises_agent_item_request_builder.OnPremisesAgentItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[AgentsRequestBuilderGetRequestConfiguration] = None) -> Optional[on_premises_agent_collection_response.OnPremisesAgentCollectionResponse]:
         """
-        Retrieve a list of onPremisesAgent objects.
+        List of existing onPremisesAgent objects. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[on_premises_agent_collection_response.OnPremisesAgentCollectionResponse]
@@ -85,7 +101,7 @@ class AgentsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AgentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of onPremisesAgent objects.
+        List of existing onPremisesAgent objects. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class AgentsRequestBuilder():
     @dataclass
     class AgentsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of onPremisesAgent objects.
+        List of existing onPremisesAgent objects. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

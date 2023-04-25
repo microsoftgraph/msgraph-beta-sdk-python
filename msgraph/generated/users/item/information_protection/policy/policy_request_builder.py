@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from .....models import information_protection_policy
     from .....models.o_data_errors import o_data_error
     from .labels import labels_request_builder
-    from .labels.item import information_protection_label_item_request_builder
 
 class PolicyRequestBuilder():
     """
@@ -77,21 +76,6 @@ class PolicyRequestBuilder():
         from .....models import information_protection_policy
 
         return await self.request_adapter.send_async(request_info, information_protection_policy.InformationProtectionPolicy, error_mapping)
-    
-    def labels_by_id(self,id: str) -> information_protection_label_item_request_builder.InformationProtectionLabelItemRequestBuilder:
-        """
-        Provides operations to manage the labels property of the microsoft.graph.informationProtectionPolicy entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: information_protection_label_item_request_builder.InformationProtectionLabelItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .labels.item import information_protection_label_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["informationProtectionLabel%2Did"] = id
-        return information_protection_label_item_request_builder.InformationProtectionLabelItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[information_protection_policy.InformationProtectionPolicy] = None, request_configuration: Optional[PolicyRequestBuilderPatchRequestConfiguration] = None) -> Optional[information_protection_policy.InformationProtectionPolicy]:
         """

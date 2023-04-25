@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class WindowsDriverUpdateProfile(entity.Entity):
-    """
-    Windows Driver Update Profile
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new windowsDriverUpdateProfile and sets the default values.
+        Instantiates a new WindowsDriverUpdateProfile and sets the default values.
         """
         super().__init__()
         # An enum type to represent approval type of a driver update profile.

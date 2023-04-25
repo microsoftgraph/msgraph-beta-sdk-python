@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.managed_tenants import management_template_step_version, management_template_step_version_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import management_template_step_version_item_request_builder
 
 class ManagementTemplateStepVersionsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ManagementTemplateStepVersionsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_management_template_step_version_id(self,management_template_step_version_id: str) -> management_template_step_version_item_request_builder.ManagementTemplateStepVersionItemRequestBuilder:
+        """
+        Provides operations to manage the managementTemplateStepVersions property of the microsoft.graph.managedTenants.managedTenant entity.
+        Args:
+            management_template_step_version_id: Unique identifier of the item
+        Returns: management_template_step_version_item_request_builder.ManagementTemplateStepVersionItemRequestBuilder
+        """
+        if management_template_step_version_id is None:
+            raise Exception("management_template_step_version_id cannot be undefined")
+        from .item import management_template_step_version_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["managementTemplateStepVersion%2Did"] = management_template_step_version_id
+        return management_template_step_version_item_request_builder.ManagementTemplateStepVersionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ManagementTemplateStepVersionsRequestBuilderGetRequestConfiguration] = None) -> Optional[management_template_step_version_collection_response.ManagementTemplateStepVersionCollectionResponse]:
         """

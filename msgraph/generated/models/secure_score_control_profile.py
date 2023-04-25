@@ -11,7 +11,7 @@ from . import entity
 class SecureScoreControlProfile(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new secureScoreControlProfile and sets the default values.
+        Instantiates a new SecureScoreControlProfile and sets the default values.
         """
         super().__init__()
         # Control action type (Config, Review, Behavior).

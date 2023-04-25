@@ -36,7 +36,7 @@ class EdiscoveryReopenRequestBuilder():
     
     async def post(self,request_configuration: Optional[EdiscoveryReopenRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Reopen an eDiscovery case that was closed. For details, see Reopen a closed case.
+        Invoke action reopen
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class EdiscoveryReopenRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[EdiscoveryReopenRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Reopen an eDiscovery case that was closed. For details, see Reopen a closed case.
+        Invoke action reopen
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

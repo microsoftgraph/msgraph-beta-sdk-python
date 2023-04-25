@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import domain_dns_record, domain_dns_record_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import domain_dns_record_item_request_builder
 
 class ServiceConfigurationRecordsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ServiceConfigurationRecordsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_domain_dns_record_id(self,domain_dns_record_id: str) -> domain_dns_record_item_request_builder.DomainDnsRecordItemRequestBuilder:
+        """
+        Provides operations to manage the serviceConfigurationRecords property of the microsoft.graph.domain entity.
+        Args:
+            domain_dns_record_id: Unique identifier of the item
+        Returns: domain_dns_record_item_request_builder.DomainDnsRecordItemRequestBuilder
+        """
+        if domain_dns_record_id is None:
+            raise Exception("domain_dns_record_id cannot be undefined")
+        from .item import domain_dns_record_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["domainDnsRecord%2Did"] = domain_dns_record_id
+        return domain_dns_record_item_request_builder.DomainDnsRecordItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ServiceConfigurationRecordsRequestBuilderGetRequestConfiguration] = None) -> Optional[domain_dns_record_collection_response.DomainDnsRecordCollectionResponse]:
         """
-        Retrieves a list of domainDnsRecord objects needed to enable services for the domain. Use the returned list to add records to the zone file of the domain. This can be done through the domain registrar or DNS server configuration.
+        DNS records the customer adds to the DNS zone file of the domain before the domain can be used by Microsoft Online services. Read-only, Nullable. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[domain_dns_record_collection_response.DomainDnsRecordCollectionResponse]
@@ -85,7 +101,7 @@ class ServiceConfigurationRecordsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ServiceConfigurationRecordsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieves a list of domainDnsRecord objects needed to enable services for the domain. Use the returned list to add records to the zone file of the domain. This can be done through the domain registrar or DNS server configuration.
+        DNS records the customer adds to the DNS zone file of the domain before the domain can be used by Microsoft Online services. Read-only, Nullable. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class ServiceConfigurationRecordsRequestBuilder():
     @dataclass
     class ServiceConfigurationRecordsRequestBuilderGetQueryParameters():
         """
-        Retrieves a list of domainDnsRecord objects needed to enable services for the domain. Use the returned list to add records to the zone file of the domain. This can be done through the domain registrar or DNS server configuration.
+        DNS records the customer adds to the DNS zone file of the domain before the domain can be used by Microsoft Online services. Read-only, Nullable. Supports $expand.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

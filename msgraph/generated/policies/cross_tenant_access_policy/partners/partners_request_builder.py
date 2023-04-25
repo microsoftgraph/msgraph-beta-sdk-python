@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import cross_tenant_access_policy_configuration_partner, cross_tenant_access_policy_configuration_partner_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import cross_tenant_access_policy_configuration_partner_tenant_item_request_builder
 
 class PartnersRequestBuilder():
     """
@@ -36,9 +37,24 @@ class PartnersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_cross_tenant_access_policy_configuration_partner_tenant_id(self,cross_tenant_access_policy_configuration_partner_tenant_id: str) -> cross_tenant_access_policy_configuration_partner_tenant_item_request_builder.CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder:
+        """
+        Provides operations to manage the partners property of the microsoft.graph.crossTenantAccessPolicy entity.
+        Args:
+            cross_tenant_access_policy_configuration_partner_tenant_id: Unique identifier of the item
+        Returns: cross_tenant_access_policy_configuration_partner_tenant_item_request_builder.CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder
+        """
+        if cross_tenant_access_policy_configuration_partner_tenant_id is None:
+            raise Exception("cross_tenant_access_policy_configuration_partner_tenant_id cannot be undefined")
+        from .item import cross_tenant_access_policy_configuration_partner_tenant_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["crossTenantAccessPolicyConfigurationPartner%2DtenantId"] = cross_tenant_access_policy_configuration_partner_tenant_id
+        return cross_tenant_access_policy_configuration_partner_tenant_item_request_builder.CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[PartnersRequestBuilderGetRequestConfiguration] = None) -> Optional[cross_tenant_access_policy_configuration_partner_collection_response.CrossTenantAccessPolicyConfigurationPartnerCollectionResponse]:
         """
-        Get a list of all partner configurations within a cross-tenant access policy. You can also use the `$expand` parameter to list the user synchronization policy for all partner configurations.
+        Defines partner-specific configurations for external Azure Active Directory organizations.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cross_tenant_access_policy_configuration_partner_collection_response.CrossTenantAccessPolicyConfigurationPartnerCollectionResponse]
@@ -60,7 +76,7 @@ class PartnersRequestBuilder():
     
     async def post(self,body: Optional[cross_tenant_access_policy_configuration_partner.CrossTenantAccessPolicyConfigurationPartner] = None, request_configuration: Optional[PartnersRequestBuilderPostRequestConfiguration] = None) -> Optional[cross_tenant_access_policy_configuration_partner.CrossTenantAccessPolicyConfigurationPartner]:
         """
-        Create a new partner configuration in a cross-tenant access policy.
+        Create new navigation property to partners for policies
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class PartnersRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PartnersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of all partner configurations within a cross-tenant access policy. You can also use the `$expand` parameter to list the user synchronization policy for all partner configurations.
+        Defines partner-specific configurations for external Azure Active Directory organizations.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class PartnersRequestBuilder():
     
     def to_post_request_information(self,body: Optional[cross_tenant_access_policy_configuration_partner.CrossTenantAccessPolicyConfigurationPartner] = None, request_configuration: Optional[PartnersRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new partner configuration in a cross-tenant access policy.
+        Create new navigation property to partners for policies
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class PartnersRequestBuilder():
     @dataclass
     class PartnersRequestBuilderGetQueryParameters():
         """
-        Get a list of all partner configurations within a cross-tenant access policy. You can also use the `$expand` parameter to list the user synchronization policy for all partner configurations.
+        Defines partner-specific configurations for external Azure Active Directory organizations.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

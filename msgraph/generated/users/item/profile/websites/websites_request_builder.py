@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import person_website, person_website_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import person_website_item_request_builder
 
 class WebsitesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class WebsitesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_person_website_id(self,person_website_id: str) -> person_website_item_request_builder.PersonWebsiteItemRequestBuilder:
+        """
+        Provides operations to manage the websites property of the microsoft.graph.profile entity.
+        Args:
+            person_website_id: Unique identifier of the item
+        Returns: person_website_item_request_builder.PersonWebsiteItemRequestBuilder
+        """
+        if person_website_id is None:
+            raise Exception("person_website_id cannot be undefined")
+        from .item import person_website_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["personWebsite%2Did"] = person_website_id
+        return person_website_item_request_builder.PersonWebsiteItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[WebsitesRequestBuilderGetRequestConfiguration] = None) -> Optional[person_website_collection_response.PersonWebsiteCollectionResponse]:
         """
-        Retrieve a list of personWebsite objects from a user's profile.
+        Represents detailed information about websites associated with a user in various services.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[person_website_collection_response.PersonWebsiteCollectionResponse]
@@ -60,7 +76,7 @@ class WebsitesRequestBuilder():
     
     async def post(self,body: Optional[person_website.PersonWebsite] = None, request_configuration: Optional[WebsitesRequestBuilderPostRequestConfiguration] = None) -> Optional[person_website.PersonWebsite]:
         """
-        Create a new personWebsite object in a user's profile.
+        Create new navigation property to websites for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class WebsitesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[WebsitesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of personWebsite objects from a user's profile.
+        Represents detailed information about websites associated with a user in various services.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class WebsitesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[person_website.PersonWebsite] = None, request_configuration: Optional[WebsitesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new personWebsite object in a user's profile.
+        Create new navigation property to websites for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class WebsitesRequestBuilder():
     @dataclass
     class WebsitesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of personWebsite objects from a user's profile.
+        Represents detailed information about websites associated with a user in various services.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

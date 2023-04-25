@@ -36,7 +36,7 @@ class ResetRequestBuilder():
     
     async def post(self,request_configuration: Optional[ResetRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Reset the sync of a specific school data synchronization profile in the tenant.
+        Invoke action reset
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class ResetRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[ResetRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Reset the sync of a specific school data synchronization profile in the tenant.
+        Invoke action reset
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

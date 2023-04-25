@@ -37,7 +37,7 @@ class CancelRequestBuilder():
     
     async def post(self,request_configuration: Optional[CancelRequestBuilderPostRequestConfiguration] = None) -> Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest]:
         """
-        Cancel a privilegedRoleAssignmentRequest.
+        Invoke action cancel
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest]
@@ -59,7 +59,7 @@ class CancelRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[CancelRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Cancel a privilegedRoleAssignmentRequest.
+        Invoke action cancel
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

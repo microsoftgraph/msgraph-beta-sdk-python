@@ -37,7 +37,7 @@ class MakeEligibleRequestBuilder():
     
     async def post(self,request_configuration: Optional[MakeEligibleRequestBuilderPostRequestConfiguration] = None) -> Optional[privileged_role_assignment.PrivilegedRoleAssignment]:
         """
-        Make the role assignment eligible. If the role assignment is already eligible before the call, it does nothing. If the role assignment is permanent and the requestor is different from the target user, the role assignment will become eligible and the role will be deactivated for the target user. If the requestor is the target user and the role is Security Administrator or Privileged Role Administrator, the role will be activated with the default expiration.
+        Invoke action makeEligible
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[privileged_role_assignment.PrivilegedRoleAssignment]
@@ -59,7 +59,7 @@ class MakeEligibleRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[MakeEligibleRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Make the role assignment eligible. If the role assignment is already eligible before the call, it does nothing. If the role assignment is permanent and the requestor is different from the target user, the role assignment will become eligible and the role will be deactivated for the target user. If the requestor is the target user and the role is Security Administrator or Privileged Role Administrator, the role will be activated with the default expiration.
+        Invoke action makeEligible
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .......models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .delta import delta_request_builder
+    from .item import todo_task_item_request_builder
 
 class TasksRequestBuilder():
     """
@@ -37,9 +38,24 @@ class TasksRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_todo_task_id(self,todo_task_id: str) -> todo_task_item_request_builder.TodoTaskItemRequestBuilder:
+        """
+        Provides operations to manage the tasks property of the microsoft.graph.todoTaskList entity.
+        Args:
+            todo_task_id: Unique identifier of the item
+        Returns: todo_task_item_request_builder.TodoTaskItemRequestBuilder
+        """
+        if todo_task_id is None:
+            raise Exception("todo_task_id cannot be undefined")
+        from .item import todo_task_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["todoTask%2Did"] = todo_task_id
+        return todo_task_item_request_builder.TodoTaskItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[TasksRequestBuilderGetRequestConfiguration] = None) -> Optional[todo_task_collection_response.TodoTaskCollectionResponse]:
         """
-        Get the **todoTask** resources from the **tasks** navigation property of a specified todoTaskList.
+        The tasks in this task list. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[todo_task_collection_response.TodoTaskCollectionResponse]
@@ -61,7 +77,7 @@ class TasksRequestBuilder():
     
     async def post(self,body: Optional[todo_task.TodoTask] = None, request_configuration: Optional[TasksRequestBuilderPostRequestConfiguration] = None) -> Optional[todo_task.TodoTask]:
         """
-        Create a new task object in a specified todoTaskList.
+        Create new navigation property to tasks for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -86,7 +102,7 @@ class TasksRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TasksRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the **todoTask** resources from the **tasks** navigation property of a specified todoTaskList.
+        The tasks in this task list. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +120,7 @@ class TasksRequestBuilder():
     
     def to_post_request_information(self,body: Optional[todo_task.TodoTask] = None, request_configuration: Optional[TasksRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new task object in a specified todoTaskList.
+        Create new navigation property to tasks for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -144,7 +160,7 @@ class TasksRequestBuilder():
     @dataclass
     class TasksRequestBuilderGetQueryParameters():
         """
-        Get the **todoTask** resources from the **tasks** navigation property of a specified todoTaskList.
+        The tasks in this task list. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

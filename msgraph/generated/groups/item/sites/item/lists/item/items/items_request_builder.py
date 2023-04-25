@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .count import count_request_builder
     from .delta import delta_request_builder
     from .delta_with_token import delta_with_token_request_builder
+    from .item import list_item_item_request_builder
 
 class ItemsRequestBuilder():
     """
@@ -38,6 +39,21 @@ class ItemsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_list_item_id(self,list_item_id: str) -> list_item_item_request_builder.ListItemItemRequestBuilder:
+        """
+        Provides operations to manage the items property of the microsoft.graph.list entity.
+        Args:
+            list_item_id: Unique identifier of the item
+        Returns: list_item_item_request_builder.ListItemItemRequestBuilder
+        """
+        if list_item_id is None:
+            raise Exception("list_item_id cannot be undefined")
+        from .item import list_item_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["listItem%2Did"] = list_item_id
+        return list_item_item_request_builder.ListItemItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     def delta_with_token(self,token: Optional[str] = None) -> delta_with_token_request_builder.DeltaWithTokenRequestBuilder:
         """
         Provides operations to call the delta method.
@@ -53,7 +69,7 @@ class ItemsRequestBuilder():
     
     async def get(self,request_configuration: Optional[ItemsRequestBuilderGetRequestConfiguration] = None) -> Optional[list_item_collection_response.ListItemCollectionResponse]:
         """
-        Get the collection of [items][item] in a [list][].
+        All items contained in the list.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[list_item_collection_response.ListItemCollectionResponse]
@@ -75,7 +91,7 @@ class ItemsRequestBuilder():
     
     async def post(self,body: Optional[list_item.ListItem] = None, request_configuration: Optional[ItemsRequestBuilderPostRequestConfiguration] = None) -> Optional[list_item.ListItem]:
         """
-        Create a new [listItem][] in a [list][].
+        Create new navigation property to items for groups
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -100,7 +116,7 @@ class ItemsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ItemsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the collection of [items][item] in a [list][].
+        All items contained in the list.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -118,7 +134,7 @@ class ItemsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[list_item.ListItem] = None, request_configuration: Optional[ItemsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new [listItem][] in a [list][].
+        Create new navigation property to items for groups
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -158,7 +174,7 @@ class ItemsRequestBuilder():
     @dataclass
     class ItemsRequestBuilderGetQueryParameters():
         """
-        Get the collection of [items][item] in a [list][].
+        All items contained in the list.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

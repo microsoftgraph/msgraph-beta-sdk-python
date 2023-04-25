@@ -8,12 +8,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class MobileAppIntentAndState(entity.Entity):
-    """
-    MobileApp Intent and Install State for a given device.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new mobileAppIntentAndState and sets the default values.
+        Instantiates a new MobileAppIntentAndState and sets the default values.
         """
         super().__init__()
         # Device identifier created or collected by Intune.

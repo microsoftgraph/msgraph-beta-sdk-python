@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models import access_review_decision, access_review_decision_collection_response
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import access_review_decision_item_request_builder
 
 class MyDecisionsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class MyDecisionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_access_review_decision_id(self,access_review_decision_id: str) -> access_review_decision_item_request_builder.AccessReviewDecisionItemRequestBuilder:
+        """
+        Provides operations to manage the myDecisions property of the microsoft.graph.accessReview entity.
+        Args:
+            access_review_decision_id: Unique identifier of the item
+        Returns: access_review_decision_item_request_builder.AccessReviewDecisionItemRequestBuilder
+        """
+        if access_review_decision_id is None:
+            raise Exception("access_review_decision_id cannot be undefined")
+        from .item import access_review_decision_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["accessReviewDecision%2Did"] = access_review_decision_id
+        return access_review_decision_item_request_builder.AccessReviewDecisionItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[MyDecisionsRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_decision_collection_response.AccessReviewDecisionCollectionResponse]:
         """
-        In the Azure AD access reviews feature, retrieve the decisions of an accessReview object for the calling user as reviewer.
+        The collection of decisions for the caller, if the caller is a reviewer.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_review_decision_collection_response.AccessReviewDecisionCollectionResponse]
@@ -85,7 +101,7 @@ class MyDecisionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[MyDecisionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        In the Azure AD access reviews feature, retrieve the decisions of an accessReview object for the calling user as reviewer.
+        The collection of decisions for the caller, if the caller is a reviewer.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class MyDecisionsRequestBuilder():
     @dataclass
     class MyDecisionsRequestBuilderGetQueryParameters():
         """
-        In the Azure AD access reviews feature, retrieve the decisions of an accessReview object for the calling user as reviewer.
+        The collection of decisions for the caller, if the caller is a reviewer.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

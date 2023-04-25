@@ -14,7 +14,6 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .lookup import lookup_request_builder
     from .sessions import sessions_request_builder
-    from .sessions.item import exact_match_session_item_request_builder
 
 class ExactMatchDataStoreItemRequestBuilder():
     """
@@ -103,21 +102,6 @@ class ExactMatchDataStoreItemRequestBuilder():
         from ....models import exact_match_data_store
 
         return await self.request_adapter.send_async(request_info, exact_match_data_store.ExactMatchDataStore, error_mapping)
-    
-    def sessions_by_id(self,id: str) -> exact_match_session_item_request_builder.ExactMatchSessionItemRequestBuilder:
-        """
-        Provides operations to manage the sessions property of the microsoft.graph.exactMatchDataStore entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: exact_match_session_item_request_builder.ExactMatchSessionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .sessions.item import exact_match_session_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["exactMatchSession%2Did"] = id
-        return exact_match_session_item_request_builder.ExactMatchSessionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[ExactMatchDataStoreItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

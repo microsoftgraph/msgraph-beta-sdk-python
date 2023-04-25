@@ -13,15 +13,10 @@ if TYPE_CHECKING:
     from ...models import on_premises_publishing_profile
     from ...models.o_data_errors import o_data_error
     from .agent_groups import agent_groups_request_builder
-    from .agent_groups.item import on_premises_agent_group_item_request_builder
     from .agents import agents_request_builder
-    from .agents.item import on_premises_agent_item_request_builder
     from .connector_groups import connector_groups_request_builder
-    from .connector_groups.item import connector_group_item_request_builder
     from .connectors import connectors_request_builder
-    from .connectors.item import connector_item_request_builder
     from .published_resources import published_resources_request_builder
-    from .published_resources.item import published_resource_item_request_builder
 
 class OnPremisesPublishingProfileItemRequestBuilder():
     """
@@ -44,66 +39,6 @@ class OnPremisesPublishingProfileItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def agent_groups_by_id(self,id: str) -> on_premises_agent_group_item_request_builder.OnPremisesAgentGroupItemRequestBuilder:
-        """
-        Provides operations to manage the agentGroups property of the microsoft.graph.onPremisesPublishingProfile entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: on_premises_agent_group_item_request_builder.OnPremisesAgentGroupItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .agent_groups.item import on_premises_agent_group_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["onPremisesAgentGroup%2Did"] = id
-        return on_premises_agent_group_item_request_builder.OnPremisesAgentGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def agents_by_id(self,id: str) -> on_premises_agent_item_request_builder.OnPremisesAgentItemRequestBuilder:
-        """
-        Provides operations to manage the agents property of the microsoft.graph.onPremisesPublishingProfile entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: on_premises_agent_item_request_builder.OnPremisesAgentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .agents.item import on_premises_agent_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["onPremisesAgent%2Did"] = id
-        return on_premises_agent_item_request_builder.OnPremisesAgentItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def connector_groups_by_id(self,id: str) -> connector_group_item_request_builder.ConnectorGroupItemRequestBuilder:
-        """
-        Provides operations to manage the connectorGroups property of the microsoft.graph.onPremisesPublishingProfile entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: connector_group_item_request_builder.ConnectorGroupItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .connector_groups.item import connector_group_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["connectorGroup%2Did"] = id
-        return connector_group_item_request_builder.ConnectorGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def connectors_by_id(self,id: str) -> connector_item_request_builder.ConnectorItemRequestBuilder:
-        """
-        Provides operations to manage the connectors property of the microsoft.graph.onPremisesPublishingProfile entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: connector_item_request_builder.ConnectorItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .connectors.item import connector_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["connector%2Did"] = id
-        return connector_item_request_builder.ConnectorItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[OnPremisesPublishingProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
@@ -170,21 +105,6 @@ class OnPremisesPublishingProfileItemRequestBuilder():
         from ...models import on_premises_publishing_profile
 
         return await self.request_adapter.send_async(request_info, on_premises_publishing_profile.OnPremisesPublishingProfile, error_mapping)
-    
-    def published_resources_by_id(self,id: str) -> published_resource_item_request_builder.PublishedResourceItemRequestBuilder:
-        """
-        Provides operations to manage the publishedResources property of the microsoft.graph.onPremisesPublishingProfile entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: published_resource_item_request_builder.PublishedResourceItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .published_resources.item import published_resource_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["publishedResource%2Did"] = id
-        return published_resource_item_request_builder.PublishedResourceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[OnPremisesPublishingProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

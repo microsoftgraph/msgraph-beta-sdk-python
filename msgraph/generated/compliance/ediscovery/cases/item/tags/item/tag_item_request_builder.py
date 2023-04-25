@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from .......models.ediscovery import tag
     from .......models.o_data_errors import o_data_error
     from .child_tags import child_tags_request_builder
-    from .child_tags.item import tag_item_request_builder
     from .parent import parent_request_builder
 
 class TagItemRequestBuilder():
@@ -37,21 +36,6 @@ class TagItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def child_tags_by_id(self,id: str) -> TagItemRequestBuilder:
-        """
-        Provides operations to manage the childTags property of the microsoft.graph.ediscovery.tag entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: TagItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .child_tags.item import tag_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["tag%2Did1"] = id
-        return TagItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[TagItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class DeviceManagementAutopilotEvent(entity.Entity):
-    """
-    Represents an Autopilot flow event.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceManagementAutopilotEvent and sets the default values.
+        Instantiates a new DeviceManagementAutopilotEvent and sets the default values.
         """
         super().__init__()
         # Time spent in user ESP.

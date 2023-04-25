@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models import service_announcement_attachment, service_announcement_attachment_collection_response
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import service_announcement_attachment_item_request_builder
 
 class AttachmentsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class AttachmentsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_service_announcement_attachment_id(self,service_announcement_attachment_id: str) -> service_announcement_attachment_item_request_builder.ServiceAnnouncementAttachmentItemRequestBuilder:
+        """
+        Provides operations to manage the attachments property of the microsoft.graph.serviceUpdateMessage entity.
+        Args:
+            service_announcement_attachment_id: Unique identifier of the item
+        Returns: service_announcement_attachment_item_request_builder.ServiceAnnouncementAttachmentItemRequestBuilder
+        """
+        if service_announcement_attachment_id is None:
+            raise Exception("service_announcement_attachment_id cannot be undefined")
+        from .item import service_announcement_attachment_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["serviceAnnouncementAttachment%2Did"] = service_announcement_attachment_id
+        return service_announcement_attachment_item_request_builder.ServiceAnnouncementAttachmentItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[AttachmentsRequestBuilderGetRequestConfiguration] = None) -> Optional[service_announcement_attachment_collection_response.ServiceAnnouncementAttachmentCollectionResponse]:
         """
-        Get a list of attachments associated with a service message.
+        A collection of serviceAnnouncementAttachments.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[service_announcement_attachment_collection_response.ServiceAnnouncementAttachmentCollectionResponse]
@@ -85,7 +101,7 @@ class AttachmentsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AttachmentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of attachments associated with a service message.
+        A collection of serviceAnnouncementAttachments.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class AttachmentsRequestBuilder():
     @dataclass
     class AttachmentsRequestBuilderGetQueryParameters():
         """
-        Get a list of attachments associated with a service message.
+        A collection of serviceAnnouncementAttachments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

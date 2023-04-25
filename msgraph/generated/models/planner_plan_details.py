@@ -10,7 +10,7 @@ from . import planner_delta
 class PlannerPlanDetails(planner_delta.PlannerDelta):
     def __init__(self,) -> None:
         """
-        Instantiates a new plannerPlanDetails and sets the default values.
+        Instantiates a new PlannerPlanDetails and sets the default values.
         """
         super().__init__()
         # An object that specifies the descriptions of the 25 categories that can be associated with tasks in the plan.

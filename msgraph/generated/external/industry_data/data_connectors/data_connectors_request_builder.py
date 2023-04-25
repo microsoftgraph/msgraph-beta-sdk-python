@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.industry_data import industry_data_connector, industry_data_connector_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import industry_data_connector_item_request_builder
 
 class DataConnectorsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class DataConnectorsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_industry_data_connector_id(self,industry_data_connector_id: str) -> industry_data_connector_item_request_builder.IndustryDataConnectorItemRequestBuilder:
+        """
+        Provides operations to manage the dataConnectors property of the microsoft.graph.industryData.industryDataRoot entity.
+        Args:
+            industry_data_connector_id: Unique identifier of the item
+        Returns: industry_data_connector_item_request_builder.IndustryDataConnectorItemRequestBuilder
+        """
+        if industry_data_connector_id is None:
+            raise Exception("industry_data_connector_id cannot be undefined")
+        from .item import industry_data_connector_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["industryDataConnector%2Did"] = industry_data_connector_id
+        return industry_data_connector_item_request_builder.IndustryDataConnectorItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[DataConnectorsRequestBuilderGetRequestConfiguration] = None) -> Optional[industry_data_connector_collection_response.IndustryDataConnectorCollectionResponse]:
         """
-        Get a list of the azureDataLakeConnector objects and their properties.
+        Set of connectors for importing data from source systems.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[industry_data_connector_collection_response.IndustryDataConnectorCollectionResponse]
@@ -60,7 +76,7 @@ class DataConnectorsRequestBuilder():
     
     async def post(self,body: Optional[industry_data_connector.IndustryDataConnector] = None, request_configuration: Optional[DataConnectorsRequestBuilderPostRequestConfiguration] = None) -> Optional[industry_data_connector.IndustryDataConnector]:
         """
-        Create a new industryDataConnector object.
+        Create new navigation property to dataConnectors for external
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class DataConnectorsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[DataConnectorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the azureDataLakeConnector objects and their properties.
+        Set of connectors for importing data from source systems.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class DataConnectorsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[industry_data_connector.IndustryDataConnector] = None, request_configuration: Optional[DataConnectorsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new industryDataConnector object.
+        Create new navigation property to dataConnectors for external
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class DataConnectorsRequestBuilder():
     @dataclass
     class DataConnectorsRequestBuilderGetQueryParameters():
         """
-        Get a list of the azureDataLakeConnector objects and their properties.
+        Set of connectors for importing data from source systems.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

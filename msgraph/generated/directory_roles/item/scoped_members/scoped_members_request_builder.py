@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import scoped_role_membership, scoped_role_membership_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import scoped_role_membership_item_request_builder
 
 class ScopedMembersRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ScopedMembersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_scoped_role_membership_id(self,scoped_role_membership_id: str) -> scoped_role_membership_item_request_builder.ScopedRoleMembershipItemRequestBuilder:
+        """
+        Provides operations to manage the scopedMembers property of the microsoft.graph.directoryRole entity.
+        Args:
+            scoped_role_membership_id: Unique identifier of the item
+        Returns: scoped_role_membership_item_request_builder.ScopedRoleMembershipItemRequestBuilder
+        """
+        if scoped_role_membership_id is None:
+            raise Exception("scoped_role_membership_id cannot be undefined")
+        from .item import scoped_role_membership_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["scopedRoleMembership%2Did"] = scoped_role_membership_id
+        return scoped_role_membership_item_request_builder.ScopedRoleMembershipItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ScopedMembersRequestBuilderGetRequestConfiguration] = None) -> Optional[scoped_role_membership_collection_response.ScopedRoleMembershipCollectionResponse]:
         """
-        Retrieve a list of scopedRoleMembership objects for a directory role.
+        Members of this directory role that are scoped to administrative units. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[scoped_role_membership_collection_response.ScopedRoleMembershipCollectionResponse]
@@ -85,7 +101,7 @@ class ScopedMembersRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ScopedMembersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of scopedRoleMembership objects for a directory role.
+        Members of this directory role that are scoped to administrative units. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class ScopedMembersRequestBuilder():
     @dataclass
     class ScopedMembersRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of scopedRoleMembership objects for a directory role.
+        Members of this directory role that are scoped to administrative units. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .....models.windows_updates import update_policy, update_policy_collection_response
     from .count import count_request_builder
+    from .item import update_policy_item_request_builder
 
 class UpdatePoliciesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class UpdatePoliciesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_update_policy_id(self,update_policy_id: str) -> update_policy_item_request_builder.UpdatePolicyItemRequestBuilder:
+        """
+        Provides operations to manage the updatePolicies property of the microsoft.graph.adminWindowsUpdates entity.
+        Args:
+            update_policy_id: Unique identifier of the item
+        Returns: update_policy_item_request_builder.UpdatePolicyItemRequestBuilder
+        """
+        if update_policy_id is None:
+            raise Exception("update_policy_id cannot be undefined")
+        from .item import update_policy_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["updatePolicy%2Did"] = update_policy_id
+        return update_policy_item_request_builder.UpdatePolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[UpdatePoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[update_policy_collection_response.UpdatePolicyCollectionResponse]:
         """
-        Get a list of updatePolicy objects and their properties.
+        A collection of policies for approving the deployment of different content to an audience over time.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[update_policy_collection_response.UpdatePolicyCollectionResponse]
@@ -60,7 +76,7 @@ class UpdatePoliciesRequestBuilder():
     
     async def post(self,body: Optional[update_policy.UpdatePolicy] = None, request_configuration: Optional[UpdatePoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[update_policy.UpdatePolicy]:
         """
-        Create a new updatePolicy object.
+        Create new navigation property to updatePolicies for admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class UpdatePoliciesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UpdatePoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of updatePolicy objects and their properties.
+        A collection of policies for approving the deployment of different content to an audience over time.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class UpdatePoliciesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[update_policy.UpdatePolicy] = None, request_configuration: Optional[UpdatePoliciesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new updatePolicy object.
+        Create new navigation property to updatePolicies for admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class UpdatePoliciesRequestBuilder():
     @dataclass
     class UpdatePoliciesRequestBuilderGetQueryParameters():
         """
-        Get a list of updatePolicy objects and their properties.
+        A collection of policies for approving the deployment of different content to an audience over time.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

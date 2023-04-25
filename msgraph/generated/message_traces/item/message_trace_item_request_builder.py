@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ...models import message_trace
     from ...models.o_data_errors import o_data_error
     from .recipients import recipients_request_builder
-    from .recipients.item import message_recipient_item_request_builder
 
 class MessageTraceItemRequestBuilder():
     """
@@ -102,21 +101,6 @@ class MessageTraceItemRequestBuilder():
         from ...models import message_trace
 
         return await self.request_adapter.send_async(request_info, message_trace.MessageTrace, error_mapping)
-    
-    def recipients_by_id(self,id: str) -> message_recipient_item_request_builder.MessageRecipientItemRequestBuilder:
-        """
-        Provides operations to manage the recipients property of the microsoft.graph.messageTrace entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: message_recipient_item_request_builder.MessageRecipientItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .recipients.item import message_recipient_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["messageRecipient%2Did"] = id
-        return message_recipient_item_request_builder.MessageRecipientItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[MessageTraceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

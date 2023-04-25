@@ -37,7 +37,7 @@ class GetTotalAggregatedRemoteConnectionReportsRequestBuilder():
     
     async def post(self,body: Optional[get_total_aggregated_remote_connection_reports_post_request_body.GetTotalAggregatedRemoteConnectionReportsPostRequestBody] = None, request_configuration: Optional[GetTotalAggregatedRemoteConnectionReportsRequestBuilderPostRequestConfiguration] = None) -> bytes:
         """
-        Get the total aggregated remote connection usage of a Cloud PC during a given time span.
+        Invoke action getTotalAggregatedRemoteConnectionReports
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -60,7 +60,7 @@ class GetTotalAggregatedRemoteConnectionReportsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[get_total_aggregated_remote_connection_reports_post_request_body.GetTotalAggregatedRemoteConnectionReportsPostRequestBody] = None, request_configuration: Optional[GetTotalAggregatedRemoteConnectionReportsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the total aggregated remote connection usage of a Cloud PC during a given time span.
+        Invoke action getTotalAggregatedRemoteConnectionReports
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import teamwork_device, teamwork_device_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import teamwork_device_item_request_builder
 
 class DevicesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class DevicesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_teamwork_device_id(self,teamwork_device_id: str) -> teamwork_device_item_request_builder.TeamworkDeviceItemRequestBuilder:
+        """
+        Provides operations to manage the devices property of the microsoft.graph.teamwork entity.
+        Args:
+            teamwork_device_id: Unique identifier of the item
+        Returns: teamwork_device_item_request_builder.TeamworkDeviceItemRequestBuilder
+        """
+        if teamwork_device_id is None:
+            raise Exception("teamwork_device_id cannot be undefined")
+        from .item import teamwork_device_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["teamworkDevice%2Did"] = teamwork_device_id
+        return teamwork_device_item_request_builder.TeamworkDeviceItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[DevicesRequestBuilderGetRequestConfiguration] = None) -> Optional[teamwork_device_collection_response.TeamworkDeviceCollectionResponse]:
         """
-        Get a list of all Microsoft Teams-enabled devices provisioned for a tenant.
+        The Teams devices provisioned for the tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[teamwork_device_collection_response.TeamworkDeviceCollectionResponse]
@@ -85,7 +101,7 @@ class DevicesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[DevicesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of all Microsoft Teams-enabled devices provisioned for a tenant.
+        The Teams devices provisioned for the tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class DevicesRequestBuilder():
     @dataclass
     class DevicesRequestBuilderGetQueryParameters():
         """
-        Get a list of all Microsoft Teams-enabled devices provisioned for a tenant.
+        The Teams devices provisioned for the tenant.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

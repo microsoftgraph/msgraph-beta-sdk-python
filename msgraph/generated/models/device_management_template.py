@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class DeviceManagementTemplate(entity.Entity):
-    """
-    Entity that represents a defined collection of device settings
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceManagementTemplate and sets the default values.
+        Instantiates a new DeviceManagementTemplate and sets the default values.
         """
         super().__init__()
         # Collection of setting categories within the template
@@ -28,7 +25,7 @@ class DeviceManagementTemplate(entity.Entity):
         # The template is deprecated or not. Intents cannot be created from a deprecated template.
         self._is_deprecated: Optional[bool] = None
         # Collection of templates this template can migrate to
-        self._migratable_to: Optional[List[DeviceManagementTemplate]] = None
+        self._migratable_to: Optional[List[device_management_template.DeviceManagementTemplate]] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
         # Supported platform types for policies.
@@ -127,7 +124,7 @@ class DeviceManagementTemplate(entity.Entity):
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "intentCount": lambda n : setattr(self, 'intent_count', n.get_int_value()),
             "isDeprecated": lambda n : setattr(self, 'is_deprecated', n.get_bool_value()),
-            "migratableTo": lambda n : setattr(self, 'migratable_to', n.get_collection_of_object_values(DeviceManagementTemplate)),
+            "migratableTo": lambda n : setattr(self, 'migratable_to', n.get_collection_of_object_values(device_management_template.DeviceManagementTemplate)),
             "platformType": lambda n : setattr(self, 'platform_type', n.get_enum_value(policy_platform_type.PolicyPlatformType)),
             "publishedDateTime": lambda n : setattr(self, 'published_date_time', n.get_datetime_value()),
             "settings": lambda n : setattr(self, 'settings', n.get_collection_of_object_values(device_management_setting_instance.DeviceManagementSettingInstance)),
@@ -174,15 +171,15 @@ class DeviceManagementTemplate(entity.Entity):
         self._is_deprecated = value
     
     @property
-    def migratable_to(self,) -> Optional[List[DeviceManagementTemplate]]:
+    def migratable_to(self,) -> Optional[List[device_management_template.DeviceManagementTemplate]]:
         """
         Gets the migratableTo property value. Collection of templates this template can migrate to
-        Returns: Optional[List[DeviceManagementTemplate]]
+        Returns: Optional[List[device_management_template.DeviceManagementTemplate]]
         """
         return self._migratable_to
     
     @migratable_to.setter
-    def migratable_to(self,value: Optional[List[DeviceManagementTemplate]] = None) -> None:
+    def migratable_to(self,value: Optional[List[device_management_template.DeviceManagementTemplate]] = None) -> None:
         """
         Sets the migratableTo property value. Collection of templates this template can migrate to
         Args:

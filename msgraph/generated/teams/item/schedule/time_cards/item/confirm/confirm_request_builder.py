@@ -37,7 +37,7 @@ class ConfirmRequestBuilder():
     
     async def post(self,request_configuration: Optional[ConfirmRequestBuilderPostRequestConfiguration] = None) -> Optional[time_card.TimeCard]:
         """
-        Confirm a specific timeCard.
+        Invoke action confirm
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[time_card.TimeCard]
@@ -59,7 +59,7 @@ class ConfirmRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[ConfirmRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Confirm a specific timeCard.
+        Invoke action confirm
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

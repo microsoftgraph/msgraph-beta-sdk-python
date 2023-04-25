@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import item_email, item_email_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import item_email_item_request_builder
 
 class EmailsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class EmailsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_item_email_id(self,item_email_id: str) -> item_email_item_request_builder.ItemEmailItemRequestBuilder:
+        """
+        Provides operations to manage the emails property of the microsoft.graph.profile entity.
+        Args:
+            item_email_id: Unique identifier of the item
+        Returns: item_email_item_request_builder.ItemEmailItemRequestBuilder
+        """
+        if item_email_id is None:
+            raise Exception("item_email_id cannot be undefined")
+        from .item import item_email_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["itemEmail%2Did"] = item_email_id
+        return item_email_item_request_builder.ItemEmailItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[EmailsRequestBuilderGetRequestConfiguration] = None) -> Optional[item_email_collection_response.ItemEmailCollectionResponse]:
         """
-        Retrieve a list of itemEmail objects from a user's profile.
+        Represents detailed information about email addresses associated with the user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[item_email_collection_response.ItemEmailCollectionResponse]
@@ -60,7 +76,7 @@ class EmailsRequestBuilder():
     
     async def post(self,body: Optional[item_email.ItemEmail] = None, request_configuration: Optional[EmailsRequestBuilderPostRequestConfiguration] = None) -> Optional[item_email.ItemEmail]:
         """
-        Create a new itemEmail object in a user's profile.
+        Create new navigation property to emails for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class EmailsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[EmailsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of itemEmail objects from a user's profile.
+        Represents detailed information about email addresses associated with the user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class EmailsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[item_email.ItemEmail] = None, request_configuration: Optional[EmailsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new itemEmail object in a user's profile.
+        Create new navigation property to emails for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class EmailsRequestBuilder():
     @dataclass
     class EmailsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of itemEmail objects from a user's profile.
+        Represents detailed information about email addresses associated with the user.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

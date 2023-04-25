@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models import time_off, time_off_collection_response
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import time_off_item_request_builder
 
 class TimesOffRequestBuilder():
     """
@@ -36,9 +37,24 @@ class TimesOffRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_time_off_id(self,time_off_id: str) -> time_off_item_request_builder.TimeOffItemRequestBuilder:
+        """
+        Provides operations to manage the timesOff property of the microsoft.graph.schedule entity.
+        Args:
+            time_off_id: Unique identifier of the item
+        Returns: time_off_item_request_builder.TimeOffItemRequestBuilder
+        """
+        if time_off_id is None:
+            raise Exception("time_off_id cannot be undefined")
+        from .item import time_off_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["timeOff%2Did"] = time_off_id
+        return time_off_item_request_builder.TimeOffItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[TimesOffRequestBuilderGetRequestConfiguration] = None) -> Optional[time_off_collection_response.TimeOffCollectionResponse]:
         """
-        Get the list of timeOff instances in a schedule.
+        The instances of times off in the schedule.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[time_off_collection_response.TimeOffCollectionResponse]
@@ -60,7 +76,7 @@ class TimesOffRequestBuilder():
     
     async def post(self,body: Optional[time_off.TimeOff] = None, request_configuration: Optional[TimesOffRequestBuilderPostRequestConfiguration] = None) -> Optional[time_off.TimeOff]:
         """
-        Create a new timeOff instance in a schedule.
+        Create new navigation property to timesOff for teamTemplateDefinition
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class TimesOffRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TimesOffRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the list of timeOff instances in a schedule.
+        The instances of times off in the schedule.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class TimesOffRequestBuilder():
     
     def to_post_request_information(self,body: Optional[time_off.TimeOff] = None, request_configuration: Optional[TimesOffRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new timeOff instance in a schedule.
+        Create new navigation property to timesOff for teamTemplateDefinition
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class TimesOffRequestBuilder():
     @dataclass
     class TimesOffRequestBuilderGetQueryParameters():
         """
-        Get the list of timeOff instances in a schedule.
+        The instances of times off in the schedule.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

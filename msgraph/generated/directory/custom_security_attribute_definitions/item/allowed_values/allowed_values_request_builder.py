@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import allowed_value, allowed_value_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import allowed_value_item_request_builder
 
 class AllowedValuesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class AllowedValuesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_allowed_value_id(self,allowed_value_id: str) -> allowed_value_item_request_builder.AllowedValueItemRequestBuilder:
+        """
+        Provides operations to manage the allowedValues property of the microsoft.graph.customSecurityAttributeDefinition entity.
+        Args:
+            allowed_value_id: Unique identifier of the item
+        Returns: allowed_value_item_request_builder.AllowedValueItemRequestBuilder
+        """
+        if allowed_value_id is None:
+            raise Exception("allowed_value_id cannot be undefined")
+        from .item import allowed_value_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["allowedValue%2Did"] = allowed_value_id
+        return allowed_value_item_request_builder.AllowedValueItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[AllowedValuesRequestBuilderGetRequestConfiguration] = None) -> Optional[allowed_value_collection_response.AllowedValueCollectionResponse]:
         """
-        Get a list of the allowedValue objects and their properties.
+        Values that are predefined for this custom security attribute.This navigation property is not returned by default and must be specified in an $expand query. For example, /directory/customSecurityAttributeDefinitions?$expand=allowedValues.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[allowed_value_collection_response.AllowedValueCollectionResponse]
@@ -60,7 +76,7 @@ class AllowedValuesRequestBuilder():
     
     async def post(self,body: Optional[allowed_value.AllowedValue] = None, request_configuration: Optional[AllowedValuesRequestBuilderPostRequestConfiguration] = None) -> Optional[allowed_value.AllowedValue]:
         """
-        Create a new allowedValue object.
+        Create new navigation property to allowedValues for directory
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class AllowedValuesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AllowedValuesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the allowedValue objects and their properties.
+        Values that are predefined for this custom security attribute.This navigation property is not returned by default and must be specified in an $expand query. For example, /directory/customSecurityAttributeDefinitions?$expand=allowedValues.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class AllowedValuesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[allowed_value.AllowedValue] = None, request_configuration: Optional[AllowedValuesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new allowedValue object.
+        Create new navigation property to allowedValues for directory
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class AllowedValuesRequestBuilder():
     @dataclass
     class AllowedValuesRequestBuilderGetQueryParameters():
         """
-        Get a list of the allowedValue objects and their properties.
+        Values that are predefined for this custom security attribute.This navigation property is not returned by default and must be specified in an $expand query. For example, /directory/customSecurityAttributeDefinitions?$expand=allowedValues.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

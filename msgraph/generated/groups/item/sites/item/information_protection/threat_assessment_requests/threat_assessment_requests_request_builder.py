@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .......models import threat_assessment_request, threat_assessment_request_collection_response
     from .......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import threat_assessment_request_item_request_builder
 
 class ThreatAssessmentRequestsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ThreatAssessmentRequestsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_threat_assessment_request_id(self,threat_assessment_request_id: str) -> threat_assessment_request_item_request_builder.ThreatAssessmentRequestItemRequestBuilder:
+        """
+        Provides operations to manage the threatAssessmentRequests property of the microsoft.graph.informationProtection entity.
+        Args:
+            threat_assessment_request_id: Unique identifier of the item
+        Returns: threat_assessment_request_item_request_builder.ThreatAssessmentRequestItemRequestBuilder
+        """
+        if threat_assessment_request_id is None:
+            raise Exception("threat_assessment_request_id cannot be undefined")
+        from .item import threat_assessment_request_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["threatAssessmentRequest%2Did"] = threat_assessment_request_id
+        return threat_assessment_request_item_request_builder.ThreatAssessmentRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ThreatAssessmentRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[threat_assessment_request_collection_response.ThreatAssessmentRequestCollectionResponse]:
         """
-        Retrieve a list of threatAssessmentRequest objects. A threat assessment request can be one of the following types:
+        Get threatAssessmentRequests from groups
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[threat_assessment_request_collection_response.ThreatAssessmentRequestCollectionResponse]
@@ -60,7 +76,7 @@ class ThreatAssessmentRequestsRequestBuilder():
     
     async def post(self,body: Optional[threat_assessment_request.ThreatAssessmentRequest] = None, request_configuration: Optional[ThreatAssessmentRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[threat_assessment_request.ThreatAssessmentRequest]:
         """
-        Create a new threat assessment request. A threat assessment request can be one of the following types:
+        Create new navigation property to threatAssessmentRequests for groups
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class ThreatAssessmentRequestsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ThreatAssessmentRequestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of threatAssessmentRequest objects. A threat assessment request can be one of the following types:
+        Get threatAssessmentRequests from groups
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class ThreatAssessmentRequestsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[threat_assessment_request.ThreatAssessmentRequest] = None, request_configuration: Optional[ThreatAssessmentRequestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new threat assessment request. A threat assessment request can be one of the following types:
+        Create new navigation property to threatAssessmentRequests for groups
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class ThreatAssessmentRequestsRequestBuilder():
     @dataclass
     class ThreatAssessmentRequestsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of threatAssessmentRequest objects. A threat assessment request can be one of the following types:
+        Get threatAssessmentRequests from groups
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

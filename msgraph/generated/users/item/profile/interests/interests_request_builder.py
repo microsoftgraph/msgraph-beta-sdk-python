@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import person_interest, person_interest_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import person_interest_item_request_builder
 
 class InterestsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class InterestsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_person_interest_id(self,person_interest_id: str) -> person_interest_item_request_builder.PersonInterestItemRequestBuilder:
+        """
+        Provides operations to manage the interests property of the microsoft.graph.profile entity.
+        Args:
+            person_interest_id: Unique identifier of the item
+        Returns: person_interest_item_request_builder.PersonInterestItemRequestBuilder
+        """
+        if person_interest_id is None:
+            raise Exception("person_interest_id cannot be undefined")
+        from .item import person_interest_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["personInterest%2Did"] = person_interest_id
+        return person_interest_item_request_builder.PersonInterestItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[InterestsRequestBuilderGetRequestConfiguration] = None) -> Optional[person_interest_collection_response.PersonInterestCollectionResponse]:
         """
-        Retrieve a list of personInterest objects from a user's profile.
+        Provides detailed information about interests the user has associated with themselves in various services.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[person_interest_collection_response.PersonInterestCollectionResponse]
@@ -60,7 +76,7 @@ class InterestsRequestBuilder():
     
     async def post(self,body: Optional[person_interest.PersonInterest] = None, request_configuration: Optional[InterestsRequestBuilderPostRequestConfiguration] = None) -> Optional[person_interest.PersonInterest]:
         """
-        Create a new personInterest.
+        Create new navigation property to interests for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class InterestsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[InterestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of personInterest objects from a user's profile.
+        Provides detailed information about interests the user has associated with themselves in various services.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class InterestsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[person_interest.PersonInterest] = None, request_configuration: Optional[InterestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new personInterest.
+        Create new navigation property to interests for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class InterestsRequestBuilder():
     @dataclass
     class InterestsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of personInterest objects from a user's profile.
+        Provides detailed information about interests the user has associated with themselves in various services.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

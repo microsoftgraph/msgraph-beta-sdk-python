@@ -37,7 +37,7 @@ class WindowsUpdatesAddMembersRequestBuilder():
     
     async def post(self,body: Optional[add_members_post_request_body.AddMembersPostRequestBody] = None, request_configuration: Optional[WindowsUpdatesAddMembersRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Add members to an updatableAssetGroup. You can add azureADDevice resources as members, but may not add **updatableAssetGroup** resources as members. Adding an Azure AD device as a member of an updatable asset group automatically creates an **azureADDevice** object, if it does not already exist. You can also use the method addMembersById to add members.
+        Invoke action addMembers
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -59,7 +59,7 @@ class WindowsUpdatesAddMembersRequestBuilder():
     
     def to_post_request_information(self,body: Optional[add_members_post_request_body.AddMembersPostRequestBody] = None, request_configuration: Optional[WindowsUpdatesAddMembersRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Add members to an updatableAssetGroup. You can add azureADDevice resources as members, but may not add **updatableAssetGroup** resources as members. Adding an Azure AD device as a member of an updatable asset group automatically creates an **azureADDevice** object, if it does not already exist. You can also use the method addMembersById to add members.
+        Invoke action addMembers
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

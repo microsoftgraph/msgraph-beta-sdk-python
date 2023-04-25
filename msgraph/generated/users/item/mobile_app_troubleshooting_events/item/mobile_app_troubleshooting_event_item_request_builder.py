@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from .....models import mobile_app_troubleshooting_event
     from .....models.o_data_errors import o_data_error
     from .app_log_collection_requests import app_log_collection_requests_request_builder
-    from .app_log_collection_requests.item import app_log_collection_request_item_request_builder
 
 class MobileAppTroubleshootingEventItemRequestBuilder():
     """
@@ -36,21 +35,6 @@ class MobileAppTroubleshootingEventItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def app_log_collection_requests_by_id(self,id: str) -> app_log_collection_request_item_request_builder.AppLogCollectionRequestItemRequestBuilder:
-        """
-        Provides operations to manage the appLogCollectionRequests property of the microsoft.graph.mobileAppTroubleshootingEvent entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: app_log_collection_request_item_request_builder.AppLogCollectionRequestItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .app_log_collection_requests.item import app_log_collection_request_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["appLogCollectionRequest%2Did"] = id
-        return app_log_collection_request_item_request_builder.AppLogCollectionRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[MobileAppTroubleshootingEventItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

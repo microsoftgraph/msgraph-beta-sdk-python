@@ -36,7 +36,7 @@ class IndustryDataValidateRequestBuilder():
     
     async def post(self,request_configuration: Optional[IndustryDataValidateRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Perform validations applicable for the specific instance of the data connector.
+        Invoke action validate
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class IndustryDataValidateRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[IndustryDataValidateRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Perform validations applicable for the specific instance of the data connector.
+        Invoke action validate
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

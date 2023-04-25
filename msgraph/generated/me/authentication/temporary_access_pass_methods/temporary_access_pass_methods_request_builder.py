@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import temporary_access_pass_authentication_method, temporary_access_pass_authentication_method_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import temporary_access_pass_authentication_method_item_request_builder
 
 class TemporaryAccessPassMethodsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class TemporaryAccessPassMethodsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_temporary_access_pass_authentication_method_id(self,temporary_access_pass_authentication_method_id: str) -> temporary_access_pass_authentication_method_item_request_builder.TemporaryAccessPassAuthenticationMethodItemRequestBuilder:
+        """
+        Provides operations to manage the temporaryAccessPassMethods property of the microsoft.graph.authentication entity.
+        Args:
+            temporary_access_pass_authentication_method_id: Unique identifier of the item
+        Returns: temporary_access_pass_authentication_method_item_request_builder.TemporaryAccessPassAuthenticationMethodItemRequestBuilder
+        """
+        if temporary_access_pass_authentication_method_id is None:
+            raise Exception("temporary_access_pass_authentication_method_id cannot be undefined")
+        from .item import temporary_access_pass_authentication_method_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["temporaryAccessPassAuthenticationMethod%2Did"] = temporary_access_pass_authentication_method_id
+        return temporary_access_pass_authentication_method_item_request_builder.TemporaryAccessPassAuthenticationMethodItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[TemporaryAccessPassMethodsRequestBuilderGetRequestConfiguration] = None) -> Optional[temporary_access_pass_authentication_method_collection_response.TemporaryAccessPassAuthenticationMethodCollectionResponse]:
         """
-        Retrieve a list of a user's temporaryAccessPassAuthenticationMethod objects and their properties. This API will only return a single object in the collection as a user can have only one Temporary Access Pass (TAP) method.
+        Represents a Temporary Access Pass registered to a user for authentication through time-limited passcodes.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[temporary_access_pass_authentication_method_collection_response.TemporaryAccessPassAuthenticationMethodCollectionResponse]
@@ -60,7 +76,7 @@ class TemporaryAccessPassMethodsRequestBuilder():
     
     async def post(self,body: Optional[temporary_access_pass_authentication_method.TemporaryAccessPassAuthenticationMethod] = None, request_configuration: Optional[TemporaryAccessPassMethodsRequestBuilderPostRequestConfiguration] = None) -> Optional[temporary_access_pass_authentication_method.TemporaryAccessPassAuthenticationMethod]:
         """
-        Create a new temporaryAccessPassAuthenticationMethod object on a user. A user can only have one Temporary Access Pass that's usable within its specified lifetime. If the user requires a new Temporary Access Pass while the current Temporary Access Pass is valid, the admin can create a new Temporary Access Pass for the user, the previous Temporary Access Pass will be deleted, and a new Temporary Access Pass will be created.
+        Create new navigation property to temporaryAccessPassMethods for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class TemporaryAccessPassMethodsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TemporaryAccessPassMethodsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of a user's temporaryAccessPassAuthenticationMethod objects and their properties. This API will only return a single object in the collection as a user can have only one Temporary Access Pass (TAP) method.
+        Represents a Temporary Access Pass registered to a user for authentication through time-limited passcodes.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class TemporaryAccessPassMethodsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[temporary_access_pass_authentication_method.TemporaryAccessPassAuthenticationMethod] = None, request_configuration: Optional[TemporaryAccessPassMethodsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new temporaryAccessPassAuthenticationMethod object on a user. A user can only have one Temporary Access Pass that's usable within its specified lifetime. If the user requires a new Temporary Access Pass while the current Temporary Access Pass is valid, the admin can create a new Temporary Access Pass for the user, the previous Temporary Access Pass will be deleted, and a new Temporary Access Pass will be created.
+        Create new navigation property to temporaryAccessPassMethods for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class TemporaryAccessPassMethodsRequestBuilder():
     @dataclass
     class TemporaryAccessPassMethodsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of a user's temporaryAccessPassAuthenticationMethod objects and their properties. This API will only return a single object in the collection as a user can have only one Temporary Access Pass (TAP) method.
+        Represents a Temporary Access Pass registered to a user for authentication through time-limited passcodes.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

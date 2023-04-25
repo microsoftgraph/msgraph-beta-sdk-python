@@ -38,7 +38,7 @@ class IdentityGovernanceCreateNewVersionRequestBuilder():
     
     async def post(self,body: Optional[create_new_version_post_request_body.CreateNewVersionPostRequestBody] = None, request_configuration: Optional[IdentityGovernanceCreateNewVersionRequestBuilderPostRequestConfiguration] = None) -> Optional[workflow.Workflow]:
         """
-        Create a new version of the workflow object.
+        Invoke action createNewVersion
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +63,7 @@ class IdentityGovernanceCreateNewVersionRequestBuilder():
     
     def to_post_request_information(self,body: Optional[create_new_version_post_request_body.CreateNewVersionPostRequestBody] = None, request_configuration: Optional[IdentityGovernanceCreateNewVersionRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new version of the workflow object.
+        Invoke action createNewVersion
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

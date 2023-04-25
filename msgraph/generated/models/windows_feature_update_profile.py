@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class WindowsFeatureUpdateProfile(entity.Entity):
-    """
-    Windows Feature Update Profile
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new windowsFeatureUpdateProfile and sets the default values.
+        Instantiates a new WindowsFeatureUpdateProfile and sets the default values.
         """
         super().__init__()
         # The list of group assignments of the profile.

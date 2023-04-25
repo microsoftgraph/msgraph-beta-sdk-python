@@ -38,7 +38,7 @@ class GenerateKeyRequestBuilder():
     
     async def post(self,body: Optional[generate_key_post_request_body.GenerateKeyPostRequestBody] = None, request_configuration: Optional[GenerateKeyRequestBuilderPostRequestConfiguration] = None) -> Optional[trust_framework_key.TrustFrameworkKey]:
         """
-        Generate a trustFrameworkKey and a secret automatically in the trustFrameworkKeyset. The caller doesn't have to provide a secret.
+        Invoke action generateKey
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +63,7 @@ class GenerateKeyRequestBuilder():
     
     def to_post_request_information(self,body: Optional[generate_key_post_request_body.GenerateKeyPostRequestBody] = None, request_configuration: Optional[GenerateKeyRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Generate a trustFrameworkKey and a secret automatically in the trustFrameworkKeyset. The caller doesn't have to provide a secret.
+        Invoke action generateKey
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

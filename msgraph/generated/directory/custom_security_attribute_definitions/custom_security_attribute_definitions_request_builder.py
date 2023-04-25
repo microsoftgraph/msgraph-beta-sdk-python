@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import custom_security_attribute_definition, custom_security_attribute_definition_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import custom_security_attribute_definition_item_request_builder
 
 class CustomSecurityAttributeDefinitionsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class CustomSecurityAttributeDefinitionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_custom_security_attribute_definition_id(self,custom_security_attribute_definition_id: str) -> custom_security_attribute_definition_item_request_builder.CustomSecurityAttributeDefinitionItemRequestBuilder:
+        """
+        Provides operations to manage the customSecurityAttributeDefinitions property of the microsoft.graph.directory entity.
+        Args:
+            custom_security_attribute_definition_id: Unique identifier of the item
+        Returns: custom_security_attribute_definition_item_request_builder.CustomSecurityAttributeDefinitionItemRequestBuilder
+        """
+        if custom_security_attribute_definition_id is None:
+            raise Exception("custom_security_attribute_definition_id cannot be undefined")
+        from .item import custom_security_attribute_definition_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["customSecurityAttributeDefinition%2Did"] = custom_security_attribute_definition_id
+        return custom_security_attribute_definition_item_request_builder.CustomSecurityAttributeDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[CustomSecurityAttributeDefinitionsRequestBuilderGetRequestConfiguration] = None) -> Optional[custom_security_attribute_definition_collection_response.CustomSecurityAttributeDefinitionCollectionResponse]:
         """
-        Get a list of the customSecurityAttributeDefinition objects and their properties.
+        Schema of a custom security attributes (key-value pairs).
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[custom_security_attribute_definition_collection_response.CustomSecurityAttributeDefinitionCollectionResponse]
@@ -60,7 +76,7 @@ class CustomSecurityAttributeDefinitionsRequestBuilder():
     
     async def post(self,body: Optional[custom_security_attribute_definition.CustomSecurityAttributeDefinition] = None, request_configuration: Optional[CustomSecurityAttributeDefinitionsRequestBuilderPostRequestConfiguration] = None) -> Optional[custom_security_attribute_definition.CustomSecurityAttributeDefinition]:
         """
-        Create a new customSecurityAttributeDefinition object.
+        Create new navigation property to customSecurityAttributeDefinitions for directory
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class CustomSecurityAttributeDefinitionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CustomSecurityAttributeDefinitionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the customSecurityAttributeDefinition objects and their properties.
+        Schema of a custom security attributes (key-value pairs).
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class CustomSecurityAttributeDefinitionsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[custom_security_attribute_definition.CustomSecurityAttributeDefinition] = None, request_configuration: Optional[CustomSecurityAttributeDefinitionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new customSecurityAttributeDefinition object.
+        Create new navigation property to customSecurityAttributeDefinitions for directory
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class CustomSecurityAttributeDefinitionsRequestBuilder():
     @dataclass
     class CustomSecurityAttributeDefinitionsRequestBuilderGetQueryParameters():
         """
-        Get a list of the customSecurityAttributeDefinition objects and their properties.
+        Schema of a custom security attributes (key-value pairs).
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

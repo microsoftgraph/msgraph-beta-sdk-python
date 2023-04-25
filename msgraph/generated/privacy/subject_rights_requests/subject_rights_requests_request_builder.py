@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import subject_rights_request, subject_rights_request_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import subject_rights_request_item_request_builder
 
 class SubjectRightsRequestsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class SubjectRightsRequestsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_subject_rights_request_id(self,subject_rights_request_id: str) -> subject_rights_request_item_request_builder.SubjectRightsRequestItemRequestBuilder:
+        """
+        Provides operations to manage the subjectRightsRequests property of the microsoft.graph.privacy entity.
+        Args:
+            subject_rights_request_id: Unique identifier of the item
+        Returns: subject_rights_request_item_request_builder.SubjectRightsRequestItemRequestBuilder
+        """
+        if subject_rights_request_id is None:
+            raise Exception("subject_rights_request_id cannot be undefined")
+        from .item import subject_rights_request_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["subjectRightsRequest%2Did"] = subject_rights_request_id
+        return subject_rights_request_item_request_builder.SubjectRightsRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[SubjectRightsRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[subject_rights_request_collection_response.SubjectRightsRequestCollectionResponse]:
         """
-        Get a list of subjectRightsRequest objects and their properties.
+        Get subjectRightsRequests from privacy
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[subject_rights_request_collection_response.SubjectRightsRequestCollectionResponse]
@@ -60,7 +76,7 @@ class SubjectRightsRequestsRequestBuilder():
     
     async def post(self,body: Optional[subject_rights_request.SubjectRightsRequest] = None, request_configuration: Optional[SubjectRightsRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[subject_rights_request.SubjectRightsRequest]:
         """
-        Create a new subjectRightsRequest object.
+        Create new navigation property to subjectRightsRequests for privacy
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class SubjectRightsRequestsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SubjectRightsRequestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of subjectRightsRequest objects and their properties.
+        Get subjectRightsRequests from privacy
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class SubjectRightsRequestsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[subject_rights_request.SubjectRightsRequest] = None, request_configuration: Optional[SubjectRightsRequestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new subjectRightsRequest object.
+        Create new navigation property to subjectRightsRequests for privacy
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class SubjectRightsRequestsRequestBuilder():
     @dataclass
     class SubjectRightsRequestsRequestBuilderGetQueryParameters():
         """
-        Get a list of subjectRightsRequest objects and their properties.
+        Get subjectRightsRequests from privacy
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

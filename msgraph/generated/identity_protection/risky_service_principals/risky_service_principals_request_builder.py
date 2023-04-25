@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .confirm_compromised import confirm_compromised_request_builder
     from .count import count_request_builder
     from .dismiss import dismiss_request_builder
+    from .item import risky_service_principal_item_request_builder
 
 class RiskyServicePrincipalsRequestBuilder():
     """
@@ -38,9 +39,24 @@ class RiskyServicePrincipalsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_risky_service_principal_id(self,risky_service_principal_id: str) -> risky_service_principal_item_request_builder.RiskyServicePrincipalItemRequestBuilder:
+        """
+        Provides operations to manage the riskyServicePrincipals property of the microsoft.graph.identityProtectionRoot entity.
+        Args:
+            risky_service_principal_id: Unique identifier of the item
+        Returns: risky_service_principal_item_request_builder.RiskyServicePrincipalItemRequestBuilder
+        """
+        if risky_service_principal_id is None:
+            raise Exception("risky_service_principal_id cannot be undefined")
+        from .item import risky_service_principal_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["riskyServicePrincipal%2Did"] = risky_service_principal_id
+        return risky_service_principal_item_request_builder.RiskyServicePrincipalItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[RiskyServicePrincipalsRequestBuilderGetRequestConfiguration] = None) -> Optional[risky_service_principal_collection_response.RiskyServicePrincipalCollectionResponse]:
         """
-        Retrieve the properties and relationships of riskyServicePrincipal objects.
+        Azure AD service principals that are at risk.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[risky_service_principal_collection_response.RiskyServicePrincipalCollectionResponse]
@@ -87,7 +103,7 @@ class RiskyServicePrincipalsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RiskyServicePrincipalsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of riskyServicePrincipal objects.
+        Azure AD service principals that are at risk.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -154,7 +170,7 @@ class RiskyServicePrincipalsRequestBuilder():
     @dataclass
     class RiskyServicePrincipalsRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of riskyServicePrincipal objects.
+        Azure AD service principals that are at risk.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.managed_tenants import tenant_tag, tenant_tag_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import tenant_tag_item_request_builder
 
 class TenantTagsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class TenantTagsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_tenant_tag_id(self,tenant_tag_id: str) -> tenant_tag_item_request_builder.TenantTagItemRequestBuilder:
+        """
+        Provides operations to manage the tenantTags property of the microsoft.graph.managedTenants.managedTenant entity.
+        Args:
+            tenant_tag_id: Unique identifier of the item
+        Returns: tenant_tag_item_request_builder.TenantTagItemRequestBuilder
+        """
+        if tenant_tag_id is None:
+            raise Exception("tenant_tag_id cannot be undefined")
+        from .item import tenant_tag_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["tenantTag%2Did"] = tenant_tag_id
+        return tenant_tag_item_request_builder.TenantTagItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[TenantTagsRequestBuilderGetRequestConfiguration] = None) -> Optional[tenant_tag_collection_response.TenantTagCollectionResponse]:
         """
-        Get a list of the tenantTag objects and their properties.
+        The collection of tenant tags across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[tenant_tag_collection_response.TenantTagCollectionResponse]
@@ -60,7 +76,7 @@ class TenantTagsRequestBuilder():
     
     async def post(self,body: Optional[tenant_tag.TenantTag] = None, request_configuration: Optional[TenantTagsRequestBuilderPostRequestConfiguration] = None) -> Optional[tenant_tag.TenantTag]:
         """
-        Create a new tenantTag object.
+        Create new navigation property to tenantTags for tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class TenantTagsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TenantTagsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the tenantTag objects and their properties.
+        The collection of tenant tags across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class TenantTagsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[tenant_tag.TenantTag] = None, request_configuration: Optional[TenantTagsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new tenantTag object.
+        Create new navigation property to tenantTags for tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class TenantTagsRequestBuilder():
     @dataclass
     class TenantTagsRequestBuilderGetQueryParameters():
         """
-        Get a list of the tenantTag objects and their properties.
+        The collection of tenant tags across managed tenants.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

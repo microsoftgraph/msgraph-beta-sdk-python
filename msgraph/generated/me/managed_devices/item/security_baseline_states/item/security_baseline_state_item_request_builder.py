@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ......models import security_baseline_state
     from ......models.o_data_errors import o_data_error
     from .setting_states import setting_states_request_builder
-    from .setting_states.item import security_baseline_setting_state_item_request_builder
 
 class SecurityBaselineStateItemRequestBuilder():
     """
@@ -102,21 +101,6 @@ class SecurityBaselineStateItemRequestBuilder():
         from ......models import security_baseline_state
 
         return await self.request_adapter.send_async(request_info, security_baseline_state.SecurityBaselineState, error_mapping)
-    
-    def setting_states_by_id(self,id: str) -> security_baseline_setting_state_item_request_builder.SecurityBaselineSettingStateItemRequestBuilder:
-        """
-        Provides operations to manage the settingStates property of the microsoft.graph.securityBaselineState entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: security_baseline_setting_state_item_request_builder.SecurityBaselineSettingStateItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .setting_states.item import security_baseline_setting_state_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["securityBaselineSettingState%2Did"] = id
-        return security_baseline_setting_state_item_request_builder.SecurityBaselineSettingStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[SecurityBaselineStateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

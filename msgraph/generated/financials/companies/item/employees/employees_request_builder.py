@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import employee, employee_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import employee_item_request_builder
 
 class EmployeesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class EmployeesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_employee_id(self,employee_id: str) -> employee_item_request_builder.EmployeeItemRequestBuilder:
+        """
+        Provides operations to manage the employees property of the microsoft.graph.company entity.
+        Args:
+            employee_id: Unique identifier of the item
+        Returns: employee_item_request_builder.EmployeeItemRequestBuilder
+        """
+        if employee_id is None:
+            raise Exception("employee_id cannot be undefined")
+        from .item import employee_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["employee%2Did"] = employee_id
+        return employee_item_request_builder.EmployeeItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[EmployeesRequestBuilderGetRequestConfiguration] = None) -> Optional[employee_collection_response.EmployeeCollectionResponse]:
         """

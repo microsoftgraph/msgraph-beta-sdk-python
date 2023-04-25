@@ -14,7 +14,6 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .activate_device_esim import activate_device_esim_request_builder
     from .assignment_filter_evaluation_status_details import assignment_filter_evaluation_status_details_request_builder
-    from .assignment_filter_evaluation_status_details.item import assignment_filter_evaluation_status_details_item_request_builder
     from .bypass_activation_lock import bypass_activation_lock_request_builder
     from .clean_windows_device import clean_windows_device_request_builder
     from .create_device_log_collection_request import create_device_log_collection_request_request_builder
@@ -22,12 +21,9 @@ if TYPE_CHECKING:
     from .delete_user_from_shared_apple_device import delete_user_from_shared_apple_device_request_builder
     from .deprovision import deprovision_request_builder
     from .detected_apps import detected_apps_request_builder
-    from .detected_apps.item import detected_app_item_request_builder
     from .device_category import device_category_request_builder
     from .device_compliance_policy_states import device_compliance_policy_states_request_builder
-    from .device_compliance_policy_states.item import device_compliance_policy_state_item_request_builder
     from .device_configuration_states import device_configuration_states_request_builder
-    from .device_configuration_states.item import device_configuration_state_item_request_builder
     from .device_health_script_states import device_health_script_states_request_builder
     from .disable import disable_request_builder
     from .disable_lost_mode import disable_lost_mode_request_builder
@@ -43,10 +39,8 @@ if TYPE_CHECKING:
     from .initiate_on_demand_proactive_remediation import initiate_on_demand_proactive_remediation_request_builder
     from .locate_device import locate_device_request_builder
     from .log_collection_requests import log_collection_requests_request_builder
-    from .log_collection_requests.item import device_log_collection_response_item_request_builder
     from .logout_shared_apple_device_active_user import logout_shared_apple_device_active_user_request_builder
     from .managed_device_mobile_app_configuration_states import managed_device_mobile_app_configuration_states_request_builder
-    from .managed_device_mobile_app_configuration_states.item import managed_device_mobile_app_configuration_state_item_request_builder
     from .override_compliance_state import override_compliance_state_request_builder
     from .play_lost_mode_sound import play_lost_mode_sound_request_builder
     from .reboot_now import reboot_now_request_builder
@@ -67,7 +61,6 @@ if TYPE_CHECKING:
     from .rotate_file_vault_key import rotate_file_vault_key_request_builder
     from .rotate_local_admin_password import rotate_local_admin_password_request_builder
     from .security_baseline_states import security_baseline_states_request_builder
-    from .security_baseline_states.item import security_baseline_state_item_request_builder
     from .send_custom_notification_to_company_portal import send_custom_notification_to_company_portal_request_builder
     from .set_cloud_pc_review_status import set_cloud_pc_review_status_request_builder
     from .set_device_name import set_device_name_request_builder
@@ -103,21 +96,6 @@ class ManagedDeviceItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def assignment_filter_evaluation_status_details_by_id(self,id: str) -> assignment_filter_evaluation_status_details_item_request_builder.AssignmentFilterEvaluationStatusDetailsItemRequestBuilder:
-        """
-        Provides operations to manage the assignmentFilterEvaluationStatusDetails property of the microsoft.graph.managedDevice entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: assignment_filter_evaluation_status_details_item_request_builder.AssignmentFilterEvaluationStatusDetailsItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .assignment_filter_evaluation_status_details.item import assignment_filter_evaluation_status_details_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["assignmentFilterEvaluationStatusDetails%2Did"] = id
-        return assignment_filter_evaluation_status_details_item_request_builder.AssignmentFilterEvaluationStatusDetailsItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     async def delete(self,request_configuration: Optional[ManagedDeviceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property comanagedDevices for deviceManagement
@@ -136,51 +114,6 @@ class ManagedDeviceItemRequestBuilder():
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
-    
-    def detected_apps_by_id(self,id: str) -> detected_app_item_request_builder.DetectedAppItemRequestBuilder:
-        """
-        Provides operations to manage the detectedApps property of the microsoft.graph.managedDevice entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: detected_app_item_request_builder.DetectedAppItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .detected_apps.item import detected_app_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["detectedApp%2Did"] = id
-        return detected_app_item_request_builder.DetectedAppItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def device_compliance_policy_states_by_id(self,id: str) -> device_compliance_policy_state_item_request_builder.DeviceCompliancePolicyStateItemRequestBuilder:
-        """
-        Provides operations to manage the deviceCompliancePolicyStates property of the microsoft.graph.managedDevice entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: device_compliance_policy_state_item_request_builder.DeviceCompliancePolicyStateItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .device_compliance_policy_states.item import device_compliance_policy_state_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["deviceCompliancePolicyState%2Did"] = id
-        return device_compliance_policy_state_item_request_builder.DeviceCompliancePolicyStateItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def device_configuration_states_by_id(self,id: str) -> device_configuration_state_item_request_builder.DeviceConfigurationStateItemRequestBuilder:
-        """
-        Provides operations to manage the deviceConfigurationStates property of the microsoft.graph.managedDevice entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: device_configuration_state_item_request_builder.DeviceConfigurationStateItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .device_configuration_states.item import device_configuration_state_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["deviceConfigurationState%2Did"] = id
-        return device_configuration_state_item_request_builder.DeviceConfigurationStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ManagedDeviceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_device.ManagedDevice]:
         """
@@ -203,36 +136,6 @@ class ManagedDeviceItemRequestBuilder():
         from ....models import managed_device
 
         return await self.request_adapter.send_async(request_info, managed_device.ManagedDevice, error_mapping)
-    
-    def log_collection_requests_by_id(self,id: str) -> device_log_collection_response_item_request_builder.DeviceLogCollectionResponseItemRequestBuilder:
-        """
-        Provides operations to manage the logCollectionRequests property of the microsoft.graph.managedDevice entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: device_log_collection_response_item_request_builder.DeviceLogCollectionResponseItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .log_collection_requests.item import device_log_collection_response_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["deviceLogCollectionResponse%2Did"] = id
-        return device_log_collection_response_item_request_builder.DeviceLogCollectionResponseItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def managed_device_mobile_app_configuration_states_by_id(self,id: str) -> managed_device_mobile_app_configuration_state_item_request_builder.ManagedDeviceMobileAppConfigurationStateItemRequestBuilder:
-        """
-        Provides operations to manage the managedDeviceMobileAppConfigurationStates property of the microsoft.graph.managedDevice entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: managed_device_mobile_app_configuration_state_item_request_builder.ManagedDeviceMobileAppConfigurationStateItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .managed_device_mobile_app_configuration_states.item import managed_device_mobile_app_configuration_state_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["managedDeviceMobileAppConfigurationState%2Did"] = id
-        return managed_device_mobile_app_configuration_state_item_request_builder.ManagedDeviceMobileAppConfigurationStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[managed_device.ManagedDevice] = None, request_configuration: Optional[ManagedDeviceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[managed_device.ManagedDevice]:
         """
@@ -271,21 +174,6 @@ class ManagedDeviceItemRequestBuilder():
         from .retrieve_remote_help_session_with_session_key import retrieve_remote_help_session_with_session_key_request_builder
 
         return retrieve_remote_help_session_with_session_key_request_builder.RetrieveRemoteHelpSessionWithSessionKeyRequestBuilder(self.request_adapter, self.path_parameters, session_key)
-    
-    def security_baseline_states_by_id(self,id: str) -> security_baseline_state_item_request_builder.SecurityBaselineStateItemRequestBuilder:
-        """
-        Provides operations to manage the securityBaselineStates property of the microsoft.graph.managedDevice entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: security_baseline_state_item_request_builder.SecurityBaselineStateItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .security_baseline_states.item import security_baseline_state_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["securityBaselineState%2Did"] = id
-        return security_baseline_state_item_request_builder.SecurityBaselineStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[ManagedDeviceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .confirm_compromised import confirm_compromised_request_builder
     from .confirm_safe import confirm_safe_request_builder
     from .count import count_request_builder
+    from .item import sign_in_item_request_builder
 
 class SignInsRequestBuilder():
     """
@@ -38,9 +39,24 @@ class SignInsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_sign_in_id(self,sign_in_id: str) -> sign_in_item_request_builder.SignInItemRequestBuilder:
+        """
+        Provides operations to manage the signIns property of the microsoft.graph.auditLogRoot entity.
+        Args:
+            sign_in_id: Unique identifier of the item
+        Returns: sign_in_item_request_builder.SignInItemRequestBuilder
+        """
+        if sign_in_id is None:
+            raise Exception("sign_in_id cannot be undefined")
+        from .item import sign_in_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["signIn%2Did"] = sign_in_id
+        return sign_in_item_request_builder.SignInItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[SignInsRequestBuilderGetRequestConfiguration] = None) -> Optional[sign_in_collection_response.SignInCollectionResponse]:
         """
-        Get a list of signIn objects. The list contains the user sign-ins for your Azure Active Directory tenant. Sign-ins where a username and password are passed as part of authorization token, and successful federated sign-ins are currently included in the sign-in logs. The maximum and default page size is 1,000 objects and by default, the most recent sign-ins are returned first. Only sign-in events that occurred within the Azure Active Directory (Azure AD) default retention period are available.
+        Get signIns from auditLogs
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[sign_in_collection_response.SignInCollectionResponse]
@@ -87,7 +103,7 @@ class SignInsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SignInsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of signIn objects. The list contains the user sign-ins for your Azure Active Directory tenant. Sign-ins where a username and password are passed as part of authorization token, and successful federated sign-ins are currently included in the sign-in logs. The maximum and default page size is 1,000 objects and by default, the most recent sign-ins are returned first. Only sign-in events that occurred within the Azure Active Directory (Azure AD) default retention period are available.
+        Get signIns from auditLogs
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -154,7 +170,7 @@ class SignInsRequestBuilder():
     @dataclass
     class SignInsRequestBuilderGetQueryParameters():
         """
-        Get a list of signIn objects. The list contains the user sign-ins for your Azure Active Directory tenant. Sign-ins where a username and password are passed as part of authorization token, and successful federated sign-ins are currently included in the sign-in logs. The maximum and default page size is 1,000 objects and by default, the most recent sign-ins are returned first. Only sign-in events that occurred within the Azure Active Directory (Azure AD) default retention period are available.
+        Get signIns from auditLogs
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

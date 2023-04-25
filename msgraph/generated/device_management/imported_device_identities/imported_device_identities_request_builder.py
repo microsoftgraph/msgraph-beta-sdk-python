@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .import_device_identity_list import import_device_identity_list_request_builder
+    from .item import imported_device_identity_item_request_builder
     from .search_existing_identities import search_existing_identities_request_builder
 
 class ImportedDeviceIdentitiesRequestBuilder():
@@ -37,6 +38,21 @@ class ImportedDeviceIdentitiesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_imported_device_identity_id(self,imported_device_identity_id: str) -> imported_device_identity_item_request_builder.ImportedDeviceIdentityItemRequestBuilder:
+        """
+        Provides operations to manage the importedDeviceIdentities property of the microsoft.graph.deviceManagement entity.
+        Args:
+            imported_device_identity_id: Unique identifier of the item
+        Returns: imported_device_identity_item_request_builder.ImportedDeviceIdentityItemRequestBuilder
+        """
+        if imported_device_identity_id is None:
+            raise Exception("imported_device_identity_id cannot be undefined")
+        from .item import imported_device_identity_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["importedDeviceIdentity%2Did"] = imported_device_identity_id
+        return imported_device_identity_item_request_builder.ImportedDeviceIdentityItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ImportedDeviceIdentitiesRequestBuilderGetRequestConfiguration] = None) -> Optional[imported_device_identity_collection_response.ImportedDeviceIdentityCollectionResponse]:
         """

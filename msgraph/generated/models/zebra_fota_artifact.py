@@ -8,12 +8,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class ZebraFotaArtifact(entity.Entity):
-    """
-    Describes a single artifact for a specific device model.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new zebraFotaArtifact and sets the default values.
+        Instantiates a new ZebraFotaArtifact and sets the default values.
         """
         super().__init__()
         # The version of the Board Support Package (BSP. E.g.: 01.18.02.00)

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models import conversation_thread, conversation_thread_collection_response
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import conversation_thread_item_request_builder
 
 class ThreadsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ThreadsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_conversation_thread_id(self,conversation_thread_id: str) -> conversation_thread_item_request_builder.ConversationThreadItemRequestBuilder:
+        """
+        Provides operations to manage the threads property of the microsoft.graph.conversation entity.
+        Args:
+            conversation_thread_id: Unique identifier of the item
+        Returns: conversation_thread_item_request_builder.ConversationThreadItemRequestBuilder
+        """
+        if conversation_thread_id is None:
+            raise Exception("conversation_thread_id cannot be undefined")
+        from .item import conversation_thread_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["conversationThread%2Did"] = conversation_thread_id
+        return conversation_thread_item_request_builder.ConversationThreadItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ThreadsRequestBuilderGetRequestConfiguration] = None) -> Optional[conversation_thread_collection_response.ConversationThreadCollectionResponse]:
         """
-        Get all the threads in a group conversation.Note: You can also get all the threads of a group. 
+        A collection of all the conversation threads in the conversation. A navigation property. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[conversation_thread_collection_response.ConversationThreadCollectionResponse]
@@ -85,7 +101,7 @@ class ThreadsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ThreadsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get all the threads in a group conversation.Note: You can also get all the threads of a group. 
+        A collection of all the conversation threads in the conversation. A navigation property. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class ThreadsRequestBuilder():
     @dataclass
     class ThreadsRequestBuilderGetQueryParameters():
         """
-        Get all the threads in a group conversation.Note: You can also get all the threads of a group. 
+        A collection of all the conversation threads in the conversation. A navigation property. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

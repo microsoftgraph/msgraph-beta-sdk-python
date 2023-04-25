@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import microsoft_tunnel_configuration, microsoft_tunnel_configuration_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import microsoft_tunnel_configuration_item_request_builder
 
 class MicrosoftTunnelConfigurationsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class MicrosoftTunnelConfigurationsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_microsoft_tunnel_configuration_id(self,microsoft_tunnel_configuration_id: str) -> microsoft_tunnel_configuration_item_request_builder.MicrosoftTunnelConfigurationItemRequestBuilder:
+        """
+        Provides operations to manage the microsoftTunnelConfigurations property of the microsoft.graph.deviceManagement entity.
+        Args:
+            microsoft_tunnel_configuration_id: Unique identifier of the item
+        Returns: microsoft_tunnel_configuration_item_request_builder.MicrosoftTunnelConfigurationItemRequestBuilder
+        """
+        if microsoft_tunnel_configuration_id is None:
+            raise Exception("microsoft_tunnel_configuration_id cannot be undefined")
+        from .item import microsoft_tunnel_configuration_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["microsoftTunnelConfiguration%2Did"] = microsoft_tunnel_configuration_id
+        return microsoft_tunnel_configuration_item_request_builder.MicrosoftTunnelConfigurationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[MicrosoftTunnelConfigurationsRequestBuilderGetRequestConfiguration] = None) -> Optional[microsoft_tunnel_configuration_collection_response.MicrosoftTunnelConfigurationCollectionResponse]:
         """

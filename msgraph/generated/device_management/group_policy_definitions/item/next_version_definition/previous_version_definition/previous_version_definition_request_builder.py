@@ -15,7 +15,6 @@ if TYPE_CHECKING:
     from .category import category_request_builder
     from .definition_file import definition_file_request_builder
     from .presentations import presentations_request_builder
-    from .presentations.item import group_policy_presentation_item_request_builder
 
 class PreviousVersionDefinitionRequestBuilder():
     """
@@ -104,21 +103,6 @@ class PreviousVersionDefinitionRequestBuilder():
         from ......models import group_policy_definition
 
         return await self.request_adapter.send_async(request_info, group_policy_definition.GroupPolicyDefinition, error_mapping)
-    
-    def presentations_by_id(self,id: str) -> group_policy_presentation_item_request_builder.GroupPolicyPresentationItemRequestBuilder:
-        """
-        Provides operations to manage the presentations property of the microsoft.graph.groupPolicyDefinition entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: group_policy_presentation_item_request_builder.GroupPolicyPresentationItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .presentations.item import group_policy_presentation_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["groupPolicyPresentation%2Did"] = id
-        return group_policy_presentation_item_request_builder.GroupPolicyPresentationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[PreviousVersionDefinitionRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

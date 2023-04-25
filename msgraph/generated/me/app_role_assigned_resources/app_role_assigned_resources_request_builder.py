@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import service_principal_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import service_principal_item_request_builder
 
 class AppRoleAssignedResourcesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class AppRoleAssignedResourcesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_service_principal_id(self,service_principal_id: str) -> service_principal_item_request_builder.ServicePrincipalItemRequestBuilder:
+        """
+        Provides operations to manage the appRoleAssignedResources property of the microsoft.graph.user entity.
+        Args:
+            service_principal_id: Unique identifier of the item
+        Returns: service_principal_item_request_builder.ServicePrincipalItemRequestBuilder
+        """
+        if service_principal_id is None:
+            raise Exception("service_principal_id cannot be undefined")
+        from .item import service_principal_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["servicePrincipal%2Did"] = service_principal_id
+        return service_principal_item_request_builder.ServicePrincipalItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[AppRoleAssignedResourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[service_principal_collection_response.ServicePrincipalCollectionResponse]:
         """
-        Get the service principals to which the user has an app role assignment either directly or through group membership.
+        Get appRoleAssignedResources from me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[service_principal_collection_response.ServicePrincipalCollectionResponse]
@@ -60,7 +76,7 @@ class AppRoleAssignedResourcesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AppRoleAssignedResourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the service principals to which the user has an app role assignment either directly or through group membership.
+        Get appRoleAssignedResources from me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -88,7 +104,7 @@ class AppRoleAssignedResourcesRequestBuilder():
     @dataclass
     class AppRoleAssignedResourcesRequestBuilderGetQueryParameters():
         """
-        Get the service principals to which the user has an app role assignment either directly or through group membership.
+        Get appRoleAssignedResources from me
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import synchronization_template, synchronization_template_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import synchronization_template_item_request_builder
 
 class TemplatesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class TemplatesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_synchronization_template_id(self,synchronization_template_id: str) -> synchronization_template_item_request_builder.SynchronizationTemplateItemRequestBuilder:
+        """
+        Provides operations to manage the templates property of the microsoft.graph.synchronization entity.
+        Args:
+            synchronization_template_id: Unique identifier of the item
+        Returns: synchronization_template_item_request_builder.SynchronizationTemplateItemRequestBuilder
+        """
+        if synchronization_template_id is None:
+            raise Exception("synchronization_template_id cannot be undefined")
+        from .item import synchronization_template_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["synchronizationTemplate%2Did"] = synchronization_template_id
+        return synchronization_template_item_request_builder.SynchronizationTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[TemplatesRequestBuilderGetRequestConfiguration] = None) -> Optional[synchronization_template_collection_response.SynchronizationTemplateCollectionResponse]:
         """
-        List the synchronization templates associated with a given application or service principal.
+        Pre-configured synchronization settings for a particular application.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[synchronization_template_collection_response.SynchronizationTemplateCollectionResponse]
@@ -85,7 +101,7 @@ class TemplatesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TemplatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List the synchronization templates associated with a given application or service principal.
+        Pre-configured synchronization settings for a particular application.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class TemplatesRequestBuilder():
     @dataclass
     class TemplatesRequestBuilderGetQueryParameters():
         """
-        List the synchronization templates associated with a given application or service principal.
+        Pre-configured synchronization settings for a particular application.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

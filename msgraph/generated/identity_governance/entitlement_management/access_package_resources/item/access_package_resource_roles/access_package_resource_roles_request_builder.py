@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models import access_package_resource_role, access_package_resource_role_collection_response
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import access_package_resource_role_item_request_builder
 
 class AccessPackageResourceRolesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class AccessPackageResourceRolesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_access_package_resource_role_id(self,access_package_resource_role_id: str) -> access_package_resource_role_item_request_builder.AccessPackageResourceRoleItemRequestBuilder:
+        """
+        Provides operations to manage the accessPackageResourceRoles property of the microsoft.graph.accessPackageResource entity.
+        Args:
+            access_package_resource_role_id: Unique identifier of the item
+        Returns: access_package_resource_role_item_request_builder.AccessPackageResourceRoleItemRequestBuilder
+        """
+        if access_package_resource_role_id is None:
+            raise Exception("access_package_resource_role_id cannot be undefined")
+        from .item import access_package_resource_role_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["accessPackageResourceRole%2Did"] = access_package_resource_role_id
+        return access_package_resource_role_item_request_builder.AccessPackageResourceRoleItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[AccessPackageResourceRolesRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_resource_role_collection_response.AccessPackageResourceRoleCollectionResponse]:
         """

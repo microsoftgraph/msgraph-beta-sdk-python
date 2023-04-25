@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from .delta import delta_request_builder
     from .get_by_ids import get_by_ids_request_builder
     from .get_user_owned_objects import get_user_owned_objects_request_builder
+    from .item import resource_specific_permission_grant_item_request_builder
     from .validate_properties import validate_properties_request_builder
 
 class PermissionGrantsRequestBuilder():
@@ -40,9 +41,24 @@ class PermissionGrantsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_resource_specific_permission_grant_id(self,resource_specific_permission_grant_id: str) -> resource_specific_permission_grant_item_request_builder.ResourceSpecificPermissionGrantItemRequestBuilder:
+        """
+        Provides operations to manage the permissionGrants property of the microsoft.graph.chat entity.
+        Args:
+            resource_specific_permission_grant_id: Unique identifier of the item
+        Returns: resource_specific_permission_grant_item_request_builder.ResourceSpecificPermissionGrantItemRequestBuilder
+        """
+        if resource_specific_permission_grant_id is None:
+            raise Exception("resource_specific_permission_grant_id cannot be undefined")
+        from .item import resource_specific_permission_grant_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["resourceSpecificPermissionGrant%2Did"] = resource_specific_permission_grant_id
+        return resource_specific_permission_grant_item_request_builder.ResourceSpecificPermissionGrantItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[PermissionGrantsRequestBuilderGetRequestConfiguration] = None) -> Optional[resource_specific_permission_grant_collection_response.ResourceSpecificPermissionGrantCollectionResponse]:
         """
-        List all resource-specific permission grants on the chat. This list specifies the Azure AD apps that have access to the **chat**, along with the corresponding kind of resource-specific access that each app has.
+        A collection of permissions granted to apps for the chat.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[resource_specific_permission_grant_collection_response.ResourceSpecificPermissionGrantCollectionResponse]
@@ -89,7 +105,7 @@ class PermissionGrantsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PermissionGrantsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List all resource-specific permission grants on the chat. This list specifies the Azure AD apps that have access to the **chat**, along with the corresponding kind of resource-specific access that each app has.
+        A collection of permissions granted to apps for the chat.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -174,7 +190,7 @@ class PermissionGrantsRequestBuilder():
     @dataclass
     class PermissionGrantsRequestBuilderGetQueryParameters():
         """
-        List all resource-specific permission grants on the chat. This list specifies the Azure AD apps that have access to the **chat**, along with the corresponding kind of resource-specific access that each app has.
+        A collection of permissions granted to apps for the chat.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

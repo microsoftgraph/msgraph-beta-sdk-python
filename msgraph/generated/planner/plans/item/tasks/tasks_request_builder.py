@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .delta import delta_request_builder
+    from .item import planner_task_item_request_builder
 
 class TasksRequestBuilder():
     """
@@ -37,9 +38,24 @@ class TasksRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_planner_task_id(self,planner_task_id: str) -> planner_task_item_request_builder.PlannerTaskItemRequestBuilder:
+        """
+        Provides operations to manage the tasks property of the microsoft.graph.plannerPlan entity.
+        Args:
+            planner_task_id: Unique identifier of the item
+        Returns: planner_task_item_request_builder.PlannerTaskItemRequestBuilder
+        """
+        if planner_task_id is None:
+            raise Exception("planner_task_id cannot be undefined")
+        from .item import planner_task_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["plannerTask%2Did"] = planner_task_id
+        return planner_task_item_request_builder.PlannerTaskItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[TasksRequestBuilderGetRequestConfiguration] = None) -> Optional[planner_task_collection_response.PlannerTaskCollectionResponse]:
         """
-        Retrieve a list of plannerTask objects associated with a plannerPlan object.
+        Collection of tasks in the plan. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[planner_task_collection_response.PlannerTaskCollectionResponse]
@@ -86,7 +102,7 @@ class TasksRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TasksRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of plannerTask objects associated with a plannerPlan object.
+        Collection of tasks in the plan. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -144,7 +160,7 @@ class TasksRequestBuilder():
     @dataclass
     class TasksRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of plannerTask objects associated with a plannerPlan object.
+        Collection of tasks in the plan. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -14,7 +14,6 @@ if TYPE_CHECKING:
     from ......models.o_data_errors import o_data_error
     from .account import account_request_builder
     from .customer_payments import customer_payments_request_builder
-    from .customer_payments.item import customer_payment_item_request_builder
 
 class CustomerPaymentJournalItemRequestBuilder():
     """
@@ -37,21 +36,6 @@ class CustomerPaymentJournalItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def customer_payments_by_id(self,id: str) -> customer_payment_item_request_builder.CustomerPaymentItemRequestBuilder:
-        """
-        Provides operations to manage the customerPayments property of the microsoft.graph.customerPaymentJournal entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: customer_payment_item_request_builder.CustomerPaymentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .customer_payments.item import customer_payment_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["customerPayment%2Did"] = id
-        return customer_payment_item_request_builder.CustomerPaymentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[CustomerPaymentJournalItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

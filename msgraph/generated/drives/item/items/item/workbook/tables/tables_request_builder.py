@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .......models.o_data_errors import o_data_error
     from .add import add_request_builder
     from .count import count_request_builder
+    from .item import workbook_table_item_request_builder
     from .item_at_with_index import item_at_with_index_request_builder
 
 class TablesRequestBuilder():
@@ -38,9 +39,24 @@ class TablesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_workbook_table_id(self,workbook_table_id: str) -> workbook_table_item_request_builder.WorkbookTableItemRequestBuilder:
+        """
+        Provides operations to manage the tables property of the microsoft.graph.workbook entity.
+        Args:
+            workbook_table_id: Unique identifier of the item
+        Returns: workbook_table_item_request_builder.WorkbookTableItemRequestBuilder
+        """
+        if workbook_table_id is None:
+            raise Exception("workbook_table_id cannot be undefined")
+        from .item import workbook_table_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["workbookTable%2Did"] = workbook_table_id
+        return workbook_table_item_request_builder.WorkbookTableItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[TablesRequestBuilderGetRequestConfiguration] = None) -> Optional[workbook_table_collection_response.WorkbookTableCollectionResponse]:
         """
-        Retrieve a list of table objects.
+        Represents a collection of tables associated with the workbook. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[workbook_table_collection_response.WorkbookTableCollectionResponse]
@@ -100,7 +116,7 @@ class TablesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TablesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of table objects.
+        Represents a collection of tables associated with the workbook. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -158,7 +174,7 @@ class TablesRequestBuilder():
     @dataclass
     class TablesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of table objects.
+        Represents a collection of tables associated with the workbook. Read-only.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

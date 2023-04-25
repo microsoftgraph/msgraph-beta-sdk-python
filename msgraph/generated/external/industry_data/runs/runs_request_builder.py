@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .industry_data_get_statistics import industry_data_get_statistics_request_builder
+    from .item import industry_data_run_item_request_builder
 
 class RunsRequestBuilder():
     """
@@ -37,9 +38,24 @@ class RunsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_industry_data_run_id(self,industry_data_run_id: str) -> industry_data_run_item_request_builder.IndustryDataRunItemRequestBuilder:
+        """
+        Provides operations to manage the runs property of the microsoft.graph.industryData.industryDataRoot entity.
+        Args:
+            industry_data_run_id: Unique identifier of the item
+        Returns: industry_data_run_item_request_builder.IndustryDataRunItemRequestBuilder
+        """
+        if industry_data_run_id is None:
+            raise Exception("industry_data_run_id cannot be undefined")
+        from .item import industry_data_run_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["industryDataRun%2Did"] = industry_data_run_id
+        return industry_data_run_item_request_builder.IndustryDataRunItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[RunsRequestBuilderGetRequestConfiguration] = None) -> Optional[industry_data_run_collection_response.IndustryDataRunCollectionResponse]:
         """
-        Get a list of the industryDataRun objects and their properties.
+        Set of ephemeral runs which present the point-in-time that diagnostic state of activities performed by the system. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[industry_data_run_collection_response.IndustryDataRunCollectionResponse]
@@ -61,7 +77,7 @@ class RunsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RunsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the industryDataRun objects and their properties.
+        Set of ephemeral runs which present the point-in-time that diagnostic state of activities performed by the system. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -98,7 +114,7 @@ class RunsRequestBuilder():
     @dataclass
     class RunsRequestBuilderGetQueryParameters():
         """
-        Get a list of the industryDataRun objects and their properties.
+        Set of ephemeral runs which present the point-in-time that diagnostic state of activities performed by the system. Read-only.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

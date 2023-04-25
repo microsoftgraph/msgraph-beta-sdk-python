@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class IntuneBrandingProfile(entity.Entity):
-    """
-    This entity contains data which is used in customizing the tenant level appearance of the Company Portal applications as well as the end user web portal.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new intuneBrandingProfile and sets the default values.
+        Instantiates a new IntuneBrandingProfile and sets the default values.
         """
         super().__init__()
         # The list of group assignments for the branding profile

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import calendar_group, calendar_group_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import calendar_group_item_request_builder
 
 class CalendarGroupsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class CalendarGroupsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_calendar_group_id(self,calendar_group_id: str) -> calendar_group_item_request_builder.CalendarGroupItemRequestBuilder:
+        """
+        Provides operations to manage the calendarGroups property of the microsoft.graph.user entity.
+        Args:
+            calendar_group_id: Unique identifier of the item
+        Returns: calendar_group_item_request_builder.CalendarGroupItemRequestBuilder
+        """
+        if calendar_group_id is None:
+            raise Exception("calendar_group_id cannot be undefined")
+        from .item import calendar_group_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["calendarGroup%2Did"] = calendar_group_id
+        return calendar_group_item_request_builder.CalendarGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[CalendarGroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[calendar_group_collection_response.CalendarGroupCollectionResponse]:
         """
-        Get the user's calendar groups.
+        The user's calendar groups. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[calendar_group_collection_response.CalendarGroupCollectionResponse]
@@ -60,7 +76,7 @@ class CalendarGroupsRequestBuilder():
     
     async def post(self,body: Optional[calendar_group.CalendarGroup] = None, request_configuration: Optional[CalendarGroupsRequestBuilderPostRequestConfiguration] = None) -> Optional[calendar_group.CalendarGroup]:
         """
-        Use this API to create a new CalendarGroup.
+        Create new navigation property to calendarGroups for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class CalendarGroupsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CalendarGroupsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the user's calendar groups.
+        The user's calendar groups. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class CalendarGroupsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[calendar_group.CalendarGroup] = None, request_configuration: Optional[CalendarGroupsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Use this API to create a new CalendarGroup.
+        Create new navigation property to calendarGroups for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class CalendarGroupsRequestBuilder():
     @dataclass
     class CalendarGroupsRequestBuilderGetQueryParameters():
         """
-        Get the user's calendar groups.
+        The user's calendar groups. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

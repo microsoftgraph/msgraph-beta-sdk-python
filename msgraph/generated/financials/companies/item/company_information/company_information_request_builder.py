@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import company_information_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import company_information_item_request_builder
 
 class CompanyInformationRequestBuilder():
     """
@@ -35,6 +36,21 @@ class CompanyInformationRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_company_information_id(self,company_information_id: str) -> company_information_item_request_builder.CompanyInformationItemRequestBuilder:
+        """
+        Provides operations to manage the companyInformation property of the microsoft.graph.company entity.
+        Args:
+            company_information_id: Unique identifier of the item
+        Returns: company_information_item_request_builder.CompanyInformationItemRequestBuilder
+        """
+        if company_information_id is None:
+            raise Exception("company_information_id cannot be undefined")
+        from .item import company_information_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["companyInformation%2Did"] = company_information_id
+        return company_information_item_request_builder.CompanyInformationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[CompanyInformationRequestBuilderGetRequestConfiguration] = None) -> Optional[company_information_collection_response.CompanyInformationCollectionResponse]:
         """

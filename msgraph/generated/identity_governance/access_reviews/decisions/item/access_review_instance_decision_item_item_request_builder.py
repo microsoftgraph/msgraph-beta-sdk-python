@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from .....models import access_review_instance_decision_item
     from .....models.o_data_errors import o_data_error
     from .insights import insights_request_builder
-    from .insights.item import governance_insight_item_request_builder
     from .instance import instance_request_builder
 
 class AccessReviewInstanceDecisionItemItemRequestBuilder():
@@ -78,21 +77,6 @@ class AccessReviewInstanceDecisionItemItemRequestBuilder():
         from .....models import access_review_instance_decision_item
 
         return await self.request_adapter.send_async(request_info, access_review_instance_decision_item.AccessReviewInstanceDecisionItem, error_mapping)
-    
-    def insights_by_id(self,id: str) -> governance_insight_item_request_builder.GovernanceInsightItemRequestBuilder:
-        """
-        Provides operations to manage the insights property of the microsoft.graph.accessReviewInstanceDecisionItem entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: governance_insight_item_request_builder.GovernanceInsightItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .insights.item import governance_insight_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["governanceInsight%2Did"] = id
-        return governance_insight_item_request_builder.GovernanceInsightItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[access_review_instance_decision_item.AccessReviewInstanceDecisionItem] = None, request_configuration: Optional[AccessReviewInstanceDecisionItemItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[access_review_instance_decision_item.AccessReviewInstanceDecisionItem]:
         """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import delegated_admin_service_management_detail, delegated_admin_service_management_detail_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import delegated_admin_service_management_detail_item_request_builder
 
 class ServiceManagementDetailsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ServiceManagementDetailsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_delegated_admin_service_management_detail_id(self,delegated_admin_service_management_detail_id: str) -> delegated_admin_service_management_detail_item_request_builder.DelegatedAdminServiceManagementDetailItemRequestBuilder:
+        """
+        Provides operations to manage the serviceManagementDetails property of the microsoft.graph.delegatedAdminCustomer entity.
+        Args:
+            delegated_admin_service_management_detail_id: Unique identifier of the item
+        Returns: delegated_admin_service_management_detail_item_request_builder.DelegatedAdminServiceManagementDetailItemRequestBuilder
+        """
+        if delegated_admin_service_management_detail_id is None:
+            raise Exception("delegated_admin_service_management_detail_id cannot be undefined")
+        from .item import delegated_admin_service_management_detail_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["delegatedAdminServiceManagementDetail%2Did"] = delegated_admin_service_management_detail_id
+        return delegated_admin_service_management_detail_item_request_builder.DelegatedAdminServiceManagementDetailItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ServiceManagementDetailsRequestBuilderGetRequestConfiguration] = None) -> Optional[delegated_admin_service_management_detail_collection_response.DelegatedAdminServiceManagementDetailCollectionResponse]:
         """
-        Get a list of the delegatedAdminServiceManagementDetail objects and their properties.
+        Contains the management details of a service in the customer tenant that's managed by delegated administration.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[delegated_admin_service_management_detail_collection_response.DelegatedAdminServiceManagementDetailCollectionResponse]
@@ -85,7 +101,7 @@ class ServiceManagementDetailsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ServiceManagementDetailsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the delegatedAdminServiceManagementDetail objects and their properties.
+        Contains the management details of a service in the customer tenant that's managed by delegated administration.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class ServiceManagementDetailsRequestBuilder():
     @dataclass
     class ServiceManagementDetailsRequestBuilderGetQueryParameters():
         """
-        Get a list of the delegatedAdminServiceManagementDetail objects and their properties.
+        Contains the management details of a service in the customer tenant that's managed by delegated administration.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

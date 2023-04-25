@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ...........models.o_data_errors import o_data_error
     from .add import add_request_builder
     from .count import count_request_builder
+    from .item import workbook_table_row_item_request_builder
     from .item_at_with_index import item_at_with_index_request_builder
 
 class RowsRequestBuilder():
@@ -38,9 +39,24 @@ class RowsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_workbook_table_row_id(self,workbook_table_row_id: str) -> workbook_table_row_item_request_builder.WorkbookTableRowItemRequestBuilder:
+        """
+        Provides operations to manage the rows property of the microsoft.graph.workbookTable entity.
+        Args:
+            workbook_table_row_id: Unique identifier of the item
+        Returns: workbook_table_row_item_request_builder.WorkbookTableRowItemRequestBuilder
+        """
+        if workbook_table_row_id is None:
+            raise Exception("workbook_table_row_id cannot be undefined")
+        from .item import workbook_table_row_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["workbookTableRow%2Did"] = workbook_table_row_id
+        return workbook_table_row_item_request_builder.WorkbookTableRowItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[RowsRequestBuilderGetRequestConfiguration] = None) -> Optional[workbook_table_row_collection_response.WorkbookTableRowCollectionResponse]:
         """
-        Retrieve a list of tablerow objects.
+        Represents a collection of all the rows in the table. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[workbook_table_row_collection_response.WorkbookTableRowCollectionResponse]
@@ -75,7 +91,7 @@ class RowsRequestBuilder():
     
     async def post(self,body: Optional[workbook_table_row.WorkbookTableRow] = None, request_configuration: Optional[RowsRequestBuilderPostRequestConfiguration] = None) -> Optional[workbook_table_row.WorkbookTableRow]:
         """
-        Add rows to the end of a table.  Note that the API can accept multiple rows data using this API. Adding one row at a time can lead to performance degradation. The recommended approach is to batch the rows together in a single call rather than doing single row insertion. For best results, collect the rows to be inserted on the application side and perform a single row add operation. Experiment with the number of rows to determine the ideal number of rows to use in a single API call.  This request might occasionally result in a `504 HTTP` error. The appropriate response to this error is to repeat the request.
+        Create new navigation property to rows for drives
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -100,7 +116,7 @@ class RowsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RowsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of tablerow objects.
+        Represents a collection of all the rows in the table. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -118,7 +134,7 @@ class RowsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[workbook_table_row.WorkbookTableRow] = None, request_configuration: Optional[RowsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Add rows to the end of a table.  Note that the API can accept multiple rows data using this API. Adding one row at a time can lead to performance degradation. The recommended approach is to batch the rows together in a single call rather than doing single row insertion. For best results, collect the rows to be inserted on the application side and perform a single row add operation. Experiment with the number of rows to determine the ideal number of rows to use in a single API call.  This request might occasionally result in a `504 HTTP` error. The appropriate response to this error is to repeat the request.
+        Create new navigation property to rows for drives
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -158,7 +174,7 @@ class RowsRequestBuilder():
     @dataclass
     class RowsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of tablerow objects.
+        Represents a collection of all the rows in the table. Read-only.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

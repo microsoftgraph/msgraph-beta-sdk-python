@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import device_compliance_script, device_compliance_script_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import device_compliance_script_item_request_builder
 
 class DeviceComplianceScriptsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class DeviceComplianceScriptsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_device_compliance_script_id(self,device_compliance_script_id: str) -> device_compliance_script_item_request_builder.DeviceComplianceScriptItemRequestBuilder:
+        """
+        Provides operations to manage the deviceComplianceScripts property of the microsoft.graph.deviceManagement entity.
+        Args:
+            device_compliance_script_id: Unique identifier of the item
+        Returns: device_compliance_script_item_request_builder.DeviceComplianceScriptItemRequestBuilder
+        """
+        if device_compliance_script_id is None:
+            raise Exception("device_compliance_script_id cannot be undefined")
+        from .item import device_compliance_script_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["deviceComplianceScript%2Did"] = device_compliance_script_id
+        return device_compliance_script_item_request_builder.DeviceComplianceScriptItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[DeviceComplianceScriptsRequestBuilderGetRequestConfiguration] = None) -> Optional[device_compliance_script_collection_response.DeviceComplianceScriptCollectionResponse]:
         """

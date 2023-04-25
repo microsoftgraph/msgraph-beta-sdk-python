@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models.o_data_errors import o_data_error
     from ......models.security import host_tracker_collection_response
     from .count import count_request_builder
+    from .item import host_tracker_item_request_builder
 
 class TrackersRequestBuilder():
     """
@@ -36,9 +37,24 @@ class TrackersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_host_tracker_id(self,host_tracker_id: str) -> host_tracker_item_request_builder.HostTrackerItemRequestBuilder:
+        """
+        Provides operations to manage the trackers property of the microsoft.graph.security.host entity.
+        Args:
+            host_tracker_id: Unique identifier of the item
+        Returns: host_tracker_item_request_builder.HostTrackerItemRequestBuilder
+        """
+        if host_tracker_id is None:
+            raise Exception("host_tracker_id cannot be undefined")
+        from .item import host_tracker_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["hostTracker%2Did"] = host_tracker_id
+        return host_tracker_item_request_builder.HostTrackerItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[TrackersRequestBuilderGetRequestConfiguration] = None) -> Optional[host_tracker_collection_response.HostTrackerCollectionResponse]:
         """
-        Get a list of hostTracker resources.
+        The hostTrackers that are associated with this host.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[host_tracker_collection_response.HostTrackerCollectionResponse]
@@ -60,7 +76,7 @@ class TrackersRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TrackersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of hostTracker resources.
+        The hostTrackers that are associated with this host.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -88,7 +104,7 @@ class TrackersRequestBuilder():
     @dataclass
     class TrackersRequestBuilderGetQueryParameters():
         """
-        Get a list of hostTracker resources.
+        The hostTrackers that are associated with this host.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

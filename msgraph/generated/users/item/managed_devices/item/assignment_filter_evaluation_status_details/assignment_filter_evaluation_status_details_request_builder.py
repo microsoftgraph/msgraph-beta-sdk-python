@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models import assignment_filter_evaluation_status_details, assignment_filter_evaluation_status_details_collection_response
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import assignment_filter_evaluation_status_details_item_request_builder
 
 class AssignmentFilterEvaluationStatusDetailsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class AssignmentFilterEvaluationStatusDetailsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_assignment_filter_evaluation_status_details_id(self,assignment_filter_evaluation_status_details_id: str) -> assignment_filter_evaluation_status_details_item_request_builder.AssignmentFilterEvaluationStatusDetailsItemRequestBuilder:
+        """
+        Provides operations to manage the assignmentFilterEvaluationStatusDetails property of the microsoft.graph.managedDevice entity.
+        Args:
+            assignment_filter_evaluation_status_details_id: Unique identifier of the item
+        Returns: assignment_filter_evaluation_status_details_item_request_builder.AssignmentFilterEvaluationStatusDetailsItemRequestBuilder
+        """
+        if assignment_filter_evaluation_status_details_id is None:
+            raise Exception("assignment_filter_evaluation_status_details_id cannot be undefined")
+        from .item import assignment_filter_evaluation_status_details_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["assignmentFilterEvaluationStatusDetails%2Did"] = assignment_filter_evaluation_status_details_id
+        return assignment_filter_evaluation_status_details_item_request_builder.AssignmentFilterEvaluationStatusDetailsItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[AssignmentFilterEvaluationStatusDetailsRequestBuilderGetRequestConfiguration] = None) -> Optional[assignment_filter_evaluation_status_details_collection_response.AssignmentFilterEvaluationStatusDetailsCollectionResponse]:
         """

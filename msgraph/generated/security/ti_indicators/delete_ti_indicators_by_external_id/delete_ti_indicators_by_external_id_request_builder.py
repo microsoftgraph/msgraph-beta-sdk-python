@@ -37,7 +37,7 @@ class DeleteTiIndicatorsByExternalIdRequestBuilder():
     
     async def post(self,body: Optional[delete_ti_indicators_by_external_id_post_request_body.DeleteTiIndicatorsByExternalIdPostRequestBody] = None, request_configuration: Optional[DeleteTiIndicatorsByExternalIdRequestBuilderPostRequestConfiguration] = None) -> Optional[delete_ti_indicators_by_external_id_response.DeleteTiIndicatorsByExternalIdResponse]:
         """
-        Delete multiple threat intelligence (TI) indicators in one request instead of multiple requests, when the request contains external IDs instead of IDs.
+        Invoke action deleteTiIndicatorsByExternalId
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -62,7 +62,7 @@ class DeleteTiIndicatorsByExternalIdRequestBuilder():
     
     def to_post_request_information(self,body: Optional[delete_ti_indicators_by_external_id_post_request_body.DeleteTiIndicatorsByExternalIdPostRequestBody] = None, request_configuration: Optional[DeleteTiIndicatorsByExternalIdRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete multiple threat intelligence (TI) indicators in one request instead of multiple requests, when the request contains external IDs instead of IDs.
+        Invoke action deleteTiIndicatorsByExternalId
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

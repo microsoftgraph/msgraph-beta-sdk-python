@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import governance_role_assignment_request, governance_role_assignment_request_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import governance_role_assignment_request_item_request_builder
 
 class RoleAssignmentRequestsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class RoleAssignmentRequestsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_governance_role_assignment_request_id(self,governance_role_assignment_request_id: str) -> governance_role_assignment_request_item_request_builder.GovernanceRoleAssignmentRequestItemRequestBuilder:
+        """
+        Provides operations to manage the roleAssignmentRequests property of the microsoft.graph.privilegedAccess entity.
+        Args:
+            governance_role_assignment_request_id: Unique identifier of the item
+        Returns: governance_role_assignment_request_item_request_builder.GovernanceRoleAssignmentRequestItemRequestBuilder
+        """
+        if governance_role_assignment_request_id is None:
+            raise Exception("governance_role_assignment_request_id cannot be undefined")
+        from .item import governance_role_assignment_request_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["governanceRoleAssignmentRequest%2Did"] = governance_role_assignment_request_id
+        return governance_role_assignment_request_item_request_builder.GovernanceRoleAssignmentRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[RoleAssignmentRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[governance_role_assignment_request_collection_response.GovernanceRoleAssignmentRequestCollectionResponse]:
         """
@@ -60,7 +76,7 @@ class RoleAssignmentRequestsRequestBuilder():
     
     async def post(self,body: Optional[governance_role_assignment_request.GovernanceRoleAssignmentRequest] = None, request_configuration: Optional[RoleAssignmentRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[governance_role_assignment_request.GovernanceRoleAssignmentRequest]:
         """
-        Create a role assignment request to represent the operation you want on a role assignment. The following table lists the operations.
+        Create new navigation property to roleAssignmentRequests for privilegedAccess
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +119,7 @@ class RoleAssignmentRequestsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[governance_role_assignment_request.GovernanceRoleAssignmentRequest] = None, request_configuration: Optional[RoleAssignmentRequestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a role assignment request to represent the operation you want on a role assignment. The following table lists the operations.
+        Create new navigation property to roleAssignmentRequests for privilegedAccess
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

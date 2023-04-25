@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models import business_scenario_task, business_scenario_task_collection_response
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import business_scenario_task_item_request_builder
 
 class TasksRequestBuilder():
     """
@@ -36,9 +37,24 @@ class TasksRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_business_scenario_task_id(self,business_scenario_task_id: str) -> business_scenario_task_item_request_builder.BusinessScenarioTaskItemRequestBuilder:
+        """
+        Provides operations to manage the tasks property of the microsoft.graph.businessScenarioPlanner entity.
+        Args:
+            business_scenario_task_id: Unique identifier of the item
+        Returns: business_scenario_task_item_request_builder.BusinessScenarioTaskItemRequestBuilder
+        """
+        if business_scenario_task_id is None:
+            raise Exception("business_scenario_task_id cannot be undefined")
+        from .item import business_scenario_task_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["businessScenarioTask%2Did"] = business_scenario_task_id
+        return business_scenario_task_item_request_builder.BusinessScenarioTaskItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[TasksRequestBuilderGetRequestConfiguration] = None) -> Optional[business_scenario_task_collection_response.BusinessScenarioTaskCollectionResponse]:
         """
-        Get a list of the businessScenarioTask objects and their properties.
+        The Planner tasks for the scenario.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[business_scenario_task_collection_response.BusinessScenarioTaskCollectionResponse]
@@ -60,7 +76,7 @@ class TasksRequestBuilder():
     
     async def post(self,body: Optional[business_scenario_task.BusinessScenarioTask] = None, request_configuration: Optional[TasksRequestBuilderPostRequestConfiguration] = None) -> Optional[business_scenario_task.BusinessScenarioTask]:
         """
-        Create a new businessScenarioTask object.
+        Create new navigation property to tasks for solutions
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class TasksRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TasksRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the businessScenarioTask objects and their properties.
+        The Planner tasks for the scenario.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class TasksRequestBuilder():
     
     def to_post_request_information(self,body: Optional[business_scenario_task.BusinessScenarioTask] = None, request_configuration: Optional[TasksRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new businessScenarioTask object.
+        Create new navigation property to tasks for solutions
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class TasksRequestBuilder():
     @dataclass
     class TasksRequestBuilderGetQueryParameters():
         """
-        Get a list of the businessScenarioTask objects and their properties.
+        The Planner tasks for the scenario.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

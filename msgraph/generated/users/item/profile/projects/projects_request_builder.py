@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import project_participation, project_participation_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import project_participation_item_request_builder
 
 class ProjectsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ProjectsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_project_participation_id(self,project_participation_id: str) -> project_participation_item_request_builder.ProjectParticipationItemRequestBuilder:
+        """
+        Provides operations to manage the projects property of the microsoft.graph.profile entity.
+        Args:
+            project_participation_id: Unique identifier of the item
+        Returns: project_participation_item_request_builder.ProjectParticipationItemRequestBuilder
+        """
+        if project_participation_id is None:
+            raise Exception("project_participation_id cannot be undefined")
+        from .item import project_participation_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["projectParticipation%2Did"] = project_participation_id
+        return project_participation_item_request_builder.ProjectParticipationItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ProjectsRequestBuilderGetRequestConfiguration] = None) -> Optional[project_participation_collection_response.ProjectParticipationCollectionResponse]:
         """
-        Retrieve a list of projectParticipation objects from a user's profile.
+        Represents detailed information about projects associated with a user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[project_participation_collection_response.ProjectParticipationCollectionResponse]
@@ -60,7 +76,7 @@ class ProjectsRequestBuilder():
     
     async def post(self,body: Optional[project_participation.ProjectParticipation] = None, request_configuration: Optional[ProjectsRequestBuilderPostRequestConfiguration] = None) -> Optional[project_participation.ProjectParticipation]:
         """
-        Use this API to create a new projectParticipation object in a user's profile.
+        Create new navigation property to projects for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class ProjectsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ProjectsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of projectParticipation objects from a user's profile.
+        Represents detailed information about projects associated with a user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class ProjectsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[project_participation.ProjectParticipation] = None, request_configuration: Optional[ProjectsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Use this API to create a new projectParticipation object in a user's profile.
+        Create new navigation property to projects for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class ProjectsRequestBuilder():
     @dataclass
     class ProjectsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of projectParticipation objects from a user's profile.
+        Represents detailed information about projects associated with a user.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

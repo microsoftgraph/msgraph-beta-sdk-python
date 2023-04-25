@@ -11,7 +11,7 @@ from . import entity
 class Team(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new team and sets the default values.
+        Instantiates a new Team and sets the default values.
         """
         super().__init__()
         # List of channels either hosted in or shared with the team (incoming channels).

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models.o_data_errors import o_data_error
     from ......models.security import disposition_review_stage, disposition_review_stage_collection_response
     from .count import count_request_builder
+    from .item import disposition_review_stage_item_request_builder
 
 class DispositionReviewStagesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class DispositionReviewStagesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_disposition_review_stage_id(self,disposition_review_stage_id: str) -> disposition_review_stage_item_request_builder.DispositionReviewStageItemRequestBuilder:
+        """
+        Provides operations to manage the dispositionReviewStages property of the microsoft.graph.security.retentionLabel entity.
+        Args:
+            disposition_review_stage_id: Unique identifier of the item
+        Returns: disposition_review_stage_item_request_builder.DispositionReviewStageItemRequestBuilder
+        """
+        if disposition_review_stage_id is None:
+            raise Exception("disposition_review_stage_id cannot be undefined")
+        from .item import disposition_review_stage_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["dispositionReviewStage%2Did"] = disposition_review_stage_id
+        return disposition_review_stage_item_request_builder.DispositionReviewStageItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[DispositionReviewStagesRequestBuilderGetRequestConfiguration] = None) -> Optional[disposition_review_stage_collection_response.DispositionReviewStageCollectionResponse]:
         """

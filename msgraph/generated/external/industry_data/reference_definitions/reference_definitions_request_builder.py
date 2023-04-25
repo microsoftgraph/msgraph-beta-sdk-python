@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.industry_data import reference_definition, reference_definition_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import reference_definition_item_request_builder
 
 class ReferenceDefinitionsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ReferenceDefinitionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_reference_definition_id(self,reference_definition_id: str) -> reference_definition_item_request_builder.ReferenceDefinitionItemRequestBuilder:
+        """
+        Provides operations to manage the referenceDefinitions property of the microsoft.graph.industryData.industryDataRoot entity.
+        Args:
+            reference_definition_id: Unique identifier of the item
+        Returns: reference_definition_item_request_builder.ReferenceDefinitionItemRequestBuilder
+        """
+        if reference_definition_id is None:
+            raise Exception("reference_definition_id cannot be undefined")
+        from .item import reference_definition_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["referenceDefinition%2Did"] = reference_definition_id
+        return reference_definition_item_request_builder.ReferenceDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ReferenceDefinitionsRequestBuilderGetRequestConfiguration] = None) -> Optional[reference_definition_collection_response.ReferenceDefinitionCollectionResponse]:
         """
-        Get a list of the referenceDefinition objects and their properties.
+        Set of user modifiable system picker types.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[reference_definition_collection_response.ReferenceDefinitionCollectionResponse]
@@ -85,7 +101,7 @@ class ReferenceDefinitionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ReferenceDefinitionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the referenceDefinition objects and their properties.
+        Set of user modifiable system picker types.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class ReferenceDefinitionsRequestBuilder():
     @dataclass
     class ReferenceDefinitionsRequestBuilderGetQueryParameters():
         """
-        Get a list of the referenceDefinition objects and their properties.
+        Set of user modifiable system picker types.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

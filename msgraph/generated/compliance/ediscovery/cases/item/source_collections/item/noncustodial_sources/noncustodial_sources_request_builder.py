@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ........models.ediscovery import noncustodial_data_source_collection_response
     from ........models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import noncustodial_data_source_item_request_builder
 
 class NoncustodialSourcesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class NoncustodialSourcesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_noncustodial_data_source_id(self,noncustodial_data_source_id: str) -> noncustodial_data_source_item_request_builder.NoncustodialDataSourceItemRequestBuilder:
+        """
+        Provides operations to manage the noncustodialSources property of the microsoft.graph.ediscovery.sourceCollection entity.
+        Args:
+            noncustodial_data_source_id: Unique identifier of the item
+        Returns: noncustodial_data_source_item_request_builder.NoncustodialDataSourceItemRequestBuilder
+        """
+        if noncustodial_data_source_id is None:
+            raise Exception("noncustodial_data_source_id cannot be undefined")
+        from .item import noncustodial_data_source_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["noncustodialDataSource%2Did"] = noncustodial_data_source_id
+        return noncustodial_data_source_item_request_builder.NoncustodialDataSourceItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[NoncustodialSourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[noncustodial_data_source_collection_response.NoncustodialDataSourceCollectionResponse]:
         """
-        Get a list of noncustodialDataSource associated with a sourceCollection.
+        noncustodialDataSource sources that are included in the sourceCollection
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[noncustodial_data_source_collection_response.NoncustodialDataSourceCollectionResponse]
@@ -60,7 +76,7 @@ class NoncustodialSourcesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[NoncustodialSourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of noncustodialDataSource associated with a sourceCollection.
+        noncustodialDataSource sources that are included in the sourceCollection
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -88,7 +104,7 @@ class NoncustodialSourcesRequestBuilder():
     @dataclass
     class NoncustodialSourcesRequestBuilderGetQueryParameters():
         """
-        Get a list of noncustodialDataSource associated with a sourceCollection.
+        noncustodialDataSource sources that are included in the sourceCollection
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import phone_authentication_method, phone_authentication_method_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import phone_authentication_method_item_request_builder
 
 class PhoneMethodsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class PhoneMethodsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_phone_authentication_method_id(self,phone_authentication_method_id: str) -> phone_authentication_method_item_request_builder.PhoneAuthenticationMethodItemRequestBuilder:
+        """
+        Provides operations to manage the phoneMethods property of the microsoft.graph.authentication entity.
+        Args:
+            phone_authentication_method_id: Unique identifier of the item
+        Returns: phone_authentication_method_item_request_builder.PhoneAuthenticationMethodItemRequestBuilder
+        """
+        if phone_authentication_method_id is None:
+            raise Exception("phone_authentication_method_id cannot be undefined")
+        from .item import phone_authentication_method_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["phoneAuthenticationMethod%2Did"] = phone_authentication_method_id
+        return phone_authentication_method_item_request_builder.PhoneAuthenticationMethodItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[PhoneMethodsRequestBuilderGetRequestConfiguration] = None) -> Optional[phone_authentication_method_collection_response.PhoneAuthenticationMethodCollectionResponse]:
         """
-        Retrieve a list of phone authentication method objects. This will return up to three objects, as a user can have up to three phones usable for authentication. This method is available only for standard Azure AD and B2B users, but not B2C users.
+        Represents the phone registered to a user for authentication.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[phone_authentication_method_collection_response.PhoneAuthenticationMethodCollectionResponse]
@@ -60,7 +76,7 @@ class PhoneMethodsRequestBuilder():
     
     async def post(self,body: Optional[phone_authentication_method.PhoneAuthenticationMethod] = None, request_configuration: Optional[PhoneMethodsRequestBuilderPostRequestConfiguration] = None) -> Optional[phone_authentication_method.PhoneAuthenticationMethod]:
         """
-        Add a new phone authentication method. A user may only have one phone of each type, captured in the **phoneType** property. This means, for example, adding a `mobile` phone to a user with a preexisting `mobile` phone will fail. Additionally, a user must always have a `mobile` phone before adding an `alternateMobile` phone. Adding a phone number makes it available for use in both Azure multi-factor authentication (MFA) and self-service password reset (SSPR), if enabled. Additionally, if a user is enabled by policy to use SMS sign-in and a `mobile` number is added, the system will attempt to register the number for use in that system.
+        Create new navigation property to phoneMethods for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class PhoneMethodsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PhoneMethodsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of phone authentication method objects. This will return up to three objects, as a user can have up to three phones usable for authentication. This method is available only for standard Azure AD and B2B users, but not B2C users.
+        Represents the phone registered to a user for authentication.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class PhoneMethodsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[phone_authentication_method.PhoneAuthenticationMethod] = None, request_configuration: Optional[PhoneMethodsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Add a new phone authentication method. A user may only have one phone of each type, captured in the **phoneType** property. This means, for example, adding a `mobile` phone to a user with a preexisting `mobile` phone will fail. Additionally, a user must always have a `mobile` phone before adding an `alternateMobile` phone. Adding a phone number makes it available for use in both Azure multi-factor authentication (MFA) and self-service password reset (SSPR), if enabled. Additionally, if a user is enabled by policy to use SMS sign-in and a `mobile` number is added, the system will attempt to register the number for use in that system.
+        Create new navigation property to phoneMethods for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class PhoneMethodsRequestBuilder():
     @dataclass
     class PhoneMethodsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of phone authentication method objects. This will return up to three objects, as a user can have up to three phones usable for authentication. This method is available only for standard Azure AD and B2B users, but not B2C users.
+        Represents the phone registered to a user for authentication.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

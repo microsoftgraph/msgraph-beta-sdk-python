@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import access_package_resource_environment, access_package_resource_environment_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import access_package_resource_environment_item_request_builder
 
 class AccessPackageResourceEnvironmentsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class AccessPackageResourceEnvironmentsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_access_package_resource_environment_id(self,access_package_resource_environment_id: str) -> access_package_resource_environment_item_request_builder.AccessPackageResourceEnvironmentItemRequestBuilder:
+        """
+        Provides operations to manage the accessPackageResourceEnvironments property of the microsoft.graph.entitlementManagement entity.
+        Args:
+            access_package_resource_environment_id: Unique identifier of the item
+        Returns: access_package_resource_environment_item_request_builder.AccessPackageResourceEnvironmentItemRequestBuilder
+        """
+        if access_package_resource_environment_id is None:
+            raise Exception("access_package_resource_environment_id cannot be undefined")
+        from .item import access_package_resource_environment_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["accessPackageResourceEnvironment%2Did"] = access_package_resource_environment_id
+        return access_package_resource_environment_item_request_builder.AccessPackageResourceEnvironmentItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[AccessPackageResourceEnvironmentsRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_resource_environment_collection_response.AccessPackageResourceEnvironmentCollectionResponse]:
         """
-        Retrieve a list of accessPackageResourceEnvironment objects and their properties.
+        A reference to the geolocation environment in which a resource is located.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_package_resource_environment_collection_response.AccessPackageResourceEnvironmentCollectionResponse]
@@ -85,7 +101,7 @@ class AccessPackageResourceEnvironmentsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageResourceEnvironmentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of accessPackageResourceEnvironment objects and their properties.
+        A reference to the geolocation environment in which a resource is located.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class AccessPackageResourceEnvironmentsRequestBuilder():
     @dataclass
     class AccessPackageResourceEnvironmentsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of accessPackageResourceEnvironment objects and their properties.
+        A reference to the geolocation environment in which a resource is located.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

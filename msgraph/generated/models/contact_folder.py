@@ -10,11 +10,11 @@ from . import entity
 class ContactFolder(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new contactFolder and sets the default values.
+        Instantiates a new ContactFolder and sets the default values.
         """
         super().__init__()
         # The collection of child folders in the folder. Navigation property. Read-only. Nullable.
-        self._child_folders: Optional[List[ContactFolder]] = None
+        self._child_folders: Optional[List[contact_folder.ContactFolder]] = None
         # The contacts in the folder. Navigation property. Read-only. Nullable.
         self._contacts: Optional[List[contact.Contact]] = None
         # The folder's display name.
@@ -31,15 +31,15 @@ class ContactFolder(entity.Entity):
         self._well_known_name: Optional[str] = None
     
     @property
-    def child_folders(self,) -> Optional[List[ContactFolder]]:
+    def child_folders(self,) -> Optional[List[contact_folder.ContactFolder]]:
         """
         Gets the childFolders property value. The collection of child folders in the folder. Navigation property. Read-only. Nullable.
-        Returns: Optional[List[ContactFolder]]
+        Returns: Optional[List[contact_folder.ContactFolder]]
         """
         return self._child_folders
     
     @child_folders.setter
-    def child_folders(self,value: Optional[List[ContactFolder]] = None) -> None:
+    def child_folders(self,value: Optional[List[contact_folder.ContactFolder]] = None) -> None:
         """
         Sets the childFolders property value. The collection of child folders in the folder. Navigation property. Read-only. Nullable.
         Args:
@@ -101,7 +101,7 @@ class ContactFolder(entity.Entity):
         from . import contact, entity, multi_value_legacy_extended_property, single_value_legacy_extended_property
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "childFolders": lambda n : setattr(self, 'child_folders', n.get_collection_of_object_values(ContactFolder)),
+            "childFolders": lambda n : setattr(self, 'child_folders', n.get_collection_of_object_values(contact_folder.ContactFolder)),
             "contacts": lambda n : setattr(self, 'contacts', n.get_collection_of_object_values(contact.Contact)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "multiValueExtendedProperties": lambda n : setattr(self, 'multi_value_extended_properties', n.get_collection_of_object_values(multi_value_legacy_extended_property.MultiValueLegacyExtendedProperty)),

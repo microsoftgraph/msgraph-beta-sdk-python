@@ -11,7 +11,7 @@ from . import entity
 class PrivilegedRoleAssignmentRequest(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new privilegedRoleAssignmentRequest and sets the default values.
+        Instantiates a new PrivilegedRoleAssignmentRequest and sets the default values.
         """
         super().__init__()
         # The state of the assignment. The value can be Eligible for eligible assignment Active - if it is directly assigned Active by administrators, or activated on an eligible assignment by the users.

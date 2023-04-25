@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .find_by_method_mode_with_authentication_method_modes import find_by_method_mode_with_authentication_method_modes_request_builder
+    from .item import authentication_strength_policy_item_request_builder
 
 class AuthenticationStrengthPoliciesRequestBuilder():
     """
@@ -37,6 +38,21 @@ class AuthenticationStrengthPoliciesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_authentication_strength_policy_id(self,authentication_strength_policy_id: str) -> authentication_strength_policy_item_request_builder.AuthenticationStrengthPolicyItemRequestBuilder:
+        """
+        Provides operations to manage the authenticationStrengthPolicies property of the microsoft.graph.policyRoot entity.
+        Args:
+            authentication_strength_policy_id: Unique identifier of the item
+        Returns: authentication_strength_policy_item_request_builder.AuthenticationStrengthPolicyItemRequestBuilder
+        """
+        if authentication_strength_policy_id is None:
+            raise Exception("authentication_strength_policy_id cannot be undefined")
+        from .item import authentication_strength_policy_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["authenticationStrengthPolicy%2Did"] = authentication_strength_policy_id
+        return authentication_strength_policy_item_request_builder.AuthenticationStrengthPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     def find_by_method_mode_with_authentication_method_modes(self,authentication_method_modes: Optional[str] = None) -> find_by_method_mode_with_authentication_method_modes_request_builder.FindByMethodModeWithAuthenticationMethodModesRequestBuilder:
         """
         Provides operations to call the findByMethodMode method.
@@ -52,7 +68,7 @@ class AuthenticationStrengthPoliciesRequestBuilder():
     
     async def get(self,request_configuration: Optional[AuthenticationStrengthPoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[authentication_strength_policy_collection_response.AuthenticationStrengthPolicyCollectionResponse]:
         """
-        Get a list of the authenticationStrengthPolicy objects and their properties. This API returns both built-in and custom policies.
+        The authentication method combinations that are to be used in scenarios defined by Azure AD Conditional Access.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[authentication_strength_policy_collection_response.AuthenticationStrengthPolicyCollectionResponse]
@@ -74,7 +90,7 @@ class AuthenticationStrengthPoliciesRequestBuilder():
     
     async def post(self,body: Optional[authentication_strength_policy.AuthenticationStrengthPolicy] = None, request_configuration: Optional[AuthenticationStrengthPoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[authentication_strength_policy.AuthenticationStrengthPolicy]:
         """
-        Create a new custom authenticationStrengthPolicy object.
+        Create new navigation property to authenticationStrengthPolicies for policies
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,7 +115,7 @@ class AuthenticationStrengthPoliciesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AuthenticationStrengthPoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the authenticationStrengthPolicy objects and their properties. This API returns both built-in and custom policies.
+        The authentication method combinations that are to be used in scenarios defined by Azure AD Conditional Access.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -117,7 +133,7 @@ class AuthenticationStrengthPoliciesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[authentication_strength_policy.AuthenticationStrengthPolicy] = None, request_configuration: Optional[AuthenticationStrengthPoliciesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new custom authenticationStrengthPolicy object.
+        Create new navigation property to authenticationStrengthPolicies for policies
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -148,7 +164,7 @@ class AuthenticationStrengthPoliciesRequestBuilder():
     @dataclass
     class AuthenticationStrengthPoliciesRequestBuilderGetQueryParameters():
         """
-        Get a list of the authenticationStrengthPolicy objects and their properties. This API returns both built-in and custom policies.
+        The authentication method combinations that are to be used in scenarios defined by Azure AD Conditional Access.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ..........models import horizontal_section_column
     from ..........models.o_data_errors import o_data_error
     from .webparts import webparts_request_builder
-    from .webparts.item import web_part_item_request_builder
 
 class HorizontalSectionColumnItemRequestBuilder():
     """
@@ -157,21 +156,6 @@ class HorizontalSectionColumnItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
-    
-    def webparts_by_id(self,id: str) -> web_part_item_request_builder.WebPartItemRequestBuilder:
-        """
-        Provides operations to manage the webparts property of the microsoft.graph.horizontalSectionColumn entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: web_part_item_request_builder.WebPartItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .webparts.item import web_part_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["webPart%2Did"] = id
-        return web_part_item_request_builder.WebPartItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     @property
     def webparts(self) -> webparts_request_builder.WebpartsRequestBuilder:

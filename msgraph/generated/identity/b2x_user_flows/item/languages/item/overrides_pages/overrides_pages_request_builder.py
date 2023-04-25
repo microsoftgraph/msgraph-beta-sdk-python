@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .......models import user_flow_language_page, user_flow_language_page_collection_response
     from .......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import user_flow_language_page_item_request_builder
 
 class OverridesPagesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class OverridesPagesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_user_flow_language_page_id(self,user_flow_language_page_id: str) -> user_flow_language_page_item_request_builder.UserFlowLanguagePageItemRequestBuilder:
+        """
+        Provides operations to manage the overridesPages property of the microsoft.graph.userFlowLanguageConfiguration entity.
+        Args:
+            user_flow_language_page_id: Unique identifier of the item
+        Returns: user_flow_language_page_item_request_builder.UserFlowLanguagePageItemRequestBuilder
+        """
+        if user_flow_language_page_id is None:
+            raise Exception("user_flow_language_page_id cannot be undefined")
+        from .item import user_flow_language_page_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["userFlowLanguagePage%2Did"] = user_flow_language_page_id
+        return user_flow_language_page_item_request_builder.UserFlowLanguagePageItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[OverridesPagesRequestBuilderGetRequestConfiguration] = None) -> Optional[user_flow_language_page_collection_response.UserFlowLanguagePageCollectionResponse]:
         """
-        Get the userFlowLanguagePage resources from the overridesPages navigation property. These pages are used to customize the values shown to the user during a user journey in a user flow.
+        Collection of pages with the overrides messages to display in a user flow for a specified language. This collection only allows to modify the content of the page, any other modification is not allowed (creation or deletion of pages).
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[user_flow_language_page_collection_response.UserFlowLanguagePageCollectionResponse]
@@ -85,7 +101,7 @@ class OverridesPagesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[OverridesPagesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the userFlowLanguagePage resources from the overridesPages navigation property. These pages are used to customize the values shown to the user during a user journey in a user flow.
+        Collection of pages with the overrides messages to display in a user flow for a specified language. This collection only allows to modify the content of the page, any other modification is not allowed (creation or deletion of pages).
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class OverridesPagesRequestBuilder():
     @dataclass
     class OverridesPagesRequestBuilderGetQueryParameters():
         """
-        Get the userFlowLanguagePage resources from the overridesPages navigation property. These pages are used to customize the values shown to the user during a user journey in a user flow.
+        Collection of pages with the overrides messages to display in a user flow for a specified language. This collection only allows to modify the content of the page, any other modification is not allowed (creation or deletion of pages).
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

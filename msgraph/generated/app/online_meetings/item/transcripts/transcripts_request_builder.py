@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import call_transcript, call_transcript_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import call_transcript_item_request_builder
 
 class TranscriptsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class TranscriptsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_call_transcript_id(self,call_transcript_id: str) -> call_transcript_item_request_builder.CallTranscriptItemRequestBuilder:
+        """
+        Provides operations to manage the transcripts property of the microsoft.graph.onlineMeeting entity.
+        Args:
+            call_transcript_id: Unique identifier of the item
+        Returns: call_transcript_item_request_builder.CallTranscriptItemRequestBuilder
+        """
+        if call_transcript_id is None:
+            raise Exception("call_transcript_id cannot be undefined")
+        from .item import call_transcript_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["callTranscript%2Did"] = call_transcript_id
+        return call_transcript_item_request_builder.CallTranscriptItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[TranscriptsRequestBuilderGetRequestConfiguration] = None) -> Optional[call_transcript_collection_response.CallTranscriptCollectionResponse]:
         """
-        Retrieve the list of callTranscript objects associated with an onlineMeeting.
+        The transcripts of an online meeting. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[call_transcript_collection_response.CallTranscriptCollectionResponse]
@@ -85,7 +101,7 @@ class TranscriptsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TranscriptsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the list of callTranscript objects associated with an onlineMeeting.
+        The transcripts of an online meeting. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class TranscriptsRequestBuilder():
     @dataclass
     class TranscriptsRequestBuilderGetQueryParameters():
         """
-        Retrieve the list of callTranscript objects associated with an onlineMeeting.
+        The transcripts of an online meeting. Read-only.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

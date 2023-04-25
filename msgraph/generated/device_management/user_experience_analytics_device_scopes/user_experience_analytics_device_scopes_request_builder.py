@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import user_experience_analytics_device_scope, user_experience_analytics_device_scope_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import user_experience_analytics_device_scope_item_request_builder
 
 class UserExperienceAnalyticsDeviceScopesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class UserExperienceAnalyticsDeviceScopesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_user_experience_analytics_device_scope_id(self,user_experience_analytics_device_scope_id: str) -> user_experience_analytics_device_scope_item_request_builder.UserExperienceAnalyticsDeviceScopeItemRequestBuilder:
+        """
+        Provides operations to manage the userExperienceAnalyticsDeviceScopes property of the microsoft.graph.deviceManagement entity.
+        Args:
+            user_experience_analytics_device_scope_id: Unique identifier of the item
+        Returns: user_experience_analytics_device_scope_item_request_builder.UserExperienceAnalyticsDeviceScopeItemRequestBuilder
+        """
+        if user_experience_analytics_device_scope_id is None:
+            raise Exception("user_experience_analytics_device_scope_id cannot be undefined")
+        from .item import user_experience_analytics_device_scope_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["userExperienceAnalyticsDeviceScope%2Did"] = user_experience_analytics_device_scope_id
+        return user_experience_analytics_device_scope_item_request_builder.UserExperienceAnalyticsDeviceScopeItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[UserExperienceAnalyticsDeviceScopesRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_device_scope_collection_response.UserExperienceAnalyticsDeviceScopeCollectionResponse]:
         """

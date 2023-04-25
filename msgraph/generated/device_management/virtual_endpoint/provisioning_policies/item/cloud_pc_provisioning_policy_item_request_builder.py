@@ -15,7 +15,6 @@ if TYPE_CHECKING:
     from .apply import apply_request_builder
     from .assign import assign_request_builder
     from .assignments import assignments_request_builder
-    from .assignments.item import cloud_pc_provisioning_policy_assignment_item_request_builder
 
 class CloudPcProvisioningPolicyItemRequestBuilder():
     """
@@ -38,21 +37,6 @@ class CloudPcProvisioningPolicyItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def assignments_by_id(self,id: str) -> cloud_pc_provisioning_policy_assignment_item_request_builder.CloudPcProvisioningPolicyAssignmentItemRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.cloudPcProvisioningPolicy entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: cloud_pc_provisioning_policy_assignment_item_request_builder.CloudPcProvisioningPolicyAssignmentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .assignments.item import cloud_pc_provisioning_policy_assignment_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["cloudPcProvisioningPolicyAssignment%2Did"] = id
-        return cloud_pc_provisioning_policy_assignment_item_request_builder.CloudPcProvisioningPolicyAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[CloudPcProvisioningPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

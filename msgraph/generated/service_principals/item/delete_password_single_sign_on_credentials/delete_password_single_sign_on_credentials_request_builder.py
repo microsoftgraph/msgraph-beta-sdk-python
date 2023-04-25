@@ -37,7 +37,7 @@ class DeletePasswordSingleSignOnCredentialsRequestBuilder():
     
     async def post(self,body: Optional[delete_password_single_sign_on_credentials_post_request_body.DeletePasswordSingleSignOnCredentialsPostRequestBody] = None, request_configuration: Optional[DeletePasswordSingleSignOnCredentialsRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Delete single sign-on credentials using a password for a user or group.
+        Invoke action deletePasswordSingleSignOnCredentials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -59,7 +59,7 @@ class DeletePasswordSingleSignOnCredentialsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[delete_password_single_sign_on_credentials_post_request_body.DeletePasswordSingleSignOnCredentialsPostRequestBody] = None, request_configuration: Optional[DeletePasswordSingleSignOnCredentialsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete single sign-on credentials using a password for a user or group.
+        Invoke action deletePasswordSingleSignOnCredentials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

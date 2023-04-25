@@ -8,12 +8,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class ManagedDeviceEncryptionState(entity.Entity):
-    """
-    Encryption report per device
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new managedDeviceEncryptionState and sets the default values.
+        Instantiates a new ManagedDeviceEncryptionState and sets the default values.
         """
         super().__init__()
         # Advanced BitLocker State. Possible values are: success, noUserConsent, osVolumeUnprotected, osVolumeTpmRequired, osVolumeTpmOnlyRequired, osVolumeTpmPinRequired, osVolumeTpmStartupKeyRequired, osVolumeTpmPinStartupKeyRequired, osVolumeEncryptionMethodMismatch, recoveryKeyBackupFailed, fixedDriveNotEncrypted, fixedDriveEncryptionMethodMismatch, loggedOnUserNonAdmin, windowsRecoveryEnvironmentNotConfigured, tpmNotAvailable, tpmNotReady, networkError.

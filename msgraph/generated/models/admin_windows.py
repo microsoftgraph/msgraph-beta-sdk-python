@@ -10,7 +10,7 @@ from . import entity
 class AdminWindows(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new adminWindows and sets the default values.
+        Instantiates a new AdminWindows and sets the default values.
         """
         super().__init__()
         # The OdataType property

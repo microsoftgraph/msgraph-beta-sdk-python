@@ -11,7 +11,7 @@ from . import entity
 class ZebraFotaConnector(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new zebraFotaConnector and sets the default values.
+        Instantiates a new ZebraFotaConnector and sets the default values.
         """
         super().__init__()
         # Complete account enrollment authorization URL. This corresponds to verification_uri_complete in the Zebra API documentations.

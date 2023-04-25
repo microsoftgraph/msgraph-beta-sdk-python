@@ -10,32 +10,32 @@ from . import entity
 class OfficeClientConfiguration(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new officeClientConfiguration and sets the default values.
+        Instantiates a new OfficeClientConfiguration and sets the default values.
         """
         super().__init__()
-        # The list of group assignments for the policy.
+        # The assignments property
         self._assignments: Optional[List[office_client_configuration_assignment.OfficeClientConfigurationAssignment]] = None
-        # List of office Client check-in status.
+        # The checkinStatuses property
         self._checkin_statuses: Optional[List[office_client_checkin_status.OfficeClientCheckinStatus]] = None
-        # Not yet documented
+        # The description property
         self._description: Optional[str] = None
-        # Admin provided description of the office client configuration policy.
+        # The displayName property
         self._display_name: Optional[str] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # Policy settings JSON string in binary format, these values cannot be changed by the user.
+        # The policyPayload property
         self._policy_payload: Optional[bytes] = None
-        # Priority value should be unique value for each policy under a tenant and will be used for conflict resolution, lower values mean priority is high.
+        # The priority property
         self._priority: Optional[int] = None
-        # User check-in summary for the policy.
+        # The userCheckinSummary property
         self._user_checkin_summary: Optional[office_user_checkin_summary.OfficeUserCheckinSummary] = None
-        # Preference settings JSON string in binary format, these values can be overridden by the user.
+        # The userPreferencePayload property
         self._user_preference_payload: Optional[bytes] = None
     
     @property
     def assignments(self,) -> Optional[List[office_client_configuration_assignment.OfficeClientConfigurationAssignment]]:
         """
-        Gets the assignments property value. The list of group assignments for the policy.
+        Gets the assignments property value. The assignments property
         Returns: Optional[List[office_client_configuration_assignment.OfficeClientConfigurationAssignment]]
         """
         return self._assignments
@@ -43,7 +43,7 @@ class OfficeClientConfiguration(entity.Entity):
     @assignments.setter
     def assignments(self,value: Optional[List[office_client_configuration_assignment.OfficeClientConfigurationAssignment]] = None) -> None:
         """
-        Sets the assignments property value. The list of group assignments for the policy.
+        Sets the assignments property value. The assignments property
         Args:
             value: Value to set for the assignments property.
         """
@@ -52,7 +52,7 @@ class OfficeClientConfiguration(entity.Entity):
     @property
     def checkin_statuses(self,) -> Optional[List[office_client_checkin_status.OfficeClientCheckinStatus]]:
         """
-        Gets the checkinStatuses property value. List of office Client check-in status.
+        Gets the checkinStatuses property value. The checkinStatuses property
         Returns: Optional[List[office_client_checkin_status.OfficeClientCheckinStatus]]
         """
         return self._checkin_statuses
@@ -60,7 +60,7 @@ class OfficeClientConfiguration(entity.Entity):
     @checkin_statuses.setter
     def checkin_statuses(self,value: Optional[List[office_client_checkin_status.OfficeClientCheckinStatus]] = None) -> None:
         """
-        Sets the checkinStatuses property value. List of office Client check-in status.
+        Sets the checkinStatuses property value. The checkinStatuses property
         Args:
             value: Value to set for the checkin_statuses property.
         """
@@ -92,7 +92,7 @@ class OfficeClientConfiguration(entity.Entity):
     @property
     def description(self,) -> Optional[str]:
         """
-        Gets the description property value. Not yet documented
+        Gets the description property value. The description property
         Returns: Optional[str]
         """
         return self._description
@@ -100,7 +100,7 @@ class OfficeClientConfiguration(entity.Entity):
     @description.setter
     def description(self,value: Optional[str] = None) -> None:
         """
-        Sets the description property value. Not yet documented
+        Sets the description property value. The description property
         Args:
             value: Value to set for the description property.
         """
@@ -109,7 +109,7 @@ class OfficeClientConfiguration(entity.Entity):
     @property
     def display_name(self,) -> Optional[str]:
         """
-        Gets the displayName property value. Admin provided description of the office client configuration policy.
+        Gets the displayName property value. The displayName property
         Returns: Optional[str]
         """
         return self._display_name
@@ -117,7 +117,7 @@ class OfficeClientConfiguration(entity.Entity):
     @display_name.setter
     def display_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the displayName property value. Admin provided description of the office client configuration policy.
+        Sets the displayName property value. The displayName property
         Args:
             value: Value to set for the display_name property.
         """
@@ -147,7 +147,7 @@ class OfficeClientConfiguration(entity.Entity):
     @property
     def policy_payload(self,) -> Optional[bytes]:
         """
-        Gets the policyPayload property value. Policy settings JSON string in binary format, these values cannot be changed by the user.
+        Gets the policyPayload property value. The policyPayload property
         Returns: Optional[bytes]
         """
         return self._policy_payload
@@ -155,7 +155,7 @@ class OfficeClientConfiguration(entity.Entity):
     @policy_payload.setter
     def policy_payload(self,value: Optional[bytes] = None) -> None:
         """
-        Sets the policyPayload property value. Policy settings JSON string in binary format, these values cannot be changed by the user.
+        Sets the policyPayload property value. The policyPayload property
         Args:
             value: Value to set for the policy_payload property.
         """
@@ -164,7 +164,7 @@ class OfficeClientConfiguration(entity.Entity):
     @property
     def priority(self,) -> Optional[int]:
         """
-        Gets the priority property value. Priority value should be unique value for each policy under a tenant and will be used for conflict resolution, lower values mean priority is high.
+        Gets the priority property value. The priority property
         Returns: Optional[int]
         """
         return self._priority
@@ -172,7 +172,7 @@ class OfficeClientConfiguration(entity.Entity):
     @priority.setter
     def priority(self,value: Optional[int] = None) -> None:
         """
-        Sets the priority property value. Priority value should be unique value for each policy under a tenant and will be used for conflict resolution, lower values mean priority is high.
+        Sets the priority property value. The priority property
         Args:
             value: Value to set for the priority property.
         """
@@ -199,7 +199,7 @@ class OfficeClientConfiguration(entity.Entity):
     @property
     def user_checkin_summary(self,) -> Optional[office_user_checkin_summary.OfficeUserCheckinSummary]:
         """
-        Gets the userCheckinSummary property value. User check-in summary for the policy.
+        Gets the userCheckinSummary property value. The userCheckinSummary property
         Returns: Optional[office_user_checkin_summary.OfficeUserCheckinSummary]
         """
         return self._user_checkin_summary
@@ -207,7 +207,7 @@ class OfficeClientConfiguration(entity.Entity):
     @user_checkin_summary.setter
     def user_checkin_summary(self,value: Optional[office_user_checkin_summary.OfficeUserCheckinSummary] = None) -> None:
         """
-        Sets the userCheckinSummary property value. User check-in summary for the policy.
+        Sets the userCheckinSummary property value. The userCheckinSummary property
         Args:
             value: Value to set for the user_checkin_summary property.
         """
@@ -216,7 +216,7 @@ class OfficeClientConfiguration(entity.Entity):
     @property
     def user_preference_payload(self,) -> Optional[bytes]:
         """
-        Gets the userPreferencePayload property value. Preference settings JSON string in binary format, these values can be overridden by the user.
+        Gets the userPreferencePayload property value. The userPreferencePayload property
         Returns: Optional[bytes]
         """
         return self._user_preference_payload
@@ -224,7 +224,7 @@ class OfficeClientConfiguration(entity.Entity):
     @user_preference_payload.setter
     def user_preference_payload(self,value: Optional[bytes] = None) -> None:
         """
-        Sets the userPreferencePayload property value. Preference settings JSON string in binary format, these values can be overridden by the user.
+        Sets the userPreferencePayload property value. The userPreferencePayload property
         Args:
             value: Value to set for the user_preference_payload property.
         """

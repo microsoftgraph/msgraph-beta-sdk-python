@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import print_connector, print_connector_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import print_connector_item_request_builder
 
 class ConnectorsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ConnectorsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_print_connector_id(self,print_connector_id: str) -> print_connector_item_request_builder.PrintConnectorItemRequestBuilder:
+        """
+        Provides operations to manage the connectors property of the microsoft.graph.print entity.
+        Args:
+            print_connector_id: Unique identifier of the item
+        Returns: print_connector_item_request_builder.PrintConnectorItemRequestBuilder
+        """
+        if print_connector_id is None:
+            raise Exception("print_connector_id cannot be undefined")
+        from .item import print_connector_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["printConnector%2Did"] = print_connector_id
+        return print_connector_item_request_builder.PrintConnectorItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ConnectorsRequestBuilderGetRequestConfiguration] = None) -> Optional[print_connector_collection_response.PrintConnectorCollectionResponse]:
         """
-        Retrieve a list of print connectors.
+        The list of available print connectors.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[print_connector_collection_response.PrintConnectorCollectionResponse]
@@ -85,7 +101,7 @@ class ConnectorsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ConnectorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of print connectors.
+        The list of available print connectors.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class ConnectorsRequestBuilder():
     @dataclass
     class ConnectorsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of print connectors.
+        The list of available print connectors.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

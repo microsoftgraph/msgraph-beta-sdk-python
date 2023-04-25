@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .filter_by_current_user_with_on import filter_by_current_user_with_on_request_builder
+    from .item import unified_role_assignment_schedule_instance_item_request_builder
 
 class RoleAssignmentScheduleInstancesRequestBuilder():
     """
@@ -37,6 +38,21 @@ class RoleAssignmentScheduleInstancesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_unified_role_assignment_schedule_instance_id(self,unified_role_assignment_schedule_instance_id: str) -> unified_role_assignment_schedule_instance_item_request_builder.UnifiedRoleAssignmentScheduleInstanceItemRequestBuilder:
+        """
+        Provides operations to manage the roleAssignmentScheduleInstances property of the microsoft.graph.rbacApplication entity.
+        Args:
+            unified_role_assignment_schedule_instance_id: Unique identifier of the item
+        Returns: unified_role_assignment_schedule_instance_item_request_builder.UnifiedRoleAssignmentScheduleInstanceItemRequestBuilder
+        """
+        if unified_role_assignment_schedule_instance_id is None:
+            raise Exception("unified_role_assignment_schedule_instance_id cannot be undefined")
+        from .item import unified_role_assignment_schedule_instance_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["unifiedRoleAssignmentScheduleInstance%2Did"] = unified_role_assignment_schedule_instance_id
+        return unified_role_assignment_schedule_instance_item_request_builder.UnifiedRoleAssignmentScheduleInstanceItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     def filter_by_current_user_with_on(self,on: Optional[str] = None) -> filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder:
         """
         Provides operations to call the filterByCurrentUser method.
@@ -52,7 +68,7 @@ class RoleAssignmentScheduleInstancesRequestBuilder():
     
     async def get(self,request_configuration: Optional[RoleAssignmentScheduleInstancesRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_assignment_schedule_instance_collection_response.UnifiedRoleAssignmentScheduleInstanceCollectionResponse]:
         """
-        Get the instances of active role assignments in your tenant. The active assignments include those made through assignments and activation requests, and directly through the role assignments API.
+        Get roleAssignmentScheduleInstances from roleManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[unified_role_assignment_schedule_instance_collection_response.UnifiedRoleAssignmentScheduleInstanceCollectionResponse]
@@ -99,7 +115,7 @@ class RoleAssignmentScheduleInstancesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RoleAssignmentScheduleInstancesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the instances of active role assignments in your tenant. The active assignments include those made through assignments and activation requests, and directly through the role assignments API.
+        Get roleAssignmentScheduleInstances from roleManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -148,7 +164,7 @@ class RoleAssignmentScheduleInstancesRequestBuilder():
     @dataclass
     class RoleAssignmentScheduleInstancesRequestBuilderGetQueryParameters():
         """
-        Get the instances of active role assignments in your tenant. The active assignments include those made through assignments and activation requests, and directly through the role assignments API.
+        Get roleAssignmentScheduleInstances from roleManagement
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import education_synchronization_profile, education_synchronization_profile_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import education_synchronization_profile_item_request_builder
 
 class SynchronizationProfilesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class SynchronizationProfilesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_education_synchronization_profile_id(self,education_synchronization_profile_id: str) -> education_synchronization_profile_item_request_builder.EducationSynchronizationProfileItemRequestBuilder:
+        """
+        Provides operations to manage the synchronizationProfiles property of the microsoft.graph.educationRoot entity.
+        Args:
+            education_synchronization_profile_id: Unique identifier of the item
+        Returns: education_synchronization_profile_item_request_builder.EducationSynchronizationProfileItemRequestBuilder
+        """
+        if education_synchronization_profile_id is None:
+            raise Exception("education_synchronization_profile_id cannot be undefined")
+        from .item import education_synchronization_profile_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["educationSynchronizationProfile%2Did"] = education_synchronization_profile_id
+        return education_synchronization_profile_item_request_builder.EducationSynchronizationProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[SynchronizationProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[education_synchronization_profile_collection_response.EducationSynchronizationProfileCollectionResponse]:
         """
-        Retrieve the collection of school data synchronization profiles in the tenant.
+        Get synchronizationProfiles from education
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[education_synchronization_profile_collection_response.EducationSynchronizationProfileCollectionResponse]
@@ -85,7 +101,7 @@ class SynchronizationProfilesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SynchronizationProfilesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the collection of school data synchronization profiles in the tenant.
+        Get synchronizationProfiles from education
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class SynchronizationProfilesRequestBuilder():
     @dataclass
     class SynchronizationProfilesRequestBuilderGetQueryParameters():
         """
-        Retrieve the collection of school data synchronization profiles in the tenant.
+        Get synchronizationProfiles from education
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

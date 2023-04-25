@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.managed_tenants import conditional_access_policy_coverage, conditional_access_policy_coverage_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import conditional_access_policy_coverage_item_request_builder
 
 class ConditionalAccessPolicyCoveragesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ConditionalAccessPolicyCoveragesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_conditional_access_policy_coverage_id(self,conditional_access_policy_coverage_id: str) -> conditional_access_policy_coverage_item_request_builder.ConditionalAccessPolicyCoverageItemRequestBuilder:
+        """
+        Provides operations to manage the conditionalAccessPolicyCoverages property of the microsoft.graph.managedTenants.managedTenant entity.
+        Args:
+            conditional_access_policy_coverage_id: Unique identifier of the item
+        Returns: conditional_access_policy_coverage_item_request_builder.ConditionalAccessPolicyCoverageItemRequestBuilder
+        """
+        if conditional_access_policy_coverage_id is None:
+            raise Exception("conditional_access_policy_coverage_id cannot be undefined")
+        from .item import conditional_access_policy_coverage_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["conditionalAccessPolicyCoverage%2Did"] = conditional_access_policy_coverage_id
+        return conditional_access_policy_coverage_item_request_builder.ConditionalAccessPolicyCoverageItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ConditionalAccessPolicyCoveragesRequestBuilderGetRequestConfiguration] = None) -> Optional[conditional_access_policy_coverage_collection_response.ConditionalAccessPolicyCoverageCollectionResponse]:
         """
-        Get a list of the conditionalAccessPolicyCoverage objects and their properties. Use this operation to list of Azure Active Directory conditional access policy coverage across all tenants that are being managed by the multi-tenant management platform.
+        Aggregate view of conditional access policy coverage across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[conditional_access_policy_coverage_collection_response.ConditionalAccessPolicyCoverageCollectionResponse]
@@ -85,7 +101,7 @@ class ConditionalAccessPolicyCoveragesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ConditionalAccessPolicyCoveragesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the conditionalAccessPolicyCoverage objects and their properties. Use this operation to list of Azure Active Directory conditional access policy coverage across all tenants that are being managed by the multi-tenant management platform.
+        Aggregate view of conditional access policy coverage across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class ConditionalAccessPolicyCoveragesRequestBuilder():
     @dataclass
     class ConditionalAccessPolicyCoveragesRequestBuilderGetQueryParameters():
         """
-        Get a list of the conditionalAccessPolicyCoverage objects and their properties. Use this operation to list of Azure Active Directory conditional access policy coverage across all tenants that are being managed by the multi-tenant management platform.
+        Aggregate view of conditional access policy coverage across managed tenants.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

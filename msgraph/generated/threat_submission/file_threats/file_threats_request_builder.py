@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors import o_data_error
     from ...models.security import file_threat_submission, file_threat_submission_collection_response
     from .count import count_request_builder
+    from .item import file_threat_submission_item_request_builder
 
 class FileThreatsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class FileThreatsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_file_threat_submission_id(self,file_threat_submission_id: str) -> file_threat_submission_item_request_builder.FileThreatSubmissionItemRequestBuilder:
+        """
+        Provides operations to manage the fileThreats property of the microsoft.graph.security.threatSubmissionRoot entity.
+        Args:
+            file_threat_submission_id: Unique identifier of the item
+        Returns: file_threat_submission_item_request_builder.FileThreatSubmissionItemRequestBuilder
+        """
+        if file_threat_submission_id is None:
+            raise Exception("file_threat_submission_id cannot be undefined")
+        from .item import file_threat_submission_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["fileThreatSubmission%2Did"] = file_threat_submission_id
+        return file_threat_submission_item_request_builder.FileThreatSubmissionItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[FileThreatsRequestBuilderGetRequestConfiguration] = None) -> Optional[file_threat_submission_collection_response.FileThreatSubmissionCollectionResponse]:
         """
-        Get a list of the fileThreatSubmission objects and their properties.
+        Get fileThreats from threatSubmission
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[file_threat_submission_collection_response.FileThreatSubmissionCollectionResponse]
@@ -85,7 +101,7 @@ class FileThreatsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[FileThreatsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the fileThreatSubmission objects and their properties.
+        Get fileThreats from threatSubmission
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class FileThreatsRequestBuilder():
     @dataclass
     class FileThreatsRequestBuilderGetQueryParameters():
         """
-        Get a list of the fileThreatSubmission objects and their properties.
+        Get fileThreats from threatSubmission
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

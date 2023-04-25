@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import person_annotation, person_annotation_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import person_annotation_item_request_builder
 
 class NotesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class NotesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_person_annotation_id(self,person_annotation_id: str) -> person_annotation_item_request_builder.PersonAnnotationItemRequestBuilder:
+        """
+        Provides operations to manage the notes property of the microsoft.graph.profile entity.
+        Args:
+            person_annotation_id: Unique identifier of the item
+        Returns: person_annotation_item_request_builder.PersonAnnotationItemRequestBuilder
+        """
+        if person_annotation_id is None:
+            raise Exception("person_annotation_id cannot be undefined")
+        from .item import person_annotation_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["personAnnotation%2Did"] = person_annotation_id
+        return person_annotation_item_request_builder.PersonAnnotationItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[NotesRequestBuilderGetRequestConfiguration] = None) -> Optional[person_annotation_collection_response.PersonAnnotationCollectionResponse]:
         """
-        Retrieve a list of personAnnotation objects from a user's profile.
+        Represents notes that a user has added to their profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[person_annotation_collection_response.PersonAnnotationCollectionResponse]
@@ -60,7 +76,7 @@ class NotesRequestBuilder():
     
     async def post(self,body: Optional[person_annotation.PersonAnnotation] = None, request_configuration: Optional[NotesRequestBuilderPostRequestConfiguration] = None) -> Optional[person_annotation.PersonAnnotation]:
         """
-        Create a new personAnnotation object in a user's profile.
+        Create new navigation property to notes for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class NotesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[NotesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of personAnnotation objects from a user's profile.
+        Represents notes that a user has added to their profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class NotesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[person_annotation.PersonAnnotation] = None, request_configuration: Optional[NotesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new personAnnotation object in a user's profile.
+        Create new navigation property to notes for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class NotesRequestBuilder():
     @dataclass
     class NotesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of personAnnotation objects from a user's profile.
+        Represents notes that a user has added to their profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

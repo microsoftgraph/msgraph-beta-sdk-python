@@ -13,13 +13,9 @@ if TYPE_CHECKING:
     from ...models import unified_rbac_application
     from ...models.o_data_errors import o_data_error
     from .resource_namespaces import resource_namespaces_request_builder
-    from .resource_namespaces.item import unified_rbac_resource_namespace_item_request_builder
     from .role_assignments import role_assignments_request_builder
-    from .role_assignments.item import unified_role_assignment_item_request_builder
     from .role_definitions import role_definitions_request_builder
-    from .role_definitions.item import unified_role_definition_item_request_builder
     from .transitive_role_assignments import transitive_role_assignments_request_builder
-    from .transitive_role_assignments.item import unified_role_assignment_item_request_builder
 
 class ExchangeRequestBuilder():
     """
@@ -109,52 +105,6 @@ class ExchangeRequestBuilder():
 
         return await self.request_adapter.send_async(request_info, unified_rbac_application.UnifiedRbacApplication, error_mapping)
     
-    def resource_namespaces_by_id(self,id: str) -> unified_rbac_resource_namespace_item_request_builder.UnifiedRbacResourceNamespaceItemRequestBuilder:
-        """
-        Provides operations to manage the resourceNamespaces property of the microsoft.graph.unifiedRbacApplication entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: unified_rbac_resource_namespace_item_request_builder.UnifiedRbacResourceNamespaceItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .resource_namespaces.item import unified_rbac_resource_namespace_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["unifiedRbacResourceNamespace%2Did"] = id
-        return unified_rbac_resource_namespace_item_request_builder.UnifiedRbacResourceNamespaceItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def role_assignments_by_id(self,id: str) -> unified_role_assignment_item_request_builder.UnifiedRoleAssignmentItemRequestBuilder:
-        """
-        Provides operations to manage the roleAssignments property of the microsoft.graph.unifiedRbacApplication entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: unified_role_assignment_item_request_builder.UnifiedRoleAssignmentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .role_assignments.item import unified_role_assignment_item_request_builder
-        from .transitive_role_assignments.item import unified_role_assignment_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["unifiedRoleAssignment%2Did"] = id
-        return unified_role_assignment_item_request_builder.UnifiedRoleAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def role_definitions_by_id(self,id: str) -> unified_role_definition_item_request_builder.UnifiedRoleDefinitionItemRequestBuilder:
-        """
-        Provides operations to manage the roleDefinitions property of the microsoft.graph.unifiedRbacApplication entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: unified_role_definition_item_request_builder.UnifiedRoleDefinitionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .role_definitions.item import unified_role_definition_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["unifiedRoleDefinition%2Did"] = id
-        return unified_role_definition_item_request_builder.UnifiedRoleDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def to_delete_request_information(self,request_configuration: Optional[ExchangeRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property exchange for roleManagement
@@ -209,22 +159,6 @@ class ExchangeRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
-    
-    def transitive_role_assignments_by_id(self,id: str) -> unified_role_assignment_item_request_builder.UnifiedRoleAssignmentItemRequestBuilder:
-        """
-        Provides operations to manage the transitiveRoleAssignments property of the microsoft.graph.unifiedRbacApplication entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: unified_role_assignment_item_request_builder.UnifiedRoleAssignmentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .role_assignments.item import unified_role_assignment_item_request_builder
-        from .transitive_role_assignments.item import unified_role_assignment_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["unifiedRoleAssignment%2Did"] = id
-        return unified_role_assignment_item_request_builder.UnifiedRoleAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     @property
     def resource_namespaces(self) -> resource_namespaces_request_builder.ResourceNamespacesRequestBuilder:

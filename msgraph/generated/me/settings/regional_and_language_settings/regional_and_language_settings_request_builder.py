@@ -56,7 +56,7 @@ class RegionalAndLanguageSettingsRequestBuilder():
     
     async def get(self,request_configuration: Optional[RegionalAndLanguageSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[regional_and_language_settings.RegionalAndLanguageSettings]:
         """
-        Get the properties of a regionalAndLanguageSettings object.
+        The user's preferences for languages, regional locale and date/time formatting.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[regional_and_language_settings.RegionalAndLanguageSettings]
@@ -119,7 +119,7 @@ class RegionalAndLanguageSettingsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RegionalAndLanguageSettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties of a regionalAndLanguageSettings object.
+        The user's preferences for languages, regional locale and date/time formatting.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class RegionalAndLanguageSettingsRequestBuilder():
     @dataclass
     class RegionalAndLanguageSettingsRequestBuilderGetQueryParameters():
         """
-        Get the properties of a regionalAndLanguageSettings object.
+        The user's preferences for languages, regional locale and date/time formatting.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .delta import delta_request_builder
+    from .item import education_school_item_request_builder
 
 class SchoolsRequestBuilder():
     """
@@ -37,9 +38,24 @@ class SchoolsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_education_school_id(self,education_school_id: str) -> education_school_item_request_builder.EducationSchoolItemRequestBuilder:
+        """
+        Provides operations to manage the schools property of the microsoft.graph.educationRoot entity.
+        Args:
+            education_school_id: Unique identifier of the item
+        Returns: education_school_item_request_builder.EducationSchoolItemRequestBuilder
+        """
+        if education_school_id is None:
+            raise Exception("education_school_id cannot be undefined")
+        from .item import education_school_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["educationSchool%2Did"] = education_school_id
+        return education_school_item_request_builder.EducationSchoolItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[SchoolsRequestBuilderGetRequestConfiguration] = None) -> Optional[education_school_collection_response.EducationSchoolCollectionResponse]:
         """
-        Retrieve a list of all school objects.
+        Get schools from education
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[education_school_collection_response.EducationSchoolCollectionResponse]
@@ -61,7 +77,7 @@ class SchoolsRequestBuilder():
     
     async def post(self,body: Optional[education_school.EducationSchool] = None, request_configuration: Optional[SchoolsRequestBuilderPostRequestConfiguration] = None) -> Optional[education_school.EducationSchool]:
         """
-        Create a school.
+        Create new navigation property to schools for education
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -86,7 +102,7 @@ class SchoolsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SchoolsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of all school objects.
+        Get schools from education
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +120,7 @@ class SchoolsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[education_school.EducationSchool] = None, request_configuration: Optional[SchoolsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a school.
+        Create new navigation property to schools for education
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -144,7 +160,7 @@ class SchoolsRequestBuilder():
     @dataclass
     class SchoolsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of all school objects.
+        Get schools from education
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

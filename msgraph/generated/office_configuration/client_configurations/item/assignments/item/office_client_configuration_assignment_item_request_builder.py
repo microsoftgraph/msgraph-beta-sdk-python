@@ -56,7 +56,7 @@ class OfficeClientConfigurationAssignmentItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[OfficeClientConfigurationAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[office_client_configuration_assignment.OfficeClientConfigurationAssignment]:
         """
-        The list of group assignments for the policy.
+        Get assignments from officeConfiguration
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[office_client_configuration_assignment.OfficeClientConfigurationAssignment]
@@ -119,7 +119,7 @@ class OfficeClientConfigurationAssignmentItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[OfficeClientConfigurationAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The list of group assignments for the policy.
+        Get assignments from officeConfiguration
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class OfficeClientConfigurationAssignmentItemRequestBuilder():
     @dataclass
     class OfficeClientConfigurationAssignmentItemRequestBuilderGetQueryParameters():
         """
-        The list of group assignments for the policy.
+        Get assignments from officeConfiguration
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

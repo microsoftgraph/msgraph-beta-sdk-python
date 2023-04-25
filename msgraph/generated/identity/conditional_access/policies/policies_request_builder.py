@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import conditional_access_policy, conditional_access_policy_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import conditional_access_policy_item_request_builder
 
 class PoliciesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class PoliciesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_conditional_access_policy_id(self,conditional_access_policy_id: str) -> conditional_access_policy_item_request_builder.ConditionalAccessPolicyItemRequestBuilder:
+        """
+        Provides operations to manage the policies property of the microsoft.graph.conditionalAccessRoot entity.
+        Args:
+            conditional_access_policy_id: Unique identifier of the item
+        Returns: conditional_access_policy_item_request_builder.ConditionalAccessPolicyItemRequestBuilder
+        """
+        if conditional_access_policy_id is None:
+            raise Exception("conditional_access_policy_id cannot be undefined")
+        from .item import conditional_access_policy_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["conditionalAccessPolicy%2Did"] = conditional_access_policy_id
+        return conditional_access_policy_item_request_builder.ConditionalAccessPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[PoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[conditional_access_policy_collection_response.ConditionalAccessPolicyCollectionResponse]:
         """
-        Retrieve a list of conditionalAccessPolicy objects.
+        Read-only. Nullable. Returns a collection of the specified Conditional Access policies.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[conditional_access_policy_collection_response.ConditionalAccessPolicyCollectionResponse]
@@ -60,7 +76,7 @@ class PoliciesRequestBuilder():
     
     async def post(self,body: Optional[conditional_access_policy.ConditionalAccessPolicy] = None, request_configuration: Optional[PoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[conditional_access_policy.ConditionalAccessPolicy]:
         """
-        Create a new conditionalAccessPolicy.
+        Create new navigation property to policies for identity
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class PoliciesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of conditionalAccessPolicy objects.
+        Read-only. Nullable. Returns a collection of the specified Conditional Access policies.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class PoliciesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[conditional_access_policy.ConditionalAccessPolicy] = None, request_configuration: Optional[PoliciesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new conditionalAccessPolicy.
+        Create new navigation property to policies for identity
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class PoliciesRequestBuilder():
     @dataclass
     class PoliciesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of conditionalAccessPolicy objects.
+        Read-only. Nullable. Returns a collection of the specified Conditional Access policies.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

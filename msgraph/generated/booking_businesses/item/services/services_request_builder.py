@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import booking_service, booking_service_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import booking_service_item_request_builder
 
 class ServicesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ServicesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_booking_service_id(self,booking_service_id: str) -> booking_service_item_request_builder.BookingServiceItemRequestBuilder:
+        """
+        Provides operations to manage the services property of the microsoft.graph.bookingBusiness entity.
+        Args:
+            booking_service_id: Unique identifier of the item
+        Returns: booking_service_item_request_builder.BookingServiceItemRequestBuilder
+        """
+        if booking_service_id is None:
+            raise Exception("booking_service_id cannot be undefined")
+        from .item import booking_service_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["bookingService%2Did"] = booking_service_id
+        return booking_service_item_request_builder.BookingServiceItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ServicesRequestBuilderGetRequestConfiguration] = None) -> Optional[booking_service_collection_response.BookingServiceCollectionResponse]:
         """
-        Get a list of bookingService objects in the specified bookingBusiness.
+        All the services offered by this business. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[booking_service_collection_response.BookingServiceCollectionResponse]
@@ -60,7 +76,7 @@ class ServicesRequestBuilder():
     
     async def post(self,body: Optional[booking_service.BookingService] = None, request_configuration: Optional[ServicesRequestBuilderPostRequestConfiguration] = None) -> Optional[booking_service.BookingService]:
         """
-        Create a new bookingService for the specified bookingBusiness.
+        Create new navigation property to services for bookingBusinesses
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class ServicesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ServicesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of bookingService objects in the specified bookingBusiness.
+        All the services offered by this business. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class ServicesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[booking_service.BookingService] = None, request_configuration: Optional[ServicesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new bookingService for the specified bookingBusiness.
+        Create new navigation property to services for bookingBusinesses
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class ServicesRequestBuilder():
     @dataclass
     class ServicesRequestBuilderGetQueryParameters():
         """
-        Get a list of bookingService objects in the specified bookingBusiness.
+        All the services offered by this business. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

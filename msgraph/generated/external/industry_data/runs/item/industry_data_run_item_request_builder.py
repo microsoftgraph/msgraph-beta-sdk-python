@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from .....models.industry_data import industry_data_run
     from .....models.o_data_errors import o_data_error
     from .activities import activities_request_builder
-    from .activities.item import industry_data_run_activity_item_request_builder
     from .industry_data_get_statistics import industry_data_get_statistics_request_builder
 
 class IndustryDataRunItemRequestBuilder():
@@ -37,21 +36,6 @@ class IndustryDataRunItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def activities_by_id(self,id: str) -> industry_data_run_activity_item_request_builder.IndustryDataRunActivityItemRequestBuilder:
-        """
-        Provides operations to manage the activities property of the microsoft.graph.industryData.industryDataRun entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: industry_data_run_activity_item_request_builder.IndustryDataRunActivityItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .activities.item import industry_data_run_activity_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["industryDataRunActivity%2Did"] = id
-        return industry_data_run_activity_item_request_builder.IndustryDataRunActivityItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[IndustryDataRunItemRequestBuilderGetRequestConfiguration] = None) -> Optional[industry_data_run.IndustryDataRun]:
         """

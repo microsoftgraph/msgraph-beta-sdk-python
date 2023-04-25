@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import outlook_task_group, outlook_task_group_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import outlook_task_group_item_request_builder
 
 class TaskGroupsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class TaskGroupsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_outlook_task_group_id(self,outlook_task_group_id: str) -> outlook_task_group_item_request_builder.OutlookTaskGroupItemRequestBuilder:
+        """
+        Provides operations to manage the taskGroups property of the microsoft.graph.outlookUser entity.
+        Args:
+            outlook_task_group_id: Unique identifier of the item
+        Returns: outlook_task_group_item_request_builder.OutlookTaskGroupItemRequestBuilder
+        """
+        if outlook_task_group_id is None:
+            raise Exception("outlook_task_group_id cannot be undefined")
+        from .item import outlook_task_group_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["outlookTaskGroup%2Did"] = outlook_task_group_id
+        return outlook_task_group_item_request_builder.OutlookTaskGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[TaskGroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[outlook_task_group_collection_response.OutlookTaskGroupCollectionResponse]:
         """
-        Get all the Outlook task groups in the user's mailbox. The response always includes the default task group `My Tasks`, and any other task groups that have been created in the mailbox.
+        Get taskGroups from me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[outlook_task_group_collection_response.OutlookTaskGroupCollectionResponse]
@@ -60,7 +76,7 @@ class TaskGroupsRequestBuilder():
     
     async def post(self,body: Optional[outlook_task_group.OutlookTaskGroup] = None, request_configuration: Optional[TaskGroupsRequestBuilderPostRequestConfiguration] = None) -> Optional[outlook_task_group.OutlookTaskGroup]:
         """
-        Create an Outlook task group in the user's mailbox.
+        Create new navigation property to taskGroups for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class TaskGroupsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TaskGroupsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get all the Outlook task groups in the user's mailbox. The response always includes the default task group `My Tasks`, and any other task groups that have been created in the mailbox.
+        Get taskGroups from me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class TaskGroupsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[outlook_task_group.OutlookTaskGroup] = None, request_configuration: Optional[TaskGroupsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create an Outlook task group in the user's mailbox.
+        Create new navigation property to taskGroups for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class TaskGroupsRequestBuilder():
     @dataclass
     class TaskGroupsRequestBuilderGetQueryParameters():
         """
-        Get all the Outlook task groups in the user's mailbox. The response always includes the default task group `My Tasks`, and any other task groups that have been created in the mailbox.
+        Get taskGroups from me
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

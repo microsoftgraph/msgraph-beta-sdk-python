@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class DeviceManagementExchangeConnector(entity.Entity):
-    """
-    Entity which represents a connection to an Exchange environment.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceManagementExchangeConnector and sets the default values.
+        Instantiates a new DeviceManagementExchangeConnector and sets the default values.
         """
         super().__init__()
         # The name of the server hosting the Exchange Connector.

@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .ediscovery_as_hierarchy import ediscovery_as_hierarchy_request_builder
+    from .item import tag_item_request_builder
 
 class TagsRequestBuilder():
     """
@@ -37,9 +38,24 @@ class TagsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_tag_id(self,tag_id: str) -> tag_item_request_builder.TagItemRequestBuilder:
+        """
+        Provides operations to manage the tags property of the microsoft.graph.ediscovery.case entity.
+        Args:
+            tag_id: Unique identifier of the item
+        Returns: tag_item_request_builder.TagItemRequestBuilder
+        """
+        if tag_id is None:
+            raise Exception("tag_id cannot be undefined")
+        from .item import tag_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["tag%2Did"] = tag_id
+        return tag_item_request_builder.TagItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[TagsRequestBuilderGetRequestConfiguration] = None) -> Optional[tag_collection_response.TagCollectionResponse]:
         """
-        Retrieve a list of tag objects from an eDiscovery case.
+        Returns a list of tag objects associated to this case.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[tag_collection_response.TagCollectionResponse]
@@ -61,7 +77,7 @@ class TagsRequestBuilder():
     
     async def post(self,body: Optional[tag.Tag] = None, request_configuration: Optional[TagsRequestBuilderPostRequestConfiguration] = None) -> Optional[tag.Tag]:
         """
-        Create a new tag for the specified case.  The tags are used in review sets while reviewing content.
+        Create new navigation property to tags for compliance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -86,7 +102,7 @@ class TagsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TagsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of tag objects from an eDiscovery case.
+        Returns a list of tag objects associated to this case.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +120,7 @@ class TagsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[tag.Tag] = None, request_configuration: Optional[TagsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new tag for the specified case.  The tags are used in review sets while reviewing content.
+        Create new navigation property to tags for compliance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -144,7 +160,7 @@ class TagsRequestBuilder():
     @dataclass
     class TagsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of tag objects from an eDiscovery case.
+        Returns a list of tag objects associated to this case.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

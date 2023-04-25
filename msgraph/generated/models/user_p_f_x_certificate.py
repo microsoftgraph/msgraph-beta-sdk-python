@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class UserPFXCertificate(entity.Entity):
-    """
-    Entity that encapsulates all information required for a user's PFX certificates.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new userPFXCertificate and sets the default values.
+        Instantiates a new UserPFXCertificate and sets the default values.
         """
         super().__init__()
         # Date/time when this PFX certificate was imported.

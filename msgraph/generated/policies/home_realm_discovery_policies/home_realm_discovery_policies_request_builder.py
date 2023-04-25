@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import home_realm_discovery_policy, home_realm_discovery_policy_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import home_realm_discovery_policy_item_request_builder
 
 class HomeRealmDiscoveryPoliciesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class HomeRealmDiscoveryPoliciesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_home_realm_discovery_policy_id(self,home_realm_discovery_policy_id: str) -> home_realm_discovery_policy_item_request_builder.HomeRealmDiscoveryPolicyItemRequestBuilder:
+        """
+        Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.policyRoot entity.
+        Args:
+            home_realm_discovery_policy_id: Unique identifier of the item
+        Returns: home_realm_discovery_policy_item_request_builder.HomeRealmDiscoveryPolicyItemRequestBuilder
+        """
+        if home_realm_discovery_policy_id is None:
+            raise Exception("home_realm_discovery_policy_id cannot be undefined")
+        from .item import home_realm_discovery_policy_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["homeRealmDiscoveryPolicy%2Did"] = home_realm_discovery_policy_id
+        return home_realm_discovery_policy_item_request_builder.HomeRealmDiscoveryPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[HomeRealmDiscoveryPoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[home_realm_discovery_policy_collection_response.HomeRealmDiscoveryPolicyCollectionResponse]:
         """
-        Get a list of homeRealmDiscoveryPolicy objects.
+        The policy to control Azure AD authentication behavior for federated users.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[home_realm_discovery_policy_collection_response.HomeRealmDiscoveryPolicyCollectionResponse]
@@ -60,7 +76,7 @@ class HomeRealmDiscoveryPoliciesRequestBuilder():
     
     async def post(self,body: Optional[home_realm_discovery_policy.HomeRealmDiscoveryPolicy] = None, request_configuration: Optional[HomeRealmDiscoveryPoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[home_realm_discovery_policy.HomeRealmDiscoveryPolicy]:
         """
-        Create a new homeRealmDiscoveryPolicy object.
+        Create new navigation property to homeRealmDiscoveryPolicies for policies
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class HomeRealmDiscoveryPoliciesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[HomeRealmDiscoveryPoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of homeRealmDiscoveryPolicy objects.
+        The policy to control Azure AD authentication behavior for federated users.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class HomeRealmDiscoveryPoliciesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[home_realm_discovery_policy.HomeRealmDiscoveryPolicy] = None, request_configuration: Optional[HomeRealmDiscoveryPoliciesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new homeRealmDiscoveryPolicy object.
+        Create new navigation property to homeRealmDiscoveryPolicies for policies
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class HomeRealmDiscoveryPoliciesRequestBuilder():
     @dataclass
     class HomeRealmDiscoveryPoliciesRequestBuilderGetQueryParameters():
         """
-        Get a list of homeRealmDiscoveryPolicy objects.
+        The policy to control Azure AD authentication behavior for federated users.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

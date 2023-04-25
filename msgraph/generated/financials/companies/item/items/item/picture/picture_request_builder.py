@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .......models import picture, picture_collection_response
     from .......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import picture_item_request_builder
 
 class PictureRequestBuilder():
     """
@@ -35,6 +36,21 @@ class PictureRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_picture_id(self,picture_id: str) -> picture_item_request_builder.PictureItemRequestBuilder:
+        """
+        Provides operations to manage the picture property of the microsoft.graph.item entity.
+        Args:
+            picture_id: Unique identifier of the item
+        Returns: picture_item_request_builder.PictureItemRequestBuilder
+        """
+        if picture_id is None:
+            raise Exception("picture_id cannot be undefined")
+        from .item import picture_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["picture%2Did"] = picture_id
+        return picture_item_request_builder.PictureItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[PictureRequestBuilderGetRequestConfiguration] = None) -> Optional[picture_collection_response.PictureCollectionResponse]:
         """

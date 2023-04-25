@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .import_apple_device_identity_list import import_apple_device_identity_list_request_builder
+    from .item import imported_apple_device_identity_item_request_builder
 
 class ImportedAppleDeviceIdentitiesRequestBuilder():
     """
@@ -36,6 +37,21 @@ class ImportedAppleDeviceIdentitiesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_imported_apple_device_identity_id(self,imported_apple_device_identity_id: str) -> imported_apple_device_identity_item_request_builder.ImportedAppleDeviceIdentityItemRequestBuilder:
+        """
+        Provides operations to manage the importedAppleDeviceIdentities property of the microsoft.graph.depOnboardingSetting entity.
+        Args:
+            imported_apple_device_identity_id: Unique identifier of the item
+        Returns: imported_apple_device_identity_item_request_builder.ImportedAppleDeviceIdentityItemRequestBuilder
+        """
+        if imported_apple_device_identity_id is None:
+            raise Exception("imported_apple_device_identity_id cannot be undefined")
+        from .item import imported_apple_device_identity_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["importedAppleDeviceIdentity%2Did"] = imported_apple_device_identity_id
+        return imported_apple_device_identity_item_request_builder.ImportedAppleDeviceIdentityItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ImportedAppleDeviceIdentitiesRequestBuilderGetRequestConfiguration] = None) -> Optional[imported_apple_device_identity_collection_response.ImportedAppleDeviceIdentityCollectionResponse]:
         """

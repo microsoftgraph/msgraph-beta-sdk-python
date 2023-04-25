@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.ediscovery import case, case_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import case_item_request_builder
 
 class CasesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class CasesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_case_id(self,case_id: str) -> case_item_request_builder.CaseItemRequestBuilder:
+        """
+        Provides operations to manage the cases property of the microsoft.graph.ediscovery.ediscoveryroot entity.
+        Args:
+            case_id: Unique identifier of the item
+        Returns: case_item_request_builder.CaseItemRequestBuilder
+        """
+        if case_id is None:
+            raise Exception("case_id cannot be undefined")
+        from .item import case_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["case%2Did"] = case_id
+        return case_item_request_builder.CaseItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[CasesRequestBuilderGetRequestConfiguration] = None) -> Optional[case_collection_response.CaseCollectionResponse]:
         """
-        Retrieve a list of case objects.
+        Get cases from compliance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[case_collection_response.CaseCollectionResponse]
@@ -60,7 +76,7 @@ class CasesRequestBuilder():
     
     async def post(self,body: Optional[case.Case] = None, request_configuration: Optional[CasesRequestBuilderPostRequestConfiguration] = None) -> Optional[case.Case]:
         """
-        Create a new case object.
+        Create new navigation property to cases for compliance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class CasesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CasesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of case objects.
+        Get cases from compliance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class CasesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[case.Case] = None, request_configuration: Optional[CasesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new case object.
+        Create new navigation property to cases for compliance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class CasesRequestBuilder():
     @dataclass
     class CasesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of case objects.
+        Get cases from compliance
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

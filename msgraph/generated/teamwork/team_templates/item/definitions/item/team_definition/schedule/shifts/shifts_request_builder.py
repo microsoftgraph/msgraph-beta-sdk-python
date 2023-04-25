@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .........models import shift, shift_collection_response
     from .........models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import shift_item_request_builder
 
 class ShiftsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ShiftsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_shift_id(self,shift_id: str) -> shift_item_request_builder.ShiftItemRequestBuilder:
+        """
+        Provides operations to manage the shifts property of the microsoft.graph.schedule entity.
+        Args:
+            shift_id: Unique identifier of the item
+        Returns: shift_item_request_builder.ShiftItemRequestBuilder
+        """
+        if shift_id is None:
+            raise Exception("shift_id cannot be undefined")
+        from .item import shift_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["shift%2Did"] = shift_id
+        return shift_item_request_builder.ShiftItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ShiftsRequestBuilderGetRequestConfiguration] = None) -> Optional[shift_collection_response.ShiftCollectionResponse]:
         """
-        Get the list of shift instances in a schedule.
+        The shifts in the schedule.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[shift_collection_response.ShiftCollectionResponse]
@@ -60,7 +76,7 @@ class ShiftsRequestBuilder():
     
     async def post(self,body: Optional[shift.Shift] = None, request_configuration: Optional[ShiftsRequestBuilderPostRequestConfiguration] = None) -> Optional[shift.Shift]:
         """
-        Create a new shift instance in a schedule. The duration of a shift cannot be less than 1 minute or longer than 24 hours.
+        Create new navigation property to shifts for teamwork
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class ShiftsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ShiftsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the list of shift instances in a schedule.
+        The shifts in the schedule.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class ShiftsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[shift.Shift] = None, request_configuration: Optional[ShiftsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new shift instance in a schedule. The duration of a shift cannot be less than 1 minute or longer than 24 hours.
+        Create new navigation property to shifts for teamwork
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class ShiftsRequestBuilder():
     @dataclass
     class ShiftsRequestBuilderGetQueryParameters():
         """
-        Get the list of shift instances in a schedule.
+        The shifts in the schedule.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

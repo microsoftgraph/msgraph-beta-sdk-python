@@ -16,7 +16,6 @@ if TYPE_CHECKING:
     from .custodian import custodian_request_builder
     from .extracted_text_content import extracted_text_content_request_builder
     from .tags import tags_request_builder
-    from .tags.item import ediscovery_review_tag_item_request_builder
 
 class EdiscoveryFileItemRequestBuilder():
     """
@@ -105,21 +104,6 @@ class EdiscoveryFileItemRequestBuilder():
         from .........models.security import ediscovery_file
 
         return await self.request_adapter.send_async(request_info, ediscovery_file.EdiscoveryFile, error_mapping)
-    
-    def tags_by_id(self,id: str) -> ediscovery_review_tag_item_request_builder.EdiscoveryReviewTagItemRequestBuilder:
-        """
-        Provides operations to manage the tags property of the microsoft.graph.security.ediscoveryFile entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: ediscovery_review_tag_item_request_builder.EdiscoveryReviewTagItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .tags.item import ediscovery_review_tag_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["ediscoveryReviewTag%2Did"] = id
-        return ediscovery_review_tag_item_request_builder.EdiscoveryReviewTagItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[EdiscoveryFileItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

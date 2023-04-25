@@ -9,9 +9,6 @@ if TYPE_CHECKING:
 from . import entity
 
 class UserExperienceAnalyticsDeviceScope(entity.Entity):
-    """
-    The user experience analytics device scope entity contains device scope configuration values use to apply filtering on the endpoint analytics reports.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new userExperienceAnalyticsDeviceScope and sets the default values.

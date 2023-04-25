@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import authored_note, authored_note_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import authored_note_item_request_builder
 
 class NotesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class NotesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_authored_note_id(self,authored_note_id: str) -> authored_note_item_request_builder.AuthoredNoteItemRequestBuilder:
+        """
+        Provides operations to manage the notes property of the microsoft.graph.subjectRightsRequest entity.
+        Args:
+            authored_note_id: Unique identifier of the item
+        Returns: authored_note_item_request_builder.AuthoredNoteItemRequestBuilder
+        """
+        if authored_note_id is None:
+            raise Exception("authored_note_id cannot be undefined")
+        from .item import authored_note_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["authoredNote%2Did"] = authored_note_id
+        return authored_note_item_request_builder.AuthoredNoteItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[NotesRequestBuilderGetRequestConfiguration] = None) -> Optional[authored_note_collection_response.AuthoredNoteCollectionResponse]:
         """
-        Get the list of authored notes associated with a subject rights request. 
+        List of notes associated with the request.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[authored_note_collection_response.AuthoredNoteCollectionResponse]
@@ -60,7 +76,7 @@ class NotesRequestBuilder():
     
     async def post(self,body: Optional[authored_note.AuthoredNote] = None, request_configuration: Optional[NotesRequestBuilderPostRequestConfiguration] = None) -> Optional[authored_note.AuthoredNote]:
         """
-        Create a new authoredNote object.
+        Create new navigation property to notes for privacy
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class NotesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[NotesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the list of authored notes associated with a subject rights request. 
+        List of notes associated with the request.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class NotesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[authored_note.AuthoredNote] = None, request_configuration: Optional[NotesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new authoredNote object.
+        Create new navigation property to notes for privacy
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class NotesRequestBuilder():
     @dataclass
     class NotesRequestBuilderGetQueryParameters():
         """
-        Get the list of authored notes associated with a subject rights request. 
+        List of notes associated with the request.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

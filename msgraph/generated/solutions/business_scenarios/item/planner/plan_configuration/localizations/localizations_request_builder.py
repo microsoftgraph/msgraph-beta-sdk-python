@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .......models import planner_plan_configuration_localization, planner_plan_configuration_localization_collection_response
     from .......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import planner_plan_configuration_localization_item_request_builder
 
 class LocalizationsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class LocalizationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_planner_plan_configuration_localization_id(self,planner_plan_configuration_localization_id: str) -> planner_plan_configuration_localization_item_request_builder.PlannerPlanConfigurationLocalizationItemRequestBuilder:
+        """
+        Provides operations to manage the localizations property of the microsoft.graph.plannerPlanConfiguration entity.
+        Args:
+            planner_plan_configuration_localization_id: Unique identifier of the item
+        Returns: planner_plan_configuration_localization_item_request_builder.PlannerPlanConfigurationLocalizationItemRequestBuilder
+        """
+        if planner_plan_configuration_localization_id is None:
+            raise Exception("planner_plan_configuration_localization_id cannot be undefined")
+        from .item import planner_plan_configuration_localization_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["plannerPlanConfigurationLocalization%2Did"] = planner_plan_configuration_localization_id
+        return planner_plan_configuration_localization_item_request_builder.PlannerPlanConfigurationLocalizationItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[LocalizationsRequestBuilderGetRequestConfiguration] = None) -> Optional[planner_plan_configuration_localization_collection_response.PlannerPlanConfigurationLocalizationCollectionResponse]:
         """
-        Get a list of the plannerPlanConfigurationLocalization objects and their properties.
+        Localized names for the plan configuration.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[planner_plan_configuration_localization_collection_response.PlannerPlanConfigurationLocalizationCollectionResponse]
@@ -60,7 +76,7 @@ class LocalizationsRequestBuilder():
     
     async def post(self,body: Optional[planner_plan_configuration_localization.PlannerPlanConfigurationLocalization] = None, request_configuration: Optional[LocalizationsRequestBuilderPostRequestConfiguration] = None) -> Optional[planner_plan_configuration_localization.PlannerPlanConfigurationLocalization]:
         """
-        Create a new plannerPlanConfigurationLocalization object.
+        Create new navigation property to localizations for solutions
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class LocalizationsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[LocalizationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the plannerPlanConfigurationLocalization objects and their properties.
+        Localized names for the plan configuration.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class LocalizationsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[planner_plan_configuration_localization.PlannerPlanConfigurationLocalization] = None, request_configuration: Optional[LocalizationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new plannerPlanConfigurationLocalization object.
+        Create new navigation property to localizations for solutions
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class LocalizationsRequestBuilder():
     @dataclass
     class LocalizationsRequestBuilderGetQueryParameters():
         """
-        Get a list of the plannerPlanConfigurationLocalization objects and their properties.
+        Localized names for the plan configuration.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

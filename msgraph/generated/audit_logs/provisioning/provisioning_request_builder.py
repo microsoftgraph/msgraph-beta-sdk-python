@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import provisioning_object_summary, provisioning_object_summary_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import provisioning_object_summary_item_request_builder
 
 class ProvisioningRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ProvisioningRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_provisioning_object_summary_id(self,provisioning_object_summary_id: str) -> provisioning_object_summary_item_request_builder.ProvisioningObjectSummaryItemRequestBuilder:
+        """
+        Provides operations to manage the provisioning property of the microsoft.graph.auditLogRoot entity.
+        Args:
+            provisioning_object_summary_id: Unique identifier of the item
+        Returns: provisioning_object_summary_item_request_builder.ProvisioningObjectSummaryItemRequestBuilder
+        """
+        if provisioning_object_summary_id is None:
+            raise Exception("provisioning_object_summary_id cannot be undefined")
+        from .item import provisioning_object_summary_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["provisioningObjectSummary%2Did"] = provisioning_object_summary_id
+        return provisioning_object_summary_item_request_builder.ProvisioningObjectSummaryItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ProvisioningRequestBuilderGetRequestConfiguration] = None) -> Optional[provisioning_object_summary_collection_response.ProvisioningObjectSummaryCollectionResponse]:
         """
-        Get all provisioning events that occurred in your tenant, such as the deletion of a group in a target application or the creation of a user when provisioning user accounts from your HR system. 
+        Get provisioning from auditLogs
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[provisioning_object_summary_collection_response.ProvisioningObjectSummaryCollectionResponse]
@@ -85,7 +101,7 @@ class ProvisioningRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ProvisioningRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get all provisioning events that occurred in your tenant, such as the deletion of a group in a target application or the creation of a user when provisioning user accounts from your HR system. 
+        Get provisioning from auditLogs
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class ProvisioningRequestBuilder():
     @dataclass
     class ProvisioningRequestBuilderGetQueryParameters():
         """
-        Get all provisioning events that occurred in your tenant, such as the deletion of a group in a target application or the creation of a user when provisioning user accounts from your HR system. 
+        Get provisioning from auditLogs
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

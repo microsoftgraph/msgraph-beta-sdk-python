@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from .graph_endpoint import graph_endpoint_request_builder
     from .graph_group import graph_group_request_builder
     from .graph_service_principal import graph_service_principal_request_builder
+    from .item import directory_object_item_request_builder
 
 class OwnedObjectsRequestBuilder():
     """
@@ -40,9 +41,24 @@ class OwnedObjectsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_directory_object_id(self,directory_object_id: str) -> directory_object_item_request_builder.DirectoryObjectItemRequestBuilder:
+        """
+        Provides operations to manage the ownedObjects property of the microsoft.graph.servicePrincipal entity.
+        Args:
+            directory_object_id: Unique identifier of the item
+        Returns: directory_object_item_request_builder.DirectoryObjectItemRequestBuilder
+        """
+        if directory_object_id is None:
+            raise Exception("directory_object_id cannot be undefined")
+        from .item import directory_object_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["directoryObject%2Did"] = directory_object_id
+        return directory_object_item_request_builder.DirectoryObjectItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[OwnedObjectsRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]:
         """
-        Retrieve a list of objects owned by the servicePrincipal.  This could include applications or groups.
+        Directory objects that are owned by this service principal. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]
@@ -64,7 +80,7 @@ class OwnedObjectsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[OwnedObjectsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of objects owned by the servicePrincipal.  This could include applications or groups.
+        Directory objects that are owned by this service principal. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -128,7 +144,7 @@ class OwnedObjectsRequestBuilder():
     @dataclass
     class OwnedObjectsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of objects owned by the servicePrincipal.  This could include applications or groups.
+        Directory objects that are owned by this service principal. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

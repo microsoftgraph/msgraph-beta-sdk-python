@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .......models.identity_governance import workflow_version_collection_response
     from .......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import workflow_version_version_number_item_request_builder
 
 class VersionsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class VersionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_workflow_version_version_number(self,workflow_version_version_number: str) -> workflow_version_version_number_item_request_builder.WorkflowVersionVersionNumberItemRequestBuilder:
+        """
+        Provides operations to manage the versions property of the microsoft.graph.identityGovernance.workflow entity.
+        Args:
+            workflow_version_version_number: Unique identifier of the item
+        Returns: workflow_version_version_number_item_request_builder.WorkflowVersionVersionNumberItemRequestBuilder
+        """
+        if workflow_version_version_number is None:
+            raise Exception("workflow_version_version_number cannot be undefined")
+        from .item import workflow_version_version_number_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["workflowVersion%2DversionNumber"] = workflow_version_version_number
+        return workflow_version_version_number_item_request_builder.WorkflowVersionVersionNumberItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[VersionsRequestBuilderGetRequestConfiguration] = None) -> Optional[workflow_version_collection_response.WorkflowVersionCollectionResponse]:
         """
-        Get a list of the workflowVersion objects and their properties.
+        The workflow versions that are available.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[workflow_version_collection_response.WorkflowVersionCollectionResponse]
@@ -60,7 +76,7 @@ class VersionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[VersionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the workflowVersion objects and their properties.
+        The workflow versions that are available.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -88,7 +104,7 @@ class VersionsRequestBuilder():
     @dataclass
     class VersionsRequestBuilderGetQueryParameters():
         """
-        Get a list of the workflowVersion objects and their properties.
+        The workflow versions that are available.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

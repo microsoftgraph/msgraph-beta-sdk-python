@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import federated_identity_credential, federated_identity_credential_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import federated_identity_credential_item_request_builder
 
 class FederatedIdentityCredentialsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class FederatedIdentityCredentialsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_federated_identity_credential_id(self,federated_identity_credential_id: str) -> federated_identity_credential_item_request_builder.FederatedIdentityCredentialItemRequestBuilder:
+        """
+        Provides operations to manage the federatedIdentityCredentials property of the microsoft.graph.application entity.
+        Args:
+            federated_identity_credential_id: Unique identifier of the item
+        Returns: federated_identity_credential_item_request_builder.FederatedIdentityCredentialItemRequestBuilder
+        """
+        if federated_identity_credential_id is None:
+            raise Exception("federated_identity_credential_id cannot be undefined")
+        from .item import federated_identity_credential_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["federatedIdentityCredential%2Did"] = federated_identity_credential_id
+        return federated_identity_credential_item_request_builder.FederatedIdentityCredentialItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[FederatedIdentityCredentialsRequestBuilderGetRequestConfiguration] = None) -> Optional[federated_identity_credential_collection_response.FederatedIdentityCredentialCollectionResponse]:
         """
-        Get a list of the federatedIdentityCredential objects and their properties.
+        Federated identities for applications. Supports $expand and $filter (startsWith, /$count eq 0, /$count ne 0).
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[federated_identity_credential_collection_response.FederatedIdentityCredentialCollectionResponse]
@@ -60,7 +76,7 @@ class FederatedIdentityCredentialsRequestBuilder():
     
     async def post(self,body: Optional[federated_identity_credential.FederatedIdentityCredential] = None, request_configuration: Optional[FederatedIdentityCredentialsRequestBuilderPostRequestConfiguration] = None) -> Optional[federated_identity_credential.FederatedIdentityCredential]:
         """
-        Create a new federatedIdentityCredential object for an application. By configuring a trust relationship between your Azure AD application registration and the identity provider for your compute platform, you can use tokens issued by that platform to authenticate with Microsoft identity platform and call APIs in the Microsoft ecosystem. Maximum of 20 objects can be added to an application.
+        Create new navigation property to federatedIdentityCredentials for applications
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class FederatedIdentityCredentialsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[FederatedIdentityCredentialsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the federatedIdentityCredential objects and their properties.
+        Federated identities for applications. Supports $expand and $filter (startsWith, /$count eq 0, /$count ne 0).
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class FederatedIdentityCredentialsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[federated_identity_credential.FederatedIdentityCredential] = None, request_configuration: Optional[FederatedIdentityCredentialsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new federatedIdentityCredential object for an application. By configuring a trust relationship between your Azure AD application registration and the identity provider for your compute platform, you can use tokens issued by that platform to authenticate with Microsoft identity platform and call APIs in the Microsoft ecosystem. Maximum of 20 objects can be added to an application.
+        Create new navigation property to federatedIdentityCredentials for applications
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class FederatedIdentityCredentialsRequestBuilder():
     @dataclass
     class FederatedIdentityCredentialsRequestBuilderGetQueryParameters():
         """
-        Get a list of the federatedIdentityCredential objects and their properties.
+        Federated identities for applications. Supports $expand and $filter (startsWith, /$count eq 0, /$count ne 0).
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

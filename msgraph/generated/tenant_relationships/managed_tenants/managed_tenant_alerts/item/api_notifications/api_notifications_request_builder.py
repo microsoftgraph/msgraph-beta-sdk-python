@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models.managed_tenants import managed_tenant_api_notification_collection_response
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import managed_tenant_api_notification_item_request_builder
 
 class ApiNotificationsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ApiNotificationsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_managed_tenant_api_notification_id(self,managed_tenant_api_notification_id: str) -> managed_tenant_api_notification_item_request_builder.ManagedTenantApiNotificationItemRequestBuilder:
+        """
+        Provides operations to manage the apiNotifications property of the microsoft.graph.managedTenants.managedTenantAlert entity.
+        Args:
+            managed_tenant_api_notification_id: Unique identifier of the item
+        Returns: managed_tenant_api_notification_item_request_builder.ManagedTenantApiNotificationItemRequestBuilder
+        """
+        if managed_tenant_api_notification_id is None:
+            raise Exception("managed_tenant_api_notification_id cannot be undefined")
+        from .item import managed_tenant_api_notification_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["managedTenantApiNotification%2Did"] = managed_tenant_api_notification_id
+        return managed_tenant_api_notification_item_request_builder.ManagedTenantApiNotificationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ApiNotificationsRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_tenant_api_notification_collection_response.ManagedTenantApiNotificationCollectionResponse]:
         """

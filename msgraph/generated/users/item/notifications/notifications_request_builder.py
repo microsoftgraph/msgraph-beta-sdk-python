@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import notification, notification_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import notification_item_request_builder
 
 class NotificationsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class NotificationsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_notification_id(self,notification_id: str) -> notification_item_request_builder.NotificationItemRequestBuilder:
+        """
+        Provides operations to manage the notifications property of the microsoft.graph.user entity.
+        Args:
+            notification_id: Unique identifier of the item
+        Returns: notification_item_request_builder.NotificationItemRequestBuilder
+        """
+        if notification_id is None:
+            raise Exception("notification_id cannot be undefined")
+        from .item import notification_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["notification%2Did"] = notification_id
+        return notification_item_request_builder.NotificationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[NotificationsRequestBuilderGetRequestConfiguration] = None) -> Optional[notification_collection_response.NotificationCollectionResponse]:
         """

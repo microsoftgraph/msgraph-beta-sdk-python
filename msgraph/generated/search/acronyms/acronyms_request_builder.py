@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors import o_data_error
     from ...models.search import acronym, acronym_collection_response
     from .count import count_request_builder
+    from .item import acronym_item_request_builder
 
 class AcronymsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class AcronymsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_acronym_id(self,acronym_id: str) -> acronym_item_request_builder.AcronymItemRequestBuilder:
+        """
+        Provides operations to manage the acronyms property of the microsoft.graph.searchEntity entity.
+        Args:
+            acronym_id: Unique identifier of the item
+        Returns: acronym_item_request_builder.AcronymItemRequestBuilder
+        """
+        if acronym_id is None:
+            raise Exception("acronym_id cannot be undefined")
+        from .item import acronym_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["acronym%2Did"] = acronym_id
+        return acronym_item_request_builder.AcronymItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[AcronymsRequestBuilderGetRequestConfiguration] = None) -> Optional[acronym_collection_response.AcronymCollectionResponse]:
         """
-        Get a list of the acronym objects and their properties.
+        Administrative answer in Microsoft Search results to define common acronyms in a organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[acronym_collection_response.AcronymCollectionResponse]
@@ -60,7 +76,7 @@ class AcronymsRequestBuilder():
     
     async def post(self,body: Optional[acronym.Acronym] = None, request_configuration: Optional[AcronymsRequestBuilderPostRequestConfiguration] = None) -> Optional[acronym.Acronym]:
         """
-        Create a new acronym object.
+        Create new navigation property to acronyms for search
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class AcronymsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AcronymsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the acronym objects and their properties.
+        Administrative answer in Microsoft Search results to define common acronyms in a organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class AcronymsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[acronym.Acronym] = None, request_configuration: Optional[AcronymsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new acronym object.
+        Create new navigation property to acronyms for search
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class AcronymsRequestBuilder():
     @dataclass
     class AcronymsRequestBuilderGetQueryParameters():
         """
-        Get a list of the acronym objects and their properties.
+        Administrative answer in Microsoft Search results to define common acronyms in a organization.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

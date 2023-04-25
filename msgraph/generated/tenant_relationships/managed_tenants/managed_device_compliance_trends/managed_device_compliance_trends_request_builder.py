@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.managed_tenants import managed_device_compliance_trend, managed_device_compliance_trend_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import managed_device_compliance_trend_item_request_builder
 
 class ManagedDeviceComplianceTrendsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ManagedDeviceComplianceTrendsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_managed_device_compliance_trend_id(self,managed_device_compliance_trend_id: str) -> managed_device_compliance_trend_item_request_builder.ManagedDeviceComplianceTrendItemRequestBuilder:
+        """
+        Provides operations to manage the managedDeviceComplianceTrends property of the microsoft.graph.managedTenants.managedTenant entity.
+        Args:
+            managed_device_compliance_trend_id: Unique identifier of the item
+        Returns: managed_device_compliance_trend_item_request_builder.ManagedDeviceComplianceTrendItemRequestBuilder
+        """
+        if managed_device_compliance_trend_id is None:
+            raise Exception("managed_device_compliance_trend_id cannot be undefined")
+        from .item import managed_device_compliance_trend_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["managedDeviceComplianceTrend%2Did"] = managed_device_compliance_trend_id
+        return managed_device_compliance_trend_item_request_builder.ManagedDeviceComplianceTrendItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ManagedDeviceComplianceTrendsRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_device_compliance_trend_collection_response.ManagedDeviceComplianceTrendCollectionResponse]:
         """
-        Get a list of the managedDeviceComplianceTrend objects and their properties.
+        Trend insights for device compliance across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[managed_device_compliance_trend_collection_response.ManagedDeviceComplianceTrendCollectionResponse]
@@ -85,7 +101,7 @@ class ManagedDeviceComplianceTrendsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ManagedDeviceComplianceTrendsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the managedDeviceComplianceTrend objects and their properties.
+        Trend insights for device compliance across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class ManagedDeviceComplianceTrendsRequestBuilder():
     @dataclass
     class ManagedDeviceComplianceTrendsRequestBuilderGetQueryParameters():
         """
-        Get a list of the managedDeviceComplianceTrend objects and their properties.
+        Trend insights for device compliance across managed tenants.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

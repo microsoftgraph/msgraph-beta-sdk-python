@@ -8,12 +8,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class WindowsInformationProtectionAppLearningSummary(entity.Entity):
-    """
-    Windows Information Protection AppLearning Summary entity.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new windowsInformationProtectionAppLearningSummary and sets the default values.
+        Instantiates a new WindowsInformationProtectionAppLearningSummary and sets the default values.
         """
         super().__init__()
         # Application Name

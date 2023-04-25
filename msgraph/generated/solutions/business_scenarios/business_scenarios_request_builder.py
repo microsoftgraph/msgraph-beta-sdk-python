@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import business_scenario, business_scenario_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import business_scenario_item_request_builder
 
 class BusinessScenariosRequestBuilder():
     """
@@ -36,9 +37,24 @@ class BusinessScenariosRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_business_scenario_id(self,business_scenario_id: str) -> business_scenario_item_request_builder.BusinessScenarioItemRequestBuilder:
+        """
+        Provides operations to manage the businessScenarios property of the microsoft.graph.solutionsRoot entity.
+        Args:
+            business_scenario_id: Unique identifier of the item
+        Returns: business_scenario_item_request_builder.BusinessScenarioItemRequestBuilder
+        """
+        if business_scenario_id is None:
+            raise Exception("business_scenario_id cannot be undefined")
+        from .item import business_scenario_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["businessScenario%2Did"] = business_scenario_id
+        return business_scenario_item_request_builder.BusinessScenarioItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[BusinessScenariosRequestBuilderGetRequestConfiguration] = None) -> Optional[business_scenario_collection_response.BusinessScenarioCollectionResponse]:
         """
-        Get a list of all businessScenario objects in an organization.
+        Get businessScenarios from solutions
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[business_scenario_collection_response.BusinessScenarioCollectionResponse]
@@ -60,7 +76,7 @@ class BusinessScenariosRequestBuilder():
     
     async def post(self,body: Optional[business_scenario.BusinessScenario] = None, request_configuration: Optional[BusinessScenariosRequestBuilderPostRequestConfiguration] = None) -> Optional[business_scenario.BusinessScenario]:
         """
-        Create a new businessScenario object.
+        Create new navigation property to businessScenarios for solutions
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class BusinessScenariosRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[BusinessScenariosRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of all businessScenario objects in an organization.
+        Get businessScenarios from solutions
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class BusinessScenariosRequestBuilder():
     
     def to_post_request_information(self,body: Optional[business_scenario.BusinessScenario] = None, request_configuration: Optional[BusinessScenariosRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new businessScenario object.
+        Create new navigation property to businessScenarios for solutions
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class BusinessScenariosRequestBuilder():
     @dataclass
     class BusinessScenariosRequestBuilderGetQueryParameters():
         """
-        Get a list of all businessScenario objects in an organization.
+        Get businessScenarios from solutions
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

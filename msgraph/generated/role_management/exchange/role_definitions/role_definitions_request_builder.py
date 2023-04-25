@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import unified_role_definition, unified_role_definition_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import unified_role_definition_item_request_builder
 
 class RoleDefinitionsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class RoleDefinitionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_unified_role_definition_id(self,unified_role_definition_id: str) -> unified_role_definition_item_request_builder.UnifiedRoleDefinitionItemRequestBuilder:
+        """
+        Provides operations to manage the roleDefinitions property of the microsoft.graph.unifiedRbacApplication entity.
+        Args:
+            unified_role_definition_id: Unique identifier of the item
+        Returns: unified_role_definition_item_request_builder.UnifiedRoleDefinitionItemRequestBuilder
+        """
+        if unified_role_definition_id is None:
+            raise Exception("unified_role_definition_id cannot be undefined")
+        from .item import unified_role_definition_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["unifiedRoleDefinition%2Did"] = unified_role_definition_id
+        return unified_role_definition_item_request_builder.UnifiedRoleDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[RoleDefinitionsRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_definition_collection_response.UnifiedRoleDefinitionCollectionResponse]:
         """
-        Get roleDefinitions from roleManagement
+        The roles allowed by RBAC providers and the permissions assigned to the roles.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[unified_role_definition_collection_response.UnifiedRoleDefinitionCollectionResponse]
@@ -85,7 +101,7 @@ class RoleDefinitionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RoleDefinitionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get roleDefinitions from roleManagement
+        The roles allowed by RBAC providers and the permissions assigned to the roles.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class RoleDefinitionsRequestBuilder():
     @dataclass
     class RoleDefinitionsRequestBuilderGetQueryParameters():
         """
-        Get roleDefinitions from roleManagement
+        The roles allowed by RBAC providers and the permissions assigned to the roles.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

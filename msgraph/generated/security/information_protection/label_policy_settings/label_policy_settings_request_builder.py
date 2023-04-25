@@ -56,7 +56,7 @@ class LabelPolicySettingsRequestBuilder():
     
     async def get(self,request_configuration: Optional[LabelPolicySettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[information_protection_policy_setting.InformationProtectionPolicySetting]:
         """
-        Read the properties and relationships of an informationProtectionPolicySetting object. The settings exposed by this API should be used in applications to populate the **moreInfoUrl** property for Microsoft Purview Information Protection help, and indicate whether labeling is mandatory for the user and whether justification must be provided on downgrade.
+        Read the Microsoft Purview Information Protection policy settings for the user or organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[information_protection_policy_setting.InformationProtectionPolicySetting]
@@ -119,7 +119,7 @@ class LabelPolicySettingsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[LabelPolicySettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an informationProtectionPolicySetting object. The settings exposed by this API should be used in applications to populate the **moreInfoUrl** property for Microsoft Purview Information Protection help, and indicate whether labeling is mandatory for the user and whether justification must be provided on downgrade.
+        Read the Microsoft Purview Information Protection policy settings for the user or organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class LabelPolicySettingsRequestBuilder():
     @dataclass
     class LabelPolicySettingsRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an informationProtectionPolicySetting object. The settings exposed by this API should be used in applications to populate the **moreInfoUrl** property for Microsoft Purview Information Protection help, and indicate whether labeling is mandatory for the user and whether justification must be provided on downgrade.
+        Read the Microsoft Purview Information Protection policy settings for the user or organization.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

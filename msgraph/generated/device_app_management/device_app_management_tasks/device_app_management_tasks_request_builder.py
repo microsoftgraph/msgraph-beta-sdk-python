@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import device_app_management_task, device_app_management_task_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import device_app_management_task_item_request_builder
 
 class DeviceAppManagementTasksRequestBuilder():
     """
@@ -35,6 +36,21 @@ class DeviceAppManagementTasksRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_device_app_management_task_id(self,device_app_management_task_id: str) -> device_app_management_task_item_request_builder.DeviceAppManagementTaskItemRequestBuilder:
+        """
+        Provides operations to manage the deviceAppManagementTasks property of the microsoft.graph.deviceAppManagement entity.
+        Args:
+            device_app_management_task_id: Unique identifier of the item
+        Returns: device_app_management_task_item_request_builder.DeviceAppManagementTaskItemRequestBuilder
+        """
+        if device_app_management_task_id is None:
+            raise Exception("device_app_management_task_id cannot be undefined")
+        from .item import device_app_management_task_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["deviceAppManagementTask%2Did"] = device_app_management_task_id
+        return device_app_management_task_item_request_builder.DeviceAppManagementTaskItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[DeviceAppManagementTasksRequestBuilderGetRequestConfiguration] = None) -> Optional[device_app_management_task_collection_response.DeviceAppManagementTaskCollectionResponse]:
         """

@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from .....models import meeting_attendance_report
     from .....models.o_data_errors import o_data_error
     from .attendance_records import attendance_records_request_builder
-    from .attendance_records.item import attendance_record_item_request_builder
 
 class MeetingAttendanceReportRequestBuilder():
     """
@@ -37,21 +36,6 @@ class MeetingAttendanceReportRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def attendance_records_by_id(self,id: str) -> attendance_record_item_request_builder.AttendanceRecordItemRequestBuilder:
-        """
-        Provides operations to manage the attendanceRecords property of the microsoft.graph.meetingAttendanceReport entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: attendance_record_item_request_builder.AttendanceRecordItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .attendance_records.item import attendance_record_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["attendanceRecord%2Did"] = id
-        return attendance_record_item_request_builder.AttendanceRecordItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     async def delete(self,request_configuration: Optional[MeetingAttendanceReportRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property meetingAttendanceReport for communications
@@ -73,7 +57,7 @@ class MeetingAttendanceReportRequestBuilder():
     
     async def get(self,request_configuration: Optional[MeetingAttendanceReportRequestBuilderGetRequestConfiguration] = None) -> Optional[meeting_attendance_report.MeetingAttendanceReport]:
         """
-        Get the meetingAttendanceReport for an onlineMeeting. Each time an online meeting ends, an attendance report will be generated for that session.
+        Get meetingAttendanceReport from communications
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[meeting_attendance_report.MeetingAttendanceReport]
@@ -136,7 +120,7 @@ class MeetingAttendanceReportRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[MeetingAttendanceReportRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the meetingAttendanceReport for an onlineMeeting. Each time an online meeting ends, an attendance report will be generated for that session.
+        Get meetingAttendanceReport from communications
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -197,7 +181,7 @@ class MeetingAttendanceReportRequestBuilder():
     @dataclass
     class MeetingAttendanceReportRequestBuilderGetQueryParameters():
         """
-        Get the meetingAttendanceReport for an onlineMeeting. Each time an online meeting ends, an attendance report will be generated for that session.
+        Get meetingAttendanceReport from communications
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

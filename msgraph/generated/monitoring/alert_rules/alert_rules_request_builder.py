@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models.device_management import alert_rule, alert_rule_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import alert_rule_item_request_builder
 
 class AlertRulesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class AlertRulesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_alert_rule_id(self,alert_rule_id: str) -> alert_rule_item_request_builder.AlertRuleItemRequestBuilder:
+        """
+        Provides operations to manage the alertRules property of the microsoft.graph.deviceManagement.monitoring entity.
+        Args:
+            alert_rule_id: Unique identifier of the item
+        Returns: alert_rule_item_request_builder.AlertRuleItemRequestBuilder
+        """
+        if alert_rule_id is None:
+            raise Exception("alert_rule_id cannot be undefined")
+        from .item import alert_rule_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["alertRule%2Did"] = alert_rule_id
+        return alert_rule_item_request_builder.AlertRuleItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[AlertRulesRequestBuilderGetRequestConfiguration] = None) -> Optional[alert_rule_collection_response.AlertRuleCollectionResponse]:
         """
-        Get a list of the alertRule objects and their properties.
+        The collection of alert rules.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[alert_rule_collection_response.AlertRuleCollectionResponse]
@@ -60,7 +76,7 @@ class AlertRulesRequestBuilder():
     
     async def post(self,body: Optional[alert_rule.AlertRule] = None, request_configuration: Optional[AlertRulesRequestBuilderPostRequestConfiguration] = None) -> Optional[alert_rule.AlertRule]:
         """
-        Create an alertRule object.
+        Create new navigation property to alertRules for monitoring
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class AlertRulesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AlertRulesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the alertRule objects and their properties.
+        The collection of alert rules.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class AlertRulesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[alert_rule.AlertRule] = None, request_configuration: Optional[AlertRulesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create an alertRule object.
+        Create new navigation property to alertRules for monitoring
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class AlertRulesRequestBuilder():
     @dataclass
     class AlertRulesRequestBuilderGetQueryParameters():
         """
-        Get a list of the alertRule objects and their properties.
+        The collection of alert rules.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

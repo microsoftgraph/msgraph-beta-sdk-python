@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ....models import user
     from ....models.o_data_errors import o_data_error
+    from .mailbox_settings import mailbox_settings_request_builder
 
 class UserRequestBuilder():
     """
@@ -37,7 +38,7 @@ class UserRequestBuilder():
     
     async def get(self,request_configuration: Optional[UserRequestBuilderGetRequestConfiguration] = None) -> Optional[user.User]:
         """
-        Retrieve the simple directory **user** that corresponds to this **educationUser**.
+        Get user from education
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[user.User]
@@ -59,7 +60,7 @@ class UserRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UserRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the simple directory **user** that corresponds to this **educationUser**.
+        Get user from education
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -75,10 +76,19 @@ class UserRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
+    @property
+    def mailbox_settings(self) -> mailbox_settings_request_builder.MailboxSettingsRequestBuilder:
+        """
+        The mailboxSettings property
+        """
+        from .mailbox_settings import mailbox_settings_request_builder
+
+        return mailbox_settings_request_builder.MailboxSettingsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class UserRequestBuilderGetQueryParameters():
         """
-        Retrieve the simple directory **user** that corresponds to this **educationUser**.
+        Get user from education
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class MobileApp(entity.Entity):
-    """
-    An abstract class containing the base properties for Intune mobile apps.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new mobileApp and sets the default values.
+        Instantiates a new MobileApp and sets the default values.
         """
         super().__init__()
         # The list of group assignments for this mobile app.

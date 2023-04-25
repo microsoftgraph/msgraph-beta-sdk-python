@@ -9,37 +9,34 @@ if TYPE_CHECKING:
 from . import entity
 
 class DeviceAndAppManagementAssignmentFilter(entity.Entity):
-    """
-    A class containing the properties used for Assignment Filter.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceAndAppManagementAssignmentFilter and sets the default values.
+        Instantiates a new DeviceAndAppManagementAssignmentFilter and sets the default values.
         """
         super().__init__()
-        # Creation time of the Assignment Filter.
+        # The creation time of the assignment filter. The value cannot be modified and is automatically populated during new assignment filter process. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'.
         self._created_date_time: Optional[datetime] = None
-        # Description of the Assignment Filter.
+        # Optional description of the Assignment Filter.
         self._description: Optional[str] = None
-        # DisplayName of the Assignment Filter.
+        # The name of the Assignment Filter.
         self._display_name: Optional[str] = None
-        # Last modified time of the Assignment Filter.
+        # Last modified time of the Assignment Filter. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'
         self._last_modified_date_time: Optional[datetime] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # Associated assignments for a specific filter
+        # Indicates associated assignments for a specific filter.
         self._payloads: Optional[List[payload_by_filter.PayloadByFilter]] = None
         # Supported platform types.
         self._platform: Optional[device_platform_type.DevicePlatformType] = None
-        # RoleScopeTags of the Assignment Filter.
+        # Indicates role scope tags assigned for the assignment filter.
         self._role_scope_tags: Optional[List[str]] = None
-        # Rule definition of the Assignment Filter.
+        # Rule definition of the assignment filter.
         self._rule: Optional[str] = None
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
         """
-        Gets the createdDateTime property value. Creation time of the Assignment Filter.
+        Gets the createdDateTime property value. The creation time of the assignment filter. The value cannot be modified and is automatically populated during new assignment filter process. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'.
         Returns: Optional[datetime]
         """
         return self._created_date_time
@@ -47,7 +44,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
     @created_date_time.setter
     def created_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the createdDateTime property value. Creation time of the Assignment Filter.
+        Sets the createdDateTime property value. The creation time of the assignment filter. The value cannot be modified and is automatically populated during new assignment filter process. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'.
         Args:
             value: Value to set for the created_date_time property.
         """
@@ -75,7 +72,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
     @property
     def description(self,) -> Optional[str]:
         """
-        Gets the description property value. Description of the Assignment Filter.
+        Gets the description property value. Optional description of the Assignment Filter.
         Returns: Optional[str]
         """
         return self._description
@@ -83,7 +80,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
     @description.setter
     def description(self,value: Optional[str] = None) -> None:
         """
-        Sets the description property value. Description of the Assignment Filter.
+        Sets the description property value. Optional description of the Assignment Filter.
         Args:
             value: Value to set for the description property.
         """
@@ -92,7 +89,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
     @property
     def display_name(self,) -> Optional[str]:
         """
-        Gets the displayName property value. DisplayName of the Assignment Filter.
+        Gets the displayName property value. The name of the Assignment Filter.
         Returns: Optional[str]
         """
         return self._display_name
@@ -100,7 +97,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
     @display_name.setter
     def display_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the displayName property value. DisplayName of the Assignment Filter.
+        Sets the displayName property value. The name of the Assignment Filter.
         Args:
             value: Value to set for the display_name property.
         """
@@ -130,7 +127,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
     @property
     def last_modified_date_time(self,) -> Optional[datetime]:
         """
-        Gets the lastModifiedDateTime property value. Last modified time of the Assignment Filter.
+        Gets the lastModifiedDateTime property value. Last modified time of the Assignment Filter. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'
         Returns: Optional[datetime]
         """
         return self._last_modified_date_time
@@ -138,7 +135,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
     @last_modified_date_time.setter
     def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the lastModifiedDateTime property value. Last modified time of the Assignment Filter.
+        Sets the lastModifiedDateTime property value. Last modified time of the Assignment Filter. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'
         Args:
             value: Value to set for the last_modified_date_time property.
         """
@@ -147,7 +144,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
     @property
     def payloads(self,) -> Optional[List[payload_by_filter.PayloadByFilter]]:
         """
-        Gets the payloads property value. Associated assignments for a specific filter
+        Gets the payloads property value. Indicates associated assignments for a specific filter.
         Returns: Optional[List[payload_by_filter.PayloadByFilter]]
         """
         return self._payloads
@@ -155,7 +152,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
     @payloads.setter
     def payloads(self,value: Optional[List[payload_by_filter.PayloadByFilter]] = None) -> None:
         """
-        Sets the payloads property value. Associated assignments for a specific filter
+        Sets the payloads property value. Indicates associated assignments for a specific filter.
         Args:
             value: Value to set for the payloads property.
         """
@@ -181,7 +178,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
     @property
     def role_scope_tags(self,) -> Optional[List[str]]:
         """
-        Gets the roleScopeTags property value. RoleScopeTags of the Assignment Filter.
+        Gets the roleScopeTags property value. Indicates role scope tags assigned for the assignment filter.
         Returns: Optional[List[str]]
         """
         return self._role_scope_tags
@@ -189,7 +186,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
     @role_scope_tags.setter
     def role_scope_tags(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the roleScopeTags property value. RoleScopeTags of the Assignment Filter.
+        Sets the roleScopeTags property value. Indicates role scope tags assigned for the assignment filter.
         Args:
             value: Value to set for the role_scope_tags property.
         """
@@ -198,7 +195,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
     @property
     def rule(self,) -> Optional[str]:
         """
-        Gets the rule property value. Rule definition of the Assignment Filter.
+        Gets the rule property value. Rule definition of the assignment filter.
         Returns: Optional[str]
         """
         return self._rule
@@ -206,7 +203,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
     @rule.setter
     def rule(self,value: Optional[str] = None) -> None:
         """
-        Sets the rule property value. Rule definition of the Assignment Filter.
+        Sets the rule property value. Rule definition of the assignment filter.
         Args:
             value: Value to set for the rule property.
         """

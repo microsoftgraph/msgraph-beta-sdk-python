@@ -37,11 +37,29 @@ class WorkflowVersion(workflow_base.WorkflowBase):
         from . import workflow_base
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "versionNumber": lambda n : setattr(self, 'version_number', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
+    
+    @property
+    def odata_type(self,) -> Optional[str]:
+        """
+        Gets the @odata.type property value. The OdataType property
+        Returns: Optional[str]
+        """
+        return self._odata_type
+    
+    @odata_type.setter
+    def odata_type(self,value: Optional[str] = None) -> None:
+        """
+        Sets the @odata.type property value. The OdataType property
+        Args:
+            value: Value to set for the odata_type property.
+        """
+        self._odata_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -52,6 +70,7 @@ class WorkflowVersion(workflow_base.WorkflowBase):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_int_value("versionNumber", self.version_number)
     
     @property

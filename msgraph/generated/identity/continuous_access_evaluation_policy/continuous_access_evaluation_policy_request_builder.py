@@ -56,7 +56,7 @@ class ContinuousAccessEvaluationPolicyRequestBuilder():
     
     async def get(self,request_configuration: Optional[ContinuousAccessEvaluationPolicyRequestBuilderGetRequestConfiguration] = None) -> Optional[continuous_access_evaluation_policy.ContinuousAccessEvaluationPolicy]:
         """
-        Read the properties and relationships of a continuousAccessEvaluationPolicy object.
+        Represents entry point for continuous access evaluation policy.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[continuous_access_evaluation_policy.ContinuousAccessEvaluationPolicy]
@@ -78,7 +78,7 @@ class ContinuousAccessEvaluationPolicyRequestBuilder():
     
     async def patch(self,body: Optional[continuous_access_evaluation_policy.ContinuousAccessEvaluationPolicy] = None, request_configuration: Optional[ContinuousAccessEvaluationPolicyRequestBuilderPatchRequestConfiguration] = None) -> Optional[continuous_access_evaluation_policy.ContinuousAccessEvaluationPolicy]:
         """
-        Update the properties of a continuousAccessEvaluationPolicy object.
+        Update the navigation property continuousAccessEvaluationPolicy in identity
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class ContinuousAccessEvaluationPolicyRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ContinuousAccessEvaluationPolicyRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a continuousAccessEvaluationPolicy object.
+        Represents entry point for continuous access evaluation policy.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class ContinuousAccessEvaluationPolicyRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[continuous_access_evaluation_policy.ContinuousAccessEvaluationPolicy] = None, request_configuration: Optional[ContinuousAccessEvaluationPolicyRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a continuousAccessEvaluationPolicy object.
+        Update the navigation property continuousAccessEvaluationPolicy in identity
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class ContinuousAccessEvaluationPolicyRequestBuilder():
     @dataclass
     class ContinuousAccessEvaluationPolicyRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a continuousAccessEvaluationPolicy object.
+        Represents entry point for continuous access evaluation policy.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

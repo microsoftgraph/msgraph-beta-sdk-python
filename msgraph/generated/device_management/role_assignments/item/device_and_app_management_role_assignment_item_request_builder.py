@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ....models import device_and_app_management_role_assignment
     from ....models.o_data_errors import o_data_error
     from .role_scope_tags import role_scope_tags_request_builder
-    from .role_scope_tags.item import role_scope_tag_item_request_builder
 
 class DeviceAndAppManagementRoleAssignmentItemRequestBuilder():
     """
@@ -102,21 +101,6 @@ class DeviceAndAppManagementRoleAssignmentItemRequestBuilder():
         from ....models import device_and_app_management_role_assignment
 
         return await self.request_adapter.send_async(request_info, device_and_app_management_role_assignment.DeviceAndAppManagementRoleAssignment, error_mapping)
-    
-    def role_scope_tags_by_id(self,id: str) -> role_scope_tag_item_request_builder.RoleScopeTagItemRequestBuilder:
-        """
-        Provides operations to manage the roleScopeTags property of the microsoft.graph.deviceAndAppManagementRoleAssignment entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: role_scope_tag_item_request_builder.RoleScopeTagItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .role_scope_tags.item import role_scope_tag_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["roleScopeTag%2Did"] = id
-        return role_scope_tag_item_request_builder.RoleScopeTagItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceAndAppManagementRoleAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

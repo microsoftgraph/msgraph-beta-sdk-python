@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import directory_setting, directory_setting_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import directory_setting_item_request_builder
 
 class SettingsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class SettingsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_directory_setting_id(self,directory_setting_id: str) -> directory_setting_item_request_builder.DirectorySettingItemRequestBuilder:
+        """
+        Provides operations to manage the settings property of the microsoft.graph.group entity.
+        Args:
+            directory_setting_id: Unique identifier of the item
+        Returns: directory_setting_item_request_builder.DirectorySettingItemRequestBuilder
+        """
+        if directory_setting_id is None:
+            raise Exception("directory_setting_id cannot be undefined")
+        from .item import directory_setting_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["directorySetting%2Did"] = directory_setting_id
+        return directory_setting_item_request_builder.DirectorySettingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[SettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_setting_collection_response.DirectorySettingCollectionResponse]:
         """
@@ -60,7 +76,7 @@ class SettingsRequestBuilder():
     
     async def post(self,body: Optional[directory_setting.DirectorySetting] = None, request_configuration: Optional[SettingsRequestBuilderPostRequestConfiguration] = None) -> Optional[directory_setting.DirectorySetting]:
         """
-        Create a new setting based on the templates available in directorySettingTemplates. These settings can be at the tenant-level or at the group level. Group settings apply to only Microsoft 365 groups. The template named `Group.Unified` can be used to configure tenant-wide Microsoft 365 group settings, while the template named `Group.Unified.Guest` can be used to configure group-specific settings.
+        Create new navigation property to settings for groups
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +119,7 @@ class SettingsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[directory_setting.DirectorySetting] = None, request_configuration: Optional[SettingsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new setting based on the templates available in directorySettingTemplates. These settings can be at the tenant-level or at the group level. Group settings apply to only Microsoft 365 groups. The template named `Group.Unified` can be used to configure tenant-wide Microsoft 365 group settings, while the template named `Group.Unified.Guest` can be used to configure group-specific settings.
+        Create new navigation property to settings for groups
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

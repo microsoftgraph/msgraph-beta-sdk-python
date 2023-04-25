@@ -15,17 +15,14 @@ if TYPE_CHECKING:
     from .check_member_groups import check_member_groups_request_builder
     from .check_member_objects import check_member_objects_request_builder
     from .direct_reports import direct_reports_request_builder
-    from .direct_reports.item import directory_object_item_request_builder
     from .get_member_groups import get_member_groups_request_builder
     from .get_member_objects import get_member_objects_request_builder
     from .manager import manager_request_builder
     from .member_of import member_of_request_builder
-    from .member_of.item import directory_object_item_request_builder
     from .restore import restore_request_builder
+    from .retry_service_provisioning import retry_service_provisioning_request_builder
     from .transitive_member_of import transitive_member_of_request_builder
-    from .transitive_member_of.item import directory_object_item_request_builder
     from .transitive_reports import transitive_reports_request_builder
-    from .transitive_reports.item import directory_object_item_request_builder
 
 class OrgContactItemRequestBuilder():
     """
@@ -68,24 +65,6 @@ class OrgContactItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    def direct_reports_by_id(self,id: str) -> directory_object_item_request_builder.DirectoryObjectItemRequestBuilder:
-        """
-        Provides operations to manage the directReports property of the microsoft.graph.orgContact entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: directory_object_item_request_builder.DirectoryObjectItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .direct_reports.item import directory_object_item_request_builder
-        from .member_of.item import directory_object_item_request_builder
-        from .transitive_member_of.item import directory_object_item_request_builder
-        from .transitive_reports.item import directory_object_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["directoryObject%2Did"] = id
-        return directory_object_item_request_builder.DirectoryObjectItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     async def get(self,request_configuration: Optional[OrgContactItemRequestBuilderGetRequestConfiguration] = None) -> Optional[org_contact.OrgContact]:
         """
         Get the properties and relationships of an organizational contact object.
@@ -107,24 +86,6 @@ class OrgContactItemRequestBuilder():
         from ...models import org_contact
 
         return await self.request_adapter.send_async(request_info, org_contact.OrgContact, error_mapping)
-    
-    def member_of_by_id(self,id: str) -> directory_object_item_request_builder.DirectoryObjectItemRequestBuilder:
-        """
-        Provides operations to manage the memberOf property of the microsoft.graph.orgContact entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: directory_object_item_request_builder.DirectoryObjectItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .direct_reports.item import directory_object_item_request_builder
-        from .member_of.item import directory_object_item_request_builder
-        from .transitive_member_of.item import directory_object_item_request_builder
-        from .transitive_reports.item import directory_object_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["directoryObject%2Did"] = id
-        return directory_object_item_request_builder.DirectoryObjectItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[org_contact.OrgContact] = None, request_configuration: Optional[OrgContactItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[org_contact.OrgContact]:
         """
@@ -206,42 +167,6 @@ class OrgContactItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def transitive_member_of_by_id(self,id: str) -> directory_object_item_request_builder.DirectoryObjectItemRequestBuilder:
-        """
-        Provides operations to manage the transitiveMemberOf property of the microsoft.graph.orgContact entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: directory_object_item_request_builder.DirectoryObjectItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .direct_reports.item import directory_object_item_request_builder
-        from .member_of.item import directory_object_item_request_builder
-        from .transitive_member_of.item import directory_object_item_request_builder
-        from .transitive_reports.item import directory_object_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["directoryObject%2Did"] = id
-        return directory_object_item_request_builder.DirectoryObjectItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def transitive_reports_by_id(self,id: str) -> directory_object_item_request_builder.DirectoryObjectItemRequestBuilder:
-        """
-        Provides operations to manage the transitiveReports property of the microsoft.graph.orgContact entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: directory_object_item_request_builder.DirectoryObjectItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .direct_reports.item import directory_object_item_request_builder
-        from .member_of.item import directory_object_item_request_builder
-        from .transitive_member_of.item import directory_object_item_request_builder
-        from .transitive_reports.item import directory_object_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["directoryObject%2Did"] = id
-        return directory_object_item_request_builder.DirectoryObjectItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     @property
     def check_member_groups(self) -> check_member_groups_request_builder.CheckMemberGroupsRequestBuilder:
         """
@@ -313,6 +238,15 @@ class OrgContactItemRequestBuilder():
         from .restore import restore_request_builder
 
         return restore_request_builder.RestoreRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retry_service_provisioning(self) -> retry_service_provisioning_request_builder.RetryServiceProvisioningRequestBuilder:
+        """
+        Provides operations to call the retryServiceProvisioning method.
+        """
+        from .retry_service_provisioning import retry_service_provisioning_request_builder
+
+        return retry_service_provisioning_request_builder.RetryServiceProvisioningRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def transitive_member_of(self) -> transitive_member_of_request_builder.TransitiveMemberOfRequestBuilder:

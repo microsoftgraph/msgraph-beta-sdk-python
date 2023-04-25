@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .device_management_get_portal_notifications import device_management_get_portal_notifications_request_builder
+    from .item import alert_record_item_request_builder
 
 class AlertRecordsRequestBuilder():
     """
@@ -37,9 +38,24 @@ class AlertRecordsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_alert_record_id(self,alert_record_id: str) -> alert_record_item_request_builder.AlertRecordItemRequestBuilder:
+        """
+        Provides operations to manage the alertRecords property of the microsoft.graph.deviceManagement.monitoring entity.
+        Args:
+            alert_record_id: Unique identifier of the item
+        Returns: alert_record_item_request_builder.AlertRecordItemRequestBuilder
+        """
+        if alert_record_id is None:
+            raise Exception("alert_record_id cannot be undefined")
+        from .item import alert_record_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["alertRecord%2Did"] = alert_record_id
+        return alert_record_item_request_builder.AlertRecordItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[AlertRecordsRequestBuilderGetRequestConfiguration] = None) -> Optional[alert_record_collection_response.AlertRecordCollectionResponse]:
         """
-        Get a list of the alertRecord objects and their properties.
+        The collection of records of alert events.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[alert_record_collection_response.AlertRecordCollectionResponse]
@@ -86,7 +102,7 @@ class AlertRecordsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AlertRecordsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the alertRecord objects and their properties.
+        The collection of records of alert events.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -144,7 +160,7 @@ class AlertRecordsRequestBuilder():
     @dataclass
     class AlertRecordsRequestBuilderGetQueryParameters():
         """
-        Get a list of the alertRecord objects and their properties.
+        The collection of records of alert events.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

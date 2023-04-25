@@ -10,7 +10,7 @@ from . import planner_delta
 class PlannerProgressTaskBoardTaskFormat(planner_delta.PlannerDelta):
     def __init__(self,) -> None:
         """
-        Instantiates a new plannerProgressTaskBoardTaskFormat and sets the default values.
+        Instantiates a new PlannerProgressTaskBoardTaskFormat and sets the default values.
         """
         super().__init__()
         # The OdataType property

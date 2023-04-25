@@ -14,7 +14,6 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .assign import assign_request_builder
     from .assignments import assignments_request_builder
-    from .assignments.item import office_client_configuration_assignment_item_request_builder
     from .policy_payload import policy_payload_request_builder
     from .user_preference_payload import user_preference_payload_request_builder
 
@@ -40,21 +39,6 @@ class OfficeClientConfigurationItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def assignments_by_id(self,id: str) -> office_client_configuration_assignment_item_request_builder.OfficeClientConfigurationAssignmentItemRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.officeClientConfiguration entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: office_client_configuration_assignment_item_request_builder.OfficeClientConfigurationAssignmentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .assignments.item import office_client_configuration_assignment_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["officeClientConfigurationAssignment%2Did"] = id
-        return office_client_configuration_assignment_item_request_builder.OfficeClientConfigurationAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     async def delete(self,request_configuration: Optional[OfficeClientConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property clientConfigurations for officeConfiguration
@@ -76,7 +60,7 @@ class OfficeClientConfigurationItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[OfficeClientConfigurationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[office_client_configuration.OfficeClientConfiguration]:
         """
-        List of office Client configuration.
+        Get clientConfigurations from officeConfiguration
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[office_client_configuration.OfficeClientConfiguration]
@@ -139,7 +123,7 @@ class OfficeClientConfigurationItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[OfficeClientConfigurationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List of office Client configuration.
+        Get clientConfigurations from officeConfiguration
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -227,7 +211,7 @@ class OfficeClientConfigurationItemRequestBuilder():
     @dataclass
     class OfficeClientConfigurationItemRequestBuilderGetQueryParameters():
         """
-        List of office Client configuration.
+        Get clientConfigurations from officeConfiguration
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

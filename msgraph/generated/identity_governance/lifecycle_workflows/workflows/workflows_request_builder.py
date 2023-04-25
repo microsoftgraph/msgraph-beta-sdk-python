@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.identity_governance import workflow, workflow_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import workflow_item_request_builder
 
 class WorkflowsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class WorkflowsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_workflow_id(self,workflow_id: str) -> workflow_item_request_builder.WorkflowItemRequestBuilder:
+        """
+        Provides operations to manage the workflows property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
+        Args:
+            workflow_id: Unique identifier of the item
+        Returns: workflow_item_request_builder.WorkflowItemRequestBuilder
+        """
+        if workflow_id is None:
+            raise Exception("workflow_id cannot be undefined")
+        from .item import workflow_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["workflow%2Did"] = workflow_id
+        return workflow_item_request_builder.WorkflowItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[WorkflowsRequestBuilderGetRequestConfiguration] = None) -> Optional[workflow_collection_response.WorkflowCollectionResponse]:
         """
-        Get the workflow resources from the workflows navigation property.
+        The workflows in the lifecycle workflows instance.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[workflow_collection_response.WorkflowCollectionResponse]
@@ -60,7 +76,7 @@ class WorkflowsRequestBuilder():
     
     async def post(self,body: Optional[workflow.Workflow] = None, request_configuration: Optional[WorkflowsRequestBuilderPostRequestConfiguration] = None) -> Optional[workflow.Workflow]:
         """
-        Create a new workflow object. You can create up to 50 workflows in a tenant.
+        Create new navigation property to workflows for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class WorkflowsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[WorkflowsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the workflow resources from the workflows navigation property.
+        The workflows in the lifecycle workflows instance.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class WorkflowsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[workflow.Workflow] = None, request_configuration: Optional[WorkflowsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new workflow object. You can create up to 50 workflows in a tenant.
+        Create new navigation property to workflows for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class WorkflowsRequestBuilder():
     @dataclass
     class WorkflowsRequestBuilderGetQueryParameters():
         """
-        Get the workflow resources from the workflows navigation property.
+        The workflows in the lifecycle workflows instance.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

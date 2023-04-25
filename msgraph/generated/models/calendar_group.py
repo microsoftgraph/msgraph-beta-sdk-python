@@ -11,7 +11,7 @@ from . import entity
 class CalendarGroup(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new calendarGroup and sets the default values.
+        Instantiates a new CalendarGroup and sets the default values.
         """
         super().__init__()
         # The calendars in the calendar group. Navigation property. Read-only. Nullable.

@@ -10,7 +10,7 @@ from . import entity
 class TenantAttachRBAC(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new tenantAttachRBAC and sets the default values.
+        Instantiates a new TenantAttachRBAC and sets the default values.
         """
         super().__init__()
         # The OdataType property

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from ....models.security import host_cookie, host_cookie_collection_response
     from .count import count_request_builder
+    from .item import host_cookie_item_request_builder
 
 class HostCookiesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class HostCookiesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_host_cookie_id(self,host_cookie_id: str) -> host_cookie_item_request_builder.HostCookieItemRequestBuilder:
+        """
+        Provides operations to manage the hostCookies property of the microsoft.graph.security.threatIntelligence entity.
+        Args:
+            host_cookie_id: Unique identifier of the item
+        Returns: host_cookie_item_request_builder.HostCookieItemRequestBuilder
+        """
+        if host_cookie_id is None:
+            raise Exception("host_cookie_id cannot be undefined")
+        from .item import host_cookie_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["hostCookie%2Did"] = host_cookie_id
+        return host_cookie_item_request_builder.HostCookieItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[HostCookiesRequestBuilderGetRequestConfiguration] = None) -> Optional[host_cookie_collection_response.HostCookieCollectionResponse]:
         """

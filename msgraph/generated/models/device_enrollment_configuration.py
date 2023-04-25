@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class DeviceEnrollmentConfiguration(entity.Entity):
-    """
-    The Base Class of Device Enrollment Configuration
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceEnrollmentConfiguration and sets the default values.
+        Instantiates a new DeviceEnrollmentConfiguration and sets the default values.
         """
         super().__init__()
         # The list of group assignments for the device configuration profile

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import item_address, item_address_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import item_address_item_request_builder
 
 class AddressesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class AddressesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_item_address_id(self,item_address_id: str) -> item_address_item_request_builder.ItemAddressItemRequestBuilder:
+        """
+        Provides operations to manage the addresses property of the microsoft.graph.profile entity.
+        Args:
+            item_address_id: Unique identifier of the item
+        Returns: item_address_item_request_builder.ItemAddressItemRequestBuilder
+        """
+        if item_address_id is None:
+            raise Exception("item_address_id cannot be undefined")
+        from .item import item_address_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["itemAddress%2Did"] = item_address_id
+        return item_address_item_request_builder.ItemAddressItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[AddressesRequestBuilderGetRequestConfiguration] = None) -> Optional[item_address_collection_response.ItemAddressCollectionResponse]:
         """
-        Get the itemAddress resources from the **addresses** navigation property.
+        Represents details of addresses associated with the user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[item_address_collection_response.ItemAddressCollectionResponse]
@@ -60,7 +76,7 @@ class AddressesRequestBuilder():
     
     async def post(self,body: Optional[item_address.ItemAddress] = None, request_configuration: Optional[AddressesRequestBuilderPostRequestConfiguration] = None) -> Optional[item_address.ItemAddress]:
         """
-        Create a new itemAddress object in a user's profile.
+        Create new navigation property to addresses for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class AddressesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AddressesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the itemAddress resources from the **addresses** navigation property.
+        Represents details of addresses associated with the user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class AddressesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[item_address.ItemAddress] = None, request_configuration: Optional[AddressesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new itemAddress object in a user's profile.
+        Create new navigation property to addresses for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class AddressesRequestBuilder():
     @dataclass
     class AddressesRequestBuilderGetQueryParameters():
         """
-        Get the itemAddress resources from the **addresses** navigation property.
+        Represents details of addresses associated with the user.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

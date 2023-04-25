@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import education_synchronization_error, education_synchronization_error_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import education_synchronization_error_item_request_builder
 
 class ErrorsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ErrorsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_education_synchronization_error_id(self,education_synchronization_error_id: str) -> education_synchronization_error_item_request_builder.EducationSynchronizationErrorItemRequestBuilder:
+        """
+        Provides operations to manage the errors property of the microsoft.graph.educationSynchronizationProfile entity.
+        Args:
+            education_synchronization_error_id: Unique identifier of the item
+        Returns: education_synchronization_error_item_request_builder.EducationSynchronizationErrorItemRequestBuilder
+        """
+        if education_synchronization_error_id is None:
+            raise Exception("education_synchronization_error_id cannot be undefined")
+        from .item import education_synchronization_error_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["educationSynchronizationError%2Did"] = education_synchronization_error_id
+        return education_synchronization_error_item_request_builder.EducationSynchronizationErrorItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ErrorsRequestBuilderGetRequestConfiguration] = None) -> Optional[education_synchronization_error_collection_response.EducationSynchronizationErrorCollectionResponse]:
         """
-        Get the errors generated during validation and/or during a sync of a specific school data synchronization profile in the tenant.
+        All errors associated with this synchronization profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[education_synchronization_error_collection_response.EducationSynchronizationErrorCollectionResponse]
@@ -85,7 +101,7 @@ class ErrorsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ErrorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the errors generated during validation and/or during a sync of a specific school data synchronization profile in the tenant.
+        All errors associated with this synchronization profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class ErrorsRequestBuilder():
     @dataclass
     class ErrorsRequestBuilderGetQueryParameters():
         """
-        Get the errors generated during validation and/or during a sync of a specific school data synchronization profile in the tenant.
+        All errors associated with this synchronization profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ......models import employee
     from ......models.o_data_errors import o_data_error
     from .picture import picture_request_builder
-    from .picture.item import picture_item_request_builder
 
 class EmployeeItemRequestBuilder():
     """
@@ -102,21 +101,6 @@ class EmployeeItemRequestBuilder():
         from ......models import employee
 
         return await self.request_adapter.send_async(request_info, employee.Employee, error_mapping)
-    
-    def picture_by_id(self,id: str) -> picture_item_request_builder.PictureItemRequestBuilder:
-        """
-        Provides operations to manage the picture property of the microsoft.graph.employee entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: picture_item_request_builder.PictureItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .picture.item import picture_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["picture%2Did"] = id
-        return picture_item_request_builder.PictureItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[EmployeeItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -37,7 +37,7 @@ class RestoreRequestBuilder():
     
     async def post(self,body: Optional[restore_post_request_body.RestorePostRequestBody] = None, request_configuration: Optional[RestoreRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Restore a specific Cloud PC. Use this API to trigger a remote action that restores a Cloud PC device to a previous state.
+        Invoke action restore
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -59,7 +59,7 @@ class RestoreRequestBuilder():
     
     def to_post_request_information(self,body: Optional[restore_post_request_body.RestorePostRequestBody] = None, request_configuration: Optional[RestoreRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Restore a specific Cloud PC. Use this API to trigger a remote action that restores a Cloud PC device to a previous state.
+        Invoke action restore
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

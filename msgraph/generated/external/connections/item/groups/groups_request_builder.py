@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models.external_connectors import external_group, external_group_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import external_group_item_request_builder
 
 class GroupsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class GroupsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_external_group_id(self,external_group_id: str) -> external_group_item_request_builder.ExternalGroupItemRequestBuilder:
+        """
+        Provides operations to manage the groups property of the microsoft.graph.externalConnectors.externalConnection entity.
+        Args:
+            external_group_id: Unique identifier of the item
+        Returns: external_group_item_request_builder.ExternalGroupItemRequestBuilder
+        """
+        if external_group_id is None:
+            raise Exception("external_group_id cannot be undefined")
+        from .item import external_group_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["externalGroup%2Did"] = external_group_id
+        return external_group_item_request_builder.ExternalGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[GroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[external_group_collection_response.ExternalGroupCollectionResponse]:
         """
@@ -60,7 +76,7 @@ class GroupsRequestBuilder():
     
     async def post(self,body: Optional[external_group.ExternalGroup] = None, request_configuration: Optional[GroupsRequestBuilderPostRequestConfiguration] = None) -> Optional[external_group.ExternalGroup]:
         """
-        Create a new externalGroup object.
+        Create new navigation property to groups for external
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +119,7 @@ class GroupsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[external_group.ExternalGroup] = None, request_configuration: Optional[GroupsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new externalGroup object.
+        Create new navigation property to groups for external
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

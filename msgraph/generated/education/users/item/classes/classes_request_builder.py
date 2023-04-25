@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import education_class_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import education_class_item_request_builder
 
 class ClassesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ClassesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_education_class_id(self,education_class_id: str) -> education_class_item_request_builder.EducationClassItemRequestBuilder:
+        """
+        Provides operations to manage the classes property of the microsoft.graph.educationUser entity.
+        Args:
+            education_class_id: Unique identifier of the item
+        Returns: education_class_item_request_builder.EducationClassItemRequestBuilder
+        """
+        if education_class_id is None:
+            raise Exception("education_class_id cannot be undefined")
+        from .item import education_class_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["educationClass%2Did"] = education_class_id
+        return education_class_item_request_builder.EducationClassItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ClassesRequestBuilderGetRequestConfiguration] = None) -> Optional[education_class_collection_response.EducationClassCollectionResponse]:
         """
-        Retrieve a collection of educationClass resources.
+        Classes to which the user belongs. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[education_class_collection_response.EducationClassCollectionResponse]
@@ -60,7 +76,7 @@ class ClassesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ClassesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a collection of educationClass resources.
+        Classes to which the user belongs. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -88,7 +104,7 @@ class ClassesRequestBuilder():
     @dataclass
     class ClassesRequestBuilderGetQueryParameters():
         """
-        Retrieve a collection of educationClass resources.
+        Classes to which the user belongs. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

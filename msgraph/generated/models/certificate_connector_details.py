@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class CertificateConnectorDetails(entity.Entity):
-    """
-    Entity used to retrieve information about Intune Certificate Connectors.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new certificateConnectorDetails and sets the default values.
+        Instantiates a new CertificateConnectorDetails and sets the default values.
         """
         super().__init__()
         # Connector name (set during enrollment).

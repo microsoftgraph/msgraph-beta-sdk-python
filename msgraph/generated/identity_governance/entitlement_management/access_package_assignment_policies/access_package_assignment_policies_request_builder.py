@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import access_package_assignment_policy, access_package_assignment_policy_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import access_package_assignment_policy_item_request_builder
 
 class AccessPackageAssignmentPoliciesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class AccessPackageAssignmentPoliciesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_access_package_assignment_policy_id(self,access_package_assignment_policy_id: str) -> access_package_assignment_policy_item_request_builder.AccessPackageAssignmentPolicyItemRequestBuilder:
+        """
+        Provides operations to manage the accessPackageAssignmentPolicies property of the microsoft.graph.entitlementManagement entity.
+        Args:
+            access_package_assignment_policy_id: Unique identifier of the item
+        Returns: access_package_assignment_policy_item_request_builder.AccessPackageAssignmentPolicyItemRequestBuilder
+        """
+        if access_package_assignment_policy_id is None:
+            raise Exception("access_package_assignment_policy_id cannot be undefined")
+        from .item import access_package_assignment_policy_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["accessPackageAssignmentPolicy%2Did"] = access_package_assignment_policy_id
+        return access_package_assignment_policy_item_request_builder.AccessPackageAssignmentPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[AccessPackageAssignmentPoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_assignment_policy_collection_response.AccessPackageAssignmentPolicyCollectionResponse]:
         """
-        In Azure AD entitlement management, retrieve a list of accessPackageAssignmentPolicy objects. If the delegated user is in a directory role, the resulting list includes all the assignment policies that the caller has access to read, across all catalogs and access packages.  If the delegated user is an access package manager or catalog owner, they should instead retrieve the policies for the access packages they can read with list accessPackages by including `$expand=accessPackageAssignmentPolicies` in the query.
+        Represents the policy that governs which subjects can request or be assigned an access package via an access package assignment.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_package_assignment_policy_collection_response.AccessPackageAssignmentPolicyCollectionResponse]
@@ -60,7 +76,7 @@ class AccessPackageAssignmentPoliciesRequestBuilder():
     
     async def post(self,body: Optional[access_package_assignment_policy.AccessPackageAssignmentPolicy] = None, request_configuration: Optional[AccessPackageAssignmentPoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[access_package_assignment_policy.AccessPackageAssignmentPolicy]:
         """
-        In Azure AD entitlement management, create a new accessPackageAssignmentPolicy object.
+        Create new navigation property to accessPackageAssignmentPolicies for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class AccessPackageAssignmentPoliciesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageAssignmentPoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        In Azure AD entitlement management, retrieve a list of accessPackageAssignmentPolicy objects. If the delegated user is in a directory role, the resulting list includes all the assignment policies that the caller has access to read, across all catalogs and access packages.  If the delegated user is an access package manager or catalog owner, they should instead retrieve the policies for the access packages they can read with list accessPackages by including `$expand=accessPackageAssignmentPolicies` in the query.
+        Represents the policy that governs which subjects can request or be assigned an access package via an access package assignment.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class AccessPackageAssignmentPoliciesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[access_package_assignment_policy.AccessPackageAssignmentPolicy] = None, request_configuration: Optional[AccessPackageAssignmentPoliciesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        In Azure AD entitlement management, create a new accessPackageAssignmentPolicy object.
+        Create new navigation property to accessPackageAssignmentPolicies for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class AccessPackageAssignmentPoliciesRequestBuilder():
     @dataclass
     class AccessPackageAssignmentPoliciesRequestBuilderGetQueryParameters():
         """
-        In Azure AD entitlement management, retrieve a list of accessPackageAssignmentPolicy objects. If the delegated user is in a directory role, the resulting list includes all the assignment policies that the caller has access to read, across all catalogs and access packages.  If the delegated user is an access package manager or catalog owner, they should instead retrieve the policies for the access packages they can read with list accessPackages by including `$expand=accessPackageAssignmentPolicies` in the query.
+        Represents the policy that governs which subjects can request or be assigned an access package via an access package assignment.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

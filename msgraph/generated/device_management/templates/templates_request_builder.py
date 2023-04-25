@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .import_office365_device_configuration_policies import import_office365_device_configuration_policies_request_builder
+    from .item import device_management_template_item_request_builder
 
 class TemplatesRequestBuilder():
     """
@@ -36,6 +37,21 @@ class TemplatesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_device_management_template_id(self,device_management_template_id: str) -> device_management_template_item_request_builder.DeviceManagementTemplateItemRequestBuilder:
+        """
+        Provides operations to manage the templates property of the microsoft.graph.deviceManagement entity.
+        Args:
+            device_management_template_id: Unique identifier of the item
+        Returns: device_management_template_item_request_builder.DeviceManagementTemplateItemRequestBuilder
+        """
+        if device_management_template_id is None:
+            raise Exception("device_management_template_id cannot be undefined")
+        from .item import device_management_template_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["deviceManagementTemplate%2Did"] = device_management_template_id
+        return device_management_template_item_request_builder.DeviceManagementTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[TemplatesRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_template_collection_response.DeviceManagementTemplateCollectionResponse]:
         """

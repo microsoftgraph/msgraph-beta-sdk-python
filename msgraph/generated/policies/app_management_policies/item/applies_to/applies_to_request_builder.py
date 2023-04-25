@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import directory_object_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import directory_object_item_request_builder
 
 class AppliesToRequestBuilder():
     """
@@ -36,9 +37,24 @@ class AppliesToRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_directory_object_id(self,directory_object_id: str) -> directory_object_item_request_builder.DirectoryObjectItemRequestBuilder:
+        """
+        Provides operations to manage the appliesTo property of the microsoft.graph.appManagementPolicy entity.
+        Args:
+            directory_object_id: Unique identifier of the item
+        Returns: directory_object_item_request_builder.DirectoryObjectItemRequestBuilder
+        """
+        if directory_object_id is None:
+            raise Exception("directory_object_id cannot be undefined")
+        from .item import directory_object_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["directoryObject%2Did"] = directory_object_id
+        return directory_object_item_request_builder.DirectoryObjectItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[AppliesToRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]:
         """
-        List application and service principal objects assigned an appManagementPolicy policy object.
+        Collection of application and service principals to which a policy is applied.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]
@@ -60,7 +76,7 @@ class AppliesToRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AppliesToRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List application and service principal objects assigned an appManagementPolicy policy object.
+        Collection of application and service principals to which a policy is applied.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -88,7 +104,7 @@ class AppliesToRequestBuilder():
     @dataclass
     class AppliesToRequestBuilderGetQueryParameters():
         """
-        List application and service principal objects assigned an appManagementPolicy policy object.
+        Collection of application and service principals to which a policy is applied.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -37,7 +37,7 @@ class WindowsUpdatesUpdateAudienceRequestBuilder():
     
     async def post(self,body: Optional[update_audience_post_request_body.UpdateAudiencePostRequestBody] = None, request_configuration: Optional[WindowsUpdatesUpdateAudienceRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Update the members and exclusions collections of a deploymentAudience. Adding an azureADDevice to the members or exclusions collections of a deployment audience automatically creates an Azure AD device object, if it does not already exist. If the same updatableAsset gets included in the **exclusions** and **members** collections of a **deploymentAudience**, deployment will not apply to that asset. If all **updatableAsset** objects are the same type, you can also use the method updateAudienceById to update the **deploymentAudience**.
+        Invoke action updateAudience
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -59,7 +59,7 @@ class WindowsUpdatesUpdateAudienceRequestBuilder():
     
     def to_post_request_information(self,body: Optional[update_audience_post_request_body.UpdateAudiencePostRequestBody] = None, request_configuration: Optional[WindowsUpdatesUpdateAudienceRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the members and exclusions collections of a deploymentAudience. Adding an azureADDevice to the members or exclusions collections of a deployment audience automatically creates an Azure AD device object, if it does not already exist. If the same updatableAsset gets included in the **exclusions** and **members** collections of a **deploymentAudience**, deployment will not apply to that asset. If all **updatableAsset** objects are the same type, you can also use the method updateAudienceById to update the **deploymentAudience**.
+        Invoke action updateAudience
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

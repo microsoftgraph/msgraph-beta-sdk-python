@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import section_group, section_group_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import section_group_item_request_builder
 
 class SectionGroupsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class SectionGroupsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_section_group_id(self,section_group_id: str) -> section_group_item_request_builder.SectionGroupItemRequestBuilder:
+        """
+        Provides operations to manage the sectionGroups property of the microsoft.graph.onenote entity.
+        Args:
+            section_group_id: Unique identifier of the item
+        Returns: section_group_item_request_builder.SectionGroupItemRequestBuilder
+        """
+        if section_group_id is None:
+            raise Exception("section_group_id cannot be undefined")
+        from .item import section_group_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["sectionGroup%2Did"] = section_group_id
+        return section_group_item_request_builder.SectionGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[SectionGroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[section_group_collection_response.SectionGroupCollectionResponse]:
         """
-        Retrieve a list of sectionGroup objects.
+        The section groups in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[section_group_collection_response.SectionGroupCollectionResponse]
@@ -85,7 +101,7 @@ class SectionGroupsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SectionGroupsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of sectionGroup objects.
+        The section groups in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class SectionGroupsRequestBuilder():
     @dataclass
     class SectionGroupsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of sectionGroup objects.
+        The section groups in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

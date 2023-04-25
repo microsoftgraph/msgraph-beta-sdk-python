@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.managed_tenants import windows_protection_state, windows_protection_state_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import windows_protection_state_item_request_builder
 
 class WindowsProtectionStatesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class WindowsProtectionStatesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_windows_protection_state_id(self,windows_protection_state_id: str) -> windows_protection_state_item_request_builder.WindowsProtectionStateItemRequestBuilder:
+        """
+        Provides operations to manage the windowsProtectionStates property of the microsoft.graph.managedTenants.managedTenant entity.
+        Args:
+            windows_protection_state_id: Unique identifier of the item
+        Returns: windows_protection_state_item_request_builder.WindowsProtectionStateItemRequestBuilder
+        """
+        if windows_protection_state_id is None:
+            raise Exception("windows_protection_state_id cannot be undefined")
+        from .item import windows_protection_state_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["windowsProtectionState%2Did"] = windows_protection_state_id
+        return windows_protection_state_item_request_builder.WindowsProtectionStateItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[WindowsProtectionStatesRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_protection_state_collection_response.WindowsProtectionStateCollectionResponse]:
         """
-        Get a list of the windowsProtectionState objects and their properties.
+        The protection state for Windows devices, registered with Microsoft Endpoint Manager, across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[windows_protection_state_collection_response.WindowsProtectionStateCollectionResponse]
@@ -85,7 +101,7 @@ class WindowsProtectionStatesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[WindowsProtectionStatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the windowsProtectionState objects and their properties.
+        The protection state for Windows devices, registered with Microsoft Endpoint Manager, across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class WindowsProtectionStatesRequestBuilder():
     @dataclass
     class WindowsProtectionStatesRequestBuilderGetQueryParameters():
         """
-        Get a list of the windowsProtectionState objects and their properties.
+        The protection state for Windows devices, registered with Microsoft Endpoint Manager, across managed tenants.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

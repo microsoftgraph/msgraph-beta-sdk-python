@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import teams_app_definition, teams_app_definition_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import teams_app_definition_item_request_builder
 
 class AppDefinitionsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class AppDefinitionsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_teams_app_definition_id(self,teams_app_definition_id: str) -> teams_app_definition_item_request_builder.TeamsAppDefinitionItemRequestBuilder:
+        """
+        Provides operations to manage the appDefinitions property of the microsoft.graph.teamsApp entity.
+        Args:
+            teams_app_definition_id: Unique identifier of the item
+        Returns: teams_app_definition_item_request_builder.TeamsAppDefinitionItemRequestBuilder
+        """
+        if teams_app_definition_id is None:
+            raise Exception("teams_app_definition_id cannot be undefined")
+        from .item import teams_app_definition_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["teamsAppDefinition%2Did"] = teams_app_definition_id
+        return teams_app_definition_item_request_builder.TeamsAppDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[AppDefinitionsRequestBuilderGetRequestConfiguration] = None) -> Optional[teams_app_definition_collection_response.TeamsAppDefinitionCollectionResponse]:
         """
@@ -60,7 +76,7 @@ class AppDefinitionsRequestBuilder():
     
     async def post(self,body: Optional[teams_app_definition.TeamsAppDefinition] = None, request_configuration: Optional[AppDefinitionsRequestBuilderPostRequestConfiguration] = None) -> Optional[teams_app_definition.TeamsAppDefinition]:
         """
-        Update an app previously published to the Microsoft Teams app catalog. To update an app, the **distributionMethod** property for the app must be set to `organization`. This API specifically updates an app published to your organization's app catalog (the tenant app catalog).  
+        Create new navigation property to appDefinitions for appCatalogs
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +119,7 @@ class AppDefinitionsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[teams_app_definition.TeamsAppDefinition] = None, request_configuration: Optional[AppDefinitionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Update an app previously published to the Microsoft Teams app catalog. To update an app, the **distributionMethod** property for the app must be set to `organization`. This API specifically updates an app published to your organization's app catalog (the tenant app catalog).  
+        Create new navigation property to appDefinitions for appCatalogs
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

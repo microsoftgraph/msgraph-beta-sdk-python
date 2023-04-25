@@ -13,11 +13,8 @@ if TYPE_CHECKING:
     from ...models import approval_workflow_provider
     from ...models.o_data_errors import o_data_error
     from .business_flows import business_flows_request_builder
-    from .business_flows.item import business_flow_item_request_builder
     from .business_flows_with_requests_awaiting_my_decision import business_flows_with_requests_awaiting_my_decision_request_builder
-    from .business_flows_with_requests_awaiting_my_decision.item import business_flow_item_request_builder
     from .policy_templates import policy_templates_request_builder
-    from .policy_templates.item import governance_policy_template_item_request_builder
 
 class ApprovalWorkflowProviderItemRequestBuilder():
     """
@@ -40,38 +37,6 @@ class ApprovalWorkflowProviderItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def business_flows_by_id(self,id: str) -> business_flow_item_request_builder.BusinessFlowItemRequestBuilder:
-        """
-        Provides operations to manage the businessFlows property of the microsoft.graph.approvalWorkflowProvider entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: business_flow_item_request_builder.BusinessFlowItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .business_flows.item import business_flow_item_request_builder
-        from .business_flows_with_requests_awaiting_my_decision.item import business_flow_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["businessFlow%2Did"] = id
-        return business_flow_item_request_builder.BusinessFlowItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def business_flows_with_requests_awaiting_my_decision_by_id(self,id: str) -> business_flow_item_request_builder.BusinessFlowItemRequestBuilder:
-        """
-        Provides operations to manage the businessFlowsWithRequestsAwaitingMyDecision property of the microsoft.graph.approvalWorkflowProvider entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: business_flow_item_request_builder.BusinessFlowItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .business_flows.item import business_flow_item_request_builder
-        from .business_flows_with_requests_awaiting_my_decision.item import business_flow_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["businessFlow%2Did"] = id
-        return business_flow_item_request_builder.BusinessFlowItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[ApprovalWorkflowProviderItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
@@ -138,21 +103,6 @@ class ApprovalWorkflowProviderItemRequestBuilder():
         from ...models import approval_workflow_provider
 
         return await self.request_adapter.send_async(request_info, approval_workflow_provider.ApprovalWorkflowProvider, error_mapping)
-    
-    def policy_templates_by_id(self,id: str) -> governance_policy_template_item_request_builder.GovernancePolicyTemplateItemRequestBuilder:
-        """
-        Provides operations to manage the policyTemplates property of the microsoft.graph.approvalWorkflowProvider entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: governance_policy_template_item_request_builder.GovernancePolicyTemplateItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .policy_templates.item import governance_policy_template_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["governancePolicyTemplate%2Did"] = id
-        return governance_policy_template_item_request_builder.GovernancePolicyTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[ApprovalWorkflowProviderItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

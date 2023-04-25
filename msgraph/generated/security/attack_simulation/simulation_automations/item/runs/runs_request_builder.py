@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models import simulation_automation_run, simulation_automation_run_collection_response
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import simulation_automation_run_item_request_builder
 
 class RunsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class RunsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_simulation_automation_run_id(self,simulation_automation_run_id: str) -> simulation_automation_run_item_request_builder.SimulationAutomationRunItemRequestBuilder:
+        """
+        Provides operations to manage the runs property of the microsoft.graph.simulationAutomation entity.
+        Args:
+            simulation_automation_run_id: Unique identifier of the item
+        Returns: simulation_automation_run_item_request_builder.SimulationAutomationRunItemRequestBuilder
+        """
+        if simulation_automation_run_id is None:
+            raise Exception("simulation_automation_run_id cannot be undefined")
+        from .item import simulation_automation_run_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["simulationAutomationRun%2Did"] = simulation_automation_run_id
+        return simulation_automation_run_item_request_builder.SimulationAutomationRunItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[RunsRequestBuilderGetRequestConfiguration] = None) -> Optional[simulation_automation_run_collection_response.SimulationAutomationRunCollectionResponse]:
         """
-        Get a list of the attack simulation automation runs for a tenant.
+        A collection of simulation automation runs.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[simulation_automation_run_collection_response.SimulationAutomationRunCollectionResponse]
@@ -85,7 +101,7 @@ class RunsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RunsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the attack simulation automation runs for a tenant.
+        A collection of simulation automation runs.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class RunsRequestBuilder():
     @dataclass
     class RunsRequestBuilderGetQueryParameters():
         """
-        Get a list of the attack simulation automation runs for a tenant.
+        A collection of simulation automation runs.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models.o_data_errors import o_data_error
     from ......models.security import ediscovery_review_tag, ediscovery_review_tag_collection_response
     from .count import count_request_builder
+    from .item import ediscovery_review_tag_item_request_builder
     from .security_as_hierarchy import security_as_hierarchy_request_builder
 
 class TagsRequestBuilder():
@@ -37,9 +38,24 @@ class TagsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_ediscovery_review_tag_id(self,ediscovery_review_tag_id: str) -> ediscovery_review_tag_item_request_builder.EdiscoveryReviewTagItemRequestBuilder:
+        """
+        Provides operations to manage the tags property of the microsoft.graph.security.ediscoveryCase entity.
+        Args:
+            ediscovery_review_tag_id: Unique identifier of the item
+        Returns: ediscovery_review_tag_item_request_builder.EdiscoveryReviewTagItemRequestBuilder
+        """
+        if ediscovery_review_tag_id is None:
+            raise Exception("ediscovery_review_tag_id cannot be undefined")
+        from .item import ediscovery_review_tag_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["ediscoveryReviewTag%2Did"] = ediscovery_review_tag_id
+        return ediscovery_review_tag_item_request_builder.EdiscoveryReviewTagItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[TagsRequestBuilderGetRequestConfiguration] = None) -> Optional[ediscovery_review_tag_collection_response.EdiscoveryReviewTagCollectionResponse]:
         """
-        Get a list of eDiscoveryReviewTag objects and their properties.
+        Returns a list of ediscoveryReviewTag objects associated to this case.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ediscovery_review_tag_collection_response.EdiscoveryReviewTagCollectionResponse]
@@ -61,7 +77,7 @@ class TagsRequestBuilder():
     
     async def post(self,body: Optional[ediscovery_review_tag.EdiscoveryReviewTag] = None, request_configuration: Optional[TagsRequestBuilderPostRequestConfiguration] = None) -> Optional[ediscovery_review_tag.EdiscoveryReviewTag]:
         """
-        Create a new ediscoveryReviewTag object.
+        Create new navigation property to tags for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -86,7 +102,7 @@ class TagsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TagsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of eDiscoveryReviewTag objects and their properties.
+        Returns a list of ediscoveryReviewTag objects associated to this case.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +120,7 @@ class TagsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[ediscovery_review_tag.EdiscoveryReviewTag] = None, request_configuration: Optional[TagsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new ediscoveryReviewTag object.
+        Create new navigation property to tags for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -144,7 +160,7 @@ class TagsRequestBuilder():
     @dataclass
     class TagsRequestBuilderGetQueryParameters():
         """
-        Get a list of eDiscoveryReviewTag objects and their properties.
+        Returns a list of ediscoveryReviewTag objects associated to this case.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

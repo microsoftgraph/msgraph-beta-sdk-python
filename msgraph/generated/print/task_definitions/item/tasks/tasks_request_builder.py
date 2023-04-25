@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import print_task, print_task_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import print_task_item_request_builder
 
 class TasksRequestBuilder():
     """
@@ -36,9 +37,24 @@ class TasksRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_print_task_id(self,print_task_id: str) -> print_task_item_request_builder.PrintTaskItemRequestBuilder:
+        """
+        Provides operations to manage the tasks property of the microsoft.graph.printTaskDefinition entity.
+        Args:
+            print_task_id: Unique identifier of the item
+        Returns: print_task_item_request_builder.PrintTaskItemRequestBuilder
+        """
+        if print_task_id is None:
+            raise Exception("print_task_id cannot be undefined")
+        from .item import print_task_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["printTask%2Did"] = print_task_id
+        return print_task_item_request_builder.PrintTaskItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[TasksRequestBuilderGetRequestConfiguration] = None) -> Optional[print_task_collection_response.PrintTaskCollectionResponse]:
         """
-        Retrieve a list of tasks associated with a task definition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
+        A list of tasks that have been created based on this definition. The list includes currently running tasks and recently completed tasks. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[print_task_collection_response.PrintTaskCollectionResponse]
@@ -85,7 +101,7 @@ class TasksRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TasksRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of tasks associated with a task definition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
+        A list of tasks that have been created based on this definition. The list includes currently running tasks and recently completed tasks. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class TasksRequestBuilder():
     @dataclass
     class TasksRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of tasks associated with a task definition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
+        A list of tasks that have been created based on this definition. The list includes currently running tasks and recently completed tasks. Read-only.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

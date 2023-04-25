@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import team_template_definition, team_template_definition_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import team_template_definition_item_request_builder
 
 class DefinitionsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class DefinitionsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_team_template_definition_id(self,team_template_definition_id: str) -> team_template_definition_item_request_builder.TeamTemplateDefinitionItemRequestBuilder:
+        """
+        Provides operations to manage the definitions property of the microsoft.graph.teamTemplate entity.
+        Args:
+            team_template_definition_id: Unique identifier of the item
+        Returns: team_template_definition_item_request_builder.TeamTemplateDefinitionItemRequestBuilder
+        """
+        if team_template_definition_id is None:
+            raise Exception("team_template_definition_id cannot be undefined")
+        from .item import team_template_definition_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["teamTemplateDefinition%2Did"] = team_template_definition_id
+        return team_template_definition_item_request_builder.TeamTemplateDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[DefinitionsRequestBuilderGetRequestConfiguration] = None) -> Optional[team_template_definition_collection_response.TeamTemplateDefinitionCollectionResponse]:
         """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models.external_connectors import external_activity, external_activity_collection_response
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import external_activity_item_request_builder
 
 class ActivitiesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ActivitiesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_external_activity_id(self,external_activity_id: str) -> external_activity_item_request_builder.ExternalActivityItemRequestBuilder:
+        """
+        Provides operations to manage the activities property of the microsoft.graph.externalConnectors.externalItem entity.
+        Args:
+            external_activity_id: Unique identifier of the item
+        Returns: external_activity_item_request_builder.ExternalActivityItemRequestBuilder
+        """
+        if external_activity_id is None:
+            raise Exception("external_activity_id cannot be undefined")
+        from .item import external_activity_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["externalActivity%2Did"] = external_activity_id
+        return external_activity_item_request_builder.ExternalActivityItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ActivitiesRequestBuilderGetRequestConfiguration] = None) -> Optional[external_activity_collection_response.ExternalActivityCollectionResponse]:
         """

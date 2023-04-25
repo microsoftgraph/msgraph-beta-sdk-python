@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .create_or_get import create_or_get_request_builder
+    from .item import online_meeting_item_request_builder
 
 class OnlineMeetingsRequestBuilder():
     """
@@ -37,9 +38,24 @@ class OnlineMeetingsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_online_meeting_id(self,online_meeting_id: str) -> online_meeting_item_request_builder.OnlineMeetingItemRequestBuilder:
+        """
+        Provides operations to manage the onlineMeetings property of the microsoft.graph.cloudCommunications entity.
+        Args:
+            online_meeting_id: Unique identifier of the item
+        Returns: online_meeting_item_request_builder.OnlineMeetingItemRequestBuilder
+        """
+        if online_meeting_id is None:
+            raise Exception("online_meeting_id cannot be undefined")
+        from .item import online_meeting_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["onlineMeeting%2Did"] = online_meeting_id
+        return online_meeting_item_request_builder.OnlineMeetingItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[OnlineMeetingsRequestBuilderGetRequestConfiguration] = None) -> Optional[online_meeting_collection_response.OnlineMeetingCollectionResponse]:
         """
-        Retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report and Teams live event recordings are online meeting artifacts. For details, see Online meeting artifacts and permissions.
+        Get onlineMeetings from communications
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[online_meeting_collection_response.OnlineMeetingCollectionResponse]
@@ -86,7 +102,7 @@ class OnlineMeetingsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[OnlineMeetingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report and Teams live event recordings are online meeting artifacts. For details, see Online meeting artifacts and permissions.
+        Get onlineMeetings from communications
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -144,7 +160,7 @@ class OnlineMeetingsRequestBuilder():
     @dataclass
     class OnlineMeetingsRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report and Teams live event recordings are online meeting artifacts. For details, see Online meeting artifacts and permissions.
+        Get onlineMeetings from communications
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

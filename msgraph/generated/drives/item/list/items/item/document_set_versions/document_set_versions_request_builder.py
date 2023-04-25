@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .......models import document_set_version, document_set_version_collection_response
     from .......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import document_set_version_item_request_builder
 
 class DocumentSetVersionsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class DocumentSetVersionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_document_set_version_id(self,document_set_version_id: str) -> document_set_version_item_request_builder.DocumentSetVersionItemRequestBuilder:
+        """
+        Provides operations to manage the documentSetVersions property of the microsoft.graph.listItem entity.
+        Args:
+            document_set_version_id: Unique identifier of the item
+        Returns: document_set_version_item_request_builder.DocumentSetVersionItemRequestBuilder
+        """
+        if document_set_version_id is None:
+            raise Exception("document_set_version_id cannot be undefined")
+        from .item import document_set_version_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["documentSetVersion%2Did"] = document_set_version_id
+        return document_set_version_item_request_builder.DocumentSetVersionItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[DocumentSetVersionsRequestBuilderGetRequestConfiguration] = None) -> Optional[document_set_version_collection_response.DocumentSetVersionCollectionResponse]:
         """
-        Get a list of the versions of a document set item in a list.
+        Version information for a document set version created by a user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[document_set_version_collection_response.DocumentSetVersionCollectionResponse]
@@ -60,7 +76,7 @@ class DocumentSetVersionsRequestBuilder():
     
     async def post(self,body: Optional[document_set_version.DocumentSetVersion] = None, request_configuration: Optional[DocumentSetVersionsRequestBuilderPostRequestConfiguration] = None) -> Optional[document_set_version.DocumentSetVersion]:
         """
-        Create a new version of a document set item in a list.
+        Create new navigation property to documentSetVersions for drives
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class DocumentSetVersionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[DocumentSetVersionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the versions of a document set item in a list.
+        Version information for a document set version created by a user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class DocumentSetVersionsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[document_set_version.DocumentSetVersion] = None, request_configuration: Optional[DocumentSetVersionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new version of a document set item in a list.
+        Create new navigation property to documentSetVersions for drives
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class DocumentSetVersionsRequestBuilder():
     @dataclass
     class DocumentSetVersionsRequestBuilderGetQueryParameters():
         """
-        Get a list of the versions of a document set item in a list.
+        Version information for a document set version created by a user.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

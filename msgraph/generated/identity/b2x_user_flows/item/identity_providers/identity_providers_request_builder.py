@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import identity_provider_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import identity_provider_item_request_builder
 
 class IdentityProvidersRequestBuilder():
     """
@@ -36,9 +37,24 @@ class IdentityProvidersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_identity_provider_id(self,identity_provider_id: str) -> identity_provider_item_request_builder.IdentityProviderItemRequestBuilder:
+        """
+        Provides operations to manage the identityProviders property of the microsoft.graph.b2xIdentityUserFlow entity.
+        Args:
+            identity_provider_id: Unique identifier of the item
+        Returns: identity_provider_item_request_builder.IdentityProviderItemRequestBuilder
+        """
+        if identity_provider_id is None:
+            raise Exception("identity_provider_id cannot be undefined")
+        from .item import identity_provider_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["identityProvider%2Did"] = identity_provider_id
+        return identity_provider_item_request_builder.IdentityProviderItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[IdentityProvidersRequestBuilderGetRequestConfiguration] = None) -> Optional[identity_provider_collection_response.IdentityProviderCollectionResponse]:
         """
-        Get the identity providers in a b2xIdentityUserFlow object.
+        Get identityProviders from identity
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[identity_provider_collection_response.IdentityProviderCollectionResponse]
@@ -60,7 +76,7 @@ class IdentityProvidersRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[IdentityProvidersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the identity providers in a b2xIdentityUserFlow object.
+        Get identityProviders from identity
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -88,7 +104,7 @@ class IdentityProvidersRequestBuilder():
     @dataclass
     class IdentityProvidersRequestBuilderGetQueryParameters():
         """
-        Get the identity providers in a b2xIdentityUserFlow object.
+        Get identityProviders from identity
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

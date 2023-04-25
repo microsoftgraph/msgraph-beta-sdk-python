@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models import attendance_record, attendance_record_collection_response
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import attendance_record_item_request_builder
 
 class AttendanceRecordsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class AttendanceRecordsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_attendance_record_id(self,attendance_record_id: str) -> attendance_record_item_request_builder.AttendanceRecordItemRequestBuilder:
+        """
+        Provides operations to manage the attendanceRecords property of the microsoft.graph.meetingAttendanceReport entity.
+        Args:
+            attendance_record_id: Unique identifier of the item
+        Returns: attendance_record_item_request_builder.AttendanceRecordItemRequestBuilder
+        """
+        if attendance_record_id is None:
+            raise Exception("attendance_record_id cannot be undefined")
+        from .item import attendance_record_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["attendanceRecord%2Did"] = attendance_record_id
+        return attendance_record_item_request_builder.AttendanceRecordItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[AttendanceRecordsRequestBuilderGetRequestConfiguration] = None) -> Optional[attendance_record_collection_response.AttendanceRecordCollectionResponse]:
         """
-        Get a list of attendanceRecord objects and their properties.
+        List of attendance records of an attendance report. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[attendance_record_collection_response.AttendanceRecordCollectionResponse]
@@ -85,7 +101,7 @@ class AttendanceRecordsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AttendanceRecordsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of attendanceRecord objects and their properties.
+        List of attendance records of an attendance report. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class AttendanceRecordsRequestBuilder():
     @dataclass
     class AttendanceRecordsRequestBuilderGetQueryParameters():
         """
-        Get a list of attendanceRecord objects and their properties.
+        List of attendance records of an attendance report. Read-only.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

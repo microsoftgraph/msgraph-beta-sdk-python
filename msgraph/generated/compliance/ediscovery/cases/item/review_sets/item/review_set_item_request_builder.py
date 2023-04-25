@@ -15,7 +15,6 @@ if TYPE_CHECKING:
     from .ediscovery_add_to_review_set import ediscovery_add_to_review_set_request_builder
     from .ediscovery_export import ediscovery_export_request_builder
     from .queries import queries_request_builder
-    from .queries.item import review_set_query_item_request_builder
 
 class ReviewSetItemRequestBuilder():
     """
@@ -104,21 +103,6 @@ class ReviewSetItemRequestBuilder():
         from .......models.ediscovery import review_set
 
         return await self.request_adapter.send_async(request_info, review_set.ReviewSet, error_mapping)
-    
-    def queries_by_id(self,id: str) -> review_set_query_item_request_builder.ReviewSetQueryItemRequestBuilder:
-        """
-        Provides operations to manage the queries property of the microsoft.graph.ediscovery.reviewSet entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: review_set_query_item_request_builder.ReviewSetQueryItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .queries.item import review_set_query_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["reviewSetQuery%2Did"] = id
-        return review_set_query_item_request_builder.ReviewSetQueryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[ReviewSetItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

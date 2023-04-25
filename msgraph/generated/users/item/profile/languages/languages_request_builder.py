@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import language_proficiency, language_proficiency_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import language_proficiency_item_request_builder
 
 class LanguagesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class LanguagesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_language_proficiency_id(self,language_proficiency_id: str) -> language_proficiency_item_request_builder.LanguageProficiencyItemRequestBuilder:
+        """
+        Provides operations to manage the languages property of the microsoft.graph.profile entity.
+        Args:
+            language_proficiency_id: Unique identifier of the item
+        Returns: language_proficiency_item_request_builder.LanguageProficiencyItemRequestBuilder
+        """
+        if language_proficiency_id is None:
+            raise Exception("language_proficiency_id cannot be undefined")
+        from .item import language_proficiency_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["languageProficiency%2Did"] = language_proficiency_id
+        return language_proficiency_item_request_builder.LanguageProficiencyItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[LanguagesRequestBuilderGetRequestConfiguration] = None) -> Optional[language_proficiency_collection_response.LanguageProficiencyCollectionResponse]:
         """
-        Retrieve a list of languageProficiency objects from a user's profile.
+        Represents detailed information about languages that a user has added to their profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[language_proficiency_collection_response.LanguageProficiencyCollectionResponse]
@@ -60,7 +76,7 @@ class LanguagesRequestBuilder():
     
     async def post(self,body: Optional[language_proficiency.LanguageProficiency] = None, request_configuration: Optional[LanguagesRequestBuilderPostRequestConfiguration] = None) -> Optional[language_proficiency.LanguageProficiency]:
         """
-        Use this API to create a new languageProficiency object in a user's profile.
+        Create new navigation property to languages for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class LanguagesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[LanguagesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of languageProficiency objects from a user's profile.
+        Represents detailed information about languages that a user has added to their profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class LanguagesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[language_proficiency.LanguageProficiency] = None, request_configuration: Optional[LanguagesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Use this API to create a new languageProficiency object in a user's profile.
+        Create new navigation property to languages for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class LanguagesRequestBuilder():
     @dataclass
     class LanguagesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of languageProficiency objects from a user's profile.
+        Represents detailed information about languages that a user has added to their profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

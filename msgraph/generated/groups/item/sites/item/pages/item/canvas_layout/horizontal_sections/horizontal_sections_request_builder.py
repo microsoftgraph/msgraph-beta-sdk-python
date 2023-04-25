@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .........models import horizontal_section, horizontal_section_collection_response
     from .........models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import horizontal_section_item_request_builder
 
 class HorizontalSectionsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class HorizontalSectionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_horizontal_section_id(self,horizontal_section_id: str) -> horizontal_section_item_request_builder.HorizontalSectionItemRequestBuilder:
+        """
+        Provides operations to manage the horizontalSections property of the microsoft.graph.canvasLayout entity.
+        Args:
+            horizontal_section_id: Unique identifier of the item
+        Returns: horizontal_section_item_request_builder.HorizontalSectionItemRequestBuilder
+        """
+        if horizontal_section_id is None:
+            raise Exception("horizontal_section_id cannot be undefined")
+        from .item import horizontal_section_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["horizontalSection%2Did"] = horizontal_section_id
+        return horizontal_section_item_request_builder.HorizontalSectionItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[HorizontalSectionsRequestBuilderGetRequestConfiguration] = None) -> Optional[horizontal_section_collection_response.HorizontalSectionCollectionResponse]:
         """
-        Get a list of the horizontalSection objects and their properties. Sort by `id` in ascending order.
+        Collection of horizontal sections on the SharePoint page.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[horizontal_section_collection_response.HorizontalSectionCollectionResponse]
@@ -85,7 +101,7 @@ class HorizontalSectionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[HorizontalSectionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the horizontalSection objects and their properties. Sort by `id` in ascending order.
+        Collection of horizontal sections on the SharePoint page.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class HorizontalSectionsRequestBuilder():
     @dataclass
     class HorizontalSectionsRequestBuilderGetQueryParameters():
         """
-        Get a list of the horizontalSection objects and their properties. Sort by `id` in ascending order.
+        Collection of horizontal sections on the SharePoint page.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -15,13 +15,13 @@ class UnifiedRbacApplication(entity.Entity):
         super().__init__()
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The resourceNamespaces property
+        # Resource that represents a collection of related actions.
         self._resource_namespaces: Optional[List[unified_rbac_resource_namespace.UnifiedRbacResourceNamespace]] = None
-        # The roleAssignments property
+        # Resource to grant access to users or groups.
         self._role_assignments: Optional[List[unified_role_assignment.UnifiedRoleAssignment]] = None
-        # The roleDefinitions property
+        # The roles allowed by RBAC providers and the permissions assigned to the roles.
         self._role_definitions: Optional[List[unified_role_definition.UnifiedRoleDefinition]] = None
-        # The transitiveRoleAssignments property
+        # Resource to grant access to users or groups that are transitive.
         self._transitive_role_assignments: Optional[List[unified_role_assignment.UnifiedRoleAssignment]] = None
     
     @staticmethod
@@ -56,7 +56,7 @@ class UnifiedRbacApplication(entity.Entity):
     @property
     def resource_namespaces(self,) -> Optional[List[unified_rbac_resource_namespace.UnifiedRbacResourceNamespace]]:
         """
-        Gets the resourceNamespaces property value. The resourceNamespaces property
+        Gets the resourceNamespaces property value. Resource that represents a collection of related actions.
         Returns: Optional[List[unified_rbac_resource_namespace.UnifiedRbacResourceNamespace]]
         """
         return self._resource_namespaces
@@ -64,7 +64,7 @@ class UnifiedRbacApplication(entity.Entity):
     @resource_namespaces.setter
     def resource_namespaces(self,value: Optional[List[unified_rbac_resource_namespace.UnifiedRbacResourceNamespace]] = None) -> None:
         """
-        Sets the resourceNamespaces property value. The resourceNamespaces property
+        Sets the resourceNamespaces property value. Resource that represents a collection of related actions.
         Args:
             value: Value to set for the resource_namespaces property.
         """
@@ -73,7 +73,7 @@ class UnifiedRbacApplication(entity.Entity):
     @property
     def role_assignments(self,) -> Optional[List[unified_role_assignment.UnifiedRoleAssignment]]:
         """
-        Gets the roleAssignments property value. The roleAssignments property
+        Gets the roleAssignments property value. Resource to grant access to users or groups.
         Returns: Optional[List[unified_role_assignment.UnifiedRoleAssignment]]
         """
         return self._role_assignments
@@ -81,7 +81,7 @@ class UnifiedRbacApplication(entity.Entity):
     @role_assignments.setter
     def role_assignments(self,value: Optional[List[unified_role_assignment.UnifiedRoleAssignment]] = None) -> None:
         """
-        Sets the roleAssignments property value. The roleAssignments property
+        Sets the roleAssignments property value. Resource to grant access to users or groups.
         Args:
             value: Value to set for the role_assignments property.
         """
@@ -90,7 +90,7 @@ class UnifiedRbacApplication(entity.Entity):
     @property
     def role_definitions(self,) -> Optional[List[unified_role_definition.UnifiedRoleDefinition]]:
         """
-        Gets the roleDefinitions property value. The roleDefinitions property
+        Gets the roleDefinitions property value. The roles allowed by RBAC providers and the permissions assigned to the roles.
         Returns: Optional[List[unified_role_definition.UnifiedRoleDefinition]]
         """
         return self._role_definitions
@@ -98,7 +98,7 @@ class UnifiedRbacApplication(entity.Entity):
     @role_definitions.setter
     def role_definitions(self,value: Optional[List[unified_role_definition.UnifiedRoleDefinition]] = None) -> None:
         """
-        Sets the roleDefinitions property value. The roleDefinitions property
+        Sets the roleDefinitions property value. The roles allowed by RBAC providers and the permissions assigned to the roles.
         Args:
             value: Value to set for the role_definitions property.
         """
@@ -121,7 +121,7 @@ class UnifiedRbacApplication(entity.Entity):
     @property
     def transitive_role_assignments(self,) -> Optional[List[unified_role_assignment.UnifiedRoleAssignment]]:
         """
-        Gets the transitiveRoleAssignments property value. The transitiveRoleAssignments property
+        Gets the transitiveRoleAssignments property value. Resource to grant access to users or groups that are transitive.
         Returns: Optional[List[unified_role_assignment.UnifiedRoleAssignment]]
         """
         return self._transitive_role_assignments
@@ -129,7 +129,7 @@ class UnifiedRbacApplication(entity.Entity):
     @transitive_role_assignments.setter
     def transitive_role_assignments(self,value: Optional[List[unified_role_assignment.UnifiedRoleAssignment]] = None) -> None:
         """
-        Sets the transitiveRoleAssignments property value. The transitiveRoleAssignments property
+        Sets the transitiveRoleAssignments property value. Resource to grant access to users or groups that are transitive.
         Args:
             value: Value to set for the transitive_role_assignments property.
         """

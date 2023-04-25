@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ........models import linked_resource, linked_resource_collection_response
     from ........models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import linked_resource_item_request_builder
 
 class LinkedResourcesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class LinkedResourcesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_linked_resource_id(self,linked_resource_id: str) -> linked_resource_item_request_builder.LinkedResourceItemRequestBuilder:
+        """
+        Provides operations to manage the linkedResources property of the microsoft.graph.todoTask entity.
+        Args:
+            linked_resource_id: Unique identifier of the item
+        Returns: linked_resource_item_request_builder.LinkedResourceItemRequestBuilder
+        """
+        if linked_resource_id is None:
+            raise Exception("linked_resource_id cannot be undefined")
+        from .item import linked_resource_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["linkedResource%2Did"] = linked_resource_id
+        return linked_resource_item_request_builder.LinkedResourceItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[LinkedResourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[linked_resource_collection_response.LinkedResourceCollectionResponse]:
         """
-        Get information of one or more items in a partner application, based on which a specified task was created. The information is represented in a linkedResource object for each item. It includes an external ID for the item in the partner application, and if applicable, a deep link to that item in the application.
+        A collection of resources linked to the task.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[linked_resource_collection_response.LinkedResourceCollectionResponse]
@@ -60,7 +76,7 @@ class LinkedResourcesRequestBuilder():
     
     async def post(self,body: Optional[linked_resource.LinkedResource] = None, request_configuration: Optional[LinkedResourcesRequestBuilderPostRequestConfiguration] = None) -> Optional[linked_resource.LinkedResource]:
         """
-        Create a linkedResource object to associate a specified task with an item in a partner application. For example, you can associate a task with an email item in Outlook that spurred the task, and you can create a **linkedResource** object to track its association. You can also create a **linkedResource** object while creating a todoTask.
+        Create new navigation property to linkedResources for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class LinkedResourcesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[LinkedResourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get information of one or more items in a partner application, based on which a specified task was created. The information is represented in a linkedResource object for each item. It includes an external ID for the item in the partner application, and if applicable, a deep link to that item in the application.
+        A collection of resources linked to the task.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class LinkedResourcesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[linked_resource.LinkedResource] = None, request_configuration: Optional[LinkedResourcesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a linkedResource object to associate a specified task with an item in a partner application. For example, you can associate a task with an email item in Outlook that spurred the task, and you can create a **linkedResource** object to track its association. You can also create a **linkedResource** object while creating a todoTask.
+        Create new navigation property to linkedResources for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class LinkedResourcesRequestBuilder():
     @dataclass
     class LinkedResourcesRequestBuilderGetQueryParameters():
         """
-        Get information of one or more items in a partner application, based on which a specified task was created. The information is represented in a linkedResource object for each item. It includes an external ID for the item in the partner application, and if applicable, a deep link to that item in the application.
+        A collection of resources linked to the task.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

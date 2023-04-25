@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .filter_by_current_user_with_on import filter_by_current_user_with_on_request_builder
+    from .item import unified_role_eligibility_schedule_request_item_request_builder
 
 class RoleEligibilityScheduleRequestsRequestBuilder():
     """
@@ -37,6 +38,21 @@ class RoleEligibilityScheduleRequestsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_unified_role_eligibility_schedule_request_id(self,unified_role_eligibility_schedule_request_id: str) -> unified_role_eligibility_schedule_request_item_request_builder.UnifiedRoleEligibilityScheduleRequestItemRequestBuilder:
+        """
+        Provides operations to manage the roleEligibilityScheduleRequests property of the microsoft.graph.rbacApplication entity.
+        Args:
+            unified_role_eligibility_schedule_request_id: Unique identifier of the item
+        Returns: unified_role_eligibility_schedule_request_item_request_builder.UnifiedRoleEligibilityScheduleRequestItemRequestBuilder
+        """
+        if unified_role_eligibility_schedule_request_id is None:
+            raise Exception("unified_role_eligibility_schedule_request_id cannot be undefined")
+        from .item import unified_role_eligibility_schedule_request_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["unifiedRoleEligibilityScheduleRequest%2Did"] = unified_role_eligibility_schedule_request_id
+        return unified_role_eligibility_schedule_request_item_request_builder.UnifiedRoleEligibilityScheduleRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     def filter_by_current_user_with_on(self,on: Optional[str] = None) -> filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder:
         """
         Provides operations to call the filterByCurrentUser method.
@@ -52,7 +68,7 @@ class RoleEligibilityScheduleRequestsRequestBuilder():
     
     async def get(self,request_configuration: Optional[RoleEligibilityScheduleRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_eligibility_schedule_request_collection_response.UnifiedRoleEligibilityScheduleRequestCollectionResponse]:
         """
-        Get a list of the unifiedRoleEligibilityScheduleRequest objects and their properties.
+        Get roleEligibilityScheduleRequests from roleManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[unified_role_eligibility_schedule_request_collection_response.UnifiedRoleEligibilityScheduleRequestCollectionResponse]
@@ -74,7 +90,7 @@ class RoleEligibilityScheduleRequestsRequestBuilder():
     
     async def post(self,body: Optional[unified_role_eligibility_schedule_request.UnifiedRoleEligibilityScheduleRequest] = None, request_configuration: Optional[RoleEligibilityScheduleRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[unified_role_eligibility_schedule_request.UnifiedRoleEligibilityScheduleRequest]:
         """
-        Create a new unifiedRoleEligibilityScheduleRequest object. This operation allows both admins and eligible users to add, revoke, or extend eligible assignments.
+        Create new navigation property to roleEligibilityScheduleRequests for roleManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,7 +115,7 @@ class RoleEligibilityScheduleRequestsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RoleEligibilityScheduleRequestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the unifiedRoleEligibilityScheduleRequest objects and their properties.
+        Get roleEligibilityScheduleRequests from roleManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -117,7 +133,7 @@ class RoleEligibilityScheduleRequestsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[unified_role_eligibility_schedule_request.UnifiedRoleEligibilityScheduleRequest] = None, request_configuration: Optional[RoleEligibilityScheduleRequestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new unifiedRoleEligibilityScheduleRequest object. This operation allows both admins and eligible users to add, revoke, or extend eligible assignments.
+        Create new navigation property to roleEligibilityScheduleRequests for roleManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -148,7 +164,7 @@ class RoleEligibilityScheduleRequestsRequestBuilder():
     @dataclass
     class RoleEligibilityScheduleRequestsRequestBuilderGetQueryParameters():
         """
-        Get a list of the unifiedRoleEligibilityScheduleRequest objects and their properties.
+        Get roleEligibilityScheduleRequests from roleManagement
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

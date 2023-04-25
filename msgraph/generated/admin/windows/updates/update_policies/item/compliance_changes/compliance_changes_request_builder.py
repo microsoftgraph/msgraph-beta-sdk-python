@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .......models.o_data_errors import o_data_error
     from .......models.windows_updates import compliance_change, compliance_change_collection_response
     from .count import count_request_builder
+    from .item import compliance_change_item_request_builder
 
 class ComplianceChangesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ComplianceChangesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_compliance_change_id(self,compliance_change_id: str) -> compliance_change_item_request_builder.ComplianceChangeItemRequestBuilder:
+        """
+        Provides operations to manage the complianceChanges property of the microsoft.graph.windowsUpdates.updatePolicy entity.
+        Args:
+            compliance_change_id: Unique identifier of the item
+        Returns: compliance_change_item_request_builder.ComplianceChangeItemRequestBuilder
+        """
+        if compliance_change_id is None:
+            raise Exception("compliance_change_id cannot be undefined")
+        from .item import compliance_change_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["complianceChange%2Did"] = compliance_change_id
+        return compliance_change_item_request_builder.ComplianceChangeItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ComplianceChangesRequestBuilderGetRequestConfiguration] = None) -> Optional[compliance_change_collection_response.ComplianceChangeCollectionResponse]:
         """
-        Get a list of the complianceChange objects and their properties.
+        Compliance changes like content approvals which result in the automatic creation of deployments using the audience and deploymentSettings of the policy.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[compliance_change_collection_response.ComplianceChangeCollectionResponse]
@@ -60,7 +76,7 @@ class ComplianceChangesRequestBuilder():
     
     async def post(self,body: Optional[compliance_change.ComplianceChange] = None, request_configuration: Optional[ComplianceChangesRequestBuilderPostRequestConfiguration] = None) -> Optional[compliance_change.ComplianceChange]:
         """
-        Create a new contentApproval object.
+        Create new navigation property to complianceChanges for admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class ComplianceChangesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ComplianceChangesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the complianceChange objects and their properties.
+        Compliance changes like content approvals which result in the automatic creation of deployments using the audience and deploymentSettings of the policy.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class ComplianceChangesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[compliance_change.ComplianceChange] = None, request_configuration: Optional[ComplianceChangesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new contentApproval object.
+        Create new navigation property to complianceChanges for admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class ComplianceChangesRequestBuilder():
     @dataclass
     class ComplianceChangesRequestBuilderGetQueryParameters():
         """
-        Get a list of the complianceChange objects and their properties.
+        Compliance changes like content approvals which result in the automatic creation of deployments using the audience and deploymentSettings of the policy.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

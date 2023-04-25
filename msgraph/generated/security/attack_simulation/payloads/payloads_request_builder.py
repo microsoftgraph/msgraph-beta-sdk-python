@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import payload, payload_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import payload_item_request_builder
 
 class PayloadsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class PayloadsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_payload_id(self,payload_id: str) -> payload_item_request_builder.PayloadItemRequestBuilder:
+        """
+        Provides operations to manage the payloads property of the microsoft.graph.attackSimulationRoot entity.
+        Args:
+            payload_id: Unique identifier of the item
+        Returns: payload_item_request_builder.PayloadItemRequestBuilder
+        """
+        if payload_id is None:
+            raise Exception("payload_id cannot be undefined")
+        from .item import payload_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["payload%2Did"] = payload_id
+        return payload_item_request_builder.PayloadItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[PayloadsRequestBuilderGetRequestConfiguration] = None) -> Optional[payload_collection_response.PayloadCollectionResponse]:
         """
-        Get a list of payloads for attack simulation campaigns. This operation expects the mandatory parameter **source** to filter and query the respective data source.
+        Represents an attack simulation training campaign payload in a tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[payload_collection_response.PayloadCollectionResponse]
@@ -85,7 +101,7 @@ class PayloadsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PayloadsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of payloads for attack simulation campaigns. This operation expects the mandatory parameter **source** to filter and query the respective data source.
+        Represents an attack simulation training campaign payload in a tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class PayloadsRequestBuilder():
     @dataclass
     class PayloadsRequestBuilderGetQueryParameters():
         """
-        Get a list of payloads for attack simulation campaigns. This operation expects the mandatory parameter **source** to filter and query the respective data source.
+        Represents an attack simulation training campaign payload in a tenant.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

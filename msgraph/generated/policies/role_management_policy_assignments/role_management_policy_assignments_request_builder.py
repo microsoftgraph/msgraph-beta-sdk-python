@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import unified_role_management_policy_assignment, unified_role_management_policy_assignment_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import unified_role_management_policy_assignment_item_request_builder
 
 class RoleManagementPolicyAssignmentsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class RoleManagementPolicyAssignmentsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_unified_role_management_policy_assignment_id(self,unified_role_management_policy_assignment_id: str) -> unified_role_management_policy_assignment_item_request_builder.UnifiedRoleManagementPolicyAssignmentItemRequestBuilder:
+        """
+        Provides operations to manage the roleManagementPolicyAssignments property of the microsoft.graph.policyRoot entity.
+        Args:
+            unified_role_management_policy_assignment_id: Unique identifier of the item
+        Returns: unified_role_management_policy_assignment_item_request_builder.UnifiedRoleManagementPolicyAssignmentItemRequestBuilder
+        """
+        if unified_role_management_policy_assignment_id is None:
+            raise Exception("unified_role_management_policy_assignment_id cannot be undefined")
+        from .item import unified_role_management_policy_assignment_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["unifiedRoleManagementPolicyAssignment%2Did"] = unified_role_management_policy_assignment_id
+        return unified_role_management_policy_assignment_item_request_builder.UnifiedRoleManagementPolicyAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[RoleManagementPolicyAssignmentsRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_management_policy_assignment_collection_response.UnifiedRoleManagementPolicyAssignmentCollectionResponse]:
         """
-        Get the details of all role management policy assignments including the policies and rules associated with the Azure AD roles.
+        Represents the role management policy assignments.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[unified_role_management_policy_assignment_collection_response.UnifiedRoleManagementPolicyAssignmentCollectionResponse]
@@ -85,7 +101,7 @@ class RoleManagementPolicyAssignmentsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RoleManagementPolicyAssignmentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the details of all role management policy assignments including the policies and rules associated with the Azure AD roles.
+        Represents the role management policy assignments.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class RoleManagementPolicyAssignmentsRequestBuilder():
     @dataclass
     class RoleManagementPolicyAssignmentsRequestBuilderGetQueryParameters():
         """
-        Get the details of all role management policy assignments including the policies and rules associated with the Azure AD roles.
+        Represents the role management policy assignments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

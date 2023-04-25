@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ...models import advanced_threat_protection_onboarding_state_summary
     from ...models.o_data_errors import o_data_error
     from .advanced_threat_protection_onboarding_device_setting_states import advanced_threat_protection_onboarding_device_setting_states_request_builder
-    from .advanced_threat_protection_onboarding_device_setting_states.item import advanced_threat_protection_onboarding_device_setting_state_item_request_builder
 
 class AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder():
     """
@@ -36,21 +35,6 @@ class AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def advanced_threat_protection_onboarding_device_setting_states_by_id(self,id: str) -> advanced_threat_protection_onboarding_device_setting_state_item_request_builder.AdvancedThreatProtectionOnboardingDeviceSettingStateItemRequestBuilder:
-        """
-        Provides operations to manage the advancedThreatProtectionOnboardingDeviceSettingStates property of the microsoft.graph.advancedThreatProtectionOnboardingStateSummary entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: advanced_threat_protection_onboarding_device_setting_state_item_request_builder.AdvancedThreatProtectionOnboardingDeviceSettingStateItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .advanced_threat_protection_onboarding_device_setting_states.item import advanced_threat_protection_onboarding_device_setting_state_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["advancedThreatProtectionOnboardingDeviceSettingState%2Did"] = id
-        return advanced_threat_protection_onboarding_device_setting_state_item_request_builder.AdvancedThreatProtectionOnboardingDeviceSettingStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[AdvancedThreatProtectionOnboardingStateSummaryRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

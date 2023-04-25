@@ -14,7 +14,6 @@ if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .assign import assign_request_builder
     from .assignments import assignments_request_builder
-    from .assignments.item import cloud_pc_user_setting_assignment_item_request_builder
 
 class CloudPcUserSettingItemRequestBuilder():
     """
@@ -37,21 +36,6 @@ class CloudPcUserSettingItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def assignments_by_id(self,id: str) -> cloud_pc_user_setting_assignment_item_request_builder.CloudPcUserSettingAssignmentItemRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.cloudPcUserSetting entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: cloud_pc_user_setting_assignment_item_request_builder.CloudPcUserSettingAssignmentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .assignments.item import cloud_pc_user_setting_assignment_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["cloudPcUserSettingAssignment%2Did"] = id
-        return cloud_pc_user_setting_assignment_item_request_builder.CloudPcUserSettingAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[CloudPcUserSettingItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

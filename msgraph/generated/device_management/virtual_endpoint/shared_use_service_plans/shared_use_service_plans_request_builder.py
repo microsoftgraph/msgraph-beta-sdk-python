@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import cloud_pc_shared_use_service_plan, cloud_pc_shared_use_service_plan_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import cloud_pc_shared_use_service_plan_item_request_builder
 
 class SharedUseServicePlansRequestBuilder():
     """
@@ -36,9 +37,24 @@ class SharedUseServicePlansRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_cloud_pc_shared_use_service_plan_id(self,cloud_pc_shared_use_service_plan_id: str) -> cloud_pc_shared_use_service_plan_item_request_builder.CloudPcSharedUseServicePlanItemRequestBuilder:
+        """
+        Provides operations to manage the sharedUseServicePlans property of the microsoft.graph.virtualEndpoint entity.
+        Args:
+            cloud_pc_shared_use_service_plan_id: Unique identifier of the item
+        Returns: cloud_pc_shared_use_service_plan_item_request_builder.CloudPcSharedUseServicePlanItemRequestBuilder
+        """
+        if cloud_pc_shared_use_service_plan_id is None:
+            raise Exception("cloud_pc_shared_use_service_plan_id cannot be undefined")
+        from .item import cloud_pc_shared_use_service_plan_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["cloudPcSharedUseServicePlan%2Did"] = cloud_pc_shared_use_service_plan_id
+        return cloud_pc_shared_use_service_plan_item_request_builder.CloudPcSharedUseServicePlanItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[SharedUseServicePlansRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_shared_use_service_plan_collection_response.CloudPcSharedUseServicePlanCollectionResponse]:
         """
-        Get a list of the cloudPcSharedUseServicePlan objects and their properties.
+        Cloud PC shared-use service plans.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cloud_pc_shared_use_service_plan_collection_response.CloudPcSharedUseServicePlanCollectionResponse]
@@ -85,7 +101,7 @@ class SharedUseServicePlansRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SharedUseServicePlansRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the cloudPcSharedUseServicePlan objects and their properties.
+        Cloud PC shared-use service plans.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class SharedUseServicePlansRequestBuilder():
     @dataclass
     class SharedUseServicePlansRequestBuilderGetQueryParameters():
         """
-        Get a list of the cloudPcSharedUseServicePlan objects and their properties.
+        Cloud PC shared-use service plans.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

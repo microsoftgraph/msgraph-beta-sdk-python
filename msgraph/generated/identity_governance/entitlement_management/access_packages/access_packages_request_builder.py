@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .filter_by_current_user_with_on import filter_by_current_user_with_on_request_builder
+    from .item import access_package_item_request_builder
     from .search import search_request_builder
 
 class AccessPackagesRequestBuilder():
@@ -38,6 +39,21 @@ class AccessPackagesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_access_package_id(self,access_package_id: str) -> access_package_item_request_builder.AccessPackageItemRequestBuilder:
+        """
+        Provides operations to manage the accessPackages property of the microsoft.graph.entitlementManagement entity.
+        Args:
+            access_package_id: Unique identifier of the item
+        Returns: access_package_item_request_builder.AccessPackageItemRequestBuilder
+        """
+        if access_package_id is None:
+            raise Exception("access_package_id cannot be undefined")
+        from .item import access_package_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["accessPackage%2Did"] = access_package_id
+        return access_package_item_request_builder.AccessPackageItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     def filter_by_current_user_with_on(self,on: Optional[str] = None) -> filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder:
         """
         Provides operations to call the filterByCurrentUser method.
@@ -53,7 +69,7 @@ class AccessPackagesRequestBuilder():
     
     async def get(self,request_configuration: Optional[AccessPackagesRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_collection_response.AccessPackageCollectionResponse]:
         """
-        Retrieve a list of accessPackage objects.  The resulting list includes all the access packages that the caller has access to read, across all catalogs.
+        Represents access package objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_package_collection_response.AccessPackageCollectionResponse]
@@ -75,7 +91,7 @@ class AccessPackagesRequestBuilder():
     
     async def post(self,body: Optional[access_package.AccessPackage] = None, request_configuration: Optional[AccessPackagesRequestBuilderPostRequestConfiguration] = None) -> Optional[access_package.AccessPackage]:
         """
-        Create a new accessPackage object. The access package will be added to an existing accessPackageCatalog. After the access package is created, you can then create accessPackageAssignmentPolicies which specify how users are assigned to the access package.
+        Create new navigation property to accessPackages for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -100,7 +116,7 @@ class AccessPackagesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackagesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of accessPackage objects.  The resulting list includes all the access packages that the caller has access to read, across all catalogs.
+        Represents access package objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -118,7 +134,7 @@ class AccessPackagesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[access_package.AccessPackage] = None, request_configuration: Optional[AccessPackagesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new accessPackage object. The access package will be added to an existing accessPackageCatalog. After the access package is created, you can then create accessPackageAssignmentPolicies which specify how users are assigned to the access package.
+        Create new navigation property to accessPackages for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -158,7 +174,7 @@ class AccessPackagesRequestBuilder():
     @dataclass
     class AccessPackagesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of accessPackage objects.  The resulting list includes all the access packages that the caller has access to read, across all catalogs.
+        Represents access package objects.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

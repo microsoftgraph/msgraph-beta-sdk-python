@@ -14,7 +14,6 @@ if TYPE_CHECKING:
     from ......models.windows_updates import update_policy
     from .audience import audience_request_builder
     from .compliance_changes import compliance_changes_request_builder
-    from .compliance_changes.item import compliance_change_item_request_builder
 
 class UpdatePolicyItemRequestBuilder():
     """
@@ -37,21 +36,6 @@ class UpdatePolicyItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def compliance_changes_by_id(self,id: str) -> compliance_change_item_request_builder.ComplianceChangeItemRequestBuilder:
-        """
-        Provides operations to manage the complianceChanges property of the microsoft.graph.windowsUpdates.updatePolicy entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: compliance_change_item_request_builder.ComplianceChangeItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .compliance_changes.item import compliance_change_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["complianceChange%2Did"] = id
-        return compliance_change_item_request_builder.ComplianceChangeItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[UpdatePolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

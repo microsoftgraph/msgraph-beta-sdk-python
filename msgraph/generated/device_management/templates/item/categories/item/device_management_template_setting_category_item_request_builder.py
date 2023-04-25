@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ......models import device_management_template_setting_category
     from ......models.o_data_errors import o_data_error
     from .recommended_settings import recommended_settings_request_builder
-    from .recommended_settings.item import device_management_setting_instance_item_request_builder
 
 class DeviceManagementTemplateSettingCategoryItemRequestBuilder():
     """
@@ -102,21 +101,6 @@ class DeviceManagementTemplateSettingCategoryItemRequestBuilder():
         from ......models import device_management_template_setting_category
 
         return await self.request_adapter.send_async(request_info, device_management_template_setting_category.DeviceManagementTemplateSettingCategory, error_mapping)
-    
-    def recommended_settings_by_id(self,id: str) -> device_management_setting_instance_item_request_builder.DeviceManagementSettingInstanceItemRequestBuilder:
-        """
-        Provides operations to manage the recommendedSettings property of the microsoft.graph.deviceManagementTemplateSettingCategory entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: device_management_setting_instance_item_request_builder.DeviceManagementSettingInstanceItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .recommended_settings.item import device_management_setting_instance_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["deviceManagementSettingInstance%2Did"] = id
-        return device_management_setting_instance_item_request_builder.DeviceManagementSettingInstanceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceManagementTemplateSettingCategoryItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

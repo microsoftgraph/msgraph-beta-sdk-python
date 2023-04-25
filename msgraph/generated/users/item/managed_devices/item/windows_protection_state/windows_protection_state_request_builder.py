@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ......models import windows_protection_state
     from ......models.o_data_errors import o_data_error
     from .detected_malware_state import detected_malware_state_request_builder
-    from .detected_malware_state.item import windows_device_malware_state_item_request_builder
 
 class WindowsProtectionStateRequestBuilder():
     """
@@ -55,21 +54,6 @@ class WindowsProtectionStateRequestBuilder():
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
-    
-    def detected_malware_state_by_id(self,id: str) -> windows_device_malware_state_item_request_builder.WindowsDeviceMalwareStateItemRequestBuilder:
-        """
-        Provides operations to manage the detectedMalwareState property of the microsoft.graph.windowsProtectionState entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: windows_device_malware_state_item_request_builder.WindowsDeviceMalwareStateItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .detected_malware_state.item import windows_device_malware_state_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["windowsDeviceMalwareState%2Did"] = id
-        return windows_device_malware_state_item_request_builder.WindowsDeviceMalwareStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[WindowsProtectionStateRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_protection_state.WindowsProtectionState]:
         """

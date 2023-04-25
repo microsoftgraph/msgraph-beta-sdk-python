@@ -10,13 +10,13 @@ from . import entity
 class MailFolder(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new mailFolder and sets the default values.
+        Instantiates a new MailFolder and sets the default values.
         """
         super().__init__()
         # The number of immediate child mailFolders in the current mailFolder.
         self._child_folder_count: Optional[int] = None
         # The collection of child folders in the mailFolder.
-        self._child_folders: Optional[List[MailFolder]] = None
+        self._child_folders: Optional[List[mail_folder.MailFolder]] = None
         # The mailFolder's display name.
         self._display_name: Optional[str] = None
         # Indicates whether the mailFolder is hidden. This property can be set only when creating the folder. Find more information in Hidden mail folders.
@@ -60,15 +60,15 @@ class MailFolder(entity.Entity):
         self._child_folder_count = value
     
     @property
-    def child_folders(self,) -> Optional[List[MailFolder]]:
+    def child_folders(self,) -> Optional[List[mail_folder.MailFolder]]:
         """
         Gets the childFolders property value. The collection of child folders in the mailFolder.
-        Returns: Optional[List[MailFolder]]
+        Returns: Optional[List[mail_folder.MailFolder]]
         """
         return self._child_folders
     
     @child_folders.setter
-    def child_folders(self,value: Optional[List[MailFolder]] = None) -> None:
+    def child_folders(self,value: Optional[List[mail_folder.MailFolder]] = None) -> None:
         """
         Sets the childFolders property value. The collection of child folders in the mailFolder.
         Args:
@@ -120,7 +120,7 @@ class MailFolder(entity.Entity):
         from . import entity, mail_search_folder, message, message_rule, multi_value_legacy_extended_property, single_value_legacy_extended_property, user_configuration
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "childFolders": lambda n : setattr(self, 'child_folders', n.get_collection_of_object_values(MailFolder)),
+            "childFolders": lambda n : setattr(self, 'child_folders', n.get_collection_of_object_values(mail_folder.MailFolder)),
             "childFolderCount": lambda n : setattr(self, 'child_folder_count', n.get_int_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "isHidden": lambda n : setattr(self, 'is_hidden', n.get_bool_value()),

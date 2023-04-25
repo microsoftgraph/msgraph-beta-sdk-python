@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import unified_role_management_alert_configuration, unified_role_management_alert_configuration_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import unified_role_management_alert_configuration_item_request_builder
 
 class AlertConfigurationsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class AlertConfigurationsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_unified_role_management_alert_configuration_id(self,unified_role_management_alert_configuration_id: str) -> unified_role_management_alert_configuration_item_request_builder.UnifiedRoleManagementAlertConfigurationItemRequestBuilder:
+        """
+        Provides operations to manage the alertConfigurations property of the microsoft.graph.roleManagementAlert entity.
+        Args:
+            unified_role_management_alert_configuration_id: Unique identifier of the item
+        Returns: unified_role_management_alert_configuration_item_request_builder.UnifiedRoleManagementAlertConfigurationItemRequestBuilder
+        """
+        if unified_role_management_alert_configuration_id is None:
+            raise Exception("unified_role_management_alert_configuration_id cannot be undefined")
+        from .item import unified_role_management_alert_configuration_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["unifiedRoleManagementAlertConfiguration%2Did"] = unified_role_management_alert_configuration_id
+        return unified_role_management_alert_configuration_item_request_builder.UnifiedRoleManagementAlertConfigurationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[AlertConfigurationsRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_management_alert_configuration_collection_response.UnifiedRoleManagementAlertConfigurationCollectionResponse]:
         """

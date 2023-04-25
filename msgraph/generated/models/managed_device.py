@@ -11,12 +11,12 @@ from . import entity
 class ManagedDevice(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new managedDevice and sets the default values.
+        Instantiates a new ManagedDevice and sets the default values.
         """
         super().__init__()
         # Whether the device is Azure Active Directory registered. This property is read-only.
         self._aad_registered: Optional[bool] = None
-        # The code that allows the Activation Lock on managed device to be bypassed. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity in LIST call. Individual GET call with select query options is needed to retrieve actual values. Supports: $select. $Search is not supported. Read-only. This property is read-only.
+        # The code that allows the Activation Lock on managed device to be bypassed. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity in LIST call. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
         self._activation_lock_bypass_code: Optional[str] = None
         # Android security patch level. This property is read-only.
         self._android_security_patch_level: Optional[str] = None
@@ -34,7 +34,7 @@ class ManagedDevice(entity.Entity):
         self._bootstrap_token_escrowed: Optional[bool] = None
         # Chassis type.
         self._chassis_type: Optional[chassis_type.ChassisType] = None
-        # List of properties of the ChromeOS Device.
+        # List of properties of the ChromeOS Device. Default is an empty list. To retrieve actual values GET call needs to be made, with device id and included in select parameter.
         self._chrome_o_s_device_info: Optional[List[chrome_o_s_device_property.ChromeOSDeviceProperty]] = None
         # The cloudPcRemoteActionResults property
         self._cloud_pc_remote_action_results: Optional[List[cloud_pc_remote_action_result.CloudPcRemoteActionResult]] = None
@@ -54,7 +54,7 @@ class ManagedDevice(entity.Entity):
         self._device_action_results: Optional[List[device_action_result.DeviceActionResult]] = None
         # Device category
         self._device_category: Optional[device_category.DeviceCategory] = None
-        # Device category display name. This property is read-only.
+        # Device category display name. Default is an empty string. Supports $filter operator 'eq' and 'or'. This property is read-only.
         self._device_category_display_name: Optional[str] = None
         # Device compliance policy states for this device.
         self._device_compliance_policy_states: Optional[List[device_compliance_policy_state.DeviceCompliancePolicyState]] = None
@@ -82,7 +82,7 @@ class ManagedDevice(entity.Entity):
         self._eas_device_id: Optional[str] = None
         # Email(s) for the user associated with the device. This property is read-only.
         self._email_address: Optional[str] = None
-        # Enrollment time of the device. This property is read-only.
+        # Enrollment time of the device. Supports $filter operator 'lt' and 'gt'. This property is read-only.
         self._enrolled_date_time: Optional[datetime] = None
         # Name of the enrollment profile assigned to the device. Default value is empty string, indicating no enrollment profile was assgined. This property is read-only.
         self._enrollment_profile_name: Optional[str] = None
@@ -96,9 +96,9 @@ class ManagedDevice(entity.Entity):
         self._exchange_last_successful_sync_date_time: Optional[datetime] = None
         # Free Storage in Bytes. Default value is 0. Read-only. This property is read-only.
         self._free_storage_space_in_bytes: Optional[int] = None
-        # The hardward details for the device.  Includes information such as storage space, manufacturer, serial number, etc. Return default value in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
+        # The hardward details for the device. Includes information such as storage space, manufacturer, serial number, etc. By default most property of this type are set to null/0/false and enum defaults for associated types. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
         self._hardware_information: Optional[hardware_information.HardwareInformation] = None
-        # Integrated Circuit Card Identifier, it is A SIM card's unique identification number. Return default value null in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
+        # Integrated Circuit Card Identifier, it is A SIM card's unique identification number. Default is an empty string. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
         self._iccid: Optional[str] = None
         # IMEI. This property is read-only.
         self._imei: Optional[str] = None
@@ -106,11 +106,11 @@ class ManagedDevice(entity.Entity):
         self._is_encrypted: Optional[bool] = None
         # Device supervised status. This property is read-only.
         self._is_supervised: Optional[bool] = None
-        # whether the device is jail broken or rooted. This property is read-only.
+        # Whether the device is jail broken or rooted. Default is an empty string. Supports $filter operator 'eq' and 'or'. This property is read-only.
         self._jail_broken: Optional[str] = None
         # Device enrollment join type.
         self._join_type: Optional[join_type.JoinType] = None
-        # The date and time that the device last completed a successful sync with Intune. This property is read-only.
+        # The date and time that the device last completed a successful sync with Intune. Supports $filter operator 'lt' and 'gt'. This property is read-only.
         self._last_sync_date_time: Optional[datetime] = None
         # List of log collection requests
         self._log_collection_requests: Optional[List[device_log_collection_response.DeviceLogCollectionResponse]] = None
@@ -136,7 +136,7 @@ class ManagedDevice(entity.Entity):
         self._meid: Optional[str] = None
         # Model of the device. This property is read-only.
         self._model: Optional[str] = None
-        # Notes on the device created by IT Admin. Return default value null in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select.  $Search is not supported.
+        # Notes on the device created by IT Admin. Default is null. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. $Search is not supported.
         self._notes: Optional[str] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
@@ -150,7 +150,7 @@ class ManagedDevice(entity.Entity):
         self._partner_reported_threat_state: Optional[managed_device_partner_reported_health_state.ManagedDevicePartnerReportedHealthState] = None
         # Phone number of the device. This property is read-only.
         self._phone_number: Optional[str] = None
-        # Total Memory in Bytes. Return default value 0 in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. Default value is 0. Read-only. This property is read-only.
+        # Total Memory in Bytes. Default is 0. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. Read-only. This property is read-only.
         self._physical_memory_in_bytes: Optional[int] = None
         # Reports the DateTime the preferMdmOverGroupPolicy setting was set.  When set, the Intune MDM settings will override Group Policy settings if there is a conflict. Read Only. This property is read-only.
         self._prefer_mdm_over_group_policy_applied_date_time: Optional[datetime] = None
@@ -158,7 +158,7 @@ class ManagedDevice(entity.Entity):
         self._processor_architecture: Optional[managed_device_architecture.ManagedDeviceArchitecture] = None
         # An error string that identifies issues when creating Remote Assistance session objects. This property is read-only.
         self._remote_assistance_session_error_details: Optional[str] = None
-        # Url that allows a Remote Assistance session to be established with the device. This property is read-only.
+        # Url that allows a Remote Assistance session to be established with the device. Default is an empty string. To retrieve actual values GET call needs to be made, with device id and included in select parameter. This property is read-only.
         self._remote_assistance_session_url: Optional[str] = None
         # Reports if the managed iOS device is user approval enrollment. This property is read-only.
         self._require_user_enrollment_approval: Optional[bool] = None
@@ -180,7 +180,7 @@ class ManagedDevice(entity.Entity):
         self._subscriber_carrier: Optional[str] = None
         # Total Storage in Bytes. This property is read-only.
         self._total_storage_space_in_bytes: Optional[int] = None
-        # Unique Device Identifier for iOS and macOS devices. Return default value null in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
+        # Unique Device Identifier for iOS and macOS devices. Default is an empty string. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
         self._udid: Optional[str] = None
         # User display name. This property is read-only.
         self._user_display_name: Optional[str] = None
@@ -194,11 +194,11 @@ class ManagedDevice(entity.Entity):
         self._users_logged_on: Optional[List[logged_on_user.LoggedOnUser]] = None
         # Wi-Fi MAC. This property is read-only.
         self._wi_fi_mac_address: Optional[str] = None
-        # Count of active malware for this windows device. This property is read-only.
+        # Count of active malware for this windows device. Default is 0. To retrieve actual values GET call needs to be made, with device id and included in select parameter. This property is read-only.
         self._windows_active_malware_count: Optional[int] = None
         # The device protection status. This property is read-only.
         self._windows_protection_state: Optional[windows_protection_state.WindowsProtectionState] = None
-        # Count of remediated malware for this windows device. This property is read-only.
+        # Count of remediated malware for this windows device. Default is 0. To retrieve actual values GET call needs to be made, with device id and included in select parameter. This property is read-only.
         self._windows_remediated_malware_count: Optional[int] = None
     
     @property
@@ -221,7 +221,7 @@ class ManagedDevice(entity.Entity):
     @property
     def activation_lock_bypass_code(self,) -> Optional[str]:
         """
-        Gets the activationLockBypassCode property value. The code that allows the Activation Lock on managed device to be bypassed. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity in LIST call. Individual GET call with select query options is needed to retrieve actual values. Supports: $select. $Search is not supported. Read-only. This property is read-only.
+        Gets the activationLockBypassCode property value. The code that allows the Activation Lock on managed device to be bypassed. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity in LIST call. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
         Returns: Optional[str]
         """
         return self._activation_lock_bypass_code
@@ -229,7 +229,7 @@ class ManagedDevice(entity.Entity):
     @activation_lock_bypass_code.setter
     def activation_lock_bypass_code(self,value: Optional[str] = None) -> None:
         """
-        Sets the activationLockBypassCode property value. The code that allows the Activation Lock on managed device to be bypassed. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity in LIST call. Individual GET call with select query options is needed to retrieve actual values. Supports: $select. $Search is not supported. Read-only. This property is read-only.
+        Sets the activationLockBypassCode property value. The code that allows the Activation Lock on managed device to be bypassed. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity in LIST call. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
         Args:
             value: Value to set for the activation_lock_bypass_code property.
         """
@@ -374,7 +374,7 @@ class ManagedDevice(entity.Entity):
     @property
     def chrome_o_s_device_info(self,) -> Optional[List[chrome_o_s_device_property.ChromeOSDeviceProperty]]:
         """
-        Gets the chromeOSDeviceInfo property value. List of properties of the ChromeOS Device.
+        Gets the chromeOSDeviceInfo property value. List of properties of the ChromeOS Device. Default is an empty list. To retrieve actual values GET call needs to be made, with device id and included in select parameter.
         Returns: Optional[List[chrome_o_s_device_property.ChromeOSDeviceProperty]]
         """
         return self._chrome_o_s_device_info
@@ -382,7 +382,7 @@ class ManagedDevice(entity.Entity):
     @chrome_o_s_device_info.setter
     def chrome_o_s_device_info(self,value: Optional[List[chrome_o_s_device_property.ChromeOSDeviceProperty]] = None) -> None:
         """
-        Sets the chromeOSDeviceInfo property value. List of properties of the ChromeOS Device.
+        Sets the chromeOSDeviceInfo property value. List of properties of the ChromeOS Device. Default is an empty list. To retrieve actual values GET call needs to be made, with device id and included in select parameter.
         Args:
             value: Value to set for the chrome_o_s_device_info property.
         """
@@ -563,7 +563,7 @@ class ManagedDevice(entity.Entity):
     @property
     def device_category_display_name(self,) -> Optional[str]:
         """
-        Gets the deviceCategoryDisplayName property value. Device category display name. This property is read-only.
+        Gets the deviceCategoryDisplayName property value. Device category display name. Default is an empty string. Supports $filter operator 'eq' and 'or'. This property is read-only.
         Returns: Optional[str]
         """
         return self._device_category_display_name
@@ -571,7 +571,7 @@ class ManagedDevice(entity.Entity):
     @device_category_display_name.setter
     def device_category_display_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the deviceCategoryDisplayName property value. Device category display name. This property is read-only.
+        Sets the deviceCategoryDisplayName property value. Device category display name. Default is an empty string. Supports $filter operator 'eq' and 'or'. This property is read-only.
         Args:
             value: Value to set for the device_category_display_name property.
         """
@@ -801,7 +801,7 @@ class ManagedDevice(entity.Entity):
     @property
     def enrolled_date_time(self,) -> Optional[datetime]:
         """
-        Gets the enrolledDateTime property value. Enrollment time of the device. This property is read-only.
+        Gets the enrolledDateTime property value. Enrollment time of the device. Supports $filter operator 'lt' and 'gt'. This property is read-only.
         Returns: Optional[datetime]
         """
         return self._enrolled_date_time
@@ -809,7 +809,7 @@ class ManagedDevice(entity.Entity):
     @enrolled_date_time.setter
     def enrolled_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the enrolledDateTime property value. Enrollment time of the device. This property is read-only.
+        Sets the enrolledDateTime property value. Enrollment time of the device. Supports $filter operator 'lt' and 'gt'. This property is read-only.
         Args:
             value: Value to set for the enrolled_date_time property.
         """
@@ -1025,7 +1025,7 @@ class ManagedDevice(entity.Entity):
     @property
     def hardware_information(self,) -> Optional[hardware_information.HardwareInformation]:
         """
-        Gets the hardwareInformation property value. The hardward details for the device.  Includes information such as storage space, manufacturer, serial number, etc. Return default value in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
+        Gets the hardwareInformation property value. The hardward details for the device. Includes information such as storage space, manufacturer, serial number, etc. By default most property of this type are set to null/0/false and enum defaults for associated types. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
         Returns: Optional[hardware_information.HardwareInformation]
         """
         return self._hardware_information
@@ -1033,7 +1033,7 @@ class ManagedDevice(entity.Entity):
     @hardware_information.setter
     def hardware_information(self,value: Optional[hardware_information.HardwareInformation] = None) -> None:
         """
-        Sets the hardwareInformation property value. The hardward details for the device.  Includes information such as storage space, manufacturer, serial number, etc. Return default value in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
+        Sets the hardwareInformation property value. The hardward details for the device. Includes information such as storage space, manufacturer, serial number, etc. By default most property of this type are set to null/0/false and enum defaults for associated types. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
         Args:
             value: Value to set for the hardware_information property.
         """
@@ -1042,7 +1042,7 @@ class ManagedDevice(entity.Entity):
     @property
     def iccid(self,) -> Optional[str]:
         """
-        Gets the iccid property value. Integrated Circuit Card Identifier, it is A SIM card's unique identification number. Return default value null in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
+        Gets the iccid property value. Integrated Circuit Card Identifier, it is A SIM card's unique identification number. Default is an empty string. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
         Returns: Optional[str]
         """
         return self._iccid
@@ -1050,7 +1050,7 @@ class ManagedDevice(entity.Entity):
     @iccid.setter
     def iccid(self,value: Optional[str] = None) -> None:
         """
-        Sets the iccid property value. Integrated Circuit Card Identifier, it is A SIM card's unique identification number. Return default value null in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
+        Sets the iccid property value. Integrated Circuit Card Identifier, it is A SIM card's unique identification number. Default is an empty string. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
         Args:
             value: Value to set for the iccid property.
         """
@@ -1110,7 +1110,7 @@ class ManagedDevice(entity.Entity):
     @property
     def jail_broken(self,) -> Optional[str]:
         """
-        Gets the jailBroken property value. whether the device is jail broken or rooted. This property is read-only.
+        Gets the jailBroken property value. Whether the device is jail broken or rooted. Default is an empty string. Supports $filter operator 'eq' and 'or'. This property is read-only.
         Returns: Optional[str]
         """
         return self._jail_broken
@@ -1118,7 +1118,7 @@ class ManagedDevice(entity.Entity):
     @jail_broken.setter
     def jail_broken(self,value: Optional[str] = None) -> None:
         """
-        Sets the jailBroken property value. whether the device is jail broken or rooted. This property is read-only.
+        Sets the jailBroken property value. Whether the device is jail broken or rooted. Default is an empty string. Supports $filter operator 'eq' and 'or'. This property is read-only.
         Args:
             value: Value to set for the jail_broken property.
         """
@@ -1144,7 +1144,7 @@ class ManagedDevice(entity.Entity):
     @property
     def last_sync_date_time(self,) -> Optional[datetime]:
         """
-        Gets the lastSyncDateTime property value. The date and time that the device last completed a successful sync with Intune. This property is read-only.
+        Gets the lastSyncDateTime property value. The date and time that the device last completed a successful sync with Intune. Supports $filter operator 'lt' and 'gt'. This property is read-only.
         Returns: Optional[datetime]
         """
         return self._last_sync_date_time
@@ -1152,7 +1152,7 @@ class ManagedDevice(entity.Entity):
     @last_sync_date_time.setter
     def last_sync_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the lastSyncDateTime property value. The date and time that the device last completed a successful sync with Intune. This property is read-only.
+        Sets the lastSyncDateTime property value. The date and time that the device last completed a successful sync with Intune. Supports $filter operator 'lt' and 'gt'. This property is read-only.
         Args:
             value: Value to set for the last_sync_date_time property.
         """
@@ -1365,7 +1365,7 @@ class ManagedDevice(entity.Entity):
     @property
     def notes(self,) -> Optional[str]:
         """
-        Gets the notes property value. Notes on the device created by IT Admin. Return default value null in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select.  $Search is not supported.
+        Gets the notes property value. Notes on the device created by IT Admin. Default is null. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. $Search is not supported.
         Returns: Optional[str]
         """
         return self._notes
@@ -1373,7 +1373,7 @@ class ManagedDevice(entity.Entity):
     @notes.setter
     def notes(self,value: Optional[str] = None) -> None:
         """
-        Sets the notes property value. Notes on the device created by IT Admin. Return default value null in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select.  $Search is not supported.
+        Sets the notes property value. Notes on the device created by IT Admin. Default is null. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. $Search is not supported.
         Args:
             value: Value to set for the notes property.
         """
@@ -1467,7 +1467,7 @@ class ManagedDevice(entity.Entity):
     @property
     def physical_memory_in_bytes(self,) -> Optional[int]:
         """
-        Gets the physicalMemoryInBytes property value. Total Memory in Bytes. Return default value 0 in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. Default value is 0. Read-only. This property is read-only.
+        Gets the physicalMemoryInBytes property value. Total Memory in Bytes. Default is 0. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. Read-only. This property is read-only.
         Returns: Optional[int]
         """
         return self._physical_memory_in_bytes
@@ -1475,7 +1475,7 @@ class ManagedDevice(entity.Entity):
     @physical_memory_in_bytes.setter
     def physical_memory_in_bytes(self,value: Optional[int] = None) -> None:
         """
-        Sets the physicalMemoryInBytes property value. Total Memory in Bytes. Return default value 0 in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. Default value is 0. Read-only. This property is read-only.
+        Sets the physicalMemoryInBytes property value. Total Memory in Bytes. Default is 0. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. Read-only. This property is read-only.
         Args:
             value: Value to set for the physical_memory_in_bytes property.
         """
@@ -1535,7 +1535,7 @@ class ManagedDevice(entity.Entity):
     @property
     def remote_assistance_session_url(self,) -> Optional[str]:
         """
-        Gets the remoteAssistanceSessionUrl property value. Url that allows a Remote Assistance session to be established with the device. This property is read-only.
+        Gets the remoteAssistanceSessionUrl property value. Url that allows a Remote Assistance session to be established with the device. Default is an empty string. To retrieve actual values GET call needs to be made, with device id and included in select parameter. This property is read-only.
         Returns: Optional[str]
         """
         return self._remote_assistance_session_url
@@ -1543,7 +1543,7 @@ class ManagedDevice(entity.Entity):
     @remote_assistance_session_url.setter
     def remote_assistance_session_url(self,value: Optional[str] = None) -> None:
         """
-        Sets the remoteAssistanceSessionUrl property value. Url that allows a Remote Assistance session to be established with the device. This property is read-only.
+        Sets the remoteAssistanceSessionUrl property value. Url that allows a Remote Assistance session to be established with the device. Default is an empty string. To retrieve actual values GET call needs to be made, with device id and included in select parameter. This property is read-only.
         Args:
             value: Value to set for the remote_assistance_session_url property.
         """
@@ -1768,7 +1768,7 @@ class ManagedDevice(entity.Entity):
     @property
     def udid(self,) -> Optional[str]:
         """
-        Gets the udid property value. Unique Device Identifier for iOS and macOS devices. Return default value null in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
+        Gets the udid property value. Unique Device Identifier for iOS and macOS devices. Default is an empty string. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
         Returns: Optional[str]
         """
         return self._udid
@@ -1776,7 +1776,7 @@ class ManagedDevice(entity.Entity):
     @udid.setter
     def udid(self,value: Optional[str] = None) -> None:
         """
-        Sets the udid property value. Unique Device Identifier for iOS and macOS devices. Return default value null in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
+        Sets the udid property value. Unique Device Identifier for iOS and macOS devices. Default is an empty string. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
         Args:
             value: Value to set for the udid property.
         """
@@ -1887,7 +1887,7 @@ class ManagedDevice(entity.Entity):
     @property
     def windows_active_malware_count(self,) -> Optional[int]:
         """
-        Gets the windowsActiveMalwareCount property value. Count of active malware for this windows device. This property is read-only.
+        Gets the windowsActiveMalwareCount property value. Count of active malware for this windows device. Default is 0. To retrieve actual values GET call needs to be made, with device id and included in select parameter. This property is read-only.
         Returns: Optional[int]
         """
         return self._windows_active_malware_count
@@ -1895,7 +1895,7 @@ class ManagedDevice(entity.Entity):
     @windows_active_malware_count.setter
     def windows_active_malware_count(self,value: Optional[int] = None) -> None:
         """
-        Sets the windowsActiveMalwareCount property value. Count of active malware for this windows device. This property is read-only.
+        Sets the windowsActiveMalwareCount property value. Count of active malware for this windows device. Default is 0. To retrieve actual values GET call needs to be made, with device id and included in select parameter. This property is read-only.
         Args:
             value: Value to set for the windows_active_malware_count property.
         """
@@ -1921,7 +1921,7 @@ class ManagedDevice(entity.Entity):
     @property
     def windows_remediated_malware_count(self,) -> Optional[int]:
         """
-        Gets the windowsRemediatedMalwareCount property value. Count of remediated malware for this windows device. This property is read-only.
+        Gets the windowsRemediatedMalwareCount property value. Count of remediated malware for this windows device. Default is 0. To retrieve actual values GET call needs to be made, with device id and included in select parameter. This property is read-only.
         Returns: Optional[int]
         """
         return self._windows_remediated_malware_count
@@ -1929,7 +1929,7 @@ class ManagedDevice(entity.Entity):
     @windows_remediated_malware_count.setter
     def windows_remediated_malware_count(self,value: Optional[int] = None) -> None:
         """
-        Sets the windowsRemediatedMalwareCount property value. Count of remediated malware for this windows device. This property is read-only.
+        Sets the windowsRemediatedMalwareCount property value. Count of remediated malware for this windows device. Default is 0. To retrieve actual values GET call needs to be made, with device id and included in select parameter. This property is read-only.
         Args:
             value: Value to set for the windows_remediated_malware_count property.
         """

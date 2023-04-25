@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .....models.windows_updates import deployment_audience, deployment_audience_collection_response
     from .count import count_request_builder
+    from .item import deployment_audience_item_request_builder
 
 class DeploymentAudiencesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class DeploymentAudiencesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_deployment_audience_id(self,deployment_audience_id: str) -> deployment_audience_item_request_builder.DeploymentAudienceItemRequestBuilder:
+        """
+        Provides operations to manage the deploymentAudiences property of the microsoft.graph.adminWindowsUpdates entity.
+        Args:
+            deployment_audience_id: Unique identifier of the item
+        Returns: deployment_audience_item_request_builder.DeploymentAudienceItemRequestBuilder
+        """
+        if deployment_audience_id is None:
+            raise Exception("deployment_audience_id cannot be undefined")
+        from .item import deployment_audience_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["deploymentAudience%2Did"] = deployment_audience_id
+        return deployment_audience_item_request_builder.DeploymentAudienceItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[DeploymentAudiencesRequestBuilderGetRequestConfiguration] = None) -> Optional[deployment_audience_collection_response.DeploymentAudienceCollectionResponse]:
         """
-        Get a list of deploymentAudience objects and their properties.
+        The set of updatableAsset resources to which a deployment can apply.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[deployment_audience_collection_response.DeploymentAudienceCollectionResponse]
@@ -60,7 +76,7 @@ class DeploymentAudiencesRequestBuilder():
     
     async def post(self,body: Optional[deployment_audience.DeploymentAudience] = None, request_configuration: Optional[DeploymentAudiencesRequestBuilderPostRequestConfiguration] = None) -> Optional[deployment_audience.DeploymentAudience]:
         """
-        Create a new deploymentAudience object.
+        Create new navigation property to deploymentAudiences for admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class DeploymentAudiencesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[DeploymentAudiencesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of deploymentAudience objects and their properties.
+        The set of updatableAsset resources to which a deployment can apply.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class DeploymentAudiencesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[deployment_audience.DeploymentAudience] = None, request_configuration: Optional[DeploymentAudiencesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new deploymentAudience object.
+        Create new navigation property to deploymentAudiences for admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class DeploymentAudiencesRequestBuilder():
     @dataclass
     class DeploymentAudiencesRequestBuilderGetQueryParameters():
         """
-        Get a list of deploymentAudience objects and their properties.
+        The set of updatableAsset resources to which a deployment can apply.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

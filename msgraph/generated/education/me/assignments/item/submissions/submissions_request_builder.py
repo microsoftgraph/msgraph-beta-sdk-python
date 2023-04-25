@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models import education_submission, education_submission_collection_response
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import education_submission_item_request_builder
 
 class SubmissionsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class SubmissionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_education_submission_id(self,education_submission_id: str) -> education_submission_item_request_builder.EducationSubmissionItemRequestBuilder:
+        """
+        Provides operations to manage the submissions property of the microsoft.graph.educationAssignment entity.
+        Args:
+            education_submission_id: Unique identifier of the item
+        Returns: education_submission_item_request_builder.EducationSubmissionItemRequestBuilder
+        """
+        if education_submission_id is None:
+            raise Exception("education_submission_id cannot be undefined")
+        from .item import education_submission_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["educationSubmission%2Did"] = education_submission_id
+        return education_submission_item_request_builder.EducationSubmissionItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[SubmissionsRequestBuilderGetRequestConfiguration] = None) -> Optional[education_submission_collection_response.EducationSubmissionCollectionResponse]:
         """
-        List all the submissions associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can get all the **submissions**, a student can only get **submissions** that they are associated with. Provide the header `Prefer: include-unknown-enum-members` to properly list **submissions** with the `reassigned` status. For details, see the examples section.
+        Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[education_submission_collection_response.EducationSubmissionCollectionResponse]
@@ -85,7 +101,7 @@ class SubmissionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SubmissionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List all the submissions associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can get all the **submissions**, a student can only get **submissions** that they are associated with. Provide the header `Prefer: include-unknown-enum-members` to properly list **submissions** with the `reassigned` status. For details, see the examples section.
+        Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class SubmissionsRequestBuilder():
     @dataclass
     class SubmissionsRequestBuilderGetQueryParameters():
         """
-        List all the submissions associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can get all the **submissions**, a student can only get **submissions** that they are associated with. Provide the header `Prefer: include-unknown-enum-members` to properly list **submissions** with the `reassigned` status. For details, see the examples section.
+        Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

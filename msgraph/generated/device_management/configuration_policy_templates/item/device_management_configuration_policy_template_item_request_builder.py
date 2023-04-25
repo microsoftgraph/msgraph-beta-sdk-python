@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ....models import device_management_configuration_policy_template
     from ....models.o_data_errors import o_data_error
     from .setting_templates import setting_templates_request_builder
-    from .setting_templates.item import device_management_configuration_setting_template_item_request_builder
 
 class DeviceManagementConfigurationPolicyTemplateItemRequestBuilder():
     """
@@ -102,21 +101,6 @@ class DeviceManagementConfigurationPolicyTemplateItemRequestBuilder():
         from ....models import device_management_configuration_policy_template
 
         return await self.request_adapter.send_async(request_info, device_management_configuration_policy_template.DeviceManagementConfigurationPolicyTemplate, error_mapping)
-    
-    def setting_templates_by_id(self,id: str) -> device_management_configuration_setting_template_item_request_builder.DeviceManagementConfigurationSettingTemplateItemRequestBuilder:
-        """
-        Provides operations to manage the settingTemplates property of the microsoft.graph.deviceManagementConfigurationPolicyTemplate entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: device_management_configuration_setting_template_item_request_builder.DeviceManagementConfigurationSettingTemplateItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .setting_templates.item import device_management_configuration_setting_template_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["deviceManagementConfigurationSettingTemplate%2Did"] = id
-        return device_management_configuration_setting_template_item_request_builder.DeviceManagementConfigurationSettingTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceManagementConfigurationPolicyTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

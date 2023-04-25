@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .delta import delta_request_builder
+    from .item import education_user_item_request_builder
 
 class UsersRequestBuilder():
     """
@@ -37,9 +38,24 @@ class UsersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_education_user_id(self,education_user_id: str) -> education_user_item_request_builder.EducationUserItemRequestBuilder:
+        """
+        Provides operations to manage the users property of the microsoft.graph.educationRoot entity.
+        Args:
+            education_user_id: Unique identifier of the item
+        Returns: education_user_item_request_builder.EducationUserItemRequestBuilder
+        """
+        if education_user_id is None:
+            raise Exception("education_user_id cannot be undefined")
+        from .item import education_user_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["educationUser%2Did"] = education_user_id
+        return education_user_item_request_builder.EducationUserItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[UsersRequestBuilderGetRequestConfiguration] = None) -> Optional[education_user_collection_response.EducationUserCollectionResponse]:
         """
-        Retrieve a list of user objects. These user objects will include education-specific properties.
+        Get users from education
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[education_user_collection_response.EducationUserCollectionResponse]
@@ -61,7 +77,7 @@ class UsersRequestBuilder():
     
     async def post(self,body: Optional[education_user.EducationUser] = None, request_configuration: Optional[UsersRequestBuilderPostRequestConfiguration] = None) -> Optional[education_user.EducationUser]:
         """
-        Create a new user.
+        Create new navigation property to users for education
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -86,7 +102,7 @@ class UsersRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UsersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of user objects. These user objects will include education-specific properties.
+        Get users from education
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +120,7 @@ class UsersRequestBuilder():
     
     def to_post_request_information(self,body: Optional[education_user.EducationUser] = None, request_configuration: Optional[UsersRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new user.
+        Create new navigation property to users for education
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -144,7 +160,7 @@ class UsersRequestBuilder():
     @dataclass
     class UsersRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of user objects. These user objects will include education-specific properties.
+        Get users from education
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

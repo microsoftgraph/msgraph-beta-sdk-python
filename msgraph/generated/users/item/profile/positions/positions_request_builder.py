@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import work_position, work_position_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import work_position_item_request_builder
 
 class PositionsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class PositionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_work_position_id(self,work_position_id: str) -> work_position_item_request_builder.WorkPositionItemRequestBuilder:
+        """
+        Provides operations to manage the positions property of the microsoft.graph.profile entity.
+        Args:
+            work_position_id: Unique identifier of the item
+        Returns: work_position_item_request_builder.WorkPositionItemRequestBuilder
+        """
+        if work_position_id is None:
+            raise Exception("work_position_id cannot be undefined")
+        from .item import work_position_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["workPosition%2Did"] = work_position_id
+        return work_position_item_request_builder.WorkPositionItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[PositionsRequestBuilderGetRequestConfiguration] = None) -> Optional[work_position_collection_response.WorkPositionCollectionResponse]:
         """
-        Retrieve a list of workPosition objects from a user's profile.
+        Represents detailed information about work positions associated with a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[work_position_collection_response.WorkPositionCollectionResponse]
@@ -60,7 +76,7 @@ class PositionsRequestBuilder():
     
     async def post(self,body: Optional[work_position.WorkPosition] = None, request_configuration: Optional[PositionsRequestBuilderPostRequestConfiguration] = None) -> Optional[work_position.WorkPosition]:
         """
-        Use this API to create a new workPosition in a user's profile.
+        Create new navigation property to positions for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class PositionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PositionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of workPosition objects from a user's profile.
+        Represents detailed information about work positions associated with a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class PositionsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[work_position.WorkPosition] = None, request_configuration: Optional[PositionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Use this API to create a new workPosition in a user's profile.
+        Create new navigation property to positions for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class PositionsRequestBuilder():
     @dataclass
     class PositionsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of workPosition objects from a user's profile.
+        Represents detailed information about work positions associated with a user's profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

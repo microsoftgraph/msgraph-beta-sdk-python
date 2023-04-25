@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .filter_by_current_user_with_on import filter_by_current_user_with_on_request_builder
+    from .item import access_package_assignment_request_item_request_builder
 
 class AccessPackageAssignmentRequestsRequestBuilder():
     """
@@ -37,6 +38,21 @@ class AccessPackageAssignmentRequestsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_access_package_assignment_request_id(self,access_package_assignment_request_id: str) -> access_package_assignment_request_item_request_builder.AccessPackageAssignmentRequestItemRequestBuilder:
+        """
+        Provides operations to manage the accessPackageAssignmentRequests property of the microsoft.graph.entitlementManagement entity.
+        Args:
+            access_package_assignment_request_id: Unique identifier of the item
+        Returns: access_package_assignment_request_item_request_builder.AccessPackageAssignmentRequestItemRequestBuilder
+        """
+        if access_package_assignment_request_id is None:
+            raise Exception("access_package_assignment_request_id cannot be undefined")
+        from .item import access_package_assignment_request_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["accessPackageAssignmentRequest%2Did"] = access_package_assignment_request_id
+        return access_package_assignment_request_item_request_builder.AccessPackageAssignmentRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     def filter_by_current_user_with_on(self,on: Optional[str] = None) -> filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder:
         """
         Provides operations to call the filterByCurrentUser method.
@@ -52,7 +68,7 @@ class AccessPackageAssignmentRequestsRequestBuilder():
     
     async def get(self,request_configuration: Optional[AccessPackageAssignmentRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_assignment_request_collection_response.AccessPackageAssignmentRequestCollectionResponse]:
         """
-        In Azure AD entitlement management, retrieve a list of accessPackageAssignmentRequest objects.  The resulting list includes all the assignment requests, current and well as expired, that the caller has access to read, across all catalogs and access packages.
+        Represents access package assignment requests created by or on behalf of a user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_package_assignment_request_collection_response.AccessPackageAssignmentRequestCollectionResponse]
@@ -74,7 +90,7 @@ class AccessPackageAssignmentRequestsRequestBuilder():
     
     async def post(self,body: Optional[access_package_assignment_request.AccessPackageAssignmentRequest] = None, request_configuration: Optional[AccessPackageAssignmentRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[access_package_assignment_request.AccessPackageAssignmentRequest]:
         """
-        In Azure AD Entitlement Management, create a new accessPackageAssignmentRequest object.  This operation is used to assign a user to an access package, or to remove an access package assignment.
+        Create new navigation property to accessPackageAssignmentRequests for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,7 +115,7 @@ class AccessPackageAssignmentRequestsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageAssignmentRequestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        In Azure AD entitlement management, retrieve a list of accessPackageAssignmentRequest objects.  The resulting list includes all the assignment requests, current and well as expired, that the caller has access to read, across all catalogs and access packages.
+        Represents access package assignment requests created by or on behalf of a user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -117,7 +133,7 @@ class AccessPackageAssignmentRequestsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[access_package_assignment_request.AccessPackageAssignmentRequest] = None, request_configuration: Optional[AccessPackageAssignmentRequestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        In Azure AD Entitlement Management, create a new accessPackageAssignmentRequest object.  This operation is used to assign a user to an access package, or to remove an access package assignment.
+        Create new navigation property to accessPackageAssignmentRequests for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -148,7 +164,7 @@ class AccessPackageAssignmentRequestsRequestBuilder():
     @dataclass
     class AccessPackageAssignmentRequestsRequestBuilderGetQueryParameters():
         """
-        In Azure AD entitlement management, retrieve a list of accessPackageAssignmentRequest objects.  The resulting list includes all the assignment requests, current and well as expired, that the caller has access to read, across all catalogs and access packages.
+        Represents access package assignment requests created by or on behalf of a user.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -14,9 +14,7 @@ if TYPE_CHECKING:
     from ...........models.o_data_errors import o_data_error
     from .access_package_resource_environment import access_package_resource_environment_request_builder
     from .access_package_resource_roles import access_package_resource_roles_request_builder
-    from .access_package_resource_roles.item import access_package_resource_role_item_request_builder
     from .access_package_resource_scopes import access_package_resource_scopes_request_builder
-    from .access_package_resource_scopes.item import access_package_resource_scope_item_request_builder
 
 class AccessPackageResourceRequestBuilder():
     """
@@ -39,36 +37,6 @@ class AccessPackageResourceRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def access_package_resource_roles_by_id(self,id: str) -> access_package_resource_role_item_request_builder.AccessPackageResourceRoleItemRequestBuilder:
-        """
-        Provides operations to manage the accessPackageResourceRoles property of the microsoft.graph.accessPackageResource entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: access_package_resource_role_item_request_builder.AccessPackageResourceRoleItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .access_package_resource_roles.item import access_package_resource_role_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["accessPackageResourceRole%2Did"] = id
-        return access_package_resource_role_item_request_builder.AccessPackageResourceRoleItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def access_package_resource_scopes_by_id(self,id: str) -> access_package_resource_scope_item_request_builder.AccessPackageResourceScopeItemRequestBuilder:
-        """
-        Provides operations to manage the accessPackageResourceScopes property of the microsoft.graph.accessPackageResource entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: access_package_resource_scope_item_request_builder.AccessPackageResourceScopeItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .access_package_resource_scopes.item import access_package_resource_scope_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["accessPackageResourceScope%2Did"] = id
-        return access_package_resource_scope_item_request_builder.AccessPackageResourceScopeItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[AccessPackageResourceRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

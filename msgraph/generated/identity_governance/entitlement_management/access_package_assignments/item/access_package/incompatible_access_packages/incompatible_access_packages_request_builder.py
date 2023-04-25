@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .......models import access_package_collection_response
     from .......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import access_package_item_request_builder
     from .ref import ref_request_builder
 
 class IncompatibleAccessPackagesRequestBuilder():
@@ -37,9 +38,24 @@ class IncompatibleAccessPackagesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_access_package_id(self,access_package_id: str) -> access_package_item_request_builder.AccessPackageItemRequestBuilder:
+        """
+        Gets an item from the msgraph.generated.identityGovernance.entitlementManagement.accessPackageAssignments.item.accessPackage.incompatibleAccessPackages.item collection
+        Args:
+            access_package_id: Unique identifier of the item
+        Returns: access_package_item_request_builder.AccessPackageItemRequestBuilder
+        """
+        if access_package_id is None:
+            raise Exception("access_package_id cannot be undefined")
+        from .item import access_package_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["accessPackage%2Did"] = access_package_id
+        return access_package_item_request_builder.AccessPackageItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[IncompatibleAccessPackagesRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_collection_response.AccessPackageCollectionResponse]:
         """
-        Retrieve a list of the accessPackage objects that have been marked as incompatible on an accessPackage.  
+        The  access packages whose assigned users are ineligible to be assigned this access package.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_package_collection_response.AccessPackageCollectionResponse]
@@ -61,7 +77,7 @@ class IncompatibleAccessPackagesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[IncompatibleAccessPackagesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of the accessPackage objects that have been marked as incompatible on an accessPackage.  
+        The  access packages whose assigned users are ineligible to be assigned this access package.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -98,7 +114,7 @@ class IncompatibleAccessPackagesRequestBuilder():
     @dataclass
     class IncompatibleAccessPackagesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of the accessPackage objects that have been marked as incompatible on an accessPackage.  
+        The  access packages whose assigned users are ineligible to be assigned this access package.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

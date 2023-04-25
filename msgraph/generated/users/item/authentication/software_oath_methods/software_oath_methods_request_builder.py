@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import software_oath_authentication_method_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import software_oath_authentication_method_item_request_builder
 
 class SoftwareOathMethodsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class SoftwareOathMethodsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_software_oath_authentication_method_id(self,software_oath_authentication_method_id: str) -> software_oath_authentication_method_item_request_builder.SoftwareOathAuthenticationMethodItemRequestBuilder:
+        """
+        Provides operations to manage the softwareOathMethods property of the microsoft.graph.authentication entity.
+        Args:
+            software_oath_authentication_method_id: Unique identifier of the item
+        Returns: software_oath_authentication_method_item_request_builder.SoftwareOathAuthenticationMethodItemRequestBuilder
+        """
+        if software_oath_authentication_method_id is None:
+            raise Exception("software_oath_authentication_method_id cannot be undefined")
+        from .item import software_oath_authentication_method_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["softwareOathAuthenticationMethod%2Did"] = software_oath_authentication_method_id
+        return software_oath_authentication_method_item_request_builder.SoftwareOathAuthenticationMethodItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[SoftwareOathMethodsRequestBuilderGetRequestConfiguration] = None) -> Optional[software_oath_authentication_method_collection_response.SoftwareOathAuthenticationMethodCollectionResponse]:
         """
-        Retrieve a list of a user's software OATH token authentication method objects and their properties.
+        Get softwareOathMethods from users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[software_oath_authentication_method_collection_response.SoftwareOathAuthenticationMethodCollectionResponse]
@@ -60,7 +76,7 @@ class SoftwareOathMethodsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SoftwareOathMethodsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of a user's software OATH token authentication method objects and their properties.
+        Get softwareOathMethods from users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -88,7 +104,7 @@ class SoftwareOathMethodsRequestBuilder():
     @dataclass
     class SoftwareOathMethodsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of a user's software OATH token authentication method objects and their properties.
+        Get softwareOathMethods from users
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models.o_data_errors import o_data_error
     from ......models.security import ediscovery_hold_policy, ediscovery_hold_policy_collection_response
     from .count import count_request_builder
+    from .item import ediscovery_hold_policy_item_request_builder
 
 class LegalHoldsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class LegalHoldsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_ediscovery_hold_policy_id(self,ediscovery_hold_policy_id: str) -> ediscovery_hold_policy_item_request_builder.EdiscoveryHoldPolicyItemRequestBuilder:
+        """
+        Provides operations to manage the legalHolds property of the microsoft.graph.security.ediscoveryCase entity.
+        Args:
+            ediscovery_hold_policy_id: Unique identifier of the item
+        Returns: ediscovery_hold_policy_item_request_builder.EdiscoveryHoldPolicyItemRequestBuilder
+        """
+        if ediscovery_hold_policy_id is None:
+            raise Exception("ediscovery_hold_policy_id cannot be undefined")
+        from .item import ediscovery_hold_policy_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["ediscoveryHoldPolicy%2Did"] = ediscovery_hold_policy_id
+        return ediscovery_hold_policy_item_request_builder.EdiscoveryHoldPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[LegalHoldsRequestBuilderGetRequestConfiguration] = None) -> Optional[ediscovery_hold_policy_collection_response.EdiscoveryHoldPolicyCollectionResponse]:
         """
-        Get a list of the ediscoveryHoldPolicy objects and their properties.
+        Returns a list of case eDiscoveryHoldPolicy objects for this case.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ediscovery_hold_policy_collection_response.EdiscoveryHoldPolicyCollectionResponse]
@@ -60,7 +76,7 @@ class LegalHoldsRequestBuilder():
     
     async def post(self,body: Optional[ediscovery_hold_policy.EdiscoveryHoldPolicy] = None, request_configuration: Optional[LegalHoldsRequestBuilderPostRequestConfiguration] = None) -> Optional[ediscovery_hold_policy.EdiscoveryHoldPolicy]:
         """
-        Create a new ediscoveryHoldPolicy object.
+        Create new navigation property to legalHolds for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class LegalHoldsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[LegalHoldsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the ediscoveryHoldPolicy objects and their properties.
+        Returns a list of case eDiscoveryHoldPolicy objects for this case.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class LegalHoldsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[ediscovery_hold_policy.EdiscoveryHoldPolicy] = None, request_configuration: Optional[LegalHoldsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new ediscoveryHoldPolicy object.
+        Create new navigation property to legalHolds for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class LegalHoldsRequestBuilder():
     @dataclass
     class LegalHoldsRequestBuilderGetQueryParameters():
         """
-        Get a list of the ediscoveryHoldPolicy objects and their properties.
+        Returns a list of case eDiscoveryHoldPolicy objects for this case.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

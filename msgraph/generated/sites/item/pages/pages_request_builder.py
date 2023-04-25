@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import site_page, site_page_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import site_page_item_request_builder
 
 class PagesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class PagesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_site_page_id(self,site_page_id: str) -> site_page_item_request_builder.SitePageItemRequestBuilder:
+        """
+        Provides operations to manage the pages property of the microsoft.graph.site entity.
+        Args:
+            site_page_id: Unique identifier of the item
+        Returns: site_page_item_request_builder.SitePageItemRequestBuilder
+        """
+        if site_page_id is None:
+            raise Exception("site_page_id cannot be undefined")
+        from .item import site_page_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["sitePage%2Did"] = site_page_id
+        return site_page_item_request_builder.SitePageItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[PagesRequestBuilderGetRequestConfiguration] = None) -> Optional[site_page_collection_response.SitePageCollectionResponse]:
         """
-        Get the collection of [sitePage][] objects from the site pages [list][] in a site [site][]. All pages in the site are returned (with pagination). Sort alphabetically by `name` in ascending order.
+        The collection of pages in the SitePages list in this site.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[site_page_collection_response.SitePageCollectionResponse]
@@ -60,7 +76,7 @@ class PagesRequestBuilder():
     
     async def post(self,body: Optional[site_page.SitePage] = None, request_configuration: Optional[PagesRequestBuilderPostRequestConfiguration] = None) -> Optional[site_page.SitePage]:
         """
-        Create a new [sitePage][] in the site pages [list][] in a [site][].
+        Create new navigation property to pages for sites
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class PagesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PagesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the collection of [sitePage][] objects from the site pages [list][] in a site [site][]. All pages in the site are returned (with pagination). Sort alphabetically by `name` in ascending order.
+        The collection of pages in the SitePages list in this site.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class PagesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[site_page.SitePage] = None, request_configuration: Optional[PagesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new [sitePage][] in the site pages [list][] in a [site][].
+        Create new navigation property to pages for sites
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class PagesRequestBuilder():
     @dataclass
     class PagesRequestBuilderGetQueryParameters():
         """
-        Get the collection of [sitePage][] objects from the site pages [list][] in a site [site][]. All pages in the site are returned (with pagination). Sort alphabetically by `name` in ascending order.
+        The collection of pages in the SitePages list in this site.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

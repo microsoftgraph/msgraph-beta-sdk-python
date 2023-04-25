@@ -38,7 +38,7 @@ class CreateLinkRequestBuilder():
     
     async def post(self,body: Optional[create_link_post_request_body.CreateLinkPostRequestBody] = None, request_configuration: Optional[CreateLinkRequestBuilderPostRequestConfiguration] = None) -> Optional[permission.Permission]:
         """
-        Create a sharing link for a listItem. The **createLink** action creates a new sharing link if the specified link type doesn't already exist for the calling application.If a sharing link of the specified type already exists for the app, this action will return the existing sharing link. **listItem** resources inherit sharing permissions from the list the item resides in.
+        Invoke action createLink
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +63,7 @@ class CreateLinkRequestBuilder():
     
     def to_post_request_information(self,body: Optional[create_link_post_request_body.CreateLinkPostRequestBody] = None, request_configuration: Optional[CreateLinkRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a sharing link for a listItem. The **createLink** action creates a new sharing link if the specified link type doesn't already exist for the calling application.If a sharing link of the specified type already exists for the app, this action will return the existing sharing link. **listItem** resources inherit sharing permissions from the list the item resides in.
+        Invoke action createLink
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

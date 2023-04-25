@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import advanced_threat_protection_onboarding_device_setting_state, advanced_threat_protection_onboarding_device_setting_state_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import advanced_threat_protection_onboarding_device_setting_state_item_request_builder
 
 class AdvancedThreatProtectionOnboardingDeviceSettingStatesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class AdvancedThreatProtectionOnboardingDeviceSettingStatesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_advanced_threat_protection_onboarding_device_setting_state_id(self,advanced_threat_protection_onboarding_device_setting_state_id: str) -> advanced_threat_protection_onboarding_device_setting_state_item_request_builder.AdvancedThreatProtectionOnboardingDeviceSettingStateItemRequestBuilder:
+        """
+        Provides operations to manage the advancedThreatProtectionOnboardingDeviceSettingStates property of the microsoft.graph.advancedThreatProtectionOnboardingStateSummary entity.
+        Args:
+            advanced_threat_protection_onboarding_device_setting_state_id: Unique identifier of the item
+        Returns: advanced_threat_protection_onboarding_device_setting_state_item_request_builder.AdvancedThreatProtectionOnboardingDeviceSettingStateItemRequestBuilder
+        """
+        if advanced_threat_protection_onboarding_device_setting_state_id is None:
+            raise Exception("advanced_threat_protection_onboarding_device_setting_state_id cannot be undefined")
+        from .item import advanced_threat_protection_onboarding_device_setting_state_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["advancedThreatProtectionOnboardingDeviceSettingState%2Did"] = advanced_threat_protection_onboarding_device_setting_state_id
+        return advanced_threat_protection_onboarding_device_setting_state_item_request_builder.AdvancedThreatProtectionOnboardingDeviceSettingStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[AdvancedThreatProtectionOnboardingDeviceSettingStatesRequestBuilderGetRequestConfiguration] = None) -> Optional[advanced_threat_protection_onboarding_device_setting_state_collection_response.AdvancedThreatProtectionOnboardingDeviceSettingStateCollectionResponse]:
         """

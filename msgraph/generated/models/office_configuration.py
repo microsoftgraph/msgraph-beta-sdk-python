@@ -13,13 +13,13 @@ class OfficeConfiguration(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # List of office Client configuration.
+        # The clientConfigurations property
         self._client_configurations: Optional[List[office_client_configuration.OfficeClientConfiguration]] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # List of office Client check-in status.
+        # The tenantCheckinStatuses property
         self._tenant_checkin_statuses: Optional[List[office_client_checkin_status.OfficeClientCheckinStatus]] = None
-        # Entity that describes tenant check-in statues
+        # The tenantUserCheckinSummary property
         self._tenant_user_checkin_summary: Optional[office_user_checkin_summary.OfficeUserCheckinSummary] = None
     
     @property
@@ -42,7 +42,7 @@ class OfficeConfiguration(AdditionalDataHolder, Parsable):
     @property
     def client_configurations(self,) -> Optional[List[office_client_configuration.OfficeClientConfiguration]]:
         """
-        Gets the clientConfigurations property value. List of office Client configuration.
+        Gets the clientConfigurations property value. The clientConfigurations property
         Returns: Optional[List[office_client_configuration.OfficeClientConfiguration]]
         """
         return self._client_configurations
@@ -50,7 +50,7 @@ class OfficeConfiguration(AdditionalDataHolder, Parsable):
     @client_configurations.setter
     def client_configurations(self,value: Optional[List[office_client_configuration.OfficeClientConfiguration]] = None) -> None:
         """
-        Sets the clientConfigurations property value. List of office Client configuration.
+        Sets the clientConfigurations property value. The clientConfigurations property
         Args:
             value: Value to set for the client_configurations property.
         """
@@ -117,7 +117,7 @@ class OfficeConfiguration(AdditionalDataHolder, Parsable):
     @property
     def tenant_checkin_statuses(self,) -> Optional[List[office_client_checkin_status.OfficeClientCheckinStatus]]:
         """
-        Gets the tenantCheckinStatuses property value. List of office Client check-in status.
+        Gets the tenantCheckinStatuses property value. The tenantCheckinStatuses property
         Returns: Optional[List[office_client_checkin_status.OfficeClientCheckinStatus]]
         """
         return self._tenant_checkin_statuses
@@ -125,7 +125,7 @@ class OfficeConfiguration(AdditionalDataHolder, Parsable):
     @tenant_checkin_statuses.setter
     def tenant_checkin_statuses(self,value: Optional[List[office_client_checkin_status.OfficeClientCheckinStatus]] = None) -> None:
         """
-        Sets the tenantCheckinStatuses property value. List of office Client check-in status.
+        Sets the tenantCheckinStatuses property value. The tenantCheckinStatuses property
         Args:
             value: Value to set for the tenant_checkin_statuses property.
         """
@@ -134,7 +134,7 @@ class OfficeConfiguration(AdditionalDataHolder, Parsable):
     @property
     def tenant_user_checkin_summary(self,) -> Optional[office_user_checkin_summary.OfficeUserCheckinSummary]:
         """
-        Gets the tenantUserCheckinSummary property value. Entity that describes tenant check-in statues
+        Gets the tenantUserCheckinSummary property value. The tenantUserCheckinSummary property
         Returns: Optional[office_user_checkin_summary.OfficeUserCheckinSummary]
         """
         return self._tenant_user_checkin_summary
@@ -142,7 +142,7 @@ class OfficeConfiguration(AdditionalDataHolder, Parsable):
     @tenant_user_checkin_summary.setter
     def tenant_user_checkin_summary(self,value: Optional[office_user_checkin_summary.OfficeUserCheckinSummary] = None) -> None:
         """
-        Sets the tenantUserCheckinSummary property value. Entity that describes tenant check-in statues
+        Sets the tenantUserCheckinSummary property value. The tenantUserCheckinSummary property
         Args:
             value: Value to set for the tenant_user_checkin_summary property.
         """

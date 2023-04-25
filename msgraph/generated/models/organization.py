@@ -4,7 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import assigned_plan, certificate_based_auth_configuration, certificate_connector_setting, directory_object, directory_size_quota, extension, mdm_authority, organizational_branding, organization_settings, partner_tenant_type, privacy_profile, provisioned_plan, verified_domain
+    from . import assigned_plan, certificate_based_auth_configuration, certificate_connector_setting, directory_object, directory_size_quota, extension, mdm_authority, organizational_branding, organization_settings, partner_information, partner_tenant_type, privacy_profile, provisioned_plan, verified_domain
 
 from . import directory_object
 
@@ -51,6 +51,8 @@ class Organization(directory_object.DirectoryObject):
         self._on_premises_last_sync_date_time: Optional[datetime] = None
         # true if this object is synced from an on-premises directory; false if this object was originally synced from an on-premises directory but is no longer synced; Nullable. null if this object has never been synced from an on-premises directory (default).
         self._on_premises_sync_enabled: Optional[bool] = None
+        # The partnerInformation property
+        self._partner_information: Optional[partner_information.PartnerInformation] = None
         # The type of partnership this tenant has with Microsoft. The possible values are: microsoftSupport, syndicatePartner, breadthPartner, breadthPartnerDelegatedAdmin, resellerPartnerDelegatedAdmin, valueAddedResellerPartnerDelegatedAdmin, unknownFutureValue. Nullable. For more information about the possible types, see partnerTenantType values.
         self._partner_tenant_type: Optional[partner_tenant_type.PartnerTenantType] = None
         # Postal code of the address for the organization.
@@ -314,7 +316,7 @@ class Organization(directory_object.DirectoryObject):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import assigned_plan, certificate_based_auth_configuration, certificate_connector_setting, directory_object, directory_size_quota, extension, mdm_authority, organizational_branding, organization_settings, partner_tenant_type, privacy_profile, provisioned_plan, verified_domain
+        from . import assigned_plan, certificate_based_auth_configuration, certificate_connector_setting, directory_object, directory_size_quota, extension, mdm_authority, organizational_branding, organization_settings, partner_information, partner_tenant_type, privacy_profile, provisioned_plan, verified_domain
 
         fields: Dict[str, Callable[[Any], None]] = {
             "assignedPlans": lambda n : setattr(self, 'assigned_plans', n.get_collection_of_object_values(assigned_plan.AssignedPlan)),
@@ -335,6 +337,7 @@ class Organization(directory_object.DirectoryObject):
             "mobileDeviceManagementAuthority": lambda n : setattr(self, 'mobile_device_management_authority', n.get_enum_value(mdm_authority.MdmAuthority)),
             "onPremisesLastSyncDateTime": lambda n : setattr(self, 'on_premises_last_sync_date_time', n.get_datetime_value()),
             "onPremisesSyncEnabled": lambda n : setattr(self, 'on_premises_sync_enabled', n.get_bool_value()),
+            "partnerInformation": lambda n : setattr(self, 'partner_information', n.get_object_value(partner_information.PartnerInformation)),
             "partnerTenantType": lambda n : setattr(self, 'partner_tenant_type', n.get_enum_value(partner_tenant_type.PartnerTenantType)),
             "postalCode": lambda n : setattr(self, 'postal_code', n.get_str_value()),
             "preferredLanguage": lambda n : setattr(self, 'preferred_language', n.get_str_value()),
@@ -436,6 +439,23 @@ class Organization(directory_object.DirectoryObject):
             value: Value to set for the on_premises_sync_enabled property.
         """
         self._on_premises_sync_enabled = value
+    
+    @property
+    def partner_information(self,) -> Optional[partner_information.PartnerInformation]:
+        """
+        Gets the partnerInformation property value. The partnerInformation property
+        Returns: Optional[partner_information.PartnerInformation]
+        """
+        return self._partner_information
+    
+    @partner_information.setter
+    def partner_information(self,value: Optional[partner_information.PartnerInformation] = None) -> None:
+        """
+        Sets the partnerInformation property value. The partnerInformation property
+        Args:
+            value: Value to set for the partner_information property.
+        """
+        self._partner_information = value
     
     @property
     def partner_tenant_type(self,) -> Optional[partner_tenant_type.PartnerTenantType]:
@@ -583,6 +603,7 @@ class Organization(directory_object.DirectoryObject):
         writer.write_enum_value("mobileDeviceManagementAuthority", self.mobile_device_management_authority)
         writer.write_datetime_value("onPremisesLastSyncDateTime", self.on_premises_last_sync_date_time)
         writer.write_bool_value("onPremisesSyncEnabled", self.on_premises_sync_enabled)
+        writer.write_object_value("partnerInformation", self.partner_information)
         writer.write_enum_value("partnerTenantType", self.partner_tenant_type)
         writer.write_str_value("postalCode", self.postal_code)
         writer.write_str_value("preferredLanguage", self.preferred_language)

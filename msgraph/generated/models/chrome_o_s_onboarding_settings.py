@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class ChromeOSOnboardingSettings(entity.Entity):
-    """
-    Entity that represents a Chromebook tenant settings
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new chromeOSOnboardingSettings and sets the default values.
+        Instantiates a new ChromeOSOnboardingSettings and sets the default values.
         """
         super().__init__()
         # The ChromebookTenant's LastDirectorySyncDateTime

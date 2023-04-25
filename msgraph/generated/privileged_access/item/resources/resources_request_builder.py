@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import governance_resource, governance_resource_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import governance_resource_item_request_builder
     from .register import register_request_builder
 
 class ResourcesRequestBuilder():
@@ -37,9 +38,24 @@ class ResourcesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_governance_resource_id(self,governance_resource_id: str) -> governance_resource_item_request_builder.GovernanceResourceItemRequestBuilder:
+        """
+        Provides operations to manage the resources property of the microsoft.graph.privilegedAccess entity.
+        Args:
+            governance_resource_id: Unique identifier of the item
+        Returns: governance_resource_item_request_builder.GovernanceResourceItemRequestBuilder
+        """
+        if governance_resource_id is None:
+            raise Exception("governance_resource_id cannot be undefined")
+        from .item import governance_resource_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["governanceResource%2Did"] = governance_resource_id
+        return governance_resource_item_request_builder.GovernanceResourceItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ResourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[governance_resource_collection_response.GovernanceResourceCollectionResponse]:
         """
-        Retrieve a collection of governanceResource that the requestor has access to.
+        A collection of resources for the provider.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[governance_resource_collection_response.GovernanceResourceCollectionResponse]
@@ -86,7 +102,7 @@ class ResourcesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ResourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a collection of governanceResource that the requestor has access to.
+        A collection of resources for the provider.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -144,7 +160,7 @@ class ResourcesRequestBuilder():
     @dataclass
     class ResourcesRequestBuilderGetQueryParameters():
         """
-        Retrieve a collection of governanceResource that the requestor has access to.
+        A collection of resources for the provider.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

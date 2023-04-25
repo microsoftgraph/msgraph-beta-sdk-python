@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.managed_tenants import managed_device_compliance, managed_device_compliance_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import managed_device_compliance_item_request_builder
 
 class ManagedDeviceCompliancesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ManagedDeviceCompliancesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_managed_device_compliance_id(self,managed_device_compliance_id: str) -> managed_device_compliance_item_request_builder.ManagedDeviceComplianceItemRequestBuilder:
+        """
+        Provides operations to manage the managedDeviceCompliances property of the microsoft.graph.managedTenants.managedTenant entity.
+        Args:
+            managed_device_compliance_id: Unique identifier of the item
+        Returns: managed_device_compliance_item_request_builder.ManagedDeviceComplianceItemRequestBuilder
+        """
+        if managed_device_compliance_id is None:
+            raise Exception("managed_device_compliance_id cannot be undefined")
+        from .item import managed_device_compliance_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["managedDeviceCompliance%2Did"] = managed_device_compliance_id
+        return managed_device_compliance_item_request_builder.ManagedDeviceComplianceItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ManagedDeviceCompliancesRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_device_compliance_collection_response.ManagedDeviceComplianceCollectionResponse]:
         """
-        Get a list of the managedDeviceCompliance objects and their properties.
+        The collection of compliance for managed devices across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[managed_device_compliance_collection_response.ManagedDeviceComplianceCollectionResponse]
@@ -85,7 +101,7 @@ class ManagedDeviceCompliancesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ManagedDeviceCompliancesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the managedDeviceCompliance objects and their properties.
+        The collection of compliance for managed devices across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class ManagedDeviceCompliancesRequestBuilder():
     @dataclass
     class ManagedDeviceCompliancesRequestBuilderGetQueryParameters():
         """
-        Get a list of the managedDeviceCompliance objects and their properties.
+        The collection of compliance for managed devices across managed tenants.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

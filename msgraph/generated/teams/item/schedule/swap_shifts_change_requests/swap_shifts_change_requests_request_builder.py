@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import swap_shifts_change_request, swap_shifts_change_request_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import swap_shifts_change_request_item_request_builder
 
 class SwapShiftsChangeRequestsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class SwapShiftsChangeRequestsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_swap_shifts_change_request_id(self,swap_shifts_change_request_id: str) -> swap_shifts_change_request_item_request_builder.SwapShiftsChangeRequestItemRequestBuilder:
+        """
+        Provides operations to manage the swapShiftsChangeRequests property of the microsoft.graph.schedule entity.
+        Args:
+            swap_shifts_change_request_id: Unique identifier of the item
+        Returns: swap_shifts_change_request_item_request_builder.SwapShiftsChangeRequestItemRequestBuilder
+        """
+        if swap_shifts_change_request_id is None:
+            raise Exception("swap_shifts_change_request_id cannot be undefined")
+        from .item import swap_shifts_change_request_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["swapShiftsChangeRequest%2Did"] = swap_shifts_change_request_id
+        return swap_shifts_change_request_item_request_builder.SwapShiftsChangeRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[SwapShiftsChangeRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[swap_shifts_change_request_collection_response.SwapShiftsChangeRequestCollectionResponse]:
         """
-        Retrieve a list of swapShiftsChangeRequest objects in the team.
+        The swap requests for shifts in the schedule.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[swap_shifts_change_request_collection_response.SwapShiftsChangeRequestCollectionResponse]
@@ -60,7 +76,7 @@ class SwapShiftsChangeRequestsRequestBuilder():
     
     async def post(self,body: Optional[swap_shifts_change_request.SwapShiftsChangeRequest] = None, request_configuration: Optional[SwapShiftsChangeRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[swap_shifts_change_request.SwapShiftsChangeRequest]:
         """
-        Create an instance of a swapShiftsChangeRequest object.
+        Create new navigation property to swapShiftsChangeRequests for teams
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class SwapShiftsChangeRequestsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SwapShiftsChangeRequestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of swapShiftsChangeRequest objects in the team.
+        The swap requests for shifts in the schedule.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class SwapShiftsChangeRequestsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[swap_shifts_change_request.SwapShiftsChangeRequest] = None, request_configuration: Optional[SwapShiftsChangeRequestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create an instance of a swapShiftsChangeRequest object.
+        Create new navigation property to swapShiftsChangeRequests for teams
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class SwapShiftsChangeRequestsRequestBuilder():
     @dataclass
     class SwapShiftsChangeRequestsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of swapShiftsChangeRequest objects in the team.
+        The swap requests for shifts in the schedule.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

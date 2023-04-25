@@ -38,7 +38,7 @@ class UploadSecretRequestBuilder():
     
     async def post(self,body: Optional[upload_secret_post_request_body.UploadSecretPostRequestBody] = None, request_configuration: Optional[UploadSecretRequestBuilderPostRequestConfiguration] = None) -> Optional[trust_framework_key.TrustFrameworkKey]:
         """
-        Upload a plain text secret to a trustFrameworkKeyset. Examples of secrets are application secrets in Azure Active Directory, Google, Facebook, or any other identity provider. his method returns trustFrameworkKey.
+        Invoke action uploadSecret
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +63,7 @@ class UploadSecretRequestBuilder():
     
     def to_post_request_information(self,body: Optional[upload_secret_post_request_body.UploadSecretPostRequestBody] = None, request_configuration: Optional[UploadSecretRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Upload a plain text secret to a trustFrameworkKeyset. Examples of secrets are application secrets in Azure Active Directory, Google, Facebook, or any other identity provider. his method returns trustFrameworkKey.
+        Invoke action uploadSecret
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

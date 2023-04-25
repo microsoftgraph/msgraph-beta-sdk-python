@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import unified_role_management_policy_rule, unified_role_management_policy_rule_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import unified_role_management_policy_rule_item_request_builder
 
 class EffectiveRulesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class EffectiveRulesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_unified_role_management_policy_rule_id(self,unified_role_management_policy_rule_id: str) -> unified_role_management_policy_rule_item_request_builder.UnifiedRoleManagementPolicyRuleItemRequestBuilder:
+        """
+        Provides operations to manage the effectiveRules property of the microsoft.graph.unifiedRoleManagementPolicy entity.
+        Args:
+            unified_role_management_policy_rule_id: Unique identifier of the item
+        Returns: unified_role_management_policy_rule_item_request_builder.UnifiedRoleManagementPolicyRuleItemRequestBuilder
+        """
+        if unified_role_management_policy_rule_id is None:
+            raise Exception("unified_role_management_policy_rule_id cannot be undefined")
+        from .item import unified_role_management_policy_rule_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["unifiedRoleManagementPolicyRule%2Did"] = unified_role_management_policy_rule_id
+        return unified_role_management_policy_rule_item_request_builder.UnifiedRoleManagementPolicyRuleItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[EffectiveRulesRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_management_policy_rule_collection_response.UnifiedRoleManagementPolicyRuleCollectionResponse]:
         """
-        Get the unifiedRoleManagementPolicyRule resources from the effectiveRules navigation property. To retrieve rules for a policy that applies to Azure RBAC, use the Azure REST PIM API for role management policies.
+        The list of effective rules like approval rules and expiration rules evaluated based on inherited referenced rules. For example, if there is a tenant-wide policy to enforce enabling an approval rule, the effective rule will be to enable approval even if the policy has a rule to disable approval. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[unified_role_management_policy_rule_collection_response.UnifiedRoleManagementPolicyRuleCollectionResponse]
@@ -85,7 +101,7 @@ class EffectiveRulesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[EffectiveRulesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the unifiedRoleManagementPolicyRule resources from the effectiveRules navigation property. To retrieve rules for a policy that applies to Azure RBAC, use the Azure REST PIM API for role management policies.
+        The list of effective rules like approval rules and expiration rules evaluated based on inherited referenced rules. For example, if there is a tenant-wide policy to enforce enabling an approval rule, the effective rule will be to enable approval even if the policy has a rule to disable approval. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class EffectiveRulesRequestBuilder():
     @dataclass
     class EffectiveRulesRequestBuilderGetQueryParameters():
         """
-        Get the unifiedRoleManagementPolicyRule resources from the effectiveRules navigation property. To retrieve rules for a policy that applies to Azure RBAC, use the Azure REST PIM API for role management policies.
+        The list of effective rules like approval rules and expiration rules evaluated based on inherited referenced rules. For example, if there is a tenant-wide policy to enforce enabling an approval rule, the effective rule will be to enable approval even if the policy has a rule to disable approval. Supports $expand.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

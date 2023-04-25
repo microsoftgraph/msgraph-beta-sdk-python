@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class ImportedDeviceIdentity(entity.Entity):
-    """
-    The importedDeviceIdentity resource represents a unique hardware identity of a device that has been pre-staged for pre-enrollment configuration.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new importedDeviceIdentity and sets the default values.
+        Instantiates a new ImportedDeviceIdentity and sets the default values.
         """
         super().__init__()
         # Created Date Time of the device

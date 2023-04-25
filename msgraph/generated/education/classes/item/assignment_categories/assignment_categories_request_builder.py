@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .delta import delta_request_builder
+    from .item import education_category_item_request_builder
 
 class AssignmentCategoriesRequestBuilder():
     """
@@ -37,9 +38,24 @@ class AssignmentCategoriesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_education_category_id(self,education_category_id: str) -> education_category_item_request_builder.EducationCategoryItemRequestBuilder:
+        """
+        Provides operations to manage the assignmentCategories property of the microsoft.graph.educationClass entity.
+        Args:
+            education_category_id: Unique identifier of the item
+        Returns: education_category_item_request_builder.EducationCategoryItemRequestBuilder
+        """
+        if education_category_id is None:
+            raise Exception("education_category_id cannot be undefined")
+        from .item import education_category_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["educationCategory%2Did"] = education_category_id
+        return education_category_item_request_builder.EducationCategoryItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[AssignmentCategoriesRequestBuilderGetRequestConfiguration] = None) -> Optional[education_category_collection_response.EducationCategoryCollectionResponse]:
         """
-        Retrieve a list of educationCategory objects. Only teachers can perform this operation.
+        All categories associated with this class. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[education_category_collection_response.EducationCategoryCollectionResponse]
@@ -61,7 +77,7 @@ class AssignmentCategoriesRequestBuilder():
     
     async def post(self,body: Optional[education_category.EducationCategory] = None, request_configuration: Optional[AssignmentCategoriesRequestBuilderPostRequestConfiguration] = None) -> Optional[education_category.EducationCategory]:
         """
-        Creates a new educationCategory on an educationClass. Only teachers can perform this operation.
+        Create new navigation property to assignmentCategories for education
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -86,7 +102,7 @@ class AssignmentCategoriesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AssignmentCategoriesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of educationCategory objects. Only teachers can perform this operation.
+        All categories associated with this class. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +120,7 @@ class AssignmentCategoriesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[education_category.EducationCategory] = None, request_configuration: Optional[AssignmentCategoriesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Creates a new educationCategory on an educationClass. Only teachers can perform this operation.
+        Create new navigation property to assignmentCategories for education
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -144,7 +160,7 @@ class AssignmentCategoriesRequestBuilder():
     @dataclass
     class AssignmentCategoriesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of educationCategory objects. Only teachers can perform this operation.
+        All categories associated with this class. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

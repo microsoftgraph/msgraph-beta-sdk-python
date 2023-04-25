@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import secure_score, secure_score_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import secure_score_item_request_builder
 
 class SecureScoresRequestBuilder():
     """
@@ -36,9 +37,24 @@ class SecureScoresRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_secure_score_id(self,secure_score_id: str) -> secure_score_item_request_builder.SecureScoreItemRequestBuilder:
+        """
+        Provides operations to manage the secureScores property of the microsoft.graph.security entity.
+        Args:
+            secure_score_id: Unique identifier of the item
+        Returns: secure_score_item_request_builder.SecureScoreItemRequestBuilder
+        """
+        if secure_score_id is None:
+            raise Exception("secure_score_id cannot be undefined")
+        from .item import secure_score_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["secureScore%2Did"] = secure_score_id
+        return secure_score_item_request_builder.SecureScoreItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[SecureScoresRequestBuilderGetRequestConfiguration] = None) -> Optional[secure_score_collection_response.SecureScoreCollectionResponse]:
         """
-        Retrieve the properties and relationships of a secureScores object.
+        Measurements of tenants’ security posture to help protect them from threats.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[secure_score_collection_response.SecureScoreCollectionResponse]
@@ -85,7 +101,7 @@ class SecureScoresRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SecureScoresRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a secureScores object.
+        Measurements of tenants’ security posture to help protect them from threats.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class SecureScoresRequestBuilder():
     @dataclass
     class SecureScoresRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a secureScores object.
+        Measurements of tenants’ security posture to help protect them from threats.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

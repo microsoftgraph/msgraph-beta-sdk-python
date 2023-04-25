@@ -3,7 +3,7 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import access_package_answer, access_package_question, request_schedule
+    from . import access_package_answer, access_package_question, request_schedule, verifiable_credential_requirement_status
 
 class AccessPackageAssignmentRequestRequirements(AdditionalDataHolder, Parsable):
     def __init__(self,) -> None:
@@ -35,6 +35,8 @@ class AccessPackageAssignmentRequestRequirements(AdditionalDataHolder, Parsable)
         self._questions: Optional[List[access_package_question.AccessPackageQuestion]] = None
         # Schedule restrictions enforced, if any.
         self._schedule: Optional[request_schedule.RequestSchedule] = None
+        # The status of the process to process the verifiable credential, if any.
+        self._verifiable_credential_requirement_status: Optional[verifiable_credential_requirement_status.VerifiableCredentialRequirementStatus] = None
     
     @property
     def additional_data(self,) -> Dict[str, Any]:
@@ -87,7 +89,7 @@ class AccessPackageAssignmentRequestRequirements(AdditionalDataHolder, Parsable)
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import access_package_answer, access_package_question, request_schedule
+        from . import access_package_answer, access_package_question, request_schedule, verifiable_credential_requirement_status
 
         fields: Dict[str, Callable[[Any], None]] = {
             "existingAnswers": lambda n : setattr(self, 'existing_answers', n.get_collection_of_object_values(access_package_answer.AccessPackageAnswer)),
@@ -101,6 +103,7 @@ class AccessPackageAssignmentRequestRequirements(AdditionalDataHolder, Parsable)
             "policyId": lambda n : setattr(self, 'policy_id', n.get_str_value()),
             "questions": lambda n : setattr(self, 'questions', n.get_collection_of_object_values(access_package_question.AccessPackageQuestion)),
             "schedule": lambda n : setattr(self, 'schedule', n.get_object_value(request_schedule.RequestSchedule)),
+            "verifiableCredentialRequirementStatus": lambda n : setattr(self, 'verifiable_credential_requirement_status', n.get_object_value(verifiable_credential_requirement_status.VerifiableCredentialRequirementStatus)),
         }
         return fields
     
@@ -293,6 +296,24 @@ class AccessPackageAssignmentRequestRequirements(AdditionalDataHolder, Parsable)
         writer.write_str_value("policyId", self.policy_id)
         writer.write_collection_of_object_values("questions", self.questions)
         writer.write_object_value("schedule", self.schedule)
+        writer.write_object_value("verifiableCredentialRequirementStatus", self.verifiable_credential_requirement_status)
         writer.write_additional_data_value(self.additional_data)
+    
+    @property
+    def verifiable_credential_requirement_status(self,) -> Optional[verifiable_credential_requirement_status.VerifiableCredentialRequirementStatus]:
+        """
+        Gets the verifiableCredentialRequirementStatus property value. The status of the process to process the verifiable credential, if any.
+        Returns: Optional[verifiable_credential_requirement_status.VerifiableCredentialRequirementStatus]
+        """
+        return self._verifiable_credential_requirement_status
+    
+    @verifiable_credential_requirement_status.setter
+    def verifiable_credential_requirement_status(self,value: Optional[verifiable_credential_requirement_status.VerifiableCredentialRequirementStatus] = None) -> None:
+        """
+        Sets the verifiableCredentialRequirementStatus property value. The status of the process to process the verifiable credential, if any.
+        Args:
+            value: Value to set for the verifiable_credential_requirement_status property.
+        """
+        self._verifiable_credential_requirement_status = value
     
 

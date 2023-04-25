@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .delta import delta_request_builder
+    from .item import planner_bucket_item_request_builder
 
 class BucketsRequestBuilder():
     """
@@ -37,9 +38,24 @@ class BucketsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_planner_bucket_id(self,planner_bucket_id: str) -> planner_bucket_item_request_builder.PlannerBucketItemRequestBuilder:
+        """
+        Provides operations to manage the buckets property of the microsoft.graph.plannerPlan entity.
+        Args:
+            planner_bucket_id: Unique identifier of the item
+        Returns: planner_bucket_item_request_builder.PlannerBucketItemRequestBuilder
+        """
+        if planner_bucket_id is None:
+            raise Exception("planner_bucket_id cannot be undefined")
+        from .item import planner_bucket_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["plannerBucket%2Did"] = planner_bucket_id
+        return planner_bucket_item_request_builder.PlannerBucketItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[BucketsRequestBuilderGetRequestConfiguration] = None) -> Optional[planner_bucket_collection_response.PlannerBucketCollectionResponse]:
         """
-        Retrieve a list of plannerBucket objects contained by a plannerPlan object.
+        Collection of buckets in the plan. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[planner_bucket_collection_response.PlannerBucketCollectionResponse]
@@ -86,7 +102,7 @@ class BucketsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[BucketsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of plannerBucket objects contained by a plannerPlan object.
+        Collection of buckets in the plan. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -144,7 +160,7 @@ class BucketsRequestBuilder():
     @dataclass
     class BucketsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of plannerBucket objects contained by a plannerPlan object.
+        Collection of buckets in the plan. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models.o_data_errors import o_data_error
     from ......models.security import ediscovery_review_set, ediscovery_review_set_collection_response
     from .count import count_request_builder
+    from .item import ediscovery_review_set_item_request_builder
 
 class ReviewSetsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ReviewSetsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_ediscovery_review_set_id(self,ediscovery_review_set_id: str) -> ediscovery_review_set_item_request_builder.EdiscoveryReviewSetItemRequestBuilder:
+        """
+        Provides operations to manage the reviewSets property of the microsoft.graph.security.ediscoveryCase entity.
+        Args:
+            ediscovery_review_set_id: Unique identifier of the item
+        Returns: ediscovery_review_set_item_request_builder.EdiscoveryReviewSetItemRequestBuilder
+        """
+        if ediscovery_review_set_id is None:
+            raise Exception("ediscovery_review_set_id cannot be undefined")
+        from .item import ediscovery_review_set_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["ediscoveryReviewSet%2Did"] = ediscovery_review_set_id
+        return ediscovery_review_set_item_request_builder.EdiscoveryReviewSetItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ReviewSetsRequestBuilderGetRequestConfiguration] = None) -> Optional[ediscovery_review_set_collection_response.EdiscoveryReviewSetCollectionResponse]:
         """
-        Get a list of ediscoveryReviewSet objects associated with an eDiscovery case.
+        Returns a list of eDiscoveryReviewSet objects in the case.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ediscovery_review_set_collection_response.EdiscoveryReviewSetCollectionResponse]
@@ -60,7 +76,7 @@ class ReviewSetsRequestBuilder():
     
     async def post(self,body: Optional[ediscovery_review_set.EdiscoveryReviewSet] = None, request_configuration: Optional[ReviewSetsRequestBuilderPostRequestConfiguration] = None) -> Optional[ediscovery_review_set.EdiscoveryReviewSet]:
         """
-        Create a new ediscoveryReviewSet object.
+        Create new navigation property to reviewSets for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class ReviewSetsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ReviewSetsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of ediscoveryReviewSet objects associated with an eDiscovery case.
+        Returns a list of eDiscoveryReviewSet objects in the case.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class ReviewSetsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[ediscovery_review_set.EdiscoveryReviewSet] = None, request_configuration: Optional[ReviewSetsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new ediscoveryReviewSet object.
+        Create new navigation property to reviewSets for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class ReviewSetsRequestBuilder():
     @dataclass
     class ReviewSetsRequestBuilderGetQueryParameters():
         """
-        Get a list of ediscoveryReviewSet objects associated with an eDiscovery case.
+        Returns a list of eDiscoveryReviewSet objects in the case.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

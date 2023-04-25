@@ -37,7 +37,7 @@ class ReprovisionRequestBuilder():
     
     async def post(self,body: Optional[reprovision_post_request_body.ReprovisionPostRequestBody] = None, request_configuration: Optional[ReprovisionRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Reprovision a specific Cloud PC.
+        Invoke action reprovision
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -59,7 +59,7 @@ class ReprovisionRequestBuilder():
     
     def to_post_request_information(self,body: Optional[reprovision_post_request_body.ReprovisionPostRequestBody] = None, request_configuration: Optional[ReprovisionRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Reprovision a specific Cloud PC.
+        Invoke action reprovision
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

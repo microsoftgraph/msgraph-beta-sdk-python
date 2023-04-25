@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import windows_defender_application_control_supplemental_policy, windows_defender_application_control_supplemental_policy_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import windows_defender_application_control_supplemental_policy_item_request_builder
 
 class WdacSupplementalPoliciesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class WdacSupplementalPoliciesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_windows_defender_application_control_supplemental_policy_id(self,windows_defender_application_control_supplemental_policy_id: str) -> windows_defender_application_control_supplemental_policy_item_request_builder.WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder:
+        """
+        Provides operations to manage the wdacSupplementalPolicies property of the microsoft.graph.deviceAppManagement entity.
+        Args:
+            windows_defender_application_control_supplemental_policy_id: Unique identifier of the item
+        Returns: windows_defender_application_control_supplemental_policy_item_request_builder.WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder
+        """
+        if windows_defender_application_control_supplemental_policy_id is None:
+            raise Exception("windows_defender_application_control_supplemental_policy_id cannot be undefined")
+        from .item import windows_defender_application_control_supplemental_policy_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["windowsDefenderApplicationControlSupplementalPolicy%2Did"] = windows_defender_application_control_supplemental_policy_id
+        return windows_defender_application_control_supplemental_policy_item_request_builder.WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[WdacSupplementalPoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_defender_application_control_supplemental_policy_collection_response.WindowsDefenderApplicationControlSupplementalPolicyCollectionResponse]:
         """

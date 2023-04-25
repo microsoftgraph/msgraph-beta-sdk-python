@@ -3,14 +3,14 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import authentication_method, email_authentication_method, entity, fido2_authentication_method, long_running_operation, microsoft_authenticator_authentication_method, passwordless_microsoft_authenticator_authentication_method, password_authentication_method, phone_authentication_method, software_oath_authentication_method, temporary_access_pass_authentication_method, windows_hello_for_business_authentication_method
+    from . import authentication_method, email_authentication_method, entity, fido2_authentication_method, long_running_operation, microsoft_authenticator_authentication_method, passwordless_microsoft_authenticator_authentication_method, password_authentication_method, phone_authentication_method, sign_in_preferences, software_oath_authentication_method, temporary_access_pass_authentication_method, windows_hello_for_business_authentication_method
 
 from . import entity
 
 class Authentication(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new authentication and sets the default values.
+        Instantiates a new Authentication and sets the default values.
         """
         super().__init__()
         # Represents the email addresses registered to a user for authentication.
@@ -31,6 +31,8 @@ class Authentication(entity.Entity):
         self._passwordless_microsoft_authenticator_methods: Optional[List[passwordless_microsoft_authenticator_authentication_method.PasswordlessMicrosoftAuthenticatorAuthenticationMethod]] = None
         # Represents the phone registered to a user for authentication.
         self._phone_methods: Optional[List[phone_authentication_method.PhoneAuthenticationMethod]] = None
+        # The settings and preferences for to the sign-in experience of a user.
+        self._sign_in_preferences: Optional[sign_in_preferences.SignInPreferences] = None
         # The softwareOathMethods property
         self._software_oath_methods: Optional[List[software_oath_authentication_method.SoftwareOathAuthenticationMethod]] = None
         # Represents a Temporary Access Pass registered to a user for authentication through time-limited passcodes.
@@ -89,7 +91,7 @@ class Authentication(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import authentication_method, email_authentication_method, entity, fido2_authentication_method, long_running_operation, microsoft_authenticator_authentication_method, passwordless_microsoft_authenticator_authentication_method, password_authentication_method, phone_authentication_method, software_oath_authentication_method, temporary_access_pass_authentication_method, windows_hello_for_business_authentication_method
+        from . import authentication_method, email_authentication_method, entity, fido2_authentication_method, long_running_operation, microsoft_authenticator_authentication_method, passwordless_microsoft_authenticator_authentication_method, password_authentication_method, phone_authentication_method, sign_in_preferences, software_oath_authentication_method, temporary_access_pass_authentication_method, windows_hello_for_business_authentication_method
 
         fields: Dict[str, Callable[[Any], None]] = {
             "emailMethods": lambda n : setattr(self, 'email_methods', n.get_collection_of_object_values(email_authentication_method.EmailAuthenticationMethod)),
@@ -100,6 +102,7 @@ class Authentication(entity.Entity):
             "passwordlessMicrosoftAuthenticatorMethods": lambda n : setattr(self, 'passwordless_microsoft_authenticator_methods', n.get_collection_of_object_values(passwordless_microsoft_authenticator_authentication_method.PasswordlessMicrosoftAuthenticatorAuthenticationMethod)),
             "passwordMethods": lambda n : setattr(self, 'password_methods', n.get_collection_of_object_values(password_authentication_method.PasswordAuthenticationMethod)),
             "phoneMethods": lambda n : setattr(self, 'phone_methods', n.get_collection_of_object_values(phone_authentication_method.PhoneAuthenticationMethod)),
+            "signInPreferences": lambda n : setattr(self, 'sign_in_preferences', n.get_object_value(sign_in_preferences.SignInPreferences)),
             "softwareOathMethods": lambda n : setattr(self, 'software_oath_methods', n.get_collection_of_object_values(software_oath_authentication_method.SoftwareOathAuthenticationMethod)),
             "temporaryAccessPassMethods": lambda n : setattr(self, 'temporary_access_pass_methods', n.get_collection_of_object_values(temporary_access_pass_authentication_method.TemporaryAccessPassAuthenticationMethod)),
             "windowsHelloForBusinessMethods": lambda n : setattr(self, 'windows_hello_for_business_methods', n.get_collection_of_object_values(windows_hello_for_business_authentication_method.WindowsHelloForBusinessAuthenticationMethod)),
@@ -227,9 +230,27 @@ class Authentication(entity.Entity):
         writer.write_collection_of_object_values("passwordlessMicrosoftAuthenticatorMethods", self.passwordless_microsoft_authenticator_methods)
         writer.write_collection_of_object_values("passwordMethods", self.password_methods)
         writer.write_collection_of_object_values("phoneMethods", self.phone_methods)
+        writer.write_object_value("signInPreferences", self.sign_in_preferences)
         writer.write_collection_of_object_values("softwareOathMethods", self.software_oath_methods)
         writer.write_collection_of_object_values("temporaryAccessPassMethods", self.temporary_access_pass_methods)
         writer.write_collection_of_object_values("windowsHelloForBusinessMethods", self.windows_hello_for_business_methods)
+    
+    @property
+    def sign_in_preferences(self,) -> Optional[sign_in_preferences.SignInPreferences]:
+        """
+        Gets the signInPreferences property value. The settings and preferences for to the sign-in experience of a user.
+        Returns: Optional[sign_in_preferences.SignInPreferences]
+        """
+        return self._sign_in_preferences
+    
+    @sign_in_preferences.setter
+    def sign_in_preferences(self,value: Optional[sign_in_preferences.SignInPreferences] = None) -> None:
+        """
+        Sets the signInPreferences property value. The settings and preferences for to the sign-in experience of a user.
+        Args:
+            value: Value to set for the sign_in_preferences property.
+        """
+        self._sign_in_preferences = value
     
     @property
     def software_oath_methods(self,) -> Optional[List[software_oath_authentication_method.SoftwareOathAuthenticationMethod]]:

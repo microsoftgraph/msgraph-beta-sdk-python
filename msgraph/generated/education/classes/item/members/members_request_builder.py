@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import education_user_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import education_user_item_request_builder
     from .ref import ref_request_builder
 
 class MembersRequestBuilder():
@@ -37,9 +38,24 @@ class MembersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_education_user_id(self,education_user_id: str) -> education_user_item_request_builder.EducationUserItemRequestBuilder:
+        """
+        Gets an item from the msgraph.generated.education.classes.item.members.item collection
+        Args:
+            education_user_id: Unique identifier of the item
+        Returns: education_user_item_request_builder.EducationUserItemRequestBuilder
+        """
+        if education_user_id is None:
+            raise Exception("education_user_id cannot be undefined")
+        from .item import education_user_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["educationUser%2Did"] = education_user_id
+        return education_user_item_request_builder.EducationUserItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[MembersRequestBuilderGetRequestConfiguration] = None) -> Optional[education_user_collection_response.EducationUserCollectionResponse]:
         """
-        Retrieves the teachers and students for a class. Note that if the delegated token is used, members can only be seen by other members of the class.
+        All users in the class. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[education_user_collection_response.EducationUserCollectionResponse]
@@ -61,7 +77,7 @@ class MembersRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[MembersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieves the teachers and students for a class. Note that if the delegated token is used, members can only be seen by other members of the class.
+        All users in the class. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -98,7 +114,7 @@ class MembersRequestBuilder():
     @dataclass
     class MembersRequestBuilderGetQueryParameters():
         """
-        Retrieves the teachers and students for a class. Note that if the delegated token is used, members can only be seen by other members of the class.
+        All users in the class. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -14,7 +14,6 @@ if TYPE_CHECKING:
     from ......models.o_data_errors import o_data_error
     from .definition import definition_request_builder
     from .presentation_values import presentation_values_request_builder
-    from .presentation_values.item import group_policy_presentation_value_item_request_builder
 
 class GroupPolicyDefinitionValueItemRequestBuilder():
     """
@@ -103,21 +102,6 @@ class GroupPolicyDefinitionValueItemRequestBuilder():
         from ......models import group_policy_definition_value
 
         return await self.request_adapter.send_async(request_info, group_policy_definition_value.GroupPolicyDefinitionValue, error_mapping)
-    
-    def presentation_values_by_id(self,id: str) -> group_policy_presentation_value_item_request_builder.GroupPolicyPresentationValueItemRequestBuilder:
-        """
-        Provides operations to manage the presentationValues property of the microsoft.graph.groupPolicyDefinitionValue entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: group_policy_presentation_value_item_request_builder.GroupPolicyPresentationValueItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .presentation_values.item import group_policy_presentation_value_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["groupPolicyPresentationValue%2Did"] = id
-        return group_policy_presentation_value_item_request_builder.GroupPolicyPresentationValueItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[GroupPolicyDefinitionValueItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import teamwork_tag, teamwork_tag_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import teamwork_tag_item_request_builder
 
 class TagsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class TagsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_teamwork_tag_id(self,teamwork_tag_id: str) -> teamwork_tag_item_request_builder.TeamworkTagItemRequestBuilder:
+        """
+        Provides operations to manage the tags property of the microsoft.graph.team entity.
+        Args:
+            teamwork_tag_id: Unique identifier of the item
+        Returns: teamwork_tag_item_request_builder.TeamworkTagItemRequestBuilder
+        """
+        if teamwork_tag_id is None:
+            raise Exception("teamwork_tag_id cannot be undefined")
+        from .item import teamwork_tag_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["teamworkTag%2Did"] = teamwork_tag_id
+        return teamwork_tag_item_request_builder.TeamworkTagItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[TagsRequestBuilderGetRequestConfiguration] = None) -> Optional[teamwork_tag_collection_response.TeamworkTagCollectionResponse]:
         """
-        Get a list of the tag objects and their properties.
+        The tags associated with the team.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[teamwork_tag_collection_response.TeamworkTagCollectionResponse]
@@ -60,7 +76,7 @@ class TagsRequestBuilder():
     
     async def post(self,body: Optional[teamwork_tag.TeamworkTag] = None, request_configuration: Optional[TagsRequestBuilderPostRequestConfiguration] = None) -> Optional[teamwork_tag.TeamworkTag]:
         """
-        Create a standard tag for members in the team. 
+        Create new navigation property to tags for groups
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class TagsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TagsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the tag objects and their properties.
+        The tags associated with the team.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class TagsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[teamwork_tag.TeamworkTag] = None, request_configuration: Optional[TagsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a standard tag for members in the team. 
+        Create new navigation property to tags for groups
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class TagsRequestBuilder():
     @dataclass
     class TagsRequestBuilderGetQueryParameters():
         """
-        Get a list of the tag objects and their properties.
+        The tags associated with the team.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

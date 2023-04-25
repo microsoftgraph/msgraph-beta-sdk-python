@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .all_messages import all_messages_request_builder
     from .count import count_request_builder
     from .get_all_messages import get_all_messages_request_builder
+    from .item import channel_item_request_builder
 
 class ChannelsRequestBuilder():
     """
@@ -38,9 +39,24 @@ class ChannelsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_channel_id(self,channel_id: str) -> channel_item_request_builder.ChannelItemRequestBuilder:
+        """
+        Provides operations to manage the channels property of the microsoft.graph.team entity.
+        Args:
+            channel_id: Unique identifier of the item
+        Returns: channel_item_request_builder.ChannelItemRequestBuilder
+        """
+        if channel_id is None:
+            raise Exception("channel_id cannot be undefined")
+        from .item import channel_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["channel%2Did"] = channel_id
+        return channel_item_request_builder.ChannelItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ChannelsRequestBuilderGetRequestConfiguration] = None) -> Optional[channel_collection_response.ChannelCollectionResponse]:
         """
-        Retrieve the list of channels in this team.
+        The collection of channels and messages associated with the team.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[channel_collection_response.ChannelCollectionResponse]
@@ -62,7 +78,7 @@ class ChannelsRequestBuilder():
     
     async def post(self,body: Optional[channel.Channel] = None, request_configuration: Optional[ChannelsRequestBuilderPostRequestConfiguration] = None) -> Optional[channel.Channel]:
         """
-        Create a new channel in a team, as specified in the request body. When you create a channel, the maximum length of the channel's `displayName` is 50 characters. This is the name that appears to the user in Microsoft Teams. You can add a maximum of 200 members when you create a private channel.
+        Create new navigation property to channels for teamwork
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -87,7 +103,7 @@ class ChannelsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ChannelsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the list of channels in this team.
+        The collection of channels and messages associated with the team.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -105,7 +121,7 @@ class ChannelsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[channel.Channel] = None, request_configuration: Optional[ChannelsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new channel in a team, as specified in the request body. When you create a channel, the maximum length of the channel's `displayName` is 50 characters. This is the name that appears to the user in Microsoft Teams. You can add a maximum of 200 members when you create a private channel.
+        Create new navigation property to channels for teamwork
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -154,7 +170,7 @@ class ChannelsRequestBuilder():
     @dataclass
     class ChannelsRequestBuilderGetQueryParameters():
         """
-        Retrieve the list of channels in this team.
+        The collection of channels and messages associated with the team.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

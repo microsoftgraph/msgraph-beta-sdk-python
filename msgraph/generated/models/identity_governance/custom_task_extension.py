@@ -15,7 +15,7 @@ class CustomTaskExtension(custom_callout_extension.CustomCalloutExtension):
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.identityGovernance.customTaskExtension"
-        # The callback configuration for a custom extension.
+        # The callback configuration for a custom task extension.
         self._callback_configuration: Optional[custom_extension_callback_configuration.CustomExtensionCallbackConfiguration] = None
         # The unique identifier of the Azure AD user that created the custom task extension.Supports $filter(eq, ne) and $expand.
         self._created_by: Optional[user.User] = None
@@ -29,7 +29,7 @@ class CustomTaskExtension(custom_callout_extension.CustomCalloutExtension):
     @property
     def callback_configuration(self,) -> Optional[custom_extension_callback_configuration.CustomExtensionCallbackConfiguration]:
         """
-        Gets the callbackConfiguration property value. The callback configuration for a custom extension.
+        Gets the callbackConfiguration property value. The callback configuration for a custom task extension.
         Returns: Optional[custom_extension_callback_configuration.CustomExtensionCallbackConfiguration]
         """
         return self._callback_configuration
@@ -37,7 +37,7 @@ class CustomTaskExtension(custom_callout_extension.CustomCalloutExtension):
     @callback_configuration.setter
     def callback_configuration(self,value: Optional[custom_extension_callback_configuration.CustomExtensionCallbackConfiguration] = None) -> None:
         """
-        Sets the callbackConfiguration property value. The callback configuration for a custom extension.
+        Sets the callbackConfiguration property value. The callback configuration for a custom task extension.
         Args:
             value: Value to set for the callback_configuration property.
         """

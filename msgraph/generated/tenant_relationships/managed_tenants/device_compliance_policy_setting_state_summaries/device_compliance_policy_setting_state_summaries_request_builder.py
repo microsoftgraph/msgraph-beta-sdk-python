@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.managed_tenants import device_compliance_policy_setting_state_summary, device_compliance_policy_setting_state_summary_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import device_compliance_policy_setting_state_summary_item_request_builder
 
 class DeviceCompliancePolicySettingStateSummariesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class DeviceCompliancePolicySettingStateSummariesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_device_compliance_policy_setting_state_summary_id(self,device_compliance_policy_setting_state_summary_id: str) -> device_compliance_policy_setting_state_summary_item_request_builder.DeviceCompliancePolicySettingStateSummaryItemRequestBuilder:
+        """
+        Provides operations to manage the deviceCompliancePolicySettingStateSummaries property of the microsoft.graph.managedTenants.managedTenant entity.
+        Args:
+            device_compliance_policy_setting_state_summary_id: Unique identifier of the item
+        Returns: device_compliance_policy_setting_state_summary_item_request_builder.DeviceCompliancePolicySettingStateSummaryItemRequestBuilder
+        """
+        if device_compliance_policy_setting_state_summary_id is None:
+            raise Exception("device_compliance_policy_setting_state_summary_id cannot be undefined")
+        from .item import device_compliance_policy_setting_state_summary_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["deviceCompliancePolicySettingStateSummary%2Did"] = device_compliance_policy_setting_state_summary_id
+        return device_compliance_policy_setting_state_summary_item_request_builder.DeviceCompliancePolicySettingStateSummaryItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[DeviceCompliancePolicySettingStateSummariesRequestBuilderGetRequestConfiguration] = None) -> Optional[device_compliance_policy_setting_state_summary_collection_response.DeviceCompliancePolicySettingStateSummaryCollectionResponse]:
         """
-        Get a list of the deviceCompliancePolicySettingStateSummary objects and their properties.
+        Summary information for device compliance policy setting states across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[device_compliance_policy_setting_state_summary_collection_response.DeviceCompliancePolicySettingStateSummaryCollectionResponse]
@@ -85,7 +101,7 @@ class DeviceCompliancePolicySettingStateSummariesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[DeviceCompliancePolicySettingStateSummariesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the deviceCompliancePolicySettingStateSummary objects and their properties.
+        Summary information for device compliance policy setting states across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class DeviceCompliancePolicySettingStateSummariesRequestBuilder():
     @dataclass
     class DeviceCompliancePolicySettingStateSummariesRequestBuilderGetQueryParameters():
         """
-        Get a list of the deviceCompliancePolicySettingStateSummary objects and their properties.
+        Summary information for device compliance policy setting states across managed tenants.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

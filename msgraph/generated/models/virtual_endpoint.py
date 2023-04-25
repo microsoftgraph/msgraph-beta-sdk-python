@@ -10,7 +10,7 @@ from . import entity
 class VirtualEndpoint(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new virtualEndpoint and sets the default values.
+        Instantiates a new VirtualEndpoint and sets the default values.
         """
         super().__init__()
         # Cloud PC audit event.

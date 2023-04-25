@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .filter_by_current_user_with_on import filter_by_current_user_with_on_request_builder
+    from .item import access_review_instance_item_request_builder
 
 class PendingAccessReviewInstancesRequestBuilder():
     """
@@ -37,6 +38,21 @@ class PendingAccessReviewInstancesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_access_review_instance_id(self,access_review_instance_id: str) -> access_review_instance_item_request_builder.AccessReviewInstanceItemRequestBuilder:
+        """
+        Provides operations to manage the pendingAccessReviewInstances property of the microsoft.graph.user entity.
+        Args:
+            access_review_instance_id: Unique identifier of the item
+        Returns: access_review_instance_item_request_builder.AccessReviewInstanceItemRequestBuilder
+        """
+        if access_review_instance_id is None:
+            raise Exception("access_review_instance_id cannot be undefined")
+        from .item import access_review_instance_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["accessReviewInstance%2Did"] = access_review_instance_id
+        return access_review_instance_item_request_builder.AccessReviewInstanceItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     def filter_by_current_user_with_on(self,on: Optional[str] = None) -> filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder:
         """
         Provides operations to call the filterByCurrentUser method.
@@ -52,7 +68,7 @@ class PendingAccessReviewInstancesRequestBuilder():
     
     async def get(self,request_configuration: Optional[PendingAccessReviewInstancesRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_instance_collection_response.AccessReviewInstanceCollectionResponse]:
         """
-        Retrieve the accessReviewInstance objects pending approval by the calling user. A list of zero or more accessReviewInstance objects are returned, of which the calling user is an assigned reviewer.
+        Navigation property to get list of access reviews pending approval by reviewer.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_review_instance_collection_response.AccessReviewInstanceCollectionResponse]
@@ -99,7 +115,7 @@ class PendingAccessReviewInstancesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PendingAccessReviewInstancesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the accessReviewInstance objects pending approval by the calling user. A list of zero or more accessReviewInstance objects are returned, of which the calling user is an assigned reviewer.
+        Navigation property to get list of access reviews pending approval by reviewer.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -148,7 +164,7 @@ class PendingAccessReviewInstancesRequestBuilder():
     @dataclass
     class PendingAccessReviewInstancesRequestBuilderGetQueryParameters():
         """
-        Retrieve the accessReviewInstance objects pending approval by the calling user. A list of zero or more accessReviewInstance objects are returned, of which the calling user is an assigned reviewer.
+        Navigation property to get list of access reviews pending approval by reviewer.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

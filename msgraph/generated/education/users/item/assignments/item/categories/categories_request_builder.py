@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .......models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .delta import delta_request_builder
+    from .item import education_category_item_request_builder
     from .ref import ref_request_builder
 
 class CategoriesRequestBuilder():
@@ -38,9 +39,24 @@ class CategoriesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_education_category_id(self,education_category_id: str) -> education_category_item_request_builder.EducationCategoryItemRequestBuilder:
+        """
+        Gets an item from the msgraph.generated.education.users.item.assignments.item.categories.item collection
+        Args:
+            education_category_id: Unique identifier of the item
+        Returns: education_category_item_request_builder.EducationCategoryItemRequestBuilder
+        """
+        if education_category_id is None:
+            raise Exception("education_category_id cannot be undefined")
+        from .item import education_category_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["educationCategory%2Did"] = education_category_id
+        return education_category_item_request_builder.EducationCategoryItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[CategoriesRequestBuilderGetRequestConfiguration] = None) -> Optional[education_category_collection_response.EducationCategoryCollectionResponse]:
         """
-        List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
+        When set, enables users to easily find assignments of a given type.  Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[education_category_collection_response.EducationCategoryCollectionResponse]
@@ -87,7 +103,7 @@ class CategoriesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CategoriesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
+        When set, enables users to easily find assignments of a given type.  Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -154,7 +170,7 @@ class CategoriesRequestBuilder():
     @dataclass
     class CategoriesRequestBuilderGetQueryParameters():
         """
-        List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
+        When set, enables users to easily find assignments of a given type.  Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

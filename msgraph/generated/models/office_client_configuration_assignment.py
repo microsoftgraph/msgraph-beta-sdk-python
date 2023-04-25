@@ -15,7 +15,7 @@ class OfficeClientConfigurationAssignment(entity.Entity):
         super().__init__()
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The target assignment defined by the admin.
+        # The target property
         self._target: Optional[office_configuration_assignment_target.OfficeConfigurationAssignmentTarget] = None
     
     @staticmethod
@@ -58,7 +58,7 @@ class OfficeClientConfigurationAssignment(entity.Entity):
     @property
     def target(self,) -> Optional[office_configuration_assignment_target.OfficeConfigurationAssignmentTarget]:
         """
-        Gets the target property value. The target assignment defined by the admin.
+        Gets the target property value. The target property
         Returns: Optional[office_configuration_assignment_target.OfficeConfigurationAssignmentTarget]
         """
         return self._target
@@ -66,7 +66,7 @@ class OfficeClientConfigurationAssignment(entity.Entity):
     @target.setter
     def target(self,value: Optional[office_configuration_assignment_target.OfficeConfigurationAssignmentTarget] = None) -> None:
         """
-        Sets the target property value. The target assignment defined by the admin.
+        Sets the target property value. The target property
         Args:
             value: Value to set for the target property.
         """

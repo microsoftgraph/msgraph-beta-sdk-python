@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .........models import onenote_section, onenote_section_collection_response
     from .........models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import onenote_section_item_request_builder
 
 class SectionsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class SectionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_onenote_section_id(self,onenote_section_id: str) -> onenote_section_item_request_builder.OnenoteSectionItemRequestBuilder:
+        """
+        Provides operations to manage the sections property of the microsoft.graph.sectionGroup entity.
+        Args:
+            onenote_section_id: Unique identifier of the item
+        Returns: onenote_section_item_request_builder.OnenoteSectionItemRequestBuilder
+        """
+        if onenote_section_id is None:
+            raise Exception("onenote_section_id cannot be undefined")
+        from .item import onenote_section_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["onenoteSection%2Did"] = onenote_section_id
+        return onenote_section_item_request_builder.OnenoteSectionItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[SectionsRequestBuilderGetRequestConfiguration] = None) -> Optional[onenote_section_collection_response.OnenoteSectionCollectionResponse]:
         """
-        Retrieve a list of onenoteSection objects from the specified section group.
+        The sections in the section group. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[onenote_section_collection_response.OnenoteSectionCollectionResponse]
@@ -60,7 +76,7 @@ class SectionsRequestBuilder():
     
     async def post(self,body: Optional[onenote_section.OnenoteSection] = None, request_configuration: Optional[SectionsRequestBuilderPostRequestConfiguration] = None) -> Optional[onenote_section.OnenoteSection]:
         """
-        Create a new section in the specified section group.
+        Create new navigation property to sections for groups
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class SectionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SectionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of onenoteSection objects from the specified section group.
+        The sections in the section group. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class SectionsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[onenote_section.OnenoteSection] = None, request_configuration: Optional[SectionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new section in the specified section group.
+        Create new navigation property to sections for groups
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class SectionsRequestBuilder():
     @dataclass
     class SectionsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of onenoteSection objects from the specified section group.
+        The sections in the section group. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

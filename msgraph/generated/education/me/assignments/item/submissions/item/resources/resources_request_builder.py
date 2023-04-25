@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ........models import education_submission_resource, education_submission_resource_collection_response
     from ........models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import education_submission_resource_item_request_builder
 
 class ResourcesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class ResourcesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_education_submission_resource_id(self,education_submission_resource_id: str) -> education_submission_resource_item_request_builder.EducationSubmissionResourceItemRequestBuilder:
+        """
+        Provides operations to manage the resources property of the microsoft.graph.educationSubmission entity.
+        Args:
+            education_submission_resource_id: Unique identifier of the item
+        Returns: education_submission_resource_item_request_builder.EducationSubmissionResourceItemRequestBuilder
+        """
+        if education_submission_resource_id is None:
+            raise Exception("education_submission_resource_id cannot be undefined")
+        from .item import education_submission_resource_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["educationSubmissionResource%2Did"] = education_submission_resource_id
+        return education_submission_resource_item_request_builder.EducationSubmissionResourceItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[ResourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[education_submission_resource_collection_response.EducationSubmissionResourceCollectionResponse]:
         """
-        List the resources associated with a submission. Only teachers, students, and applications with application permissions can perform this operation. The educationSubmissionResource object is a wrapper around the actual resource object the student is working on. The wrapper also includes a pointer to the resources on the assignment if this was copied from the assignment during the assign process. These resources are the working copy of the assignment. The **submittedResources** are the resources that have officially been submitted to be graded.
+        Get resources from education
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[education_submission_resource_collection_response.EducationSubmissionResourceCollectionResponse]
@@ -60,7 +76,7 @@ class ResourcesRequestBuilder():
     
     async def post(self,body: Optional[education_submission_resource.EducationSubmissionResource] = None, request_configuration: Optional[ResourcesRequestBuilderPostRequestConfiguration] = None) -> Optional[education_submission_resource.EducationSubmissionResource]:
         """
-        Add a educationSubmissionResource to a submission resource list. Only teachers and students can perform this operation. The operation will not succeed if the **allowStudentsToAddResources** flag is not set to `true`. To create a new file-based resource, upload the file to the resources folder associated with the submission. If the file doesn't exist or is not in that folder, the POST request will fail.
+        Create new navigation property to resources for education
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class ResourcesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ResourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List the resources associated with a submission. Only teachers, students, and applications with application permissions can perform this operation. The educationSubmissionResource object is a wrapper around the actual resource object the student is working on. The wrapper also includes a pointer to the resources on the assignment if this was copied from the assignment during the assign process. These resources are the working copy of the assignment. The **submittedResources** are the resources that have officially been submitted to be graded.
+        Get resources from education
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class ResourcesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[education_submission_resource.EducationSubmissionResource] = None, request_configuration: Optional[ResourcesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Add a educationSubmissionResource to a submission resource list. Only teachers and students can perform this operation. The operation will not succeed if the **allowStudentsToAddResources** flag is not set to `true`. To create a new file-based resource, upload the file to the resources folder associated with the submission. If the file doesn't exist or is not in that folder, the POST request will fail.
+        Create new navigation property to resources for education
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class ResourcesRequestBuilder():
     @dataclass
     class ResourcesRequestBuilderGetQueryParameters():
         """
-        List the resources associated with a submission. Only teachers, students, and applications with application permissions can perform this operation. The educationSubmissionResource object is a wrapper around the actual resource object the student is working on. The wrapper also includes a pointer to the resources on the assignment if this was copied from the assignment during the assign process. These resources are the working copy of the assignment. The **submittedResources** are the resources that have officially been submitted to be graded.
+        Get resources from education
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

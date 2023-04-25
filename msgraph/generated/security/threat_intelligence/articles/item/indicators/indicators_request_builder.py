@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models.o_data_errors import o_data_error
     from ......models.security import article_indicator_collection_response
     from .count import count_request_builder
+    from .item import article_indicator_item_request_builder
 
 class IndicatorsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class IndicatorsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_article_indicator_id(self,article_indicator_id: str) -> article_indicator_item_request_builder.ArticleIndicatorItemRequestBuilder:
+        """
+        Provides operations to manage the indicators property of the microsoft.graph.security.article entity.
+        Args:
+            article_indicator_id: Unique identifier of the item
+        Returns: article_indicator_item_request_builder.ArticleIndicatorItemRequestBuilder
+        """
+        if article_indicator_id is None:
+            raise Exception("article_indicator_id cannot be undefined")
+        from .item import article_indicator_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["articleIndicator%2Did"] = article_indicator_id
+        return article_indicator_item_request_builder.ArticleIndicatorItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[IndicatorsRequestBuilderGetRequestConfiguration] = None) -> Optional[article_indicator_collection_response.ArticleIndicatorCollectionResponse]:
         """
-        Get a list of articleIndicator objects that represent indicators of threat or compromise related to the contents of an article.
+        Indicators related to this article.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[article_indicator_collection_response.ArticleIndicatorCollectionResponse]
@@ -60,7 +76,7 @@ class IndicatorsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[IndicatorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of articleIndicator objects that represent indicators of threat or compromise related to the contents of an article.
+        Indicators related to this article.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -88,7 +104,7 @@ class IndicatorsRequestBuilder():
     @dataclass
     class IndicatorsRequestBuilderGetQueryParameters():
         """
-        Get a list of articleIndicator objects that represent indicators of threat or compromise related to the contents of an article.
+        Indicators related to this article.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

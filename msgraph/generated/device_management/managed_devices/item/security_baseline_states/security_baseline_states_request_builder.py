@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import security_baseline_state, security_baseline_state_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import security_baseline_state_item_request_builder
 
 class SecurityBaselineStatesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class SecurityBaselineStatesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_security_baseline_state_id(self,security_baseline_state_id: str) -> security_baseline_state_item_request_builder.SecurityBaselineStateItemRequestBuilder:
+        """
+        Provides operations to manage the securityBaselineStates property of the microsoft.graph.managedDevice entity.
+        Args:
+            security_baseline_state_id: Unique identifier of the item
+        Returns: security_baseline_state_item_request_builder.SecurityBaselineStateItemRequestBuilder
+        """
+        if security_baseline_state_id is None:
+            raise Exception("security_baseline_state_id cannot be undefined")
+        from .item import security_baseline_state_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["securityBaselineState%2Did"] = security_baseline_state_id
+        return security_baseline_state_item_request_builder.SecurityBaselineStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[SecurityBaselineStatesRequestBuilderGetRequestConfiguration] = None) -> Optional[security_baseline_state_collection_response.SecurityBaselineStateCollectionResponse]:
         """

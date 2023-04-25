@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import simulation_automation, simulation_automation_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import simulation_automation_item_request_builder
 
 class SimulationAutomationsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class SimulationAutomationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_simulation_automation_id(self,simulation_automation_id: str) -> simulation_automation_item_request_builder.SimulationAutomationItemRequestBuilder:
+        """
+        Provides operations to manage the simulationAutomations property of the microsoft.graph.attackSimulationRoot entity.
+        Args:
+            simulation_automation_id: Unique identifier of the item
+        Returns: simulation_automation_item_request_builder.SimulationAutomationItemRequestBuilder
+        """
+        if simulation_automation_id is None:
+            raise Exception("simulation_automation_id cannot be undefined")
+        from .item import simulation_automation_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["simulationAutomation%2Did"] = simulation_automation_id
+        return simulation_automation_item_request_builder.SimulationAutomationItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[SimulationAutomationsRequestBuilderGetRequestConfiguration] = None) -> Optional[simulation_automation_collection_response.SimulationAutomationCollectionResponse]:
         """
-        Get a list of attack simulation automations for a tenant.
+        Represents simulation automation created to run on a tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[simulation_automation_collection_response.SimulationAutomationCollectionResponse]
@@ -85,7 +101,7 @@ class SimulationAutomationsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SimulationAutomationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of attack simulation automations for a tenant.
+        Represents simulation automation created to run on a tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class SimulationAutomationsRequestBuilder():
     @dataclass
     class SimulationAutomationsRequestBuilderGetQueryParameters():
         """
-        Get a list of attack simulation automations for a tenant.
+        Represents simulation automation created to run on a tenant.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

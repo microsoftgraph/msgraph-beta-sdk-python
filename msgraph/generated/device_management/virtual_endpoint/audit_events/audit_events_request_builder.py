@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .get_audit_activity_types import get_audit_activity_types_request_builder
+    from .item import cloud_pc_audit_event_item_request_builder
 
 class AuditEventsRequestBuilder():
     """
@@ -37,9 +38,24 @@ class AuditEventsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_cloud_pc_audit_event_id(self,cloud_pc_audit_event_id: str) -> cloud_pc_audit_event_item_request_builder.CloudPcAuditEventItemRequestBuilder:
+        """
+        Provides operations to manage the auditEvents property of the microsoft.graph.virtualEndpoint entity.
+        Args:
+            cloud_pc_audit_event_id: Unique identifier of the item
+        Returns: cloud_pc_audit_event_item_request_builder.CloudPcAuditEventItemRequestBuilder
+        """
+        if cloud_pc_audit_event_id is None:
+            raise Exception("cloud_pc_audit_event_id cannot be undefined")
+        from .item import cloud_pc_audit_event_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["cloudPcAuditEvent%2Did"] = cloud_pc_audit_event_id
+        return cloud_pc_audit_event_item_request_builder.CloudPcAuditEventItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[AuditEventsRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_audit_event_collection_response.CloudPcAuditEventCollectionResponse]:
         """
-        List all the cloudPcAuditEvent objects for the tenant.
+        Cloud PC audit event.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cloud_pc_audit_event_collection_response.CloudPcAuditEventCollectionResponse]
@@ -86,7 +102,7 @@ class AuditEventsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AuditEventsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List all the cloudPcAuditEvent objects for the tenant.
+        Cloud PC audit event.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -144,7 +160,7 @@ class AuditEventsRequestBuilder():
     @dataclass
     class AuditEventsRequestBuilderGetQueryParameters():
         """
-        List all the cloudPcAuditEvent objects for the tenant.
+        Cloud PC audit event.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

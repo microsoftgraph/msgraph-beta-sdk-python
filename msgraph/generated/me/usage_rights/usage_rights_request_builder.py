@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import usage_right, usage_right_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import usage_right_item_request_builder
 
 class UsageRightsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class UsageRightsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_usage_right_id(self,usage_right_id: str) -> usage_right_item_request_builder.UsageRightItemRequestBuilder:
+        """
+        Provides operations to manage the usageRights property of the microsoft.graph.user entity.
+        Args:
+            usage_right_id: Unique identifier of the item
+        Returns: usage_right_item_request_builder.UsageRightItemRequestBuilder
+        """
+        if usage_right_id is None:
+            raise Exception("usage_right_id cannot be undefined")
+        from .item import usage_right_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["usageRight%2Did"] = usage_right_id
+        return usage_right_item_request_builder.UsageRightItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[UsageRightsRequestBuilderGetRequestConfiguration] = None) -> Optional[usage_right_collection_response.UsageRightCollectionResponse]:
         """
-        Retrieve a list of usageRight objects for a given user.
+        Represents the usage rights a user has been granted.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[usage_right_collection_response.UsageRightCollectionResponse]
@@ -85,7 +101,7 @@ class UsageRightsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UsageRightsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of usageRight objects for a given user.
+        Represents the usage rights a user has been granted.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,7 +150,7 @@ class UsageRightsRequestBuilder():
     @dataclass
     class UsageRightsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of usageRight objects for a given user.
+        Represents the usage rights a user has been granted.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

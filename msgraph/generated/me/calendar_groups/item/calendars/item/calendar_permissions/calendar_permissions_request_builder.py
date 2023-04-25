@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .......models import calendar_permission, calendar_permission_collection_response
     from .......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import calendar_permission_item_request_builder
 
 class CalendarPermissionsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class CalendarPermissionsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_calendar_permission_id(self,calendar_permission_id: str) -> calendar_permission_item_request_builder.CalendarPermissionItemRequestBuilder:
+        """
+        Provides operations to manage the calendarPermissions property of the microsoft.graph.calendar entity.
+        Args:
+            calendar_permission_id: Unique identifier of the item
+        Returns: calendar_permission_item_request_builder.CalendarPermissionItemRequestBuilder
+        """
+        if calendar_permission_id is None:
+            raise Exception("calendar_permission_id cannot be undefined")
+        from .item import calendar_permission_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["calendarPermission%2Did"] = calendar_permission_id
+        return calendar_permission_item_request_builder.CalendarPermissionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[CalendarPermissionsRequestBuilderGetRequestConfiguration] = None) -> Optional[calendar_permission_collection_response.CalendarPermissionCollectionResponse]:
         """
@@ -60,7 +76,7 @@ class CalendarPermissionsRequestBuilder():
     
     async def post(self,body: Optional[calendar_permission.CalendarPermission] = None, request_configuration: Optional[CalendarPermissionsRequestBuilderPostRequestConfiguration] = None) -> Optional[calendar_permission.CalendarPermission]:
         """
-        Create a calendarPermission resource to specify the identity and role of the user with whom the specified calendar is being shared or delegated.
+        Create new navigation property to calendarPermissions for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +119,7 @@ class CalendarPermissionsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[calendar_permission.CalendarPermission] = None, request_configuration: Optional[CalendarPermissionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a calendarPermission resource to specify the identity and role of the user with whom the specified calendar is being shared or delegated.
+        Create new navigation property to calendarPermissions for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

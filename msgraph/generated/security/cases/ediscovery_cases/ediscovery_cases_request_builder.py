@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from ....models.security import ediscovery_case, ediscovery_case_collection_response
     from .count import count_request_builder
+    from .item import ediscovery_case_item_request_builder
 
 class EdiscoveryCasesRequestBuilder():
     """
@@ -36,9 +37,24 @@ class EdiscoveryCasesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_ediscovery_case_id(self,ediscovery_case_id: str) -> ediscovery_case_item_request_builder.EdiscoveryCaseItemRequestBuilder:
+        """
+        Provides operations to manage the ediscoveryCases property of the microsoft.graph.security.casesRoot entity.
+        Args:
+            ediscovery_case_id: Unique identifier of the item
+        Returns: ediscovery_case_item_request_builder.EdiscoveryCaseItemRequestBuilder
+        """
+        if ediscovery_case_id is None:
+            raise Exception("ediscovery_case_id cannot be undefined")
+        from .item import ediscovery_case_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["ediscoveryCase%2Did"] = ediscovery_case_id
+        return ediscovery_case_item_request_builder.EdiscoveryCaseItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[EdiscoveryCasesRequestBuilderGetRequestConfiguration] = None) -> Optional[ediscovery_case_collection_response.EdiscoveryCaseCollectionResponse]:
         """
-        Get a list of the ediscoveryCase objects and their properties.
+        Get ediscoveryCases from security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ediscovery_case_collection_response.EdiscoveryCaseCollectionResponse]
@@ -60,7 +76,7 @@ class EdiscoveryCasesRequestBuilder():
     
     async def post(self,body: Optional[ediscovery_case.EdiscoveryCase] = None, request_configuration: Optional[EdiscoveryCasesRequestBuilderPostRequestConfiguration] = None) -> Optional[ediscovery_case.EdiscoveryCase]:
         """
-        Create a new ediscoveryCase object.
+        Create new navigation property to ediscoveryCases for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class EdiscoveryCasesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[EdiscoveryCasesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the ediscoveryCase objects and their properties.
+        Get ediscoveryCases from security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class EdiscoveryCasesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[ediscovery_case.EdiscoveryCase] = None, request_configuration: Optional[EdiscoveryCasesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new ediscoveryCase object.
+        Create new navigation property to ediscoveryCases for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class EdiscoveryCasesRequestBuilder():
     @dataclass
     class EdiscoveryCasesRequestBuilderGetQueryParameters():
         """
-        Get a list of the ediscoveryCase objects and their properties.
+        Get ediscoveryCases from security
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
