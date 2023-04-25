@@ -16,7 +16,6 @@ if TYPE_CHECKING:
     from .get_web_parts_by_position import get_web_parts_by_position_request_builder
     from .publish import publish_request_builder
     from .web_parts import web_parts_request_builder
-    from .web_parts.item import web_part_item_request_builder
 
 class SitePageItemRequestBuilder():
     """
@@ -160,21 +159,6 @@ class SitePageItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
-    
-    def web_parts_by_id(self,id: str) -> web_part_item_request_builder.WebPartItemRequestBuilder:
-        """
-        Provides operations to manage the webParts property of the microsoft.graph.sitePage entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: web_part_item_request_builder.WebPartItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .web_parts.item import web_part_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["webPart%2Did"] = id
-        return web_part_item_request_builder.WebPartItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     @property
     def canvas_layout(self) -> canvas_layout_request_builder.CanvasLayoutRequestBuilder:

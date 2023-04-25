@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import device_management_configuration_category, device_management_configuration_category_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import device_management_configuration_category_item_request_builder
 
 class ComplianceCategoriesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ComplianceCategoriesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_device_management_configuration_category_id(self,device_management_configuration_category_id: str) -> device_management_configuration_category_item_request_builder.DeviceManagementConfigurationCategoryItemRequestBuilder:
+        """
+        Provides operations to manage the complianceCategories property of the microsoft.graph.deviceManagement entity.
+        Args:
+            device_management_configuration_category_id: Unique identifier of the item
+        Returns: device_management_configuration_category_item_request_builder.DeviceManagementConfigurationCategoryItemRequestBuilder
+        """
+        if device_management_configuration_category_id is None:
+            raise Exception("device_management_configuration_category_id cannot be undefined")
+        from .item import device_management_configuration_category_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["deviceManagementConfigurationCategory%2Did"] = device_management_configuration_category_id
+        return device_management_configuration_category_item_request_builder.DeviceManagementConfigurationCategoryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ComplianceCategoriesRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_configuration_category_collection_response.DeviceManagementConfigurationCategoryCollectionResponse]:
         """

@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .ediscovery_as_hierarchy import ediscovery_as_hierarchy_request_builder
+    from .item import tag_item_request_builder
 
 class TagsRequestBuilder():
     """
@@ -36,6 +37,21 @@ class TagsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_tag_id(self,tag_id: str) -> tag_item_request_builder.TagItemRequestBuilder:
+        """
+        Provides operations to manage the tags property of the microsoft.graph.ediscovery.case entity.
+        Args:
+            tag_id: Unique identifier of the item
+        Returns: tag_item_request_builder.TagItemRequestBuilder
+        """
+        if tag_id is None:
+            raise Exception("tag_id cannot be undefined")
+        from .item import tag_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["tag%2Did"] = tag_id
+        return tag_item_request_builder.TagItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[TagsRequestBuilderGetRequestConfiguration] = None) -> Optional[tag_collection_response.TagCollectionResponse]:
         """

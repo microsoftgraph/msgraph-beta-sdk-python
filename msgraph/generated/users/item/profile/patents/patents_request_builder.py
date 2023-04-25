@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import item_patent, item_patent_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import item_patent_item_request_builder
 
 class PatentsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class PatentsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_item_patent_id(self,item_patent_id: str) -> item_patent_item_request_builder.ItemPatentItemRequestBuilder:
+        """
+        Provides operations to manage the patents property of the microsoft.graph.profile entity.
+        Args:
+            item_patent_id: Unique identifier of the item
+        Returns: item_patent_item_request_builder.ItemPatentItemRequestBuilder
+        """
+        if item_patent_id is None:
+            raise Exception("item_patent_id cannot be undefined")
+        from .item import item_patent_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["itemPatent%2Did"] = item_patent_id
+        return item_patent_item_request_builder.ItemPatentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[PatentsRequestBuilderGetRequestConfiguration] = None) -> Optional[item_patent_collection_response.ItemPatentCollectionResponse]:
         """

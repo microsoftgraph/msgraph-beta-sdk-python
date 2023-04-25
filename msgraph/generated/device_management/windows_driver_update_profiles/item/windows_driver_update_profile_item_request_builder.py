@@ -14,9 +14,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .assign import assign_request_builder
     from .assignments import assignments_request_builder
-    from .assignments.item import windows_driver_update_profile_assignment_item_request_builder
     from .driver_inventories import driver_inventories_request_builder
-    from .driver_inventories.item import windows_driver_update_inventory_item_request_builder
     from .execute_action import execute_action_request_builder
     from .sync_inventory import sync_inventory_request_builder
 
@@ -42,21 +40,6 @@ class WindowsDriverUpdateProfileItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def assignments_by_id(self,id: str) -> windows_driver_update_profile_assignment_item_request_builder.WindowsDriverUpdateProfileAssignmentItemRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.windowsDriverUpdateProfile entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: windows_driver_update_profile_assignment_item_request_builder.WindowsDriverUpdateProfileAssignmentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .assignments.item import windows_driver_update_profile_assignment_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["windowsDriverUpdateProfileAssignment%2Did"] = id
-        return windows_driver_update_profile_assignment_item_request_builder.WindowsDriverUpdateProfileAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     async def delete(self,request_configuration: Optional[WindowsDriverUpdateProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property windowsDriverUpdateProfiles for deviceManagement
@@ -75,21 +58,6 @@ class WindowsDriverUpdateProfileItemRequestBuilder():
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
-    
-    def driver_inventories_by_id(self,id: str) -> windows_driver_update_inventory_item_request_builder.WindowsDriverUpdateInventoryItemRequestBuilder:
-        """
-        Provides operations to manage the driverInventories property of the microsoft.graph.windowsDriverUpdateProfile entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: windows_driver_update_inventory_item_request_builder.WindowsDriverUpdateInventoryItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .driver_inventories.item import windows_driver_update_inventory_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["windowsDriverUpdateInventory%2Did"] = id
-        return windows_driver_update_inventory_item_request_builder.WindowsDriverUpdateInventoryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[WindowsDriverUpdateProfileItemRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_driver_update_profile.WindowsDriverUpdateProfile]:
         """

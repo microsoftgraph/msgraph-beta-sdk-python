@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import app_log_collection_request, app_log_collection_request_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import app_log_collection_request_item_request_builder
 
 class AppLogCollectionRequestsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class AppLogCollectionRequestsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_app_log_collection_request_id(self,app_log_collection_request_id: str) -> app_log_collection_request_item_request_builder.AppLogCollectionRequestItemRequestBuilder:
+        """
+        Provides operations to manage the appLogCollectionRequests property of the microsoft.graph.mobileAppTroubleshootingEvent entity.
+        Args:
+            app_log_collection_request_id: Unique identifier of the item
+        Returns: app_log_collection_request_item_request_builder.AppLogCollectionRequestItemRequestBuilder
+        """
+        if app_log_collection_request_id is None:
+            raise Exception("app_log_collection_request_id cannot be undefined")
+        from .item import app_log_collection_request_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["appLogCollectionRequest%2Did"] = app_log_collection_request_id
+        return app_log_collection_request_item_request_builder.AppLogCollectionRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[AppLogCollectionRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[app_log_collection_request_collection_response.AppLogCollectionRequestCollectionResponse]:
         """

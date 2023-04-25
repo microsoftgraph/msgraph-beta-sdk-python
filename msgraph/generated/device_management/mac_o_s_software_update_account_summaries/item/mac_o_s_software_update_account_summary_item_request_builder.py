@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ....models import mac_o_s_software_update_account_summary
     from ....models.o_data_errors import o_data_error
     from .category_summaries import category_summaries_request_builder
-    from .category_summaries.item import mac_o_s_software_update_category_summary_item_request_builder
 
 class MacOSSoftwareUpdateAccountSummaryItemRequestBuilder():
     """
@@ -36,21 +35,6 @@ class MacOSSoftwareUpdateAccountSummaryItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def category_summaries_by_id(self,id: str) -> mac_o_s_software_update_category_summary_item_request_builder.MacOSSoftwareUpdateCategorySummaryItemRequestBuilder:
-        """
-        Provides operations to manage the categorySummaries property of the microsoft.graph.macOSSoftwareUpdateAccountSummary entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: mac_o_s_software_update_category_summary_item_request_builder.MacOSSoftwareUpdateCategorySummaryItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .category_summaries.item import mac_o_s_software_update_category_summary_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["macOSSoftwareUpdateCategorySummary%2Did"] = id
-        return mac_o_s_software_update_category_summary_item_request_builder.MacOSSoftwareUpdateCategorySummaryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[MacOSSoftwareUpdateAccountSummaryItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

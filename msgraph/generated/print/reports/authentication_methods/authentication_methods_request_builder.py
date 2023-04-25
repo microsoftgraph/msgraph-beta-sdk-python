@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ....models import authentication_methods_root
     from ....models.o_data_errors import o_data_error
     from .user_registration_details import user_registration_details_request_builder
-    from .user_registration_details.item import user_registration_details_item_request_builder
     from .users_registered_by_feature import users_registered_by_feature_request_builder
     from .users_registered_by_feature_with_included_user_types_with_included_user_roles import users_registered_by_feature_with_included_user_types_with_included_user_roles_request_builder
     from .users_registered_by_method import users_registered_by_method_request_builder
@@ -161,21 +160,6 @@ class AuthenticationMethodsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
-    
-    def user_registration_details_by_id(self,id: str) -> user_registration_details_item_request_builder.UserRegistrationDetailsItemRequestBuilder:
-        """
-        Provides operations to manage the userRegistrationDetails property of the microsoft.graph.authenticationMethodsRoot entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: user_registration_details_item_request_builder.UserRegistrationDetailsItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .user_registration_details.item import user_registration_details_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["userRegistrationDetails%2Did"] = id
-        return user_registration_details_item_request_builder.UserRegistrationDetailsItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def users_registered_by_feature_with_included_user_types_with_included_user_roles(self,included_user_roles: Optional[str] = None, included_user_types: Optional[str] = None) -> users_registered_by_feature_with_included_user_types_with_included_user_roles_request_builder.UsersRegisteredByFeatureWithIncludedUserTypesWithIncludedUserRolesRequestBuilder:
         """

@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .identity_governance_summary_with_start_date_time_with_end_date_time import identity_governance_summary_with_start_date_time_with_end_date_time_request_builder
+    from .item import run_item_request_builder
 
 class RunsRequestBuilder():
     """
@@ -37,6 +38,21 @@ class RunsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_run_id(self,run_id: str) -> run_item_request_builder.RunItemRequestBuilder:
+        """
+        Provides operations to manage the runs property of the microsoft.graph.identityGovernance.workflow entity.
+        Args:
+            run_id: Unique identifier of the item
+        Returns: run_item_request_builder.RunItemRequestBuilder
+        """
+        if run_id is None:
+            raise Exception("run_id cannot be undefined")
+        from .item import run_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["run%2Did"] = run_id
+        return run_item_request_builder.RunItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[RunsRequestBuilderGetRequestConfiguration] = None) -> Optional[run_collection_response.RunCollectionResponse]:
         """

@@ -13,9 +13,7 @@ if TYPE_CHECKING:
     from ..models import comms_application
     from ..models.o_data_errors import o_data_error
     from .calls import calls_request_builder
-    from .calls.item import call_item_request_builder
     from .online_meetings import online_meetings_request_builder
-    from .online_meetings.item import online_meeting_item_request_builder
 
 class AppRequestBuilder():
     """
@@ -39,21 +37,6 @@ class AppRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def calls_by_id(self,id: str) -> call_item_request_builder.CallItemRequestBuilder:
-        """
-        Provides operations to manage the calls property of the microsoft.graph.commsApplication entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: call_item_request_builder.CallItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .calls.item import call_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["call%2Did"] = id
-        return call_item_request_builder.CallItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     async def get(self,request_configuration: Optional[AppRequestBuilderGetRequestConfiguration] = None) -> Optional[comms_application.CommsApplication]:
         """
         Get app
@@ -75,21 +58,6 @@ class AppRequestBuilder():
         from ..models import comms_application
 
         return await self.request_adapter.send_async(request_info, comms_application.CommsApplication, error_mapping)
-    
-    def online_meetings_by_id(self,id: str) -> online_meeting_item_request_builder.OnlineMeetingItemRequestBuilder:
-        """
-        Provides operations to manage the onlineMeetings property of the microsoft.graph.commsApplication entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: online_meeting_item_request_builder.OnlineMeetingItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .online_meetings.item import online_meeting_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["onlineMeeting%2Did"] = id
-        return online_meeting_item_request_builder.OnlineMeetingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[comms_application.CommsApplication] = None, request_configuration: Optional[AppRequestBuilderPatchRequestConfiguration] = None) -> Optional[comms_application.CommsApplication]:
         """

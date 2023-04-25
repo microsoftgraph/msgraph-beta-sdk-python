@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import customer_payment_journal, customer_payment_journal_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import customer_payment_journal_item_request_builder
 
 class CustomerPaymentJournalsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class CustomerPaymentJournalsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_customer_payment_journal_id(self,customer_payment_journal_id: str) -> customer_payment_journal_item_request_builder.CustomerPaymentJournalItemRequestBuilder:
+        """
+        Provides operations to manage the customerPaymentJournals property of the microsoft.graph.company entity.
+        Args:
+            customer_payment_journal_id: Unique identifier of the item
+        Returns: customer_payment_journal_item_request_builder.CustomerPaymentJournalItemRequestBuilder
+        """
+        if customer_payment_journal_id is None:
+            raise Exception("customer_payment_journal_id cannot be undefined")
+        from .item import customer_payment_journal_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["customerPaymentJournal%2Did"] = customer_payment_journal_id
+        return customer_payment_journal_item_request_builder.CustomerPaymentJournalItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[CustomerPaymentJournalsRequestBuilderGetRequestConfiguration] = None) -> Optional[customer_payment_journal_collection_response.CustomerPaymentJournalCollectionResponse]:
         """

@@ -16,7 +16,6 @@ if TYPE_CHECKING:
     from .configuration import configuration_request_builder
     from .health import health_request_builder
     from .operations import operations_request_builder
-    from .operations.item import teamwork_device_operation_item_request_builder
     from .restart import restart_request_builder
     from .run_diagnostics import run_diagnostics_request_builder
     from .update_software import update_software_request_builder
@@ -83,21 +82,6 @@ class TeamworkDeviceItemRequestBuilder():
         from ....models import teamwork_device
 
         return await self.request_adapter.send_async(request_info, teamwork_device.TeamworkDevice, error_mapping)
-    
-    def operations_by_id(self,id: str) -> teamwork_device_operation_item_request_builder.TeamworkDeviceOperationItemRequestBuilder:
-        """
-        Provides operations to manage the operations property of the microsoft.graph.teamworkDevice entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: teamwork_device_operation_item_request_builder.TeamworkDeviceOperationItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .operations.item import teamwork_device_operation_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["teamworkDeviceOperation%2Did"] = id
-        return teamwork_device_operation_item_request_builder.TeamworkDeviceOperationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[teamwork_device.TeamworkDevice] = None, request_configuration: Optional[TeamworkDeviceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[teamwork_device.TeamworkDevice]:
         """

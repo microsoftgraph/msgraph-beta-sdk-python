@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import profile_card_property, profile_card_property_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import profile_card_property_item_request_builder
 
 class ProfileCardPropertiesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ProfileCardPropertiesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_profile_card_property_id(self,profile_card_property_id: str) -> profile_card_property_item_request_builder.ProfileCardPropertyItemRequestBuilder:
+        """
+        Provides operations to manage the profileCardProperties property of the microsoft.graph.organizationSettings entity.
+        Args:
+            profile_card_property_id: Unique identifier of the item
+        Returns: profile_card_property_item_request_builder.ProfileCardPropertyItemRequestBuilder
+        """
+        if profile_card_property_id is None:
+            raise Exception("profile_card_property_id cannot be undefined")
+        from .item import profile_card_property_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["profileCardProperty%2Did"] = profile_card_property_id
+        return profile_card_property_item_request_builder.ProfileCardPropertyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ProfileCardPropertiesRequestBuilderGetRequestConfiguration] = None) -> Optional[profile_card_property_collection_response.ProfileCardPropertyCollectionResponse]:
         """

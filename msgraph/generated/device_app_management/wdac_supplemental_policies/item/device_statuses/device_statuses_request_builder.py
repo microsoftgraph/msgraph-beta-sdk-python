@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import windows_defender_application_control_supplemental_policy_deployment_status, windows_defender_application_control_supplemental_policy_deployment_status_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import windows_defender_application_control_supplemental_policy_deployment_status_item_request_builder
 
 class DeviceStatusesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class DeviceStatusesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_windows_defender_application_control_supplemental_policy_deployment_status_id(self,windows_defender_application_control_supplemental_policy_deployment_status_id: str) -> windows_defender_application_control_supplemental_policy_deployment_status_item_request_builder.WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusItemRequestBuilder:
+        """
+        Provides operations to manage the deviceStatuses property of the microsoft.graph.windowsDefenderApplicationControlSupplementalPolicy entity.
+        Args:
+            windows_defender_application_control_supplemental_policy_deployment_status_id: Unique identifier of the item
+        Returns: windows_defender_application_control_supplemental_policy_deployment_status_item_request_builder.WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusItemRequestBuilder
+        """
+        if windows_defender_application_control_supplemental_policy_deployment_status_id is None:
+            raise Exception("windows_defender_application_control_supplemental_policy_deployment_status_id cannot be undefined")
+        from .item import windows_defender_application_control_supplemental_policy_deployment_status_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["windowsDefenderApplicationControlSupplementalPolicyDeploymentStatus%2Did"] = windows_defender_application_control_supplemental_policy_deployment_status_id
+        return windows_defender_application_control_supplemental_policy_deployment_status_item_request_builder.WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[DeviceStatusesRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_defender_application_control_supplemental_policy_deployment_status_collection_response.WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusCollectionResponse]:
         """

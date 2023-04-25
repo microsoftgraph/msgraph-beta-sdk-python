@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .evaluate import evaluate_request_builder
+    from .item import data_loss_prevention_policy_item_request_builder
 
 class DataLossPreventionPoliciesRequestBuilder():
     """
@@ -36,6 +37,21 @@ class DataLossPreventionPoliciesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_data_loss_prevention_policy_id(self,data_loss_prevention_policy_id: str) -> data_loss_prevention_policy_item_request_builder.DataLossPreventionPolicyItemRequestBuilder:
+        """
+        Provides operations to manage the dataLossPreventionPolicies property of the microsoft.graph.informationProtection entity.
+        Args:
+            data_loss_prevention_policy_id: Unique identifier of the item
+        Returns: data_loss_prevention_policy_item_request_builder.DataLossPreventionPolicyItemRequestBuilder
+        """
+        if data_loss_prevention_policy_id is None:
+            raise Exception("data_loss_prevention_policy_id cannot be undefined")
+        from .item import data_loss_prevention_policy_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["dataLossPreventionPolicy%2Did"] = data_loss_prevention_policy_id
+        return data_loss_prevention_policy_item_request_builder.DataLossPreventionPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[DataLossPreventionPoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[data_loss_prevention_policy_collection_response.DataLossPreventionPolicyCollectionResponse]:
         """

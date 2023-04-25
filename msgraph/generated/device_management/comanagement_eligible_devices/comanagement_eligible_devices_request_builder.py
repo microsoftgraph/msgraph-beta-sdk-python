@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import comanagement_eligible_device, comanagement_eligible_device_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import comanagement_eligible_device_item_request_builder
 
 class ComanagementEligibleDevicesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ComanagementEligibleDevicesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_comanagement_eligible_device_id(self,comanagement_eligible_device_id: str) -> comanagement_eligible_device_item_request_builder.ComanagementEligibleDeviceItemRequestBuilder:
+        """
+        Provides operations to manage the comanagementEligibleDevices property of the microsoft.graph.deviceManagement entity.
+        Args:
+            comanagement_eligible_device_id: Unique identifier of the item
+        Returns: comanagement_eligible_device_item_request_builder.ComanagementEligibleDeviceItemRequestBuilder
+        """
+        if comanagement_eligible_device_id is None:
+            raise Exception("comanagement_eligible_device_id cannot be undefined")
+        from .item import comanagement_eligible_device_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["comanagementEligibleDevice%2Did"] = comanagement_eligible_device_id
+        return comanagement_eligible_device_item_request_builder.ComanagementEligibleDeviceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ComanagementEligibleDevicesRequestBuilderGetRequestConfiguration] = None) -> Optional[comanagement_eligible_device_collection_response.ComanagementEligibleDeviceCollectionResponse]:
         """

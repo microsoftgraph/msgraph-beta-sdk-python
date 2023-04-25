@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import ip_security_profile, ip_security_profile_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import ip_security_profile_item_request_builder
 
 class IpSecurityProfilesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class IpSecurityProfilesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_ip_security_profile_id(self,ip_security_profile_id: str) -> ip_security_profile_item_request_builder.IpSecurityProfileItemRequestBuilder:
+        """
+        Provides operations to manage the ipSecurityProfiles property of the microsoft.graph.security entity.
+        Args:
+            ip_security_profile_id: Unique identifier of the item
+        Returns: ip_security_profile_item_request_builder.IpSecurityProfileItemRequestBuilder
+        """
+        if ip_security_profile_id is None:
+            raise Exception("ip_security_profile_id cannot be undefined")
+        from .item import ip_security_profile_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["ipSecurityProfile%2Did"] = ip_security_profile_id
+        return ip_security_profile_item_request_builder.IpSecurityProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[IpSecurityProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[ip_security_profile_collection_response.IpSecurityProfileCollectionResponse]:
         """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import educational_activity, educational_activity_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import educational_activity_item_request_builder
 
 class EducationalActivitiesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class EducationalActivitiesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_educational_activity_id(self,educational_activity_id: str) -> educational_activity_item_request_builder.EducationalActivityItemRequestBuilder:
+        """
+        Provides operations to manage the educationalActivities property of the microsoft.graph.profile entity.
+        Args:
+            educational_activity_id: Unique identifier of the item
+        Returns: educational_activity_item_request_builder.EducationalActivityItemRequestBuilder
+        """
+        if educational_activity_id is None:
+            raise Exception("educational_activity_id cannot be undefined")
+        from .item import educational_activity_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["educationalActivity%2Did"] = educational_activity_id
+        return educational_activity_item_request_builder.EducationalActivityItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[EducationalActivitiesRequestBuilderGetRequestConfiguration] = None) -> Optional[educational_activity_collection_response.EducationalActivityCollectionResponse]:
         """

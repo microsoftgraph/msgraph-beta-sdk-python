@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import business_flow, business_flow_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import business_flow_item_request_builder
 
 class BusinessFlowsWithRequestsAwaitingMyDecisionRequestBuilder():
     """
@@ -35,6 +36,21 @@ class BusinessFlowsWithRequestsAwaitingMyDecisionRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_business_flow_id(self,business_flow_id: str) -> business_flow_item_request_builder.BusinessFlowItemRequestBuilder:
+        """
+        Provides operations to manage the businessFlowsWithRequestsAwaitingMyDecision property of the microsoft.graph.approvalWorkflowProvider entity.
+        Args:
+            business_flow_id: Unique identifier of the item
+        Returns: business_flow_item_request_builder.BusinessFlowItemRequestBuilder
+        """
+        if business_flow_id is None:
+            raise Exception("business_flow_id cannot be undefined")
+        from .item import business_flow_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["businessFlow%2Did"] = business_flow_id
+        return business_flow_item_request_builder.BusinessFlowItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[BusinessFlowsWithRequestsAwaitingMyDecisionRequestBuilderGetRequestConfiguration] = None) -> Optional[business_flow_collection_response.BusinessFlowCollectionResponse]:
         """

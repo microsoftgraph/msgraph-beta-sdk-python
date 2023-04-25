@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models import governance_role_definition, governance_role_definition_collection_response
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import governance_role_definition_item_request_builder
 
 class RoleDefinitionsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class RoleDefinitionsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_governance_role_definition_id(self,governance_role_definition_id: str) -> governance_role_definition_item_request_builder.GovernanceRoleDefinitionItemRequestBuilder:
+        """
+        Provides operations to manage the roleDefinitions property of the microsoft.graph.governanceResource entity.
+        Args:
+            governance_role_definition_id: Unique identifier of the item
+        Returns: governance_role_definition_item_request_builder.GovernanceRoleDefinitionItemRequestBuilder
+        """
+        if governance_role_definition_id is None:
+            raise Exception("governance_role_definition_id cannot be undefined")
+        from .item import governance_role_definition_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["governanceRoleDefinition%2Did"] = governance_role_definition_id
+        return governance_role_definition_item_request_builder.GovernanceRoleDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[RoleDefinitionsRequestBuilderGetRequestConfiguration] = None) -> Optional[governance_role_definition_collection_response.GovernanceRoleDefinitionCollectionResponse]:
         """

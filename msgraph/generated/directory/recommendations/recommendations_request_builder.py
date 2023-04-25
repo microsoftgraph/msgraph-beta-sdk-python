@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import recommendation, recommendation_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import recommendation_item_request_builder
 
 class RecommendationsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class RecommendationsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_recommendation_id(self,recommendation_id: str) -> recommendation_item_request_builder.RecommendationItemRequestBuilder:
+        """
+        Provides operations to manage the recommendations property of the microsoft.graph.directory entity.
+        Args:
+            recommendation_id: Unique identifier of the item
+        Returns: recommendation_item_request_builder.RecommendationItemRequestBuilder
+        """
+        if recommendation_id is None:
+            raise Exception("recommendation_id cannot be undefined")
+        from .item import recommendation_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["recommendation%2Did"] = recommendation_id
+        return recommendation_item_request_builder.RecommendationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[RecommendationsRequestBuilderGetRequestConfiguration] = None) -> Optional[recommendation_collection_response.RecommendationCollectionResponse]:
         """

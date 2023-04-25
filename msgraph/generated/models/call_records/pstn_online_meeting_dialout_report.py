@@ -10,25 +10,25 @@ class PstnOnlineMeetingDialoutReport(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The currency property
+        # Currency used to calculate the cost of the call. For details, see ISO 4217.
         self._currency: Optional[str] = None
-        # The destinationContext property
+        # Indicates whether the call was Domestic (within a country or region) or International (outside a country or region) based on the user's location.
         self._destination_context: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The totalCallCharge property
+        # Total costs of all the calls within the selected time range, including call charges and connection fees.
         self._total_call_charge: Optional[float] = None
-        # The totalCallSeconds property
+        # Total duration of all the calls within the selected time range, in seconds.
         self._total_call_seconds: Optional[int] = None
-        # The totalCalls property
+        # Total number of dial-out calls within the selected time range.
         self._total_calls: Optional[int] = None
-        # The usageLocation property
+        # Country code of the user. For details, see ISO 3166-1 alpha-2.
         self._usage_location: Optional[str] = None
-        # The userDisplayName property
+        # Display name of the user.
         self._user_display_name: Optional[str] = None
-        # The userId property
+        # The unique identifier (GUID) of the user in Azure Active Directory.
         self._user_id: Optional[str] = None
-        # The userPrincipalName property
+        # The user principal name (sign-in name) in Azure Active Directory. This is usually the same as the user's SIP address, and can be same as the user's e-mail address.
         self._user_principal_name: Optional[str] = None
     
     @property
@@ -63,7 +63,7 @@ class PstnOnlineMeetingDialoutReport(AdditionalDataHolder, Parsable):
     @property
     def currency(self,) -> Optional[str]:
         """
-        Gets the currency property value. The currency property
+        Gets the currency property value. Currency used to calculate the cost of the call. For details, see ISO 4217.
         Returns: Optional[str]
         """
         return self._currency
@@ -71,7 +71,7 @@ class PstnOnlineMeetingDialoutReport(AdditionalDataHolder, Parsable):
     @currency.setter
     def currency(self,value: Optional[str] = None) -> None:
         """
-        Sets the currency property value. The currency property
+        Sets the currency property value. Currency used to calculate the cost of the call. For details, see ISO 4217.
         Args:
             value: Value to set for the currency property.
         """
@@ -80,7 +80,7 @@ class PstnOnlineMeetingDialoutReport(AdditionalDataHolder, Parsable):
     @property
     def destination_context(self,) -> Optional[str]:
         """
-        Gets the destinationContext property value. The destinationContext property
+        Gets the destinationContext property value. Indicates whether the call was Domestic (within a country or region) or International (outside a country or region) based on the user's location.
         Returns: Optional[str]
         """
         return self._destination_context
@@ -88,7 +88,7 @@ class PstnOnlineMeetingDialoutReport(AdditionalDataHolder, Parsable):
     @destination_context.setter
     def destination_context(self,value: Optional[str] = None) -> None:
         """
-        Sets the destinationContext property value. The destinationContext property
+        Sets the destinationContext property value. Indicates whether the call was Domestic (within a country or region) or International (outside a country or region) based on the user's location.
         Args:
             value: Value to set for the destination_context property.
         """
@@ -153,7 +153,7 @@ class PstnOnlineMeetingDialoutReport(AdditionalDataHolder, Parsable):
     @property
     def total_call_charge(self,) -> Optional[float]:
         """
-        Gets the totalCallCharge property value. The totalCallCharge property
+        Gets the totalCallCharge property value. Total costs of all the calls within the selected time range, including call charges and connection fees.
         Returns: Optional[float]
         """
         return self._total_call_charge
@@ -161,7 +161,7 @@ class PstnOnlineMeetingDialoutReport(AdditionalDataHolder, Parsable):
     @total_call_charge.setter
     def total_call_charge(self,value: Optional[float] = None) -> None:
         """
-        Sets the totalCallCharge property value. The totalCallCharge property
+        Sets the totalCallCharge property value. Total costs of all the calls within the selected time range, including call charges and connection fees.
         Args:
             value: Value to set for the total_call_charge property.
         """
@@ -170,7 +170,7 @@ class PstnOnlineMeetingDialoutReport(AdditionalDataHolder, Parsable):
     @property
     def total_call_seconds(self,) -> Optional[int]:
         """
-        Gets the totalCallSeconds property value. The totalCallSeconds property
+        Gets the totalCallSeconds property value. Total duration of all the calls within the selected time range, in seconds.
         Returns: Optional[int]
         """
         return self._total_call_seconds
@@ -178,7 +178,7 @@ class PstnOnlineMeetingDialoutReport(AdditionalDataHolder, Parsable):
     @total_call_seconds.setter
     def total_call_seconds(self,value: Optional[int] = None) -> None:
         """
-        Sets the totalCallSeconds property value. The totalCallSeconds property
+        Sets the totalCallSeconds property value. Total duration of all the calls within the selected time range, in seconds.
         Args:
             value: Value to set for the total_call_seconds property.
         """
@@ -187,7 +187,7 @@ class PstnOnlineMeetingDialoutReport(AdditionalDataHolder, Parsable):
     @property
     def total_calls(self,) -> Optional[int]:
         """
-        Gets the totalCalls property value. The totalCalls property
+        Gets the totalCalls property value. Total number of dial-out calls within the selected time range.
         Returns: Optional[int]
         """
         return self._total_calls
@@ -195,7 +195,7 @@ class PstnOnlineMeetingDialoutReport(AdditionalDataHolder, Parsable):
     @total_calls.setter
     def total_calls(self,value: Optional[int] = None) -> None:
         """
-        Sets the totalCalls property value. The totalCalls property
+        Sets the totalCalls property value. Total number of dial-out calls within the selected time range.
         Args:
             value: Value to set for the total_calls property.
         """
@@ -204,7 +204,7 @@ class PstnOnlineMeetingDialoutReport(AdditionalDataHolder, Parsable):
     @property
     def usage_location(self,) -> Optional[str]:
         """
-        Gets the usageLocation property value. The usageLocation property
+        Gets the usageLocation property value. Country code of the user. For details, see ISO 3166-1 alpha-2.
         Returns: Optional[str]
         """
         return self._usage_location
@@ -212,7 +212,7 @@ class PstnOnlineMeetingDialoutReport(AdditionalDataHolder, Parsable):
     @usage_location.setter
     def usage_location(self,value: Optional[str] = None) -> None:
         """
-        Sets the usageLocation property value. The usageLocation property
+        Sets the usageLocation property value. Country code of the user. For details, see ISO 3166-1 alpha-2.
         Args:
             value: Value to set for the usage_location property.
         """
@@ -221,7 +221,7 @@ class PstnOnlineMeetingDialoutReport(AdditionalDataHolder, Parsable):
     @property
     def user_display_name(self,) -> Optional[str]:
         """
-        Gets the userDisplayName property value. The userDisplayName property
+        Gets the userDisplayName property value. Display name of the user.
         Returns: Optional[str]
         """
         return self._user_display_name
@@ -229,7 +229,7 @@ class PstnOnlineMeetingDialoutReport(AdditionalDataHolder, Parsable):
     @user_display_name.setter
     def user_display_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the userDisplayName property value. The userDisplayName property
+        Sets the userDisplayName property value. Display name of the user.
         Args:
             value: Value to set for the user_display_name property.
         """
@@ -238,7 +238,7 @@ class PstnOnlineMeetingDialoutReport(AdditionalDataHolder, Parsable):
     @property
     def user_id(self,) -> Optional[str]:
         """
-        Gets the userId property value. The userId property
+        Gets the userId property value. The unique identifier (GUID) of the user in Azure Active Directory.
         Returns: Optional[str]
         """
         return self._user_id
@@ -246,7 +246,7 @@ class PstnOnlineMeetingDialoutReport(AdditionalDataHolder, Parsable):
     @user_id.setter
     def user_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the userId property value. The userId property
+        Sets the userId property value. The unique identifier (GUID) of the user in Azure Active Directory.
         Args:
             value: Value to set for the user_id property.
         """
@@ -255,7 +255,7 @@ class PstnOnlineMeetingDialoutReport(AdditionalDataHolder, Parsable):
     @property
     def user_principal_name(self,) -> Optional[str]:
         """
-        Gets the userPrincipalName property value. The userPrincipalName property
+        Gets the userPrincipalName property value. The user principal name (sign-in name) in Azure Active Directory. This is usually the same as the user's SIP address, and can be same as the user's e-mail address.
         Returns: Optional[str]
         """
         return self._user_principal_name
@@ -263,7 +263,7 @@ class PstnOnlineMeetingDialoutReport(AdditionalDataHolder, Parsable):
     @user_principal_name.setter
     def user_principal_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the userPrincipalName property value. The userPrincipalName property
+        Sets the userPrincipalName property value. The user principal name (sign-in name) in Azure Active Directory. This is usually the same as the user's SIP address, and can be same as the user's e-mail address.
         Args:
             value: Value to set for the user_principal_name property.
         """

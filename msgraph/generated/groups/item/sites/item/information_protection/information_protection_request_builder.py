@@ -14,16 +14,13 @@ if TYPE_CHECKING:
     from ......models.o_data_errors import o_data_error
     from .bitlocker import bitlocker_request_builder
     from .data_loss_prevention_policies import data_loss_prevention_policies_request_builder
-    from .data_loss_prevention_policies.item import data_loss_prevention_policy_item_request_builder
     from .decrypt_buffer import decrypt_buffer_request_builder
     from .encrypt_buffer import encrypt_buffer_request_builder
     from .policy import policy_request_builder
     from .sensitivity_labels import sensitivity_labels_request_builder
-    from .sensitivity_labels.item import sensitivity_label_item_request_builder
     from .sensitivity_policy_settings import sensitivity_policy_settings_request_builder
     from .sign_digest import sign_digest_request_builder
     from .threat_assessment_requests import threat_assessment_requests_request_builder
-    from .threat_assessment_requests.item import threat_assessment_request_item_request_builder
     from .verify_signature import verify_signature_request_builder
 
 class InformationProtectionRequestBuilder():
@@ -47,21 +44,6 @@ class InformationProtectionRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def data_loss_prevention_policies_by_id(self,id: str) -> data_loss_prevention_policy_item_request_builder.DataLossPreventionPolicyItemRequestBuilder:
-        """
-        Provides operations to manage the dataLossPreventionPolicies property of the microsoft.graph.informationProtection entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: data_loss_prevention_policy_item_request_builder.DataLossPreventionPolicyItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .data_loss_prevention_policies.item import data_loss_prevention_policy_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["dataLossPreventionPolicy%2Did"] = id
-        return data_loss_prevention_policy_item_request_builder.DataLossPreventionPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[InformationProtectionRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
@@ -128,36 +110,6 @@ class InformationProtectionRequestBuilder():
         from ......models import information_protection
 
         return await self.request_adapter.send_async(request_info, information_protection.InformationProtection, error_mapping)
-    
-    def sensitivity_labels_by_id(self,id: str) -> sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder:
-        """
-        Provides operations to manage the sensitivityLabels property of the microsoft.graph.informationProtection entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .sensitivity_labels.item import sensitivity_label_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["sensitivityLabel%2Did"] = id
-        return sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def threat_assessment_requests_by_id(self,id: str) -> threat_assessment_request_item_request_builder.ThreatAssessmentRequestItemRequestBuilder:
-        """
-        Provides operations to manage the threatAssessmentRequests property of the microsoft.graph.informationProtection entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: threat_assessment_request_item_request_builder.ThreatAssessmentRequestItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .threat_assessment_requests.item import threat_assessment_request_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["threatAssessmentRequest%2Did"] = id
-        return threat_assessment_request_item_request_builder.ThreatAssessmentRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[InformationProtectionRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

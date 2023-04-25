@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .............models import access_package_resource_scope, access_package_resource_scope_collection_response
     from .............models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import access_package_resource_scope_item_request_builder
 
 class AccessPackageResourceScopesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class AccessPackageResourceScopesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_access_package_resource_scope_id(self,access_package_resource_scope_id: str) -> access_package_resource_scope_item_request_builder.AccessPackageResourceScopeItemRequestBuilder:
+        """
+        Provides operations to manage the accessPackageResourceScopes property of the microsoft.graph.accessPackageResource entity.
+        Args:
+            access_package_resource_scope_id: Unique identifier of the item
+        Returns: access_package_resource_scope_item_request_builder.AccessPackageResourceScopeItemRequestBuilder
+        """
+        if access_package_resource_scope_id is None:
+            raise Exception("access_package_resource_scope_id cannot be undefined")
+        from .item import access_package_resource_scope_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["accessPackageResourceScope%2Did"] = access_package_resource_scope_id
+        return access_package_resource_scope_item_request_builder.AccessPackageResourceScopeItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[AccessPackageResourceScopesRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_resource_scope_collection_response.AccessPackageResourceScopeCollectionResponse]:
         """

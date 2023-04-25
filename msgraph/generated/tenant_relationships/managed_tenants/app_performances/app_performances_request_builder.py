@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.managed_tenants import app_performance, app_performance_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import app_performance_item_request_builder
 
 class AppPerformancesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class AppPerformancesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_app_performance_id(self,app_performance_id: str) -> app_performance_item_request_builder.AppPerformanceItemRequestBuilder:
+        """
+        Provides operations to manage the appPerformances property of the microsoft.graph.managedTenants.managedTenant entity.
+        Args:
+            app_performance_id: Unique identifier of the item
+        Returns: app_performance_item_request_builder.AppPerformanceItemRequestBuilder
+        """
+        if app_performance_id is None:
+            raise Exception("app_performance_id cannot be undefined")
+        from .item import app_performance_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["appPerformance%2Did"] = app_performance_id
+        return app_performance_item_request_builder.AppPerformanceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[AppPerformancesRequestBuilderGetRequestConfiguration] = None) -> Optional[app_performance_collection_response.AppPerformanceCollectionResponse]:
         """

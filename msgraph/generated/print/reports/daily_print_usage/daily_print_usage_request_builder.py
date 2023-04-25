@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import print_usage, print_usage_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import print_usage_item_request_builder
 
 class DailyPrintUsageRequestBuilder():
     """
@@ -35,6 +36,21 @@ class DailyPrintUsageRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_print_usage_id(self,print_usage_id: str) -> print_usage_item_request_builder.PrintUsageItemRequestBuilder:
+        """
+        Provides operations to manage the dailyPrintUsage property of the microsoft.graph.reportRoot entity.
+        Args:
+            print_usage_id: Unique identifier of the item
+        Returns: print_usage_item_request_builder.PrintUsageItemRequestBuilder
+        """
+        if print_usage_id is None:
+            raise Exception("print_usage_id cannot be undefined")
+        from .item import print_usage_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["printUsage%2Did"] = print_usage_id
+        return print_usage_item_request_builder.PrintUsageItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[DailyPrintUsageRequestBuilderGetRequestConfiguration] = None) -> Optional[print_usage_collection_response.PrintUsageCollectionResponse]:
         """

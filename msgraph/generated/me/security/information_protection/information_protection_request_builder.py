@@ -14,7 +14,6 @@ if TYPE_CHECKING:
     from ....models.security import information_protection
     from .label_policy_settings import label_policy_settings_request_builder
     from .sensitivity_labels import sensitivity_labels_request_builder
-    from .sensitivity_labels.item import sensitivity_label_item_request_builder
 
 class InformationProtectionRequestBuilder():
     """
@@ -103,21 +102,6 @@ class InformationProtectionRequestBuilder():
         from ....models.security import information_protection
 
         return await self.request_adapter.send_async(request_info, information_protection.InformationProtection, error_mapping)
-    
-    def sensitivity_labels_by_id(self,id: str) -> sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder:
-        """
-        Provides operations to manage the sensitivityLabels property of the microsoft.graph.security.informationProtection entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .sensitivity_labels.item import sensitivity_label_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["sensitivityLabel%2Did"] = id
-        return sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[InformationProtectionRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

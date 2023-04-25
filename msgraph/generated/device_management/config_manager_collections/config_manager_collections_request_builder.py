@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .get_policy_summary_with_policy_id import get_policy_summary_with_policy_id_request_builder
+    from .item import config_manager_collection_item_request_builder
 
 class ConfigManagerCollectionsRequestBuilder():
     """
@@ -36,6 +37,21 @@ class ConfigManagerCollectionsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_config_manager_collection_id(self,config_manager_collection_id: str) -> config_manager_collection_item_request_builder.ConfigManagerCollectionItemRequestBuilder:
+        """
+        Provides operations to manage the configManagerCollections property of the microsoft.graph.deviceManagement entity.
+        Args:
+            config_manager_collection_id: Unique identifier of the item
+        Returns: config_manager_collection_item_request_builder.ConfigManagerCollectionItemRequestBuilder
+        """
+        if config_manager_collection_id is None:
+            raise Exception("config_manager_collection_id cannot be undefined")
+        from .item import config_manager_collection_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["configManagerCollection%2Did"] = config_manager_collection_id
+        return config_manager_collection_item_request_builder.ConfigManagerCollectionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ConfigManagerCollectionsRequestBuilderGetRequestConfiguration] = None) -> Optional[config_manager_collection_collection_response.ConfigManagerCollectionCollectionResponse]:
         """

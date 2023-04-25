@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import host_security_profile, host_security_profile_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import host_security_profile_item_request_builder
 
 class HostSecurityProfilesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class HostSecurityProfilesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_host_security_profile_id(self,host_security_profile_id: str) -> host_security_profile_item_request_builder.HostSecurityProfileItemRequestBuilder:
+        """
+        Provides operations to manage the hostSecurityProfiles property of the microsoft.graph.security entity.
+        Args:
+            host_security_profile_id: Unique identifier of the item
+        Returns: host_security_profile_item_request_builder.HostSecurityProfileItemRequestBuilder
+        """
+        if host_security_profile_id is None:
+            raise Exception("host_security_profile_id cannot be undefined")
+        from .item import host_security_profile_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["hostSecurityProfile%2Did"] = host_security_profile_id
+        return host_security_profile_item_request_builder.HostSecurityProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[HostSecurityProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[host_security_profile_collection_response.HostSecurityProfileCollectionResponse]:
         """

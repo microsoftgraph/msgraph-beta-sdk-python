@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .......models import group_policy_presentation_value, group_policy_presentation_value_collection_response
     from .......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import group_policy_presentation_value_item_request_builder
 
 class PresentationValuesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class PresentationValuesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_group_policy_presentation_value_id(self,group_policy_presentation_value_id: str) -> group_policy_presentation_value_item_request_builder.GroupPolicyPresentationValueItemRequestBuilder:
+        """
+        Provides operations to manage the presentationValues property of the microsoft.graph.groupPolicyDefinitionValue entity.
+        Args:
+            group_policy_presentation_value_id: Unique identifier of the item
+        Returns: group_policy_presentation_value_item_request_builder.GroupPolicyPresentationValueItemRequestBuilder
+        """
+        if group_policy_presentation_value_id is None:
+            raise Exception("group_policy_presentation_value_id cannot be undefined")
+        from .item import group_policy_presentation_value_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["groupPolicyPresentationValue%2Did"] = group_policy_presentation_value_id
+        return group_policy_presentation_value_item_request_builder.GroupPolicyPresentationValueItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[PresentationValuesRequestBuilderGetRequestConfiguration] = None) -> Optional[group_policy_presentation_value_collection_response.GroupPolicyPresentationValueCollectionResponse]:
         """

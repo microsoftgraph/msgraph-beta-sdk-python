@@ -11,43 +11,43 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The callCharge property
+        # Amount of money or cost of the SMS that is charged.
         self._call_charge: Optional[float] = None
-        # The currency property
+        # Currency used to calculate the cost of the call. For details, see ISO 4217.
         self._currency: Optional[str] = None
-        # The destinationContext property
+        # Indicates whether the SMS was Domestic (within a country or region) or International (outside a country or region) based on the user's location.
         self._destination_context: Optional[str] = None
-        # The destinationName property
+        # Country or region of a phone number that received the SMS.
         self._destination_name: Optional[str] = None
-        # The destinationNumber property
+        # Partially obfuscated phone number that received the SMS. For details, see E.164.
         self._destination_number: Optional[str] = None
-        # The id property
+        # Unique identifier (GUID) for the SMS.
         self._id: Optional[str] = None
-        # The licenseCapability property
+        # The license used for the SMS.
         self._license_capability: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The otherPartyCountryCode property
+        # For an outbound SMS, the country code of the receiver; otherwise (inbound SMS) the country code of the sender. For details, see ISO 3166-1 alpha-2.
         self._other_party_country_code: Optional[str] = None
-        # The sentDateTime property
+        # The date and time when the SMS was sent.
         self._sent_date_time: Optional[datetime] = None
-        # The smsId property
+        # SMS identifier. Not guaranteed to be unique.
         self._sms_id: Optional[str] = None
-        # The smsType property
+        # Type of SMS such as outbound or inbound.
         self._sms_type: Optional[str] = None
-        # The smsUnits property
+        # Number of SMS units sent/received.
         self._sms_units: Optional[int] = None
-        # The sourceNumber property
+        # Partially obfuscated phone number that sent the SMS. For details, see E.164.
         self._source_number: Optional[str] = None
-        # The tenantCountryCode property
+        # Country code of the tenant. For details, see ISO 3166-1 alpha-2.
         self._tenant_country_code: Optional[str] = None
-        # The userCountryCode property
+        # Country code of the user. For details, see ISO 3166-1 alpha-2.
         self._user_country_code: Optional[str] = None
-        # The userDisplayName property
+        # Display name of the user.
         self._user_display_name: Optional[str] = None
-        # The userId property
+        # The unique identifier (GUID) of the user in Azure Active Directory.
         self._user_id: Optional[str] = None
-        # The userPrincipalName property
+        # The user principal name (sign-in name) in Azure Active Directory. This is usually the same as the user's SIP address, and can be same as the user's e-mail address.
         self._user_principal_name: Optional[str] = None
     
     @property
@@ -70,7 +70,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @property
     def call_charge(self,) -> Optional[float]:
         """
-        Gets the callCharge property value. The callCharge property
+        Gets the callCharge property value. Amount of money or cost of the SMS that is charged.
         Returns: Optional[float]
         """
         return self._call_charge
@@ -78,7 +78,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @call_charge.setter
     def call_charge(self,value: Optional[float] = None) -> None:
         """
-        Sets the callCharge property value. The callCharge property
+        Sets the callCharge property value. Amount of money or cost of the SMS that is charged.
         Args:
             value: Value to set for the call_charge property.
         """
@@ -99,7 +99,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @property
     def currency(self,) -> Optional[str]:
         """
-        Gets the currency property value. The currency property
+        Gets the currency property value. Currency used to calculate the cost of the call. For details, see ISO 4217.
         Returns: Optional[str]
         """
         return self._currency
@@ -107,7 +107,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @currency.setter
     def currency(self,value: Optional[str] = None) -> None:
         """
-        Sets the currency property value. The currency property
+        Sets the currency property value. Currency used to calculate the cost of the call. For details, see ISO 4217.
         Args:
             value: Value to set for the currency property.
         """
@@ -116,7 +116,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @property
     def destination_context(self,) -> Optional[str]:
         """
-        Gets the destinationContext property value. The destinationContext property
+        Gets the destinationContext property value. Indicates whether the SMS was Domestic (within a country or region) or International (outside a country or region) based on the user's location.
         Returns: Optional[str]
         """
         return self._destination_context
@@ -124,7 +124,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @destination_context.setter
     def destination_context(self,value: Optional[str] = None) -> None:
         """
-        Sets the destinationContext property value. The destinationContext property
+        Sets the destinationContext property value. Indicates whether the SMS was Domestic (within a country or region) or International (outside a country or region) based on the user's location.
         Args:
             value: Value to set for the destination_context property.
         """
@@ -133,7 +133,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @property
     def destination_name(self,) -> Optional[str]:
         """
-        Gets the destinationName property value. The destinationName property
+        Gets the destinationName property value. Country or region of a phone number that received the SMS.
         Returns: Optional[str]
         """
         return self._destination_name
@@ -141,7 +141,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @destination_name.setter
     def destination_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the destinationName property value. The destinationName property
+        Sets the destinationName property value. Country or region of a phone number that received the SMS.
         Args:
             value: Value to set for the destination_name property.
         """
@@ -150,7 +150,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @property
     def destination_number(self,) -> Optional[str]:
         """
-        Gets the destinationNumber property value. The destinationNumber property
+        Gets the destinationNumber property value. Partially obfuscated phone number that received the SMS. For details, see E.164.
         Returns: Optional[str]
         """
         return self._destination_number
@@ -158,7 +158,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @destination_number.setter
     def destination_number(self,value: Optional[str] = None) -> None:
         """
-        Sets the destinationNumber property value. The destinationNumber property
+        Sets the destinationNumber property value. Partially obfuscated phone number that received the SMS. For details, see E.164.
         Args:
             value: Value to set for the destination_number property.
         """
@@ -195,7 +195,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @property
     def id(self,) -> Optional[str]:
         """
-        Gets the id property value. The id property
+        Gets the id property value. Unique identifier (GUID) for the SMS.
         Returns: Optional[str]
         """
         return self._id
@@ -203,7 +203,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @id.setter
     def id(self,value: Optional[str] = None) -> None:
         """
-        Sets the id property value. The id property
+        Sets the id property value. Unique identifier (GUID) for the SMS.
         Args:
             value: Value to set for the id property.
         """
@@ -212,7 +212,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @property
     def license_capability(self,) -> Optional[str]:
         """
-        Gets the licenseCapability property value. The licenseCapability property
+        Gets the licenseCapability property value. The license used for the SMS.
         Returns: Optional[str]
         """
         return self._license_capability
@@ -220,7 +220,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @license_capability.setter
     def license_capability(self,value: Optional[str] = None) -> None:
         """
-        Sets the licenseCapability property value. The licenseCapability property
+        Sets the licenseCapability property value. The license used for the SMS.
         Args:
             value: Value to set for the license_capability property.
         """
@@ -246,7 +246,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @property
     def other_party_country_code(self,) -> Optional[str]:
         """
-        Gets the otherPartyCountryCode property value. The otherPartyCountryCode property
+        Gets the otherPartyCountryCode property value. For an outbound SMS, the country code of the receiver; otherwise (inbound SMS) the country code of the sender. For details, see ISO 3166-1 alpha-2.
         Returns: Optional[str]
         """
         return self._other_party_country_code
@@ -254,7 +254,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @other_party_country_code.setter
     def other_party_country_code(self,value: Optional[str] = None) -> None:
         """
-        Sets the otherPartyCountryCode property value. The otherPartyCountryCode property
+        Sets the otherPartyCountryCode property value. For an outbound SMS, the country code of the receiver; otherwise (inbound SMS) the country code of the sender. For details, see ISO 3166-1 alpha-2.
         Args:
             value: Value to set for the other_party_country_code property.
         """
@@ -263,7 +263,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @property
     def sent_date_time(self,) -> Optional[datetime]:
         """
-        Gets the sentDateTime property value. The sentDateTime property
+        Gets the sentDateTime property value. The date and time when the SMS was sent.
         Returns: Optional[datetime]
         """
         return self._sent_date_time
@@ -271,7 +271,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @sent_date_time.setter
     def sent_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the sentDateTime property value. The sentDateTime property
+        Sets the sentDateTime property value. The date and time when the SMS was sent.
         Args:
             value: Value to set for the sent_date_time property.
         """
@@ -309,7 +309,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @property
     def sms_id(self,) -> Optional[str]:
         """
-        Gets the smsId property value. The smsId property
+        Gets the smsId property value. SMS identifier. Not guaranteed to be unique.
         Returns: Optional[str]
         """
         return self._sms_id
@@ -317,7 +317,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @sms_id.setter
     def sms_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the smsId property value. The smsId property
+        Sets the smsId property value. SMS identifier. Not guaranteed to be unique.
         Args:
             value: Value to set for the sms_id property.
         """
@@ -326,7 +326,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @property
     def sms_type(self,) -> Optional[str]:
         """
-        Gets the smsType property value. The smsType property
+        Gets the smsType property value. Type of SMS such as outbound or inbound.
         Returns: Optional[str]
         """
         return self._sms_type
@@ -334,7 +334,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @sms_type.setter
     def sms_type(self,value: Optional[str] = None) -> None:
         """
-        Sets the smsType property value. The smsType property
+        Sets the smsType property value. Type of SMS such as outbound or inbound.
         Args:
             value: Value to set for the sms_type property.
         """
@@ -343,7 +343,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @property
     def sms_units(self,) -> Optional[int]:
         """
-        Gets the smsUnits property value. The smsUnits property
+        Gets the smsUnits property value. Number of SMS units sent/received.
         Returns: Optional[int]
         """
         return self._sms_units
@@ -351,7 +351,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @sms_units.setter
     def sms_units(self,value: Optional[int] = None) -> None:
         """
-        Sets the smsUnits property value. The smsUnits property
+        Sets the smsUnits property value. Number of SMS units sent/received.
         Args:
             value: Value to set for the sms_units property.
         """
@@ -360,7 +360,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @property
     def source_number(self,) -> Optional[str]:
         """
-        Gets the sourceNumber property value. The sourceNumber property
+        Gets the sourceNumber property value. Partially obfuscated phone number that sent the SMS. For details, see E.164.
         Returns: Optional[str]
         """
         return self._source_number
@@ -368,7 +368,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @source_number.setter
     def source_number(self,value: Optional[str] = None) -> None:
         """
-        Sets the sourceNumber property value. The sourceNumber property
+        Sets the sourceNumber property value. Partially obfuscated phone number that sent the SMS. For details, see E.164.
         Args:
             value: Value to set for the source_number property.
         """
@@ -377,7 +377,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @property
     def tenant_country_code(self,) -> Optional[str]:
         """
-        Gets the tenantCountryCode property value. The tenantCountryCode property
+        Gets the tenantCountryCode property value. Country code of the tenant. For details, see ISO 3166-1 alpha-2.
         Returns: Optional[str]
         """
         return self._tenant_country_code
@@ -385,7 +385,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @tenant_country_code.setter
     def tenant_country_code(self,value: Optional[str] = None) -> None:
         """
-        Sets the tenantCountryCode property value. The tenantCountryCode property
+        Sets the tenantCountryCode property value. Country code of the tenant. For details, see ISO 3166-1 alpha-2.
         Args:
             value: Value to set for the tenant_country_code property.
         """
@@ -394,7 +394,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @property
     def user_country_code(self,) -> Optional[str]:
         """
-        Gets the userCountryCode property value. The userCountryCode property
+        Gets the userCountryCode property value. Country code of the user. For details, see ISO 3166-1 alpha-2.
         Returns: Optional[str]
         """
         return self._user_country_code
@@ -402,7 +402,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @user_country_code.setter
     def user_country_code(self,value: Optional[str] = None) -> None:
         """
-        Sets the userCountryCode property value. The userCountryCode property
+        Sets the userCountryCode property value. Country code of the user. For details, see ISO 3166-1 alpha-2.
         Args:
             value: Value to set for the user_country_code property.
         """
@@ -411,7 +411,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @property
     def user_display_name(self,) -> Optional[str]:
         """
-        Gets the userDisplayName property value. The userDisplayName property
+        Gets the userDisplayName property value. Display name of the user.
         Returns: Optional[str]
         """
         return self._user_display_name
@@ -419,7 +419,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @user_display_name.setter
     def user_display_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the userDisplayName property value. The userDisplayName property
+        Sets the userDisplayName property value. Display name of the user.
         Args:
             value: Value to set for the user_display_name property.
         """
@@ -428,7 +428,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @property
     def user_id(self,) -> Optional[str]:
         """
-        Gets the userId property value. The userId property
+        Gets the userId property value. The unique identifier (GUID) of the user in Azure Active Directory.
         Returns: Optional[str]
         """
         return self._user_id
@@ -436,7 +436,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @user_id.setter
     def user_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the userId property value. The userId property
+        Sets the userId property value. The unique identifier (GUID) of the user in Azure Active Directory.
         Args:
             value: Value to set for the user_id property.
         """
@@ -445,7 +445,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @property
     def user_principal_name(self,) -> Optional[str]:
         """
-        Gets the userPrincipalName property value. The userPrincipalName property
+        Gets the userPrincipalName property value. The user principal name (sign-in name) in Azure Active Directory. This is usually the same as the user's SIP address, and can be same as the user's e-mail address.
         Returns: Optional[str]
         """
         return self._user_principal_name
@@ -453,7 +453,7 @@ class SmsLogRow(AdditionalDataHolder, Parsable):
     @user_principal_name.setter
     def user_principal_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the userPrincipalName property value. The userPrincipalName property
+        Sets the userPrincipalName property value. The user principal name (sign-in name) in Azure Active Directory. This is usually the same as the user's SIP address, and can be same as the user's e-mail address.
         Args:
             value: Value to set for the user_principal_name property.
         """

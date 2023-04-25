@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ........models import canvas_layout
     from ........models.o_data_errors import o_data_error
     from .horizontal_sections import horizontal_sections_request_builder
-    from .horizontal_sections.item import horizontal_section_item_request_builder
     from .vertical_section import vertical_section_request_builder
 
 class CanvasLayoutRequestBuilder():
@@ -78,21 +77,6 @@ class CanvasLayoutRequestBuilder():
         from ........models import canvas_layout
 
         return await self.request_adapter.send_async(request_info, canvas_layout.CanvasLayout, error_mapping)
-    
-    def horizontal_sections_by_id(self,id: str) -> horizontal_section_item_request_builder.HorizontalSectionItemRequestBuilder:
-        """
-        Provides operations to manage the horizontalSections property of the microsoft.graph.canvasLayout entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: horizontal_section_item_request_builder.HorizontalSectionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .horizontal_sections.item import horizontal_section_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["horizontalSection%2Did"] = id
-        return horizontal_section_item_request_builder.HorizontalSectionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[canvas_layout.CanvasLayout] = None, request_configuration: Optional[CanvasLayoutRequestBuilderPatchRequestConfiguration] = None) -> Optional[canvas_layout.CanvasLayout]:
         """

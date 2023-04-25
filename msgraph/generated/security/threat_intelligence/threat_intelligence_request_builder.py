@@ -13,25 +13,15 @@ if TYPE_CHECKING:
     from ...models.o_data_errors import o_data_error
     from ...models.security import threat_intelligence
     from .article_indicators import article_indicators_request_builder
-    from .article_indicators.item import article_indicator_item_request_builder
     from .articles import articles_request_builder
-    from .articles.item import article_item_request_builder
     from .host_components import host_components_request_builder
-    from .host_components.item import host_component_item_request_builder
     from .host_cookies import host_cookies_request_builder
-    from .host_cookies.item import host_cookie_item_request_builder
     from .hosts import hosts_request_builder
-    from .hosts.item import host_item_request_builder
     from .host_trackers import host_trackers_request_builder
-    from .host_trackers.item import host_tracker_item_request_builder
     from .intelligence_profile_indicators import intelligence_profile_indicators_request_builder
-    from .intelligence_profile_indicators.item import intelligence_profile_indicator_item_request_builder
     from .intel_profiles import intel_profiles_request_builder
-    from .intel_profiles.item import intelligence_profile_item_request_builder
     from .passive_dns_records import passive_dns_records_request_builder
-    from .passive_dns_records.item import passive_dns_record_item_request_builder
     from .vulnerabilities import vulnerabilities_request_builder
-    from .vulnerabilities.item import vulnerability_item_request_builder
 
 class ThreatIntelligenceRequestBuilder():
     """
@@ -54,36 +44,6 @@ class ThreatIntelligenceRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def article_indicators_by_id(self,id: str) -> article_indicator_item_request_builder.ArticleIndicatorItemRequestBuilder:
-        """
-        Provides operations to manage the articleIndicators property of the microsoft.graph.security.threatIntelligence entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: article_indicator_item_request_builder.ArticleIndicatorItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .article_indicators.item import article_indicator_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["articleIndicator%2Did"] = id
-        return article_indicator_item_request_builder.ArticleIndicatorItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def articles_by_id(self,id: str) -> article_item_request_builder.ArticleItemRequestBuilder:
-        """
-        Provides operations to manage the articles property of the microsoft.graph.security.threatIntelligence entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: article_item_request_builder.ArticleItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .articles.item import article_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["article%2Did"] = id
-        return article_item_request_builder.ArticleItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[ThreatIntelligenceRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
@@ -125,111 +85,6 @@ class ThreatIntelligenceRequestBuilder():
         from ...models.security import threat_intelligence
 
         return await self.request_adapter.send_async(request_info, threat_intelligence.ThreatIntelligence, error_mapping)
-    
-    def host_components_by_id(self,id: str) -> host_component_item_request_builder.HostComponentItemRequestBuilder:
-        """
-        Provides operations to manage the hostComponents property of the microsoft.graph.security.threatIntelligence entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: host_component_item_request_builder.HostComponentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .host_components.item import host_component_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["hostComponent%2Did"] = id
-        return host_component_item_request_builder.HostComponentItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def host_cookies_by_id(self,id: str) -> host_cookie_item_request_builder.HostCookieItemRequestBuilder:
-        """
-        Provides operations to manage the hostCookies property of the microsoft.graph.security.threatIntelligence entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: host_cookie_item_request_builder.HostCookieItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .host_cookies.item import host_cookie_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["hostCookie%2Did"] = id
-        return host_cookie_item_request_builder.HostCookieItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def hosts_by_id(self,id: str) -> host_item_request_builder.HostItemRequestBuilder:
-        """
-        Provides operations to manage the hosts property of the microsoft.graph.security.threatIntelligence entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: host_item_request_builder.HostItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .hosts.item import host_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["host%2Did"] = id
-        return host_item_request_builder.HostItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def host_trackers_by_id(self,id: str) -> host_tracker_item_request_builder.HostTrackerItemRequestBuilder:
-        """
-        Provides operations to manage the hostTrackers property of the microsoft.graph.security.threatIntelligence entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: host_tracker_item_request_builder.HostTrackerItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .host_trackers.item import host_tracker_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["hostTracker%2Did"] = id
-        return host_tracker_item_request_builder.HostTrackerItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def intelligence_profile_indicators_by_id(self,id: str) -> intelligence_profile_indicator_item_request_builder.IntelligenceProfileIndicatorItemRequestBuilder:
-        """
-        Provides operations to manage the intelligenceProfileIndicators property of the microsoft.graph.security.threatIntelligence entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: intelligence_profile_indicator_item_request_builder.IntelligenceProfileIndicatorItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .intelligence_profile_indicators.item import intelligence_profile_indicator_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["intelligenceProfileIndicator%2Did"] = id
-        return intelligence_profile_indicator_item_request_builder.IntelligenceProfileIndicatorItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def intel_profiles_by_id(self,id: str) -> intelligence_profile_item_request_builder.IntelligenceProfileItemRequestBuilder:
-        """
-        Provides operations to manage the intelProfiles property of the microsoft.graph.security.threatIntelligence entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: intelligence_profile_item_request_builder.IntelligenceProfileItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .intel_profiles.item import intelligence_profile_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["intelligenceProfile%2Did"] = id
-        return intelligence_profile_item_request_builder.IntelligenceProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def passive_dns_records_by_id(self,id: str) -> passive_dns_record_item_request_builder.PassiveDnsRecordItemRequestBuilder:
-        """
-        Provides operations to manage the passiveDnsRecords property of the microsoft.graph.security.threatIntelligence entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: passive_dns_record_item_request_builder.PassiveDnsRecordItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .passive_dns_records.item import passive_dns_record_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["passiveDnsRecord%2Did"] = id
-        return passive_dns_record_item_request_builder.PassiveDnsRecordItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[threat_intelligence.ThreatIntelligence] = None, request_configuration: Optional[ThreatIntelligenceRequestBuilderPatchRequestConfiguration] = None) -> Optional[threat_intelligence.ThreatIntelligence]:
         """
@@ -310,21 +165,6 @@ class ThreatIntelligenceRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
-    
-    def vulnerabilities_by_id(self,id: str) -> vulnerability_item_request_builder.VulnerabilityItemRequestBuilder:
-        """
-        Provides operations to manage the vulnerabilities property of the microsoft.graph.security.threatIntelligence entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: vulnerability_item_request_builder.VulnerabilityItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .vulnerabilities.item import vulnerability_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["vulnerability%2Did"] = id
-        return vulnerability_item_request_builder.VulnerabilityItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     @property
     def article_indicators(self) -> article_indicators_request_builder.ArticleIndicatorsRequestBuilder:

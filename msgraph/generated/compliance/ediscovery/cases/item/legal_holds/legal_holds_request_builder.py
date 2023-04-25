@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models.ediscovery import legal_hold, legal_hold_collection_response
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import legal_hold_item_request_builder
 
 class LegalHoldsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class LegalHoldsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_legal_hold_id(self,legal_hold_id: str) -> legal_hold_item_request_builder.LegalHoldItemRequestBuilder:
+        """
+        Provides operations to manage the legalHolds property of the microsoft.graph.ediscovery.case entity.
+        Args:
+            legal_hold_id: Unique identifier of the item
+        Returns: legal_hold_item_request_builder.LegalHoldItemRequestBuilder
+        """
+        if legal_hold_id is None:
+            raise Exception("legal_hold_id cannot be undefined")
+        from .item import legal_hold_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["legalHold%2Did"] = legal_hold_id
+        return legal_hold_item_request_builder.LegalHoldItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[LegalHoldsRequestBuilderGetRequestConfiguration] = None) -> Optional[legal_hold_collection_response.LegalHoldCollectionResponse]:
         """

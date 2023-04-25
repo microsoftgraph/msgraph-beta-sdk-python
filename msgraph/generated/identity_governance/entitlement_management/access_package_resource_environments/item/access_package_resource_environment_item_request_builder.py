@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from .....models import access_package_resource_environment
     from .....models.o_data_errors import o_data_error
     from .access_package_resources import access_package_resources_request_builder
-    from .access_package_resources.item import access_package_resource_item_request_builder
 
 class AccessPackageResourceEnvironmentItemRequestBuilder():
     """
@@ -36,21 +35,6 @@ class AccessPackageResourceEnvironmentItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def access_package_resources_by_id(self,id: str) -> access_package_resource_item_request_builder.AccessPackageResourceItemRequestBuilder:
-        """
-        Provides operations to manage the accessPackageResources property of the microsoft.graph.accessPackageResourceEnvironment entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: access_package_resource_item_request_builder.AccessPackageResourceItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .access_package_resources.item import access_package_resource_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["accessPackageResource%2Did"] = id
-        return access_package_resource_item_request_builder.AccessPackageResourceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[AccessPackageResourceEnvironmentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

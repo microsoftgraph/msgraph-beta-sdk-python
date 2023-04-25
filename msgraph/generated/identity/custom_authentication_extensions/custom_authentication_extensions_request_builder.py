@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import custom_authentication_extension, custom_authentication_extension_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import custom_authentication_extension_item_request_builder
     from .validate_authentication_configuration import validate_authentication_configuration_request_builder
 
 class CustomAuthenticationExtensionsRequestBuilder():
@@ -36,6 +37,21 @@ class CustomAuthenticationExtensionsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_custom_authentication_extension_id(self,custom_authentication_extension_id: str) -> custom_authentication_extension_item_request_builder.CustomAuthenticationExtensionItemRequestBuilder:
+        """
+        Provides operations to manage the customAuthenticationExtensions property of the microsoft.graph.identityContainer entity.
+        Args:
+            custom_authentication_extension_id: Unique identifier of the item
+        Returns: custom_authentication_extension_item_request_builder.CustomAuthenticationExtensionItemRequestBuilder
+        """
+        if custom_authentication_extension_id is None:
+            raise Exception("custom_authentication_extension_id cannot be undefined")
+        from .item import custom_authentication_extension_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["customAuthenticationExtension%2Did"] = custom_authentication_extension_id
+        return custom_authentication_extension_item_request_builder.CustomAuthenticationExtensionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[CustomAuthenticationExtensionsRequestBuilderGetRequestConfiguration] = None) -> Optional[custom_authentication_extension_collection_response.CustomAuthenticationExtensionCollectionResponse]:
         """

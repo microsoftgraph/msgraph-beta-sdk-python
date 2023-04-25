@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models import custom_callout_extension, custom_callout_extension_collection_response
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import custom_callout_extension_item_request_builder
 
 class AccessPackageCustomWorkflowExtensionsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class AccessPackageCustomWorkflowExtensionsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_custom_callout_extension_id(self,custom_callout_extension_id: str) -> custom_callout_extension_item_request_builder.CustomCalloutExtensionItemRequestBuilder:
+        """
+        Provides operations to manage the accessPackageCustomWorkflowExtensions property of the microsoft.graph.accessPackageCatalog entity.
+        Args:
+            custom_callout_extension_id: Unique identifier of the item
+        Returns: custom_callout_extension_item_request_builder.CustomCalloutExtensionItemRequestBuilder
+        """
+        if custom_callout_extension_id is None:
+            raise Exception("custom_callout_extension_id cannot be undefined")
+        from .item import custom_callout_extension_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["customCalloutExtension%2Did"] = custom_callout_extension_id
+        return custom_callout_extension_item_request_builder.CustomCalloutExtensionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[AccessPackageCustomWorkflowExtensionsRequestBuilderGetRequestConfiguration] = None) -> Optional[custom_callout_extension_collection_response.CustomCalloutExtensionCollectionResponse]:
         """

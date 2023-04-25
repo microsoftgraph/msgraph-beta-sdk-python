@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.industry_data import reference_definition, reference_definition_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import reference_definition_item_request_builder
 
 class ReferenceDefinitionsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ReferenceDefinitionsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_reference_definition_id(self,reference_definition_id: str) -> reference_definition_item_request_builder.ReferenceDefinitionItemRequestBuilder:
+        """
+        Provides operations to manage the referenceDefinitions property of the microsoft.graph.industryData.industryDataRoot entity.
+        Args:
+            reference_definition_id: Unique identifier of the item
+        Returns: reference_definition_item_request_builder.ReferenceDefinitionItemRequestBuilder
+        """
+        if reference_definition_id is None:
+            raise Exception("reference_definition_id cannot be undefined")
+        from .item import reference_definition_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["referenceDefinition%2Did"] = reference_definition_id
+        return reference_definition_item_request_builder.ReferenceDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ReferenceDefinitionsRequestBuilderGetRequestConfiguration] = None) -> Optional[reference_definition_collection_response.ReferenceDefinitionCollectionResponse]:
         """

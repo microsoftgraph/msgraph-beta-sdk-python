@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ...models.o_data_errors import o_data_error
     from ...models.security import labels_root
     from .retention_labels import retention_labels_request_builder
-    from .retention_labels.item import retention_label_item_request_builder
 
 class LabelsRequestBuilder():
     """
@@ -102,21 +101,6 @@ class LabelsRequestBuilder():
         from ...models.security import labels_root
 
         return await self.request_adapter.send_async(request_info, labels_root.LabelsRoot, error_mapping)
-    
-    def retention_labels_by_id(self,id: str) -> retention_label_item_request_builder.RetentionLabelItemRequestBuilder:
-        """
-        Provides operations to manage the retentionLabels property of the microsoft.graph.security.labelsRoot entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: retention_label_item_request_builder.RetentionLabelItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .retention_labels.item import retention_label_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["retentionLabel%2Did"] = id
-        return retention_label_item_request_builder.RetentionLabelItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[LabelsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

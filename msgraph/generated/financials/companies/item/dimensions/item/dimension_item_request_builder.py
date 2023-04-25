@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ......models import dimension
     from ......models.o_data_errors import o_data_error
     from .dimension_values import dimension_values_request_builder
-    from .dimension_values.item import dimension_value_item_request_builder
 
 class DimensionItemRequestBuilder():
     """
@@ -36,21 +35,6 @@ class DimensionItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def dimension_values_by_id(self,id: str) -> dimension_value_item_request_builder.DimensionValueItemRequestBuilder:
-        """
-        Provides operations to manage the dimensionValues property of the microsoft.graph.dimension entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: dimension_value_item_request_builder.DimensionValueItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .dimension_values.item import dimension_value_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["dimensionValue%2Did"] = id
-        return dimension_value_item_request_builder.DimensionValueItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[DimensionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[dimension.Dimension]:
         """

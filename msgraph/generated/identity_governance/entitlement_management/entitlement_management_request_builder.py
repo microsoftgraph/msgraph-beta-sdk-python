@@ -13,32 +13,19 @@ if TYPE_CHECKING:
     from ...models import entitlement_management
     from ...models.o_data_errors import o_data_error
     from .access_package_assignment_approvals import access_package_assignment_approvals_request_builder
-    from .access_package_assignment_approvals.item import approval_item_request_builder
     from .access_package_assignment_policies import access_package_assignment_policies_request_builder
-    from .access_package_assignment_policies.item import access_package_assignment_policy_item_request_builder
     from .access_package_assignment_requests import access_package_assignment_requests_request_builder
-    from .access_package_assignment_requests.item import access_package_assignment_request_item_request_builder
     from .access_package_assignment_resource_roles import access_package_assignment_resource_roles_request_builder
-    from .access_package_assignment_resource_roles.item import access_package_assignment_resource_role_item_request_builder
     from .access_package_assignments import access_package_assignments_request_builder
-    from .access_package_assignments.item import access_package_assignment_item_request_builder
     from .access_package_catalogs import access_package_catalogs_request_builder
-    from .access_package_catalogs.item import access_package_catalog_item_request_builder
     from .access_package_resource_environments import access_package_resource_environments_request_builder
-    from .access_package_resource_environments.item import access_package_resource_environment_item_request_builder
     from .access_package_resource_requests import access_package_resource_requests_request_builder
-    from .access_package_resource_requests.item import access_package_resource_request_item_request_builder
     from .access_package_resource_role_scopes import access_package_resource_role_scopes_request_builder
-    from .access_package_resource_role_scopes.item import access_package_resource_role_scope_item_request_builder
     from .access_package_resources import access_package_resources_request_builder
-    from .access_package_resources.item import access_package_resource_item_request_builder
     from .access_packages import access_packages_request_builder
-    from .access_packages.item import access_package_item_request_builder
     from .connected_organizations import connected_organizations_request_builder
-    from .connected_organizations.item import connected_organization_item_request_builder
     from .settings import settings_request_builder
     from .subjects import subjects_request_builder
-    from .subjects.item import access_package_subject_item_request_builder
 
 class EntitlementManagementRequestBuilder():
     """
@@ -61,186 +48,6 @@ class EntitlementManagementRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def access_package_assignment_approvals_by_id(self,id: str) -> approval_item_request_builder.ApprovalItemRequestBuilder:
-        """
-        Provides operations to manage the accessPackageAssignmentApprovals property of the microsoft.graph.entitlementManagement entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: approval_item_request_builder.ApprovalItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .access_package_assignment_approvals.item import approval_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["approval%2Did"] = id
-        return approval_item_request_builder.ApprovalItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def access_package_assignment_policies_by_id(self,id: str) -> access_package_assignment_policy_item_request_builder.AccessPackageAssignmentPolicyItemRequestBuilder:
-        """
-        Provides operations to manage the accessPackageAssignmentPolicies property of the microsoft.graph.entitlementManagement entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: access_package_assignment_policy_item_request_builder.AccessPackageAssignmentPolicyItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .access_package_assignment_policies.item import access_package_assignment_policy_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["accessPackageAssignmentPolicy%2Did"] = id
-        return access_package_assignment_policy_item_request_builder.AccessPackageAssignmentPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def access_package_assignment_requests_by_id(self,id: str) -> access_package_assignment_request_item_request_builder.AccessPackageAssignmentRequestItemRequestBuilder:
-        """
-        Provides operations to manage the accessPackageAssignmentRequests property of the microsoft.graph.entitlementManagement entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: access_package_assignment_request_item_request_builder.AccessPackageAssignmentRequestItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .access_package_assignment_requests.item import access_package_assignment_request_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["accessPackageAssignmentRequest%2Did"] = id
-        return access_package_assignment_request_item_request_builder.AccessPackageAssignmentRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def access_package_assignment_resource_roles_by_id(self,id: str) -> access_package_assignment_resource_role_item_request_builder.AccessPackageAssignmentResourceRoleItemRequestBuilder:
-        """
-        Provides operations to manage the accessPackageAssignmentResourceRoles property of the microsoft.graph.entitlementManagement entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: access_package_assignment_resource_role_item_request_builder.AccessPackageAssignmentResourceRoleItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .access_package_assignment_resource_roles.item import access_package_assignment_resource_role_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["accessPackageAssignmentResourceRole%2Did"] = id
-        return access_package_assignment_resource_role_item_request_builder.AccessPackageAssignmentResourceRoleItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def access_package_assignments_by_id(self,id: str) -> access_package_assignment_item_request_builder.AccessPackageAssignmentItemRequestBuilder:
-        """
-        Provides operations to manage the accessPackageAssignments property of the microsoft.graph.entitlementManagement entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: access_package_assignment_item_request_builder.AccessPackageAssignmentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .access_package_assignments.item import access_package_assignment_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["accessPackageAssignment%2Did"] = id
-        return access_package_assignment_item_request_builder.AccessPackageAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def access_package_catalogs_by_id(self,id: str) -> access_package_catalog_item_request_builder.AccessPackageCatalogItemRequestBuilder:
-        """
-        Provides operations to manage the accessPackageCatalogs property of the microsoft.graph.entitlementManagement entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: access_package_catalog_item_request_builder.AccessPackageCatalogItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .access_package_catalogs.item import access_package_catalog_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["accessPackageCatalog%2Did"] = id
-        return access_package_catalog_item_request_builder.AccessPackageCatalogItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def access_package_resource_environments_by_id(self,id: str) -> access_package_resource_environment_item_request_builder.AccessPackageResourceEnvironmentItemRequestBuilder:
-        """
-        Provides operations to manage the accessPackageResourceEnvironments property of the microsoft.graph.entitlementManagement entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: access_package_resource_environment_item_request_builder.AccessPackageResourceEnvironmentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .access_package_resource_environments.item import access_package_resource_environment_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["accessPackageResourceEnvironment%2Did"] = id
-        return access_package_resource_environment_item_request_builder.AccessPackageResourceEnvironmentItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def access_package_resource_requests_by_id(self,id: str) -> access_package_resource_request_item_request_builder.AccessPackageResourceRequestItemRequestBuilder:
-        """
-        Provides operations to manage the accessPackageResourceRequests property of the microsoft.graph.entitlementManagement entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: access_package_resource_request_item_request_builder.AccessPackageResourceRequestItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .access_package_resource_requests.item import access_package_resource_request_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["accessPackageResourceRequest%2Did"] = id
-        return access_package_resource_request_item_request_builder.AccessPackageResourceRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def access_package_resource_role_scopes_by_id(self,id: str) -> access_package_resource_role_scope_item_request_builder.AccessPackageResourceRoleScopeItemRequestBuilder:
-        """
-        Provides operations to manage the accessPackageResourceRoleScopes property of the microsoft.graph.entitlementManagement entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: access_package_resource_role_scope_item_request_builder.AccessPackageResourceRoleScopeItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .access_package_resource_role_scopes.item import access_package_resource_role_scope_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["accessPackageResourceRoleScope%2Did"] = id
-        return access_package_resource_role_scope_item_request_builder.AccessPackageResourceRoleScopeItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def access_package_resources_by_id(self,id: str) -> access_package_resource_item_request_builder.AccessPackageResourceItemRequestBuilder:
-        """
-        Provides operations to manage the accessPackageResources property of the microsoft.graph.entitlementManagement entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: access_package_resource_item_request_builder.AccessPackageResourceItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .access_package_resources.item import access_package_resource_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["accessPackageResource%2Did"] = id
-        return access_package_resource_item_request_builder.AccessPackageResourceItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def access_packages_by_id(self,id: str) -> access_package_item_request_builder.AccessPackageItemRequestBuilder:
-        """
-        Provides operations to manage the accessPackages property of the microsoft.graph.entitlementManagement entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: access_package_item_request_builder.AccessPackageItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .access_packages.item import access_package_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["accessPackage%2Did"] = id
-        return access_package_item_request_builder.AccessPackageItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def connected_organizations_by_id(self,id: str) -> connected_organization_item_request_builder.ConnectedOrganizationItemRequestBuilder:
-        """
-        Provides operations to manage the connectedOrganizations property of the microsoft.graph.entitlementManagement entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: connected_organization_item_request_builder.ConnectedOrganizationItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .connected_organizations.item import connected_organization_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["connectedOrganization%2Did"] = id
-        return connected_organization_item_request_builder.ConnectedOrganizationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[EntitlementManagementRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
@@ -307,21 +114,6 @@ class EntitlementManagementRequestBuilder():
         from ...models import entitlement_management
 
         return await self.request_adapter.send_async(request_info, entitlement_management.EntitlementManagement, error_mapping)
-    
-    def subjects_by_id(self,id: str) -> access_package_subject_item_request_builder.AccessPackageSubjectItemRequestBuilder:
-        """
-        Provides operations to manage the subjects property of the microsoft.graph.entitlementManagement entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: access_package_subject_item_request_builder.AccessPackageSubjectItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .subjects.item import access_package_subject_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["accessPackageSubject%2Did"] = id
-        return access_package_subject_item_request_builder.AccessPackageSubjectItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[EntitlementManagementRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

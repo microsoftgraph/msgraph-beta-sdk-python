@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ........models import governance_insight, governance_insight_collection_response
     from ........models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import governance_insight_item_request_builder
 
 class InsightsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class InsightsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_governance_insight_id(self,governance_insight_id: str) -> governance_insight_item_request_builder.GovernanceInsightItemRequestBuilder:
+        """
+        Provides operations to manage the insights property of the microsoft.graph.accessReviewInstanceDecisionItem entity.
+        Args:
+            governance_insight_id: Unique identifier of the item
+        Returns: governance_insight_item_request_builder.GovernanceInsightItemRequestBuilder
+        """
+        if governance_insight_id is None:
+            raise Exception("governance_insight_id cannot be undefined")
+        from .item import governance_insight_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["governanceInsight%2Did"] = governance_insight_id
+        return governance_insight_item_request_builder.GovernanceInsightItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[InsightsRequestBuilderGetRequestConfiguration] = None) -> Optional[governance_insight_collection_response.GovernanceInsightCollectionResponse]:
         """

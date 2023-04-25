@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.managed_tenants import managed_device_compliance, managed_device_compliance_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import managed_device_compliance_item_request_builder
 
 class ManagedDeviceCompliancesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ManagedDeviceCompliancesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_managed_device_compliance_id(self,managed_device_compliance_id: str) -> managed_device_compliance_item_request_builder.ManagedDeviceComplianceItemRequestBuilder:
+        """
+        Provides operations to manage the managedDeviceCompliances property of the microsoft.graph.managedTenants.managedTenant entity.
+        Args:
+            managed_device_compliance_id: Unique identifier of the item
+        Returns: managed_device_compliance_item_request_builder.ManagedDeviceComplianceItemRequestBuilder
+        """
+        if managed_device_compliance_id is None:
+            raise Exception("managed_device_compliance_id cannot be undefined")
+        from .item import managed_device_compliance_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["managedDeviceCompliance%2Did"] = managed_device_compliance_id
+        return managed_device_compliance_item_request_builder.ManagedDeviceComplianceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ManagedDeviceCompliancesRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_device_compliance_collection_response.ManagedDeviceComplianceCollectionResponse]:
         """

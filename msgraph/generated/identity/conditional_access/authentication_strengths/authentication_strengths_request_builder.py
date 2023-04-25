@@ -13,9 +13,7 @@ if TYPE_CHECKING:
     from ....models import authentication_strength_root
     from ....models.o_data_errors import o_data_error
     from .authentication_method_modes import authentication_method_modes_request_builder
-    from .authentication_method_modes.item import authentication_method_mode_detail_item_request_builder
     from .policies import policies_request_builder
-    from .policies.item import authentication_strength_policy_item_request_builder
 
 class AuthenticationStrengthsRequestBuilder():
     """
@@ -38,21 +36,6 @@ class AuthenticationStrengthsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def authentication_method_modes_by_id(self,id: str) -> authentication_method_mode_detail_item_request_builder.AuthenticationMethodModeDetailItemRequestBuilder:
-        """
-        Provides operations to manage the authenticationMethodModes property of the microsoft.graph.authenticationStrengthRoot entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: authentication_method_mode_detail_item_request_builder.AuthenticationMethodModeDetailItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .authentication_method_modes.item import authentication_method_mode_detail_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["authenticationMethodModeDetail%2Did"] = id
-        return authentication_method_mode_detail_item_request_builder.AuthenticationMethodModeDetailItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[AuthenticationStrengthsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
@@ -119,21 +102,6 @@ class AuthenticationStrengthsRequestBuilder():
         from ....models import authentication_strength_root
 
         return await self.request_adapter.send_async(request_info, authentication_strength_root.AuthenticationStrengthRoot, error_mapping)
-    
-    def policies_by_id(self,id: str) -> authentication_strength_policy_item_request_builder.AuthenticationStrengthPolicyItemRequestBuilder:
-        """
-        Provides operations to manage the policies property of the microsoft.graph.authenticationStrengthRoot entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: authentication_strength_policy_item_request_builder.AuthenticationStrengthPolicyItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .policies.item import authentication_strength_policy_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["authenticationStrengthPolicy%2Did"] = id
-        return authentication_strength_policy_item_request_builder.AuthenticationStrengthPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[AuthenticationStrengthsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

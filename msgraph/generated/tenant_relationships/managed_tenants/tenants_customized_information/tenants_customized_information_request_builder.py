@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.managed_tenants import tenant_customized_information, tenant_customized_information_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import tenant_customized_information_item_request_builder
 
 class TenantsCustomizedInformationRequestBuilder():
     """
@@ -35,6 +36,21 @@ class TenantsCustomizedInformationRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_tenant_customized_information_id(self,tenant_customized_information_id: str) -> tenant_customized_information_item_request_builder.TenantCustomizedInformationItemRequestBuilder:
+        """
+        Provides operations to manage the tenantsCustomizedInformation property of the microsoft.graph.managedTenants.managedTenant entity.
+        Args:
+            tenant_customized_information_id: Unique identifier of the item
+        Returns: tenant_customized_information_item_request_builder.TenantCustomizedInformationItemRequestBuilder
+        """
+        if tenant_customized_information_id is None:
+            raise Exception("tenant_customized_information_id cannot be undefined")
+        from .item import tenant_customized_information_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["tenantCustomizedInformation%2Did"] = tenant_customized_information_id
+        return tenant_customized_information_item_request_builder.TenantCustomizedInformationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[TenantsCustomizedInformationRequestBuilderGetRequestConfiguration] = None) -> Optional[tenant_customized_information_collection_response.TenantCustomizedInformationCollectionResponse]:
         """

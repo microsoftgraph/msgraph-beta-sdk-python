@@ -15,7 +15,6 @@ if TYPE_CHECKING:
     from .task import task_request_builder
     from .task_definition import task_definition_request_builder
     from .task_processing_results import task_processing_results_request_builder
-    from .task_processing_results.item import task_processing_result_item_request_builder
 
 class TaskReportItemRequestBuilder():
     """
@@ -60,21 +59,6 @@ class TaskReportItemRequestBuilder():
         from ........models.identity_governance import task_report
 
         return await self.request_adapter.send_async(request_info, task_report.TaskReport, error_mapping)
-    
-    def task_processing_results_by_id(self,id: str) -> task_processing_result_item_request_builder.TaskProcessingResultItemRequestBuilder:
-        """
-        Provides operations to manage the taskProcessingResults property of the microsoft.graph.identityGovernance.taskReport entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: task_processing_result_item_request_builder.TaskProcessingResultItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .task_processing_results.item import task_processing_result_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["taskProcessingResult%2Did"] = id
-        return task_processing_result_item_request_builder.TaskProcessingResultItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_get_request_information(self,request_configuration: Optional[TaskReportItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

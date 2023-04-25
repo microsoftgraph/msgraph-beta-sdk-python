@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import impacted_resource, impacted_resource_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import impacted_resource_item_request_builder
 
 class ImpactedResourcesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ImpactedResourcesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_impacted_resource_id(self,impacted_resource_id: str) -> impacted_resource_item_request_builder.ImpactedResourceItemRequestBuilder:
+        """
+        Provides operations to manage the impactedResources property of the microsoft.graph.directory entity.
+        Args:
+            impacted_resource_id: Unique identifier of the item
+        Returns: impacted_resource_item_request_builder.ImpactedResourceItemRequestBuilder
+        """
+        if impacted_resource_id is None:
+            raise Exception("impacted_resource_id cannot be undefined")
+        from .item import impacted_resource_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["impactedResource%2Did"] = impacted_resource_id
+        return impacted_resource_item_request_builder.ImpactedResourceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ImpactedResourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[impacted_resource_collection_response.ImpactedResourceCollectionResponse]:
         """

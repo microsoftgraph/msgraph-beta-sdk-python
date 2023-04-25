@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .count import count_request_builder
     from .delete_ti_indicators import delete_ti_indicators_request_builder
     from .delete_ti_indicators_by_external_id import delete_ti_indicators_by_external_id_request_builder
+    from .item import ti_indicator_item_request_builder
     from .submit_ti_indicators import submit_ti_indicators_request_builder
     from .update_ti_indicators import update_ti_indicators_request_builder
 
@@ -39,6 +40,21 @@ class TiIndicatorsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_ti_indicator_id(self,ti_indicator_id: str) -> ti_indicator_item_request_builder.TiIndicatorItemRequestBuilder:
+        """
+        Provides operations to manage the tiIndicators property of the microsoft.graph.security entity.
+        Args:
+            ti_indicator_id: Unique identifier of the item
+        Returns: ti_indicator_item_request_builder.TiIndicatorItemRequestBuilder
+        """
+        if ti_indicator_id is None:
+            raise Exception("ti_indicator_id cannot be undefined")
+        from .item import ti_indicator_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["tiIndicator%2Did"] = ti_indicator_id
+        return ti_indicator_item_request_builder.TiIndicatorItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[TiIndicatorsRequestBuilderGetRequestConfiguration] = None) -> Optional[ti_indicator_collection_response.TiIndicatorCollectionResponse]:
         """

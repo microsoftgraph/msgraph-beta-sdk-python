@@ -14,7 +14,6 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .add_language_files import add_language_files_request_builder
     from .group_policy_operations import group_policy_operations_request_builder
-    from .group_policy_operations.item import group_policy_operation_item_request_builder
     from .remove import remove_request_builder
     from .remove_language_files import remove_language_files_request_builder
     from .update_language_files import update_language_files_request_builder
@@ -82,21 +81,6 @@ class GroupPolicyUploadedDefinitionFileItemRequestBuilder():
         from ....models import group_policy_uploaded_definition_file
 
         return await self.request_adapter.send_async(request_info, group_policy_uploaded_definition_file.GroupPolicyUploadedDefinitionFile, error_mapping)
-    
-    def group_policy_operations_by_id(self,id: str) -> group_policy_operation_item_request_builder.GroupPolicyOperationItemRequestBuilder:
-        """
-        Provides operations to manage the groupPolicyOperations property of the microsoft.graph.groupPolicyUploadedDefinitionFile entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: group_policy_operation_item_request_builder.GroupPolicyOperationItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .group_policy_operations.item import group_policy_operation_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["groupPolicyOperation%2Did"] = id
-        return group_policy_operation_item_request_builder.GroupPolicyOperationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[group_policy_uploaded_definition_file.GroupPolicyUploadedDefinitionFile] = None, request_configuration: Optional[GroupPolicyUploadedDefinitionFileItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[group_policy_uploaded_definition_file.GroupPolicyUploadedDefinitionFile]:
         """

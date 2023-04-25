@@ -13,9 +13,7 @@ if TYPE_CHECKING:
     from ....models import group_policy_migration_report
     from ....models.o_data_errors import o_data_error
     from .group_policy_setting_mappings import group_policy_setting_mappings_request_builder
-    from .group_policy_setting_mappings.item import group_policy_setting_mapping_item_request_builder
     from .unsupported_group_policy_extensions import unsupported_group_policy_extensions_request_builder
-    from .unsupported_group_policy_extensions.item import unsupported_group_policy_extension_item_request_builder
     from .update_scope_tags import update_scope_tags_request_builder
 
 class GroupPolicyMigrationReportItemRequestBuilder():
@@ -80,21 +78,6 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         from ....models import group_policy_migration_report
 
         return await self.request_adapter.send_async(request_info, group_policy_migration_report.GroupPolicyMigrationReport, error_mapping)
-    
-    def group_policy_setting_mappings_by_id(self,id: str) -> group_policy_setting_mapping_item_request_builder.GroupPolicySettingMappingItemRequestBuilder:
-        """
-        Provides operations to manage the groupPolicySettingMappings property of the microsoft.graph.groupPolicyMigrationReport entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: group_policy_setting_mapping_item_request_builder.GroupPolicySettingMappingItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .group_policy_setting_mappings.item import group_policy_setting_mapping_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["groupPolicySettingMapping%2Did"] = id
-        return group_policy_setting_mapping_item_request_builder.GroupPolicySettingMappingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[group_policy_migration_report.GroupPolicyMigrationReport] = None, request_configuration: Optional[GroupPolicyMigrationReportItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[group_policy_migration_report.GroupPolicyMigrationReport]:
         """
@@ -175,21 +158,6 @@ class GroupPolicyMigrationReportItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
-    
-    def unsupported_group_policy_extensions_by_id(self,id: str) -> unsupported_group_policy_extension_item_request_builder.UnsupportedGroupPolicyExtensionItemRequestBuilder:
-        """
-        Provides operations to manage the unsupportedGroupPolicyExtensions property of the microsoft.graph.groupPolicyMigrationReport entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: unsupported_group_policy_extension_item_request_builder.UnsupportedGroupPolicyExtensionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .unsupported_group_policy_extensions.item import unsupported_group_policy_extension_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["unsupportedGroupPolicyExtension%2Did"] = id
-        return unsupported_group_policy_extension_item_request_builder.UnsupportedGroupPolicyExtensionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     @property
     def group_policy_setting_mappings(self) -> group_policy_setting_mappings_request_builder.GroupPolicySettingMappingsRequestBuilder:

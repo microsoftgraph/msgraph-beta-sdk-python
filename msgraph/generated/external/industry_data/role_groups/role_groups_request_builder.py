@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.industry_data import role_group, role_group_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import role_group_item_request_builder
 
 class RoleGroupsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class RoleGroupsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_role_group_id(self,role_group_id: str) -> role_group_item_request_builder.RoleGroupItemRequestBuilder:
+        """
+        Provides operations to manage the roleGroups property of the microsoft.graph.industryData.industryDataRoot entity.
+        Args:
+            role_group_id: Unique identifier of the item
+        Returns: role_group_item_request_builder.RoleGroupItemRequestBuilder
+        """
+        if role_group_id is None:
+            raise Exception("role_group_id cannot be undefined")
+        from .item import role_group_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["roleGroup%2Did"] = role_group_id
+        return role_group_item_request_builder.RoleGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[RoleGroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[role_group_collection_response.RoleGroupCollectionResponse]:
         """

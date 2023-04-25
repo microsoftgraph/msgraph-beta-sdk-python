@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.managed_tenants import credential_user_registrations_summary, credential_user_registrations_summary_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import credential_user_registrations_summary_item_request_builder
 
 class CredentialUserRegistrationsSummariesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class CredentialUserRegistrationsSummariesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_credential_user_registrations_summary_id(self,credential_user_registrations_summary_id: str) -> credential_user_registrations_summary_item_request_builder.CredentialUserRegistrationsSummaryItemRequestBuilder:
+        """
+        Provides operations to manage the credentialUserRegistrationsSummaries property of the microsoft.graph.managedTenants.managedTenant entity.
+        Args:
+            credential_user_registrations_summary_id: Unique identifier of the item
+        Returns: credential_user_registrations_summary_item_request_builder.CredentialUserRegistrationsSummaryItemRequestBuilder
+        """
+        if credential_user_registrations_summary_id is None:
+            raise Exception("credential_user_registrations_summary_id cannot be undefined")
+        from .item import credential_user_registrations_summary_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["credentialUserRegistrationsSummary%2Did"] = credential_user_registrations_summary_id
+        return credential_user_registrations_summary_item_request_builder.CredentialUserRegistrationsSummaryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[CredentialUserRegistrationsSummariesRequestBuilderGetRequestConfiguration] = None) -> Optional[credential_user_registrations_summary_collection_response.CredentialUserRegistrationsSummaryCollectionResponse]:
         """

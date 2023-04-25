@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ........models import approval
     from ........models.o_data_errors import o_data_error
     from .steps import steps_request_builder
-    from .steps.item import approval_step_item_request_builder
 
 class ApprovalRequestBuilder():
     """
@@ -102,21 +101,6 @@ class ApprovalRequestBuilder():
         from ........models import approval
 
         return await self.request_adapter.send_async(request_info, approval.Approval, error_mapping)
-    
-    def steps_by_id(self,id: str) -> approval_step_item_request_builder.ApprovalStepItemRequestBuilder:
-        """
-        Provides operations to manage the steps property of the microsoft.graph.approval entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: approval_step_item_request_builder.ApprovalStepItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .steps.item import approval_step_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["approvalStep%2Did"] = id
-        return approval_step_item_request_builder.ApprovalStepItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[ApprovalRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

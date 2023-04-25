@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import cloud_pc_gallery_image, cloud_pc_gallery_image_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import cloud_pc_gallery_image_item_request_builder
 
 class GalleryImagesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class GalleryImagesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_cloud_pc_gallery_image_id(self,cloud_pc_gallery_image_id: str) -> cloud_pc_gallery_image_item_request_builder.CloudPcGalleryImageItemRequestBuilder:
+        """
+        Provides operations to manage the galleryImages property of the microsoft.graph.virtualEndpoint entity.
+        Args:
+            cloud_pc_gallery_image_id: Unique identifier of the item
+        Returns: cloud_pc_gallery_image_item_request_builder.CloudPcGalleryImageItemRequestBuilder
+        """
+        if cloud_pc_gallery_image_id is None:
+            raise Exception("cloud_pc_gallery_image_id cannot be undefined")
+        from .item import cloud_pc_gallery_image_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["cloudPcGalleryImage%2Did"] = cloud_pc_gallery_image_id
+        return cloud_pc_gallery_image_item_request_builder.CloudPcGalleryImageItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[GalleryImagesRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_gallery_image_collection_response.CloudPcGalleryImageCollectionResponse]:
         """

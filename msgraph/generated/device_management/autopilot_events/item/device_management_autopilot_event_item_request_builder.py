@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ....models import device_management_autopilot_event
     from ....models.o_data_errors import o_data_error
     from .policy_status_details import policy_status_details_request_builder
-    from .policy_status_details.item import device_management_autopilot_policy_status_detail_item_request_builder
 
 class DeviceManagementAutopilotEventItemRequestBuilder():
     """
@@ -102,21 +101,6 @@ class DeviceManagementAutopilotEventItemRequestBuilder():
         from ....models import device_management_autopilot_event
 
         return await self.request_adapter.send_async(request_info, device_management_autopilot_event.DeviceManagementAutopilotEvent, error_mapping)
-    
-    def policy_status_details_by_id(self,id: str) -> device_management_autopilot_policy_status_detail_item_request_builder.DeviceManagementAutopilotPolicyStatusDetailItemRequestBuilder:
-        """
-        Provides operations to manage the policyStatusDetails property of the microsoft.graph.deviceManagementAutopilotEvent entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: device_management_autopilot_policy_status_detail_item_request_builder.DeviceManagementAutopilotPolicyStatusDetailItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .policy_status_details.item import device_management_autopilot_policy_status_detail_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["deviceManagementAutopilotPolicyStatusDetail%2Did"] = id
-        return device_management_autopilot_policy_status_detail_item_request_builder.DeviceManagementAutopilotPolicyStatusDetailItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceManagementAutopilotEventItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

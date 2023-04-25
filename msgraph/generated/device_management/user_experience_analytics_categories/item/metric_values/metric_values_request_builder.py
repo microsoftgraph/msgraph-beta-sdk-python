@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import user_experience_analytics_metric, user_experience_analytics_metric_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import user_experience_analytics_metric_item_request_builder
 
 class MetricValuesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class MetricValuesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_user_experience_analytics_metric_id(self,user_experience_analytics_metric_id: str) -> user_experience_analytics_metric_item_request_builder.UserExperienceAnalyticsMetricItemRequestBuilder:
+        """
+        Provides operations to manage the metricValues property of the microsoft.graph.userExperienceAnalyticsCategory entity.
+        Args:
+            user_experience_analytics_metric_id: Unique identifier of the item
+        Returns: user_experience_analytics_metric_item_request_builder.UserExperienceAnalyticsMetricItemRequestBuilder
+        """
+        if user_experience_analytics_metric_id is None:
+            raise Exception("user_experience_analytics_metric_id cannot be undefined")
+        from .item import user_experience_analytics_metric_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["userExperienceAnalyticsMetric%2Did"] = user_experience_analytics_metric_id
+        return user_experience_analytics_metric_item_request_builder.UserExperienceAnalyticsMetricItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[MetricValuesRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_metric_collection_response.UserExperienceAnalyticsMetricCollectionResponse]:
         """

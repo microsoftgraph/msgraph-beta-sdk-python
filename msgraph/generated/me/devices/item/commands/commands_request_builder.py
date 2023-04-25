@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import command, command_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import command_item_request_builder
 
 class CommandsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class CommandsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_command_id(self,command_id: str) -> command_item_request_builder.CommandItemRequestBuilder:
+        """
+        Provides operations to manage the commands property of the microsoft.graph.device entity.
+        Args:
+            command_id: Unique identifier of the item
+        Returns: command_item_request_builder.CommandItemRequestBuilder
+        """
+        if command_id is None:
+            raise Exception("command_id cannot be undefined")
+        from .item import command_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["command%2Did"] = command_id
+        return command_item_request_builder.CommandItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[CommandsRequestBuilderGetRequestConfiguration] = None) -> Optional[command_collection_response.CommandCollectionResponse]:
         """

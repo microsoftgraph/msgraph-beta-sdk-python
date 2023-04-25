@@ -13,18 +13,13 @@ if TYPE_CHECKING:
     from .....models.identity_governance import workflow
     from .....models.o_data_errors import o_data_error
     from .execution_scope import execution_scope_request_builder
-    from .execution_scope.item import user_item_request_builder
     from .identity_governance_activate import identity_governance_activate_request_builder
     from .identity_governance_create_new_version import identity_governance_create_new_version_request_builder
     from .identity_governance_restore import identity_governance_restore_request_builder
     from .runs import runs_request_builder
-    from .runs.item import run_item_request_builder
     from .task_reports import task_reports_request_builder
-    from .task_reports.item import task_report_item_request_builder
     from .user_processing_results import user_processing_results_request_builder
-    from .user_processing_results.item import user_processing_result_item_request_builder
     from .versions import versions_request_builder
-    from .versions.item import workflow_version_version_number_item_request_builder
 
 class WorkflowItemRequestBuilder():
     """
@@ -66,21 +61,6 @@ class WorkflowItemRequestBuilder():
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
-    
-    def execution_scope_by_id(self,id: str) -> user_item_request_builder.UserItemRequestBuilder:
-        """
-        Provides operations to manage the executionScope property of the microsoft.graph.identityGovernance.workflow entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: user_item_request_builder.UserItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .execution_scope.item import user_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["user%2Did"] = id
-        return user_item_request_builder.UserItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[WorkflowItemRequestBuilderGetRequestConfiguration] = None) -> Optional[workflow.Workflow]:
         """
@@ -128,36 +108,6 @@ class WorkflowItemRequestBuilder():
         from .....models.identity_governance import workflow
 
         return await self.request_adapter.send_async(request_info, workflow.Workflow, error_mapping)
-    
-    def runs_by_id(self,id: str) -> run_item_request_builder.RunItemRequestBuilder:
-        """
-        Provides operations to manage the runs property of the microsoft.graph.identityGovernance.workflow entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: run_item_request_builder.RunItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .runs.item import run_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["run%2Did"] = id
-        return run_item_request_builder.RunItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def task_reports_by_id(self,id: str) -> task_report_item_request_builder.TaskReportItemRequestBuilder:
-        """
-        Provides operations to manage the taskReports property of the microsoft.graph.identityGovernance.workflow entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: task_report_item_request_builder.TaskReportItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .task_reports.item import task_report_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["taskReport%2Did"] = id
-        return task_report_item_request_builder.TaskReportItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[WorkflowItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -213,36 +163,6 @@ class WorkflowItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
-    
-    def user_processing_results_by_id(self,id: str) -> user_processing_result_item_request_builder.UserProcessingResultItemRequestBuilder:
-        """
-        Provides operations to manage the userProcessingResults property of the microsoft.graph.identityGovernance.workflow entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: user_processing_result_item_request_builder.UserProcessingResultItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .user_processing_results.item import user_processing_result_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["userProcessingResult%2Did"] = id
-        return user_processing_result_item_request_builder.UserProcessingResultItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def versions_by_id(self,id: str) -> workflow_version_version_number_item_request_builder.WorkflowVersionVersionNumberItemRequestBuilder:
-        """
-        Provides operations to manage the versions property of the microsoft.graph.identityGovernance.workflow entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: workflow_version_version_number_item_request_builder.WorkflowVersionVersionNumberItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .versions.item import workflow_version_version_number_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["workflowVersion%2DversionNumber"] = id
-        return workflow_version_version_number_item_request_builder.WorkflowVersionVersionNumberItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     @property
     def execution_scope(self) -> execution_scope_request_builder.ExecutionScopeRequestBuilder:

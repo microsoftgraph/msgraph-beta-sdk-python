@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models.device_management import alert_rule, alert_rule_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import alert_rule_item_request_builder
 
 class AlertRulesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class AlertRulesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_alert_rule_id(self,alert_rule_id: str) -> alert_rule_item_request_builder.AlertRuleItemRequestBuilder:
+        """
+        Provides operations to manage the alertRules property of the microsoft.graph.deviceManagement.monitoring entity.
+        Args:
+            alert_rule_id: Unique identifier of the item
+        Returns: alert_rule_item_request_builder.AlertRuleItemRequestBuilder
+        """
+        if alert_rule_id is None:
+            raise Exception("alert_rule_id cannot be undefined")
+        from .item import alert_rule_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["alertRule%2Did"] = alert_rule_id
+        return alert_rule_item_request_builder.AlertRuleItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[AlertRulesRequestBuilderGetRequestConfiguration] = None) -> Optional[alert_rule_collection_response.AlertRuleCollectionResponse]:
         """

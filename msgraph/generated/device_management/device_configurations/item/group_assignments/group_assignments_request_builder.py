@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import device_configuration_group_assignment, device_configuration_group_assignment_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import device_configuration_group_assignment_item_request_builder
 
 class GroupAssignmentsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class GroupAssignmentsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_device_configuration_group_assignment_id(self,device_configuration_group_assignment_id: str) -> device_configuration_group_assignment_item_request_builder.DeviceConfigurationGroupAssignmentItemRequestBuilder:
+        """
+        Provides operations to manage the groupAssignments property of the microsoft.graph.deviceConfiguration entity.
+        Args:
+            device_configuration_group_assignment_id: Unique identifier of the item
+        Returns: device_configuration_group_assignment_item_request_builder.DeviceConfigurationGroupAssignmentItemRequestBuilder
+        """
+        if device_configuration_group_assignment_id is None:
+            raise Exception("device_configuration_group_assignment_id cannot be undefined")
+        from .item import device_configuration_group_assignment_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["deviceConfigurationGroupAssignment%2Did"] = device_configuration_group_assignment_id
+        return device_configuration_group_assignment_item_request_builder.DeviceConfigurationGroupAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[GroupAssignmentsRequestBuilderGetRequestConfiguration] = None) -> Optional[device_configuration_group_assignment_collection_response.DeviceConfigurationGroupAssignmentCollectionResponse]:
         """

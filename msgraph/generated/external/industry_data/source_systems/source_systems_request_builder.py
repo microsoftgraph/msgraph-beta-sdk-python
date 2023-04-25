@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.industry_data import source_system_definition, source_system_definition_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import source_system_definition_item_request_builder
 
 class SourceSystemsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class SourceSystemsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_source_system_definition_id(self,source_system_definition_id: str) -> source_system_definition_item_request_builder.SourceSystemDefinitionItemRequestBuilder:
+        """
+        Provides operations to manage the sourceSystems property of the microsoft.graph.industryData.industryDataRoot entity.
+        Args:
+            source_system_definition_id: Unique identifier of the item
+        Returns: source_system_definition_item_request_builder.SourceSystemDefinitionItemRequestBuilder
+        """
+        if source_system_definition_id is None:
+            raise Exception("source_system_definition_id cannot be undefined")
+        from .item import source_system_definition_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["sourceSystemDefinition%2Did"] = source_system_definition_id
+        return source_system_definition_item_request_builder.SourceSystemDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[SourceSystemsRequestBuilderGetRequestConfiguration] = None) -> Optional[source_system_definition_collection_response.SourceSystemDefinitionCollectionResponse]:
         """

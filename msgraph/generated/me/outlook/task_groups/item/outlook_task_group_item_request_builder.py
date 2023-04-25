@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from .....models import outlook_task_group
     from .....models.o_data_errors import o_data_error
     from .task_folders import task_folders_request_builder
-    from .task_folders.item import outlook_task_folder_item_request_builder
 
 class OutlookTaskGroupItemRequestBuilder():
     """
@@ -102,21 +101,6 @@ class OutlookTaskGroupItemRequestBuilder():
         from .....models import outlook_task_group
 
         return await self.request_adapter.send_async(request_info, outlook_task_group.OutlookTaskGroup, error_mapping)
-    
-    def task_folders_by_id(self,id: str) -> outlook_task_folder_item_request_builder.OutlookTaskFolderItemRequestBuilder:
-        """
-        Provides operations to manage the taskFolders property of the microsoft.graph.outlookTaskGroup entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: outlook_task_folder_item_request_builder.OutlookTaskFolderItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .task_folders.item import outlook_task_folder_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["outlookTaskFolder%2Did"] = id
-        return outlook_task_folder_item_request_builder.OutlookTaskFolderItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[OutlookTaskGroupItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

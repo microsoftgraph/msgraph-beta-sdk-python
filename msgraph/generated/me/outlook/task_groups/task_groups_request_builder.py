@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import outlook_task_group, outlook_task_group_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import outlook_task_group_item_request_builder
 
 class TaskGroupsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class TaskGroupsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_outlook_task_group_id(self,outlook_task_group_id: str) -> outlook_task_group_item_request_builder.OutlookTaskGroupItemRequestBuilder:
+        """
+        Provides operations to manage the taskGroups property of the microsoft.graph.outlookUser entity.
+        Args:
+            outlook_task_group_id: Unique identifier of the item
+        Returns: outlook_task_group_item_request_builder.OutlookTaskGroupItemRequestBuilder
+        """
+        if outlook_task_group_id is None:
+            raise Exception("outlook_task_group_id cannot be undefined")
+        from .item import outlook_task_group_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["outlookTaskGroup%2Did"] = outlook_task_group_id
+        return outlook_task_group_item_request_builder.OutlookTaskGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[TaskGroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[outlook_task_group_collection_response.OutlookTaskGroupCollectionResponse]:
         """

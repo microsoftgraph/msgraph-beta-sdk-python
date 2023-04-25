@@ -13,13 +13,9 @@ if TYPE_CHECKING:
     from ...models import attack_simulation_root
     from ...models.o_data_errors import o_data_error
     from .operations import operations_request_builder
-    from .operations.item import attack_simulation_operation_item_request_builder
     from .payloads import payloads_request_builder
-    from .payloads.item import payload_item_request_builder
     from .simulation_automations import simulation_automations_request_builder
-    from .simulation_automations.item import simulation_automation_item_request_builder
     from .simulations import simulations_request_builder
-    from .simulations.item import simulation_item_request_builder
 
 class AttackSimulationRequestBuilder():
     """
@@ -84,21 +80,6 @@ class AttackSimulationRequestBuilder():
 
         return await self.request_adapter.send_async(request_info, attack_simulation_root.AttackSimulationRoot, error_mapping)
     
-    def operations_by_id(self,id: str) -> attack_simulation_operation_item_request_builder.AttackSimulationOperationItemRequestBuilder:
-        """
-        Provides operations to manage the operations property of the microsoft.graph.attackSimulationRoot entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: attack_simulation_operation_item_request_builder.AttackSimulationOperationItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .operations.item import attack_simulation_operation_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["attackSimulationOperation%2Did"] = id
-        return attack_simulation_operation_item_request_builder.AttackSimulationOperationItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     async def patch(self,body: Optional[attack_simulation_root.AttackSimulationRoot] = None, request_configuration: Optional[AttackSimulationRequestBuilderPatchRequestConfiguration] = None) -> Optional[attack_simulation_root.AttackSimulationRoot]:
         """
         Update the navigation property attackSimulation in security
@@ -123,51 +104,6 @@ class AttackSimulationRequestBuilder():
         from ...models import attack_simulation_root
 
         return await self.request_adapter.send_async(request_info, attack_simulation_root.AttackSimulationRoot, error_mapping)
-    
-    def payloads_by_id(self,id: str) -> payload_item_request_builder.PayloadItemRequestBuilder:
-        """
-        Provides operations to manage the payloads property of the microsoft.graph.attackSimulationRoot entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: payload_item_request_builder.PayloadItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .payloads.item import payload_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["payload%2Did"] = id
-        return payload_item_request_builder.PayloadItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def simulation_automations_by_id(self,id: str) -> simulation_automation_item_request_builder.SimulationAutomationItemRequestBuilder:
-        """
-        Provides operations to manage the simulationAutomations property of the microsoft.graph.attackSimulationRoot entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: simulation_automation_item_request_builder.SimulationAutomationItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .simulation_automations.item import simulation_automation_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["simulationAutomation%2Did"] = id
-        return simulation_automation_item_request_builder.SimulationAutomationItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def simulations_by_id(self,id: str) -> simulation_item_request_builder.SimulationItemRequestBuilder:
-        """
-        Provides operations to manage the simulations property of the microsoft.graph.attackSimulationRoot entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: simulation_item_request_builder.SimulationItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .simulations.item import simulation_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["simulation%2Did"] = id
-        return simulation_item_request_builder.SimulationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[AttackSimulationRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

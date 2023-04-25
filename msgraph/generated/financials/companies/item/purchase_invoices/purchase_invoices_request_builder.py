@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import purchase_invoice_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import purchase_invoice_item_request_builder
 
 class PurchaseInvoicesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class PurchaseInvoicesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_purchase_invoice_id(self,purchase_invoice_id: str) -> purchase_invoice_item_request_builder.PurchaseInvoiceItemRequestBuilder:
+        """
+        Provides operations to manage the purchaseInvoices property of the microsoft.graph.company entity.
+        Args:
+            purchase_invoice_id: Unique identifier of the item
+        Returns: purchase_invoice_item_request_builder.PurchaseInvoiceItemRequestBuilder
+        """
+        if purchase_invoice_id is None:
+            raise Exception("purchase_invoice_id cannot be undefined")
+        from .item import purchase_invoice_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["purchaseInvoice%2Did"] = purchase_invoice_id
+        return purchase_invoice_item_request_builder.PurchaseInvoiceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[PurchaseInvoicesRequestBuilderGetRequestConfiguration] = None) -> Optional[purchase_invoice_collection_response.PurchaseInvoiceCollectionResponse]:
         """

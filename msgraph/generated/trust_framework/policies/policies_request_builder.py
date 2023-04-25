@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import trust_framework_policy, trust_framework_policy_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import trust_framework_policy_item_request_builder
 
 class PoliciesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class PoliciesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_trust_framework_policy_id(self,trust_framework_policy_id: str) -> trust_framework_policy_item_request_builder.TrustFrameworkPolicyItemRequestBuilder:
+        """
+        Provides operations to manage the policies property of the microsoft.graph.trustFramework entity.
+        Args:
+            trust_framework_policy_id: Unique identifier of the item
+        Returns: trust_framework_policy_item_request_builder.TrustFrameworkPolicyItemRequestBuilder
+        """
+        if trust_framework_policy_id is None:
+            raise Exception("trust_framework_policy_id cannot be undefined")
+        from .item import trust_framework_policy_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["trustFrameworkPolicy%2Did"] = trust_framework_policy_id
+        return trust_framework_policy_item_request_builder.TrustFrameworkPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[PoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[trust_framework_policy_collection_response.TrustFrameworkPolicyCollectionResponse]:
         """

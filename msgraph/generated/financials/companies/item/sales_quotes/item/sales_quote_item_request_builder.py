@@ -17,7 +17,6 @@ if TYPE_CHECKING:
     from .make_invoice import make_invoice_request_builder
     from .payment_term import payment_term_request_builder
     from .sales_quote_lines import sales_quote_lines_request_builder
-    from .sales_quote_lines.item import sales_quote_line_item_request_builder
     from .send import send_request_builder
     from .shipment_method import shipment_method_request_builder
 
@@ -89,21 +88,6 @@ class SalesQuoteItemRequestBuilder():
         from ......models import sales_quote
 
         return await self.request_adapter.send_async(request_info, sales_quote.SalesQuote, error_mapping)
-    
-    def sales_quote_lines_by_id(self,id: str) -> sales_quote_line_item_request_builder.SalesQuoteLineItemRequestBuilder:
-        """
-        Provides operations to manage the salesQuoteLines property of the microsoft.graph.salesQuote entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: sales_quote_line_item_request_builder.SalesQuoteLineItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .sales_quote_lines.item import sales_quote_line_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["salesQuoteLine%2Did"] = id
-        return sales_quote_line_item_request_builder.SalesQuoteLineItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_get_request_information(self,request_configuration: Optional[SalesQuoteItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

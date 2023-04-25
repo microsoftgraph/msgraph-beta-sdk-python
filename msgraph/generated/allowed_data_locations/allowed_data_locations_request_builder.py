@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ..models import allowed_data_location, allowed_data_location_collection_response
     from ..models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import allowed_data_location_item_request_builder
 
 class AllowedDataLocationsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class AllowedDataLocationsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_allowed_data_location_id(self,allowed_data_location_id: str) -> allowed_data_location_item_request_builder.AllowedDataLocationItemRequestBuilder:
+        """
+        Provides operations to manage the collection of allowedDataLocation entities.
+        Args:
+            allowed_data_location_id: Unique identifier of the item
+        Returns: allowed_data_location_item_request_builder.AllowedDataLocationItemRequestBuilder
+        """
+        if allowed_data_location_id is None:
+            raise Exception("allowed_data_location_id cannot be undefined")
+        from .item import allowed_data_location_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["allowedDataLocation%2Did"] = allowed_data_location_id
+        return allowed_data_location_item_request_builder.AllowedDataLocationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[AllowedDataLocationsRequestBuilderGetRequestConfiguration] = None) -> Optional[allowed_data_location_collection_response.AllowedDataLocationCollectionResponse]:
         """

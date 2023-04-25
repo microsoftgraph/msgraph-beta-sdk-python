@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import domain_security_profile, domain_security_profile_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import domain_security_profile_item_request_builder
 
 class DomainSecurityProfilesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class DomainSecurityProfilesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_domain_security_profile_id(self,domain_security_profile_id: str) -> domain_security_profile_item_request_builder.DomainSecurityProfileItemRequestBuilder:
+        """
+        Provides operations to manage the domainSecurityProfiles property of the microsoft.graph.security entity.
+        Args:
+            domain_security_profile_id: Unique identifier of the item
+        Returns: domain_security_profile_item_request_builder.DomainSecurityProfileItemRequestBuilder
+        """
+        if domain_security_profile_id is None:
+            raise Exception("domain_security_profile_id cannot be undefined")
+        from .item import domain_security_profile_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["domainSecurityProfile%2Did"] = domain_security_profile_id
+        return domain_security_profile_item_request_builder.DomainSecurityProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[DomainSecurityProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[domain_security_profile_collection_response.DomainSecurityProfileCollectionResponse]:
         """

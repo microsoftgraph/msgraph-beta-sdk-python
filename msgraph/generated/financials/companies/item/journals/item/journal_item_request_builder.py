@@ -14,7 +14,6 @@ if TYPE_CHECKING:
     from ......models.o_data_errors import o_data_error
     from .account import account_request_builder
     from .journal_lines import journal_lines_request_builder
-    from .journal_lines.item import journal_line_item_request_builder
     from .post import post_request_builder
 
 class JournalItemRequestBuilder():
@@ -79,21 +78,6 @@ class JournalItemRequestBuilder():
         from ......models import journal
 
         return await self.request_adapter.send_async(request_info, journal.Journal, error_mapping)
-    
-    def journal_lines_by_id(self,id: str) -> journal_line_item_request_builder.JournalLineItemRequestBuilder:
-        """
-        Provides operations to manage the journalLines property of the microsoft.graph.journal entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: journal_line_item_request_builder.JournalLineItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .journal_lines.item import journal_line_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["journalLine%2Did"] = id
-        return journal_line_item_request_builder.JournalLineItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[journal.Journal] = None, request_configuration: Optional[JournalItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[journal.Journal]:
         """

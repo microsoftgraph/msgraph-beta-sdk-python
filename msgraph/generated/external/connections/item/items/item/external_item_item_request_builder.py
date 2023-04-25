@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ......models.external_connectors import external_item
     from ......models.o_data_errors import o_data_error
     from .activities import activities_request_builder
-    from .activities.item import external_activity_item_request_builder
     from .external_connectors_add_activities import external_connectors_add_activities_request_builder
 
 class ExternalItemItemRequestBuilder():
@@ -37,21 +36,6 @@ class ExternalItemItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def activities_by_id(self,id: str) -> external_activity_item_request_builder.ExternalActivityItemRequestBuilder:
-        """
-        Provides operations to manage the activities property of the microsoft.graph.externalConnectors.externalItem entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: external_activity_item_request_builder.ExternalActivityItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .activities.item import external_activity_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["externalActivity%2Did"] = id
-        return external_activity_item_request_builder.ExternalActivityItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[ExternalItemItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

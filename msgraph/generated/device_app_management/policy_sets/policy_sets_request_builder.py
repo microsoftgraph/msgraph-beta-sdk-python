@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .get_policy_sets import get_policy_sets_request_builder
+    from .item import policy_set_item_request_builder
 
 class PolicySetsRequestBuilder():
     """
@@ -36,6 +37,21 @@ class PolicySetsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_policy_set_id(self,policy_set_id: str) -> policy_set_item_request_builder.PolicySetItemRequestBuilder:
+        """
+        Provides operations to manage the policySets property of the microsoft.graph.deviceAppManagement entity.
+        Args:
+            policy_set_id: Unique identifier of the item
+        Returns: policy_set_item_request_builder.PolicySetItemRequestBuilder
+        """
+        if policy_set_id is None:
+            raise Exception("policy_set_id cannot be undefined")
+        from .item import policy_set_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["policySet%2Did"] = policy_set_id
+        return policy_set_item_request_builder.PolicySetItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[PolicySetsRequestBuilderGetRequestConfiguration] = None) -> Optional[policy_set_collection_response.PolicySetCollectionResponse]:
         """

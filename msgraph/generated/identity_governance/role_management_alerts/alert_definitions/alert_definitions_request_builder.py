@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import unified_role_management_alert_definition, unified_role_management_alert_definition_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import unified_role_management_alert_definition_item_request_builder
 
 class AlertDefinitionsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class AlertDefinitionsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_unified_role_management_alert_definition_id(self,unified_role_management_alert_definition_id: str) -> unified_role_management_alert_definition_item_request_builder.UnifiedRoleManagementAlertDefinitionItemRequestBuilder:
+        """
+        Provides operations to manage the alertDefinitions property of the microsoft.graph.roleManagementAlert entity.
+        Args:
+            unified_role_management_alert_definition_id: Unique identifier of the item
+        Returns: unified_role_management_alert_definition_item_request_builder.UnifiedRoleManagementAlertDefinitionItemRequestBuilder
+        """
+        if unified_role_management_alert_definition_id is None:
+            raise Exception("unified_role_management_alert_definition_id cannot be undefined")
+        from .item import unified_role_management_alert_definition_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["unifiedRoleManagementAlertDefinition%2Did"] = unified_role_management_alert_definition_id
+        return unified_role_management_alert_definition_item_request_builder.UnifiedRoleManagementAlertDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[AlertDefinitionsRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_management_alert_definition_collection_response.UnifiedRoleManagementAlertDefinitionCollectionResponse]:
         """

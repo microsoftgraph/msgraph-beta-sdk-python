@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import user_experience_analytics_remote_connection, user_experience_analytics_remote_connection_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import user_experience_analytics_remote_connection_item_request_builder
     from .summarize_device_remote_connection_with_summarize_by import summarize_device_remote_connection_with_summarize_by_request_builder
 
 class UserExperienceAnalyticsRemoteConnectionRequestBuilder():
@@ -36,6 +37,21 @@ class UserExperienceAnalyticsRemoteConnectionRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_user_experience_analytics_remote_connection_id(self,user_experience_analytics_remote_connection_id: str) -> user_experience_analytics_remote_connection_item_request_builder.UserExperienceAnalyticsRemoteConnectionItemRequestBuilder:
+        """
+        Provides operations to manage the userExperienceAnalyticsRemoteConnection property of the microsoft.graph.deviceManagement entity.
+        Args:
+            user_experience_analytics_remote_connection_id: Unique identifier of the item
+        Returns: user_experience_analytics_remote_connection_item_request_builder.UserExperienceAnalyticsRemoteConnectionItemRequestBuilder
+        """
+        if user_experience_analytics_remote_connection_id is None:
+            raise Exception("user_experience_analytics_remote_connection_id cannot be undefined")
+        from .item import user_experience_analytics_remote_connection_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["userExperienceAnalyticsRemoteConnection%2Did"] = user_experience_analytics_remote_connection_id
+        return user_experience_analytics_remote_connection_item_request_builder.UserExperienceAnalyticsRemoteConnectionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[UserExperienceAnalyticsRemoteConnectionRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_remote_connection_collection_response.UserExperienceAnalyticsRemoteConnectionCollectionResponse]:
         """

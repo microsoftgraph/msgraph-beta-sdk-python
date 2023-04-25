@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from ....models.security import url_threat_submission, url_threat_submission_collection_response
     from .count import count_request_builder
+    from .item import url_threat_submission_item_request_builder
 
 class UrlThreatsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class UrlThreatsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_url_threat_submission_id(self,url_threat_submission_id: str) -> url_threat_submission_item_request_builder.UrlThreatSubmissionItemRequestBuilder:
+        """
+        Provides operations to manage the urlThreats property of the microsoft.graph.security.threatSubmissionRoot entity.
+        Args:
+            url_threat_submission_id: Unique identifier of the item
+        Returns: url_threat_submission_item_request_builder.UrlThreatSubmissionItemRequestBuilder
+        """
+        if url_threat_submission_id is None:
+            raise Exception("url_threat_submission_id cannot be undefined")
+        from .item import url_threat_submission_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["urlThreatSubmission%2Did"] = url_threat_submission_id
+        return url_threat_submission_item_request_builder.UrlThreatSubmissionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[UrlThreatsRequestBuilderGetRequestConfiguration] = None) -> Optional[url_threat_submission_collection_response.UrlThreatSubmissionCollectionResponse]:
         """

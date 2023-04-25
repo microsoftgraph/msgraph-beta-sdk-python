@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import provider_tenant_setting, provider_tenant_setting_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import provider_tenant_setting_item_request_builder
 
 class ProviderTenantSettingsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ProviderTenantSettingsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_provider_tenant_setting_id(self,provider_tenant_setting_id: str) -> provider_tenant_setting_item_request_builder.ProviderTenantSettingItemRequestBuilder:
+        """
+        Provides operations to manage the providerTenantSettings property of the microsoft.graph.security entity.
+        Args:
+            provider_tenant_setting_id: Unique identifier of the item
+        Returns: provider_tenant_setting_item_request_builder.ProviderTenantSettingItemRequestBuilder
+        """
+        if provider_tenant_setting_id is None:
+            raise Exception("provider_tenant_setting_id cannot be undefined")
+        from .item import provider_tenant_setting_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["providerTenantSetting%2Did"] = provider_tenant_setting_id
+        return provider_tenant_setting_item_request_builder.ProviderTenantSettingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ProviderTenantSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[provider_tenant_setting_collection_response.ProviderTenantSettingCollectionResponse]:
         """

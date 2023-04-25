@@ -14,9 +14,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .assign import assign_request_builder
     from .assignments import assignments_request_builder
-    from .assignments.item import device_health_script_assignment_item_request_builder
     from .device_run_states import device_run_states_request_builder
-    from .device_run_states.item import device_health_script_device_state_item_request_builder
     from .get_global_script_highest_available_version import get_global_script_highest_available_version_request_builder
     from .get_remediation_history import get_remediation_history_request_builder
     from .run_summary import run_summary_request_builder
@@ -44,21 +42,6 @@ class DeviceHealthScriptItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def assignments_by_id(self,id: str) -> device_health_script_assignment_item_request_builder.DeviceHealthScriptAssignmentItemRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.deviceHealthScript entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: device_health_script_assignment_item_request_builder.DeviceHealthScriptAssignmentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .assignments.item import device_health_script_assignment_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["deviceHealthScriptAssignment%2Did"] = id
-        return device_health_script_assignment_item_request_builder.DeviceHealthScriptAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     async def delete(self,request_configuration: Optional[DeviceHealthScriptItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property deviceHealthScripts for deviceManagement
@@ -77,21 +60,6 @@ class DeviceHealthScriptItemRequestBuilder():
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
-    
-    def device_run_states_by_id(self,id: str) -> device_health_script_device_state_item_request_builder.DeviceHealthScriptDeviceStateItemRequestBuilder:
-        """
-        Provides operations to manage the deviceRunStates property of the microsoft.graph.deviceHealthScript entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: device_health_script_device_state_item_request_builder.DeviceHealthScriptDeviceStateItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .device_run_states.item import device_health_script_device_state_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["deviceHealthScriptDeviceState%2Did"] = id
-        return device_health_script_device_state_item_request_builder.DeviceHealthScriptDeviceStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[DeviceHealthScriptItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_health_script.DeviceHealthScript]:
         """

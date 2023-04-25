@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import call_transcript, call_transcript_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import call_transcript_item_request_builder
 
 class TranscriptsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class TranscriptsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_call_transcript_id(self,call_transcript_id: str) -> call_transcript_item_request_builder.CallTranscriptItemRequestBuilder:
+        """
+        Provides operations to manage the transcripts property of the microsoft.graph.onlineMeeting entity.
+        Args:
+            call_transcript_id: Unique identifier of the item
+        Returns: call_transcript_item_request_builder.CallTranscriptItemRequestBuilder
+        """
+        if call_transcript_id is None:
+            raise Exception("call_transcript_id cannot be undefined")
+        from .item import call_transcript_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["callTranscript%2Did"] = call_transcript_id
+        return call_transcript_item_request_builder.CallTranscriptItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[TranscriptsRequestBuilderGetRequestConfiguration] = None) -> Optional[call_transcript_collection_response.CallTranscriptCollectionResponse]:
         """

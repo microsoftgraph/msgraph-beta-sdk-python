@@ -21,9 +21,9 @@ class Schedule(entity.Entity):
         self._offer_shift_requests: Optional[List[offer_shift_request.OfferShiftRequest]] = None
         # Indicates whether offer shift requests are enabled for the schedule.
         self._offer_shift_requests_enabled: Optional[bool] = None
-        # The openShiftChangeRequests property
+        # The open shift requests in the schedule.
         self._open_shift_change_requests: Optional[List[open_shift_change_request.OpenShiftChangeRequest]] = None
-        # The openShifts property
+        # The set of open shifts in a scheduling group in the schedule.
         self._open_shifts: Optional[List[open_shift.OpenShift]] = None
         # Indicates whether open shifts are enabled for the schedule.
         self._open_shifts_enabled: Optional[bool] = None
@@ -35,7 +35,7 @@ class Schedule(entity.Entity):
         self._scheduling_groups: Optional[List[scheduling_group.SchedulingGroup]] = None
         # The shifts in the schedule.
         self._shifts: Optional[List[shift.Shift]] = None
-        # The swapShiftsChangeRequests property
+        # The swap requests for shifts in the schedule.
         self._swap_shifts_change_requests: Optional[List[swap_shifts_change_request.SwapShiftsChangeRequest]] = None
         # Indicates whether swap shifts requests are enabled for the schedule.
         self._swap_shifts_requests_enabled: Optional[bool] = None
@@ -47,7 +47,7 @@ class Schedule(entity.Entity):
         self._time_clock_settings: Optional[time_clock_settings.TimeClockSettings] = None
         # The set of reasons for a time off in the schedule.
         self._time_off_reasons: Optional[List[time_off_reason.TimeOffReason]] = None
-        # The timeOffRequests property
+        # The time off requests in the schedule.
         self._time_off_requests: Optional[List[time_off_request.TimeOffRequest]] = None
         # Indicates whether time off requests are enabled for the schedule.
         self._time_off_requests_enabled: Optional[bool] = None
@@ -158,7 +158,7 @@ class Schedule(entity.Entity):
     @property
     def open_shift_change_requests(self,) -> Optional[List[open_shift_change_request.OpenShiftChangeRequest]]:
         """
-        Gets the openShiftChangeRequests property value. The openShiftChangeRequests property
+        Gets the openShiftChangeRequests property value. The open shift requests in the schedule.
         Returns: Optional[List[open_shift_change_request.OpenShiftChangeRequest]]
         """
         return self._open_shift_change_requests
@@ -166,7 +166,7 @@ class Schedule(entity.Entity):
     @open_shift_change_requests.setter
     def open_shift_change_requests(self,value: Optional[List[open_shift_change_request.OpenShiftChangeRequest]] = None) -> None:
         """
-        Sets the openShiftChangeRequests property value. The openShiftChangeRequests property
+        Sets the openShiftChangeRequests property value. The open shift requests in the schedule.
         Args:
             value: Value to set for the open_shift_change_requests property.
         """
@@ -175,7 +175,7 @@ class Schedule(entity.Entity):
     @property
     def open_shifts(self,) -> Optional[List[open_shift.OpenShift]]:
         """
-        Gets the openShifts property value. The openShifts property
+        Gets the openShifts property value. The set of open shifts in a scheduling group in the schedule.
         Returns: Optional[List[open_shift.OpenShift]]
         """
         return self._open_shifts
@@ -183,7 +183,7 @@ class Schedule(entity.Entity):
     @open_shifts.setter
     def open_shifts(self,value: Optional[List[open_shift.OpenShift]] = None) -> None:
         """
-        Sets the openShifts property value. The openShifts property
+        Sets the openShifts property value. The set of open shifts in a scheduling group in the schedule.
         Args:
             value: Value to set for the open_shifts property.
         """
@@ -306,7 +306,7 @@ class Schedule(entity.Entity):
     @property
     def swap_shifts_change_requests(self,) -> Optional[List[swap_shifts_change_request.SwapShiftsChangeRequest]]:
         """
-        Gets the swapShiftsChangeRequests property value. The swapShiftsChangeRequests property
+        Gets the swapShiftsChangeRequests property value. The swap requests for shifts in the schedule.
         Returns: Optional[List[swap_shifts_change_request.SwapShiftsChangeRequest]]
         """
         return self._swap_shifts_change_requests
@@ -314,7 +314,7 @@ class Schedule(entity.Entity):
     @swap_shifts_change_requests.setter
     def swap_shifts_change_requests(self,value: Optional[List[swap_shifts_change_request.SwapShiftsChangeRequest]] = None) -> None:
         """
-        Sets the swapShiftsChangeRequests property value. The swapShiftsChangeRequests property
+        Sets the swapShiftsChangeRequests property value. The swap requests for shifts in the schedule.
         Args:
             value: Value to set for the swap_shifts_change_requests property.
         """
@@ -408,7 +408,7 @@ class Schedule(entity.Entity):
     @property
     def time_off_requests(self,) -> Optional[List[time_off_request.TimeOffRequest]]:
         """
-        Gets the timeOffRequests property value. The timeOffRequests property
+        Gets the timeOffRequests property value. The time off requests in the schedule.
         Returns: Optional[List[time_off_request.TimeOffRequest]]
         """
         return self._time_off_requests
@@ -416,7 +416,7 @@ class Schedule(entity.Entity):
     @time_off_requests.setter
     def time_off_requests(self,value: Optional[List[time_off_request.TimeOffRequest]] = None) -> None:
         """
-        Sets the timeOffRequests property value. The timeOffRequests property
+        Sets the timeOffRequests property value. The time off requests in the schedule.
         Args:
             value: Value to set for the time_off_requests property.
         """

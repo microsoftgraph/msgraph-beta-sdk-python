@@ -13,9 +13,7 @@ if TYPE_CHECKING:
     from ..models.device_management import monitoring
     from ..models.o_data_errors import o_data_error
     from .alert_records import alert_records_request_builder
-    from .alert_records.item import alert_record_item_request_builder
     from .alert_rules import alert_rules_request_builder
-    from .alert_rules.item import alert_rule_item_request_builder
 
 class MonitoringRequestBuilder():
     """
@@ -38,36 +36,6 @@ class MonitoringRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def alert_records_by_id(self,id: str) -> alert_record_item_request_builder.AlertRecordItemRequestBuilder:
-        """
-        Provides operations to manage the alertRecords property of the microsoft.graph.deviceManagement.monitoring entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: alert_record_item_request_builder.AlertRecordItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .alert_records.item import alert_record_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["alertRecord%2Did"] = id
-        return alert_record_item_request_builder.AlertRecordItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def alert_rules_by_id(self,id: str) -> alert_rule_item_request_builder.AlertRuleItemRequestBuilder:
-        """
-        Provides operations to manage the alertRules property of the microsoft.graph.deviceManagement.monitoring entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: alert_rule_item_request_builder.AlertRuleItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .alert_rules.item import alert_rule_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["alertRule%2Did"] = id
-        return alert_rule_item_request_builder.AlertRuleItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[MonitoringRequestBuilderGetRequestConfiguration] = None) -> Optional[monitoring.Monitoring]:
         """

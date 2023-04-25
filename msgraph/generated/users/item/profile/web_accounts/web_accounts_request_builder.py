@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import web_account, web_account_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import web_account_item_request_builder
 
 class WebAccountsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class WebAccountsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_web_account_id(self,web_account_id: str) -> web_account_item_request_builder.WebAccountItemRequestBuilder:
+        """
+        Provides operations to manage the webAccounts property of the microsoft.graph.profile entity.
+        Args:
+            web_account_id: Unique identifier of the item
+        Returns: web_account_item_request_builder.WebAccountItemRequestBuilder
+        """
+        if web_account_id is None:
+            raise Exception("web_account_id cannot be undefined")
+        from .item import web_account_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["webAccount%2Did"] = web_account_id
+        return web_account_item_request_builder.WebAccountItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[WebAccountsRequestBuilderGetRequestConfiguration] = None) -> Optional[web_account_collection_response.WebAccountCollectionResponse]:
         """

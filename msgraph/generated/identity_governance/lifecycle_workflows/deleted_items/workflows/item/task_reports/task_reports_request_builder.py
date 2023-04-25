@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .......models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .identity_governance_summary_with_start_date_time_with_end_date_time import identity_governance_summary_with_start_date_time_with_end_date_time_request_builder
+    from .item import task_report_item_request_builder
 
 class TaskReportsRequestBuilder():
     """
@@ -37,6 +38,21 @@ class TaskReportsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_task_report_id(self,task_report_id: str) -> task_report_item_request_builder.TaskReportItemRequestBuilder:
+        """
+        Provides operations to manage the taskReports property of the microsoft.graph.identityGovernance.workflow entity.
+        Args:
+            task_report_id: Unique identifier of the item
+        Returns: task_report_item_request_builder.TaskReportItemRequestBuilder
+        """
+        if task_report_id is None:
+            raise Exception("task_report_id cannot be undefined")
+        from .item import task_report_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["taskReport%2Did"] = task_report_id
+        return task_report_item_request_builder.TaskReportItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[TaskReportsRequestBuilderGetRequestConfiguration] = None) -> Optional[task_report_collection_response.TaskReportCollectionResponse]:
         """

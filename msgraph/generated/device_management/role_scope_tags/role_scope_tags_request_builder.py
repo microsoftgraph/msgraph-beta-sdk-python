@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .count import count_request_builder
     from .get_role_scope_tags_by_id import get_role_scope_tags_by_id_request_builder
     from .has_custom_role_scope_tag import has_custom_role_scope_tag_request_builder
+    from .item import role_scope_tag_item_request_builder
 
 class RoleScopeTagsRequestBuilder():
     """
@@ -37,6 +38,21 @@ class RoleScopeTagsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_role_scope_tag_id(self,role_scope_tag_id: str) -> role_scope_tag_item_request_builder.RoleScopeTagItemRequestBuilder:
+        """
+        Provides operations to manage the roleScopeTags property of the microsoft.graph.deviceManagement entity.
+        Args:
+            role_scope_tag_id: Unique identifier of the item
+        Returns: role_scope_tag_item_request_builder.RoleScopeTagItemRequestBuilder
+        """
+        if role_scope_tag_id is None:
+            raise Exception("role_scope_tag_id cannot be undefined")
+        from .item import role_scope_tag_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["roleScopeTag%2Did"] = role_scope_tag_id
+        return role_scope_tag_item_request_builder.RoleScopeTagItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[RoleScopeTagsRequestBuilderGetRequestConfiguration] = None) -> Optional[role_scope_tag_collection_response.RoleScopeTagCollectionResponse]:
         """

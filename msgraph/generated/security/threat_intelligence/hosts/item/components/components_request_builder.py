@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models.o_data_errors import o_data_error
     from ......models.security import host_component_collection_response
     from .count import count_request_builder
+    from .item import host_component_item_request_builder
 
 class ComponentsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ComponentsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_host_component_id(self,host_component_id: str) -> host_component_item_request_builder.HostComponentItemRequestBuilder:
+        """
+        Provides operations to manage the components property of the microsoft.graph.security.host entity.
+        Args:
+            host_component_id: Unique identifier of the item
+        Returns: host_component_item_request_builder.HostComponentItemRequestBuilder
+        """
+        if host_component_id is None:
+            raise Exception("host_component_id cannot be undefined")
+        from .item import host_component_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["hostComponent%2Did"] = host_component_id
+        return host_component_item_request_builder.HostComponentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ComponentsRequestBuilderGetRequestConfiguration] = None) -> Optional[host_component_collection_response.HostComponentCollectionResponse]:
         """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import sales_invoice_line_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import sales_invoice_line_item_request_builder
 
 class SalesInvoiceLinesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class SalesInvoiceLinesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_sales_invoice_line_id(self,sales_invoice_line_id: str) -> sales_invoice_line_item_request_builder.SalesInvoiceLineItemRequestBuilder:
+        """
+        Provides operations to manage the salesInvoiceLines property of the microsoft.graph.company entity.
+        Args:
+            sales_invoice_line_id: Unique identifier of the item
+        Returns: sales_invoice_line_item_request_builder.SalesInvoiceLineItemRequestBuilder
+        """
+        if sales_invoice_line_id is None:
+            raise Exception("sales_invoice_line_id cannot be undefined")
+        from .item import sales_invoice_line_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["salesInvoiceLine%2Did"] = sales_invoice_line_id
+        return sales_invoice_line_item_request_builder.SalesInvoiceLineItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[SalesInvoiceLinesRequestBuilderGetRequestConfiguration] = None) -> Optional[sales_invoice_line_collection_response.SalesInvoiceLineCollectionResponse]:
         """

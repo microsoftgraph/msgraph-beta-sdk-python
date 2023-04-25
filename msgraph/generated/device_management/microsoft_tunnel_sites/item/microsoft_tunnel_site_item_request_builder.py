@@ -14,7 +14,6 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .microsoft_tunnel_configuration import microsoft_tunnel_configuration_request_builder
     from .microsoft_tunnel_servers import microsoft_tunnel_servers_request_builder
-    from .microsoft_tunnel_servers.item import microsoft_tunnel_server_item_request_builder
     from .request_upgrade import request_upgrade_request_builder
 
 class MicrosoftTunnelSiteItemRequestBuilder():
@@ -79,21 +78,6 @@ class MicrosoftTunnelSiteItemRequestBuilder():
         from ....models import microsoft_tunnel_site
 
         return await self.request_adapter.send_async(request_info, microsoft_tunnel_site.MicrosoftTunnelSite, error_mapping)
-    
-    def microsoft_tunnel_servers_by_id(self,id: str) -> microsoft_tunnel_server_item_request_builder.MicrosoftTunnelServerItemRequestBuilder:
-        """
-        Provides operations to manage the microsoftTunnelServers property of the microsoft.graph.microsoftTunnelSite entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: microsoft_tunnel_server_item_request_builder.MicrosoftTunnelServerItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .microsoft_tunnel_servers.item import microsoft_tunnel_server_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["microsoftTunnelServer%2Did"] = id
-        return microsoft_tunnel_server_item_request_builder.MicrosoftTunnelServerItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[microsoft_tunnel_site.MicrosoftTunnelSite] = None, request_configuration: Optional[MicrosoftTunnelSiteItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[microsoft_tunnel_site.MicrosoftTunnelSite]:
         """

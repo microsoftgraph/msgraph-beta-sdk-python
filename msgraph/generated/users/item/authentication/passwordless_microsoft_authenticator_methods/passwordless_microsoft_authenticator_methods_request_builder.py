@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import passwordless_microsoft_authenticator_authentication_method_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import passwordless_microsoft_authenticator_authentication_method_item_request_builder
 
 class PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_passwordless_microsoft_authenticator_authentication_method_id(self,passwordless_microsoft_authenticator_authentication_method_id: str) -> passwordless_microsoft_authenticator_authentication_method_item_request_builder.PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder:
+        """
+        Provides operations to manage the passwordlessMicrosoftAuthenticatorMethods property of the microsoft.graph.authentication entity.
+        Args:
+            passwordless_microsoft_authenticator_authentication_method_id: Unique identifier of the item
+        Returns: passwordless_microsoft_authenticator_authentication_method_item_request_builder.PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder
+        """
+        if passwordless_microsoft_authenticator_authentication_method_id is None:
+            raise Exception("passwordless_microsoft_authenticator_authentication_method_id cannot be undefined")
+        from .item import passwordless_microsoft_authenticator_authentication_method_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["passwordlessMicrosoftAuthenticatorAuthenticationMethod%2Did"] = passwordless_microsoft_authenticator_authentication_method_id
+        return passwordless_microsoft_authenticator_authentication_method_item_request_builder.PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[PasswordlessMicrosoftAuthenticatorMethodsRequestBuilderGetRequestConfiguration] = None) -> Optional[passwordless_microsoft_authenticator_authentication_method_collection_response.PasswordlessMicrosoftAuthenticatorAuthenticationMethodCollectionResponse]:
         """

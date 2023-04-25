@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import general_ledger_entry_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import general_ledger_entry_item_request_builder
 
 class GeneralLedgerEntriesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class GeneralLedgerEntriesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_general_ledger_entry_id(self,general_ledger_entry_id: str) -> general_ledger_entry_item_request_builder.GeneralLedgerEntryItemRequestBuilder:
+        """
+        Provides operations to manage the generalLedgerEntries property of the microsoft.graph.company entity.
+        Args:
+            general_ledger_entry_id: Unique identifier of the item
+        Returns: general_ledger_entry_item_request_builder.GeneralLedgerEntryItemRequestBuilder
+        """
+        if general_ledger_entry_id is None:
+            raise Exception("general_ledger_entry_id cannot be undefined")
+        from .item import general_ledger_entry_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["generalLedgerEntry%2Did"] = general_ledger_entry_id
+        return general_ledger_entry_item_request_builder.GeneralLedgerEntryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[GeneralLedgerEntriesRequestBuilderGetRequestConfiguration] = None) -> Optional[general_ledger_entry_collection_response.GeneralLedgerEntryCollectionResponse]:
         """

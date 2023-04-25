@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from .....models import connector
     from .....models.o_data_errors import o_data_error
     from .member_of import member_of_request_builder
-    from .member_of.item import connector_group_item_request_builder
 
 class ConnectorItemRequestBuilder():
     """
@@ -77,21 +76,6 @@ class ConnectorItemRequestBuilder():
         from .....models import connector
 
         return await self.request_adapter.send_async(request_info, connector.Connector, error_mapping)
-    
-    def member_of_by_id(self,id: str) -> connector_group_item_request_builder.ConnectorGroupItemRequestBuilder:
-        """
-        Gets an item from the msgraph.generated.onPremisesPublishingProfiles.item.connectors.item.memberOf.item collection
-        Args:
-            id: Unique identifier of the item
-        Returns: connector_group_item_request_builder.ConnectorGroupItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .member_of.item import connector_group_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["connectorGroup%2Did"] = id
-        return connector_group_item_request_builder.ConnectorGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[connector.Connector] = None, request_configuration: Optional[ConnectorItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[connector.Connector]:
         """

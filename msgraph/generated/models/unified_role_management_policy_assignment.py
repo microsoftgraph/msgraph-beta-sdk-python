@@ -10,7 +10,7 @@ from . import entity
 class UnifiedRoleManagementPolicyAssignment(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new unifiedRoleManagementPolicyAssignment and sets the default values.
+        Instantiates a new UnifiedRoleManagementPolicyAssignment and sets the default values.
         """
         super().__init__()
         # The OdataType property

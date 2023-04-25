@@ -14,20 +14,15 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .assign import assign_request_builder
     from .assignments import assignments_request_builder
-    from .assignments.item import mobile_app_assignment_item_request_builder
     from .categories import categories_request_builder
-    from .categories.item import mobile_app_category_item_request_builder
     from .device_statuses import device_statuses_request_builder
-    from .device_statuses.item import mobile_app_install_status_item_request_builder
     from .get_related_app_states_with_user_principal_name_with_device_id import get_related_app_states_with_user_principal_name_with_device_id_request_builder
     from .graph_managed_mobile_lob_app import graph_managed_mobile_lob_app_request_builder
     from .graph_mobile_lob_app import graph_mobile_lob_app_request_builder
     from .install_summary import install_summary_request_builder
     from .relationships import relationships_request_builder
-    from .relationships.item import mobile_app_relationship_item_request_builder
     from .update_relationships import update_relationships_request_builder
     from .user_statuses import user_statuses_request_builder
-    from .user_statuses.item import user_app_install_status_item_request_builder
 
 class MobileAppItemRequestBuilder():
     """
@@ -51,36 +46,6 @@ class MobileAppItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def assignments_by_id(self,id: str) -> mobile_app_assignment_item_request_builder.MobileAppAssignmentItemRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: mobile_app_assignment_item_request_builder.MobileAppAssignmentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .assignments.item import mobile_app_assignment_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["mobileAppAssignment%2Did"] = id
-        return mobile_app_assignment_item_request_builder.MobileAppAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def categories_by_id(self,id: str) -> mobile_app_category_item_request_builder.MobileAppCategoryItemRequestBuilder:
-        """
-        Provides operations to manage the categories property of the microsoft.graph.mobileApp entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: mobile_app_category_item_request_builder.MobileAppCategoryItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .categories.item import mobile_app_category_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["mobileAppCategory%2Did"] = id
-        return mobile_app_category_item_request_builder.MobileAppCategoryItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     async def delete(self,request_configuration: Optional[MobileAppItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property mobileApps for deviceAppManagement
@@ -99,21 +64,6 @@ class MobileAppItemRequestBuilder():
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
-    
-    def device_statuses_by_id(self,id: str) -> mobile_app_install_status_item_request_builder.MobileAppInstallStatusItemRequestBuilder:
-        """
-        Provides operations to manage the deviceStatuses property of the microsoft.graph.mobileApp entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: mobile_app_install_status_item_request_builder.MobileAppInstallStatusItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .device_statuses.item import mobile_app_install_status_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["mobileAppInstallStatus%2Did"] = id
-        return mobile_app_install_status_item_request_builder.MobileAppInstallStatusItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[MobileAppItemRequestBuilderGetRequestConfiguration] = None) -> Optional[mobile_app.MobileApp]:
         """
@@ -178,21 +128,6 @@ class MobileAppItemRequestBuilder():
 
         return await self.request_adapter.send_async(request_info, mobile_app.MobileApp, error_mapping)
     
-    def relationships_by_id(self,id: str) -> mobile_app_relationship_item_request_builder.MobileAppRelationshipItemRequestBuilder:
-        """
-        Provides operations to manage the relationships property of the microsoft.graph.mobileApp entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: mobile_app_relationship_item_request_builder.MobileAppRelationshipItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .relationships.item import mobile_app_relationship_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["mobileAppRelationship%2Did"] = id
-        return mobile_app_relationship_item_request_builder.MobileAppRelationshipItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def to_delete_request_information(self,request_configuration: Optional[MobileAppItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property mobileApps for deviceAppManagement
@@ -247,21 +182,6 @@ class MobileAppItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
-    
-    def user_statuses_by_id(self,id: str) -> user_app_install_status_item_request_builder.UserAppInstallStatusItemRequestBuilder:
-        """
-        Provides operations to manage the userStatuses property of the microsoft.graph.mobileApp entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: user_app_install_status_item_request_builder.UserAppInstallStatusItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .user_statuses.item import user_app_install_status_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["userAppInstallStatus%2Did"] = id
-        return user_app_install_status_item_request_builder.UserAppInstallStatusItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     @property
     def assign(self) -> assign_request_builder.AssignRequestBuilder:

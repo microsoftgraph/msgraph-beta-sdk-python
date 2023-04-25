@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ....models import user_experience_analytics_work_from_anywhere_metric
     from ....models.o_data_errors import o_data_error
     from .metric_devices import metric_devices_request_builder
-    from .metric_devices.item import user_experience_analytics_work_from_anywhere_device_item_request_builder
 
 class UserExperienceAnalyticsWorkFromAnywhereMetricItemRequestBuilder():
     """
@@ -77,21 +76,6 @@ class UserExperienceAnalyticsWorkFromAnywhereMetricItemRequestBuilder():
         from ....models import user_experience_analytics_work_from_anywhere_metric
 
         return await self.request_adapter.send_async(request_info, user_experience_analytics_work_from_anywhere_metric.UserExperienceAnalyticsWorkFromAnywhereMetric, error_mapping)
-    
-    def metric_devices_by_id(self,id: str) -> user_experience_analytics_work_from_anywhere_device_item_request_builder.UserExperienceAnalyticsWorkFromAnywhereDeviceItemRequestBuilder:
-        """
-        Provides operations to manage the metricDevices property of the microsoft.graph.userExperienceAnalyticsWorkFromAnywhereMetric entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: user_experience_analytics_work_from_anywhere_device_item_request_builder.UserExperienceAnalyticsWorkFromAnywhereDeviceItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .metric_devices.item import user_experience_analytics_work_from_anywhere_device_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["userExperienceAnalyticsWorkFromAnywhereDevice%2Did"] = id
-        return user_experience_analytics_work_from_anywhere_device_item_request_builder.UserExperienceAnalyticsWorkFromAnywhereDeviceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[user_experience_analytics_work_from_anywhere_metric.UserExperienceAnalyticsWorkFromAnywhereMetric] = None, request_configuration: Optional[UserExperienceAnalyticsWorkFromAnywhereMetricItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[user_experience_analytics_work_from_anywhere_metric.UserExperienceAnalyticsWorkFromAnywhereMetric]:
         """

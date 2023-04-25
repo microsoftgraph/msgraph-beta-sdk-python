@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import attribute_set, attribute_set_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import attribute_set_item_request_builder
 
 class AttributeSetsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class AttributeSetsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_attribute_set_id(self,attribute_set_id: str) -> attribute_set_item_request_builder.AttributeSetItemRequestBuilder:
+        """
+        Provides operations to manage the attributeSets property of the microsoft.graph.directory entity.
+        Args:
+            attribute_set_id: Unique identifier of the item
+        Returns: attribute_set_item_request_builder.AttributeSetItemRequestBuilder
+        """
+        if attribute_set_id is None:
+            raise Exception("attribute_set_id cannot be undefined")
+        from .item import attribute_set_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["attributeSet%2Did"] = attribute_set_id
+        return attribute_set_item_request_builder.AttributeSetItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[AttributeSetsRequestBuilderGetRequestConfiguration] = None) -> Optional[attribute_set_collection_response.AttributeSetCollectionResponse]:
         """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from ....models.security import retention_label, retention_label_collection_response
     from .count import count_request_builder
+    from .item import retention_label_item_request_builder
 
 class RetentionLabelsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class RetentionLabelsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_retention_label_id(self,retention_label_id: str) -> retention_label_item_request_builder.RetentionLabelItemRequestBuilder:
+        """
+        Provides operations to manage the retentionLabels property of the microsoft.graph.security.labelsRoot entity.
+        Args:
+            retention_label_id: Unique identifier of the item
+        Returns: retention_label_item_request_builder.RetentionLabelItemRequestBuilder
+        """
+        if retention_label_id is None:
+            raise Exception("retention_label_id cannot be undefined")
+        from .item import retention_label_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["retentionLabel%2Did"] = retention_label_id
+        return retention_label_item_request_builder.RetentionLabelItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[RetentionLabelsRequestBuilderGetRequestConfiguration] = None) -> Optional[retention_label_collection_response.RetentionLabelCollectionResponse]:
         """

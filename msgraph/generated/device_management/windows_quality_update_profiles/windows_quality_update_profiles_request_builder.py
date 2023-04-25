@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import windows_quality_update_profile, windows_quality_update_profile_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import windows_quality_update_profile_item_request_builder
 
 class WindowsQualityUpdateProfilesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class WindowsQualityUpdateProfilesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_windows_quality_update_profile_id(self,windows_quality_update_profile_id: str) -> windows_quality_update_profile_item_request_builder.WindowsQualityUpdateProfileItemRequestBuilder:
+        """
+        Provides operations to manage the windowsQualityUpdateProfiles property of the microsoft.graph.deviceManagement entity.
+        Args:
+            windows_quality_update_profile_id: Unique identifier of the item
+        Returns: windows_quality_update_profile_item_request_builder.WindowsQualityUpdateProfileItemRequestBuilder
+        """
+        if windows_quality_update_profile_id is None:
+            raise Exception("windows_quality_update_profile_id cannot be undefined")
+        from .item import windows_quality_update_profile_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["windowsQualityUpdateProfile%2Did"] = windows_quality_update_profile_id
+        return windows_quality_update_profile_item_request_builder.WindowsQualityUpdateProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[WindowsQualityUpdateProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_quality_update_profile_collection_response.WindowsQualityUpdateProfileCollectionResponse]:
         """

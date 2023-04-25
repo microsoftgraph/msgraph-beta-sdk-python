@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import exact_match_session, exact_match_session_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import exact_match_session_item_request_builder
 
 class SessionsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class SessionsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_exact_match_session_id(self,exact_match_session_id: str) -> exact_match_session_item_request_builder.ExactMatchSessionItemRequestBuilder:
+        """
+        Provides operations to manage the sessions property of the microsoft.graph.exactMatchDataStore entity.
+        Args:
+            exact_match_session_id: Unique identifier of the item
+        Returns: exact_match_session_item_request_builder.ExactMatchSessionItemRequestBuilder
+        """
+        if exact_match_session_id is None:
+            raise Exception("exact_match_session_id cannot be undefined")
+        from .item import exact_match_session_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["exactMatchSession%2Did"] = exact_match_session_id
+        return exact_match_session_item_request_builder.ExactMatchSessionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[SessionsRequestBuilderGetRequestConfiguration] = None) -> Optional[exact_match_session_collection_response.ExactMatchSessionCollectionResponse]:
         """

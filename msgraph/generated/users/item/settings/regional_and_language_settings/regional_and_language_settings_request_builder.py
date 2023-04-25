@@ -78,7 +78,7 @@ class RegionalAndLanguageSettingsRequestBuilder():
     
     async def patch(self,body: Optional[regional_and_language_settings.RegionalAndLanguageSettings] = None, request_configuration: Optional[RegionalAndLanguageSettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[regional_and_language_settings.RegionalAndLanguageSettings]:
         """
-        Update the navigation property regionalAndLanguageSettings in users
+        Update some or all of the properties of a regionalAndLanguageSettings object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -137,7 +137,7 @@ class RegionalAndLanguageSettingsRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[regional_and_language_settings.RegionalAndLanguageSettings] = None, request_configuration: Optional[RegionalAndLanguageSettingsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property regionalAndLanguageSettings in users
+        Update some or all of the properties of a regionalAndLanguageSettings object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

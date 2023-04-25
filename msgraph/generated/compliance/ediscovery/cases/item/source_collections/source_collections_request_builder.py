@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models.ediscovery import source_collection, source_collection_collection_response
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import source_collection_item_request_builder
 
 class SourceCollectionsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class SourceCollectionsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_source_collection_id(self,source_collection_id: str) -> source_collection_item_request_builder.SourceCollectionItemRequestBuilder:
+        """
+        Provides operations to manage the sourceCollections property of the microsoft.graph.ediscovery.case entity.
+        Args:
+            source_collection_id: Unique identifier of the item
+        Returns: source_collection_item_request_builder.SourceCollectionItemRequestBuilder
+        """
+        if source_collection_id is None:
+            raise Exception("source_collection_id cannot be undefined")
+        from .item import source_collection_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["sourceCollection%2Did"] = source_collection_id
+        return source_collection_item_request_builder.SourceCollectionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[SourceCollectionsRequestBuilderGetRequestConfiguration] = None) -> Optional[source_collection_collection_response.SourceCollectionCollectionResponse]:
         """

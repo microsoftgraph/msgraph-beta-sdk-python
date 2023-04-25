@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import mobile_app_troubleshooting_event, mobile_app_troubleshooting_event_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import mobile_app_troubleshooting_event_item_request_builder
 
 class MobileAppTroubleshootingEventsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class MobileAppTroubleshootingEventsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_mobile_app_troubleshooting_event_id(self,mobile_app_troubleshooting_event_id: str) -> mobile_app_troubleshooting_event_item_request_builder.MobileAppTroubleshootingEventItemRequestBuilder:
+        """
+        Provides operations to manage the mobileAppTroubleshootingEvents property of the microsoft.graph.user entity.
+        Args:
+            mobile_app_troubleshooting_event_id: Unique identifier of the item
+        Returns: mobile_app_troubleshooting_event_item_request_builder.MobileAppTroubleshootingEventItemRequestBuilder
+        """
+        if mobile_app_troubleshooting_event_id is None:
+            raise Exception("mobile_app_troubleshooting_event_id cannot be undefined")
+        from .item import mobile_app_troubleshooting_event_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["mobileAppTroubleshootingEvent%2Did"] = mobile_app_troubleshooting_event_id
+        return mobile_app_troubleshooting_event_item_request_builder.MobileAppTroubleshootingEventItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[MobileAppTroubleshootingEventsRequestBuilderGetRequestConfiguration] = None) -> Optional[mobile_app_troubleshooting_event_collection_response.MobileAppTroubleshootingEventCollectionResponse]:
         """

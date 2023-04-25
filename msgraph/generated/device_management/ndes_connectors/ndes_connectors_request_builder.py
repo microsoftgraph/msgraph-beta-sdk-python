@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import ndes_connector, ndes_connector_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import ndes_connector_item_request_builder
 
 class NdesConnectorsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class NdesConnectorsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_ndes_connector_id(self,ndes_connector_id: str) -> ndes_connector_item_request_builder.NdesConnectorItemRequestBuilder:
+        """
+        Provides operations to manage the ndesConnectors property of the microsoft.graph.deviceManagement entity.
+        Args:
+            ndes_connector_id: Unique identifier of the item
+        Returns: ndes_connector_item_request_builder.NdesConnectorItemRequestBuilder
+        """
+        if ndes_connector_id is None:
+            raise Exception("ndes_connector_id cannot be undefined")
+        from .item import ndes_connector_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["ndesConnector%2Did"] = ndes_connector_id
+        return ndes_connector_item_request_builder.NdesConnectorItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[NdesConnectorsRequestBuilderGetRequestConfiguration] = None) -> Optional[ndes_connector_collection_response.NdesConnectorCollectionResponse]:
         """

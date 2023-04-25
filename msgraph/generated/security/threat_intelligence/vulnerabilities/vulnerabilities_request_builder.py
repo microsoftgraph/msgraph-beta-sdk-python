@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from ....models.security import vulnerability, vulnerability_collection_response
     from .count import count_request_builder
+    from .item import vulnerability_item_request_builder
 
 class VulnerabilitiesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class VulnerabilitiesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_vulnerability_id(self,vulnerability_id: str) -> vulnerability_item_request_builder.VulnerabilityItemRequestBuilder:
+        """
+        Provides operations to manage the vulnerabilities property of the microsoft.graph.security.threatIntelligence entity.
+        Args:
+            vulnerability_id: Unique identifier of the item
+        Returns: vulnerability_item_request_builder.VulnerabilityItemRequestBuilder
+        """
+        if vulnerability_id is None:
+            raise Exception("vulnerability_id cannot be undefined")
+        from .item import vulnerability_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["vulnerability%2Did"] = vulnerability_id
+        return vulnerability_item_request_builder.VulnerabilityItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[VulnerabilitiesRequestBuilderGetRequestConfiguration] = None) -> Optional[vulnerability_collection_response.VulnerabilityCollectionResponse]:
         """

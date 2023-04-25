@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .............models import web_part, web_part_collection_response
     from .............models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import web_part_item_request_builder
 
 class WebpartsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class WebpartsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_web_part_id(self,web_part_id: str) -> web_part_item_request_builder.WebPartItemRequestBuilder:
+        """
+        Provides operations to manage the webparts property of the microsoft.graph.horizontalSectionColumn entity.
+        Args:
+            web_part_id: Unique identifier of the item
+        Returns: web_part_item_request_builder.WebPartItemRequestBuilder
+        """
+        if web_part_id is None:
+            raise Exception("web_part_id cannot be undefined")
+        from .item import web_part_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["webPart%2Did"] = web_part_id
+        return web_part_item_request_builder.WebPartItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[WebpartsRequestBuilderGetRequestConfiguration] = None) -> Optional[web_part_collection_response.WebPartCollectionResponse]:
         """

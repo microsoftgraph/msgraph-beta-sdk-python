@@ -14,11 +14,9 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .acquire_access_token import acquire_access_token_request_builder
     from .jobs import jobs_request_builder
-    from .jobs.item import synchronization_job_item_request_builder
     from .ping import ping_request_builder
     from .secrets import secrets_request_builder
     from .templates import templates_request_builder
-    from .templates.item import synchronization_template_item_request_builder
 
 class SynchronizationRequestBuilder():
     """
@@ -83,21 +81,6 @@ class SynchronizationRequestBuilder():
 
         return await self.request_adapter.send_async(request_info, synchronization.Synchronization, error_mapping)
     
-    def jobs_by_id(self,id: str) -> synchronization_job_item_request_builder.SynchronizationJobItemRequestBuilder:
-        """
-        Provides operations to manage the jobs property of the microsoft.graph.synchronization entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: synchronization_job_item_request_builder.SynchronizationJobItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .jobs.item import synchronization_job_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["synchronizationJob%2Did"] = id
-        return synchronization_job_item_request_builder.SynchronizationJobItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     async def patch(self,body: Optional[synchronization.Synchronization] = None, request_configuration: Optional[SynchronizationRequestBuilderPatchRequestConfiguration] = None) -> Optional[synchronization.Synchronization]:
         """
         Update the navigation property synchronization in servicePrincipals
@@ -122,21 +105,6 @@ class SynchronizationRequestBuilder():
         from ....models import synchronization
 
         return await self.request_adapter.send_async(request_info, synchronization.Synchronization, error_mapping)
-    
-    def templates_by_id(self,id: str) -> synchronization_template_item_request_builder.SynchronizationTemplateItemRequestBuilder:
-        """
-        Provides operations to manage the templates property of the microsoft.graph.synchronization entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: synchronization_template_item_request_builder.SynchronizationTemplateItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .templates.item import synchronization_template_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["synchronizationTemplate%2Did"] = id
-        return synchronization_template_item_request_builder.SynchronizationTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[SynchronizationRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

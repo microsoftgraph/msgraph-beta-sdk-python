@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from .evaluate_classification_results import evaluate_classification_results_request_builder
     from .evaluate_removal import evaluate_removal_request_builder
     from .extract_label import extract_label_request_builder
+    from .item import information_protection_label_item_request_builder
 
 class LabelsRequestBuilder():
     """
@@ -39,6 +40,21 @@ class LabelsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_information_protection_label_id(self,information_protection_label_id: str) -> information_protection_label_item_request_builder.InformationProtectionLabelItemRequestBuilder:
+        """
+        Provides operations to manage the labels property of the microsoft.graph.informationProtectionPolicy entity.
+        Args:
+            information_protection_label_id: Unique identifier of the item
+        Returns: information_protection_label_item_request_builder.InformationProtectionLabelItemRequestBuilder
+        """
+        if information_protection_label_id is None:
+            raise Exception("information_protection_label_id cannot be undefined")
+        from .item import information_protection_label_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["informationProtectionLabel%2Did"] = information_protection_label_id
+        return information_protection_label_item_request_builder.InformationProtectionLabelItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[LabelsRequestBuilderGetRequestConfiguration] = None) -> Optional[information_protection_label_collection_response.InformationProtectionLabelCollectionResponse]:
         """

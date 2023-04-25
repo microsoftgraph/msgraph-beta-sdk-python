@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .get_licenses_for_app_with_bundle_id import get_licenses_for_app_with_bundle_id_request_builder
+    from .item import vpp_token_item_request_builder
     from .sync_license_counts import sync_license_counts_request_builder
 
 class VppTokensRequestBuilder():
@@ -37,6 +38,21 @@ class VppTokensRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_vpp_token_id(self,vpp_token_id: str) -> vpp_token_item_request_builder.VppTokenItemRequestBuilder:
+        """
+        Provides operations to manage the vppTokens property of the microsoft.graph.deviceAppManagement entity.
+        Args:
+            vpp_token_id: Unique identifier of the item
+        Returns: vpp_token_item_request_builder.VppTokenItemRequestBuilder
+        """
+        if vpp_token_id is None:
+            raise Exception("vpp_token_id cannot be undefined")
+        from .item import vpp_token_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["vppToken%2Did"] = vpp_token_id
+        return vpp_token_item_request_builder.VppTokenItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[VppTokensRequestBuilderGetRequestConfiguration] = None) -> Optional[vpp_token_collection_response.VppTokenCollectionResponse]:
         """

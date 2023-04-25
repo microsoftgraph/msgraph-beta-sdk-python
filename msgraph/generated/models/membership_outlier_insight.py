@@ -3,7 +3,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import directory_object, governance_insight, outlier_container_type, outlier_member_type
+    from . import directory_object, governance_insight, outlier_container_type, outlier_member_type, user
 
 from . import governance_insight
 
@@ -18,6 +18,8 @@ class MembershipOutlierInsight(governance_insight.GovernanceInsight):
         self._container: Optional[directory_object.DirectoryObject] = None
         # Indicates the identifier of the container, for example, a group ID.
         self._container_id: Optional[str] = None
+        # The lastModifiedBy property
+        self._last_modified_by: Optional[user.User] = None
         # Navigation link to a member object. For example, to a user.
         self._member: Optional[directory_object.DirectoryObject] = None
         # Indicates the identifier of the user.
@@ -78,11 +80,12 @@ class MembershipOutlierInsight(governance_insight.GovernanceInsight):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import directory_object, governance_insight, outlier_container_type, outlier_member_type
+        from . import directory_object, governance_insight, outlier_container_type, outlier_member_type, user
 
         fields: Dict[str, Callable[[Any], None]] = {
             "container": lambda n : setattr(self, 'container', n.get_object_value(directory_object.DirectoryObject)),
             "containerId": lambda n : setattr(self, 'container_id', n.get_str_value()),
+            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(user.User)),
             "member": lambda n : setattr(self, 'member', n.get_object_value(directory_object.DirectoryObject)),
             "memberId": lambda n : setattr(self, 'member_id', n.get_str_value()),
             "outlierContainerType": lambda n : setattr(self, 'outlier_container_type', n.get_enum_value(outlier_container_type.OutlierContainerType)),
@@ -91,6 +94,23 @@ class MembershipOutlierInsight(governance_insight.GovernanceInsight):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
+    
+    @property
+    def last_modified_by(self,) -> Optional[user.User]:
+        """
+        Gets the lastModifiedBy property value. The lastModifiedBy property
+        Returns: Optional[user.User]
+        """
+        return self._last_modified_by
+    
+    @last_modified_by.setter
+    def last_modified_by(self,value: Optional[user.User] = None) -> None:
+        """
+        Sets the lastModifiedBy property value. The lastModifiedBy property
+        Args:
+            value: Value to set for the last_modified_by property.
+        """
+        self._last_modified_by = value
     
     @property
     def member(self,) -> Optional[directory_object.DirectoryObject]:
@@ -171,6 +191,7 @@ class MembershipOutlierInsight(governance_insight.GovernanceInsight):
         super().serialize(writer)
         writer.write_object_value("container", self.container)
         writer.write_str_value("containerId", self.container_id)
+        writer.write_object_value("lastModifiedBy", self.last_modified_by)
         writer.write_object_value("member", self.member)
         writer.write_str_value("memberId", self.member_id)
         writer.write_enum_value("outlierContainerType", self.outlier_container_type)

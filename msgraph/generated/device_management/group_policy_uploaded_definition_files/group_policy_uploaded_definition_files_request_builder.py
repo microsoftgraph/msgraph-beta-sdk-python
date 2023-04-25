@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import group_policy_uploaded_definition_file, group_policy_uploaded_definition_file_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import group_policy_uploaded_definition_file_item_request_builder
 
 class GroupPolicyUploadedDefinitionFilesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class GroupPolicyUploadedDefinitionFilesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_group_policy_uploaded_definition_file_id(self,group_policy_uploaded_definition_file_id: str) -> group_policy_uploaded_definition_file_item_request_builder.GroupPolicyUploadedDefinitionFileItemRequestBuilder:
+        """
+        Provides operations to manage the groupPolicyUploadedDefinitionFiles property of the microsoft.graph.deviceManagement entity.
+        Args:
+            group_policy_uploaded_definition_file_id: Unique identifier of the item
+        Returns: group_policy_uploaded_definition_file_item_request_builder.GroupPolicyUploadedDefinitionFileItemRequestBuilder
+        """
+        if group_policy_uploaded_definition_file_id is None:
+            raise Exception("group_policy_uploaded_definition_file_id cannot be undefined")
+        from .item import group_policy_uploaded_definition_file_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["groupPolicyUploadedDefinitionFile%2Did"] = group_policy_uploaded_definition_file_id
+        return group_policy_uploaded_definition_file_item_request_builder.GroupPolicyUploadedDefinitionFileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[GroupPolicyUploadedDefinitionFilesRequestBuilderGetRequestConfiguration] = None) -> Optional[group_policy_uploaded_definition_file_collection_response.GroupPolicyUploadedDefinitionFileCollectionResponse]:
         """

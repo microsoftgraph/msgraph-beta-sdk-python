@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import cloud_pc_on_premises_connection, cloud_pc_on_premises_connection_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import cloud_pc_on_premises_connection_item_request_builder
 
 class OnPremisesConnectionsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class OnPremisesConnectionsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_cloud_pc_on_premises_connection_id(self,cloud_pc_on_premises_connection_id: str) -> cloud_pc_on_premises_connection_item_request_builder.CloudPcOnPremisesConnectionItemRequestBuilder:
+        """
+        Provides operations to manage the onPremisesConnections property of the microsoft.graph.virtualEndpoint entity.
+        Args:
+            cloud_pc_on_premises_connection_id: Unique identifier of the item
+        Returns: cloud_pc_on_premises_connection_item_request_builder.CloudPcOnPremisesConnectionItemRequestBuilder
+        """
+        if cloud_pc_on_premises_connection_id is None:
+            raise Exception("cloud_pc_on_premises_connection_id cannot be undefined")
+        from .item import cloud_pc_on_premises_connection_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["cloudPcOnPremisesConnection%2Did"] = cloud_pc_on_premises_connection_id
+        return cloud_pc_on_premises_connection_item_request_builder.CloudPcOnPremisesConnectionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[OnPremisesConnectionsRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_on_premises_connection_collection_response.CloudPcOnPremisesConnectionCollectionResponse]:
         """

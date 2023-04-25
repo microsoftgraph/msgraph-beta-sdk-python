@@ -13,9 +13,7 @@ if TYPE_CHECKING:
     from .....models.managed_tenants import management_template
     from .....models.o_data_errors import o_data_error
     from .management_template_collections import management_template_collections_request_builder
-    from .management_template_collections.item import management_template_collection_item_request_builder
     from .management_template_steps import management_template_steps_request_builder
-    from .management_template_steps.item import management_template_step_item_request_builder
 
 class ManagementTemplateItemRequestBuilder():
     """
@@ -79,36 +77,6 @@ class ManagementTemplateItemRequestBuilder():
         from .....models.managed_tenants import management_template
 
         return await self.request_adapter.send_async(request_info, management_template.ManagementTemplate, error_mapping)
-    
-    def management_template_collections_by_id(self,id: str) -> management_template_collection_item_request_builder.ManagementTemplateCollectionItemRequestBuilder:
-        """
-        Provides operations to manage the managementTemplateCollections property of the microsoft.graph.managedTenants.managementTemplate entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: management_template_collection_item_request_builder.ManagementTemplateCollectionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .management_template_collections.item import management_template_collection_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["managementTemplateCollection%2Did"] = id
-        return management_template_collection_item_request_builder.ManagementTemplateCollectionItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def management_template_steps_by_id(self,id: str) -> management_template_step_item_request_builder.ManagementTemplateStepItemRequestBuilder:
-        """
-        Provides operations to manage the managementTemplateSteps property of the microsoft.graph.managedTenants.managementTemplate entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: management_template_step_item_request_builder.ManagementTemplateStepItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .management_template_steps.item import management_template_step_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["managementTemplateStep%2Did"] = id
-        return management_template_step_item_request_builder.ManagementTemplateStepItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[management_template.ManagementTemplate] = None, request_configuration: Optional[ManagementTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[management_template.ManagementTemplate]:
         """

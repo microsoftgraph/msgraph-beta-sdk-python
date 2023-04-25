@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ....models import program
     from ....models.o_data_errors import o_data_error
     from .controls import controls_request_builder
-    from .controls.item import program_control_item_request_builder
 
 class ProgramRequestBuilder():
     """
@@ -36,21 +35,6 @@ class ProgramRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def controls_by_id(self,id: str) -> program_control_item_request_builder.ProgramControlItemRequestBuilder:
-        """
-        Provides operations to manage the controls property of the microsoft.graph.program entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: program_control_item_request_builder.ProgramControlItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .controls.item import program_control_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["programControl%2Did1"] = id
-        return program_control_item_request_builder.ProgramControlItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[ProgramRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

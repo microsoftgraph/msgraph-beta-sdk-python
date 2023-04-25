@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import android_device_owner_enrollment_profile, android_device_owner_enrollment_profile_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import android_device_owner_enrollment_profile_item_request_builder
 
 class AndroidDeviceOwnerEnrollmentProfilesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class AndroidDeviceOwnerEnrollmentProfilesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_android_device_owner_enrollment_profile_id(self,android_device_owner_enrollment_profile_id: str) -> android_device_owner_enrollment_profile_item_request_builder.AndroidDeviceOwnerEnrollmentProfileItemRequestBuilder:
+        """
+        Provides operations to manage the androidDeviceOwnerEnrollmentProfiles property of the microsoft.graph.deviceManagement entity.
+        Args:
+            android_device_owner_enrollment_profile_id: Unique identifier of the item
+        Returns: android_device_owner_enrollment_profile_item_request_builder.AndroidDeviceOwnerEnrollmentProfileItemRequestBuilder
+        """
+        if android_device_owner_enrollment_profile_id is None:
+            raise Exception("android_device_owner_enrollment_profile_id cannot be undefined")
+        from .item import android_device_owner_enrollment_profile_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["androidDeviceOwnerEnrollmentProfile%2Did"] = android_device_owner_enrollment_profile_id
+        return android_device_owner_enrollment_profile_item_request_builder.AndroidDeviceOwnerEnrollmentProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[AndroidDeviceOwnerEnrollmentProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[android_device_owner_enrollment_profile_collection_response.AndroidDeviceOwnerEnrollmentProfileCollectionResponse]:
         """

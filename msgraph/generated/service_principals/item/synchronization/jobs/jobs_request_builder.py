@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import synchronization_job, synchronization_job_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import synchronization_job_item_request_builder
     from .validate_credentials import validate_credentials_request_builder
 
 class JobsRequestBuilder():
@@ -36,6 +37,21 @@ class JobsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_synchronization_job_id(self,synchronization_job_id: str) -> synchronization_job_item_request_builder.SynchronizationJobItemRequestBuilder:
+        """
+        Provides operations to manage the jobs property of the microsoft.graph.synchronization entity.
+        Args:
+            synchronization_job_id: Unique identifier of the item
+        Returns: synchronization_job_item_request_builder.SynchronizationJobItemRequestBuilder
+        """
+        if synchronization_job_id is None:
+            raise Exception("synchronization_job_id cannot be undefined")
+        from .item import synchronization_job_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["synchronizationJob%2Did"] = synchronization_job_id
+        return synchronization_job_item_request_builder.SynchronizationJobItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[JobsRequestBuilderGetRequestConfiguration] = None) -> Optional[synchronization_job_collection_response.SynchronizationJobCollectionResponse]:
         """

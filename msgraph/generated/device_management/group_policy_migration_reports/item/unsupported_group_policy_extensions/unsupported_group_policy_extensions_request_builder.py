@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import unsupported_group_policy_extension, unsupported_group_policy_extension_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import unsupported_group_policy_extension_item_request_builder
 
 class UnsupportedGroupPolicyExtensionsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class UnsupportedGroupPolicyExtensionsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_unsupported_group_policy_extension_id(self,unsupported_group_policy_extension_id: str) -> unsupported_group_policy_extension_item_request_builder.UnsupportedGroupPolicyExtensionItemRequestBuilder:
+        """
+        Provides operations to manage the unsupportedGroupPolicyExtensions property of the microsoft.graph.groupPolicyMigrationReport entity.
+        Args:
+            unsupported_group_policy_extension_id: Unique identifier of the item
+        Returns: unsupported_group_policy_extension_item_request_builder.UnsupportedGroupPolicyExtensionItemRequestBuilder
+        """
+        if unsupported_group_policy_extension_id is None:
+            raise Exception("unsupported_group_policy_extension_id cannot be undefined")
+        from .item import unsupported_group_policy_extension_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["unsupportedGroupPolicyExtension%2Did"] = unsupported_group_policy_extension_id
+        return unsupported_group_policy_extension_item_request_builder.UnsupportedGroupPolicyExtensionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[UnsupportedGroupPolicyExtensionsRequestBuilderGetRequestConfiguration] = None) -> Optional[unsupported_group_policy_extension_collection_response.UnsupportedGroupPolicyExtensionCollectionResponse]:
         """

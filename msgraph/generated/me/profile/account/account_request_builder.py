@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import user_account_information, user_account_information_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import user_account_information_item_request_builder
 
 class AccountRequestBuilder():
     """
@@ -35,6 +36,21 @@ class AccountRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_user_account_information_id(self,user_account_information_id: str) -> user_account_information_item_request_builder.UserAccountInformationItemRequestBuilder:
+        """
+        Provides operations to manage the account property of the microsoft.graph.profile entity.
+        Args:
+            user_account_information_id: Unique identifier of the item
+        Returns: user_account_information_item_request_builder.UserAccountInformationItemRequestBuilder
+        """
+        if user_account_information_id is None:
+            raise Exception("user_account_information_id cannot be undefined")
+        from .item import user_account_information_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["userAccountInformation%2Did"] = user_account_information_id
+        return user_account_information_item_request_builder.UserAccountInformationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[AccountRequestBuilderGetRequestConfiguration] = None) -> Optional[user_account_information_collection_response.UserAccountInformationCollectionResponse]:
         """

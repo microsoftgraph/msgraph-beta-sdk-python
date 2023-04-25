@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .count import count_request_builder
     from .ediscovery_apply_hold import ediscovery_apply_hold_request_builder
     from .ediscovery_remove_hold import ediscovery_remove_hold_request_builder
+    from .item import noncustodial_data_source_item_request_builder
 
 class NoncustodialDataSourcesRequestBuilder():
     """
@@ -37,6 +38,21 @@ class NoncustodialDataSourcesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_noncustodial_data_source_id(self,noncustodial_data_source_id: str) -> noncustodial_data_source_item_request_builder.NoncustodialDataSourceItemRequestBuilder:
+        """
+        Provides operations to manage the noncustodialDataSources property of the microsoft.graph.ediscovery.case entity.
+        Args:
+            noncustodial_data_source_id: Unique identifier of the item
+        Returns: noncustodial_data_source_item_request_builder.NoncustodialDataSourceItemRequestBuilder
+        """
+        if noncustodial_data_source_id is None:
+            raise Exception("noncustodial_data_source_id cannot be undefined")
+        from .item import noncustodial_data_source_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["noncustodialDataSource%2Did"] = noncustodial_data_source_id
+        return noncustodial_data_source_item_request_builder.NoncustodialDataSourceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[NoncustodialDataSourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[noncustodial_data_source_collection_response.NoncustodialDataSourceCollectionResponse]:
         """

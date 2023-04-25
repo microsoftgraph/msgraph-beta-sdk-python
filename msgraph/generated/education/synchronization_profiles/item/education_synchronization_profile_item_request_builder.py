@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ....models import education_synchronization_profile
     from ....models.o_data_errors import o_data_error
     from .errors import errors_request_builder
-    from .errors.item import education_synchronization_error_item_request_builder
     from .pause import pause_request_builder
     from .profile_status import profile_status_request_builder
     from .reset import reset_request_builder
@@ -61,21 +60,6 @@ class EducationSynchronizationProfileItemRequestBuilder():
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
-    
-    def errors_by_id(self,id: str) -> education_synchronization_error_item_request_builder.EducationSynchronizationErrorItemRequestBuilder:
-        """
-        Provides operations to manage the errors property of the microsoft.graph.educationSynchronizationProfile entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: education_synchronization_error_item_request_builder.EducationSynchronizationErrorItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .errors.item import education_synchronization_error_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["educationSynchronizationError%2Did"] = id
-        return education_synchronization_error_item_request_builder.EducationSynchronizationErrorItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[EducationSynchronizationProfileItemRequestBuilderGetRequestConfiguration] = None) -> Optional[education_synchronization_profile.EducationSynchronizationProfile]:
         """

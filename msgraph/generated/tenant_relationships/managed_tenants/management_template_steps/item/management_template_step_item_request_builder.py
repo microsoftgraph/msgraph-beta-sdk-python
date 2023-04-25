@@ -15,7 +15,6 @@ if TYPE_CHECKING:
     from .accepted_version import accepted_version_request_builder
     from .management_template import management_template_request_builder
     from .versions import versions_request_builder
-    from .versions.item import management_template_step_version_item_request_builder
 
 class ManagementTemplateStepItemRequestBuilder():
     """
@@ -159,21 +158,6 @@ class ManagementTemplateStepItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
-    
-    def versions_by_id(self,id: str) -> management_template_step_version_item_request_builder.ManagementTemplateStepVersionItemRequestBuilder:
-        """
-        Provides operations to manage the versions property of the microsoft.graph.managedTenants.managementTemplateStep entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: management_template_step_version_item_request_builder.ManagementTemplateStepVersionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .versions.item import management_template_step_version_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["managementTemplateStepVersion%2Did"] = id
-        return management_template_step_version_item_request_builder.ManagementTemplateStepVersionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     @property
     def accepted_version(self) -> accepted_version_request_builder.AcceptedVersionRequestBuilder:

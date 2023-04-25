@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import user_experience_analytics_baseline, user_experience_analytics_baseline_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import user_experience_analytics_baseline_item_request_builder
 
 class UserExperienceAnalyticsBaselinesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class UserExperienceAnalyticsBaselinesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_user_experience_analytics_baseline_id(self,user_experience_analytics_baseline_id: str) -> user_experience_analytics_baseline_item_request_builder.UserExperienceAnalyticsBaselineItemRequestBuilder:
+        """
+        Provides operations to manage the userExperienceAnalyticsBaselines property of the microsoft.graph.deviceManagement entity.
+        Args:
+            user_experience_analytics_baseline_id: Unique identifier of the item
+        Returns: user_experience_analytics_baseline_item_request_builder.UserExperienceAnalyticsBaselineItemRequestBuilder
+        """
+        if user_experience_analytics_baseline_id is None:
+            raise Exception("user_experience_analytics_baseline_id cannot be undefined")
+        from .item import user_experience_analytics_baseline_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["userExperienceAnalyticsBaseline%2Did"] = user_experience_analytics_baseline_id
+        return user_experience_analytics_baseline_item_request_builder.UserExperienceAnalyticsBaselineItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[UserExperienceAnalyticsBaselinesRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_baseline_collection_response.UserExperienceAnalyticsBaselineCollectionResponse]:
         """

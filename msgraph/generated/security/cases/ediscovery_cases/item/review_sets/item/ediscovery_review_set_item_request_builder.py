@@ -13,9 +13,7 @@ if TYPE_CHECKING:
     from .......models.o_data_errors import o_data_error
     from .......models.security import ediscovery_review_set
     from .files import files_request_builder
-    from .files.item import ediscovery_file_item_request_builder
     from .queries import queries_request_builder
-    from .queries.item import ediscovery_review_set_query_item_request_builder
     from .security_add_to_review_set import security_add_to_review_set_request_builder
     from .security_export import security_export_request_builder
 
@@ -59,21 +57,6 @@ class EdiscoveryReviewSetItemRequestBuilder():
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
-    
-    def files_by_id(self,id: str) -> ediscovery_file_item_request_builder.EdiscoveryFileItemRequestBuilder:
-        """
-        Provides operations to manage the files property of the microsoft.graph.security.ediscoveryReviewSet entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: ediscovery_file_item_request_builder.EdiscoveryFileItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .files.item import ediscovery_file_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["ediscoveryFile%2Did"] = id
-        return ediscovery_file_item_request_builder.EdiscoveryFileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[EdiscoveryReviewSetItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ediscovery_review_set.EdiscoveryReviewSet]:
         """
@@ -121,21 +104,6 @@ class EdiscoveryReviewSetItemRequestBuilder():
         from .......models.security import ediscovery_review_set
 
         return await self.request_adapter.send_async(request_info, ediscovery_review_set.EdiscoveryReviewSet, error_mapping)
-    
-    def queries_by_id(self,id: str) -> ediscovery_review_set_query_item_request_builder.EdiscoveryReviewSetQueryItemRequestBuilder:
-        """
-        Provides operations to manage the queries property of the microsoft.graph.security.ediscoveryReviewSet entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: ediscovery_review_set_query_item_request_builder.EdiscoveryReviewSetQueryItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .queries.item import ediscovery_review_set_query_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["ediscoveryReviewSetQuery%2Did"] = id
-        return ediscovery_review_set_query_item_request_builder.EdiscoveryReviewSetQueryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[EdiscoveryReviewSetItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

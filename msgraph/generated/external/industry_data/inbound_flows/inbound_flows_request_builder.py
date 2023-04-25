@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.industry_data import inbound_flow, inbound_flow_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import inbound_flow_item_request_builder
 
 class InboundFlowsRequestBuilder():
     """
@@ -36,9 +37,24 @@ class InboundFlowsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def by_inbound_flow_id(self,inbound_flow_id: str) -> inbound_flow_item_request_builder.InboundFlowItemRequestBuilder:
+        """
+        Provides operations to manage the inboundFlows property of the microsoft.graph.industryData.industryDataRoot entity.
+        Args:
+            inbound_flow_id: Unique identifier of the item
+        Returns: inbound_flow_item_request_builder.InboundFlowItemRequestBuilder
+        """
+        if inbound_flow_id is None:
+            raise Exception("inbound_flow_id cannot be undefined")
+        from .item import inbound_flow_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["inboundFlow%2Did"] = inbound_flow_id
+        return inbound_flow_item_request_builder.InboundFlowItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[InboundFlowsRequestBuilderGetRequestConfiguration] = None) -> Optional[inbound_flow_collection_response.InboundFlowCollectionResponse]:
         """
-        Get a list of the inboundFlow objects and their properties.
+        Get a list of the inboundFileFlow objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[inbound_flow_collection_response.InboundFlowCollectionResponse]
@@ -60,7 +76,7 @@ class InboundFlowsRequestBuilder():
     
     async def post(self,body: Optional[inbound_flow.InboundFlow] = None, request_configuration: Optional[InboundFlowsRequestBuilderPostRequestConfiguration] = None) -> Optional[inbound_flow.InboundFlow]:
         """
-        Create a new inboundFlow object. The following prerequisite resources are required when you create an **inboundFlow**:
+        Create a new inboundFileFlow object. The following prerequisite resources are required when you create an **inboundFileFlow**:
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +101,7 @@ class InboundFlowsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[InboundFlowsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the inboundFlow objects and their properties.
+        Get a list of the inboundFileFlow objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,7 +119,7 @@ class InboundFlowsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[inbound_flow.InboundFlow] = None, request_configuration: Optional[InboundFlowsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new inboundFlow object. The following prerequisite resources are required when you create an **inboundFlow**:
+        Create a new inboundFileFlow object. The following prerequisite resources are required when you create an **inboundFileFlow**:
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +150,7 @@ class InboundFlowsRequestBuilder():
     @dataclass
     class InboundFlowsRequestBuilderGetQueryParameters():
         """
-        Get a list of the inboundFlow objects and their properties.
+        Get a list of the inboundFileFlow objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

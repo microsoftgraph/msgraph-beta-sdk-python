@@ -13,10 +13,8 @@ if TYPE_CHECKING:
     from ....models import windows_managed_app_protection
     from ....models.o_data_errors import o_data_error
     from .apps import apps_request_builder
-    from .apps.item import managed_mobile_app_item_request_builder
     from .assign import assign_request_builder
     from .assignments import assignments_request_builder
-    from .assignments.item import targeted_managed_app_policy_assignment_item_request_builder
     from .target_apps import target_apps_request_builder
 
 class WindowsManagedAppProtectionItemRequestBuilder():
@@ -40,36 +38,6 @@ class WindowsManagedAppProtectionItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def apps_by_id(self,id: str) -> managed_mobile_app_item_request_builder.ManagedMobileAppItemRequestBuilder:
-        """
-        Provides operations to manage the apps property of the microsoft.graph.windowsManagedAppProtection entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: managed_mobile_app_item_request_builder.ManagedMobileAppItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .apps.item import managed_mobile_app_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["managedMobileApp%2Did"] = id
-        return managed_mobile_app_item_request_builder.ManagedMobileAppItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def assignments_by_id(self,id: str) -> targeted_managed_app_policy_assignment_item_request_builder.TargetedManagedAppPolicyAssignmentItemRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.windowsManagedAppProtection entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: targeted_managed_app_policy_assignment_item_request_builder.TargetedManagedAppPolicyAssignmentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .assignments.item import targeted_managed_app_policy_assignment_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["targetedManagedAppPolicyAssignment%2Did"] = id
-        return targeted_managed_app_policy_assignment_item_request_builder.TargetedManagedAppPolicyAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[WindowsManagedAppProtectionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

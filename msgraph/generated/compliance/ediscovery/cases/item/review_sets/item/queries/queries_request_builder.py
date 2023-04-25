@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ........models.ediscovery import review_set_query, review_set_query_collection_response
     from ........models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import review_set_query_item_request_builder
 
 class QueriesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class QueriesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_review_set_query_id(self,review_set_query_id: str) -> review_set_query_item_request_builder.ReviewSetQueryItemRequestBuilder:
+        """
+        Provides operations to manage the queries property of the microsoft.graph.ediscovery.reviewSet entity.
+        Args:
+            review_set_query_id: Unique identifier of the item
+        Returns: review_set_query_item_request_builder.ReviewSetQueryItemRequestBuilder
+        """
+        if review_set_query_id is None:
+            raise Exception("review_set_query_id cannot be undefined")
+        from .item import review_set_query_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["reviewSetQuery%2Did"] = review_set_query_id
+        return review_set_query_item_request_builder.ReviewSetQueryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[QueriesRequestBuilderGetRequestConfiguration] = None) -> Optional[review_set_query_collection_response.ReviewSetQueryCollectionResponse]:
         """

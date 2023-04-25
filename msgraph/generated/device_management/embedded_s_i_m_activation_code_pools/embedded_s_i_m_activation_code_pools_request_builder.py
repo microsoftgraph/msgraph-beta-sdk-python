@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import embedded_s_i_m_activation_code_pool, embedded_s_i_m_activation_code_pool_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import embedded_s_i_m_activation_code_pool_item_request_builder
 
 class EmbeddedSIMActivationCodePoolsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class EmbeddedSIMActivationCodePoolsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_embedded_s_i_m_activation_code_pool_id(self,embedded_s_i_m_activation_code_pool_id: str) -> embedded_s_i_m_activation_code_pool_item_request_builder.EmbeddedSIMActivationCodePoolItemRequestBuilder:
+        """
+        Provides operations to manage the embeddedSIMActivationCodePools property of the microsoft.graph.deviceManagement entity.
+        Args:
+            embedded_s_i_m_activation_code_pool_id: Unique identifier of the item
+        Returns: embedded_s_i_m_activation_code_pool_item_request_builder.EmbeddedSIMActivationCodePoolItemRequestBuilder
+        """
+        if embedded_s_i_m_activation_code_pool_id is None:
+            raise Exception("embedded_s_i_m_activation_code_pool_id cannot be undefined")
+        from .item import embedded_s_i_m_activation_code_pool_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["embeddedSIMActivationCodePool%2Did"] = embedded_s_i_m_activation_code_pool_id
+        return embedded_s_i_m_activation_code_pool_item_request_builder.EmbeddedSIMActivationCodePoolItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[EmbeddedSIMActivationCodePoolsRequestBuilderGetRequestConfiguration] = None) -> Optional[embedded_s_i_m_activation_code_pool_collection_response.EmbeddedSIMActivationCodePoolCollectionResponse]:
         """

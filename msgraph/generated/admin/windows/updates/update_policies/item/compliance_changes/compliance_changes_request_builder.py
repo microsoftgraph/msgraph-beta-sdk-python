@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .......models.o_data_errors import o_data_error
     from .......models.windows_updates import compliance_change, compliance_change_collection_response
     from .count import count_request_builder
+    from .item import compliance_change_item_request_builder
 
 class ComplianceChangesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ComplianceChangesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_compliance_change_id(self,compliance_change_id: str) -> compliance_change_item_request_builder.ComplianceChangeItemRequestBuilder:
+        """
+        Provides operations to manage the complianceChanges property of the microsoft.graph.windowsUpdates.updatePolicy entity.
+        Args:
+            compliance_change_id: Unique identifier of the item
+        Returns: compliance_change_item_request_builder.ComplianceChangeItemRequestBuilder
+        """
+        if compliance_change_id is None:
+            raise Exception("compliance_change_id cannot be undefined")
+        from .item import compliance_change_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["complianceChange%2Did"] = compliance_change_id
+        return compliance_change_item_request_builder.ComplianceChangeItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ComplianceChangesRequestBuilderGetRequestConfiguration] = None) -> Optional[compliance_change_collection_response.ComplianceChangeCollectionResponse]:
         """

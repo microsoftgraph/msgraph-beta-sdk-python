@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import person_certification, person_certification_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import person_certification_item_request_builder
 
 class CertificationsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class CertificationsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_person_certification_id(self,person_certification_id: str) -> person_certification_item_request_builder.PersonCertificationItemRequestBuilder:
+        """
+        Provides operations to manage the certifications property of the microsoft.graph.profile entity.
+        Args:
+            person_certification_id: Unique identifier of the item
+        Returns: person_certification_item_request_builder.PersonCertificationItemRequestBuilder
+        """
+        if person_certification_id is None:
+            raise Exception("person_certification_id cannot be undefined")
+        from .item import person_certification_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["personCertification%2Did"] = person_certification_id
+        return person_certification_item_request_builder.PersonCertificationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[CertificationsRequestBuilderGetRequestConfiguration] = None) -> Optional[person_certification_collection_response.PersonCertificationCollectionResponse]:
         """

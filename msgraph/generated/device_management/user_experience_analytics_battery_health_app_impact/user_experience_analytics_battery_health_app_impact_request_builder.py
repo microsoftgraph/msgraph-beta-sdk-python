@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import user_experience_analytics_battery_health_app_impact, user_experience_analytics_battery_health_app_impact_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import user_experience_analytics_battery_health_app_impact_item_request_builder
 
 class UserExperienceAnalyticsBatteryHealthAppImpactRequestBuilder():
     """
@@ -35,6 +36,21 @@ class UserExperienceAnalyticsBatteryHealthAppImpactRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_user_experience_analytics_battery_health_app_impact_id(self,user_experience_analytics_battery_health_app_impact_id: str) -> user_experience_analytics_battery_health_app_impact_item_request_builder.UserExperienceAnalyticsBatteryHealthAppImpactItemRequestBuilder:
+        """
+        Provides operations to manage the userExperienceAnalyticsBatteryHealthAppImpact property of the microsoft.graph.deviceManagement entity.
+        Args:
+            user_experience_analytics_battery_health_app_impact_id: Unique identifier of the item
+        Returns: user_experience_analytics_battery_health_app_impact_item_request_builder.UserExperienceAnalyticsBatteryHealthAppImpactItemRequestBuilder
+        """
+        if user_experience_analytics_battery_health_app_impact_id is None:
+            raise Exception("user_experience_analytics_battery_health_app_impact_id cannot be undefined")
+        from .item import user_experience_analytics_battery_health_app_impact_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["userExperienceAnalyticsBatteryHealthAppImpact%2Did"] = user_experience_analytics_battery_health_app_impact_id
+        return user_experience_analytics_battery_health_app_impact_item_request_builder.UserExperienceAnalyticsBatteryHealthAppImpactItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[UserExperienceAnalyticsBatteryHealthAppImpactRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_battery_health_app_impact_collection_response.UserExperienceAnalyticsBatteryHealthAppImpactCollectionResponse]:
         """

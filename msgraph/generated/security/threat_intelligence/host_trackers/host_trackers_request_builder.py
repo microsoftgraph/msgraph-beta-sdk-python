@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from ....models.security import host_tracker, host_tracker_collection_response
     from .count import count_request_builder
+    from .item import host_tracker_item_request_builder
 
 class HostTrackersRequestBuilder():
     """
@@ -35,6 +36,21 @@ class HostTrackersRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_host_tracker_id(self,host_tracker_id: str) -> host_tracker_item_request_builder.HostTrackerItemRequestBuilder:
+        """
+        Provides operations to manage the hostTrackers property of the microsoft.graph.security.threatIntelligence entity.
+        Args:
+            host_tracker_id: Unique identifier of the item
+        Returns: host_tracker_item_request_builder.HostTrackerItemRequestBuilder
+        """
+        if host_tracker_id is None:
+            raise Exception("host_tracker_id cannot be undefined")
+        from .item import host_tracker_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["hostTracker%2Did"] = host_tracker_id
+        return host_tracker_item_request_builder.HostTrackerItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[HostTrackersRequestBuilderGetRequestConfiguration] = None) -> Optional[host_tracker_collection_response.HostTrackerCollectionResponse]:
         """

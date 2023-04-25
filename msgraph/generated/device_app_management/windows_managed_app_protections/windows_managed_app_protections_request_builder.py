@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import windows_managed_app_protection, windows_managed_app_protection_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import windows_managed_app_protection_item_request_builder
 
 class WindowsManagedAppProtectionsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class WindowsManagedAppProtectionsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_windows_managed_app_protection_id(self,windows_managed_app_protection_id: str) -> windows_managed_app_protection_item_request_builder.WindowsManagedAppProtectionItemRequestBuilder:
+        """
+        Provides operations to manage the windowsManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.
+        Args:
+            windows_managed_app_protection_id: Unique identifier of the item
+        Returns: windows_managed_app_protection_item_request_builder.WindowsManagedAppProtectionItemRequestBuilder
+        """
+        if windows_managed_app_protection_id is None:
+            raise Exception("windows_managed_app_protection_id cannot be undefined")
+        from .item import windows_managed_app_protection_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["windowsManagedAppProtection%2Did"] = windows_managed_app_protection_id
+        return windows_managed_app_protection_item_request_builder.WindowsManagedAppProtectionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[WindowsManagedAppProtectionsRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_managed_app_protection_collection_response.WindowsManagedAppProtectionCollectionResponse]:
         """

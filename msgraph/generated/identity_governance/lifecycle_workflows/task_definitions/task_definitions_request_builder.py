@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.identity_governance import task_definition_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import task_definition_item_request_builder
 
 class TaskDefinitionsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class TaskDefinitionsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_task_definition_id(self,task_definition_id: str) -> task_definition_item_request_builder.TaskDefinitionItemRequestBuilder:
+        """
+        Provides operations to manage the taskDefinitions property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
+        Args:
+            task_definition_id: Unique identifier of the item
+        Returns: task_definition_item_request_builder.TaskDefinitionItemRequestBuilder
+        """
+        if task_definition_id is None:
+            raise Exception("task_definition_id cannot be undefined")
+        from .item import task_definition_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["taskDefinition%2Did"] = task_definition_id
+        return task_definition_item_request_builder.TaskDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[TaskDefinitionsRequestBuilderGetRequestConfiguration] = None) -> Optional[task_definition_collection_response.TaskDefinitionCollectionResponse]:
         """

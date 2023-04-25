@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import payment_term, payment_term_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import payment_term_item_request_builder
 
 class PaymentTermsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class PaymentTermsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_payment_term_id(self,payment_term_id: str) -> payment_term_item_request_builder.PaymentTermItemRequestBuilder:
+        """
+        Provides operations to manage the paymentTerms property of the microsoft.graph.company entity.
+        Args:
+            payment_term_id: Unique identifier of the item
+        Returns: payment_term_item_request_builder.PaymentTermItemRequestBuilder
+        """
+        if payment_term_id is None:
+            raise Exception("payment_term_id cannot be undefined")
+        from .item import payment_term_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["paymentTerm%2Did"] = payment_term_id
+        return payment_term_item_request_builder.PaymentTermItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[PaymentTermsRequestBuilderGetRequestConfiguration] = None) -> Optional[payment_term_collection_response.PaymentTermCollectionResponse]:
         """

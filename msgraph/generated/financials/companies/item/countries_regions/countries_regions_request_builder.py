@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import country_region, country_region_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import country_region_item_request_builder
 
 class CountriesRegionsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class CountriesRegionsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_country_region_id(self,country_region_id: str) -> country_region_item_request_builder.CountryRegionItemRequestBuilder:
+        """
+        Provides operations to manage the countriesRegions property of the microsoft.graph.company entity.
+        Args:
+            country_region_id: Unique identifier of the item
+        Returns: country_region_item_request_builder.CountryRegionItemRequestBuilder
+        """
+        if country_region_id is None:
+            raise Exception("country_region_id cannot be undefined")
+        from .item import country_region_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["countryRegion%2Did"] = country_region_id
+        return country_region_item_request_builder.CountryRegionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[CountriesRegionsRequestBuilderGetRequestConfiguration] = None) -> Optional[country_region_collection_response.CountryRegionCollectionResponse]:
         """

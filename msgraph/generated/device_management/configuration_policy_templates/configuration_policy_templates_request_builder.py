@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import device_management_configuration_policy_template, device_management_configuration_policy_template_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import device_management_configuration_policy_template_item_request_builder
 
 class ConfigurationPolicyTemplatesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ConfigurationPolicyTemplatesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_device_management_configuration_policy_template_id(self,device_management_configuration_policy_template_id: str) -> device_management_configuration_policy_template_item_request_builder.DeviceManagementConfigurationPolicyTemplateItemRequestBuilder:
+        """
+        Provides operations to manage the configurationPolicyTemplates property of the microsoft.graph.deviceManagement entity.
+        Args:
+            device_management_configuration_policy_template_id: Unique identifier of the item
+        Returns: device_management_configuration_policy_template_item_request_builder.DeviceManagementConfigurationPolicyTemplateItemRequestBuilder
+        """
+        if device_management_configuration_policy_template_id is None:
+            raise Exception("device_management_configuration_policy_template_id cannot be undefined")
+        from .item import device_management_configuration_policy_template_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["deviceManagementConfigurationPolicyTemplate%2Did"] = device_management_configuration_policy_template_id
+        return device_management_configuration_policy_template_item_request_builder.DeviceManagementConfigurationPolicyTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ConfigurationPolicyTemplatesRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_configuration_policy_template_collection_response.DeviceManagementConfigurationPolicyTemplateCollectionResponse]:
         """

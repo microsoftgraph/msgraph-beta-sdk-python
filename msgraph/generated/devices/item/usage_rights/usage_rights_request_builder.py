@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import usage_right, usage_right_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import usage_right_item_request_builder
 
 class UsageRightsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class UsageRightsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_usage_right_id(self,usage_right_id: str) -> usage_right_item_request_builder.UsageRightItemRequestBuilder:
+        """
+        Provides operations to manage the usageRights property of the microsoft.graph.device entity.
+        Args:
+            usage_right_id: Unique identifier of the item
+        Returns: usage_right_item_request_builder.UsageRightItemRequestBuilder
+        """
+        if usage_right_id is None:
+            raise Exception("usage_right_id cannot be undefined")
+        from .item import usage_right_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["usageRight%2Did"] = usage_right_id
+        return usage_right_item_request_builder.UsageRightItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[UsageRightsRequestBuilderGetRequestConfiguration] = None) -> Optional[usage_right_collection_response.UsageRightCollectionResponse]:
         """

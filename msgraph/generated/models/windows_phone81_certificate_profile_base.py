@@ -8,9 +8,6 @@ if TYPE_CHECKING:
 from . import device_configuration
 
 class WindowsPhone81CertificateProfileBase(device_configuration.DeviceConfiguration):
-    """
-    Base Windows Phone 8.1+ certificate profile.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new windowsPhone81CertificateProfileBase and sets the default values.

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ..models import privileged_access, privileged_access_collection_response
     from ..models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import privileged_access_item_request_builder
 
 class PrivilegedAccessRequestBuilder():
     """
@@ -35,6 +36,21 @@ class PrivilegedAccessRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_privileged_access_id(self,privileged_access_id: str) -> privileged_access_item_request_builder.PrivilegedAccessItemRequestBuilder:
+        """
+        Provides operations to manage the collection of privilegedAccess entities.
+        Args:
+            privileged_access_id: Unique identifier of the item
+        Returns: privileged_access_item_request_builder.PrivilegedAccessItemRequestBuilder
+        """
+        if privileged_access_id is None:
+            raise Exception("privileged_access_id cannot be undefined")
+        from .item import privileged_access_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["privilegedAccess%2Did"] = privileged_access_id
+        return privileged_access_item_request_builder.PrivilegedAccessItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[PrivilegedAccessRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_access_collection_response.PrivilegedAccessCollectionResponse]:
         """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import message_event, message_event_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import message_event_item_request_builder
 
 class EventsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class EventsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_message_event_id(self,message_event_id: str) -> message_event_item_request_builder.MessageEventItemRequestBuilder:
+        """
+        Provides operations to manage the events property of the microsoft.graph.messageRecipient entity.
+        Args:
+            message_event_id: Unique identifier of the item
+        Returns: message_event_item_request_builder.MessageEventItemRequestBuilder
+        """
+        if message_event_id is None:
+            raise Exception("message_event_id cannot be undefined")
+        from .item import message_event_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["messageEvent%2Did"] = message_event_id
+        return message_event_item_request_builder.MessageEventItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[EventsRequestBuilderGetRequestConfiguration] = None) -> Optional[message_event_collection_response.MessageEventCollectionResponse]:
         """

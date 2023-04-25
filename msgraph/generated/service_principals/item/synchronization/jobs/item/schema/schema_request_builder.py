@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from .......models import synchronization_schema
     from .......models.o_data_errors import o_data_error
     from .directories import directories_request_builder
-    from .directories.item import directory_definition_item_request_builder
     from .filter_operators import filter_operators_request_builder
     from .functions import functions_request_builder
     from .parse_expression import parse_expression_request_builder
@@ -58,21 +57,6 @@ class SchemaRequestBuilder():
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
-    
-    def directories_by_id(self,id: str) -> directory_definition_item_request_builder.DirectoryDefinitionItemRequestBuilder:
-        """
-        Provides operations to manage the directories property of the microsoft.graph.synchronizationSchema entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: directory_definition_item_request_builder.DirectoryDefinitionItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .directories.item import directory_definition_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["directoryDefinition%2Did"] = id
-        return directory_definition_item_request_builder.DirectoryDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[SchemaRequestBuilderGetRequestConfiguration] = None) -> Optional[synchronization_schema.SynchronizationSchema]:
         """

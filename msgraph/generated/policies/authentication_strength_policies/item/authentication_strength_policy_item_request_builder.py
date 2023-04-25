@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ....models import authentication_strength_policy
     from ....models.o_data_errors import o_data_error
     from .combination_configurations import combination_configurations_request_builder
-    from .combination_configurations.item import authentication_combination_configuration_item_request_builder
     from .update_allowed_combinations import update_allowed_combinations_request_builder
     from .usage import usage_request_builder
 
@@ -38,21 +37,6 @@ class AuthenticationStrengthPolicyItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def combination_configurations_by_id(self,id: str) -> authentication_combination_configuration_item_request_builder.AuthenticationCombinationConfigurationItemRequestBuilder:
-        """
-        Provides operations to manage the combinationConfigurations property of the microsoft.graph.authenticationStrengthPolicy entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: authentication_combination_configuration_item_request_builder.AuthenticationCombinationConfigurationItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .combination_configurations.item import authentication_combination_configuration_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["authenticationCombinationConfiguration%2Did"] = id
-        return authentication_combination_configuration_item_request_builder.AuthenticationCombinationConfigurationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[AuthenticationStrengthPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

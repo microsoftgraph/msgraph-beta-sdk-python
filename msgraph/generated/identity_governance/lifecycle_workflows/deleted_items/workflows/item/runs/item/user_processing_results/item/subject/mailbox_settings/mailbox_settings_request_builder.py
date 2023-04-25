@@ -10,16 +10,16 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ..models import storage
-    from ..models.o_data_errors import o_data_error
+    from ............models import mailbox_settings
+    from ............models.o_data_errors import o_data_error
 
-class StorageRequestBuilder():
+class MailboxSettingsRequestBuilder():
     """
-    Provides operations to manage the storage singleton.
+    Builds and executes requests for operations under /identityGovernance/lifecycleWorkflows/deletedItems/workflows/{workflow-id}/runs/{run-id}/userProcessingResults/{userProcessingResult-id}/subject/mailboxSettings
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
-        Instantiates a new StorageRequestBuilder and sets the default values.
+        Instantiates a new MailboxSettingsRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
@@ -29,23 +29,23 @@ class StorageRequestBuilder():
         if request_adapter is None:
             raise Exception("request_adapter cannot be undefined")
         # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/storage{?%24select,%24expand}"
+        self.url_template: str = "{+baseurl}/identityGovernance/lifecycleWorkflows/deletedItems/workflows/{workflow%2Did}/runs/{run%2Did}/userProcessingResults/{userProcessingResult%2Did}/subject/mailboxSettings{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[StorageRequestBuilderGetRequestConfiguration] = None) -> Optional[storage.Storage]:
+    async def get(self,request_configuration: Optional[MailboxSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[mailbox_settings.MailboxSettings]:
         """
-        Get storage
+        Settings for the primary mailbox of the signed-in user. You can get or update settings for sending automatic replies to incoming messages, locale, and time zone. For more information, see User preferences for languages and regional formats. Returned only on $select.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[storage.Storage]
+        Returns: Optional[mailbox_settings.MailboxSettings]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ............models.o_data_errors import o_data_error
 
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
@@ -53,24 +53,24 @@ class StorageRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import storage
+        from ............models import mailbox_settings
 
-        return await self.request_adapter.send_async(request_info, storage.Storage, error_mapping)
+        return await self.request_adapter.send_async(request_info, mailbox_settings.MailboxSettings, error_mapping)
     
-    async def patch(self,body: Optional[storage.Storage] = None, request_configuration: Optional[StorageRequestBuilderPatchRequestConfiguration] = None) -> Optional[storage.Storage]:
+    async def patch(self,body: Optional[mailbox_settings.MailboxSettings] = None, request_configuration: Optional[MailboxSettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[mailbox_settings.MailboxSettings]:
         """
-        Update storage
+        Update property mailboxSettings value.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[storage.Storage]
+        Returns: Optional[mailbox_settings.MailboxSettings]
         """
         if body is None:
             raise Exception("body cannot be undefined")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ..models.o_data_errors import o_data_error
+        from ............models.o_data_errors import o_data_error
 
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
@@ -78,13 +78,13 @@ class StorageRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ..models import storage
+        from ............models import mailbox_settings
 
-        return await self.request_adapter.send_async(request_info, storage.Storage, error_mapping)
+        return await self.request_adapter.send_async(request_info, mailbox_settings.MailboxSettings, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[StorageRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[MailboxSettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get storage
+        Settings for the primary mailbox of the signed-in user. You can get or update settings for sending automatic replies to incoming messages, locale, and time zone. For more information, see User preferences for languages and regional formats. Returned only on $select.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -100,9 +100,9 @@ class StorageRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[storage.Storage] = None, request_configuration: Optional[StorageRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[mailbox_settings.MailboxSettings] = None, request_configuration: Optional[MailboxSettingsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update storage
+        Update property mailboxSettings value.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -122,9 +122,9 @@ class StorageRequestBuilder():
         return request_info
     
     @dataclass
-    class StorageRequestBuilderGetQueryParameters():
+    class MailboxSettingsRequestBuilderGetQueryParameters():
         """
-        Get storage
+        Settings for the primary mailbox of the signed-in user. You can get or update settings for sending automatic replies to incoming messages, locale, and time zone. For more information, see User preferences for languages and regional formats. Returned only on $select.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -149,7 +149,7 @@ class StorageRequestBuilder():
 
     
     @dataclass
-    class StorageRequestBuilderGetRequestConfiguration():
+    class MailboxSettingsRequestBuilderGetRequestConfiguration():
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -160,11 +160,11 @@ class StorageRequestBuilder():
         options: Optional[List[RequestOption]] = None
 
         # Request query parameters
-        query_parameters: Optional[StorageRequestBuilder.StorageRequestBuilderGetQueryParameters] = None
+        query_parameters: Optional[MailboxSettingsRequestBuilder.MailboxSettingsRequestBuilderGetQueryParameters] = None
 
     
     @dataclass
-    class StorageRequestBuilderPatchRequestConfiguration():
+    class MailboxSettingsRequestBuilderPatchRequestConfiguration():
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """

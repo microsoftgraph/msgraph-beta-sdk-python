@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .find_by_method_mode_with_authentication_method_modes import find_by_method_mode_with_authentication_method_modes_request_builder
+    from .item import authentication_strength_policy_item_request_builder
 
 class PoliciesRequestBuilder():
     """
@@ -36,6 +37,21 @@ class PoliciesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_authentication_strength_policy_id(self,authentication_strength_policy_id: str) -> authentication_strength_policy_item_request_builder.AuthenticationStrengthPolicyItemRequestBuilder:
+        """
+        Provides operations to manage the policies property of the microsoft.graph.authenticationStrengthRoot entity.
+        Args:
+            authentication_strength_policy_id: Unique identifier of the item
+        Returns: authentication_strength_policy_item_request_builder.AuthenticationStrengthPolicyItemRequestBuilder
+        """
+        if authentication_strength_policy_id is None:
+            raise Exception("authentication_strength_policy_id cannot be undefined")
+        from .item import authentication_strength_policy_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["authenticationStrengthPolicy%2Did"] = authentication_strength_policy_id
+        return authentication_strength_policy_item_request_builder.AuthenticationStrengthPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def find_by_method_mode_with_authentication_method_modes(self,authentication_method_modes: Optional[str] = None) -> find_by_method_mode_with_authentication_method_modes_request_builder.FindByMethodModeWithAuthenticationMethodModesRequestBuilder:
         """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import microsoft_tunnel_server, microsoft_tunnel_server_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import microsoft_tunnel_server_item_request_builder
 
 class MicrosoftTunnelServersRequestBuilder():
     """
@@ -35,6 +36,21 @@ class MicrosoftTunnelServersRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_microsoft_tunnel_server_id(self,microsoft_tunnel_server_id: str) -> microsoft_tunnel_server_item_request_builder.MicrosoftTunnelServerItemRequestBuilder:
+        """
+        Provides operations to manage the microsoftTunnelServers property of the microsoft.graph.microsoftTunnelSite entity.
+        Args:
+            microsoft_tunnel_server_id: Unique identifier of the item
+        Returns: microsoft_tunnel_server_item_request_builder.MicrosoftTunnelServerItemRequestBuilder
+        """
+        if microsoft_tunnel_server_id is None:
+            raise Exception("microsoft_tunnel_server_id cannot be undefined")
+        from .item import microsoft_tunnel_server_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["microsoftTunnelServer%2Did"] = microsoft_tunnel_server_id
+        return microsoft_tunnel_server_item_request_builder.MicrosoftTunnelServerItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[MicrosoftTunnelServersRequestBuilderGetRequestConfiguration] = None) -> Optional[microsoft_tunnel_server_collection_response.MicrosoftTunnelServerCollectionResponse]:
         """

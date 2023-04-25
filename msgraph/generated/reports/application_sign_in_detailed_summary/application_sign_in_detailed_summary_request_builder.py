@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models import application_sign_in_detailed_summary, application_sign_in_detailed_summary_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import application_sign_in_detailed_summary_item_request_builder
 
 class ApplicationSignInDetailedSummaryRequestBuilder():
     """
@@ -35,6 +36,21 @@ class ApplicationSignInDetailedSummaryRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_application_sign_in_detailed_summary_id(self,application_sign_in_detailed_summary_id: str) -> application_sign_in_detailed_summary_item_request_builder.ApplicationSignInDetailedSummaryItemRequestBuilder:
+        """
+        Provides operations to manage the applicationSignInDetailedSummary property of the microsoft.graph.reportRoot entity.
+        Args:
+            application_sign_in_detailed_summary_id: Unique identifier of the item
+        Returns: application_sign_in_detailed_summary_item_request_builder.ApplicationSignInDetailedSummaryItemRequestBuilder
+        """
+        if application_sign_in_detailed_summary_id is None:
+            raise Exception("application_sign_in_detailed_summary_id cannot be undefined")
+        from .item import application_sign_in_detailed_summary_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["applicationSignInDetailedSummary%2Did"] = application_sign_in_detailed_summary_id
+        return application_sign_in_detailed_summary_item_request_builder.ApplicationSignInDetailedSummaryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[ApplicationSignInDetailedSummaryRequestBuilderGetRequestConfiguration] = None) -> Optional[application_sign_in_detailed_summary_collection_response.ApplicationSignInDetailedSummaryCollectionResponse]:
         """

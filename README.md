@@ -92,27 +92,23 @@ request_adapter = GraphRequestAdapter(auth_provider)
 client = GraphServiceClient(request_adapter)
 
 async def get_user():
-    user = await client.users_by_id('userPrincipalName').get())
-    print(user.display_name)
+    user = await client.users.by_user_id('userPrincipalName').get()
+    if user:
+      print(user.display_name)
 
 asyncio.run(get_user())
 ```
 
-Note that to calling `me` requires a signed-in user and therefore delegated permissions (obtained using the `authorization_code` flow):
+Note that to calling `me` requires a signed-in user and therefore delegated permissions. See [Authenticating Users](https://learn.microsoft.com/en-us/python/api/overview/azure/identity-readme?view=azure-python#authenticate-users)) for more:
 
 ```py
 import asyncio
-from azure.identity.aio import AuthorizationCodeCredential
+from azure.identity import InteractiveBrowserCredential
 from kiota_authentication_azure.azure_identity_authentication_provider import AzureIdentityAuthenticationProvider
 from msgraph import GraphRequestAdapter
 from msgraph import GraphServiceClient
 
-credential = AuthorizationCodeCredential(
-    'tenant_id',
-    'client_id',
-    'authorization_code',
-    'redirect_uri',
-)
+credential = InteractiveBrowserCredential()
 scopes=['User.Read']
 auth_provider = AzureIdentityAuthenticationProvider(credential, scopes=scopes)
 request_adapter = GraphRequestAdapter(auth_provider)
@@ -120,7 +116,8 @@ client = GraphServiceClient(request_adapter)
 
 async def me():
     me = await client.me.get()
-    print(me.display_name)
+    if me:
+        print(me.display_name)
 
 asyncio.run(me())
 ```
@@ -129,11 +126,12 @@ asyncio.run(me())
 
 Failed requests raise `APIError` exceptions. You can handle these exceptions using `try` `catch` statements.
 ```py
+from kiota_abstractions.api_error import APIError
 async def get_user():
     try:
-        user = await client.users_by_id('userID').get()
+        user = await client.users.by_user_id('userID').get()
         print(user.user_principal_name, user.display_name, user.id)
-    except Exception as e:
+    except APIError as e:
         print(f'Error: {e.error.message}')
 
 asyncio.run(get_user())
@@ -145,6 +143,8 @@ asyncio.run(get_user())
 * [Overview](https://docs.microsoft.com/graph/overview)
 
 * [Microsoft Graph website](https://aka.ms/graph)
+
+* [Samples](samples)
 
 ## Upgrading
 

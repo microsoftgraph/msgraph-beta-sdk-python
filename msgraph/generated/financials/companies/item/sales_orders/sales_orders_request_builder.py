@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import sales_order_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import sales_order_item_request_builder
 
 class SalesOrdersRequestBuilder():
     """
@@ -35,6 +36,21 @@ class SalesOrdersRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_sales_order_id(self,sales_order_id: str) -> sales_order_item_request_builder.SalesOrderItemRequestBuilder:
+        """
+        Provides operations to manage the salesOrders property of the microsoft.graph.company entity.
+        Args:
+            sales_order_id: Unique identifier of the item
+        Returns: sales_order_item_request_builder.SalesOrderItemRequestBuilder
+        """
+        if sales_order_id is None:
+            raise Exception("sales_order_id cannot be undefined")
+        from .item import sales_order_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["salesOrder%2Did"] = sales_order_id
+        return sales_order_item_request_builder.SalesOrderItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[SalesOrdersRequestBuilderGetRequestConfiguration] = None) -> Optional[sales_order_collection_response.SalesOrderCollectionResponse]:
         """

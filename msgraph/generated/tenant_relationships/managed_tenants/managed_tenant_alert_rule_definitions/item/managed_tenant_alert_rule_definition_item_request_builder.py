@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from .....models.managed_tenants import managed_tenant_alert_rule_definition
     from .....models.o_data_errors import o_data_error
     from .alert_rules import alert_rules_request_builder
-    from .alert_rules.item import managed_tenant_alert_rule_item_request_builder
 
 class ManagedTenantAlertRuleDefinitionItemRequestBuilder():
     """
@@ -36,21 +35,6 @@ class ManagedTenantAlertRuleDefinitionItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def alert_rules_by_id(self,id: str) -> managed_tenant_alert_rule_item_request_builder.ManagedTenantAlertRuleItemRequestBuilder:
-        """
-        Provides operations to manage the alertRules property of the microsoft.graph.managedTenants.managedTenantAlertRuleDefinition entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: managed_tenant_alert_rule_item_request_builder.ManagedTenantAlertRuleItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .alert_rules.item import managed_tenant_alert_rule_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["managedTenantAlertRule%2Did"] = id
-        return managed_tenant_alert_rule_item_request_builder.ManagedTenantAlertRuleItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[ManagedTenantAlertRuleDefinitionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

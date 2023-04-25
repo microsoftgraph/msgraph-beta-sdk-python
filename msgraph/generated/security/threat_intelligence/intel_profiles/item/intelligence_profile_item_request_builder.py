@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .....models.security import intelligence_profile
     from .indicators import indicators_request_builder
-    from .indicators.item import intelligence_profile_indicator_item_request_builder
 
 class IntelligenceProfileItemRequestBuilder():
     """
@@ -77,21 +76,6 @@ class IntelligenceProfileItemRequestBuilder():
         from .....models.security import intelligence_profile
 
         return await self.request_adapter.send_async(request_info, intelligence_profile.IntelligenceProfile, error_mapping)
-    
-    def indicators_by_id(self,id: str) -> intelligence_profile_indicator_item_request_builder.IntelligenceProfileIndicatorItemRequestBuilder:
-        """
-        Provides operations to manage the indicators property of the microsoft.graph.security.intelligenceProfile entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: intelligence_profile_indicator_item_request_builder.IntelligenceProfileIndicatorItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .indicators.item import intelligence_profile_indicator_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["intelligenceProfileIndicator%2Did"] = id
-        return intelligence_profile_indicator_item_request_builder.IntelligenceProfileIndicatorItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[intelligence_profile.IntelligenceProfile] = None, request_configuration: Optional[IntelligenceProfileItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[intelligence_profile.IntelligenceProfile]:
         """

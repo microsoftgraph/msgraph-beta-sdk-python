@@ -13,11 +13,8 @@ if TYPE_CHECKING:
     from ..models import search_entity
     from ..models.o_data_errors import o_data_error
     from .acronyms import acronyms_request_builder
-    from .acronyms.item import acronym_item_request_builder
     from .bookmarks import bookmarks_request_builder
-    from .bookmarks.item import bookmark_item_request_builder
     from .qnas import qnas_request_builder
-    from .qnas.item import qna_item_request_builder
     from .query import query_request_builder
 
 class SearchRequestBuilder():
@@ -41,36 +38,6 @@ class SearchRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def acronyms_by_id(self,id: str) -> acronym_item_request_builder.AcronymItemRequestBuilder:
-        """
-        Provides operations to manage the acronyms property of the microsoft.graph.searchEntity entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: acronym_item_request_builder.AcronymItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .acronyms.item import acronym_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["acronym%2Did"] = id
-        return acronym_item_request_builder.AcronymItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def bookmarks_by_id(self,id: str) -> bookmark_item_request_builder.BookmarkItemRequestBuilder:
-        """
-        Provides operations to manage the bookmarks property of the microsoft.graph.searchEntity entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: bookmark_item_request_builder.BookmarkItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .bookmarks.item import bookmark_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["bookmark%2Did"] = id
-        return bookmark_item_request_builder.BookmarkItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[SearchRequestBuilderGetRequestConfiguration] = None) -> Optional[search_entity.SearchEntity]:
         """
@@ -118,21 +85,6 @@ class SearchRequestBuilder():
         from ..models import search_entity
 
         return await self.request_adapter.send_async(request_info, search_entity.SearchEntity, error_mapping)
-    
-    def qnas_by_id(self,id: str) -> qna_item_request_builder.QnaItemRequestBuilder:
-        """
-        Provides operations to manage the qnas property of the microsoft.graph.searchEntity entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: qna_item_request_builder.QnaItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .qnas.item import qna_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["qna%2Did"] = id
-        return qna_item_request_builder.QnaItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_get_request_information(self,request_configuration: Optional[SearchRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

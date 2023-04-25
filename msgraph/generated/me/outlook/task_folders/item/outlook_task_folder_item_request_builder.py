@@ -13,11 +13,8 @@ if TYPE_CHECKING:
     from .....models import outlook_task_folder
     from .....models.o_data_errors import o_data_error
     from .multi_value_extended_properties import multi_value_extended_properties_request_builder
-    from .multi_value_extended_properties.item import multi_value_legacy_extended_property_item_request_builder
     from .single_value_extended_properties import single_value_extended_properties_request_builder
-    from .single_value_extended_properties.item import single_value_legacy_extended_property_item_request_builder
     from .tasks import tasks_request_builder
-    from .tasks.item import outlook_task_item_request_builder
 
 class OutlookTaskFolderItemRequestBuilder():
     """
@@ -82,21 +79,6 @@ class OutlookTaskFolderItemRequestBuilder():
 
         return await self.request_adapter.send_async(request_info, outlook_task_folder.OutlookTaskFolder, error_mapping)
     
-    def multi_value_extended_properties_by_id(self,id: str) -> multi_value_legacy_extended_property_item_request_builder.MultiValueLegacyExtendedPropertyItemRequestBuilder:
-        """
-        Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.outlookTaskFolder entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: multi_value_legacy_extended_property_item_request_builder.MultiValueLegacyExtendedPropertyItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .multi_value_extended_properties.item import multi_value_legacy_extended_property_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["multiValueLegacyExtendedProperty%2Did"] = id
-        return multi_value_legacy_extended_property_item_request_builder.MultiValueLegacyExtendedPropertyItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     async def patch(self,body: Optional[outlook_task_folder.OutlookTaskFolder] = None, request_configuration: Optional[OutlookTaskFolderItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[outlook_task_folder.OutlookTaskFolder]:
         """
         Update the navigation property taskFolders in me
@@ -121,36 +103,6 @@ class OutlookTaskFolderItemRequestBuilder():
         from .....models import outlook_task_folder
 
         return await self.request_adapter.send_async(request_info, outlook_task_folder.OutlookTaskFolder, error_mapping)
-    
-    def single_value_extended_properties_by_id(self,id: str) -> single_value_legacy_extended_property_item_request_builder.SingleValueLegacyExtendedPropertyItemRequestBuilder:
-        """
-        Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.outlookTaskFolder entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: single_value_legacy_extended_property_item_request_builder.SingleValueLegacyExtendedPropertyItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .single_value_extended_properties.item import single_value_legacy_extended_property_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["singleValueLegacyExtendedProperty%2Did"] = id
-        return single_value_legacy_extended_property_item_request_builder.SingleValueLegacyExtendedPropertyItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def tasks_by_id(self,id: str) -> outlook_task_item_request_builder.OutlookTaskItemRequestBuilder:
-        """
-        Provides operations to manage the tasks property of the microsoft.graph.outlookTaskFolder entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: outlook_task_item_request_builder.OutlookTaskItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .tasks.item import outlook_task_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["outlookTask%2Did"] = id
-        return outlook_task_item_request_builder.OutlookTaskItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def to_delete_request_information(self,request_configuration: Optional[OutlookTaskFolderItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -14,9 +14,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .assign import assign_request_builder
     from .assigned_devices import assigned_devices_request_builder
-    from .assigned_devices.item import windows_autopilot_device_identity_item_request_builder
     from .assignments import assignments_request_builder
-    from .assignments.item import windows_autopilot_deployment_profile_assignment_item_request_builder
 
 class WindowsAutopilotDeploymentProfileItemRequestBuilder():
     """
@@ -39,36 +37,6 @@ class WindowsAutopilotDeploymentProfileItemRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
-    
-    def assigned_devices_by_id(self,id: str) -> windows_autopilot_device_identity_item_request_builder.WindowsAutopilotDeviceIdentityItemRequestBuilder:
-        """
-        Provides operations to manage the assignedDevices property of the microsoft.graph.windowsAutopilotDeploymentProfile entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: windows_autopilot_device_identity_item_request_builder.WindowsAutopilotDeviceIdentityItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .assigned_devices.item import windows_autopilot_device_identity_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["windowsAutopilotDeviceIdentity%2Did"] = id
-        return windows_autopilot_device_identity_item_request_builder.WindowsAutopilotDeviceIdentityItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def assignments_by_id(self,id: str) -> windows_autopilot_deployment_profile_assignment_item_request_builder.WindowsAutopilotDeploymentProfileAssignmentItemRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.windowsAutopilotDeploymentProfile entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: windows_autopilot_deployment_profile_assignment_item_request_builder.WindowsAutopilotDeploymentProfileAssignmentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .assignments.item import windows_autopilot_deployment_profile_assignment_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["windowsAutopilotDeploymentProfileAssignment%2Did"] = id
-        return windows_autopilot_deployment_profile_assignment_item_request_builder.WindowsAutopilotDeploymentProfileAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[WindowsAutopilotDeploymentProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

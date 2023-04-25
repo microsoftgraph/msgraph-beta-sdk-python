@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ....models import deleted_item_container
     from ....models.o_data_errors import o_data_error
     from .workflows import workflows_request_builder
-    from .workflows.item import workflow_item_request_builder
 
 class DeletedItemsRequestBuilder():
     """
@@ -111,21 +110,6 @@ class DeletedItemsRequestBuilder():
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
             request_info.add_request_options(request_configuration.options)
         return request_info
-    
-    def workflows_by_id(self,id: str) -> workflow_item_request_builder.WorkflowItemRequestBuilder:
-        """
-        Provides operations to manage the workflows property of the microsoft.graph.deletedItemContainer entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: workflow_item_request_builder.WorkflowItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .workflows.item import workflow_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["workflow%2Did"] = id
-        return workflow_item_request_builder.WorkflowItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     @property
     def workflows(self) -> workflows_request_builder.WorkflowsRequestBuilder:

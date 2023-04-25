@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .....models import sales_quote_collection_response
     from .....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import sales_quote_item_request_builder
 
 class SalesQuotesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class SalesQuotesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_sales_quote_id(self,sales_quote_id: str) -> sales_quote_item_request_builder.SalesQuoteItemRequestBuilder:
+        """
+        Provides operations to manage the salesQuotes property of the microsoft.graph.company entity.
+        Args:
+            sales_quote_id: Unique identifier of the item
+        Returns: sales_quote_item_request_builder.SalesQuoteItemRequestBuilder
+        """
+        if sales_quote_id is None:
+            raise Exception("sales_quote_id cannot be undefined")
+        from .item import sales_quote_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["salesQuote%2Did"] = sales_quote_id
+        return sales_quote_item_request_builder.SalesQuoteItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[SalesQuotesRequestBuilderGetRequestConfiguration] = None) -> Optional[sales_quote_collection_response.SalesQuoteCollectionResponse]:
         """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ..models import privileged_operation_event, privileged_operation_event_collection_response
     from ..models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import privileged_operation_event_item_request_builder
 
 class PrivilegedOperationEventsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class PrivilegedOperationEventsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_privileged_operation_event_id(self,privileged_operation_event_id: str) -> privileged_operation_event_item_request_builder.PrivilegedOperationEventItemRequestBuilder:
+        """
+        Provides operations to manage the collection of privilegedOperationEvent entities.
+        Args:
+            privileged_operation_event_id: Unique identifier of the item
+        Returns: privileged_operation_event_item_request_builder.PrivilegedOperationEventItemRequestBuilder
+        """
+        if privileged_operation_event_id is None:
+            raise Exception("privileged_operation_event_id cannot be undefined")
+        from .item import privileged_operation_event_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["privilegedOperationEvent%2Did"] = privileged_operation_event_id
+        return privileged_operation_event_item_request_builder.PrivilegedOperationEventItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[PrivilegedOperationEventsRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_operation_event_collection_response.PrivilegedOperationEventCollectionResponse]:
         """

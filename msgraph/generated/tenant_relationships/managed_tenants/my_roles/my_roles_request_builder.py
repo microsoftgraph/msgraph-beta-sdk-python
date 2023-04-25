@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models.managed_tenants import my_role, my_role_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import my_role_tenant_item_request_builder
 
 class MyRolesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class MyRolesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_my_role_tenant_id(self,my_role_tenant_id: str) -> my_role_tenant_item_request_builder.MyRoleTenantItemRequestBuilder:
+        """
+        Provides operations to manage the myRoles property of the microsoft.graph.managedTenants.managedTenant entity.
+        Args:
+            my_role_tenant_id: Unique identifier of the item
+        Returns: my_role_tenant_item_request_builder.MyRoleTenantItemRequestBuilder
+        """
+        if my_role_tenant_id is None:
+            raise Exception("my_role_tenant_id cannot be undefined")
+        from .item import my_role_tenant_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["myRole%2DtenantId"] = my_role_tenant_id
+        return my_role_tenant_item_request_builder.MyRoleTenantItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[MyRolesRequestBuilderGetRequestConfiguration] = None) -> Optional[my_role_collection_response.MyRoleCollectionResponse]:
         """

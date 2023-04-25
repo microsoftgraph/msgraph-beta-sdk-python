@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors import o_data_error
     from ...models.search import bookmark, bookmark_collection_response
     from .count import count_request_builder
+    from .item import bookmark_item_request_builder
 
 class BookmarksRequestBuilder():
     """
@@ -35,6 +36,21 @@ class BookmarksRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_bookmark_id(self,bookmark_id: str) -> bookmark_item_request_builder.BookmarkItemRequestBuilder:
+        """
+        Provides operations to manage the bookmarks property of the microsoft.graph.searchEntity entity.
+        Args:
+            bookmark_id: Unique identifier of the item
+        Returns: bookmark_item_request_builder.BookmarkItemRequestBuilder
+        """
+        if bookmark_id is None:
+            raise Exception("bookmark_id cannot be undefined")
+        from .item import bookmark_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["bookmark%2Did"] = bookmark_id
+        return bookmark_item_request_builder.BookmarkItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[BookmarksRequestBuilderGetRequestConfiguration] = None) -> Optional[bookmark_collection_response.BookmarkCollectionResponse]:
         """

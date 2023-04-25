@@ -15,11 +15,9 @@ if TYPE_CHECKING:
     from .default_ios_enrollment_profile import default_ios_enrollment_profile_request_builder
     from .default_mac_os_enrollment_profile import default_mac_os_enrollment_profile_request_builder
     from .enrollment_profiles import enrollment_profiles_request_builder
-    from .enrollment_profiles.item import enrollment_profile_item_request_builder
     from .generate_encryption_public_key import generate_encryption_public_key_request_builder
     from .get_encryption_public_key import get_encryption_public_key_request_builder
     from .imported_apple_device_identities import imported_apple_device_identities_request_builder
-    from .imported_apple_device_identities.item import imported_apple_device_identity_item_request_builder
     from .share_for_school_data_sync_service import share_for_school_data_sync_service_request_builder
     from .sync_with_apple_device_enrollment_program import sync_with_apple_device_enrollment_program_request_builder
     from .unshare_for_school_data_sync_service import unshare_for_school_data_sync_service_request_builder
@@ -66,21 +64,6 @@ class DepOnboardingSettingItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    def enrollment_profiles_by_id(self,id: str) -> enrollment_profile_item_request_builder.EnrollmentProfileItemRequestBuilder:
-        """
-        Provides operations to manage the enrollmentProfiles property of the microsoft.graph.depOnboardingSetting entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: enrollment_profile_item_request_builder.EnrollmentProfileItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .enrollment_profiles.item import enrollment_profile_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["enrollmentProfile%2Did"] = id
-        return enrollment_profile_item_request_builder.EnrollmentProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     async def get(self,request_configuration: Optional[DepOnboardingSettingItemRequestBuilderGetRequestConfiguration] = None) -> Optional[dep_onboarding_setting.DepOnboardingSetting]:
         """
         This collections of multiple DEP tokens per-tenant.
@@ -102,21 +85,6 @@ class DepOnboardingSettingItemRequestBuilder():
         from ....models import dep_onboarding_setting
 
         return await self.request_adapter.send_async(request_info, dep_onboarding_setting.DepOnboardingSetting, error_mapping)
-    
-    def imported_apple_device_identities_by_id(self,id: str) -> imported_apple_device_identity_item_request_builder.ImportedAppleDeviceIdentityItemRequestBuilder:
-        """
-        Provides operations to manage the importedAppleDeviceIdentities property of the microsoft.graph.depOnboardingSetting entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: imported_apple_device_identity_item_request_builder.ImportedAppleDeviceIdentityItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .imported_apple_device_identities.item import imported_apple_device_identity_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["importedAppleDeviceIdentity%2Did"] = id
-        return imported_apple_device_identity_item_request_builder.ImportedAppleDeviceIdentityItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def patch(self,body: Optional[dep_onboarding_setting.DepOnboardingSetting] = None, request_configuration: Optional[DepOnboardingSettingItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[dep_onboarding_setting.DepOnboardingSetting]:
         """

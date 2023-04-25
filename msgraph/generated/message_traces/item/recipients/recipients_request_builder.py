@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import message_recipient, message_recipient_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import message_recipient_item_request_builder
 
 class RecipientsRequestBuilder():
     """
@@ -35,6 +36,21 @@ class RecipientsRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_message_recipient_id(self,message_recipient_id: str) -> message_recipient_item_request_builder.MessageRecipientItemRequestBuilder:
+        """
+        Provides operations to manage the recipients property of the microsoft.graph.messageTrace entity.
+        Args:
+            message_recipient_id: Unique identifier of the item
+        Returns: message_recipient_item_request_builder.MessageRecipientItemRequestBuilder
+        """
+        if message_recipient_id is None:
+            raise Exception("message_recipient_id cannot be undefined")
+        from .item import message_recipient_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["messageRecipient%2Did"] = message_recipient_id
+        return message_recipient_item_request_builder.MessageRecipientItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[RecipientsRequestBuilderGetRequestConfiguration] = None) -> Optional[message_recipient_collection_response.MessageRecipientCollectionResponse]:
         """

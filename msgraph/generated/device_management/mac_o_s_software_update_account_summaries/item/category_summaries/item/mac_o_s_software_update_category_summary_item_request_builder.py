@@ -13,7 +13,6 @@ if TYPE_CHECKING:
     from ......models import mac_o_s_software_update_category_summary
     from ......models.o_data_errors import o_data_error
     from .update_state_summaries import update_state_summaries_request_builder
-    from .update_state_summaries.item import mac_o_s_software_update_state_summary_item_request_builder
 
 class MacOSSoftwareUpdateCategorySummaryItemRequestBuilder():
     """
@@ -157,21 +156,6 @@ class MacOSSoftwareUpdateCategorySummaryItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
-    
-    def update_state_summaries_by_id(self,id: str) -> mac_o_s_software_update_state_summary_item_request_builder.MacOSSoftwareUpdateStateSummaryItemRequestBuilder:
-        """
-        Provides operations to manage the updateStateSummaries property of the microsoft.graph.macOSSoftwareUpdateCategorySummary entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: mac_o_s_software_update_state_summary_item_request_builder.MacOSSoftwareUpdateStateSummaryItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        from .update_state_summaries.item import mac_o_s_software_update_state_summary_item_request_builder
-
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["macOSSoftwareUpdateStateSummary%2Did"] = id
-        return mac_o_s_software_update_state_summary_item_request_builder.MacOSSoftwareUpdateStateSummaryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     @property
     def update_state_summaries(self) -> update_state_summaries_request_builder.UpdateStateSummariesRequestBuilder:

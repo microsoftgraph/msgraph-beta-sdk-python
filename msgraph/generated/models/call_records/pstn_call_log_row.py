@@ -18,11 +18,11 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
         self._call_duration_source: Optional[pstn_call_duration_source.PstnCallDurationSource] = None
         # Call identifier. Not guaranteed to be unique.
         self._call_id: Optional[str] = None
-        # Whether the call was a PSTN outbound or inbound call and the type of call such as a call placed by a user or an audio conference.
+        # Indicates whether the call was a PSTN outbound or inbound call and the type of call such as a call placed by a user or an audio conference.
         self._call_type: Optional[str] = None
-        # Number dialed in E.164 format.
+        # Number of the user or bot who received the call (E.164).
         self._callee_number: Optional[str] = None
-        # Number that received the call for inbound calls or the number dialed for outbound calls. E.164 format.
+        # Number of the user or bot who made the call (E.164).
         self._caller_number: Optional[str] = None
         # Amount of money or cost of the call that is charged to your account.
         self._charge: Optional[float] = None
@@ -30,9 +30,9 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
         self._conference_id: Optional[str] = None
         # Connection fee price.
         self._connection_charge: Optional[float] = None
-        # Type of currency used to calculate the cost of the call. For details, see ISO 4217.
+        # Type of currency used to calculate the cost of the call (ISO 4217).
         self._currency: Optional[str] = None
-        # Whether the call was domestic (within a country or region) or international (outside a country or region) based on the user's location.
+        # Indicates whether the call was Domestic (within a country or region) or International (outside a country or region) based on the user's location.
         self._destination_context: Optional[str] = None
         # Country or region dialed.
         self._destination_name: Optional[str] = None
@@ -40,7 +40,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
         self._duration: Optional[int] = None
         # Call end time.
         self._end_date_time: Optional[datetime] = None
-        # Unique call identifier. GUID.
+        # Unique call identifier (GUID).
         self._id: Optional[str] = None
         # User's phone number type, such as a service of toll-free number.
         self._inventory_type: Optional[str] = None
@@ -50,7 +50,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
         self._odata_type: Optional[str] = None
         # The telecommunications operator which provided PSTN services for this call. This may be Microsoft, or it may be a third-party operator via the Operator Connect Program.
         self._operator: Optional[str] = None
-        # The otherPartyCountryCode property
+        # Country code of the caller in case of an incoming call, or callee in case of an outgoing call. For details, see ISO 3166-1 alpha-2.
         self._other_party_country_code: Optional[str] = None
         # Call start time.
         self._start_date_time: Optional[datetime] = None
@@ -60,7 +60,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
         self._usage_country_code: Optional[str] = None
         # Display name of the user.
         self._user_display_name: Optional[str] = None
-        # Calling user's ID in Graph. GUID. This and other user info will be null/empty for bot call types (ucap_in, ucap_out).
+        # The unique identifier (GUID) of the user in Azure Active Directory. This and other user info will be null/empty for bot call types (ucap_in, ucap_out).
         self._user_id: Optional[str] = None
         # The user principal name (sign-in name) in Azure Active Directory. This is usually the same as the user's SIP address, and can be same as the user's e-mail address.
         self._user_principal_name: Optional[str] = None
@@ -119,7 +119,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
     @property
     def call_type(self,) -> Optional[str]:
         """
-        Gets the callType property value. Whether the call was a PSTN outbound or inbound call and the type of call such as a call placed by a user or an audio conference.
+        Gets the callType property value. Indicates whether the call was a PSTN outbound or inbound call and the type of call such as a call placed by a user or an audio conference.
         Returns: Optional[str]
         """
         return self._call_type
@@ -127,7 +127,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
     @call_type.setter
     def call_type(self,value: Optional[str] = None) -> None:
         """
-        Sets the callType property value. Whether the call was a PSTN outbound or inbound call and the type of call such as a call placed by a user or an audio conference.
+        Sets the callType property value. Indicates whether the call was a PSTN outbound or inbound call and the type of call such as a call placed by a user or an audio conference.
         Args:
             value: Value to set for the call_type property.
         """
@@ -136,7 +136,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
     @property
     def callee_number(self,) -> Optional[str]:
         """
-        Gets the calleeNumber property value. Number dialed in E.164 format.
+        Gets the calleeNumber property value. Number of the user or bot who received the call (E.164).
         Returns: Optional[str]
         """
         return self._callee_number
@@ -144,7 +144,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
     @callee_number.setter
     def callee_number(self,value: Optional[str] = None) -> None:
         """
-        Sets the calleeNumber property value. Number dialed in E.164 format.
+        Sets the calleeNumber property value. Number of the user or bot who received the call (E.164).
         Args:
             value: Value to set for the callee_number property.
         """
@@ -153,7 +153,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
     @property
     def caller_number(self,) -> Optional[str]:
         """
-        Gets the callerNumber property value. Number that received the call for inbound calls or the number dialed for outbound calls. E.164 format.
+        Gets the callerNumber property value. Number of the user or bot who made the call (E.164).
         Returns: Optional[str]
         """
         return self._caller_number
@@ -161,7 +161,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
     @caller_number.setter
     def caller_number(self,value: Optional[str] = None) -> None:
         """
-        Sets the callerNumber property value. Number that received the call for inbound calls or the number dialed for outbound calls. E.164 format.
+        Sets the callerNumber property value. Number of the user or bot who made the call (E.164).
         Args:
             value: Value to set for the caller_number property.
         """
@@ -233,7 +233,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
     @property
     def currency(self,) -> Optional[str]:
         """
-        Gets the currency property value. Type of currency used to calculate the cost of the call. For details, see ISO 4217.
+        Gets the currency property value. Type of currency used to calculate the cost of the call (ISO 4217).
         Returns: Optional[str]
         """
         return self._currency
@@ -241,7 +241,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
     @currency.setter
     def currency(self,value: Optional[str] = None) -> None:
         """
-        Sets the currency property value. Type of currency used to calculate the cost of the call. For details, see ISO 4217.
+        Sets the currency property value. Type of currency used to calculate the cost of the call (ISO 4217).
         Args:
             value: Value to set for the currency property.
         """
@@ -250,7 +250,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
     @property
     def destination_context(self,) -> Optional[str]:
         """
-        Gets the destinationContext property value. Whether the call was domestic (within a country or region) or international (outside a country or region) based on the user's location.
+        Gets the destinationContext property value. Indicates whether the call was Domestic (within a country or region) or International (outside a country or region) based on the user's location.
         Returns: Optional[str]
         """
         return self._destination_context
@@ -258,7 +258,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
     @destination_context.setter
     def destination_context(self,value: Optional[str] = None) -> None:
         """
-        Sets the destinationContext property value. Whether the call was domestic (within a country or region) or international (outside a country or region) based on the user's location.
+        Sets the destinationContext property value. Indicates whether the call was Domestic (within a country or region) or International (outside a country or region) based on the user's location.
         Args:
             value: Value to set for the destination_context property.
         """
@@ -354,7 +354,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
     @property
     def id(self,) -> Optional[str]:
         """
-        Gets the id property value. Unique call identifier. GUID.
+        Gets the id property value. Unique call identifier (GUID).
         Returns: Optional[str]
         """
         return self._id
@@ -362,7 +362,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
     @id.setter
     def id(self,value: Optional[str] = None) -> None:
         """
-        Sets the id property value. Unique call identifier. GUID.
+        Sets the id property value. Unique call identifier (GUID).
         Args:
             value: Value to set for the id property.
         """
@@ -439,7 +439,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
     @property
     def other_party_country_code(self,) -> Optional[str]:
         """
-        Gets the otherPartyCountryCode property value. The otherPartyCountryCode property
+        Gets the otherPartyCountryCode property value. Country code of the caller in case of an incoming call, or callee in case of an outgoing call. For details, see ISO 3166-1 alpha-2.
         Returns: Optional[str]
         """
         return self._other_party_country_code
@@ -447,7 +447,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
     @other_party_country_code.setter
     def other_party_country_code(self,value: Optional[str] = None) -> None:
         """
-        Sets the otherPartyCountryCode property value. The otherPartyCountryCode property
+        Sets the otherPartyCountryCode property value. Country code of the caller in case of an incoming call, or callee in case of an outgoing call. For details, see ISO 3166-1 alpha-2.
         Args:
             value: Value to set for the other_party_country_code property.
         """
@@ -559,7 +559,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
     @property
     def user_id(self,) -> Optional[str]:
         """
-        Gets the userId property value. Calling user's ID in Graph. GUID. This and other user info will be null/empty for bot call types (ucap_in, ucap_out).
+        Gets the userId property value. The unique identifier (GUID) of the user in Azure Active Directory. This and other user info will be null/empty for bot call types (ucap_in, ucap_out).
         Returns: Optional[str]
         """
         return self._user_id
@@ -567,7 +567,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
     @user_id.setter
     def user_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the userId property value. Calling user's ID in Graph. GUID. This and other user info will be null/empty for bot call types (ucap_in, ucap_out).
+        Sets the userId property value. The unique identifier (GUID) of the user in Azure Active Directory. This and other user info will be null/empty for bot call types (ucap_in, ucap_out).
         Args:
             value: Value to set for the user_id property.
         """

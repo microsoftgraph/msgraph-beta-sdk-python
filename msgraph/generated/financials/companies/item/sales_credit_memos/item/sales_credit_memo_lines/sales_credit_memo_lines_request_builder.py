@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .......models import sales_credit_memo_line_collection_response
     from .......models.o_data_errors import o_data_error
     from .count import count_request_builder
+    from .item import sales_credit_memo_line_item_request_builder
 
 class SalesCreditMemoLinesRequestBuilder():
     """
@@ -35,6 +36,21 @@ class SalesCreditMemoLinesRequestBuilder():
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
+    
+    def by_sales_credit_memo_line_id(self,sales_credit_memo_line_id: str) -> sales_credit_memo_line_item_request_builder.SalesCreditMemoLineItemRequestBuilder:
+        """
+        Provides operations to manage the salesCreditMemoLines property of the microsoft.graph.salesCreditMemo entity.
+        Args:
+            sales_credit_memo_line_id: Unique identifier of the item
+        Returns: sales_credit_memo_line_item_request_builder.SalesCreditMemoLineItemRequestBuilder
+        """
+        if sales_credit_memo_line_id is None:
+            raise Exception("sales_credit_memo_line_id cannot be undefined")
+        from .item import sales_credit_memo_line_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["salesCreditMemoLine%2Did"] = sales_credit_memo_line_id
+        return sales_credit_memo_line_item_request_builder.SalesCreditMemoLineItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[SalesCreditMemoLinesRequestBuilderGetRequestConfiguration] = None) -> Optional[sales_credit_memo_line_collection_response.SalesCreditMemoLineCollectionResponse]:
         """
