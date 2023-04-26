@@ -36,7 +36,7 @@ class EdiscoveryEstimateStatisticsRequestBuilder():
     
     async def post(self,request_configuration: Optional[EdiscoveryEstimateStatisticsRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Run an estimate of the number of emails and documents in the source collection. To learn more about source collections (also known as searches in eDiscovery), see Collect data for a case in Advanced eDiscovery.
+        Invoke action estimateStatistics
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class EdiscoveryEstimateStatisticsRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[EdiscoveryEstimateStatisticsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Run an estimate of the number of emails and documents in the source collection. To learn more about source collections (also known as searches in eDiscovery), see Collect data for a case in Advanced eDiscovery.
+        Invoke action estimateStatistics
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

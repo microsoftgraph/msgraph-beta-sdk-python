@@ -10,12 +10,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class GroupPolicyObjectFile(entity.Entity):
-    """
-    The Group Policy Object file uploaded by admin.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new groupPolicyObjectFile and sets the default values.
+        Instantiates a new GroupPolicyObjectFile and sets the default values.
         """
         super().__init__()
         # The Group Policy Object file content.

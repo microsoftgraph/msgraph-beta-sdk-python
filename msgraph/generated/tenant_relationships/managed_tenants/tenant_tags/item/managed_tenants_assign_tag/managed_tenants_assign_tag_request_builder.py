@@ -38,7 +38,7 @@ class ManagedTenantsAssignTagRequestBuilder():
     
     async def post(self,body: Optional[assign_tag_post_request_body.AssignTagPostRequestBody] = None, request_configuration: Optional[ManagedTenantsAssignTagRequestBuilderPostRequestConfiguration] = None) -> Optional[tenant_tag.TenantTag]:
         """
-        Assign the tenant tag to the specified managed tenants.
+        Invoke action assignTag
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +63,7 @@ class ManagedTenantsAssignTagRequestBuilder():
     
     def to_post_request_information(self,body: Optional[assign_tag_post_request_body.AssignTagPostRequestBody] = None, request_configuration: Optional[ManagedTenantsAssignTagRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Assign the tenant tag to the specified managed tenants.
+        Invoke action assignTag
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

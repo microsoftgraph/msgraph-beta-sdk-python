@@ -8,12 +8,9 @@ if TYPE_CHECKING:
 from . import device_management_configuration_setting_value
 
 class DeviceManagementConfigurationGroupSettingValue(device_management_configuration_setting_value.DeviceManagementConfigurationSettingValue):
-    """
-    Value of the GroupSetting
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceManagementConfigurationGroupSettingValue and sets the default values.
+        Instantiates a new DeviceManagementConfigurationGroupSettingValue and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.deviceManagementConfigurationGroupSettingValue"

@@ -56,7 +56,7 @@ class ReportSettingsRequestBuilder():
     
     async def get(self,request_configuration: Optional[ReportSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[admin_report_settings.AdminReportSettings]:
         """
-        Get the tenant-level settings for Microsoft 365 reports.
+        A container for administrative resources to manage reports.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[admin_report_settings.AdminReportSettings]
@@ -78,7 +78,7 @@ class ReportSettingsRequestBuilder():
     
     async def patch(self,body: Optional[admin_report_settings.AdminReportSettings] = None, request_configuration: Optional[ReportSettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[admin_report_settings.AdminReportSettings]:
         """
-        Update tenant-level settings for Microsoft 365 reports.
+        Update the navigation property reportSettings in admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class ReportSettingsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ReportSettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the tenant-level settings for Microsoft 365 reports.
+        A container for administrative resources to manage reports.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class ReportSettingsRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[admin_report_settings.AdminReportSettings] = None, request_configuration: Optional[ReportSettingsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update tenant-level settings for Microsoft 365 reports.
+        Update the navigation property reportSettings in admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class ReportSettingsRequestBuilder():
     @dataclass
     class ReportSettingsRequestBuilderGetQueryParameters():
         """
-        Get the tenant-level settings for Microsoft 365 reports.
+        A container for administrative resources to manage reports.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

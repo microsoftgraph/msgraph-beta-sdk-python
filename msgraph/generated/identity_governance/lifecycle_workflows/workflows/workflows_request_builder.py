@@ -54,7 +54,7 @@ class WorkflowsRequestBuilder():
     
     async def get(self,request_configuration: Optional[WorkflowsRequestBuilderGetRequestConfiguration] = None) -> Optional[workflow_collection_response.WorkflowCollectionResponse]:
         """
-        Get the workflow resources from the workflows navigation property.
+        The workflows in the lifecycle workflows instance.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[workflow_collection_response.WorkflowCollectionResponse]
@@ -76,7 +76,7 @@ class WorkflowsRequestBuilder():
     
     async def post(self,body: Optional[workflow.Workflow] = None, request_configuration: Optional[WorkflowsRequestBuilderPostRequestConfiguration] = None) -> Optional[workflow.Workflow]:
         """
-        Create a new workflow object. You can create up to 50 workflows in a tenant.
+        Create new navigation property to workflows for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class WorkflowsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[WorkflowsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the workflow resources from the workflows navigation property.
+        The workflows in the lifecycle workflows instance.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class WorkflowsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[workflow.Workflow] = None, request_configuration: Optional[WorkflowsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new workflow object. You can create up to 50 workflows in a tenant.
+        Create new navigation property to workflows for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class WorkflowsRequestBuilder():
     @dataclass
     class WorkflowsRequestBuilderGetQueryParameters():
         """
-        Get the workflow resources from the workflows navigation property.
+        The workflows in the lifecycle workflows instance.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

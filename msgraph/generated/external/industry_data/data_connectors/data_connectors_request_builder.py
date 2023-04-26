@@ -54,7 +54,7 @@ class DataConnectorsRequestBuilder():
     
     async def get(self,request_configuration: Optional[DataConnectorsRequestBuilderGetRequestConfiguration] = None) -> Optional[industry_data_connector_collection_response.IndustryDataConnectorCollectionResponse]:
         """
-        Get the industryDataConnector resources from the **dataConnector** navigation property.
+        Set of connectors for importing data from source systems.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[industry_data_connector_collection_response.IndustryDataConnectorCollectionResponse]
@@ -76,7 +76,7 @@ class DataConnectorsRequestBuilder():
     
     async def post(self,body: Optional[industry_data_connector.IndustryDataConnector] = None, request_configuration: Optional[DataConnectorsRequestBuilderPostRequestConfiguration] = None) -> Optional[industry_data_connector.IndustryDataConnector]:
         """
-        Create a new azureDataLakeConnector object.
+        Create new navigation property to dataConnectors for external
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class DataConnectorsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[DataConnectorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the industryDataConnector resources from the **dataConnector** navigation property.
+        Set of connectors for importing data from source systems.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class DataConnectorsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[industry_data_connector.IndustryDataConnector] = None, request_configuration: Optional[DataConnectorsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new azureDataLakeConnector object.
+        Create new navigation property to dataConnectors for external
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class DataConnectorsRequestBuilder():
     @dataclass
     class DataConnectorsRequestBuilderGetQueryParameters():
         """
-        Get the industryDataConnector resources from the **dataConnector** navigation property.
+        Set of connectors for importing data from source systems.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

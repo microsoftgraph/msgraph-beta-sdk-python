@@ -36,7 +36,7 @@ class StartRequestBuilder():
     
     async def post(self,request_configuration: Optional[StartRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Start an existing synchronization job. If the job is in a paused state, it will continue processing changes from the point where it was paused. If the job is in quarantine, the quarantine status will be cleared. Do not create scripts to call the start job continuously while it's running because that can cause the service to stop running. Use the start job only when the job is currently paused or in quarantine. 
+        Invoke action start
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class StartRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[StartRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Start an existing synchronization job. If the job is in a paused state, it will continue processing changes from the point where it was paused. If the job is in quarantine, the quarantine status will be cleared. Do not create scripts to call the start job continuously while it's running because that can cause the service to stop running. Use the start job only when the job is currently paused or in quarantine. 
+        Invoke action start
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

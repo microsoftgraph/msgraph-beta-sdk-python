@@ -3,7 +3,7 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import device_management_configuration_device_mode, device_management_configuration_exchange_online_setting_applicability, device_management_configuration_platforms, device_management_configuration_technologies, device_management_configuration_windows_setting_applicability
+    from . import device_management_configuration_application_setting_applicability, device_management_configuration_device_mode, device_management_configuration_exchange_online_setting_applicability, device_management_configuration_platforms, device_management_configuration_technologies, device_management_configuration_windows_setting_applicability
 
 class DeviceManagementConfigurationSettingApplicability(AdditionalDataHolder, Parsable):
     def __init__(self,) -> None:
@@ -54,6 +54,10 @@ class DeviceManagementConfigurationSettingApplicability(AdditionalDataHolder, Pa
         mapping_value_node = parse_node.get_child_node("@odata.type")
         if mapping_value_node:
             mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.deviceManagementConfigurationApplicationSettingApplicability":
+                from . import device_management_configuration_application_setting_applicability
+
+                return device_management_configuration_application_setting_applicability.DeviceManagementConfigurationApplicationSettingApplicability()
             if mapping_value == "#microsoft.graph.deviceManagementConfigurationExchangeOnlineSettingApplicability":
                 from . import device_management_configuration_exchange_online_setting_applicability
 
@@ -103,7 +107,7 @@ class DeviceManagementConfigurationSettingApplicability(AdditionalDataHolder, Pa
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import device_management_configuration_device_mode, device_management_configuration_exchange_online_setting_applicability, device_management_configuration_platforms, device_management_configuration_technologies, device_management_configuration_windows_setting_applicability
+        from . import device_management_configuration_application_setting_applicability, device_management_configuration_device_mode, device_management_configuration_exchange_online_setting_applicability, device_management_configuration_platforms, device_management_configuration_technologies, device_management_configuration_windows_setting_applicability
 
         fields: Dict[str, Callable[[Any], None]] = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

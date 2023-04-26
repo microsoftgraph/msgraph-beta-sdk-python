@@ -17,6 +17,8 @@ class MobileAppTroubleshootingEvent(device_management_troubleshooting_event.Devi
         self._app_log_collection_requests: Optional[List[app_log_collection_request.AppLogCollectionRequest]] = None
         # Intune application identifier.
         self._application_id: Optional[str] = None
+        # Device identifier created or collected by Intune.
+        self._device_id: Optional[str] = None
         # Intune Mobile Application Troubleshooting History Item
         self._history: Optional[List[mobile_app_troubleshooting_history_item.MobileAppTroubleshootingHistoryItem]] = None
         # Device identifier created or collected by Intune.
@@ -72,6 +74,23 @@ class MobileAppTroubleshootingEvent(device_management_troubleshooting_event.Devi
             raise Exception("parse_node cannot be undefined")
         return MobileAppTroubleshootingEvent()
     
+    @property
+    def device_id(self,) -> Optional[str]:
+        """
+        Gets the deviceId property value. Device identifier created or collected by Intune.
+        Returns: Optional[str]
+        """
+        return self._device_id
+    
+    @device_id.setter
+    def device_id(self,value: Optional[str] = None) -> None:
+        """
+        Sets the deviceId property value. Device identifier created or collected by Intune.
+        Args:
+            value: Value to set for the device_id property.
+        """
+        self._device_id = value
+    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -82,6 +101,7 @@ class MobileAppTroubleshootingEvent(device_management_troubleshooting_event.Devi
         fields: Dict[str, Callable[[Any], None]] = {
             "applicationId": lambda n : setattr(self, 'application_id', n.get_str_value()),
             "appLogCollectionRequests": lambda n : setattr(self, 'app_log_collection_requests', n.get_collection_of_object_values(app_log_collection_request.AppLogCollectionRequest)),
+            "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
             "history": lambda n : setattr(self, 'history', n.get_collection_of_object_values(mobile_app_troubleshooting_history_item.MobileAppTroubleshootingHistoryItem)),
             "managedDeviceIdentifier": lambda n : setattr(self, 'managed_device_identifier', n.get_str_value()),
             "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
@@ -135,6 +155,7 @@ class MobileAppTroubleshootingEvent(device_management_troubleshooting_event.Devi
         super().serialize(writer)
         writer.write_str_value("applicationId", self.application_id)
         writer.write_collection_of_object_values("appLogCollectionRequests", self.app_log_collection_requests)
+        writer.write_str_value("deviceId", self.device_id)
         writer.write_collection_of_object_values("history", self.history)
         writer.write_str_value("managedDeviceIdentifier", self.managed_device_identifier)
         writer.write_str_value("userId", self.user_id)

@@ -36,7 +36,7 @@ class StopRequestBuilder():
     
     async def post(self,request_configuration: Optional[StopRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Stop a currently active accessReviewInstance. After the access review instance stops, the instance status will be `Completed`, the reviewers can no longer give input, and the access review decisions can be applied. Stopping an instance will not effect future instances. To prevent a recurring access review from starting future instances, update the schedule definition to change its scheduled end date.
+        Invoke action stop
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class StopRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[StopRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Stop a currently active accessReviewInstance. After the access review instance stops, the instance status will be `Completed`, the reviewers can no longer give input, and the access review decisions can be applied. Stopping an instance will not effect future instances. To prevent a recurring access review from starting future instances, update the schedule definition to change its scheduled end date.
+        Invoke action stop
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

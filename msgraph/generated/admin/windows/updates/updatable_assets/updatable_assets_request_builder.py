@@ -58,7 +58,7 @@ class UpdatableAssetsRequestBuilder():
     
     async def get(self,request_configuration: Optional[UpdatableAssetsRequestBuilderGetRequestConfiguration] = None) -> Optional[updatable_asset_collection_response.UpdatableAssetCollectionResponse]:
         """
-        Get a list of updatableAsset objects and their properties. Listing updatable assets returns **updatableAsset** resources of the following derived types: azureADDevice and updatableAssetGroup. Use list azureADDevice resources or list updatableAssetGroup resources to filter and get resources of only one of the derived types.
+        Assets registered with the deployment service that can receive updates.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[updatable_asset_collection_response.UpdatableAssetCollectionResponse]
@@ -80,7 +80,7 @@ class UpdatableAssetsRequestBuilder():
     
     async def post(self,body: Optional[updatable_asset.UpdatableAsset] = None, request_configuration: Optional[UpdatableAssetsRequestBuilderPostRequestConfiguration] = None) -> Optional[updatable_asset.UpdatableAsset]:
         """
-        Create a new updatableAssetGroup object. The **updatableAssetGroup** resource inherits from updatableAsset.
+        Create new navigation property to updatableAssets for admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -105,7 +105,7 @@ class UpdatableAssetsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UpdatableAssetsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of updatableAsset objects and their properties. Listing updatable assets returns **updatableAsset** resources of the following derived types: azureADDevice and updatableAssetGroup. Use list azureADDevice resources or list updatableAssetGroup resources to filter and get resources of only one of the derived types.
+        Assets registered with the deployment service that can receive updates.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -123,7 +123,7 @@ class UpdatableAssetsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[updatable_asset.UpdatableAsset] = None, request_configuration: Optional[UpdatableAssetsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new updatableAssetGroup object. The **updatableAssetGroup** resource inherits from updatableAsset.
+        Create new navigation property to updatableAssets for admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -190,7 +190,7 @@ class UpdatableAssetsRequestBuilder():
     @dataclass
     class UpdatableAssetsRequestBuilderGetQueryParameters():
         """
-        Get a list of updatableAsset objects and their properties. Listing updatable assets returns **updatableAsset** resources of the following derived types: azureADDevice and updatableAssetGroup. Use list azureADDevice resources or list updatableAssetGroup resources to filter and get resources of only one of the derived types.
+        Assets registered with the deployment service that can receive updates.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

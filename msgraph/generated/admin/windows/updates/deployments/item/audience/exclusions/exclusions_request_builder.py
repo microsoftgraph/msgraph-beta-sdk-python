@@ -58,7 +58,7 @@ class ExclusionsRequestBuilder():
     
     async def get(self,request_configuration: Optional[ExclusionsRequestBuilderGetRequestConfiguration] = None) -> Optional[updatable_asset_collection_response.UpdatableAssetCollectionResponse]:
         """
-        List the updatableAsset resources that are excluded from a deploymentAudience.
+        Specifies the assets to exclude from the audience.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[updatable_asset_collection_response.UpdatableAssetCollectionResponse]
@@ -105,7 +105,7 @@ class ExclusionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ExclusionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List the updatableAsset resources that are excluded from a deploymentAudience.
+        Specifies the assets to exclude from the audience.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -190,7 +190,7 @@ class ExclusionsRequestBuilder():
     @dataclass
     class ExclusionsRequestBuilderGetQueryParameters():
         """
-        List the updatableAsset resources that are excluded from a deploymentAudience.
+        Specifies the assets to exclude from the audience.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -58,7 +58,7 @@ class MembersRequestBuilder():
     
     async def get(self,request_configuration: Optional[MembersRequestBuilderGetRequestConfiguration] = None) -> Optional[updatable_asset_collection_response.UpdatableAssetCollectionResponse]:
         """
-        List the updatableAsset resources that are members of a deploymentAudience.
+        Specifies the assets to include in the audience.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[updatable_asset_collection_response.UpdatableAssetCollectionResponse]
@@ -105,7 +105,7 @@ class MembersRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[MembersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List the updatableAsset resources that are members of a deploymentAudience.
+        Specifies the assets to include in the audience.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -190,7 +190,7 @@ class MembersRequestBuilder():
     @dataclass
     class MembersRequestBuilderGetQueryParameters():
         """
-        List the updatableAsset resources that are members of a deploymentAudience.
+        Specifies the assets to include in the audience.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

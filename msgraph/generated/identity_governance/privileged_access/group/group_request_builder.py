@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ....models import privileged_access_group
     from ....models.o_data_errors import o_data_error
+    from .assignment_approvals import assignment_approvals_request_builder
     from .assignment_schedule_instances import assignment_schedule_instances_request_builder
     from .assignment_schedule_requests import assignment_schedule_requests_request_builder
     from .assignment_schedules import assignment_schedules_request_builder
@@ -161,6 +162,15 @@ class GroupRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
+    
+    @property
+    def assignment_approvals(self) -> assignment_approvals_request_builder.AssignmentApprovalsRequestBuilder:
+        """
+        Provides operations to manage the assignmentApprovals property of the microsoft.graph.privilegedAccessGroup entity.
+        """
+        from .assignment_approvals import assignment_approvals_request_builder
+
+        return assignment_approvals_request_builder.AssignmentApprovalsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def assignment_schedule_instances(self) -> assignment_schedule_instances_request_builder.AssignmentScheduleInstancesRequestBuilder:

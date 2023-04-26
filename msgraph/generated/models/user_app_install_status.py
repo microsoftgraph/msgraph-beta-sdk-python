@@ -9,7 +9,7 @@ from . import entity
 
 class UserAppInstallStatus(entity.Entity):
     """
-    Contains properties for the installation status for a user.
+    Contains properties for the installation status for a user. This will be deprecated starting May, 2023 (Intune Release 2305).
     """
     def __init__(self,) -> None:
         """

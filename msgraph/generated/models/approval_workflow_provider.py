@@ -10,7 +10,7 @@ from . import entity
 class ApprovalWorkflowProvider(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new approvalWorkflowProvider and sets the default values.
+        Instantiates a new ApprovalWorkflowProvider and sets the default values.
         """
         super().__init__()
         # The businessFlows property

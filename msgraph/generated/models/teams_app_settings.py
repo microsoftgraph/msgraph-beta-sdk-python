@@ -13,7 +13,7 @@ class TeamsAppSettings(entity.Entity):
         Instantiates a new TeamsAppSettings and sets the default values.
         """
         super().__init__()
-        # Indicates whether Teams users are allowed to request admins access to certain Teams apps.
+        # Indicates whether users are allowed to request access to the unavailable Teams apps.
         self._allow_user_requests_for_app_access: Optional[bool] = None
         # Indicates whether resource-specific consent for chats/meetings has been enabled for the tenant. If true, Teams apps that are allowed in the tenant and require resource-specific permissions can be installed inside chats and meetings. If false, the installation of any Teams app that requires resource-specific permissions in a chat or a meeting will be blocked.
         self._is_chat_resource_specific_consent_enabled: Optional[bool] = None
@@ -23,7 +23,7 @@ class TeamsAppSettings(entity.Entity):
     @property
     def allow_user_requests_for_app_access(self,) -> Optional[bool]:
         """
-        Gets the allowUserRequestsForAppAccess property value. Indicates whether Teams users are allowed to request admins access to certain Teams apps.
+        Gets the allowUserRequestsForAppAccess property value. Indicates whether users are allowed to request access to the unavailable Teams apps.
         Returns: Optional[bool]
         """
         return self._allow_user_requests_for_app_access
@@ -31,7 +31,7 @@ class TeamsAppSettings(entity.Entity):
     @allow_user_requests_for_app_access.setter
     def allow_user_requests_for_app_access(self,value: Optional[bool] = None) -> None:
         """
-        Sets the allowUserRequestsForAppAccess property value. Indicates whether Teams users are allowed to request admins access to certain Teams apps.
+        Sets the allowUserRequestsForAppAccess property value. Indicates whether users are allowed to request access to the unavailable Teams apps.
         Args:
             value: Value to set for the allow_user_requests_for_app_access property.
         """

@@ -54,7 +54,7 @@ class ConnectorsRequestBuilder():
     
     async def get(self,request_configuration: Optional[ConnectorsRequestBuilderGetRequestConfiguration] = None) -> Optional[connector_collection_response.ConnectorCollectionResponse]:
         """
-        Retrieve a list of connector objects.
+        List of existing connector objects for applications published through Application Proxy. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[connector_collection_response.ConnectorCollectionResponse]
@@ -101,7 +101,7 @@ class ConnectorsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ConnectorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of connector objects.
+        List of existing connector objects for applications published through Application Proxy. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class ConnectorsRequestBuilder():
     @dataclass
     class ConnectorsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of connector objects.
+        List of existing connector objects for applications published through Application Proxy. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

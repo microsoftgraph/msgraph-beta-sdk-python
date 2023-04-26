@@ -3,7 +3,7 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import planner_bucket_property_rule, planner_plan_property_rule, planner_rule_kind, planner_task_property_rule
+    from . import planner_rule_kind, planner_task_property_rule
 
 class PlannerPropertyRule(AdditionalDataHolder, Parsable):
     def __init__(self,) -> None:
@@ -48,14 +48,6 @@ class PlannerPropertyRule(AdditionalDataHolder, Parsable):
         mapping_value_node = parse_node.get_child_node("@odata.type")
         if mapping_value_node:
             mapping_value = mapping_value_node.get_str_value()
-            if mapping_value == "#microsoft.graph.plannerBucketPropertyRule":
-                from . import planner_bucket_property_rule
-
-                return planner_bucket_property_rule.PlannerBucketPropertyRule()
-            if mapping_value == "#microsoft.graph.plannerPlanPropertyRule":
-                from . import planner_plan_property_rule
-
-                return planner_plan_property_rule.PlannerPlanPropertyRule()
             if mapping_value == "#microsoft.graph.plannerTaskPropertyRule":
                 from . import planner_task_property_rule
 
@@ -67,7 +59,7 @@ class PlannerPropertyRule(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import planner_bucket_property_rule, planner_plan_property_rule, planner_rule_kind, planner_task_property_rule
+        from . import planner_rule_kind, planner_task_property_rule
 
         fields: Dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

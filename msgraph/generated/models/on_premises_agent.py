@@ -10,7 +10,7 @@ from . import entity
 class OnPremisesAgent(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new onPremisesAgent and sets the default values.
+        Instantiates a new OnPremisesAgent and sets the default values.
         """
         super().__init__()
         # List of onPremisesAgentGroups that an onPremisesAgent is assigned to. Read-only. Nullable.

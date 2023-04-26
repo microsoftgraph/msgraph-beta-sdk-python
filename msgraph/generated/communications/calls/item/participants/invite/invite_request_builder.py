@@ -38,7 +38,7 @@ class InviteRequestBuilder():
     
     async def post(self,body: Optional[invite_post_request_body.InvitePostRequestBody] = None, request_configuration: Optional[InviteRequestBuilderPostRequestConfiguration] = None) -> Optional[invite_participants_operation.InviteParticipantsOperation]:
         """
-        Invite participants to the active call. For more information about how to handle operations, see commsOperation.
+        Invoke action invite
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +63,7 @@ class InviteRequestBuilder():
     
     def to_post_request_information(self,body: Optional[invite_post_request_body.InvitePostRequestBody] = None, request_configuration: Optional[InviteRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invite participants to the active call. For more information about how to handle operations, see commsOperation.
+        Invoke action invite
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

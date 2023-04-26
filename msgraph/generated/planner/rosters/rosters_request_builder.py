@@ -76,7 +76,7 @@ class RostersRequestBuilder():
     
     async def post(self,body: Optional[planner_roster.PlannerRoster] = None, request_configuration: Optional[RostersRequestBuilderPostRequestConfiguration] = None) -> Optional[planner_roster.PlannerRoster]:
         """
-        Create a new plannerRoster object.
+        Create new navigation property to rosters for planner
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class RostersRequestBuilder():
     
     def to_post_request_information(self,body: Optional[planner_roster.PlannerRoster] = None, request_configuration: Optional[RostersRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new plannerRoster object.
+        Create new navigation property to rosters for planner
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

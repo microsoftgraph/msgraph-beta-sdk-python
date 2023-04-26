@@ -36,7 +36,7 @@ class ReuploadRequestBuilder():
     
     async def post(self,request_configuration: Optional[ReuploadRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Reupload a cloudPcDeviceImage object that failed to upload.
+        Invoke action reupload
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class ReuploadRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[ReuploadRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Reupload a cloudPcDeviceImage object that failed to upload.
+        Invoke action reupload
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

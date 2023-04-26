@@ -10,7 +10,7 @@ from . import entity
 
 class MobileAppInstallStatus(entity.Entity):
     """
-    Contains properties for the installation state of a mobile app for a device.
+    Contains properties for the installation state of a mobile app for a device. This will be deprecated starting May, 2023 (Intune Release 2305).
     """
     def __init__(self,) -> None:
         """

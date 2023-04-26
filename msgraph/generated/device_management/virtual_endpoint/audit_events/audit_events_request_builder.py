@@ -55,7 +55,7 @@ class AuditEventsRequestBuilder():
     
     async def get(self,request_configuration: Optional[AuditEventsRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_audit_event_collection_response.CloudPcAuditEventCollectionResponse]:
         """
-        List all the cloudPcAuditEvent objects for the tenant.
+        Cloud PC audit event.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cloud_pc_audit_event_collection_response.CloudPcAuditEventCollectionResponse]
@@ -102,7 +102,7 @@ class AuditEventsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AuditEventsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List all the cloudPcAuditEvent objects for the tenant.
+        Cloud PC audit event.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -160,7 +160,7 @@ class AuditEventsRequestBuilder():
     @dataclass
     class AuditEventsRequestBuilderGetQueryParameters():
         """
-        List all the cloudPcAuditEvent objects for the tenant.
+        Cloud PC audit event.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

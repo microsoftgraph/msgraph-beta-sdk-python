@@ -54,7 +54,7 @@ class ChildTagsRequestBuilder():
     
     async def get(self,request_configuration: Optional[ChildTagsRequestBuilderGetRequestConfiguration] = None) -> Optional[tag_collection_response.TagCollectionResponse]:
         """
-        Get a list of child tag objects associated with a tag.
+        Returns the tags that are a child of a tag.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[tag_collection_response.TagCollectionResponse]
@@ -76,7 +76,7 @@ class ChildTagsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ChildTagsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of child tag objects associated with a tag.
+        Returns the tags that are a child of a tag.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +104,7 @@ class ChildTagsRequestBuilder():
     @dataclass
     class ChildTagsRequestBuilderGetQueryParameters():
         """
-        Get a list of child tag objects associated with a tag.
+        Returns the tags that are a child of a tag.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -54,7 +54,7 @@ class EmailThreatsRequestBuilder():
     
     async def get(self,request_configuration: Optional[EmailThreatsRequestBuilderGetRequestConfiguration] = None) -> Optional[email_threat_submission_collection_response.EmailThreatSubmissionCollectionResponse]:
         """
-        Get a list of the emailThreatSubmission objects and their properties.
+        Get emailThreats from threatSubmission
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[email_threat_submission_collection_response.EmailThreatSubmissionCollectionResponse]
@@ -76,7 +76,7 @@ class EmailThreatsRequestBuilder():
     
     async def post(self,body: Optional[email_threat_submission.EmailThreatSubmission] = None, request_configuration: Optional[EmailThreatsRequestBuilderPostRequestConfiguration] = None) -> Optional[email_threat_submission.EmailThreatSubmission]:
         """
-        Create a new emailThreatSubmission object.
+        Create new navigation property to emailThreats for threatSubmission
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class EmailThreatsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[EmailThreatsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the emailThreatSubmission objects and their properties.
+        Get emailThreats from threatSubmission
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class EmailThreatsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[email_threat_submission.EmailThreatSubmission] = None, request_configuration: Optional[EmailThreatsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new emailThreatSubmission object.
+        Create new navigation property to emailThreats for threatSubmission
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class EmailThreatsRequestBuilder():
     @dataclass
     class EmailThreatsRequestBuilderGetQueryParameters():
         """
-        Get a list of the emailThreatSubmission objects and their properties.
+        Get emailThreats from threatSubmission
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

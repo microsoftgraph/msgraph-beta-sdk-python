@@ -55,7 +55,7 @@ class IdentityProvidersRequestBuilder():
     
     async def get(self,request_configuration: Optional[IdentityProvidersRequestBuilderGetRequestConfiguration] = None) -> Optional[identity_provider_collection_response.IdentityProviderCollectionResponse]:
         """
-        Get the identity providers in a b2cIdentityUserFlow object.
+        Get identityProviders from identity
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[identity_provider_collection_response.IdentityProviderCollectionResponse]
@@ -77,7 +77,7 @@ class IdentityProvidersRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[IdentityProvidersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the identity providers in a b2cIdentityUserFlow object.
+        Get identityProviders from identity
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -114,7 +114,7 @@ class IdentityProvidersRequestBuilder():
     @dataclass
     class IdentityProvidersRequestBuilderGetQueryParameters():
         """
-        Get the identity providers in a b2cIdentityUserFlow object.
+        Get identityProviders from identity
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

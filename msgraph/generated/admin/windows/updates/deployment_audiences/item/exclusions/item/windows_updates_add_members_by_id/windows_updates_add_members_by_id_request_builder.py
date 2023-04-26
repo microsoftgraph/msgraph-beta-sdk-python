@@ -37,7 +37,7 @@ class WindowsUpdatesAddMembersByIdRequestBuilder():
     
     async def post(self,body: Optional[add_members_by_id_post_request_body.AddMembersByIdPostRequestBody] = None, request_configuration: Optional[WindowsUpdatesAddMembersByIdRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Add members of the same type to an updatableAssetGroup. You can also use the method addMembers to add members.
+        Invoke action addMembersById
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -59,7 +59,7 @@ class WindowsUpdatesAddMembersByIdRequestBuilder():
     
     def to_post_request_information(self,body: Optional[add_members_by_id_post_request_body.AddMembersByIdPostRequestBody] = None, request_configuration: Optional[WindowsUpdatesAddMembersByIdRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Add members of the same type to an updatableAssetGroup. You can also use the method addMembers to add members.
+        Invoke action addMembersById
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

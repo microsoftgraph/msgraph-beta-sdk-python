@@ -54,7 +54,7 @@ class RoleAssignmentsRequestBuilder():
     
     async def get(self,request_configuration: Optional[RoleAssignmentsRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_assignment_multiple_collection_response.UnifiedRoleAssignmentMultipleCollectionResponse]:
         """
-        Get a list of unifiedRoleAssignmentMultiple objects for an RBAC provider. The following RBAC providers are currently supported:- Cloud PC - device management (Intune) For other Microsoft 365 applications (like Azure AD), use unifiedRoleAssignment.
+        Get roleAssignments from roleManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[unified_role_assignment_multiple_collection_response.UnifiedRoleAssignmentMultipleCollectionResponse]
@@ -76,7 +76,7 @@ class RoleAssignmentsRequestBuilder():
     
     async def post(self,body: Optional[unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple] = None, request_configuration: Optional[RoleAssignmentsRequestBuilderPostRequestConfiguration] = None) -> Optional[unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple]:
         """
-        Create a new unifiedRoleAssignmentMultiple object for an RBAC provider.  The following RBAC providers are currently supported:- Cloud PC - device management (Intune) For other Microsoft 365 applications (like Azure AD), use unifiedRoleAssignment.
+        Create new navigation property to roleAssignments for roleManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class RoleAssignmentsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RoleAssignmentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of unifiedRoleAssignmentMultiple objects for an RBAC provider. The following RBAC providers are currently supported:- Cloud PC - device management (Intune) For other Microsoft 365 applications (like Azure AD), use unifiedRoleAssignment.
+        Get roleAssignments from roleManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class RoleAssignmentsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple] = None, request_configuration: Optional[RoleAssignmentsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new unifiedRoleAssignmentMultiple object for an RBAC provider.  The following RBAC providers are currently supported:- Cloud PC - device management (Intune) For other Microsoft 365 applications (like Azure AD), use unifiedRoleAssignment.
+        Create new navigation property to roleAssignments for roleManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class RoleAssignmentsRequestBuilder():
     @dataclass
     class RoleAssignmentsRequestBuilderGetQueryParameters():
         """
-        Get a list of unifiedRoleAssignmentMultiple objects for an RBAC provider. The following RBAC providers are currently supported:- Cloud PC - device management (Intune) For other Microsoft 365 applications (like Azure AD), use unifiedRoleAssignment.
+        Get roleAssignments from roleManagement
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

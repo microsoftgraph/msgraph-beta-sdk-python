@@ -16,7 +16,6 @@ if TYPE_CHECKING:
     from .operations import operations_request_builder
     from .printers import printers_request_builder
     from .printer_shares import printer_shares_request_builder
-    from .reports import reports_request_builder
     from .services import services_request_builder
     from .shares import shares_request_builder
     from .task_definitions import task_definitions_request_builder
@@ -164,15 +163,6 @@ class PrintRequestBuilder():
         from .printer_shares import printer_shares_request_builder
 
         return printer_shares_request_builder.PrinterSharesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def reports(self) -> reports_request_builder.ReportsRequestBuilder:
-        """
-        Provides operations to manage the reports property of the microsoft.graph.print entity.
-        """
-        from .reports import reports_request_builder
-
-        return reports_request_builder.ReportsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def services(self) -> services_request_builder.ServicesRequestBuilder:

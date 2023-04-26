@@ -54,7 +54,7 @@ class UserCredentialUsageDetailsRequestBuilder():
     
     async def get(self,request_configuration: Optional[UserCredentialUsageDetailsRequestBuilderGetRequestConfiguration] = None) -> Optional[user_credential_usage_details_collection_response.UserCredentialUsageDetailsCollectionResponse]:
         """
-        Get a list of userCredentialUsageDetails objects for a given tenant. Details include user information, status of the reset, and the reason for failure.
+        Represents the self-service password reset (SSPR) usage for a given tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[user_credential_usage_details_collection_response.UserCredentialUsageDetailsCollectionResponse]
@@ -101,7 +101,7 @@ class UserCredentialUsageDetailsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UserCredentialUsageDetailsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of userCredentialUsageDetails objects for a given tenant. Details include user information, status of the reset, and the reason for failure.
+        Represents the self-service password reset (SSPR) usage for a given tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class UserCredentialUsageDetailsRequestBuilder():
     @dataclass
     class UserCredentialUsageDetailsRequestBuilderGetQueryParameters():
         """
-        Get a list of userCredentialUsageDetails objects for a given tenant. Details include user information, status of the reset, and the reason for failure.
+        Represents the self-service password reset (SSPR) usage for a given tenant.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

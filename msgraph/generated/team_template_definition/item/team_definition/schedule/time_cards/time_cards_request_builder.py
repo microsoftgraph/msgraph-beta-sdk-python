@@ -55,7 +55,7 @@ class TimeCardsRequestBuilder():
     
     async def get(self,request_configuration: Optional[TimeCardsRequestBuilderGetRequestConfiguration] = None) -> Optional[time_card_collection_response.TimeCardCollectionResponse]:
         """
-        Retrieve a list of timeCard entries in a schedule.
+        Get timeCards from teamTemplateDefinition
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[time_card_collection_response.TimeCardCollectionResponse]
@@ -77,7 +77,7 @@ class TimeCardsRequestBuilder():
     
     async def post(self,body: Optional[time_card.TimeCard] = None, request_configuration: Optional[TimeCardsRequestBuilderPostRequestConfiguration] = None) -> Optional[time_card.TimeCard]:
         """
-        Create a timeCard instance in a schedule.
+        Create new navigation property to timeCards for teamTemplateDefinition
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -102,7 +102,7 @@ class TimeCardsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TimeCardsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of timeCard entries in a schedule.
+        Get timeCards from teamTemplateDefinition
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -120,7 +120,7 @@ class TimeCardsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[time_card.TimeCard] = None, request_configuration: Optional[TimeCardsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a timeCard instance in a schedule.
+        Create new navigation property to timeCards for teamTemplateDefinition
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -160,7 +160,7 @@ class TimeCardsRequestBuilder():
     @dataclass
     class TimeCardsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of timeCard entries in a schedule.
+        Get timeCards from teamTemplateDefinition
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

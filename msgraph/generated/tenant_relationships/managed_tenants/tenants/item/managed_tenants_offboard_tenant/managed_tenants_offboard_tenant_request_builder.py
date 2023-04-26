@@ -37,7 +37,7 @@ class ManagedTenantsOffboardTenantRequestBuilder():
     
     async def post(self,request_configuration: Optional[ManagedTenantsOffboardTenantRequestBuilderPostRequestConfiguration] = None) -> Optional[tenant.Tenant]:
         """
-        Carries out the appropriate procedures to remove a managed tenant from the multi-tenant management platform. No relationships, such as commerce and delegate administrative privileges, will be impacted. The only change made by invoking this action is the tenant will be deprovisioned from the multi-tenant management platform.
+        Invoke action offboardTenant
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[tenant.Tenant]
@@ -59,7 +59,7 @@ class ManagedTenantsOffboardTenantRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[ManagedTenantsOffboardTenantRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Carries out the appropriate procedures to remove a managed tenant from the multi-tenant management platform. No relationships, such as commerce and delegate administrative privileges, will be impacted. The only change made by invoking this action is the tenant will be deprovisioned from the multi-tenant management platform.
+        Invoke action offboardTenant
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

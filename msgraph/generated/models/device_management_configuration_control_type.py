@@ -1,18 +1,20 @@
 from enum import Enum
 
 class DeviceManagementConfigurationControlType(Enum):
-    # Don’t override default
+    # Default. UX uses default UX element base on setting type for the setting.
     Default = "default",
-    # Display Choice in dropdown
+    # Display the setting in dropdown box.
     Dropdown = "dropdown",
-    # Display text input in small text input
+    # Display text input in small text input.
     SmallTextBox = "smallTextBox",
-    # Display text input in large text input
+    # Display text input in large text input.
     LargeTextBox = "largeTextBox",
-    # Allow for toggle control type
+    # Allow for toggle control type.
     Toggle = "toggle",
-    # Allow for multiheader grid control type
+    # Allow for multiheader grid control type.
     MultiheaderGrid = "multiheaderGrid",
-    # Allow for context pane control type
+    # Allow for context pane control type.
     ContextPane = "contextPane",
+    # Evolvable enumeration sentinel value. Do not use.
+    UnknownFutureValue = "unknownFutureValue",
 

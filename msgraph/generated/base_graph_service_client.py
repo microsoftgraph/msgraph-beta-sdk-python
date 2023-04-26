@@ -42,6 +42,7 @@ if TYPE_CHECKING:
     from .data_classification import data_classification_request_builder
     from .data_policy_operations import data_policy_operations_request_builder
     from .device_app_management import device_app_management_request_builder
+    from .device_local_credentials import device_local_credentials_request_builder
     from .device_management import device_management_request_builder
     from .devices import devices_request_builder
     from .directory import directory_request_builder
@@ -79,7 +80,6 @@ if TYPE_CHECKING:
     from .mobility_management_policies import mobility_management_policies_request_builder
     from .monitoring import monitoring_request_builder
     from .oauth2_permission_grants import oauth2_permission_grants_request_builder
-    from .office_configuration import office_configuration_request_builder
     from .on_premises_publishing_profiles import on_premises_publishing_profiles_request_builder
     from .organization import organization_request_builder
     from .payload_response import payload_response_request_builder
@@ -440,6 +440,15 @@ class BaseGraphServiceClient():
         return device_app_management_request_builder.DeviceAppManagementRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def device_local_credentials(self) -> device_local_credentials_request_builder.DeviceLocalCredentialsRequestBuilder:
+        """
+        Provides operations to manage the collection of deviceLocalCredentialInfo entities.
+        """
+        from .device_local_credentials import device_local_credentials_request_builder
+
+        return device_local_credentials_request_builder.DeviceLocalCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def device_management(self) -> device_management_request_builder.DeviceManagementRequestBuilder:
         """
         Provides operations to manage the deviceManagement singleton.
@@ -771,15 +780,6 @@ class BaseGraphServiceClient():
         from .oauth2_permission_grants import oauth2_permission_grants_request_builder
 
         return oauth2_permission_grants_request_builder.Oauth2PermissionGrantsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def office_configuration(self) -> office_configuration_request_builder.OfficeConfigurationRequestBuilder:
-        """
-        Provides operations to manage the officeConfiguration singleton.
-        """
-        from .office_configuration import office_configuration_request_builder
-
-        return office_configuration_request_builder.OfficeConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def on_premises_publishing_profiles(self) -> on_premises_publishing_profiles_request_builder.OnPremisesPublishingProfilesRequestBuilder:

@@ -76,7 +76,7 @@ class ReviewSetsRequestBuilder():
     
     async def post(self,body: Optional[review_set.ReviewSet] = None, request_configuration: Optional[ReviewSetsRequestBuilderPostRequestConfiguration] = None) -> Optional[review_set.ReviewSet]:
         """
-        Create a new reviewSet object. The request body contains the display name of the review set, which is the only writable property.
+        Create new navigation property to reviewSets for compliance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class ReviewSetsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[review_set.ReviewSet] = None, request_configuration: Optional[ReviewSetsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new reviewSet object. The request body contains the display name of the review set, which is the only writable property.
+        Create new navigation property to reviewSets for compliance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

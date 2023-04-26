@@ -11,7 +11,7 @@ from . import entity
 class TeamworkDeviceHealth(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new teamworkDeviceHealth and sets the default values.
+        Instantiates a new TeamworkDeviceHealth and sets the default values.
         """
         super().__init__()
         # The connection property

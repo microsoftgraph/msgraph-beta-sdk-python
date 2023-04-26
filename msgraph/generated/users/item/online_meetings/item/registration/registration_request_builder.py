@@ -38,7 +38,7 @@ class RegistrationRequestBuilder():
     
     async def delete(self,request_configuration: Optional[RegistrationRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Disable and delete the meetingRegistration of an onlineMeeting on behalf of the organizer.
+        Delete navigation property registration for users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -57,7 +57,7 @@ class RegistrationRequestBuilder():
     
     async def get(self,request_configuration: Optional[RegistrationRequestBuilderGetRequestConfiguration] = None) -> Optional[meeting_registration.MeetingRegistration]:
         """
-        Get the externalMeetingRegistration details associated with an onlineMeeting.
+        The registration that has been enabled for an online meeting. One online meeting can only have one registration enabled.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[meeting_registration.MeetingRegistration]
@@ -79,7 +79,7 @@ class RegistrationRequestBuilder():
     
     async def patch(self,body: Optional[meeting_registration.MeetingRegistration] = None, request_configuration: Optional[RegistrationRequestBuilderPatchRequestConfiguration] = None) -> Optional[meeting_registration.MeetingRegistration]:
         """
-        Update the details of a meetingRegistration object assciated with an onlineMeeting on behalf of the organizer.
+        Update the navigation property registration in users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -104,7 +104,7 @@ class RegistrationRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[RegistrationRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Disable and delete the meetingRegistration of an onlineMeeting on behalf of the organizer.
+        Delete navigation property registration for users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -120,7 +120,7 @@ class RegistrationRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RegistrationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the externalMeetingRegistration details associated with an onlineMeeting.
+        The registration that has been enabled for an online meeting. One online meeting can only have one registration enabled.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,7 +138,7 @@ class RegistrationRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[meeting_registration.MeetingRegistration] = None, request_configuration: Optional[RegistrationRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the details of a meetingRegistration object assciated with an onlineMeeting on behalf of the organizer.
+        Update the navigation property registration in users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -181,7 +181,7 @@ class RegistrationRequestBuilder():
     @dataclass
     class RegistrationRequestBuilderGetQueryParameters():
         """
-        Get the externalMeetingRegistration details associated with an onlineMeeting.
+        The registration that has been enabled for an online meeting. One online meeting can only have one registration enabled.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -37,7 +37,7 @@ class ManagedTenantsResetTenantOnboardingStatusRequestBuilder():
     
     async def post(self,request_configuration: Optional[ManagedTenantsResetTenantOnboardingStatusRequestBuilderPostRequestConfiguration] = None) -> Optional[tenant.Tenant]:
         """
-        Carries out the appropriate procedures to reset the onboarding status for the managed tenant that was removed from the multi-tenant management platform using the offboardTenant action. By invoking this action the platform will attempt to onboard the managed tenant for management.
+        Invoke action resetTenantOnboardingStatus
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[tenant.Tenant]
@@ -59,7 +59,7 @@ class ManagedTenantsResetTenantOnboardingStatusRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[ManagedTenantsResetTenantOnboardingStatusRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Carries out the appropriate procedures to reset the onboarding status for the managed tenant that was removed from the multi-tenant management platform using the offboardTenant action. By invoking this action the platform will attempt to onboard the managed tenant for management.
+        Invoke action resetTenantOnboardingStatus
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

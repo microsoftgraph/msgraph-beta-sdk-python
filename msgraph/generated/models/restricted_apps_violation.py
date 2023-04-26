@@ -8,12 +8,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class RestrictedAppsViolation(entity.Entity):
-    """
-    Violation of restricted apps configuration profile per device per user
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new restrictedAppsViolation and sets the default values.
+        Instantiates a new RestrictedAppsViolation and sets the default values.
         """
         super().__init__()
         # Device configuration profile unique identifier, must be Guid

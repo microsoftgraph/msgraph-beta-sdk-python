@@ -54,7 +54,7 @@ class SynchronizationProfilesRequestBuilder():
     
     async def get(self,request_configuration: Optional[SynchronizationProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[education_synchronization_profile_collection_response.EducationSynchronizationProfileCollectionResponse]:
         """
-        Retrieve the collection of school data synchronization profiles in the tenant.
+        Get synchronizationProfiles from education
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[education_synchronization_profile_collection_response.EducationSynchronizationProfileCollectionResponse]
@@ -101,7 +101,7 @@ class SynchronizationProfilesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SynchronizationProfilesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the collection of school data synchronization profiles in the tenant.
+        Get synchronizationProfiles from education
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class SynchronizationProfilesRequestBuilder():
     @dataclass
     class SynchronizationProfilesRequestBuilderGetQueryParameters():
         """
-        Retrieve the collection of school data synchronization profiles in the tenant.
+        Get synchronizationProfiles from education
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

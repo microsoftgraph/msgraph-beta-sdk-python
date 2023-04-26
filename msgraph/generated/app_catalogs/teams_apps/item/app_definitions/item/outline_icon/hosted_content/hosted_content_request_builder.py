@@ -57,7 +57,7 @@ class HostedContentRequestBuilder():
     
     async def get(self,request_configuration: Optional[HostedContentRequestBuilderGetRequestConfiguration] = None) -> Optional[teamwork_hosted_content.TeamworkHostedContent]:
         """
-        Retrieve the hosted content in an app's icon.
+        The contents of the app icon if the icon is hosted within the Teams infrastructure.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[teamwork_hosted_content.TeamworkHostedContent]
@@ -120,7 +120,7 @@ class HostedContentRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[HostedContentRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the hosted content in an app's icon.
+        The contents of the app icon if the icon is hosted within the Teams infrastructure.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -181,7 +181,7 @@ class HostedContentRequestBuilder():
     @dataclass
     class HostedContentRequestBuilderGetQueryParameters():
         """
-        Retrieve the hosted content in an app's icon.
+        The contents of the app icon if the icon is hosted within the Teams infrastructure.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

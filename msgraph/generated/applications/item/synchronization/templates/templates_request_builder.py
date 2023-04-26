@@ -54,7 +54,7 @@ class TemplatesRequestBuilder():
     
     async def get(self,request_configuration: Optional[TemplatesRequestBuilderGetRequestConfiguration] = None) -> Optional[synchronization_template_collection_response.SynchronizationTemplateCollectionResponse]:
         """
-        List the synchronization templates associated with a given application or service principal.
+        Pre-configured synchronization settings for a particular application.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[synchronization_template_collection_response.SynchronizationTemplateCollectionResponse]
@@ -101,7 +101,7 @@ class TemplatesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TemplatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List the synchronization templates associated with a given application or service principal.
+        Pre-configured synchronization settings for a particular application.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class TemplatesRequestBuilder():
     @dataclass
     class TemplatesRequestBuilderGetQueryParameters():
         """
-        List the synchronization templates associated with a given application or service principal.
+        Pre-configured synchronization settings for a particular application.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

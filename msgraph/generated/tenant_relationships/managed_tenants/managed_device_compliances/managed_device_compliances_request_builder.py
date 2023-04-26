@@ -54,7 +54,7 @@ class ManagedDeviceCompliancesRequestBuilder():
     
     async def get(self,request_configuration: Optional[ManagedDeviceCompliancesRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_device_compliance_collection_response.ManagedDeviceComplianceCollectionResponse]:
         """
-        Get a list of the managedDeviceCompliance objects and their properties.
+        The collection of compliance for managed devices across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[managed_device_compliance_collection_response.ManagedDeviceComplianceCollectionResponse]
@@ -101,7 +101,7 @@ class ManagedDeviceCompliancesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ManagedDeviceCompliancesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the managedDeviceCompliance objects and their properties.
+        The collection of compliance for managed devices across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class ManagedDeviceCompliancesRequestBuilder():
     @dataclass
     class ManagedDeviceCompliancesRequestBuilderGetQueryParameters():
         """
-        Get a list of the managedDeviceCompliance objects and their properties.
+        The collection of compliance for managed devices across managed tenants.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -56,7 +56,7 @@ class AccessReviewPolicyRequestBuilder():
     
     async def get(self,request_configuration: Optional[AccessReviewPolicyRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_policy.AccessReviewPolicy]:
         """
-        Read the properties and relationships of an accessReviewPolicy object.
+        The policy that contains directory-level access review settings.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_review_policy.AccessReviewPolicy]
@@ -78,7 +78,7 @@ class AccessReviewPolicyRequestBuilder():
     
     async def patch(self,body: Optional[access_review_policy.AccessReviewPolicy] = None, request_configuration: Optional[AccessReviewPolicyRequestBuilderPatchRequestConfiguration] = None) -> Optional[access_review_policy.AccessReviewPolicy]:
         """
-        Update the properties of an accessReviewPolicy object.
+        Update the navigation property accessReviewPolicy in policies
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class AccessReviewPolicyRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AccessReviewPolicyRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an accessReviewPolicy object.
+        The policy that contains directory-level access review settings.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class AccessReviewPolicyRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[access_review_policy.AccessReviewPolicy] = None, request_configuration: Optional[AccessReviewPolicyRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an accessReviewPolicy object.
+        Update the navigation property accessReviewPolicy in policies
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class AccessReviewPolicyRequestBuilder():
     @dataclass
     class AccessReviewPolicyRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an accessReviewPolicy object.
+        The policy that contains directory-level access review settings.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

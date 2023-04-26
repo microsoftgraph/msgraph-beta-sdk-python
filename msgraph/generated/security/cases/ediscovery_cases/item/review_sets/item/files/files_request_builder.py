@@ -54,7 +54,7 @@ class FilesRequestBuilder():
     
     async def get(self,request_configuration: Optional[FilesRequestBuilderGetRequestConfiguration] = None) -> Optional[ediscovery_file_collection_response.EdiscoveryFileCollectionResponse]:
         """
-        Get a list of the ediscoveryFile objects and their properties.
+        Represents files within the review set.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ediscovery_file_collection_response.EdiscoveryFileCollectionResponse]
@@ -101,7 +101,7 @@ class FilesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[FilesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the ediscoveryFile objects and their properties.
+        Represents files within the review set.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class FilesRequestBuilder():
     @dataclass
     class FilesRequestBuilderGetQueryParameters():
         """
-        Get a list of the ediscoveryFile objects and their properties.
+        Represents files within the review set.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

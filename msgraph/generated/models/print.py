@@ -3,7 +3,7 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import printer, printer_share, print_connector, print_operation, print_service, print_settings, print_task_definition, report_root
+    from . import printer, printer_share, print_connector, print_operation, print_service, print_settings, print_task_definition
 
 class Print(AdditionalDataHolder, Parsable):
     def __init__(self,) -> None:
@@ -23,8 +23,6 @@ class Print(AdditionalDataHolder, Parsable):
         self._printer_shares: Optional[List[printer_share.PrinterShare]] = None
         # The list of printers registered in the tenant.
         self._printers: Optional[List[printer.Printer]] = None
-        # The reports property
-        self._reports: Optional[report_root.ReportRoot] = None
         # The list of available Universal Print service endpoints.
         self._services: Optional[List[print_service.PrintService]] = None
         # Tenant-wide settings for the Universal Print service.
@@ -85,7 +83,7 @@ class Print(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import printer, printer_share, print_connector, print_operation, print_service, print_settings, print_task_definition, report_root
+        from . import printer, printer_share, print_connector, print_operation, print_service, print_settings, print_task_definition
 
         fields: Dict[str, Callable[[Any], None]] = {
             "connectors": lambda n : setattr(self, 'connectors', n.get_collection_of_object_values(print_connector.PrintConnector)),
@@ -93,7 +91,6 @@ class Print(AdditionalDataHolder, Parsable):
             "operations": lambda n : setattr(self, 'operations', n.get_collection_of_object_values(print_operation.PrintOperation)),
             "printers": lambda n : setattr(self, 'printers', n.get_collection_of_object_values(printer.Printer)),
             "printerShares": lambda n : setattr(self, 'printer_shares', n.get_collection_of_object_values(printer_share.PrinterShare)),
-            "reports": lambda n : setattr(self, 'reports', n.get_object_value(report_root.ReportRoot)),
             "services": lambda n : setattr(self, 'services', n.get_collection_of_object_values(print_service.PrintService)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(print_settings.PrintSettings)),
             "shares": lambda n : setattr(self, 'shares', n.get_collection_of_object_values(printer_share.PrinterShare)),
@@ -169,23 +166,6 @@ class Print(AdditionalDataHolder, Parsable):
         """
         self._printers = value
     
-    @property
-    def reports(self,) -> Optional[report_root.ReportRoot]:
-        """
-        Gets the reports property value. The reports property
-        Returns: Optional[report_root.ReportRoot]
-        """
-        return self._reports
-    
-    @reports.setter
-    def reports(self,value: Optional[report_root.ReportRoot] = None) -> None:
-        """
-        Sets the reports property value. The reports property
-        Args:
-            value: Value to set for the reports property.
-        """
-        self._reports = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -199,7 +179,6 @@ class Print(AdditionalDataHolder, Parsable):
         writer.write_collection_of_object_values("operations", self.operations)
         writer.write_collection_of_object_values("printers", self.printers)
         writer.write_collection_of_object_values("printerShares", self.printer_shares)
-        writer.write_object_value("reports", self.reports)
         writer.write_collection_of_object_values("services", self.services)
         writer.write_object_value("settings", self.settings)
         writer.write_collection_of_object_values("shares", self.shares)

@@ -58,7 +58,7 @@ class AuthenticationStrengthsRequestBuilder():
     
     async def get(self,request_configuration: Optional[AuthenticationStrengthsRequestBuilderGetRequestConfiguration] = None) -> Optional[authentication_strength_root.AuthenticationStrengthRoot]:
         """
-        Defines the authentication strength policies, valid authentication method combinations, and authentication method mode details that can be required by a conditional access policy .
+        Get authenticationStrengths from identity
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[authentication_strength_root.AuthenticationStrengthRoot]
@@ -121,7 +121,7 @@ class AuthenticationStrengthsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AuthenticationStrengthsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Defines the authentication strength policies, valid authentication method combinations, and authentication method mode details that can be required by a conditional access policy .
+        Get authenticationStrengths from identity
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -191,7 +191,7 @@ class AuthenticationStrengthsRequestBuilder():
     @dataclass
     class AuthenticationStrengthsRequestBuilderGetQueryParameters():
         """
-        Defines the authentication strength policies, valid authentication method combinations, and authentication method mode details that can be required by a conditional access policy .
+        Get authenticationStrengths from identity
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

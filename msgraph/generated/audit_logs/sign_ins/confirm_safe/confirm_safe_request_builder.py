@@ -37,7 +37,7 @@ class ConfirmSafeRequestBuilder():
     
     async def post(self,body: Optional[confirm_safe_post_request_body.ConfirmSafePostRequestBody] = None, request_configuration: Optional[ConfirmSafeRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Allow admins to mark an event in Azure AD sign in logs as safe. Admins can either mark the events flagged as risky by Azure AD Identity Protection as safe, or they can mark unflagged events as safe. For details about investigating Identity Protection risks, see How to investigate risk.
+        Invoke action confirmSafe
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -59,7 +59,7 @@ class ConfirmSafeRequestBuilder():
     
     def to_post_request_information(self,body: Optional[confirm_safe_post_request_body.ConfirmSafePostRequestBody] = None, request_configuration: Optional[ConfirmSafeRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Allow admins to mark an event in Azure AD sign in logs as safe. Admins can either mark the events flagged as risky by Azure AD Identity Protection as safe, or they can mark unflagged events as safe. For details about investigating Identity Protection risks, see How to investigate risk.
+        Invoke action confirmSafe
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

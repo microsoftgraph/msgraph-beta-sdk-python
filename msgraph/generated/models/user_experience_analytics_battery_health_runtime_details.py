@@ -11,7 +11,7 @@ from . import entity
 class UserExperienceAnalyticsBatteryHealthRuntimeDetails(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsBatteryHealthRuntimeDetails and sets the default values.
+        Instantiates a new UserExperienceAnalyticsBatteryHealthRuntimeDetails and sets the default values.
         """
         super().__init__()
         # Number of active devices within the tenant. Valid values -2147483648 to 2147483647

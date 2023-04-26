@@ -8,39 +8,13 @@ if TYPE_CHECKING:
 from . import entity
 
 class OemWarrantyInformationOnboarding(entity.Entity):
-    """
-    Warranty status entity for a given OEM
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new oemWarrantyInformationOnboarding and sets the default values.
+        Instantiates a new OemWarrantyInformationOnboarding and sets the default values.
         """
         super().__init__()
-        # Specifies whether warranty API is available. This property is read-only.
-        self._available: Optional[bool] = None
-        # Specifies whether warranty query is enabled for given OEM. This property is read-only.
-        self._enabled: Optional[bool] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # OEM name. This property is read-only.
-        self._oem_name: Optional[str] = None
-    
-    @property
-    def available(self,) -> Optional[bool]:
-        """
-        Gets the available property value. Specifies whether warranty API is available. This property is read-only.
-        Returns: Optional[bool]
-        """
-        return self._available
-    
-    @available.setter
-    def available(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the available property value. Specifies whether warranty API is available. This property is read-only.
-        Args:
-            value: Value to set for the available property.
-        """
-        self._available = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OemWarrantyInformationOnboarding:
@@ -54,23 +28,6 @@ class OemWarrantyInformationOnboarding(entity.Entity):
             raise Exception("parse_node cannot be undefined")
         return OemWarrantyInformationOnboarding()
     
-    @property
-    def enabled(self,) -> Optional[bool]:
-        """
-        Gets the enabled property value. Specifies whether warranty query is enabled for given OEM. This property is read-only.
-        Returns: Optional[bool]
-        """
-        return self._enabled
-    
-    @enabled.setter
-    def enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the enabled property value. Specifies whether warranty query is enabled for given OEM. This property is read-only.
-        Args:
-            value: Value to set for the enabled property.
-        """
-        self._enabled = value
-    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -79,30 +36,10 @@ class OemWarrantyInformationOnboarding(entity.Entity):
         from . import entity
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "available": lambda n : setattr(self, 'available', n.get_bool_value()),
-            "enabled": lambda n : setattr(self, 'enabled', n.get_bool_value()),
-            "oemName": lambda n : setattr(self, 'oem_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def oem_name(self,) -> Optional[str]:
-        """
-        Gets the oemName property value. OEM name. This property is read-only.
-        Returns: Optional[str]
-        """
-        return self._oem_name
-    
-    @oem_name.setter
-    def oem_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the oemName property value. OEM name. This property is read-only.
-        Args:
-            value: Value to set for the oem_name property.
-        """
-        self._oem_name = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

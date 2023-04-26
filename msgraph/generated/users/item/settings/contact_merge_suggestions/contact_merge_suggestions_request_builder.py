@@ -56,7 +56,7 @@ class ContactMergeSuggestionsRequestBuilder():
     
     async def get(self,request_configuration: Optional[ContactMergeSuggestionsRequestBuilderGetRequestConfiguration] = None) -> Optional[contact_merge_suggestions.ContactMergeSuggestions]:
         """
-        Read the properties and relationships of a contactMergeSuggestions object.
+        The user's settings for the visibility of merge suggestion for the duplicate contacts in the user's contact list.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[contact_merge_suggestions.ContactMergeSuggestions]
@@ -78,7 +78,7 @@ class ContactMergeSuggestionsRequestBuilder():
     
     async def patch(self,body: Optional[contact_merge_suggestions.ContactMergeSuggestions] = None, request_configuration: Optional[ContactMergeSuggestionsRequestBuilderPatchRequestConfiguration] = None) -> Optional[contact_merge_suggestions.ContactMergeSuggestions]:
         """
-        Update the properties of a contactMergeSuggestions object.
+        Update the navigation property contactMergeSuggestions in users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class ContactMergeSuggestionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ContactMergeSuggestionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a contactMergeSuggestions object.
+        The user's settings for the visibility of merge suggestion for the duplicate contacts in the user's contact list.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class ContactMergeSuggestionsRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[contact_merge_suggestions.ContactMergeSuggestions] = None, request_configuration: Optional[ContactMergeSuggestionsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a contactMergeSuggestions object.
+        Update the navigation property contactMergeSuggestions in users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class ContactMergeSuggestionsRequestBuilder():
     @dataclass
     class ContactMergeSuggestionsRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a contactMergeSuggestions object.
+        The user's settings for the visibility of merge suggestion for the duplicate contacts in the user's contact list.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -54,7 +54,7 @@ class DecisionsRequestBuilder():
     
     async def get(self,request_configuration: Optional[DecisionsRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_decision_collection_response.AccessReviewDecisionCollectionResponse]:
         """
-        In the Azure AD access reviews feature, retrieve the decisions of an accessReview object. Note that a recurring access review will not have a **decisions** relationship.  Instead, the caller must navigate the **instance** relationship to find an accessReview object for a current or past instance of the access review.
+        The collection of decisions for this access review.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_review_decision_collection_response.AccessReviewDecisionCollectionResponse]
@@ -101,7 +101,7 @@ class DecisionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[DecisionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        In the Azure AD access reviews feature, retrieve the decisions of an accessReview object. Note that a recurring access review will not have a **decisions** relationship.  Instead, the caller must navigate the **instance** relationship to find an accessReview object for a current or past instance of the access review.
+        The collection of decisions for this access review.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class DecisionsRequestBuilder():
     @dataclass
     class DecisionsRequestBuilderGetQueryParameters():
         """
-        In the Azure AD access reviews feature, retrieve the decisions of an accessReview object. Note that a recurring access review will not have a **decisions** relationship.  Instead, the caller must navigate the **instance** relationship to find an accessReview object for a current or past instance of the access review.
+        The collection of decisions for this access review.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

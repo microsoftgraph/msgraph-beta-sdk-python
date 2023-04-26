@@ -54,7 +54,7 @@ class PayloadsRequestBuilder():
     
     async def get(self,request_configuration: Optional[PayloadsRequestBuilderGetRequestConfiguration] = None) -> Optional[payload_collection_response.PayloadCollectionResponse]:
         """
-        Get a list of payloads for attack simulation campaigns. This operation expects the mandatory parameter **source** to filter and query the respective data source.
+        Represents an attack simulation training campaign payload in a tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[payload_collection_response.PayloadCollectionResponse]
@@ -101,7 +101,7 @@ class PayloadsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PayloadsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of payloads for attack simulation campaigns. This operation expects the mandatory parameter **source** to filter and query the respective data source.
+        Represents an attack simulation training campaign payload in a tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class PayloadsRequestBuilder():
     @dataclass
     class PayloadsRequestBuilderGetQueryParameters():
         """
-        Get a list of payloads for attack simulation campaigns. This operation expects the mandatory parameter **source** to filter and query the respective data source.
+        Represents an attack simulation training campaign payload in a tenant.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

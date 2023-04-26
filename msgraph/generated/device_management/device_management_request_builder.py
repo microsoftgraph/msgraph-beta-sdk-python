@@ -105,8 +105,6 @@ if TYPE_CHECKING:
     from .monitoring import monitoring_request_builder
     from .ndes_connectors import ndes_connectors_request_builder
     from .notification_message_templates import notification_message_templates_request_builder
-    from .oem_warranty_information_onboarding import oem_warranty_information_onboarding_request_builder
-    from .privilege_management_elevations import privilege_management_elevations_request_builder
     from .remote_action_audits import remote_action_audits_request_builder
     from .remote_assistance_partners import remote_assistance_partners_request_builder
     from .remote_assistance_settings import remote_assistance_settings_request_builder
@@ -124,6 +122,7 @@ if TYPE_CHECKING:
     from .setting_definitions import setting_definitions_request_builder
     from .software_update_status_summary import software_update_status_summary_request_builder
     from .telecom_expense_management_partners import telecom_expense_management_partners_request_builder
+    from .template_insights import template_insights_request_builder
     from .templates import templates_request_builder
     from .template_settings import template_settings_request_builder
     from .tenant_attach_r_b_a_c import tenant_attach_r_b_a_c_request_builder
@@ -1179,24 +1178,6 @@ class DeviceManagementRequestBuilder():
         return notification_message_templates_request_builder.NotificationMessageTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def oem_warranty_information_onboarding(self) -> oem_warranty_information_onboarding_request_builder.OemWarrantyInformationOnboardingRequestBuilder:
-        """
-        Provides operations to manage the oemWarrantyInformationOnboarding property of the microsoft.graph.deviceManagement entity.
-        """
-        from .oem_warranty_information_onboarding import oem_warranty_information_onboarding_request_builder
-
-        return oem_warranty_information_onboarding_request_builder.OemWarrantyInformationOnboardingRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def privilege_management_elevations(self) -> privilege_management_elevations_request_builder.PrivilegeManagementElevationsRequestBuilder:
-        """
-        Provides operations to manage the privilegeManagementElevations property of the microsoft.graph.deviceManagement entity.
-        """
-        from .privilege_management_elevations import privilege_management_elevations_request_builder
-
-        return privilege_management_elevations_request_builder.PrivilegeManagementElevationsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def remote_action_audits(self) -> remote_action_audits_request_builder.RemoteActionAuditsRequestBuilder:
         """
         Provides operations to manage the remoteActionAudits property of the microsoft.graph.deviceManagement entity.
@@ -1339,6 +1320,15 @@ class DeviceManagementRequestBuilder():
         from .telecom_expense_management_partners import telecom_expense_management_partners_request_builder
 
         return telecom_expense_management_partners_request_builder.TelecomExpenseManagementPartnersRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def template_insights(self) -> template_insights_request_builder.TemplateInsightsRequestBuilder:
+        """
+        Provides operations to manage the templateInsights property of the microsoft.graph.deviceManagement entity.
+        """
+        from .template_insights import template_insights_request_builder
+
+        return template_insights_request_builder.TemplateInsightsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def templates(self) -> templates_request_builder.TemplatesRequestBuilder:

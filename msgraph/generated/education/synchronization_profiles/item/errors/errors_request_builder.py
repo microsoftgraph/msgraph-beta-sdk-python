@@ -54,7 +54,7 @@ class ErrorsRequestBuilder():
     
     async def get(self,request_configuration: Optional[ErrorsRequestBuilderGetRequestConfiguration] = None) -> Optional[education_synchronization_error_collection_response.EducationSynchronizationErrorCollectionResponse]:
         """
-        Get the errors generated during validation and/or during a sync of a specific school data synchronization profile in the tenant.
+        All errors associated with this synchronization profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[education_synchronization_error_collection_response.EducationSynchronizationErrorCollectionResponse]
@@ -101,7 +101,7 @@ class ErrorsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ErrorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the errors generated during validation and/or during a sync of a specific school data synchronization profile in the tenant.
+        All errors associated with this synchronization profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class ErrorsRequestBuilder():
     @dataclass
     class ErrorsRequestBuilderGetQueryParameters():
         """
-        Get the errors generated during validation and/or during a sync of a specific school data synchronization profile in the tenant.
+        All errors associated with this synchronization profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

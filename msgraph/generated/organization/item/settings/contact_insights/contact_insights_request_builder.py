@@ -56,7 +56,7 @@ class ContactInsightsRequestBuilder():
     
     async def get(self,request_configuration: Optional[ContactInsightsRequestBuilderGetRequestConfiguration] = None) -> Optional[insights_settings.InsightsSettings]:
         """
-        Get the properties of an insightsSettings object for displaying or returning contact insights in an organization.
+        Contains the properties that are configured by an administrator as a tenant-level privacy control whether to identify duplicate contacts among a user's contacts list and suggest the user to merge those contacts to have a cleaner contacts list. List contactInsights returns the settings to display or return contact insights in an organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[insights_settings.InsightsSettings]
@@ -78,7 +78,7 @@ class ContactInsightsRequestBuilder():
     
     async def patch(self,body: Optional[insights_settings.InsightsSettings] = None, request_configuration: Optional[ContactInsightsRequestBuilderPatchRequestConfiguration] = None) -> Optional[insights_settings.InsightsSettings]:
         """
-        Update the privacy settings to display or return the specified type of insights in an organization. The type of settings can be contact insights, item insights, or people insights. To learn more about customizing insights privacy for your organization, see:-  Customize item insights privacy -  Customize people insights privacy
+        Update the navigation property contactInsights in organization
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class ContactInsightsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ContactInsightsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties of an insightsSettings object for displaying or returning contact insights in an organization.
+        Contains the properties that are configured by an administrator as a tenant-level privacy control whether to identify duplicate contacts among a user's contacts list and suggest the user to merge those contacts to have a cleaner contacts list. List contactInsights returns the settings to display or return contact insights in an organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class ContactInsightsRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[insights_settings.InsightsSettings] = None, request_configuration: Optional[ContactInsightsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the privacy settings to display or return the specified type of insights in an organization. The type of settings can be contact insights, item insights, or people insights. To learn more about customizing insights privacy for your organization, see:-  Customize item insights privacy -  Customize people insights privacy
+        Update the navigation property contactInsights in organization
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class ContactInsightsRequestBuilder():
     @dataclass
     class ContactInsightsRequestBuilderGetQueryParameters():
         """
-        Get the properties of an insightsSettings object for displaying or returning contact insights in an organization.
+        Contains the properties that are configured by an administrator as a tenant-level privacy control whether to identify duplicate contacts among a user's contacts list and suggest the user to merge those contacts to have a cleaner contacts list. List contactInsights returns the settings to display or return contact insights in an organization.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

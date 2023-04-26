@@ -56,7 +56,7 @@ class PronounsRequestBuilder():
     
     async def get(self,request_configuration: Optional[PronounsRequestBuilderGetRequestConfiguration] = None) -> Optional[pronouns_settings.PronounsSettings]:
         """
-        Get the properties of the pronounsSettings resource for an organization.  For more information on settings to manage pronouns support, see Manage pronouns settings for an organization using the Microsoft Graph API.
+        Represents administrator settings that manage the support of pronouns in an organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[pronouns_settings.PronounsSettings]
@@ -78,7 +78,7 @@ class PronounsRequestBuilder():
     
     async def patch(self,body: Optional[pronouns_settings.PronounsSettings] = None, request_configuration: Optional[PronounsRequestBuilderPatchRequestConfiguration] = None) -> Optional[pronouns_settings.PronounsSettings]:
         """
-        Update the properties of a pronounsSettings in an organization. For more information on settings to manage pronouns support, see Manage pronouns settings for an organization using the Microsoft Graph API.
+        Update the navigation property pronouns in organization
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class PronounsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PronounsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties of the pronounsSettings resource for an organization.  For more information on settings to manage pronouns support, see Manage pronouns settings for an organization using the Microsoft Graph API.
+        Represents administrator settings that manage the support of pronouns in an organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class PronounsRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[pronouns_settings.PronounsSettings] = None, request_configuration: Optional[PronounsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a pronounsSettings in an organization. For more information on settings to manage pronouns support, see Manage pronouns settings for an organization using the Microsoft Graph API.
+        Update the navigation property pronouns in organization
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class PronounsRequestBuilder():
     @dataclass
     class PronounsRequestBuilderGetQueryParameters():
         """
-        Get the properties of the pronounsSettings resource for an organization.  For more information on settings to manage pronouns support, see Manage pronouns settings for an organization using the Microsoft Graph API.
+        Represents administrator settings that manage the support of pronouns in an organization.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

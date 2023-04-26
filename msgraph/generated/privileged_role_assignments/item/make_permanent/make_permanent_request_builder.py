@@ -38,7 +38,7 @@ class MakePermanentRequestBuilder():
     
     async def post(self,body: Optional[make_permanent_post_request_body.MakePermanentPostRequestBody] = None, request_configuration: Optional[MakePermanentRequestBuilderPostRequestConfiguration] = None) -> Optional[privileged_role_assignment.PrivilegedRoleAssignment]:
         """
-        Make the role assignment permanent.
+        Invoke action makePermanent
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +63,7 @@ class MakePermanentRequestBuilder():
     
     def to_post_request_information(self,body: Optional[make_permanent_post_request_body.MakePermanentPostRequestBody] = None, request_configuration: Optional[MakePermanentRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Make the role assignment permanent.
+        Invoke action makePermanent
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

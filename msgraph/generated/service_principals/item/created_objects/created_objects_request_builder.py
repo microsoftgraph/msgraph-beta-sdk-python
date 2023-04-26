@@ -55,7 +55,7 @@ class CreatedObjectsRequestBuilder():
     
     async def get(self,request_configuration: Optional[CreatedObjectsRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]:
         """
-        Retrieve a list of directoryobject objects.
+        Directory objects created by this service principal. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]
@@ -77,7 +77,7 @@ class CreatedObjectsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CreatedObjectsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of directoryobject objects.
+        Directory objects created by this service principal. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -114,7 +114,7 @@ class CreatedObjectsRequestBuilder():
     @dataclass
     class CreatedObjectsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of directoryobject objects.
+        Directory objects created by this service principal. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

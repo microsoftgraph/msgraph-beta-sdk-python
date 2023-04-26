@@ -37,7 +37,7 @@ class RefRequestBuilder():
     
     async def get(self,request_configuration: Optional[RefRequestBuilderGetRequestConfiguration] = None) -> Optional[string_collection_response.StringCollectionResponse]:
         """
-        Get the list of groups that are included in a mobile app management policy.
+        Azure AD groups under the scope of the mobility management application if appliesTo is selected
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[string_collection_response.StringCollectionResponse]
@@ -81,7 +81,7 @@ class RefRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RefRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the list of groups that are included in a mobile app management policy.
+        Azure AD groups under the scope of the mobility management application if appliesTo is selected
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -120,7 +120,7 @@ class RefRequestBuilder():
     @dataclass
     class RefRequestBuilderGetQueryParameters():
         """
-        Get the list of groups that are included in a mobile app management policy.
+        Azure AD groups under the scope of the mobility management application if appliesTo is selected
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

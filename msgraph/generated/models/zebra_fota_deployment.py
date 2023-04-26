@@ -8,12 +8,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class ZebraFotaDeployment(entity.Entity):
-    """
-    The Zebra FOTA deployment entity that describes settings, deployment device groups required to create a FOTA deployment, and deployment status.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new zebraFotaDeployment and sets the default values.
+        Instantiates a new ZebraFotaDeployment and sets the default values.
         """
         super().__init__()
         # Collection of Android FOTA Assignment
@@ -28,6 +25,8 @@ class ZebraFotaDeployment(entity.Entity):
         self._display_name: Optional[str] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
+        # List of Scope Tags for this Entity instance
+        self._role_scope_tag_ids: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ZebraFotaDeployment:
@@ -139,10 +138,28 @@ class ZebraFotaDeployment(entity.Entity):
             "deploymentStatus": lambda n : setattr(self, 'deployment_status', n.get_object_value(zebra_fota_deployment_status.ZebraFotaDeploymentStatus)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
+    
+    @property
+    def role_scope_tag_ids(self,) -> Optional[List[str]]:
+        """
+        Gets the roleScopeTagIds property value. List of Scope Tags for this Entity instance
+        Returns: Optional[List[str]]
+        """
+        return self._role_scope_tag_ids
+    
+    @role_scope_tag_ids.setter
+    def role_scope_tag_ids(self,value: Optional[List[str]] = None) -> None:
+        """
+        Sets the roleScopeTagIds property value. List of Scope Tags for this Entity instance
+        Args:
+            value: Value to set for the role_scope_tag_ids property.
+        """
+        self._role_scope_tag_ids = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -158,5 +175,6 @@ class ZebraFotaDeployment(entity.Entity):
         writer.write_object_value("deploymentStatus", self.deployment_status)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
+        writer.write_collection_of_primitive_values("roleScopeTagIds", self.role_scope_tag_ids)
     
 

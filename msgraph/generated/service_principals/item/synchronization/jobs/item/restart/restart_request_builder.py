@@ -37,7 +37,7 @@ class RestartRequestBuilder():
     
     async def post(self,body: Optional[restart_post_request_body.RestartPostRequestBody] = None, request_configuration: Optional[RestartRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Restart a stopped synchronization job, forcing it to reprocess all the objects in the directory. Optionally clears existing the synchronization state and previous errors.
+        Invoke action restart
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -59,7 +59,7 @@ class RestartRequestBuilder():
     
     def to_post_request_information(self,body: Optional[restart_post_request_body.RestartPostRequestBody] = None, request_configuration: Optional[RestartRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Restart a stopped synchronization job, forcing it to reprocess all the objects in the directory. Optionally clears existing the synchronization state and previous errors.
+        Invoke action restart
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

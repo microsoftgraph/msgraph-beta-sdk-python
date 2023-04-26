@@ -37,7 +37,7 @@ class SecurityEvaluateClassificationResultsRequestBuilder():
     
     async def post(self,body: Optional[evaluate_classification_results_post_request_body.EvaluateClassificationResultsPostRequestBody] = None, request_configuration: Optional[SecurityEvaluateClassificationResultsRequestBuilderPostRequestConfiguration] = None) -> Optional[evaluate_classification_results_response.EvaluateClassificationResultsResponse]:
         """
-        Use the classification results to compute the sensitivity label that should be applied and return the set of actions that must be taken to correctly label the information. This API is useful when a label should be set automatically based on classification of the file contents, rather than labeled directly by a user or service.  To evaluate based on classification results, provide the contentInfo, which includes existing content metadata key-value pairs, and classification results. The API returns an informationProtectionAction that contains one of more of the following:
+        Invoke action evaluateClassificationResults
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -62,7 +62,7 @@ class SecurityEvaluateClassificationResultsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[evaluate_classification_results_post_request_body.EvaluateClassificationResultsPostRequestBody] = None, request_configuration: Optional[SecurityEvaluateClassificationResultsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Use the classification results to compute the sensitivity label that should be applied and return the set of actions that must be taken to correctly label the information. This API is useful when a label should be set automatically based on classification of the file contents, rather than labeled directly by a user or service.  To evaluate based on classification results, provide the contentInfo, which includes existing content metadata key-value pairs, and classification results. The API returns an informationProtectionAction that contains one of more of the following:
+        Invoke action evaluateClassificationResults
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

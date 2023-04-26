@@ -37,7 +37,7 @@ class DeviceRegistrationPolicyRequestBuilder():
     
     async def get(self,request_configuration: Optional[DeviceRegistrationPolicyRequestBuilderGetRequestConfiguration] = None) -> Optional[device_registration_policy.DeviceRegistrationPolicy]:
         """
-        Read the properties and relationships of a deviceRegistrationPolicy object. Represents deviceRegistrationPolicy quota restrictions, additional authentication, and authorization policies to register device identities to your organization.
+        Get deviceRegistrationPolicy from policies
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[device_registration_policy.DeviceRegistrationPolicy]
@@ -59,7 +59,7 @@ class DeviceRegistrationPolicyRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[DeviceRegistrationPolicyRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a deviceRegistrationPolicy object. Represents deviceRegistrationPolicy quota restrictions, additional authentication, and authorization policies to register device identities to your organization.
+        Get deviceRegistrationPolicy from policies
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -78,7 +78,7 @@ class DeviceRegistrationPolicyRequestBuilder():
     @dataclass
     class DeviceRegistrationPolicyRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a deviceRegistrationPolicy object. Represents deviceRegistrationPolicy quota restrictions, additional authentication, and authorization policies to register device identities to your organization.
+        Get deviceRegistrationPolicy from policies
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -54,7 +54,7 @@ class TrackersRequestBuilder():
     
     async def get(self,request_configuration: Optional[TrackersRequestBuilderGetRequestConfiguration] = None) -> Optional[host_tracker_collection_response.HostTrackerCollectionResponse]:
         """
-        Get a list of hostTracker resources.
+        The hostTrackers that are associated with this host.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[host_tracker_collection_response.HostTrackerCollectionResponse]
@@ -76,7 +76,7 @@ class TrackersRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TrackersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of hostTracker resources.
+        The hostTrackers that are associated with this host.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +104,7 @@ class TrackersRequestBuilder():
     @dataclass
     class TrackersRequestBuilderGetQueryParameters():
         """
-        Get a list of hostTracker resources.
+        The hostTrackers that are associated with this host.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

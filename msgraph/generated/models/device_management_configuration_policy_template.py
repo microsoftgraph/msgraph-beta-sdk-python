@@ -8,12 +8,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class DeviceManagementConfigurationPolicyTemplate(entity.Entity):
-    """
-    Device Management Configuration Policy Template
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceManagementConfigurationPolicyTemplate and sets the default values.
+        Instantiates a new DeviceManagementConfigurationPolicyTemplate and sets the default values.
         """
         super().__init__()
         # Allow unmanaged setting templates

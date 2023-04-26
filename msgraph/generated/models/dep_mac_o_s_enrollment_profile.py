@@ -46,8 +46,6 @@ class DepMacOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBasePro
         self._primary_account_user_name: Optional[str] = None
         # Indicates if registration is disabled
         self._registration_disabled: Optional[bool] = None
-        # Indicates if the device is network-tethered to run the command
-        self._request_requires_network_tether: Optional[bool] = None
         # Indicates whether Setup Assistant will set the account as a regular user
         self._set_primary_setup_account_as_regular_user: Optional[bool] = None
         # Indicates whether Setup Assistant will skip the user interface for primary account setup
@@ -244,7 +242,6 @@ class DepMacOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBasePro
             "primaryAccountFullName": lambda n : setattr(self, 'primary_account_full_name', n.get_str_value()),
             "primaryAccountUserName": lambda n : setattr(self, 'primary_account_user_name', n.get_str_value()),
             "registrationDisabled": lambda n : setattr(self, 'registration_disabled', n.get_bool_value()),
-            "requestRequiresNetworkTether": lambda n : setattr(self, 'request_requires_network_tether', n.get_bool_value()),
             "setPrimarySetupAccountAsRegularUser": lambda n : setattr(self, 'set_primary_setup_account_as_regular_user', n.get_bool_value()),
             "skipPrimarySetupAccountCreation": lambda n : setattr(self, 'skip_primary_setup_account_creation', n.get_bool_value()),
             "zoomDisabled": lambda n : setattr(self, 'zoom_disabled', n.get_bool_value()),
@@ -372,23 +369,6 @@ class DepMacOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBasePro
         """
         self._registration_disabled = value
     
-    @property
-    def request_requires_network_tether(self,) -> Optional[bool]:
-        """
-        Gets the requestRequiresNetworkTether property value. Indicates if the device is network-tethered to run the command
-        Returns: Optional[bool]
-        """
-        return self._request_requires_network_tether
-    
-    @request_requires_network_tether.setter
-    def request_requires_network_tether(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the requestRequiresNetworkTether property value. Indicates if the device is network-tethered to run the command
-        Args:
-            value: Value to set for the request_requires_network_tether property.
-        """
-        self._request_requires_network_tether = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -414,7 +394,6 @@ class DepMacOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBasePro
         writer.write_str_value("primaryAccountFullName", self.primary_account_full_name)
         writer.write_str_value("primaryAccountUserName", self.primary_account_user_name)
         writer.write_bool_value("registrationDisabled", self.registration_disabled)
-        writer.write_bool_value("requestRequiresNetworkTether", self.request_requires_network_tether)
         writer.write_bool_value("setPrimarySetupAccountAsRegularUser", self.set_primary_setup_account_as_regular_user)
         writer.write_bool_value("skipPrimarySetupAccountCreation", self.skip_primary_setup_account_creation)
         writer.write_bool_value("zoomDisabled", self.zoom_disabled)

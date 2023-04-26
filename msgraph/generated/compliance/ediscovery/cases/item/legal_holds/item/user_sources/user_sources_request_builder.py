@@ -54,7 +54,7 @@ class UserSourcesRequestBuilder():
     
     async def get(self,request_configuration: Optional[UserSourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[user_source_collection_response.UserSourceCollectionResponse]:
         """
-        Get the list of userSource objects associated with a legal hold.
+        Data source entity for a the legal hold. This is the container for a mailbox and OneDrive for Business site.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[user_source_collection_response.UserSourceCollectionResponse]
@@ -76,7 +76,7 @@ class UserSourcesRequestBuilder():
     
     async def post(self,body: Optional[user_source.UserSource] = None, request_configuration: Optional[UserSourcesRequestBuilderPostRequestConfiguration] = None) -> Optional[user_source.UserSource]:
         """
-        Adds a userSource to a legalHold object.
+        Create new navigation property to userSources for compliance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class UserSourcesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UserSourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the list of userSource objects associated with a legal hold.
+        Data source entity for a the legal hold. This is the container for a mailbox and OneDrive for Business site.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class UserSourcesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[user_source.UserSource] = None, request_configuration: Optional[UserSourcesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Adds a userSource to a legalHold object.
+        Create new navigation property to userSources for compliance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class UserSourcesRequestBuilder():
     @dataclass
     class UserSourcesRequestBuilderGetQueryParameters():
         """
-        Get the list of userSource objects associated with a legal hold.
+        Data source entity for a the legal hold. This is the container for a mailbox and OneDrive for Business site.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

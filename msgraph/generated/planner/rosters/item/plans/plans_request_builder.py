@@ -54,7 +54,7 @@ class PlansRequestBuilder():
     
     async def get(self,request_configuration: Optional[PlansRequestBuilderGetRequestConfiguration] = None) -> Optional[planner_plan_collection_response.PlannerPlanCollectionResponse]:
         """
-        Get the plannerPlans contained by the plannerRoster.
+        Retrieves the plans contained by the plannerRoster.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[planner_plan_collection_response.PlannerPlanCollectionResponse]
@@ -76,7 +76,7 @@ class PlansRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PlansRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the plannerPlans contained by the plannerRoster.
+        Retrieves the plans contained by the plannerRoster.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +104,7 @@ class PlansRequestBuilder():
     @dataclass
     class PlansRequestBuilderGetQueryParameters():
         """
-        Get the plannerPlans contained by the plannerRoster.
+        Retrieves the plans contained by the plannerRoster.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

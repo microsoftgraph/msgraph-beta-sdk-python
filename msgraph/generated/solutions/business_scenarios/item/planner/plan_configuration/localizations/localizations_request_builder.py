@@ -54,7 +54,7 @@ class LocalizationsRequestBuilder():
     
     async def get(self,request_configuration: Optional[LocalizationsRequestBuilderGetRequestConfiguration] = None) -> Optional[planner_plan_configuration_localization_collection_response.PlannerPlanConfigurationLocalizationCollectionResponse]:
         """
-        Get a list of the plannerPlanConfigurationLocalization objects and their properties.
+        Localized names for the plan configuration.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[planner_plan_configuration_localization_collection_response.PlannerPlanConfigurationLocalizationCollectionResponse]
@@ -76,7 +76,7 @@ class LocalizationsRequestBuilder():
     
     async def post(self,body: Optional[planner_plan_configuration_localization.PlannerPlanConfigurationLocalization] = None, request_configuration: Optional[LocalizationsRequestBuilderPostRequestConfiguration] = None) -> Optional[planner_plan_configuration_localization.PlannerPlanConfigurationLocalization]:
         """
-        Create a new plannerPlanConfigurationLocalization object.
+        Create new navigation property to localizations for solutions
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class LocalizationsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[LocalizationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the plannerPlanConfigurationLocalization objects and their properties.
+        Localized names for the plan configuration.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class LocalizationsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[planner_plan_configuration_localization.PlannerPlanConfigurationLocalization] = None, request_configuration: Optional[LocalizationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new plannerPlanConfigurationLocalization object.
+        Create new navigation property to localizations for solutions
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class LocalizationsRequestBuilder():
     @dataclass
     class LocalizationsRequestBuilderGetQueryParameters():
         """
-        Get a list of the plannerPlanConfigurationLocalization objects and their properties.
+        Localized names for the plan configuration.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

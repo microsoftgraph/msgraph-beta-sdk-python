@@ -54,7 +54,7 @@ class UserFlowsRequestBuilder():
     
     async def get(self,request_configuration: Optional[UserFlowsRequestBuilderGetRequestConfiguration] = None) -> Optional[identity_user_flow_collection_response.IdentityUserFlowCollectionResponse]:
         """
-        Retrieve a list of userflows.
+        Get userFlows from identity
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[identity_user_flow_collection_response.IdentityUserFlowCollectionResponse]
@@ -76,7 +76,7 @@ class UserFlowsRequestBuilder():
     
     async def post(self,body: Optional[identity_user_flow.IdentityUserFlow] = None, request_configuration: Optional[UserFlowsRequestBuilderPostRequestConfiguration] = None) -> Optional[identity_user_flow.IdentityUserFlow]:
         """
-        Create a new userFlow object.
+        Create new navigation property to userFlows for identity
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class UserFlowsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UserFlowsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of userflows.
+        Get userFlows from identity
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class UserFlowsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[identity_user_flow.IdentityUserFlow] = None, request_configuration: Optional[UserFlowsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new userFlow object.
+        Create new navigation property to userFlows for identity
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class UserFlowsRequestBuilder():
     @dataclass
     class UserFlowsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of userflows.
+        Get userFlows from identity
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

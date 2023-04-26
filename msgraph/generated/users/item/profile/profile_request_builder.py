@@ -56,7 +56,7 @@ class ProfileRequestBuilder():
     
     async def delete(self,request_configuration: Optional[ProfileRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Deletes a profile object from a user's account.
+        Delete navigation property profile for users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -75,7 +75,7 @@ class ProfileRequestBuilder():
     
     async def get(self,request_configuration: Optional[ProfileRequestBuilderGetRequestConfiguration] = None) -> Optional[profile.Profile]:
         """
-        Retrieve the properties and relationships of a profile object for a given user. The **profile** resource exposes various rich properties that are descriptive of the user as relationships, for example, anniversaries and education activities. To get one of these navigation properties, use the corresponding GET method on that property. See the methods exposed by **profile**.
+        Represents properties that are descriptive of a user in a tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[profile.Profile]
@@ -122,7 +122,7 @@ class ProfileRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[ProfileRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Deletes a profile object from a user's account.
+        Delete navigation property profile for users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,7 +138,7 @@ class ProfileRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ProfileRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a profile object for a given user. The **profile** resource exposes various rich properties that are descriptive of the user as relationships, for example, anniversaries and education activities. To get one of these navigation properties, use the corresponding GET method on that property. See the methods exposed by **profile**.
+        Represents properties that are descriptive of a user in a tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -361,7 +361,7 @@ class ProfileRequestBuilder():
     @dataclass
     class ProfileRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a profile object for a given user. The **profile** resource exposes various rich properties that are descriptive of the user as relationships, for example, anniversaries and education activities. To get one of these navigation properties, use the corresponding GET method on that property. See the methods exposed by **profile**.
+        Represents properties that are descriptive of a user in a tenant.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

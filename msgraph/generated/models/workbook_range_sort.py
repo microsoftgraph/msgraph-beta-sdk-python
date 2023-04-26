@@ -10,7 +10,7 @@ from . import entity
 class WorkbookRangeSort(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new workbookRangeSort and sets the default values.
+        Instantiates a new WorkbookRangeSort and sets the default values.
         """
         super().__init__()
         # The OdataType property

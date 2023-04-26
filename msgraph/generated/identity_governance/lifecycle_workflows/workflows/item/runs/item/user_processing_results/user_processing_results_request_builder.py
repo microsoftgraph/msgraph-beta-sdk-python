@@ -56,7 +56,7 @@ class UserProcessingResultsRequestBuilder():
     
     async def get(self,request_configuration: Optional[UserProcessingResultsRequestBuilderGetRequestConfiguration] = None) -> Optional[user_processing_result_collection_response.UserProcessingResultCollectionResponse]:
         """
-        Get user processing results of a workflow run object.
+        The associated individual user execution.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[user_processing_result_collection_response.UserProcessingResultCollectionResponse]
@@ -94,7 +94,7 @@ class UserProcessingResultsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UserProcessingResultsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get user processing results of a workflow run object.
+        The associated individual user execution.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -122,7 +122,7 @@ class UserProcessingResultsRequestBuilder():
     @dataclass
     class UserProcessingResultsRequestBuilderGetQueryParameters():
         """
-        Get user processing results of a workflow run object.
+        The associated individual user execution.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -54,7 +54,7 @@ class TenantsDetailedInformationRequestBuilder():
     
     async def get(self,request_configuration: Optional[TenantsDetailedInformationRequestBuilderGetRequestConfiguration] = None) -> Optional[tenant_detailed_information_collection_response.TenantDetailedInformationCollectionResponse]:
         """
-        Get a list of the tenantDetailedInformation objects and their properties.
+        The collection tenant level detailed information across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[tenant_detailed_information_collection_response.TenantDetailedInformationCollectionResponse]
@@ -101,7 +101,7 @@ class TenantsDetailedInformationRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TenantsDetailedInformationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the tenantDetailedInformation objects and their properties.
+        The collection tenant level detailed information across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class TenantsDetailedInformationRequestBuilder():
     @dataclass
     class TenantsDetailedInformationRequestBuilderGetQueryParameters():
         """
-        Get a list of the tenantDetailedInformation objects and their properties.
+        The collection tenant level detailed information across managed tenants.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

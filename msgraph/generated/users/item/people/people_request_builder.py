@@ -54,7 +54,7 @@ class PeopleRequestBuilder():
     
     async def get(self,request_configuration: Optional[PeopleRequestBuilderGetRequestConfiguration] = None) -> Optional[person_collection_response.PersonCollectionResponse]:
         """
-        Retrieve a list of person objects ordered by their relevance to the user, which is determined by the user's communication and collaboration patterns, and business relationships.
+        Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[person_collection_response.PersonCollectionResponse]
@@ -76,7 +76,7 @@ class PeopleRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PeopleRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of person objects ordered by their relevance to the user, which is determined by the user's communication and collaboration patterns, and business relationships.
+        Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +104,7 @@ class PeopleRequestBuilder():
     @dataclass
     class PeopleRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of person objects ordered by their relevance to the user, which is determined by the user's communication and collaboration patterns, and business relationships.
+        Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

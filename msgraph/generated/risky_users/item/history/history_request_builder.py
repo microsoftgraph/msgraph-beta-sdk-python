@@ -54,7 +54,7 @@ class HistoryRequestBuilder():
     
     async def get(self,request_configuration: Optional[HistoryRequestBuilderGetRequestConfiguration] = None) -> Optional[risky_user_history_item_collection_response.RiskyUserHistoryItemCollectionResponse]:
         """
-        Get the risk history of a riskyUser resource.
+        Get history from riskyUsers
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[risky_user_history_item_collection_response.RiskyUserHistoryItemCollectionResponse]
@@ -101,7 +101,7 @@ class HistoryRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[HistoryRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the risk history of a riskyUser resource.
+        Get history from riskyUsers
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class HistoryRequestBuilder():
     @dataclass
     class HistoryRequestBuilderGetQueryParameters():
         """
-        Get the risk history of a riskyUser resource.
+        Get history from riskyUsers
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -11,7 +11,7 @@ from . import entity
 class EducationUser(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new educationUser and sets the default values.
+        Instantiates a new EducationUser and sets the default values.
         """
         super().__init__()
         # True if the account is enabled; otherwise, false. This property is required when a user is created. Supports /$filter.

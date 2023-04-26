@@ -1,10 +1,12 @@
 from enum import Enum
 
 class DeviceManagementConfigurationSettingVisibility(Enum):
-    # Not visible
+    # Default. Not visible.
     None_ = "none",
-    # Visible to setting catalog UX
+    # Visible to setting catalog policy type.
     SettingsCatalog = "settingsCatalog",
-    # Visible to template
+    # Visible to template policy type.
     Template = "template",
+    # Evolvable enumeration sentinel value. Do not use.
+    UnknownFutureValue = "unknownFutureValue",
 

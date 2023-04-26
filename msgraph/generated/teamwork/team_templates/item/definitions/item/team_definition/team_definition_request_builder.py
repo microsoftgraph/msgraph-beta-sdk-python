@@ -76,7 +76,7 @@ class TeamDefinitionRequestBuilder():
     
     async def get(self,request_configuration: Optional[TeamDefinitionRequestBuilderGetRequestConfiguration] = None) -> Optional[team.Team]:
         """
-        Get the properties of the team associated with a teamTemplateDefinition object.
+        Get teamDefinition from teamwork
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[team.Team]
@@ -139,7 +139,7 @@ class TeamDefinitionRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TeamDefinitionRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties of the team associated with a teamTemplateDefinition object.
+        Get teamDefinition from teamwork
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -371,7 +371,7 @@ class TeamDefinitionRequestBuilder():
     @dataclass
     class TeamDefinitionRequestBuilderGetQueryParameters():
         """
-        Get the properties of the team associated with a teamTemplateDefinition object.
+        Get teamDefinition from teamwork
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

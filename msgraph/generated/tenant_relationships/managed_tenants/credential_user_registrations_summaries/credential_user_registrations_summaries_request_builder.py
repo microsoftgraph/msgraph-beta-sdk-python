@@ -54,7 +54,7 @@ class CredentialUserRegistrationsSummariesRequestBuilder():
     
     async def get(self,request_configuration: Optional[CredentialUserRegistrationsSummariesRequestBuilderGetRequestConfiguration] = None) -> Optional[credential_user_registrations_summary_collection_response.CredentialUserRegistrationsSummaryCollectionResponse]:
         """
-        Get a list of the credentialUserRegistrationsSummary objects and their properties.
+        Summary information for user registration for multi-factor authentication and self service password reset across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[credential_user_registrations_summary_collection_response.CredentialUserRegistrationsSummaryCollectionResponse]
@@ -101,7 +101,7 @@ class CredentialUserRegistrationsSummariesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CredentialUserRegistrationsSummariesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the credentialUserRegistrationsSummary objects and their properties.
+        Summary information for user registration for multi-factor authentication and self service password reset across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class CredentialUserRegistrationsSummariesRequestBuilder():
     @dataclass
     class CredentialUserRegistrationsSummariesRequestBuilderGetQueryParameters():
         """
-        Get a list of the credentialUserRegistrationsSummary objects and their properties.
+        Summary information for user registration for multi-factor authentication and self service password reset across managed tenants.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

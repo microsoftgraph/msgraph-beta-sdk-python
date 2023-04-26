@@ -36,7 +36,7 @@ class StopRequestBuilder():
     
     async def post(self,request_configuration: Optional[StopRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Stop a specific Cloud PC for a user. Currently, only Windows 365 Frontline Cloud PCs are supported.
+        Invoke action stop
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class StopRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[StopRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Stop a specific Cloud PC for a user. Currently, only Windows 365 Frontline Cloud PCs are supported.
+        Invoke action stop
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

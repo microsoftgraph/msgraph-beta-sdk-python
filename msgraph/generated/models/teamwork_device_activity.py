@@ -11,7 +11,7 @@ from . import entity
 class TeamworkDeviceActivity(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new teamworkDeviceActivity and sets the default values.
+        Instantiates a new TeamworkDeviceActivity and sets the default values.
         """
         super().__init__()
         # The active peripheral devices attached to the device.

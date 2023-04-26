@@ -54,7 +54,7 @@ class AccountRequestBuilder():
     
     async def get(self,request_configuration: Optional[AccountRequestBuilderGetRequestConfiguration] = None) -> Optional[user_account_information_collection_response.UserAccountInformationCollectionResponse]:
         """
-        Retrieves properties related to the user's accounts from the profile.
+        Get account from users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[user_account_information_collection_response.UserAccountInformationCollectionResponse]
@@ -76,7 +76,7 @@ class AccountRequestBuilder():
     
     async def post(self,body: Optional[user_account_information.UserAccountInformation] = None, request_configuration: Optional[AccountRequestBuilderPostRequestConfiguration] = None) -> Optional[user_account_information.UserAccountInformation]:
         """
-        Create a new userAccountInformation object in a user's profile.
+        Create new navigation property to account for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class AccountRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AccountRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieves properties related to the user's accounts from the profile.
+        Get account from users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class AccountRequestBuilder():
     
     def to_post_request_information(self,body: Optional[user_account_information.UserAccountInformation] = None, request_configuration: Optional[AccountRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new userAccountInformation object in a user's profile.
+        Create new navigation property to account for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class AccountRequestBuilder():
     @dataclass
     class AccountRequestBuilderGetQueryParameters():
         """
-        Retrieves properties related to the user's accounts from the profile.
+        Get account from users
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

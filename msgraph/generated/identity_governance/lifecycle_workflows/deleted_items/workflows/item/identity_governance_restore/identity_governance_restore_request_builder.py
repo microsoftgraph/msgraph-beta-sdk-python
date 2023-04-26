@@ -37,7 +37,7 @@ class IdentityGovernanceRestoreRequestBuilder():
     
     async def post(self,request_configuration: Optional[IdentityGovernanceRestoreRequestBuilderPostRequestConfiguration] = None) -> Optional[workflow.Workflow]:
         """
-        Restore a workflow that has been deleted. You can only restore a workflow that was deleted within the last 30 days before Azure AD automatically permanently deletes it.
+        Invoke action restore
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[workflow.Workflow]
@@ -59,7 +59,7 @@ class IdentityGovernanceRestoreRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[IdentityGovernanceRestoreRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Restore a workflow that has been deleted. You can only restore a workflow that was deleted within the last 30 days before Azure AD automatically permanently deletes it.
+        Invoke action restore
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

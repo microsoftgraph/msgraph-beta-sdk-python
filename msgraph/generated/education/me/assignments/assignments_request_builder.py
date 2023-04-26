@@ -55,7 +55,7 @@ class AssignmentsRequestBuilder():
     
     async def get(self,request_configuration: Optional[AssignmentsRequestBuilderGetRequestConfiguration] = None) -> Optional[education_assignment_collection_response.EducationAssignmentCollectionResponse]:
         """
-        Returns a list of assignments assigned to a user for all classes. Only teachers, students, and applications with application permissions can perform this operation. This utility namespace allows a caller to find all the assignments belonging to a student or a teacher in a single call rather than having to request assignments from each class. The assignment list contains what is needed to get the detailed information for the assignment from within the class namespace. All other operations on the assignment should use the class namespace.
+        List of assignments for the user. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[education_assignment_collection_response.EducationAssignmentCollectionResponse]
@@ -102,7 +102,7 @@ class AssignmentsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AssignmentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Returns a list of assignments assigned to a user for all classes. Only teachers, students, and applications with application permissions can perform this operation. This utility namespace allows a caller to find all the assignments belonging to a student or a teacher in a single call rather than having to request assignments from each class. The assignment list contains what is needed to get the detailed information for the assignment from within the class namespace. All other operations on the assignment should use the class namespace.
+        List of assignments for the user. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -160,7 +160,7 @@ class AssignmentsRequestBuilder():
     @dataclass
     class AssignmentsRequestBuilderGetQueryParameters():
         """
-        Returns a list of assignments assigned to a user for all classes. Only teachers, students, and applications with application permissions can perform this operation. This utility namespace allows a caller to find all the assignments belonging to a student or a teacher in a single call rather than having to request assignments from each class. The assignment list contains what is needed to get the detailed information for the assignment from within the class namespace. All other operations on the assignment should use the class namespace.
+        List of assignments for the user. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -1,20 +1,20 @@
 from enum import Enum
 
 class DeviceManagementConfigurationPlatforms(Enum):
-    # None.
+    # Default. No platform type specified.
     None_ = "none",
-    # Android.
+    # Settings for Android platform.
     Android = "android",
-    # iOS.
+    # Settings for iOS platform.
     IOS = "iOS",
-    # MacOS.
+    # Settings for MacOS platform.
     MacOS = "macOS",
     # Windows 10 X.
     Windows10X = "windows10X",
-    # Windows 10.
+    # Settings for Windows 10 platform.
     Windows10 = "windows10",
-    # Linux.
+    # Settings for Linux platform.
     Linux = "linux",
-    # Sentinel member for cases where the client cannot handle the new enum values.
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 

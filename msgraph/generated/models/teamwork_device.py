@@ -11,7 +11,7 @@ from . import entity
 class TeamworkDevice(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new teamworkDevice and sets the default values.
+        Instantiates a new TeamworkDevice and sets the default values.
         """
         super().__init__()
         # The activity properties that change based on the device usage.

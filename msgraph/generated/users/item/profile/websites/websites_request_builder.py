@@ -54,7 +54,7 @@ class WebsitesRequestBuilder():
     
     async def get(self,request_configuration: Optional[WebsitesRequestBuilderGetRequestConfiguration] = None) -> Optional[person_website_collection_response.PersonWebsiteCollectionResponse]:
         """
-        Retrieve a list of personWebsite objects from a user's profile.
+        Represents detailed information about websites associated with a user in various services.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[person_website_collection_response.PersonWebsiteCollectionResponse]
@@ -76,7 +76,7 @@ class WebsitesRequestBuilder():
     
     async def post(self,body: Optional[person_website.PersonWebsite] = None, request_configuration: Optional[WebsitesRequestBuilderPostRequestConfiguration] = None) -> Optional[person_website.PersonWebsite]:
         """
-        Create a new personWebsite object in a user's profile.
+        Create new navigation property to websites for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class WebsitesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[WebsitesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of personWebsite objects from a user's profile.
+        Represents detailed information about websites associated with a user in various services.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class WebsitesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[person_website.PersonWebsite] = None, request_configuration: Optional[WebsitesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new personWebsite object in a user's profile.
+        Create new navigation property to websites for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class WebsitesRequestBuilder():
     @dataclass
     class WebsitesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of personWebsite objects from a user's profile.
+        Represents detailed information about websites associated with a user in various services.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

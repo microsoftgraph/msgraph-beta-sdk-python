@@ -54,7 +54,7 @@ class CloudPcsOverviewRequestBuilder():
     
     async def get(self,request_configuration: Optional[CloudPcsOverviewRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_overview_collection_response.CloudPcOverviewCollectionResponse]:
         """
-        Get a list of the cloudPcOverview objects and their properties.
+        Overview of cloud PC information across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cloud_pc_overview_collection_response.CloudPcOverviewCollectionResponse]
@@ -101,7 +101,7 @@ class CloudPcsOverviewRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CloudPcsOverviewRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the cloudPcOverview objects and their properties.
+        Overview of cloud PC information across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class CloudPcsOverviewRequestBuilder():
     @dataclass
     class CloudPcsOverviewRequestBuilderGetQueryParameters():
         """
-        Get a list of the cloudPcOverview objects and their properties.
+        Overview of cloud PC information across managed tenants.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

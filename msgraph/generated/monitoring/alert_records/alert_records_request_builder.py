@@ -55,7 +55,7 @@ class AlertRecordsRequestBuilder():
     
     async def get(self,request_configuration: Optional[AlertRecordsRequestBuilderGetRequestConfiguration] = None) -> Optional[alert_record_collection_response.AlertRecordCollectionResponse]:
         """
-        Get a list of the alertRecord objects and their properties.
+        The collection of records of alert events.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[alert_record_collection_response.AlertRecordCollectionResponse]
@@ -102,7 +102,7 @@ class AlertRecordsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AlertRecordsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the alertRecord objects and their properties.
+        The collection of records of alert events.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -160,7 +160,7 @@ class AlertRecordsRequestBuilder():
     @dataclass
     class AlertRecordsRequestBuilderGetQueryParameters():
         """
-        Get a list of the alertRecord objects and their properties.
+        The collection of records of alert events.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

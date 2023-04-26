@@ -55,7 +55,7 @@ class UsersRequestBuilder():
     
     async def get(self,request_configuration: Optional[UsersRequestBuilderGetRequestConfiguration] = None) -> Optional[education_user_collection_response.EducationUserCollectionResponse]:
         """
-        Retrieve a list of user objects. These user objects will include education-specific properties.
+        Get users from education
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[education_user_collection_response.EducationUserCollectionResponse]
@@ -77,7 +77,7 @@ class UsersRequestBuilder():
     
     async def post(self,body: Optional[education_user.EducationUser] = None, request_configuration: Optional[UsersRequestBuilderPostRequestConfiguration] = None) -> Optional[education_user.EducationUser]:
         """
-        Create a new user.
+        Create new navigation property to users for education
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -102,7 +102,7 @@ class UsersRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UsersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of user objects. These user objects will include education-specific properties.
+        Get users from education
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -120,7 +120,7 @@ class UsersRequestBuilder():
     
     def to_post_request_information(self,body: Optional[education_user.EducationUser] = None, request_configuration: Optional[UsersRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new user.
+        Create new navigation property to users for education
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -160,7 +160,7 @@ class UsersRequestBuilder():
     @dataclass
     class UsersRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of user objects. These user objects will include education-specific properties.
+        Get users from education
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -54,7 +54,7 @@ class NoncustodialSourcesRequestBuilder():
     
     async def get(self,request_configuration: Optional[NoncustodialSourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[noncustodial_data_source_collection_response.NoncustodialDataSourceCollectionResponse]:
         """
-        Get a list of noncustodialDataSource associated with a sourceCollection.
+        noncustodialDataSource sources that are included in the sourceCollection
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[noncustodial_data_source_collection_response.NoncustodialDataSourceCollectionResponse]
@@ -76,7 +76,7 @@ class NoncustodialSourcesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[NoncustodialSourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of noncustodialDataSource associated with a sourceCollection.
+        noncustodialDataSource sources that are included in the sourceCollection
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +104,7 @@ class NoncustodialSourcesRequestBuilder():
     @dataclass
     class NoncustodialSourcesRequestBuilderGetQueryParameters():
         """
-        Get a list of noncustodialDataSource associated with a sourceCollection.
+        noncustodialDataSource sources that are included in the sourceCollection
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

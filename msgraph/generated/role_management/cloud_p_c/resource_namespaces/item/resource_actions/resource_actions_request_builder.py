@@ -54,7 +54,7 @@ class ResourceActionsRequestBuilder():
     
     async def get(self,request_configuration: Optional[ResourceActionsRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_rbac_resource_action_collection_response.UnifiedRbacResourceActionCollectionResponse]:
         """
-        Get a list of the unifiedRbacResourceAction objects and their properties.
+        Operations that an authorized principal are allowed to perform.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[unified_rbac_resource_action_collection_response.UnifiedRbacResourceActionCollectionResponse]
@@ -101,7 +101,7 @@ class ResourceActionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ResourceActionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the unifiedRbacResourceAction objects and their properties.
+        Operations that an authorized principal are allowed to perform.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class ResourceActionsRequestBuilder():
     @dataclass
     class ResourceActionsRequestBuilderGetQueryParameters():
         """
-        Get a list of the unifiedRbacResourceAction objects and their properties.
+        Operations that an authorized principal are allowed to perform.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

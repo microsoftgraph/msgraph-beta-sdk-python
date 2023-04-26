@@ -36,7 +36,7 @@ class RemovePersonalDataRequestBuilder():
     
     async def post(self,request_configuration: Optional[RemovePersonalDataRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Create a request to remove the personal data for an inboundSharedUserProfile. 
+        Invoke action removePersonalData
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class RemovePersonalDataRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[RemovePersonalDataRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a request to remove the personal data for an inboundSharedUserProfile. 
+        Invoke action removePersonalData
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

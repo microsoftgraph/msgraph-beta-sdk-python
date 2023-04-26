@@ -36,7 +36,7 @@ class RunDiagnosticsRequestBuilder():
     
     async def post(self,request_configuration: Optional[RunDiagnosticsRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Run and generate diagnostic logs for the specified Microsoft Teams-enabled device. This API triggers a long-running operation used to generate logs for a device.
+        Invoke action runDiagnostics
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class RunDiagnosticsRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[RunDiagnosticsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Run and generate diagnostic logs for the specified Microsoft Teams-enabled device. This API triggers a long-running operation used to generate logs for a device.
+        Invoke action runDiagnostics
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

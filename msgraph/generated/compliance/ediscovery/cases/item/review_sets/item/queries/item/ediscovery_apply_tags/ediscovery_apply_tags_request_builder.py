@@ -37,7 +37,7 @@ class EdiscoveryApplyTagsRequestBuilder():
     
     async def post(self,body: Optional[apply_tags_post_request_body.ApplyTagsPostRequestBody] = None, request_configuration: Optional[EdiscoveryApplyTagsRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Apply tags to documents that match the specified reviewSetQuery.
+        Invoke action applyTags
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -59,7 +59,7 @@ class EdiscoveryApplyTagsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[apply_tags_post_request_body.ApplyTagsPostRequestBody] = None, request_configuration: Optional[EdiscoveryApplyTagsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Apply tags to documents that match the specified reviewSetQuery.
+        Invoke action applyTags
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

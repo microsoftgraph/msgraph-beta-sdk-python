@@ -10,7 +10,7 @@ from . import entity
 class AttackSimulationRoot(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new attackSimulationRoot and sets the default values.
+        Instantiates a new AttackSimulationRoot and sets the default values.
         """
         super().__init__()
         # The OdataType property

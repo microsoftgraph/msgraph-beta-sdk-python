@@ -3,7 +3,7 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import learning_provider
+    from . import learning_course_activity, learning_provider
 
 class EmployeeExperience(AdditionalDataHolder, Parsable):
     def __init__(self,) -> None:
@@ -13,6 +13,8 @@ class EmployeeExperience(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
+        # The learningCourseActivities property
+        self._learning_course_activities: Optional[List[learning_course_activity.LearningCourseActivity]] = None
         # A collection of learning providers.
         self._learning_providers: Optional[List[learning_provider.LearningProvider]] = None
         # The OdataType property
@@ -52,13 +54,31 @@ class EmployeeExperience(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import learning_provider
+        from . import learning_course_activity, learning_provider
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "learningCourseActivities": lambda n : setattr(self, 'learning_course_activities', n.get_collection_of_object_values(learning_course_activity.LearningCourseActivity)),
             "learningProviders": lambda n : setattr(self, 'learning_providers', n.get_collection_of_object_values(learning_provider.LearningProvider)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
+    
+    @property
+    def learning_course_activities(self,) -> Optional[List[learning_course_activity.LearningCourseActivity]]:
+        """
+        Gets the learningCourseActivities property value. The learningCourseActivities property
+        Returns: Optional[List[learning_course_activity.LearningCourseActivity]]
+        """
+        return self._learning_course_activities
+    
+    @learning_course_activities.setter
+    def learning_course_activities(self,value: Optional[List[learning_course_activity.LearningCourseActivity]] = None) -> None:
+        """
+        Sets the learningCourseActivities property value. The learningCourseActivities property
+        Args:
+            value: Value to set for the learning_course_activities property.
+        """
+        self._learning_course_activities = value
     
     @property
     def learning_providers(self,) -> Optional[List[learning_provider.LearningProvider]]:
@@ -102,6 +122,7 @@ class EmployeeExperience(AdditionalDataHolder, Parsable):
         """
         if writer is None:
             raise Exception("writer cannot be undefined")
+        writer.write_collection_of_object_values("learningCourseActivities", self.learning_course_activities)
         writer.write_collection_of_object_values("learningProviders", self.learning_providers)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)

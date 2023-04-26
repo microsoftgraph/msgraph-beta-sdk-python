@@ -36,7 +36,7 @@ class RetryPartnerAgentInstallationRequestBuilder():
     
     async def post(self,request_configuration: Optional[RetryPartnerAgentInstallationRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Retry installation for the partner agents which failed to install on the Cloud PC. Service side will check which agent installation failed firstly and retry.
+        Invoke action retryPartnerAgentInstallation
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class RetryPartnerAgentInstallationRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[RetryPartnerAgentInstallationRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Retry installation for the partner agents which failed to install on the Cloud PC. Service side will check which agent installation failed firstly and retry.
+        Invoke action retryPartnerAgentInstallation
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

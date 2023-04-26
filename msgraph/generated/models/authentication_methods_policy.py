@@ -4,7 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import authentication_methods_policy_migration_state, authentication_method_configuration, entity, registration_enforcement
+    from . import authentication_methods_policy_migration_state, authentication_method_configuration, entity, registration_enforcement, system_credential_preferences
 
 from . import entity
 
@@ -32,6 +32,8 @@ class AuthenticationMethodsPolicy(entity.Entity):
         self._reconfirmation_in_days: Optional[int] = None
         # Enforce registration at sign-in time. This property can be used to remind users to set up targeted authentication methods.
         self._registration_enforcement: Optional[registration_enforcement.RegistrationEnforcement] = None
+        # Prompt users with their most-preferred credential for multifactor authentication.
+        self._system_credential_preferences: Optional[system_credential_preferences.SystemCredentialPreferences] = None
     
     @property
     def authentication_method_configurations(self,) -> Optional[List[authentication_method_configuration.AuthenticationMethodConfiguration]]:
@@ -101,7 +103,7 @@ class AuthenticationMethodsPolicy(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import authentication_methods_policy_migration_state, authentication_method_configuration, entity, registration_enforcement
+        from . import authentication_methods_policy_migration_state, authentication_method_configuration, entity, registration_enforcement, system_credential_preferences
 
         fields: Dict[str, Callable[[Any], None]] = {
             "authenticationMethodConfigurations": lambda n : setattr(self, 'authentication_method_configurations', n.get_collection_of_object_values(authentication_method_configuration.AuthenticationMethodConfiguration)),
@@ -112,6 +114,7 @@ class AuthenticationMethodsPolicy(entity.Entity):
             "policyVersion": lambda n : setattr(self, 'policy_version', n.get_str_value()),
             "reconfirmationInDays": lambda n : setattr(self, 'reconfirmation_in_days', n.get_int_value()),
             "registrationEnforcement": lambda n : setattr(self, 'registration_enforcement', n.get_object_value(registration_enforcement.RegistrationEnforcement)),
+            "systemCredentialPreferences": lambda n : setattr(self, 'system_credential_preferences', n.get_object_value(system_credential_preferences.SystemCredentialPreferences)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -219,5 +222,23 @@ class AuthenticationMethodsPolicy(entity.Entity):
         writer.write_str_value("policyVersion", self.policy_version)
         writer.write_int_value("reconfirmationInDays", self.reconfirmation_in_days)
         writer.write_object_value("registrationEnforcement", self.registration_enforcement)
+        writer.write_object_value("systemCredentialPreferences", self.system_credential_preferences)
+    
+    @property
+    def system_credential_preferences(self,) -> Optional[system_credential_preferences.SystemCredentialPreferences]:
+        """
+        Gets the systemCredentialPreferences property value. Prompt users with their most-preferred credential for multifactor authentication.
+        Returns: Optional[system_credential_preferences.SystemCredentialPreferences]
+        """
+        return self._system_credential_preferences
+    
+    @system_credential_preferences.setter
+    def system_credential_preferences(self,value: Optional[system_credential_preferences.SystemCredentialPreferences] = None) -> None:
+        """
+        Sets the systemCredentialPreferences property value. Prompt users with their most-preferred credential for multifactor authentication.
+        Args:
+            value: Value to set for the system_credential_preferences property.
+        """
+        self._system_credential_preferences = value
     
 

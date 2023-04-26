@@ -54,7 +54,7 @@ class ColumnsRequestBuilder():
     
     async def get(self,request_configuration: Optional[ColumnsRequestBuilderGetRequestConfiguration] = None) -> Optional[horizontal_section_column_collection_response.HorizontalSectionColumnCollectionResponse]:
         """
-        Get a list of the horizontalSectionColumn objects and their properties. Sort by `id` in ascending order.
+        The set of vertical columns in this section.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[horizontal_section_column_collection_response.HorizontalSectionColumnCollectionResponse]
@@ -101,7 +101,7 @@ class ColumnsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ColumnsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the horizontalSectionColumn objects and their properties. Sort by `id` in ascending order.
+        The set of vertical columns in this section.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class ColumnsRequestBuilder():
     @dataclass
     class ColumnsRequestBuilderGetQueryParameters():
         """
-        Get a list of the horizontalSectionColumn objects and their properties. Sort by `id` in ascending order.
+        The set of vertical columns in this section.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

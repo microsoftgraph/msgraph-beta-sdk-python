@@ -10,7 +10,7 @@ from . import single_sign_on_extension
 class IosSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtension):
     def __init__(self,) -> None:
         """
-        Instantiates a new IosSingleSignOnExtension and sets the default values.
+        Instantiates a new iosSingleSignOnExtension and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.iosSingleSignOnExtension"

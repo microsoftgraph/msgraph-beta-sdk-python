@@ -68,7 +68,7 @@ class AccessPackageAssignmentRequestsRequestBuilder():
     
     async def get(self,request_configuration: Optional[AccessPackageAssignmentRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_assignment_request_collection_response.AccessPackageAssignmentRequestCollectionResponse]:
         """
-        In Azure AD entitlement management, retrieve a list of accessPackageAssignmentRequest objects.  The resulting list includes all the assignment requests, current and well as expired, that the caller has access to read, across all catalogs and access packages.
+        Represents access package assignment requests created by or on behalf of a user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_package_assignment_request_collection_response.AccessPackageAssignmentRequestCollectionResponse]
@@ -90,7 +90,7 @@ class AccessPackageAssignmentRequestsRequestBuilder():
     
     async def post(self,body: Optional[access_package_assignment_request.AccessPackageAssignmentRequest] = None, request_configuration: Optional[AccessPackageAssignmentRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[access_package_assignment_request.AccessPackageAssignmentRequest]:
         """
-        In Azure AD Entitlement Management, create a new accessPackageAssignmentRequest object.  This operation is used to assign a user to an access package, or to remove an access package assignment.
+        Create new navigation property to accessPackageAssignmentRequests for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -115,7 +115,7 @@ class AccessPackageAssignmentRequestsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageAssignmentRequestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        In Azure AD entitlement management, retrieve a list of accessPackageAssignmentRequest objects.  The resulting list includes all the assignment requests, current and well as expired, that the caller has access to read, across all catalogs and access packages.
+        Represents access package assignment requests created by or on behalf of a user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -133,7 +133,7 @@ class AccessPackageAssignmentRequestsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[access_package_assignment_request.AccessPackageAssignmentRequest] = None, request_configuration: Optional[AccessPackageAssignmentRequestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        In Azure AD Entitlement Management, create a new accessPackageAssignmentRequest object.  This operation is used to assign a user to an access package, or to remove an access package assignment.
+        Create new navigation property to accessPackageAssignmentRequests for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -164,7 +164,7 @@ class AccessPackageAssignmentRequestsRequestBuilder():
     @dataclass
     class AccessPackageAssignmentRequestsRequestBuilderGetQueryParameters():
         """
-        In Azure AD entitlement management, retrieve a list of accessPackageAssignmentRequest objects.  The resulting list includes all the assignment requests, current and well as expired, that the caller has access to read, across all catalogs and access packages.
+        Represents access package assignment requests created by or on behalf of a user.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

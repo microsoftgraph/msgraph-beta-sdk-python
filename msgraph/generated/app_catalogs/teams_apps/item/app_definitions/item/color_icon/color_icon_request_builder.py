@@ -57,7 +57,7 @@ class ColorIconRequestBuilder():
     
     async def get(self,request_configuration: Optional[ColorIconRequestBuilderGetRequestConfiguration] = None) -> Optional[teams_app_icon.TeamsAppIcon]:
         """
-        Retrieve a Teams app icon associated with a specific definition of an app.
+        The color version of the Teams app's icon.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[teams_app_icon.TeamsAppIcon]
@@ -120,7 +120,7 @@ class ColorIconRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ColorIconRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a Teams app icon associated with a specific definition of an app.
+        The color version of the Teams app's icon.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -181,7 +181,7 @@ class ColorIconRequestBuilder():
     @dataclass
     class ColorIconRequestBuilderGetQueryParameters():
         """
-        Retrieve a Teams app icon associated with a specific definition of an app.
+        The color version of the Teams app's icon.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

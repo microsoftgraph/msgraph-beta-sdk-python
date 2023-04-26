@@ -38,7 +38,7 @@ class ValidatePasswordRequestBuilder():
     
     async def post(self,body: Optional[validate_password_post_request_body.ValidatePasswordPostRequestBody] = None, request_configuration: Optional[ValidatePasswordRequestBuilderPostRequestConfiguration] = None) -> Optional[password_validation_information.PasswordValidationInformation]:
         """
-        Check a user's password against the organization's password validation policy and report whether the password is valid. Use this action to provide real-time feedback on password strength while the user types their password.
+        Invoke action validatePassword
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +63,7 @@ class ValidatePasswordRequestBuilder():
     
     def to_post_request_information(self,body: Optional[validate_password_post_request_body.ValidatePasswordPostRequestBody] = None, request_configuration: Optional[ValidatePasswordRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Check a user's password against the organization's password validation policy and report whether the password is valid. Use this action to provide real-time feedback on password strength while the user types their password.
+        Invoke action validatePassword
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

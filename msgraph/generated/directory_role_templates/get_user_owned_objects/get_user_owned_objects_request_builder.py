@@ -38,7 +38,7 @@ class GetUserOwnedObjectsRequestBuilder():
     
     async def post(self,body: Optional[get_user_owned_objects_post_request_body.GetUserOwnedObjectsPostRequestBody] = None, request_configuration: Optional[GetUserOwnedObjectsRequestBuilderPostRequestConfiguration] = None) -> Optional[directory_object.DirectoryObject]:
         """
-        Retrieve a list of recently deleted application and group objects owned by the specified user. This API returns up to 1,000 deleted objects owned by the user, sorted by ID, and doesn't support pagination.
+        Invoke action getUserOwnedObjects
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +63,7 @@ class GetUserOwnedObjectsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[get_user_owned_objects_post_request_body.GetUserOwnedObjectsPostRequestBody] = None, request_configuration: Optional[GetUserOwnedObjectsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of recently deleted application and group objects owned by the specified user. This API returns up to 1,000 deleted objects owned by the user, sorted by ID, and doesn't support pagination.
+        Invoke action getUserOwnedObjects
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

@@ -11,7 +11,7 @@ from . import entity
 class OnlineMeeting(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new onlineMeeting and sets the default values.
+        Instantiates a new OnlineMeeting and sets the default values.
         """
         super().__init__()
         # Indicates whether attendees can turn on their camera.
@@ -74,7 +74,7 @@ class OnlineMeeting(entity.Entity):
         self._recording: Optional[bytes] = None
         # The registration that has been enabled for an online meeting. One online meeting can only have one registration enabled.
         self._registration: Optional[meeting_registration.MeetingRegistration] = None
-        # The shareMeetingChatHistoryDefault property
+        # Specifies whether meeting chat history is shared with participants.  Possible values are: all, none, unknownFutureValue.
         self._share_meeting_chat_history_default: Optional[meeting_chat_history_default_mode.MeetingChatHistoryDefaultMode] = None
         # The meeting start time in UTC.
         self._start_date_time: Optional[datetime] = None
@@ -692,7 +692,7 @@ class OnlineMeeting(entity.Entity):
     @property
     def share_meeting_chat_history_default(self,) -> Optional[meeting_chat_history_default_mode.MeetingChatHistoryDefaultMode]:
         """
-        Gets the shareMeetingChatHistoryDefault property value. The shareMeetingChatHistoryDefault property
+        Gets the shareMeetingChatHistoryDefault property value. Specifies whether meeting chat history is shared with participants.  Possible values are: all, none, unknownFutureValue.
         Returns: Optional[meeting_chat_history_default_mode.MeetingChatHistoryDefaultMode]
         """
         return self._share_meeting_chat_history_default
@@ -700,7 +700,7 @@ class OnlineMeeting(entity.Entity):
     @share_meeting_chat_history_default.setter
     def share_meeting_chat_history_default(self,value: Optional[meeting_chat_history_default_mode.MeetingChatHistoryDefaultMode] = None) -> None:
         """
-        Sets the shareMeetingChatHistoryDefault property value. The shareMeetingChatHistoryDefault property
+        Sets the shareMeetingChatHistoryDefault property value. Specifies whether meeting chat history is shared with participants.  Possible values are: all, none, unknownFutureValue.
         Args:
             value: Value to set for the share_meeting_chat_history_default property.
         """

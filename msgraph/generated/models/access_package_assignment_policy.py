@@ -4,7 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import access_package, access_package_catalog, access_package_question, approval_settings, assignment_review_settings, custom_extension_handler, custom_extension_stage_setting, entity, requestor_settings
+    from . import access_package, access_package_catalog, access_package_question, approval_settings, assignment_review_settings, custom_extension_handler, custom_extension_stage_setting, entity, requestor_settings, verifiable_credential_settings
 
 from . import entity
 
@@ -52,6 +52,8 @@ class AccessPackageAssignmentPolicy(entity.Entity):
         self._request_approval_settings: Optional[approval_settings.ApprovalSettings] = None
         # Who can request this access package from this policy.
         self._requestor_settings: Optional[requestor_settings.RequestorSettings] = None
+        # Settings for verifiable credentials set up through the Azure AD Verified ID service. These settings represent the verifiable credentials that a requestor of an access package in this policy can present to be assigned the access package.
+        self._verifiable_credential_settings: Optional[verifiable_credential_settings.VerifiableCredentialSettings] = None
     
     @property
     def access_package(self,) -> Optional[access_package.AccessPackage]:
@@ -291,7 +293,7 @@ class AccessPackageAssignmentPolicy(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import access_package, access_package_catalog, access_package_question, approval_settings, assignment_review_settings, custom_extension_handler, custom_extension_stage_setting, entity, requestor_settings
+        from . import access_package, access_package_catalog, access_package_question, approval_settings, assignment_review_settings, custom_extension_handler, custom_extension_stage_setting, entity, requestor_settings, verifiable_credential_settings
 
         fields: Dict[str, Callable[[Any], None]] = {
             "accessPackage": lambda n : setattr(self, 'access_package', n.get_object_value(access_package.AccessPackage)),
@@ -312,6 +314,7 @@ class AccessPackageAssignmentPolicy(entity.Entity):
             "questions": lambda n : setattr(self, 'questions', n.get_collection_of_object_values(access_package_question.AccessPackageQuestion)),
             "requestorSettings": lambda n : setattr(self, 'requestor_settings', n.get_object_value(requestor_settings.RequestorSettings)),
             "requestApprovalSettings": lambda n : setattr(self, 'request_approval_settings', n.get_object_value(approval_settings.ApprovalSettings)),
+            "verifiableCredentialSettings": lambda n : setattr(self, 'verifiable_credential_settings', n.get_object_value(verifiable_credential_settings.VerifiableCredentialSettings)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -429,5 +432,23 @@ class AccessPackageAssignmentPolicy(entity.Entity):
         writer.write_collection_of_object_values("questions", self.questions)
         writer.write_object_value("requestorSettings", self.requestor_settings)
         writer.write_object_value("requestApprovalSettings", self.request_approval_settings)
+        writer.write_object_value("verifiableCredentialSettings", self.verifiable_credential_settings)
+    
+    @property
+    def verifiable_credential_settings(self,) -> Optional[verifiable_credential_settings.VerifiableCredentialSettings]:
+        """
+        Gets the verifiableCredentialSettings property value. Settings for verifiable credentials set up through the Azure AD Verified ID service. These settings represent the verifiable credentials that a requestor of an access package in this policy can present to be assigned the access package.
+        Returns: Optional[verifiable_credential_settings.VerifiableCredentialSettings]
+        """
+        return self._verifiable_credential_settings
+    
+    @verifiable_credential_settings.setter
+    def verifiable_credential_settings(self,value: Optional[verifiable_credential_settings.VerifiableCredentialSettings] = None) -> None:
+        """
+        Sets the verifiableCredentialSettings property value. Settings for verifiable credentials set up through the Azure AD Verified ID service. These settings represent the verifiable credentials that a requestor of an access package in this policy can present to be assigned the access package.
+        Args:
+            value: Value to set for the verifiable_credential_settings property.
+        """
+        self._verifiable_credential_settings = value
     
 

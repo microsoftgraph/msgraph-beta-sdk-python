@@ -54,7 +54,7 @@ class RecommendationsRequestBuilder():
     
     async def get(self,request_configuration: Optional[RecommendationsRequestBuilderGetRequestConfiguration] = None) -> Optional[recommendation_collection_response.RecommendationCollectionResponse]:
         """
-        Get a list of the recommendation objects and their properties.
+        List of recommended improvements to improve tenant posture.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[recommendation_collection_response.RecommendationCollectionResponse]
@@ -101,7 +101,7 @@ class RecommendationsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RecommendationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the recommendation objects and their properties.
+        List of recommended improvements to improve tenant posture.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class RecommendationsRequestBuilder():
     @dataclass
     class RecommendationsRequestBuilderGetQueryParameters():
         """
-        Get a list of the recommendation objects and their properties.
+        List of recommended improvements to improve tenant posture.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

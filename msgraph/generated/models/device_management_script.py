@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class DeviceManagementScript(entity.Entity):
-    """
-    Intune will provide customer the ability to run their Powershell scripts on the enrolled windows 10 Azure Active Directory joined devices. The script can be run once or periodically.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceManagementScript and sets the default values.
+        Instantiates a new DeviceManagementScript and sets the default values.
         """
         super().__init__()
         # The list of group assignments for the device management script.

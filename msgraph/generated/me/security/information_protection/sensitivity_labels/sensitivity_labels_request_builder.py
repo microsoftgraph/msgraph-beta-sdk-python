@@ -58,7 +58,7 @@ class SensitivityLabelsRequestBuilder():
     
     async def get(self,request_configuration: Optional[SensitivityLabelsRequestBuilderGetRequestConfiguration] = None) -> Optional[sensitivity_label_collection_response.SensitivityLabelCollectionResponse]:
         """
-        Get a list of sensitivityLabel objects associated with a user or organization.
+        Read the Microsoft Purview Information Protection labels for the user or organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[sensitivity_label_collection_response.SensitivityLabelCollectionResponse]
@@ -105,7 +105,7 @@ class SensitivityLabelsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SensitivityLabelsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of sensitivityLabel objects associated with a user or organization.
+        Read the Microsoft Purview Information Protection labels for the user or organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -190,7 +190,7 @@ class SensitivityLabelsRequestBuilder():
     @dataclass
     class SensitivityLabelsRequestBuilderGetQueryParameters():
         """
-        Get a list of sensitivityLabel objects associated with a user or organization.
+        Read the Microsoft Purview Information Protection labels for the user or organization.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

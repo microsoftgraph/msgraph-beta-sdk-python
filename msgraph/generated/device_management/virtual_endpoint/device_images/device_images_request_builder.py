@@ -55,7 +55,7 @@ class DeviceImagesRequestBuilder():
     
     async def get(self,request_configuration: Optional[DeviceImagesRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_device_image_collection_response.CloudPcDeviceImageCollectionResponse]:
         """
-        List the properties and relationships of the cloudPcDeviceImage objects (OS images) uploaded to Cloud PC.
+        The image resource on Cloud PC.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cloud_pc_device_image_collection_response.CloudPcDeviceImageCollectionResponse]
@@ -77,7 +77,7 @@ class DeviceImagesRequestBuilder():
     
     async def post(self,body: Optional[cloud_pc_device_image.CloudPcDeviceImage] = None, request_configuration: Optional[DeviceImagesRequestBuilderPostRequestConfiguration] = None) -> Optional[cloud_pc_device_image.CloudPcDeviceImage]:
         """
-        Create a new cloudPcDeviceImage object. Upload a custom OS image that you can later provision on Cloud PCs.
+        Create new navigation property to deviceImages for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -102,7 +102,7 @@ class DeviceImagesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[DeviceImagesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List the properties and relationships of the cloudPcDeviceImage objects (OS images) uploaded to Cloud PC.
+        The image resource on Cloud PC.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -120,7 +120,7 @@ class DeviceImagesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[cloud_pc_device_image.CloudPcDeviceImage] = None, request_configuration: Optional[DeviceImagesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new cloudPcDeviceImage object. Upload a custom OS image that you can later provision on Cloud PCs.
+        Create new navigation property to deviceImages for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -160,7 +160,7 @@ class DeviceImagesRequestBuilder():
     @dataclass
     class DeviceImagesRequestBuilderGetQueryParameters():
         """
-        List the properties and relationships of the cloudPcDeviceImage objects (OS images) uploaded to Cloud PC.
+        The image resource on Cloud PC.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

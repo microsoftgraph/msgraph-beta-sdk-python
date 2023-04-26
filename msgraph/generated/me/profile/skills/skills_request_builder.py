@@ -54,7 +54,7 @@ class SkillsRequestBuilder():
     
     async def get(self,request_configuration: Optional[SkillsRequestBuilderGetRequestConfiguration] = None) -> Optional[skill_proficiency_collection_response.SkillProficiencyCollectionResponse]:
         """
-        Retrieve a list of skillProficiency objects in a user's profile.
+        Represents detailed information about skills associated with a user in various services.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[skill_proficiency_collection_response.SkillProficiencyCollectionResponse]
@@ -76,7 +76,7 @@ class SkillsRequestBuilder():
     
     async def post(self,body: Optional[skill_proficiency.SkillProficiency] = None, request_configuration: Optional[SkillsRequestBuilderPostRequestConfiguration] = None) -> Optional[skill_proficiency.SkillProficiency]:
         """
-        Use this API to create a new skillProficiency object in a user's profile.
+        Create new navigation property to skills for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class SkillsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SkillsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of skillProficiency objects in a user's profile.
+        Represents detailed information about skills associated with a user in various services.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class SkillsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[skill_proficiency.SkillProficiency] = None, request_configuration: Optional[SkillsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Use this API to create a new skillProficiency object in a user's profile.
+        Create new navigation property to skills for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class SkillsRequestBuilder():
     @dataclass
     class SkillsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of skillProficiency objects in a user's profile.
+        Represents detailed information about skills associated with a user in various services.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

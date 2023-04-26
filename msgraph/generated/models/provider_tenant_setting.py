@@ -11,7 +11,7 @@ from . import entity
 class ProviderTenantSetting(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new providerTenantSetting and sets the default values.
+        Instantiates a new ProviderTenantSetting and sets the default values.
         """
         super().__init__()
         # The azureTenantId property

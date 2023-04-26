@@ -54,7 +54,7 @@ class IndicatorsRequestBuilder():
     
     async def get(self,request_configuration: Optional[IndicatorsRequestBuilderGetRequestConfiguration] = None) -> Optional[intelligence_profile_indicator_collection_response.IntelligenceProfileIndicatorCollectionResponse]:
         """
-        Get the intelligenceProfileIndicator resources from the **indicators** navigation property of an intelligenceProfile.
+        Includes an assemblage of high-fidelity network indicators of compromise.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[intelligence_profile_indicator_collection_response.IntelligenceProfileIndicatorCollectionResponse]
@@ -76,7 +76,7 @@ class IndicatorsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[IndicatorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the intelligenceProfileIndicator resources from the **indicators** navigation property of an intelligenceProfile.
+        Includes an assemblage of high-fidelity network indicators of compromise.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +104,7 @@ class IndicatorsRequestBuilder():
     @dataclass
     class IndicatorsRequestBuilderGetQueryParameters():
         """
-        Get the intelligenceProfileIndicator resources from the **indicators** navigation property of an intelligenceProfile.
+        Includes an assemblage of high-fidelity network indicators of compromise.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

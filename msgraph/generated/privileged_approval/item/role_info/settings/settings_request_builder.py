@@ -56,7 +56,7 @@ class SettingsRequestBuilder():
     
     async def get(self,request_configuration: Optional[SettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_role_settings.PrivilegedRoleSettings]:
         """
-        Retrieve the role settings for the given role. A privilegedRoleSettings object will be returned.
+        The settings for this role. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[privileged_role_settings.PrivilegedRoleSettings]
@@ -78,7 +78,7 @@ class SettingsRequestBuilder():
     
     async def patch(self,body: Optional[privileged_role_settings.PrivilegedRoleSettings] = None, request_configuration: Optional[SettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[privileged_role_settings.PrivilegedRoleSettings]:
         """
-        Update the role settings for the given role setting. A privilegedRoleSettings object will be returned.
+        Update the navigation property settings in privilegedApproval
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class SettingsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the role settings for the given role. A privilegedRoleSettings object will be returned.
+        The settings for this role. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class SettingsRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[privileged_role_settings.PrivilegedRoleSettings] = None, request_configuration: Optional[SettingsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the role settings for the given role setting. A privilegedRoleSettings object will be returned.
+        Update the navigation property settings in privilegedApproval
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class SettingsRequestBuilder():
     @dataclass
     class SettingsRequestBuilderGetQueryParameters():
         """
-        Retrieve the role settings for the given role. A privilegedRoleSettings object will be returned.
+        The settings for this role. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

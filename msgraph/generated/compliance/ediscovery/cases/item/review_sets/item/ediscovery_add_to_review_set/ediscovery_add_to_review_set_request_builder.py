@@ -37,7 +37,7 @@ class EdiscoveryAddToReviewSetRequestBuilder():
     
     async def post(self,body: Optional[add_to_review_set_post_request_body.AddToReviewSetPostRequestBody] = None, request_configuration: Optional[EdiscoveryAddToReviewSetRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Start the process of adding a collection from Microsoft 365 services to a review set. After the operation is created, you can get the status of the operation by retrieving the `Location` parameter from the response headers. The location provides a URL that will return a caseExportOperation.
+        Invoke action addToReviewSet
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -59,7 +59,7 @@ class EdiscoveryAddToReviewSetRequestBuilder():
     
     def to_post_request_information(self,body: Optional[add_to_review_set_post_request_body.AddToReviewSetPostRequestBody] = None, request_configuration: Optional[EdiscoveryAddToReviewSetRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Start the process of adding a collection from Microsoft 365 services to a review set. After the operation is created, you can get the status of the operation by retrieving the `Location` parameter from the response headers. The location provides a URL that will return a caseExportOperation.
+        Invoke action addToReviewSet
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

@@ -37,7 +37,7 @@ class RestoreCloudPcRequestBuilder():
     
     async def post(self,body: Optional[restore_cloud_pc_post_request_body.RestoreCloudPcPostRequestBody] = None, request_configuration: Optional[RestoreCloudPcRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Restore a Cloud PC device to a previous state with an Intune managed device ID.
+        Invoke action restoreCloudPc
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -59,7 +59,7 @@ class RestoreCloudPcRequestBuilder():
     
     def to_post_request_information(self,body: Optional[restore_cloud_pc_post_request_body.RestoreCloudPcPostRequestBody] = None, request_configuration: Optional[RestoreCloudPcRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Restore a Cloud PC device to a previous state with an Intune managed device ID.
+        Invoke action restoreCloudPc
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class DeviceShellScript(entity.Entity):
-    """
-    Intune will provide customer the ability to run their Shell scripts on the enrolled Mac OS devices. The script can be run once or periodically.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceShellScript and sets the default values.
+        Instantiates a new DeviceShellScript and sets the default values.
         """
         super().__init__()
         # The list of group assignments for the device management script.

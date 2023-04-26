@@ -56,7 +56,7 @@ class TeamsAppSettingsRequestBuilder():
     
     async def get(self,request_configuration: Optional[TeamsAppSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[teams_app_settings.TeamsAppSettings]:
         """
-        Read the properties and relationships of a teamsAppSettings object.
+        Represents tenant-wide settings for all Teams apps in the tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[teams_app_settings.TeamsAppSettings]
@@ -78,7 +78,7 @@ class TeamsAppSettingsRequestBuilder():
     
     async def patch(self,body: Optional[teams_app_settings.TeamsAppSettings] = None, request_configuration: Optional[TeamsAppSettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[teams_app_settings.TeamsAppSettings]:
         """
-        Update the properties of a teamsAppSettings object.
+        Update the navigation property teamsAppSettings in teamwork
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class TeamsAppSettingsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TeamsAppSettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a teamsAppSettings object.
+        Represents tenant-wide settings for all Teams apps in the tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class TeamsAppSettingsRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[teams_app_settings.TeamsAppSettings] = None, request_configuration: Optional[TeamsAppSettingsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a teamsAppSettings object.
+        Update the navigation property teamsAppSettings in teamwork
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class TeamsAppSettingsRequestBuilder():
     @dataclass
     class TeamsAppSettingsRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a teamsAppSettings object.
+        Represents tenant-wide settings for all Teams apps in the tenant.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

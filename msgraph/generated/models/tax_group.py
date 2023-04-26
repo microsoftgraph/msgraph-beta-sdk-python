@@ -11,7 +11,7 @@ from . import entity
 class TaxGroup(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new taxGroup and sets the default values.
+        Instantiates a new TaxGroup and sets the default values.
         """
         super().__init__()
         # The code property
