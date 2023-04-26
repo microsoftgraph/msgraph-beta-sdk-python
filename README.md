@@ -144,7 +144,7 @@ asyncio.run(get_user())
 
 * [Microsoft Graph website](https://aka.ms/graph)
 
-* [Samples](samples)
+* [Samples](docs)
 
 ## Upgrading
 
