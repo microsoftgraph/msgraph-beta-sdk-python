@@ -54,7 +54,7 @@ class RecentPlansRequestBuilder():
     
     async def get(self,request_configuration: Optional[RecentPlansRequestBuilderGetRequestConfiguration] = None) -> Optional[planner_plan_collection_response.PlannerPlanCollectionResponse]:
         """
-        Retrieve a list of plannerPlans recently viewed by a user. You can update recently viewed plans by updating the plannerUser resource.
+        Read-only. Nullable. Returns the plannerPlans that have been recently viewed by the user in apps that support recent plans.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[planner_plan_collection_response.PlannerPlanCollectionResponse]
@@ -76,7 +76,7 @@ class RecentPlansRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RecentPlansRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of plannerPlans recently viewed by a user. You can update recently viewed plans by updating the plannerUser resource.
+        Read-only. Nullable. Returns the plannerPlans that have been recently viewed by the user in apps that support recent plans.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +104,7 @@ class RecentPlansRequestBuilder():
     @dataclass
     class RecentPlansRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of plannerPlans recently viewed by a user. You can update recently viewed plans by updating the plannerUser resource.
+        Read-only. Nullable. Returns the plannerPlans that have been recently viewed by the user in apps that support recent plans.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

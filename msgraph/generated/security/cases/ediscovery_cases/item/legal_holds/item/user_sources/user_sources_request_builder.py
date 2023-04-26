@@ -76,7 +76,7 @@ class UserSourcesRequestBuilder():
     
     async def post(self,body: Optional[user_source.UserSource] = None, request_configuration: Optional[UserSourcesRequestBuilderPostRequestConfiguration] = None) -> Optional[user_source.UserSource]:
         """
-        Create a new userSource object.
+        Create new navigation property to userSources for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class UserSourcesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[user_source.UserSource] = None, request_configuration: Optional[UserSourcesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new userSource object.
+        Create new navigation property to userSources for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

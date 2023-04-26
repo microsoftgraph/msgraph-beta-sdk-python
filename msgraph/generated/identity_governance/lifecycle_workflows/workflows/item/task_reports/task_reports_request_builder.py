@@ -56,7 +56,7 @@ class TaskReportsRequestBuilder():
     
     async def get(self,request_configuration: Optional[TaskReportsRequestBuilderGetRequestConfiguration] = None) -> Optional[task_report_collection_response.TaskReportCollectionResponse]:
         """
-        Get a list of the taskReport objects and their properties.
+        Represents the aggregation of task execution data for tasks within a workflow object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[task_report_collection_response.TaskReportCollectionResponse]
@@ -94,7 +94,7 @@ class TaskReportsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TaskReportsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the taskReport objects and their properties.
+        Represents the aggregation of task execution data for tasks within a workflow object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -122,7 +122,7 @@ class TaskReportsRequestBuilder():
     @dataclass
     class TaskReportsRequestBuilderGetQueryParameters():
         """
-        Get a list of the taskReport objects and their properties.
+        Represents the aggregation of task execution data for tasks within a workflow object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

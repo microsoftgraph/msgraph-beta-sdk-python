@@ -54,7 +54,7 @@ class TranscriptsRequestBuilder():
     
     async def get(self,request_configuration: Optional[TranscriptsRequestBuilderGetRequestConfiguration] = None) -> Optional[call_transcript_collection_response.CallTranscriptCollectionResponse]:
         """
-        Retrieve the list of callTranscript objects associated with an onlineMeeting.
+        The transcripts of an online meeting. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[call_transcript_collection_response.CallTranscriptCollectionResponse]
@@ -101,7 +101,7 @@ class TranscriptsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TranscriptsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the list of callTranscript objects associated with an onlineMeeting.
+        The transcripts of an online meeting. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class TranscriptsRequestBuilder():
     @dataclass
     class TranscriptsRequestBuilderGetQueryParameters():
         """
-        Retrieve the list of callTranscript objects associated with an onlineMeeting.
+        The transcripts of an online meeting. Read-only.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

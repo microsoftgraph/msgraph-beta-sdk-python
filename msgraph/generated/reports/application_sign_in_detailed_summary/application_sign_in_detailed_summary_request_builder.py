@@ -54,7 +54,7 @@ class ApplicationSignInDetailedSummaryRequestBuilder():
     
     async def get(self,request_configuration: Optional[ApplicationSignInDetailedSummaryRequestBuilderGetRequestConfiguration] = None) -> Optional[application_sign_in_detailed_summary_collection_response.ApplicationSignInDetailedSummaryCollectionResponse]:
         """
-        Retrieve the applicationSignInDetailedSummary objects.
+        Represents a detailed summary of an application sign-in.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[application_sign_in_detailed_summary_collection_response.ApplicationSignInDetailedSummaryCollectionResponse]
@@ -101,7 +101,7 @@ class ApplicationSignInDetailedSummaryRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ApplicationSignInDetailedSummaryRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the applicationSignInDetailedSummary objects.
+        Represents a detailed summary of an application sign-in.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class ApplicationSignInDetailedSummaryRequestBuilder():
     @dataclass
     class ApplicationSignInDetailedSummaryRequestBuilderGetQueryParameters():
         """
-        Retrieve the applicationSignInDetailedSummary objects.
+        Represents a detailed summary of an application sign-in.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -11,7 +11,7 @@ from . import entity
 class SignIn(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new signIn and sets the default values.
+        Instantiates a new SignIn and sets the default values.
         """
         super().__init__()
         # The application name displayed in the Azure Portal. Supports $filter (eq and startsWith operators only).

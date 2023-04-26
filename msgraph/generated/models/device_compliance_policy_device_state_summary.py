@@ -10,7 +10,7 @@ from . import entity
 class DeviceCompliancePolicyDeviceStateSummary(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceCompliancePolicyDeviceStateSummary and sets the default values.
+        Instantiates a new DeviceCompliancePolicyDeviceStateSummary and sets the default values.
         """
         super().__init__()
         # Number of compliant devices

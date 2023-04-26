@@ -54,7 +54,7 @@ class FavoritePlansRequestBuilder():
     
     async def get(self,request_configuration: Optional[FavoritePlansRequestBuilderGetRequestConfiguration] = None) -> Optional[planner_plan_collection_response.PlannerPlanCollectionResponse]:
         """
-        Retrieve a list of plannerPlans that are marked as favorite by a user. You can mark a plan as favorite by updating the plannerUser resource.
+        Read-only. Nullable. Returns the plannerPlans that the user marked as favorites.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[planner_plan_collection_response.PlannerPlanCollectionResponse]
@@ -76,7 +76,7 @@ class FavoritePlansRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[FavoritePlansRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of plannerPlans that are marked as favorite by a user. You can mark a plan as favorite by updating the plannerUser resource.
+        Read-only. Nullable. Returns the plannerPlans that the user marked as favorites.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +104,7 @@ class FavoritePlansRequestBuilder():
     @dataclass
     class FavoritePlansRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of plannerPlans that are marked as favorite by a user. You can mark a plan as favorite by updating the plannerUser resource.
+        Read-only. Nullable. Returns the plannerPlans that the user marked as favorites.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

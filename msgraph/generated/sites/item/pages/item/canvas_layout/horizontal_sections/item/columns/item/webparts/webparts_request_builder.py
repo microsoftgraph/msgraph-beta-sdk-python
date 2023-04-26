@@ -54,7 +54,7 @@ class WebpartsRequestBuilder():
     
     async def get(self,request_configuration: Optional[WebpartsRequestBuilderGetRequestConfiguration] = None) -> Optional[web_part_collection_response.WebPartCollectionResponse]:
         """
-        Get the webPart resources from a sitePage. Sort by the order in which they appear on the page.
+        The collection of WebParts in this column.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[web_part_collection_response.WebPartCollectionResponse]
@@ -101,7 +101,7 @@ class WebpartsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[WebpartsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the webPart resources from a sitePage. Sort by the order in which they appear on the page.
+        The collection of WebParts in this column.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class WebpartsRequestBuilder():
     @dataclass
     class WebpartsRequestBuilderGetQueryParameters():
         """
-        Get the webPart resources from a sitePage. Sort by the order in which they appear on the page.
+        The collection of WebParts in this column.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

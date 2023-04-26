@@ -54,7 +54,7 @@ class PublicationsRequestBuilder():
     
     async def get(self,request_configuration: Optional[PublicationsRequestBuilderGetRequestConfiguration] = None) -> Optional[item_publication_collection_response.ItemPublicationCollectionResponse]:
         """
-        Retrieve a list of itemPublication objects from a user's profile.
+        Represents details of any publications a user has added to their profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[item_publication_collection_response.ItemPublicationCollectionResponse]
@@ -76,7 +76,7 @@ class PublicationsRequestBuilder():
     
     async def post(self,body: Optional[item_publication.ItemPublication] = None, request_configuration: Optional[PublicationsRequestBuilderPostRequestConfiguration] = None) -> Optional[item_publication.ItemPublication]:
         """
-        Create a new itemPublication object in a user's profile.
+        Create new navigation property to publications for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class PublicationsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PublicationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of itemPublication objects from a user's profile.
+        Represents details of any publications a user has added to their profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class PublicationsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[item_publication.ItemPublication] = None, request_configuration: Optional[PublicationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new itemPublication object in a user's profile.
+        Create new navigation property to publications for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class PublicationsRequestBuilder():
     @dataclass
     class PublicationsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of itemPublication objects from a user's profile.
+        Represents details of any publications a user has added to their profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

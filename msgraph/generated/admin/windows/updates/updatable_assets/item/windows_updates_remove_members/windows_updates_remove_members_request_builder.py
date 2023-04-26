@@ -37,7 +37,7 @@ class WindowsUpdatesRemoveMembersRequestBuilder():
     
     async def post(self,body: Optional[remove_members_post_request_body.RemoveMembersPostRequestBody] = None, request_configuration: Optional[WindowsUpdatesRemoveMembersRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Remove members from an updatableAssetGroup. You can also use the method removeMembersById to remove members.
+        Invoke action removeMembers
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -59,7 +59,7 @@ class WindowsUpdatesRemoveMembersRequestBuilder():
     
     def to_post_request_information(self,body: Optional[remove_members_post_request_body.RemoveMembersPostRequestBody] = None, request_configuration: Optional[WindowsUpdatesRemoveMembersRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Remove members from an updatableAssetGroup. You can also use the method removeMembersById to remove members.
+        Invoke action removeMembers
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

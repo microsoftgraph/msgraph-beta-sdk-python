@@ -36,7 +36,7 @@ class EdiscoveryReleaseRequestBuilder():
     
     async def post(self,request_configuration: Optional[EdiscoveryReleaseRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Releases the non-custodial data source from the case.
+        Invoke action release
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class EdiscoveryReleaseRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[EdiscoveryReleaseRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Releases the non-custodial data source from the case.
+        Invoke action release
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

@@ -2,6 +2,9 @@ from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+if TYPE_CHECKING:
+    from .....models import obliteration_behavior
+
 class WipePostRequestBody(AdditionalDataHolder, Parsable):
     def __init__(self,) -> None:
         """
@@ -16,6 +19,8 @@ class WipePostRequestBody(AdditionalDataHolder, Parsable):
         self._keep_user_data: Optional[bool] = None
         # The macOsUnlockCode property
         self._mac_os_unlock_code: Optional[str] = None
+        # The obliterationBehavior property
+        self._obliteration_behavior: Optional[obliteration_behavior.ObliterationBehavior] = None
         # The persistEsimDataPlan property
         self._persist_esim_data_plan: Optional[bool] = None
         # The useProtectedWipe property
@@ -55,10 +60,13 @@ class WipePostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .....models import obliteration_behavior
+
         fields: Dict[str, Callable[[Any], None]] = {
             "keepEnrollmentData": lambda n : setattr(self, 'keep_enrollment_data', n.get_bool_value()),
             "keepUserData": lambda n : setattr(self, 'keep_user_data', n.get_bool_value()),
             "macOsUnlockCode": lambda n : setattr(self, 'mac_os_unlock_code', n.get_str_value()),
+            "obliterationBehavior": lambda n : setattr(self, 'obliteration_behavior', n.get_enum_value(obliteration_behavior.ObliterationBehavior)),
             "persistEsimDataPlan": lambda n : setattr(self, 'persist_esim_data_plan', n.get_bool_value()),
             "useProtectedWipe": lambda n : setattr(self, 'use_protected_wipe', n.get_bool_value()),
         }
@@ -116,6 +124,23 @@ class WipePostRequestBody(AdditionalDataHolder, Parsable):
         self._mac_os_unlock_code = value
     
     @property
+    def obliteration_behavior(self,) -> Optional[obliteration_behavior.ObliterationBehavior]:
+        """
+        Gets the obliterationBehavior property value. The obliterationBehavior property
+        Returns: Optional[obliteration_behavior.ObliterationBehavior]
+        """
+        return self._obliteration_behavior
+    
+    @obliteration_behavior.setter
+    def obliteration_behavior(self,value: Optional[obliteration_behavior.ObliterationBehavior] = None) -> None:
+        """
+        Sets the obliterationBehavior property value. The obliterationBehavior property
+        Args:
+            value: Value to set for the obliteration_behavior property.
+        """
+        self._obliteration_behavior = value
+    
+    @property
     def persist_esim_data_plan(self,) -> Optional[bool]:
         """
         Gets the persistEsimDataPlan property value. The persistEsimDataPlan property
@@ -143,6 +168,7 @@ class WipePostRequestBody(AdditionalDataHolder, Parsable):
         writer.write_bool_value("keepEnrollmentData", self.keep_enrollment_data)
         writer.write_bool_value("keepUserData", self.keep_user_data)
         writer.write_str_value("macOsUnlockCode", self.mac_os_unlock_code)
+        writer.write_enum_value("obliterationBehavior", self.obliteration_behavior)
         writer.write_bool_value("persistEsimDataPlan", self.persist_esim_data_plan)
         writer.write_bool_value("useProtectedWipe", self.use_protected_wipe)
         writer.write_additional_data_value(self.additional_data)

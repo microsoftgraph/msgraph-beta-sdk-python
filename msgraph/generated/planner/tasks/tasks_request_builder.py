@@ -55,7 +55,7 @@ class TasksRequestBuilder():
     
     async def get(self,request_configuration: Optional[TasksRequestBuilderGetRequestConfiguration] = None) -> Optional[planner_task_collection_response.PlannerTaskCollectionResponse]:
         """
-        Retrieve a list of **plannertask** objects.
+        Read-only. Nullable. Returns a collection of the specified tasks
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[planner_task_collection_response.PlannerTaskCollectionResponse]
@@ -77,7 +77,7 @@ class TasksRequestBuilder():
     
     async def post(self,body: Optional[planner_task.PlannerTask] = None, request_configuration: Optional[TasksRequestBuilderPostRequestConfiguration] = None) -> Optional[planner_task.PlannerTask]:
         """
-        Create a new **plannerTask**.
+        Create new navigation property to tasks for planner
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -102,7 +102,7 @@ class TasksRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TasksRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of **plannertask** objects.
+        Read-only. Nullable. Returns a collection of the specified tasks
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -120,7 +120,7 @@ class TasksRequestBuilder():
     
     def to_post_request_information(self,body: Optional[planner_task.PlannerTask] = None, request_configuration: Optional[TasksRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new **plannerTask**.
+        Create new navigation property to tasks for planner
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -160,7 +160,7 @@ class TasksRequestBuilder():
     @dataclass
     class TasksRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of **plannertask** objects.
+        Read-only. Nullable. Returns a collection of the specified tasks
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

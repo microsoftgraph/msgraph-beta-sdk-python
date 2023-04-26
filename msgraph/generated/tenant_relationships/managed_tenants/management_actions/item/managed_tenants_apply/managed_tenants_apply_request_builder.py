@@ -38,7 +38,7 @@ class ManagedTenantsApplyRequestBuilder():
     
     async def post(self,body: Optional[apply_post_request_body.ApplyPostRequestBody] = None, request_configuration: Optional[ManagedTenantsApplyRequestBuilderPostRequestConfiguration] = None) -> Optional[management_action_deployment_status.ManagementActionDeploymentStatus]:
         """
-        Applies a management action against a specific managed tenant. By performing this operation the appropriate configurations will be made and policies created. As example when applying the require multi-factor authentication for admins management action will create an Azure Active Directory conditional access policy that requires multi-factor authentication for all users that have been assigned an administrative directory role.
+        Invoke action apply
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +63,7 @@ class ManagedTenantsApplyRequestBuilder():
     
     def to_post_request_information(self,body: Optional[apply_post_request_body.ApplyPostRequestBody] = None, request_configuration: Optional[ManagedTenantsApplyRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Applies a management action against a specific managed tenant. By performing this operation the appropriate configurations will be made and policies created. As example when applying the require multi-factor authentication for admins management action will create an Azure Active Directory conditional access policy that requires multi-factor authentication for all users that have been assigned an administrative directory role.
+        Invoke action apply
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

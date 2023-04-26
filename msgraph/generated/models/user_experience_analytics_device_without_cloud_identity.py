@@ -8,12 +8,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class UserExperienceAnalyticsDeviceWithoutCloudIdentity(entity.Entity):
-    """
-    The user experience analytics Device without Cloud Identity.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsDeviceWithoutCloudIdentity and sets the default values.
+        Instantiates a new UserExperienceAnalyticsDeviceWithoutCloudIdentity and sets the default values.
         """
         super().__init__()
         # Azure Active Directory Device Id

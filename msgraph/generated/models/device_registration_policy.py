@@ -3,7 +3,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import azure_ad_join_policy, azure_a_d_registration_policy, entity, multi_factor_auth_configuration
+    from . import azure_ad_join_policy, azure_a_d_registration_policy, entity, local_admin_password_settings, multi_factor_auth_configuration
 
 from . import entity
 
@@ -21,6 +21,8 @@ class DeviceRegistrationPolicy(entity.Entity):
         self._description: Optional[str] = None
         # The name of the device registration policy. It is always set to Device Registration Policy. Read-only.
         self._display_name: Optional[str] = None
+        # Specifies the setting for Local Admin Password Solution (LAPS) within your organization.
+        self._local_admin_password: Optional[local_admin_password_settings.LocalAdminPasswordSettings] = None
         # The multiFactorAuthConfiguration property
         self._multi_factor_auth_configuration: Optional[multi_factor_auth_configuration.MultiFactorAuthConfiguration] = None
         # The OdataType property
@@ -113,19 +115,37 @@ class DeviceRegistrationPolicy(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import azure_ad_join_policy, azure_a_d_registration_policy, entity, multi_factor_auth_configuration
+        from . import azure_ad_join_policy, azure_a_d_registration_policy, entity, local_admin_password_settings, multi_factor_auth_configuration
 
         fields: Dict[str, Callable[[Any], None]] = {
             "azureADJoin": lambda n : setattr(self, 'azure_a_d_join', n.get_object_value(azure_ad_join_policy.AzureAdJoinPolicy)),
             "azureADRegistration": lambda n : setattr(self, 'azure_a_d_registration', n.get_object_value(azure_a_d_registration_policy.AzureADRegistrationPolicy)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "localAdminPassword": lambda n : setattr(self, 'local_admin_password', n.get_object_value(local_admin_password_settings.LocalAdminPasswordSettings)),
             "multiFactorAuthConfiguration": lambda n : setattr(self, 'multi_factor_auth_configuration', n.get_enum_value(multi_factor_auth_configuration.MultiFactorAuthConfiguration)),
             "userDeviceQuota": lambda n : setattr(self, 'user_device_quota', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
+    
+    @property
+    def local_admin_password(self,) -> Optional[local_admin_password_settings.LocalAdminPasswordSettings]:
+        """
+        Gets the localAdminPassword property value. Specifies the setting for Local Admin Password Solution (LAPS) within your organization.
+        Returns: Optional[local_admin_password_settings.LocalAdminPasswordSettings]
+        """
+        return self._local_admin_password
+    
+    @local_admin_password.setter
+    def local_admin_password(self,value: Optional[local_admin_password_settings.LocalAdminPasswordSettings] = None) -> None:
+        """
+        Sets the localAdminPassword property value. Specifies the setting for Local Admin Password Solution (LAPS) within your organization.
+        Args:
+            value: Value to set for the local_admin_password property.
+        """
+        self._local_admin_password = value
     
     @property
     def multi_factor_auth_configuration(self,) -> Optional[multi_factor_auth_configuration.MultiFactorAuthConfiguration]:
@@ -157,6 +177,7 @@ class DeviceRegistrationPolicy(entity.Entity):
         writer.write_object_value("azureADRegistration", self.azure_a_d_registration)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
+        writer.write_object_value("localAdminPassword", self.local_admin_password)
         writer.write_enum_value("multiFactorAuthConfiguration", self.multi_factor_auth_configuration)
         writer.write_int_value("userDeviceQuota", self.user_device_quota)
     

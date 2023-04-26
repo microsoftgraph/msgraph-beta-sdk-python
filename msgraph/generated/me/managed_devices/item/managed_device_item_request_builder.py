@@ -17,7 +17,6 @@ if TYPE_CHECKING:
     from .bypass_activation_lock import bypass_activation_lock_request_builder
     from .clean_windows_device import clean_windows_device_request_builder
     from .create_device_log_collection_request import create_device_log_collection_request_request_builder
-    from .create_remote_help_session import create_remote_help_session_request_builder
     from .delete_user_from_shared_apple_device import delete_user_from_shared_apple_device_request_builder
     from .deprovision import deprovision_request_builder
     from .detected_apps import detected_apps_request_builder
@@ -28,7 +27,6 @@ if TYPE_CHECKING:
     from .disable import disable_request_builder
     from .disable_lost_mode import disable_lost_mode_request_builder
     from .enable_lost_mode import enable_lost_mode_request_builder
-    from .end_remote_help_session import end_remote_help_session_request_builder
     from .enroll_now_action import enroll_now_action_request_builder
     from .get_cloud_pc_remote_action_results import get_cloud_pc_remote_action_results_request_builder
     from .get_cloud_pc_review_status import get_cloud_pc_review_status_request_builder
@@ -50,12 +48,10 @@ if TYPE_CHECKING:
     from .remove_device_firmware_configuration_interface_management import remove_device_firmware_configuration_interface_management_request_builder
     from .reprovision_cloud_pc import reprovision_cloud_pc_request_builder
     from .request_remote_assistance import request_remote_assistance_request_builder
-    from .request_remote_help_session_access import request_remote_help_session_access_request_builder
     from .reset_passcode import reset_passcode_request_builder
     from .resize_cloud_pc import resize_cloud_pc_request_builder
     from .restore_cloud_pc import restore_cloud_pc_request_builder
     from .retire import retire_request_builder
-    from .retrieve_remote_help_session_with_session_key import retrieve_remote_help_session_with_session_key_request_builder
     from .revoke_apple_vpp_licenses import revoke_apple_vpp_licenses_request_builder
     from .rotate_bit_locker_keys import rotate_bit_locker_keys_request_builder
     from .rotate_file_vault_key import rotate_file_vault_key_request_builder
@@ -162,19 +158,6 @@ class ManagedDeviceItemRequestBuilder():
 
         return await self.request_adapter.send_async(request_info, managed_device.ManagedDevice, error_mapping)
     
-    def retrieve_remote_help_session_with_session_key(self,session_key: Optional[str] = None) -> retrieve_remote_help_session_with_session_key_request_builder.RetrieveRemoteHelpSessionWithSessionKeyRequestBuilder:
-        """
-        Provides operations to call the retrieveRemoteHelpSession method.
-        Args:
-            sessionKey: Usage: sessionKey='{sessionKey}'
-        Returns: retrieve_remote_help_session_with_session_key_request_builder.RetrieveRemoteHelpSessionWithSessionKeyRequestBuilder
-        """
-        if session_key is None:
-            raise Exception("session_key cannot be undefined")
-        from .retrieve_remote_help_session_with_session_key import retrieve_remote_help_session_with_session_key_request_builder
-
-        return retrieve_remote_help_session_with_session_key_request_builder.RetrieveRemoteHelpSessionWithSessionKeyRequestBuilder(self.request_adapter, self.path_parameters, session_key)
-    
     def to_delete_request_information(self,request_configuration: Optional[ManagedDeviceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property managedDevices for me
@@ -276,15 +259,6 @@ class ManagedDeviceItemRequestBuilder():
         return create_device_log_collection_request_request_builder.CreateDeviceLogCollectionRequestRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def create_remote_help_session(self) -> create_remote_help_session_request_builder.CreateRemoteHelpSessionRequestBuilder:
-        """
-        Provides operations to call the createRemoteHelpSession method.
-        """
-        from .create_remote_help_session import create_remote_help_session_request_builder
-
-        return create_remote_help_session_request_builder.CreateRemoteHelpSessionRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def delete_user_from_shared_apple_device(self) -> delete_user_from_shared_apple_device_request_builder.DeleteUserFromSharedAppleDeviceRequestBuilder:
         """
         Provides operations to call the deleteUserFromSharedAppleDevice method.
@@ -373,15 +347,6 @@ class ManagedDeviceItemRequestBuilder():
         from .enable_lost_mode import enable_lost_mode_request_builder
 
         return enable_lost_mode_request_builder.EnableLostModeRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def end_remote_help_session(self) -> end_remote_help_session_request_builder.EndRemoteHelpSessionRequestBuilder:
-        """
-        Provides operations to call the endRemoteHelpSession method.
-        """
-        from .end_remote_help_session import end_remote_help_session_request_builder
-
-        return end_remote_help_session_request_builder.EndRemoteHelpSessionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def enroll_now_action(self) -> enroll_now_action_request_builder.EnrollNowActionRequestBuilder:
@@ -571,15 +536,6 @@ class ManagedDeviceItemRequestBuilder():
         from .request_remote_assistance import request_remote_assistance_request_builder
 
         return request_remote_assistance_request_builder.RequestRemoteAssistanceRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def request_remote_help_session_access(self) -> request_remote_help_session_access_request_builder.RequestRemoteHelpSessionAccessRequestBuilder:
-        """
-        Provides operations to call the requestRemoteHelpSessionAccess method.
-        """
-        from .request_remote_help_session_access import request_remote_help_session_access_request_builder
-
-        return request_remote_help_session_access_request_builder.RequestRemoteHelpSessionAccessRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def reset_passcode(self) -> reset_passcode_request_builder.ResetPasscodeRequestBuilder:

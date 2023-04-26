@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class DataSharingConsent(entity.Entity):
-    """
-    Data sharing consent information.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new dataSharingConsent and sets the default values.
+        Instantiates a new DataSharingConsent and sets the default values.
         """
         super().__init__()
         # The time consent was granted for this account

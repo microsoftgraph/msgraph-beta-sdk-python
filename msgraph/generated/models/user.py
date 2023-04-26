@@ -4,7 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import access_review_instance, agreement_acceptance, approval, app_consent_request, app_role_assignment, assigned_license, assigned_plan, authentication, authorization_info, calendar, calendar_group, chat, cloud_p_c, contact, contact_folder, custom_security_attribute_value, device, device_enrollment_configuration, device_key, device_management_troubleshooting_event, directory_object, drive, employee_org_data, event, extension, group, inference_classification, information_protection, item_insights, license_assignment_state, license_details, mailbox_settings, mail_folder, managed_app_registration, managed_device, message, mobile_app_intent_and_state, mobile_app_troubleshooting_event, notification, object_identity, onenote, online_meeting, on_premises_extension_attributes, on_premises_provisioning_error, outlook_user, o_auth2_permission_grant, password_profile, person, planner_user, presence, profile, profile_photo, provisioned_plan, scoped_role_membership, service_principal, service_provisioning_error, sign_in_activity, site, team, todo, usage_right, user_activity, user_analytics, user_print, user_settings, user_teamwork, windows_information_protection_device_registration
+    from . import access_review_instance, agreement_acceptance, approval, app_consent_request, app_role_assignment, assigned_license, assigned_plan, authentication, authorization_info, calendar, calendar_group, chat, cloud_p_c, contact, contact_folder, custom_security_attribute_value, device, device_enrollment_configuration, device_key, device_management_troubleshooting_event, directory_object, drive, employee_experience_user, employee_org_data, event, extension, group, inference_classification, information_protection, item_insights, license_assignment_state, license_details, mailbox_settings, mail_folder, managed_app_registration, managed_device, message, mobile_app_intent_and_state, mobile_app_troubleshooting_event, notification, object_identity, onenote, online_meeting, on_premises_extension_attributes, on_premises_provisioning_error, outlook_user, o_auth2_permission_grant, password_profile, person, planner_user, presence, profile, profile_photo, provisioned_plan, scoped_role_membership, service_principal, service_provisioning_error, sign_in_activity, site, team, todo, usage_right, user_activity, user_analytics, user_print, user_settings, user_teamwork, windows_information_protection_device_registration
     from .security import security
 
 from . import directory_object
@@ -100,6 +100,8 @@ class User(directory_object.DirectoryObject):
         self._drive: Optional[drive.Drive] = None
         # A collection of drives available for this user. Read-only.
         self._drives: Optional[List[drive.Drive]] = None
+        # The employeeExperience property
+        self._employee_experience: Optional[employee_experience_user.EmployeeExperienceUser] = None
         # The date and time when the user was hired or will start work in case of a future hire. Supports $filter (eq, ne, not , ge, le, in).
         self._employee_hire_date: Optional[datetime] = None
         # The employee identifier assigned to the user by the organization. The maximum length is 16 characters.Supports $filter (eq, ne, not , ge, le, in, startsWith, and eq on null values).
@@ -1034,6 +1036,23 @@ class User(directory_object.DirectoryObject):
         self._drives = value
     
     @property
+    def employee_experience(self,) -> Optional[employee_experience_user.EmployeeExperienceUser]:
+        """
+        Gets the employeeExperience property value. The employeeExperience property
+        Returns: Optional[employee_experience_user.EmployeeExperienceUser]
+        """
+        return self._employee_experience
+    
+    @employee_experience.setter
+    def employee_experience(self,value: Optional[employee_experience_user.EmployeeExperienceUser] = None) -> None:
+        """
+        Sets the employeeExperience property value. The employeeExperience property
+        Args:
+            value: Value to set for the employee_experience property.
+        """
+        self._employee_experience = value
+    
+    @property
     def employee_hire_date(self,) -> Optional[datetime]:
         """
         Gets the employeeHireDate property value. The date and time when the user was hired or will start work in case of a future hire. Supports $filter (eq, ne, not , ge, le, in).
@@ -1225,7 +1244,7 @@ class User(directory_object.DirectoryObject):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import access_review_instance, agreement_acceptance, approval, app_consent_request, app_role_assignment, assigned_license, assigned_plan, authentication, authorization_info, calendar, calendar_group, chat, cloud_p_c, contact, contact_folder, custom_security_attribute_value, device, device_enrollment_configuration, device_key, device_management_troubleshooting_event, directory_object, drive, employee_org_data, event, extension, group, inference_classification, information_protection, item_insights, license_assignment_state, license_details, mailbox_settings, mail_folder, managed_app_registration, managed_device, message, mobile_app_intent_and_state, mobile_app_troubleshooting_event, notification, object_identity, onenote, online_meeting, on_premises_extension_attributes, on_premises_provisioning_error, outlook_user, o_auth2_permission_grant, password_profile, person, planner_user, presence, profile, profile_photo, provisioned_plan, scoped_role_membership, service_principal, service_provisioning_error, sign_in_activity, site, team, todo, usage_right, user_activity, user_analytics, user_print, user_settings, user_teamwork, windows_information_protection_device_registration
+        from . import access_review_instance, agreement_acceptance, approval, app_consent_request, app_role_assignment, assigned_license, assigned_plan, authentication, authorization_info, calendar, calendar_group, chat, cloud_p_c, contact, contact_folder, custom_security_attribute_value, device, device_enrollment_configuration, device_key, device_management_troubleshooting_event, directory_object, drive, employee_experience_user, employee_org_data, event, extension, group, inference_classification, information_protection, item_insights, license_assignment_state, license_details, mailbox_settings, mail_folder, managed_app_registration, managed_device, message, mobile_app_intent_and_state, mobile_app_troubleshooting_event, notification, object_identity, onenote, online_meeting, on_premises_extension_attributes, on_premises_provisioning_error, outlook_user, o_auth2_permission_grant, password_profile, person, planner_user, presence, profile, profile_photo, provisioned_plan, scoped_role_membership, service_principal, service_provisioning_error, sign_in_activity, site, team, todo, usage_right, user_activity, user_analytics, user_print, user_settings, user_teamwork, windows_information_protection_device_registration
         from .security import security
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -1271,6 +1290,7 @@ class User(directory_object.DirectoryObject):
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "drive": lambda n : setattr(self, 'drive', n.get_object_value(drive.Drive)),
             "drives": lambda n : setattr(self, 'drives', n.get_collection_of_object_values(drive.Drive)),
+            "employeeExperience": lambda n : setattr(self, 'employee_experience', n.get_object_value(employee_experience_user.EmployeeExperienceUser)),
             "employeeHireDate": lambda n : setattr(self, 'employee_hire_date', n.get_datetime_value()),
             "employeeId": lambda n : setattr(self, 'employee_id', n.get_str_value()),
             "employeeLeaveDateTime": lambda n : setattr(self, 'employee_leave_date_time', n.get_datetime_value()),
@@ -2688,6 +2708,7 @@ class User(directory_object.DirectoryObject):
         writer.write_str_value("displayName", self.display_name)
         writer.write_object_value("drive", self.drive)
         writer.write_collection_of_object_values("drives", self.drives)
+        writer.write_object_value("employeeExperience", self.employee_experience)
         writer.write_datetime_value("employeeHireDate", self.employee_hire_date)
         writer.write_str_value("employeeId", self.employee_id)
         writer.write_datetime_value("employeeLeaveDateTime", self.employee_leave_date_time)

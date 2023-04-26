@@ -54,7 +54,7 @@ class ControlsRequestBuilder():
     
     async def get(self,request_configuration: Optional[ControlsRequestBuilderGetRequestConfiguration] = None) -> Optional[program_control_collection_response.ProgramControlCollectionResponse]:
         """
-        In the Azure AD access reviews feature, list all the programControl objects, linked to a particular program.
+        Controls associated with the program.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[program_control_collection_response.ProgramControlCollectionResponse]
@@ -101,7 +101,7 @@ class ControlsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ControlsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        In the Azure AD access reviews feature, list all the programControl objects, linked to a particular program.
+        Controls associated with the program.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class ControlsRequestBuilder():
     @dataclass
     class ControlsRequestBuilderGetQueryParameters():
         """
-        In the Azure AD access reviews feature, list all the programControl objects, linked to a particular program.
+        Controls associated with the program.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

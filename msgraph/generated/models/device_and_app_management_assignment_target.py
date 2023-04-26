@@ -3,7 +3,7 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import all_devices_assignment_target, all_licensed_users_assignment_target, configuration_manager_collection_assignment_target, device_and_app_management_assignment_filter_type, exclusion_group_assignment_target, group_assignment_target
+    from . import all_devices_assignment_target, all_licensed_users_assignment_target, android_fota_deployment_assignment_target, configuration_manager_collection_assignment_target, device_and_app_management_assignment_filter_type, exclusion_group_assignment_target, group_assignment_target
 
 class DeviceAndAppManagementAssignmentTarget(AdditionalDataHolder, Parsable):
     """
@@ -61,6 +61,10 @@ class DeviceAndAppManagementAssignmentTarget(AdditionalDataHolder, Parsable):
                 from . import all_licensed_users_assignment_target
 
                 return all_licensed_users_assignment_target.AllLicensedUsersAssignmentTarget()
+            if mapping_value == "#microsoft.graph.androidFotaDeploymentAssignmentTarget":
+                from . import android_fota_deployment_assignment_target
+
+                return android_fota_deployment_assignment_target.AndroidFotaDeploymentAssignmentTarget()
             if mapping_value == "#microsoft.graph.configurationManagerCollectionAssignmentTarget":
                 from . import configuration_manager_collection_assignment_target
 
@@ -114,7 +118,7 @@ class DeviceAndAppManagementAssignmentTarget(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import all_devices_assignment_target, all_licensed_users_assignment_target, configuration_manager_collection_assignment_target, device_and_app_management_assignment_filter_type, exclusion_group_assignment_target, group_assignment_target
+        from . import all_devices_assignment_target, all_licensed_users_assignment_target, android_fota_deployment_assignment_target, configuration_manager_collection_assignment_target, device_and_app_management_assignment_filter_type, exclusion_group_assignment_target, group_assignment_target
 
         fields: Dict[str, Callable[[Any], None]] = {
             "deviceAndAppManagementAssignmentFilterId": lambda n : setattr(self, 'device_and_app_management_assignment_filter_id', n.get_str_value()),

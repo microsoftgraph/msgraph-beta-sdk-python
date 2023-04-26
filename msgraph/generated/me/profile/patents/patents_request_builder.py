@@ -54,7 +54,7 @@ class PatentsRequestBuilder():
     
     async def get(self,request_configuration: Optional[PatentsRequestBuilderGetRequestConfiguration] = None) -> Optional[item_patent_collection_response.ItemPatentCollectionResponse]:
         """
-        Retrieve a list of itemPatent objects from a user's profile.
+        Represents patents that a user has added to their profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[item_patent_collection_response.ItemPatentCollectionResponse]
@@ -76,7 +76,7 @@ class PatentsRequestBuilder():
     
     async def post(self,body: Optional[item_patent.ItemPatent] = None, request_configuration: Optional[PatentsRequestBuilderPostRequestConfiguration] = None) -> Optional[item_patent.ItemPatent]:
         """
-        Create a new itemPatent object within a user's profile.
+        Create new navigation property to patents for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class PatentsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PatentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of itemPatent objects from a user's profile.
+        Represents patents that a user has added to their profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class PatentsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[item_patent.ItemPatent] = None, request_configuration: Optional[PatentsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new itemPatent object within a user's profile.
+        Create new navigation property to patents for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class PatentsRequestBuilder():
     @dataclass
     class PatentsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of itemPatent objects from a user's profile.
+        Represents patents that a user has added to their profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

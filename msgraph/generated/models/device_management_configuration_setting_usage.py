@@ -1,10 +1,12 @@
 from enum import Enum
 
 class DeviceManagementConfigurationSettingUsage(Enum):
-    # No setting type specified
+    # Default. No setting type specified.
     None_ = "none",
-    # Configuration setting
+    # Configuration setting type.
     Configuration = "configuration",
-    # Compliance setting
+    # Compliance setting type.
     Compliance = "compliance",
+    # Evolvable enumeration sentinel value. Do not use.
+    UnknownFutureValue = "unknownFutureValue",
 

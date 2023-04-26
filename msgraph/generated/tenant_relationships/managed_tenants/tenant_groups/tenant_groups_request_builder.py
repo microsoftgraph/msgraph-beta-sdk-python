@@ -55,7 +55,7 @@ class TenantGroupsRequestBuilder():
     
     async def get(self,request_configuration: Optional[TenantGroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[tenant_group_collection_response.TenantGroupCollectionResponse]:
         """
-        Get a list of the tenantGroup objects and their properties.
+        The collection of a logical grouping of managed tenants used by the multi-tenant management platform.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[tenant_group_collection_response.TenantGroupCollectionResponse]
@@ -102,7 +102,7 @@ class TenantGroupsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TenantGroupsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the tenantGroup objects and their properties.
+        The collection of a logical grouping of managed tenants used by the multi-tenant management platform.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -160,7 +160,7 @@ class TenantGroupsRequestBuilder():
     @dataclass
     class TenantGroupsRequestBuilderGetQueryParameters():
         """
-        Get a list of the tenantGroup objects and their properties.
+        The collection of a logical grouping of managed tenants used by the multi-tenant management platform.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

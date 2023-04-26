@@ -54,7 +54,7 @@ class ProfileCardPropertiesRequestBuilder():
     
     async def get(self,request_configuration: Optional[ProfileCardPropertiesRequestBuilderGetRequestConfiguration] = None) -> Optional[profile_card_property_collection_response.ProfileCardPropertyCollectionResponse]:
         """
-        Get a collection of profileCardProperty resources of an organization. Each resource is identified by its **directoryPropertyName** property.
+        Contains a collection of the properties an administrator has defined as visible on the Microsoft 365 profile card. Get organization settings returns the properties configured for profile cards for the organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[profile_card_property_collection_response.ProfileCardPropertyCollectionResponse]
@@ -76,7 +76,7 @@ class ProfileCardPropertiesRequestBuilder():
     
     async def post(self,body: Optional[profile_card_property.ProfileCardProperty] = None, request_configuration: Optional[ProfileCardPropertiesRequestBuilderPostRequestConfiguration] = None) -> Optional[profile_card_property.ProfileCardProperty]:
         """
-        Create a new profileCardProperty for an organization. The new property is identified by its **directoryPropertyName** property. For more information on adding properties to the profile card for an organization, see customize the profile card.
+        Create new navigation property to profileCardProperties for organization
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class ProfileCardPropertiesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ProfileCardPropertiesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a collection of profileCardProperty resources of an organization. Each resource is identified by its **directoryPropertyName** property.
+        Contains a collection of the properties an administrator has defined as visible on the Microsoft 365 profile card. Get organization settings returns the properties configured for profile cards for the organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class ProfileCardPropertiesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[profile_card_property.ProfileCardProperty] = None, request_configuration: Optional[ProfileCardPropertiesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new profileCardProperty for an organization. The new property is identified by its **directoryPropertyName** property. For more information on adding properties to the profile card for an organization, see customize the profile card.
+        Create new navigation property to profileCardProperties for organization
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class ProfileCardPropertiesRequestBuilder():
     @dataclass
     class ProfileCardPropertiesRequestBuilderGetQueryParameters():
         """
-        Get a collection of profileCardProperty resources of an organization. Each resource is identified by its **directoryPropertyName** property.
+        Contains a collection of the properties an administrator has defined as visible on the Microsoft 365 profile card. Get organization settings returns the properties configured for profile cards for the organization.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

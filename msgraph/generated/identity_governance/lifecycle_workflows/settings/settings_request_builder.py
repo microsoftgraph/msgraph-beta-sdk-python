@@ -37,7 +37,7 @@ class SettingsRequestBuilder():
     
     async def get(self,request_configuration: Optional[SettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[lifecycle_management_settings.LifecycleManagementSettings]:
         """
-        Read the properties and relationships of a lifecycleManagementSettings object.
+        The settings of the lifecycle workflows instance.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[lifecycle_management_settings.LifecycleManagementSettings]
@@ -59,7 +59,7 @@ class SettingsRequestBuilder():
     
     async def patch(self,body: Optional[lifecycle_management_settings.LifecycleManagementSettings] = None, request_configuration: Optional[SettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[lifecycle_management_settings.LifecycleManagementSettings]:
         """
-        Update the properties of a lifecycleManagementSettings object.
+        Update the navigation property settings in identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -84,7 +84,7 @@ class SettingsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a lifecycleManagementSettings object.
+        The settings of the lifecycle workflows instance.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -102,7 +102,7 @@ class SettingsRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[lifecycle_management_settings.LifecycleManagementSettings] = None, request_configuration: Optional[SettingsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a lifecycleManagementSettings object.
+        Update the navigation property settings in identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -124,7 +124,7 @@ class SettingsRequestBuilder():
     @dataclass
     class SettingsRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a lifecycleManagementSettings object.
+        The settings of the lifecycle workflows instance.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -54,7 +54,7 @@ class AccessPackageCustomWorkflowExtensionsRequestBuilder():
     
     async def get(self,request_configuration: Optional[AccessPackageCustomWorkflowExtensionsRequestBuilderGetRequestConfiguration] = None) -> Optional[custom_callout_extension_collection_response.CustomCalloutExtensionCollectionResponse]:
         """
-        Get a list of the accessPackageAssignmentRequestWorkflowExtension and accessPackageAssignmentWorkflowExtension objects and their properties. The resulting list includes all the **customAccessPackageWorkflowExtension** objects for the catalog that the caller has access to read. Each object includes an `@odata.type` property that indicates whether the object is an  **accessPackageAssignmentRequestWorkflowExtension** or an **accessPackageAssignmentWorkflowExtension**.
+        The attributes of a logic app, which can be called at various stages of an access package request and assignment cycle.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[custom_callout_extension_collection_response.CustomCalloutExtensionCollectionResponse]
@@ -101,7 +101,7 @@ class AccessPackageCustomWorkflowExtensionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageCustomWorkflowExtensionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the accessPackageAssignmentRequestWorkflowExtension and accessPackageAssignmentWorkflowExtension objects and their properties. The resulting list includes all the **customAccessPackageWorkflowExtension** objects for the catalog that the caller has access to read. Each object includes an `@odata.type` property that indicates whether the object is an  **accessPackageAssignmentRequestWorkflowExtension** or an **accessPackageAssignmentWorkflowExtension**.
+        The attributes of a logic app, which can be called at various stages of an access package request and assignment cycle.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class AccessPackageCustomWorkflowExtensionsRequestBuilder():
     @dataclass
     class AccessPackageCustomWorkflowExtensionsRequestBuilderGetQueryParameters():
         """
-        Get a list of the accessPackageAssignmentRequestWorkflowExtension and accessPackageAssignmentWorkflowExtension objects and their properties. The resulting list includes all the **customAccessPackageWorkflowExtension** objects for the catalog that the caller has access to read. Each object includes an `@odata.type` property that indicates whether the object is an  **accessPackageAssignmentRequestWorkflowExtension** or an **accessPackageAssignmentWorkflowExtension**.
+        The attributes of a logic app, which can be called at various stages of an access package request and assignment cycle.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -58,7 +58,7 @@ class TermStoreRequestBuilder():
     
     async def get(self,request_configuration: Optional[TermStoreRequestBuilderGetRequestConfiguration] = None) -> Optional[store.Store]:
         """
-        Read the properties and relationships of a store object.
+        The termStore under this site.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[store.Store]
@@ -121,7 +121,7 @@ class TermStoreRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TermStoreRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a store object.
+        The termStore under this site.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -191,7 +191,7 @@ class TermStoreRequestBuilder():
     @dataclass
     class TermStoreRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a store object.
+        The termStore under this site.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

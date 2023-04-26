@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 
 class MobileAppRelationshipState(AdditionalDataHolder, Parsable):
     """
-    Describes the installation status details of the child app in the context of UPN and device id.
+    Describes the installation status details of the child app in the context of UPN and device id. This will be deprecated starting May, 2023 (Intune Release 2305). 
     """
     def __init__(self,) -> None:
         """

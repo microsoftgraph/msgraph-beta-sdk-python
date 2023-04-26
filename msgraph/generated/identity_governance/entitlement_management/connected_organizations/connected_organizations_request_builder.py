@@ -54,7 +54,7 @@ class ConnectedOrganizationsRequestBuilder():
     
     async def get(self,request_configuration: Optional[ConnectedOrganizationsRequestBuilderGetRequestConfiguration] = None) -> Optional[connected_organization_collection_response.ConnectedOrganizationCollectionResponse]:
         """
-        Retrieve a list of connectedOrganization objects.
+        Represents references to a directory or domain of another organization whose users can request access.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[connected_organization_collection_response.ConnectedOrganizationCollectionResponse]
@@ -76,7 +76,7 @@ class ConnectedOrganizationsRequestBuilder():
     
     async def post(self,body: Optional[connected_organization.ConnectedOrganization] = None, request_configuration: Optional[ConnectedOrganizationsRequestBuilderPostRequestConfiguration] = None) -> Optional[connected_organization.ConnectedOrganization]:
         """
-        Create a new connectedOrganization object.
+        Create new navigation property to connectedOrganizations for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class ConnectedOrganizationsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ConnectedOrganizationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of connectedOrganization objects.
+        Represents references to a directory or domain of another organization whose users can request access.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class ConnectedOrganizationsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[connected_organization.ConnectedOrganization] = None, request_configuration: Optional[ConnectedOrganizationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new connectedOrganization object.
+        Create new navigation property to connectedOrganizations for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class ConnectedOrganizationsRequestBuilder():
     @dataclass
     class ConnectedOrganizationsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of connectedOrganization objects.
+        Represents references to a directory or domain of another organization whose users can request access.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

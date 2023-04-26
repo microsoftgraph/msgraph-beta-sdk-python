@@ -69,7 +69,7 @@ class DecisionsRequestBuilder():
     
     async def get(self,request_configuration: Optional[DecisionsRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_instance_decision_item_collection_response.AccessReviewInstanceDecisionItemCollectionResponse]:
         """
-        Retrieve the accessReviewInstanceDecisionItem objects for a specific accessReviewInstance. A list of zero or more accessReviewInstanceDecisionItem objects are returned, including all of their nested properties.
+        Each user reviewed in an accessReviewInstance has a decision item representing if they were approved, denied, or not yet reviewed.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_review_instance_decision_item_collection_response.AccessReviewInstanceDecisionItemCollectionResponse]
@@ -116,7 +116,7 @@ class DecisionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[DecisionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the accessReviewInstanceDecisionItem objects for a specific accessReviewInstance. A list of zero or more accessReviewInstanceDecisionItem objects are returned, including all of their nested properties.
+        Each user reviewed in an accessReviewInstance has a decision item representing if they were approved, denied, or not yet reviewed.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -174,7 +174,7 @@ class DecisionsRequestBuilder():
     @dataclass
     class DecisionsRequestBuilderGetQueryParameters():
         """
-        Retrieve the accessReviewInstanceDecisionItem objects for a specific accessReviewInstance. A list of zero or more accessReviewInstanceDecisionItem objects are returned, including all of their nested properties.
+        Each user reviewed in an accessReviewInstance has a decision item representing if they were approved, denied, or not yet reviewed.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

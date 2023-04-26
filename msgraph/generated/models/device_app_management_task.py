@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class DeviceAppManagementTask(entity.Entity):
-    """
-    A device app management task.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceAppManagementTask and sets the default values.
+        Instantiates a new DeviceAppManagementTask and sets the default values.
         """
         super().__init__()
         # The name or email of the admin this task is assigned to.

@@ -54,7 +54,7 @@ class PhonesRequestBuilder():
     
     async def get(self,request_configuration: Optional[PhonesRequestBuilderGetRequestConfiguration] = None) -> Optional[item_phone_collection_response.ItemPhoneCollectionResponse]:
         """
-        Retrieve a list of itemPhone objects from a user's profile.
+        Represents detailed information about phone numbers associated with a user in various services.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[item_phone_collection_response.ItemPhoneCollectionResponse]
@@ -76,7 +76,7 @@ class PhonesRequestBuilder():
     
     async def post(self,body: Optional[item_phone.ItemPhone] = None, request_configuration: Optional[PhonesRequestBuilderPostRequestConfiguration] = None) -> Optional[item_phone.ItemPhone]:
         """
-        Use this API to create a new itemPhone object in a user's profile.
+        Create new navigation property to phones for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class PhonesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PhonesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of itemPhone objects from a user's profile.
+        Represents detailed information about phone numbers associated with a user in various services.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class PhonesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[item_phone.ItemPhone] = None, request_configuration: Optional[PhonesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Use this API to create a new itemPhone object in a user's profile.
+        Create new navigation property to phones for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class PhonesRequestBuilder():
     @dataclass
     class PhonesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of itemPhone objects from a user's profile.
+        Represents detailed information about phone numbers associated with a user in various services.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

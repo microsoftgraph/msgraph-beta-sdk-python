@@ -54,7 +54,7 @@ class OutboundSharedUserProfilesRequestBuilder():
     
     async def get(self,request_configuration: Optional[OutboundSharedUserProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[outbound_shared_user_profile_collection_response.OutboundSharedUserProfileCollectionResponse]:
         """
-        Retrieve the properties of all outboundSharedUserProfiles.
+        Get outboundSharedUserProfiles from directory
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[outbound_shared_user_profile_collection_response.OutboundSharedUserProfileCollectionResponse]
@@ -101,7 +101,7 @@ class OutboundSharedUserProfilesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[OutboundSharedUserProfilesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties of all outboundSharedUserProfiles.
+        Get outboundSharedUserProfiles from directory
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class OutboundSharedUserProfilesRequestBuilder():
     @dataclass
     class OutboundSharedUserProfilesRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties of all outboundSharedUserProfiles.
+        Get outboundSharedUserProfiles from directory
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -54,7 +54,7 @@ class SupportedRegionsRequestBuilder():
     
     async def get(self,request_configuration: Optional[SupportedRegionsRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_supported_region_collection_response.CloudPcSupportedRegionCollectionResponse]:
         """
-        List the supported regions that are available for creating Cloud PC connections.
+        Cloud PC supported regions.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cloud_pc_supported_region_collection_response.CloudPcSupportedRegionCollectionResponse]
@@ -101,7 +101,7 @@ class SupportedRegionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SupportedRegionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List the supported regions that are available for creating Cloud PC connections.
+        Cloud PC supported regions.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class SupportedRegionsRequestBuilder():
     @dataclass
     class SupportedRegionsRequestBuilderGetQueryParameters():
         """
-        List the supported regions that are available for creating Cloud PC connections.
+        Cloud PC supported regions.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -12,7 +12,9 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .....models import education_assignment
     from .....models.o_data_errors import o_data_error
+    from .activate import activate_request_builder
     from .categories import categories_request_builder
+    from .deactivate import deactivate_request_builder
     from .publish import publish_request_builder
     from .resources import resources_request_builder
     from .rubric import rubric_request_builder
@@ -164,6 +166,15 @@ class EducationAssignmentItemRequestBuilder():
         return request_info
     
     @property
+    def activate(self) -> activate_request_builder.ActivateRequestBuilder:
+        """
+        Provides operations to call the activate method.
+        """
+        from .activate import activate_request_builder
+
+        return activate_request_builder.ActivateRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def categories(self) -> categories_request_builder.CategoriesRequestBuilder:
         """
         Provides operations to manage the categories property of the microsoft.graph.educationAssignment entity.
@@ -171,6 +182,15 @@ class EducationAssignmentItemRequestBuilder():
         from .categories import categories_request_builder
 
         return categories_request_builder.CategoriesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def deactivate(self) -> deactivate_request_builder.DeactivateRequestBuilder:
+        """
+        Provides operations to call the deactivate method.
+        """
+        from .deactivate import deactivate_request_builder
+
+        return deactivate_request_builder.DeactivateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def publish(self) -> publish_request_builder.PublishRequestBuilder:

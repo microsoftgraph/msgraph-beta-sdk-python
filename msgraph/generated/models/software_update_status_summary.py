@@ -10,7 +10,7 @@ from . import entity
 class SoftwareUpdateStatusSummary(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new softwareUpdateStatusSummary and sets the default values.
+        Instantiates a new SoftwareUpdateStatusSummary and sets the default values.
         """
         super().__init__()
         # Number of compliant devices.

@@ -8,12 +8,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class UserExperienceAnalyticsImpactingProcess(entity.Entity):
-    """
-    The user experience analytics top impacting process entity.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsImpactingProcess and sets the default values.
+        Instantiates a new UserExperienceAnalyticsImpactingProcess and sets the default values.
         """
         super().__init__()
         # The category of impacting process.

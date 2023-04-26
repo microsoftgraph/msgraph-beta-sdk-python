@@ -10,7 +10,7 @@ from . import entity
 class DeviceConfigurationUserStateSummary(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceConfigurationUserStateSummary and sets the default values.
+        Instantiates a new DeviceConfigurationUserStateSummary and sets the default values.
         """
         super().__init__()
         # Number of compliant users

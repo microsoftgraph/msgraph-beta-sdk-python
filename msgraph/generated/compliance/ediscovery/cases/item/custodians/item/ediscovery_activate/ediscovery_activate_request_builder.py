@@ -36,7 +36,7 @@ class EdiscoveryActivateRequestBuilder():
     
     async def post(self,request_configuration: Optional[EdiscoveryActivateRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Activate a custodian that has been released from a case to make them part of the case again. For details, see Manage custodians in an Advanced eDiscovery case.
+        Invoke action activate
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class EdiscoveryActivateRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[EdiscoveryActivateRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Activate a custodian that has been released from a case to make them part of the case again. For details, see Manage custodians in an Advanced eDiscovery case.
+        Invoke action activate
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

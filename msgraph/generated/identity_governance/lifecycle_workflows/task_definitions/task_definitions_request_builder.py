@@ -54,7 +54,7 @@ class TaskDefinitionsRequestBuilder():
     
     async def get(self,request_configuration: Optional[TaskDefinitionsRequestBuilderGetRequestConfiguration] = None) -> Optional[task_definition_collection_response.TaskDefinitionCollectionResponse]:
         """
-        Get a list of the taskDefinition objects and their properties.
+        The definition of tasks within the lifecycle workflows instance.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[task_definition_collection_response.TaskDefinitionCollectionResponse]
@@ -76,7 +76,7 @@ class TaskDefinitionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TaskDefinitionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the taskDefinition objects and their properties.
+        The definition of tasks within the lifecycle workflows instance.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +104,7 @@ class TaskDefinitionsRequestBuilder():
     @dataclass
     class TaskDefinitionsRequestBuilderGetQueryParameters():
         """
-        Get a list of the taskDefinition objects and their properties.
+        The definition of tasks within the lifecycle workflows instance.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

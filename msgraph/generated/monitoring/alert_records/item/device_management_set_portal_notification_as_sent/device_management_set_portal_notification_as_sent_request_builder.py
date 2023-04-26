@@ -36,7 +36,7 @@ class DeviceManagementSetPortalNotificationAsSentRequestBuilder():
     
     async def post(self,request_configuration: Optional[DeviceManagementSetPortalNotificationAsSentRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Set the status of the notification associated with the specified alertRecord on the Microsoft EndPoint Manager admin center as sent, by setting the **isPortalNotificationSent** property of the portal notification to `true`.
+        Invoke action setPortalNotificationAsSent
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class DeviceManagementSetPortalNotificationAsSentRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[DeviceManagementSetPortalNotificationAsSentRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Set the status of the notification associated with the specified alertRecord on the Microsoft EndPoint Manager admin center as sent, by setting the **isPortalNotificationSent** property of the portal notification to `true`.
+        Invoke action setPortalNotificationAsSent
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

@@ -37,7 +37,7 @@ class SetStatusMessageRequestBuilder():
     
     async def post(self,body: Optional[set_status_message_post_request_body.SetStatusMessagePostRequestBody] = None, request_configuration: Optional[SetStatusMessageRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Set a presence status message for a user. An optional expiration date and time can be supplied.
+        Invoke action setStatusMessage
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -59,7 +59,7 @@ class SetStatusMessageRequestBuilder():
     
     def to_post_request_information(self,body: Optional[set_status_message_post_request_body.SetStatusMessagePostRequestBody] = None, request_configuration: Optional[SetStatusMessageRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Set a presence status message for a user. An optional expiration date and time can be supplied.
+        Invoke action setStatusMessage
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

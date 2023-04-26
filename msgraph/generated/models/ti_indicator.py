@@ -11,7 +11,7 @@ from . import entity
 class TiIndicator(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new tiIndicator and sets the default values.
+        Instantiates a new TiIndicator and sets the default values.
         """
         super().__init__()
         # The action to apply if the indicator is matched from within the targetProduct security tool. Possible values are: unknown, allow, block, alert. Required.

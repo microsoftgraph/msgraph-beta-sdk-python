@@ -54,7 +54,7 @@ class LanguagesRequestBuilder():
     
     async def get(self,request_configuration: Optional[LanguagesRequestBuilderGetRequestConfiguration] = None) -> Optional[user_flow_language_configuration_collection_response.UserFlowLanguageConfigurationCollectionResponse]:
         """
-        Retrieve a list of languages supported for customization in an Azure AD B2C user flow. **Note:** To retrieve a list of languages supported for customization, you must first enable language customization on your Azure AD B2C user flow. For more information, see Update b2cIdentityUserFlow.
+        The languages supported for customization within the user flow. Language customization is not enabled by default in B2C user flows.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[user_flow_language_configuration_collection_response.UserFlowLanguageConfigurationCollectionResponse]
@@ -101,7 +101,7 @@ class LanguagesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[LanguagesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of languages supported for customization in an Azure AD B2C user flow. **Note:** To retrieve a list of languages supported for customization, you must first enable language customization on your Azure AD B2C user flow. For more information, see Update b2cIdentityUserFlow.
+        The languages supported for customization within the user flow. Language customization is not enabled by default in B2C user flows.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class LanguagesRequestBuilder():
     @dataclass
     class LanguagesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of languages supported for customization in an Azure AD B2C user flow. **Note:** To retrieve a list of languages supported for customization, you must first enable language customization on your Azure AD B2C user flow. For more information, see Update b2cIdentityUserFlow.
+        The languages supported for customization within the user flow. Language customization is not enabled by default in B2C user flows.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

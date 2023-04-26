@@ -54,7 +54,7 @@ class PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder():
     
     async def get(self,request_configuration: Optional[PasswordlessMicrosoftAuthenticatorMethodsRequestBuilderGetRequestConfiguration] = None) -> Optional[passwordless_microsoft_authenticator_authentication_method_collection_response.PasswordlessMicrosoftAuthenticatorAuthenticationMethodCollectionResponse]:
         """
-        Retrieve a list of a user's Microsoft Authenticator Passwordless Phone Sign-in method objects and their properties.
+        Represents the Microsoft Authenticator Passwordless Phone Sign-in methods registered to a user for authentication.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[passwordless_microsoft_authenticator_authentication_method_collection_response.PasswordlessMicrosoftAuthenticatorAuthenticationMethodCollectionResponse]
@@ -76,7 +76,7 @@ class PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PasswordlessMicrosoftAuthenticatorMethodsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of a user's Microsoft Authenticator Passwordless Phone Sign-in method objects and their properties.
+        Represents the Microsoft Authenticator Passwordless Phone Sign-in methods registered to a user for authentication.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +104,7 @@ class PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder():
     @dataclass
     class PasswordlessMicrosoftAuthenticatorMethodsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of a user's Microsoft Authenticator Passwordless Phone Sign-in method objects and their properties.
+        Represents the Microsoft Authenticator Passwordless Phone Sign-in methods registered to a user for authentication.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

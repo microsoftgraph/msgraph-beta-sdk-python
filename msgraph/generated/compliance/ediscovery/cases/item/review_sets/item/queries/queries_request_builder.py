@@ -54,7 +54,7 @@ class QueriesRequestBuilder():
     
     async def get(self,request_configuration: Optional[QueriesRequestBuilderGetRequestConfiguration] = None) -> Optional[review_set_query_collection_response.ReviewSetQueryCollectionResponse]:
         """
-        Retrieve a list of eDiscovery reviewSetQuery objects.
+        Get queries from compliance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[review_set_query_collection_response.ReviewSetQueryCollectionResponse]
@@ -76,7 +76,7 @@ class QueriesRequestBuilder():
     
     async def post(self,body: Optional[review_set_query.ReviewSetQuery] = None, request_configuration: Optional[QueriesRequestBuilderPostRequestConfiguration] = None) -> Optional[review_set_query.ReviewSetQuery]:
         """
-        Create a new reviewSetQuery object.
+        Create new navigation property to queries for compliance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class QueriesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[QueriesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of eDiscovery reviewSetQuery objects.
+        Get queries from compliance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class QueriesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[review_set_query.ReviewSetQuery] = None, request_configuration: Optional[QueriesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new reviewSetQuery object.
+        Create new navigation property to queries for compliance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class QueriesRequestBuilder():
     @dataclass
     class QueriesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of eDiscovery reviewSetQuery objects.
+        Get queries from compliance
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

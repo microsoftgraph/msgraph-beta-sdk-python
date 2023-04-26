@@ -37,7 +37,7 @@ class ChangeUserAccountTypeRequestBuilder():
     
     async def post(self,body: Optional[change_user_account_type_post_request_body.ChangeUserAccountTypePostRequestBody] = None, request_configuration: Optional[ChangeUserAccountTypeRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Change the account type of the user on a specific Cloud PC.
+        Invoke action changeUserAccountType
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -59,7 +59,7 @@ class ChangeUserAccountTypeRequestBuilder():
     
     def to_post_request_information(self,body: Optional[change_user_account_type_post_request_body.ChangeUserAccountTypePostRequestBody] = None, request_configuration: Optional[ChangeUserAccountTypeRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Change the account type of the user on a specific Cloud PC.
+        Invoke action changeUserAccountType
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

@@ -56,7 +56,7 @@ class ReputationRequestBuilder():
     
     async def get(self,request_configuration: Optional[ReputationRequestBuilderGetRequestConfiguration] = None) -> Optional[host_reputation.HostReputation]:
         """
-        Get the properties and relationships of a hostReputation object.
+        Represents a calculated reputation of this host.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[host_reputation.HostReputation]
@@ -119,7 +119,7 @@ class ReputationRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ReputationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties and relationships of a hostReputation object.
+        Represents a calculated reputation of this host.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class ReputationRequestBuilder():
     @dataclass
     class ReputationRequestBuilderGetQueryParameters():
         """
-        Get the properties and relationships of a hostReputation object.
+        Represents a calculated reputation of this host.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

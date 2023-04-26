@@ -8,12 +8,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class ResourceOperation(entity.Entity):
-    """
-    Describes the resourceOperation resource (entity) of the Microsoft Graph API (REST), which supports Intune workflows related to role-based access control (RBAC).
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new resourceOperation and sets the default values.
+        Instantiates a new ResourceOperation and sets the default values.
         """
         super().__init__()
         # Type of action this operation is going to perform. The actionName should be concise and limited to as few words as possible.

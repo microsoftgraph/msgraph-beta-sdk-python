@@ -37,7 +37,7 @@ class ManagerRequestBuilder():
     
     async def get(self,request_configuration: Optional[ManagerRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_object.DirectoryObject]:
         """
-        Get the contact's manager
+        The user or contact that is this contact's manager. Read-only. Supports $expand and $filter (eq) by id.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[directory_object.DirectoryObject]
@@ -59,7 +59,7 @@ class ManagerRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ManagerRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the contact's manager
+        The user or contact that is this contact's manager. Read-only. Supports $expand and $filter (eq) by id.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -78,7 +78,7 @@ class ManagerRequestBuilder():
     @dataclass
     class ManagerRequestBuilderGetQueryParameters():
         """
-        Get the contact's manager
+        The user or contact that is this contact's manager. Read-only. Supports $expand and $filter (eq) by id.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

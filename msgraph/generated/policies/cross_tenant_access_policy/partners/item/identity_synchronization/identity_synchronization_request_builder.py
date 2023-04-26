@@ -37,7 +37,7 @@ class IdentitySynchronizationRequestBuilder():
     
     async def delete(self,request_configuration: Optional[IdentitySynchronizationRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete the user synchronization policy for a partner-specific configuration.
+        Delete navigation property identitySynchronization for policies
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class IdentitySynchronizationRequestBuilder():
     
     async def get(self,request_configuration: Optional[IdentitySynchronizationRequestBuilderGetRequestConfiguration] = None) -> Optional[cross_tenant_identity_sync_policy_partner.CrossTenantIdentitySyncPolicyPartner]:
         """
-        Read the user synchronization policy of a partner-specific configuration.
+        Defines the cross-tenant policy for synchronization of users from a partner tenant. Use this user synchronization policy to streamline collaboration between users in a multi-tenant organization by automating creating, updating, and deleting users from one tenant to another.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cross_tenant_identity_sync_policy_partner.CrossTenantIdentitySyncPolicyPartner]
@@ -78,7 +78,7 @@ class IdentitySynchronizationRequestBuilder():
     
     async def patch(self,body: Optional[cross_tenant_identity_sync_policy_partner.CrossTenantIdentitySyncPolicyPartner] = None, request_configuration: Optional[IdentitySynchronizationRequestBuilderPatchRequestConfiguration] = None) -> Optional[cross_tenant_identity_sync_policy_partner.CrossTenantIdentitySyncPolicyPartner]:
         """
-        Create a cross-tenant user synchronization policy for a partner-specific configuration.
+        Update the navigation property identitySynchronization in policies
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class IdentitySynchronizationRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[IdentitySynchronizationRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete the user synchronization policy for a partner-specific configuration.
+        Delete navigation property identitySynchronization for policies
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class IdentitySynchronizationRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[IdentitySynchronizationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the user synchronization policy of a partner-specific configuration.
+        Defines the cross-tenant policy for synchronization of users from a partner tenant. Use this user synchronization policy to streamline collaboration between users in a multi-tenant organization by automating creating, updating, and deleting users from one tenant to another.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class IdentitySynchronizationRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[cross_tenant_identity_sync_policy_partner.CrossTenantIdentitySyncPolicyPartner] = None, request_configuration: Optional[IdentitySynchronizationRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a cross-tenant user synchronization policy for a partner-specific configuration.
+        Update the navigation property identitySynchronization in policies
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class IdentitySynchronizationRequestBuilder():
     @dataclass
     class IdentitySynchronizationRequestBuilderGetQueryParameters():
         """
-        Read the user synchronization policy of a partner-specific configuration.
+        Defines the cross-tenant policy for synchronization of users from a partner tenant. Use this user synchronization policy to streamline collaboration between users in a multi-tenant organization by automating creating, updating, and deleting users from one tenant to another.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

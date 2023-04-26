@@ -3,7 +3,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity, privileged_access_group_assignment_schedule, privileged_access_group_assignment_schedule_instance, privileged_access_group_assignment_schedule_request, privileged_access_group_eligibility_schedule, privileged_access_group_eligibility_schedule_instance, privileged_access_group_eligibility_schedule_request
+    from . import approval, entity, privileged_access_group_assignment_schedule, privileged_access_group_assignment_schedule_instance, privileged_access_group_assignment_schedule_request, privileged_access_group_eligibility_schedule, privileged_access_group_eligibility_schedule_instance, privileged_access_group_eligibility_schedule_request
 
 from . import entity
 
@@ -13,6 +13,8 @@ class PrivilegedAccessGroup(entity.Entity):
         Instantiates a new privilegedAccessGroup and sets the default values.
         """
         super().__init__()
+        # The assignmentApprovals property
+        self._assignment_approvals: Optional[List[approval.Approval]] = None
         # The assignmentScheduleInstances property
         self._assignment_schedule_instances: Optional[List[privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance]] = None
         # The assignmentScheduleRequests property
@@ -27,6 +29,23 @@ class PrivilegedAccessGroup(entity.Entity):
         self._eligibility_schedules: Optional[List[privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule]] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
+    
+    @property
+    def assignment_approvals(self,) -> Optional[List[approval.Approval]]:
+        """
+        Gets the assignmentApprovals property value. The assignmentApprovals property
+        Returns: Optional[List[approval.Approval]]
+        """
+        return self._assignment_approvals
+    
+    @assignment_approvals.setter
+    def assignment_approvals(self,value: Optional[List[approval.Approval]] = None) -> None:
+        """
+        Sets the assignmentApprovals property value. The assignmentApprovals property
+        Args:
+            value: Value to set for the assignment_approvals property.
+        """
+        self._assignment_approvals = value
     
     @property
     def assignment_schedule_instances(self,) -> Optional[List[privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance]]:
@@ -147,9 +166,10 @@ class PrivilegedAccessGroup(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, privileged_access_group_assignment_schedule, privileged_access_group_assignment_schedule_instance, privileged_access_group_assignment_schedule_request, privileged_access_group_eligibility_schedule, privileged_access_group_eligibility_schedule_instance, privileged_access_group_eligibility_schedule_request
+        from . import approval, entity, privileged_access_group_assignment_schedule, privileged_access_group_assignment_schedule_instance, privileged_access_group_assignment_schedule_request, privileged_access_group_eligibility_schedule, privileged_access_group_eligibility_schedule_instance, privileged_access_group_eligibility_schedule_request
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "assignmentApprovals": lambda n : setattr(self, 'assignment_approvals', n.get_collection_of_object_values(approval.Approval)),
             "assignmentSchedules": lambda n : setattr(self, 'assignment_schedules', n.get_collection_of_object_values(privileged_access_group_assignment_schedule.PrivilegedAccessGroupAssignmentSchedule)),
             "assignmentScheduleInstances": lambda n : setattr(self, 'assignment_schedule_instances', n.get_collection_of_object_values(privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance)),
             "assignmentScheduleRequests": lambda n : setattr(self, 'assignment_schedule_requests', n.get_collection_of_object_values(privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest)),
@@ -170,6 +190,7 @@ class PrivilegedAccessGroup(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
+        writer.write_collection_of_object_values("assignmentApprovals", self.assignment_approvals)
         writer.write_collection_of_object_values("assignmentSchedules", self.assignment_schedules)
         writer.write_collection_of_object_values("assignmentScheduleInstances", self.assignment_schedule_instances)
         writer.write_collection_of_object_values("assignmentScheduleRequests", self.assignment_schedule_requests)

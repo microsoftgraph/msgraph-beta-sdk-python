@@ -38,7 +38,7 @@ class StartBreakRequestBuilder():
     
     async def post(self,body: Optional[start_break_post_request_body.StartBreakPostRequestBody] = None, request_configuration: Optional[StartBreakRequestBuilderPostRequestConfiguration] = None) -> Optional[time_card.TimeCard]:
         """
-        Start a break in a specific timeCard.
+        Invoke action startBreak
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +63,7 @@ class StartBreakRequestBuilder():
     
     def to_post_request_information(self,body: Optional[start_break_post_request_body.StartBreakPostRequestBody] = None, request_configuration: Optional[StartBreakRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Start a break in a specific timeCard.
+        Invoke action startBreak
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

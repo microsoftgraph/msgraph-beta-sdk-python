@@ -54,7 +54,7 @@ class OperationsRequestBuilder():
     
     async def get(self,request_configuration: Optional[OperationsRequestBuilderGetRequestConfiguration] = None) -> Optional[teams_async_operation_collection_response.TeamsAsyncOperationCollectionResponse]:
         """
-        List all Teams async operations that ran or are running on the specified chat.
+        A collection of all the Teams async operations that ran or are running on the chat. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[teams_async_operation_collection_response.TeamsAsyncOperationCollectionResponse]
@@ -101,7 +101,7 @@ class OperationsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[OperationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List all Teams async operations that ran or are running on the specified chat.
+        A collection of all the Teams async operations that ran or are running on the chat. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class OperationsRequestBuilder():
     @dataclass
     class OperationsRequestBuilderGetQueryParameters():
         """
-        List all Teams async operations that ran or are running on the specified chat.
+        A collection of all the Teams async operations that ran or are running on the chat. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

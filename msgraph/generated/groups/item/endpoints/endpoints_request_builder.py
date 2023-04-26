@@ -54,7 +54,7 @@ class EndpointsRequestBuilder():
     
     async def get(self,request_configuration: Optional[EndpointsRequestBuilderGetRequestConfiguration] = None) -> Optional[endpoint_collection_response.EndpointCollectionResponse]:
         """
-        Retrieve a list of endpoint objects.
+        Endpoints for the group. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[endpoint_collection_response.EndpointCollectionResponse]
@@ -101,7 +101,7 @@ class EndpointsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[EndpointsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of endpoint objects.
+        Endpoints for the group. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class EndpointsRequestBuilder():
     @dataclass
     class EndpointsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of endpoint objects.
+        Endpoints for the group. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -55,7 +55,7 @@ class BucketsRequestBuilder():
     
     async def get(self,request_configuration: Optional[BucketsRequestBuilderGetRequestConfiguration] = None) -> Optional[planner_bucket_collection_response.PlannerBucketCollectionResponse]:
         """
-        Retrieve a list of plannerBucket objects contained by a plannerPlan object.
+        Collection of buckets in the plan. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[planner_bucket_collection_response.PlannerBucketCollectionResponse]
@@ -102,7 +102,7 @@ class BucketsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[BucketsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of plannerBucket objects contained by a plannerPlan object.
+        Collection of buckets in the plan. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -160,7 +160,7 @@ class BucketsRequestBuilder():
     @dataclass
     class BucketsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of plannerBucket objects contained by a plannerPlan object.
+        Collection of buckets in the plan. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

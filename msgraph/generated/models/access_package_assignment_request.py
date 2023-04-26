@@ -4,7 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import access_package, access_package_answer, access_package_assignment, access_package_subject, custom_extension_callout_instance, custom_extension_handler_instance, entity, request_schedule
+    from . import access_package, access_package_answer, access_package_assignment, access_package_subject, custom_extension_callout_instance, custom_extension_handler_instance, entity, request_schedule, verified_credential_data
 
 from . import entity
 
@@ -46,6 +46,8 @@ class AccessPackageAssignmentRequest(entity.Entity):
         self._requestor: Optional[access_package_subject.AccessPackageSubject] = None
         # The range of dates that access is to be assigned to the requestor. Read-only.
         self._schedule: Optional[request_schedule.RequestSchedule] = None
+        # The details of the verifiable credential that was presented by the requestor, such as the issuer and claims. Read-only.
+        self._verified_credentials_data: Optional[List[verified_credential_data.VerifiedCredentialData]] = None
     
     @property
     def access_package(self,) -> Optional[access_package.AccessPackage]:
@@ -200,7 +202,7 @@ class AccessPackageAssignmentRequest(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import access_package, access_package_answer, access_package_assignment, access_package_subject, custom_extension_callout_instance, custom_extension_handler_instance, entity, request_schedule
+        from . import access_package, access_package_answer, access_package_assignment, access_package_subject, custom_extension_callout_instance, custom_extension_handler_instance, entity, request_schedule, verified_credential_data
 
         fields: Dict[str, Callable[[Any], None]] = {
             "accessPackage": lambda n : setattr(self, 'access_package', n.get_object_value(access_package.AccessPackage)),
@@ -218,6 +220,7 @@ class AccessPackageAssignmentRequest(entity.Entity):
             "requestStatus": lambda n : setattr(self, 'request_status', n.get_str_value()),
             "requestType": lambda n : setattr(self, 'request_type', n.get_str_value()),
             "schedule": lambda n : setattr(self, 'schedule', n.get_object_value(request_schedule.RequestSchedule)),
+            "verifiedCredentialsData": lambda n : setattr(self, 'verified_credentials_data', n.get_collection_of_object_values(verified_credential_data.VerifiedCredentialData)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -366,5 +369,23 @@ class AccessPackageAssignmentRequest(entity.Entity):
         writer.write_str_value("requestStatus", self.request_status)
         writer.write_str_value("requestType", self.request_type)
         writer.write_object_value("schedule", self.schedule)
+        writer.write_collection_of_object_values("verifiedCredentialsData", self.verified_credentials_data)
+    
+    @property
+    def verified_credentials_data(self,) -> Optional[List[verified_credential_data.VerifiedCredentialData]]:
+        """
+        Gets the verifiedCredentialsData property value. The details of the verifiable credential that was presented by the requestor, such as the issuer and claims. Read-only.
+        Returns: Optional[List[verified_credential_data.VerifiedCredentialData]]
+        """
+        return self._verified_credentials_data
+    
+    @verified_credentials_data.setter
+    def verified_credentials_data(self,value: Optional[List[verified_credential_data.VerifiedCredentialData]] = None) -> None:
+        """
+        Sets the verifiedCredentialsData property value. The details of the verifiable credential that was presented by the requestor, such as the issuer and claims. Read-only.
+        Args:
+            value: Value to set for the verified_credentials_data property.
+        """
+        self._verified_credentials_data = value
     
 

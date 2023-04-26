@@ -37,7 +37,7 @@ class MoveToCatalogRequestBuilder():
     
     async def post(self,body: Optional[move_to_catalog_post_request_body.MoveToCatalogPostRequestBody] = None, request_configuration: Optional[MoveToCatalogRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        In Azure AD entitlement management, this action moves the accessPackage to a specified target accessPackageCatalog. The resources in the access package must be present in the target catalog.
+        Invoke action moveToCatalog
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -59,7 +59,7 @@ class MoveToCatalogRequestBuilder():
     
     def to_post_request_information(self,body: Optional[move_to_catalog_post_request_body.MoveToCatalogPostRequestBody] = None, request_configuration: Optional[MoveToCatalogRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        In Azure AD entitlement management, this action moves the accessPackage to a specified target accessPackageCatalog. The resources in the access package must be present in the target catalog.
+        Invoke action moveToCatalog
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

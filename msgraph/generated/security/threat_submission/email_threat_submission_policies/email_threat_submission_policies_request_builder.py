@@ -54,7 +54,7 @@ class EmailThreatSubmissionPoliciesRequestBuilder():
     
     async def get(self,request_configuration: Optional[EmailThreatSubmissionPoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[email_threat_submission_policy_collection_response.EmailThreatSubmissionPolicyCollectionResponse]:
         """
-        Get a list of the emailThreatSubmissionPolicy objects and their properties.
+        Get emailThreatSubmissionPolicies from security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[email_threat_submission_policy_collection_response.EmailThreatSubmissionPolicyCollectionResponse]
@@ -101,7 +101,7 @@ class EmailThreatSubmissionPoliciesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[EmailThreatSubmissionPoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the emailThreatSubmissionPolicy objects and their properties.
+        Get emailThreatSubmissionPolicies from security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class EmailThreatSubmissionPoliciesRequestBuilder():
     @dataclass
     class EmailThreatSubmissionPoliciesRequestBuilderGetQueryParameters():
         """
-        Get a list of the emailThreatSubmissionPolicy objects and their properties.
+        Get emailThreatSubmissionPolicies from security
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

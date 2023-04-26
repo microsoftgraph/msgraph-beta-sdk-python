@@ -54,7 +54,7 @@ class AccessPackageResourcesRequestBuilder():
     
     async def get(self,request_configuration: Optional[AccessPackageResourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_resource_collection_response.AccessPackageResourceCollectionResponse]:
         """
-        Retrieve a list of accessPackageResource objects in an accessPackageCatalog.  To request to add or remove an accessPackageResource, use create accessPackageResourceRequest.
+        Get accessPackageResources from identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_package_resource_collection_response.AccessPackageResourceCollectionResponse]
@@ -101,7 +101,7 @@ class AccessPackageResourcesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageResourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of accessPackageResource objects in an accessPackageCatalog.  To request to add or remove an accessPackageResource, use create accessPackageResourceRequest.
+        Get accessPackageResources from identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class AccessPackageResourcesRequestBuilder():
     @dataclass
     class AccessPackageResourcesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of accessPackageResource objects in an accessPackageCatalog.  To request to add or remove an accessPackageResource, use create accessPackageResourceRequest.
+        Get accessPackageResources from identityGovernance
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

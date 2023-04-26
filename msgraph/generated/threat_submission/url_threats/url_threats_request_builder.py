@@ -54,7 +54,7 @@ class UrlThreatsRequestBuilder():
     
     async def get(self,request_configuration: Optional[UrlThreatsRequestBuilderGetRequestConfiguration] = None) -> Optional[url_threat_submission_collection_response.UrlThreatSubmissionCollectionResponse]:
         """
-        Get a list of the urlThreatSubmission objects and their properties.
+        Get urlThreats from threatSubmission
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[url_threat_submission_collection_response.UrlThreatSubmissionCollectionResponse]
@@ -76,7 +76,7 @@ class UrlThreatsRequestBuilder():
     
     async def post(self,body: Optional[url_threat_submission.UrlThreatSubmission] = None, request_configuration: Optional[UrlThreatsRequestBuilderPostRequestConfiguration] = None) -> Optional[url_threat_submission.UrlThreatSubmission]:
         """
-        Create a new urlThreatSubmission object.
+        Create new navigation property to urlThreats for threatSubmission
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class UrlThreatsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UrlThreatsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the urlThreatSubmission objects and their properties.
+        Get urlThreats from threatSubmission
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class UrlThreatsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[url_threat_submission.UrlThreatSubmission] = None, request_configuration: Optional[UrlThreatsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new urlThreatSubmission object.
+        Create new navigation property to urlThreats for threatSubmission
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class UrlThreatsRequestBuilder():
     @dataclass
     class UrlThreatsRequestBuilderGetQueryParameters():
         """
-        Get a list of the urlThreatSubmission objects and their properties.
+        Get urlThreats from threatSubmission
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

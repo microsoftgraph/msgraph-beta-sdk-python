@@ -56,7 +56,7 @@ class CrossCloudGovernmentOrganizationMappingRequestBuilder():
     
     async def get(self,request_configuration: Optional[CrossCloudGovernmentOrganizationMappingRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_cross_cloud_government_organization_mapping.CloudPcCrossCloudGovernmentOrganizationMapping]:
         """
-        Read the properties and relationships of a cloudPcCrossCloudGovernmentOrganizationMapping object.
+        Cloud PC organization mapping between public and US Government Community Cloud (GCC) organizations.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cloud_pc_cross_cloud_government_organization_mapping.CloudPcCrossCloudGovernmentOrganizationMapping]
@@ -119,7 +119,7 @@ class CrossCloudGovernmentOrganizationMappingRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CrossCloudGovernmentOrganizationMappingRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a cloudPcCrossCloudGovernmentOrganizationMapping object.
+        Cloud PC organization mapping between public and US Government Community Cloud (GCC) organizations.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class CrossCloudGovernmentOrganizationMappingRequestBuilder():
     @dataclass
     class CrossCloudGovernmentOrganizationMappingRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a cloudPcCrossCloudGovernmentOrganizationMapping object.
+        Cloud PC organization mapping between public and US Government Community Cloud (GCC) organizations.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -56,7 +56,7 @@ class CustodiansRequestBuilder():
     
     async def get(self,request_configuration: Optional[CustodiansRequestBuilderGetRequestConfiguration] = None) -> Optional[custodian_collection_response.CustodianCollectionResponse]:
         """
-        Get a list of the custodian objects and their properties.
+        Returns a list of case custodian objects for this case.  Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[custodian_collection_response.CustodianCollectionResponse]
@@ -78,7 +78,7 @@ class CustodiansRequestBuilder():
     
     async def post(self,body: Optional[custodian.Custodian] = None, request_configuration: Optional[CustodiansRequestBuilderPostRequestConfiguration] = None) -> Optional[custodian.Custodian]:
         """
-        Create a new custodian object. After the custodian object is created, you will need to create the custodian's userSource to reference their mailbox and OneDrive for Business site.
+        Create new navigation property to custodians for compliance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class CustodiansRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CustodiansRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the custodian objects and their properties.
+        Returns a list of case custodian objects for this case.  Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -121,7 +121,7 @@ class CustodiansRequestBuilder():
     
     def to_post_request_information(self,body: Optional[custodian.Custodian] = None, request_configuration: Optional[CustodiansRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new custodian object. After the custodian object is created, you will need to create the custodian's userSource to reference their mailbox and OneDrive for Business site.
+        Create new navigation property to custodians for compliance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -170,7 +170,7 @@ class CustodiansRequestBuilder():
     @dataclass
     class CustodiansRequestBuilderGetQueryParameters():
         """
-        Get a list of the custodian objects and their properties.
+        Returns a list of case custodian objects for this case.  Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

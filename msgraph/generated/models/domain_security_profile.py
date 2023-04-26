@@ -11,7 +11,7 @@ from . import entity
 class DomainSecurityProfile(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new domainSecurityProfile and sets the default values.
+        Instantiates a new DomainSecurityProfile and sets the default values.
         """
         super().__init__()
         # The activityGroupNames property

@@ -58,7 +58,7 @@ class LabelsRequestBuilder():
     
     async def get(self,request_configuration: Optional[LabelsRequestBuilderGetRequestConfiguration] = None) -> Optional[information_protection_label_collection_response.InformationProtectionLabelCollectionResponse]:
         """
-        Get a collection of information protection labels available to the user or to the organization.
+        Get labels from sites
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[information_protection_label_collection_response.InformationProtectionLabelCollectionResponse]
@@ -105,7 +105,7 @@ class LabelsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[LabelsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a collection of information protection labels available to the user or to the organization.
+        Get labels from sites
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -190,7 +190,7 @@ class LabelsRequestBuilder():
     @dataclass
     class LabelsRequestBuilderGetQueryParameters():
         """
-        Get a collection of information protection labels available to the user or to the organization.
+        Get labels from sites
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

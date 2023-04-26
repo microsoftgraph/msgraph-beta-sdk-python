@@ -54,7 +54,7 @@ class ReferenceDefinitionsRequestBuilder():
     
     async def get(self,request_configuration: Optional[ReferenceDefinitionsRequestBuilderGetRequestConfiguration] = None) -> Optional[reference_definition_collection_response.ReferenceDefinitionCollectionResponse]:
         """
-        Get a list of the referenceDefinition objects and their properties.
+        Set of user modifiable system picker types.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[reference_definition_collection_response.ReferenceDefinitionCollectionResponse]
@@ -101,7 +101,7 @@ class ReferenceDefinitionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ReferenceDefinitionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the referenceDefinition objects and their properties.
+        Set of user modifiable system picker types.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class ReferenceDefinitionsRequestBuilder():
     @dataclass
     class ReferenceDefinitionsRequestBuilderGetQueryParameters():
         """
-        Get a list of the referenceDefinition objects and their properties.
+        Set of user modifiable system picker types.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

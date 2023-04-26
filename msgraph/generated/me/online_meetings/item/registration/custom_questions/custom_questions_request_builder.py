@@ -54,7 +54,7 @@ class CustomQuestionsRequestBuilder():
     
     async def get(self,request_configuration: Optional[CustomQuestionsRequestBuilderGetRequestConfiguration] = None) -> Optional[meeting_registration_question_collection_response.MeetingRegistrationQuestionCollectionResponse]:
         """
-        Get a list of the custom registration questions associated with a meetingRegistration object on behalf of the organizer.
+        Custom registration questions.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[meeting_registration_question_collection_response.MeetingRegistrationQuestionCollectionResponse]
@@ -76,7 +76,7 @@ class CustomQuestionsRequestBuilder():
     
     async def post(self,body: Optional[meeting_registration_question.MeetingRegistrationQuestion] = None, request_configuration: Optional[CustomQuestionsRequestBuilderPostRequestConfiguration] = None) -> Optional[meeting_registration_question.MeetingRegistrationQuestion]:
         """
-        Create a custom registration question associated with a meetingRegistration object on behalf of the organizer.
+        Create new navigation property to customQuestions for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class CustomQuestionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CustomQuestionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the custom registration questions associated with a meetingRegistration object on behalf of the organizer.
+        Custom registration questions.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class CustomQuestionsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[meeting_registration_question.MeetingRegistrationQuestion] = None, request_configuration: Optional[CustomQuestionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a custom registration question associated with a meetingRegistration object on behalf of the organizer.
+        Create new navigation property to customQuestions for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class CustomQuestionsRequestBuilder():
     @dataclass
     class CustomQuestionsRequestBuilderGetQueryParameters():
         """
-        Get a list of the custom registration questions associated with a meetingRegistration object on behalf of the organizer.
+        Custom registration questions.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

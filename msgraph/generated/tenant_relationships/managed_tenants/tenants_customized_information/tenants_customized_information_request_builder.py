@@ -54,7 +54,7 @@ class TenantsCustomizedInformationRequestBuilder():
     
     async def get(self,request_configuration: Optional[TenantsCustomizedInformationRequestBuilderGetRequestConfiguration] = None) -> Optional[tenant_customized_information_collection_response.TenantCustomizedInformationCollectionResponse]:
         """
-        Get a list of the tenantCustomizedInformation objects and their properties.
+        The collection of tenant level customized information across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[tenant_customized_information_collection_response.TenantCustomizedInformationCollectionResponse]
@@ -101,7 +101,7 @@ class TenantsCustomizedInformationRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TenantsCustomizedInformationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the tenantCustomizedInformation objects and their properties.
+        The collection of tenant level customized information across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class TenantsCustomizedInformationRequestBuilder():
     @dataclass
     class TenantsCustomizedInformationRequestBuilderGetQueryParameters():
         """
-        Get a list of the tenantCustomizedInformation objects and their properties.
+        The collection of tenant level customized information across managed tenants.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

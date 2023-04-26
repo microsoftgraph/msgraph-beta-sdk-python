@@ -36,7 +36,7 @@ class SoftDeleteRequestBuilder():
     
     async def post(self,request_configuration: Optional[SoftDeleteRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Delete a single chatMessage or a chat message reply in a channel or a chat.
+        Invoke action softDelete
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class SoftDeleteRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[SoftDeleteRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a single chatMessage or a chat message reply in a channel or a chat.
+        Invoke action softDelete
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

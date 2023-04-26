@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class UserExperienceAnalyticsAnomaly(entity.Entity):
-    """
-    The user experience analytics anomaly entity contains anomaly details.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsAnomaly and sets the default values.
+        Instantiates a new UserExperienceAnalyticsAnomaly and sets the default values.
         """
         super().__init__()
         # Indicates the first occurrence date and time for the anomaly.

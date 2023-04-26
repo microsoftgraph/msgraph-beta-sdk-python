@@ -12,13 +12,13 @@ from .. import entity
 class Tag(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new tag and sets the default values.
+        Instantiates a new Tag and sets the default values.
         """
         super().__init__()
         # Indicates whether a single or multiple child tags can be associated with a document. Possible values are: One, Many.  This value controls whether the UX presents the tags as checkboxes or a radio button group.
         self._child_selectability: Optional[child_selectability.ChildSelectability] = None
         # Returns the tags that are a child of a tag.
-        self._child_tags: Optional[List[Tag]] = None
+        self._child_tags: Optional[List[tag.Tag]] = None
         # The user who created the tag.
         self._created_by: Optional[identity_set.IdentitySet] = None
         # The description for the tag.
@@ -30,7 +30,7 @@ class Tag(entity.Entity):
         # The OdataType property
         self.odata_type: Optional[str] = None
         # Returns the parent tag of the specified tag.
-        self._parent: Optional[Tag] = None
+        self._parent: Optional[tag.Tag] = None
     
     @property
     def child_selectability(self,) -> Optional[child_selectability.ChildSelectability]:
@@ -50,15 +50,15 @@ class Tag(entity.Entity):
         self._child_selectability = value
     
     @property
-    def child_tags(self,) -> Optional[List[Tag]]:
+    def child_tags(self,) -> Optional[List[tag.Tag]]:
         """
         Gets the childTags property value. Returns the tags that are a child of a tag.
-        Returns: Optional[List[Tag]]
+        Returns: Optional[List[tag.Tag]]
         """
         return self._child_tags
     
     @child_tags.setter
-    def child_tags(self,value: Optional[List[Tag]] = None) -> None:
+    def child_tags(self,value: Optional[List[tag.Tag]] = None) -> None:
         """
         Sets the childTags property value. Returns the tags that are a child of a tag.
         Args:
@@ -139,12 +139,12 @@ class Tag(entity.Entity):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "childSelectability": lambda n : setattr(self, 'child_selectability', n.get_enum_value(child_selectability.ChildSelectability)),
-            "childTags": lambda n : setattr(self, 'child_tags', n.get_collection_of_object_values(Tag)),
+            "childTags": lambda n : setattr(self, 'child_tags', n.get_collection_of_object_values(tag.Tag)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "parent": lambda n : setattr(self, 'parent', n.get_object_value(Tag)),
+            "parent": lambda n : setattr(self, 'parent', n.get_object_value(tag.Tag)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -168,15 +168,15 @@ class Tag(entity.Entity):
         self._last_modified_date_time = value
     
     @property
-    def parent(self,) -> Optional[Tag]:
+    def parent(self,) -> Optional[tag.Tag]:
         """
         Gets the parent property value. Returns the parent tag of the specified tag.
-        Returns: Optional[Tag]
+        Returns: Optional[tag.Tag]
         """
         return self._parent
     
     @parent.setter
-    def parent(self,value: Optional[Tag] = None) -> None:
+    def parent(self,value: Optional[tag.Tag] = None) -> None:
         """
         Sets the parent property value. Returns the parent tag of the specified tag.
         Args:

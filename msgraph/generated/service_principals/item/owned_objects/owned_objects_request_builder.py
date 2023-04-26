@@ -58,7 +58,7 @@ class OwnedObjectsRequestBuilder():
     
     async def get(self,request_configuration: Optional[OwnedObjectsRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]:
         """
-        Retrieve a list of objects owned by the servicePrincipal.  This could include applications or groups.
+        Directory objects that are owned by this service principal. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]
@@ -80,7 +80,7 @@ class OwnedObjectsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[OwnedObjectsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of objects owned by the servicePrincipal.  This could include applications or groups.
+        Directory objects that are owned by this service principal. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -144,7 +144,7 @@ class OwnedObjectsRequestBuilder():
     @dataclass
     class OwnedObjectsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of objects owned by the servicePrincipal.  This could include applications or groups.
+        Directory objects that are owned by this service principal. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

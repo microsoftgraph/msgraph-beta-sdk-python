@@ -54,7 +54,7 @@ class ConversationsRequestBuilder():
     
     async def get(self,request_configuration: Optional[ConversationsRequestBuilderGetRequestConfiguration] = None) -> Optional[conversation_collection_response.ConversationCollectionResponse]:
         """
-        Retrieve the list of conversations in this group.
+        The group's conversations.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[conversation_collection_response.ConversationCollectionResponse]
@@ -76,7 +76,7 @@ class ConversationsRequestBuilder():
     
     async def post(self,body: Optional[conversation.Conversation] = None, request_configuration: Optional[ConversationsRequestBuilderPostRequestConfiguration] = None) -> Optional[conversation.Conversation]:
         """
-        Create a new conversation by including a thread and a post. Use reply thread or reply post to further post to that conversation.
+        Create new navigation property to conversations for groups
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class ConversationsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ConversationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the list of conversations in this group.
+        The group's conversations.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class ConversationsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[conversation.Conversation] = None, request_configuration: Optional[ConversationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new conversation by including a thread and a post. Use reply thread or reply post to further post to that conversation.
+        Create new navigation property to conversations for groups
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class ConversationsRequestBuilder():
     @dataclass
     class ConversationsRequestBuilderGetQueryParameters():
         """
-        Retrieve the list of conversations in this group.
+        The group's conversations.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import learning_provider
     from ....models.o_data_errors import o_data_error
     from .learning_contents import learning_contents_request_builder
+    from .learning_course_activities import learning_course_activities_request_builder
 
 class LearningProviderItemRequestBuilder():
     """
@@ -165,6 +166,15 @@ class LearningProviderItemRequestBuilder():
         from .learning_contents import learning_contents_request_builder
 
         return learning_contents_request_builder.LearningContentsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def learning_course_activities(self) -> learning_course_activities_request_builder.LearningCourseActivitiesRequestBuilder:
+        """
+        Provides operations to manage the learningCourseActivities property of the microsoft.graph.learningProvider entity.
+        """
+        from .learning_course_activities import learning_course_activities_request_builder
+
+        return learning_course_activities_request_builder.LearningCourseActivitiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class LearningProviderItemRequestBuilderDeleteRequestConfiguration():

@@ -56,7 +56,7 @@ class OrganizationSettingsRequestBuilder():
     
     async def get(self,request_configuration: Optional[OrganizationSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_organization_settings.CloudPcOrganizationSettings]:
         """
-        Read the properties and relationships of the cloudPcOrganizationSettings from the current tenant. A tenant has only one **cloudPcOrganizationSettings** object.
+        The Cloud PC organization settings for a tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cloud_pc_organization_settings.CloudPcOrganizationSettings]
@@ -78,7 +78,7 @@ class OrganizationSettingsRequestBuilder():
     
     async def patch(self,body: Optional[cloud_pc_organization_settings.CloudPcOrganizationSettings] = None, request_configuration: Optional[OrganizationSettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[cloud_pc_organization_settings.CloudPcOrganizationSettings]:
         """
-        Update the properties of the cloudPcOrganizationSettings object in a tenant.
+        Update the navigation property organizationSettings in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class OrganizationSettingsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[OrganizationSettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of the cloudPcOrganizationSettings from the current tenant. A tenant has only one **cloudPcOrganizationSettings** object.
+        The Cloud PC organization settings for a tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class OrganizationSettingsRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[cloud_pc_organization_settings.CloudPcOrganizationSettings] = None, request_configuration: Optional[OrganizationSettingsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of the cloudPcOrganizationSettings object in a tenant.
+        Update the navigation property organizationSettings in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class OrganizationSettingsRequestBuilder():
     @dataclass
     class OrganizationSettingsRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of the cloudPcOrganizationSettings from the current tenant. A tenant has only one **cloudPcOrganizationSettings** object.
+        The Cloud PC organization settings for a tenant.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -54,7 +54,7 @@ class LanguagesRequestBuilder():
     
     async def get(self,request_configuration: Optional[LanguagesRequestBuilderGetRequestConfiguration] = None) -> Optional[language_proficiency_collection_response.LanguageProficiencyCollectionResponse]:
         """
-        Retrieve a list of languageProficiency objects from a user's profile.
+        Represents detailed information about languages that a user has added to their profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[language_proficiency_collection_response.LanguageProficiencyCollectionResponse]
@@ -76,7 +76,7 @@ class LanguagesRequestBuilder():
     
     async def post(self,body: Optional[language_proficiency.LanguageProficiency] = None, request_configuration: Optional[LanguagesRequestBuilderPostRequestConfiguration] = None) -> Optional[language_proficiency.LanguageProficiency]:
         """
-        Use this API to create a new languageProficiency object in a user's profile.
+        Create new navigation property to languages for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class LanguagesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[LanguagesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of languageProficiency objects from a user's profile.
+        Represents detailed information about languages that a user has added to their profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class LanguagesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[language_proficiency.LanguageProficiency] = None, request_configuration: Optional[LanguagesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Use this API to create a new languageProficiency object in a user's profile.
+        Create new navigation property to languages for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class LanguagesRequestBuilder():
     @dataclass
     class LanguagesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of languageProficiency objects from a user's profile.
+        Represents detailed information about languages that a user has added to their profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

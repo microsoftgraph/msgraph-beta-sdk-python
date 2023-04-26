@@ -54,7 +54,7 @@ class SimulationsRequestBuilder():
     
     async def get(self,request_configuration: Optional[SimulationsRequestBuilderGetRequestConfiguration] = None) -> Optional[simulation_collection_response.SimulationCollectionResponse]:
         """
-        Get a list of attack simulation campaigns for a tenant.
+        Represents an attack simulation training campaign in a tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[simulation_collection_response.SimulationCollectionResponse]
@@ -76,7 +76,7 @@ class SimulationsRequestBuilder():
     
     async def post(self,body: Optional[simulation.Simulation] = None, request_configuration: Optional[SimulationsRequestBuilderPostRequestConfiguration] = None) -> Optional[simulation.Simulation]:
         """
-        Create an attack simulation campaign for a tenant.
+        Create new navigation property to simulations for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class SimulationsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SimulationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of attack simulation campaigns for a tenant.
+        Represents an attack simulation training campaign in a tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class SimulationsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[simulation.Simulation] = None, request_configuration: Optional[SimulationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create an attack simulation campaign for a tenant.
+        Create new navigation property to simulations for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class SimulationsRequestBuilder():
     @dataclass
     class SimulationsRequestBuilderGetQueryParameters():
         """
-        Get a list of attack simulation campaigns for a tenant.
+        Represents an attack simulation training campaign in a tenant.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

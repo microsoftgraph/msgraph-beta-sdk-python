@@ -37,7 +37,7 @@ class SelfDeactivateRequestBuilder():
     
     async def post(self,request_configuration: Optional[SelfDeactivateRequestBuilderPostRequestConfiguration] = None) -> Optional[privileged_role_assignment.PrivilegedRoleAssignment]:
         """
-        Deactivate the role that is assigned to the requestor.
+        Invoke action selfDeactivate
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[privileged_role_assignment.PrivilegedRoleAssignment]
@@ -59,7 +59,7 @@ class SelfDeactivateRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[SelfDeactivateRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Deactivate the role that is assigned to the requestor.
+        Invoke action selfDeactivate
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

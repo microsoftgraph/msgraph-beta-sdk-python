@@ -54,7 +54,7 @@ class UsageRightsRequestBuilder():
     
     async def get(self,request_configuration: Optional[UsageRightsRequestBuilderGetRequestConfiguration] = None) -> Optional[usage_right_collection_response.UsageRightCollectionResponse]:
         """
-        Retrieve a list of usageRight objects for a given user.
+        Represents the usage rights a user has been granted.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[usage_right_collection_response.UsageRightCollectionResponse]
@@ -101,7 +101,7 @@ class UsageRightsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UsageRightsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of usageRight objects for a given user.
+        Represents the usage rights a user has been granted.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class UsageRightsRequestBuilder():
     @dataclass
     class UsageRightsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of usageRight objects for a given user.
+        Represents the usage rights a user has been granted.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

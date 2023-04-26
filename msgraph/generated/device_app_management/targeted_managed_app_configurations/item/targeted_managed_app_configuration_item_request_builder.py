@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .apps import apps_request_builder
     from .assign import assign_request_builder
     from .assignments import assignments_request_builder
+    from .change_settings import change_settings_request_builder
     from .deployment_summary import deployment_summary_request_builder
     from .target_apps import target_apps_request_builder
 
@@ -187,6 +188,15 @@ class TargetedManagedAppConfigurationItemRequestBuilder():
         from .assignments import assignments_request_builder
 
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def change_settings(self) -> change_settings_request_builder.ChangeSettingsRequestBuilder:
+        """
+        Provides operations to call the changeSettings method.
+        """
+        from .change_settings import change_settings_request_builder
+
+        return change_settings_request_builder.ChangeSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def deployment_summary(self) -> deployment_summary_request_builder.DeploymentSummaryRequestBuilder:

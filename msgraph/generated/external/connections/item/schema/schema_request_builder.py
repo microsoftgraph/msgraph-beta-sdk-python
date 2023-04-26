@@ -56,7 +56,7 @@ class SchemaRequestBuilder():
     
     async def get(self,request_configuration: Optional[SchemaRequestBuilderGetRequestConfiguration] = None) -> Optional[schema.Schema]:
         """
-        Retrieve the properties of a schema for an externalConnection.
+        Get schema from external
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[schema.Schema]
@@ -78,7 +78,7 @@ class SchemaRequestBuilder():
     
     async def patch(self,body: Optional[schema.Schema] = None, request_configuration: Optional[SchemaRequestBuilderPatchRequestConfiguration] = None) -> Optional[schema.Schema]:
         """
-        Update the properties of a schema for an externalConnection.
+        Update the navigation property schema in external
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class SchemaRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SchemaRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties of a schema for an externalConnection.
+        Get schema from external
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class SchemaRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[schema.Schema] = None, request_configuration: Optional[SchemaRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a schema for an externalConnection.
+        Update the navigation property schema in external
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class SchemaRequestBuilder():
     @dataclass
     class SchemaRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties of a schema for an externalConnection.
+        Get schema from external
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -3,20 +3,22 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity, learning_content
+    from . import entity, learning_content, learning_course_activity
 
 from . import entity
 
 class LearningProvider(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new learningProvider and sets the default values.
+        Instantiates a new LearningProvider and sets the default values.
         """
         super().__init__()
         # The display name that appears in Viva Learning. Required.
         self._display_name: Optional[str] = None
         # Learning catalog items for the provider.
         self._learning_contents: Optional[List[learning_content.LearningContent]] = None
+        # The learningCourseActivities property
+        self._learning_course_activities: Optional[List[learning_course_activity.LearningCourseActivity]] = None
         # Authentication URL to access the courses for the provider. Optional.
         self._login_web_url: Optional[str] = None
         # The long logo URL for the dark mode that needs to be a publicly accessible image. This image would be saved to the blob storage of Viva Learning for rendering within the Viva Learning app. Required.
@@ -64,11 +66,12 @@ class LearningProvider(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, learning_content
+        from . import entity, learning_content, learning_course_activity
 
         fields: Dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "learningContents": lambda n : setattr(self, 'learning_contents', n.get_collection_of_object_values(learning_content.LearningContent)),
+            "learningCourseActivities": lambda n : setattr(self, 'learning_course_activities', n.get_collection_of_object_values(learning_course_activity.LearningCourseActivity)),
             "loginWebUrl": lambda n : setattr(self, 'login_web_url', n.get_str_value()),
             "longLogoWebUrlForDarkTheme": lambda n : setattr(self, 'long_logo_web_url_for_dark_theme', n.get_str_value()),
             "longLogoWebUrlForLightTheme": lambda n : setattr(self, 'long_logo_web_url_for_light_theme', n.get_str_value()),
@@ -95,6 +98,23 @@ class LearningProvider(entity.Entity):
             value: Value to set for the learning_contents property.
         """
         self._learning_contents = value
+    
+    @property
+    def learning_course_activities(self,) -> Optional[List[learning_course_activity.LearningCourseActivity]]:
+        """
+        Gets the learningCourseActivities property value. The learningCourseActivities property
+        Returns: Optional[List[learning_course_activity.LearningCourseActivity]]
+        """
+        return self._learning_course_activities
+    
+    @learning_course_activities.setter
+    def learning_course_activities(self,value: Optional[List[learning_course_activity.LearningCourseActivity]] = None) -> None:
+        """
+        Sets the learningCourseActivities property value. The learningCourseActivities property
+        Args:
+            value: Value to set for the learning_course_activities property.
+        """
+        self._learning_course_activities = value
     
     @property
     def login_web_url(self,) -> Optional[str]:
@@ -158,6 +178,7 @@ class LearningProvider(entity.Entity):
         super().serialize(writer)
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_object_values("learningContents", self.learning_contents)
+        writer.write_collection_of_object_values("learningCourseActivities", self.learning_course_activities)
         writer.write_str_value("loginWebUrl", self.login_web_url)
         writer.write_str_value("longLogoWebUrlForDarkTheme", self.long_logo_web_url_for_dark_theme)
         writer.write_str_value("longLogoWebUrlForLightTheme", self.long_logo_web_url_for_light_theme)

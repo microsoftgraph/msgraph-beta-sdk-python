@@ -54,7 +54,7 @@ class PassiveDnsReverseRequestBuilder():
     
     async def get(self,request_configuration: Optional[PassiveDnsReverseRequestBuilderGetRequestConfiguration] = None) -> Optional[passive_dns_record_collection_response.PassiveDnsRecordCollectionResponse]:
         """
-        Get a list of passiveDnsRecord resources.
+        Reverse passive DNS retrieval about this host.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[passive_dns_record_collection_response.PassiveDnsRecordCollectionResponse]
@@ -76,7 +76,7 @@ class PassiveDnsReverseRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PassiveDnsReverseRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of passiveDnsRecord resources.
+        Reverse passive DNS retrieval about this host.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +104,7 @@ class PassiveDnsReverseRequestBuilder():
     @dataclass
     class PassiveDnsReverseRequestBuilderGetQueryParameters():
         """
-        Get a list of passiveDnsRecord resources.
+        Reverse passive DNS retrieval about this host.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

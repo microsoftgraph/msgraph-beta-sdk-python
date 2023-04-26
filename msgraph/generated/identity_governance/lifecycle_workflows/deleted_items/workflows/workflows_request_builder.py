@@ -54,7 +54,7 @@ class WorkflowsRequestBuilder():
     
     async def get(self,request_configuration: Optional[WorkflowsRequestBuilderGetRequestConfiguration] = None) -> Optional[workflow_collection_response.WorkflowCollectionResponse]:
         """
-        Get a list of the deleted workflow objects and their properties.
+        Deleted workflows that end up in the deletedItemsContainer.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[workflow_collection_response.WorkflowCollectionResponse]
@@ -76,7 +76,7 @@ class WorkflowsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[WorkflowsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the deleted workflow objects and their properties.
+        Deleted workflows that end up in the deletedItemsContainer.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +104,7 @@ class WorkflowsRequestBuilder():
     @dataclass
     class WorkflowsRequestBuilderGetQueryParameters():
         """
-        Get a list of the deleted workflow objects and their properties.
+        Deleted workflows that end up in the deletedItemsContainer.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

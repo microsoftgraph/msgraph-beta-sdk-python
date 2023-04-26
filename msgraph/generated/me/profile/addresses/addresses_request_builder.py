@@ -54,7 +54,7 @@ class AddressesRequestBuilder():
     
     async def get(self,request_configuration: Optional[AddressesRequestBuilderGetRequestConfiguration] = None) -> Optional[item_address_collection_response.ItemAddressCollectionResponse]:
         """
-        Get the itemAddress resources from the **addresses** navigation property.
+        Represents details of addresses associated with the user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[item_address_collection_response.ItemAddressCollectionResponse]
@@ -76,7 +76,7 @@ class AddressesRequestBuilder():
     
     async def post(self,body: Optional[item_address.ItemAddress] = None, request_configuration: Optional[AddressesRequestBuilderPostRequestConfiguration] = None) -> Optional[item_address.ItemAddress]:
         """
-        Create a new itemAddress object in a user's profile.
+        Create new navigation property to addresses for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class AddressesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AddressesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the itemAddress resources from the **addresses** navigation property.
+        Represents details of addresses associated with the user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class AddressesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[item_address.ItemAddress] = None, request_configuration: Optional[AddressesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new itemAddress object in a user's profile.
+        Create new navigation property to addresses for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class AddressesRequestBuilder():
     @dataclass
     class AddressesRequestBuilderGetQueryParameters():
         """
-        Get the itemAddress resources from the **addresses** navigation property.
+        Represents details of addresses associated with the user.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -3,7 +3,7 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import android_fota_deployment_assignment_target
+    from . import android_fota_deployment_assignment_target, device_and_app_management_assignment_target
 
 class AndroidFotaDeploymentAssignment(AdditionalDataHolder, Parsable):
     """
@@ -16,6 +16,8 @@ class AndroidFotaDeploymentAssignment(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
+        # The Azure Active Directory (Azure AD) we are deploying firmware updates to (e.g.: d93c8f48-bd42-4514-ba40-bc6b84780930). NOTE: Use this property moving forward because the existing property, target, is deprecated.
+        self._assignment_target: Optional[device_and_app_management_assignment_target.DeviceAndAppManagementAssignmentTarget] = None
         # The display name of the Azure AD security group used for the assignment.
         self._display_name: Optional[str] = None
         # A unique identifier assigned to each Android FOTA Assignment entity
@@ -41,6 +43,23 @@ class AndroidFotaDeploymentAssignment(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
+    
+    @property
+    def assignment_target(self,) -> Optional[device_and_app_management_assignment_target.DeviceAndAppManagementAssignmentTarget]:
+        """
+        Gets the assignmentTarget property value. The Azure Active Directory (Azure AD) we are deploying firmware updates to (e.g.: d93c8f48-bd42-4514-ba40-bc6b84780930). NOTE: Use this property moving forward because the existing property, target, is deprecated.
+        Returns: Optional[device_and_app_management_assignment_target.DeviceAndAppManagementAssignmentTarget]
+        """
+        return self._assignment_target
+    
+    @assignment_target.setter
+    def assignment_target(self,value: Optional[device_and_app_management_assignment_target.DeviceAndAppManagementAssignmentTarget] = None) -> None:
+        """
+        Sets the assignmentTarget property value. The Azure Active Directory (Azure AD) we are deploying firmware updates to (e.g.: d93c8f48-bd42-4514-ba40-bc6b84780930). NOTE: Use this property moving forward because the existing property, target, is deprecated.
+        Args:
+            value: Value to set for the assignment_target property.
+        """
+        self._assignment_target = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidFotaDeploymentAssignment:
@@ -76,9 +95,10 @@ class AndroidFotaDeploymentAssignment(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import android_fota_deployment_assignment_target
+        from . import android_fota_deployment_assignment_target, device_and_app_management_assignment_target
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "assignmentTarget": lambda n : setattr(self, 'assignment_target', n.get_object_value(device_and_app_management_assignment_target.DeviceAndAppManagementAssignmentTarget)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -128,6 +148,7 @@ class AndroidFotaDeploymentAssignment(AdditionalDataHolder, Parsable):
         """
         if writer is None:
             raise Exception("writer cannot be undefined")
+        writer.write_object_value("assignmentTarget", self.assignment_target)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("id", self.id)
         writer.write_str_value("@odata.type", self.odata_type)

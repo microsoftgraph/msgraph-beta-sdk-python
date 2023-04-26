@@ -14,7 +14,7 @@ class IosStoreAppAssignmentSettings(mobile_app_assignment_settings.MobileAppAssi
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.iosStoreAppAssignmentSettings"
-        # Whether or not the app can be removed by the user.
+        # When TRUE, indicates that the app can be uninstalled by the user. When FALSE, indicates that the app cannot be uninstalled by the user. By default, this property is set to null which internally is treated as TRUE.
         self._is_removable: Optional[bool] = None
         # When TRUE, indicates that the app should not be backed up to iCloud. When FALSE, indicates that the app may be backed up to iCloud. By default, this property is set to null which internally is treated as FALSE.
         self._prevent_managed_app_backup: Optional[bool] = None
@@ -55,7 +55,7 @@ class IosStoreAppAssignmentSettings(mobile_app_assignment_settings.MobileAppAssi
     @property
     def is_removable(self,) -> Optional[bool]:
         """
-        Gets the isRemovable property value. Whether or not the app can be removed by the user.
+        Gets the isRemovable property value. When TRUE, indicates that the app can be uninstalled by the user. When FALSE, indicates that the app cannot be uninstalled by the user. By default, this property is set to null which internally is treated as TRUE.
         Returns: Optional[bool]
         """
         return self._is_removable
@@ -63,7 +63,7 @@ class IosStoreAppAssignmentSettings(mobile_app_assignment_settings.MobileAppAssi
     @is_removable.setter
     def is_removable(self,value: Optional[bool] = None) -> None:
         """
-        Sets the isRemovable property value. Whether or not the app can be removed by the user.
+        Sets the isRemovable property value. When TRUE, indicates that the app can be uninstalled by the user. When FALSE, indicates that the app cannot be uninstalled by the user. By default, this property is set to null which internally is treated as TRUE.
         Args:
             value: Value to set for the is_removable property.
         """

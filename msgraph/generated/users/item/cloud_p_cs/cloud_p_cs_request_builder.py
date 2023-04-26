@@ -57,7 +57,7 @@ class CloudPCsRequestBuilder():
     
     async def get(self,request_configuration: Optional[CloudPCsRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_p_c_collection_response.CloudPCCollectionResponse]:
         """
-        List the cloudPC devices that are attributed to the signed-in user. 
+        Get cloudPCs from users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cloud_p_c_collection_response.CloudPCCollectionResponse]
@@ -120,7 +120,7 @@ class CloudPCsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CloudPCsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List the cloudPC devices that are attributed to the signed-in user. 
+        Get cloudPCs from users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -187,7 +187,7 @@ class CloudPCsRequestBuilder():
     @dataclass
     class CloudPCsRequestBuilderGetQueryParameters():
         """
-        List the cloudPC devices that are attributed to the signed-in user. 
+        Get cloudPCs from users
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

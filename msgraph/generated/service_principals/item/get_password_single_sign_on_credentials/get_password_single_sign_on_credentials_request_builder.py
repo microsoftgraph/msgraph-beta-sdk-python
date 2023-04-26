@@ -38,7 +38,7 @@ class GetPasswordSingleSignOnCredentialsRequestBuilder():
     
     async def post(self,body: Optional[get_password_single_sign_on_credentials_post_request_body.GetPasswordSingleSignOnCredentialsPostRequestBody] = None, request_configuration: Optional[GetPasswordSingleSignOnCredentialsRequestBuilderPostRequestConfiguration] = None) -> Optional[password_single_sign_on_credential_set.PasswordSingleSignOnCredentialSet]:
         """
-        Get a list of single sign-on credentials using a password for a user or group.
+        Invoke action getPasswordSingleSignOnCredentials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +63,7 @@ class GetPasswordSingleSignOnCredentialsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[get_password_single_sign_on_credentials_post_request_body.GetPasswordSingleSignOnCredentialsPostRequestBody] = None, request_configuration: Optional[GetPasswordSingleSignOnCredentialsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of single sign-on credentials using a password for a user or group.
+        Invoke action getPasswordSingleSignOnCredentials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

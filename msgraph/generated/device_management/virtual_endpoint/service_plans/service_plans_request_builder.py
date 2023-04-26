@@ -54,7 +54,7 @@ class ServicePlansRequestBuilder():
     
     async def get(self,request_configuration: Optional[ServicePlansRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_service_plan_collection_response.CloudPcServicePlanCollectionResponse]:
         """
-        List the currently available service plans that an organization can purchase for their Cloud PCs. For examples of currently available service plans, see Windows 365 compare plans and pricing. Currently, Microsoft Graph API is available for Windows 365 Enterprise.
+        Cloud PC service plans.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cloud_pc_service_plan_collection_response.CloudPcServicePlanCollectionResponse]
@@ -101,7 +101,7 @@ class ServicePlansRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ServicePlansRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List the currently available service plans that an organization can purchase for their Cloud PCs. For examples of currently available service plans, see Windows 365 compare plans and pricing. Currently, Microsoft Graph API is available for Windows 365 Enterprise.
+        Cloud PC service plans.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class ServicePlansRequestBuilder():
     @dataclass
     class ServicePlansRequestBuilderGetQueryParameters():
         """
-        List the currently available service plans that an organization can purchase for their Cloud PCs. For examples of currently available service plans, see Windows 365 compare plans and pricing. Currently, Microsoft Graph API is available for Windows 365 Enterprise.
+        Cloud PC service plans.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -54,7 +54,7 @@ class QnasRequestBuilder():
     
     async def get(self,request_configuration: Optional[QnasRequestBuilderGetRequestConfiguration] = None) -> Optional[qna_collection_response.QnaCollectionResponse]:
         """
-        Get a list of the qna objects and their properties.
+        Administrative answer in Microsoft Search results which provide answers for specific search keywords in an organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[qna_collection_response.QnaCollectionResponse]
@@ -76,7 +76,7 @@ class QnasRequestBuilder():
     
     async def post(self,body: Optional[qna.Qna] = None, request_configuration: Optional[QnasRequestBuilderPostRequestConfiguration] = None) -> Optional[qna.Qna]:
         """
-        Create a new qna object.
+        Create new navigation property to qnas for search
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class QnasRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[QnasRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the qna objects and their properties.
+        Administrative answer in Microsoft Search results which provide answers for specific search keywords in an organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class QnasRequestBuilder():
     
     def to_post_request_information(self,body: Optional[qna.Qna] = None, request_configuration: Optional[QnasRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new qna object.
+        Create new navigation property to qnas for search
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class QnasRequestBuilder():
     @dataclass
     class QnasRequestBuilderGetQueryParameters():
         """
-        Get a list of the qna objects and their properties.
+        Administrative answer in Microsoft Search results which provide answers for specific search keywords in an organization.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -56,7 +56,7 @@ class SummaryRequestBuilder():
     
     async def get(self,request_configuration: Optional[SummaryRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_role_summary.PrivilegedRoleSummary]:
         """
-        Retrieve the properties and relationships of privilegedRoleSummary object.
+        The summary information for this role. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[privileged_role_summary.PrivilegedRoleSummary]
@@ -119,7 +119,7 @@ class SummaryRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SummaryRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of privilegedRoleSummary object.
+        The summary information for this role. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class SummaryRequestBuilder():
     @dataclass
     class SummaryRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of privilegedRoleSummary object.
+        The summary information for this role. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -37,7 +37,7 @@ class EdiscoveryExportRequestBuilder():
     
     async def post(self,body: Optional[export_post_request_body.ExportPostRequestBody] = None, request_configuration: Optional[EdiscoveryExportRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Initiate an export from a **reviewSet**.  For details, see Export documents from a review set in Advanced eDiscovery.
+        Invoke action export
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -59,7 +59,7 @@ class EdiscoveryExportRequestBuilder():
     
     def to_post_request_information(self,body: Optional[export_post_request_body.ExportPostRequestBody] = None, request_configuration: Optional[EdiscoveryExportRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Initiate an export from a **reviewSet**.  For details, see Export documents from a review set in Advanced eDiscovery.
+        Invoke action export
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

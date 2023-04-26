@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class NdesConnector(entity.Entity):
-    """
-    Entity which represents an OnPrem Ndes connector.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new ndesConnector and sets the default values.
+        Instantiates a new NdesConnector and sets the default values.
         """
         super().__init__()
         # The build version of the Ndes Connector.

@@ -8,29 +8,26 @@ if TYPE_CHECKING:
 from . import entity
 
 class DeviceManagementConfigurationCategory(entity.Entity):
-    """
-    Device Management Configuration Policy
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceManagementConfigurationCategory and sets the default values.
+        Instantiates a new DeviceManagementConfigurationCategory and sets the default values.
         """
         super().__init__()
-        # Description of the category header
+        # Description of the category header in policy summary.
         self._category_description: Optional[str] = None
         # List of child ids of the category.
         self._child_category_ids: Optional[List[str]] = None
-        # Description of the item
+        # Description of the category. For example: Display
         self._description: Optional[str] = None
-        # Display name of the item
+        # Name of the category. For example: Device Lock
         self._display_name: Optional[str] = None
-        # Help text of the item
+        # Help text of the category. Give more details of the category.
         self._help_text: Optional[str] = None
         # Name of the item
         self._name: Optional[str] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # Parent id of the category.
+        # Direct parent id of the category. If the category is the root, the parent id is same as its id.
         self._parent_category_id: Optional[str] = None
         # Supported platform types.
         self._platforms: Optional[device_management_configuration_platforms.DeviceManagementConfigurationPlatforms] = None
@@ -44,7 +41,7 @@ class DeviceManagementConfigurationCategory(entity.Entity):
     @property
     def category_description(self,) -> Optional[str]:
         """
-        Gets the categoryDescription property value. Description of the category header
+        Gets the categoryDescription property value. Description of the category header in policy summary.
         Returns: Optional[str]
         """
         return self._category_description
@@ -52,7 +49,7 @@ class DeviceManagementConfigurationCategory(entity.Entity):
     @category_description.setter
     def category_description(self,value: Optional[str] = None) -> None:
         """
-        Sets the categoryDescription property value. Description of the category header
+        Sets the categoryDescription property value. Description of the category header in policy summary.
         Args:
             value: Value to set for the category_description property.
         """
@@ -90,7 +87,7 @@ class DeviceManagementConfigurationCategory(entity.Entity):
     @property
     def description(self,) -> Optional[str]:
         """
-        Gets the description property value. Description of the item
+        Gets the description property value. Description of the category. For example: Display
         Returns: Optional[str]
         """
         return self._description
@@ -98,7 +95,7 @@ class DeviceManagementConfigurationCategory(entity.Entity):
     @description.setter
     def description(self,value: Optional[str] = None) -> None:
         """
-        Sets the description property value. Description of the item
+        Sets the description property value. Description of the category. For example: Display
         Args:
             value: Value to set for the description property.
         """
@@ -107,7 +104,7 @@ class DeviceManagementConfigurationCategory(entity.Entity):
     @property
     def display_name(self,) -> Optional[str]:
         """
-        Gets the displayName property value. Display name of the item
+        Gets the displayName property value. Name of the category. For example: Device Lock
         Returns: Optional[str]
         """
         return self._display_name
@@ -115,7 +112,7 @@ class DeviceManagementConfigurationCategory(entity.Entity):
     @display_name.setter
     def display_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the displayName property value. Display name of the item
+        Sets the displayName property value. Name of the category. For example: Device Lock
         Args:
             value: Value to set for the display_name property.
         """
@@ -148,7 +145,7 @@ class DeviceManagementConfigurationCategory(entity.Entity):
     @property
     def help_text(self,) -> Optional[str]:
         """
-        Gets the helpText property value. Help text of the item
+        Gets the helpText property value. Help text of the category. Give more details of the category.
         Returns: Optional[str]
         """
         return self._help_text
@@ -156,7 +153,7 @@ class DeviceManagementConfigurationCategory(entity.Entity):
     @help_text.setter
     def help_text(self,value: Optional[str] = None) -> None:
         """
-        Sets the helpText property value. Help text of the item
+        Sets the helpText property value. Help text of the category. Give more details of the category.
         Args:
             value: Value to set for the help_text property.
         """
@@ -182,7 +179,7 @@ class DeviceManagementConfigurationCategory(entity.Entity):
     @property
     def parent_category_id(self,) -> Optional[str]:
         """
-        Gets the parentCategoryId property value. Parent id of the category.
+        Gets the parentCategoryId property value. Direct parent id of the category. If the category is the root, the parent id is same as its id.
         Returns: Optional[str]
         """
         return self._parent_category_id
@@ -190,7 +187,7 @@ class DeviceManagementConfigurationCategory(entity.Entity):
     @parent_category_id.setter
     def parent_category_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the parentCategoryId property value. Parent id of the category.
+        Sets the parentCategoryId property value. Direct parent id of the category. If the category is the root, the parent id is same as its id.
         Args:
             value: Value to set for the parent_category_id property.
         """

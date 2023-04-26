@@ -38,7 +38,7 @@ class ManagedTenantsUnassignTagRequestBuilder():
     
     async def post(self,body: Optional[unassign_tag_post_request_body.UnassignTagPostRequestBody] = None, request_configuration: Optional[ManagedTenantsUnassignTagRequestBuilderPostRequestConfiguration] = None) -> Optional[tenant_tag.TenantTag]:
         """
-        Un-assigns the tenant tag from the specified managed tenants.
+        Invoke action unassignTag
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +63,7 @@ class ManagedTenantsUnassignTagRequestBuilder():
     
     def to_post_request_information(self,body: Optional[unassign_tag_post_request_body.UnassignTagPostRequestBody] = None, request_configuration: Optional[ManagedTenantsUnassignTagRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Un-assigns the tenant tag from the specified managed tenants.
+        Invoke action unassignTag
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

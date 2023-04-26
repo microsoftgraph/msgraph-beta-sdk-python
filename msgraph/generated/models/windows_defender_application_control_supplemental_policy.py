@@ -11,7 +11,7 @@ from . import entity
 class WindowsDefenderApplicationControlSupplementalPolicy(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new windowsDefenderApplicationControlSupplementalPolicy and sets the default values.
+        Instantiates a new WindowsDefenderApplicationControlSupplementalPolicy and sets the default values.
         """
         super().__init__()
         # The associated group assignments for this WindowsDefenderApplicationControl supplemental policy.

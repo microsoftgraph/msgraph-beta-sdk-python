@@ -4,7 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import device_platform_type, entity, payload_by_filter, payload_compatible_assignment_filter
+    from . import assignment_filter_management_type, device_platform_type, entity, payload_by_filter, payload_compatible_assignment_filter
 
 from . import entity
 
@@ -17,29 +17,48 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
         Instantiates a new deviceAndAppManagementAssignmentFilter and sets the default values.
         """
         super().__init__()
-        # Creation time of the Assignment Filter.
+        # Supported filter management types whether its devices or apps.
+        self._assignment_filter_management_type: Optional[assignment_filter_management_type.AssignmentFilterManagementType] = None
+        # The creation time of the assignment filter. The value cannot be modified and is automatically populated during new assignment filter process. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'.
         self._created_date_time: Optional[datetime] = None
-        # Description of the Assignment Filter.
+        # Optional description of the Assignment Filter.
         self._description: Optional[str] = None
-        # DisplayName of the Assignment Filter.
+        # The name of the Assignment Filter.
         self._display_name: Optional[str] = None
-        # Last modified time of the Assignment Filter.
+        # Last modified time of the Assignment Filter. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'
         self._last_modified_date_time: Optional[datetime] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # Associated assignments for a specific filter
+        # Indicates associated assignments for a specific filter.
         self._payloads: Optional[List[payload_by_filter.PayloadByFilter]] = None
         # Supported platform types.
         self._platform: Optional[device_platform_type.DevicePlatformType] = None
-        # RoleScopeTags of the Assignment Filter.
+        # Indicates role scope tags assigned for the assignment filter.
         self._role_scope_tags: Optional[List[str]] = None
-        # Rule definition of the Assignment Filter.
+        # Rule definition of the assignment filter.
         self._rule: Optional[str] = None
+    
+    @property
+    def assignment_filter_management_type(self,) -> Optional[assignment_filter_management_type.AssignmentFilterManagementType]:
+        """
+        Gets the assignmentFilterManagementType property value. Supported filter management types whether its devices or apps.
+        Returns: Optional[assignment_filter_management_type.AssignmentFilterManagementType]
+        """
+        return self._assignment_filter_management_type
+    
+    @assignment_filter_management_type.setter
+    def assignment_filter_management_type(self,value: Optional[assignment_filter_management_type.AssignmentFilterManagementType] = None) -> None:
+        """
+        Sets the assignmentFilterManagementType property value. Supported filter management types whether its devices or apps.
+        Args:
+            value: Value to set for the assignment_filter_management_type property.
+        """
+        self._assignment_filter_management_type = value
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
         """
-        Gets the createdDateTime property value. Creation time of the Assignment Filter.
+        Gets the createdDateTime property value. The creation time of the assignment filter. The value cannot be modified and is automatically populated during new assignment filter process. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'.
         Returns: Optional[datetime]
         """
         return self._created_date_time
@@ -47,7 +66,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
     @created_date_time.setter
     def created_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the createdDateTime property value. Creation time of the Assignment Filter.
+        Sets the createdDateTime property value. The creation time of the assignment filter. The value cannot be modified and is automatically populated during new assignment filter process. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'.
         Args:
             value: Value to set for the created_date_time property.
         """
@@ -75,7 +94,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
     @property
     def description(self,) -> Optional[str]:
         """
-        Gets the description property value. Description of the Assignment Filter.
+        Gets the description property value. Optional description of the Assignment Filter.
         Returns: Optional[str]
         """
         return self._description
@@ -83,7 +102,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
     @description.setter
     def description(self,value: Optional[str] = None) -> None:
         """
-        Sets the description property value. Description of the Assignment Filter.
+        Sets the description property value. Optional description of the Assignment Filter.
         Args:
             value: Value to set for the description property.
         """
@@ -92,7 +111,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
     @property
     def display_name(self,) -> Optional[str]:
         """
-        Gets the displayName property value. DisplayName of the Assignment Filter.
+        Gets the displayName property value. The name of the Assignment Filter.
         Returns: Optional[str]
         """
         return self._display_name
@@ -100,7 +119,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
     @display_name.setter
     def display_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the displayName property value. DisplayName of the Assignment Filter.
+        Sets the displayName property value. The name of the Assignment Filter.
         Args:
             value: Value to set for the display_name property.
         """
@@ -111,9 +130,10 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import device_platform_type, entity, payload_by_filter, payload_compatible_assignment_filter
+        from . import assignment_filter_management_type, device_platform_type, entity, payload_by_filter, payload_compatible_assignment_filter
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "assignmentFilterManagementType": lambda n : setattr(self, 'assignment_filter_management_type', n.get_enum_value(assignment_filter_management_type.AssignmentFilterManagementType)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
@@ -130,7 +150,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
     @property
     def last_modified_date_time(self,) -> Optional[datetime]:
         """
-        Gets the lastModifiedDateTime property value. Last modified time of the Assignment Filter.
+        Gets the lastModifiedDateTime property value. Last modified time of the Assignment Filter. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'
         Returns: Optional[datetime]
         """
         return self._last_modified_date_time
@@ -138,7 +158,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
     @last_modified_date_time.setter
     def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the lastModifiedDateTime property value. Last modified time of the Assignment Filter.
+        Sets the lastModifiedDateTime property value. Last modified time of the Assignment Filter. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'
         Args:
             value: Value to set for the last_modified_date_time property.
         """
@@ -147,7 +167,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
     @property
     def payloads(self,) -> Optional[List[payload_by_filter.PayloadByFilter]]:
         """
-        Gets the payloads property value. Associated assignments for a specific filter
+        Gets the payloads property value. Indicates associated assignments for a specific filter.
         Returns: Optional[List[payload_by_filter.PayloadByFilter]]
         """
         return self._payloads
@@ -155,7 +175,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
     @payloads.setter
     def payloads(self,value: Optional[List[payload_by_filter.PayloadByFilter]] = None) -> None:
         """
-        Sets the payloads property value. Associated assignments for a specific filter
+        Sets the payloads property value. Indicates associated assignments for a specific filter.
         Args:
             value: Value to set for the payloads property.
         """
@@ -181,7 +201,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
     @property
     def role_scope_tags(self,) -> Optional[List[str]]:
         """
-        Gets the roleScopeTags property value. RoleScopeTags of the Assignment Filter.
+        Gets the roleScopeTags property value. Indicates role scope tags assigned for the assignment filter.
         Returns: Optional[List[str]]
         """
         return self._role_scope_tags
@@ -189,7 +209,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
     @role_scope_tags.setter
     def role_scope_tags(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the roleScopeTags property value. RoleScopeTags of the Assignment Filter.
+        Sets the roleScopeTags property value. Indicates role scope tags assigned for the assignment filter.
         Args:
             value: Value to set for the role_scope_tags property.
         """
@@ -198,7 +218,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
     @property
     def rule(self,) -> Optional[str]:
         """
-        Gets the rule property value. Rule definition of the Assignment Filter.
+        Gets the rule property value. Rule definition of the assignment filter.
         Returns: Optional[str]
         """
         return self._rule
@@ -206,7 +226,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
     @rule.setter
     def rule(self,value: Optional[str] = None) -> None:
         """
-        Sets the rule property value. Rule definition of the Assignment Filter.
+        Sets the rule property value. Rule definition of the assignment filter.
         Args:
             value: Value to set for the rule property.
         """
@@ -221,6 +241,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
+        writer.write_enum_value("assignmentFilterManagementType", self.assignment_filter_management_type)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)

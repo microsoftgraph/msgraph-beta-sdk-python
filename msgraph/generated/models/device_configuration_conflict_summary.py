@@ -8,12 +8,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class DeviceConfigurationConflictSummary(entity.Entity):
-    """
-    Conflict summary for a set of device configuration policies.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceConfigurationConflictSummary and sets the default values.
+        Instantiates a new DeviceConfigurationConflictSummary and sets the default values.
         """
         super().__init__()
         # The set of policies in conflict with the given setting

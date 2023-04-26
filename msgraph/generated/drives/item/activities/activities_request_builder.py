@@ -54,7 +54,7 @@ class ActivitiesRequestBuilder():
     
     async def get(self,request_configuration: Optional[ActivitiesRequestBuilderGetRequestConfiguration] = None) -> Optional[item_activity_o_l_d_collection_response.ItemActivityOLDCollectionResponse]:
         """
-        List the recent activities that took place on an item or under a hierarchy.
+        The list of recent activities that took place under this drive.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[item_activity_o_l_d_collection_response.ItemActivityOLDCollectionResponse]
@@ -101,7 +101,7 @@ class ActivitiesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ActivitiesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List the recent activities that took place on an item or under a hierarchy.
+        The list of recent activities that took place under this drive.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class ActivitiesRequestBuilder():
     @dataclass
     class ActivitiesRequestBuilderGetQueryParameters():
         """
-        List the recent activities that took place on an item or under a hierarchy.
+        The list of recent activities that took place under this drive.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
