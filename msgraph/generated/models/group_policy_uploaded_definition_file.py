@@ -9,9 +9,12 @@ if TYPE_CHECKING:
 from . import group_policy_definition_file
 
 class GroupPolicyUploadedDefinitionFile(group_policy_definition_file.GroupPolicyDefinitionFile):
+    """
+    The entity represents an ADMX (Administrative Template) XML file uploaded by Administrator. The ADMX file contains a collection of group policy definitions and their locations by category path. The group policy definition file also contains the languages supported as determined by the language dependent ADML (Administrative Template) language files.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new GroupPolicyUploadedDefinitionFile and sets the default values.
+        Instantiates a new groupPolicyUploadedDefinitionFile and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.groupPolicyUploadedDefinitionFile"

@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class DeviceManagementResourceAccessProfileBase(entity.Entity):
-    """
-    Base Profile Type for Resource Access
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceManagementResourceAccessProfileBase and sets the default values.
+        Instantiates a new DeviceManagementResourceAccessProfileBase and sets the default values.
         """
         super().__init__()
         # The list of assignments for the device configuration profile.

@@ -11,7 +11,7 @@ from . import entity
 class TeamworkDeviceConfiguration(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new teamworkDeviceConfiguration and sets the default values.
+        Instantiates a new TeamworkDeviceConfiguration and sets the default values.
         """
         super().__init__()
         # The camera configuration. Applicable only for Microsoft Teams Rooms-enabled devices.

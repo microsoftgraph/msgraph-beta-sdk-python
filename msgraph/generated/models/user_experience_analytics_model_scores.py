@@ -8,12 +8,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class UserExperienceAnalyticsModelScores(entity.Entity):
-    """
-    The user experience analytics model scores entity consolidates the various endpoint analytics scores.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsModelScores and sets the default values.
+        Instantiates a new UserExperienceAnalyticsModelScores and sets the default values.
         """
         super().__init__()
         # The user experience analytics model app reliability score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308

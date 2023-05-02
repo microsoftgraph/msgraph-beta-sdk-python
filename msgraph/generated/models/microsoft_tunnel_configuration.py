@@ -9,9 +9,12 @@ if TYPE_CHECKING:
 from . import entity
 
 class MicrosoftTunnelConfiguration(entity.Entity):
+    """
+    Entity that represents a collection of Microsoft Tunnel settings
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new MicrosoftTunnelConfiguration and sets the default values.
+        Instantiates a new microsoftTunnelConfiguration and sets the default values.
         """
         super().__init__()
         # Additional settings that may be applied to the server

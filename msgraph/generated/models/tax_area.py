@@ -11,7 +11,7 @@ from . import entity
 class TaxArea(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new TaxArea and sets the default values.
+        Instantiates a new taxArea and sets the default values.
         """
         super().__init__()
         # The code property

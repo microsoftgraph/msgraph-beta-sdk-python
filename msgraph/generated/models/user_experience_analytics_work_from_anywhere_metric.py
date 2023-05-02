@@ -8,12 +8,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class UserExperienceAnalyticsWorkFromAnywhereMetric(entity.Entity):
-    """
-    The user experience analytics metric for work from anywhere report
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsWorkFromAnywhereMetric and sets the default values.
+        Instantiates a new UserExperienceAnalyticsWorkFromAnywhereMetric and sets the default values.
         """
         super().__init__()
         # The work from anywhere metric devices.

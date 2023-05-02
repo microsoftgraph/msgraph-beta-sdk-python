@@ -8,12 +8,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class ImportedWindowsAutopilotDeviceIdentity(entity.Entity):
-    """
-    Imported windows autopilot devices.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new importedWindowsAutopilotDeviceIdentity and sets the default values.
+        Instantiates a new ImportedWindowsAutopilotDeviceIdentity and sets the default values.
         """
         super().__init__()
         # UPN of the user the device will be assigned

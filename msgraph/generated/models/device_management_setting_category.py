@@ -8,9 +8,12 @@ if TYPE_CHECKING:
 from . import entity
 
 class DeviceManagementSettingCategory(entity.Entity):
+    """
+    Entity representing a setting category
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new DeviceManagementSettingCategory and sets the default values.
+        Instantiates a new deviceManagementSettingCategory and sets the default values.
         """
         super().__init__()
         # The category name

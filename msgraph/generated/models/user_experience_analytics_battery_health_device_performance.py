@@ -8,12 +8,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class UserExperienceAnalyticsBatteryHealthDevicePerformance(entity.Entity):
-    """
-    The user experience analytics battery health device performance entity contains device level battery information.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsBatteryHealthDevicePerformance and sets the default values.
+        Instantiates a new UserExperienceAnalyticsBatteryHealthDevicePerformance and sets the default values.
         """
         super().__init__()
         # Estimated battery age. Unit in days. Valid values -2147483648 to 2147483647

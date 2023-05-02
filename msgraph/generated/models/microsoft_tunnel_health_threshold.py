@@ -8,9 +8,12 @@ if TYPE_CHECKING:
 from . import entity
 
 class MicrosoftTunnelHealthThreshold(entity.Entity):
+    """
+    Entity that represents the health thresholds of a health metric
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new MicrosoftTunnelHealthThreshold and sets the default values.
+        Instantiates a new microsoftTunnelHealthThreshold and sets the default values.
         """
         super().__init__()
         # The threshold for being healthy based on default health status metrics: CPU usage healthy < 50%, Memory usage healthy < 50%, Disk space healthy > 5GB, Latency healthy < 10ms, health metrics can be customized. Read-only.

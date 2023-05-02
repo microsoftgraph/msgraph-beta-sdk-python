@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ...models import unified_rbac_application
     from ...models.o_data_errors import o_data_error
+    from .custom_app_scopes import custom_app_scopes_request_builder
     from .resource_namespaces import resource_namespaces_request_builder
     from .role_assignments import role_assignments_request_builder
     from .role_definitions import role_definitions_request_builder
@@ -159,6 +160,15 @@ class ExchangeRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
+    
+    @property
+    def custom_app_scopes(self) -> custom_app_scopes_request_builder.CustomAppScopesRequestBuilder:
+        """
+        Provides operations to manage the customAppScopes property of the microsoft.graph.unifiedRbacApplication entity.
+        """
+        from .custom_app_scopes import custom_app_scopes_request_builder
+
+        return custom_app_scopes_request_builder.CustomAppScopesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def resource_namespaces(self) -> resource_namespaces_request_builder.ResourceNamespacesRequestBuilder:

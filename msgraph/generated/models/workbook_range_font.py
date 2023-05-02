@@ -10,7 +10,7 @@ from . import entity
 class WorkbookRangeFont(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new WorkbookRangeFont and sets the default values.
+        Instantiates a new workbookRangeFont and sets the default values.
         """
         super().__init__()
         # Represents the bold status of font.

@@ -9,9 +9,12 @@ if TYPE_CHECKING:
 from . import entity
 
 class WindowsInformationProtectionWipeAction(entity.Entity):
+    """
+    Represents wipe requests issued by tenant admin for Bring-Your-Own-Device(BYOD) Windows devices.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new WindowsInformationProtectionWipeAction and sets the default values.
+        Instantiates a new windowsInformationProtectionWipeAction and sets the default values.
         """
         super().__init__()
         # Last checkin time of the device that was targeted by this wipe action.

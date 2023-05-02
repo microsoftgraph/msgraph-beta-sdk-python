@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class DeviceManagementIntent(entity.Entity):
-    """
-    Entity that represents an intent to apply settings to a device
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceManagementIntent and sets the default values.
+        Instantiates a new DeviceManagementIntent and sets the default values.
         """
         super().__init__()
         # Collection of assignments

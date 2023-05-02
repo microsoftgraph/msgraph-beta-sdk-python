@@ -11,7 +11,7 @@ from .. import entity
 class WindowsProtectionState(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new windowsProtectionState and sets the default values.
+        Instantiates a new WindowsProtectionState and sets the default values.
         """
         super().__init__()
         # The anti-malware version for the managed device. Optional. Read-only.

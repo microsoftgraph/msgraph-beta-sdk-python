@@ -9,16 +9,13 @@ if TYPE_CHECKING:
 from . import entity
 
 class GroupPolicyCategory(entity.Entity):
-    """
-    The category entity stores the category of a group policy definition
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new groupPolicyCategory and sets the default values.
+        Instantiates a new GroupPolicyCategory and sets the default values.
         """
         super().__init__()
         # The children categories
-        self._children: Optional[List[GroupPolicyCategory]] = None
+        self._children: Optional[List[group_policy_category.GroupPolicyCategory]] = None
         # The id of the definition file the category came from
         self._definition_file: Optional[group_policy_definition_file.GroupPolicyDefinitionFile] = None
         # The immediate GroupPolicyDefinition children of the category
@@ -34,18 +31,18 @@ class GroupPolicyCategory(entity.Entity):
         # The OdataType property
         self.odata_type: Optional[str] = None
         # The parent category
-        self._parent: Optional[GroupPolicyCategory] = None
+        self._parent: Optional[group_policy_category.GroupPolicyCategory] = None
     
     @property
-    def children(self,) -> Optional[List[GroupPolicyCategory]]:
+    def children(self,) -> Optional[List[group_policy_category.GroupPolicyCategory]]:
         """
         Gets the children property value. The children categories
-        Returns: Optional[List[GroupPolicyCategory]]
+        Returns: Optional[List[group_policy_category.GroupPolicyCategory]]
         """
         return self._children
     
     @children.setter
-    def children(self,value: Optional[List[GroupPolicyCategory]] = None) -> None:
+    def children(self,value: Optional[List[group_policy_category.GroupPolicyCategory]] = None) -> None:
         """
         Sets the children property value. The children categories
         Args:
@@ -124,14 +121,14 @@ class GroupPolicyCategory(entity.Entity):
         from . import entity, group_policy_definition, group_policy_definition_file, ingestion_source
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "children": lambda n : setattr(self, 'children', n.get_collection_of_object_values(GroupPolicyCategory)),
+            "children": lambda n : setattr(self, 'children', n.get_collection_of_object_values(group_policy_category.GroupPolicyCategory)),
             "definitions": lambda n : setattr(self, 'definitions', n.get_collection_of_object_values(group_policy_definition.GroupPolicyDefinition)),
             "definitionFile": lambda n : setattr(self, 'definition_file', n.get_object_value(group_policy_definition_file.GroupPolicyDefinitionFile)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "ingestionSource": lambda n : setattr(self, 'ingestion_source', n.get_enum_value(ingestion_source.IngestionSource)),
             "isRoot": lambda n : setattr(self, 'is_root', n.get_bool_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "parent": lambda n : setattr(self, 'parent', n.get_object_value(GroupPolicyCategory)),
+            "parent": lambda n : setattr(self, 'parent', n.get_object_value(group_policy_category.GroupPolicyCategory)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -189,15 +186,15 @@ class GroupPolicyCategory(entity.Entity):
         self._last_modified_date_time = value
     
     @property
-    def parent(self,) -> Optional[GroupPolicyCategory]:
+    def parent(self,) -> Optional[group_policy_category.GroupPolicyCategory]:
         """
         Gets the parent property value. The parent category
-        Returns: Optional[GroupPolicyCategory]
+        Returns: Optional[group_policy_category.GroupPolicyCategory]
         """
         return self._parent
     
     @parent.setter
-    def parent(self,value: Optional[GroupPolicyCategory] = None) -> None:
+    def parent(self,value: Optional[group_policy_category.GroupPolicyCategory] = None) -> None:
         """
         Sets the parent property value. The parent category
         Args:

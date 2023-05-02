@@ -11,7 +11,7 @@ from . import entity
 class BusinessScenario(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new BusinessScenario and sets the default values.
+        Instantiates a new businessScenario and sets the default values.
         """
         super().__init__()
         # The identity of the user who created the scenario.

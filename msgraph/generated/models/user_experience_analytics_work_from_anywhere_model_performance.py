@@ -8,9 +8,12 @@ if TYPE_CHECKING:
 from . import entity
 
 class UserExperienceAnalyticsWorkFromAnywhereModelPerformance(entity.Entity):
+    """
+    The user experience analytics work from anywhere model performance.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new UserExperienceAnalyticsWorkFromAnywhereModelPerformance and sets the default values.
+        Instantiates a new userExperienceAnalyticsWorkFromAnywhereModelPerformance and sets the default values.
         """
         super().__init__()
         # The user experience work from anywhere's cloud identity score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308

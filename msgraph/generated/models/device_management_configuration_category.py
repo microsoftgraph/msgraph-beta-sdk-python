@@ -8,9 +8,12 @@ if TYPE_CHECKING:
 from . import entity
 
 class DeviceManagementConfigurationCategory(entity.Entity):
+    """
+    Device Management Configuration Policy
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new DeviceManagementConfigurationCategory and sets the default values.
+        Instantiates a new deviceManagementConfigurationCategory and sets the default values.
         """
         super().__init__()
         # Description of the category header in policy summary.
