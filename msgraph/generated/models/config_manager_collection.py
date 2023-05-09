@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class ConfigManagerCollection(entity.Entity):
-    """
-    A ConfigManager defined collection of devices or users.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new configManagerCollection and sets the default values.
+        Instantiates a new ConfigManagerCollection and sets the default values.
         """
         super().__init__()
         # The collection identifier in SCCM.

@@ -68,7 +68,7 @@ class AssignmentScheduleInstancesRequestBuilder():
     
     async def get(self,request_configuration: Optional[AssignmentScheduleInstancesRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_access_group_assignment_schedule_instance_collection_response.PrivilegedAccessGroupAssignmentScheduleInstanceCollectionResponse]:
         """
-        Get assignmentScheduleInstances from identityGovernance
+        The instances of assignment schedules to activate a just-in-time access.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[privileged_access_group_assignment_schedule_instance_collection_response.PrivilegedAccessGroupAssignmentScheduleInstanceCollectionResponse]
@@ -115,7 +115,7 @@ class AssignmentScheduleInstancesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AssignmentScheduleInstancesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get assignmentScheduleInstances from identityGovernance
+        The instances of assignment schedules to activate a just-in-time access.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -164,7 +164,7 @@ class AssignmentScheduleInstancesRequestBuilder():
     @dataclass
     class AssignmentScheduleInstancesRequestBuilderGetQueryParameters():
         """
-        Get assignmentScheduleInstances from identityGovernance
+        The instances of assignment schedules to activate a just-in-time access.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

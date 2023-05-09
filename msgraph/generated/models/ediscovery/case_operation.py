@@ -12,7 +12,7 @@ from .. import entity
 class CaseOperation(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new CaseOperation and sets the default values.
+        Instantiates a new caseOperation and sets the default values.
         """
         super().__init__()
         # The type of action the operation represents. Possible values are: addToReviewSet,applyTags,contentExport,convertToPdf,estimateStatistics, purgeData

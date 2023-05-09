@@ -14,33 +14,33 @@ class PrivilegedRoleSettings(entity.Entity):
         Instantiates a new privilegedRoleSettings and sets the default values.
         """
         super().__init__()
-        # true if the approval is required when activate the role. false if the approval is not required when activate the role.
+        # The approvalOnElevation property
         self._approval_on_elevation: Optional[bool] = None
-        # List of Approval ids, if approval is required for activation.
+        # The approverIds property
         self._approver_ids: Optional[List[str]] = None
-        # The duration when the role is activated.
+        # The elevationDuration property
         self._elevation_duration: Optional[timedelta] = None
-        # true if mfaOnElevation is configurable. false if mfaOnElevation is not configurable.
+        # The isMfaOnElevationConfigurable property
         self._is_mfa_on_elevation_configurable: Optional[bool] = None
-        # Internal used only.
+        # The lastGlobalAdmin property
         self._last_global_admin: Optional[bool] = None
-        # Maximal duration for the activated role.
+        # The maxElavationDuration property
         self._max_elavation_duration: Optional[timedelta] = None
-        # true if MFA is required to activate the role. false if MFA is not required to activate the role.
+        # The mfaOnElevation property
         self._mfa_on_elevation: Optional[bool] = None
-        # Minimal duration for the activated role.
+        # The minElevationDuration property
         self._min_elevation_duration: Optional[timedelta] = None
-        # true if send notification to the end user when the role is activated. false if do not send notification when the role is activated.
+        # The notificationToUserOnElevation property
         self._notification_to_user_on_elevation: Optional[bool] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # true if the ticketing information is required when activate the role. false if the ticketing information is not required when activate the role.
+        # The ticketingInfoOnElevation property
         self._ticketing_info_on_elevation: Optional[bool] = None
     
     @property
     def approval_on_elevation(self,) -> Optional[bool]:
         """
-        Gets the approvalOnElevation property value. true if the approval is required when activate the role. false if the approval is not required when activate the role.
+        Gets the approvalOnElevation property value. The approvalOnElevation property
         Returns: Optional[bool]
         """
         return self._approval_on_elevation
@@ -48,7 +48,7 @@ class PrivilegedRoleSettings(entity.Entity):
     @approval_on_elevation.setter
     def approval_on_elevation(self,value: Optional[bool] = None) -> None:
         """
-        Sets the approvalOnElevation property value. true if the approval is required when activate the role. false if the approval is not required when activate the role.
+        Sets the approvalOnElevation property value. The approvalOnElevation property
         Args:
             value: Value to set for the approval_on_elevation property.
         """
@@ -57,7 +57,7 @@ class PrivilegedRoleSettings(entity.Entity):
     @property
     def approver_ids(self,) -> Optional[List[str]]:
         """
-        Gets the approverIds property value. List of Approval ids, if approval is required for activation.
+        Gets the approverIds property value. The approverIds property
         Returns: Optional[List[str]]
         """
         return self._approver_ids
@@ -65,7 +65,7 @@ class PrivilegedRoleSettings(entity.Entity):
     @approver_ids.setter
     def approver_ids(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the approverIds property value. List of Approval ids, if approval is required for activation.
+        Sets the approverIds property value. The approverIds property
         Args:
             value: Value to set for the approver_ids property.
         """
@@ -86,7 +86,7 @@ class PrivilegedRoleSettings(entity.Entity):
     @property
     def elevation_duration(self,) -> Optional[timedelta]:
         """
-        Gets the elevationDuration property value. The duration when the role is activated.
+        Gets the elevationDuration property value. The elevationDuration property
         Returns: Optional[timedelta]
         """
         return self._elevation_duration
@@ -94,7 +94,7 @@ class PrivilegedRoleSettings(entity.Entity):
     @elevation_duration.setter
     def elevation_duration(self,value: Optional[timedelta] = None) -> None:
         """
-        Sets the elevationDuration property value. The duration when the role is activated.
+        Sets the elevationDuration property value. The elevationDuration property
         Args:
             value: Value to set for the elevation_duration property.
         """
@@ -126,7 +126,7 @@ class PrivilegedRoleSettings(entity.Entity):
     @property
     def is_mfa_on_elevation_configurable(self,) -> Optional[bool]:
         """
-        Gets the isMfaOnElevationConfigurable property value. true if mfaOnElevation is configurable. false if mfaOnElevation is not configurable.
+        Gets the isMfaOnElevationConfigurable property value. The isMfaOnElevationConfigurable property
         Returns: Optional[bool]
         """
         return self._is_mfa_on_elevation_configurable
@@ -134,7 +134,7 @@ class PrivilegedRoleSettings(entity.Entity):
     @is_mfa_on_elevation_configurable.setter
     def is_mfa_on_elevation_configurable(self,value: Optional[bool] = None) -> None:
         """
-        Sets the isMfaOnElevationConfigurable property value. true if mfaOnElevation is configurable. false if mfaOnElevation is not configurable.
+        Sets the isMfaOnElevationConfigurable property value. The isMfaOnElevationConfigurable property
         Args:
             value: Value to set for the is_mfa_on_elevation_configurable property.
         """
@@ -143,7 +143,7 @@ class PrivilegedRoleSettings(entity.Entity):
     @property
     def last_global_admin(self,) -> Optional[bool]:
         """
-        Gets the lastGlobalAdmin property value. Internal used only.
+        Gets the lastGlobalAdmin property value. The lastGlobalAdmin property
         Returns: Optional[bool]
         """
         return self._last_global_admin
@@ -151,7 +151,7 @@ class PrivilegedRoleSettings(entity.Entity):
     @last_global_admin.setter
     def last_global_admin(self,value: Optional[bool] = None) -> None:
         """
-        Sets the lastGlobalAdmin property value. Internal used only.
+        Sets the lastGlobalAdmin property value. The lastGlobalAdmin property
         Args:
             value: Value to set for the last_global_admin property.
         """
@@ -160,7 +160,7 @@ class PrivilegedRoleSettings(entity.Entity):
     @property
     def max_elavation_duration(self,) -> Optional[timedelta]:
         """
-        Gets the maxElavationDuration property value. Maximal duration for the activated role.
+        Gets the maxElavationDuration property value. The maxElavationDuration property
         Returns: Optional[timedelta]
         """
         return self._max_elavation_duration
@@ -168,7 +168,7 @@ class PrivilegedRoleSettings(entity.Entity):
     @max_elavation_duration.setter
     def max_elavation_duration(self,value: Optional[timedelta] = None) -> None:
         """
-        Sets the maxElavationDuration property value. Maximal duration for the activated role.
+        Sets the maxElavationDuration property value. The maxElavationDuration property
         Args:
             value: Value to set for the max_elavation_duration property.
         """
@@ -177,7 +177,7 @@ class PrivilegedRoleSettings(entity.Entity):
     @property
     def mfa_on_elevation(self,) -> Optional[bool]:
         """
-        Gets the mfaOnElevation property value. true if MFA is required to activate the role. false if MFA is not required to activate the role.
+        Gets the mfaOnElevation property value. The mfaOnElevation property
         Returns: Optional[bool]
         """
         return self._mfa_on_elevation
@@ -185,7 +185,7 @@ class PrivilegedRoleSettings(entity.Entity):
     @mfa_on_elevation.setter
     def mfa_on_elevation(self,value: Optional[bool] = None) -> None:
         """
-        Sets the mfaOnElevation property value. true if MFA is required to activate the role. false if MFA is not required to activate the role.
+        Sets the mfaOnElevation property value. The mfaOnElevation property
         Args:
             value: Value to set for the mfa_on_elevation property.
         """
@@ -194,7 +194,7 @@ class PrivilegedRoleSettings(entity.Entity):
     @property
     def min_elevation_duration(self,) -> Optional[timedelta]:
         """
-        Gets the minElevationDuration property value. Minimal duration for the activated role.
+        Gets the minElevationDuration property value. The minElevationDuration property
         Returns: Optional[timedelta]
         """
         return self._min_elevation_duration
@@ -202,7 +202,7 @@ class PrivilegedRoleSettings(entity.Entity):
     @min_elevation_duration.setter
     def min_elevation_duration(self,value: Optional[timedelta] = None) -> None:
         """
-        Sets the minElevationDuration property value. Minimal duration for the activated role.
+        Sets the minElevationDuration property value. The minElevationDuration property
         Args:
             value: Value to set for the min_elevation_duration property.
         """
@@ -211,7 +211,7 @@ class PrivilegedRoleSettings(entity.Entity):
     @property
     def notification_to_user_on_elevation(self,) -> Optional[bool]:
         """
-        Gets the notificationToUserOnElevation property value. true if send notification to the end user when the role is activated. false if do not send notification when the role is activated.
+        Gets the notificationToUserOnElevation property value. The notificationToUserOnElevation property
         Returns: Optional[bool]
         """
         return self._notification_to_user_on_elevation
@@ -219,7 +219,7 @@ class PrivilegedRoleSettings(entity.Entity):
     @notification_to_user_on_elevation.setter
     def notification_to_user_on_elevation(self,value: Optional[bool] = None) -> None:
         """
-        Sets the notificationToUserOnElevation property value. true if send notification to the end user when the role is activated. false if do not send notification when the role is activated.
+        Sets the notificationToUserOnElevation property value. The notificationToUserOnElevation property
         Args:
             value: Value to set for the notification_to_user_on_elevation property.
         """
@@ -248,7 +248,7 @@ class PrivilegedRoleSettings(entity.Entity):
     @property
     def ticketing_info_on_elevation(self,) -> Optional[bool]:
         """
-        Gets the ticketingInfoOnElevation property value. true if the ticketing information is required when activate the role. false if the ticketing information is not required when activate the role.
+        Gets the ticketingInfoOnElevation property value. The ticketingInfoOnElevation property
         Returns: Optional[bool]
         """
         return self._ticketing_info_on_elevation
@@ -256,7 +256,7 @@ class PrivilegedRoleSettings(entity.Entity):
     @ticketing_info_on_elevation.setter
     def ticketing_info_on_elevation(self,value: Optional[bool] = None) -> None:
         """
-        Sets the ticketingInfoOnElevation property value. true if the ticketing information is required when activate the role. false if the ticketing information is not required when activate the role.
+        Sets the ticketingInfoOnElevation property value. The ticketingInfoOnElevation property
         Args:
             value: Value to set for the ticketing_info_on_elevation property.
         """

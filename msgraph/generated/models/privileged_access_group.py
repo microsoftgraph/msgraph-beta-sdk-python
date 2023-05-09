@@ -15,17 +15,17 @@ class PrivilegedAccessGroup(entity.Entity):
         super().__init__()
         # The assignmentApprovals property
         self._assignment_approvals: Optional[List[approval.Approval]] = None
-        # The assignmentScheduleInstances property
+        # The instances of assignment schedules to activate a just-in-time access.
         self._assignment_schedule_instances: Optional[List[privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance]] = None
-        # The assignmentScheduleRequests property
+        # The schedule requests for operations to create, update, delete, extend, and renew an assignment.
         self._assignment_schedule_requests: Optional[List[privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest]] = None
-        # The assignmentSchedules property
+        # The assignment schedules to activate a just-in-time access.
         self._assignment_schedules: Optional[List[privileged_access_group_assignment_schedule.PrivilegedAccessGroupAssignmentSchedule]] = None
-        # The eligibilityScheduleInstances property
+        # The instances of eligibility schedules to activate a just-in-time access.
         self._eligibility_schedule_instances: Optional[List[privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance]] = None
-        # The eligibilityScheduleRequests property
+        # The schedule requests for operations to create, update, delete, extend, and renew an eligibility.
         self._eligibility_schedule_requests: Optional[List[privileged_access_group_eligibility_schedule_request.PrivilegedAccessGroupEligibilityScheduleRequest]] = None
-        # The eligibilitySchedules property
+        # The eligibility schedules to activate a just-in-time access.
         self._eligibility_schedules: Optional[List[privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule]] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
@@ -50,7 +50,7 @@ class PrivilegedAccessGroup(entity.Entity):
     @property
     def assignment_schedule_instances(self,) -> Optional[List[privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance]]:
         """
-        Gets the assignmentScheduleInstances property value. The assignmentScheduleInstances property
+        Gets the assignmentScheduleInstances property value. The instances of assignment schedules to activate a just-in-time access.
         Returns: Optional[List[privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance]]
         """
         return self._assignment_schedule_instances
@@ -58,7 +58,7 @@ class PrivilegedAccessGroup(entity.Entity):
     @assignment_schedule_instances.setter
     def assignment_schedule_instances(self,value: Optional[List[privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance]] = None) -> None:
         """
-        Sets the assignmentScheduleInstances property value. The assignmentScheduleInstances property
+        Sets the assignmentScheduleInstances property value. The instances of assignment schedules to activate a just-in-time access.
         Args:
             value: Value to set for the assignment_schedule_instances property.
         """
@@ -67,7 +67,7 @@ class PrivilegedAccessGroup(entity.Entity):
     @property
     def assignment_schedule_requests(self,) -> Optional[List[privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest]]:
         """
-        Gets the assignmentScheduleRequests property value. The assignmentScheduleRequests property
+        Gets the assignmentScheduleRequests property value. The schedule requests for operations to create, update, delete, extend, and renew an assignment.
         Returns: Optional[List[privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest]]
         """
         return self._assignment_schedule_requests
@@ -75,7 +75,7 @@ class PrivilegedAccessGroup(entity.Entity):
     @assignment_schedule_requests.setter
     def assignment_schedule_requests(self,value: Optional[List[privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest]] = None) -> None:
         """
-        Sets the assignmentScheduleRequests property value. The assignmentScheduleRequests property
+        Sets the assignmentScheduleRequests property value. The schedule requests for operations to create, update, delete, extend, and renew an assignment.
         Args:
             value: Value to set for the assignment_schedule_requests property.
         """
@@ -84,7 +84,7 @@ class PrivilegedAccessGroup(entity.Entity):
     @property
     def assignment_schedules(self,) -> Optional[List[privileged_access_group_assignment_schedule.PrivilegedAccessGroupAssignmentSchedule]]:
         """
-        Gets the assignmentSchedules property value. The assignmentSchedules property
+        Gets the assignmentSchedules property value. The assignment schedules to activate a just-in-time access.
         Returns: Optional[List[privileged_access_group_assignment_schedule.PrivilegedAccessGroupAssignmentSchedule]]
         """
         return self._assignment_schedules
@@ -92,7 +92,7 @@ class PrivilegedAccessGroup(entity.Entity):
     @assignment_schedules.setter
     def assignment_schedules(self,value: Optional[List[privileged_access_group_assignment_schedule.PrivilegedAccessGroupAssignmentSchedule]] = None) -> None:
         """
-        Sets the assignmentSchedules property value. The assignmentSchedules property
+        Sets the assignmentSchedules property value. The assignment schedules to activate a just-in-time access.
         Args:
             value: Value to set for the assignment_schedules property.
         """
@@ -113,7 +113,7 @@ class PrivilegedAccessGroup(entity.Entity):
     @property
     def eligibility_schedule_instances(self,) -> Optional[List[privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance]]:
         """
-        Gets the eligibilityScheduleInstances property value. The eligibilityScheduleInstances property
+        Gets the eligibilityScheduleInstances property value. The instances of eligibility schedules to activate a just-in-time access.
         Returns: Optional[List[privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance]]
         """
         return self._eligibility_schedule_instances
@@ -121,7 +121,7 @@ class PrivilegedAccessGroup(entity.Entity):
     @eligibility_schedule_instances.setter
     def eligibility_schedule_instances(self,value: Optional[List[privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance]] = None) -> None:
         """
-        Sets the eligibilityScheduleInstances property value. The eligibilityScheduleInstances property
+        Sets the eligibilityScheduleInstances property value. The instances of eligibility schedules to activate a just-in-time access.
         Args:
             value: Value to set for the eligibility_schedule_instances property.
         """
@@ -130,7 +130,7 @@ class PrivilegedAccessGroup(entity.Entity):
     @property
     def eligibility_schedule_requests(self,) -> Optional[List[privileged_access_group_eligibility_schedule_request.PrivilegedAccessGroupEligibilityScheduleRequest]]:
         """
-        Gets the eligibilityScheduleRequests property value. The eligibilityScheduleRequests property
+        Gets the eligibilityScheduleRequests property value. The schedule requests for operations to create, update, delete, extend, and renew an eligibility.
         Returns: Optional[List[privileged_access_group_eligibility_schedule_request.PrivilegedAccessGroupEligibilityScheduleRequest]]
         """
         return self._eligibility_schedule_requests
@@ -138,7 +138,7 @@ class PrivilegedAccessGroup(entity.Entity):
     @eligibility_schedule_requests.setter
     def eligibility_schedule_requests(self,value: Optional[List[privileged_access_group_eligibility_schedule_request.PrivilegedAccessGroupEligibilityScheduleRequest]] = None) -> None:
         """
-        Sets the eligibilityScheduleRequests property value. The eligibilityScheduleRequests property
+        Sets the eligibilityScheduleRequests property value. The schedule requests for operations to create, update, delete, extend, and renew an eligibility.
         Args:
             value: Value to set for the eligibility_schedule_requests property.
         """
@@ -147,7 +147,7 @@ class PrivilegedAccessGroup(entity.Entity):
     @property
     def eligibility_schedules(self,) -> Optional[List[privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule]]:
         """
-        Gets the eligibilitySchedules property value. The eligibilitySchedules property
+        Gets the eligibilitySchedules property value. The eligibility schedules to activate a just-in-time access.
         Returns: Optional[List[privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule]]
         """
         return self._eligibility_schedules
@@ -155,7 +155,7 @@ class PrivilegedAccessGroup(entity.Entity):
     @eligibility_schedules.setter
     def eligibility_schedules(self,value: Optional[List[privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule]] = None) -> None:
         """
-        Sets the eligibilitySchedules property value. The eligibilitySchedules property
+        Sets the eligibilitySchedules property value. The eligibility schedules to activate a just-in-time access.
         Args:
             value: Value to set for the eligibility_schedules property.
         """

@@ -14,23 +14,23 @@ class PrivilegedAccessSchedule(entity.Entity):
         Instantiates a new privilegedAccessSchedule and sets the default values.
         """
         super().__init__()
-        # The createdDateTime property
+        # When the schedule was created. Optional.
         self._created_date_time: Optional[datetime] = None
-        # The createdUsing property
+        # The identifier of the access assignment or eligibility request that created this schedule. Optional.
         self._created_using: Optional[str] = None
-        # The modifiedDateTime property
+        # When the schedule was last modified. Optional.
         self._modified_date_time: Optional[datetime] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The scheduleInfo property
+        # Represents the period of the access assignment or eligibility. The scheduleInfo can represent a single occurrence or multiple recurring instances. Required.
         self._schedule_info: Optional[request_schedule.RequestSchedule] = None
-        # The status property
+        # The status of the access assignment or eligibility request. The possible values are: Canceled, Denied, Failed, Granted, PendingAdminDecision, PendingApproval, PendingProvisioning, PendingScheduleCreation, Provisioned, Revoked, and ScheduleCreated. Not nullable. Optional.
         self._status: Optional[str] = None
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
         """
-        Gets the createdDateTime property value. The createdDateTime property
+        Gets the createdDateTime property value. When the schedule was created. Optional.
         Returns: Optional[datetime]
         """
         return self._created_date_time
@@ -38,7 +38,7 @@ class PrivilegedAccessSchedule(entity.Entity):
     @created_date_time.setter
     def created_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the createdDateTime property value. The createdDateTime property
+        Sets the createdDateTime property value. When the schedule was created. Optional.
         Args:
             value: Value to set for the created_date_time property.
         """
@@ -47,7 +47,7 @@ class PrivilegedAccessSchedule(entity.Entity):
     @property
     def created_using(self,) -> Optional[str]:
         """
-        Gets the createdUsing property value. The createdUsing property
+        Gets the createdUsing property value. The identifier of the access assignment or eligibility request that created this schedule. Optional.
         Returns: Optional[str]
         """
         return self._created_using
@@ -55,7 +55,7 @@ class PrivilegedAccessSchedule(entity.Entity):
     @created_using.setter
     def created_using(self,value: Optional[str] = None) -> None:
         """
-        Sets the createdUsing property value. The createdUsing property
+        Sets the createdUsing property value. The identifier of the access assignment or eligibility request that created this schedule. Optional.
         Args:
             value: Value to set for the created_using property.
         """
@@ -105,7 +105,7 @@ class PrivilegedAccessSchedule(entity.Entity):
     @property
     def modified_date_time(self,) -> Optional[datetime]:
         """
-        Gets the modifiedDateTime property value. The modifiedDateTime property
+        Gets the modifiedDateTime property value. When the schedule was last modified. Optional.
         Returns: Optional[datetime]
         """
         return self._modified_date_time
@@ -113,7 +113,7 @@ class PrivilegedAccessSchedule(entity.Entity):
     @modified_date_time.setter
     def modified_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the modifiedDateTime property value. The modifiedDateTime property
+        Sets the modifiedDateTime property value. When the schedule was last modified. Optional.
         Args:
             value: Value to set for the modified_date_time property.
         """
@@ -122,7 +122,7 @@ class PrivilegedAccessSchedule(entity.Entity):
     @property
     def schedule_info(self,) -> Optional[request_schedule.RequestSchedule]:
         """
-        Gets the scheduleInfo property value. The scheduleInfo property
+        Gets the scheduleInfo property value. Represents the period of the access assignment or eligibility. The scheduleInfo can represent a single occurrence or multiple recurring instances. Required.
         Returns: Optional[request_schedule.RequestSchedule]
         """
         return self._schedule_info
@@ -130,7 +130,7 @@ class PrivilegedAccessSchedule(entity.Entity):
     @schedule_info.setter
     def schedule_info(self,value: Optional[request_schedule.RequestSchedule] = None) -> None:
         """
-        Sets the scheduleInfo property value. The scheduleInfo property
+        Sets the scheduleInfo property value. Represents the period of the access assignment or eligibility. The scheduleInfo can represent a single occurrence or multiple recurring instances. Required.
         Args:
             value: Value to set for the schedule_info property.
         """
@@ -154,7 +154,7 @@ class PrivilegedAccessSchedule(entity.Entity):
     @property
     def status(self,) -> Optional[str]:
         """
-        Gets the status property value. The status property
+        Gets the status property value. The status of the access assignment or eligibility request. The possible values are: Canceled, Denied, Failed, Granted, PendingAdminDecision, PendingApproval, PendingProvisioning, PendingScheduleCreation, Provisioned, Revoked, and ScheduleCreated. Not nullable. Optional.
         Returns: Optional[str]
         """
         return self._status
@@ -162,7 +162,7 @@ class PrivilegedAccessSchedule(entity.Entity):
     @status.setter
     def status(self,value: Optional[str] = None) -> None:
         """
-        Sets the status property value. The status property
+        Sets the status property value. The status of the access assignment or eligibility request. The possible values are: Canceled, Denied, Failed, Granted, PendingAdminDecision, PendingApproval, PendingProvisioning, PendingScheduleCreation, Provisioned, Revoked, and ScheduleCreated. Not nullable. Optional.
         Args:
             value: Value to set for the status property.
         """

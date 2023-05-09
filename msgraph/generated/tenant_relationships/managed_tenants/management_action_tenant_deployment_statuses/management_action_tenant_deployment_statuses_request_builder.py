@@ -14,7 +14,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .item import management_action_tenant_deployment_status_item_request_builder
-    from .managed_tenants_change_deployment_status import managed_tenants_change_deployment_status_request_builder
+    from .microsoft_graph_managed_tenants_change_deployment_status import microsoft_graph_managed_tenants_change_deployment_status_request_builder
 
 class ManagementActionTenantDeploymentStatusesRequestBuilder():
     """
@@ -149,13 +149,13 @@ class ManagementActionTenantDeploymentStatusesRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def managed_tenants_change_deployment_status(self) -> managed_tenants_change_deployment_status_request_builder.ManagedTenantsChangeDeploymentStatusRequestBuilder:
+    def microsoft_graph_managed_tenants_change_deployment_status(self) -> microsoft_graph_managed_tenants_change_deployment_status_request_builder.MicrosoftGraphManagedTenantsChangeDeploymentStatusRequestBuilder:
         """
         Provides operations to call the changeDeploymentStatus method.
         """
-        from .managed_tenants_change_deployment_status import managed_tenants_change_deployment_status_request_builder
+        from .microsoft_graph_managed_tenants_change_deployment_status import microsoft_graph_managed_tenants_change_deployment_status_request_builder
 
-        return managed_tenants_change_deployment_status_request_builder.ManagedTenantsChangeDeploymentStatusRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_managed_tenants_change_deployment_status_request_builder.MicrosoftGraphManagedTenantsChangeDeploymentStatusRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ManagementActionTenantDeploymentStatusesRequestBuilderGetQueryParameters():

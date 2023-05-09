@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class TelecomExpenseManagementPartner(entity.Entity):
-    """
-    telecomExpenseManagementPartner resources represent the metadata and status of a given TEM service. Once your organization has onboarded with a partner, the partner can be enabled or disabled to switch TEM functionality on or off.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new telecomExpenseManagementPartner and sets the default values.
+        Instantiates a new TelecomExpenseManagementPartner and sets the default values.
         """
         super().__init__()
         # Whether the partner's AAD app has been authorized to access Intune.

@@ -14,10 +14,10 @@ if TYPE_CHECKING:
     from .....models.security import sensitivity_label, sensitivity_label_collection_response
     from .count import count_request_builder
     from .item import sensitivity_label_item_request_builder
-    from .security_evaluate_application import security_evaluate_application_request_builder
-    from .security_evaluate_classification_results import security_evaluate_classification_results_request_builder
-    from .security_evaluate_removal import security_evaluate_removal_request_builder
-    from .security_extract_content_label import security_extract_content_label_request_builder
+    from .microsoft_graph_security_evaluate_application import microsoft_graph_security_evaluate_application_request_builder
+    from .microsoft_graph_security_evaluate_classification_results import microsoft_graph_security_evaluate_classification_results_request_builder
+    from .microsoft_graph_security_evaluate_removal import microsoft_graph_security_evaluate_removal_request_builder
+    from .microsoft_graph_security_extract_content_label import microsoft_graph_security_extract_content_label_request_builder
 
 class SensitivityLabelsRequestBuilder():
     """
@@ -152,40 +152,40 @@ class SensitivityLabelsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def security_evaluate_application(self) -> security_evaluate_application_request_builder.SecurityEvaluateApplicationRequestBuilder:
+    def microsoft_graph_security_evaluate_application(self) -> microsoft_graph_security_evaluate_application_request_builder.MicrosoftGraphSecurityEvaluateApplicationRequestBuilder:
         """
         Provides operations to call the evaluateApplication method.
         """
-        from .security_evaluate_application import security_evaluate_application_request_builder
+        from .microsoft_graph_security_evaluate_application import microsoft_graph_security_evaluate_application_request_builder
 
-        return security_evaluate_application_request_builder.SecurityEvaluateApplicationRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_security_evaluate_application_request_builder.MicrosoftGraphSecurityEvaluateApplicationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def security_evaluate_classification_results(self) -> security_evaluate_classification_results_request_builder.SecurityEvaluateClassificationResultsRequestBuilder:
+    def microsoft_graph_security_evaluate_classification_results(self) -> microsoft_graph_security_evaluate_classification_results_request_builder.MicrosoftGraphSecurityEvaluateClassificationResultsRequestBuilder:
         """
         Provides operations to call the evaluateClassificationResults method.
         """
-        from .security_evaluate_classification_results import security_evaluate_classification_results_request_builder
+        from .microsoft_graph_security_evaluate_classification_results import microsoft_graph_security_evaluate_classification_results_request_builder
 
-        return security_evaluate_classification_results_request_builder.SecurityEvaluateClassificationResultsRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_security_evaluate_classification_results_request_builder.MicrosoftGraphSecurityEvaluateClassificationResultsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def security_evaluate_removal(self) -> security_evaluate_removal_request_builder.SecurityEvaluateRemovalRequestBuilder:
+    def microsoft_graph_security_evaluate_removal(self) -> microsoft_graph_security_evaluate_removal_request_builder.MicrosoftGraphSecurityEvaluateRemovalRequestBuilder:
         """
         Provides operations to call the evaluateRemoval method.
         """
-        from .security_evaluate_removal import security_evaluate_removal_request_builder
+        from .microsoft_graph_security_evaluate_removal import microsoft_graph_security_evaluate_removal_request_builder
 
-        return security_evaluate_removal_request_builder.SecurityEvaluateRemovalRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_security_evaluate_removal_request_builder.MicrosoftGraphSecurityEvaluateRemovalRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def security_extract_content_label(self) -> security_extract_content_label_request_builder.SecurityExtractContentLabelRequestBuilder:
+    def microsoft_graph_security_extract_content_label(self) -> microsoft_graph_security_extract_content_label_request_builder.MicrosoftGraphSecurityExtractContentLabelRequestBuilder:
         """
         Provides operations to call the extractContentLabel method.
         """
-        from .security_extract_content_label import security_extract_content_label_request_builder
+        from .microsoft_graph_security_extract_content_label import microsoft_graph_security_extract_content_label_request_builder
 
-        return security_extract_content_label_request_builder.SecurityExtractContentLabelRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_security_extract_content_label_request_builder.MicrosoftGraphSecurityExtractContentLabelRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class SensitivityLabelsRequestBuilderGetQueryParameters():

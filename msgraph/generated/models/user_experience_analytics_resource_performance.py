@@ -8,12 +8,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class UserExperienceAnalyticsResourcePerformance(entity.Entity):
-    """
-    The user experience analytics resource performance entity.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsResourcePerformance and sets the default values.
+        Instantiates a new UserExperienceAnalyticsResourcePerformance and sets the default values.
         """
         super().__init__()
         # AverageSpikeTimeScore of a device or a model type. Valid values 0 to 100

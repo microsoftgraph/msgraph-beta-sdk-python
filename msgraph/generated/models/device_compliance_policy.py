@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class DeviceCompliancePolicy(entity.Entity):
-    """
-    This is the base class for Compliance policy. Compliance policies are platform specific and individual per-platform compliance policies inherit from here. 
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceCompliancePolicy and sets the default values.
+        Instantiates a new DeviceCompliancePolicy and sets the default values.
         """
         super().__init__()
         # The collection of assignments for this compliance policy.

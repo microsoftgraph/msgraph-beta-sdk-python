@@ -13,8 +13,8 @@ if TYPE_CHECKING:
     from ....models.industry_data import industry_data_run_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
-    from .industry_data_get_statistics import industry_data_get_statistics_request_builder
     from .item import industry_data_run_item_request_builder
+    from .microsoft_graph_industry_data_get_statistics import microsoft_graph_industry_data_get_statistics_request_builder
 
 class RunsRequestBuilder():
     """
@@ -103,13 +103,13 @@ class RunsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def industry_data_get_statistics(self) -> industry_data_get_statistics_request_builder.IndustryDataGetStatisticsRequestBuilder:
+    def microsoft_graph_industry_data_get_statistics(self) -> microsoft_graph_industry_data_get_statistics_request_builder.MicrosoftGraphIndustryDataGetStatisticsRequestBuilder:
         """
         Provides operations to call the getStatistics method.
         """
-        from .industry_data_get_statistics import industry_data_get_statistics_request_builder
+        from .microsoft_graph_industry_data_get_statistics import microsoft_graph_industry_data_get_statistics_request_builder
 
-        return industry_data_get_statistics_request_builder.IndustryDataGetStatisticsRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_industry_data_get_statistics_request_builder.MicrosoftGraphIndustryDataGetStatisticsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class RunsRequestBuilderGetQueryParameters():

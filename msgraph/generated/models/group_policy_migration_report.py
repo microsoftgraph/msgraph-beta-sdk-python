@@ -10,12 +10,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class GroupPolicyMigrationReport(entity.Entity):
-    """
-    The Group Policy migration report.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new groupPolicyMigrationReport and sets the default values.
+        Instantiates a new GroupPolicyMigrationReport and sets the default values.
         """
         super().__init__()
         # The date and time at which the GroupPolicyMigrationReport was created.

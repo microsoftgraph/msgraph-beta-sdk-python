@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class ComplianceManagementPartner(entity.Entity):
-    """
-    Compliance management partner for all platforms
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new complianceManagementPartner and sets the default values.
+        Instantiates a new ComplianceManagementPartner and sets the default values.
         """
         super().__init__()
         # User groups which enroll Android devices through partner.

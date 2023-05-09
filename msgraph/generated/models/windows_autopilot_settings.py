@@ -11,7 +11,7 @@ from . import entity
 class WindowsAutopilotSettings(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new windowsAutopilotSettings and sets the default values.
+        Instantiates a new WindowsAutopilotSettings and sets the default values.
         """
         super().__init__()
         # Last data sync date time with DDS service.

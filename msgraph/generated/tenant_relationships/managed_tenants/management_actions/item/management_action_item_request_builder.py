@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .....models.managed_tenants import management_action
     from .....models.o_data_errors import o_data_error
-    from .managed_tenants_apply import managed_tenants_apply_request_builder
+    from .microsoft_graph_managed_tenants_apply import microsoft_graph_managed_tenants_apply_request_builder
 
 class ManagementActionItemRequestBuilder():
     """
@@ -158,13 +158,13 @@ class ManagementActionItemRequestBuilder():
         return request_info
     
     @property
-    def managed_tenants_apply(self) -> managed_tenants_apply_request_builder.ManagedTenantsApplyRequestBuilder:
+    def microsoft_graph_managed_tenants_apply(self) -> microsoft_graph_managed_tenants_apply_request_builder.MicrosoftGraphManagedTenantsApplyRequestBuilder:
         """
         Provides operations to call the apply method.
         """
-        from .managed_tenants_apply import managed_tenants_apply_request_builder
+        from .microsoft_graph_managed_tenants_apply import microsoft_graph_managed_tenants_apply_request_builder
 
-        return managed_tenants_apply_request_builder.ManagedTenantsApplyRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_managed_tenants_apply_request_builder.MicrosoftGraphManagedTenantsApplyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ManagementActionItemRequestBuilderDeleteRequestConfiguration():

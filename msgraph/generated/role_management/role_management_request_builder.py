@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .cloud_p_c import cloud_p_c_request_builder
     from .device_management import device_management_request_builder
     from .directory import directory_request_builder
+    from .enterprise_apps import enterprise_apps_request_builder
     from .entitlement_management import entitlement_management_request_builder
     from .exchange import exchange_request_builder
 
@@ -152,6 +153,15 @@ class RoleManagementRequestBuilder():
         from .directory import directory_request_builder
 
         return directory_request_builder.DirectoryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def enterprise_apps(self) -> enterprise_apps_request_builder.EnterpriseAppsRequestBuilder:
+        """
+        Provides operations to manage the enterpriseApps property of the microsoft.graph.roleManagement entity.
+        """
+        from .enterprise_apps import enterprise_apps_request_builder
+
+        return enterprise_apps_request_builder.EnterpriseAppsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def entitlement_management(self) -> entitlement_management_request_builder.EntitlementManagementRequestBuilder:

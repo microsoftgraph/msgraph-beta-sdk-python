@@ -94,7 +94,7 @@ class ServicePrincipal(directory_object.DirectoryObject):
         self._password_single_sign_on_settings: Optional[password_single_sign_on_settings.PasswordSingleSignOnSettings] = None
         # Specifies the single sign-on mode configured for this application. Azure AD uses the preferred single sign-on mode to launch the application from Microsoft 365 or the Azure AD My Apps. The supported values are password, saml, notSupported, and oidc.
         self._preferred_single_sign_on_mode: Optional[str] = None
-        # Specifies the expiration date of the keyCredential used for token signing, marked by preferredTokenSigningKeyThumbprint.
+        # Specifies the expiration date of the keyCredential used for token signing, marked by preferredTokenSigningKeyThumbprint. Updating this attribute is not currentlysupported. For details, see ServicePrincipal property differences.
         self._preferred_token_signing_key_end_date_time: Optional[datetime] = None
         # This property can be used on SAML applications (apps that have preferredSingleSignOnMode set to saml) to control which certificate is used to sign the SAML responses. For applications that are not SAML, do not write or otherwise rely on this property.
         self._preferred_token_signing_key_thumbprint: Optional[str] = None
@@ -876,7 +876,7 @@ class ServicePrincipal(directory_object.DirectoryObject):
     @property
     def preferred_token_signing_key_end_date_time(self,) -> Optional[datetime]:
         """
-        Gets the preferredTokenSigningKeyEndDateTime property value. Specifies the expiration date of the keyCredential used for token signing, marked by preferredTokenSigningKeyThumbprint.
+        Gets the preferredTokenSigningKeyEndDateTime property value. Specifies the expiration date of the keyCredential used for token signing, marked by preferredTokenSigningKeyThumbprint. Updating this attribute is not currentlysupported. For details, see ServicePrincipal property differences.
         Returns: Optional[datetime]
         """
         return self._preferred_token_signing_key_end_date_time
@@ -884,7 +884,7 @@ class ServicePrincipal(directory_object.DirectoryObject):
     @preferred_token_signing_key_end_date_time.setter
     def preferred_token_signing_key_end_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the preferredTokenSigningKeyEndDateTime property value. Specifies the expiration date of the keyCredential used for token signing, marked by preferredTokenSigningKeyThumbprint.
+        Sets the preferredTokenSigningKeyEndDateTime property value. Specifies the expiration date of the keyCredential used for token signing, marked by preferredTokenSigningKeyThumbprint. Updating this attribute is not currentlysupported. For details, see ServicePrincipal property differences.
         Args:
             value: Value to set for the preferred_token_signing_key_end_date_time property.
         """

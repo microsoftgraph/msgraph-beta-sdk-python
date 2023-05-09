@@ -23,11 +23,9 @@ if TYPE_CHECKING:
     from .mark_as_not_junk import mark_as_not_junk_request_builder
     from .mentions import mentions_request_builder
     from .move import move_request_builder
-    from .multi_value_extended_properties import multi_value_extended_properties_request_builder
     from .reply import reply_request_builder
     from .reply_all import reply_all_request_builder
     from .send import send_request_builder
-    from .single_value_extended_properties import single_value_extended_properties_request_builder
     from .unsubscribe import unsubscribe_request_builder
     from .value import content_request_builder
 
@@ -283,15 +281,6 @@ class MessageItemRequestBuilder():
         return move_request_builder.MoveRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def multi_value_extended_properties(self) -> multi_value_extended_properties_request_builder.MultiValueExtendedPropertiesRequestBuilder:
-        """
-        Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.message entity.
-        """
-        from .multi_value_extended_properties import multi_value_extended_properties_request_builder
-
-        return multi_value_extended_properties_request_builder.MultiValueExtendedPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def reply(self) -> reply_request_builder.ReplyRequestBuilder:
         """
         Provides operations to call the reply method.
@@ -317,15 +306,6 @@ class MessageItemRequestBuilder():
         from .send import send_request_builder
 
         return send_request_builder.SendRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def single_value_extended_properties(self) -> single_value_extended_properties_request_builder.SingleValueExtendedPropertiesRequestBuilder:
-        """
-        Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.message entity.
-        """
-        from .single_value_extended_properties import single_value_extended_properties_request_builder
-
-        return single_value_extended_properties_request_builder.SingleValueExtendedPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def unsubscribe(self) -> unsubscribe_request_builder.UnsubscribeRequestBuilder:

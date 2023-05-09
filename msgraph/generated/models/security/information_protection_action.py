@@ -3,7 +3,7 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import add_content_footer_action, add_content_header_action, add_watermark_action, apply_label_action, custom_action, justify_action, metadata_action, protect_adhoc_action, protect_do_not_forward_action, recommend_label_action, remove_content_footer_action, remove_content_header_action, remove_protection_action, remove_watermark_action
+    from . import add_content_footer_action, add_content_header_action, add_watermark_action, apply_label_action, custom_action, justify_action, metadata_action, protect_adhoc_action, protect_by_template_action, protect_do_not_forward_action, recommend_label_action, remove_content_footer_action, remove_content_header_action, remove_protection_action, remove_watermark_action
 
 class InformationProtectionAction(AdditionalDataHolder, Parsable):
     def __init__(self,) -> None:
@@ -78,6 +78,10 @@ class InformationProtectionAction(AdditionalDataHolder, Parsable):
                 from . import protect_adhoc_action
 
                 return protect_adhoc_action.ProtectAdhocAction()
+            if mapping_value == "#microsoft.graph.security.protectByTemplateAction":
+                from . import protect_by_template_action
+
+                return protect_by_template_action.ProtectByTemplateAction()
             if mapping_value == "#microsoft.graph.security.protectDoNotForwardAction":
                 from . import protect_do_not_forward_action
 
@@ -109,7 +113,7 @@ class InformationProtectionAction(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import add_content_footer_action, add_content_header_action, add_watermark_action, apply_label_action, custom_action, justify_action, metadata_action, protect_adhoc_action, protect_do_not_forward_action, recommend_label_action, remove_content_footer_action, remove_content_header_action, remove_protection_action, remove_watermark_action
+        from . import add_content_footer_action, add_content_header_action, add_watermark_action, apply_label_action, custom_action, justify_action, metadata_action, protect_adhoc_action, protect_by_template_action, protect_do_not_forward_action, recommend_label_action, remove_content_footer_action, remove_content_header_action, remove_protection_action, remove_watermark_action
 
         fields: Dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

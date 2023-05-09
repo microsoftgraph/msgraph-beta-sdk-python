@@ -10,7 +10,7 @@ from . import entity
 class UserExperienceAnalyticsCategory(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsCategory and sets the default values.
+        Instantiates a new UserExperienceAnalyticsCategory and sets the default values.
         """
         super().__init__()
         # The insights for the user experience analytics category.

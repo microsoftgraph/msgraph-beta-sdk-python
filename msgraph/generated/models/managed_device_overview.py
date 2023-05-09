@@ -11,7 +11,7 @@ from . import entity
 class ManagedDeviceOverview(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new ManagedDeviceOverview and sets the default values.
+        Instantiates a new managedDeviceOverview and sets the default values.
         """
         super().__init__()
         # Distribution of Exchange Access State in Intune

@@ -12,6 +12,9 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ...models import item_insights
     from ...models.o_data_errors import o_data_error
+    from .shared import shared_request_builder
+    from .trending import trending_request_builder
+    from .used import used_request_builder
 
 class InsightsRequestBuilder():
     """
@@ -155,6 +158,33 @@ class InsightsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
+    
+    @property
+    def shared(self) -> shared_request_builder.SharedRequestBuilder:
+        """
+        Provides operations to manage the shared property of the microsoft.graph.officeGraphInsights entity.
+        """
+        from .shared import shared_request_builder
+
+        return shared_request_builder.SharedRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def trending(self) -> trending_request_builder.TrendingRequestBuilder:
+        """
+        Provides operations to manage the trending property of the microsoft.graph.officeGraphInsights entity.
+        """
+        from .trending import trending_request_builder
+
+        return trending_request_builder.TrendingRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def used(self) -> used_request_builder.UsedRequestBuilder:
+        """
+        Provides operations to manage the used property of the microsoft.graph.officeGraphInsights entity.
+        """
+        from .used import used_request_builder
+
+        return used_request_builder.UsedRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class InsightsRequestBuilderDeleteRequestConfiguration():

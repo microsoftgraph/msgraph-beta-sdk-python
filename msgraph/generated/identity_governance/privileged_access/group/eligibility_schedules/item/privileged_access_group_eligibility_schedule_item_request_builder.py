@@ -58,7 +58,7 @@ class PrivilegedAccessGroupEligibilityScheduleItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[PrivilegedAccessGroupEligibilityScheduleItemRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule]:
         """
-        Get eligibilitySchedules from identityGovernance
+        The eligibility schedules to activate a just-in-time access.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule]
@@ -121,7 +121,7 @@ class PrivilegedAccessGroupEligibilityScheduleItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PrivilegedAccessGroupEligibilityScheduleItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get eligibilitySchedules from identityGovernance
+        The eligibility schedules to activate a just-in-time access.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -191,7 +191,7 @@ class PrivilegedAccessGroupEligibilityScheduleItemRequestBuilder():
     @dataclass
     class PrivilegedAccessGroupEligibilityScheduleItemRequestBuilderGetQueryParameters():
         """
-        Get eligibilitySchedules from identityGovernance
+        The eligibility schedules to activate a just-in-time access.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

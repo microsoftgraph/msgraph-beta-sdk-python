@@ -11,7 +11,7 @@ from . import entity
 class OnlineMeeting(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new OnlineMeeting and sets the default values.
+        Instantiates a new onlineMeeting and sets the default values.
         """
         super().__init__()
         # Indicates whether attendees can turn on their camera.
@@ -22,8 +22,12 @@ class OnlineMeeting(entity.Entity):
         self._allow_meeting_chat: Optional[meeting_chat_mode.MeetingChatMode] = None
         # Specifies if participants are allowed to rename themselves in an instance of the meeting.
         self._allow_participants_to_change_name: Optional[bool] = None
+        # The allowRecording property
+        self._allow_recording: Optional[bool] = None
         # Indicates if Teams reactions are enabled for the meeting.
         self._allow_teamwork_reactions: Optional[bool] = None
+        # The allowTranscription property
+        self._allow_transcription: Optional[bool] = None
         # Specifies who can be a presenter in a meeting.
         self._allowed_presenters: Optional[online_meeting_presenters.OnlineMeetingPresenters] = None
         # The content stream of the alternative recording of a Microsoft Teams live event. Read-only.
@@ -158,6 +162,23 @@ class OnlineMeeting(entity.Entity):
         self._allow_participants_to_change_name = value
     
     @property
+    def allow_recording(self,) -> Optional[bool]:
+        """
+        Gets the allowRecording property value. The allowRecording property
+        Returns: Optional[bool]
+        """
+        return self._allow_recording
+    
+    @allow_recording.setter
+    def allow_recording(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the allowRecording property value. The allowRecording property
+        Args:
+            value: Value to set for the allow_recording property.
+        """
+        self._allow_recording = value
+    
+    @property
     def allow_teamwork_reactions(self,) -> Optional[bool]:
         """
         Gets the allowTeamworkReactions property value. Indicates if Teams reactions are enabled for the meeting.
@@ -173,6 +194,23 @@ class OnlineMeeting(entity.Entity):
             value: Value to set for the allow_teamwork_reactions property.
         """
         self._allow_teamwork_reactions = value
+    
+    @property
+    def allow_transcription(self,) -> Optional[bool]:
+        """
+        Gets the allowTranscription property value. The allowTranscription property
+        Returns: Optional[bool]
+        """
+        return self._allow_transcription
+    
+    @allow_transcription.setter
+    def allow_transcription(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the allowTranscription property value. The allowTranscription property
+        Args:
+            value: Value to set for the allow_transcription property.
+        """
+        self._allow_transcription = value
     
     @property
     def allowed_presenters(self,) -> Optional[online_meeting_presenters.OnlineMeetingPresenters]:
@@ -403,7 +441,9 @@ class OnlineMeeting(entity.Entity):
             "allowAttendeeToEnableMic": lambda n : setattr(self, 'allow_attendee_to_enable_mic', n.get_bool_value()),
             "allowMeetingChat": lambda n : setattr(self, 'allow_meeting_chat', n.get_enum_value(meeting_chat_mode.MeetingChatMode)),
             "allowParticipantsToChangeName": lambda n : setattr(self, 'allow_participants_to_change_name', n.get_bool_value()),
+            "allowRecording": lambda n : setattr(self, 'allow_recording', n.get_bool_value()),
             "allowTeamworkReactions": lambda n : setattr(self, 'allow_teamwork_reactions', n.get_bool_value()),
+            "allowTranscription": lambda n : setattr(self, 'allow_transcription', n.get_bool_value()),
             "alternativeRecording": lambda n : setattr(self, 'alternative_recording', n.get_bytes_value()),
             "anonymizeIdentityForRoles": lambda n : setattr(self, 'anonymize_identity_for_roles', n.get_collection_of_enum_values(online_meeting_role.OnlineMeetingRole)),
             "attendanceReports": lambda n : setattr(self, 'attendance_reports', n.get_collection_of_object_values(meeting_attendance_report.MeetingAttendanceReport)),
@@ -657,7 +697,9 @@ class OnlineMeeting(entity.Entity):
         writer.write_bool_value("allowAttendeeToEnableMic", self.allow_attendee_to_enable_mic)
         writer.write_enum_value("allowMeetingChat", self.allow_meeting_chat)
         writer.write_bool_value("allowParticipantsToChangeName", self.allow_participants_to_change_name)
+        writer.write_bool_value("allowRecording", self.allow_recording)
         writer.write_bool_value("allowTeamworkReactions", self.allow_teamwork_reactions)
+        writer.write_bool_value("allowTranscription", self.allow_transcription)
         writer.write_object_value("alternativeRecording", self.alternative_recording)
         writer.write_enum_value("anonymizeIdentityForRoles", self.anonymize_identity_for_roles)
         writer.write_collection_of_object_values("attendanceReports", self.attendance_reports)

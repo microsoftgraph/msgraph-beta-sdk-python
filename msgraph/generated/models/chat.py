@@ -11,7 +11,7 @@ from . import entity
 class Chat(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new Chat and sets the default values.
+        Instantiates a new chat and sets the default values.
         """
         super().__init__()
         # The chatType property

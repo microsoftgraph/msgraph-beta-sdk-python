@@ -10,7 +10,7 @@ from . import entity
 class UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric and sets the default values.
+        Instantiates a new UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric and sets the default values.
         """
         super().__init__()
         # The OdataType property

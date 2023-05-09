@@ -15,7 +15,7 @@ class ConditionalAccessUsers(AdditionalDataHolder, Parsable):
 
         # Group IDs excluded from scope of policy.
         self._exclude_groups: Optional[List[str]] = None
-        # Internal guests or external users excluded in the policy scope. Optionally populated.
+        # Internal guests or external users excluded from the policy scope. Optionally populated.
         self._exclude_guests_or_external_users: Optional[conditional_access_guests_or_external_users.ConditionalAccessGuestsOrExternalUsers] = None
         # Role IDs excluded from scope of policy.
         self._exclude_roles: Optional[List[str]] = None
@@ -81,7 +81,7 @@ class ConditionalAccessUsers(AdditionalDataHolder, Parsable):
     @property
     def exclude_guests_or_external_users(self,) -> Optional[conditional_access_guests_or_external_users.ConditionalAccessGuestsOrExternalUsers]:
         """
-        Gets the excludeGuestsOrExternalUsers property value. Internal guests or external users excluded in the policy scope. Optionally populated.
+        Gets the excludeGuestsOrExternalUsers property value. Internal guests or external users excluded from the policy scope. Optionally populated.
         Returns: Optional[conditional_access_guests_or_external_users.ConditionalAccessGuestsOrExternalUsers]
         """
         return self._exclude_guests_or_external_users
@@ -89,7 +89,7 @@ class ConditionalAccessUsers(AdditionalDataHolder, Parsable):
     @exclude_guests_or_external_users.setter
     def exclude_guests_or_external_users(self,value: Optional[conditional_access_guests_or_external_users.ConditionalAccessGuestsOrExternalUsers] = None) -> None:
         """
-        Sets the excludeGuestsOrExternalUsers property value. Internal guests or external users excluded in the policy scope. Optionally populated.
+        Sets the excludeGuestsOrExternalUsers property value. Internal guests or external users excluded from the policy scope. Optionally populated.
         Args:
             value: Value to set for the exclude_guests_or_external_users property.
         """

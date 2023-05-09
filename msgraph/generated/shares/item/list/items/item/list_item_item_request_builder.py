@@ -14,11 +14,13 @@ if TYPE_CHECKING:
     from ......models.o_data_errors import o_data_error
     from .activities import activities_request_builder
     from .analytics import analytics_request_builder
+    from .created_by_user import created_by_user_request_builder
     from .create_link import create_link_request_builder
     from .document_set_versions import document_set_versions_request_builder
     from .drive_item import drive_item_request_builder
     from .fields import fields_request_builder
     from .get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval import get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder
+    from .last_modified_by_user import last_modified_by_user_request_builder
     from .versions import versions_request_builder
 
 class ListItemItemRequestBuilder():
@@ -202,6 +204,15 @@ class ListItemItemRequestBuilder():
         return analytics_request_builder.AnalyticsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def created_by_user(self) -> created_by_user_request_builder.CreatedByUserRequestBuilder:
+        """
+        Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.
+        """
+        from .created_by_user import created_by_user_request_builder
+
+        return created_by_user_request_builder.CreatedByUserRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def create_link(self) -> create_link_request_builder.CreateLinkRequestBuilder:
         """
         Provides operations to call the createLink method.
@@ -236,6 +247,15 @@ class ListItemItemRequestBuilder():
         from .fields import fields_request_builder
 
         return fields_request_builder.FieldsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def last_modified_by_user(self) -> last_modified_by_user_request_builder.LastModifiedByUserRequestBuilder:
+        """
+        Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.
+        """
+        from .last_modified_by_user import last_modified_by_user_request_builder
+
+        return last_modified_by_user_request_builder.LastModifiedByUserRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def versions(self) -> versions_request_builder.VersionsRequestBuilder:

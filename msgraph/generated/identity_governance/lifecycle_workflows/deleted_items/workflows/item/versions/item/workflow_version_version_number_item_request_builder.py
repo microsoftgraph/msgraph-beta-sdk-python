@@ -12,6 +12,9 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ........models.identity_governance import workflow_version
     from ........models.o_data_errors import o_data_error
+    from .created_by import created_by_request_builder
+    from .last_modified_by import last_modified_by_request_builder
+    from .tasks import tasks_request_builder
 
 class WorkflowVersionVersionNumberItemRequestBuilder():
     """
@@ -74,6 +77,33 @@ class WorkflowVersionVersionNumberItemRequestBuilder():
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
             request_info.add_request_options(request_configuration.options)
         return request_info
+    
+    @property
+    def created_by(self) -> created_by_request_builder.CreatedByRequestBuilder:
+        """
+        Provides operations to manage the createdBy property of the microsoft.graph.identityGovernance.workflowBase entity.
+        """
+        from .created_by import created_by_request_builder
+
+        return created_by_request_builder.CreatedByRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def last_modified_by(self) -> last_modified_by_request_builder.LastModifiedByRequestBuilder:
+        """
+        Provides operations to manage the lastModifiedBy property of the microsoft.graph.identityGovernance.workflowBase entity.
+        """
+        from .last_modified_by import last_modified_by_request_builder
+
+        return last_modified_by_request_builder.LastModifiedByRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def tasks(self) -> tasks_request_builder.TasksRequestBuilder:
+        """
+        Provides operations to manage the tasks property of the microsoft.graph.identityGovernance.workflowBase entity.
+        """
+        from .tasks import tasks_request_builder
+
+        return tasks_request_builder.TasksRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class WorkflowVersionVersionNumberItemRequestBuilderGetQueryParameters():

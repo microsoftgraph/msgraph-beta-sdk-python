@@ -57,7 +57,7 @@ class SharepointRequestBuilder():
     
     async def get(self,request_configuration: Optional[SharepointRequestBuilderGetRequestConfiguration] = None) -> Optional[sharepoint.Sharepoint]:
         """
-        A container for administrative resources to manage tenant-level settings for SharePoint and OneDrive.
+        Get sharepoint from admin
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[sharepoint.Sharepoint]
@@ -120,7 +120,7 @@ class SharepointRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SharepointRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        A container for administrative resources to manage tenant-level settings for SharePoint and OneDrive.
+        Get sharepoint from admin
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -181,7 +181,7 @@ class SharepointRequestBuilder():
     @dataclass
     class SharepointRequestBuilderGetQueryParameters():
         """
-        A container for administrative resources to manage tenant-level settings for SharePoint and OneDrive.
+        Get sharepoint from admin
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

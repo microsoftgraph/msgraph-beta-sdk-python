@@ -8,12 +8,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class UserExperienceAnalyticsDevicePerformance(entity.Entity):
-    """
-    The user experience analytics device performance entity contains device boot performance details.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsDevicePerformance and sets the default values.
+        Instantiates a new UserExperienceAnalyticsDevicePerformance and sets the default values.
         """
         super().__init__()
         # Average (mean) number of Blue Screens per device in the last 30 days. Valid values 0 to 9999999

@@ -55,7 +55,7 @@ class PrivilegedRoleAssignmentRequestsRequestBuilder():
     
     async def get(self,request_configuration: Optional[PrivilegedRoleAssignmentRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_role_assignment_request_collection_response.PrivilegedRoleAssignmentRequestCollectionResponse]:
         """
-        Retrieve a collection of privilegedRoleAssignmentRequest.  **Note:** This requester must have at least one role assignment on the resource.
+        Get entities from privilegedRoleAssignmentRequests
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[privileged_role_assignment_request_collection_response.PrivilegedRoleAssignmentRequestCollectionResponse]
@@ -77,7 +77,7 @@ class PrivilegedRoleAssignmentRequestsRequestBuilder():
     
     async def post(self,body: Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest] = None, request_configuration: Optional[PrivilegedRoleAssignmentRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest]:
         """
-        Create a privilegedroleassignmentrequest object.
+        Add new entity to privilegedRoleAssignmentRequests
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -102,7 +102,7 @@ class PrivilegedRoleAssignmentRequestsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PrivilegedRoleAssignmentRequestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a collection of privilegedRoleAssignmentRequest.  **Note:** This requester must have at least one role assignment on the resource.
+        Get entities from privilegedRoleAssignmentRequests
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -120,7 +120,7 @@ class PrivilegedRoleAssignmentRequestsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest] = None, request_configuration: Optional[PrivilegedRoleAssignmentRequestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a privilegedroleassignmentrequest object.
+        Add new entity to privilegedRoleAssignmentRequests
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -160,7 +160,7 @@ class PrivilegedRoleAssignmentRequestsRequestBuilder():
     @dataclass
     class PrivilegedRoleAssignmentRequestsRequestBuilderGetQueryParameters():
         """
-        Retrieve a collection of privilegedRoleAssignmentRequest.  **Note:** This requester must have at least one role assignment on the resource.
+        Get entities from privilegedRoleAssignmentRequests
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

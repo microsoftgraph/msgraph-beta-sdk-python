@@ -10,7 +10,7 @@ from .. import entity
 class LifecycleManagementSettings(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new LifecycleManagementSettings and sets the default values.
+        Instantiates a new lifecycleManagementSettings and sets the default values.
         """
         super().__init__()
         # The emailSettings property

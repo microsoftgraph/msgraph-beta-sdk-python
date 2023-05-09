@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class WindowsAutopilotDeploymentProfile(entity.Entity):
-    """
-    Windows Autopilot Deployment Profile
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new windowsAutopilotDeploymentProfile and sets the default values.
+        Instantiates a new WindowsAutopilotDeploymentProfile and sets the default values.
         """
         super().__init__()
         # The list of assigned devices for the profile.

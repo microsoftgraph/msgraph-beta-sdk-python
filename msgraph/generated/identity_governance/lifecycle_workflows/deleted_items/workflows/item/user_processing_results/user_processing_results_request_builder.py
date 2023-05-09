@@ -14,8 +14,8 @@ if TYPE_CHECKING:
     from .......models.identity_governance import user_processing_result_collection_response
     from .......models.o_data_errors import o_data_error
     from .count import count_request_builder
-    from .identity_governance_summary_with_start_date_time_with_end_date_time import identity_governance_summary_with_start_date_time_with_end_date_time_request_builder
     from .item import user_processing_result_item_request_builder
+    from .microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time import microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time_request_builder
 
 class UserProcessingResultsRequestBuilder():
     """
@@ -76,21 +76,21 @@ class UserProcessingResultsRequestBuilder():
 
         return await self.request_adapter.send_async(request_info, user_processing_result_collection_response.UserProcessingResultCollectionResponse, error_mapping)
     
-    def identity_governance_summary_with_start_date_time_with_end_date_time(self,end_date_time: Optional[datetime] = None, start_date_time: Optional[datetime] = None) -> identity_governance_summary_with_start_date_time_with_end_date_time_request_builder.IdentityGovernanceSummaryWithStartDateTimeWithEndDateTimeRequestBuilder:
+    def microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time(self,end_date_time: Optional[datetime] = None, start_date_time: Optional[datetime] = None) -> microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time_request_builder.MicrosoftGraphIdentityGovernanceSummaryWithStartDateTimeWithEndDateTimeRequestBuilder:
         """
         Provides operations to call the summary method.
         Args:
             endDateTime: Usage: endDateTime={endDateTime}
             startDateTime: Usage: startDateTime={startDateTime}
-        Returns: identity_governance_summary_with_start_date_time_with_end_date_time_request_builder.IdentityGovernanceSummaryWithStartDateTimeWithEndDateTimeRequestBuilder
+        Returns: microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time_request_builder.MicrosoftGraphIdentityGovernanceSummaryWithStartDateTimeWithEndDateTimeRequestBuilder
         """
         if end_date_time is None:
             raise Exception("end_date_time cannot be undefined")
         if start_date_time is None:
             raise Exception("start_date_time cannot be undefined")
-        from .identity_governance_summary_with_start_date_time_with_end_date_time import identity_governance_summary_with_start_date_time_with_end_date_time_request_builder
+        from .microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time import microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time_request_builder
 
-        return identity_governance_summary_with_start_date_time_with_end_date_time_request_builder.IdentityGovernanceSummaryWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
+        return microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time_request_builder.MicrosoftGraphIdentityGovernanceSummaryWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
     
     def to_get_request_information(self,request_configuration: Optional[UserProcessingResultsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

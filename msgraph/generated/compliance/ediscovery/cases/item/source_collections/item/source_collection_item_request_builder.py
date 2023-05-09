@@ -15,9 +15,9 @@ if TYPE_CHECKING:
     from .additional_sources import additional_sources_request_builder
     from .add_to_review_set_operation import add_to_review_set_operation_request_builder
     from .custodian_sources import custodian_sources_request_builder
-    from .ediscovery_estimate_statistics import ediscovery_estimate_statistics_request_builder
-    from .ediscovery_purge_data import ediscovery_purge_data_request_builder
     from .last_estimate_statistics_operation import last_estimate_statistics_operation_request_builder
+    from .microsoft_graph_ediscovery_estimate_statistics import microsoft_graph_ediscovery_estimate_statistics_request_builder
+    from .microsoft_graph_ediscovery_purge_data import microsoft_graph_ediscovery_purge_data_request_builder
     from .noncustodial_sources import noncustodial_sources_request_builder
 
 class SourceCollectionItemRequestBuilder():
@@ -191,24 +191,6 @@ class SourceCollectionItemRequestBuilder():
         return custodian_sources_request_builder.CustodianSourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def ediscovery_estimate_statistics(self) -> ediscovery_estimate_statistics_request_builder.EdiscoveryEstimateStatisticsRequestBuilder:
-        """
-        Provides operations to call the estimateStatistics method.
-        """
-        from .ediscovery_estimate_statistics import ediscovery_estimate_statistics_request_builder
-
-        return ediscovery_estimate_statistics_request_builder.EdiscoveryEstimateStatisticsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def ediscovery_purge_data(self) -> ediscovery_purge_data_request_builder.EdiscoveryPurgeDataRequestBuilder:
-        """
-        Provides operations to call the purgeData method.
-        """
-        from .ediscovery_purge_data import ediscovery_purge_data_request_builder
-
-        return ediscovery_purge_data_request_builder.EdiscoveryPurgeDataRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def last_estimate_statistics_operation(self) -> last_estimate_statistics_operation_request_builder.LastEstimateStatisticsOperationRequestBuilder:
         """
         Provides operations to manage the lastEstimateStatisticsOperation property of the microsoft.graph.ediscovery.sourceCollection entity.
@@ -216,6 +198,24 @@ class SourceCollectionItemRequestBuilder():
         from .last_estimate_statistics_operation import last_estimate_statistics_operation_request_builder
 
         return last_estimate_statistics_operation_request_builder.LastEstimateStatisticsOperationRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_ediscovery_estimate_statistics(self) -> microsoft_graph_ediscovery_estimate_statistics_request_builder.MicrosoftGraphEdiscoveryEstimateStatisticsRequestBuilder:
+        """
+        Provides operations to call the estimateStatistics method.
+        """
+        from .microsoft_graph_ediscovery_estimate_statistics import microsoft_graph_ediscovery_estimate_statistics_request_builder
+
+        return microsoft_graph_ediscovery_estimate_statistics_request_builder.MicrosoftGraphEdiscoveryEstimateStatisticsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_ediscovery_purge_data(self) -> microsoft_graph_ediscovery_purge_data_request_builder.MicrosoftGraphEdiscoveryPurgeDataRequestBuilder:
+        """
+        Provides operations to call the purgeData method.
+        """
+        from .microsoft_graph_ediscovery_purge_data import microsoft_graph_ediscovery_purge_data_request_builder
+
+        return microsoft_graph_ediscovery_purge_data_request_builder.MicrosoftGraphEdiscoveryPurgeDataRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def noncustodial_sources(self) -> noncustodial_sources_request_builder.NoncustodialSourcesRequestBuilder:

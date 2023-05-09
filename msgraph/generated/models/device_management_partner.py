@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class DeviceManagementPartner(entity.Entity):
-    """
-    Entity which represents a connection to device management partner.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceManagementPartner and sets the default values.
+        Instantiates a new DeviceManagementPartner and sets the default values.
         """
         super().__init__()
         # Partner display name

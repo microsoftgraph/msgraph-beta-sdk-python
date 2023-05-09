@@ -12,7 +12,7 @@ from . import entity
 class SalesOrderLine(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new salesOrderLine and sets the default values.
+        Instantiates a new SalesOrderLine and sets the default values.
         """
         super().__init__()
         # The account property

@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class ServiceNowConnection(entity.Entity):
-    """
-    ServiceNow properties including the ServiceNow instanceUrl, connection credentials and other metadata.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new serviceNowConnection and sets the default values.
+        Instantiates a new ServiceNowConnection and sets the default values.
         """
         super().__init__()
         # Indicates the method used by Intune to authenticate with ServiceNow. Currently supports only web authentication with ServiceNow using the specified app id.

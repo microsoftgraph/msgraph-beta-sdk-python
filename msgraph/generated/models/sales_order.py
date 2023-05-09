@@ -12,7 +12,7 @@ from . import entity
 class SalesOrder(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new salesOrder and sets the default values.
+        Instantiates a new SalesOrder and sets the default values.
         """
         super().__init__()
         # The billToCustomerId property

@@ -8,12 +8,9 @@ if TYPE_CHECKING:
 from . import device_management_setting_category
 
 class DeviceManagementIntentSettingCategory(device_management_setting_category.DeviceManagementSettingCategory):
-    """
-    Entity representing an intent setting category
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceManagementIntentSettingCategory and sets the default values.
+        Instantiates a new DeviceManagementIntentSettingCategory and sets the default values.
         """
         super().__init__()
         # The OdataType property

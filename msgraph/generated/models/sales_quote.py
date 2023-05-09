@@ -12,7 +12,7 @@ from . import entity
 class SalesQuote(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new salesQuote and sets the default values.
+        Instantiates a new SalesQuote and sets the default values.
         """
         super().__init__()
         # The acceptedDate property

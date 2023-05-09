@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..........models.identity_governance import task_processing_result
     from ..........models.o_data_errors import o_data_error
-    from .identity_governance_resume import identity_governance_resume_request_builder
+    from .microsoft_graph_identity_governance_resume import microsoft_graph_identity_governance_resume_request_builder
     from .subject import subject_request_builder
     from .task import task_request_builder
 
@@ -79,13 +79,13 @@ class TaskProcessingResultItemRequestBuilder():
         return request_info
     
     @property
-    def identity_governance_resume(self) -> identity_governance_resume_request_builder.IdentityGovernanceResumeRequestBuilder:
+    def microsoft_graph_identity_governance_resume(self) -> microsoft_graph_identity_governance_resume_request_builder.MicrosoftGraphIdentityGovernanceResumeRequestBuilder:
         """
         Provides operations to call the resume method.
         """
-        from .identity_governance_resume import identity_governance_resume_request_builder
+        from .microsoft_graph_identity_governance_resume import microsoft_graph_identity_governance_resume_request_builder
 
-        return identity_governance_resume_request_builder.IdentityGovernanceResumeRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_identity_governance_resume_request_builder.MicrosoftGraphIdentityGovernanceResumeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def subject(self) -> subject_request_builder.SubjectRequestBuilder:

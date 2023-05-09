@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class EmbeddedSIMActivationCodePool(entity.Entity):
-    """
-    A pool represents a group of embedded SIM activation codes.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new embeddedSIMActivationCodePool and sets the default values.
+        Instantiates a new EmbeddedSIMActivationCodePool and sets the default values.
         """
         super().__init__()
         # The total count of activation codes which belong to this pool.

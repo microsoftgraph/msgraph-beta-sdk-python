@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ......models.ediscovery import case_settings
     from ......models.o_data_errors import o_data_error
-    from .ediscovery_reset_to_default import ediscovery_reset_to_default_request_builder
+    from .microsoft_graph_ediscovery_reset_to_default import microsoft_graph_ediscovery_reset_to_default_request_builder
 
 class SettingsRequestBuilder():
     """
@@ -158,13 +158,13 @@ class SettingsRequestBuilder():
         return request_info
     
     @property
-    def ediscovery_reset_to_default(self) -> ediscovery_reset_to_default_request_builder.EdiscoveryResetToDefaultRequestBuilder:
+    def microsoft_graph_ediscovery_reset_to_default(self) -> microsoft_graph_ediscovery_reset_to_default_request_builder.MicrosoftGraphEdiscoveryResetToDefaultRequestBuilder:
         """
         Provides operations to call the resetToDefault method.
         """
-        from .ediscovery_reset_to_default import ediscovery_reset_to_default_request_builder
+        from .microsoft_graph_ediscovery_reset_to_default import microsoft_graph_ediscovery_reset_to_default_request_builder
 
-        return ediscovery_reset_to_default_request_builder.EdiscoveryResetToDefaultRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_ediscovery_reset_to_default_request_builder.MicrosoftGraphEdiscoveryResetToDefaultRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class SettingsRequestBuilderDeleteRequestConfiguration():

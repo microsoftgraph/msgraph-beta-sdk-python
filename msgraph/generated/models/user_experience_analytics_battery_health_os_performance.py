@@ -8,12 +8,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class UserExperienceAnalyticsBatteryHealthOsPerformance(entity.Entity):
-    """
-    The user experience analytics battery health os performance entity contains battery related information for all operating system versions in their organization.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsBatteryHealthOsPerformance and sets the default values.
+        Instantiates a new UserExperienceAnalyticsBatteryHealthOsPerformance and sets the default values.
         """
         super().__init__()
         # Number of active devices for that os version. Valid values -2147483648 to 2147483647

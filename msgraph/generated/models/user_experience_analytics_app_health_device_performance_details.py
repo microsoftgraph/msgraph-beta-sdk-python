@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class UserExperienceAnalyticsAppHealthDevicePerformanceDetails(entity.Entity):
-    """
-    The user experience analytics device performance entity contains device performance details.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsAppHealthDevicePerformanceDetails and sets the default values.
+        Instantiates a new UserExperienceAnalyticsAppHealthDevicePerformanceDetails and sets the default values.
         """
         super().__init__()
         # The friendly name of the application for which the event occurred.

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models import meeting_registration
     from ......models.o_data_errors import o_data_error
     from .custom_questions import custom_questions_request_builder
+    from .registrants import registrants_request_builder
 
 class RegistrationRequestBuilder():
     """
@@ -165,6 +166,15 @@ class RegistrationRequestBuilder():
         from .custom_questions import custom_questions_request_builder
 
         return custom_questions_request_builder.CustomQuestionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def registrants(self) -> registrants_request_builder.RegistrantsRequestBuilder:
+        """
+        Provides operations to manage the registrants property of the microsoft.graph.meetingRegistrationBase entity.
+        """
+        from .registrants import registrants_request_builder
+
+        return registrants_request_builder.RegistrantsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class RegistrationRequestBuilderDeleteRequestConfiguration():

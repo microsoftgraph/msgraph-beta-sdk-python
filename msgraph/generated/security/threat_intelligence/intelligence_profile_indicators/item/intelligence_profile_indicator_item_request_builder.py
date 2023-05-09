@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .....models.security import intelligence_profile_indicator
+    from .artifact import artifact_request_builder
 
 class IntelligenceProfileIndicatorItemRequestBuilder():
     """
@@ -155,6 +156,15 @@ class IntelligenceProfileIndicatorItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
+    
+    @property
+    def artifact(self) -> artifact_request_builder.ArtifactRequestBuilder:
+        """
+        Provides operations to manage the artifact property of the microsoft.graph.security.indicator entity.
+        """
+        from .artifact import artifact_request_builder
+
+        return artifact_request_builder.ArtifactRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class IntelligenceProfileIndicatorItemRequestBuilderDeleteRequestConfiguration():

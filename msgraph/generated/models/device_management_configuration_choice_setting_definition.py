@@ -13,11 +13,11 @@ class DeviceManagementConfigurationChoiceSettingDefinition(device_management_con
         Instantiates a new DeviceManagementConfigurationChoiceSettingDefinition and sets the default values.
         """
         super().__init__()
-        # Default option for the choice setting.
+        # Default option for choice setting
         self._default_option_id: Optional[str] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # Options for the setting that can be selected.
+        # Options for the setting that can be selected
         self._options: Optional[List[device_management_configuration_option_definition.DeviceManagementConfigurationOptionDefinition]] = None
     
     @staticmethod
@@ -42,7 +42,7 @@ class DeviceManagementConfigurationChoiceSettingDefinition(device_management_con
     @property
     def default_option_id(self,) -> Optional[str]:
         """
-        Gets the defaultOptionId property value. Default option for the choice setting.
+        Gets the defaultOptionId property value. Default option for choice setting
         Returns: Optional[str]
         """
         return self._default_option_id
@@ -50,7 +50,7 @@ class DeviceManagementConfigurationChoiceSettingDefinition(device_management_con
     @default_option_id.setter
     def default_option_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the defaultOptionId property value. Default option for the choice setting.
+        Sets the defaultOptionId property value. Default option for choice setting
         Args:
             value: Value to set for the default_option_id property.
         """
@@ -74,7 +74,7 @@ class DeviceManagementConfigurationChoiceSettingDefinition(device_management_con
     @property
     def options(self,) -> Optional[List[device_management_configuration_option_definition.DeviceManagementConfigurationOptionDefinition]]:
         """
-        Gets the options property value. Options for the setting that can be selected.
+        Gets the options property value. Options for the setting that can be selected
         Returns: Optional[List[device_management_configuration_option_definition.DeviceManagementConfigurationOptionDefinition]]
         """
         return self._options
@@ -82,7 +82,7 @@ class DeviceManagementConfigurationChoiceSettingDefinition(device_management_con
     @options.setter
     def options(self,value: Optional[List[device_management_configuration_option_definition.DeviceManagementConfigurationOptionDefinition]] = None) -> None:
         """
-        Sets the options property value. Options for the setting that can be selected.
+        Sets the options property value. Options for the setting that can be selected
         Args:
             value: Value to set for the options property.
         """

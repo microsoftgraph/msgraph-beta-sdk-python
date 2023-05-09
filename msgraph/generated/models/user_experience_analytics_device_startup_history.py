@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class UserExperienceAnalyticsDeviceStartupHistory(entity.Entity):
-    """
-    The user experience analytics device startup history entity contains device boot performance history details.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsDeviceStartupHistory and sets the default values.
+        Instantiates a new UserExperienceAnalyticsDeviceStartupHistory and sets the default values.
         """
         super().__init__()
         # The user experience analytics device core boot time in milliseconds.

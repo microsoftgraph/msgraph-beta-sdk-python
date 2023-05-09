@@ -14,37 +14,37 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
         Instantiates a new privilegedRoleAssignmentRequest and sets the default values.
         """
         super().__init__()
-        # The state of the assignment. The value can be Eligible for eligible assignment Active - if it is directly assigned Active by administrators, or activated on an eligible assignment by the users.
+        # The assignmentState property
         self._assignment_state: Optional[str] = None
-        # The duration of a role assignment.
+        # The duration property
         self._duration: Optional[str] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The reason for the role assignment.
+        # The reason property
         self._reason: Optional[str] = None
-        # Read-only. The request create time. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+        # The requestedDateTime property
         self._requested_date_time: Optional[datetime] = None
-        # The id of the role.
+        # The roleId property
         self._role_id: Optional[str] = None
-        # The roleInfo object of the role assignment request.
+        # The roleInfo property
         self._role_info: Optional[privileged_role.PrivilegedRole] = None
-        # The schedule object of the role assignment request.
+        # The schedule property
         self._schedule: Optional[governance_schedule.GovernanceSchedule] = None
-        # Read-only.The status of the role assignment request. The value can be NotStarted,Completed,RequestedApproval,Scheduled,Approved,ApprovalDenied,ApprovalAborted,Cancelling,Cancelled,Revoked,RequestExpired.
+        # The status property
         self._status: Optional[str] = None
-        # The ticketNumber for the role assignment.
+        # The ticketNumber property
         self._ticket_number: Optional[str] = None
-        # The ticketSystem for the role assignment.
+        # The ticketSystem property
         self._ticket_system: Optional[str] = None
-        # Representing the type of the operation on the role assignment. The value can be AdminAdd: Administrators add users to roles;UserAdd: Users add role assignments.
+        # The type property
         self._type: Optional[str] = None
-        # The id of the user.
+        # The userId property
         self._user_id: Optional[str] = None
     
     @property
     def assignment_state(self,) -> Optional[str]:
         """
-        Gets the assignmentState property value. The state of the assignment. The value can be Eligible for eligible assignment Active - if it is directly assigned Active by administrators, or activated on an eligible assignment by the users.
+        Gets the assignmentState property value. The assignmentState property
         Returns: Optional[str]
         """
         return self._assignment_state
@@ -52,7 +52,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
     @assignment_state.setter
     def assignment_state(self,value: Optional[str] = None) -> None:
         """
-        Sets the assignmentState property value. The state of the assignment. The value can be Eligible for eligible assignment Active - if it is directly assigned Active by administrators, or activated on an eligible assignment by the users.
+        Sets the assignmentState property value. The assignmentState property
         Args:
             value: Value to set for the assignment_state property.
         """
@@ -73,7 +73,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
     @property
     def duration(self,) -> Optional[str]:
         """
-        Gets the duration property value. The duration of a role assignment.
+        Gets the duration property value. The duration property
         Returns: Optional[str]
         """
         return self._duration
@@ -81,7 +81,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
     @duration.setter
     def duration(self,value: Optional[str] = None) -> None:
         """
-        Sets the duration property value. The duration of a role assignment.
+        Sets the duration property value. The duration property
         Args:
             value: Value to set for the duration property.
         """
@@ -115,7 +115,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
     @property
     def reason(self,) -> Optional[str]:
         """
-        Gets the reason property value. The reason for the role assignment.
+        Gets the reason property value. The reason property
         Returns: Optional[str]
         """
         return self._reason
@@ -123,7 +123,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
     @reason.setter
     def reason(self,value: Optional[str] = None) -> None:
         """
-        Sets the reason property value. The reason for the role assignment.
+        Sets the reason property value. The reason property
         Args:
             value: Value to set for the reason property.
         """
@@ -132,7 +132,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
     @property
     def requested_date_time(self,) -> Optional[datetime]:
         """
-        Gets the requestedDateTime property value. Read-only. The request create time. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+        Gets the requestedDateTime property value. The requestedDateTime property
         Returns: Optional[datetime]
         """
         return self._requested_date_time
@@ -140,7 +140,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
     @requested_date_time.setter
     def requested_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the requestedDateTime property value. Read-only. The request create time. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+        Sets the requestedDateTime property value. The requestedDateTime property
         Args:
             value: Value to set for the requested_date_time property.
         """
@@ -149,7 +149,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
     @property
     def role_id(self,) -> Optional[str]:
         """
-        Gets the roleId property value. The id of the role.
+        Gets the roleId property value. The roleId property
         Returns: Optional[str]
         """
         return self._role_id
@@ -157,7 +157,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
     @role_id.setter
     def role_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the roleId property value. The id of the role.
+        Sets the roleId property value. The roleId property
         Args:
             value: Value to set for the role_id property.
         """
@@ -166,7 +166,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
     @property
     def role_info(self,) -> Optional[privileged_role.PrivilegedRole]:
         """
-        Gets the roleInfo property value. The roleInfo object of the role assignment request.
+        Gets the roleInfo property value. The roleInfo property
         Returns: Optional[privileged_role.PrivilegedRole]
         """
         return self._role_info
@@ -174,7 +174,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
     @role_info.setter
     def role_info(self,value: Optional[privileged_role.PrivilegedRole] = None) -> None:
         """
-        Sets the roleInfo property value. The roleInfo object of the role assignment request.
+        Sets the roleInfo property value. The roleInfo property
         Args:
             value: Value to set for the role_info property.
         """
@@ -183,7 +183,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
     @property
     def schedule(self,) -> Optional[governance_schedule.GovernanceSchedule]:
         """
-        Gets the schedule property value. The schedule object of the role assignment request.
+        Gets the schedule property value. The schedule property
         Returns: Optional[governance_schedule.GovernanceSchedule]
         """
         return self._schedule
@@ -191,7 +191,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
     @schedule.setter
     def schedule(self,value: Optional[governance_schedule.GovernanceSchedule] = None) -> None:
         """
-        Sets the schedule property value. The schedule object of the role assignment request.
+        Sets the schedule property value. The schedule property
         Args:
             value: Value to set for the schedule property.
         """
@@ -222,7 +222,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
     @property
     def status(self,) -> Optional[str]:
         """
-        Gets the status property value. Read-only.The status of the role assignment request. The value can be NotStarted,Completed,RequestedApproval,Scheduled,Approved,ApprovalDenied,ApprovalAborted,Cancelling,Cancelled,Revoked,RequestExpired.
+        Gets the status property value. The status property
         Returns: Optional[str]
         """
         return self._status
@@ -230,7 +230,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
     @status.setter
     def status(self,value: Optional[str] = None) -> None:
         """
-        Sets the status property value. Read-only.The status of the role assignment request. The value can be NotStarted,Completed,RequestedApproval,Scheduled,Approved,ApprovalDenied,ApprovalAborted,Cancelling,Cancelled,Revoked,RequestExpired.
+        Sets the status property value. The status property
         Args:
             value: Value to set for the status property.
         """
@@ -239,7 +239,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
     @property
     def ticket_number(self,) -> Optional[str]:
         """
-        Gets the ticketNumber property value. The ticketNumber for the role assignment.
+        Gets the ticketNumber property value. The ticketNumber property
         Returns: Optional[str]
         """
         return self._ticket_number
@@ -247,7 +247,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
     @ticket_number.setter
     def ticket_number(self,value: Optional[str] = None) -> None:
         """
-        Sets the ticketNumber property value. The ticketNumber for the role assignment.
+        Sets the ticketNumber property value. The ticketNumber property
         Args:
             value: Value to set for the ticket_number property.
         """
@@ -256,7 +256,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
     @property
     def ticket_system(self,) -> Optional[str]:
         """
-        Gets the ticketSystem property value. The ticketSystem for the role assignment.
+        Gets the ticketSystem property value. The ticketSystem property
         Returns: Optional[str]
         """
         return self._ticket_system
@@ -264,7 +264,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
     @ticket_system.setter
     def ticket_system(self,value: Optional[str] = None) -> None:
         """
-        Sets the ticketSystem property value. The ticketSystem for the role assignment.
+        Sets the ticketSystem property value. The ticketSystem property
         Args:
             value: Value to set for the ticket_system property.
         """
@@ -273,7 +273,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
     @property
     def type(self,) -> Optional[str]:
         """
-        Gets the type property value. Representing the type of the operation on the role assignment. The value can be AdminAdd: Administrators add users to roles;UserAdd: Users add role assignments.
+        Gets the type property value. The type property
         Returns: Optional[str]
         """
         return self._type
@@ -281,7 +281,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
     @type.setter
     def type(self,value: Optional[str] = None) -> None:
         """
-        Sets the type property value. Representing the type of the operation on the role assignment. The value can be AdminAdd: Administrators add users to roles;UserAdd: Users add role assignments.
+        Sets the type property value. The type property
         Args:
             value: Value to set for the type property.
         """
@@ -290,7 +290,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
     @property
     def user_id(self,) -> Optional[str]:
         """
-        Gets the userId property value. The id of the user.
+        Gets the userId property value. The userId property
         Returns: Optional[str]
         """
         return self._user_id
@@ -298,7 +298,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
     @user_id.setter
     def user_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the userId property value. The id of the user.
+        Sets the userId property value. The userId property
         Args:
             value: Value to set for the user_id property.
         """

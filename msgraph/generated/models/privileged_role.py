@@ -13,21 +13,21 @@ class PrivilegedRole(entity.Entity):
         Instantiates a new privilegedRole and sets the default values.
         """
         super().__init__()
-        # The assignments for this role. Read-only. Nullable.
+        # The assignments property
         self._assignments: Optional[List[privileged_role_assignment.PrivilegedRoleAssignment]] = None
-        # Role name.
+        # The name property
         self._name: Optional[str] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The settings for this role. Read-only. Nullable.
+        # The settings property
         self._settings: Optional[privileged_role_settings.PrivilegedRoleSettings] = None
-        # The summary information for this role. Read-only. Nullable.
+        # The summary property
         self._summary: Optional[privileged_role_summary.PrivilegedRoleSummary] = None
     
     @property
     def assignments(self,) -> Optional[List[privileged_role_assignment.PrivilegedRoleAssignment]]:
         """
-        Gets the assignments property value. The assignments for this role. Read-only. Nullable.
+        Gets the assignments property value. The assignments property
         Returns: Optional[List[privileged_role_assignment.PrivilegedRoleAssignment]]
         """
         return self._assignments
@@ -35,7 +35,7 @@ class PrivilegedRole(entity.Entity):
     @assignments.setter
     def assignments(self,value: Optional[List[privileged_role_assignment.PrivilegedRoleAssignment]] = None) -> None:
         """
-        Sets the assignments property value. The assignments for this role. Read-only. Nullable.
+        Sets the assignments property value. The assignments property
         Args:
             value: Value to set for the assignments property.
         """
@@ -73,7 +73,7 @@ class PrivilegedRole(entity.Entity):
     @property
     def name(self,) -> Optional[str]:
         """
-        Gets the name property value. Role name.
+        Gets the name property value. The name property
         Returns: Optional[str]
         """
         return self._name
@@ -81,7 +81,7 @@ class PrivilegedRole(entity.Entity):
     @name.setter
     def name(self,value: Optional[str] = None) -> None:
         """
-        Sets the name property value. Role name.
+        Sets the name property value. The name property
         Args:
             value: Value to set for the name property.
         """
@@ -104,7 +104,7 @@ class PrivilegedRole(entity.Entity):
     @property
     def settings(self,) -> Optional[privileged_role_settings.PrivilegedRoleSettings]:
         """
-        Gets the settings property value. The settings for this role. Read-only. Nullable.
+        Gets the settings property value. The settings property
         Returns: Optional[privileged_role_settings.PrivilegedRoleSettings]
         """
         return self._settings
@@ -112,7 +112,7 @@ class PrivilegedRole(entity.Entity):
     @settings.setter
     def settings(self,value: Optional[privileged_role_settings.PrivilegedRoleSettings] = None) -> None:
         """
-        Sets the settings property value. The settings for this role. Read-only. Nullable.
+        Sets the settings property value. The settings property
         Args:
             value: Value to set for the settings property.
         """
@@ -121,7 +121,7 @@ class PrivilegedRole(entity.Entity):
     @property
     def summary(self,) -> Optional[privileged_role_summary.PrivilegedRoleSummary]:
         """
-        Gets the summary property value. The summary information for this role. Read-only. Nullable.
+        Gets the summary property value. The summary property
         Returns: Optional[privileged_role_summary.PrivilegedRoleSummary]
         """
         return self._summary
@@ -129,7 +129,7 @@ class PrivilegedRole(entity.Entity):
     @summary.setter
     def summary(self,value: Optional[privileged_role_summary.PrivilegedRoleSummary] = None) -> None:
         """
-        Sets the summary property value. The summary information for this role. Read-only. Nullable.
+        Sets the summary property value. The summary property
         Args:
             value: Value to set for the summary property.
         """

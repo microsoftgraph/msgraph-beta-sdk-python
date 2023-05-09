@@ -12,10 +12,10 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ......models.o_data_errors import o_data_error
     from ......models.windows_updates import updatable_asset
-    from .windows_updates_add_members import windows_updates_add_members_request_builder
-    from .windows_updates_add_members_by_id import windows_updates_add_members_by_id_request_builder
-    from .windows_updates_remove_members import windows_updates_remove_members_request_builder
-    from .windows_updates_remove_members_by_id import windows_updates_remove_members_by_id_request_builder
+    from .microsoft_graph_windows_updates_add_members import microsoft_graph_windows_updates_add_members_request_builder
+    from .microsoft_graph_windows_updates_add_members_by_id import microsoft_graph_windows_updates_add_members_by_id_request_builder
+    from .microsoft_graph_windows_updates_remove_members import microsoft_graph_windows_updates_remove_members_request_builder
+    from .microsoft_graph_windows_updates_remove_members_by_id import microsoft_graph_windows_updates_remove_members_by_id_request_builder
 
 class UpdatableAssetItemRequestBuilder():
     """
@@ -161,40 +161,40 @@ class UpdatableAssetItemRequestBuilder():
         return request_info
     
     @property
-    def windows_updates_add_members(self) -> windows_updates_add_members_request_builder.WindowsUpdatesAddMembersRequestBuilder:
+    def microsoft_graph_windows_updates_add_members(self) -> microsoft_graph_windows_updates_add_members_request_builder.MicrosoftGraphWindowsUpdatesAddMembersRequestBuilder:
         """
         Provides operations to call the addMembers method.
         """
-        from .windows_updates_add_members import windows_updates_add_members_request_builder
+        from .microsoft_graph_windows_updates_add_members import microsoft_graph_windows_updates_add_members_request_builder
 
-        return windows_updates_add_members_request_builder.WindowsUpdatesAddMembersRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_windows_updates_add_members_request_builder.MicrosoftGraphWindowsUpdatesAddMembersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def windows_updates_add_members_by_id(self) -> windows_updates_add_members_by_id_request_builder.WindowsUpdatesAddMembersByIdRequestBuilder:
+    def microsoft_graph_windows_updates_add_members_by_id(self) -> microsoft_graph_windows_updates_add_members_by_id_request_builder.MicrosoftGraphWindowsUpdatesAddMembersByIdRequestBuilder:
         """
         Provides operations to call the addMembersById method.
         """
-        from .windows_updates_add_members_by_id import windows_updates_add_members_by_id_request_builder
+        from .microsoft_graph_windows_updates_add_members_by_id import microsoft_graph_windows_updates_add_members_by_id_request_builder
 
-        return windows_updates_add_members_by_id_request_builder.WindowsUpdatesAddMembersByIdRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_windows_updates_add_members_by_id_request_builder.MicrosoftGraphWindowsUpdatesAddMembersByIdRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def windows_updates_remove_members(self) -> windows_updates_remove_members_request_builder.WindowsUpdatesRemoveMembersRequestBuilder:
+    def microsoft_graph_windows_updates_remove_members(self) -> microsoft_graph_windows_updates_remove_members_request_builder.MicrosoftGraphWindowsUpdatesRemoveMembersRequestBuilder:
         """
         Provides operations to call the removeMembers method.
         """
-        from .windows_updates_remove_members import windows_updates_remove_members_request_builder
+        from .microsoft_graph_windows_updates_remove_members import microsoft_graph_windows_updates_remove_members_request_builder
 
-        return windows_updates_remove_members_request_builder.WindowsUpdatesRemoveMembersRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_windows_updates_remove_members_request_builder.MicrosoftGraphWindowsUpdatesRemoveMembersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def windows_updates_remove_members_by_id(self) -> windows_updates_remove_members_by_id_request_builder.WindowsUpdatesRemoveMembersByIdRequestBuilder:
+    def microsoft_graph_windows_updates_remove_members_by_id(self) -> microsoft_graph_windows_updates_remove_members_by_id_request_builder.MicrosoftGraphWindowsUpdatesRemoveMembersByIdRequestBuilder:
         """
         Provides operations to call the removeMembersById method.
         """
-        from .windows_updates_remove_members_by_id import windows_updates_remove_members_by_id_request_builder
+        from .microsoft_graph_windows_updates_remove_members_by_id import microsoft_graph_windows_updates_remove_members_by_id_request_builder
 
-        return windows_updates_remove_members_by_id_request_builder.WindowsUpdatesRemoveMembersByIdRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_windows_updates_remove_members_by_id_request_builder.MicrosoftGraphWindowsUpdatesRemoveMembersByIdRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class UpdatableAssetItemRequestBuilderDeleteRequestConfiguration():

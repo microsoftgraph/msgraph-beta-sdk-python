@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class DeviceManagementReusablePolicySetting(entity.Entity):
-    """
-    Graph model for a reusable setting
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceManagementReusablePolicySetting and sets the default values.
+        Instantiates a new DeviceManagementReusablePolicySetting and sets the default values.
         """
         super().__init__()
         # reusable setting creation date and time. This property is read-only.

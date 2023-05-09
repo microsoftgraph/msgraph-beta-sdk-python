@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .....models import education_assignment_settings
     from .....models.o_data_errors import o_data_error
+    from .grading_categories import grading_categories_request_builder
 
 class AssignmentSettingsRequestBuilder():
     """
@@ -155,6 +156,15 @@ class AssignmentSettingsRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
+    
+    @property
+    def grading_categories(self) -> grading_categories_request_builder.GradingCategoriesRequestBuilder:
+        """
+        Provides operations to manage the gradingCategories property of the microsoft.graph.educationAssignmentSettings entity.
+        """
+        from .grading_categories import grading_categories_request_builder
+
+        return grading_categories_request_builder.GradingCategoriesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AssignmentSettingsRequestBuilderDeleteRequestConfiguration():

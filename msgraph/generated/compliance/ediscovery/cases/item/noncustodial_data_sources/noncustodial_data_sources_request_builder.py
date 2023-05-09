@@ -13,9 +13,9 @@ if TYPE_CHECKING:
     from ......models.ediscovery import noncustodial_data_source, noncustodial_data_source_collection_response
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
-    from .ediscovery_apply_hold import ediscovery_apply_hold_request_builder
-    from .ediscovery_remove_hold import ediscovery_remove_hold_request_builder
     from .item import noncustodial_data_source_item_request_builder
+    from .microsoft_graph_ediscovery_apply_hold import microsoft_graph_ediscovery_apply_hold_request_builder
+    from .microsoft_graph_ediscovery_remove_hold import microsoft_graph_ediscovery_remove_hold_request_builder
 
 class NoncustodialDataSourcesRequestBuilder():
     """
@@ -150,22 +150,22 @@ class NoncustodialDataSourcesRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def ediscovery_apply_hold(self) -> ediscovery_apply_hold_request_builder.EdiscoveryApplyHoldRequestBuilder:
+    def microsoft_graph_ediscovery_apply_hold(self) -> microsoft_graph_ediscovery_apply_hold_request_builder.MicrosoftGraphEdiscoveryApplyHoldRequestBuilder:
         """
         Provides operations to call the applyHold method.
         """
-        from .ediscovery_apply_hold import ediscovery_apply_hold_request_builder
+        from .microsoft_graph_ediscovery_apply_hold import microsoft_graph_ediscovery_apply_hold_request_builder
 
-        return ediscovery_apply_hold_request_builder.EdiscoveryApplyHoldRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_ediscovery_apply_hold_request_builder.MicrosoftGraphEdiscoveryApplyHoldRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def ediscovery_remove_hold(self) -> ediscovery_remove_hold_request_builder.EdiscoveryRemoveHoldRequestBuilder:
+    def microsoft_graph_ediscovery_remove_hold(self) -> microsoft_graph_ediscovery_remove_hold_request_builder.MicrosoftGraphEdiscoveryRemoveHoldRequestBuilder:
         """
         Provides operations to call the removeHold method.
         """
-        from .ediscovery_remove_hold import ediscovery_remove_hold_request_builder
+        from .microsoft_graph_ediscovery_remove_hold import microsoft_graph_ediscovery_remove_hold_request_builder
 
-        return ediscovery_remove_hold_request_builder.EdiscoveryRemoveHoldRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_ediscovery_remove_hold_request_builder.MicrosoftGraphEdiscoveryRemoveHoldRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class NoncustodialDataSourcesRequestBuilderGetQueryParameters():

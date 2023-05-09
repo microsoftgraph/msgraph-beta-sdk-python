@@ -9,12 +9,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class UserExperienceAnalyticsScoreHistory(entity.Entity):
-    """
-    The user experience analytics device startup score history.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsScoreHistory and sets the default values.
+        Instantiates a new UserExperienceAnalyticsScoreHistory and sets the default values.
         """
         super().__init__()
         # The OdataType property

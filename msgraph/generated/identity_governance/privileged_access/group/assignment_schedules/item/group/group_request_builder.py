@@ -37,7 +37,7 @@ class GroupRequestBuilder():
     
     async def get(self,request_configuration: Optional[GroupRequestBuilderGetRequestConfiguration] = None) -> Optional[group.Group]:
         """
-        Get group from identityGovernance
+        References the group that is the scope of the membership or ownership assignment through PIM for groups. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[group.Group]
@@ -59,7 +59,7 @@ class GroupRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[GroupRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get group from identityGovernance
+        References the group that is the scope of the membership or ownership assignment through PIM for groups. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -78,7 +78,7 @@ class GroupRequestBuilder():
     @dataclass
     class GroupRequestBuilderGetQueryParameters():
         """
-        Get group from identityGovernance
+        References the group that is the scope of the membership or ownership assignment through PIM for groups. Supports $expand.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

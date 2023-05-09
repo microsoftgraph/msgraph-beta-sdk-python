@@ -13,7 +13,7 @@ class CloudPcProvisioningPolicyAssignment(entity.Entity):
         Instantiates a new cloudPcProvisioningPolicyAssignment and sets the default values.
         """
         super().__init__()
-        # The assignedUsers property
+        # The assignment targeted users for the provisioning policy. This list of users is computed based on assignments, licenses, group memberships, and policies. This property is read-only. Supports$expand.
         self._assigned_users: Optional[List[user.User]] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
@@ -23,7 +23,7 @@ class CloudPcProvisioningPolicyAssignment(entity.Entity):
     @property
     def assigned_users(self,) -> Optional[List[user.User]]:
         """
-        Gets the assignedUsers property value. The assignedUsers property
+        Gets the assignedUsers property value. The assignment targeted users for the provisioning policy. This list of users is computed based on assignments, licenses, group memberships, and policies. This property is read-only. Supports$expand.
         Returns: Optional[List[user.User]]
         """
         return self._assigned_users
@@ -31,7 +31,7 @@ class CloudPcProvisioningPolicyAssignment(entity.Entity):
     @assigned_users.setter
     def assigned_users(self,value: Optional[List[user.User]] = None) -> None:
         """
-        Sets the assignedUsers property value. The assignedUsers property
+        Sets the assignedUsers property value. The assignment targeted users for the provisioning policy. This list of users is computed based on assignments, licenses, group memberships, and policies. This property is read-only. Supports$expand.
         Args:
             value: Value to set for the assigned_users property.
         """

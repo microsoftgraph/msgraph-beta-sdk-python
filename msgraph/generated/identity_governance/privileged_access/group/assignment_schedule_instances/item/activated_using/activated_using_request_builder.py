@@ -37,7 +37,7 @@ class ActivatedUsingRequestBuilder():
     
     async def get(self,request_configuration: Optional[ActivatedUsingRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance]:
         """
-        Get activatedUsing from identityGovernance
+        When the request activates a membership or ownership in PIM for groups, this object represents the eligibility request for the group. Otherwise, it is null.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance]
@@ -59,7 +59,7 @@ class ActivatedUsingRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ActivatedUsingRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get activatedUsing from identityGovernance
+        When the request activates a membership or ownership in PIM for groups, this object represents the eligibility request for the group. Otherwise, it is null.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -78,7 +78,7 @@ class ActivatedUsingRequestBuilder():
     @dataclass
     class ActivatedUsingRequestBuilderGetQueryParameters():
         """
-        Get activatedUsing from identityGovernance
+        When the request activates a membership or ownership in PIM for groups, this object represents the eligibility request for the group. Otherwise, it is null.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

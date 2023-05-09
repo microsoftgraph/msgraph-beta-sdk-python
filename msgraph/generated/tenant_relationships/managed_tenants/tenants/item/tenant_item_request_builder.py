@@ -12,8 +12,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .....models.managed_tenants import tenant
     from .....models.o_data_errors import o_data_error
-    from .managed_tenants_offboard_tenant import managed_tenants_offboard_tenant_request_builder
-    from .managed_tenants_reset_tenant_onboarding_status import managed_tenants_reset_tenant_onboarding_status_request_builder
+    from .microsoft_graph_managed_tenants_offboard_tenant import microsoft_graph_managed_tenants_offboard_tenant_request_builder
+    from .microsoft_graph_managed_tenants_reset_tenant_onboarding_status import microsoft_graph_managed_tenants_reset_tenant_onboarding_status_request_builder
 
 class TenantItemRequestBuilder():
     """
@@ -159,22 +159,22 @@ class TenantItemRequestBuilder():
         return request_info
     
     @property
-    def managed_tenants_offboard_tenant(self) -> managed_tenants_offboard_tenant_request_builder.ManagedTenantsOffboardTenantRequestBuilder:
+    def microsoft_graph_managed_tenants_offboard_tenant(self) -> microsoft_graph_managed_tenants_offboard_tenant_request_builder.MicrosoftGraphManagedTenantsOffboardTenantRequestBuilder:
         """
         Provides operations to call the offboardTenant method.
         """
-        from .managed_tenants_offboard_tenant import managed_tenants_offboard_tenant_request_builder
+        from .microsoft_graph_managed_tenants_offboard_tenant import microsoft_graph_managed_tenants_offboard_tenant_request_builder
 
-        return managed_tenants_offboard_tenant_request_builder.ManagedTenantsOffboardTenantRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_managed_tenants_offboard_tenant_request_builder.MicrosoftGraphManagedTenantsOffboardTenantRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def managed_tenants_reset_tenant_onboarding_status(self) -> managed_tenants_reset_tenant_onboarding_status_request_builder.ManagedTenantsResetTenantOnboardingStatusRequestBuilder:
+    def microsoft_graph_managed_tenants_reset_tenant_onboarding_status(self) -> microsoft_graph_managed_tenants_reset_tenant_onboarding_status_request_builder.MicrosoftGraphManagedTenantsResetTenantOnboardingStatusRequestBuilder:
         """
         Provides operations to call the resetTenantOnboardingStatus method.
         """
-        from .managed_tenants_reset_tenant_onboarding_status import managed_tenants_reset_tenant_onboarding_status_request_builder
+        from .microsoft_graph_managed_tenants_reset_tenant_onboarding_status import microsoft_graph_managed_tenants_reset_tenant_onboarding_status_request_builder
 
-        return managed_tenants_reset_tenant_onboarding_status_request_builder.ManagedTenantsResetTenantOnboardingStatusRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_managed_tenants_reset_tenant_onboarding_status_request_builder.MicrosoftGraphManagedTenantsResetTenantOnboardingStatusRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class TenantItemRequestBuilderDeleteRequestConfiguration():

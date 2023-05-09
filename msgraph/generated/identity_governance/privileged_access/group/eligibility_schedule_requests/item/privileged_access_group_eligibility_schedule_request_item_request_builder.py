@@ -60,7 +60,7 @@ class PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_access_group_eligibility_schedule_request.PrivilegedAccessGroupEligibilityScheduleRequest]:
         """
-        Get eligibilityScheduleRequests from identityGovernance
+        The schedule requests for operations to create, update, delete, extend, and renew an eligibility.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[privileged_access_group_eligibility_schedule_request.PrivilegedAccessGroupEligibilityScheduleRequest]
@@ -123,7 +123,7 @@ class PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get eligibilityScheduleRequests from identityGovernance
+        The schedule requests for operations to create, update, delete, extend, and renew an eligibility.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -211,7 +211,7 @@ class PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilder():
     @dataclass
     class PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilderGetQueryParameters():
         """
-        Get eligibilityScheduleRequests from identityGovernance
+        The schedule requests for operations to create, update, delete, extend, and renew an eligibility.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

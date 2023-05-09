@@ -13,9 +13,9 @@ if TYPE_CHECKING:
     from .....models.ediscovery import case
     from .....models.o_data_errors import o_data_error
     from .custodians import custodians_request_builder
-    from .ediscovery_close import ediscovery_close_request_builder
-    from .ediscovery_reopen import ediscovery_reopen_request_builder
     from .legal_holds import legal_holds_request_builder
+    from .microsoft_graph_ediscovery_close import microsoft_graph_ediscovery_close_request_builder
+    from .microsoft_graph_ediscovery_reopen import microsoft_graph_ediscovery_reopen_request_builder
     from .noncustodial_data_sources import noncustodial_data_sources_request_builder
     from .operations import operations_request_builder
     from .review_sets import review_sets_request_builder
@@ -176,24 +176,6 @@ class CaseItemRequestBuilder():
         return custodians_request_builder.CustodiansRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def ediscovery_close(self) -> ediscovery_close_request_builder.EdiscoveryCloseRequestBuilder:
-        """
-        Provides operations to call the close method.
-        """
-        from .ediscovery_close import ediscovery_close_request_builder
-
-        return ediscovery_close_request_builder.EdiscoveryCloseRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def ediscovery_reopen(self) -> ediscovery_reopen_request_builder.EdiscoveryReopenRequestBuilder:
-        """
-        Provides operations to call the reopen method.
-        """
-        from .ediscovery_reopen import ediscovery_reopen_request_builder
-
-        return ediscovery_reopen_request_builder.EdiscoveryReopenRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def legal_holds(self) -> legal_holds_request_builder.LegalHoldsRequestBuilder:
         """
         Provides operations to manage the legalHolds property of the microsoft.graph.ediscovery.case entity.
@@ -201,6 +183,24 @@ class CaseItemRequestBuilder():
         from .legal_holds import legal_holds_request_builder
 
         return legal_holds_request_builder.LegalHoldsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_ediscovery_close(self) -> microsoft_graph_ediscovery_close_request_builder.MicrosoftGraphEdiscoveryCloseRequestBuilder:
+        """
+        Provides operations to call the close method.
+        """
+        from .microsoft_graph_ediscovery_close import microsoft_graph_ediscovery_close_request_builder
+
+        return microsoft_graph_ediscovery_close_request_builder.MicrosoftGraphEdiscoveryCloseRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_ediscovery_reopen(self) -> microsoft_graph_ediscovery_reopen_request_builder.MicrosoftGraphEdiscoveryReopenRequestBuilder:
+        """
+        Provides operations to call the reopen method.
+        """
+        from .microsoft_graph_ediscovery_reopen import microsoft_graph_ediscovery_reopen_request_builder
+
+        return microsoft_graph_ediscovery_reopen_request_builder.MicrosoftGraphEdiscoveryReopenRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def noncustodial_data_sources(self) -> noncustodial_data_sources_request_builder.NoncustodialDataSourcesRequestBuilder:

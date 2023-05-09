@@ -11,7 +11,7 @@ from . import entity
 class SalesQuoteLine(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new salesQuoteLine and sets the default values.
+        Instantiates a new SalesQuoteLine and sets the default values.
         """
         super().__init__()
         # The account property

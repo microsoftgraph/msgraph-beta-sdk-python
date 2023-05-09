@@ -54,7 +54,7 @@ class ActivitiesRequestBuilder():
     
     async def get(self,request_configuration: Optional[ActivitiesRequestBuilderGetRequestConfiguration] = None) -> Optional[external_activity_collection_response.ExternalActivityCollectionResponse]:
         """
-        Write-only property. Returns results.
+        Returns a list of activities performed on the item. Write-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[external_activity_collection_response.ExternalActivityCollectionResponse]
@@ -101,7 +101,7 @@ class ActivitiesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ActivitiesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Write-only property. Returns results.
+        Returns a list of activities performed on the item. Write-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class ActivitiesRequestBuilder():
     @dataclass
     class ActivitiesRequestBuilderGetQueryParameters():
         """
-        Write-only property. Returns results.
+        Returns a list of activities performed on the item. Write-only.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

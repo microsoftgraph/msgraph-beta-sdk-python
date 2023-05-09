@@ -68,7 +68,7 @@ class AssignmentScheduleRequestsRequestBuilder():
     
     async def get(self,request_configuration: Optional[AssignmentScheduleRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_access_group_assignment_schedule_request_collection_response.PrivilegedAccessGroupAssignmentScheduleRequestCollectionResponse]:
         """
-        Get assignmentScheduleRequests from identityGovernance
+        The schedule requests for operations to create, update, delete, extend, and renew an assignment.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[privileged_access_group_assignment_schedule_request_collection_response.PrivilegedAccessGroupAssignmentScheduleRequestCollectionResponse]
@@ -115,7 +115,7 @@ class AssignmentScheduleRequestsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AssignmentScheduleRequestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get assignmentScheduleRequests from identityGovernance
+        The schedule requests for operations to create, update, delete, extend, and renew an assignment.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -164,7 +164,7 @@ class AssignmentScheduleRequestsRequestBuilder():
     @dataclass
     class AssignmentScheduleRequestsRequestBuilderGetQueryParameters():
         """
-        Get assignmentScheduleRequests from identityGovernance
+        The schedule requests for operations to create, update, delete, extend, and renew an assignment.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

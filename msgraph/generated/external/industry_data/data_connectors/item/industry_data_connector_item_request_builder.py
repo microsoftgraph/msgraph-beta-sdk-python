@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .....models.industry_data import industry_data_connector
     from .....models.o_data_errors import o_data_error
-    from .industry_data_validate import industry_data_validate_request_builder
+    from .microsoft_graph_industry_data_validate import microsoft_graph_industry_data_validate_request_builder
     from .source_system import source_system_request_builder
 
 class IndustryDataConnectorItemRequestBuilder():
@@ -159,13 +159,13 @@ class IndustryDataConnectorItemRequestBuilder():
         return request_info
     
     @property
-    def industry_data_validate(self) -> industry_data_validate_request_builder.IndustryDataValidateRequestBuilder:
+    def microsoft_graph_industry_data_validate(self) -> microsoft_graph_industry_data_validate_request_builder.MicrosoftGraphIndustryDataValidateRequestBuilder:
         """
         Provides operations to call the validate method.
         """
-        from .industry_data_validate import industry_data_validate_request_builder
+        from .microsoft_graph_industry_data_validate import microsoft_graph_industry_data_validate_request_builder
 
-        return industry_data_validate_request_builder.IndustryDataValidateRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_industry_data_validate_request_builder.MicrosoftGraphIndustryDataValidateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def source_system(self) -> source_system_request_builder.SourceSystemRequestBuilder:

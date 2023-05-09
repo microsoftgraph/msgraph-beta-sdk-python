@@ -8,12 +8,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class UserExperienceAnalyticsNotAutopilotReadyDevice(entity.Entity):
-    """
-    The user experience analytics Device not windows autopilot ready.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsNotAutopilotReadyDevice and sets the default values.
+        Instantiates a new UserExperienceAnalyticsNotAutopilotReadyDevice and sets the default values.
         """
         super().__init__()
         # The intune device's autopilotProfileAssigned.

@@ -13,7 +13,7 @@ if TYPE_CHECKING:
     from .....models.external_connectors import external_item
     from .....models.o_data_errors import o_data_error
     from .activities import activities_request_builder
-    from .external_connectors_add_activities import external_connectors_add_activities_request_builder
+    from .microsoft_graph_external_connectors_add_activities import microsoft_graph_external_connectors_add_activities_request_builder
 
 class ExternalItemItemRequestBuilder():
     """
@@ -168,13 +168,13 @@ class ExternalItemItemRequestBuilder():
         return activities_request_builder.ActivitiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def external_connectors_add_activities(self) -> external_connectors_add_activities_request_builder.ExternalConnectorsAddActivitiesRequestBuilder:
+    def microsoft_graph_external_connectors_add_activities(self) -> microsoft_graph_external_connectors_add_activities_request_builder.MicrosoftGraphExternalConnectorsAddActivitiesRequestBuilder:
         """
         Provides operations to call the addActivities method.
         """
-        from .external_connectors_add_activities import external_connectors_add_activities_request_builder
+        from .microsoft_graph_external_connectors_add_activities import microsoft_graph_external_connectors_add_activities_request_builder
 
-        return external_connectors_add_activities_request_builder.ExternalConnectorsAddActivitiesRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_external_connectors_add_activities_request_builder.MicrosoftGraphExternalConnectorsAddActivitiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ExternalItemItemRequestBuilderDeleteRequestConfiguration():

@@ -38,7 +38,7 @@ class UserItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[UserItemRequestBuilderGetRequestConfiguration] = None) -> Optional[user.User]:
         """
-        Get assignedUsers from deviceManagement
+        The assignment targeted users for the provisioning policy. This list of users is computed based on assignments, licenses, group memberships, and policies. This property is read-only. Supports$expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[user.User]
@@ -60,7 +60,7 @@ class UserItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UserItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get assignedUsers from deviceManagement
+        The assignment targeted users for the provisioning policy. This list of users is computed based on assignments, licenses, group memberships, and policies. This property is read-only. Supports$expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -88,7 +88,7 @@ class UserItemRequestBuilder():
     @dataclass
     class UserItemRequestBuilderGetQueryParameters():
         """
-        Get assignedUsers from deviceManagement
+        The assignment targeted users for the provisioning policy. This list of users is computed based on assignments, licenses, group memberships, and policies. This property is read-only. Supports$expand.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

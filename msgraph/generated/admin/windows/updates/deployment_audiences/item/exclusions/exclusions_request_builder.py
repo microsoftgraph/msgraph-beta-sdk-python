@@ -14,10 +14,10 @@ if TYPE_CHECKING:
     from .......models.windows_updates import updatable_asset, updatable_asset_collection_response
     from .count import count_request_builder
     from .item import updatable_asset_item_request_builder
-    from .windows_updates_enroll_assets import windows_updates_enroll_assets_request_builder
-    from .windows_updates_enroll_assets_by_id import windows_updates_enroll_assets_by_id_request_builder
-    from .windows_updates_unenroll_assets import windows_updates_unenroll_assets_request_builder
-    from .windows_updates_unenroll_assets_by_id import windows_updates_unenroll_assets_by_id_request_builder
+    from .microsoft_graph_windows_updates_enroll_assets import microsoft_graph_windows_updates_enroll_assets_request_builder
+    from .microsoft_graph_windows_updates_enroll_assets_by_id import microsoft_graph_windows_updates_enroll_assets_by_id_request_builder
+    from .microsoft_graph_windows_updates_unenroll_assets import microsoft_graph_windows_updates_unenroll_assets_request_builder
+    from .microsoft_graph_windows_updates_unenroll_assets_by_id import microsoft_graph_windows_updates_unenroll_assets_by_id_request_builder
 
 class ExclusionsRequestBuilder():
     """
@@ -152,40 +152,40 @@ class ExclusionsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def windows_updates_enroll_assets(self) -> windows_updates_enroll_assets_request_builder.WindowsUpdatesEnrollAssetsRequestBuilder:
+    def microsoft_graph_windows_updates_enroll_assets(self) -> microsoft_graph_windows_updates_enroll_assets_request_builder.MicrosoftGraphWindowsUpdatesEnrollAssetsRequestBuilder:
         """
         Provides operations to call the enrollAssets method.
         """
-        from .windows_updates_enroll_assets import windows_updates_enroll_assets_request_builder
+        from .microsoft_graph_windows_updates_enroll_assets import microsoft_graph_windows_updates_enroll_assets_request_builder
 
-        return windows_updates_enroll_assets_request_builder.WindowsUpdatesEnrollAssetsRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_windows_updates_enroll_assets_request_builder.MicrosoftGraphWindowsUpdatesEnrollAssetsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def windows_updates_enroll_assets_by_id(self) -> windows_updates_enroll_assets_by_id_request_builder.WindowsUpdatesEnrollAssetsByIdRequestBuilder:
+    def microsoft_graph_windows_updates_enroll_assets_by_id(self) -> microsoft_graph_windows_updates_enroll_assets_by_id_request_builder.MicrosoftGraphWindowsUpdatesEnrollAssetsByIdRequestBuilder:
         """
         Provides operations to call the enrollAssetsById method.
         """
-        from .windows_updates_enroll_assets_by_id import windows_updates_enroll_assets_by_id_request_builder
+        from .microsoft_graph_windows_updates_enroll_assets_by_id import microsoft_graph_windows_updates_enroll_assets_by_id_request_builder
 
-        return windows_updates_enroll_assets_by_id_request_builder.WindowsUpdatesEnrollAssetsByIdRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_windows_updates_enroll_assets_by_id_request_builder.MicrosoftGraphWindowsUpdatesEnrollAssetsByIdRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def windows_updates_unenroll_assets(self) -> windows_updates_unenroll_assets_request_builder.WindowsUpdatesUnenrollAssetsRequestBuilder:
+    def microsoft_graph_windows_updates_unenroll_assets(self) -> microsoft_graph_windows_updates_unenroll_assets_request_builder.MicrosoftGraphWindowsUpdatesUnenrollAssetsRequestBuilder:
         """
         Provides operations to call the unenrollAssets method.
         """
-        from .windows_updates_unenroll_assets import windows_updates_unenroll_assets_request_builder
+        from .microsoft_graph_windows_updates_unenroll_assets import microsoft_graph_windows_updates_unenroll_assets_request_builder
 
-        return windows_updates_unenroll_assets_request_builder.WindowsUpdatesUnenrollAssetsRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_windows_updates_unenroll_assets_request_builder.MicrosoftGraphWindowsUpdatesUnenrollAssetsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def windows_updates_unenroll_assets_by_id(self) -> windows_updates_unenroll_assets_by_id_request_builder.WindowsUpdatesUnenrollAssetsByIdRequestBuilder:
+    def microsoft_graph_windows_updates_unenroll_assets_by_id(self) -> microsoft_graph_windows_updates_unenroll_assets_by_id_request_builder.MicrosoftGraphWindowsUpdatesUnenrollAssetsByIdRequestBuilder:
         """
         Provides operations to call the unenrollAssetsById method.
         """
-        from .windows_updates_unenroll_assets_by_id import windows_updates_unenroll_assets_by_id_request_builder
+        from .microsoft_graph_windows_updates_unenroll_assets_by_id import microsoft_graph_windows_updates_unenroll_assets_by_id_request_builder
 
-        return windows_updates_unenroll_assets_by_id_request_builder.WindowsUpdatesUnenrollAssetsByIdRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_windows_updates_unenroll_assets_by_id_request_builder.MicrosoftGraphWindowsUpdatesUnenrollAssetsByIdRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ExclusionsRequestBuilderGetQueryParameters():

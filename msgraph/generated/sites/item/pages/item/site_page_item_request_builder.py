@@ -13,7 +13,9 @@ if TYPE_CHECKING:
     from .....models import site_page
     from .....models.o_data_errors import o_data_error
     from .canvas_layout import canvas_layout_request_builder
+    from .created_by_user import created_by_user_request_builder
     from .get_web_parts_by_position import get_web_parts_by_position_request_builder
+    from .last_modified_by_user import last_modified_by_user_request_builder
     from .publish import publish_request_builder
     from .web_parts import web_parts_request_builder
 
@@ -170,6 +172,15 @@ class SitePageItemRequestBuilder():
         return canvas_layout_request_builder.CanvasLayoutRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def created_by_user(self) -> created_by_user_request_builder.CreatedByUserRequestBuilder:
+        """
+        Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.
+        """
+        from .created_by_user import created_by_user_request_builder
+
+        return created_by_user_request_builder.CreatedByUserRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def get_web_parts_by_position(self) -> get_web_parts_by_position_request_builder.GetWebPartsByPositionRequestBuilder:
         """
         Provides operations to call the getWebPartsByPosition method.
@@ -177,6 +188,15 @@ class SitePageItemRequestBuilder():
         from .get_web_parts_by_position import get_web_parts_by_position_request_builder
 
         return get_web_parts_by_position_request_builder.GetWebPartsByPositionRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def last_modified_by_user(self) -> last_modified_by_user_request_builder.LastModifiedByUserRequestBuilder:
+        """
+        Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.
+        """
+        from .last_modified_by_user import last_modified_by_user_request_builder
+
+        return last_modified_by_user_request_builder.LastModifiedByUserRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def publish(self) -> publish_request_builder.PublishRequestBuilder:

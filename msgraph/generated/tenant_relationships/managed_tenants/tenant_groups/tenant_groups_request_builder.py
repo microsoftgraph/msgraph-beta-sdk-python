@@ -14,7 +14,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .item import tenant_group_item_request_builder
-    from .managed_tenants_tenant_search import managed_tenants_tenant_search_request_builder
+    from .microsoft_graph_managed_tenants_tenant_search import microsoft_graph_managed_tenants_tenant_search_request_builder
 
 class TenantGroupsRequestBuilder():
     """
@@ -149,13 +149,13 @@ class TenantGroupsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def managed_tenants_tenant_search(self) -> managed_tenants_tenant_search_request_builder.ManagedTenantsTenantSearchRequestBuilder:
+    def microsoft_graph_managed_tenants_tenant_search(self) -> microsoft_graph_managed_tenants_tenant_search_request_builder.MicrosoftGraphManagedTenantsTenantSearchRequestBuilder:
         """
         Provides operations to call the tenantSearch method.
         """
-        from .managed_tenants_tenant_search import managed_tenants_tenant_search_request_builder
+        from .microsoft_graph_managed_tenants_tenant_search import microsoft_graph_managed_tenants_tenant_search_request_builder
 
-        return managed_tenants_tenant_search_request_builder.ManagedTenantsTenantSearchRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_managed_tenants_tenant_search_request_builder.MicrosoftGraphManagedTenantsTenantSearchRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class TenantGroupsRequestBuilderGetQueryParameters():

@@ -21,7 +21,7 @@ class Admin(AdditionalDataHolder, Parsable):
         self._report_settings: Optional[admin_report_settings.AdminReportSettings] = None
         # A container for service communications resources. Read-only.
         self._service_announcement: Optional[service_announcement.ServiceAnnouncement] = None
-        # A container for administrative resources to manage tenant-level settings for SharePoint and OneDrive.
+        # The sharepoint property
         self._sharepoint: Optional[sharepoint.Sharepoint] = None
         # A container for all Windows administrator functionalities. Read-only.
         self._windows: Optional[admin_windows.AdminWindows] = None
@@ -159,7 +159,7 @@ class Admin(AdditionalDataHolder, Parsable):
     @property
     def sharepoint(self,) -> Optional[sharepoint.Sharepoint]:
         """
-        Gets the sharepoint property value. A container for administrative resources to manage tenant-level settings for SharePoint and OneDrive.
+        Gets the sharepoint property value. The sharepoint property
         Returns: Optional[sharepoint.Sharepoint]
         """
         return self._sharepoint
@@ -167,7 +167,7 @@ class Admin(AdditionalDataHolder, Parsable):
     @sharepoint.setter
     def sharepoint(self,value: Optional[sharepoint.Sharepoint] = None) -> None:
         """
-        Sets the sharepoint property value. A container for administrative resources to manage tenant-level settings for SharePoint and OneDrive.
+        Sets the sharepoint property value. The sharepoint property
         Args:
             value: Value to set for the sharepoint property.
         """

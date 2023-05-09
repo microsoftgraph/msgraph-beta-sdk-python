@@ -8,12 +8,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class UserExperienceAnalyticsRemoteConnection(entity.Entity):
-    """
-    The user experience analyte remote connection entity.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsRemoteConnection and sets the default values.
+        Instantiates a new UserExperienceAnalyticsRemoteConnection and sets the default values.
         """
         super().__init__()
         # The sign in failure percentage of Cloud PC Device. Valid values 0 to 100

@@ -13,8 +13,8 @@ if TYPE_CHECKING:
     from ...models.device_management import alert_record, alert_record_collection_response
     from ...models.o_data_errors import o_data_error
     from .count import count_request_builder
-    from .device_management_get_portal_notifications import device_management_get_portal_notifications_request_builder
     from .item import alert_record_item_request_builder
+    from .microsoft_graph_device_management_get_portal_notifications import microsoft_graph_device_management_get_portal_notifications_request_builder
 
 class AlertRecordsRequestBuilder():
     """
@@ -149,13 +149,13 @@ class AlertRecordsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device_management_get_portal_notifications(self) -> device_management_get_portal_notifications_request_builder.DeviceManagementGetPortalNotificationsRequestBuilder:
+    def microsoft_graph_device_management_get_portal_notifications(self) -> microsoft_graph_device_management_get_portal_notifications_request_builder.MicrosoftGraphDeviceManagementGetPortalNotificationsRequestBuilder:
         """
         Provides operations to call the getPortalNotifications method.
         """
-        from .device_management_get_portal_notifications import device_management_get_portal_notifications_request_builder
+        from .microsoft_graph_device_management_get_portal_notifications import microsoft_graph_device_management_get_portal_notifications_request_builder
 
-        return device_management_get_portal_notifications_request_builder.DeviceManagementGetPortalNotificationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_device_management_get_portal_notifications_request_builder.MicrosoftGraphDeviceManagementGetPortalNotificationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AlertRecordsRequestBuilderGetQueryParameters():

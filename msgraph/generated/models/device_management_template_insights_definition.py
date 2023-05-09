@@ -8,12 +8,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class DeviceManagementTemplateInsightsDefinition(entity.Entity):
-    """
-    template insights definition
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceManagementTemplateInsightsDefinition and sets the default values.
+        Instantiates a new DeviceManagementTemplateInsightsDefinition and sets the default values.
         """
         super().__init__()
         # The OdataType property

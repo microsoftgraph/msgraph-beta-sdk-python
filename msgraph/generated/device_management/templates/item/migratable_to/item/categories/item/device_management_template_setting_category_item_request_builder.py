@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ........models import device_management_template_setting_category
     from ........models.o_data_errors import o_data_error
     from .recommended_settings import recommended_settings_request_builder
+    from .setting_definitions import setting_definitions_request_builder
 
 class DeviceManagementTemplateSettingCategoryItemRequestBuilder():
     """
@@ -165,6 +166,15 @@ class DeviceManagementTemplateSettingCategoryItemRequestBuilder():
         from .recommended_settings import recommended_settings_request_builder
 
         return recommended_settings_request_builder.RecommendedSettingsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def setting_definitions(self) -> setting_definitions_request_builder.SettingDefinitionsRequestBuilder:
+        """
+        Provides operations to manage the settingDefinitions property of the microsoft.graph.deviceManagementSettingCategory entity.
+        """
+        from .setting_definitions import setting_definitions_request_builder
+
+        return setting_definitions_request_builder.SettingDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class DeviceManagementTemplateSettingCategoryItemRequestBuilderDeleteRequestConfiguration():

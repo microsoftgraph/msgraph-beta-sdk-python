@@ -12,8 +12,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .....models.managed_tenants import tenant_tag
     from .....models.o_data_errors import o_data_error
-    from .managed_tenants_assign_tag import managed_tenants_assign_tag_request_builder
-    from .managed_tenants_unassign_tag import managed_tenants_unassign_tag_request_builder
+    from .microsoft_graph_managed_tenants_assign_tag import microsoft_graph_managed_tenants_assign_tag_request_builder
+    from .microsoft_graph_managed_tenants_unassign_tag import microsoft_graph_managed_tenants_unassign_tag_request_builder
 
 class TenantTagItemRequestBuilder():
     """
@@ -159,22 +159,22 @@ class TenantTagItemRequestBuilder():
         return request_info
     
     @property
-    def managed_tenants_assign_tag(self) -> managed_tenants_assign_tag_request_builder.ManagedTenantsAssignTagRequestBuilder:
+    def microsoft_graph_managed_tenants_assign_tag(self) -> microsoft_graph_managed_tenants_assign_tag_request_builder.MicrosoftGraphManagedTenantsAssignTagRequestBuilder:
         """
         Provides operations to call the assignTag method.
         """
-        from .managed_tenants_assign_tag import managed_tenants_assign_tag_request_builder
+        from .microsoft_graph_managed_tenants_assign_tag import microsoft_graph_managed_tenants_assign_tag_request_builder
 
-        return managed_tenants_assign_tag_request_builder.ManagedTenantsAssignTagRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_managed_tenants_assign_tag_request_builder.MicrosoftGraphManagedTenantsAssignTagRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def managed_tenants_unassign_tag(self) -> managed_tenants_unassign_tag_request_builder.ManagedTenantsUnassignTagRequestBuilder:
+    def microsoft_graph_managed_tenants_unassign_tag(self) -> microsoft_graph_managed_tenants_unassign_tag_request_builder.MicrosoftGraphManagedTenantsUnassignTagRequestBuilder:
         """
         Provides operations to call the unassignTag method.
         """
-        from .managed_tenants_unassign_tag import managed_tenants_unassign_tag_request_builder
+        from .microsoft_graph_managed_tenants_unassign_tag import microsoft_graph_managed_tenants_unassign_tag_request_builder
 
-        return managed_tenants_unassign_tag_request_builder.ManagedTenantsUnassignTagRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_managed_tenants_unassign_tag_request_builder.MicrosoftGraphManagedTenantsUnassignTagRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class TenantTagItemRequestBuilderDeleteRequestConfiguration():

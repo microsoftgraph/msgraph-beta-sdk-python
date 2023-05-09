@@ -61,7 +61,7 @@ class PrivilegedRoleItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[PrivilegedRoleItemRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_role.PrivilegedRole]:
         """
-        Retrieve the properties and relationships of privilegedRole object. 
+        Get entity from privilegedRoles by key
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[privileged_role.PrivilegedRole]
@@ -124,7 +124,7 @@ class PrivilegedRoleItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PrivilegedRoleItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of privilegedRole object. 
+        Get entity from privilegedRoles by key
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -221,7 +221,7 @@ class PrivilegedRoleItemRequestBuilder():
     @dataclass
     class PrivilegedRoleItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of privilegedRole object. 
+        Get entity from privilegedRoles by key
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
