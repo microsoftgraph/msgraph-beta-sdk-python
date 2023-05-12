@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "1efc99409e8de28477da7c8bf0c9df4316599ae59c07195cb611dd5c8faf7a38"
+            "sha256": "529d7cbb61ba2fac9afb213cde0d97b827f37f2da47d7c77d98455178bc3914a"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -502,11 +502,11 @@
         },
         "microsoft-kiota-serialization-json": {
             "hashes": [
-                "sha256:d2928d1530591e08a392c72da6e174b5ac45ea69637663ae8772dc58713d7004",
-                "sha256:da3e6587174be1d51a4917e019f9c76f312d7bca7c0c1d995a383bc905178a11"
+                "sha256:97f8d45e814e8f3ed411747034d0c365438c572296fe7bec4b1f06e1420cbcef",
+                "sha256:a567b86070f05ad6127f2779ef73e9f91b0e5a92f20c13f6515862ad65ba6c23"
             ],
             "index": "pypi",
-            "version": "==0.3.2"
+            "version": "==0.3.3"
         },
         "microsoft-kiota-serialization-text": {
             "hashes": [
