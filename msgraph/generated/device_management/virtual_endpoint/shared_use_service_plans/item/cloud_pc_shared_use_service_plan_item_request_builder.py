@@ -56,7 +56,7 @@ class CloudPcSharedUseServicePlanItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[CloudPcSharedUseServicePlanItemRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_shared_use_service_plan.CloudPcSharedUseServicePlan]:
         """
-        Cloud PC shared-use service plans.
+        Read the properties and relationships of a cloudPcSharedUseServicePlan object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cloud_pc_shared_use_service_plan.CloudPcSharedUseServicePlan]
@@ -119,7 +119,7 @@ class CloudPcSharedUseServicePlanItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CloudPcSharedUseServicePlanItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Cloud PC shared-use service plans.
+        Read the properties and relationships of a cloudPcSharedUseServicePlan object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class CloudPcSharedUseServicePlanItemRequestBuilder():
     @dataclass
     class CloudPcSharedUseServicePlanItemRequestBuilderGetQueryParameters():
         """
-        Cloud PC shared-use service plans.
+        Read the properties and relationships of a cloudPcSharedUseServicePlan object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

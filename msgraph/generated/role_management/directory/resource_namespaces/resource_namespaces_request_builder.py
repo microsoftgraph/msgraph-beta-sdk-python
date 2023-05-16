@@ -54,7 +54,7 @@ class ResourceNamespacesRequestBuilder():
     
     async def get(self,request_configuration: Optional[ResourceNamespacesRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_rbac_resource_namespace_collection_response.UnifiedRbacResourceNamespaceCollectionResponse]:
         """
-        Get resourceNamespaces from roleManagement
+        Get a list of the unifiedRbacResourceNamespace objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[unified_rbac_resource_namespace_collection_response.UnifiedRbacResourceNamespaceCollectionResponse]
@@ -101,7 +101,7 @@ class ResourceNamespacesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ResourceNamespacesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get resourceNamespaces from roleManagement
+        Get a list of the unifiedRbacResourceNamespace objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class ResourceNamespacesRequestBuilder():
     @dataclass
     class ResourceNamespacesRequestBuilderGetQueryParameters():
         """
-        Get resourceNamespaces from roleManagement
+        Get a list of the unifiedRbacResourceNamespace objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -38,7 +38,7 @@ class CreatePasswordSingleSignOnCredentialsRequestBuilder():
     
     async def post(self,body: Optional[create_password_single_sign_on_credentials_post_request_body.CreatePasswordSingleSignOnCredentialsPostRequestBody] = None, request_configuration: Optional[CreatePasswordSingleSignOnCredentialsRequestBuilderPostRequestConfiguration] = None) -> Optional[password_single_sign_on_credential_set.PasswordSingleSignOnCredentialSet]:
         """
-        Invoke action createPasswordSingleSignOnCredentials
+        Create single sign-on credentials using a password for a user or group.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +63,7 @@ class CreatePasswordSingleSignOnCredentialsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[create_password_single_sign_on_credentials_post_request_body.CreatePasswordSingleSignOnCredentialsPostRequestBody] = None, request_configuration: Optional[CreatePasswordSingleSignOnCredentialsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action createPasswordSingleSignOnCredentials
+        Create single sign-on credentials using a password for a user or group.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

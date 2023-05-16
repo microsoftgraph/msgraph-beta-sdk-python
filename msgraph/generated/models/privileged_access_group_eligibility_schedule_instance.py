@@ -14,25 +14,25 @@ class PrivilegedAccessGroupEligibilityScheduleInstance(privileged_access_schedul
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.privilegedAccessGroupEligibilityScheduleInstance"
-        # The accessId property
+        # The identifier of the membership or ownership eligibility relationship to the group. Required. The possible values are: owner, member.
         self._access_id: Optional[privileged_access_group_relationships.PrivilegedAccessGroupRelationships] = None
-        # The eligibilityScheduleId property
+        # The identifier of the privilegedAccessGroupEligibilitySchedule from which this instance was created. Required.
         self._eligibility_schedule_id: Optional[str] = None
-        # The group property
+        # References the group that is the scope of the membership or ownership eligibility through PIM for groups. Supports $expand.
         self._group: Optional[group.Group] = None
-        # The groupId property
+        # The identifier of the group representing the scope of the membership or ownership eligibility through PIM for groups. Required.
         self._group_id: Optional[str] = None
-        # The memberType property
+        # Indicates whether the assignment is derived from a group assignment. It can further imply whether the calling principal can manage the assignment schedule. Required. The possible values are: direct, group, unknownFutureValue.
         self._member_type: Optional[privileged_access_group_member_type.PrivilegedAccessGroupMemberType] = None
-        # The principal property
+        # References the principal that's in the scope of the membership or ownership eligibility request through the group that's governed by PIM. Supports $expand.
         self._principal: Optional[directory_object.DirectoryObject] = None
-        # The principalId property
+        # The identifier of the principal whose membership or ownership eligibility to the group is managed through PIM for groups. Required.
         self._principal_id: Optional[str] = None
     
     @property
     def access_id(self,) -> Optional[privileged_access_group_relationships.PrivilegedAccessGroupRelationships]:
         """
-        Gets the accessId property value. The accessId property
+        Gets the accessId property value. The identifier of the membership or ownership eligibility relationship to the group. Required. The possible values are: owner, member.
         Returns: Optional[privileged_access_group_relationships.PrivilegedAccessGroupRelationships]
         """
         return self._access_id
@@ -40,7 +40,7 @@ class PrivilegedAccessGroupEligibilityScheduleInstance(privileged_access_schedul
     @access_id.setter
     def access_id(self,value: Optional[privileged_access_group_relationships.PrivilegedAccessGroupRelationships] = None) -> None:
         """
-        Sets the accessId property value. The accessId property
+        Sets the accessId property value. The identifier of the membership or ownership eligibility relationship to the group. Required. The possible values are: owner, member.
         Args:
             value: Value to set for the access_id property.
         """
@@ -61,7 +61,7 @@ class PrivilegedAccessGroupEligibilityScheduleInstance(privileged_access_schedul
     @property
     def eligibility_schedule_id(self,) -> Optional[str]:
         """
-        Gets the eligibilityScheduleId property value. The eligibilityScheduleId property
+        Gets the eligibilityScheduleId property value. The identifier of the privilegedAccessGroupEligibilitySchedule from which this instance was created. Required.
         Returns: Optional[str]
         """
         return self._eligibility_schedule_id
@@ -69,7 +69,7 @@ class PrivilegedAccessGroupEligibilityScheduleInstance(privileged_access_schedul
     @eligibility_schedule_id.setter
     def eligibility_schedule_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the eligibilityScheduleId property value. The eligibilityScheduleId property
+        Sets the eligibilityScheduleId property value. The identifier of the privilegedAccessGroupEligibilitySchedule from which this instance was created. Required.
         Args:
             value: Value to set for the eligibility_schedule_id property.
         """
@@ -98,7 +98,7 @@ class PrivilegedAccessGroupEligibilityScheduleInstance(privileged_access_schedul
     @property
     def group(self,) -> Optional[group.Group]:
         """
-        Gets the group property value. The group property
+        Gets the group property value. References the group that is the scope of the membership or ownership eligibility through PIM for groups. Supports $expand.
         Returns: Optional[group.Group]
         """
         return self._group
@@ -106,7 +106,7 @@ class PrivilegedAccessGroupEligibilityScheduleInstance(privileged_access_schedul
     @group.setter
     def group(self,value: Optional[group.Group] = None) -> None:
         """
-        Sets the group property value. The group property
+        Sets the group property value. References the group that is the scope of the membership or ownership eligibility through PIM for groups. Supports $expand.
         Args:
             value: Value to set for the group property.
         """
@@ -115,7 +115,7 @@ class PrivilegedAccessGroupEligibilityScheduleInstance(privileged_access_schedul
     @property
     def group_id(self,) -> Optional[str]:
         """
-        Gets the groupId property value. The groupId property
+        Gets the groupId property value. The identifier of the group representing the scope of the membership or ownership eligibility through PIM for groups. Required.
         Returns: Optional[str]
         """
         return self._group_id
@@ -123,7 +123,7 @@ class PrivilegedAccessGroupEligibilityScheduleInstance(privileged_access_schedul
     @group_id.setter
     def group_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the groupId property value. The groupId property
+        Sets the groupId property value. The identifier of the group representing the scope of the membership or ownership eligibility through PIM for groups. Required.
         Args:
             value: Value to set for the group_id property.
         """
@@ -132,7 +132,7 @@ class PrivilegedAccessGroupEligibilityScheduleInstance(privileged_access_schedul
     @property
     def member_type(self,) -> Optional[privileged_access_group_member_type.PrivilegedAccessGroupMemberType]:
         """
-        Gets the memberType property value. The memberType property
+        Gets the memberType property value. Indicates whether the assignment is derived from a group assignment. It can further imply whether the calling principal can manage the assignment schedule. Required. The possible values are: direct, group, unknownFutureValue.
         Returns: Optional[privileged_access_group_member_type.PrivilegedAccessGroupMemberType]
         """
         return self._member_type
@@ -140,7 +140,7 @@ class PrivilegedAccessGroupEligibilityScheduleInstance(privileged_access_schedul
     @member_type.setter
     def member_type(self,value: Optional[privileged_access_group_member_type.PrivilegedAccessGroupMemberType] = None) -> None:
         """
-        Sets the memberType property value. The memberType property
+        Sets the memberType property value. Indicates whether the assignment is derived from a group assignment. It can further imply whether the calling principal can manage the assignment schedule. Required. The possible values are: direct, group, unknownFutureValue.
         Args:
             value: Value to set for the member_type property.
         """
@@ -149,7 +149,7 @@ class PrivilegedAccessGroupEligibilityScheduleInstance(privileged_access_schedul
     @property
     def principal(self,) -> Optional[directory_object.DirectoryObject]:
         """
-        Gets the principal property value. The principal property
+        Gets the principal property value. References the principal that's in the scope of the membership or ownership eligibility request through the group that's governed by PIM. Supports $expand.
         Returns: Optional[directory_object.DirectoryObject]
         """
         return self._principal
@@ -157,7 +157,7 @@ class PrivilegedAccessGroupEligibilityScheduleInstance(privileged_access_schedul
     @principal.setter
     def principal(self,value: Optional[directory_object.DirectoryObject] = None) -> None:
         """
-        Sets the principal property value. The principal property
+        Sets the principal property value. References the principal that's in the scope of the membership or ownership eligibility request through the group that's governed by PIM. Supports $expand.
         Args:
             value: Value to set for the principal property.
         """
@@ -166,7 +166,7 @@ class PrivilegedAccessGroupEligibilityScheduleInstance(privileged_access_schedul
     @property
     def principal_id(self,) -> Optional[str]:
         """
-        Gets the principalId property value. The principalId property
+        Gets the principalId property value. The identifier of the principal whose membership or ownership eligibility to the group is managed through PIM for groups. Required.
         Returns: Optional[str]
         """
         return self._principal_id
@@ -174,7 +174,7 @@ class PrivilegedAccessGroupEligibilityScheduleInstance(privileged_access_schedul
     @principal_id.setter
     def principal_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the principalId property value. The principalId property
+        Sets the principalId property value. The identifier of the principal whose membership or ownership eligibility to the group is managed through PIM for groups. Required.
         Args:
             value: Value to set for the principal_id property.
         """

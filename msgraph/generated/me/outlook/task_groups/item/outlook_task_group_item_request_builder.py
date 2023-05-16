@@ -57,7 +57,7 @@ class OutlookTaskGroupItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[OutlookTaskGroupItemRequestBuilderGetRequestConfiguration] = None) -> Optional[outlook_task_group.OutlookTaskGroup]:
         """
-        Get taskGroups from me
+        Get the properties and relationships of the specified Outlook task group.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[outlook_task_group.OutlookTaskGroup]
@@ -120,7 +120,7 @@ class OutlookTaskGroupItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[OutlookTaskGroupItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get taskGroups from me
+        Get the properties and relationships of the specified Outlook task group.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -181,7 +181,7 @@ class OutlookTaskGroupItemRequestBuilder():
     @dataclass
     class OutlookTaskGroupItemRequestBuilderGetQueryParameters():
         """
-        Get taskGroups from me
+        Get the properties and relationships of the specified Outlook task group.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

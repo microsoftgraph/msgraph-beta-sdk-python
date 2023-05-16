@@ -14,8 +14,6 @@ if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .attachments import attachments_request_builder
     from .complete import complete_request_builder
-    from .multi_value_extended_properties import multi_value_extended_properties_request_builder
-    from .single_value_extended_properties import single_value_extended_properties_request_builder
 
 class OutlookTaskItemRequestBuilder():
     """
@@ -41,7 +39,7 @@ class OutlookTaskItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[OutlookTaskItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property tasks for me
+        Delete the specified Outlook task in the user's mailbox.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -60,7 +58,7 @@ class OutlookTaskItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[OutlookTaskItemRequestBuilderGetRequestConfiguration] = None) -> Optional[outlook_task.OutlookTask]:
         """
-        Get tasks from me
+        Get the properties and relationships of an Outlook task in the user's mailbox. By default, this operation (and the POST, PATCH, and complete task operations) returns date-related properties in UTC. You can use the `Prefer: outlook.timezone` header to have all the date-related properties in the response represented in a time zone different than UTC.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[outlook_task.OutlookTask]
@@ -82,7 +80,7 @@ class OutlookTaskItemRequestBuilder():
     
     async def patch(self,body: Optional[outlook_task.OutlookTask] = None, request_configuration: Optional[OutlookTaskItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[outlook_task.OutlookTask]:
         """
-        Update the navigation property tasks in me
+        Change writable properties of an Outlook task. The **completedDateTime** property can be set by the **complete** action, or explicitly by a PATCH operation. If you use PATCH to set **completedDateTime**, make sure you set **status** to `completed` as well. By default, this operation (and the POST, GET, and complete task operations) returns date-related properties in UTC. You can use the `Prefer: outlook.timezone` header to have all the date-related properties in the response represented in a time zone different than UTC.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -107,7 +105,7 @@ class OutlookTaskItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[OutlookTaskItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property tasks for me
+        Delete the specified Outlook task in the user's mailbox.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -123,7 +121,7 @@ class OutlookTaskItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[OutlookTaskItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get tasks from me
+        Get the properties and relationships of an Outlook task in the user's mailbox. By default, this operation (and the POST, PATCH, and complete task operations) returns date-related properties in UTC. You can use the `Prefer: outlook.timezone` header to have all the date-related properties in the response represented in a time zone different than UTC.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -141,7 +139,7 @@ class OutlookTaskItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[outlook_task.OutlookTask] = None, request_configuration: Optional[OutlookTaskItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property tasks in me
+        Change writable properties of an Outlook task. The **completedDateTime** property can be set by the **complete** action, or explicitly by a PATCH operation. If you use PATCH to set **completedDateTime**, make sure you set **status** to `completed` as well. By default, this operation (and the POST, GET, and complete task operations) returns date-related properties in UTC. You can use the `Prefer: outlook.timezone` header to have all the date-related properties in the response represented in a time zone different than UTC.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -178,24 +176,6 @@ class OutlookTaskItemRequestBuilder():
 
         return complete_request_builder.CompleteRequestBuilder(self.request_adapter, self.path_parameters)
     
-    @property
-    def multi_value_extended_properties(self) -> multi_value_extended_properties_request_builder.MultiValueExtendedPropertiesRequestBuilder:
-        """
-        Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.outlookTask entity.
-        """
-        from .multi_value_extended_properties import multi_value_extended_properties_request_builder
-
-        return multi_value_extended_properties_request_builder.MultiValueExtendedPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def single_value_extended_properties(self) -> single_value_extended_properties_request_builder.SingleValueExtendedPropertiesRequestBuilder:
-        """
-        Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.outlookTask entity.
-        """
-        from .single_value_extended_properties import single_value_extended_properties_request_builder
-
-        return single_value_extended_properties_request_builder.SingleValueExtendedPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @dataclass
     class OutlookTaskItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -211,7 +191,7 @@ class OutlookTaskItemRequestBuilder():
     @dataclass
     class OutlookTaskItemRequestBuilderGetQueryParameters():
         """
-        Get tasks from me
+        Get the properties and relationships of an Outlook task in the user's mailbox. By default, this operation (and the POST, PATCH, and complete task operations) returns date-related properties in UTC. You can use the `Prefer: outlook.timezone` header to have all the date-related properties in the response represented in a time zone different than UTC.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -68,7 +68,7 @@ class PendingAccessReviewInstancesRequestBuilder():
     
     async def get(self,request_configuration: Optional[PendingAccessReviewInstancesRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_instance_collection_response.AccessReviewInstanceCollectionResponse]:
         """
-        Navigation property to get list of access reviews pending approval by reviewer.
+        Retrieve the accessReviewInstance objects pending approval by the calling user. A list of zero or more accessReviewInstance objects are returned, of which the calling user is an assigned reviewer.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_review_instance_collection_response.AccessReviewInstanceCollectionResponse]
@@ -115,7 +115,7 @@ class PendingAccessReviewInstancesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PendingAccessReviewInstancesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Navigation property to get list of access reviews pending approval by reviewer.
+        Retrieve the accessReviewInstance objects pending approval by the calling user. A list of zero or more accessReviewInstance objects are returned, of which the calling user is an assigned reviewer.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -164,7 +164,7 @@ class PendingAccessReviewInstancesRequestBuilder():
     @dataclass
     class PendingAccessReviewInstancesRequestBuilderGetQueryParameters():
         """
-        Navigation property to get list of access reviews pending approval by reviewer.
+        Retrieve the accessReviewInstance objects pending approval by the calling user. A list of zero or more accessReviewInstance objects are returned, of which the calling user is an assigned reviewer.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

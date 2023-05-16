@@ -76,7 +76,7 @@ class AccessPackageResourceRoleScopesRequestBuilder():
     
     async def post(self,body: Optional[access_package_resource_role_scope.AccessPackageResourceRoleScope] = None, request_configuration: Optional[AccessPackageResourceRoleScopesRequestBuilderPostRequestConfiguration] = None) -> Optional[access_package_resource_role_scope.AccessPackageResourceRoleScope]:
         """
-        Create new navigation property to accessPackageResourceRoleScopes for identityGovernance
+        Create a new accessPackageResourceRoleScope for adding a resource role to an access package. The access package resource, for a group, an app, or a SharePoint Online site, must already exist in the access package catalog, and the **originId** for the resource role retrieved from the list of the resource roles. Once you add the resource role scope to the access package, the user will receive this resource role through any current and future access package assignments.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class AccessPackageResourceRoleScopesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[access_package_resource_role_scope.AccessPackageResourceRoleScope] = None, request_configuration: Optional[AccessPackageResourceRoleScopesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to accessPackageResourceRoleScopes for identityGovernance
+        Create a new accessPackageResourceRoleScope for adding a resource role to an access package. The access package resource, for a group, an app, or a SharePoint Online site, must already exist in the access package catalog, and the **originId** for the resource role retrieved from the list of the resource roles. Once you add the resource role scope to the access package, the user will receive this resource role through any current and future access package assignments.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

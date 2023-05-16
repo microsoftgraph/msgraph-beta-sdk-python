@@ -9,9 +9,12 @@ if TYPE_CHECKING:
 from . import entity
 
 class DepOnboardingSetting(entity.Entity):
+    """
+    The depOnboardingSetting represents an instance of the Apple DEP service being onboarded to Intune. The onboarded service instance manages an Apple Token used to synchronize data between Apple and Intune.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new DepOnboardingSetting and sets the default values.
+        Instantiates a new depOnboardingSetting and sets the default values.
         """
         super().__init__()
         # The Apple ID used to obtain the current token.

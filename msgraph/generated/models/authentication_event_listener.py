@@ -10,22 +10,22 @@ from . import entity
 class AuthenticationEventListener(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new AuthenticationEventListener and sets the default values.
+        Instantiates a new authenticationEventListener and sets the default values.
         """
         super().__init__()
-        # The authenticationEventsFlowId property
+        # The identifier of the authenticationEventsFlow object.
         self._authentication_events_flow_id: Optional[str] = None
-        # The conditions property
+        # The conditions on which this authenticationEventListener should trigger.
         self._conditions: Optional[authentication_conditions.AuthenticationConditions] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The priority property
+        # The priority of this handler. Between 0 (lower priority) and 1000 (higher priority).
         self._priority: Optional[int] = None
     
     @property
     def authentication_events_flow_id(self,) -> Optional[str]:
         """
-        Gets the authenticationEventsFlowId property value. The authenticationEventsFlowId property
+        Gets the authenticationEventsFlowId property value. The identifier of the authenticationEventsFlow object.
         Returns: Optional[str]
         """
         return self._authentication_events_flow_id
@@ -33,7 +33,7 @@ class AuthenticationEventListener(entity.Entity):
     @authentication_events_flow_id.setter
     def authentication_events_flow_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the authenticationEventsFlowId property value. The authenticationEventsFlowId property
+        Sets the authenticationEventsFlowId property value. The identifier of the authenticationEventsFlow object.
         Args:
             value: Value to set for the authentication_events_flow_id property.
         """
@@ -42,7 +42,7 @@ class AuthenticationEventListener(entity.Entity):
     @property
     def conditions(self,) -> Optional[authentication_conditions.AuthenticationConditions]:
         """
-        Gets the conditions property value. The conditions property
+        Gets the conditions property value. The conditions on which this authenticationEventListener should trigger.
         Returns: Optional[authentication_conditions.AuthenticationConditions]
         """
         return self._conditions
@@ -50,7 +50,7 @@ class AuthenticationEventListener(entity.Entity):
     @conditions.setter
     def conditions(self,value: Optional[authentication_conditions.AuthenticationConditions] = None) -> None:
         """
-        Sets the conditions property value. The conditions property
+        Sets the conditions property value. The conditions on which this authenticationEventListener should trigger.
         Args:
             value: Value to set for the conditions property.
         """
@@ -94,7 +94,7 @@ class AuthenticationEventListener(entity.Entity):
     @property
     def priority(self,) -> Optional[int]:
         """
-        Gets the priority property value. The priority property
+        Gets the priority property value. The priority of this handler. Between 0 (lower priority) and 1000 (higher priority).
         Returns: Optional[int]
         """
         return self._priority
@@ -102,7 +102,7 @@ class AuthenticationEventListener(entity.Entity):
     @priority.setter
     def priority(self,value: Optional[int] = None) -> None:
         """
-        Sets the priority property value. The priority property
+        Sets the priority property value. The priority of this handler. Between 0 (lower priority) and 1000 (higher priority).
         Args:
             value: Value to set for the priority property.
         """

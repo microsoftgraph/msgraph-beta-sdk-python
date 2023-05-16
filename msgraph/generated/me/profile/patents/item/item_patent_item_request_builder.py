@@ -37,7 +37,7 @@ class ItemPatentItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[ItemPatentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property patents for me
+        Deletes an itemPatent object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class ItemPatentItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[ItemPatentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[item_patent.ItemPatent]:
         """
-        Represents patents that a user has added to their profile.
+        Read the properties and relationships of an itemPatent object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[item_patent.ItemPatent]
@@ -78,7 +78,7 @@ class ItemPatentItemRequestBuilder():
     
     async def patch(self,body: Optional[item_patent.ItemPatent] = None, request_configuration: Optional[ItemPatentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[item_patent.ItemPatent]:
         """
-        Update the navigation property patents in me
+        Update the properties of an itemPatent object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class ItemPatentItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[ItemPatentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property patents for me
+        Deletes an itemPatent object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class ItemPatentItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ItemPatentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents patents that a user has added to their profile.
+        Read the properties and relationships of an itemPatent object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class ItemPatentItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[item_patent.ItemPatent] = None, request_configuration: Optional[ItemPatentItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property patents in me
+        Update the properties of an itemPatent object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class ItemPatentItemRequestBuilder():
     @dataclass
     class ItemPatentItemRequestBuilderGetQueryParameters():
         """
-        Represents patents that a user has added to their profile.
+        Read the properties and relationships of an itemPatent object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

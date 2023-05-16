@@ -12,6 +12,10 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .......models import business_scenario_task
     from .......models.o_data_errors import o_data_error
+    from .assigned_to_task_board_format import assigned_to_task_board_format_request_builder
+    from .bucket_task_board_format import bucket_task_board_format_request_builder
+    from .details import details_request_builder
+    from .progress_task_board_format import progress_task_board_format_request_builder
 
 class BusinessScenarioTaskItemRequestBuilder():
     """
@@ -37,7 +41,7 @@ class BusinessScenarioTaskItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[BusinessScenarioTaskItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property tasks for solutions
+        Delete a businessScenarioTask object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +60,7 @@ class BusinessScenarioTaskItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[BusinessScenarioTaskItemRequestBuilderGetRequestConfiguration] = None) -> Optional[business_scenario_task.BusinessScenarioTask]:
         """
-        The Planner tasks for the scenario.
+        Read the properties and relationships of a businessScenarioTask object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[business_scenario_task.BusinessScenarioTask]
@@ -78,7 +82,7 @@ class BusinessScenarioTaskItemRequestBuilder():
     
     async def patch(self,body: Optional[business_scenario_task.BusinessScenarioTask] = None, request_configuration: Optional[BusinessScenarioTaskItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[business_scenario_task.BusinessScenarioTask]:
         """
-        Update the navigation property tasks in solutions
+        Update the properties of a businessScenarioTask object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +107,7 @@ class BusinessScenarioTaskItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[BusinessScenarioTaskItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property tasks for solutions
+        Delete a businessScenarioTask object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +123,7 @@ class BusinessScenarioTaskItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[BusinessScenarioTaskItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The Planner tasks for the scenario.
+        Read the properties and relationships of a businessScenarioTask object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +141,7 @@ class BusinessScenarioTaskItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[business_scenario_task.BusinessScenarioTask] = None, request_configuration: Optional[BusinessScenarioTaskItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property tasks in solutions
+        Update the properties of a businessScenarioTask object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -156,6 +160,42 @@ class BusinessScenarioTaskItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def assigned_to_task_board_format(self) -> assigned_to_task_board_format_request_builder.AssignedToTaskBoardFormatRequestBuilder:
+        """
+        Provides operations to manage the assignedToTaskBoardFormat property of the microsoft.graph.plannerTask entity.
+        """
+        from .assigned_to_task_board_format import assigned_to_task_board_format_request_builder
+
+        return assigned_to_task_board_format_request_builder.AssignedToTaskBoardFormatRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def bucket_task_board_format(self) -> bucket_task_board_format_request_builder.BucketTaskBoardFormatRequestBuilder:
+        """
+        Provides operations to manage the bucketTaskBoardFormat property of the microsoft.graph.plannerTask entity.
+        """
+        from .bucket_task_board_format import bucket_task_board_format_request_builder
+
+        return bucket_task_board_format_request_builder.BucketTaskBoardFormatRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def details(self) -> details_request_builder.DetailsRequestBuilder:
+        """
+        Provides operations to manage the details property of the microsoft.graph.plannerTask entity.
+        """
+        from .details import details_request_builder
+
+        return details_request_builder.DetailsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def progress_task_board_format(self) -> progress_task_board_format_request_builder.ProgressTaskBoardFormatRequestBuilder:
+        """
+        Provides operations to manage the progressTaskBoardFormat property of the microsoft.graph.plannerTask entity.
+        """
+        from .progress_task_board_format import progress_task_board_format_request_builder
+
+        return progress_task_board_format_request_builder.ProgressTaskBoardFormatRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class BusinessScenarioTaskItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -171,7 +211,7 @@ class BusinessScenarioTaskItemRequestBuilder():
     @dataclass
     class BusinessScenarioTaskItemRequestBuilderGetQueryParameters():
         """
-        The Planner tasks for the scenario.
+        Read the properties and relationships of a businessScenarioTask object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

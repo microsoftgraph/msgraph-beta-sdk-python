@@ -17,9 +17,7 @@ if TYPE_CHECKING:
     from .forward import forward_request_builder
     from .in_reply_to import in_reply_to_request_builder
     from .mentions import mentions_request_builder
-    from .multi_value_extended_properties import multi_value_extended_properties_request_builder
     from .reply import reply_request_builder
-    from .single_value_extended_properties import single_value_extended_properties_request_builder
 
 class PostItemRequestBuilder():
     """
@@ -45,7 +43,7 @@ class PostItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[PostItemRequestBuilderGetRequestConfiguration] = None) -> Optional[post.Post]:
         """
-        Get posts from groups
+        Get the properties and relationships of a post in a specified thread. You can specify both the parent conversation and the thread, or, you can specify the thread without referencing the parent conversation. Since the **post** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **post** instance.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[post.Post]
@@ -92,7 +90,7 @@ class PostItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PostItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get posts from groups
+        Get the properties and relationships of a post in a specified thread. You can specify both the parent conversation and the thread, or, you can specify the thread without referencing the parent conversation. Since the **post** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **post** instance.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -175,15 +173,6 @@ class PostItemRequestBuilder():
         return mentions_request_builder.MentionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def multi_value_extended_properties(self) -> multi_value_extended_properties_request_builder.MultiValueExtendedPropertiesRequestBuilder:
-        """
-        Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.post entity.
-        """
-        from .multi_value_extended_properties import multi_value_extended_properties_request_builder
-
-        return multi_value_extended_properties_request_builder.MultiValueExtendedPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def reply(self) -> reply_request_builder.ReplyRequestBuilder:
         """
         Provides operations to call the reply method.
@@ -192,19 +181,10 @@ class PostItemRequestBuilder():
 
         return reply_request_builder.ReplyRequestBuilder(self.request_adapter, self.path_parameters)
     
-    @property
-    def single_value_extended_properties(self) -> single_value_extended_properties_request_builder.SingleValueExtendedPropertiesRequestBuilder:
-        """
-        Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.post entity.
-        """
-        from .single_value_extended_properties import single_value_extended_properties_request_builder
-
-        return single_value_extended_properties_request_builder.SingleValueExtendedPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @dataclass
     class PostItemRequestBuilderGetQueryParameters():
         """
-        Get posts from groups
+        Get the properties and relationships of a post in a specified thread. You can specify both the parent conversation and the thread, or, you can specify the thread without referencing the parent conversation. Since the **post** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **post** instance.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

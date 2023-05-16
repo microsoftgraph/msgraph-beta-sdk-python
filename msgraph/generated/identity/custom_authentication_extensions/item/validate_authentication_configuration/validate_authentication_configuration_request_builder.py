@@ -37,7 +37,7 @@ class ValidateAuthenticationConfigurationRequestBuilder():
     
     async def post(self,request_configuration: Optional[ValidateAuthenticationConfigurationRequestBuilderPostRequestConfiguration] = None) -> Optional[authentication_configuration_validation.AuthenticationConfigurationValidation]:
         """
-        Invoke action validateAuthenticationConfiguration
+        An API to check validity of the endpoint and and authentication configuration for a customAuthenticationExtension.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[authentication_configuration_validation.AuthenticationConfigurationValidation]
@@ -59,7 +59,7 @@ class ValidateAuthenticationConfigurationRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[ValidateAuthenticationConfigurationRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action validateAuthenticationConfiguration
+        An API to check validity of the endpoint and and authentication configuration for a customAuthenticationExtension.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

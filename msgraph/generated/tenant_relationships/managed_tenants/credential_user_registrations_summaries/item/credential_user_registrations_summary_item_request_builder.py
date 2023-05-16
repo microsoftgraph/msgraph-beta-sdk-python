@@ -56,7 +56,7 @@ class CredentialUserRegistrationsSummaryItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[CredentialUserRegistrationsSummaryItemRequestBuilderGetRequestConfiguration] = None) -> Optional[credential_user_registrations_summary.CredentialUserRegistrationsSummary]:
         """
-        Summary information for user registration for multi-factor authentication and self service password reset across managed tenants.
+        Read the properties and relationships of a credentialUserRegistrationsSummary object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[credential_user_registrations_summary.CredentialUserRegistrationsSummary]
@@ -119,7 +119,7 @@ class CredentialUserRegistrationsSummaryItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CredentialUserRegistrationsSummaryItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Summary information for user registration for multi-factor authentication and self service password reset across managed tenants.
+        Read the properties and relationships of a credentialUserRegistrationsSummary object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class CredentialUserRegistrationsSummaryItemRequestBuilder():
     @dataclass
     class CredentialUserRegistrationsSummaryItemRequestBuilderGetQueryParameters():
         """
-        Summary information for user registration for multi-factor authentication and self service password reset across managed tenants.
+        Read the properties and relationships of a credentialUserRegistrationsSummary object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

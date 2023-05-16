@@ -37,7 +37,7 @@ class PlannerRosterMemberItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[PlannerRosterMemberItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property members for planner
+        Delete a plannerRosterMember object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class PlannerRosterMemberItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[PlannerRosterMemberItemRequestBuilderGetRequestConfiguration] = None) -> Optional[planner_roster_member.PlannerRosterMember]:
         """
-        Retrieves the members of the plannerRoster.
+        Read the properties and relationships of a plannerRosterMember object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[planner_roster_member.PlannerRosterMember]
@@ -103,7 +103,7 @@ class PlannerRosterMemberItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[PlannerRosterMemberItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property members for planner
+        Delete a plannerRosterMember object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class PlannerRosterMemberItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PlannerRosterMemberItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieves the members of the plannerRoster.
+        Read the properties and relationships of a plannerRosterMember object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class PlannerRosterMemberItemRequestBuilder():
     @dataclass
     class PlannerRosterMemberItemRequestBuilderGetQueryParameters():
         """
-        Retrieves the members of the plannerRoster.
+        Read the properties and relationships of a plannerRosterMember object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

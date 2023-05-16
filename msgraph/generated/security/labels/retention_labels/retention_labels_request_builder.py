@@ -54,7 +54,7 @@ class RetentionLabelsRequestBuilder():
     
     async def get(self,request_configuration: Optional[RetentionLabelsRequestBuilderGetRequestConfiguration] = None) -> Optional[retention_label_collection_response.RetentionLabelCollectionResponse]:
         """
-        Get retentionLabels from security
+        Get a list of the retentionLabel objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[retention_label_collection_response.RetentionLabelCollectionResponse]
@@ -76,7 +76,7 @@ class RetentionLabelsRequestBuilder():
     
     async def post(self,body: Optional[retention_label.RetentionLabel] = None, request_configuration: Optional[RetentionLabelsRequestBuilderPostRequestConfiguration] = None) -> Optional[retention_label.RetentionLabel]:
         """
-        Create new navigation property to retentionLabels for security
+        Create a new retentionLabel object. To create a disposition review stage, include the **actionAfterRetentionPeriod** property in the request body with one of the possible values specified.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class RetentionLabelsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RetentionLabelsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get retentionLabels from security
+        Get a list of the retentionLabel objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class RetentionLabelsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[retention_label.RetentionLabel] = None, request_configuration: Optional[RetentionLabelsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to retentionLabels for security
+        Create a new retentionLabel object. To create a disposition review stage, include the **actionAfterRetentionPeriod** property in the request body with one of the possible values specified.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class RetentionLabelsRequestBuilder():
     @dataclass
     class RetentionLabelsRequestBuilderGetQueryParameters():
         """
-        Get retentionLabels from security
+        Get a list of the retentionLabel objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

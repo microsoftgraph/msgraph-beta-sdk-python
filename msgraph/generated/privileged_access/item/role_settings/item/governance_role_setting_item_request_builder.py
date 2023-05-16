@@ -58,7 +58,7 @@ class GovernanceRoleSettingItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[GovernanceRoleSettingItemRequestBuilderGetRequestConfiguration] = None) -> Optional[governance_role_setting.GovernanceRoleSetting]:
         """
-        A collection of role settings for the provider.
+        Retrieve the properties and relationships of a governanceRoleSetting.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[governance_role_setting.GovernanceRoleSetting]
@@ -80,7 +80,7 @@ class GovernanceRoleSettingItemRequestBuilder():
     
     async def patch(self,body: Optional[governance_role_setting.GovernanceRoleSetting] = None, request_configuration: Optional[GovernanceRoleSettingItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[governance_role_setting.GovernanceRoleSetting]:
         """
-        Update the navigation property roleSettings in privilegedAccess
+        Update the properties of governanceRoleSetting.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -121,7 +121,7 @@ class GovernanceRoleSettingItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[GovernanceRoleSettingItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        A collection of role settings for the provider.
+        Retrieve the properties and relationships of a governanceRoleSetting.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -139,7 +139,7 @@ class GovernanceRoleSettingItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[governance_role_setting.GovernanceRoleSetting] = None, request_configuration: Optional[GovernanceRoleSettingItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property roleSettings in privilegedAccess
+        Update the properties of governanceRoleSetting.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -191,7 +191,7 @@ class GovernanceRoleSettingItemRequestBuilder():
     @dataclass
     class GovernanceRoleSettingItemRequestBuilderGetQueryParameters():
         """
-        A collection of role settings for the provider.
+        Retrieve the properties and relationships of a governanceRoleSetting.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

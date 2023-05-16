@@ -37,7 +37,7 @@ class SourceSystemDefinitionItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[SourceSystemDefinitionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property sourceSystems for external
+        Delete a sourceSystemDefinition object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class SourceSystemDefinitionItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[SourceSystemDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[source_system_definition.SourceSystemDefinition]:
         """
-        Set of source definitions that represents real-world external systems.
+        Read the properties and relationships of a sourceSystemDefinition object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[source_system_definition.SourceSystemDefinition]
@@ -78,7 +78,7 @@ class SourceSystemDefinitionItemRequestBuilder():
     
     async def patch(self,body: Optional[source_system_definition.SourceSystemDefinition] = None, request_configuration: Optional[SourceSystemDefinitionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[source_system_definition.SourceSystemDefinition]:
         """
-        Update the navigation property sourceSystems in external
+        Update the properties of a sourceSystemDefinition object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class SourceSystemDefinitionItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[SourceSystemDefinitionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property sourceSystems for external
+        Delete a sourceSystemDefinition object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class SourceSystemDefinitionItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SourceSystemDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Set of source definitions that represents real-world external systems.
+        Read the properties and relationships of a sourceSystemDefinition object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class SourceSystemDefinitionItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[source_system_definition.SourceSystemDefinition] = None, request_configuration: Optional[SourceSystemDefinitionItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property sourceSystems in external
+        Update the properties of a sourceSystemDefinition object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class SourceSystemDefinitionItemRequestBuilder():
     @dataclass
     class SourceSystemDefinitionItemRequestBuilderGetQueryParameters():
         """
-        Set of source definitions that represents real-world external systems.
+        Read the properties and relationships of a sourceSystemDefinition object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

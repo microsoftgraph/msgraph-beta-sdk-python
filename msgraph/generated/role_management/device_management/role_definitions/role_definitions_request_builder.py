@@ -54,7 +54,7 @@ class RoleDefinitionsRequestBuilder():
     
     async def get(self,request_configuration: Optional[RoleDefinitionsRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_definition_collection_response.UnifiedRoleDefinitionCollectionResponse]:
         """
-        Get roleDefinitions from roleManagement
+        Get a list of unifiedRoleDefinition objects for an RBAC provider. The following RBAC providers are currently supported:- Cloud PC - device management (Intune)- directory (Azure AD) - entitlement management (Azure AD)- Exchange Online
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[unified_role_definition_collection_response.UnifiedRoleDefinitionCollectionResponse]
@@ -76,7 +76,7 @@ class RoleDefinitionsRequestBuilder():
     
     async def post(self,body: Optional[unified_role_definition.UnifiedRoleDefinition] = None, request_configuration: Optional[RoleDefinitionsRequestBuilderPostRequestConfiguration] = None) -> Optional[unified_role_definition.UnifiedRoleDefinition]:
         """
-        Create new navigation property to roleDefinitions for roleManagement
+        Create a new unifiedRoleDefinition object for an RBAC provider. This feature requires an Azure AD Premium P1 or P2 license. The following RBAC providers are currently supported:- Cloud PC- device management (Intune)- directory (Azure AD)
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class RoleDefinitionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RoleDefinitionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get roleDefinitions from roleManagement
+        Get a list of unifiedRoleDefinition objects for an RBAC provider. The following RBAC providers are currently supported:- Cloud PC - device management (Intune)- directory (Azure AD) - entitlement management (Azure AD)- Exchange Online
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class RoleDefinitionsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[unified_role_definition.UnifiedRoleDefinition] = None, request_configuration: Optional[RoleDefinitionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to roleDefinitions for roleManagement
+        Create a new unifiedRoleDefinition object for an RBAC provider. This feature requires an Azure AD Premium P1 or P2 license. The following RBAC providers are currently supported:- Cloud PC- device management (Intune)- directory (Azure AD)
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class RoleDefinitionsRequestBuilder():
     @dataclass
     class RoleDefinitionsRequestBuilderGetQueryParameters():
         """
-        Get roleDefinitions from roleManagement
+        Get a list of unifiedRoleDefinition objects for an RBAC provider. The following RBAC providers are currently supported:- Cloud PC - device management (Intune)- directory (Azure AD) - entitlement management (Azure AD)- Exchange Online
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

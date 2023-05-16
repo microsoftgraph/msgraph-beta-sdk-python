@@ -56,7 +56,7 @@ class LongRunningOperationItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[LongRunningOperationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[long_running_operation.LongRunningOperation]:
         """
-        Set of ephemeral operations that the system runs currently. Read-only.
+        Read the properties and relationships of a fileValidateOperation object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[long_running_operation.LongRunningOperation]
@@ -119,7 +119,7 @@ class LongRunningOperationItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[LongRunningOperationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Set of ephemeral operations that the system runs currently. Read-only.
+        Read the properties and relationships of a fileValidateOperation object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class LongRunningOperationItemRequestBuilder():
     @dataclass
     class LongRunningOperationItemRequestBuilderGetQueryParameters():
         """
-        Set of ephemeral operations that the system runs currently. Read-only.
+        Read the properties and relationships of a fileValidateOperation object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

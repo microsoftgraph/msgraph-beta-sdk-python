@@ -54,7 +54,7 @@ class OperationsRequestBuilder():
     
     async def get(self,request_configuration: Optional[OperationsRequestBuilderGetRequestConfiguration] = None) -> Optional[teamwork_device_operation_collection_response.TeamworkDeviceOperationCollectionResponse]:
         """
-        The async operations on the device.
+        Get a list of the operations that are running on a Microsoft Teams-enabled device.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[teamwork_device_operation_collection_response.TeamworkDeviceOperationCollectionResponse]
@@ -101,7 +101,7 @@ class OperationsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[OperationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The async operations on the device.
+        Get a list of the operations that are running on a Microsoft Teams-enabled device.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class OperationsRequestBuilder():
     @dataclass
     class OperationsRequestBuilderGetQueryParameters():
         """
-        The async operations on the device.
+        Get a list of the operations that are running on a Microsoft Teams-enabled device.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

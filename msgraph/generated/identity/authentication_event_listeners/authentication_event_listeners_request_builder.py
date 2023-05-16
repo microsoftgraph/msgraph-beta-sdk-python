@@ -54,7 +54,7 @@ class AuthenticationEventListenersRequestBuilder():
     
     async def get(self,request_configuration: Optional[AuthenticationEventListenersRequestBuilderGetRequestConfiguration] = None) -> Optional[authentication_event_listener_collection_response.AuthenticationEventListenerCollectionResponse]:
         """
-        Get authenticationEventListeners from identity
+        Get a list of the authenticationEventListener objects and their properties. Only the onTokenIssuanceStartListener type is supported.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[authentication_event_listener_collection_response.AuthenticationEventListenerCollectionResponse]
@@ -76,7 +76,7 @@ class AuthenticationEventListenersRequestBuilder():
     
     async def post(self,body: Optional[authentication_event_listener.AuthenticationEventListener] = None, request_configuration: Optional[AuthenticationEventListenersRequestBuilderPostRequestConfiguration] = None) -> Optional[authentication_event_listener.AuthenticationEventListener]:
         """
-        Create new navigation property to authenticationEventListeners for identity
+        Create a new authenticationEventListener object. Only the onTokenIssuanceStartListener type is supported.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class AuthenticationEventListenersRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AuthenticationEventListenersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get authenticationEventListeners from identity
+        Get a list of the authenticationEventListener objects and their properties. Only the onTokenIssuanceStartListener type is supported.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class AuthenticationEventListenersRequestBuilder():
     
     def to_post_request_information(self,body: Optional[authentication_event_listener.AuthenticationEventListener] = None, request_configuration: Optional[AuthenticationEventListenersRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to authenticationEventListeners for identity
+        Create a new authenticationEventListener object. Only the onTokenIssuanceStartListener type is supported.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class AuthenticationEventListenersRequestBuilder():
     @dataclass
     class AuthenticationEventListenersRequestBuilderGetQueryParameters():
         """
-        Get authenticationEventListeners from identity
+        Get a list of the authenticationEventListener objects and their properties. Only the onTokenIssuanceStartListener type is supported.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

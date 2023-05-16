@@ -12,11 +12,12 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .......models.ediscovery import custodian
     from .......models.o_data_errors import o_data_error
-    from .ediscovery_activate import ediscovery_activate_request_builder
-    from .ediscovery_apply_hold import ediscovery_apply_hold_request_builder
-    from .ediscovery_release import ediscovery_release_request_builder
-    from .ediscovery_remove_hold import ediscovery_remove_hold_request_builder
-    from .ediscovery_update_index import ediscovery_update_index_request_builder
+    from .last_index_operation import last_index_operation_request_builder
+    from .microsoft_graph_ediscovery_activate import microsoft_graph_ediscovery_activate_request_builder
+    from .microsoft_graph_ediscovery_apply_hold import microsoft_graph_ediscovery_apply_hold_request_builder
+    from .microsoft_graph_ediscovery_release import microsoft_graph_ediscovery_release_request_builder
+    from .microsoft_graph_ediscovery_remove_hold import microsoft_graph_ediscovery_remove_hold_request_builder
+    from .microsoft_graph_ediscovery_update_index import microsoft_graph_ediscovery_update_index_request_builder
     from .site_sources import site_sources_request_builder
     from .unified_group_sources import unified_group_sources_request_builder
     from .user_sources import user_sources_request_builder
@@ -64,7 +65,7 @@ class CustodianItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[CustodianItemRequestBuilderGetRequestConfiguration] = None) -> Optional[custodian.Custodian]:
         """
-        Returns a list of case custodian objects for this case.  Nullable.
+        Read the properties and relationships of a custodian object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[custodian.Custodian]
@@ -86,7 +87,7 @@ class CustodianItemRequestBuilder():
     
     async def patch(self,body: Optional[custodian.Custodian] = None, request_configuration: Optional[CustodianItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[custodian.Custodian]:
         """
-        Update the navigation property custodians in compliance
+        Update the properties of a custodian object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -127,7 +128,7 @@ class CustodianItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CustodianItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Returns a list of case custodian objects for this case.  Nullable.
+        Read the properties and relationships of a custodian object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -145,7 +146,7 @@ class CustodianItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[custodian.Custodian] = None, request_configuration: Optional[CustodianItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property custodians in compliance
+        Update the properties of a custodian object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -165,49 +166,58 @@ class CustodianItemRequestBuilder():
         return request_info
     
     @property
-    def ediscovery_activate(self) -> ediscovery_activate_request_builder.EdiscoveryActivateRequestBuilder:
+    def last_index_operation(self) -> last_index_operation_request_builder.LastIndexOperationRequestBuilder:
+        """
+        Provides operations to manage the lastIndexOperation property of the microsoft.graph.ediscovery.dataSourceContainer entity.
+        """
+        from .last_index_operation import last_index_operation_request_builder
+
+        return last_index_operation_request_builder.LastIndexOperationRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_ediscovery_activate(self) -> microsoft_graph_ediscovery_activate_request_builder.MicrosoftGraphEdiscoveryActivateRequestBuilder:
         """
         Provides operations to call the activate method.
         """
-        from .ediscovery_activate import ediscovery_activate_request_builder
+        from .microsoft_graph_ediscovery_activate import microsoft_graph_ediscovery_activate_request_builder
 
-        return ediscovery_activate_request_builder.EdiscoveryActivateRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_ediscovery_activate_request_builder.MicrosoftGraphEdiscoveryActivateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def ediscovery_apply_hold(self) -> ediscovery_apply_hold_request_builder.EdiscoveryApplyHoldRequestBuilder:
+    def microsoft_graph_ediscovery_apply_hold(self) -> microsoft_graph_ediscovery_apply_hold_request_builder.MicrosoftGraphEdiscoveryApplyHoldRequestBuilder:
         """
         Provides operations to call the applyHold method.
         """
-        from .ediscovery_apply_hold import ediscovery_apply_hold_request_builder
+        from .microsoft_graph_ediscovery_apply_hold import microsoft_graph_ediscovery_apply_hold_request_builder
 
-        return ediscovery_apply_hold_request_builder.EdiscoveryApplyHoldRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_ediscovery_apply_hold_request_builder.MicrosoftGraphEdiscoveryApplyHoldRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def ediscovery_release(self) -> ediscovery_release_request_builder.EdiscoveryReleaseRequestBuilder:
+    def microsoft_graph_ediscovery_release(self) -> microsoft_graph_ediscovery_release_request_builder.MicrosoftGraphEdiscoveryReleaseRequestBuilder:
         """
         Provides operations to call the release method.
         """
-        from .ediscovery_release import ediscovery_release_request_builder
+        from .microsoft_graph_ediscovery_release import microsoft_graph_ediscovery_release_request_builder
 
-        return ediscovery_release_request_builder.EdiscoveryReleaseRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_ediscovery_release_request_builder.MicrosoftGraphEdiscoveryReleaseRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def ediscovery_remove_hold(self) -> ediscovery_remove_hold_request_builder.EdiscoveryRemoveHoldRequestBuilder:
+    def microsoft_graph_ediscovery_remove_hold(self) -> microsoft_graph_ediscovery_remove_hold_request_builder.MicrosoftGraphEdiscoveryRemoveHoldRequestBuilder:
         """
         Provides operations to call the removeHold method.
         """
-        from .ediscovery_remove_hold import ediscovery_remove_hold_request_builder
+        from .microsoft_graph_ediscovery_remove_hold import microsoft_graph_ediscovery_remove_hold_request_builder
 
-        return ediscovery_remove_hold_request_builder.EdiscoveryRemoveHoldRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_ediscovery_remove_hold_request_builder.MicrosoftGraphEdiscoveryRemoveHoldRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def ediscovery_update_index(self) -> ediscovery_update_index_request_builder.EdiscoveryUpdateIndexRequestBuilder:
+    def microsoft_graph_ediscovery_update_index(self) -> microsoft_graph_ediscovery_update_index_request_builder.MicrosoftGraphEdiscoveryUpdateIndexRequestBuilder:
         """
         Provides operations to call the updateIndex method.
         """
-        from .ediscovery_update_index import ediscovery_update_index_request_builder
+        from .microsoft_graph_ediscovery_update_index import microsoft_graph_ediscovery_update_index_request_builder
 
-        return ediscovery_update_index_request_builder.EdiscoveryUpdateIndexRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_ediscovery_update_index_request_builder.MicrosoftGraphEdiscoveryUpdateIndexRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def site_sources(self) -> site_sources_request_builder.SiteSourcesRequestBuilder:
@@ -251,7 +261,7 @@ class CustodianItemRequestBuilder():
     @dataclass
     class CustodianItemRequestBuilderGetQueryParameters():
         """
-        Returns a list of case custodian objects for this case.  Nullable.
+        Read the properties and relationships of a custodian object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

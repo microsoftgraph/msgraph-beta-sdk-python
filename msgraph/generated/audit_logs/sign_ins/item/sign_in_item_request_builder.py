@@ -56,7 +56,7 @@ class SignInItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[SignInItemRequestBuilderGetRequestConfiguration] = None) -> Optional[sign_in.SignIn]:
         """
-        Get signIns from auditLogs
+        Get a signIn object that contains a specific user sign-in event for your tenant. This includes sign-ins where a user is asked to enter a username or password, and session tokens.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[sign_in.SignIn]
@@ -119,7 +119,7 @@ class SignInItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SignInItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get signIns from auditLogs
+        Get a signIn object that contains a specific user sign-in event for your tenant. This includes sign-ins where a user is asked to enter a username or password, and session tokens.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class SignInItemRequestBuilder():
     @dataclass
     class SignInItemRequestBuilderGetQueryParameters():
         """
-        Get signIns from auditLogs
+        Get a signIn object that contains a specific user sign-in event for your tenant. This includes sign-ins where a user is asked to enter a username or password, and session tokens.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

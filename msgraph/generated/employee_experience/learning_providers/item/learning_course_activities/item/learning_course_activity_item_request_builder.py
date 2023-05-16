@@ -37,7 +37,7 @@ class LearningCourseActivityItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[LearningCourseActivityItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property learningCourseActivities for employeeExperience
+        Delete a learningCourseActivity object by using the course activity ID of either an assignment or a self-initiated activity.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -103,7 +103,7 @@ class LearningCourseActivityItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[LearningCourseActivityItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property learningCourseActivities for employeeExperience
+        Delete a learningCourseActivity object by using the course activity ID of either an assignment or a self-initiated activity.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

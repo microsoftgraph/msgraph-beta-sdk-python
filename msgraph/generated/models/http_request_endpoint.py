@@ -14,7 +14,7 @@ class HttpRequestEndpoint(custom_extension_endpoint_configuration.CustomExtensio
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.httpRequestEndpoint"
-        # The targetUrl property
+        # The HTTP endpoint that a custom extension calls.
         self._target_url: Optional[str] = None
     
     @staticmethod
@@ -57,7 +57,7 @@ class HttpRequestEndpoint(custom_extension_endpoint_configuration.CustomExtensio
     @property
     def target_url(self,) -> Optional[str]:
         """
-        Gets the targetUrl property value. The targetUrl property
+        Gets the targetUrl property value. The HTTP endpoint that a custom extension calls.
         Returns: Optional[str]
         """
         return self._target_url
@@ -65,7 +65,7 @@ class HttpRequestEndpoint(custom_extension_endpoint_configuration.CustomExtensio
     @target_url.setter
     def target_url(self,value: Optional[str] = None) -> None:
         """
-        Sets the targetUrl property value. The targetUrl property
+        Sets the targetUrl property value. The HTTP endpoint that a custom extension calls.
         Args:
             value: Value to set for the target_url property.
         """

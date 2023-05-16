@@ -9,9 +9,12 @@ if TYPE_CHECKING:
 from . import entity
 
 class RemoteAssistancePartner(entity.Entity):
+    """
+    RemoteAssistPartner resources represent the metadata and status of a given Remote Assistance partner service.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new RemoteAssistancePartner and sets the default values.
+        Instantiates a new remoteAssistancePartner and sets the default values.
         """
         super().__init__()
         # Display name of the partner.

@@ -10,7 +10,7 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models import certificate_based_auth_configuration_collection_response
+    from ....models import certificate_based_auth_configuration, certificate_based_auth_configuration_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
     from .item import certificate_based_auth_configuration_item_request_builder
@@ -54,7 +54,7 @@ class CertificateBasedAuthConfigurationRequestBuilder():
     
     async def get(self,request_configuration: Optional[CertificateBasedAuthConfigurationRequestBuilderGetRequestConfiguration] = None) -> Optional[certificate_based_auth_configuration_collection_response.CertificateBasedAuthConfigurationCollectionResponse]:
         """
-        Navigation property to manage certificate-based authentication configuration. Only a single instance of certificateBasedAuthConfiguration can be created in the collection.
+        Get a list of certificateBasedAuthConfiguration objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[certificate_based_auth_configuration_collection_response.CertificateBasedAuthConfigurationCollectionResponse]
@@ -74,9 +74,34 @@ class CertificateBasedAuthConfigurationRequestBuilder():
 
         return await self.request_adapter.send_async(request_info, certificate_based_auth_configuration_collection_response.CertificateBasedAuthConfigurationCollectionResponse, error_mapping)
     
+    async def post(self,body: Optional[certificate_based_auth_configuration.CertificateBasedAuthConfiguration] = None, request_configuration: Optional[CertificateBasedAuthConfigurationRequestBuilderPostRequestConfiguration] = None) -> Optional[certificate_based_auth_configuration.CertificateBasedAuthConfiguration]:
+        """
+        Create a new certificateBasedAuthConfiguration object.
+        Args:
+            body: The request body
+            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[certificate_based_auth_configuration.CertificateBasedAuthConfiguration]
+        """
+        if body is None:
+            raise Exception("body cannot be undefined")
+        request_info = self.to_post_request_information(
+            body, request_configuration
+        )
+        from ....models.o_data_errors import o_data_error
+
+        error_mapping: Dict[str, ParsableFactory] = {
+            "4XX": o_data_error.ODataError,
+            "5XX": o_data_error.ODataError,
+        }
+        if not self.request_adapter:
+            raise Exception("Http core is null") 
+        from ....models import certificate_based_auth_configuration
+
+        return await self.request_adapter.send_async(request_info, certificate_based_auth_configuration.CertificateBasedAuthConfiguration, error_mapping)
+    
     def to_get_request_information(self,request_configuration: Optional[CertificateBasedAuthConfigurationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Navigation property to manage certificate-based authentication configuration. Only a single instance of certificateBasedAuthConfiguration can be created in the collection.
+        Get a list of certificateBasedAuthConfiguration objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -92,6 +117,27 @@ class CertificateBasedAuthConfigurationRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
+    def to_post_request_information(self,body: Optional[certificate_based_auth_configuration.CertificateBasedAuthConfiguration] = None, request_configuration: Optional[CertificateBasedAuthConfigurationRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+        """
+        Create a new certificateBasedAuthConfiguration object.
+        Args:
+            body: The request body
+            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: RequestInformation
+        """
+        if body is None:
+            raise Exception("body cannot be undefined")
+        request_info = RequestInformation()
+        request_info.url_template = self.url_template
+        request_info.path_parameters = self.path_parameters
+        request_info.http_method = Method.POST
+        request_info.headers["Accept"] = ["application/json"]
+        if request_configuration:
+            request_info.add_request_headers(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
+        request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
+        return request_info
+    
     @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
@@ -104,7 +150,7 @@ class CertificateBasedAuthConfigurationRequestBuilder():
     @dataclass
     class CertificateBasedAuthConfigurationRequestBuilderGetQueryParameters():
         """
-        Navigation property to manage certificate-based authentication configuration. Only a single instance of certificateBasedAuthConfiguration can be created in the collection.
+        Get a list of certificateBasedAuthConfiguration objects.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -171,6 +217,18 @@ class CertificateBasedAuthConfigurationRequestBuilder():
 
         # Request query parameters
         query_parameters: Optional[CertificateBasedAuthConfigurationRequestBuilder.CertificateBasedAuthConfigurationRequestBuilderGetQueryParameters] = None
+
+    
+    @dataclass
+    class CertificateBasedAuthConfigurationRequestBuilderPostRequestConfiguration():
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request headers
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
+
+        # Request options
+        options: Optional[List[RequestOption]] = None
 
     
 

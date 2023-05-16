@@ -10,7 +10,7 @@ from . import entity
 class PlannerRoster(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new PlannerRoster and sets the default values.
+        Instantiates a new plannerRoster and sets the default values.
         """
         super().__init__()
         # Retrieves the members of the plannerRoster.

@@ -37,7 +37,7 @@ class AttachmentItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[AttachmentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property attachments for me
+        Delete an attachment from a user calendar event, message, Outlook task, or post.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class AttachmentItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[AttachmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[attachment.Attachment]:
         """
-        The collection of FileAttachment, ItemAttachment, and referenceAttachment attachments for the event. Navigation property. Read-only. Nullable.
+        Read the properties, relationships, or raw contents of an attachment that is attached to a user event, message, Outlook task, or group post.  An attachment can be one of the following types: All these types of attachments are derived from the attachment resource. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[attachment.Attachment]
@@ -78,7 +78,7 @@ class AttachmentItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[AttachmentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property attachments for me
+        Delete an attachment from a user calendar event, message, Outlook task, or post.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -94,7 +94,7 @@ class AttachmentItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AttachmentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection of FileAttachment, ItemAttachment, and referenceAttachment attachments for the event. Navigation property. Read-only. Nullable.
+        Read the properties, relationships, or raw contents of an attachment that is attached to a user event, message, Outlook task, or group post.  An attachment can be one of the following types: All these types of attachments are derived from the attachment resource. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -125,7 +125,7 @@ class AttachmentItemRequestBuilder():
     @dataclass
     class AttachmentItemRequestBuilderGetQueryParameters():
         """
-        The collection of FileAttachment, ItemAttachment, and referenceAttachment attachments for the event. Navigation property. Read-only. Nullable.
+        Read the properties, relationships, or raw contents of an attachment that is attached to a user event, message, Outlook task, or group post.  An attachment can be one of the following types: All these types of attachments are derived from the attachment resource. 
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

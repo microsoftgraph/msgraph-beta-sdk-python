@@ -38,7 +38,7 @@ class BulkReprovisionCloudPcRequestBuilder():
     
     async def post(self,body: Optional[bulk_reprovision_cloud_pc_post_request_body.BulkReprovisionCloudPcPostRequestBody] = None, request_configuration: Optional[BulkReprovisionCloudPcRequestBuilderPostRequestConfiguration] = None) -> Optional[cloud_pc_bulk_remote_action_result.CloudPcBulkRemoteActionResult]:
         """
-        Invoke action bulkReprovisionCloudPc
+        Bulk reprovision a set of Cloud PC devices with Intune managed device IDs.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +63,7 @@ class BulkReprovisionCloudPcRequestBuilder():
     
     def to_post_request_information(self,body: Optional[bulk_reprovision_cloud_pc_post_request_body.BulkReprovisionCloudPcPostRequestBody] = None, request_configuration: Optional[BulkReprovisionCloudPcRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action bulkReprovisionCloudPc
+        Bulk reprovision a set of Cloud PC devices with Intune managed device IDs.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

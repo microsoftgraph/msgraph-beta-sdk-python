@@ -37,7 +37,7 @@ class RefRequestBuilder():
     
     async def get(self,request_configuration: Optional[RefRequestBuilderGetRequestConfiguration] = None) -> Optional[string_collection_response.StringCollectionResponse]:
         """
-        Azure AD groups under the scope of the mobility management application if appliesTo is selected
+        Get the list of groups that are included in a mobile app management policy.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[string_collection_response.StringCollectionResponse]
@@ -59,7 +59,7 @@ class RefRequestBuilder():
     
     async def post(self,body: Optional[reference_create.ReferenceCreate] = None, request_configuration: Optional[RefRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Create new navigation property ref to includedGroups for policies
+        Add groups to be included in a mobile app management policy.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -81,7 +81,7 @@ class RefRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RefRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Azure AD groups under the scope of the mobility management application if appliesTo is selected
+        Get the list of groups that are included in a mobile app management policy.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -99,7 +99,7 @@ class RefRequestBuilder():
     
     def to_post_request_information(self,body: Optional[reference_create.ReferenceCreate] = None, request_configuration: Optional[RefRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property ref to includedGroups for policies
+        Add groups to be included in a mobile app management policy.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -120,7 +120,7 @@ class RefRequestBuilder():
     @dataclass
     class RefRequestBuilderGetQueryParameters():
         """
-        Azure AD groups under the scope of the mobility management application if appliesTo is selected
+        Get the list of groups that are included in a mobile app management policy.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

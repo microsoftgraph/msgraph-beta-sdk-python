@@ -54,7 +54,7 @@ class WebPartsRequestBuilder():
     
     async def get(self,request_configuration: Optional[WebPartsRequestBuilderGetRequestConfiguration] = None) -> Optional[web_part_collection_response.WebPartCollectionResponse]:
         """
-        Collection of webparts on the SharePoint page
+        Read the properties and relationships of a webPart object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[web_part_collection_response.WebPartCollectionResponse]
@@ -101,7 +101,7 @@ class WebPartsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[WebPartsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Collection of webparts on the SharePoint page
+        Read the properties and relationships of a webPart object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class WebPartsRequestBuilder():
     @dataclass
     class WebPartsRequestBuilderGetQueryParameters():
         """
-        Collection of webparts on the SharePoint page
+        Read the properties and relationships of a webPart object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

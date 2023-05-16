@@ -56,7 +56,7 @@ class CloudPcOverviewTenantItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[CloudPcOverviewTenantItemRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_overview.CloudPcOverview]:
         """
-        Overview of cloud PC information across managed tenants.
+        Read the properties and relationships of a cloudPcOverview object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cloud_pc_overview.CloudPcOverview]
@@ -119,7 +119,7 @@ class CloudPcOverviewTenantItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CloudPcOverviewTenantItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Overview of cloud PC information across managed tenants.
+        Read the properties and relationships of a cloudPcOverview object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class CloudPcOverviewTenantItemRequestBuilder():
     @dataclass
     class CloudPcOverviewTenantItemRequestBuilderGetQueryParameters():
         """
-        Overview of cloud PC information across managed tenants.
+        Read the properties and relationships of a cloudPcOverview object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

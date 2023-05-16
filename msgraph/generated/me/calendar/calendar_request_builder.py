@@ -17,8 +17,6 @@ if TYPE_CHECKING:
     from .calendar_view import calendar_view_request_builder
     from .events import events_request_builder
     from .get_schedule import get_schedule_request_builder
-    from .multi_value_extended_properties import multi_value_extended_properties_request_builder
-    from .single_value_extended_properties import single_value_extended_properties_request_builder
 
 class CalendarRequestBuilder():
     """
@@ -57,7 +55,7 @@ class CalendarRequestBuilder():
     
     async def get(self,request_configuration: Optional[CalendarRequestBuilderGetRequestConfiguration] = None) -> Optional[calendar.Calendar]:
         """
-        The user's primary calendar. Read-only.
+        Get the properties and relationships of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user's calendar:
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[calendar.Calendar]
@@ -79,7 +77,7 @@ class CalendarRequestBuilder():
     
     async def patch(self,body: Optional[calendar.Calendar] = None, request_configuration: Optional[CalendarRequestBuilderPatchRequestConfiguration] = None) -> Optional[calendar.Calendar]:
         """
-        Update the navigation property calendar in me
+        Update the properties of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -104,7 +102,7 @@ class CalendarRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CalendarRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The user's primary calendar. Read-only.
+        Get the properties and relationships of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user's calendar:
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -122,7 +120,7 @@ class CalendarRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[calendar.Calendar] = None, request_configuration: Optional[CalendarRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property calendar in me
+        Update the properties of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -177,28 +175,10 @@ class CalendarRequestBuilder():
 
         return get_schedule_request_builder.GetScheduleRequestBuilder(self.request_adapter, self.path_parameters)
     
-    @property
-    def multi_value_extended_properties(self) -> multi_value_extended_properties_request_builder.MultiValueExtendedPropertiesRequestBuilder:
-        """
-        Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.calendar entity.
-        """
-        from .multi_value_extended_properties import multi_value_extended_properties_request_builder
-
-        return multi_value_extended_properties_request_builder.MultiValueExtendedPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def single_value_extended_properties(self) -> single_value_extended_properties_request_builder.SingleValueExtendedPropertiesRequestBuilder:
-        """
-        Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.calendar entity.
-        """
-        from .single_value_extended_properties import single_value_extended_properties_request_builder
-
-        return single_value_extended_properties_request_builder.SingleValueExtendedPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @dataclass
     class CalendarRequestBuilderGetQueryParameters():
         """
-        The user's primary calendar. Read-only.
+        Get the properties and relationships of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user's calendar:
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

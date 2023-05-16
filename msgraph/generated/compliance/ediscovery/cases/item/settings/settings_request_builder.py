@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ......models.ediscovery import case_settings
     from ......models.o_data_errors import o_data_error
-    from .ediscovery_reset_to_default import ediscovery_reset_to_default_request_builder
+    from .microsoft_graph_ediscovery_reset_to_default import microsoft_graph_ediscovery_reset_to_default_request_builder
 
 class SettingsRequestBuilder():
     """
@@ -57,7 +57,7 @@ class SettingsRequestBuilder():
     
     async def get(self,request_configuration: Optional[SettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[case_settings.CaseSettings]:
         """
-        Get settings from compliance
+        Read the properties and relationships of an eDiscovery caseSettings object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[case_settings.CaseSettings]
@@ -79,7 +79,7 @@ class SettingsRequestBuilder():
     
     async def patch(self,body: Optional[case_settings.CaseSettings] = None, request_configuration: Optional[SettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[case_settings.CaseSettings]:
         """
-        Update the navigation property settings in compliance
+        Update the properties of a an eDiscovery caseSettings object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -120,7 +120,7 @@ class SettingsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get settings from compliance
+        Read the properties and relationships of an eDiscovery caseSettings object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,7 +138,7 @@ class SettingsRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[case_settings.CaseSettings] = None, request_configuration: Optional[SettingsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property settings in compliance
+        Update the properties of a an eDiscovery caseSettings object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -158,13 +158,13 @@ class SettingsRequestBuilder():
         return request_info
     
     @property
-    def ediscovery_reset_to_default(self) -> ediscovery_reset_to_default_request_builder.EdiscoveryResetToDefaultRequestBuilder:
+    def microsoft_graph_ediscovery_reset_to_default(self) -> microsoft_graph_ediscovery_reset_to_default_request_builder.MicrosoftGraphEdiscoveryResetToDefaultRequestBuilder:
         """
         Provides operations to call the resetToDefault method.
         """
-        from .ediscovery_reset_to_default import ediscovery_reset_to_default_request_builder
+        from .microsoft_graph_ediscovery_reset_to_default import microsoft_graph_ediscovery_reset_to_default_request_builder
 
-        return ediscovery_reset_to_default_request_builder.EdiscoveryResetToDefaultRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_ediscovery_reset_to_default_request_builder.MicrosoftGraphEdiscoveryResetToDefaultRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class SettingsRequestBuilderDeleteRequestConfiguration():
@@ -181,7 +181,7 @@ class SettingsRequestBuilder():
     @dataclass
     class SettingsRequestBuilderGetQueryParameters():
         """
-        Get settings from compliance
+        Read the properties and relationships of an eDiscovery caseSettings object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -54,7 +54,7 @@ class DevicesRequestBuilder():
     
     async def get(self,request_configuration: Optional[DevicesRequestBuilderGetRequestConfiguration] = None) -> Optional[teamwork_device_collection_response.TeamworkDeviceCollectionResponse]:
         """
-        The Teams devices provisioned for the tenant.
+        Get a list of all Microsoft Teams-enabled devices provisioned for a tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[teamwork_device_collection_response.TeamworkDeviceCollectionResponse]
@@ -101,7 +101,7 @@ class DevicesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[DevicesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The Teams devices provisioned for the tenant.
+        Get a list of all Microsoft Teams-enabled devices provisioned for a tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class DevicesRequestBuilder():
     @dataclass
     class DevicesRequestBuilderGetQueryParameters():
         """
-        The Teams devices provisioned for the tenant.
+        Get a list of all Microsoft Teams-enabled devices provisioned for a tenant.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

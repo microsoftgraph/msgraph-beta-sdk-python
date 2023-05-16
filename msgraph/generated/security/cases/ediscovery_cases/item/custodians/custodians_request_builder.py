@@ -14,8 +14,8 @@ if TYPE_CHECKING:
     from ......models.security import ediscovery_custodian, ediscovery_custodian_collection_response
     from .count import count_request_builder
     from .item import ediscovery_custodian_item_request_builder
-    from .security_apply_hold import security_apply_hold_request_builder
-    from .security_remove_hold import security_remove_hold_request_builder
+    from .microsoft_graph_security_apply_hold import microsoft_graph_security_apply_hold_request_builder
+    from .microsoft_graph_security_remove_hold import microsoft_graph_security_remove_hold_request_builder
 
 class CustodiansRequestBuilder():
     """
@@ -56,7 +56,7 @@ class CustodiansRequestBuilder():
     
     async def get(self,request_configuration: Optional[CustodiansRequestBuilderGetRequestConfiguration] = None) -> Optional[ediscovery_custodian_collection_response.EdiscoveryCustodianCollectionResponse]:
         """
-        Returns a list of case ediscoveryCustodian objects for this case.
+        Get a list of the custodian objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ediscovery_custodian_collection_response.EdiscoveryCustodianCollectionResponse]
@@ -78,7 +78,7 @@ class CustodiansRequestBuilder():
     
     async def post(self,body: Optional[ediscovery_custodian.EdiscoveryCustodian] = None, request_configuration: Optional[CustodiansRequestBuilderPostRequestConfiguration] = None) -> Optional[ediscovery_custodian.EdiscoveryCustodian]:
         """
-        Create new navigation property to custodians for security
+        Create a new ediscoveryCustodian object.After the custodian object is created, you will need to create the custodian's userSource to reference their mailbox and OneDrive for Business site.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class CustodiansRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CustodiansRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Returns a list of case ediscoveryCustodian objects for this case.
+        Get a list of the custodian objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -121,7 +121,7 @@ class CustodiansRequestBuilder():
     
     def to_post_request_information(self,body: Optional[ediscovery_custodian.EdiscoveryCustodian] = None, request_configuration: Optional[CustodiansRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to custodians for security
+        Create a new ediscoveryCustodian object.After the custodian object is created, you will need to create the custodian's userSource to reference their mailbox and OneDrive for Business site.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,27 +150,27 @@ class CustodiansRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def security_apply_hold(self) -> security_apply_hold_request_builder.SecurityApplyHoldRequestBuilder:
+    def microsoft_graph_security_apply_hold(self) -> microsoft_graph_security_apply_hold_request_builder.MicrosoftGraphSecurityApplyHoldRequestBuilder:
         """
         Provides operations to call the applyHold method.
         """
-        from .security_apply_hold import security_apply_hold_request_builder
+        from .microsoft_graph_security_apply_hold import microsoft_graph_security_apply_hold_request_builder
 
-        return security_apply_hold_request_builder.SecurityApplyHoldRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_security_apply_hold_request_builder.MicrosoftGraphSecurityApplyHoldRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def security_remove_hold(self) -> security_remove_hold_request_builder.SecurityRemoveHoldRequestBuilder:
+    def microsoft_graph_security_remove_hold(self) -> microsoft_graph_security_remove_hold_request_builder.MicrosoftGraphSecurityRemoveHoldRequestBuilder:
         """
         Provides operations to call the removeHold method.
         """
-        from .security_remove_hold import security_remove_hold_request_builder
+        from .microsoft_graph_security_remove_hold import microsoft_graph_security_remove_hold_request_builder
 
-        return security_remove_hold_request_builder.SecurityRemoveHoldRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_security_remove_hold_request_builder.MicrosoftGraphSecurityRemoveHoldRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class CustodiansRequestBuilderGetQueryParameters():
         """
-        Returns a list of case ediscoveryCustodian objects for this case.
+        Get a list of the custodian objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

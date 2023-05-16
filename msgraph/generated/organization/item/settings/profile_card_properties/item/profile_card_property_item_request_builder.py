@@ -56,7 +56,7 @@ class ProfileCardPropertyItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[ProfileCardPropertyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[profile_card_property.ProfileCardProperty]:
         """
-        Contains a collection of the properties an administrator has defined as visible on the Microsoft 365 profile card. Get organization settings returns the properties configured for profile cards for the organization.
+        Retrieve the properties and relationships of a profileCardProperty entity, which contains the profile card customizations that exist in your Microsoft 365 organization for a given field. The profileCardProperty is identified by its **directoryPropertyName** property.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[profile_card_property.ProfileCardProperty]
@@ -119,7 +119,7 @@ class ProfileCardPropertyItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ProfileCardPropertyItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Contains a collection of the properties an administrator has defined as visible on the Microsoft 365 profile card. Get organization settings returns the properties configured for profile cards for the organization.
+        Retrieve the properties and relationships of a profileCardProperty entity, which contains the profile card customizations that exist in your Microsoft 365 organization for a given field. The profileCardProperty is identified by its **directoryPropertyName** property.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class ProfileCardPropertyItemRequestBuilder():
     @dataclass
     class ProfileCardPropertyItemRequestBuilderGetQueryParameters():
         """
-        Contains a collection of the properties an administrator has defined as visible on the Microsoft 365 profile card. Get organization settings returns the properties configured for profile cards for the organization.
+        Retrieve the properties and relationships of a profileCardProperty entity, which contains the profile card customizations that exist in your Microsoft 365 organization for a given field. The profileCardProperty is identified by its **directoryPropertyName** property.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

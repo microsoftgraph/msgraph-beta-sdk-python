@@ -12,14 +12,14 @@ from .. import entity
 class ExternalActivity(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new externalActivity and sets the default values.
+        Instantiates a new ExternalActivity and sets the default values.
         """
         super().__init__()
         # The OdataType property
         self.odata_type: Optional[str] = None
         # Represents an identity used to identify who is responsible for the activity.
         self._performed_by: Optional[identity.Identity] = None
-        # When the particular activity occurred.
+        # The date and time when the particular activity occurred. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         self._start_date_time: Optional[datetime] = None
         # The type property
         self._type: Optional[external_activity_type.ExternalActivityType] = None
@@ -93,7 +93,7 @@ class ExternalActivity(entity.Entity):
     @property
     def start_date_time(self,) -> Optional[datetime]:
         """
-        Gets the startDateTime property value. When the particular activity occurred.
+        Gets the startDateTime property value. The date and time when the particular activity occurred. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Returns: Optional[datetime]
         """
         return self._start_date_time
@@ -101,7 +101,7 @@ class ExternalActivity(entity.Entity):
     @start_date_time.setter
     def start_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the startDateTime property value. When the particular activity occurred.
+        Sets the startDateTime property value. The date and time when the particular activity occurred. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
             value: Value to set for the start_date_time property.
         """

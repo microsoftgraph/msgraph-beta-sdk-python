@@ -36,7 +36,7 @@ class PauseRequestBuilder():
     
     async def post(self,request_configuration: Optional[PauseRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Invoke action pause
+        Pause the sync of a specific school data synchronization profile in the tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class PauseRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[PauseRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action pause
+        Pause the sync of a specific school data synchronization profile in the tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

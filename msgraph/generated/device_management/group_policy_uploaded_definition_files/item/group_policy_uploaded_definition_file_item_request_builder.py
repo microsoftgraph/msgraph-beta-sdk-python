@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ....models import group_policy_uploaded_definition_file
     from ....models.o_data_errors import o_data_error
     from .add_language_files import add_language_files_request_builder
+    from .definitions import definitions_request_builder
     from .group_policy_operations import group_policy_operations_request_builder
     from .remove import remove_request_builder
     from .remove_language_files import remove_language_files_request_builder
@@ -170,6 +171,15 @@ class GroupPolicyUploadedDefinitionFileItemRequestBuilder():
         from .add_language_files import add_language_files_request_builder
 
         return add_language_files_request_builder.AddLanguageFilesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def definitions(self) -> definitions_request_builder.DefinitionsRequestBuilder:
+        """
+        Provides operations to manage the definitions property of the microsoft.graph.groupPolicyDefinitionFile entity.
+        """
+        from .definitions import definitions_request_builder
+
+        return definitions_request_builder.DefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def group_policy_operations(self) -> group_policy_operations_request_builder.GroupPolicyOperationsRequestBuilder:

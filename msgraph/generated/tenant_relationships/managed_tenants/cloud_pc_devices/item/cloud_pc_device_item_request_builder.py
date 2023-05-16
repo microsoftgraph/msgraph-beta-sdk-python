@@ -56,7 +56,7 @@ class CloudPcDeviceItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[CloudPcDeviceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_device.CloudPcDevice]:
         """
-        The collection of cloud PC devices across managed tenants.
+        Read the properties and relationships of a cloudPcDevice object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cloud_pc_device.CloudPcDevice]
@@ -119,7 +119,7 @@ class CloudPcDeviceItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CloudPcDeviceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection of cloud PC devices across managed tenants.
+        Read the properties and relationships of a cloudPcDevice object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class CloudPcDeviceItemRequestBuilder():
     @dataclass
     class CloudPcDeviceItemRequestBuilderGetQueryParameters():
         """
-        The collection of cloud PC devices across managed tenants.
+        Read the properties and relationships of a cloudPcDevice object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

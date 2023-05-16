@@ -13,7 +13,7 @@ class CrossTenantIdentitySyncPolicyPartner(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # Display name for the cross-tenant user synchronization policy. Use the name of the partner Azure AD tenant to easily identify the policy. Optional.
+        # Display name for the cross-tenant user synchronization policy. Use the name of the partner Azure AD (Azure Active Directory) tenant to easily identify the policy. Optional.
         self._display_name: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
@@ -54,7 +54,7 @@ class CrossTenantIdentitySyncPolicyPartner(AdditionalDataHolder, Parsable):
     @property
     def display_name(self,) -> Optional[str]:
         """
-        Gets the displayName property value. Display name for the cross-tenant user synchronization policy. Use the name of the partner Azure AD tenant to easily identify the policy. Optional.
+        Gets the displayName property value. Display name for the cross-tenant user synchronization policy. Use the name of the partner Azure AD (Azure Active Directory) tenant to easily identify the policy. Optional.
         Returns: Optional[str]
         """
         return self._display_name
@@ -62,7 +62,7 @@ class CrossTenantIdentitySyncPolicyPartner(AdditionalDataHolder, Parsable):
     @display_name.setter
     def display_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the displayName property value. Display name for the cross-tenant user synchronization policy. Use the name of the partner Azure AD tenant to easily identify the policy. Optional.
+        Sets the displayName property value. Display name for the cross-tenant user synchronization policy. Use the name of the partner Azure AD (Azure Active Directory) tenant to easily identify the policy. Optional.
         Args:
             value: Value to set for the display_name property.
         """

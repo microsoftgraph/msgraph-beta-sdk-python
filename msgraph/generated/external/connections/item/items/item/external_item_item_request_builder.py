@@ -13,7 +13,7 @@ if TYPE_CHECKING:
     from ......models.external_connectors import external_item
     from ......models.o_data_errors import o_data_error
     from .activities import activities_request_builder
-    from .external_connectors_add_activities import external_connectors_add_activities_request_builder
+    from .microsoft_graph_external_connectors_add_activities import microsoft_graph_external_connectors_add_activities_request_builder
 
 class ExternalItemItemRequestBuilder():
     """
@@ -39,7 +39,7 @@ class ExternalItemItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[ExternalItemItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property items for external
+        Delete an externalitem.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -58,7 +58,7 @@ class ExternalItemItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[ExternalItemItemRequestBuilderGetRequestConfiguration] = None) -> Optional[external_item.ExternalItem]:
         """
-        Get items from external
+        Get the properties and relationships of an externalitem object. This API is provided for diagnostic purposes only. It is not intended to be used for any other purpose. Repeated requests to this API might result in `429` HTTP errors.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[external_item.ExternalItem]
@@ -105,7 +105,7 @@ class ExternalItemItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[ExternalItemItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property items for external
+        Delete an externalitem.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -121,7 +121,7 @@ class ExternalItemItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ExternalItemItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get items from external
+        Get the properties and relationships of an externalitem object. This API is provided for diagnostic purposes only. It is not intended to be used for any other purpose. Repeated requests to this API might result in `429` HTTP errors.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -168,13 +168,13 @@ class ExternalItemItemRequestBuilder():
         return activities_request_builder.ActivitiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def external_connectors_add_activities(self) -> external_connectors_add_activities_request_builder.ExternalConnectorsAddActivitiesRequestBuilder:
+    def microsoft_graph_external_connectors_add_activities(self) -> microsoft_graph_external_connectors_add_activities_request_builder.MicrosoftGraphExternalConnectorsAddActivitiesRequestBuilder:
         """
         Provides operations to call the addActivities method.
         """
-        from .external_connectors_add_activities import external_connectors_add_activities_request_builder
+        from .microsoft_graph_external_connectors_add_activities import microsoft_graph_external_connectors_add_activities_request_builder
 
-        return external_connectors_add_activities_request_builder.ExternalConnectorsAddActivitiesRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_external_connectors_add_activities_request_builder.MicrosoftGraphExternalConnectorsAddActivitiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ExternalItemItemRequestBuilderDeleteRequestConfiguration():
@@ -191,7 +191,7 @@ class ExternalItemItemRequestBuilder():
     @dataclass
     class ExternalItemItemRequestBuilderGetQueryParameters():
         """
-        Get items from external
+        Get the properties and relationships of an externalitem object. This API is provided for diagnostic purposes only. It is not intended to be used for any other purpose. Repeated requests to this API might result in `429` HTTP errors.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

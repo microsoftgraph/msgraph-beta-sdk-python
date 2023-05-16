@@ -56,7 +56,7 @@ class TenantDetailedInformationItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[TenantDetailedInformationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[tenant_detailed_information.TenantDetailedInformation]:
         """
-        The collection tenant level detailed information across managed tenants.
+        Read the properties and relationships of a tenantDetailedInformation object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[tenant_detailed_information.TenantDetailedInformation]
@@ -119,7 +119,7 @@ class TenantDetailedInformationItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TenantDetailedInformationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection tenant level detailed information across managed tenants.
+        Read the properties and relationships of a tenantDetailedInformation object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class TenantDetailedInformationItemRequestBuilder():
     @dataclass
     class TenantDetailedInformationItemRequestBuilderGetQueryParameters():
         """
-        The collection tenant level detailed information across managed tenants.
+        Read the properties and relationships of a tenantDetailedInformation object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

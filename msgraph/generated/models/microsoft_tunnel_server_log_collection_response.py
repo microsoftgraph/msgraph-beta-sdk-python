@@ -9,9 +9,12 @@ if TYPE_CHECKING:
 from . import entity
 
 class MicrosoftTunnelServerLogCollectionResponse(entity.Entity):
+    """
+    Entity that stores the server log collection status.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new MicrosoftTunnelServerLogCollectionResponse and sets the default values.
+        Instantiates a new microsoftTunnelServerLogCollectionResponse and sets the default values.
         """
         super().__init__()
         # The end time of the logs collected

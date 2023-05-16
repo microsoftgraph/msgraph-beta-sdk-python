@@ -56,7 +56,7 @@ class HealthRequestBuilder():
     
     async def get(self,request_configuration: Optional[HealthRequestBuilderGetRequestConfiguration] = None) -> Optional[teamwork_device_health.TeamworkDeviceHealth]:
         """
-        The health properties of the device.
+        Get the health details of a Microsoft Teams-enabled device. Device health is calculated based on the device configuration and other device parameters.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[teamwork_device_health.TeamworkDeviceHealth]
@@ -119,7 +119,7 @@ class HealthRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[HealthRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The health properties of the device.
+        Get the health details of a Microsoft Teams-enabled device. Device health is calculated based on the device configuration and other device parameters.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class HealthRequestBuilder():
     @dataclass
     class HealthRequestBuilderGetQueryParameters():
         """
-        The health properties of the device.
+        Get the health details of a Microsoft Teams-enabled device. Device health is calculated based on the device configuration and other device parameters.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

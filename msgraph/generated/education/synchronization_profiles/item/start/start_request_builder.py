@@ -37,7 +37,7 @@ class StartRequestBuilder():
     
     async def post(self,request_configuration: Optional[StartRequestBuilderPostRequestConfiguration] = None) -> Optional[start_response.StartResponse]:
         """
-        Invoke action start
+        Verify the files uploaded to a specific school data synchronization profile in the tenant. If the verification is successful, synchronization will start on the profile. Otherwise, the response will contain errors and warnings. If the response contains errors, the synchronization will not start. If the response contains only warnings, synchronization will start.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[start_response.StartResponse]
@@ -59,7 +59,7 @@ class StartRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[StartRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action start
+        Verify the files uploaded to a specific school data synchronization profile in the tenant. If the verification is successful, synchronization will start on the profile. Otherwise, the response will contain errors and warnings. If the response contains errors, the synchronization will not start. If the response contains only warnings, synchronization will start.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

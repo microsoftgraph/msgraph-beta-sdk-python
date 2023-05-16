@@ -56,7 +56,7 @@ class ActivityRequestBuilder():
     
     async def get(self,request_configuration: Optional[ActivityRequestBuilderGetRequestConfiguration] = None) -> Optional[teamwork_device_activity.TeamworkDeviceActivity]:
         """
-        The activity properties that change based on the device usage.
+        Get the activity status of a Microsoft Teams-enabled device. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[teamwork_device_activity.TeamworkDeviceActivity]
@@ -119,7 +119,7 @@ class ActivityRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ActivityRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The activity properties that change based on the device usage.
+        Get the activity status of a Microsoft Teams-enabled device. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class ActivityRequestBuilder():
     @dataclass
     class ActivityRequestBuilderGetQueryParameters():
         """
-        The activity properties that change based on the device usage.
+        Get the activity status of a Microsoft Teams-enabled device. 
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

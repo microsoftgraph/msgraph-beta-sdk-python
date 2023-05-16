@@ -54,7 +54,7 @@ class LicenseDetailsRequestBuilder():
     
     async def get(self,request_configuration: Optional[LicenseDetailsRequestBuilderGetRequestConfiguration] = None) -> Optional[license_details_collection_response.LicenseDetailsCollectionResponse]:
         """
-        Get licenseDetails from me
+        Retrieve a list of licenseDetails objects for enterprise users. This API returns details for licenses that are directly assigned and those transitively assigned through memberships in licensed groups.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[license_details_collection_response.LicenseDetailsCollectionResponse]
@@ -101,7 +101,7 @@ class LicenseDetailsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[LicenseDetailsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get licenseDetails from me
+        Retrieve a list of licenseDetails objects for enterprise users. This API returns details for licenses that are directly assigned and those transitively assigned through memberships in licensed groups.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class LicenseDetailsRequestBuilder():
     @dataclass
     class LicenseDetailsRequestBuilderGetQueryParameters():
         """
-        Get licenseDetails from me
+        Retrieve a list of licenseDetails objects for enterprise users. This API returns details for licenses that are directly assigned and those transitively assigned through memberships in licensed groups.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

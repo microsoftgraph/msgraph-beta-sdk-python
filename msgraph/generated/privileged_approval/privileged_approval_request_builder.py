@@ -55,7 +55,7 @@ class PrivilegedApprovalRequestBuilder():
     
     async def get(self,request_configuration: Optional[PrivilegedApprovalRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_approval_collection_response.PrivilegedApprovalCollectionResponse]:
         """
-        Retrieve a list of privilegedapproval objects. To filter the results from the query, use the standard OData ``$filter`` expressions in the URIs.
+        Get entities from privilegedApproval
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[privileged_approval_collection_response.PrivilegedApprovalCollectionResponse]
@@ -77,7 +77,7 @@ class PrivilegedApprovalRequestBuilder():
     
     async def post(self,body: Optional[privileged_approval.PrivilegedApproval] = None, request_configuration: Optional[PrivilegedApprovalRequestBuilderPostRequestConfiguration] = None) -> Optional[privileged_approval.PrivilegedApproval]:
         """
-        Use this API to create a new privilegedApproval.
+        Add new entity to privilegedApproval
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -102,7 +102,7 @@ class PrivilegedApprovalRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PrivilegedApprovalRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of privilegedapproval objects. To filter the results from the query, use the standard OData ``$filter`` expressions in the URIs.
+        Get entities from privilegedApproval
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -120,7 +120,7 @@ class PrivilegedApprovalRequestBuilder():
     
     def to_post_request_information(self,body: Optional[privileged_approval.PrivilegedApproval] = None, request_configuration: Optional[PrivilegedApprovalRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Use this API to create a new privilegedApproval.
+        Add new entity to privilegedApproval
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -160,7 +160,7 @@ class PrivilegedApprovalRequestBuilder():
     @dataclass
     class PrivilegedApprovalRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of privilegedapproval objects. To filter the results from the query, use the standard OData ``$filter`` expressions in the URIs.
+        Get entities from privilegedApproval
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

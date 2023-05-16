@@ -54,7 +54,7 @@ class PagesRequestBuilder():
     
     async def get(self,request_configuration: Optional[PagesRequestBuilderGetRequestConfiguration] = None) -> Optional[site_page_collection_response.SitePageCollectionResponse]:
         """
-        The collection of pages in the SitePages list in this site.
+        Get the collection of [sitePage][] objects from the site pages [list][] in a site [site][]. All pages in the site are returned (with pagination). Sort alphabetically by `name` in ascending order.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[site_page_collection_response.SitePageCollectionResponse]
@@ -76,7 +76,7 @@ class PagesRequestBuilder():
     
     async def post(self,body: Optional[site_page.SitePage] = None, request_configuration: Optional[PagesRequestBuilderPostRequestConfiguration] = None) -> Optional[site_page.SitePage]:
         """
-        Create new navigation property to pages for groups
+        Create a new [sitePage][] in the site pages [list][] in a [site][].
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class PagesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PagesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection of pages in the SitePages list in this site.
+        Get the collection of [sitePage][] objects from the site pages [list][] in a site [site][]. All pages in the site are returned (with pagination). Sort alphabetically by `name` in ascending order.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class PagesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[site_page.SitePage] = None, request_configuration: Optional[PagesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to pages for groups
+        Create a new [sitePage][] in the site pages [list][] in a [site][].
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class PagesRequestBuilder():
     @dataclass
     class PagesRequestBuilderGetQueryParameters():
         """
-        The collection of pages in the SitePages list in this site.
+        Get the collection of [sitePage][] objects from the site pages [list][] in a site [site][]. All pages in the site are returned (with pagination). Sort alphabetically by `name` in ascending order.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

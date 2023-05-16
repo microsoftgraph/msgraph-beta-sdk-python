@@ -22,8 +22,6 @@ if TYPE_CHECKING:
     from .extensions import extensions_request_builder
     from .forward import forward_request_builder
     from .instances import instances_request_builder
-    from .multi_value_extended_properties import multi_value_extended_properties_request_builder
-    from .single_value_extended_properties import single_value_extended_properties_request_builder
     from .snooze_reminder import snooze_reminder_request_builder
     from .tentatively_accept import tentatively_accept_request_builder
 
@@ -51,7 +49,7 @@ class EventItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[EventItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property events for groups
+        Delete an event object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -70,7 +68,7 @@ class EventItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[EventItemRequestBuilderGetRequestConfiguration] = None) -> Optional[event.Event]:
         """
-        The group's events.
+        Get an event object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[event.Event]
@@ -92,7 +90,7 @@ class EventItemRequestBuilder():
     
     async def patch(self,body: Optional[event.Event] = None, request_configuration: Optional[EventItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[event.Event]:
         """
-        Update the navigation property events in groups
+        Update an event object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -117,7 +115,7 @@ class EventItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[EventItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property events for groups
+        Delete an event object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -133,7 +131,7 @@ class EventItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[EventItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The group's events.
+        Get an event object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -151,7 +149,7 @@ class EventItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[event.Event] = None, request_configuration: Optional[EventItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property events in groups
+        Update an event object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -261,24 +259,6 @@ class EventItemRequestBuilder():
         return instances_request_builder.InstancesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def multi_value_extended_properties(self) -> multi_value_extended_properties_request_builder.MultiValueExtendedPropertiesRequestBuilder:
-        """
-        Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.event entity.
-        """
-        from .multi_value_extended_properties import multi_value_extended_properties_request_builder
-
-        return multi_value_extended_properties_request_builder.MultiValueExtendedPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def single_value_extended_properties(self) -> single_value_extended_properties_request_builder.SingleValueExtendedPropertiesRequestBuilder:
-        """
-        Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.event entity.
-        """
-        from .single_value_extended_properties import single_value_extended_properties_request_builder
-
-        return single_value_extended_properties_request_builder.SingleValueExtendedPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def snooze_reminder(self) -> snooze_reminder_request_builder.SnoozeReminderRequestBuilder:
         """
         Provides operations to call the snoozeReminder method.
@@ -311,7 +291,7 @@ class EventItemRequestBuilder():
     @dataclass
     class EventItemRequestBuilderGetQueryParameters():
         """
-        The group's events.
+        Get an event object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

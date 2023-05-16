@@ -13,17 +13,17 @@ class PrivilegedRoleSummary(entity.Entity):
         Instantiates a new privilegedRoleSummary and sets the default values.
         """
         super().__init__()
-        # The number of users that have the role assigned and the role is activated.
+        # The elevatedCount property
         self._elevated_count: Optional[int] = None
-        # The number of users that have the role assigned but the role is deactivated.
+        # The managedCount property
         self._managed_count: Optional[int] = None
-        # true if the role activation requires MFA. false if the role activation doesn't require MFA.
+        # The mfaEnabled property
         self._mfa_enabled: Optional[bool] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # Possible values are: ok, bad. The value depends on the ratio of (managedCount / usersCount). If the ratio is less than a predefined threshold, ok is returned. Otherwise, bad is returned.
+        # The status property
         self._status: Optional[role_summary_status.RoleSummaryStatus] = None
-        # The number of users that are assigned with the role.
+        # The usersCount property
         self._users_count: Optional[int] = None
     
     @staticmethod
@@ -41,7 +41,7 @@ class PrivilegedRoleSummary(entity.Entity):
     @property
     def elevated_count(self,) -> Optional[int]:
         """
-        Gets the elevatedCount property value. The number of users that have the role assigned and the role is activated.
+        Gets the elevatedCount property value. The elevatedCount property
         Returns: Optional[int]
         """
         return self._elevated_count
@@ -49,7 +49,7 @@ class PrivilegedRoleSummary(entity.Entity):
     @elevated_count.setter
     def elevated_count(self,value: Optional[int] = None) -> None:
         """
-        Sets the elevatedCount property value. The number of users that have the role assigned and the role is activated.
+        Sets the elevatedCount property value. The elevatedCount property
         Args:
             value: Value to set for the elevated_count property.
         """
@@ -76,7 +76,7 @@ class PrivilegedRoleSummary(entity.Entity):
     @property
     def managed_count(self,) -> Optional[int]:
         """
-        Gets the managedCount property value. The number of users that have the role assigned but the role is deactivated.
+        Gets the managedCount property value. The managedCount property
         Returns: Optional[int]
         """
         return self._managed_count
@@ -84,7 +84,7 @@ class PrivilegedRoleSummary(entity.Entity):
     @managed_count.setter
     def managed_count(self,value: Optional[int] = None) -> None:
         """
-        Sets the managedCount property value. The number of users that have the role assigned but the role is deactivated.
+        Sets the managedCount property value. The managedCount property
         Args:
             value: Value to set for the managed_count property.
         """
@@ -93,7 +93,7 @@ class PrivilegedRoleSummary(entity.Entity):
     @property
     def mfa_enabled(self,) -> Optional[bool]:
         """
-        Gets the mfaEnabled property value. true if the role activation requires MFA. false if the role activation doesn't require MFA.
+        Gets the mfaEnabled property value. The mfaEnabled property
         Returns: Optional[bool]
         """
         return self._mfa_enabled
@@ -101,7 +101,7 @@ class PrivilegedRoleSummary(entity.Entity):
     @mfa_enabled.setter
     def mfa_enabled(self,value: Optional[bool] = None) -> None:
         """
-        Sets the mfaEnabled property value. true if the role activation requires MFA. false if the role activation doesn't require MFA.
+        Sets the mfaEnabled property value. The mfaEnabled property
         Args:
             value: Value to set for the mfa_enabled property.
         """
@@ -125,7 +125,7 @@ class PrivilegedRoleSummary(entity.Entity):
     @property
     def status(self,) -> Optional[role_summary_status.RoleSummaryStatus]:
         """
-        Gets the status property value. Possible values are: ok, bad. The value depends on the ratio of (managedCount / usersCount). If the ratio is less than a predefined threshold, ok is returned. Otherwise, bad is returned.
+        Gets the status property value. The status property
         Returns: Optional[role_summary_status.RoleSummaryStatus]
         """
         return self._status
@@ -133,7 +133,7 @@ class PrivilegedRoleSummary(entity.Entity):
     @status.setter
     def status(self,value: Optional[role_summary_status.RoleSummaryStatus] = None) -> None:
         """
-        Sets the status property value. Possible values are: ok, bad. The value depends on the ratio of (managedCount / usersCount). If the ratio is less than a predefined threshold, ok is returned. Otherwise, bad is returned.
+        Sets the status property value. The status property
         Args:
             value: Value to set for the status property.
         """
@@ -142,7 +142,7 @@ class PrivilegedRoleSummary(entity.Entity):
     @property
     def users_count(self,) -> Optional[int]:
         """
-        Gets the usersCount property value. The number of users that are assigned with the role.
+        Gets the usersCount property value. The usersCount property
         Returns: Optional[int]
         """
         return self._users_count
@@ -150,7 +150,7 @@ class PrivilegedRoleSummary(entity.Entity):
     @users_count.setter
     def users_count(self,value: Optional[int] = None) -> None:
         """
-        Sets the usersCount property value. The number of users that are assigned with the role.
+        Sets the usersCount property value. The usersCount property
         Args:
             value: Value to set for the users_count property.
         """

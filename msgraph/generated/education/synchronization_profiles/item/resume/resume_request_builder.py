@@ -36,7 +36,7 @@ class ResumeRequestBuilder():
     
     async def post(self,request_configuration: Optional[ResumeRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Invoke action resume
+        Resume the sync of a specific school data synchronization profile in the tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class ResumeRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[ResumeRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action resume
+        Resume the sync of a specific school data synchronization profile in the tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

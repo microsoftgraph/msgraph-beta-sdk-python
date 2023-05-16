@@ -37,7 +37,7 @@ class MeetingRegistrationQuestionItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[MeetingRegistrationQuestionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property customQuestions for app
+        Delete a custom registration question from a meetingRegistration object on behalf of the organizer.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class MeetingRegistrationQuestionItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[MeetingRegistrationQuestionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[meeting_registration_question.MeetingRegistrationQuestion]:
         """
-        Custom registration questions.
+        Get a custom registration question associated with a meetingRegistration object on behalf of the organizer.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[meeting_registration_question.MeetingRegistrationQuestion]
@@ -78,7 +78,7 @@ class MeetingRegistrationQuestionItemRequestBuilder():
     
     async def patch(self,body: Optional[meeting_registration_question.MeetingRegistrationQuestion] = None, request_configuration: Optional[MeetingRegistrationQuestionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[meeting_registration_question.MeetingRegistrationQuestion]:
         """
-        Update the navigation property customQuestions in app
+        Update a custom registration question associated with a meetingRegistration object on behalf of the organizer.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class MeetingRegistrationQuestionItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[MeetingRegistrationQuestionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property customQuestions for app
+        Delete a custom registration question from a meetingRegistration object on behalf of the organizer.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class MeetingRegistrationQuestionItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[MeetingRegistrationQuestionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Custom registration questions.
+        Get a custom registration question associated with a meetingRegistration object on behalf of the organizer.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class MeetingRegistrationQuestionItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[meeting_registration_question.MeetingRegistrationQuestion] = None, request_configuration: Optional[MeetingRegistrationQuestionItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property customQuestions in app
+        Update a custom registration question associated with a meetingRegistration object on behalf of the organizer.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class MeetingRegistrationQuestionItemRequestBuilder():
     @dataclass
     class MeetingRegistrationQuestionItemRequestBuilderGetQueryParameters():
         """
-        Custom registration questions.
+        Get a custom registration question associated with a meetingRegistration object on behalf of the organizer.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

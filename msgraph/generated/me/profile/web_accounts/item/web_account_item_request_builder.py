@@ -37,7 +37,7 @@ class WebAccountItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[WebAccountItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property webAccounts for me
+        Delete a webAccount object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class WebAccountItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[WebAccountItemRequestBuilderGetRequestConfiguration] = None) -> Optional[web_account.WebAccount]:
         """
-        Represents web accounts the user has indicated they use or has added to their user profile.
+        Retrieve the properties and relationships of a webAccount object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[web_account.WebAccount]
@@ -78,7 +78,7 @@ class WebAccountItemRequestBuilder():
     
     async def patch(self,body: Optional[web_account.WebAccount] = None, request_configuration: Optional[WebAccountItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[web_account.WebAccount]:
         """
-        Update the navigation property webAccounts in me
+        Update the properties of a webAccount object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class WebAccountItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[WebAccountItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property webAccounts for me
+        Delete a webAccount object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class WebAccountItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[WebAccountItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents web accounts the user has indicated they use or has added to their user profile.
+        Retrieve the properties and relationships of a webAccount object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class WebAccountItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[web_account.WebAccount] = None, request_configuration: Optional[WebAccountItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property webAccounts in me
+        Update the properties of a webAccount object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class WebAccountItemRequestBuilder():
     @dataclass
     class WebAccountItemRequestBuilderGetQueryParameters():
         """
-        Represents web accounts the user has indicated they use or has added to their user profile.
+        Retrieve the properties and relationships of a webAccount object from a user's profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

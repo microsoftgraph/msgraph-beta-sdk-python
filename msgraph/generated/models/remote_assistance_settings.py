@@ -10,7 +10,7 @@ from . import entity
 class RemoteAssistanceSettings(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new RemoteAssistanceSettings and sets the default values.
+        Instantiates a new remoteAssistanceSettings and sets the default values.
         """
         super().__init__()
         # Indicates if sessions to unenrolled devices are allowed for the account. This setting is configurable by the admin. Default value is false.

@@ -36,7 +36,7 @@ class RebootRequestBuilder():
     
     async def post(self,request_configuration: Optional[RebootRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Invoke action reboot
+        Reboot a specific Cloud PC.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class RebootRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[RebootRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action reboot
+        Reboot a specific Cloud PC.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

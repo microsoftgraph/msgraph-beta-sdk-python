@@ -22,6 +22,7 @@ if TYPE_CHECKING:
     from .send_reminder import send_reminder_request_builder
     from .stages import stages_request_builder
     from .stop import stop_request_builder
+    from .stop_apply_decisions import stop_apply_decisions_request_builder
 
 class AccessReviewInstanceItemRequestBuilder():
     """
@@ -66,7 +67,7 @@ class AccessReviewInstanceItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[AccessReviewInstanceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_instance.AccessReviewInstance]:
         """
-        Set of access reviews instances for this access review series. Access reviews that do not recur will only have one instance; otherwise, there is an instance for each recurrence.
+        Retrieve an accessReviewInstance object using the identifier of an accessReviewInstance and its parent accessReviewScheduleDefinition. This returns all properties of the instance except for the associated accessReviewInstanceDecisionItems. To retrieve the decisions on the instance, use List accessReviewInstanceDecisionItem.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_review_instance.AccessReviewInstance]
@@ -88,7 +89,7 @@ class AccessReviewInstanceItemRequestBuilder():
     
     async def patch(self,body: Optional[access_review_instance.AccessReviewInstance] = None, request_configuration: Optional[AccessReviewInstanceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[access_review_instance.AccessReviewInstance]:
         """
-        Update the navigation property instances in identityGovernance
+        Update the properties of an accessReviewInstance object. Only the **reviewers** and **fallbackReviewers** properties can be updated but the **scope** property is also required in the request body. You can only add reviewers to the **fallbackReviewers** property but can't remove existing **fallbackReviewers**. To update an **accessReviewInstance**, it's **status** must be `InProgress`.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -129,7 +130,7 @@ class AccessReviewInstanceItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AccessReviewInstanceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Set of access reviews instances for this access review series. Access reviews that do not recur will only have one instance; otherwise, there is an instance for each recurrence.
+        Retrieve an accessReviewInstance object using the identifier of an accessReviewInstance and its parent accessReviewScheduleDefinition. This returns all properties of the instance except for the associated accessReviewInstanceDecisionItems. To retrieve the decisions on the instance, use List accessReviewInstanceDecisionItem.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -147,7 +148,7 @@ class AccessReviewInstanceItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[access_review_instance.AccessReviewInstance] = None, request_configuration: Optional[AccessReviewInstanceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property instances in identityGovernance
+        Update the properties of an accessReviewInstance object. Only the **reviewers** and **fallbackReviewers** properties can be updated but the **scope** property is also required in the request body. You can only add reviewers to the **fallbackReviewers** property but can't remove existing **fallbackReviewers**. To update an **accessReviewInstance**, it's **status** must be `InProgress`.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -256,6 +257,15 @@ class AccessReviewInstanceItemRequestBuilder():
 
         return stop_request_builder.StopRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
+    def stop_apply_decisions(self) -> stop_apply_decisions_request_builder.StopApplyDecisionsRequestBuilder:
+        """
+        Provides operations to call the stopApplyDecisions method.
+        """
+        from .stop_apply_decisions import stop_apply_decisions_request_builder
+
+        return stop_apply_decisions_request_builder.StopApplyDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class AccessReviewInstanceItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -271,7 +281,7 @@ class AccessReviewInstanceItemRequestBuilder():
     @dataclass
     class AccessReviewInstanceItemRequestBuilderGetQueryParameters():
         """
-        Set of access reviews instances for this access review series. Access reviews that do not recur will only have one instance; otherwise, there is an instance for each recurrence.
+        Retrieve an accessReviewInstance object using the identifier of an accessReviewInstance and its parent accessReviewScheduleDefinition. This returns all properties of the instance except for the associated accessReviewInstanceDecisionItems. To retrieve the decisions on the instance, use List accessReviewInstanceDecisionItem.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

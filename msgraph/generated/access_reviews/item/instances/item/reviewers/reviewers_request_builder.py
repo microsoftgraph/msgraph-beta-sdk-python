@@ -54,7 +54,7 @@ class ReviewersRequestBuilder():
     
     async def get(self,request_configuration: Optional[ReviewersRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_reviewer_collection_response.AccessReviewReviewerCollectionResponse]:
         """
-        The collection of reviewers for an access review, if access review reviewerType is of type delegated.
+        In the Azure AD access reviews feature, retrieve the reviewers of an accessReview object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_review_reviewer_collection_response.AccessReviewReviewerCollectionResponse]
@@ -76,7 +76,7 @@ class ReviewersRequestBuilder():
     
     async def post(self,body: Optional[access_review_reviewer.AccessReviewReviewer] = None, request_configuration: Optional[ReviewersRequestBuilderPostRequestConfiguration] = None) -> Optional[access_review_reviewer.AccessReviewReviewer]:
         """
-        Create new navigation property to reviewers for accessReviews
+        In the Azure AD access reviews feature, update an existing accessReview object to add another user as a reviewer.  This operation is only permitted for an access review that is not yet completed, and only for an access review where the reviewers are explicitly specified. This operation is not permitted for an access review in which users review their own access, and not intended for an access review in which the group owners are assigned as the reviewers. 
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class ReviewersRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ReviewersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection of reviewers for an access review, if access review reviewerType is of type delegated.
+        In the Azure AD access reviews feature, retrieve the reviewers of an accessReview object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class ReviewersRequestBuilder():
     
     def to_post_request_information(self,body: Optional[access_review_reviewer.AccessReviewReviewer] = None, request_configuration: Optional[ReviewersRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to reviewers for accessReviews
+        In the Azure AD access reviews feature, update an existing accessReview object to add another user as a reviewer.  This operation is only permitted for an access review that is not yet completed, and only for an access review where the reviewers are explicitly specified. This operation is not permitted for an access review in which users review their own access, and not intended for an access review in which the group owners are assigned as the reviewers. 
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class ReviewersRequestBuilder():
     @dataclass
     class ReviewersRequestBuilderGetQueryParameters():
         """
-        The collection of reviewers for an access review, if access review reviewerType is of type delegated.
+        In the Azure AD access reviews feature, retrieve the reviewers of an accessReview object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

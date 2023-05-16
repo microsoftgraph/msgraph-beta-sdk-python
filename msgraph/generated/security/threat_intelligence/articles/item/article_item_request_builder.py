@@ -57,7 +57,7 @@ class ArticleItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[ArticleItemRequestBuilderGetRequestConfiguration] = None) -> Optional[article.Article]:
         """
-        A list of article objects.
+        Read the properties and relationships of an article object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[article.Article]
@@ -120,7 +120,7 @@ class ArticleItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ArticleItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        A list of article objects.
+        Read the properties and relationships of an article object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -181,7 +181,7 @@ class ArticleItemRequestBuilder():
     @dataclass
     class ArticleItemRequestBuilderGetQueryParameters():
         """
-        A list of article objects.
+        Read the properties and relationships of an article object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

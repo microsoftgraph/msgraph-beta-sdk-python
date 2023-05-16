@@ -14,7 +14,7 @@ class OnTokenIssuanceStartListener(authentication_event_listener.AuthenticationE
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.onTokenIssuanceStartListener"
-        # The handler property
+        # The handler to invoke when conditions are met for this onTokenIssuanceStartListener.
         self._handler: Optional[on_token_issuance_start_handler.OnTokenIssuanceStartHandler] = None
     
     @staticmethod
@@ -46,7 +46,7 @@ class OnTokenIssuanceStartListener(authentication_event_listener.AuthenticationE
     @property
     def handler(self,) -> Optional[on_token_issuance_start_handler.OnTokenIssuanceStartHandler]:
         """
-        Gets the handler property value. The handler property
+        Gets the handler property value. The handler to invoke when conditions are met for this onTokenIssuanceStartListener.
         Returns: Optional[on_token_issuance_start_handler.OnTokenIssuanceStartHandler]
         """
         return self._handler
@@ -54,7 +54,7 @@ class OnTokenIssuanceStartListener(authentication_event_listener.AuthenticationE
     @handler.setter
     def handler(self,value: Optional[on_token_issuance_start_handler.OnTokenIssuanceStartHandler] = None) -> None:
         """
-        Sets the handler property value. The handler property
+        Sets the handler property value. The handler to invoke when conditions are met for this onTokenIssuanceStartListener.
         Args:
             value: Value to set for the handler property.
         """

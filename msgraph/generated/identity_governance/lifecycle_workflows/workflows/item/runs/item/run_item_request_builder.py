@@ -39,7 +39,7 @@ class RunItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[RunItemRequestBuilderGetRequestConfiguration] = None) -> Optional[run.Run]:
         """
-        Workflow runs.
+        Read the properties and relationships of a run object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[run.Run]
@@ -61,7 +61,7 @@ class RunItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RunItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Workflow runs.
+        Read the properties and relationships of a run object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -98,7 +98,7 @@ class RunItemRequestBuilder():
     @dataclass
     class RunItemRequestBuilderGetQueryParameters():
         """
-        Workflow runs.
+        Read the properties and relationships of a run object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

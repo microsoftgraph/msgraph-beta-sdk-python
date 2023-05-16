@@ -12,7 +12,7 @@ class CustomExtensionClientConfiguration(AdditionalDataHolder, Parsable):
 
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The max duration in milliseconds that Azure AD will wait for a response from the logic app before it shuts down the connection. The valid range is between 200 and 2000 milliseconds. Default duration is 1000.
+        # The max duration in milliseconds that Azure AD will wait for a response from the external app before it shuts down the connection. The valid range is between 200 and 2000 milliseconds. Default duration is 1000.
         self._timeout_in_milliseconds: Optional[int] = None
     
     @property
@@ -87,7 +87,7 @@ class CustomExtensionClientConfiguration(AdditionalDataHolder, Parsable):
     @property
     def timeout_in_milliseconds(self,) -> Optional[int]:
         """
-        Gets the timeoutInMilliseconds property value. The max duration in milliseconds that Azure AD will wait for a response from the logic app before it shuts down the connection. The valid range is between 200 and 2000 milliseconds. Default duration is 1000.
+        Gets the timeoutInMilliseconds property value. The max duration in milliseconds that Azure AD will wait for a response from the external app before it shuts down the connection. The valid range is between 200 and 2000 milliseconds. Default duration is 1000.
         Returns: Optional[int]
         """
         return self._timeout_in_milliseconds
@@ -95,7 +95,7 @@ class CustomExtensionClientConfiguration(AdditionalDataHolder, Parsable):
     @timeout_in_milliseconds.setter
     def timeout_in_milliseconds(self,value: Optional[int] = None) -> None:
         """
-        Sets the timeoutInMilliseconds property value. The max duration in milliseconds that Azure AD will wait for a response from the logic app before it shuts down the connection. The valid range is between 200 and 2000 milliseconds. Default duration is 1000.
+        Sets the timeoutInMilliseconds property value. The max duration in milliseconds that Azure AD will wait for a response from the external app before it shuts down the connection. The valid range is between 200 and 2000 milliseconds. Default duration is 1000.
         Args:
             value: Value to set for the timeout_in_milliseconds property.
         """

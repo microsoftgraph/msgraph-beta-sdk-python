@@ -37,7 +37,7 @@ class AddToReviewSetOperationRequestBuilder():
     
     async def get(self,request_configuration: Optional[AddToReviewSetOperationRequestBuilderGetRequestConfiguration] = None) -> Optional[add_to_review_set_operation.AddToReviewSetOperation]:
         """
-        Adds the results of the sourceCollection to the specified reviewSet.
+        Get the last addToReviewSetOperation object associated with a source collection. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[add_to_review_set_operation.AddToReviewSetOperation]
@@ -59,7 +59,7 @@ class AddToReviewSetOperationRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AddToReviewSetOperationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Adds the results of the sourceCollection to the specified reviewSet.
+        Get the last addToReviewSetOperation object associated with a source collection. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -78,7 +78,7 @@ class AddToReviewSetOperationRequestBuilder():
     @dataclass
     class AddToReviewSetOperationRequestBuilderGetQueryParameters():
         """
-        Adds the results of the sourceCollection to the specified reviewSet.
+        Get the last addToReviewSetOperation object associated with a source collection. 
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

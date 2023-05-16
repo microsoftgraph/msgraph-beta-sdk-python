@@ -19,6 +19,8 @@ class RoleManagement(AdditionalDataHolder, Parsable):
         self._device_management: Optional[rbac_application_multiple.RbacApplicationMultiple] = None
         # The directory property
         self._directory: Optional[rbac_application.RbacApplication] = None
+        # The enterpriseApps property
+        self._enterprise_apps: Optional[List[rbac_application.RbacApplication]] = None
         # The RbacApplication for Entitlement Management
         self._entitlement_management: Optional[rbac_application.RbacApplication] = None
         # The exchange property
@@ -107,6 +109,23 @@ class RoleManagement(AdditionalDataHolder, Parsable):
         self._directory = value
     
     @property
+    def enterprise_apps(self,) -> Optional[List[rbac_application.RbacApplication]]:
+        """
+        Gets the enterpriseApps property value. The enterpriseApps property
+        Returns: Optional[List[rbac_application.RbacApplication]]
+        """
+        return self._enterprise_apps
+    
+    @enterprise_apps.setter
+    def enterprise_apps(self,value: Optional[List[rbac_application.RbacApplication]] = None) -> None:
+        """
+        Sets the enterpriseApps property value. The enterpriseApps property
+        Args:
+            value: Value to set for the enterprise_apps property.
+        """
+        self._enterprise_apps = value
+    
+    @property
     def entitlement_management(self,) -> Optional[rbac_application.RbacApplication]:
         """
         Gets the entitlementManagement property value. The RbacApplication for Entitlement Management
@@ -151,6 +170,7 @@ class RoleManagement(AdditionalDataHolder, Parsable):
             "cloudPC": lambda n : setattr(self, 'cloud_p_c', n.get_object_value(rbac_application_multiple.RbacApplicationMultiple)),
             "deviceManagement": lambda n : setattr(self, 'device_management', n.get_object_value(rbac_application_multiple.RbacApplicationMultiple)),
             "directory": lambda n : setattr(self, 'directory', n.get_object_value(rbac_application.RbacApplication)),
+            "enterpriseApps": lambda n : setattr(self, 'enterprise_apps', n.get_collection_of_object_values(rbac_application.RbacApplication)),
             "entitlementManagement": lambda n : setattr(self, 'entitlement_management', n.get_object_value(rbac_application.RbacApplication)),
             "exchange": lambda n : setattr(self, 'exchange', n.get_object_value(unified_rbac_application.UnifiedRbacApplication)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -185,6 +205,7 @@ class RoleManagement(AdditionalDataHolder, Parsable):
         writer.write_object_value("cloudPC", self.cloud_p_c)
         writer.write_object_value("deviceManagement", self.device_management)
         writer.write_object_value("directory", self.directory)
+        writer.write_collection_of_object_values("enterpriseApps", self.enterprise_apps)
         writer.write_object_value("entitlementManagement", self.entitlement_management)
         writer.write_object_value("exchange", self.exchange)
         writer.write_str_value("@odata.type", self.odata_type)

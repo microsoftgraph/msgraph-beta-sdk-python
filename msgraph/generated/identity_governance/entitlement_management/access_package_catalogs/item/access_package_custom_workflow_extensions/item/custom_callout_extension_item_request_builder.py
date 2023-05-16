@@ -56,7 +56,7 @@ class CustomCalloutExtensionItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[CustomCalloutExtensionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[custom_callout_extension.CustomCalloutExtension]:
         """
-        The attributes of a logic app, which can be called at various stages of an access package request and assignment cycle.
+        Read the properties and relationships of an accessPackageAssignmentWorkflowExtension object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[custom_callout_extension.CustomCalloutExtension]
@@ -78,7 +78,7 @@ class CustomCalloutExtensionItemRequestBuilder():
     
     async def patch(self,body: Optional[custom_callout_extension.CustomCalloutExtension] = None, request_configuration: Optional[CustomCalloutExtensionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[custom_callout_extension.CustomCalloutExtension]:
         """
-        Update the navigation property accessPackageCustomWorkflowExtensions in identityGovernance
+        Update the properties of an accessPackageAssignmentWorkflowExtension object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class CustomCalloutExtensionItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CustomCalloutExtensionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The attributes of a logic app, which can be called at various stages of an access package request and assignment cycle.
+        Read the properties and relationships of an accessPackageAssignmentWorkflowExtension object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class CustomCalloutExtensionItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[custom_callout_extension.CustomCalloutExtension] = None, request_configuration: Optional[CustomCalloutExtensionItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property accessPackageCustomWorkflowExtensions in identityGovernance
+        Update the properties of an accessPackageAssignmentWorkflowExtension object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class CustomCalloutExtensionItemRequestBuilder():
     @dataclass
     class CustomCalloutExtensionItemRequestBuilderGetQueryParameters():
         """
-        The attributes of a logic app, which can be called at various stages of an access package request and assignment cycle.
+        Read the properties and relationships of an accessPackageAssignmentWorkflowExtension object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

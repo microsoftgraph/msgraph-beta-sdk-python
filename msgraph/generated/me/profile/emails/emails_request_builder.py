@@ -54,7 +54,7 @@ class EmailsRequestBuilder():
     
     async def get(self,request_configuration: Optional[EmailsRequestBuilderGetRequestConfiguration] = None) -> Optional[item_email_collection_response.ItemEmailCollectionResponse]:
         """
-        Represents detailed information about email addresses associated with the user.
+        Retrieve the properties and relationships of an itemEmail object in a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[item_email_collection_response.ItemEmailCollectionResponse]
@@ -76,7 +76,7 @@ class EmailsRequestBuilder():
     
     async def post(self,body: Optional[item_email.ItemEmail] = None, request_configuration: Optional[EmailsRequestBuilderPostRequestConfiguration] = None) -> Optional[item_email.ItemEmail]:
         """
-        Create new navigation property to emails for me
+        Create a new itemEmail object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class EmailsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[EmailsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents detailed information about email addresses associated with the user.
+        Retrieve the properties and relationships of an itemEmail object in a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class EmailsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[item_email.ItemEmail] = None, request_configuration: Optional[EmailsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to emails for me
+        Create a new itemEmail object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class EmailsRequestBuilder():
     @dataclass
     class EmailsRequestBuilderGetQueryParameters():
         """
-        Represents detailed information about email addresses associated with the user.
+        Retrieve the properties and relationships of an itemEmail object in a user's profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

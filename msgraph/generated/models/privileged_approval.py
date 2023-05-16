@@ -16,17 +16,17 @@ class PrivilegedApproval(entity.Entity):
         super().__init__()
         # The approvalDuration property
         self._approval_duration: Optional[timedelta] = None
-        # Possible values are: pending, approved, denied, aborted, canceled.
+        # The approvalState property
         self._approval_state: Optional[approval_state.ApprovalState] = None
         # The approvalType property
         self._approval_type: Optional[str] = None
         # The approverReason property
         self._approver_reason: Optional[str] = None
-        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+        # The endDateTime property
         self._end_date_time: Optional[datetime] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # Read-only. The role assignment request for this approval object
+        # The request property
         self._request: Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest] = None
         # The requestorReason property
         self._requestor_reason: Optional[str] = None
@@ -34,7 +34,7 @@ class PrivilegedApproval(entity.Entity):
         self._role_id: Optional[str] = None
         # The roleInfo property
         self._role_info: Optional[privileged_role.PrivilegedRole] = None
-        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+        # The startDateTime property
         self._start_date_time: Optional[datetime] = None
         # The userId property
         self._user_id: Optional[str] = None
@@ -59,7 +59,7 @@ class PrivilegedApproval(entity.Entity):
     @property
     def approval_state(self,) -> Optional[approval_state.ApprovalState]:
         """
-        Gets the approvalState property value. Possible values are: pending, approved, denied, aborted, canceled.
+        Gets the approvalState property value. The approvalState property
         Returns: Optional[approval_state.ApprovalState]
         """
         return self._approval_state
@@ -67,7 +67,7 @@ class PrivilegedApproval(entity.Entity):
     @approval_state.setter
     def approval_state(self,value: Optional[approval_state.ApprovalState] = None) -> None:
         """
-        Sets the approvalState property value. Possible values are: pending, approved, denied, aborted, canceled.
+        Sets the approvalState property value. The approvalState property
         Args:
             value: Value to set for the approval_state property.
         """
@@ -122,7 +122,7 @@ class PrivilegedApproval(entity.Entity):
     @property
     def end_date_time(self,) -> Optional[datetime]:
         """
-        Gets the endDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+        Gets the endDateTime property value. The endDateTime property
         Returns: Optional[datetime]
         """
         return self._end_date_time
@@ -130,7 +130,7 @@ class PrivilegedApproval(entity.Entity):
     @end_date_time.setter
     def end_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the endDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+        Sets the endDateTime property value. The endDateTime property
         Args:
             value: Value to set for the end_date_time property.
         """
@@ -163,7 +163,7 @@ class PrivilegedApproval(entity.Entity):
     @property
     def request(self,) -> Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest]:
         """
-        Gets the request property value. Read-only. The role assignment request for this approval object
+        Gets the request property value. The request property
         Returns: Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest]
         """
         return self._request
@@ -171,7 +171,7 @@ class PrivilegedApproval(entity.Entity):
     @request.setter
     def request(self,value: Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest] = None) -> None:
         """
-        Sets the request property value. Read-only. The role assignment request for this approval object
+        Sets the request property value. The request property
         Args:
             value: Value to set for the request property.
         """
@@ -252,7 +252,7 @@ class PrivilegedApproval(entity.Entity):
     @property
     def start_date_time(self,) -> Optional[datetime]:
         """
-        Gets the startDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+        Gets the startDateTime property value. The startDateTime property
         Returns: Optional[datetime]
         """
         return self._start_date_time
@@ -260,7 +260,7 @@ class PrivilegedApproval(entity.Entity):
     @start_date_time.setter
     def start_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the startDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+        Sets the startDateTime property value. The startDateTime property
         Args:
             value: Value to set for the start_date_time property.
         """

@@ -10,7 +10,7 @@ from . import entity
 class WindowsManagementApp(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new WindowsManagementApp and sets the default values.
+        Instantiates a new windowsManagementApp and sets the default values.
         """
         super().__init__()
         # Windows management app available version.

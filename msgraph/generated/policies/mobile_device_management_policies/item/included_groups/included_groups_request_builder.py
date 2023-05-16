@@ -55,7 +55,7 @@ class IncludedGroupsRequestBuilder():
     
     async def get(self,request_configuration: Optional[IncludedGroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[group_collection_response.GroupCollectionResponse]:
         """
-        Azure AD groups under the scope of the mobility management application if appliesTo is selected
+        Get the list of groups that are included in a mobile app management policy.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[group_collection_response.GroupCollectionResponse]
@@ -77,7 +77,7 @@ class IncludedGroupsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[IncludedGroupsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Azure AD groups under the scope of the mobility management application if appliesTo is selected
+        Get the list of groups that are included in a mobile app management policy.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -114,7 +114,7 @@ class IncludedGroupsRequestBuilder():
     @dataclass
     class IncludedGroupsRequestBuilderGetQueryParameters():
         """
-        Azure AD groups under the scope of the mobility management application if appliesTo is selected
+        Get the list of groups that are included in a mobile app management policy.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

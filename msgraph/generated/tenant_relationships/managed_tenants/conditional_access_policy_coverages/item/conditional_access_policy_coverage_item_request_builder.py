@@ -56,7 +56,7 @@ class ConditionalAccessPolicyCoverageItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[ConditionalAccessPolicyCoverageItemRequestBuilderGetRequestConfiguration] = None) -> Optional[conditional_access_policy_coverage.ConditionalAccessPolicyCoverage]:
         """
-        Aggregate view of conditional access policy coverage across managed tenants.
+        Read the properties and relationships of a conditionalAccessPolicyCoverage object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[conditional_access_policy_coverage.ConditionalAccessPolicyCoverage]
@@ -119,7 +119,7 @@ class ConditionalAccessPolicyCoverageItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ConditionalAccessPolicyCoverageItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Aggregate view of conditional access policy coverage across managed tenants.
+        Read the properties and relationships of a conditionalAccessPolicyCoverage object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class ConditionalAccessPolicyCoverageItemRequestBuilder():
     @dataclass
     class ConditionalAccessPolicyCoverageItemRequestBuilderGetQueryParameters():
         """
-        Aggregate view of conditional access policy coverage across managed tenants.
+        Read the properties and relationships of a conditionalAccessPolicyCoverage object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

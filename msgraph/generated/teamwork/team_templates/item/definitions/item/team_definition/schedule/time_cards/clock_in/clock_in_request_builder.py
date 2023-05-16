@@ -38,7 +38,7 @@ class ClockInRequestBuilder():
     
     async def post(self,body: Optional[clock_in_post_request_body.ClockInPostRequestBody] = None, request_configuration: Optional[ClockInRequestBuilderPostRequestConfiguration] = None) -> Optional[time_card.TimeCard]:
         """
-        Invoke action clockIn
+        Clock in to start a timeCard.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +63,7 @@ class ClockInRequestBuilder():
     
     def to_post_request_information(self,body: Optional[clock_in_post_request_body.ClockInPostRequestBody] = None, request_configuration: Optional[ClockInRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action clockIn
+        Clock in to start a timeCard.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

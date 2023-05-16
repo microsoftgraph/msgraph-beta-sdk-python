@@ -54,7 +54,7 @@ class WebAccountsRequestBuilder():
     
     async def get(self,request_configuration: Optional[WebAccountsRequestBuilderGetRequestConfiguration] = None) -> Optional[web_account_collection_response.WebAccountCollectionResponse]:
         """
-        Represents web accounts the user has indicated they use or has added to their user profile.
+        Retrieve a list of webAccounts objects from the user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[web_account_collection_response.WebAccountCollectionResponse]
@@ -76,7 +76,7 @@ class WebAccountsRequestBuilder():
     
     async def post(self,body: Optional[web_account.WebAccount] = None, request_configuration: Optional[WebAccountsRequestBuilderPostRequestConfiguration] = None) -> Optional[web_account.WebAccount]:
         """
-        Create new navigation property to webAccounts for me
+        Create a new webAccount object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class WebAccountsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[WebAccountsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents web accounts the user has indicated they use or has added to their user profile.
+        Retrieve a list of webAccounts objects from the user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class WebAccountsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[web_account.WebAccount] = None, request_configuration: Optional[WebAccountsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to webAccounts for me
+        Create a new webAccount object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class WebAccountsRequestBuilder():
     @dataclass
     class WebAccountsRequestBuilderGetQueryParameters():
         """
-        Represents web accounts the user has indicated they use or has added to their user profile.
+        Retrieve a list of webAccounts objects from the user's profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

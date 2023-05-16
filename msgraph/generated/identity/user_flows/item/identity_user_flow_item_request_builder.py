@@ -37,7 +37,7 @@ class IdentityUserFlowItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[IdentityUserFlowItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property userFlows for identity
+        Delete an existing userFlow object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class IdentityUserFlowItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[IdentityUserFlowItemRequestBuilderGetRequestConfiguration] = None) -> Optional[identity_user_flow.IdentityUserFlow]:
         """
-        Get userFlows from identity
+        Retrieve the properties and associations for an userFlow object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[identity_user_flow.IdentityUserFlow]
@@ -103,7 +103,7 @@ class IdentityUserFlowItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[IdentityUserFlowItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property userFlows for identity
+        Delete an existing userFlow object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class IdentityUserFlowItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[IdentityUserFlowItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get userFlows from identity
+        Retrieve the properties and associations for an userFlow object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class IdentityUserFlowItemRequestBuilder():
     @dataclass
     class IdentityUserFlowItemRequestBuilderGetQueryParameters():
         """
-        Get userFlows from identity
+        Retrieve the properties and associations for an userFlow object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

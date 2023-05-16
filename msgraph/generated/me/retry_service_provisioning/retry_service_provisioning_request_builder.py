@@ -36,7 +36,7 @@ class RetryServiceProvisioningRequestBuilder():
     
     async def post(self,request_configuration: Optional[RetryServiceProvisioningRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Invoke action retryServiceProvisioning
+        Retry the user service provisioning.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class RetryServiceProvisioningRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[RetryServiceProvisioningRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action retryServiceProvisioning
+        Retry the user service provisioning.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

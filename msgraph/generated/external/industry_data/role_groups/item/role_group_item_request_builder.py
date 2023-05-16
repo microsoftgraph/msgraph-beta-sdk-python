@@ -56,7 +56,7 @@ class RoleGroupItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[RoleGroupItemRequestBuilderGetRequestConfiguration] = None) -> Optional[role_group.RoleGroup]:
         """
-        Set of groups of individual roles that makes role-based admin simpler.
+        Read the properties and relationships of a roleGroup object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[role_group.RoleGroup]
@@ -119,7 +119,7 @@ class RoleGroupItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RoleGroupItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Set of groups of individual roles that makes role-based admin simpler.
+        Read the properties and relationships of a roleGroup object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class RoleGroupItemRequestBuilder():
     @dataclass
     class RoleGroupItemRequestBuilderGetQueryParameters():
         """
-        Set of groups of individual roles that makes role-based admin simpler.
+        Read the properties and relationships of a roleGroup object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

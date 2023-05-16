@@ -10,7 +10,7 @@ class OnTokenIssuanceStartReturnClaim(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The claimIdInApiResponse property
+        # The identifier of the claim returned by an API that is to be add to a token being issued.
         self._claim_id_in_api_response: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
@@ -35,7 +35,7 @@ class OnTokenIssuanceStartReturnClaim(AdditionalDataHolder, Parsable):
     @property
     def claim_id_in_api_response(self,) -> Optional[str]:
         """
-        Gets the claimIdInApiResponse property value. The claimIdInApiResponse property
+        Gets the claimIdInApiResponse property value. The identifier of the claim returned by an API that is to be add to a token being issued.
         Returns: Optional[str]
         """
         return self._claim_id_in_api_response
@@ -43,7 +43,7 @@ class OnTokenIssuanceStartReturnClaim(AdditionalDataHolder, Parsable):
     @claim_id_in_api_response.setter
     def claim_id_in_api_response(self,value: Optional[str] = None) -> None:
         """
-        Sets the claimIdInApiResponse property value. The claimIdInApiResponse property
+        Sets the claimIdInApiResponse property value. The identifier of the claim returned by an API that is to be add to a token being issued.
         Args:
             value: Value to set for the claim_id_in_api_response property.
         """

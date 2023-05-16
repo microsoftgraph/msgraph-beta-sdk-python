@@ -13,9 +13,7 @@ if TYPE_CHECKING:
     from ....models import contact
     from ....models.o_data_errors import o_data_error
     from .extensions import extensions_request_builder
-    from .multi_value_extended_properties import multi_value_extended_properties_request_builder
     from .photo import photo_request_builder
-    from .single_value_extended_properties import single_value_extended_properties_request_builder
 
 class ContactItemRequestBuilder():
     """
@@ -41,7 +39,7 @@ class ContactItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[ContactItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property contacts for me
+        Delete contact.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -60,7 +58,7 @@ class ContactItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[ContactItemRequestBuilderGetRequestConfiguration] = None) -> Optional[contact.Contact]:
         """
-        The user's contacts. Read-only. Nullable.
+        Retrieve the properties and relationships of contact object. There are two scenarios where an app can get a contact in another user's contact folder:
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[contact.Contact]
@@ -82,7 +80,7 @@ class ContactItemRequestBuilder():
     
     async def patch(self,body: Optional[contact.Contact] = None, request_configuration: Optional[ContactItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[contact.Contact]:
         """
-        Update the navigation property contacts in me
+        Update the properties of contact object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -107,7 +105,7 @@ class ContactItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[ContactItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property contacts for me
+        Delete contact.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -123,7 +121,7 @@ class ContactItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ContactItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The user's contacts. Read-only. Nullable.
+        Retrieve the properties and relationships of contact object. There are two scenarios where an app can get a contact in another user's contact folder:
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -141,7 +139,7 @@ class ContactItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[contact.Contact] = None, request_configuration: Optional[ContactItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property contacts in me
+        Update the properties of contact object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -170,15 +168,6 @@ class ContactItemRequestBuilder():
         return extensions_request_builder.ExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def multi_value_extended_properties(self) -> multi_value_extended_properties_request_builder.MultiValueExtendedPropertiesRequestBuilder:
-        """
-        Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.contact entity.
-        """
-        from .multi_value_extended_properties import multi_value_extended_properties_request_builder
-
-        return multi_value_extended_properties_request_builder.MultiValueExtendedPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def photo(self) -> photo_request_builder.PhotoRequestBuilder:
         """
         Provides operations to manage the photo property of the microsoft.graph.contact entity.
@@ -186,15 +175,6 @@ class ContactItemRequestBuilder():
         from .photo import photo_request_builder
 
         return photo_request_builder.PhotoRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def single_value_extended_properties(self) -> single_value_extended_properties_request_builder.SingleValueExtendedPropertiesRequestBuilder:
-        """
-        Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.contact entity.
-        """
-        from .single_value_extended_properties import single_value_extended_properties_request_builder
-
-        return single_value_extended_properties_request_builder.SingleValueExtendedPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ContactItemRequestBuilderDeleteRequestConfiguration():
@@ -211,7 +191,7 @@ class ContactItemRequestBuilder():
     @dataclass
     class ContactItemRequestBuilderGetQueryParameters():
         """
-        The user's contacts. Read-only. Nullable.
+        Retrieve the properties and relationships of contact object. There are two scenarios where an app can get a contact in another user's contact folder:
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

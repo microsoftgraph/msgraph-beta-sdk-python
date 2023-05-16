@@ -40,7 +40,7 @@ class CloudPcProvisioningPolicyItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[CloudPcProvisioningPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property provisioningPolicies for deviceManagement
+        Delete a cloudPcProvisioningPolicy object. You can’t delete a policy that’s in use.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -59,7 +59,7 @@ class CloudPcProvisioningPolicyItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[CloudPcProvisioningPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_provisioning_policy.CloudPcProvisioningPolicy]:
         """
-        Cloud PC provisioning policy.
+        Read the properties and relationships of a cloudPcProvisioningPolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cloud_pc_provisioning_policy.CloudPcProvisioningPolicy]
@@ -81,7 +81,7 @@ class CloudPcProvisioningPolicyItemRequestBuilder():
     
     async def patch(self,body: Optional[cloud_pc_provisioning_policy.CloudPcProvisioningPolicy] = None, request_configuration: Optional[CloudPcProvisioningPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[cloud_pc_provisioning_policy.CloudPcProvisioningPolicy]:
         """
-        Update the navigation property provisioningPolicies in deviceManagement
+        Update the properties of a cloudPcProvisioningPolicy object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -106,7 +106,7 @@ class CloudPcProvisioningPolicyItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[CloudPcProvisioningPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property provisioningPolicies for deviceManagement
+        Delete a cloudPcProvisioningPolicy object. You can’t delete a policy that’s in use.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -122,7 +122,7 @@ class CloudPcProvisioningPolicyItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CloudPcProvisioningPolicyItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Cloud PC provisioning policy.
+        Read the properties and relationships of a cloudPcProvisioningPolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -140,7 +140,7 @@ class CloudPcProvisioningPolicyItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[cloud_pc_provisioning_policy.CloudPcProvisioningPolicy] = None, request_configuration: Optional[CloudPcProvisioningPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property provisioningPolicies in deviceManagement
+        Update the properties of a cloudPcProvisioningPolicy object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -201,7 +201,7 @@ class CloudPcProvisioningPolicyItemRequestBuilder():
     @dataclass
     class CloudPcProvisioningPolicyItemRequestBuilderGetQueryParameters():
         """
-        Cloud PC provisioning policy.
+        Read the properties and relationships of a cloudPcProvisioningPolicy object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -37,7 +37,7 @@ class FindRoomListsRequestBuilder():
     
     async def get(self,request_configuration: Optional[FindRoomListsRequestBuilderGetRequestConfiguration] = None) -> Optional[find_room_lists_response.FindRoomListsResponse]:
         """
-        Invoke function findRoomLists
+        Get the room lists defined in a tenant, as represented by their emailAddress objects. Tenants can organize meeting rooms into room lists. In this API, each meeting room and room list is represented by an emailAddress instance.You can get all the room lists in the tenant, get all the rooms in the tenant, or get all the rooms in a specific room list.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[find_room_lists_response.FindRoomListsResponse]
@@ -59,7 +59,7 @@ class FindRoomListsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[FindRoomListsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke function findRoomLists
+        Get the room lists defined in a tenant, as represented by their emailAddress objects. Tenants can organize meeting rooms into room lists. In this API, each meeting room and room list is represented by an emailAddress instance.You can get all the room lists in the tenant, get all the rooms in the tenant, or get all the rooms in a specific room list.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -78,7 +78,7 @@ class FindRoomListsRequestBuilder():
     @dataclass
     class FindRoomListsRequestBuilderGetQueryParameters():
         """
-        Invoke function findRoomLists
+        Get the room lists defined in a tenant, as represented by their emailAddress objects. Tenants can organize meeting rooms into room lists. In this API, each meeting room and room list is represented by an emailAddress instance.You can get all the room lists in the tenant, get all the rooms in the tenant, or get all the rooms in a specific room list.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

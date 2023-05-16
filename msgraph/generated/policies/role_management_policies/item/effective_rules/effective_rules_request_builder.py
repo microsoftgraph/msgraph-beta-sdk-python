@@ -54,7 +54,7 @@ class EffectiveRulesRequestBuilder():
     
     async def get(self,request_configuration: Optional[EffectiveRulesRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_management_policy_rule_collection_response.UnifiedRoleManagementPolicyRuleCollectionResponse]:
         """
-        The list of effective rules like approval rules and expiration rules evaluated based on inherited referenced rules. For example, if there is a tenant-wide policy to enforce enabling an approval rule, the effective rule will be to enable approval even if the policy has a rule to disable approval. Supports $expand.
+        Get the unifiedRoleManagementPolicyRule resources from the effectiveRules navigation property. To retrieve rules for a policy that applies to Azure RBAC, use the Azure REST PIM API for role management policies.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[unified_role_management_policy_rule_collection_response.UnifiedRoleManagementPolicyRuleCollectionResponse]
@@ -101,7 +101,7 @@ class EffectiveRulesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[EffectiveRulesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The list of effective rules like approval rules and expiration rules evaluated based on inherited referenced rules. For example, if there is a tenant-wide policy to enforce enabling an approval rule, the effective rule will be to enable approval even if the policy has a rule to disable approval. Supports $expand.
+        Get the unifiedRoleManagementPolicyRule resources from the effectiveRules navigation property. To retrieve rules for a policy that applies to Azure RBAC, use the Azure REST PIM API for role management policies.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class EffectiveRulesRequestBuilder():
     @dataclass
     class EffectiveRulesRequestBuilderGetQueryParameters():
         """
-        The list of effective rules like approval rules and expiration rules evaluated based on inherited referenced rules. For example, if there is a tenant-wide policy to enforce enabling an approval rule, the effective rule will be to enable approval even if the policy has a rule to disable approval. Supports $expand.
+        Get the unifiedRoleManagementPolicyRule resources from the effectiveRules navigation property. To retrieve rules for a policy that applies to Azure RBAC, use the Azure REST PIM API for role management policies.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

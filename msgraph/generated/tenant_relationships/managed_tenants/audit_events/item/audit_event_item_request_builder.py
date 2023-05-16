@@ -56,7 +56,7 @@ class AuditEventItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[AuditEventItemRequestBuilderGetRequestConfiguration] = None) -> Optional[audit_event.AuditEvent]:
         """
-        The collection of audit events across managed tenants.
+        Read the properties and relationships of an auditEvent object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[audit_event.AuditEvent]
@@ -119,7 +119,7 @@ class AuditEventItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AuditEventItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection of audit events across managed tenants.
+        Read the properties and relationships of an auditEvent object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class AuditEventItemRequestBuilder():
     @dataclass
     class AuditEventItemRequestBuilderGetQueryParameters():
         """
-        The collection of audit events across managed tenants.
+        Read the properties and relationships of an auditEvent object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

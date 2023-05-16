@@ -68,7 +68,7 @@ class InstancesRequestBuilder():
     
     async def get(self,request_configuration: Optional[InstancesRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_instance_collection_response.AccessReviewInstanceCollectionResponse]:
         """
-        Set of access reviews instances for this access review series. Access reviews that do not recur will only have one instance; otherwise, there is an instance for each recurrence.
+        Retrieve the accessReviewInstance objects for a specific accessReviewScheduleDefinition. A list of zero or more **accessReviewInstance** objects are returned, including all of their nested properties. Returned objects do not include associated accessReviewInstanceDecisionItems. To retrieve the decisions on the instance, use List accessReviewInstanceDecisionItem.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_review_instance_collection_response.AccessReviewInstanceCollectionResponse]
@@ -115,7 +115,7 @@ class InstancesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[InstancesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Set of access reviews instances for this access review series. Access reviews that do not recur will only have one instance; otherwise, there is an instance for each recurrence.
+        Retrieve the accessReviewInstance objects for a specific accessReviewScheduleDefinition. A list of zero or more **accessReviewInstance** objects are returned, including all of their nested properties. Returned objects do not include associated accessReviewInstanceDecisionItems. To retrieve the decisions on the instance, use List accessReviewInstanceDecisionItem.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -164,7 +164,7 @@ class InstancesRequestBuilder():
     @dataclass
     class InstancesRequestBuilderGetQueryParameters():
         """
-        Set of access reviews instances for this access review series. Access reviews that do not recur will only have one instance; otherwise, there is an instance for each recurrence.
+        Retrieve the accessReviewInstance objects for a specific accessReviewScheduleDefinition. A list of zero or more **accessReviewInstance** objects are returned, including all of their nested properties. Returned objects do not include associated accessReviewInstanceDecisionItems. To retrieve the decisions on the instance, use List accessReviewInstanceDecisionItem.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

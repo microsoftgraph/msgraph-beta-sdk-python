@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ......models import device_management_intent_setting_category
     from ......models.o_data_errors import o_data_error
+    from .setting_definitions import setting_definitions_request_builder
     from .settings import settings_request_builder
 
 class DeviceManagementIntentSettingCategoryItemRequestBuilder():
@@ -156,6 +157,15 @@ class DeviceManagementIntentSettingCategoryItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
+    
+    @property
+    def setting_definitions(self) -> setting_definitions_request_builder.SettingDefinitionsRequestBuilder:
+        """
+        Provides operations to manage the settingDefinitions property of the microsoft.graph.deviceManagementSettingCategory entity.
+        """
+        from .setting_definitions import setting_definitions_request_builder
+
+        return setting_definitions_request_builder.SettingDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def settings(self) -> settings_request_builder.SettingsRequestBuilder:

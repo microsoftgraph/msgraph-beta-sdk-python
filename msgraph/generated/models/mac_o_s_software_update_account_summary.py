@@ -9,9 +9,12 @@ if TYPE_CHECKING:
 from . import entity
 
 class MacOSSoftwareUpdateAccountSummary(entity.Entity):
+    """
+    MacOS software update account summary report for a device and user
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new MacOSSoftwareUpdateAccountSummary and sets the default values.
+        Instantiates a new macOSSoftwareUpdateAccountSummary and sets the default values.
         """
         super().__init__()
         # Summary of the updates by category.

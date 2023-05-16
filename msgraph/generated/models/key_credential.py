@@ -26,9 +26,9 @@ class KeyCredential(AdditionalDataHolder, Parsable):
         self._odata_type: Optional[str] = None
         # The date and time at which the credential becomes valid.The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         self._start_date_time: Optional[datetime] = None
-        # The type of key credential; for example, Symmetric, AsymmetricX509Cert.
+        # The type of key credential; for example, Symmetric, AsymmetricX509Cert, or X509CertAndPassword.
         self._type: Optional[str] = None
-        # A string that describes the purpose for which the key can be used; for example, Verify.
+        # A string that describes the purpose for which the key can be used; for example, None​, Verify​, PairwiseIdentifier​, Delegation​, Decrypt​, Encrypt​, HashedIdentifier​, SelfSignedTls, or Sign. If usage is Sign​, the type should be X509CertAndPassword​, and the passwordCredentials​ for signing should be defined.
         self._usage: Optional[str] = None
     
     @property
@@ -219,7 +219,7 @@ class KeyCredential(AdditionalDataHolder, Parsable):
     @property
     def type(self,) -> Optional[str]:
         """
-        Gets the type property value. The type of key credential; for example, Symmetric, AsymmetricX509Cert.
+        Gets the type property value. The type of key credential; for example, Symmetric, AsymmetricX509Cert, or X509CertAndPassword.
         Returns: Optional[str]
         """
         return self._type
@@ -227,7 +227,7 @@ class KeyCredential(AdditionalDataHolder, Parsable):
     @type.setter
     def type(self,value: Optional[str] = None) -> None:
         """
-        Sets the type property value. The type of key credential; for example, Symmetric, AsymmetricX509Cert.
+        Sets the type property value. The type of key credential; for example, Symmetric, AsymmetricX509Cert, or X509CertAndPassword.
         Args:
             value: Value to set for the type property.
         """
@@ -236,7 +236,7 @@ class KeyCredential(AdditionalDataHolder, Parsable):
     @property
     def usage(self,) -> Optional[str]:
         """
-        Gets the usage property value. A string that describes the purpose for which the key can be used; for example, Verify.
+        Gets the usage property value. A string that describes the purpose for which the key can be used; for example, None​, Verify​, PairwiseIdentifier​, Delegation​, Decrypt​, Encrypt​, HashedIdentifier​, SelfSignedTls, or Sign. If usage is Sign​, the type should be X509CertAndPassword​, and the passwordCredentials​ for signing should be defined.
         Returns: Optional[str]
         """
         return self._usage
@@ -244,7 +244,7 @@ class KeyCredential(AdditionalDataHolder, Parsable):
     @usage.setter
     def usage(self,value: Optional[str] = None) -> None:
         """
-        Sets the usage property value. A string that describes the purpose for which the key can be used; for example, Verify.
+        Sets the usage property value. A string that describes the purpose for which the key can be used; for example, None​, Verify​, PairwiseIdentifier​, Delegation​, Decrypt​, Encrypt​, HashedIdentifier​, SelfSignedTls, or Sign. If usage is Sign​, the type should be X509CertAndPassword​, and the passwordCredentials​ for signing should be defined.
         Args:
             value: Value to set for the usage property.
         """

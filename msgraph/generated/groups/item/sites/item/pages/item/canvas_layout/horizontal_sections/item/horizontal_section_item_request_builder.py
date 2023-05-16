@@ -57,7 +57,7 @@ class HorizontalSectionItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[HorizontalSectionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[horizontal_section.HorizontalSection]:
         """
-        Collection of horizontal sections on the SharePoint page.
+        Read the properties and relationships of a horizontalSection object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[horizontal_section.HorizontalSection]
@@ -120,7 +120,7 @@ class HorizontalSectionItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[HorizontalSectionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Collection of horizontal sections on the SharePoint page.
+        Read the properties and relationships of a horizontalSection object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -181,7 +181,7 @@ class HorizontalSectionItemRequestBuilder():
     @dataclass
     class HorizontalSectionItemRequestBuilderGetQueryParameters():
         """
-        Collection of horizontal sections on the SharePoint page.
+        Read the properties and relationships of a horizontalSection object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

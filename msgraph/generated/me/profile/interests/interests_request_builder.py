@@ -54,7 +54,7 @@ class InterestsRequestBuilder():
     
     async def get(self,request_configuration: Optional[InterestsRequestBuilderGetRequestConfiguration] = None) -> Optional[person_interest_collection_response.PersonInterestCollectionResponse]:
         """
-        Provides detailed information about interests the user has associated with themselves in various services.
+        Retrieve a list of personInterest objects from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[person_interest_collection_response.PersonInterestCollectionResponse]
@@ -76,7 +76,7 @@ class InterestsRequestBuilder():
     
     async def post(self,body: Optional[person_interest.PersonInterest] = None, request_configuration: Optional[InterestsRequestBuilderPostRequestConfiguration] = None) -> Optional[person_interest.PersonInterest]:
         """
-        Create new navigation property to interests for me
+        Create a new personInterest.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class InterestsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[InterestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Provides detailed information about interests the user has associated with themselves in various services.
+        Retrieve a list of personInterest objects from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class InterestsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[person_interest.PersonInterest] = None, request_configuration: Optional[InterestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to interests for me
+        Create a new personInterest.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class InterestsRequestBuilder():
     @dataclass
     class InterestsRequestBuilderGetQueryParameters():
         """
-        Provides detailed information about interests the user has associated with themselves in various services.
+        Retrieve a list of personInterest objects from a user's profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

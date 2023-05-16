@@ -54,7 +54,7 @@ class TaskFoldersRequestBuilder():
     
     async def get(self,request_configuration: Optional[TaskFoldersRequestBuilderGetRequestConfiguration] = None) -> Optional[outlook_task_folder_collection_response.OutlookTaskFolderCollectionResponse]:
         """
-        The collection of task folders in the task group. Read-only. Nullable.
+        Get Outlook task folders in a specific outlookTaskGroup.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[outlook_task_folder_collection_response.OutlookTaskFolderCollectionResponse]
@@ -76,7 +76,7 @@ class TaskFoldersRequestBuilder():
     
     async def post(self,body: Optional[outlook_task_folder.OutlookTaskFolder] = None, request_configuration: Optional[TaskFoldersRequestBuilderPostRequestConfiguration] = None) -> Optional[outlook_task_folder.OutlookTaskFolder]:
         """
-        Create new navigation property to taskFolders for users
+        Create an Outlook task folder under a specified outlookTaskGroup.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class TaskFoldersRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TaskFoldersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection of task folders in the task group. Read-only. Nullable.
+        Get Outlook task folders in a specific outlookTaskGroup.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class TaskFoldersRequestBuilder():
     
     def to_post_request_information(self,body: Optional[outlook_task_folder.OutlookTaskFolder] = None, request_configuration: Optional[TaskFoldersRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to taskFolders for users
+        Create an Outlook task folder under a specified outlookTaskGroup.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class TaskFoldersRequestBuilder():
     @dataclass
     class TaskFoldersRequestBuilderGetQueryParameters():
         """
-        The collection of task folders in the task group. Read-only. Nullable.
+        Get Outlook task folders in a specific outlookTaskGroup.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

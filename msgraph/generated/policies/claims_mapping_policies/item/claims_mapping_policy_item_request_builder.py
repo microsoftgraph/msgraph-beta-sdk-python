@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ....models import claims_mapping_policy
     from ....models.o_data_errors import o_data_error
+    from .applies_to import applies_to_request_builder
 
 class ClaimsMappingPolicyItemRequestBuilder():
     """
@@ -37,7 +38,7 @@ class ClaimsMappingPolicyItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[ClaimsMappingPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property claimsMappingPolicies for policies
+        Delete a claimsMappingPolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +57,7 @@ class ClaimsMappingPolicyItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[ClaimsMappingPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[claims_mapping_policy.ClaimsMappingPolicy]:
         """
-        The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.
+        Retrieve the properties and relationships of a claimsMappingPolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[claims_mapping_policy.ClaimsMappingPolicy]
@@ -78,7 +79,7 @@ class ClaimsMappingPolicyItemRequestBuilder():
     
     async def patch(self,body: Optional[claims_mapping_policy.ClaimsMappingPolicy] = None, request_configuration: Optional[ClaimsMappingPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[claims_mapping_policy.ClaimsMappingPolicy]:
         """
-        Update the navigation property claimsMappingPolicies in policies
+        Update the properties of a claimsMappingPolicy object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +104,7 @@ class ClaimsMappingPolicyItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[ClaimsMappingPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property claimsMappingPolicies for policies
+        Delete a claimsMappingPolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +120,7 @@ class ClaimsMappingPolicyItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ClaimsMappingPolicyItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.
+        Retrieve the properties and relationships of a claimsMappingPolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +138,7 @@ class ClaimsMappingPolicyItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[claims_mapping_policy.ClaimsMappingPolicy] = None, request_configuration: Optional[ClaimsMappingPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property claimsMappingPolicies in policies
+        Update the properties of a claimsMappingPolicy object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -156,6 +157,15 @@ class ClaimsMappingPolicyItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def applies_to(self) -> applies_to_request_builder.AppliesToRequestBuilder:
+        """
+        Provides operations to manage the appliesTo property of the microsoft.graph.stsPolicy entity.
+        """
+        from .applies_to import applies_to_request_builder
+
+        return applies_to_request_builder.AppliesToRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class ClaimsMappingPolicyItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -171,7 +181,7 @@ class ClaimsMappingPolicyItemRequestBuilder():
     @dataclass
     class ClaimsMappingPolicyItemRequestBuilderGetQueryParameters():
         """
-        The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.
+        Retrieve the properties and relationships of a claimsMappingPolicy object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

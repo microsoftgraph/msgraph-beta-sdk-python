@@ -36,7 +36,7 @@ class EndGracePeriodRequestBuilder():
     
     async def post(self,request_configuration: Optional[EndGracePeriodRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Invoke action endGracePeriod
+        End the grace period for a specific Cloud PC. The grace period is triggered when the Cloud PC license is removed or the provisioning policy is unassigned. It allows users to access Cloud PCs for up to seven days before de-provisioning occurs. Ending the grace period immediately deprovisions the Cloud PC without waiting the seven days.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class EndGracePeriodRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[EndGracePeriodRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action endGracePeriod
+        End the grace period for a specific Cloud PC. The grace period is triggered when the Cloud PC license is removed or the provisioning policy is unassigned. It allows users to access Cloud PCs for up to seven days before de-provisioning occurs. Ending the grace period immediately deprovisions the Cloud PC without waiting the seven days.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

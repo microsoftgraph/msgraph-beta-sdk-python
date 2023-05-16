@@ -41,7 +41,7 @@ class TimeCardItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[TimeCardItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property timeCards for teams
+        Delete a timeCard instance in a schedule.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -60,7 +60,7 @@ class TimeCardItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[TimeCardItemRequestBuilderGetRequestConfiguration] = None) -> Optional[time_card.TimeCard]:
         """
-        Get timeCards from teams
+        Get the properties and relationships of a timeCard object by ID.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[time_card.TimeCard]
@@ -82,7 +82,7 @@ class TimeCardItemRequestBuilder():
     
     async def patch(self,body: Optional[time_card.TimeCard] = None, request_configuration: Optional[TimeCardItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[time_card.TimeCard]:
         """
-        Update the navigation property timeCards in teams
+        Replace an existing timeCard with updated values.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -107,7 +107,7 @@ class TimeCardItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[TimeCardItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property timeCards for teams
+        Delete a timeCard instance in a schedule.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -123,7 +123,7 @@ class TimeCardItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TimeCardItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get timeCards from teams
+        Get the properties and relationships of a timeCard object by ID.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -141,7 +141,7 @@ class TimeCardItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[time_card.TimeCard] = None, request_configuration: Optional[TimeCardItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property timeCards in teams
+        Replace an existing timeCard with updated values.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -211,7 +211,7 @@ class TimeCardItemRequestBuilder():
     @dataclass
     class TimeCardItemRequestBuilderGetQueryParameters():
         """
-        Get timeCards from teams
+        Get the properties and relationships of a timeCard object by ID.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

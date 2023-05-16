@@ -22,6 +22,7 @@ if TYPE_CHECKING:
     from .send_reminder import send_reminder_request_builder
     from .stages import stages_request_builder
     from .stop import stop_request_builder
+    from .stop_apply_decisions import stop_apply_decisions_request_builder
 
 class AccessReviewInstanceItemRequestBuilder():
     """
@@ -255,6 +256,15 @@ class AccessReviewInstanceItemRequestBuilder():
         from .stop import stop_request_builder
 
         return stop_request_builder.StopRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def stop_apply_decisions(self) -> stop_apply_decisions_request_builder.StopApplyDecisionsRequestBuilder:
+        """
+        Provides operations to call the stopApplyDecisions method.
+        """
+        from .stop_apply_decisions import stop_apply_decisions_request_builder
+
+        return stop_apply_decisions_request_builder.StopApplyDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AccessReviewInstanceItemRequestBuilderDeleteRequestConfiguration():

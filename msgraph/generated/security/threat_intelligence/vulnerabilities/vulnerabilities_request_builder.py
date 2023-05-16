@@ -54,7 +54,7 @@ class VulnerabilitiesRequestBuilder():
     
     async def get(self,request_configuration: Optional[VulnerabilitiesRequestBuilderGetRequestConfiguration] = None) -> Optional[vulnerability_collection_response.VulnerabilityCollectionResponse]:
         """
-        Retrieve details about microsoft.graph.security.vulnerabilities.Note: List retrieval is not yet supported.
+        Read the properties and relationships of a vulnerability object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[vulnerability_collection_response.VulnerabilityCollectionResponse]
@@ -101,7 +101,7 @@ class VulnerabilitiesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[VulnerabilitiesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve details about microsoft.graph.security.vulnerabilities.Note: List retrieval is not yet supported.
+        Read the properties and relationships of a vulnerability object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class VulnerabilitiesRequestBuilder():
     @dataclass
     class VulnerabilitiesRequestBuilderGetQueryParameters():
         """
-        Retrieve details about microsoft.graph.security.vulnerabilities.Note: List retrieval is not yet supported.
+        Read the properties and relationships of a vulnerability object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

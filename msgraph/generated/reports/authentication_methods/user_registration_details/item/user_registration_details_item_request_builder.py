@@ -56,7 +56,7 @@ class UserRegistrationDetailsItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[UserRegistrationDetailsItemRequestBuilderGetRequestConfiguration] = None) -> Optional[user_registration_details.UserRegistrationDetails]:
         """
-        Represents the state of a user's authentication methods, including which methods are registered and which features the user is registered and capable of (such as multi-factor authentication, self-service password reset, and passwordless authentication).
+        Read the properties and relationships of a userRegistrationDetails object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[user_registration_details.UserRegistrationDetails]
@@ -119,7 +119,7 @@ class UserRegistrationDetailsItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UserRegistrationDetailsItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents the state of a user's authentication methods, including which methods are registered and which features the user is registered and capable of (such as multi-factor authentication, self-service password reset, and passwordless authentication).
+        Read the properties and relationships of a userRegistrationDetails object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class UserRegistrationDetailsItemRequestBuilder():
     @dataclass
     class UserRegistrationDetailsItemRequestBuilderGetQueryParameters():
         """
-        Represents the state of a user's authentication methods, including which methods are registered and which features the user is registered and capable of (such as multi-factor authentication, self-service password reset, and passwordless authentication).
+        Read the properties and relationships of a userRegistrationDetails object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

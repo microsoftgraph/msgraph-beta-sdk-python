@@ -54,7 +54,7 @@ class PrivilegedRolesRequestBuilder():
     
     async def get(self,request_configuration: Optional[PrivilegedRolesRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_role_collection_response.PrivilegedRoleCollectionResponse]:
         """
-        Retrieve a list of privilegedRole objects. To filter the results from the query, use the standard OData ``$filter`` expressions in the URIs.
+        Get entities from privilegedRoles
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[privileged_role_collection_response.PrivilegedRoleCollectionResponse]
@@ -101,7 +101,7 @@ class PrivilegedRolesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PrivilegedRolesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of privilegedRole objects. To filter the results from the query, use the standard OData ``$filter`` expressions in the URIs.
+        Get entities from privilegedRoles
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class PrivilegedRolesRequestBuilder():
     @dataclass
     class PrivilegedRolesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of privilegedRole objects. To filter the results from the query, use the standard OData ``$filter`` expressions in the URIs.
+        Get entities from privilegedRoles
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

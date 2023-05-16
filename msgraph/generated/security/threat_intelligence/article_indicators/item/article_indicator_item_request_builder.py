@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .....models.o_data_errors import o_data_error
     from .....models.security import article_indicator
+    from .artifact import artifact_request_builder
 
 class ArticleIndicatorItemRequestBuilder():
     """
@@ -56,7 +57,7 @@ class ArticleIndicatorItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[ArticleIndicatorItemRequestBuilderGetRequestConfiguration] = None) -> Optional[article_indicator.ArticleIndicator]:
         """
-        Refers to indicators of threat or compromise highlighted in an microsoft.graph.security.article.Note: List retrieval is not yet supported.
+        Read the properties and relationships of an articleIndicator object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[article_indicator.ArticleIndicator]
@@ -119,7 +120,7 @@ class ArticleIndicatorItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ArticleIndicatorItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Refers to indicators of threat or compromise highlighted in an microsoft.graph.security.article.Note: List retrieval is not yet supported.
+        Read the properties and relationships of an articleIndicator object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -156,6 +157,15 @@ class ArticleIndicatorItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def artifact(self) -> artifact_request_builder.ArtifactRequestBuilder:
+        """
+        Provides operations to manage the artifact property of the microsoft.graph.security.indicator entity.
+        """
+        from .artifact import artifact_request_builder
+
+        return artifact_request_builder.ArtifactRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class ArticleIndicatorItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -171,7 +181,7 @@ class ArticleIndicatorItemRequestBuilder():
     @dataclass
     class ArticleIndicatorItemRequestBuilderGetQueryParameters():
         """
-        Refers to indicators of threat or compromise highlighted in an microsoft.graph.security.article.Note: List retrieval is not yet supported.
+        Read the properties and relationships of an articleIndicator object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

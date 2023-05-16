@@ -56,7 +56,7 @@ class ManagedDeviceComplianceTrendItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[ManagedDeviceComplianceTrendItemRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_device_compliance_trend.ManagedDeviceComplianceTrend]:
         """
-        Trend insights for device compliance across managed tenants.
+        Read the properties and relationships of a managedDeviceComplianceTrend object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[managed_device_compliance_trend.ManagedDeviceComplianceTrend]
@@ -119,7 +119,7 @@ class ManagedDeviceComplianceTrendItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ManagedDeviceComplianceTrendItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Trend insights for device compliance across managed tenants.
+        Read the properties and relationships of a managedDeviceComplianceTrend object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class ManagedDeviceComplianceTrendItemRequestBuilder():
     @dataclass
     class ManagedDeviceComplianceTrendItemRequestBuilderGetQueryParameters():
         """
-        Trend insights for device compliance across managed tenants.
+        Read the properties and relationships of a managedDeviceComplianceTrend object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

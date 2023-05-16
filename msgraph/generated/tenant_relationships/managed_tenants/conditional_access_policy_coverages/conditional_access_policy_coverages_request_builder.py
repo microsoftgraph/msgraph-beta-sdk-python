@@ -54,7 +54,7 @@ class ConditionalAccessPolicyCoveragesRequestBuilder():
     
     async def get(self,request_configuration: Optional[ConditionalAccessPolicyCoveragesRequestBuilderGetRequestConfiguration] = None) -> Optional[conditional_access_policy_coverage_collection_response.ConditionalAccessPolicyCoverageCollectionResponse]:
         """
-        Aggregate view of conditional access policy coverage across managed tenants.
+        Get a list of the conditionalAccessPolicyCoverage objects and their properties. Use this operation to list of Azure Active Directory conditional access policy coverage across all tenants that are being managed by the multi-tenant management platform.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[conditional_access_policy_coverage_collection_response.ConditionalAccessPolicyCoverageCollectionResponse]
@@ -101,7 +101,7 @@ class ConditionalAccessPolicyCoveragesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ConditionalAccessPolicyCoveragesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Aggregate view of conditional access policy coverage across managed tenants.
+        Get a list of the conditionalAccessPolicyCoverage objects and their properties. Use this operation to list of Azure Active Directory conditional access policy coverage across all tenants that are being managed by the multi-tenant management platform.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class ConditionalAccessPolicyCoveragesRequestBuilder():
     @dataclass
     class ConditionalAccessPolicyCoveragesRequestBuilderGetQueryParameters():
         """
-        Aggregate view of conditional access policy coverage across managed tenants.
+        Get a list of the conditionalAccessPolicyCoverage objects and their properties. Use this operation to list of Azure Active Directory conditional access policy coverage across all tenants that are being managed by the multi-tenant management platform.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

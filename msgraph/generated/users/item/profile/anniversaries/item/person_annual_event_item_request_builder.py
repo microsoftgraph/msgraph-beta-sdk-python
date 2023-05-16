@@ -37,7 +37,7 @@ class PersonAnnualEventItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[PersonAnnualEventItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property anniversaries for users
+        Delete a personAnniversary object from the user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class PersonAnnualEventItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[PersonAnnualEventItemRequestBuilderGetRequestConfiguration] = None) -> Optional[person_annual_event.PersonAnnualEvent]:
         """
-        Represents the details of meaningful dates associated with a person.
+        Retrieve the properties and relationships of a personAnniversary object in a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[person_annual_event.PersonAnnualEvent]
@@ -78,7 +78,7 @@ class PersonAnnualEventItemRequestBuilder():
     
     async def patch(self,body: Optional[person_annual_event.PersonAnnualEvent] = None, request_configuration: Optional[PersonAnnualEventItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[person_annual_event.PersonAnnualEvent]:
         """
-        Update the navigation property anniversaries in users
+        Update the properties of a personAnniversary object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class PersonAnnualEventItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[PersonAnnualEventItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property anniversaries for users
+        Delete a personAnniversary object from the user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class PersonAnnualEventItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PersonAnnualEventItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents the details of meaningful dates associated with a person.
+        Retrieve the properties and relationships of a personAnniversary object in a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class PersonAnnualEventItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[person_annual_event.PersonAnnualEvent] = None, request_configuration: Optional[PersonAnnualEventItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property anniversaries in users
+        Update the properties of a personAnniversary object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class PersonAnnualEventItemRequestBuilder():
     @dataclass
     class PersonAnnualEventItemRequestBuilderGetQueryParameters():
         """
-        Represents the details of meaningful dates associated with a person.
+        Retrieve the properties and relationships of a personAnniversary object in a user's profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

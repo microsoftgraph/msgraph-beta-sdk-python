@@ -58,7 +58,7 @@ class ManagementTemplateItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[ManagementTemplateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[management_template.ManagementTemplate]:
         """
-        The collection of baseline management templates across managed tenants.
+        Read the properties and relationships of a managementTemplate object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[management_template.ManagementTemplate]
@@ -121,7 +121,7 @@ class ManagementTemplateItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ManagementTemplateItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection of baseline management templates across managed tenants.
+        Read the properties and relationships of a managementTemplate object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -191,7 +191,7 @@ class ManagementTemplateItemRequestBuilder():
     @dataclass
     class ManagementTemplateItemRequestBuilderGetQueryParameters():
         """
-        The collection of baseline management templates across managed tenants.
+        Read the properties and relationships of a managementTemplate object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -38,7 +38,7 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder()
     
     async def delete(self,request_configuration: Optional[PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property passwordlessMicrosoftAuthenticatorMethods for me
+        Deletes a user's Microsoft Authenticator Passwordless Phone Sign-in method object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -57,7 +57,7 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder()
     
     async def get(self,request_configuration: Optional[PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderGetRequestConfiguration] = None) -> Optional[passwordless_microsoft_authenticator_authentication_method.PasswordlessMicrosoftAuthenticatorAuthenticationMethod]:
         """
-        Represents the Microsoft Authenticator Passwordless Phone Sign-in methods registered to a user for authentication.
+        Retrieve a user's single Microsoft Authenticator Passwordless Phone Sign-in method object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[passwordless_microsoft_authenticator_authentication_method.PasswordlessMicrosoftAuthenticatorAuthenticationMethod]
@@ -79,7 +79,7 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder()
     
     def to_delete_request_information(self,request_configuration: Optional[PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property passwordlessMicrosoftAuthenticatorMethods for me
+        Deletes a user's Microsoft Authenticator Passwordless Phone Sign-in method object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -95,7 +95,7 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder()
     
     def to_get_request_information(self,request_configuration: Optional[PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents the Microsoft Authenticator Passwordless Phone Sign-in methods registered to a user for authentication.
+        Retrieve a user's single Microsoft Authenticator Passwordless Phone Sign-in method object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +135,7 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder()
     @dataclass
     class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderGetQueryParameters():
         """
-        Represents the Microsoft Authenticator Passwordless Phone Sign-in methods registered to a user for authentication.
+        Retrieve a user's single Microsoft Authenticator Passwordless Phone Sign-in method object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

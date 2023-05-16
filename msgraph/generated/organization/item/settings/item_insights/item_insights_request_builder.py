@@ -56,7 +56,7 @@ class ItemInsightsRequestBuilder():
     
     async def get(self,request_configuration: Optional[ItemInsightsRequestBuilderGetRequestConfiguration] = None) -> Optional[insights_settings.InsightsSettings]:
         """
-        Contains the properties that are configured by an administrator for the visibility of Microsoft Graph-derived insights, between a user and other items in Microsoft 365, such as documents or sites. List itemInsights returns the settings to display or return item insights in an organization.
+        Get the properties of an insightsSettings object for displaying or returning item insights in an organization. To learn how to customize the privacy of item insights in an organization, see Customize item insights privacy. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[insights_settings.InsightsSettings]
@@ -78,7 +78,7 @@ class ItemInsightsRequestBuilder():
     
     async def patch(self,body: Optional[insights_settings.InsightsSettings] = None, request_configuration: Optional[ItemInsightsRequestBuilderPatchRequestConfiguration] = None) -> Optional[insights_settings.InsightsSettings]:
         """
-        Update the navigation property itemInsights in organization
+        Update the privacy settings to display or return the specified type of insights in an organization. The type of settings can be contact insights, item insights, or people insights. To learn more about customizing insights privacy for your organization, see:-  Customize item insights privacy -  Customize people insights privacy
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class ItemInsightsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ItemInsightsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Contains the properties that are configured by an administrator for the visibility of Microsoft Graph-derived insights, between a user and other items in Microsoft 365, such as documents or sites. List itemInsights returns the settings to display or return item insights in an organization.
+        Get the properties of an insightsSettings object for displaying or returning item insights in an organization. To learn how to customize the privacy of item insights in an organization, see Customize item insights privacy. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class ItemInsightsRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[insights_settings.InsightsSettings] = None, request_configuration: Optional[ItemInsightsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property itemInsights in organization
+        Update the privacy settings to display or return the specified type of insights in an organization. The type of settings can be contact insights, item insights, or people insights. To learn more about customizing insights privacy for your organization, see:-  Customize item insights privacy -  Customize people insights privacy
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class ItemInsightsRequestBuilder():
     @dataclass
     class ItemInsightsRequestBuilderGetQueryParameters():
         """
-        Contains the properties that are configured by an administrator for the visibility of Microsoft Graph-derived insights, between a user and other items in Microsoft 365, such as documents or sites. List itemInsights returns the settings to display or return item insights in an organization.
+        Get the properties of an insightsSettings object for displaying or returning item insights in an organization. To learn how to customize the privacy of item insights in an organization, see Customize item insights privacy. 
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

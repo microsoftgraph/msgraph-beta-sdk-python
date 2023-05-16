@@ -37,7 +37,7 @@ class CustomAccessPackageWorkflowExtensionItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[CustomAccessPackageWorkflowExtensionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property customAccessPackageWorkflowExtensions for identityGovernance
+        Delete an accessPackageAssignmentRequestWorkflowExtension object. The custom workflow extension must first be removed from any associated policies before it can be deleted. Follow these steps to remove the custom workflow extension from any associated policies:1. First retrieve the accessPackageCatalogId by calling the Get accessPackageAssignmentPolicies operation and appending `?$expand=accessPackage($expand=accessPackageCatalog)` to the query. For example, `https://graph.microsoft.com/beta/identityGovernance/entitlementManagement/accessPackageAssignmentPolicies?$expand=accessPackage($expand=accessPackageCatalog)`.2. Use the access package catalog ID and retrieve the ID of the **accessPackageCustomWorkflowExtension** object that you want to delete by running the List accessPackageCustomWorkflowExtensions operation.3. Call the Update accessPackageAssignmentPolicy operation to remove the custom workflow extension object from the policy. For an example, see Example 3: Remove the customExtensionStageSettings from a policy.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class CustomAccessPackageWorkflowExtensionItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[CustomAccessPackageWorkflowExtensionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[custom_access_package_workflow_extension.CustomAccessPackageWorkflowExtension]:
         """
-        Get customAccessPackageWorkflowExtensions from identityGovernance
+        Read the properties and relationships of a customAccessPackageWorkflowExtension object for an accessPackageCatalog object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[custom_access_package_workflow_extension.CustomAccessPackageWorkflowExtension]
@@ -78,7 +78,7 @@ class CustomAccessPackageWorkflowExtensionItemRequestBuilder():
     
     async def patch(self,body: Optional[custom_access_package_workflow_extension.CustomAccessPackageWorkflowExtension] = None, request_configuration: Optional[CustomAccessPackageWorkflowExtensionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[custom_access_package_workflow_extension.CustomAccessPackageWorkflowExtension]:
         """
-        Update the navigation property customAccessPackageWorkflowExtensions in identityGovernance
+        Update the properties of an existing customAccessPackageWorkflowExtension object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class CustomAccessPackageWorkflowExtensionItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[CustomAccessPackageWorkflowExtensionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property customAccessPackageWorkflowExtensions for identityGovernance
+        Delete an accessPackageAssignmentRequestWorkflowExtension object. The custom workflow extension must first be removed from any associated policies before it can be deleted. Follow these steps to remove the custom workflow extension from any associated policies:1. First retrieve the accessPackageCatalogId by calling the Get accessPackageAssignmentPolicies operation and appending `?$expand=accessPackage($expand=accessPackageCatalog)` to the query. For example, `https://graph.microsoft.com/beta/identityGovernance/entitlementManagement/accessPackageAssignmentPolicies?$expand=accessPackage($expand=accessPackageCatalog)`.2. Use the access package catalog ID and retrieve the ID of the **accessPackageCustomWorkflowExtension** object that you want to delete by running the List accessPackageCustomWorkflowExtensions operation.3. Call the Update accessPackageAssignmentPolicy operation to remove the custom workflow extension object from the policy. For an example, see Example 3: Remove the customExtensionStageSettings from a policy.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class CustomAccessPackageWorkflowExtensionItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CustomAccessPackageWorkflowExtensionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get customAccessPackageWorkflowExtensions from identityGovernance
+        Read the properties and relationships of a customAccessPackageWorkflowExtension object for an accessPackageCatalog object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class CustomAccessPackageWorkflowExtensionItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[custom_access_package_workflow_extension.CustomAccessPackageWorkflowExtension] = None, request_configuration: Optional[CustomAccessPackageWorkflowExtensionItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property customAccessPackageWorkflowExtensions in identityGovernance
+        Update the properties of an existing customAccessPackageWorkflowExtension object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class CustomAccessPackageWorkflowExtensionItemRequestBuilder():
     @dataclass
     class CustomAccessPackageWorkflowExtensionItemRequestBuilderGetQueryParameters():
         """
-        Get customAccessPackageWorkflowExtensions from identityGovernance
+        Read the properties and relationships of a customAccessPackageWorkflowExtension object for an accessPackageCatalog object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

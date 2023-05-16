@@ -16,15 +16,15 @@ class EducationOneRosterApiDataProvider(education_synchronization_data_provider.
         self.odata_type = "#microsoft.graph.educationOneRosterApiDataProvider"
         # The connectionSettings property
         self._connection_settings: Optional[education_synchronization_connection_settings.EducationSynchronizationConnectionSettings] = None
-        # The connectionUrl property
+        # The connection URL to the OneRoster instance.
         self._connection_url: Optional[str] = None
-        # The customizations property
+        # Optional customization to be applied to the synchronization profile.
         self._customizations: Optional[education_synchronization_customizations.EducationSynchronizationCustomizations] = None
-        # The providerName property
+        # The OneRoster Service Provider name as defined by the [OneRoster specification][oneroster].
         self._provider_name: Optional[str] = None
-        # The schoolsIds property
+        # The list of [School/Org][orgs] sourcedId to sync.
         self._schools_ids: Optional[List[str]] = None
-        # The termIds property
+        # The list of [academic sessions][terms] to sync.
         self._term_ids: Optional[List[str]] = None
     
     @property
@@ -47,7 +47,7 @@ class EducationOneRosterApiDataProvider(education_synchronization_data_provider.
     @property
     def connection_url(self,) -> Optional[str]:
         """
-        Gets the connectionUrl property value. The connectionUrl property
+        Gets the connectionUrl property value. The connection URL to the OneRoster instance.
         Returns: Optional[str]
         """
         return self._connection_url
@@ -55,7 +55,7 @@ class EducationOneRosterApiDataProvider(education_synchronization_data_provider.
     @connection_url.setter
     def connection_url(self,value: Optional[str] = None) -> None:
         """
-        Sets the connectionUrl property value. The connectionUrl property
+        Sets the connectionUrl property value. The connection URL to the OneRoster instance.
         Args:
             value: Value to set for the connection_url property.
         """
@@ -76,7 +76,7 @@ class EducationOneRosterApiDataProvider(education_synchronization_data_provider.
     @property
     def customizations(self,) -> Optional[education_synchronization_customizations.EducationSynchronizationCustomizations]:
         """
-        Gets the customizations property value. The customizations property
+        Gets the customizations property value. Optional customization to be applied to the synchronization profile.
         Returns: Optional[education_synchronization_customizations.EducationSynchronizationCustomizations]
         """
         return self._customizations
@@ -84,7 +84,7 @@ class EducationOneRosterApiDataProvider(education_synchronization_data_provider.
     @customizations.setter
     def customizations(self,value: Optional[education_synchronization_customizations.EducationSynchronizationCustomizations] = None) -> None:
         """
-        Sets the customizations property value. The customizations property
+        Sets the customizations property value. Optional customization to be applied to the synchronization profile.
         Args:
             value: Value to set for the customizations property.
         """
@@ -112,7 +112,7 @@ class EducationOneRosterApiDataProvider(education_synchronization_data_provider.
     @property
     def provider_name(self,) -> Optional[str]:
         """
-        Gets the providerName property value. The providerName property
+        Gets the providerName property value. The OneRoster Service Provider name as defined by the [OneRoster specification][oneroster].
         Returns: Optional[str]
         """
         return self._provider_name
@@ -120,7 +120,7 @@ class EducationOneRosterApiDataProvider(education_synchronization_data_provider.
     @provider_name.setter
     def provider_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the providerName property value. The providerName property
+        Sets the providerName property value. The OneRoster Service Provider name as defined by the [OneRoster specification][oneroster].
         Args:
             value: Value to set for the provider_name property.
         """
@@ -129,7 +129,7 @@ class EducationOneRosterApiDataProvider(education_synchronization_data_provider.
     @property
     def schools_ids(self,) -> Optional[List[str]]:
         """
-        Gets the schoolsIds property value. The schoolsIds property
+        Gets the schoolsIds property value. The list of [School/Org][orgs] sourcedId to sync.
         Returns: Optional[List[str]]
         """
         return self._schools_ids
@@ -137,7 +137,7 @@ class EducationOneRosterApiDataProvider(education_synchronization_data_provider.
     @schools_ids.setter
     def schools_ids(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the schoolsIds property value. The schoolsIds property
+        Sets the schoolsIds property value. The list of [School/Org][orgs] sourcedId to sync.
         Args:
             value: Value to set for the schools_ids property.
         """
@@ -162,7 +162,7 @@ class EducationOneRosterApiDataProvider(education_synchronization_data_provider.
     @property
     def term_ids(self,) -> Optional[List[str]]:
         """
-        Gets the termIds property value. The termIds property
+        Gets the termIds property value. The list of [academic sessions][terms] to sync.
         Returns: Optional[List[str]]
         """
         return self._term_ids
@@ -170,7 +170,7 @@ class EducationOneRosterApiDataProvider(education_synchronization_data_provider.
     @term_ids.setter
     def term_ids(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the termIds property value. The termIds property
+        Sets the termIds property value. The list of [academic sessions][terms] to sync.
         Args:
             value: Value to set for the term_ids property.
         """

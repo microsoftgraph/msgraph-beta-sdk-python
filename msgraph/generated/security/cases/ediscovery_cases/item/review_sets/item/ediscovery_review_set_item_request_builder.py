@@ -13,9 +13,9 @@ if TYPE_CHECKING:
     from .......models.o_data_errors import o_data_error
     from .......models.security import ediscovery_review_set
     from .files import files_request_builder
+    from .microsoft_graph_security_add_to_review_set import microsoft_graph_security_add_to_review_set_request_builder
+    from .microsoft_graph_security_export import microsoft_graph_security_export_request_builder
     from .queries import queries_request_builder
-    from .security_add_to_review_set import security_add_to_review_set_request_builder
-    from .security_export import security_export_request_builder
 
 class EdiscoveryReviewSetItemRequestBuilder():
     """
@@ -60,7 +60,7 @@ class EdiscoveryReviewSetItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[EdiscoveryReviewSetItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ediscovery_review_set.EdiscoveryReviewSet]:
         """
-        Returns a list of eDiscoveryReviewSet objects in the case.
+        Read the properties and relationships of an ediscoveryReviewSet object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ediscovery_review_set.EdiscoveryReviewSet]
@@ -123,7 +123,7 @@ class EdiscoveryReviewSetItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[EdiscoveryReviewSetItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Returns a list of eDiscoveryReviewSet objects in the case.
+        Read the properties and relationships of an ediscoveryReviewSet object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -170,6 +170,24 @@ class EdiscoveryReviewSetItemRequestBuilder():
         return files_request_builder.FilesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def microsoft_graph_security_add_to_review_set(self) -> microsoft_graph_security_add_to_review_set_request_builder.MicrosoftGraphSecurityAddToReviewSetRequestBuilder:
+        """
+        Provides operations to call the addToReviewSet method.
+        """
+        from .microsoft_graph_security_add_to_review_set import microsoft_graph_security_add_to_review_set_request_builder
+
+        return microsoft_graph_security_add_to_review_set_request_builder.MicrosoftGraphSecurityAddToReviewSetRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_security_export(self) -> microsoft_graph_security_export_request_builder.MicrosoftGraphSecurityExportRequestBuilder:
+        """
+        Provides operations to call the export method.
+        """
+        from .microsoft_graph_security_export import microsoft_graph_security_export_request_builder
+
+        return microsoft_graph_security_export_request_builder.MicrosoftGraphSecurityExportRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def queries(self) -> queries_request_builder.QueriesRequestBuilder:
         """
         Provides operations to manage the queries property of the microsoft.graph.security.ediscoveryReviewSet entity.
@@ -177,24 +195,6 @@ class EdiscoveryReviewSetItemRequestBuilder():
         from .queries import queries_request_builder
 
         return queries_request_builder.QueriesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def security_add_to_review_set(self) -> security_add_to_review_set_request_builder.SecurityAddToReviewSetRequestBuilder:
-        """
-        Provides operations to call the addToReviewSet method.
-        """
-        from .security_add_to_review_set import security_add_to_review_set_request_builder
-
-        return security_add_to_review_set_request_builder.SecurityAddToReviewSetRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def security_export(self) -> security_export_request_builder.SecurityExportRequestBuilder:
-        """
-        Provides operations to call the export method.
-        """
-        from .security_export import security_export_request_builder
-
-        return security_export_request_builder.SecurityExportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class EdiscoveryReviewSetItemRequestBuilderDeleteRequestConfiguration():
@@ -211,7 +211,7 @@ class EdiscoveryReviewSetItemRequestBuilder():
     @dataclass
     class EdiscoveryReviewSetItemRequestBuilderGetQueryParameters():
         """
-        Returns a list of eDiscoveryReviewSet objects in the case.
+        Read the properties and relationships of an ediscoveryReviewSet object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

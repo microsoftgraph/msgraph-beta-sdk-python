@@ -12,6 +12,9 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .......models.identity_governance import workflow_version
     from .......models.o_data_errors import o_data_error
+    from .created_by import created_by_request_builder
+    from .last_modified_by import last_modified_by_request_builder
+    from .tasks import tasks_request_builder
 
 class WorkflowVersionVersionNumberItemRequestBuilder():
     """
@@ -37,7 +40,7 @@ class WorkflowVersionVersionNumberItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[WorkflowVersionVersionNumberItemRequestBuilderGetRequestConfiguration] = None) -> Optional[workflow_version.WorkflowVersion]:
         """
-        The workflow versions that are available.
+        Read the properties and relationships of a workflowVersion object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[workflow_version.WorkflowVersion]
@@ -59,7 +62,7 @@ class WorkflowVersionVersionNumberItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[WorkflowVersionVersionNumberItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The workflow versions that are available.
+        Read the properties and relationships of a workflowVersion object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -75,10 +78,37 @@ class WorkflowVersionVersionNumberItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
+    @property
+    def created_by(self) -> created_by_request_builder.CreatedByRequestBuilder:
+        """
+        Provides operations to manage the createdBy property of the microsoft.graph.identityGovernance.workflowBase entity.
+        """
+        from .created_by import created_by_request_builder
+
+        return created_by_request_builder.CreatedByRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def last_modified_by(self) -> last_modified_by_request_builder.LastModifiedByRequestBuilder:
+        """
+        Provides operations to manage the lastModifiedBy property of the microsoft.graph.identityGovernance.workflowBase entity.
+        """
+        from .last_modified_by import last_modified_by_request_builder
+
+        return last_modified_by_request_builder.LastModifiedByRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def tasks(self) -> tasks_request_builder.TasksRequestBuilder:
+        """
+        Provides operations to manage the tasks property of the microsoft.graph.identityGovernance.workflowBase entity.
+        """
+        from .tasks import tasks_request_builder
+
+        return tasks_request_builder.TasksRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class WorkflowVersionVersionNumberItemRequestBuilderGetQueryParameters():
         """
-        The workflow versions that are available.
+        Read the properties and relationships of a workflowVersion object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

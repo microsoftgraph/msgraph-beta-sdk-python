@@ -37,7 +37,7 @@ class AdministrativeUnitRequestBuilder():
     
     async def get(self,request_configuration: Optional[AdministrativeUnitRequestBuilderGetRequestConfiguration] = None) -> Optional[administrative_unit.AdministrativeUnit]:
         """
-        Get administrativeUnit from education
+        Retrieve the simple directory **administrativeUnit** that corresponds to this **educationSchool**.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[administrative_unit.AdministrativeUnit]
@@ -84,7 +84,7 @@ class AdministrativeUnitRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AdministrativeUnitRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get administrativeUnit from education
+        Retrieve the simple directory **administrativeUnit** that corresponds to this **educationSchool**.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -124,7 +124,7 @@ class AdministrativeUnitRequestBuilder():
     @dataclass
     class AdministrativeUnitRequestBuilderGetQueryParameters():
         """
-        Get administrativeUnit from education
+        Retrieve the simple directory **administrativeUnit** that corresponds to this **educationSchool**.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

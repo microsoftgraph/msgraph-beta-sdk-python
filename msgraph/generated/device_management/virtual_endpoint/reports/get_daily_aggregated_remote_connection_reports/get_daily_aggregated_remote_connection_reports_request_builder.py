@@ -37,7 +37,7 @@ class GetDailyAggregatedRemoteConnectionReportsRequestBuilder():
     
     async def post(self,body: Optional[get_daily_aggregated_remote_connection_reports_post_request_body.GetDailyAggregatedRemoteConnectionReportsPostRequestBody] = None, request_configuration: Optional[GetDailyAggregatedRemoteConnectionReportsRequestBuilderPostRequestConfiguration] = None) -> bytes:
         """
-        Invoke action getDailyAggregatedRemoteConnectionReports
+        Get the daily aggregated remote connection reports, such as round trip time, available bandwidth, and so on, in a given period.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -60,7 +60,7 @@ class GetDailyAggregatedRemoteConnectionReportsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[get_daily_aggregated_remote_connection_reports_post_request_body.GetDailyAggregatedRemoteConnectionReportsPostRequestBody] = None, request_configuration: Optional[GetDailyAggregatedRemoteConnectionReportsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action getDailyAggregatedRemoteConnectionReports
+        Get the daily aggregated remote connection reports, such as round trip time, available bandwidth, and so on, in a given period.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

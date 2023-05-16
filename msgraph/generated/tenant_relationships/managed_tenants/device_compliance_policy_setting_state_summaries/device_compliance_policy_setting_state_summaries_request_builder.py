@@ -54,7 +54,7 @@ class DeviceCompliancePolicySettingStateSummariesRequestBuilder():
     
     async def get(self,request_configuration: Optional[DeviceCompliancePolicySettingStateSummariesRequestBuilderGetRequestConfiguration] = None) -> Optional[device_compliance_policy_setting_state_summary_collection_response.DeviceCompliancePolicySettingStateSummaryCollectionResponse]:
         """
-        Summary information for device compliance policy setting states across managed tenants.
+        Get a list of the deviceCompliancePolicySettingStateSummary objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[device_compliance_policy_setting_state_summary_collection_response.DeviceCompliancePolicySettingStateSummaryCollectionResponse]
@@ -101,7 +101,7 @@ class DeviceCompliancePolicySettingStateSummariesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[DeviceCompliancePolicySettingStateSummariesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Summary information for device compliance policy setting states across managed tenants.
+        Get a list of the deviceCompliancePolicySettingStateSummary objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class DeviceCompliancePolicySettingStateSummariesRequestBuilder():
     @dataclass
     class DeviceCompliancePolicySettingStateSummariesRequestBuilderGetQueryParameters():
         """
-        Summary information for device compliance policy setting states across managed tenants.
+        Get a list of the deviceCompliancePolicySettingStateSummary objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

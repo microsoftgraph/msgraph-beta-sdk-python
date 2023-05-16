@@ -54,7 +54,7 @@ class PassiveDnsRequestBuilder():
     
     async def get(self,request_configuration: Optional[PassiveDnsRequestBuilderGetRequestConfiguration] = None) -> Optional[passive_dns_record_collection_response.PassiveDnsRecordCollectionResponse]:
         """
-        Passive DNS retrieval about this host.
+        Get a list of passiveDnsRecord resources associated to a host.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[passive_dns_record_collection_response.PassiveDnsRecordCollectionResponse]
@@ -76,7 +76,7 @@ class PassiveDnsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PassiveDnsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Passive DNS retrieval about this host.
+        Get a list of passiveDnsRecord resources associated to a host.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +104,7 @@ class PassiveDnsRequestBuilder():
     @dataclass
     class PassiveDnsRequestBuilderGetQueryParameters():
         """
-        Passive DNS retrieval about this host.
+        Get a list of passiveDnsRecord resources associated to a host.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

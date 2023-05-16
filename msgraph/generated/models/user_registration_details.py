@@ -1,4 +1,5 @@
 from __future__ import annotations
+from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -29,6 +30,8 @@ class UserRegistrationDetails(entity.Entity):
         self._is_sspr_enabled: Optional[bool] = None
         # Whether the user has registered the required number of authentication methods for self-service password reset. The user may not necessarily be allowed to perform self-service password reset by policy. Supports $filter (eq).
         self._is_sspr_registered: Optional[bool] = None
+        # The lastUpdatedDateTime property
+        self._last_updated_date_time: Optional[datetime] = None
         # Collection of authentication methods registered, such as mobilePhone, email, fido2. Supports $filter (any with eq).
         self._methods_registered: Optional[List[str]] = None
         # The OdataType property
@@ -85,6 +88,7 @@ class UserRegistrationDetails(entity.Entity):
             "isSsprCapable": lambda n : setattr(self, 'is_sspr_capable', n.get_bool_value()),
             "isSsprEnabled": lambda n : setattr(self, 'is_sspr_enabled', n.get_bool_value()),
             "isSsprRegistered": lambda n : setattr(self, 'is_sspr_registered', n.get_bool_value()),
+            "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
             "methodsRegistered": lambda n : setattr(self, 'methods_registered', n.get_collection_of_primitive_values(str)),
             "userDisplayName": lambda n : setattr(self, 'user_display_name', n.get_str_value()),
             "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
@@ -214,6 +218,23 @@ class UserRegistrationDetails(entity.Entity):
         self._is_sspr_registered = value
     
     @property
+    def last_updated_date_time(self,) -> Optional[datetime]:
+        """
+        Gets the lastUpdatedDateTime property value. The lastUpdatedDateTime property
+        Returns: Optional[datetime]
+        """
+        return self._last_updated_date_time
+    
+    @last_updated_date_time.setter
+    def last_updated_date_time(self,value: Optional[datetime] = None) -> None:
+        """
+        Sets the lastUpdatedDateTime property value. The lastUpdatedDateTime property
+        Args:
+            value: Value to set for the last_updated_date_time property.
+        """
+        self._last_updated_date_time = value
+    
+    @property
     def methods_registered(self,) -> Optional[List[str]]:
         """
         Gets the methodsRegistered property value. Collection of authentication methods registered, such as mobilePhone, email, fido2. Supports $filter (any with eq).
@@ -247,6 +268,7 @@ class UserRegistrationDetails(entity.Entity):
         writer.write_bool_value("isSsprCapable", self.is_sspr_capable)
         writer.write_bool_value("isSsprEnabled", self.is_sspr_enabled)
         writer.write_bool_value("isSsprRegistered", self.is_sspr_registered)
+        writer.write_datetime_value("lastUpdatedDateTime", self.last_updated_date_time)
         writer.write_collection_of_primitive_values("methodsRegistered", self.methods_registered)
         writer.write_str_value("userDisplayName", self.user_display_name)
         writer.write_str_value("userPrincipalName", self.user_principal_name)

@@ -39,7 +39,7 @@ class UserProcessingResultItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[UserProcessingResultItemRequestBuilderGetRequestConfiguration] = None) -> Optional[user_processing_result.UserProcessingResult]:
         """
-        The associated individual user execution.
+        Get the user processing result of a user processing result of a run.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[user_processing_result.UserProcessingResult]
@@ -61,7 +61,7 @@ class UserProcessingResultItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UserProcessingResultItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The associated individual user execution.
+        Get the user processing result of a user processing result of a run.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -98,7 +98,7 @@ class UserProcessingResultItemRequestBuilder():
     @dataclass
     class UserProcessingResultItemRequestBuilderGetQueryParameters():
         """
-        The associated individual user execution.
+        Get the user processing result of a user processing result of a run.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

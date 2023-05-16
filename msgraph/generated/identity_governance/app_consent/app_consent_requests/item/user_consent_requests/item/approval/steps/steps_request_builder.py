@@ -54,7 +54,7 @@ class StepsRequestBuilder():
     
     async def get(self,request_configuration: Optional[StepsRequestBuilderGetRequestConfiguration] = None) -> Optional[approval_step_collection_response.ApprovalStepCollectionResponse]:
         """
-        Get steps from identityGovernance
+        In Azure AD entitlement management, lists the approvalStep objects associated with an approval object.  This call can be made by an approver, providing the identifier of the access package assignment request.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[approval_step_collection_response.ApprovalStepCollectionResponse]
@@ -101,7 +101,7 @@ class StepsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[StepsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get steps from identityGovernance
+        In Azure AD entitlement management, lists the approvalStep objects associated with an approval object.  This call can be made by an approver, providing the identifier of the access package assignment request.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class StepsRequestBuilder():
     @dataclass
     class StepsRequestBuilderGetQueryParameters():
         """
-        Get steps from identityGovernance
+        In Azure AD entitlement management, lists the approvalStep objects associated with an approval object.  This call can be made by an approver, providing the identifier of the access package assignment request.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

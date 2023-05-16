@@ -54,7 +54,7 @@ class TaskProcessingResultsRequestBuilder():
     
     async def get(self,request_configuration: Optional[TaskProcessingResultsRequestBuilderGetRequestConfiguration] = None) -> Optional[task_processing_result_collection_response.TaskProcessingResultCollectionResponse]:
         """
-        The associated individual task execution.
+        Get the task processing result from a userProcessingResult either directly or through a run.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[task_processing_result_collection_response.TaskProcessingResultCollectionResponse]
@@ -76,7 +76,7 @@ class TaskProcessingResultsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TaskProcessingResultsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The associated individual task execution.
+        Get the task processing result from a userProcessingResult either directly or through a run.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +104,7 @@ class TaskProcessingResultsRequestBuilder():
     @dataclass
     class TaskProcessingResultsRequestBuilderGetQueryParameters():
         """
-        The associated individual task execution.
+        Get the task processing result from a userProcessingResult either directly or through a run.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

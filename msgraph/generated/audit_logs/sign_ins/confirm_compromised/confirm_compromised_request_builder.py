@@ -37,7 +37,7 @@ class ConfirmCompromisedRequestBuilder():
     
     async def post(self,body: Optional[confirm_compromised_post_request_body.ConfirmCompromisedPostRequestBody] = None, request_configuration: Optional[ConfirmCompromisedRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Invoke action confirmCompromised
+        Allow admins to mark an event in the Azure AD sign in logs as risky. Events marked as risky by an admin are immediately flagged as high risk in Azure AD Identity Protection, overriding previous risk states. Admins can confirm that events flagged as risky by Azure AD Identity Protection are in fact risky. For details about investigating Identity Protection risks, see How to investigate risk.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -59,7 +59,7 @@ class ConfirmCompromisedRequestBuilder():
     
     def to_post_request_information(self,body: Optional[confirm_compromised_post_request_body.ConfirmCompromisedPostRequestBody] = None, request_configuration: Optional[ConfirmCompromisedRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action confirmCompromised
+        Allow admins to mark an event in the Azure AD sign in logs as risky. Events marked as risky by an admin are immediately flagged as high risk in Azure AD Identity Protection, overriding previous risk states. Admins can confirm that events flagged as risky by Azure AD Identity Protection are in fact risky. For details about investigating Identity Protection risks, see How to investigate risk.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

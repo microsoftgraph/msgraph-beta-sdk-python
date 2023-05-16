@@ -4,7 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import education_added_student_action, education_add_to_calendar_options, education_assignment_grade_type, education_assignment_recipient, education_assignment_resource, education_assignment_status, education_category, education_item_body, education_rubric, education_submission, entity, identity_set
+    from . import education_added_student_action, education_add_to_calendar_options, education_assignment_grade_type, education_assignment_recipient, education_assignment_resource, education_assignment_status, education_category, education_grading_category, education_item_body, education_rubric, education_submission, entity, identity_set
 
 from . import entity
 
@@ -46,6 +46,8 @@ class EducationAssignment(entity.Entity):
         self._feedback_resources_folder_url: Optional[str] = None
         # How the assignment will be graded.
         self._grading: Optional[education_assignment_grade_type.EducationAssignmentGradeType] = None
+        # The gradingCategory property
+        self._grading_category: Optional[education_grading_category.EducationGradingCategory] = None
         # Instructions for the assignment.  This along with the display name tell the student what to do.
         self._instructions: Optional[education_item_body.EducationItemBody] = None
         # Who last modified the assignment.
@@ -62,7 +64,7 @@ class EducationAssignment(entity.Entity):
         self._resources_folder_url: Optional[str] = None
         # When set, the grading rubric attached to this assignment.
         self._rubric: Optional[education_rubric.EducationRubric] = None
-        # Status of the Assignment.  You can not PATCH this value.  Possible values are: draft, scheduled, published, assigned.
+        # Status of the Assignment.  You can not PATCH this value.  Possible values are: draft, scheduled, published, assigned, unknownFutureValue and inactive. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: inactive.
         self._status: Optional[education_assignment_status.EducationAssignmentStatus] = None
         # Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.
         self._submissions: Optional[List[education_submission.EducationSubmission]] = None
@@ -341,7 +343,7 @@ class EducationAssignment(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import education_added_student_action, education_add_to_calendar_options, education_assignment_grade_type, education_assignment_recipient, education_assignment_resource, education_assignment_status, education_category, education_item_body, education_rubric, education_submission, entity, identity_set
+        from . import education_added_student_action, education_add_to_calendar_options, education_assignment_grade_type, education_assignment_recipient, education_assignment_resource, education_assignment_status, education_category, education_grading_category, education_item_body, education_rubric, education_submission, entity, identity_set
 
         fields: Dict[str, Callable[[Any], None]] = {
             "addedStudentAction": lambda n : setattr(self, 'added_student_action', n.get_enum_value(education_added_student_action.EducationAddedStudentAction)),
@@ -360,6 +362,7 @@ class EducationAssignment(entity.Entity):
             "dueDateTime": lambda n : setattr(self, 'due_date_time', n.get_datetime_value()),
             "feedbackResourcesFolderUrl": lambda n : setattr(self, 'feedback_resources_folder_url', n.get_str_value()),
             "grading": lambda n : setattr(self, 'grading', n.get_object_value(education_assignment_grade_type.EducationAssignmentGradeType)),
+            "gradingCategory": lambda n : setattr(self, 'grading_category', n.get_object_value(education_grading_category.EducationGradingCategory)),
             "instructions": lambda n : setattr(self, 'instructions', n.get_object_value(education_item_body.EducationItemBody)),
             "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
@@ -391,6 +394,23 @@ class EducationAssignment(entity.Entity):
             value: Value to set for the grading property.
         """
         self._grading = value
+    
+    @property
+    def grading_category(self,) -> Optional[education_grading_category.EducationGradingCategory]:
+        """
+        Gets the gradingCategory property value. The gradingCategory property
+        Returns: Optional[education_grading_category.EducationGradingCategory]
+        """
+        return self._grading_category
+    
+    @grading_category.setter
+    def grading_category(self,value: Optional[education_grading_category.EducationGradingCategory] = None) -> None:
+        """
+        Sets the gradingCategory property value. The gradingCategory property
+        Args:
+            value: Value to set for the grading_category property.
+        """
+        self._grading_category = value
     
     @property
     def instructions(self,) -> Optional[education_item_body.EducationItemBody]:
@@ -531,6 +551,7 @@ class EducationAssignment(entity.Entity):
         writer.write_str_value("displayName", self.display_name)
         writer.write_datetime_value("dueDateTime", self.due_date_time)
         writer.write_object_value("grading", self.grading)
+        writer.write_object_value("gradingCategory", self.grading_category)
         writer.write_object_value("instructions", self.instructions)
         writer.write_str_value("notificationChannelUrl", self.notification_channel_url)
         writer.write_collection_of_object_values("resources", self.resources)
@@ -540,7 +561,7 @@ class EducationAssignment(entity.Entity):
     @property
     def status(self,) -> Optional[education_assignment_status.EducationAssignmentStatus]:
         """
-        Gets the status property value. Status of the Assignment.  You can not PATCH this value.  Possible values are: draft, scheduled, published, assigned.
+        Gets the status property value. Status of the Assignment.  You can not PATCH this value.  Possible values are: draft, scheduled, published, assigned, unknownFutureValue and inactive. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: inactive.
         Returns: Optional[education_assignment_status.EducationAssignmentStatus]
         """
         return self._status
@@ -548,7 +569,7 @@ class EducationAssignment(entity.Entity):
     @status.setter
     def status(self,value: Optional[education_assignment_status.EducationAssignmentStatus] = None) -> None:
         """
-        Sets the status property value. Status of the Assignment.  You can not PATCH this value.  Possible values are: draft, scheduled, published, assigned.
+        Sets the status property value. Status of the Assignment.  You can not PATCH this value.  Possible values are: draft, scheduled, published, assigned, unknownFutureValue and inactive. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: inactive.
         Args:
             value: Value to set for the status property.
         """

@@ -38,7 +38,7 @@ class UploadCertificateRequestBuilder():
     
     async def post(self,body: Optional[upload_certificate_post_request_body.UploadCertificatePostRequestBody] = None, request_configuration: Optional[UploadCertificateRequestBuilderPostRequestConfiguration] = None) -> Optional[trust_framework_key.TrustFrameworkKey]:
         """
-        Invoke action uploadCertificate
+        Upload a certificate to a trustFrameworkKeyset. The input is a base-64 encoded value of the certificate contents. This method returns trustFrameworkKey.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +63,7 @@ class UploadCertificateRequestBuilder():
     
     def to_post_request_information(self,body: Optional[upload_certificate_post_request_body.UploadCertificatePostRequestBody] = None, request_configuration: Optional[UploadCertificateRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action uploadCertificate
+        Upload a certificate to a trustFrameworkKeyset. The input is a base-64 encoded value of the certificate contents. This method returns trustFrameworkKey.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

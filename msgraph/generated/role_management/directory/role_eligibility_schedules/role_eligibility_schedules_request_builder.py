@@ -68,7 +68,7 @@ class RoleEligibilitySchedulesRequestBuilder():
     
     async def get(self,request_configuration: Optional[RoleEligibilitySchedulesRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_eligibility_schedule_collection_response.UnifiedRoleEligibilityScheduleCollectionResponse]:
         """
-        Get roleEligibilitySchedules from roleManagement
+        Get a list of the unifiedRoleEligibilitySchedule objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[unified_role_eligibility_schedule_collection_response.UnifiedRoleEligibilityScheduleCollectionResponse]
@@ -115,7 +115,7 @@ class RoleEligibilitySchedulesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RoleEligibilitySchedulesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get roleEligibilitySchedules from roleManagement
+        Get a list of the unifiedRoleEligibilitySchedule objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -164,7 +164,7 @@ class RoleEligibilitySchedulesRequestBuilder():
     @dataclass
     class RoleEligibilitySchedulesRequestBuilderGetQueryParameters():
         """
-        Get roleEligibilitySchedules from roleManagement
+        Get a list of the unifiedRoleEligibilitySchedule objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -8,9 +8,12 @@ if TYPE_CHECKING:
 from . import entity
 
 class UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory(entity.Entity):
+    """
+    The user experience analytics battery health runtime history entity contains the trend of runtime of a device over a period of 30 days
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory and sets the default values.
+        Instantiates a new userExperienceAnalyticsBatteryHealthDeviceRuntimeHistory and sets the default values.
         """
         super().__init__()
         # The unique identifier of the device, Intune DeviceID or SCCM device id.

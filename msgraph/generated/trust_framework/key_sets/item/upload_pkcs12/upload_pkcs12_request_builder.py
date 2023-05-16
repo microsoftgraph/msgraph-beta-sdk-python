@@ -38,7 +38,7 @@ class UploadPkcs12RequestBuilder():
     
     async def post(self,body: Optional[upload_pkcs12_post_request_body.UploadPkcs12PostRequestBody] = None, request_configuration: Optional[UploadPkcs12RequestBuilderPostRequestConfiguration] = None) -> Optional[trust_framework_key.TrustFrameworkKey]:
         """
-        Invoke action uploadPkcs12
+        Upload a PKCS12 format key (PFX) to a trustFrameworkKeyset. The input is a base-64 encoded value of the Pfx certificate contents. This method returns trustFrameworkKey.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +63,7 @@ class UploadPkcs12RequestBuilder():
     
     def to_post_request_information(self,body: Optional[upload_pkcs12_post_request_body.UploadPkcs12PostRequestBody] = None, request_configuration: Optional[UploadPkcs12RequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action uploadPkcs12
+        Upload a PKCS12 format key (PFX) to a trustFrameworkKeyset. The input is a base-64 encoded value of the Pfx certificate contents. This method returns trustFrameworkKey.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

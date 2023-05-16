@@ -54,7 +54,7 @@ class CertificationsRequestBuilder():
     
     async def get(self,request_configuration: Optional[CertificationsRequestBuilderGetRequestConfiguration] = None) -> Optional[person_certification_collection_response.PersonCertificationCollectionResponse]:
         """
-        Represents the details of certifications associated with a person.
+        Retrieve a list of personCertification objects from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[person_certification_collection_response.PersonCertificationCollectionResponse]
@@ -76,7 +76,7 @@ class CertificationsRequestBuilder():
     
     async def post(self,body: Optional[person_certification.PersonCertification] = None, request_configuration: Optional[CertificationsRequestBuilderPostRequestConfiguration] = None) -> Optional[person_certification.PersonCertification]:
         """
-        Create new navigation property to certifications for me
+        Create a new personCertification object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class CertificationsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CertificationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents the details of certifications associated with a person.
+        Retrieve a list of personCertification objects from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class CertificationsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[person_certification.PersonCertification] = None, request_configuration: Optional[CertificationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to certifications for me
+        Create a new personCertification object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class CertificationsRequestBuilder():
     @dataclass
     class CertificationsRequestBuilderGetQueryParameters():
         """
-        Represents the details of certifications associated with a person.
+        Retrieve a list of personCertification objects from a user's profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

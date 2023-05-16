@@ -42,7 +42,7 @@ class TrustFrameworkKeySetItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property keySets for trustFramework
+        Delete a trustFrameworkKeySet.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -61,7 +61,7 @@ class TrustFrameworkKeySetItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderGetRequestConfiguration] = None) -> Optional[trust_framework_key_set.TrustFrameworkKeySet]:
         """
-        Get keySets from trustFramework
+        Retrieve the properties and associations for a Trustframeworkkeyset.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[trust_framework_key_set.TrustFrameworkKeySet]
@@ -83,7 +83,7 @@ class TrustFrameworkKeySetItemRequestBuilder():
     
     async def patch(self,body: Optional[trust_framework_key_set.TrustFrameworkKeySet] = None, request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[trust_framework_key_set.TrustFrameworkKeySet]:
         """
-        Update the navigation property keySets in trustFramework
+        Update the properties of a trustFrameworkKeyset. This operation will replace the content of an existing keyset. Specifying the ID in the request payload is optional.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -108,7 +108,7 @@ class TrustFrameworkKeySetItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property keySets for trustFramework
+        Delete a trustFrameworkKeySet.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -124,7 +124,7 @@ class TrustFrameworkKeySetItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get keySets from trustFramework
+        Retrieve the properties and associations for a Trustframeworkkeyset.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -142,7 +142,7 @@ class TrustFrameworkKeySetItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[trust_framework_key_set.TrustFrameworkKeySet] = None, request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property keySets in trustFramework
+        Update the properties of a trustFrameworkKeyset. This operation will replace the content of an existing keyset. Specifying the ID in the request payload is optional.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -221,7 +221,7 @@ class TrustFrameworkKeySetItemRequestBuilder():
     @dataclass
     class TrustFrameworkKeySetItemRequestBuilderGetQueryParameters():
         """
-        Get keySets from trustFramework
+        Retrieve the properties and associations for a Trustframeworkkeyset.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

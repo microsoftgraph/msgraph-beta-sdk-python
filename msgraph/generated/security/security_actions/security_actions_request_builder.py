@@ -54,7 +54,7 @@ class SecurityActionsRequestBuilder():
     
     async def get(self,request_configuration: Optional[SecurityActionsRequestBuilderGetRequestConfiguration] = None) -> Optional[security_action_collection_response.SecurityActionCollectionResponse]:
         """
-        Get securityActions from security
+        Retrieve a list of securityAction objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[security_action_collection_response.SecurityActionCollectionResponse]
@@ -76,7 +76,7 @@ class SecurityActionsRequestBuilder():
     
     async def post(self,body: Optional[security_action.SecurityAction] = None, request_configuration: Optional[SecurityActionsRequestBuilderPostRequestConfiguration] = None) -> Optional[security_action.SecurityAction]:
         """
-        Create new navigation property to securityActions for security
+        Create a new securityAction object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class SecurityActionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SecurityActionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get securityActions from security
+        Retrieve a list of securityAction objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class SecurityActionsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[security_action.SecurityAction] = None, request_configuration: Optional[SecurityActionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to securityActions for security
+        Create a new securityAction object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class SecurityActionsRequestBuilder():
     @dataclass
     class SecurityActionsRequestBuilderGetQueryParameters():
         """
-        Get securityActions from security
+        Retrieve a list of securityAction objects.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

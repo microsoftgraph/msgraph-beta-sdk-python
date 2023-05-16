@@ -37,7 +37,7 @@ class WorkPositionItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[WorkPositionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property positions for users
+        Delete a specific workPosition object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class WorkPositionItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[WorkPositionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[work_position.WorkPosition]:
         """
-        Represents detailed information about work positions associated with a user's profile.
+        Retrieve the properties and relationships of a workPosition object in a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[work_position.WorkPosition]
@@ -78,7 +78,7 @@ class WorkPositionItemRequestBuilder():
     
     async def patch(self,body: Optional[work_position.WorkPosition] = None, request_configuration: Optional[WorkPositionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[work_position.WorkPosition]:
         """
-        Update the navigation property positions in users
+        Update the properties of a workPosition object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class WorkPositionItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[WorkPositionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property positions for users
+        Delete a specific workPosition object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class WorkPositionItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[WorkPositionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents detailed information about work positions associated with a user's profile.
+        Retrieve the properties and relationships of a workPosition object in a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class WorkPositionItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[work_position.WorkPosition] = None, request_configuration: Optional[WorkPositionItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property positions in users
+        Update the properties of a workPosition object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class WorkPositionItemRequestBuilder():
     @dataclass
     class WorkPositionItemRequestBuilderGetQueryParameters():
         """
-        Represents detailed information about work positions associated with a user's profile.
+        Retrieve the properties and relationships of a workPosition object in a user's profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

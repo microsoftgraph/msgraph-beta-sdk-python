@@ -37,7 +37,7 @@ class ItemAddressItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[ItemAddressItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property addresses for users
+        Deletes an itemAddress object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class ItemAddressItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[ItemAddressItemRequestBuilderGetRequestConfiguration] = None) -> Optional[item_address.ItemAddress]:
         """
-        Represents details of addresses associated with the user.
+        Read the properties and relationships of an itemAddress object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[item_address.ItemAddress]
@@ -78,7 +78,7 @@ class ItemAddressItemRequestBuilder():
     
     async def patch(self,body: Optional[item_address.ItemAddress] = None, request_configuration: Optional[ItemAddressItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[item_address.ItemAddress]:
         """
-        Update the navigation property addresses in users
+        Update the properties of an itemAddress object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class ItemAddressItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[ItemAddressItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property addresses for users
+        Deletes an itemAddress object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class ItemAddressItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ItemAddressItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents details of addresses associated with the user.
+        Read the properties and relationships of an itemAddress object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class ItemAddressItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[item_address.ItemAddress] = None, request_configuration: Optional[ItemAddressItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property addresses in users
+        Update the properties of an itemAddress object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class ItemAddressItemRequestBuilder():
     @dataclass
     class ItemAddressItemRequestBuilderGetQueryParameters():
         """
-        Represents details of addresses associated with the user.
+        Read the properties and relationships of an itemAddress object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

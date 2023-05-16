@@ -37,7 +37,7 @@ class MentionItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[MentionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property mentions for users
+        Delete a message in the specified user's mailbox, or delete a relationship of the message. For example, you can delete a specific @-mention of the specified user in the message.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -78,7 +78,7 @@ class MentionItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[MentionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property mentions for users
+        Delete a message in the specified user's mailbox, or delete a relationship of the message. For example, you can delete a specific @-mention of the specified user in the message.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

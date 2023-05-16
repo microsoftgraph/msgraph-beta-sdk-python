@@ -57,7 +57,7 @@ class VerticalSectionRequestBuilder():
     
     async def get(self,request_configuration: Optional[VerticalSectionRequestBuilderGetRequestConfiguration] = None) -> Optional[vertical_section.VerticalSection]:
         """
-        Vertical section on the SharePoint page.
+        Read the properties and relationships of a verticalSection object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[vertical_section.VerticalSection]
@@ -120,7 +120,7 @@ class VerticalSectionRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[VerticalSectionRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Vertical section on the SharePoint page.
+        Read the properties and relationships of a verticalSection object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -181,7 +181,7 @@ class VerticalSectionRequestBuilder():
     @dataclass
     class VerticalSectionRequestBuilderGetQueryParameters():
         """
-        Vertical section on the SharePoint page.
+        Read the properties and relationships of a verticalSection object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

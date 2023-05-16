@@ -14,13 +14,13 @@ class ServiceProvisioningError(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The createdDateTime property
+        # The date and time at which the error occurred.
         self._created_date_time: Optional[datetime] = None
-        # The isResolved property
+        # Indicates whether the Error has been attended to.
         self._is_resolved: Optional[bool] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The serviceInstance property
+        # Qualified service instance (e.g., 'SharePoint/Dublin') that published the service error information.
         self._service_instance: Optional[str] = None
     
     @property
@@ -43,7 +43,7 @@ class ServiceProvisioningError(AdditionalDataHolder, Parsable):
     @property
     def created_date_time(self,) -> Optional[datetime]:
         """
-        Gets the createdDateTime property value. The createdDateTime property
+        Gets the createdDateTime property value. The date and time at which the error occurred.
         Returns: Optional[datetime]
         """
         return self._created_date_time
@@ -51,7 +51,7 @@ class ServiceProvisioningError(AdditionalDataHolder, Parsable):
     @created_date_time.setter
     def created_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the createdDateTime property value. The createdDateTime property
+        Sets the createdDateTime property value. The date and time at which the error occurred.
         Args:
             value: Value to set for the created_date_time property.
         """
@@ -98,7 +98,7 @@ class ServiceProvisioningError(AdditionalDataHolder, Parsable):
     @property
     def is_resolved(self,) -> Optional[bool]:
         """
-        Gets the isResolved property value. The isResolved property
+        Gets the isResolved property value. Indicates whether the Error has been attended to.
         Returns: Optional[bool]
         """
         return self._is_resolved
@@ -106,7 +106,7 @@ class ServiceProvisioningError(AdditionalDataHolder, Parsable):
     @is_resolved.setter
     def is_resolved(self,value: Optional[bool] = None) -> None:
         """
-        Sets the isResolved property value. The isResolved property
+        Sets the isResolved property value. Indicates whether the Error has been attended to.
         Args:
             value: Value to set for the is_resolved property.
         """
@@ -146,7 +146,7 @@ class ServiceProvisioningError(AdditionalDataHolder, Parsable):
     @property
     def service_instance(self,) -> Optional[str]:
         """
-        Gets the serviceInstance property value. The serviceInstance property
+        Gets the serviceInstance property value. Qualified service instance (e.g., 'SharePoint/Dublin') that published the service error information.
         Returns: Optional[str]
         """
         return self._service_instance
@@ -154,7 +154,7 @@ class ServiceProvisioningError(AdditionalDataHolder, Parsable):
     @service_instance.setter
     def service_instance(self,value: Optional[str] = None) -> None:
         """
-        Sets the serviceInstance property value. The serviceInstance property
+        Sets the serviceInstance property value. Qualified service instance (e.g., 'SharePoint/Dublin') that published the service error information.
         Args:
             value: Value to set for the service_instance property.
         """

@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .complete import complete_request_builder
     from .dismiss import dismiss_request_builder
+    from .impacted_resources import impacted_resources_request_builder
     from .postpone import postpone_request_builder
     from .reactivate import reactivate_request_builder
 
@@ -177,6 +178,15 @@ class RecommendationItemRequestBuilder():
         from .dismiss import dismiss_request_builder
 
         return dismiss_request_builder.DismissRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def impacted_resources(self) -> impacted_resources_request_builder.ImpactedResourcesRequestBuilder:
+        """
+        Provides operations to manage the impactedResources property of the microsoft.graph.recommendationBase entity.
+        """
+        from .impacted_resources import impacted_resources_request_builder
+
+        return impacted_resources_request_builder.ImpactedResourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def postpone(self) -> postpone_request_builder.PostponeRequestBuilder:

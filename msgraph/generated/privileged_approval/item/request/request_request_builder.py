@@ -37,7 +37,7 @@ class RequestRequestBuilder():
     
     async def get(self,request_configuration: Optional[RequestRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest]:
         """
-        Read-only. The role assignment request for this approval object
+        Get request from privilegedApproval
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest]
@@ -59,7 +59,7 @@ class RequestRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RequestRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read-only. The role assignment request for this approval object
+        Get request from privilegedApproval
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -78,7 +78,7 @@ class RequestRequestBuilder():
     @dataclass
     class RequestRequestBuilderGetQueryParameters():
         """
-        Read-only. The role assignment request for this approval object
+        Get request from privilegedApproval
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

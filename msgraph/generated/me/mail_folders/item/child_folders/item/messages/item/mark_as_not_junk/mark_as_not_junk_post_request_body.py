@@ -10,7 +10,7 @@ class MarkAsNotJunkPostRequestBody(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The moveToInbox property
+        # The MoveToInbox property
         self._move_to_inbox: Optional[bool] = None
     
     @property
@@ -48,14 +48,14 @@ class MarkAsNotJunkPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields: Dict[str, Callable[[Any], None]] = {
-            "moveToInbox": lambda n : setattr(self, 'move_to_inbox', n.get_bool_value()),
+            "MoveToInbox": lambda n : setattr(self, 'move_to_inbox', n.get_bool_value()),
         }
         return fields
     
     @property
     def move_to_inbox(self,) -> Optional[bool]:
         """
-        Gets the moveToInbox property value. The moveToInbox property
+        Gets the moveToInbox property value. The MoveToInbox property
         Returns: Optional[bool]
         """
         return self._move_to_inbox
@@ -63,7 +63,7 @@ class MarkAsNotJunkPostRequestBody(AdditionalDataHolder, Parsable):
     @move_to_inbox.setter
     def move_to_inbox(self,value: Optional[bool] = None) -> None:
         """
-        Sets the moveToInbox property value. The moveToInbox property
+        Sets the moveToInbox property value. The MoveToInbox property
         Args:
             value: Value to set for the move_to_inbox property.
         """
@@ -77,7 +77,7 @@ class MarkAsNotJunkPostRequestBody(AdditionalDataHolder, Parsable):
         """
         if writer is None:
             raise Exception("writer cannot be undefined")
-        writer.write_bool_value("moveToInbox", self.move_to_inbox)
+        writer.write_bool_value("MoveToInbox", self.move_to_inbox)
         writer.write_additional_data_value(self.additional_data)
     
 

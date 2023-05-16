@@ -39,7 +39,7 @@ class CustomTaskExtensionItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[CustomTaskExtensionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property customTaskExtensions for identityGovernance
+        Delete a customTaskExtension object. Can only be deleted if it is not referenced in any task objects in a lifecycle workflow.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -58,7 +58,7 @@ class CustomTaskExtensionItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[CustomTaskExtensionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[custom_task_extension.CustomTaskExtension]:
         """
-        The customTaskExtension instance.
+        Read the properties and relationships of a customTaskExtension object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[custom_task_extension.CustomTaskExtension]
@@ -80,7 +80,7 @@ class CustomTaskExtensionItemRequestBuilder():
     
     async def patch(self,body: Optional[custom_task_extension.CustomTaskExtension] = None, request_configuration: Optional[CustomTaskExtensionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[custom_task_extension.CustomTaskExtension]:
         """
-        Update the navigation property customTaskExtensions in identityGovernance
+        Update the properties of a customTaskExtension object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -105,7 +105,7 @@ class CustomTaskExtensionItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[CustomTaskExtensionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property customTaskExtensions for identityGovernance
+        Delete a customTaskExtension object. Can only be deleted if it is not referenced in any task objects in a lifecycle workflow.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -121,7 +121,7 @@ class CustomTaskExtensionItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CustomTaskExtensionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The customTaskExtension instance.
+        Read the properties and relationships of a customTaskExtension object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -139,7 +139,7 @@ class CustomTaskExtensionItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[custom_task_extension.CustomTaskExtension] = None, request_configuration: Optional[CustomTaskExtensionItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property customTaskExtensions in identityGovernance
+        Update the properties of a customTaskExtension object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -191,7 +191,7 @@ class CustomTaskExtensionItemRequestBuilder():
     @dataclass
     class CustomTaskExtensionItemRequestBuilderGetQueryParameters():
         """
-        The customTaskExtension instance.
+        Read the properties and relationships of a customTaskExtension object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

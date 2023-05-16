@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .add import add_request_builder
     from .count import count_request_builder
     from .delta import delta_request_builder
+    from .get_all_sites import get_all_sites_request_builder
     from .item import site_item_request_builder
     from .remove import remove_request_builder
 
@@ -57,7 +58,7 @@ class SitesRequestBuilder():
     
     async def get(self,request_configuration: Optional[SitesRequestBuilderGetRequestConfiguration] = None) -> Optional[site_collection_response.SiteCollectionResponse]:
         """
-        Search across a SharePoint tenant for [sites][] that match keywords provided. The only property that works for sorting is **createdDateTime**. The search filter is a free text search that uses multiple properties when retrieving the search results.
+        List all available sites][] in an organization. Specific filter criteria and query options are also supported and described below: In addition, you can use a **[$search][]** query against the `/sites` collection to find sites matching given keywords. For more guidance about building applications that use site discovery for scanning purposes, see [Best practices for discovering files and detecting changes at scale.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[site_collection_response.SiteCollectionResponse]
@@ -79,7 +80,7 @@ class SitesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SitesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Search across a SharePoint tenant for [sites][] that match keywords provided. The only property that works for sorting is **createdDateTime**. The search filter is a free text search that uses multiple properties when retrieving the search results.
+        List all available sites][] in an organization. Specific filter criteria and query options are also supported and described below: In addition, you can use a **[$search][]** query against the `/sites` collection to find sites matching given keywords. For more guidance about building applications that use site discovery for scanning purposes, see [Best practices for discovering files and detecting changes at scale.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -123,6 +124,15 @@ class SitesRequestBuilder():
         return delta_request_builder.DeltaRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def get_all_sites(self) -> get_all_sites_request_builder.GetAllSitesRequestBuilder:
+        """
+        Provides operations to call the getAllSites method.
+        """
+        from .get_all_sites import get_all_sites_request_builder
+
+        return get_all_sites_request_builder.GetAllSitesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def remove(self) -> remove_request_builder.RemoveRequestBuilder:
         """
         Provides operations to call the remove method.
@@ -134,7 +144,7 @@ class SitesRequestBuilder():
     @dataclass
     class SitesRequestBuilderGetQueryParameters():
         """
-        Search across a SharePoint tenant for [sites][] that match keywords provided. The only property that works for sorting is **createdDateTime**. The search filter is a free text search that uses multiple properties when retrieving the search results.
+        List all available sites][] in an organization. Specific filter criteria and query options are also supported and described below: In addition, you can use a **[$search][]** query against the `/sites` collection to find sites matching given keywords. For more guidance about building applications that use site discovery for scanning purposes, see [Best practices for discovering files and detecting changes at scale.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -16,9 +16,9 @@ class AppliedConditionalAccessPolicy(AdditionalDataHolder, Parsable):
         # The custom authentication strength enforced in a Conditional Access policy.
         self._authentication_strength: Optional[authentication_strength.AuthenticationStrength] = None
         # Refers to the conditional access policy conditions that are not satisfied. The possible values are: none, application, users, devicePlatform, location, clientType, signInRisk, userRisk, time, deviceState, client,ipAddressSeenByAzureAD,ipAddressSeenByResourceProvider,unknownFutureValue,servicePrincipals,servicePrincipalRisk. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: servicePrincipals,servicePrincipalRisk.
-        self._conditions_not_satisfied: Optional[conditional_access_conditions.ConditionalAccessConditions] = None
+        self._conditions_not_satisfied: Optional[List[conditional_access_conditions.ConditionalAccessConditions]] = None
         # Refers to the conditional access policy conditions that are satisfied. The possible values are: none, application, users, devicePlatform, location, clientType, signInRisk, userRisk, time, deviceState, client,ipAddressSeenByAzureAD,ipAddressSeenByResourceProvider,unknownFutureValue,servicePrincipals,servicePrincipalRisk. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: servicePrincipals,servicePrincipalRisk.
-        self._conditions_satisfied: Optional[conditional_access_conditions.ConditionalAccessConditions] = None
+        self._conditions_satisfied: Optional[List[conditional_access_conditions.ConditionalAccessConditions]] = None
         # Name of the conditional access policy.
         self._display_name: Optional[str] = None
         # Refers to the grant controls enforced by the conditional access policy (example: 'Require multi-factor authentication').
@@ -73,15 +73,15 @@ class AppliedConditionalAccessPolicy(AdditionalDataHolder, Parsable):
         self._authentication_strength = value
     
     @property
-    def conditions_not_satisfied(self,) -> Optional[conditional_access_conditions.ConditionalAccessConditions]:
+    def conditions_not_satisfied(self,) -> Optional[List[conditional_access_conditions.ConditionalAccessConditions]]:
         """
         Gets the conditionsNotSatisfied property value. Refers to the conditional access policy conditions that are not satisfied. The possible values are: none, application, users, devicePlatform, location, clientType, signInRisk, userRisk, time, deviceState, client,ipAddressSeenByAzureAD,ipAddressSeenByResourceProvider,unknownFutureValue,servicePrincipals,servicePrincipalRisk. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: servicePrincipals,servicePrincipalRisk.
-        Returns: Optional[conditional_access_conditions.ConditionalAccessConditions]
+        Returns: Optional[List[conditional_access_conditions.ConditionalAccessConditions]]
         """
         return self._conditions_not_satisfied
     
     @conditions_not_satisfied.setter
-    def conditions_not_satisfied(self,value: Optional[conditional_access_conditions.ConditionalAccessConditions] = None) -> None:
+    def conditions_not_satisfied(self,value: Optional[List[conditional_access_conditions.ConditionalAccessConditions]] = None) -> None:
         """
         Sets the conditionsNotSatisfied property value. Refers to the conditional access policy conditions that are not satisfied. The possible values are: none, application, users, devicePlatform, location, clientType, signInRisk, userRisk, time, deviceState, client,ipAddressSeenByAzureAD,ipAddressSeenByResourceProvider,unknownFutureValue,servicePrincipals,servicePrincipalRisk. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: servicePrincipals,servicePrincipalRisk.
         Args:
@@ -90,15 +90,15 @@ class AppliedConditionalAccessPolicy(AdditionalDataHolder, Parsable):
         self._conditions_not_satisfied = value
     
     @property
-    def conditions_satisfied(self,) -> Optional[conditional_access_conditions.ConditionalAccessConditions]:
+    def conditions_satisfied(self,) -> Optional[List[conditional_access_conditions.ConditionalAccessConditions]]:
         """
         Gets the conditionsSatisfied property value. Refers to the conditional access policy conditions that are satisfied. The possible values are: none, application, users, devicePlatform, location, clientType, signInRisk, userRisk, time, deviceState, client,ipAddressSeenByAzureAD,ipAddressSeenByResourceProvider,unknownFutureValue,servicePrincipals,servicePrincipalRisk. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: servicePrincipals,servicePrincipalRisk.
-        Returns: Optional[conditional_access_conditions.ConditionalAccessConditions]
+        Returns: Optional[List[conditional_access_conditions.ConditionalAccessConditions]]
         """
         return self._conditions_satisfied
     
     @conditions_satisfied.setter
-    def conditions_satisfied(self,value: Optional[conditional_access_conditions.ConditionalAccessConditions] = None) -> None:
+    def conditions_satisfied(self,value: Optional[List[conditional_access_conditions.ConditionalAccessConditions]] = None) -> None:
         """
         Sets the conditionsSatisfied property value. Refers to the conditional access policy conditions that are satisfied. The possible values are: none, application, users, devicePlatform, location, clientType, signInRisk, userRisk, time, deviceState, client,ipAddressSeenByAzureAD,ipAddressSeenByResourceProvider,unknownFutureValue,servicePrincipals,servicePrincipalRisk. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: servicePrincipals,servicePrincipalRisk.
         Args:
@@ -195,8 +195,8 @@ class AppliedConditionalAccessPolicy(AdditionalDataHolder, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "authenticationStrength": lambda n : setattr(self, 'authentication_strength', n.get_object_value(authentication_strength.AuthenticationStrength)),
-            "conditionsNotSatisfied": lambda n : setattr(self, 'conditions_not_satisfied', n.get_enum_value(conditional_access_conditions.ConditionalAccessConditions)),
-            "conditionsSatisfied": lambda n : setattr(self, 'conditions_satisfied', n.get_enum_value(conditional_access_conditions.ConditionalAccessConditions)),
+            "conditionsNotSatisfied": lambda n : setattr(self, 'conditions_not_satisfied', n.get_collection_of_enum_values(conditional_access_conditions.ConditionalAccessConditions)),
+            "conditionsSatisfied": lambda n : setattr(self, 'conditions_satisfied', n.get_collection_of_enum_values(conditional_access_conditions.ConditionalAccessConditions)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "enforcedGrantControls": lambda n : setattr(self, 'enforced_grant_controls', n.get_collection_of_primitive_values(str)),
             "enforcedSessionControls": lambda n : setattr(self, 'enforced_session_controls', n.get_collection_of_primitive_values(str)),

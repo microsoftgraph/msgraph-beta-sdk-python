@@ -37,7 +37,7 @@ class ExportPersonalDataRequestBuilder():
     
     async def post(self,body: Optional[export_personal_data_post_request_body.ExportPersonalDataPostRequestBody] = None, request_configuration: Optional[ExportPersonalDataRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Invoke action exportPersonalData
+        Create a request to export the personal data for an inboundSharedUserProfile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -59,7 +59,7 @@ class ExportPersonalDataRequestBuilder():
     
     def to_post_request_information(self,body: Optional[export_personal_data_post_request_body.ExportPersonalDataPostRequestBody] = None, request_configuration: Optional[ExportPersonalDataRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action exportPersonalData
+        Create a request to export the personal data for an inboundSharedUserProfile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

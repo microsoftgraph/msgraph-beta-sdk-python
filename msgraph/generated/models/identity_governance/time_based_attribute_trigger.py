@@ -14,7 +14,7 @@ class TimeBasedAttributeTrigger(workflow_execution_trigger.WorkflowExecutionTrig
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.identityGovernance.timeBasedAttributeTrigger"
-        # How many days before or after the time-based attribute specified the workflow should trigger. For example, if the attribute is employeeHireDate and offsetInDays is -1, then the workflow should trigger one day before the employee hire date. The value can range between -60 and 60 days.
+        # How many days before or after the time-based attribute specified the workflow should trigger. For example, if the attribute is employeeHireDate and offsetInDays is -1, then the workflow should trigger one day before the employee hire date. The value can range between -180 and 180 days.
         self._offset_in_days: Optional[int] = None
         # The timeBasedAttribute property
         self._time_based_attribute: Optional[workflow_trigger_time_based_attribute.WorkflowTriggerTimeBasedAttribute] = None
@@ -49,7 +49,7 @@ class TimeBasedAttributeTrigger(workflow_execution_trigger.WorkflowExecutionTrig
     @property
     def offset_in_days(self,) -> Optional[int]:
         """
-        Gets the offsetInDays property value. How many days before or after the time-based attribute specified the workflow should trigger. For example, if the attribute is employeeHireDate and offsetInDays is -1, then the workflow should trigger one day before the employee hire date. The value can range between -60 and 60 days.
+        Gets the offsetInDays property value. How many days before or after the time-based attribute specified the workflow should trigger. For example, if the attribute is employeeHireDate and offsetInDays is -1, then the workflow should trigger one day before the employee hire date. The value can range between -180 and 180 days.
         Returns: Optional[int]
         """
         return self._offset_in_days
@@ -57,7 +57,7 @@ class TimeBasedAttributeTrigger(workflow_execution_trigger.WorkflowExecutionTrig
     @offset_in_days.setter
     def offset_in_days(self,value: Optional[int] = None) -> None:
         """
-        Sets the offsetInDays property value. How many days before or after the time-based attribute specified the workflow should trigger. For example, if the attribute is employeeHireDate and offsetInDays is -1, then the workflow should trigger one day before the employee hire date. The value can range between -60 and 60 days.
+        Sets the offsetInDays property value. How many days before or after the time-based attribute specified the workflow should trigger. For example, if the attribute is employeeHireDate and offsetInDays is -1, then the workflow should trigger one day before the employee hire date. The value can range between -180 and 180 days.
         Args:
             value: Value to set for the offset_in_days property.
         """

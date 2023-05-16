@@ -54,7 +54,7 @@ class IndicatorsRequestBuilder():
     
     async def get(self,request_configuration: Optional[IndicatorsRequestBuilderGetRequestConfiguration] = None) -> Optional[article_indicator_collection_response.ArticleIndicatorCollectionResponse]:
         """
-        Indicators related to this article.
+        Get a list of articleIndicator objects that represent indicators of threat or compromise related to the contents of an article.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[article_indicator_collection_response.ArticleIndicatorCollectionResponse]
@@ -76,7 +76,7 @@ class IndicatorsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[IndicatorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Indicators related to this article.
+        Get a list of articleIndicator objects that represent indicators of threat or compromise related to the contents of an article.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +104,7 @@ class IndicatorsRequestBuilder():
     @dataclass
     class IndicatorsRequestBuilderGetQueryParameters():
         """
-        Indicators related to this article.
+        Get a list of articleIndicator objects that represent indicators of threat or compromise related to the contents of an article.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

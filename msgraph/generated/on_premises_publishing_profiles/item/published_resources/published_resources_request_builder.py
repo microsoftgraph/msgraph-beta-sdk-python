@@ -54,7 +54,7 @@ class PublishedResourcesRequestBuilder():
     
     async def get(self,request_configuration: Optional[PublishedResourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[published_resource_collection_response.PublishedResourceCollectionResponse]:
         """
-        List of existing publishedResource objects. Read-only. Nullable.
+        Retrieve a list of publishedResource objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[published_resource_collection_response.PublishedResourceCollectionResponse]
@@ -76,7 +76,7 @@ class PublishedResourcesRequestBuilder():
     
     async def post(self,body: Optional[published_resource.PublishedResource] = None, request_configuration: Optional[PublishedResourcesRequestBuilderPostRequestConfiguration] = None) -> Optional[published_resource.PublishedResource]:
         """
-        Create new navigation property to publishedResources for onPremisesPublishingProfiles
+        Create a new publishedResource object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class PublishedResourcesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PublishedResourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List of existing publishedResource objects. Read-only. Nullable.
+        Retrieve a list of publishedResource objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class PublishedResourcesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[published_resource.PublishedResource] = None, request_configuration: Optional[PublishedResourcesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to publishedResources for onPremisesPublishingProfiles
+        Create a new publishedResource object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class PublishedResourcesRequestBuilder():
     @dataclass
     class PublishedResourcesRequestBuilderGetQueryParameters():
         """
-        List of existing publishedResource objects. Read-only. Nullable.
+        Retrieve a list of publishedResource objects.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

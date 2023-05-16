@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .....models.industry_data import industry_data_connector
     from .....models.o_data_errors import o_data_error
-    from .industry_data_validate import industry_data_validate_request_builder
+    from .microsoft_graph_industry_data_validate import microsoft_graph_industry_data_validate_request_builder
     from .source_system import source_system_request_builder
 
 class IndustryDataConnectorItemRequestBuilder():
@@ -39,7 +39,7 @@ class IndustryDataConnectorItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[IndustryDataConnectorItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property dataConnectors for external
+        Delete an azureDataLakeConnector object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -58,7 +58,7 @@ class IndustryDataConnectorItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[IndustryDataConnectorItemRequestBuilderGetRequestConfiguration] = None) -> Optional[industry_data_connector.IndustryDataConnector]:
         """
-        Set of connectors for importing data from source systems.
+        Read the properties and relationships of an industryDataConnector object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[industry_data_connector.IndustryDataConnector]
@@ -80,7 +80,7 @@ class IndustryDataConnectorItemRequestBuilder():
     
     async def patch(self,body: Optional[industry_data_connector.IndustryDataConnector] = None, request_configuration: Optional[IndustryDataConnectorItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[industry_data_connector.IndustryDataConnector]:
         """
-        Update the navigation property dataConnectors in external
+        Update the properties of an industryDataConnector object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -105,7 +105,7 @@ class IndustryDataConnectorItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[IndustryDataConnectorItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property dataConnectors for external
+        Delete an azureDataLakeConnector object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -121,7 +121,7 @@ class IndustryDataConnectorItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[IndustryDataConnectorItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Set of connectors for importing data from source systems.
+        Read the properties and relationships of an industryDataConnector object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -139,7 +139,7 @@ class IndustryDataConnectorItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[industry_data_connector.IndustryDataConnector] = None, request_configuration: Optional[IndustryDataConnectorItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property dataConnectors in external
+        Update the properties of an industryDataConnector object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -159,13 +159,13 @@ class IndustryDataConnectorItemRequestBuilder():
         return request_info
     
     @property
-    def industry_data_validate(self) -> industry_data_validate_request_builder.IndustryDataValidateRequestBuilder:
+    def microsoft_graph_industry_data_validate(self) -> microsoft_graph_industry_data_validate_request_builder.MicrosoftGraphIndustryDataValidateRequestBuilder:
         """
         Provides operations to call the validate method.
         """
-        from .industry_data_validate import industry_data_validate_request_builder
+        from .microsoft_graph_industry_data_validate import microsoft_graph_industry_data_validate_request_builder
 
-        return industry_data_validate_request_builder.IndustryDataValidateRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_industry_data_validate_request_builder.MicrosoftGraphIndustryDataValidateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def source_system(self) -> source_system_request_builder.SourceSystemRequestBuilder:
@@ -191,7 +191,7 @@ class IndustryDataConnectorItemRequestBuilder():
     @dataclass
     class IndustryDataConnectorItemRequestBuilderGetQueryParameters():
         """
-        Set of connectors for importing data from source systems.
+        Read the properties and relationships of an industryDataConnector object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

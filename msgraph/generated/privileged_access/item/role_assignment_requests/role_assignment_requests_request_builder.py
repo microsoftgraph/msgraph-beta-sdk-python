@@ -76,7 +76,7 @@ class RoleAssignmentRequestsRequestBuilder():
     
     async def post(self,body: Optional[governance_role_assignment_request.GovernanceRoleAssignmentRequest] = None, request_configuration: Optional[RoleAssignmentRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[governance_role_assignment_request.GovernanceRoleAssignmentRequest]:
         """
-        Create new navigation property to roleAssignmentRequests for privilegedAccess
+        Create a role assignment request to represent the operation you want on a role assignment. The following table lists the operations.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class RoleAssignmentRequestsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[governance_role_assignment_request.GovernanceRoleAssignmentRequest] = None, request_configuration: Optional[RoleAssignmentRequestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to roleAssignmentRequests for privilegedAccess
+        Create a role assignment request to represent the operation you want on a role assignment. The following table lists the operations.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

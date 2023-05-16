@@ -59,7 +59,7 @@ class AnalyticsRequestBuilder():
     
     async def get(self,request_configuration: Optional[AnalyticsRequestBuilderGetRequestConfiguration] = None) -> Optional[item_analytics.ItemAnalytics]:
         """
-        Analytics about the view activities that took place on this item.
+        Get [itemAnalytics][] about the views that took place under this resource.The **itemAnalytics** resource is a convenient way to get activity stats for `allTime` and the `lastSevenDays`.For a custom time range or interval, use the [getActivitiesByInterval][] API.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[item_analytics.ItemAnalytics]
@@ -122,7 +122,7 @@ class AnalyticsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AnalyticsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Analytics about the view activities that took place on this item.
+        Get [itemAnalytics][] about the views that took place under this resource.The **itemAnalytics** resource is a convenient way to get activity stats for `allTime` and the `lastSevenDays`.For a custom time range or interval, use the [getActivitiesByInterval][] API.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -201,7 +201,7 @@ class AnalyticsRequestBuilder():
     @dataclass
     class AnalyticsRequestBuilderGetQueryParameters():
         """
-        Analytics about the view activities that took place on this item.
+        Get [itemAnalytics][] about the views that took place under this resource.The **itemAnalytics** resource is a convenient way to get activity stats for `allTime` and the `lastSevenDays`.For a custom time range or interval, use the [getActivitiesByInterval][] API.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -54,7 +54,7 @@ class ManagementActionsRequestBuilder():
     
     async def get(self,request_configuration: Optional[ManagementActionsRequestBuilderGetRequestConfiguration] = None) -> Optional[management_action_collection_response.ManagementActionCollectionResponse]:
         """
-        The collection of baseline management actions across managed tenants.
+        Get a list of the managementAction objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[management_action_collection_response.ManagementActionCollectionResponse]
@@ -101,7 +101,7 @@ class ManagementActionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ManagementActionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection of baseline management actions across managed tenants.
+        Get a list of the managementAction objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class ManagementActionsRequestBuilder():
     @dataclass
     class ManagementActionsRequestBuilderGetQueryParameters():
         """
-        The collection of baseline management actions across managed tenants.
+        Get a list of the managementAction objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

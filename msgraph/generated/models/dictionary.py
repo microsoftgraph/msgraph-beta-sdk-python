@@ -3,7 +3,7 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import result_template_dictionary
+    from . import custom_app_scope_attributes_dictionary, result_template_dictionary
 
 class Dictionary(AdditionalDataHolder, Parsable):
     def __init__(self,) -> None:
@@ -46,6 +46,10 @@ class Dictionary(AdditionalDataHolder, Parsable):
         mapping_value_node = parse_node.get_child_node("@odata.type")
         if mapping_value_node:
             mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.customAppScopeAttributesDictionary":
+                from . import custom_app_scope_attributes_dictionary
+
+                return custom_app_scope_attributes_dictionary.CustomAppScopeAttributesDictionary()
             if mapping_value == "#microsoft.graph.resultTemplateDictionary":
                 from . import result_template_dictionary
 
@@ -57,7 +61,7 @@ class Dictionary(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import result_template_dictionary
+        from . import custom_app_scope_attributes_dictionary, result_template_dictionary
 
         fields: Dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

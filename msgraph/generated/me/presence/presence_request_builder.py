@@ -61,7 +61,7 @@ class PresenceRequestBuilder():
     
     async def get(self,request_configuration: Optional[PresenceRequestBuilderGetRequestConfiguration] = None) -> Optional[presence.Presence]:
         """
-        Get presence from me
+        Set a presence status message for a user. An optional expiration date and time can be supplied.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[presence.Presence]
@@ -124,7 +124,7 @@ class PresenceRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PresenceRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get presence from me
+        Set a presence status message for a user. An optional expiration date and time can be supplied.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -221,7 +221,7 @@ class PresenceRequestBuilder():
     @dataclass
     class PresenceRequestBuilderGetQueryParameters():
         """
-        Get presence from me
+        Set a presence status message for a user. An optional expiration date and time can be supplied.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

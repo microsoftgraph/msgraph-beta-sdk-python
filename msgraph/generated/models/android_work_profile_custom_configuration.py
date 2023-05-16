@@ -8,9 +8,12 @@ if TYPE_CHECKING:
 from . import device_configuration
 
 class AndroidWorkProfileCustomConfiguration(device_configuration.DeviceConfiguration):
+    """
+    Android Work Profile custom configuration
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new AndroidWorkProfileCustomConfiguration and sets the default values.
+        Instantiates a new androidWorkProfileCustomConfiguration and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.androidWorkProfileCustomConfiguration"

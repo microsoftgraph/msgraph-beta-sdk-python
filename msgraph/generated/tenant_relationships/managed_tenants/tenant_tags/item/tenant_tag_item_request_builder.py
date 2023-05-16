@@ -12,8 +12,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .....models.managed_tenants import tenant_tag
     from .....models.o_data_errors import o_data_error
-    from .managed_tenants_assign_tag import managed_tenants_assign_tag_request_builder
-    from .managed_tenants_unassign_tag import managed_tenants_unassign_tag_request_builder
+    from .microsoft_graph_managed_tenants_assign_tag import microsoft_graph_managed_tenants_assign_tag_request_builder
+    from .microsoft_graph_managed_tenants_unassign_tag import microsoft_graph_managed_tenants_unassign_tag_request_builder
 
 class TenantTagItemRequestBuilder():
     """
@@ -39,7 +39,7 @@ class TenantTagItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[TenantTagItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property tenantTags for tenantRelationships
+        Delete a tenantTag object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -58,7 +58,7 @@ class TenantTagItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[TenantTagItemRequestBuilderGetRequestConfiguration] = None) -> Optional[tenant_tag.TenantTag]:
         """
-        The collection of tenant tags across managed tenants.
+        Read the properties and relationships of a tenantTag object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[tenant_tag.TenantTag]
@@ -80,7 +80,7 @@ class TenantTagItemRequestBuilder():
     
     async def patch(self,body: Optional[tenant_tag.TenantTag] = None, request_configuration: Optional[TenantTagItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[tenant_tag.TenantTag]:
         """
-        Update the navigation property tenantTags in tenantRelationships
+        Update the properties of a tenantTag object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -105,7 +105,7 @@ class TenantTagItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[TenantTagItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property tenantTags for tenantRelationships
+        Delete a tenantTag object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -121,7 +121,7 @@ class TenantTagItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TenantTagItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection of tenant tags across managed tenants.
+        Read the properties and relationships of a tenantTag object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -139,7 +139,7 @@ class TenantTagItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[tenant_tag.TenantTag] = None, request_configuration: Optional[TenantTagItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property tenantTags in tenantRelationships
+        Update the properties of a tenantTag object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -159,22 +159,22 @@ class TenantTagItemRequestBuilder():
         return request_info
     
     @property
-    def managed_tenants_assign_tag(self) -> managed_tenants_assign_tag_request_builder.ManagedTenantsAssignTagRequestBuilder:
+    def microsoft_graph_managed_tenants_assign_tag(self) -> microsoft_graph_managed_tenants_assign_tag_request_builder.MicrosoftGraphManagedTenantsAssignTagRequestBuilder:
         """
         Provides operations to call the assignTag method.
         """
-        from .managed_tenants_assign_tag import managed_tenants_assign_tag_request_builder
+        from .microsoft_graph_managed_tenants_assign_tag import microsoft_graph_managed_tenants_assign_tag_request_builder
 
-        return managed_tenants_assign_tag_request_builder.ManagedTenantsAssignTagRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_managed_tenants_assign_tag_request_builder.MicrosoftGraphManagedTenantsAssignTagRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def managed_tenants_unassign_tag(self) -> managed_tenants_unassign_tag_request_builder.ManagedTenantsUnassignTagRequestBuilder:
+    def microsoft_graph_managed_tenants_unassign_tag(self) -> microsoft_graph_managed_tenants_unassign_tag_request_builder.MicrosoftGraphManagedTenantsUnassignTagRequestBuilder:
         """
         Provides operations to call the unassignTag method.
         """
-        from .managed_tenants_unassign_tag import managed_tenants_unassign_tag_request_builder
+        from .microsoft_graph_managed_tenants_unassign_tag import microsoft_graph_managed_tenants_unassign_tag_request_builder
 
-        return managed_tenants_unassign_tag_request_builder.ManagedTenantsUnassignTagRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_managed_tenants_unassign_tag_request_builder.MicrosoftGraphManagedTenantsUnassignTagRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class TenantTagItemRequestBuilderDeleteRequestConfiguration():
@@ -191,7 +191,7 @@ class TenantTagItemRequestBuilder():
     @dataclass
     class TenantTagItemRequestBuilderGetQueryParameters():
         """
-        The collection of tenant tags across managed tenants.
+        Read the properties and relationships of a tenantTag object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -68,7 +68,7 @@ class RoleAssignmentScheduleRequestsRequestBuilder():
     
     async def get(self,request_configuration: Optional[RoleAssignmentScheduleRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_assignment_schedule_request_collection_response.UnifiedRoleAssignmentScheduleRequestCollectionResponse]:
         """
-        Get roleAssignmentScheduleRequests from roleManagement
+        Retrieve the requests for active role assignments to principals. The active assignments include those made through assignments and activation requests, and directly through the role assignments API. The role assignments can be permanently active with or without an expiry date, or temporarily active after user activation of eligible assignments.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[unified_role_assignment_schedule_request_collection_response.UnifiedRoleAssignmentScheduleRequestCollectionResponse]
@@ -90,7 +90,7 @@ class RoleAssignmentScheduleRequestsRequestBuilder():
     
     async def post(self,body: Optional[unified_role_assignment_schedule_request.UnifiedRoleAssignmentScheduleRequest] = None, request_configuration: Optional[RoleAssignmentScheduleRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[unified_role_assignment_schedule_request.UnifiedRoleAssignmentScheduleRequest]:
         """
-        Create new navigation property to roleAssignmentScheduleRequests for roleManagement
+        Create a new unifiedRoleAssignmentScheduleRequest object. This operation allows both admins and users to add, remove, extend, or renew assignments. To run this request, the calling user must have multi-factor authentication (MFA) enforced, and running the query in a session in which they were challenged for MFA. See Enable per-user Azure AD Multi-Factor Authentication to secure sign-in events.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -115,7 +115,7 @@ class RoleAssignmentScheduleRequestsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RoleAssignmentScheduleRequestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get roleAssignmentScheduleRequests from roleManagement
+        Retrieve the requests for active role assignments to principals. The active assignments include those made through assignments and activation requests, and directly through the role assignments API. The role assignments can be permanently active with or without an expiry date, or temporarily active after user activation of eligible assignments.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -133,7 +133,7 @@ class RoleAssignmentScheduleRequestsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[unified_role_assignment_schedule_request.UnifiedRoleAssignmentScheduleRequest] = None, request_configuration: Optional[RoleAssignmentScheduleRequestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to roleAssignmentScheduleRequests for roleManagement
+        Create a new unifiedRoleAssignmentScheduleRequest object. This operation allows both admins and users to add, remove, extend, or renew assignments. To run this request, the calling user must have multi-factor authentication (MFA) enforced, and running the query in a session in which they were challenged for MFA. See Enable per-user Azure AD Multi-Factor Authentication to secure sign-in events.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -164,7 +164,7 @@ class RoleAssignmentScheduleRequestsRequestBuilder():
     @dataclass
     class RoleAssignmentScheduleRequestsRequestBuilderGetQueryParameters():
         """
-        Get roleAssignmentScheduleRequests from roleManagement
+        Retrieve the requests for active role assignments to principals. The active assignments include those made through assignments and activation requests, and directly through the role assignments API. The role assignments can be permanently active with or without an expiry date, or temporarily active after user activation of eligible assignments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

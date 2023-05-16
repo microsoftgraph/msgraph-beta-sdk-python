@@ -39,7 +39,7 @@ class OnPremisesAgentGroupItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[OnPremisesAgentGroupItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property agentGroups for onPremisesPublishingProfiles
+        Delete an onPremisesAgentGroup object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -58,7 +58,7 @@ class OnPremisesAgentGroupItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[OnPremisesAgentGroupItemRequestBuilderGetRequestConfiguration] = None) -> Optional[on_premises_agent_group.OnPremisesAgentGroup]:
         """
-        List of existing onPremisesAgentGroup objects. Read-only. Nullable.
+        Retrieve the properties and relationships of an onPremisesAgentGroup object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[on_premises_agent_group.OnPremisesAgentGroup]
@@ -80,7 +80,7 @@ class OnPremisesAgentGroupItemRequestBuilder():
     
     async def patch(self,body: Optional[on_premises_agent_group.OnPremisesAgentGroup] = None, request_configuration: Optional[OnPremisesAgentGroupItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[on_premises_agent_group.OnPremisesAgentGroup]:
         """
-        Update the navigation property agentGroups in onPremisesPublishingProfiles
+        Update the properties of an onPremisesAgentGroup object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -105,7 +105,7 @@ class OnPremisesAgentGroupItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[OnPremisesAgentGroupItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property agentGroups for onPremisesPublishingProfiles
+        Delete an onPremisesAgentGroup object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -121,7 +121,7 @@ class OnPremisesAgentGroupItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[OnPremisesAgentGroupItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List of existing onPremisesAgentGroup objects. Read-only. Nullable.
+        Retrieve the properties and relationships of an onPremisesAgentGroup object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -139,7 +139,7 @@ class OnPremisesAgentGroupItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[on_premises_agent_group.OnPremisesAgentGroup] = None, request_configuration: Optional[OnPremisesAgentGroupItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property agentGroups in onPremisesPublishingProfiles
+        Update the properties of an onPremisesAgentGroup object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -191,7 +191,7 @@ class OnPremisesAgentGroupItemRequestBuilder():
     @dataclass
     class OnPremisesAgentGroupItemRequestBuilderGetQueryParameters():
         """
-        List of existing onPremisesAgentGroup objects. Read-only. Nullable.
+        Retrieve the properties and relationships of an onPremisesAgentGroup object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

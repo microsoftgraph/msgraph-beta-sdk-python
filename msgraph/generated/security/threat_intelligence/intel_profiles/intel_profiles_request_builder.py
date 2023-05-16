@@ -54,7 +54,7 @@ class IntelProfilesRequestBuilder():
     
     async def get(self,request_configuration: Optional[IntelProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[intelligence_profile_collection_response.IntelligenceProfileCollectionResponse]:
         """
-        A list of intelligenceProfile objects.
+        Get a list of the intelligenceProfile objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[intelligence_profile_collection_response.IntelligenceProfileCollectionResponse]
@@ -101,7 +101,7 @@ class IntelProfilesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[IntelProfilesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        A list of intelligenceProfile objects.
+        Get a list of the intelligenceProfile objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class IntelProfilesRequestBuilder():
     @dataclass
     class IntelProfilesRequestBuilderGetQueryParameters():
         """
-        A list of intelligenceProfile objects.
+        Get a list of the intelligenceProfile objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

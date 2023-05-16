@@ -54,7 +54,7 @@ class ComponentsRequestBuilder():
     
     async def get(self,request_configuration: Optional[ComponentsRequestBuilderGetRequestConfiguration] = None) -> Optional[host_component_collection_response.HostComponentCollectionResponse]:
         """
-        The hostComponents that are associated with this host.
+        Get a list of hostComponent resources.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[host_component_collection_response.HostComponentCollectionResponse]
@@ -76,7 +76,7 @@ class ComponentsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ComponentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The hostComponents that are associated with this host.
+        Get a list of hostComponent resources.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +104,7 @@ class ComponentsRequestBuilder():
     @dataclass
     class ComponentsRequestBuilderGetQueryParameters():
         """
-        The hostComponents that are associated with this host.
+        Get a list of hostComponent resources.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

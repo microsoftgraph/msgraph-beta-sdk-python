@@ -56,7 +56,7 @@ class PolicyRequestBuilder():
     
     async def get(self,request_configuration: Optional[PolicyRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_policy.AccessReviewPolicy]:
         """
-        Resource that enables administrators to manage directory-level access review policies in their tenant.
+        Read the properties and relationships of an accessReviewPolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_review_policy.AccessReviewPolicy]
@@ -78,7 +78,7 @@ class PolicyRequestBuilder():
     
     async def patch(self,body: Optional[access_review_policy.AccessReviewPolicy] = None, request_configuration: Optional[PolicyRequestBuilderPatchRequestConfiguration] = None) -> Optional[access_review_policy.AccessReviewPolicy]:
         """
-        Update the navigation property policy in identityGovernance
+        Update the properties of an accessReviewPolicy object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class PolicyRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PolicyRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Resource that enables administrators to manage directory-level access review policies in their tenant.
+        Read the properties and relationships of an accessReviewPolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class PolicyRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[access_review_policy.AccessReviewPolicy] = None, request_configuration: Optional[PolicyRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property policy in identityGovernance
+        Update the properties of an accessReviewPolicy object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class PolicyRequestBuilder():
     @dataclass
     class PolicyRequestBuilderGetQueryParameters():
         """
-        Resource that enables administrators to manage directory-level access review policies in their tenant.
+        Read the properties and relationships of an accessReviewPolicy object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

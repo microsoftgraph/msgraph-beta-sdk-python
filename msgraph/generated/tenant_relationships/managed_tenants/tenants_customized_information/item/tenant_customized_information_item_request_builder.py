@@ -56,7 +56,7 @@ class TenantCustomizedInformationItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[TenantCustomizedInformationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[tenant_customized_information.TenantCustomizedInformation]:
         """
-        The collection of tenant level customized information across managed tenants.
+        Read the properties and relationships of a tenantCustomizedInformation object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[tenant_customized_information.TenantCustomizedInformation]
@@ -78,7 +78,7 @@ class TenantCustomizedInformationItemRequestBuilder():
     
     async def patch(self,body: Optional[tenant_customized_information.TenantCustomizedInformation] = None, request_configuration: Optional[TenantCustomizedInformationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[tenant_customized_information.TenantCustomizedInformation]:
         """
-        Update the navigation property tenantsCustomizedInformation in tenantRelationships
+        Update the properties of a tenantCustomizedInformation object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class TenantCustomizedInformationItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TenantCustomizedInformationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection of tenant level customized information across managed tenants.
+        Read the properties and relationships of a tenantCustomizedInformation object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class TenantCustomizedInformationItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[tenant_customized_information.TenantCustomizedInformation] = None, request_configuration: Optional[TenantCustomizedInformationItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property tenantsCustomizedInformation in tenantRelationships
+        Update the properties of a tenantCustomizedInformation object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class TenantCustomizedInformationItemRequestBuilder():
     @dataclass
     class TenantCustomizedInformationItemRequestBuilderGetQueryParameters():
         """
-        The collection of tenant level customized information across managed tenants.
+        Read the properties and relationships of a tenantCustomizedInformation object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

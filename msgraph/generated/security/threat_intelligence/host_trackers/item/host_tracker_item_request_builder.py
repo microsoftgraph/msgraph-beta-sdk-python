@@ -57,7 +57,7 @@ class HostTrackerItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[HostTrackerItemRequestBuilderGetRequestConfiguration] = None) -> Optional[host_tracker.HostTracker]:
         """
-        Retrieve details about microsoft.graph.security.hostTracker objects.Note: List retrieval is not yet supported.
+        Read the properties and relationships of a hostTracker object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[host_tracker.HostTracker]
@@ -120,7 +120,7 @@ class HostTrackerItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[HostTrackerItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve details about microsoft.graph.security.hostTracker objects.Note: List retrieval is not yet supported.
+        Read the properties and relationships of a hostTracker object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -181,7 +181,7 @@ class HostTrackerItemRequestBuilder():
     @dataclass
     class HostTrackerItemRequestBuilderGetQueryParameters():
         """
-        Retrieve details about microsoft.graph.security.hostTracker objects.Note: List retrieval is not yet supported.
+        Read the properties and relationships of a hostTracker object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

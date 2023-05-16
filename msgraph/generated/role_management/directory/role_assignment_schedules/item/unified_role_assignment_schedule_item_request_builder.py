@@ -13,6 +13,10 @@ if TYPE_CHECKING:
     from .....models import unified_role_assignment_schedule
     from .....models.o_data_errors import o_data_error
     from .activated_using import activated_using_request_builder
+    from .app_scope import app_scope_request_builder
+    from .directory_scope import directory_scope_request_builder
+    from .principal import principal_request_builder
+    from .role_definition import role_definition_request_builder
 
 class UnifiedRoleAssignmentScheduleItemRequestBuilder():
     """
@@ -57,7 +61,7 @@ class UnifiedRoleAssignmentScheduleItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[UnifiedRoleAssignmentScheduleItemRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_assignment_schedule.UnifiedRoleAssignmentSchedule]:
         """
-        Get roleAssignmentSchedules from roleManagement
+        Retrieve the schedule for an active role assignment operation.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[unified_role_assignment_schedule.UnifiedRoleAssignmentSchedule]
@@ -120,7 +124,7 @@ class UnifiedRoleAssignmentScheduleItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UnifiedRoleAssignmentScheduleItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get roleAssignmentSchedules from roleManagement
+        Retrieve the schedule for an active role assignment operation.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -166,6 +170,42 @@ class UnifiedRoleAssignmentScheduleItemRequestBuilder():
 
         return activated_using_request_builder.ActivatedUsingRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
+    def app_scope(self) -> app_scope_request_builder.AppScopeRequestBuilder:
+        """
+        Provides operations to manage the appScope property of the microsoft.graph.unifiedRoleScheduleBase entity.
+        """
+        from .app_scope import app_scope_request_builder
+
+        return app_scope_request_builder.AppScopeRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def directory_scope(self) -> directory_scope_request_builder.DirectoryScopeRequestBuilder:
+        """
+        Provides operations to manage the directoryScope property of the microsoft.graph.unifiedRoleScheduleBase entity.
+        """
+        from .directory_scope import directory_scope_request_builder
+
+        return directory_scope_request_builder.DirectoryScopeRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def principal(self) -> principal_request_builder.PrincipalRequestBuilder:
+        """
+        Provides operations to manage the principal property of the microsoft.graph.unifiedRoleScheduleBase entity.
+        """
+        from .principal import principal_request_builder
+
+        return principal_request_builder.PrincipalRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def role_definition(self) -> role_definition_request_builder.RoleDefinitionRequestBuilder:
+        """
+        Provides operations to manage the roleDefinition property of the microsoft.graph.unifiedRoleScheduleBase entity.
+        """
+        from .role_definition import role_definition_request_builder
+
+        return role_definition_request_builder.RoleDefinitionRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class UnifiedRoleAssignmentScheduleItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -181,7 +221,7 @@ class UnifiedRoleAssignmentScheduleItemRequestBuilder():
     @dataclass
     class UnifiedRoleAssignmentScheduleItemRequestBuilderGetQueryParameters():
         """
-        Get roleAssignmentSchedules from roleManagement
+        Retrieve the schedule for an active role assignment operation.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

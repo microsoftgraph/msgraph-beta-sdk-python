@@ -37,7 +37,7 @@ class DeactivateRequestBuilder():
     
     async def post(self,request_configuration: Optional[DeactivateRequestBuilderPostRequestConfiguration] = None) -> Optional[education_assignment.EducationAssignment]:
         """
-        Invoke action deactivate
+        Mark an `assigned` educationAssignment as `inactive` to signal that the assignment has no further action items for teachers and students. This action can only be performed by a teacher on assigned assignments.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[education_assignment.EducationAssignment]
@@ -59,7 +59,7 @@ class DeactivateRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[DeactivateRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action deactivate
+        Mark an `assigned` educationAssignment as `inactive` to signal that the assignment has no further action items for teachers and students. This action can only be performed by a teacher on assigned assignments.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

@@ -58,7 +58,7 @@ class PermissionGrantsRequestBuilder():
     
     async def get(self,request_configuration: Optional[PermissionGrantsRequestBuilderGetRequestConfiguration] = None) -> Optional[resource_specific_permission_grant_collection_response.ResourceSpecificPermissionGrantCollectionResponse]:
         """
-        A collection of permissions granted to apps for the chat.
+        List all resource-specific permission grants on the chat. This list specifies the Azure AD apps that have access to the **chat**, along with the corresponding kind of resource-specific access that each app has.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[resource_specific_permission_grant_collection_response.ResourceSpecificPermissionGrantCollectionResponse]
@@ -105,7 +105,7 @@ class PermissionGrantsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PermissionGrantsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        A collection of permissions granted to apps for the chat.
+        List all resource-specific permission grants on the chat. This list specifies the Azure AD apps that have access to the **chat**, along with the corresponding kind of resource-specific access that each app has.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -190,7 +190,7 @@ class PermissionGrantsRequestBuilder():
     @dataclass
     class PermissionGrantsRequestBuilderGetQueryParameters():
         """
-        A collection of permissions granted to apps for the chat.
+        List all resource-specific permission grants on the chat. This list specifies the Azure AD apps that have access to the **chat**, along with the corresponding kind of resource-specific access that each app has.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -37,7 +37,7 @@ class TaskDefinitionItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[TaskDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[task_definition.TaskDefinition]:
         """
-        The definition of tasks within the lifecycle workflows instance.
+        Read the details of a built-in workflow task.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[task_definition.TaskDefinition]
@@ -59,7 +59,7 @@ class TaskDefinitionItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TaskDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The definition of tasks within the lifecycle workflows instance.
+        Read the details of a built-in workflow task.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -78,7 +78,7 @@ class TaskDefinitionItemRequestBuilder():
     @dataclass
     class TaskDefinitionItemRequestBuilderGetQueryParameters():
         """
-        The definition of tasks within the lifecycle workflows instance.
+        Read the details of a built-in workflow task.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

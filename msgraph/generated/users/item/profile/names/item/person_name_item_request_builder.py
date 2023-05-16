@@ -37,7 +37,7 @@ class PersonNameItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[PersonNameItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property names for users
+        Delete a personName object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class PersonNameItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[PersonNameItemRequestBuilderGetRequestConfiguration] = None) -> Optional[person_name.PersonName]:
         """
-        Represents the names a user has added to their profile.
+        Retrieve the properties and relationships of a personName object in a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[person_name.PersonName]
@@ -78,7 +78,7 @@ class PersonNameItemRequestBuilder():
     
     async def patch(self,body: Optional[person_name.PersonName] = None, request_configuration: Optional[PersonNameItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[person_name.PersonName]:
         """
-        Update the navigation property names in users
+        Update the properties of a personName object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class PersonNameItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[PersonNameItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property names for users
+        Delete a personName object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class PersonNameItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PersonNameItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents the names a user has added to their profile.
+        Retrieve the properties and relationships of a personName object in a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class PersonNameItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[person_name.PersonName] = None, request_configuration: Optional[PersonNameItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property names in users
+        Update the properties of a personName object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class PersonNameItemRequestBuilder():
     @dataclass
     class PersonNameItemRequestBuilderGetQueryParameters():
         """
-        Represents the names a user has added to their profile.
+        Retrieve the properties and relationships of a personName object in a user's profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

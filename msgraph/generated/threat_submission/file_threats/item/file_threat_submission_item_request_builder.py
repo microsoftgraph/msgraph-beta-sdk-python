@@ -56,7 +56,7 @@ class FileThreatSubmissionItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[FileThreatSubmissionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[file_threat_submission.FileThreatSubmission]:
         """
-        Get fileThreats from threatSubmission
+        Read the properties and relationships of a fileThreatSubmission object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[file_threat_submission.FileThreatSubmission]
@@ -119,7 +119,7 @@ class FileThreatSubmissionItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[FileThreatSubmissionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get fileThreats from threatSubmission
+        Read the properties and relationships of a fileThreatSubmission object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class FileThreatSubmissionItemRequestBuilder():
     @dataclass
     class FileThreatSubmissionItemRequestBuilderGetQueryParameters():
         """
-        Get fileThreats from threatSubmission
+        Read the properties and relationships of a fileThreatSubmission object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

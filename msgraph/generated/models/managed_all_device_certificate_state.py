@@ -11,7 +11,7 @@ from . import entity
 class ManagedAllDeviceCertificateState(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new ManagedAllDeviceCertificateState and sets the default values.
+        Instantiates a new managedAllDeviceCertificateState and sets the default values.
         """
         super().__init__()
         # Certificate expiry date

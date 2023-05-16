@@ -46,7 +46,7 @@ class OnlineMeetingItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[OnlineMeetingItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property onlineMeetings for users
+        Delete an onlineMeeting object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -87,7 +87,7 @@ class OnlineMeetingItemRequestBuilder():
     
     async def patch(self,body: Optional[online_meeting.OnlineMeeting] = None, request_configuration: Optional[OnlineMeetingItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[online_meeting.OnlineMeeting]:
         """
-        Update the navigation property onlineMeetings in users
+        Update the properties of the specified onlineMeeting object. Please see Request body section for the list of properties that support updating.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -112,7 +112,7 @@ class OnlineMeetingItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[OnlineMeetingItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property onlineMeetings for users
+        Delete an onlineMeeting object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -146,7 +146,7 @@ class OnlineMeetingItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[online_meeting.OnlineMeeting] = None, request_configuration: Optional[OnlineMeetingItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property onlineMeetings in users
+        Update the properties of the specified onlineMeeting object. Please see Request body section for the list of properties that support updating.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

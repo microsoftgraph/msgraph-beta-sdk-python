@@ -13,7 +13,7 @@ class AuthenticationConditionsApplications(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The includeAllApplications property
+        # Whether the custom authentication extension should trigger for all applications with appIds specified in the includeApplications relationship. This property must be set to false for listener of type onTokenIssuanceStartListener.
         self._include_all_applications: Optional[bool] = None
         # The includeApplications property
         self._include_applications: Optional[List[authentication_condition_application.AuthenticationConditionApplication]] = None
@@ -66,7 +66,7 @@ class AuthenticationConditionsApplications(AdditionalDataHolder, Parsable):
     @property
     def include_all_applications(self,) -> Optional[bool]:
         """
-        Gets the includeAllApplications property value. The includeAllApplications property
+        Gets the includeAllApplications property value. Whether the custom authentication extension should trigger for all applications with appIds specified in the includeApplications relationship. This property must be set to false for listener of type onTokenIssuanceStartListener.
         Returns: Optional[bool]
         """
         return self._include_all_applications
@@ -74,7 +74,7 @@ class AuthenticationConditionsApplications(AdditionalDataHolder, Parsable):
     @include_all_applications.setter
     def include_all_applications(self,value: Optional[bool] = None) -> None:
         """
-        Sets the includeAllApplications property value. The includeAllApplications property
+        Sets the includeAllApplications property value. Whether the custom authentication extension should trigger for all applications with appIds specified in the includeApplications relationship. This property must be set to false for listener of type onTokenIssuanceStartListener.
         Args:
             value: Value to set for the include_all_applications property.
         """

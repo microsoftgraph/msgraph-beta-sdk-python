@@ -17,7 +17,7 @@ class DeltaParticipants(entity.Entity):
         self.odata_type: Optional[str] = None
         # The participants property
         self._participants: Optional[List[participant.Participant]] = None
-        # The sequenceNumber property
+        # The sequence number for the roster update that is used to identify the notification order.
         self._sequence_number: Optional[int] = None
     
     @staticmethod
@@ -67,7 +67,7 @@ class DeltaParticipants(entity.Entity):
     @property
     def sequence_number(self,) -> Optional[int]:
         """
-        Gets the sequenceNumber property value. The sequenceNumber property
+        Gets the sequenceNumber property value. The sequence number for the roster update that is used to identify the notification order.
         Returns: Optional[int]
         """
         return self._sequence_number
@@ -75,7 +75,7 @@ class DeltaParticipants(entity.Entity):
     @sequence_number.setter
     def sequence_number(self,value: Optional[int] = None) -> None:
         """
-        Sets the sequenceNumber property value. The sequenceNumber property
+        Sets the sequenceNumber property value. The sequence number for the roster update that is used to identify the notification order.
         Args:
             value: Value to set for the sequence_number property.
         """

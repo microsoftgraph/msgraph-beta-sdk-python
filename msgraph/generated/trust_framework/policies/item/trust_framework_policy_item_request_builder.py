@@ -38,7 +38,7 @@ class TrustFrameworkPolicyItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[TrustFrameworkPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property policies for trustFramework
+        Delete an existing trustFrameworkPolicy.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -104,7 +104,7 @@ class TrustFrameworkPolicyItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[TrustFrameworkPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property policies for trustFramework
+        Delete an existing trustFrameworkPolicy.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

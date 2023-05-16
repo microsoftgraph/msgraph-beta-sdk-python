@@ -8,9 +8,12 @@ if TYPE_CHECKING:
 from . import device_configuration
 
 class AndroidWorkProfileVpnConfiguration(device_configuration.DeviceConfiguration):
+    """
+    By providing the configurations in this profile you can instruct the Android Work Profile device to connect to desired VPN endpoint. By specifying the authentication method and security types expected by VPN endpoint you can make the VPN connection seamless for end user.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new AndroidWorkProfileVpnConfiguration and sets the default values.
+        Instantiates a new androidWorkProfileVpnConfiguration and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.androidWorkProfileVpnConfiguration"

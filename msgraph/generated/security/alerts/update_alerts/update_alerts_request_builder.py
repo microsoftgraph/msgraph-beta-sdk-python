@@ -37,7 +37,7 @@ class UpdateAlertsRequestBuilder():
     
     async def post(self,body: Optional[update_alerts_post_request_body.UpdateAlertsPostRequestBody] = None, request_configuration: Optional[UpdateAlertsRequestBuilderPostRequestConfiguration] = None) -> Optional[update_alerts_response.UpdateAlertsResponse]:
         """
-        Invoke action updateAlerts
+        Update multiple alerts in one request instead of multiple requests.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -62,7 +62,7 @@ class UpdateAlertsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[update_alerts_post_request_body.UpdateAlertsPostRequestBody] = None, request_configuration: Optional[UpdateAlertsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action updateAlerts
+        Update multiple alerts in one request instead of multiple requests.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

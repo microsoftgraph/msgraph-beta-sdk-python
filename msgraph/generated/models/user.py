@@ -142,6 +142,8 @@ class User(directory_object.DirectoryObject):
         self._insights: Optional[item_insights.ItemInsights] = None
         # A list for the user to describe their interests. Returned only on $select.
         self._interests: Optional[List[str]] = None
+        # Indicates whether the user is pending an exchange mailbox license assignment.  Read-only.  Supports $filter (eq where true only).
+        self._is_license_reconciliation_needed: Optional[bool] = None
         # The isManagementRestricted property
         self._is_management_restricted: Optional[bool] = None
         # Do not use – reserved for future use.
@@ -272,13 +274,13 @@ class User(directory_object.DirectoryObject):
         self._security: Optional[security.Security] = None
         # Security identifier (SID) of the user, used in Windows scenarios. Read-only. Returned by default. Supports $select and $filter (eq, not, ge, le, startsWith).
         self._security_identifier: Optional[str] = None
-        # The serviceProvisioningErrors property
+        # Errors published by a federated service describing a non-transient, service-specific error regarding the properties or link from a user object .  Supports $filter (eq, not, for isResolved and serviceInstance).
         self._service_provisioning_errors: Optional[List[service_provisioning_error.ServiceProvisioningError]] = None
         # The settings property
         self._settings: Optional[user_settings.UserSettings] = None
         # Do not use in Microsoft Graph. Manage this property through the Microsoft 365 admin center instead. Represents whether the user should be included in the Outlook global address list. See Known issue.
         self._show_in_address_list: Optional[bool] = None
-        # Get the last signed-in date and request ID of the sign-in for a given user. Read-only.Returned only on $select. Supports $filter (eq, ne, not, ge, le) but not with any other filterable properties. Note:  Details for this property require an Azure AD Premium P1/P2 license and the AuditLog.Read.All permission.When you specify $select=signInActivity or $filter=signInActivity while listing users, the maximum page size is 120 users. Requests with $top set higher than 120 will return pages with up to 120 users.This property is not returned for a user who has never signed in or last signed in before April 2020.
+        # Get the last signed-in date and request ID of the sign-in for a given user. Read-only.Returned only on $select. Supports $filter (eq, ne, not, ge, le) but not with any other filterable properties. Note:  Details for this property require an Azure AD Premium P1/P2 license and the AuditLog.Read.All permission.This property is not returned for a user who has never signed in or last signed in before April 2020.
         self._sign_in_activity: Optional[sign_in_activity.SignInActivity] = None
         # Any refresh tokens or sessions tokens (session cookies) issued before this time are invalid, and applications will get an error when using an invalid refresh or sessions token to acquire a delegated access token (to access APIs such as Microsoft Graph).  If this happens, the application will need to acquire a new refresh token by making a request to the authorize endpoint. Read-only. Use revokeSignInSessions to reset.
         self._sign_in_sessions_valid_from_date_time: Optional[datetime] = None
@@ -1311,6 +1313,7 @@ class User(directory_object.DirectoryObject):
             "infoCatalogs": lambda n : setattr(self, 'info_catalogs', n.get_collection_of_primitive_values(str)),
             "insights": lambda n : setattr(self, 'insights', n.get_object_value(item_insights.ItemInsights)),
             "interests": lambda n : setattr(self, 'interests', n.get_collection_of_primitive_values(str)),
+            "isLicenseReconciliationNeeded": lambda n : setattr(self, 'is_license_reconciliation_needed', n.get_bool_value()),
             "isManagementRestricted": lambda n : setattr(self, 'is_management_restricted', n.get_bool_value()),
             "isResourceAccount": lambda n : setattr(self, 'is_resource_account', n.get_bool_value()),
             "jobTitle": lambda n : setattr(self, 'job_title', n.get_str_value()),
@@ -1551,6 +1554,23 @@ class User(directory_object.DirectoryObject):
             value: Value to set for the interests property.
         """
         self._interests = value
+    
+    @property
+    def is_license_reconciliation_needed(self,) -> Optional[bool]:
+        """
+        Gets the isLicenseReconciliationNeeded property value. Indicates whether the user is pending an exchange mailbox license assignment.  Read-only.  Supports $filter (eq where true only).
+        Returns: Optional[bool]
+        """
+        return self._is_license_reconciliation_needed
+    
+    @is_license_reconciliation_needed.setter
+    def is_license_reconciliation_needed(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the isLicenseReconciliationNeeded property value. Indicates whether the user is pending an exchange mailbox license assignment.  Read-only.  Supports $filter (eq where true only).
+        Args:
+            value: Value to set for the is_license_reconciliation_needed property.
+        """
+        self._is_license_reconciliation_needed = value
     
     @property
     def is_management_restricted(self,) -> Optional[bool]:
@@ -2729,6 +2749,7 @@ class User(directory_object.DirectoryObject):
         writer.write_collection_of_primitive_values("infoCatalogs", self.info_catalogs)
         writer.write_object_value("insights", self.insights)
         writer.write_collection_of_primitive_values("interests", self.interests)
+        writer.write_bool_value("isLicenseReconciliationNeeded", self.is_license_reconciliation_needed)
         writer.write_bool_value("isManagementRestricted", self.is_management_restricted)
         writer.write_bool_value("isResourceAccount", self.is_resource_account)
         writer.write_str_value("jobTitle", self.job_title)
@@ -2816,7 +2837,7 @@ class User(directory_object.DirectoryObject):
     @property
     def service_provisioning_errors(self,) -> Optional[List[service_provisioning_error.ServiceProvisioningError]]:
         """
-        Gets the serviceProvisioningErrors property value. The serviceProvisioningErrors property
+        Gets the serviceProvisioningErrors property value. Errors published by a federated service describing a non-transient, service-specific error regarding the properties or link from a user object .  Supports $filter (eq, not, for isResolved and serviceInstance).
         Returns: Optional[List[service_provisioning_error.ServiceProvisioningError]]
         """
         return self._service_provisioning_errors
@@ -2824,7 +2845,7 @@ class User(directory_object.DirectoryObject):
     @service_provisioning_errors.setter
     def service_provisioning_errors(self,value: Optional[List[service_provisioning_error.ServiceProvisioningError]] = None) -> None:
         """
-        Sets the serviceProvisioningErrors property value. The serviceProvisioningErrors property
+        Sets the serviceProvisioningErrors property value. Errors published by a federated service describing a non-transient, service-specific error regarding the properties or link from a user object .  Supports $filter (eq, not, for isResolved and serviceInstance).
         Args:
             value: Value to set for the service_provisioning_errors property.
         """
@@ -2867,7 +2888,7 @@ class User(directory_object.DirectoryObject):
     @property
     def sign_in_activity(self,) -> Optional[sign_in_activity.SignInActivity]:
         """
-        Gets the signInActivity property value. Get the last signed-in date and request ID of the sign-in for a given user. Read-only.Returned only on $select. Supports $filter (eq, ne, not, ge, le) but not with any other filterable properties. Note:  Details for this property require an Azure AD Premium P1/P2 license and the AuditLog.Read.All permission.When you specify $select=signInActivity or $filter=signInActivity while listing users, the maximum page size is 120 users. Requests with $top set higher than 120 will return pages with up to 120 users.This property is not returned for a user who has never signed in or last signed in before April 2020.
+        Gets the signInActivity property value. Get the last signed-in date and request ID of the sign-in for a given user. Read-only.Returned only on $select. Supports $filter (eq, ne, not, ge, le) but not with any other filterable properties. Note:  Details for this property require an Azure AD Premium P1/P2 license and the AuditLog.Read.All permission.This property is not returned for a user who has never signed in or last signed in before April 2020.
         Returns: Optional[sign_in_activity.SignInActivity]
         """
         return self._sign_in_activity
@@ -2875,7 +2896,7 @@ class User(directory_object.DirectoryObject):
     @sign_in_activity.setter
     def sign_in_activity(self,value: Optional[sign_in_activity.SignInActivity] = None) -> None:
         """
-        Sets the signInActivity property value. Get the last signed-in date and request ID of the sign-in for a given user. Read-only.Returned only on $select. Supports $filter (eq, ne, not, ge, le) but not with any other filterable properties. Note:  Details for this property require an Azure AD Premium P1/P2 license and the AuditLog.Read.All permission.When you specify $select=signInActivity or $filter=signInActivity while listing users, the maximum page size is 120 users. Requests with $top set higher than 120 will return pages with up to 120 users.This property is not returned for a user who has never signed in or last signed in before April 2020.
+        Sets the signInActivity property value. Get the last signed-in date and request ID of the sign-in for a given user. Read-only.Returned only on $select. Supports $filter (eq, ne, not, ge, le) but not with any other filterable properties. Note:  Details for this property require an Azure AD Premium P1/P2 license and the AuditLog.Read.All permission.This property is not returned for a user who has never signed in or last signed in before April 2020.
         Args:
             value: Value to set for the sign_in_activity property.
         """

@@ -54,7 +54,7 @@ class HorizontalSectionsRequestBuilder():
     
     async def get(self,request_configuration: Optional[HorizontalSectionsRequestBuilderGetRequestConfiguration] = None) -> Optional[horizontal_section_collection_response.HorizontalSectionCollectionResponse]:
         """
-        Collection of horizontal sections on the SharePoint page.
+        Get a list of the horizontalSection objects and their properties. Sort by `id` in ascending order.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[horizontal_section_collection_response.HorizontalSectionCollectionResponse]
@@ -101,7 +101,7 @@ class HorizontalSectionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[HorizontalSectionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Collection of horizontal sections on the SharePoint page.
+        Get a list of the horizontalSection objects and their properties. Sort by `id` in ascending order.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class HorizontalSectionsRequestBuilder():
     @dataclass
     class HorizontalSectionsRequestBuilderGetQueryParameters():
         """
-        Collection of horizontal sections on the SharePoint page.
+        Get a list of the horizontalSection objects and their properties. Sort by `id` in ascending order.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

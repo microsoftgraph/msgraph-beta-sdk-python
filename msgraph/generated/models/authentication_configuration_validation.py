@@ -13,11 +13,11 @@ class AuthenticationConfigurationValidation(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The errors property
+        # Errors in the validation result of a customAuthenticationExtension.
         self._errors: Optional[List[generic_error.GenericError]] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The warnings property
+        # Warnings in the validation result of a customAuthenticationExtension.
         self._warnings: Optional[List[generic_error.GenericError]] = None
     
     @property
@@ -52,7 +52,7 @@ class AuthenticationConfigurationValidation(AdditionalDataHolder, Parsable):
     @property
     def errors(self,) -> Optional[List[generic_error.GenericError]]:
         """
-        Gets the errors property value. The errors property
+        Gets the errors property value. Errors in the validation result of a customAuthenticationExtension.
         Returns: Optional[List[generic_error.GenericError]]
         """
         return self._errors
@@ -60,7 +60,7 @@ class AuthenticationConfigurationValidation(AdditionalDataHolder, Parsable):
     @errors.setter
     def errors(self,value: Optional[List[generic_error.GenericError]] = None) -> None:
         """
-        Sets the errors property value. The errors property
+        Sets the errors property value. Errors in the validation result of a customAuthenticationExtension.
         Args:
             value: Value to set for the errors property.
         """
@@ -113,7 +113,7 @@ class AuthenticationConfigurationValidation(AdditionalDataHolder, Parsable):
     @property
     def warnings(self,) -> Optional[List[generic_error.GenericError]]:
         """
-        Gets the warnings property value. The warnings property
+        Gets the warnings property value. Warnings in the validation result of a customAuthenticationExtension.
         Returns: Optional[List[generic_error.GenericError]]
         """
         return self._warnings
@@ -121,7 +121,7 @@ class AuthenticationConfigurationValidation(AdditionalDataHolder, Parsable):
     @warnings.setter
     def warnings(self,value: Optional[List[generic_error.GenericError]] = None) -> None:
         """
-        Sets the warnings property value. The warnings property
+        Sets the warnings property value. Warnings in the validation result of a customAuthenticationExtension.
         Args:
             value: Value to set for the warnings property.
         """

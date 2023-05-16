@@ -54,7 +54,7 @@ class ProjectsRequestBuilder():
     
     async def get(self,request_configuration: Optional[ProjectsRequestBuilderGetRequestConfiguration] = None) -> Optional[project_participation_collection_response.ProjectParticipationCollectionResponse]:
         """
-        Represents detailed information about projects associated with a user.
+        Retrieve a list of projectParticipation objects from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[project_participation_collection_response.ProjectParticipationCollectionResponse]
@@ -76,7 +76,7 @@ class ProjectsRequestBuilder():
     
     async def post(self,body: Optional[project_participation.ProjectParticipation] = None, request_configuration: Optional[ProjectsRequestBuilderPostRequestConfiguration] = None) -> Optional[project_participation.ProjectParticipation]:
         """
-        Create new navigation property to projects for users
+        Use this API to create a new projectParticipation object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class ProjectsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ProjectsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents detailed information about projects associated with a user.
+        Retrieve a list of projectParticipation objects from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class ProjectsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[project_participation.ProjectParticipation] = None, request_configuration: Optional[ProjectsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to projects for users
+        Use this API to create a new projectParticipation object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class ProjectsRequestBuilder():
     @dataclass
     class ProjectsRequestBuilderGetQueryParameters():
         """
-        Represents detailed information about projects associated with a user.
+        Retrieve a list of projectParticipation objects from a user's profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

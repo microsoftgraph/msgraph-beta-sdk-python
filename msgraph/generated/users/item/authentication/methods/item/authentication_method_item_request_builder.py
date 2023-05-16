@@ -40,7 +40,7 @@ class AuthenticationMethodItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[AuthenticationMethodItemRequestBuilderGetRequestConfiguration] = None) -> Optional[authentication_method.AuthenticationMethod]:
         """
-        Represents all authentication methods registered to a user.
+        Retrieve the properties and relationships of an authenticationMethod object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[authentication_method.AuthenticationMethod]
@@ -87,7 +87,7 @@ class AuthenticationMethodItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AuthenticationMethodItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents all authentication methods registered to a user.
+        Retrieve the properties and relationships of an authenticationMethod object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -154,7 +154,7 @@ class AuthenticationMethodItemRequestBuilder():
     @dataclass
     class AuthenticationMethodItemRequestBuilderGetQueryParameters():
         """
-        Represents all authentication methods registered to a user.
+        Retrieve the properties and relationships of an authenticationMethod object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

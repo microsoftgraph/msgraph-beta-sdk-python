@@ -54,7 +54,7 @@ class TasksRequestBuilder():
     
     async def get(self,request_configuration: Optional[TasksRequestBuilderGetRequestConfiguration] = None) -> Optional[outlook_task_collection_response.OutlookTaskCollectionResponse]:
         """
-        The tasks in this task folder. Read-only. Nullable.
+        Get all the Outlook tasks in the specified folder. By default, this operation (and the POST, PATCH, and complete task operations) returnsdate-related properties in UTC.  You can use a `Prefer: outlook.timezone` request header to have all the date-related properties in the response represented in a time zonedifferent than UTC. See an example for getting a single task. You can apply the header similarly to get multiple tasks. If there is more than one task group, and you want to get all the tasks in a specific task group, firstget all the task folders in that task group,and then get the tasks in each of these task folders.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[outlook_task_collection_response.OutlookTaskCollectionResponse]
@@ -76,7 +76,7 @@ class TasksRequestBuilder():
     
     async def post(self,body: Optional[outlook_task.OutlookTask] = None, request_configuration: Optional[TasksRequestBuilderPostRequestConfiguration] = None) -> Optional[outlook_task.OutlookTask]:
         """
-        Create new navigation property to tasks for users
+        Create an Outlook task in the specified task folder. The POST method always ignores the time portion of **startDateTime** and **dueDateTime** in the request body, and assumes the time to be always midnight in the specified time zone.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class TasksRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TasksRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The tasks in this task folder. Read-only. Nullable.
+        Get all the Outlook tasks in the specified folder. By default, this operation (and the POST, PATCH, and complete task operations) returnsdate-related properties in UTC.  You can use a `Prefer: outlook.timezone` request header to have all the date-related properties in the response represented in a time zonedifferent than UTC. See an example for getting a single task. You can apply the header similarly to get multiple tasks. If there is more than one task group, and you want to get all the tasks in a specific task group, firstget all the task folders in that task group,and then get the tasks in each of these task folders.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class TasksRequestBuilder():
     
     def to_post_request_information(self,body: Optional[outlook_task.OutlookTask] = None, request_configuration: Optional[TasksRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to tasks for users
+        Create an Outlook task in the specified task folder. The POST method always ignores the time portion of **startDateTime** and **dueDateTime** in the request body, and assumes the time to be always midnight in the specified time zone.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class TasksRequestBuilder():
     @dataclass
     class TasksRequestBuilderGetQueryParameters():
         """
-        The tasks in this task folder. Read-only. Nullable.
+        Get all the Outlook tasks in the specified folder. By default, this operation (and the POST, PATCH, and complete task operations) returnsdate-related properties in UTC.  You can use a `Prefer: outlook.timezone` request header to have all the date-related properties in the response represented in a time zonedifferent than UTC. See an example for getting a single task. You can apply the header similarly to get multiple tasks. If there is more than one task group, and you want to get all the tasks in a specific task group, firstget all the task folders in that task group,and then get the tasks in each of these task folders.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

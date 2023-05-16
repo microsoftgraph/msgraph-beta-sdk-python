@@ -54,7 +54,7 @@ class GalleryImagesRequestBuilder():
     
     async def get(self,request_configuration: Optional[GalleryImagesRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_gallery_image_collection_response.CloudPcGalleryImageCollectionResponse]:
         """
-        The gallery image resource on Cloud PC.
+        List the properties and relationships of the cloudPcGalleryImage objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cloud_pc_gallery_image_collection_response.CloudPcGalleryImageCollectionResponse]
@@ -101,7 +101,7 @@ class GalleryImagesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[GalleryImagesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The gallery image resource on Cloud PC.
+        List the properties and relationships of the cloudPcGalleryImage objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class GalleryImagesRequestBuilder():
     @dataclass
     class GalleryImagesRequestBuilderGetQueryParameters():
         """
-        The gallery image resource on Cloud PC.
+        List the properties and relationships of the cloudPcGalleryImage objects.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

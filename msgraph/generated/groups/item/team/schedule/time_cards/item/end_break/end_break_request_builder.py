@@ -38,7 +38,7 @@ class EndBreakRequestBuilder():
     
     async def post(self,body: Optional[end_break_post_request_body.EndBreakPostRequestBody] = None, request_configuration: Optional[EndBreakRequestBuilderPostRequestConfiguration] = None) -> Optional[time_card.TimeCard]:
         """
-        Invoke action endBreak
+        End the open break in a specific timeCard.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +63,7 @@ class EndBreakRequestBuilder():
     
     def to_post_request_information(self,body: Optional[end_break_post_request_body.EndBreakPostRequestBody] = None, request_configuration: Optional[EndBreakRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action endBreak
+        End the open break in a specific timeCard.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

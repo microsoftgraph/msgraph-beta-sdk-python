@@ -13,13 +13,13 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ...models.call_records import call_record, call_record_collection_response
     from ...models.o_data_errors import o_data_error
-    from .call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time import call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time_request_builder
-    from .call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time import call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time_request_builder
-    from .call_records_get_pstn_calls_with_from_date_time_with_to_date_time import call_records_get_pstn_calls_with_from_date_time_with_to_date_time_request_builder
-    from .call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time import call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time_request_builder
-    from .call_records_get_sms_log_with_from_date_time_with_to_date_time import call_records_get_sms_log_with_from_date_time_with_to_date_time_request_builder
     from .count import count_request_builder
     from .item import call_record_item_request_builder
+    from .microsoft_graph_call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time import microsoft_graph_call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time_request_builder
+    from .microsoft_graph_call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time import microsoft_graph_call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time_request_builder
+    from .microsoft_graph_call_records_get_pstn_calls_with_from_date_time_with_to_date_time import microsoft_graph_call_records_get_pstn_calls_with_from_date_time_with_to_date_time_request_builder
+    from .microsoft_graph_call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time import microsoft_graph_call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time_request_builder
+    from .microsoft_graph_call_records_get_sms_log_with_from_date_time_with_to_date_time import microsoft_graph_call_records_get_sms_log_with_from_date_time_with_to_date_time_request_builder
 
 class CallRecordsRequestBuilder():
     """
@@ -58,89 +58,9 @@ class CallRecordsRequestBuilder():
         url_tpl_params["callRecord%2Did"] = call_record_id
         return call_record_item_request_builder.CallRecordItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time(self,from_date_time: Optional[datetime] = None, to_date_time: Optional[datetime] = None) -> call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time_request_builder.CallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTimeRequestBuilder:
-        """
-        Provides operations to call the getDirectRoutingCalls method.
-        Args:
-            fromDateTime: Usage: fromDateTime={fromDateTime}
-            toDateTime: Usage: toDateTime={toDateTime}
-        Returns: call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time_request_builder.CallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTimeRequestBuilder
-        """
-        if from_date_time is None:
-            raise Exception("from_date_time cannot be undefined")
-        if to_date_time is None:
-            raise Exception("to_date_time cannot be undefined")
-        from .call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time import call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time_request_builder
-
-        return call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time_request_builder.CallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTimeRequestBuilder(self.request_adapter, self.path_parameters, from_date_time, to_date_time)
-    
-    def call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time(self,from_date_time: Optional[datetime] = None, to_date_time: Optional[datetime] = None) -> call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time_request_builder.CallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeRequestBuilder:
-        """
-        Provides operations to call the getPstnBlockedUsersLog method.
-        Args:
-            fromDateTime: Usage: fromDateTime={fromDateTime}
-            toDateTime: Usage: toDateTime={toDateTime}
-        Returns: call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time_request_builder.CallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeRequestBuilder
-        """
-        if from_date_time is None:
-            raise Exception("from_date_time cannot be undefined")
-        if to_date_time is None:
-            raise Exception("to_date_time cannot be undefined")
-        from .call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time import call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time_request_builder
-
-        return call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time_request_builder.CallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeRequestBuilder(self.request_adapter, self.path_parameters, from_date_time, to_date_time)
-    
-    def call_records_get_pstn_calls_with_from_date_time_with_to_date_time(self,from_date_time: Optional[datetime] = None, to_date_time: Optional[datetime] = None) -> call_records_get_pstn_calls_with_from_date_time_with_to_date_time_request_builder.CallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder:
-        """
-        Provides operations to call the getPstnCalls method.
-        Args:
-            fromDateTime: Usage: fromDateTime={fromDateTime}
-            toDateTime: Usage: toDateTime={toDateTime}
-        Returns: call_records_get_pstn_calls_with_from_date_time_with_to_date_time_request_builder.CallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder
-        """
-        if from_date_time is None:
-            raise Exception("from_date_time cannot be undefined")
-        if to_date_time is None:
-            raise Exception("to_date_time cannot be undefined")
-        from .call_records_get_pstn_calls_with_from_date_time_with_to_date_time import call_records_get_pstn_calls_with_from_date_time_with_to_date_time_request_builder
-
-        return call_records_get_pstn_calls_with_from_date_time_with_to_date_time_request_builder.CallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder(self.request_adapter, self.path_parameters, from_date_time, to_date_time)
-    
-    def call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time(self,from_date_time: Optional[datetime] = None, to_date_time: Optional[datetime] = None) -> call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time_request_builder.CallRecordsGetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeRequestBuilder:
-        """
-        Provides operations to call the getPstnOnlineMeetingDialoutReport method.
-        Args:
-            fromDateTime: Usage: fromDateTime={fromDateTime}
-            toDateTime: Usage: toDateTime={toDateTime}
-        Returns: call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time_request_builder.CallRecordsGetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeRequestBuilder
-        """
-        if from_date_time is None:
-            raise Exception("from_date_time cannot be undefined")
-        if to_date_time is None:
-            raise Exception("to_date_time cannot be undefined")
-        from .call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time import call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time_request_builder
-
-        return call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time_request_builder.CallRecordsGetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeRequestBuilder(self.request_adapter, self.path_parameters, from_date_time, to_date_time)
-    
-    def call_records_get_sms_log_with_from_date_time_with_to_date_time(self,from_date_time: Optional[datetime] = None, to_date_time: Optional[datetime] = None) -> call_records_get_sms_log_with_from_date_time_with_to_date_time_request_builder.CallRecordsGetSmsLogWithFromDateTimeWithToDateTimeRequestBuilder:
-        """
-        Provides operations to call the getSmsLog method.
-        Args:
-            fromDateTime: Usage: fromDateTime={fromDateTime}
-            toDateTime: Usage: toDateTime={toDateTime}
-        Returns: call_records_get_sms_log_with_from_date_time_with_to_date_time_request_builder.CallRecordsGetSmsLogWithFromDateTimeWithToDateTimeRequestBuilder
-        """
-        if from_date_time is None:
-            raise Exception("from_date_time cannot be undefined")
-        if to_date_time is None:
-            raise Exception("to_date_time cannot be undefined")
-        from .call_records_get_sms_log_with_from_date_time_with_to_date_time import call_records_get_sms_log_with_from_date_time_with_to_date_time_request_builder
-
-        return call_records_get_sms_log_with_from_date_time_with_to_date_time_request_builder.CallRecordsGetSmsLogWithFromDateTimeWithToDateTimeRequestBuilder(self.request_adapter, self.path_parameters, from_date_time, to_date_time)
-    
     async def get(self,request_configuration: Optional[CallRecordsRequestBuilderGetRequestConfiguration] = None) -> Optional[call_record_collection_response.CallRecordCollectionResponse]:
         """
-        Get callRecords from communications
+        Retrieve the properties and relationships of a callRecord object. There are two ways to get the **id** of a **callRecord**:
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[call_record_collection_response.CallRecordCollectionResponse]
@@ -159,6 +79,86 @@ class CallRecordsRequestBuilder():
         from ...models.call_records import call_record_collection_response
 
         return await self.request_adapter.send_async(request_info, call_record_collection_response.CallRecordCollectionResponse, error_mapping)
+    
+    def microsoft_graph_call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time(self,from_date_time: Optional[datetime] = None, to_date_time: Optional[datetime] = None) -> microsoft_graph_call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTimeRequestBuilder:
+        """
+        Provides operations to call the getDirectRoutingCalls method.
+        Args:
+            fromDateTime: Usage: fromDateTime={fromDateTime}
+            toDateTime: Usage: toDateTime={toDateTime}
+        Returns: microsoft_graph_call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTimeRequestBuilder
+        """
+        if from_date_time is None:
+            raise Exception("from_date_time cannot be undefined")
+        if to_date_time is None:
+            raise Exception("to_date_time cannot be undefined")
+        from .microsoft_graph_call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time import microsoft_graph_call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time_request_builder
+
+        return microsoft_graph_call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTimeRequestBuilder(self.request_adapter, self.path_parameters, from_date_time, to_date_time)
+    
+    def microsoft_graph_call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time(self,from_date_time: Optional[datetime] = None, to_date_time: Optional[datetime] = None) -> microsoft_graph_call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeRequestBuilder:
+        """
+        Provides operations to call the getPstnBlockedUsersLog method.
+        Args:
+            fromDateTime: Usage: fromDateTime={fromDateTime}
+            toDateTime: Usage: toDateTime={toDateTime}
+        Returns: microsoft_graph_call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeRequestBuilder
+        """
+        if from_date_time is None:
+            raise Exception("from_date_time cannot be undefined")
+        if to_date_time is None:
+            raise Exception("to_date_time cannot be undefined")
+        from .microsoft_graph_call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time import microsoft_graph_call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time_request_builder
+
+        return microsoft_graph_call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeRequestBuilder(self.request_adapter, self.path_parameters, from_date_time, to_date_time)
+    
+    def microsoft_graph_call_records_get_pstn_calls_with_from_date_time_with_to_date_time(self,from_date_time: Optional[datetime] = None, to_date_time: Optional[datetime] = None) -> microsoft_graph_call_records_get_pstn_calls_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder:
+        """
+        Provides operations to call the getPstnCalls method.
+        Args:
+            fromDateTime: Usage: fromDateTime={fromDateTime}
+            toDateTime: Usage: toDateTime={toDateTime}
+        Returns: microsoft_graph_call_records_get_pstn_calls_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder
+        """
+        if from_date_time is None:
+            raise Exception("from_date_time cannot be undefined")
+        if to_date_time is None:
+            raise Exception("to_date_time cannot be undefined")
+        from .microsoft_graph_call_records_get_pstn_calls_with_from_date_time_with_to_date_time import microsoft_graph_call_records_get_pstn_calls_with_from_date_time_with_to_date_time_request_builder
+
+        return microsoft_graph_call_records_get_pstn_calls_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder(self.request_adapter, self.path_parameters, from_date_time, to_date_time)
+    
+    def microsoft_graph_call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time(self,from_date_time: Optional[datetime] = None, to_date_time: Optional[datetime] = None) -> microsoft_graph_call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeRequestBuilder:
+        """
+        Provides operations to call the getPstnOnlineMeetingDialoutReport method.
+        Args:
+            fromDateTime: Usage: fromDateTime={fromDateTime}
+            toDateTime: Usage: toDateTime={toDateTime}
+        Returns: microsoft_graph_call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeRequestBuilder
+        """
+        if from_date_time is None:
+            raise Exception("from_date_time cannot be undefined")
+        if to_date_time is None:
+            raise Exception("to_date_time cannot be undefined")
+        from .microsoft_graph_call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time import microsoft_graph_call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time_request_builder
+
+        return microsoft_graph_call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeRequestBuilder(self.request_adapter, self.path_parameters, from_date_time, to_date_time)
+    
+    def microsoft_graph_call_records_get_sms_log_with_from_date_time_with_to_date_time(self,from_date_time: Optional[datetime] = None, to_date_time: Optional[datetime] = None) -> microsoft_graph_call_records_get_sms_log_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetSmsLogWithFromDateTimeWithToDateTimeRequestBuilder:
+        """
+        Provides operations to call the getSmsLog method.
+        Args:
+            fromDateTime: Usage: fromDateTime={fromDateTime}
+            toDateTime: Usage: toDateTime={toDateTime}
+        Returns: microsoft_graph_call_records_get_sms_log_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetSmsLogWithFromDateTimeWithToDateTimeRequestBuilder
+        """
+        if from_date_time is None:
+            raise Exception("from_date_time cannot be undefined")
+        if to_date_time is None:
+            raise Exception("to_date_time cannot be undefined")
+        from .microsoft_graph_call_records_get_sms_log_with_from_date_time_with_to_date_time import microsoft_graph_call_records_get_sms_log_with_from_date_time_with_to_date_time_request_builder
+
+        return microsoft_graph_call_records_get_sms_log_with_from_date_time_with_to_date_time_request_builder.MicrosoftGraphCallRecordsGetSmsLogWithFromDateTimeWithToDateTimeRequestBuilder(self.request_adapter, self.path_parameters, from_date_time, to_date_time)
     
     async def post(self,body: Optional[call_record.CallRecord] = None, request_configuration: Optional[CallRecordsRequestBuilderPostRequestConfiguration] = None) -> Optional[call_record.CallRecord]:
         """
@@ -187,7 +187,7 @@ class CallRecordsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CallRecordsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get callRecords from communications
+        Retrieve the properties and relationships of a callRecord object. There are two ways to get the **id** of a **callRecord**:
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -236,7 +236,7 @@ class CallRecordsRequestBuilder():
     @dataclass
     class CallRecordsRequestBuilderGetQueryParameters():
         """
-        Get callRecords from communications
+        Retrieve the properties and relationships of a callRecord object. There are two ways to get the **id** of a **callRecord**:
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

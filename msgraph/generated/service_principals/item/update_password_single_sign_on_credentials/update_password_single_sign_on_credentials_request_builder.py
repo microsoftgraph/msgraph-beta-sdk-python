@@ -37,7 +37,7 @@ class UpdatePasswordSingleSignOnCredentialsRequestBuilder():
     
     async def post(self,body: Optional[update_password_single_sign_on_credentials_post_request_body.UpdatePasswordSingleSignOnCredentialsPostRequestBody] = None, request_configuration: Optional[UpdatePasswordSingleSignOnCredentialsRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Invoke action updatePasswordSingleSignOnCredentials
+        Update single sign-on credentials using a password for a user or group.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -59,7 +59,7 @@ class UpdatePasswordSingleSignOnCredentialsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[update_password_single_sign_on_credentials_post_request_body.UpdatePasswordSingleSignOnCredentialsPostRequestBody] = None, request_configuration: Optional[UpdatePasswordSingleSignOnCredentialsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action updatePasswordSingleSignOnCredentials
+        Update single sign-on credentials using a password for a user or group.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

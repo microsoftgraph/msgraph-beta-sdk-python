@@ -37,7 +37,7 @@ class PlannerPlanConfigurationLocalizationItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[PlannerPlanConfigurationLocalizationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property localizations for solutions
+        Delete a plannerPlanConfigurationLocalization object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class PlannerPlanConfigurationLocalizationItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[PlannerPlanConfigurationLocalizationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[planner_plan_configuration_localization.PlannerPlanConfigurationLocalization]:
         """
-        Localized names for the plan configuration.
+        Read the properties and relationships of a plannerPlanConfigurationLocalization object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[planner_plan_configuration_localization.PlannerPlanConfigurationLocalization]
@@ -78,7 +78,7 @@ class PlannerPlanConfigurationLocalizationItemRequestBuilder():
     
     async def patch(self,body: Optional[planner_plan_configuration_localization.PlannerPlanConfigurationLocalization] = None, request_configuration: Optional[PlannerPlanConfigurationLocalizationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[planner_plan_configuration_localization.PlannerPlanConfigurationLocalization]:
         """
-        Update the navigation property localizations in solutions
+        Update the properties of a plannerPlanConfigurationLocalization object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class PlannerPlanConfigurationLocalizationItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[PlannerPlanConfigurationLocalizationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property localizations for solutions
+        Delete a plannerPlanConfigurationLocalization object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class PlannerPlanConfigurationLocalizationItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PlannerPlanConfigurationLocalizationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Localized names for the plan configuration.
+        Read the properties and relationships of a plannerPlanConfigurationLocalization object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class PlannerPlanConfigurationLocalizationItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[planner_plan_configuration_localization.PlannerPlanConfigurationLocalization] = None, request_configuration: Optional[PlannerPlanConfigurationLocalizationItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property localizations in solutions
+        Update the properties of a plannerPlanConfigurationLocalization object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class PlannerPlanConfigurationLocalizationItemRequestBuilder():
     @dataclass
     class PlannerPlanConfigurationLocalizationItemRequestBuilderGetQueryParameters():
         """
-        Localized names for the plan configuration.
+        Read the properties and relationships of a plannerPlanConfigurationLocalization object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

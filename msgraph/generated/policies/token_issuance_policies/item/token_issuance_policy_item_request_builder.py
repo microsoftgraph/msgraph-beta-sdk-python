@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ....models import token_issuance_policy
     from ....models.o_data_errors import o_data_error
+    from .applies_to import applies_to_request_builder
 
 class TokenIssuancePolicyItemRequestBuilder():
     """
@@ -37,7 +38,7 @@ class TokenIssuancePolicyItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[TokenIssuancePolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property tokenIssuancePolicies for policies
+        Delete a tokenIssuancePolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +57,7 @@ class TokenIssuancePolicyItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[TokenIssuancePolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[token_issuance_policy.TokenIssuancePolicy]:
         """
-        The policy that specifies the characteristics of SAML tokens issued by Azure AD.
+        Retrieve the properties and relationships of a tokenIssuancePolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[token_issuance_policy.TokenIssuancePolicy]
@@ -78,7 +79,7 @@ class TokenIssuancePolicyItemRequestBuilder():
     
     async def patch(self,body: Optional[token_issuance_policy.TokenIssuancePolicy] = None, request_configuration: Optional[TokenIssuancePolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[token_issuance_policy.TokenIssuancePolicy]:
         """
-        Update the navigation property tokenIssuancePolicies in policies
+        Update the properties of a tokenIssuancePolicy object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +104,7 @@ class TokenIssuancePolicyItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[TokenIssuancePolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property tokenIssuancePolicies for policies
+        Delete a tokenIssuancePolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +120,7 @@ class TokenIssuancePolicyItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TokenIssuancePolicyItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The policy that specifies the characteristics of SAML tokens issued by Azure AD.
+        Retrieve the properties and relationships of a tokenIssuancePolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +138,7 @@ class TokenIssuancePolicyItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[token_issuance_policy.TokenIssuancePolicy] = None, request_configuration: Optional[TokenIssuancePolicyItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property tokenIssuancePolicies in policies
+        Update the properties of a tokenIssuancePolicy object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -156,6 +157,15 @@ class TokenIssuancePolicyItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def applies_to(self) -> applies_to_request_builder.AppliesToRequestBuilder:
+        """
+        Provides operations to manage the appliesTo property of the microsoft.graph.stsPolicy entity.
+        """
+        from .applies_to import applies_to_request_builder
+
+        return applies_to_request_builder.AppliesToRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class TokenIssuancePolicyItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -171,7 +181,7 @@ class TokenIssuancePolicyItemRequestBuilder():
     @dataclass
     class TokenIssuancePolicyItemRequestBuilderGetQueryParameters():
         """
-        The policy that specifies the characteristics of SAML tokens issued by Azure AD.
+        Retrieve the properties and relationships of a tokenIssuancePolicy object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

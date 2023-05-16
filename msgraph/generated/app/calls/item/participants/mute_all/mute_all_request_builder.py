@@ -38,7 +38,7 @@ class MuteAllRequestBuilder():
     
     async def post(self,body: Optional[mute_all_post_request_body.MuteAllPostRequestBody] = None, request_configuration: Optional[MuteAllRequestBuilderPostRequestConfiguration] = None) -> Optional[mute_participants_operation.MuteParticipantsOperation]:
         """
-        Invoke action muteAll
+        Mute all participants in the call.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +63,7 @@ class MuteAllRequestBuilder():
     
     def to_post_request_information(self,body: Optional[mute_all_post_request_body.MuteAllPostRequestBody] = None, request_configuration: Optional[MuteAllRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action muteAll
+        Mute all participants in the call.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

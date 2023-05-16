@@ -44,7 +44,7 @@ class SynchronizationJobItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[SynchronizationJobItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property jobs for applications
+        Stop the synchronization job, and permanently delete all the state associated with it. Synchronized accounts are left as-is.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -63,7 +63,7 @@ class SynchronizationJobItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[SynchronizationJobItemRequestBuilderGetRequestConfiguration] = None) -> Optional[synchronization_job.SynchronizationJob]:
         """
-        Performs synchronization by periodically running in the background, polling for changes in one directory, and pushing them to another directory.
+        Retrieve the existing synchronization job and its properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[synchronization_job.SynchronizationJob]
@@ -110,7 +110,7 @@ class SynchronizationJobItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[SynchronizationJobItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property jobs for applications
+        Stop the synchronization job, and permanently delete all the state associated with it. Synchronized accounts are left as-is.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -126,7 +126,7 @@ class SynchronizationJobItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SynchronizationJobItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Performs synchronization by periodically running in the background, polling for changes in one directory, and pushing them to another directory.
+        Retrieve the existing synchronization job and its properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -241,7 +241,7 @@ class SynchronizationJobItemRequestBuilder():
     @dataclass
     class SynchronizationJobItemRequestBuilderGetQueryParameters():
         """
-        Performs synchronization by periodically running in the background, polling for changes in one directory, and pushing them to another directory.
+        Retrieve the existing synchronization job and its properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

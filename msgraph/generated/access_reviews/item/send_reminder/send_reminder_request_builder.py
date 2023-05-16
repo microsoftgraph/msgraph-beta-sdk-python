@@ -36,7 +36,7 @@ class SendReminderRequestBuilder():
     
     async def post(self,request_configuration: Optional[SendReminderRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Invoke action sendReminder
+        In the Azure AD access reviews feature, send a reminder to the reviewers of a currently active accessReview.  The target object can be either a one-time access review, or an instance of a recurring access review. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class SendReminderRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[SendReminderRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action sendReminder
+        In the Azure AD access reviews feature, send a reminder to the reviewers of a currently active accessReview.  The target object can be either a one-time access review, or an instance of a recurring access review. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

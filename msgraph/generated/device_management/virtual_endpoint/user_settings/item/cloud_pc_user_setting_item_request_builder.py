@@ -39,7 +39,7 @@ class CloudPcUserSettingItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[CloudPcUserSettingItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property userSettings for deviceManagement
+        Delete a cloudPcUserSetting object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -58,7 +58,7 @@ class CloudPcUserSettingItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[CloudPcUserSettingItemRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_user_setting.CloudPcUserSetting]:
         """
-        Cloud PC user settings.
+        Read the properties and relationships of a cloudPcUserSetting object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cloud_pc_user_setting.CloudPcUserSetting]
@@ -80,7 +80,7 @@ class CloudPcUserSettingItemRequestBuilder():
     
     async def patch(self,body: Optional[cloud_pc_user_setting.CloudPcUserSetting] = None, request_configuration: Optional[CloudPcUserSettingItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[cloud_pc_user_setting.CloudPcUserSetting]:
         """
-        Update the navigation property userSettings in deviceManagement
+        Update the properties of a cloudPcUserSetting object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -105,7 +105,7 @@ class CloudPcUserSettingItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[CloudPcUserSettingItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property userSettings for deviceManagement
+        Delete a cloudPcUserSetting object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -121,7 +121,7 @@ class CloudPcUserSettingItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CloudPcUserSettingItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Cloud PC user settings.
+        Read the properties and relationships of a cloudPcUserSetting object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -139,7 +139,7 @@ class CloudPcUserSettingItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[cloud_pc_user_setting.CloudPcUserSetting] = None, request_configuration: Optional[CloudPcUserSettingItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property userSettings in deviceManagement
+        Update the properties of a cloudPcUserSetting object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -191,7 +191,7 @@ class CloudPcUserSettingItemRequestBuilder():
     @dataclass
     class CloudPcUserSettingItemRequestBuilderGetQueryParameters():
         """
-        Cloud PC user settings.
+        Read the properties and relationships of a cloudPcUserSetting object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -57,7 +57,7 @@ class AccessPackageResourceEnvironmentItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[AccessPackageResourceEnvironmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_resource_environment.AccessPackageResourceEnvironment]:
         """
-        A reference to the geolocation environment in which a resource is located.
+        Read the properties and relationships of an accessPackageResourceEnvironment object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_package_resource_environment.AccessPackageResourceEnvironment]
@@ -120,7 +120,7 @@ class AccessPackageResourceEnvironmentItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageResourceEnvironmentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        A reference to the geolocation environment in which a resource is located.
+        Read the properties and relationships of an accessPackageResourceEnvironment object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -181,7 +181,7 @@ class AccessPackageResourceEnvironmentItemRequestBuilder():
     @dataclass
     class AccessPackageResourceEnvironmentItemRequestBuilderGetQueryParameters():
         """
-        A reference to the geolocation environment in which a resource is located.
+        Read the properties and relationships of an accessPackageResourceEnvironment object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

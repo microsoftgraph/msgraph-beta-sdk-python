@@ -13,7 +13,7 @@ class TeamTemplate(entity.Entity):
         Instantiates a new TeamTemplate and sets the default values.
         """
         super().__init__()
-        # The definitions property
+        # A generic representation of a team template definition for a team with a specific structure and configuration.
         self._definitions: Optional[List[team_template_definition.TeamTemplateDefinition]] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
@@ -33,7 +33,7 @@ class TeamTemplate(entity.Entity):
     @property
     def definitions(self,) -> Optional[List[team_template_definition.TeamTemplateDefinition]]:
         """
-        Gets the definitions property value. The definitions property
+        Gets the definitions property value. A generic representation of a team template definition for a team with a specific structure and configuration.
         Returns: Optional[List[team_template_definition.TeamTemplateDefinition]]
         """
         return self._definitions
@@ -41,7 +41,7 @@ class TeamTemplate(entity.Entity):
     @definitions.setter
     def definitions(self,value: Optional[List[team_template_definition.TeamTemplateDefinition]] = None) -> None:
         """
-        Sets the definitions property value. The definitions property
+        Sets the definitions property value. A generic representation of a team template definition for a team with a specific structure and configuration.
         Args:
             value: Value to set for the definitions property.
         """

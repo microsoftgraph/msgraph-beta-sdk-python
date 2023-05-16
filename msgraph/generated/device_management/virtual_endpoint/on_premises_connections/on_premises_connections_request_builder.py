@@ -54,7 +54,7 @@ class OnPremisesConnectionsRequestBuilder():
     
     async def get(self,request_configuration: Optional[OnPremisesConnectionsRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_on_premises_connection_collection_response.CloudPcOnPremisesConnectionCollectionResponse]:
         """
-        A defined collection of Azure resource information that can be used to establish on-premises network connectivity for Cloud PCs.
+        List properties and relationships of the cloudPcOnPremisesConnection objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cloud_pc_on_premises_connection_collection_response.CloudPcOnPremisesConnectionCollectionResponse]
@@ -76,7 +76,7 @@ class OnPremisesConnectionsRequestBuilder():
     
     async def post(self,body: Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection] = None, request_configuration: Optional[OnPremisesConnectionsRequestBuilderPostRequestConfiguration] = None) -> Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection]:
         """
-        Create new navigation property to onPremisesConnections for deviceManagement
+        Create a new cloudPcOnPremisesConnection object for provisioning Cloud PCs.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class OnPremisesConnectionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[OnPremisesConnectionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        A defined collection of Azure resource information that can be used to establish on-premises network connectivity for Cloud PCs.
+        List properties and relationships of the cloudPcOnPremisesConnection objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class OnPremisesConnectionsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection] = None, request_configuration: Optional[OnPremisesConnectionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to onPremisesConnections for deviceManagement
+        Create a new cloudPcOnPremisesConnection object for provisioning Cloud PCs.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class OnPremisesConnectionsRequestBuilder():
     @dataclass
     class OnPremisesConnectionsRequestBuilderGetQueryParameters():
         """
-        A defined collection of Azure resource information that can be used to establish on-premises network connectivity for Cloud PCs.
+        List properties and relationships of the cloudPcOnPremisesConnection objects.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

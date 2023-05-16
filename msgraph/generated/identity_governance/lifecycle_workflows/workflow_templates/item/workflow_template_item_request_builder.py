@@ -38,7 +38,7 @@ class WorkflowTemplateItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[WorkflowTemplateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[workflow_template.WorkflowTemplate]:
         """
-        The workflow templates in the lifecycle workflow instance.
+        Read the properties and relationships of a workflowTemplate object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[workflow_template.WorkflowTemplate]
@@ -60,7 +60,7 @@ class WorkflowTemplateItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[WorkflowTemplateItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The workflow templates in the lifecycle workflow instance.
+        Read the properties and relationships of a workflowTemplate object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -88,7 +88,7 @@ class WorkflowTemplateItemRequestBuilder():
     @dataclass
     class WorkflowTemplateItemRequestBuilderGetQueryParameters():
         """
-        The workflow templates in the lifecycle workflow instance.
+        Read the properties and relationships of a workflowTemplate object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

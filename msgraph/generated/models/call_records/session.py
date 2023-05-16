@@ -23,6 +23,8 @@ class Session(entity.Entity):
         self._end_date_time: Optional[datetime] = None
         # Failure information associated with the session if the session failed.
         self._failure_info: Optional[failure_info.FailureInfo] = None
+        # Specifies whether the session is a test.
+        self._is_test: Optional[bool] = None
         # List of modalities present in the session. Possible values are: unknown, audio, video, videoBasedScreenSharing, data, screenSharing, unknownFutureValue.
         self._modalities: Optional[List[modality.Modality]] = None
         # The OdataType property
@@ -125,6 +127,7 @@ class Session(entity.Entity):
             "caller": lambda n : setattr(self, 'caller', n.get_object_value(endpoint.Endpoint)),
             "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
             "failureInfo": lambda n : setattr(self, 'failure_info', n.get_object_value(failure_info.FailureInfo)),
+            "isTest": lambda n : setattr(self, 'is_test', n.get_bool_value()),
             "modalities": lambda n : setattr(self, 'modalities', n.get_collection_of_enum_values(modality.Modality)),
             "segments": lambda n : setattr(self, 'segments', n.get_collection_of_object_values(segment.Segment)),
             "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
@@ -132,6 +135,23 @@ class Session(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
+    
+    @property
+    def is_test(self,) -> Optional[bool]:
+        """
+        Gets the isTest property value. Specifies whether the session is a test.
+        Returns: Optional[bool]
+        """
+        return self._is_test
+    
+    @is_test.setter
+    def is_test(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the isTest property value. Specifies whether the session is a test.
+        Args:
+            value: Value to set for the is_test property.
+        """
+        self._is_test = value
     
     @property
     def modalities(self,) -> Optional[List[modality.Modality]]:
@@ -180,6 +200,7 @@ class Session(entity.Entity):
         writer.write_object_value("caller", self.caller)
         writer.write_datetime_value("endDateTime", self.end_date_time)
         writer.write_object_value("failureInfo", self.failure_info)
+        writer.write_bool_value("isTest", self.is_test)
         writer.write_enum_value("modalities", self.modalities)
         writer.write_collection_of_object_values("segments", self.segments)
         writer.write_datetime_value("startDateTime", self.start_date_time)

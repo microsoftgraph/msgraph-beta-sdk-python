@@ -38,7 +38,7 @@ class DeploymentItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[DeploymentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property deployments for admin
+        Delete a deployment object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -57,7 +57,7 @@ class DeploymentItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[DeploymentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[deployment.Deployment]:
         """
-        Deployments created using the deployment service.
+        Read the properties and relationships of a deployment object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[deployment.Deployment]
@@ -79,7 +79,7 @@ class DeploymentItemRequestBuilder():
     
     async def patch(self,body: Optional[deployment.Deployment] = None, request_configuration: Optional[DeploymentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[deployment.Deployment]:
         """
-        Update the navigation property deployments in admin
+        Update the properties of a deployment object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -104,7 +104,7 @@ class DeploymentItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[DeploymentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property deployments for admin
+        Delete a deployment object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -120,7 +120,7 @@ class DeploymentItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[DeploymentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Deployments created using the deployment service.
+        Read the properties and relationships of a deployment object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,7 +138,7 @@ class DeploymentItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[deployment.Deployment] = None, request_configuration: Optional[DeploymentItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property deployments in admin
+        Update the properties of a deployment object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -181,7 +181,7 @@ class DeploymentItemRequestBuilder():
     @dataclass
     class DeploymentItemRequestBuilderGetQueryParameters():
         """
-        Deployments created using the deployment service.
+        Read the properties and relationships of a deployment object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -54,7 +54,7 @@ class OperationsRequestBuilder():
     
     async def get(self,request_configuration: Optional[OperationsRequestBuilderGetRequestConfiguration] = None) -> Optional[long_running_operation_collection_response.LongRunningOperationCollectionResponse]:
         """
-        Set of ephemeral operations that the system runs currently. Read-only.
+        Get a list of long-running file validation operations and their statuses.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[long_running_operation_collection_response.LongRunningOperationCollectionResponse]
@@ -101,7 +101,7 @@ class OperationsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[OperationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Set of ephemeral operations that the system runs currently. Read-only.
+        Get a list of long-running file validation operations and their statuses.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class OperationsRequestBuilder():
     @dataclass
     class OperationsRequestBuilderGetQueryParameters():
         """
-        Set of ephemeral operations that the system runs currently. Read-only.
+        Get a list of long-running file validation operations and their statuses.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

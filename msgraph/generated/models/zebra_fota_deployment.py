@@ -8,9 +8,12 @@ if TYPE_CHECKING:
 from . import entity
 
 class ZebraFotaDeployment(entity.Entity):
+    """
+    The Zebra FOTA deployment entity that describes settings, deployment device groups required to create a FOTA deployment, and deployment status.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new ZebraFotaDeployment and sets the default values.
+        Instantiates a new zebraFotaDeployment and sets the default values.
         """
         super().__init__()
         # Collection of Android FOTA Assignment

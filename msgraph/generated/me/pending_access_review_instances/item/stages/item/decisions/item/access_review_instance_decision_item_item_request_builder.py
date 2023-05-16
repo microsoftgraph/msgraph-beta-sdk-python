@@ -58,7 +58,7 @@ class AccessReviewInstanceDecisionItemItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[AccessReviewInstanceDecisionItemItemRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_instance_decision_item.AccessReviewInstanceDecisionItem]:
         """
-        Each user reviewed in an accessReviewStage has a decision item representing if they were approved, denied, or not yet reviewed.
+        Read the properties and relationships of an accessReviewInstanceDecisionItem object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_review_instance_decision_item.AccessReviewInstanceDecisionItem]
@@ -80,7 +80,7 @@ class AccessReviewInstanceDecisionItemItemRequestBuilder():
     
     async def patch(self,body: Optional[access_review_instance_decision_item.AccessReviewInstanceDecisionItem] = None, request_configuration: Optional[AccessReviewInstanceDecisionItemItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[access_review_instance_decision_item.AccessReviewInstanceDecisionItem]:
         """
-        Update the navigation property decisions in me
+        Update access decisions, known as accessReviewInstanceDecisionItems, for which the user is the reviewer.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -121,7 +121,7 @@ class AccessReviewInstanceDecisionItemItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AccessReviewInstanceDecisionItemItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Each user reviewed in an accessReviewStage has a decision item representing if they were approved, denied, or not yet reviewed.
+        Read the properties and relationships of an accessReviewInstanceDecisionItem object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -139,7 +139,7 @@ class AccessReviewInstanceDecisionItemItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[access_review_instance_decision_item.AccessReviewInstanceDecisionItem] = None, request_configuration: Optional[AccessReviewInstanceDecisionItemItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property decisions in me
+        Update access decisions, known as accessReviewInstanceDecisionItems, for which the user is the reviewer.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -191,7 +191,7 @@ class AccessReviewInstanceDecisionItemItemRequestBuilder():
     @dataclass
     class AccessReviewInstanceDecisionItemItemRequestBuilderGetQueryParameters():
         """
-        Each user reviewed in an accessReviewStage has a decision item representing if they were approved, denied, or not yet reviewed.
+        Read the properties and relationships of an accessReviewInstanceDecisionItem object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -11,7 +11,7 @@ from . import entity
 class UnitOfMeasure(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new UnitOfMeasure and sets the default values.
+        Instantiates a new unitOfMeasure and sets the default values.
         """
         super().__init__()
         # The code property

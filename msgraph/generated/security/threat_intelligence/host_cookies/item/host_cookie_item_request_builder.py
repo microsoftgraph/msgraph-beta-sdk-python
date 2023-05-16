@@ -57,7 +57,7 @@ class HostCookieItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[HostCookieItemRequestBuilderGetRequestConfiguration] = None) -> Optional[host_cookie.HostCookie]:
         """
-        Retrieve details about microsoft.graph.security.hostCookie objects.Note: List retrieval is not yet supported.
+        Read the properties and relationships of a hostCookie object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[host_cookie.HostCookie]
@@ -120,7 +120,7 @@ class HostCookieItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[HostCookieItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve details about microsoft.graph.security.hostCookie objects.Note: List retrieval is not yet supported.
+        Read the properties and relationships of a hostCookie object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -181,7 +181,7 @@ class HostCookieItemRequestBuilder():
     @dataclass
     class HostCookieItemRequestBuilderGetQueryParameters():
         """
-        Retrieve details about microsoft.graph.security.hostCookie objects.Note: List retrieval is not yet supported.
+        Read the properties and relationships of a hostCookie object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

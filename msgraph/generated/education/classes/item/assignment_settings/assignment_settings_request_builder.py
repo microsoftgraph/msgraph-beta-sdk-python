@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .....models import education_assignment_settings
     from .....models.o_data_errors import o_data_error
+    from .grading_categories import grading_categories_request_builder
 
 class AssignmentSettingsRequestBuilder():
     """
@@ -56,7 +57,7 @@ class AssignmentSettingsRequestBuilder():
     
     async def get(self,request_configuration: Optional[AssignmentSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[education_assignment_settings.EducationAssignmentSettings]:
         """
-        Specifies class-level assignments settings.
+        Read the properties and relationships of an educationAssignmentSettings object. Only teachers can perform this operation.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[education_assignment_settings.EducationAssignmentSettings]
@@ -78,7 +79,7 @@ class AssignmentSettingsRequestBuilder():
     
     async def patch(self,body: Optional[education_assignment_settings.EducationAssignmentSettings] = None, request_configuration: Optional[AssignmentSettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[education_assignment_settings.EducationAssignmentSettings]:
         """
-        Update the navigation property assignmentSettings in education
+        Update the properties of an educationAssignmentSettings object. Only Teachers can update these settings.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +120,7 @@ class AssignmentSettingsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AssignmentSettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Specifies class-level assignments settings.
+        Read the properties and relationships of an educationAssignmentSettings object. Only teachers can perform this operation.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +138,7 @@ class AssignmentSettingsRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[education_assignment_settings.EducationAssignmentSettings] = None, request_configuration: Optional[AssignmentSettingsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property assignmentSettings in education
+        Update the properties of an educationAssignmentSettings object. Only Teachers can update these settings.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -156,6 +157,15 @@ class AssignmentSettingsRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def grading_categories(self) -> grading_categories_request_builder.GradingCategoriesRequestBuilder:
+        """
+        Provides operations to manage the gradingCategories property of the microsoft.graph.educationAssignmentSettings entity.
+        """
+        from .grading_categories import grading_categories_request_builder
+
+        return grading_categories_request_builder.GradingCategoriesRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class AssignmentSettingsRequestBuilderDeleteRequestConfiguration():
         """
@@ -171,7 +181,7 @@ class AssignmentSettingsRequestBuilder():
     @dataclass
     class AssignmentSettingsRequestBuilderGetQueryParameters():
         """
-        Specifies class-level assignments settings.
+        Read the properties and relationships of an educationAssignmentSettings object. Only teachers can perform this operation.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

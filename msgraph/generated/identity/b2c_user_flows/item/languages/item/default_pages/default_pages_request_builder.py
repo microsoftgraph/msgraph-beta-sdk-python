@@ -54,7 +54,7 @@ class DefaultPagesRequestBuilder():
     
     async def get(self,request_configuration: Optional[DefaultPagesRequestBuilderGetRequestConfiguration] = None) -> Optional[user_flow_language_page_collection_response.UserFlowLanguagePageCollectionResponse]:
         """
-        Collection of pages with the default content to display in a user flow for a specified language. This collection does not allow any kind of modification.
+        Get the userFlowLanguagePage resources from the defaultPages navigation property. These contain the values shown to the user in a default user journey of a user flow.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[user_flow_language_page_collection_response.UserFlowLanguagePageCollectionResponse]
@@ -101,7 +101,7 @@ class DefaultPagesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[DefaultPagesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Collection of pages with the default content to display in a user flow for a specified language. This collection does not allow any kind of modification.
+        Get the userFlowLanguagePage resources from the defaultPages navigation property. These contain the values shown to the user in a default user journey of a user flow.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class DefaultPagesRequestBuilder():
     @dataclass
     class DefaultPagesRequestBuilderGetQueryParameters():
         """
-        Collection of pages with the default content to display in a user flow for a specified language. This collection does not allow any kind of modification.
+        Get the userFlowLanguagePage resources from the defaultPages navigation property. These contain the values shown to the user in a default user journey of a user flow.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

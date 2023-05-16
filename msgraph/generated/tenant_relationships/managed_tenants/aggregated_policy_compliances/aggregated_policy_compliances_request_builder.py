@@ -54,7 +54,7 @@ class AggregatedPolicyCompliancesRequestBuilder():
     
     async def get(self,request_configuration: Optional[AggregatedPolicyCompliancesRequestBuilderGetRequestConfiguration] = None) -> Optional[aggregated_policy_compliance_collection_response.AggregatedPolicyComplianceCollectionResponse]:
         """
-        Aggregate view of device compliance policies across managed tenants.
+        Get a list of the aggregatedPolicyCompliance objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[aggregated_policy_compliance_collection_response.AggregatedPolicyComplianceCollectionResponse]
@@ -101,7 +101,7 @@ class AggregatedPolicyCompliancesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AggregatedPolicyCompliancesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Aggregate view of device compliance policies across managed tenants.
+        Get a list of the aggregatedPolicyCompliance objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class AggregatedPolicyCompliancesRequestBuilder():
     @dataclass
     class AggregatedPolicyCompliancesRequestBuilderGetQueryParameters():
         """
-        Aggregate view of device compliance policies across managed tenants.
+        Get a list of the aggregatedPolicyCompliance objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

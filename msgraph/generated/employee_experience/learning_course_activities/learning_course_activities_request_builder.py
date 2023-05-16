@@ -54,7 +54,7 @@ class LearningCourseActivitiesRequestBuilder():
     
     async def get(self,request_configuration: Optional[LearningCourseActivitiesRequestBuilderGetRequestConfiguration] = None) -> Optional[learning_course_activity_collection_response.LearningCourseActivityCollectionResponse]:
         """
-        Get learningCourseActivities from employeeExperience
+        Get the specified learningCourseActivity object using either an ID or an **externalCourseActivityId** of the learning provider, or a **courseActivityId** of a user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[learning_course_activity_collection_response.LearningCourseActivityCollectionResponse]
@@ -101,7 +101,7 @@ class LearningCourseActivitiesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[LearningCourseActivitiesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get learningCourseActivities from employeeExperience
+        Get the specified learningCourseActivity object using either an ID or an **externalCourseActivityId** of the learning provider, or a **courseActivityId** of a user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class LearningCourseActivitiesRequestBuilder():
     @dataclass
     class LearningCourseActivitiesRequestBuilderGetQueryParameters():
         """
-        Get learningCourseActivities from employeeExperience
+        Get the specified learningCourseActivity object using either an ID or an **externalCourseActivityId** of the learning provider, or a **courseActivityId** of a user.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

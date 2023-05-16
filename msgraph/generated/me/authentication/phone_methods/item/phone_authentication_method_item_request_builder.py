@@ -37,7 +37,7 @@ class PhoneAuthenticationMethodItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[PhoneAuthenticationMethodItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property phoneMethods for me
+        Delete a user's phone authentication method.  Remember that a user cannot have an `alternateMobile` number without a `mobile` number. If you want to remove a `mobile` number from a user that also has an `alternateMobile` number, first update the `mobile` number to the new number, then delete the `alternateMobile` number. If the phone number is the user's default Azure multi-factor authentication (MFA) authentication method, it cannot be deleted. Have the user change their default authentication method, and then delete the number.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class PhoneAuthenticationMethodItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[PhoneAuthenticationMethodItemRequestBuilderGetRequestConfiguration] = None) -> Optional[phone_authentication_method.PhoneAuthenticationMethod]:
         """
-        Represents the phone registered to a user for authentication.
+        Retrieve a single phoneAuthenticationMethod object. This method is available only for standard Azure AD and B2B users, but not B2C users.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[phone_authentication_method.PhoneAuthenticationMethod]
@@ -78,7 +78,7 @@ class PhoneAuthenticationMethodItemRequestBuilder():
     
     async def patch(self,body: Optional[phone_authentication_method.PhoneAuthenticationMethod] = None, request_configuration: Optional[PhoneAuthenticationMethodItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[phone_authentication_method.PhoneAuthenticationMethod]:
         """
-        Update the navigation property phoneMethods in me
+        Update the phone number associated with a phone authentication method. You can't change a phone's type. To change a phone's type, add a new number of the desired type and then delete the object with the original type. If a user is enabled by policy to use SMS to sign in and the `mobile` number is changed, the system will attempt to register the number for use in that system.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class PhoneAuthenticationMethodItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[PhoneAuthenticationMethodItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property phoneMethods for me
+        Delete a user's phone authentication method.  Remember that a user cannot have an `alternateMobile` number without a `mobile` number. If you want to remove a `mobile` number from a user that also has an `alternateMobile` number, first update the `mobile` number to the new number, then delete the `alternateMobile` number. If the phone number is the user's default Azure multi-factor authentication (MFA) authentication method, it cannot be deleted. Have the user change their default authentication method, and then delete the number.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class PhoneAuthenticationMethodItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PhoneAuthenticationMethodItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents the phone registered to a user for authentication.
+        Retrieve a single phoneAuthenticationMethod object. This method is available only for standard Azure AD and B2B users, but not B2C users.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class PhoneAuthenticationMethodItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[phone_authentication_method.PhoneAuthenticationMethod] = None, request_configuration: Optional[PhoneAuthenticationMethodItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property phoneMethods in me
+        Update the phone number associated with a phone authentication method. You can't change a phone's type. To change a phone's type, add a new number of the desired type and then delete the object with the original type. If a user is enabled by policy to use SMS to sign in and the `mobile` number is changed, the system will attempt to register the number for use in that system.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class PhoneAuthenticationMethodItemRequestBuilder():
     @dataclass
     class PhoneAuthenticationMethodItemRequestBuilderGetQueryParameters():
         """
-        Represents the phone registered to a user for authentication.
+        Retrieve a single phoneAuthenticationMethod object. This method is available only for standard Azure AD and B2B users, but not B2C users.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

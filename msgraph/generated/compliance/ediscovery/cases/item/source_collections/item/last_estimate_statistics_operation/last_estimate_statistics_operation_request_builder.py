@@ -37,7 +37,7 @@ class LastEstimateStatisticsOperationRequestBuilder():
     
     async def get(self,request_configuration: Optional[LastEstimateStatisticsOperationRequestBuilderGetRequestConfiguration] = None) -> Optional[estimate_statistics_operation.EstimateStatisticsOperation]:
         """
-        The last estimate operation associated with the sourceCollection.
+        Get the last estimateStatisticsOperation object associated with a source collection. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[estimate_statistics_operation.EstimateStatisticsOperation]
@@ -59,7 +59,7 @@ class LastEstimateStatisticsOperationRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[LastEstimateStatisticsOperationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The last estimate operation associated with the sourceCollection.
+        Get the last estimateStatisticsOperation object associated with a source collection. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -78,7 +78,7 @@ class LastEstimateStatisticsOperationRequestBuilder():
     @dataclass
     class LastEstimateStatisticsOperationRequestBuilderGetQueryParameters():
         """
-        The last estimate operation associated with the sourceCollection.
+        Get the last estimateStatisticsOperation object associated with a source collection. 
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

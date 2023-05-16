@@ -13,9 +13,9 @@ if TYPE_CHECKING:
     from ......models.ediscovery import noncustodial_data_source, noncustodial_data_source_collection_response
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
-    from .ediscovery_apply_hold import ediscovery_apply_hold_request_builder
-    from .ediscovery_remove_hold import ediscovery_remove_hold_request_builder
     from .item import noncustodial_data_source_item_request_builder
+    from .microsoft_graph_ediscovery_apply_hold import microsoft_graph_ediscovery_apply_hold_request_builder
+    from .microsoft_graph_ediscovery_remove_hold import microsoft_graph_ediscovery_remove_hold_request_builder
 
 class NoncustodialDataSourcesRequestBuilder():
     """
@@ -56,7 +56,7 @@ class NoncustodialDataSourcesRequestBuilder():
     
     async def get(self,request_configuration: Optional[NoncustodialDataSourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[noncustodial_data_source_collection_response.NoncustodialDataSourceCollectionResponse]:
         """
-        Returns a list of case noncustodialDataSource objects for this case.  Nullable.
+        Get a list of the noncustodialDataSource objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[noncustodial_data_source_collection_response.NoncustodialDataSourceCollectionResponse]
@@ -78,7 +78,7 @@ class NoncustodialDataSourcesRequestBuilder():
     
     async def post(self,body: Optional[noncustodial_data_source.NoncustodialDataSource] = None, request_configuration: Optional[NoncustodialDataSourcesRequestBuilderPostRequestConfiguration] = None) -> Optional[noncustodial_data_source.NoncustodialDataSource]:
         """
-        Create new navigation property to noncustodialDataSources for compliance
+        Create a new noncustodialDataSource object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class NoncustodialDataSourcesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[NoncustodialDataSourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Returns a list of case noncustodialDataSource objects for this case.  Nullable.
+        Get a list of the noncustodialDataSource objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -121,7 +121,7 @@ class NoncustodialDataSourcesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[noncustodial_data_source.NoncustodialDataSource] = None, request_configuration: Optional[NoncustodialDataSourcesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to noncustodialDataSources for compliance
+        Create a new noncustodialDataSource object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,27 +150,27 @@ class NoncustodialDataSourcesRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def ediscovery_apply_hold(self) -> ediscovery_apply_hold_request_builder.EdiscoveryApplyHoldRequestBuilder:
+    def microsoft_graph_ediscovery_apply_hold(self) -> microsoft_graph_ediscovery_apply_hold_request_builder.MicrosoftGraphEdiscoveryApplyHoldRequestBuilder:
         """
         Provides operations to call the applyHold method.
         """
-        from .ediscovery_apply_hold import ediscovery_apply_hold_request_builder
+        from .microsoft_graph_ediscovery_apply_hold import microsoft_graph_ediscovery_apply_hold_request_builder
 
-        return ediscovery_apply_hold_request_builder.EdiscoveryApplyHoldRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_ediscovery_apply_hold_request_builder.MicrosoftGraphEdiscoveryApplyHoldRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def ediscovery_remove_hold(self) -> ediscovery_remove_hold_request_builder.EdiscoveryRemoveHoldRequestBuilder:
+    def microsoft_graph_ediscovery_remove_hold(self) -> microsoft_graph_ediscovery_remove_hold_request_builder.MicrosoftGraphEdiscoveryRemoveHoldRequestBuilder:
         """
         Provides operations to call the removeHold method.
         """
-        from .ediscovery_remove_hold import ediscovery_remove_hold_request_builder
+        from .microsoft_graph_ediscovery_remove_hold import microsoft_graph_ediscovery_remove_hold_request_builder
 
-        return ediscovery_remove_hold_request_builder.EdiscoveryRemoveHoldRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_ediscovery_remove_hold_request_builder.MicrosoftGraphEdiscoveryRemoveHoldRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class NoncustodialDataSourcesRequestBuilderGetQueryParameters():
         """
-        Returns a list of case noncustodialDataSource objects for this case.  Nullable.
+        Get a list of the noncustodialDataSource objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

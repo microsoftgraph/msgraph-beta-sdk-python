@@ -54,7 +54,7 @@ class TenantsRequestBuilder():
     
     async def get(self,request_configuration: Optional[TenantsRequestBuilderGetRequestConfiguration] = None) -> Optional[tenant_collection_response.TenantCollectionResponse]:
         """
-        The collection of tenants associated with the managing entity.
+        Get a list of the tenant objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[tenant_collection_response.TenantCollectionResponse]
@@ -101,7 +101,7 @@ class TenantsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TenantsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection of tenants associated with the managing entity.
+        Get a list of the tenant objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class TenantsRequestBuilder():
     @dataclass
     class TenantsRequestBuilderGetQueryParameters():
         """
-        The collection of tenants associated with the managing entity.
+        Get a list of the tenant objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

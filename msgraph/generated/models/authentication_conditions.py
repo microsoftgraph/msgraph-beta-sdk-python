@@ -13,7 +13,7 @@ class AuthenticationConditions(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The applications property
+        # Applications which will trigger a custom authentication extension.
         self._applications: Optional[authentication_conditions_applications.AuthenticationConditionsApplications] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
@@ -38,7 +38,7 @@ class AuthenticationConditions(AdditionalDataHolder, Parsable):
     @property
     def applications(self,) -> Optional[authentication_conditions_applications.AuthenticationConditionsApplications]:
         """
-        Gets the applications property value. The applications property
+        Gets the applications property value. Applications which will trigger a custom authentication extension.
         Returns: Optional[authentication_conditions_applications.AuthenticationConditionsApplications]
         """
         return self._applications
@@ -46,7 +46,7 @@ class AuthenticationConditions(AdditionalDataHolder, Parsable):
     @applications.setter
     def applications(self,value: Optional[authentication_conditions_applications.AuthenticationConditionsApplications] = None) -> None:
         """
-        Sets the applications property value. The applications property
+        Sets the applications property value. Applications which will trigger a custom authentication extension.
         Args:
             value: Value to set for the applications property.
         """

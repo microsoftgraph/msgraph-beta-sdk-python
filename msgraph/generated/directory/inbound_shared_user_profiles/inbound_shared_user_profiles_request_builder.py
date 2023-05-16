@@ -54,7 +54,7 @@ class InboundSharedUserProfilesRequestBuilder():
     
     async def get(self,request_configuration: Optional[InboundSharedUserProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[inbound_shared_user_profile_collection_response.InboundSharedUserProfileCollectionResponse]:
         """
-        A collection of external Azure AD users whose profile data has been shared with the Azure AD tenant. Nullable.
+        Retrieve the properties of all inboundSharedUserProfiles.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[inbound_shared_user_profile_collection_response.InboundSharedUserProfileCollectionResponse]
@@ -101,7 +101,7 @@ class InboundSharedUserProfilesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[InboundSharedUserProfilesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        A collection of external Azure AD users whose profile data has been shared with the Azure AD tenant. Nullable.
+        Retrieve the properties of all inboundSharedUserProfiles.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class InboundSharedUserProfilesRequestBuilder():
     @dataclass
     class InboundSharedUserProfilesRequestBuilderGetQueryParameters():
         """
-        A collection of external Azure AD users whose profile data has been shared with the Azure AD tenant. Nullable.
+        Retrieve the properties of all inboundSharedUserProfiles.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
