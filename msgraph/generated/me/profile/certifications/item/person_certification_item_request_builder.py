@@ -37,7 +37,7 @@ class PersonCertificationItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[PersonCertificationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property certifications for me
+        Deletes a personCertification object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class PersonCertificationItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[PersonCertificationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[person_certification.PersonCertification]:
         """
-        Represents the details of certifications associated with a person.
+        Read the properties and relationships of a personCertification object in a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[person_certification.PersonCertification]
@@ -78,7 +78,7 @@ class PersonCertificationItemRequestBuilder():
     
     async def patch(self,body: Optional[person_certification.PersonCertification] = None, request_configuration: Optional[PersonCertificationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[person_certification.PersonCertification]:
         """
-        Update the navigation property certifications in me
+        Update the properties of a personCertification object from a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class PersonCertificationItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[PersonCertificationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property certifications for me
+        Deletes a personCertification object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class PersonCertificationItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PersonCertificationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents the details of certifications associated with a person.
+        Read the properties and relationships of a personCertification object in a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class PersonCertificationItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[person_certification.PersonCertification] = None, request_configuration: Optional[PersonCertificationItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property certifications in me
+        Update the properties of a personCertification object from a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class PersonCertificationItemRequestBuilder():
     @dataclass
     class PersonCertificationItemRequestBuilderGetQueryParameters():
         """
-        Represents the details of certifications associated with a person.
+        Read the properties and relationships of a personCertification object in a user's profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

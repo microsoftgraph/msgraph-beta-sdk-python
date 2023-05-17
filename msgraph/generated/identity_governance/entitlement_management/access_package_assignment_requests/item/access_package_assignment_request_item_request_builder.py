@@ -43,7 +43,7 @@ class AccessPackageAssignmentRequestItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[AccessPackageAssignmentRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property accessPackageAssignmentRequests for identityGovernance
+        Delete an accessPackageAssignmentRequest object. This request can be made to remove a denied or completed request.  You cannot delete an access package assignment request if it has any **accessPackageAssignment** objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -62,7 +62,7 @@ class AccessPackageAssignmentRequestItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[AccessPackageAssignmentRequestItemRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_assignment_request.AccessPackageAssignmentRequest]:
         """
-        Represents access package assignment requests created by or on behalf of a user.
+        In Azure AD entitlement management, retrieve the properties and relationships of an  accessPackageAssignmentRequest object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_package_assignment_request.AccessPackageAssignmentRequest]
@@ -109,7 +109,7 @@ class AccessPackageAssignmentRequestItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[AccessPackageAssignmentRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property accessPackageAssignmentRequests for identityGovernance
+        Delete an accessPackageAssignmentRequest object. This request can be made to remove a denied or completed request.  You cannot delete an access package assignment request if it has any **accessPackageAssignment** objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -125,7 +125,7 @@ class AccessPackageAssignmentRequestItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageAssignmentRequestItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents access package assignment requests created by or on behalf of a user.
+        In Azure AD entitlement management, retrieve the properties and relationships of an  accessPackageAssignmentRequest object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -231,7 +231,7 @@ class AccessPackageAssignmentRequestItemRequestBuilder():
     @dataclass
     class AccessPackageAssignmentRequestItemRequestBuilderGetQueryParameters():
         """
-        Represents access package assignment requests created by or on behalf of a user.
+        In Azure AD entitlement management, retrieve the properties and relationships of an  accessPackageAssignmentRequest object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

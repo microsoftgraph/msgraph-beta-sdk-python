@@ -37,7 +37,7 @@ class PersonWebsiteItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[PersonWebsiteItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property websites for me
+        Deletes a personWebsite object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class PersonWebsiteItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[PersonWebsiteItemRequestBuilderGetRequestConfiguration] = None) -> Optional[person_website.PersonWebsite]:
         """
-        Represents detailed information about websites associated with a user in various services.
+        Retrieve the properties and relationships of a personWebsite object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[person_website.PersonWebsite]
@@ -78,7 +78,7 @@ class PersonWebsiteItemRequestBuilder():
     
     async def patch(self,body: Optional[person_website.PersonWebsite] = None, request_configuration: Optional[PersonWebsiteItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[person_website.PersonWebsite]:
         """
-        Update the navigation property websites in me
+        Update the properties of personWebsite object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class PersonWebsiteItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[PersonWebsiteItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property websites for me
+        Deletes a personWebsite object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class PersonWebsiteItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PersonWebsiteItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents detailed information about websites associated with a user in various services.
+        Retrieve the properties and relationships of a personWebsite object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class PersonWebsiteItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[person_website.PersonWebsite] = None, request_configuration: Optional[PersonWebsiteItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property websites in me
+        Update the properties of personWebsite object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class PersonWebsiteItemRequestBuilder():
     @dataclass
     class PersonWebsiteItemRequestBuilderGetQueryParameters():
         """
-        Represents detailed information about websites associated with a user in various services.
+        Retrieve the properties and relationships of a personWebsite object from a user's profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

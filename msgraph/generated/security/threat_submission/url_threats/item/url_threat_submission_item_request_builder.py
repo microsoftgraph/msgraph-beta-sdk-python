@@ -56,7 +56,7 @@ class UrlThreatSubmissionItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[UrlThreatSubmissionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[url_threat_submission.UrlThreatSubmission]:
         """
-        Get urlThreats from security
+        Read the properties and relationships of an urlThreatSubmission object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[url_threat_submission.UrlThreatSubmission]
@@ -119,7 +119,7 @@ class UrlThreatSubmissionItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UrlThreatSubmissionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get urlThreats from security
+        Read the properties and relationships of an urlThreatSubmission object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class UrlThreatSubmissionItemRequestBuilder():
     @dataclass
     class UrlThreatSubmissionItemRequestBuilderGetQueryParameters():
         """
-        Get urlThreats from security
+        Read the properties and relationships of an urlThreatSubmission object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

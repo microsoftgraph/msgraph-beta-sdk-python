@@ -9,9 +9,12 @@ if TYPE_CHECKING:
 from . import entity
 
 class GroupPolicyConfiguration(entity.Entity):
+    """
+    The group policy configuration entity contains the configured values for one or more group policy definitions.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new GroupPolicyConfiguration and sets the default values.
+        Instantiates a new groupPolicyConfiguration and sets the default values.
         """
         super().__init__()
         # The list of group assignments for the configuration.

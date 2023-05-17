@@ -54,7 +54,7 @@ class SourceSystemsRequestBuilder():
     
     async def get(self,request_configuration: Optional[SourceSystemsRequestBuilderGetRequestConfiguration] = None) -> Optional[source_system_definition_collection_response.SourceSystemDefinitionCollectionResponse]:
         """
-        Set of source definitions that represents real-world external systems.
+        Get a list of the sourceSystemDefinition objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[source_system_definition_collection_response.SourceSystemDefinitionCollectionResponse]
@@ -76,7 +76,7 @@ class SourceSystemsRequestBuilder():
     
     async def post(self,body: Optional[source_system_definition.SourceSystemDefinition] = None, request_configuration: Optional[SourceSystemsRequestBuilderPostRequestConfiguration] = None) -> Optional[source_system_definition.SourceSystemDefinition]:
         """
-        Create new navigation property to sourceSystems for external
+        Create a new sourceSystemDefinition object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class SourceSystemsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SourceSystemsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Set of source definitions that represents real-world external systems.
+        Get a list of the sourceSystemDefinition objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class SourceSystemsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[source_system_definition.SourceSystemDefinition] = None, request_configuration: Optional[SourceSystemsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to sourceSystems for external
+        Create a new sourceSystemDefinition object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class SourceSystemsRequestBuilder():
     @dataclass
     class SourceSystemsRequestBuilderGetQueryParameters():
         """
-        Set of source definitions that represents real-world external systems.
+        Get a list of the sourceSystemDefinition objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

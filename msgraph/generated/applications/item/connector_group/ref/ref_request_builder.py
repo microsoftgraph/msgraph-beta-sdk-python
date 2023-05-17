@@ -76,7 +76,7 @@ class RefRequestBuilder():
     
     async def put(self,body: Optional[reference_update.ReferenceUpdate] = None, request_configuration: Optional[RefRequestBuilderPutRequestConfiguration] = None) -> None:
         """
-        Update the ref of navigation property connectorGroup in applications
+        Assign a connectorGroup to an application.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -131,7 +131,7 @@ class RefRequestBuilder():
     
     def to_put_request_information(self,body: Optional[reference_update.ReferenceUpdate] = None, request_configuration: Optional[RefRequestBuilderPutRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the ref of navigation property connectorGroup in applications
+        Assign a connectorGroup to an application.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

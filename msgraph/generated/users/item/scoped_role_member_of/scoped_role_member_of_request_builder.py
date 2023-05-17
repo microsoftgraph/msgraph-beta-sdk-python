@@ -54,7 +54,7 @@ class ScopedRoleMemberOfRequestBuilder():
     
     async def get(self,request_configuration: Optional[ScopedRoleMemberOfRequestBuilderGetRequestConfiguration] = None) -> Optional[scoped_role_membership_collection_response.ScopedRoleMembershipCollectionResponse]:
         """
-        The scoped-role administrative unit memberships for this user. Read-only. Nullable.
+        Retrieve a list of scopedRoleMembership for the user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[scoped_role_membership_collection_response.ScopedRoleMembershipCollectionResponse]
@@ -101,7 +101,7 @@ class ScopedRoleMemberOfRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ScopedRoleMemberOfRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The scoped-role administrative unit memberships for this user. Read-only. Nullable.
+        Retrieve a list of scopedRoleMembership for the user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class ScopedRoleMemberOfRequestBuilder():
     @dataclass
     class ScopedRoleMemberOfRequestBuilderGetQueryParameters():
         """
-        The scoped-role administrative unit memberships for this user. Read-only. Nullable.
+        Retrieve a list of scopedRoleMembership for the user.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

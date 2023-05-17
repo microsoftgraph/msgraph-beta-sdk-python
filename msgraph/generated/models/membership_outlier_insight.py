@@ -18,7 +18,7 @@ class MembershipOutlierInsight(governance_insight.GovernanceInsight):
         self._container: Optional[directory_object.DirectoryObject] = None
         # Indicates the identifier of the container, for example, a group ID.
         self._container_id: Optional[str] = None
-        # The lastModifiedBy property
+        # Navigation link to a member object who modified the record. For example, to a user.
         self._last_modified_by: Optional[user.User] = None
         # Navigation link to a member object. For example, to a user.
         self._member: Optional[directory_object.DirectoryObject] = None
@@ -98,7 +98,7 @@ class MembershipOutlierInsight(governance_insight.GovernanceInsight):
     @property
     def last_modified_by(self,) -> Optional[user.User]:
         """
-        Gets the lastModifiedBy property value. The lastModifiedBy property
+        Gets the lastModifiedBy property value. Navigation link to a member object who modified the record. For example, to a user.
         Returns: Optional[user.User]
         """
         return self._last_modified_by
@@ -106,7 +106,7 @@ class MembershipOutlierInsight(governance_insight.GovernanceInsight):
     @last_modified_by.setter
     def last_modified_by(self,value: Optional[user.User] = None) -> None:
         """
-        Sets the lastModifiedBy property value. The lastModifiedBy property
+        Sets the lastModifiedBy property value. Navigation link to a member object who modified the record. For example, to a user.
         Args:
             value: Value to set for the last_modified_by property.
         """

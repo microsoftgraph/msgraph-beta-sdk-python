@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .........models.ediscovery import review_set_query
     from .........models.o_data_errors import o_data_error
-    from .ediscovery_apply_tags import ediscovery_apply_tags_request_builder
+    from .microsoft_graph_ediscovery_apply_tags import microsoft_graph_ediscovery_apply_tags_request_builder
 
 class ReviewSetQueryItemRequestBuilder():
     """
@@ -38,7 +38,7 @@ class ReviewSetQueryItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[ReviewSetQueryItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property queries for compliance
+        Delete a reviewSetQuery object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -57,7 +57,7 @@ class ReviewSetQueryItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[ReviewSetQueryItemRequestBuilderGetRequestConfiguration] = None) -> Optional[review_set_query.ReviewSetQuery]:
         """
-        Get queries from compliance
+        Retrieve the properties and relationships of an eDiscovery reviewSetQuery object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[review_set_query.ReviewSetQuery]
@@ -79,7 +79,7 @@ class ReviewSetQueryItemRequestBuilder():
     
     async def patch(self,body: Optional[review_set_query.ReviewSetQuery] = None, request_configuration: Optional[ReviewSetQueryItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[review_set_query.ReviewSetQuery]:
         """
-        Update the navigation property queries in compliance
+        Update the properties of an eDiscovery reviewSetQuery.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -104,7 +104,7 @@ class ReviewSetQueryItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[ReviewSetQueryItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property queries for compliance
+        Delete a reviewSetQuery object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -120,7 +120,7 @@ class ReviewSetQueryItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ReviewSetQueryItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get queries from compliance
+        Retrieve the properties and relationships of an eDiscovery reviewSetQuery object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,7 +138,7 @@ class ReviewSetQueryItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[review_set_query.ReviewSetQuery] = None, request_configuration: Optional[ReviewSetQueryItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property queries in compliance
+        Update the properties of an eDiscovery reviewSetQuery.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -158,13 +158,13 @@ class ReviewSetQueryItemRequestBuilder():
         return request_info
     
     @property
-    def ediscovery_apply_tags(self) -> ediscovery_apply_tags_request_builder.EdiscoveryApplyTagsRequestBuilder:
+    def microsoft_graph_ediscovery_apply_tags(self) -> microsoft_graph_ediscovery_apply_tags_request_builder.MicrosoftGraphEdiscoveryApplyTagsRequestBuilder:
         """
         Provides operations to call the applyTags method.
         """
-        from .ediscovery_apply_tags import ediscovery_apply_tags_request_builder
+        from .microsoft_graph_ediscovery_apply_tags import microsoft_graph_ediscovery_apply_tags_request_builder
 
-        return ediscovery_apply_tags_request_builder.EdiscoveryApplyTagsRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_ediscovery_apply_tags_request_builder.MicrosoftGraphEdiscoveryApplyTagsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ReviewSetQueryItemRequestBuilderDeleteRequestConfiguration():
@@ -181,7 +181,7 @@ class ReviewSetQueryItemRequestBuilder():
     @dataclass
     class ReviewSetQueryItemRequestBuilderGetQueryParameters():
         """
-        Get queries from compliance
+        Retrieve the properties and relationships of an eDiscovery reviewSetQuery object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

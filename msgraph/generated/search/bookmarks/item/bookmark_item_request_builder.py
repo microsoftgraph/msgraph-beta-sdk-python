@@ -37,7 +37,7 @@ class BookmarkItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[BookmarkItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property bookmarks for search
+        Delete a bookmark object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class BookmarkItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[BookmarkItemRequestBuilderGetRequestConfiguration] = None) -> Optional[bookmark.Bookmark]:
         """
-        Administrative answer in Microsoft Search results for common search queries in an organization.
+        Read the properties and relationships of a bookmark object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[bookmark.Bookmark]
@@ -78,7 +78,7 @@ class BookmarkItemRequestBuilder():
     
     async def patch(self,body: Optional[bookmark.Bookmark] = None, request_configuration: Optional[BookmarkItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[bookmark.Bookmark]:
         """
-        Update the navigation property bookmarks in search
+        Update the properties of a bookmark object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class BookmarkItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[BookmarkItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property bookmarks for search
+        Delete a bookmark object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class BookmarkItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[BookmarkItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Administrative answer in Microsoft Search results for common search queries in an organization.
+        Read the properties and relationships of a bookmark object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class BookmarkItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[bookmark.Bookmark] = None, request_configuration: Optional[BookmarkItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property bookmarks in search
+        Update the properties of a bookmark object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class BookmarkItemRequestBuilder():
     @dataclass
     class BookmarkItemRequestBuilderGetQueryParameters():
         """
-        Administrative answer in Microsoft Search results for common search queries in an organization.
+        Read the properties and relationships of a bookmark object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

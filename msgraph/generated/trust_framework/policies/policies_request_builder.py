@@ -54,7 +54,7 @@ class PoliciesRequestBuilder():
     
     async def get(self,request_configuration: Optional[PoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[trust_framework_policy_collection_response.TrustFrameworkPolicyCollectionResponse]:
         """
-        Get policies from trustFramework
+        Retrieve a list of trustFrameworkPolicies in the tenant/directory.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[trust_framework_policy_collection_response.TrustFrameworkPolicyCollectionResponse]
@@ -101,7 +101,7 @@ class PoliciesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get policies from trustFramework
+        Retrieve a list of trustFrameworkPolicies in the tenant/directory.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class PoliciesRequestBuilder():
     @dataclass
     class PoliciesRequestBuilderGetQueryParameters():
         """
-        Get policies from trustFramework
+        Retrieve a list of trustFrameworkPolicies in the tenant/directory.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

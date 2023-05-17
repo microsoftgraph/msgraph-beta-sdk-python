@@ -39,7 +39,7 @@ class ConnectorGroupItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[ConnectorGroupItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property connectorGroups for onPremisesPublishingProfiles
+        Delete a connectorGroup. All connectors and applications must be removed from the connector group before a connector group can be deleted.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -58,7 +58,7 @@ class ConnectorGroupItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[ConnectorGroupItemRequestBuilderGetRequestConfiguration] = None) -> Optional[connector_group.ConnectorGroup]:
         """
-        List of existing connectorGroup objects for applications published through Application Proxy. Read-only. Nullable.
+        Retrieve the properties of a connectorGroup.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[connector_group.ConnectorGroup]
@@ -80,7 +80,7 @@ class ConnectorGroupItemRequestBuilder():
     
     async def patch(self,body: Optional[connector_group.ConnectorGroup] = None, request_configuration: Optional[ConnectorGroupItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[connector_group.ConnectorGroup]:
         """
-        Update the navigation property connectorGroups in onPremisesPublishingProfiles
+        Update the properties of a connectorGroup object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -105,7 +105,7 @@ class ConnectorGroupItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[ConnectorGroupItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property connectorGroups for onPremisesPublishingProfiles
+        Delete a connectorGroup. All connectors and applications must be removed from the connector group before a connector group can be deleted.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -121,7 +121,7 @@ class ConnectorGroupItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ConnectorGroupItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List of existing connectorGroup objects for applications published through Application Proxy. Read-only. Nullable.
+        Retrieve the properties of a connectorGroup.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -139,7 +139,7 @@ class ConnectorGroupItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[connector_group.ConnectorGroup] = None, request_configuration: Optional[ConnectorGroupItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property connectorGroups in onPremisesPublishingProfiles
+        Update the properties of a connectorGroup object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -191,7 +191,7 @@ class ConnectorGroupItemRequestBuilder():
     @dataclass
     class ConnectorGroupItemRequestBuilderGetQueryParameters():
         """
-        List of existing connectorGroup objects for applications published through Application Proxy. Read-only. Nullable.
+        Retrieve the properties of a connectorGroup.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

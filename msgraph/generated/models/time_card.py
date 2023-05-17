@@ -20,7 +20,7 @@ class TimeCard(change_tracked_entity.ChangeTrackedEntity):
         self._clock_in_event: Optional[time_card_event.TimeCardEvent] = None
         # The clock-out event of the timeCard.
         self._clock_out_event: Optional[time_card_event.TimeCardEvent] = None
-        # Indicate if this timeCard entry is confirmed. Possible values are none, user, manager, unknownFutureValue.
+        # Indicates whether this timeCard entry is confirmed. Possible values are none, user, manager, unknownFutureValue.
         self._confirmed_by: Optional[confirmed_by.ConfirmedBy] = None
         # Notes about the timeCard.
         self._notes: Optional[item_body.ItemBody] = None
@@ -85,7 +85,7 @@ class TimeCard(change_tracked_entity.ChangeTrackedEntity):
     @property
     def confirmed_by(self,) -> Optional[confirmed_by.ConfirmedBy]:
         """
-        Gets the confirmedBy property value. Indicate if this timeCard entry is confirmed. Possible values are none, user, manager, unknownFutureValue.
+        Gets the confirmedBy property value. Indicates whether this timeCard entry is confirmed. Possible values are none, user, manager, unknownFutureValue.
         Returns: Optional[confirmed_by.ConfirmedBy]
         """
         return self._confirmed_by
@@ -93,7 +93,7 @@ class TimeCard(change_tracked_entity.ChangeTrackedEntity):
     @confirmed_by.setter
     def confirmed_by(self,value: Optional[confirmed_by.ConfirmedBy] = None) -> None:
         """
-        Sets the confirmedBy property value. Indicate if this timeCard entry is confirmed. Possible values are none, user, manager, unknownFutureValue.
+        Sets the confirmedBy property value. Indicates whether this timeCard entry is confirmed. Possible values are none, user, manager, unknownFutureValue.
         Args:
             value: Value to set for the confirmed_by property.
         """

@@ -41,7 +41,7 @@ class UnifiedRoleAssignmentMultipleItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[UnifiedRoleAssignmentMultipleItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property roleAssignments for roleManagement
+        Delete a unifiedRoleAssignmentMultiple object of an RBAC provider.  This is applicable for a RBAC application that supports multiple principals and scopes. The following RBAC providers are currently supported:- Cloud PC - device management (Intune)
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -60,7 +60,7 @@ class UnifiedRoleAssignmentMultipleItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[UnifiedRoleAssignmentMultipleItemRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple]:
         """
-        Get roleAssignments from roleManagement
+        Get the properties and relationships of a unifiedRoleAssignmentMultiple object of an RBAC provider.  The following RBAC providers are currently supported:- Cloud PC - device management (Intune) For other Microsoft 365 applications (like Azure AD), use unifiedRoleAssignment.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple]
@@ -82,7 +82,7 @@ class UnifiedRoleAssignmentMultipleItemRequestBuilder():
     
     async def patch(self,body: Optional[unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple] = None, request_configuration: Optional[UnifiedRoleAssignmentMultipleItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple]:
         """
-        Update the navigation property roleAssignments in roleManagement
+        Update an existing unifiedRoleAssignmentMultiple object of an RBAC provider.  The following RBAC providers are currently supported:- Cloud PC - device management (Intune) In contrast, unifiedRoleAssignment does not support update.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -107,7 +107,7 @@ class UnifiedRoleAssignmentMultipleItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[UnifiedRoleAssignmentMultipleItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property roleAssignments for roleManagement
+        Delete a unifiedRoleAssignmentMultiple object of an RBAC provider.  This is applicable for a RBAC application that supports multiple principals and scopes. The following RBAC providers are currently supported:- Cloud PC - device management (Intune)
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -123,7 +123,7 @@ class UnifiedRoleAssignmentMultipleItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UnifiedRoleAssignmentMultipleItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get roleAssignments from roleManagement
+        Get the properties and relationships of a unifiedRoleAssignmentMultiple object of an RBAC provider.  The following RBAC providers are currently supported:- Cloud PC - device management (Intune) For other Microsoft 365 applications (like Azure AD), use unifiedRoleAssignment.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -141,7 +141,7 @@ class UnifiedRoleAssignmentMultipleItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple] = None, request_configuration: Optional[UnifiedRoleAssignmentMultipleItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property roleAssignments in roleManagement
+        Update an existing unifiedRoleAssignmentMultiple object of an RBAC provider.  The following RBAC providers are currently supported:- Cloud PC - device management (Intune) In contrast, unifiedRoleAssignment does not support update.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -211,7 +211,7 @@ class UnifiedRoleAssignmentMultipleItemRequestBuilder():
     @dataclass
     class UnifiedRoleAssignmentMultipleItemRequestBuilderGetQueryParameters():
         """
-        Get roleAssignments from roleManagement
+        Get the properties and relationships of a unifiedRoleAssignmentMultiple object of an RBAC provider.  The following RBAC providers are currently supported:- Cloud PC - device management (Intune) For other Microsoft 365 applications (like Azure AD), use unifiedRoleAssignment.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

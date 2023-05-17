@@ -60,7 +60,7 @@ class SchemaRequestBuilder():
     
     async def get(self,request_configuration: Optional[SchemaRequestBuilderGetRequestConfiguration] = None) -> Optional[synchronization_schema.SynchronizationSchema]:
         """
-        The synchronization schema configured for the job.
+        Retrieve the schema for a given synchronization job or template.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[synchronization_schema.SynchronizationSchema]
@@ -82,7 +82,7 @@ class SchemaRequestBuilder():
     
     async def patch(self,body: Optional[synchronization_schema.SynchronizationSchema] = None, request_configuration: Optional[SchemaRequestBuilderPatchRequestConfiguration] = None) -> Optional[synchronization_schema.SynchronizationSchema]:
         """
-        Update the navigation property schema in applications
+        Update the synchronization schema for a given job or template. This method fully replaces the current schema with the one provided in the request. To update the schema of a template, make the call on the application object. You must be the owner of the application.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -123,7 +123,7 @@ class SchemaRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SchemaRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The synchronization schema configured for the job.
+        Retrieve the schema for a given synchronization job or template.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -141,7 +141,7 @@ class SchemaRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[synchronization_schema.SynchronizationSchema] = None, request_configuration: Optional[SchemaRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property schema in applications
+        Update the synchronization schema for a given job or template. This method fully replaces the current schema with the one provided in the request. To update the schema of a template, make the call on the application object. You must be the owner of the application.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -211,7 +211,7 @@ class SchemaRequestBuilder():
     @dataclass
     class SchemaRequestBuilderGetQueryParameters():
         """
-        The synchronization schema configured for the job.
+        Retrieve the schema for a given synchronization job or template.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

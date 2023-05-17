@@ -40,7 +40,7 @@ class LegalHoldItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[LegalHoldItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property legalHolds for compliance
+        Delete a legalHold object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -59,7 +59,7 @@ class LegalHoldItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[LegalHoldItemRequestBuilderGetRequestConfiguration] = None) -> Optional[legal_hold.LegalHold]:
         """
-        Returns a list of case legalHold objects for this case.  Nullable.
+        Read the properties and relationships of a legalHold object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[legal_hold.LegalHold]
@@ -81,7 +81,7 @@ class LegalHoldItemRequestBuilder():
     
     async def patch(self,body: Optional[legal_hold.LegalHold] = None, request_configuration: Optional[LegalHoldItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[legal_hold.LegalHold]:
         """
-        Update the navigation property legalHolds in compliance
+        Update the properties of a legalHold object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -106,7 +106,7 @@ class LegalHoldItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[LegalHoldItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property legalHolds for compliance
+        Delete a legalHold object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -122,7 +122,7 @@ class LegalHoldItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[LegalHoldItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Returns a list of case legalHold objects for this case.  Nullable.
+        Read the properties and relationships of a legalHold object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -140,7 +140,7 @@ class LegalHoldItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[legal_hold.LegalHold] = None, request_configuration: Optional[LegalHoldItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property legalHolds in compliance
+        Update the properties of a legalHold object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -201,7 +201,7 @@ class LegalHoldItemRequestBuilder():
     @dataclass
     class LegalHoldItemRequestBuilderGetQueryParameters():
         """
-        Returns a list of case legalHold objects for this case.  Nullable.
+        Read the properties and relationships of a legalHold object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

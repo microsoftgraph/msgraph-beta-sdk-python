@@ -76,7 +76,7 @@ class SiteSourcesRequestBuilder():
     
     async def post(self,body: Optional[site_source.SiteSource] = None, request_configuration: Optional[SiteSourcesRequestBuilderPostRequestConfiguration] = None) -> Optional[site_source.SiteSource]:
         """
-        Create new navigation property to siteSources for security
+        Create a new siteSource object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class SiteSourcesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[site_source.SiteSource] = None, request_configuration: Optional[SiteSourcesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to siteSources for security
+        Create a new siteSource object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

@@ -38,7 +38,7 @@ class CustomAuthenticationExtensionItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[CustomAuthenticationExtensionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property customAuthenticationExtensions for identity
+        Delete a customAuthenticationExtension object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -57,7 +57,7 @@ class CustomAuthenticationExtensionItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[CustomAuthenticationExtensionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[custom_authentication_extension.CustomAuthenticationExtension]:
         """
-        Get customAuthenticationExtensions from identity
+        Read the properties and relationships of an authenticationEventListener object. The **@odata.type** property in the response object indicates the type of the authenticationEventListener object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[custom_authentication_extension.CustomAuthenticationExtension]
@@ -104,7 +104,7 @@ class CustomAuthenticationExtensionItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[CustomAuthenticationExtensionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property customAuthenticationExtensions for identity
+        Delete a customAuthenticationExtension object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -120,7 +120,7 @@ class CustomAuthenticationExtensionItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CustomAuthenticationExtensionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get customAuthenticationExtensions from identity
+        Read the properties and relationships of an authenticationEventListener object. The **@odata.type** property in the response object indicates the type of the authenticationEventListener object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -181,7 +181,7 @@ class CustomAuthenticationExtensionItemRequestBuilder():
     @dataclass
     class CustomAuthenticationExtensionItemRequestBuilderGetQueryParameters():
         """
-        Get customAuthenticationExtensions from identity
+        Read the properties and relationships of an authenticationEventListener object. The **@odata.type** property in the response object indicates the type of the authenticationEventListener object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

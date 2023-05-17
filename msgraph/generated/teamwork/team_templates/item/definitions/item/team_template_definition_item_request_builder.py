@@ -57,7 +57,7 @@ class TeamTemplateDefinitionItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[TeamTemplateDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[team_template_definition.TeamTemplateDefinition]:
         """
-        Get definitions from teamwork
+        Read the properties and relationships of a teamTemplateDefinition object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[team_template_definition.TeamTemplateDefinition]
@@ -120,7 +120,7 @@ class TeamTemplateDefinitionItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TeamTemplateDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get definitions from teamwork
+        Read the properties and relationships of a teamTemplateDefinition object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -181,7 +181,7 @@ class TeamTemplateDefinitionItemRequestBuilder():
     @dataclass
     class TeamTemplateDefinitionItemRequestBuilderGetQueryParameters():
         """
-        Get definitions from teamwork
+        Read the properties and relationships of a teamTemplateDefinition object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

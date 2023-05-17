@@ -8,9 +8,12 @@ if TYPE_CHECKING:
 from . import entity
 
 class ManagedAppStatus(entity.Entity):
+    """
+    Represents app protection and configuration status for the organization.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new ManagedAppStatus and sets the default values.
+        Instantiates a new managedAppStatus and sets the default values.
         """
         super().__init__()
         # Friendly name of the status report.

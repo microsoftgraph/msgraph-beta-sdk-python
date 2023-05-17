@@ -57,7 +57,7 @@ class HostComponentItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[HostComponentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[host_component.HostComponent]:
         """
-        Retrieve details about microsoft.graph.security.hostComponent objects.Note: List retrieval is not yet supported.
+        Read the properties and relationships of a hostComponent object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[host_component.HostComponent]
@@ -120,7 +120,7 @@ class HostComponentItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[HostComponentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve details about microsoft.graph.security.hostComponent objects.Note: List retrieval is not yet supported.
+        Read the properties and relationships of a hostComponent object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -181,7 +181,7 @@ class HostComponentItemRequestBuilder():
     @dataclass
     class HostComponentItemRequestBuilderGetQueryParameters():
         """
-        Retrieve details about microsoft.graph.security.hostComponent objects.Note: List retrieval is not yet supported.
+        Read the properties and relationships of a hostComponent object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

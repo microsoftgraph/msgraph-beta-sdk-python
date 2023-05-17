@@ -58,7 +58,7 @@ class UnifiedRoleDefinitionItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[UnifiedRoleDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_definition.UnifiedRoleDefinition]:
         """
-        The roles allowed by RBAC providers and the permissions assigned to the roles.
+        Get the properties and relationships of a unifiedRoleDefinition object of an RBAC provider.  The following RBAC providers are currently supported:- Cloud PC - device management (Intune)- directory (Azure AD directory roles)- entitlement management (Azure AD entitlement management)- Exchange Online
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[unified_role_definition.UnifiedRoleDefinition]
@@ -121,7 +121,7 @@ class UnifiedRoleDefinitionItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UnifiedRoleDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The roles allowed by RBAC providers and the permissions assigned to the roles.
+        Get the properties and relationships of a unifiedRoleDefinition object of an RBAC provider.  The following RBAC providers are currently supported:- Cloud PC - device management (Intune)- directory (Azure AD directory roles)- entitlement management (Azure AD entitlement management)- Exchange Online
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -191,7 +191,7 @@ class UnifiedRoleDefinitionItemRequestBuilder():
     @dataclass
     class UnifiedRoleDefinitionItemRequestBuilderGetQueryParameters():
         """
-        The roles allowed by RBAC providers and the permissions assigned to the roles.
+        Get the properties and relationships of a unifiedRoleDefinition object of an RBAC provider.  The following RBAC providers are currently supported:- Cloud PC - device management (Intune)- directory (Azure AD directory roles)- entitlement management (Azure AD entitlement management)- Exchange Online
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

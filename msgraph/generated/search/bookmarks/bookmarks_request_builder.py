@@ -54,7 +54,7 @@ class BookmarksRequestBuilder():
     
     async def get(self,request_configuration: Optional[BookmarksRequestBuilderGetRequestConfiguration] = None) -> Optional[bookmark_collection_response.BookmarkCollectionResponse]:
         """
-        Administrative answer in Microsoft Search results for common search queries in an organization.
+        Get a list of bookmark objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[bookmark_collection_response.BookmarkCollectionResponse]
@@ -76,7 +76,7 @@ class BookmarksRequestBuilder():
     
     async def post(self,body: Optional[bookmark.Bookmark] = None, request_configuration: Optional[BookmarksRequestBuilderPostRequestConfiguration] = None) -> Optional[bookmark.Bookmark]:
         """
-        Create new navigation property to bookmarks for search
+        Create a new bookmark object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class BookmarksRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[BookmarksRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Administrative answer in Microsoft Search results for common search queries in an organization.
+        Get a list of bookmark objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class BookmarksRequestBuilder():
     
     def to_post_request_information(self,body: Optional[bookmark.Bookmark] = None, request_configuration: Optional[BookmarksRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to bookmarks for search
+        Create a new bookmark object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class BookmarksRequestBuilder():
     @dataclass
     class BookmarksRequestBuilderGetQueryParameters():
         """
-        Administrative answer in Microsoft Search results for common search queries in an organization.
+        Get a list of bookmark objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -56,7 +56,7 @@ class ChannelsRequestBuilder():
     
     async def get(self,request_configuration: Optional[ChannelsRequestBuilderGetRequestConfiguration] = None) -> Optional[channel_collection_response.ChannelCollectionResponse]:
         """
-        The collection of channels and messages associated with the team.
+        Retrieve the list of channels in this team.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[channel_collection_response.ChannelCollectionResponse]
@@ -78,7 +78,7 @@ class ChannelsRequestBuilder():
     
     async def post(self,body: Optional[channel.Channel] = None, request_configuration: Optional[ChannelsRequestBuilderPostRequestConfiguration] = None) -> Optional[channel.Channel]:
         """
-        Create new navigation property to channels for groups
+        Create a new channel in a team, as specified in the request body. When you create a channel, the maximum length of the channel's `displayName` is 50 characters. This is the name that appears to the user in Microsoft Teams. You can add a maximum of 200 members when you create a private channel.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class ChannelsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ChannelsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection of channels and messages associated with the team.
+        Retrieve the list of channels in this team.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -121,7 +121,7 @@ class ChannelsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[channel.Channel] = None, request_configuration: Optional[ChannelsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to channels for groups
+        Create a new channel in a team, as specified in the request body. When you create a channel, the maximum length of the channel's `displayName` is 50 characters. This is the name that appears to the user in Microsoft Teams. You can add a maximum of 200 members when you create a private channel.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -170,7 +170,7 @@ class ChannelsRequestBuilder():
     @dataclass
     class ChannelsRequestBuilderGetQueryParameters():
         """
-        The collection of channels and messages associated with the team.
+        Retrieve the list of channels in this team.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

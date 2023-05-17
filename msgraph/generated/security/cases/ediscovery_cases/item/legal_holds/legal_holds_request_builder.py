@@ -54,7 +54,7 @@ class LegalHoldsRequestBuilder():
     
     async def get(self,request_configuration: Optional[LegalHoldsRequestBuilderGetRequestConfiguration] = None) -> Optional[ediscovery_hold_policy_collection_response.EdiscoveryHoldPolicyCollectionResponse]:
         """
-        Returns a list of case eDiscoveryHoldPolicy objects for this case.
+        Get a list of the ediscoveryHoldPolicy objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ediscovery_hold_policy_collection_response.EdiscoveryHoldPolicyCollectionResponse]
@@ -76,7 +76,7 @@ class LegalHoldsRequestBuilder():
     
     async def post(self,body: Optional[ediscovery_hold_policy.EdiscoveryHoldPolicy] = None, request_configuration: Optional[LegalHoldsRequestBuilderPostRequestConfiguration] = None) -> Optional[ediscovery_hold_policy.EdiscoveryHoldPolicy]:
         """
-        Create new navigation property to legalHolds for security
+        Create a new ediscoveryHoldPolicy object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class LegalHoldsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[LegalHoldsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Returns a list of case eDiscoveryHoldPolicy objects for this case.
+        Get a list of the ediscoveryHoldPolicy objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class LegalHoldsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[ediscovery_hold_policy.EdiscoveryHoldPolicy] = None, request_configuration: Optional[LegalHoldsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to legalHolds for security
+        Create a new ediscoveryHoldPolicy object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class LegalHoldsRequestBuilder():
     @dataclass
     class LegalHoldsRequestBuilderGetQueryParameters():
         """
-        Returns a list of case eDiscoveryHoldPolicy objects for this case.
+        Get a list of the ediscoveryHoldPolicy objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

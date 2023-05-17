@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .connectors import connectors_request_builder
     from .get_capabilities import get_capabilities_request_builder
+    from .jobs import jobs_request_builder
     from .reset_defaults import reset_defaults_request_builder
     from .restore_factory_defaults import restore_factory_defaults_request_builder
     from .share import share_request_builder
@@ -44,7 +45,7 @@ class PrinterItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[PrinterItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property printers for print
+        Delete (unregister) a printer.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -63,7 +64,7 @@ class PrinterItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[PrinterItemRequestBuilderGetRequestConfiguration] = None) -> Optional[printer.Printer]:
         """
-        The list of printers registered in the tenant.
+        Retrieve the properties and relationships of a printer object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[printer.Printer]
@@ -85,7 +86,7 @@ class PrinterItemRequestBuilder():
     
     async def patch(self,body: Optional[printer.Printer] = None, request_configuration: Optional[PrinterItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[printer.Printer]:
         """
-        Update the navigation property printers in print
+        Update the properties of a printer object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -110,7 +111,7 @@ class PrinterItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[PrinterItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property printers for print
+        Delete (unregister) a printer.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -126,7 +127,7 @@ class PrinterItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PrinterItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The list of printers registered in the tenant.
+        Retrieve the properties and relationships of a printer object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -144,7 +145,7 @@ class PrinterItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[printer.Printer] = None, request_configuration: Optional[PrinterItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property printers in print
+        Update the properties of a printer object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -180,6 +181,15 @@ class PrinterItemRequestBuilder():
         from .get_capabilities import get_capabilities_request_builder
 
         return get_capabilities_request_builder.GetCapabilitiesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def jobs(self) -> jobs_request_builder.JobsRequestBuilder:
+        """
+        Provides operations to manage the jobs property of the microsoft.graph.printerBase entity.
+        """
+        from .jobs import jobs_request_builder
+
+        return jobs_request_builder.JobsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def reset_defaults(self) -> reset_defaults_request_builder.ResetDefaultsRequestBuilder:
@@ -241,7 +251,7 @@ class PrinterItemRequestBuilder():
     @dataclass
     class PrinterItemRequestBuilderGetQueryParameters():
         """
-        The list of printers registered in the tenant.
+        Retrieve the properties and relationships of a printer object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

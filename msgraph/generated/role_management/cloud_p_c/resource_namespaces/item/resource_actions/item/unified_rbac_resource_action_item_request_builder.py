@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .......models import unified_rbac_resource_action
     from .......models.o_data_errors import o_data_error
+    from .authentication_context import authentication_context_request_builder
     from .resource_scope import resource_scope_request_builder
 
 class UnifiedRbacResourceActionItemRequestBuilder():
@@ -57,7 +58,7 @@ class UnifiedRbacResourceActionItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[UnifiedRbacResourceActionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_rbac_resource_action.UnifiedRbacResourceAction]:
         """
-        Operations that an authorized principal are allowed to perform.
+        Read the properties and relationships of an unifiedRbacResourceAction object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[unified_rbac_resource_action.UnifiedRbacResourceAction]
@@ -120,7 +121,7 @@ class UnifiedRbacResourceActionItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UnifiedRbacResourceActionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Operations that an authorized principal are allowed to perform.
+        Read the properties and relationships of an unifiedRbacResourceAction object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -158,6 +159,15 @@ class UnifiedRbacResourceActionItemRequestBuilder():
         return request_info
     
     @property
+    def authentication_context(self) -> authentication_context_request_builder.AuthenticationContextRequestBuilder:
+        """
+        Provides operations to manage the authenticationContext property of the microsoft.graph.unifiedRbacResourceAction entity.
+        """
+        from .authentication_context import authentication_context_request_builder
+
+        return authentication_context_request_builder.AuthenticationContextRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def resource_scope(self) -> resource_scope_request_builder.ResourceScopeRequestBuilder:
         """
         Provides operations to manage the resourceScope property of the microsoft.graph.unifiedRbacResourceAction entity.
@@ -181,7 +191,7 @@ class UnifiedRbacResourceActionItemRequestBuilder():
     @dataclass
     class UnifiedRbacResourceActionItemRequestBuilderGetQueryParameters():
         """
-        Operations that an authorized principal are allowed to perform.
+        Read the properties and relationships of an unifiedRbacResourceAction object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

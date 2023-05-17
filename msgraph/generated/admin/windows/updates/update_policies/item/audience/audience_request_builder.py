@@ -14,8 +14,8 @@ if TYPE_CHECKING:
     from .......models.windows_updates import deployment_audience
     from .exclusions import exclusions_request_builder
     from .members import members_request_builder
-    from .windows_updates_update_audience import windows_updates_update_audience_request_builder
-    from .windows_updates_update_audience_by_id import windows_updates_update_audience_by_id_request_builder
+    from .microsoft_graph_windows_updates_update_audience import microsoft_graph_windows_updates_update_audience_request_builder
+    from .microsoft_graph_windows_updates_update_audience_by_id import microsoft_graph_windows_updates_update_audience_by_id_request_builder
 
 class AudienceRequestBuilder():
     """
@@ -179,22 +179,22 @@ class AudienceRequestBuilder():
         return members_request_builder.MembersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def windows_updates_update_audience(self) -> windows_updates_update_audience_request_builder.WindowsUpdatesUpdateAudienceRequestBuilder:
+    def microsoft_graph_windows_updates_update_audience(self) -> microsoft_graph_windows_updates_update_audience_request_builder.MicrosoftGraphWindowsUpdatesUpdateAudienceRequestBuilder:
         """
         Provides operations to call the updateAudience method.
         """
-        from .windows_updates_update_audience import windows_updates_update_audience_request_builder
+        from .microsoft_graph_windows_updates_update_audience import microsoft_graph_windows_updates_update_audience_request_builder
 
-        return windows_updates_update_audience_request_builder.WindowsUpdatesUpdateAudienceRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_windows_updates_update_audience_request_builder.MicrosoftGraphWindowsUpdatesUpdateAudienceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def windows_updates_update_audience_by_id(self) -> windows_updates_update_audience_by_id_request_builder.WindowsUpdatesUpdateAudienceByIdRequestBuilder:
+    def microsoft_graph_windows_updates_update_audience_by_id(self) -> microsoft_graph_windows_updates_update_audience_by_id_request_builder.MicrosoftGraphWindowsUpdatesUpdateAudienceByIdRequestBuilder:
         """
         Provides operations to call the updateAudienceById method.
         """
-        from .windows_updates_update_audience_by_id import windows_updates_update_audience_by_id_request_builder
+        from .microsoft_graph_windows_updates_update_audience_by_id import microsoft_graph_windows_updates_update_audience_by_id_request_builder
 
-        return windows_updates_update_audience_by_id_request_builder.WindowsUpdatesUpdateAudienceByIdRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_windows_updates_update_audience_by_id_request_builder.MicrosoftGraphWindowsUpdatesUpdateAudienceByIdRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AudienceRequestBuilderDeleteRequestConfiguration():

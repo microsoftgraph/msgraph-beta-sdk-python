@@ -15,7 +15,7 @@ class DeviceManagementConfigurationReferredSettingInformation(AdditionalDataHold
 
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # Setting definition id that is being referred to a setting. Applicable for reusable setting.
+        # Setting definition id that is being referred to a setting. Applicable for reusable setting
         self._setting_definition_id: Optional[str] = None
     
     @property
@@ -90,7 +90,7 @@ class DeviceManagementConfigurationReferredSettingInformation(AdditionalDataHold
     @property
     def setting_definition_id(self,) -> Optional[str]:
         """
-        Gets the settingDefinitionId property value. Setting definition id that is being referred to a setting. Applicable for reusable setting.
+        Gets the settingDefinitionId property value. Setting definition id that is being referred to a setting. Applicable for reusable setting
         Returns: Optional[str]
         """
         return self._setting_definition_id
@@ -98,7 +98,7 @@ class DeviceManagementConfigurationReferredSettingInformation(AdditionalDataHold
     @setting_definition_id.setter
     def setting_definition_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the settingDefinitionId property value. Setting definition id that is being referred to a setting. Applicable for reusable setting.
+        Sets the settingDefinitionId property value. Setting definition id that is being referred to a setting. Applicable for reusable setting
         Args:
             value: Value to set for the setting_definition_id property.
         """

@@ -38,7 +38,7 @@ class ComplianceChangeItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[ComplianceChangeItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property complianceChanges for admin
+        Delete a complianceChange object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -57,7 +57,7 @@ class ComplianceChangeItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[ComplianceChangeItemRequestBuilderGetRequestConfiguration] = None) -> Optional[compliance_change.ComplianceChange]:
         """
-        Compliance changes like content approvals which result in the automatic creation of deployments using the audience and deploymentSettings of the policy.
+        Read the properties and relationships of a complianceChange object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[compliance_change.ComplianceChange]
@@ -79,7 +79,7 @@ class ComplianceChangeItemRequestBuilder():
     
     async def patch(self,body: Optional[compliance_change.ComplianceChange] = None, request_configuration: Optional[ComplianceChangeItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[compliance_change.ComplianceChange]:
         """
-        Update the navigation property complianceChanges in admin
+        Update the properties of a complianceChange object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -104,7 +104,7 @@ class ComplianceChangeItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[ComplianceChangeItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property complianceChanges for admin
+        Delete a complianceChange object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -120,7 +120,7 @@ class ComplianceChangeItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ComplianceChangeItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Compliance changes like content approvals which result in the automatic creation of deployments using the audience and deploymentSettings of the policy.
+        Read the properties and relationships of a complianceChange object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,7 +138,7 @@ class ComplianceChangeItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[compliance_change.ComplianceChange] = None, request_configuration: Optional[ComplianceChangeItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property complianceChanges in admin
+        Update the properties of a complianceChange object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -181,7 +181,7 @@ class ComplianceChangeItemRequestBuilder():
     @dataclass
     class ComplianceChangeItemRequestBuilderGetQueryParameters():
         """
-        Compliance changes like content approvals which result in the automatic creation of deployments using the audience and deploymentSettings of the policy.
+        Read the properties and relationships of a complianceChange object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

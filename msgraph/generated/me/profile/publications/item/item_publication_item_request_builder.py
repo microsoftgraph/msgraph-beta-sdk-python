@@ -37,7 +37,7 @@ class ItemPublicationItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[ItemPublicationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property publications for me
+        Deletes an itemPublication object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class ItemPublicationItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[ItemPublicationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[item_publication.ItemPublication]:
         """
-        Represents details of any publications a user has added to their profile.
+        Read the properties and relationships of an itemPublication object in a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[item_publication.ItemPublication]
@@ -78,7 +78,7 @@ class ItemPublicationItemRequestBuilder():
     
     async def patch(self,body: Optional[item_publication.ItemPublication] = None, request_configuration: Optional[ItemPublicationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[item_publication.ItemPublication]:
         """
-        Update the navigation property publications in me
+        Update the properties of an itemPublication object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class ItemPublicationItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[ItemPublicationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property publications for me
+        Deletes an itemPublication object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class ItemPublicationItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ItemPublicationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents details of any publications a user has added to their profile.
+        Read the properties and relationships of an itemPublication object in a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class ItemPublicationItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[item_publication.ItemPublication] = None, request_configuration: Optional[ItemPublicationItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property publications in me
+        Update the properties of an itemPublication object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class ItemPublicationItemRequestBuilder():
     @dataclass
     class ItemPublicationItemRequestBuilderGetQueryParameters():
         """
-        Represents details of any publications a user has added to their profile.
+        Read the properties and relationships of an itemPublication object in a user's profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

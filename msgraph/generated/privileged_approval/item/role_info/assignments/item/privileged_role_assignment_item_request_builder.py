@@ -37,7 +37,7 @@ class PrivilegedRoleAssignmentItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[PrivilegedRoleAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_role_assignment.PrivilegedRoleAssignment]:
         """
-        The assignments for this role. Read-only. Nullable.
+        Get assignments from privilegedApproval
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[privileged_role_assignment.PrivilegedRoleAssignment]
@@ -59,7 +59,7 @@ class PrivilegedRoleAssignmentItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PrivilegedRoleAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The assignments for this role. Read-only. Nullable.
+        Get assignments from privilegedApproval
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -78,7 +78,7 @@ class PrivilegedRoleAssignmentItemRequestBuilder():
     @dataclass
     class PrivilegedRoleAssignmentItemRequestBuilderGetQueryParameters():
         """
-        The assignments for this role. Read-only. Nullable.
+        Get assignments from privilegedApproval
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

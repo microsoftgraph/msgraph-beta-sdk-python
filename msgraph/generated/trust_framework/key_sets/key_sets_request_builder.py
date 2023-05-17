@@ -54,7 +54,7 @@ class KeySetsRequestBuilder():
     
     async def get(self,request_configuration: Optional[KeySetsRequestBuilderGetRequestConfiguration] = None) -> Optional[trust_framework_key_set_collection_response.TrustFrameworkKeySetCollectionResponse]:
         """
-        Get keySets from trustFramework
+        Retrieve a list of trustFrameworkKeySets.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[trust_framework_key_set_collection_response.TrustFrameworkKeySetCollectionResponse]
@@ -76,7 +76,7 @@ class KeySetsRequestBuilder():
     
     async def post(self,body: Optional[trust_framework_key_set.TrustFrameworkKeySet] = None, request_configuration: Optional[KeySetsRequestBuilderPostRequestConfiguration] = None) -> Optional[trust_framework_key_set.TrustFrameworkKeySet]:
         """
-        Create new navigation property to keySets for trustFramework
+        Create a new trustFrameworkKeySet. The ID of the **trustFrameworkKeySet** is expected in the create request; however, it can be modified by the service. The modified ID will be available in the response and in the location header.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class KeySetsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[KeySetsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get keySets from trustFramework
+        Retrieve a list of trustFrameworkKeySets.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class KeySetsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[trust_framework_key_set.TrustFrameworkKeySet] = None, request_configuration: Optional[KeySetsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to keySets for trustFramework
+        Create a new trustFrameworkKeySet. The ID of the **trustFrameworkKeySet** is expected in the create request; however, it can be modified by the service. The modified ID will be available in the response and in the location header.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class KeySetsRequestBuilder():
     @dataclass
     class KeySetsRequestBuilderGetQueryParameters():
         """
-        Get keySets from trustFramework
+        Retrieve a list of trustFrameworkKeySets.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

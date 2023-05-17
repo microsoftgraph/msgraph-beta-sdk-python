@@ -15,7 +15,7 @@ class CredentialUserRegistrationCount(entity.Entity):
         super().__init__()
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # Provides the total user count in the tenant.
+        # Provides the count of users with accountEnabled set to true in the tenant.
         self._total_user_count: Optional[int] = None
         # A collection of registration count and status information for users in your tenant.
         self._user_registration_counts: Optional[List[user_registration_count.UserRegistrationCount]] = None
@@ -62,7 +62,7 @@ class CredentialUserRegistrationCount(entity.Entity):
     @property
     def total_user_count(self,) -> Optional[int]:
         """
-        Gets the totalUserCount property value. Provides the total user count in the tenant.
+        Gets the totalUserCount property value. Provides the count of users with accountEnabled set to true in the tenant.
         Returns: Optional[int]
         """
         return self._total_user_count
@@ -70,7 +70,7 @@ class CredentialUserRegistrationCount(entity.Entity):
     @total_user_count.setter
     def total_user_count(self,value: Optional[int] = None) -> None:
         """
-        Sets the totalUserCount property value. Provides the total user count in the tenant.
+        Sets the totalUserCount property value. Provides the count of users with accountEnabled set to true in the tenant.
         Args:
             value: Value to set for the total_user_count property.
         """

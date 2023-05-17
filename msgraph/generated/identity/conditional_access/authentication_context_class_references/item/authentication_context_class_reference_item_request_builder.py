@@ -56,7 +56,7 @@ class AuthenticationContextClassReferenceItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[AuthenticationContextClassReferenceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[authentication_context_class_reference.AuthenticationContextClassReference]:
         """
-        Read-only. Nullable. Returns a collection of the specified authentication context class references.
+        Retrieve the properties and relationships of a authenticationContextClassReference object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[authentication_context_class_reference.AuthenticationContextClassReference]
@@ -78,7 +78,7 @@ class AuthenticationContextClassReferenceItemRequestBuilder():
     
     async def patch(self,body: Optional[authentication_context_class_reference.AuthenticationContextClassReference] = None, request_configuration: Optional[AuthenticationContextClassReferenceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[authentication_context_class_reference.AuthenticationContextClassReference]:
         """
-        Update the navigation property authenticationContextClassReferences in identity
+        Update the properties of an authenticationContextClassReference object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class AuthenticationContextClassReferenceItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AuthenticationContextClassReferenceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read-only. Nullable. Returns a collection of the specified authentication context class references.
+        Retrieve the properties and relationships of a authenticationContextClassReference object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class AuthenticationContextClassReferenceItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[authentication_context_class_reference.AuthenticationContextClassReference] = None, request_configuration: Optional[AuthenticationContextClassReferenceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property authenticationContextClassReferences in identity
+        Update the properties of an authenticationContextClassReference object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class AuthenticationContextClassReferenceItemRequestBuilder():
     @dataclass
     class AuthenticationContextClassReferenceItemRequestBuilderGetQueryParameters():
         """
-        Read-only. Nullable. Returns a collection of the specified authentication context class references.
+        Retrieve the properties and relationships of a authenticationContextClassReference object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

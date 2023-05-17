@@ -54,7 +54,7 @@ class MyRolesRequestBuilder():
     
     async def get(self,request_configuration: Optional[MyRolesRequestBuilderGetRequestConfiguration] = None) -> Optional[my_role_collection_response.MyRoleCollectionResponse]:
         """
-        The collection of role assignments to a signed-in user for a managed tenant.
+        Get the roles that a signed-in user has through a delegated relationship across managed tenants. For information on the types of delegated relationships between a Managed Service Provider (MSP) who uses Microsoft 365 Lighthouse, and their business customers with Microsoft 365 Business Premium tenants, see the following articles on the Partner Center:- Delegated administration privileges (DAP)- Granular delegated admin privileges (GDAP)
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[my_role_collection_response.MyRoleCollectionResponse]
@@ -101,7 +101,7 @@ class MyRolesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[MyRolesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection of role assignments to a signed-in user for a managed tenant.
+        Get the roles that a signed-in user has through a delegated relationship across managed tenants. For information on the types of delegated relationships between a Managed Service Provider (MSP) who uses Microsoft 365 Lighthouse, and their business customers with Microsoft 365 Business Premium tenants, see the following articles on the Partner Center:- Delegated administration privileges (DAP)- Granular delegated admin privileges (GDAP)
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class MyRolesRequestBuilder():
     @dataclass
     class MyRolesRequestBuilderGetQueryParameters():
         """
-        The collection of role assignments to a signed-in user for a managed tenant.
+        Get the roles that a signed-in user has through a delegated relationship across managed tenants. For information on the types of delegated relationships between a Managed Service Provider (MSP) who uses Microsoft 365 Lighthouse, and their business customers with Microsoft 365 Business Premium tenants, see the following articles on the Partner Center:- Delegated administration privileges (DAP)- Granular delegated admin privileges (GDAP)
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

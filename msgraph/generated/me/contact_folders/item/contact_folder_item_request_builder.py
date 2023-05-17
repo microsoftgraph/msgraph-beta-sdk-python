@@ -14,8 +14,6 @@ if TYPE_CHECKING:
     from ....models.o_data_errors import o_data_error
     from .child_folders import child_folders_request_builder
     from .contacts import contacts_request_builder
-    from .multi_value_extended_properties import multi_value_extended_properties_request_builder
-    from .single_value_extended_properties import single_value_extended_properties_request_builder
 
 class ContactFolderItemRequestBuilder():
     """
@@ -41,7 +39,7 @@ class ContactFolderItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[ContactFolderItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property contactFolders for me
+        Delete contactFolder other than the default contactFolder.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -60,7 +58,7 @@ class ContactFolderItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[ContactFolderItemRequestBuilderGetRequestConfiguration] = None) -> Optional[contact_folder.ContactFolder]:
         """
-        The user's contacts folders. Read-only. Nullable.
+        Get a contact folder by using the contact folder ID. There are two scenarios where an app can get another user's contact folder:
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[contact_folder.ContactFolder]
@@ -82,7 +80,7 @@ class ContactFolderItemRequestBuilder():
     
     async def patch(self,body: Optional[contact_folder.ContactFolder] = None, request_configuration: Optional[ContactFolderItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[contact_folder.ContactFolder]:
         """
-        Update the navigation property contactFolders in me
+        Update the properties of contactfolder object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -107,7 +105,7 @@ class ContactFolderItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[ContactFolderItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property contactFolders for me
+        Delete contactFolder other than the default contactFolder.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -123,7 +121,7 @@ class ContactFolderItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ContactFolderItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The user's contacts folders. Read-only. Nullable.
+        Get a contact folder by using the contact folder ID. There are two scenarios where an app can get another user's contact folder:
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -141,7 +139,7 @@ class ContactFolderItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[contact_folder.ContactFolder] = None, request_configuration: Optional[ContactFolderItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property contactFolders in me
+        Update the properties of contactfolder object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -178,24 +176,6 @@ class ContactFolderItemRequestBuilder():
 
         return contacts_request_builder.ContactsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    @property
-    def multi_value_extended_properties(self) -> multi_value_extended_properties_request_builder.MultiValueExtendedPropertiesRequestBuilder:
-        """
-        Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.contactFolder entity.
-        """
-        from .multi_value_extended_properties import multi_value_extended_properties_request_builder
-
-        return multi_value_extended_properties_request_builder.MultiValueExtendedPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def single_value_extended_properties(self) -> single_value_extended_properties_request_builder.SingleValueExtendedPropertiesRequestBuilder:
-        """
-        Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.contactFolder entity.
-        """
-        from .single_value_extended_properties import single_value_extended_properties_request_builder
-
-        return single_value_extended_properties_request_builder.SingleValueExtendedPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @dataclass
     class ContactFolderItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -211,7 +191,7 @@ class ContactFolderItemRequestBuilder():
     @dataclass
     class ContactFolderItemRequestBuilderGetQueryParameters():
         """
-        The user's contacts folders. Read-only. Nullable.
+        Get a contact folder by using the contact folder ID. There are two scenarios where an app can get another user's contact folder:
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -55,7 +55,7 @@ class BucketsRequestBuilder():
     
     async def get(self,request_configuration: Optional[BucketsRequestBuilderGetRequestConfiguration] = None) -> Optional[planner_bucket_collection_response.PlannerBucketCollectionResponse]:
         """
-        Read-only. Nullable. Returns a collection of the specified buckets
+        Retrieve a list of **plannerbucket** objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[planner_bucket_collection_response.PlannerBucketCollectionResponse]
@@ -77,7 +77,7 @@ class BucketsRequestBuilder():
     
     async def post(self,body: Optional[planner_bucket.PlannerBucket] = None, request_configuration: Optional[BucketsRequestBuilderPostRequestConfiguration] = None) -> Optional[planner_bucket.PlannerBucket]:
         """
-        Create new navigation property to buckets for planner
+        Create a new plannerBucket object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -102,7 +102,7 @@ class BucketsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[BucketsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read-only. Nullable. Returns a collection of the specified buckets
+        Retrieve a list of **plannerbucket** objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -120,7 +120,7 @@ class BucketsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[planner_bucket.PlannerBucket] = None, request_configuration: Optional[BucketsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to buckets for planner
+        Create a new plannerBucket object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -160,7 +160,7 @@ class BucketsRequestBuilder():
     @dataclass
     class BucketsRequestBuilderGetQueryParameters():
         """
-        Read-only. Nullable. Returns a collection of the specified buckets
+        Retrieve a list of **plannerbucket** objects.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -63,7 +63,7 @@ class GroupRequestBuilder():
     
     async def get(self,request_configuration: Optional[GroupRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_access_group.PrivilegedAccessGroup]:
         """
-        Get group from identityGovernance
+        A group that's governed through Privileged Identity Management (PIM).
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[privileged_access_group.PrivilegedAccessGroup]
@@ -126,7 +126,7 @@ class GroupRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[GroupRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get group from identityGovernance
+        A group that's governed through Privileged Identity Management (PIM).
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -241,7 +241,7 @@ class GroupRequestBuilder():
     @dataclass
     class GroupRequestBuilderGetQueryParameters():
         """
-        Get group from identityGovernance
+        A group that's governed through Privileged Identity Management (PIM).
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

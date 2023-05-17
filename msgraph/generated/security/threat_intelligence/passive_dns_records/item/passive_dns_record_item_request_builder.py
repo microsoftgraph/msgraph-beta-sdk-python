@@ -58,7 +58,7 @@ class PassiveDnsRecordItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[PassiveDnsRecordItemRequestBuilderGetRequestConfiguration] = None) -> Optional[passive_dns_record.PassiveDnsRecord]:
         """
-        Retrieve details about microsoft.graph.security.passiveDnsRecord objects.Note: List retrieval is not yet supported.
+        Read the properties and relationships of a passiveDnsRecord object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[passive_dns_record.PassiveDnsRecord]
@@ -121,7 +121,7 @@ class PassiveDnsRecordItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PassiveDnsRecordItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve details about microsoft.graph.security.passiveDnsRecord objects.Note: List retrieval is not yet supported.
+        Read the properties and relationships of a passiveDnsRecord object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -191,7 +191,7 @@ class PassiveDnsRecordItemRequestBuilder():
     @dataclass
     class PassiveDnsRecordItemRequestBuilderGetQueryParameters():
         """
-        Retrieve details about microsoft.graph.security.passiveDnsRecord objects.Note: List retrieval is not yet supported.
+        Read the properties and relationships of a passiveDnsRecord object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

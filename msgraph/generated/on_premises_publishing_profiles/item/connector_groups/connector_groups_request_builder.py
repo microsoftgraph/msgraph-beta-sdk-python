@@ -54,7 +54,7 @@ class ConnectorGroupsRequestBuilder():
     
     async def get(self,request_configuration: Optional[ConnectorGroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[connector_group_collection_response.ConnectorGroupCollectionResponse]:
         """
-        List of existing connectorGroup objects for applications published through Application Proxy. Read-only. Nullable.
+        Retrieve a list of connectorGroup objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[connector_group_collection_response.ConnectorGroupCollectionResponse]
@@ -76,7 +76,7 @@ class ConnectorGroupsRequestBuilder():
     
     async def post(self,body: Optional[connector_group.ConnectorGroup] = None, request_configuration: Optional[ConnectorGroupsRequestBuilderPostRequestConfiguration] = None) -> Optional[connector_group.ConnectorGroup]:
         """
-        Create new navigation property to connectorGroups for onPremisesPublishingProfiles
+        Create a new connectorGroup.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class ConnectorGroupsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ConnectorGroupsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List of existing connectorGroup objects for applications published through Application Proxy. Read-only. Nullable.
+        Retrieve a list of connectorGroup objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class ConnectorGroupsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[connector_group.ConnectorGroup] = None, request_configuration: Optional[ConnectorGroupsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to connectorGroups for onPremisesPublishingProfiles
+        Create a new connectorGroup.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class ConnectorGroupsRequestBuilder():
     @dataclass
     class ConnectorGroupsRequestBuilderGetQueryParameters():
         """
-        List of existing connectorGroup objects for applications published through Application Proxy. Read-only. Nullable.
+        Retrieve a list of connectorGroup objects.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

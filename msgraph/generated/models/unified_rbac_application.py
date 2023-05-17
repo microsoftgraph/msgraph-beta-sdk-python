@@ -3,7 +3,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity, unified_rbac_resource_namespace, unified_role_assignment, unified_role_definition
+    from . import custom_app_scope, entity, unified_rbac_resource_namespace, unified_role_assignment, unified_role_definition
 
 from . import entity
 
@@ -13,6 +13,8 @@ class UnifiedRbacApplication(entity.Entity):
         Instantiates a new UnifiedRbacApplication and sets the default values.
         """
         super().__init__()
+        # The customAppScopes property
+        self._custom_app_scopes: Optional[List[custom_app_scope.CustomAppScope]] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
         # Resource that represents a collection of related actions.
@@ -36,14 +38,32 @@ class UnifiedRbacApplication(entity.Entity):
             raise Exception("parse_node cannot be undefined")
         return UnifiedRbacApplication()
     
+    @property
+    def custom_app_scopes(self,) -> Optional[List[custom_app_scope.CustomAppScope]]:
+        """
+        Gets the customAppScopes property value. The customAppScopes property
+        Returns: Optional[List[custom_app_scope.CustomAppScope]]
+        """
+        return self._custom_app_scopes
+    
+    @custom_app_scopes.setter
+    def custom_app_scopes(self,value: Optional[List[custom_app_scope.CustomAppScope]] = None) -> None:
+        """
+        Sets the customAppScopes property value. The customAppScopes property
+        Args:
+            value: Value to set for the custom_app_scopes property.
+        """
+        self._custom_app_scopes = value
+    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, unified_rbac_resource_namespace, unified_role_assignment, unified_role_definition
+        from . import custom_app_scope, entity, unified_rbac_resource_namespace, unified_role_assignment, unified_role_definition
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "customAppScopes": lambda n : setattr(self, 'custom_app_scopes', n.get_collection_of_object_values(custom_app_scope.CustomAppScope)),
             "resourceNamespaces": lambda n : setattr(self, 'resource_namespaces', n.get_collection_of_object_values(unified_rbac_resource_namespace.UnifiedRbacResourceNamespace)),
             "roleAssignments": lambda n : setattr(self, 'role_assignments', n.get_collection_of_object_values(unified_role_assignment.UnifiedRoleAssignment)),
             "roleDefinitions": lambda n : setattr(self, 'role_definitions', n.get_collection_of_object_values(unified_role_definition.UnifiedRoleDefinition)),
@@ -113,6 +133,7 @@ class UnifiedRbacApplication(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
+        writer.write_collection_of_object_values("customAppScopes", self.custom_app_scopes)
         writer.write_collection_of_object_values("resourceNamespaces", self.resource_namespaces)
         writer.write_collection_of_object_values("roleAssignments", self.role_assignments)
         writer.write_collection_of_object_values("roleDefinitions", self.role_definitions)

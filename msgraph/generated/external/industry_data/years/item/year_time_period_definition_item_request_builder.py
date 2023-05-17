@@ -37,7 +37,7 @@ class YearTimePeriodDefinitionItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[YearTimePeriodDefinitionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property years for external
+        Delete a yearTimePeriodDefinition object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class YearTimePeriodDefinitionItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[YearTimePeriodDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[year_time_period_definition.YearTimePeriodDefinition]:
         """
-        Set of years represented in the system.
+        Read the properties and relationships of a yearTimePeriodDefinition object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[year_time_period_definition.YearTimePeriodDefinition]
@@ -78,7 +78,7 @@ class YearTimePeriodDefinitionItemRequestBuilder():
     
     async def patch(self,body: Optional[year_time_period_definition.YearTimePeriodDefinition] = None, request_configuration: Optional[YearTimePeriodDefinitionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[year_time_period_definition.YearTimePeriodDefinition]:
         """
-        Update the navigation property years in external
+        Update the properties of a yearTimePeriodDefinition object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class YearTimePeriodDefinitionItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[YearTimePeriodDefinitionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property years for external
+        Delete a yearTimePeriodDefinition object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class YearTimePeriodDefinitionItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[YearTimePeriodDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Set of years represented in the system.
+        Read the properties and relationships of a yearTimePeriodDefinition object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class YearTimePeriodDefinitionItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[year_time_period_definition.YearTimePeriodDefinition] = None, request_configuration: Optional[YearTimePeriodDefinitionItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property years in external
+        Update the properties of a yearTimePeriodDefinition object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class YearTimePeriodDefinitionItemRequestBuilder():
     @dataclass
     class YearTimePeriodDefinitionItemRequestBuilderGetQueryParameters():
         """
-        Set of years represented in the system.
+        Read the properties and relationships of a yearTimePeriodDefinition object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

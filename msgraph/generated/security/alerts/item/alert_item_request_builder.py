@@ -37,7 +37,7 @@ class AlertItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[AlertItemRequestBuilderGetRequestConfiguration] = None) -> Optional[alert.Alert]:
         """
-        Notifications for suspicious or potential security issues in a customer’s tenant.
+        Retrieve the properties and relationships of an alert object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[alert.Alert]
@@ -59,7 +59,7 @@ class AlertItemRequestBuilder():
     
     async def patch(self,body: Optional[alert.Alert] = None, request_configuration: Optional[AlertItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[alert.Alert]:
         """
-        Update the navigation property alerts in security
+        Update an editable **alert** property within any integrated solution to keep alert status and assignments in sync across solutions. This method updates any solution that has a record of the referenced alert ID.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -84,7 +84,7 @@ class AlertItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AlertItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Notifications for suspicious or potential security issues in a customer’s tenant.
+        Retrieve the properties and relationships of an alert object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -102,7 +102,7 @@ class AlertItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[alert.Alert] = None, request_configuration: Optional[AlertItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property alerts in security
+        Update an editable **alert** property within any integrated solution to keep alert status and assignments in sync across solutions. This method updates any solution that has a record of the referenced alert ID.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -124,7 +124,7 @@ class AlertItemRequestBuilder():
     @dataclass
     class AlertItemRequestBuilderGetQueryParameters():
         """
-        Notifications for suspicious or potential security issues in a customer’s tenant.
+        Retrieve the properties and relationships of an alert object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

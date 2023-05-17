@@ -76,7 +76,7 @@ class LearningCourseActivitiesRequestBuilder():
     
     async def post(self,body: Optional[learning_course_activity.LearningCourseActivity] = None, request_configuration: Optional[LearningCourseActivitiesRequestBuilderPostRequestConfiguration] = None) -> Optional[learning_course_activity.LearningCourseActivity]:
         """
-        Create new navigation property to learningCourseActivities for employeeExperience
+        Create a new learningCourseActivity object. A learning course activity can be one of two types: - Assignment- Self-initiated Use this method to create either type of activity.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class LearningCourseActivitiesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[learning_course_activity.LearningCourseActivity] = None, request_configuration: Optional[LearningCourseActivitiesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to learningCourseActivities for employeeExperience
+        Create a new learningCourseActivity object. A learning course activity can be one of two types: - Assignment- Self-initiated Use this method to create either type of activity.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

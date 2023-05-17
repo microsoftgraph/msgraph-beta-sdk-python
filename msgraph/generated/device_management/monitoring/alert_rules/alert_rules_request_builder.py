@@ -54,7 +54,7 @@ class AlertRulesRequestBuilder():
     
     async def get(self,request_configuration: Optional[AlertRulesRequestBuilderGetRequestConfiguration] = None) -> Optional[alert_rule_collection_response.AlertRuleCollectionResponse]:
         """
-        The collection of alert rules.
+        Get a list of the alertRule objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[alert_rule_collection_response.AlertRuleCollectionResponse]
@@ -76,7 +76,7 @@ class AlertRulesRequestBuilder():
     
     async def post(self,body: Optional[alert_rule.AlertRule] = None, request_configuration: Optional[AlertRulesRequestBuilderPostRequestConfiguration] = None) -> Optional[alert_rule.AlertRule]:
         """
-        Create new navigation property to alertRules for deviceManagement
+        Create an alertRule object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class AlertRulesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AlertRulesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection of alert rules.
+        Get a list of the alertRule objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class AlertRulesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[alert_rule.AlertRule] = None, request_configuration: Optional[AlertRulesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to alertRules for deviceManagement
+        Create an alertRule object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class AlertRulesRequestBuilder():
     @dataclass
     class AlertRulesRequestBuilderGetQueryParameters():
         """
-        The collection of alert rules.
+        Get a list of the alertRule objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

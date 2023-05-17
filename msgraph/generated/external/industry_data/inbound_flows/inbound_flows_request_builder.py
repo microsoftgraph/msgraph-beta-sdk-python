@@ -54,7 +54,7 @@ class InboundFlowsRequestBuilder():
     
     async def get(self,request_configuration: Optional[InboundFlowsRequestBuilderGetRequestConfiguration] = None) -> Optional[inbound_flow_collection_response.InboundFlowCollectionResponse]:
         """
-        Set of data import flow activities to bring data into the canonical store via a connector.
+        Get a list of the inboundFileFlow objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[inbound_flow_collection_response.InboundFlowCollectionResponse]
@@ -76,7 +76,7 @@ class InboundFlowsRequestBuilder():
     
     async def post(self,body: Optional[inbound_flow.InboundFlow] = None, request_configuration: Optional[InboundFlowsRequestBuilderPostRequestConfiguration] = None) -> Optional[inbound_flow.InboundFlow]:
         """
-        Create new navigation property to inboundFlows for external
+        Create a new inboundFlow object. The following prerequisite resources are required when you create an **inboundFlow**:
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class InboundFlowsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[InboundFlowsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Set of data import flow activities to bring data into the canonical store via a connector.
+        Get a list of the inboundFileFlow objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class InboundFlowsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[inbound_flow.InboundFlow] = None, request_configuration: Optional[InboundFlowsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to inboundFlows for external
+        Create a new inboundFlow object. The following prerequisite resources are required when you create an **inboundFlow**:
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class InboundFlowsRequestBuilder():
     @dataclass
     class InboundFlowsRequestBuilderGetQueryParameters():
         """
-        Set of data import flow activities to bring data into the canonical store via a connector.
+        Get a list of the inboundFileFlow objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -36,7 +36,7 @@ class CancelSecurityActionRequestBuilder():
     
     async def post(self,request_configuration: Optional[CancelSecurityActionRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Invoke action cancelSecurityAction
+        Cancel a security operation.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class CancelSecurityActionRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[CancelSecurityActionRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action cancelSecurityAction
+        Cancel a security operation.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

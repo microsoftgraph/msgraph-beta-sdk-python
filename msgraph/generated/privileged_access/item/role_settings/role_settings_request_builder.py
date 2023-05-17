@@ -54,7 +54,7 @@ class RoleSettingsRequestBuilder():
     
     async def get(self,request_configuration: Optional[RoleSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[governance_role_setting_collection_response.GovernanceRoleSettingCollectionResponse]:
         """
-        A collection of role settings for the provider.
+        Retrieve the properties and relationships of a governanceRoleSetting.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[governance_role_setting_collection_response.GovernanceRoleSettingCollectionResponse]
@@ -101,7 +101,7 @@ class RoleSettingsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RoleSettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        A collection of role settings for the provider.
+        Retrieve the properties and relationships of a governanceRoleSetting.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class RoleSettingsRequestBuilder():
     @dataclass
     class RoleSettingsRequestBuilderGetQueryParameters():
         """
-        A collection of role settings for the provider.
+        Retrieve the properties and relationships of a governanceRoleSetting.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

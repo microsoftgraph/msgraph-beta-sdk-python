@@ -55,7 +55,7 @@ class ResourcesRequestBuilder():
     
     async def get(self,request_configuration: Optional[ResourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[governance_resource_collection_response.GovernanceResourceCollectionResponse]:
         """
-        A collection of resources for the provider.
+        Retrieve a collection of governanceResource that the requestor has access to.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[governance_resource_collection_response.GovernanceResourceCollectionResponse]
@@ -102,7 +102,7 @@ class ResourcesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ResourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        A collection of resources for the provider.
+        Retrieve a collection of governanceResource that the requestor has access to.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -160,7 +160,7 @@ class ResourcesRequestBuilder():
     @dataclass
     class ResourcesRequestBuilderGetQueryParameters():
         """
-        A collection of resources for the provider.
+        Retrieve a collection of governanceResource that the requestor has access to.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

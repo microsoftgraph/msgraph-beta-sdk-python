@@ -63,7 +63,7 @@ class TeamworkDeviceItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[TeamworkDeviceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[teamwork_device.TeamworkDevice]:
         """
-        The Teams devices provisioned for the tenant.
+        Get the properties of a Microsoft Teams-enabled device. For example, you can use this method to get the device type, hardware detail, activity state, and health status information for a device that's enabled for Teams.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[teamwork_device.TeamworkDevice]
@@ -126,7 +126,7 @@ class TeamworkDeviceItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TeamworkDeviceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The Teams devices provisioned for the tenant.
+        Get the properties of a Microsoft Teams-enabled device. For example, you can use this method to get the device type, hardware detail, activity state, and health status information for a device that's enabled for Teams.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -241,7 +241,7 @@ class TeamworkDeviceItemRequestBuilder():
     @dataclass
     class TeamworkDeviceItemRequestBuilderGetQueryParameters():
         """
-        The Teams devices provisioned for the tenant.
+        Get the properties of a Microsoft Teams-enabled device. For example, you can use this method to get the device type, hardware detail, activity state, and health status information for a device that's enabled for Teams.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

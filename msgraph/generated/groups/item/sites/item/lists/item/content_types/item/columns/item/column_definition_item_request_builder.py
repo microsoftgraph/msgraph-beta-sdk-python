@@ -38,7 +38,7 @@ class ColumnDefinitionItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[ColumnDefinitionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property columns for groups
+        Remove a [column][columndefinition] from a [site][], [list][] or [content type][contentType].
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -57,7 +57,7 @@ class ColumnDefinitionItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[ColumnDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[column_definition.ColumnDefinition]:
         """
-        The collection of column definitions for this contentType.
+        Retrieve the metadata for a [site][], [list][] or [contentType][] [column][columnDefinition].
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[column_definition.ColumnDefinition]
@@ -79,7 +79,7 @@ class ColumnDefinitionItemRequestBuilder():
     
     async def patch(self,body: Optional[column_definition.ColumnDefinition] = None, request_configuration: Optional[ColumnDefinitionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[column_definition.ColumnDefinition]:
         """
-        Update the navigation property columns in groups
+        Update a [site][], [list][] or [content type][contentType] [column][columnDefinition].
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -104,7 +104,7 @@ class ColumnDefinitionItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[ColumnDefinitionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property columns for groups
+        Remove a [column][columndefinition] from a [site][], [list][] or [content type][contentType].
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -120,7 +120,7 @@ class ColumnDefinitionItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ColumnDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection of column definitions for this contentType.
+        Retrieve the metadata for a [site][], [list][] or [contentType][] [column][columnDefinition].
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,7 +138,7 @@ class ColumnDefinitionItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[column_definition.ColumnDefinition] = None, request_configuration: Optional[ColumnDefinitionItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property columns in groups
+        Update a [site][], [list][] or [content type][contentType] [column][columnDefinition].
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -181,7 +181,7 @@ class ColumnDefinitionItemRequestBuilder():
     @dataclass
     class ColumnDefinitionItemRequestBuilderGetQueryParameters():
         """
-        The collection of column definitions for this contentType.
+        Retrieve the metadata for a [site][], [list][] or [contentType][] [column][columnDefinition].
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -38,7 +38,7 @@ class ExternalGroupItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[ExternalGroupItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property groups for external
+        Delete an externalGroup object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -104,7 +104,7 @@ class ExternalGroupItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[ExternalGroupItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property groups for external
+        Delete an externalGroup object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

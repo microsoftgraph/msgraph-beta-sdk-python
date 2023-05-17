@@ -39,7 +39,7 @@ class LearningProviderItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[LearningProviderItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property learningProviders for employeeExperience
+        Delete a learningProvider resource and remove its registration in Viva Learning for the tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -58,7 +58,7 @@ class LearningProviderItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[LearningProviderItemRequestBuilderGetRequestConfiguration] = None) -> Optional[learning_provider.LearningProvider]:
         """
-        A collection of learning providers.
+        Read the properties and relationships of a learningProvider object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[learning_provider.LearningProvider]
@@ -80,7 +80,7 @@ class LearningProviderItemRequestBuilder():
     
     async def patch(self,body: Optional[learning_provider.LearningProvider] = None, request_configuration: Optional[LearningProviderItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[learning_provider.LearningProvider]:
         """
-        Update the navigation property learningProviders in employeeExperience
+        Update the properties of a learningProvider object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -105,7 +105,7 @@ class LearningProviderItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[LearningProviderItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property learningProviders for employeeExperience
+        Delete a learningProvider resource and remove its registration in Viva Learning for the tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -121,7 +121,7 @@ class LearningProviderItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[LearningProviderItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        A collection of learning providers.
+        Read the properties and relationships of a learningProvider object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -139,7 +139,7 @@ class LearningProviderItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[learning_provider.LearningProvider] = None, request_configuration: Optional[LearningProviderItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property learningProviders in employeeExperience
+        Update the properties of a learningProvider object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -191,7 +191,7 @@ class LearningProviderItemRequestBuilder():
     @dataclass
     class LearningProviderItemRequestBuilderGetQueryParameters():
         """
-        A collection of learning providers.
+        Read the properties and relationships of a learningProvider object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

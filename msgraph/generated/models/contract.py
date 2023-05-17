@@ -15,19 +15,19 @@ class Contract(directory_object.DirectoryObject):
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.contract"
-        # The contractType property
+        # Type of contract. Possible values are:  SyndicationPartner, BreadthPartner, ResellerPartner. See more in the table below.
         self._contract_type: Optional[str] = None
-        # The customerId property
+        # The unique identifier for the customer tenant referenced by this partnership. Corresponds to the id property of the customer tenant's organization resource.
         self._customer_id: Optional[UUID] = None
-        # The defaultDomainName property
+        # A copy of the customer tenant's default domain name. The copy is made when the partnership with the customer is established. It is not automatically updated if the customer tenant's default domain name changes.
         self._default_domain_name: Optional[str] = None
-        # The displayName property
+        # A copy of the customer tenant's display name. The copy is made when the partnership with the customer is established. It is not automatically updated if the customer tenant's display name changes.
         self._display_name: Optional[str] = None
     
     @property
     def contract_type(self,) -> Optional[str]:
         """
-        Gets the contractType property value. The contractType property
+        Gets the contractType property value. Type of contract. Possible values are:  SyndicationPartner, BreadthPartner, ResellerPartner. See more in the table below.
         Returns: Optional[str]
         """
         return self._contract_type
@@ -35,7 +35,7 @@ class Contract(directory_object.DirectoryObject):
     @contract_type.setter
     def contract_type(self,value: Optional[str] = None) -> None:
         """
-        Sets the contractType property value. The contractType property
+        Sets the contractType property value. Type of contract. Possible values are:  SyndicationPartner, BreadthPartner, ResellerPartner. See more in the table below.
         Args:
             value: Value to set for the contract_type property.
         """
@@ -56,7 +56,7 @@ class Contract(directory_object.DirectoryObject):
     @property
     def customer_id(self,) -> Optional[UUID]:
         """
-        Gets the customerId property value. The customerId property
+        Gets the customerId property value. The unique identifier for the customer tenant referenced by this partnership. Corresponds to the id property of the customer tenant's organization resource.
         Returns: Optional[UUID]
         """
         return self._customer_id
@@ -64,7 +64,7 @@ class Contract(directory_object.DirectoryObject):
     @customer_id.setter
     def customer_id(self,value: Optional[UUID] = None) -> None:
         """
-        Sets the customerId property value. The customerId property
+        Sets the customerId property value. The unique identifier for the customer tenant referenced by this partnership. Corresponds to the id property of the customer tenant's organization resource.
         Args:
             value: Value to set for the customer_id property.
         """
@@ -73,7 +73,7 @@ class Contract(directory_object.DirectoryObject):
     @property
     def default_domain_name(self,) -> Optional[str]:
         """
-        Gets the defaultDomainName property value. The defaultDomainName property
+        Gets the defaultDomainName property value. A copy of the customer tenant's default domain name. The copy is made when the partnership with the customer is established. It is not automatically updated if the customer tenant's default domain name changes.
         Returns: Optional[str]
         """
         return self._default_domain_name
@@ -81,7 +81,7 @@ class Contract(directory_object.DirectoryObject):
     @default_domain_name.setter
     def default_domain_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the defaultDomainName property value. The defaultDomainName property
+        Sets the defaultDomainName property value. A copy of the customer tenant's default domain name. The copy is made when the partnership with the customer is established. It is not automatically updated if the customer tenant's default domain name changes.
         Args:
             value: Value to set for the default_domain_name property.
         """
@@ -90,7 +90,7 @@ class Contract(directory_object.DirectoryObject):
     @property
     def display_name(self,) -> Optional[str]:
         """
-        Gets the displayName property value. The displayName property
+        Gets the displayName property value. A copy of the customer tenant's display name. The copy is made when the partnership with the customer is established. It is not automatically updated if the customer tenant's display name changes.
         Returns: Optional[str]
         """
         return self._display_name
@@ -98,7 +98,7 @@ class Contract(directory_object.DirectoryObject):
     @display_name.setter
     def display_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the displayName property value. The displayName property
+        Sets the displayName property value. A copy of the customer tenant's display name. The copy is made when the partnership with the customer is established. It is not automatically updated if the customer tenant's display name changes.
         Args:
             value: Value to set for the display_name property.
         """

@@ -9,9 +9,12 @@ if TYPE_CHECKING:
 from . import entity
 
 class UserExperienceAnalyticsDeviceTimelineEvent(entity.Entity):
+    """
+    The user experience analytics device event entity contains NRT device event details.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new UserExperienceAnalyticsDeviceTimelineEvent and sets the default values.
+        Instantiates a new userExperienceAnalyticsDeviceTimelineEvent and sets the default values.
         """
         super().__init__()
         # The id of the device where the event occurred.

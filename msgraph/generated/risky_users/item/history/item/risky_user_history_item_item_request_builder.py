@@ -56,7 +56,7 @@ class RiskyUserHistoryItemItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[RiskyUserHistoryItemItemRequestBuilderGetRequestConfiguration] = None) -> Optional[risky_user_history_item.RiskyUserHistoryItem]:
         """
-        Get history from riskyUsers
+        Get a riskyUserHistoryItem object of a riskyUser.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[risky_user_history_item.RiskyUserHistoryItem]
@@ -119,7 +119,7 @@ class RiskyUserHistoryItemItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RiskyUserHistoryItemItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get history from riskyUsers
+        Get a riskyUserHistoryItem object of a riskyUser.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class RiskyUserHistoryItemItemRequestBuilder():
     @dataclass
     class RiskyUserHistoryItemItemRequestBuilderGetQueryParameters():
         """
-        Get history from riskyUsers
+        Get a riskyUserHistoryItem object of a riskyUser.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

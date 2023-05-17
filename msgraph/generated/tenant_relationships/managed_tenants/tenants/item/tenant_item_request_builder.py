@@ -12,8 +12,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .....models.managed_tenants import tenant
     from .....models.o_data_errors import o_data_error
-    from .managed_tenants_offboard_tenant import managed_tenants_offboard_tenant_request_builder
-    from .managed_tenants_reset_tenant_onboarding_status import managed_tenants_reset_tenant_onboarding_status_request_builder
+    from .microsoft_graph_managed_tenants_offboard_tenant import microsoft_graph_managed_tenants_offboard_tenant_request_builder
+    from .microsoft_graph_managed_tenants_reset_tenant_onboarding_status import microsoft_graph_managed_tenants_reset_tenant_onboarding_status_request_builder
 
 class TenantItemRequestBuilder():
     """
@@ -58,7 +58,7 @@ class TenantItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[TenantItemRequestBuilderGetRequestConfiguration] = None) -> Optional[tenant.Tenant]:
         """
-        The collection of tenants associated with the managing entity.
+        Read the properties and relationships of a tenant object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[tenant.Tenant]
@@ -121,7 +121,7 @@ class TenantItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TenantItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection of tenants associated with the managing entity.
+        Read the properties and relationships of a tenant object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -159,22 +159,22 @@ class TenantItemRequestBuilder():
         return request_info
     
     @property
-    def managed_tenants_offboard_tenant(self) -> managed_tenants_offboard_tenant_request_builder.ManagedTenantsOffboardTenantRequestBuilder:
+    def microsoft_graph_managed_tenants_offboard_tenant(self) -> microsoft_graph_managed_tenants_offboard_tenant_request_builder.MicrosoftGraphManagedTenantsOffboardTenantRequestBuilder:
         """
         Provides operations to call the offboardTenant method.
         """
-        from .managed_tenants_offboard_tenant import managed_tenants_offboard_tenant_request_builder
+        from .microsoft_graph_managed_tenants_offboard_tenant import microsoft_graph_managed_tenants_offboard_tenant_request_builder
 
-        return managed_tenants_offboard_tenant_request_builder.ManagedTenantsOffboardTenantRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_managed_tenants_offboard_tenant_request_builder.MicrosoftGraphManagedTenantsOffboardTenantRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def managed_tenants_reset_tenant_onboarding_status(self) -> managed_tenants_reset_tenant_onboarding_status_request_builder.ManagedTenantsResetTenantOnboardingStatusRequestBuilder:
+    def microsoft_graph_managed_tenants_reset_tenant_onboarding_status(self) -> microsoft_graph_managed_tenants_reset_tenant_onboarding_status_request_builder.MicrosoftGraphManagedTenantsResetTenantOnboardingStatusRequestBuilder:
         """
         Provides operations to call the resetTenantOnboardingStatus method.
         """
-        from .managed_tenants_reset_tenant_onboarding_status import managed_tenants_reset_tenant_onboarding_status_request_builder
+        from .microsoft_graph_managed_tenants_reset_tenant_onboarding_status import microsoft_graph_managed_tenants_reset_tenant_onboarding_status_request_builder
 
-        return managed_tenants_reset_tenant_onboarding_status_request_builder.ManagedTenantsResetTenantOnboardingStatusRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_managed_tenants_reset_tenant_onboarding_status_request_builder.MicrosoftGraphManagedTenantsResetTenantOnboardingStatusRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class TenantItemRequestBuilderDeleteRequestConfiguration():
@@ -191,7 +191,7 @@ class TenantItemRequestBuilder():
     @dataclass
     class TenantItemRequestBuilderGetQueryParameters():
         """
-        The collection of tenants associated with the managing entity.
+        Read the properties and relationships of a tenant object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

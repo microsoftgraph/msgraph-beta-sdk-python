@@ -54,7 +54,7 @@ class NamesRequestBuilder():
     
     async def get(self,request_configuration: Optional[NamesRequestBuilderGetRequestConfiguration] = None) -> Optional[person_name_collection_response.PersonNameCollectionResponse]:
         """
-        Represents the names a user has added to their profile.
+        Retrieve a list of personName objects from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[person_name_collection_response.PersonNameCollectionResponse]
@@ -76,7 +76,7 @@ class NamesRequestBuilder():
     
     async def post(self,body: Optional[person_name.PersonName] = None, request_configuration: Optional[NamesRequestBuilderPostRequestConfiguration] = None) -> Optional[person_name.PersonName]:
         """
-        Create new navigation property to names for users
+        Use this API to create a new personName object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class NamesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[NamesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents the names a user has added to their profile.
+        Retrieve a list of personName objects from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class NamesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[person_name.PersonName] = None, request_configuration: Optional[NamesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to names for users
+        Use this API to create a new personName object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class NamesRequestBuilder():
     @dataclass
     class NamesRequestBuilderGetQueryParameters():
         """
-        Represents the names a user has added to their profile.
+        Retrieve a list of personName objects from a user's profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -38,7 +38,7 @@ class BusinessScenarioItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[BusinessScenarioItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property businessScenarios for solutions
+        Delete a businessScenario object. The deletion of a scenario causes all data associated with the scenario to be deleted.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -57,7 +57,7 @@ class BusinessScenarioItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[BusinessScenarioItemRequestBuilderGetRequestConfiguration] = None) -> Optional[business_scenario.BusinessScenario]:
         """
-        Get businessScenarios from solutions
+        Read the properties and relationships of a businessScenario object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[business_scenario.BusinessScenario]
@@ -79,7 +79,7 @@ class BusinessScenarioItemRequestBuilder():
     
     async def patch(self,body: Optional[business_scenario.BusinessScenario] = None, request_configuration: Optional[BusinessScenarioItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[business_scenario.BusinessScenario]:
         """
-        Update the navigation property businessScenarios in solutions
+        Update the properties of a businessScenario object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -104,7 +104,7 @@ class BusinessScenarioItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[BusinessScenarioItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property businessScenarios for solutions
+        Delete a businessScenario object. The deletion of a scenario causes all data associated with the scenario to be deleted.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -120,7 +120,7 @@ class BusinessScenarioItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[BusinessScenarioItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get businessScenarios from solutions
+        Read the properties and relationships of a businessScenario object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,7 +138,7 @@ class BusinessScenarioItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[business_scenario.BusinessScenario] = None, request_configuration: Optional[BusinessScenarioItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property businessScenarios in solutions
+        Update the properties of a businessScenario object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -181,7 +181,7 @@ class BusinessScenarioItemRequestBuilder():
     @dataclass
     class BusinessScenarioItemRequestBuilderGetQueryParameters():
         """
-        Get businessScenarios from solutions
+        Read the properties and relationships of a businessScenario object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

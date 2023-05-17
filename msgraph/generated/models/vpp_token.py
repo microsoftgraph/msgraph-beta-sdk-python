@@ -9,9 +9,12 @@ if TYPE_CHECKING:
 from . import entity
 
 class VppToken(entity.Entity):
+    """
+    You purchase multiple licenses for iOS apps through the Apple Volume Purchase Program for Business or Education. This involves setting up an Apple VPP account from the Apple website and uploading the Apple VPP Business or Education token to Intune. You can then synchronize your volume purchase information with Intune and track your volume-purchased app use. You can upload multiple Apple VPP Business or Education tokens.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new VppToken and sets the default values.
+        Instantiates a new vppToken and sets the default values.
         """
         super().__init__()
         # The apple Id associated with the given Apple Volume Purchase Program Token.

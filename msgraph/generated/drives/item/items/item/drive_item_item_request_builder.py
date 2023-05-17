@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     from .children import children_request_builder
     from .content import content_request_builder
     from .copy import copy_request_builder
+    from .created_by_user import created_by_user_request_builder
     from .create_link import create_link_request_builder
     from .create_upload_session import create_upload_session_request_builder
     from .delta import delta_request_builder
@@ -28,6 +29,7 @@ if TYPE_CHECKING:
     from .follow import follow_request_builder
     from .get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval import get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder
     from .invite import invite_request_builder
+    from .last_modified_by_user import last_modified_by_user_request_builder
     from .list_item import list_item_request_builder
     from .permissions import permissions_request_builder
     from .preview import preview_request_builder
@@ -65,7 +67,7 @@ class DriveItemItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[DriveItemItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property items for drives
+        Delete a DriveItem by using its ID or path.Note that deleting items using this method will move the items to the recycle bin instead of permanently deleting the item.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -138,7 +140,7 @@ class DriveItemItemRequestBuilder():
     
     async def patch(self,body: Optional[drive_item.DriveItem] = None, request_configuration: Optional[DriveItemItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[drive_item.DriveItem]:
         """
-        Update the navigation property items in drives
+        Update the metadata for a DriveItem by ID or path. You can also use update to move an item to another parent by updating the item's **parentReference** property.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -176,7 +178,7 @@ class DriveItemItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[DriveItemItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property items for drives
+        Delete a DriveItem by using its ID or path.Note that deleting items using this method will move the items to the recycle bin instead of permanently deleting the item.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -210,7 +212,7 @@ class DriveItemItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[drive_item.DriveItem] = None, request_configuration: Optional[DriveItemItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property items in drives
+        Update the metadata for a DriveItem by ID or path. You can also use update to move an item to another parent by updating the item's **parentReference** property.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -302,6 +304,15 @@ class DriveItemItemRequestBuilder():
         return copy_request_builder.CopyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def created_by_user(self) -> created_by_user_request_builder.CreatedByUserRequestBuilder:
+        """
+        Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.
+        """
+        from .created_by_user import created_by_user_request_builder
+
+        return created_by_user_request_builder.CreatedByUserRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def create_link(self) -> create_link_request_builder.CreateLinkRequestBuilder:
         """
         Provides operations to call the createLink method.
@@ -354,6 +365,15 @@ class DriveItemItemRequestBuilder():
         from .invite import invite_request_builder
 
         return invite_request_builder.InviteRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def last_modified_by_user(self) -> last_modified_by_user_request_builder.LastModifiedByUserRequestBuilder:
+        """
+        Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.
+        """
+        from .last_modified_by_user import last_modified_by_user_request_builder
+
+        return last_modified_by_user_request_builder.LastModifiedByUserRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def list_item(self) -> list_item_request_builder.ListItemRequestBuilder:

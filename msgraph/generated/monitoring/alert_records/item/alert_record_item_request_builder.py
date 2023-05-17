@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ....models.device_management import alert_record
     from ....models.o_data_errors import o_data_error
-    from .device_management_set_portal_notification_as_sent import device_management_set_portal_notification_as_sent_request_builder
+    from .microsoft_graph_device_management_set_portal_notification_as_sent import microsoft_graph_device_management_set_portal_notification_as_sent_request_builder
 
 class AlertRecordItemRequestBuilder():
     """
@@ -57,7 +57,7 @@ class AlertRecordItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[AlertRecordItemRequestBuilderGetRequestConfiguration] = None) -> Optional[alert_record.AlertRecord]:
         """
-        The collection of records of alert events.
+        Read the properties and relationships of an alertRecord object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[alert_record.AlertRecord]
@@ -120,7 +120,7 @@ class AlertRecordItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AlertRecordItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection of records of alert events.
+        Read the properties and relationships of an alertRecord object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -158,13 +158,13 @@ class AlertRecordItemRequestBuilder():
         return request_info
     
     @property
-    def device_management_set_portal_notification_as_sent(self) -> device_management_set_portal_notification_as_sent_request_builder.DeviceManagementSetPortalNotificationAsSentRequestBuilder:
+    def microsoft_graph_device_management_set_portal_notification_as_sent(self) -> microsoft_graph_device_management_set_portal_notification_as_sent_request_builder.MicrosoftGraphDeviceManagementSetPortalNotificationAsSentRequestBuilder:
         """
         Provides operations to call the setPortalNotificationAsSent method.
         """
-        from .device_management_set_portal_notification_as_sent import device_management_set_portal_notification_as_sent_request_builder
+        from .microsoft_graph_device_management_set_portal_notification_as_sent import microsoft_graph_device_management_set_portal_notification_as_sent_request_builder
 
-        return device_management_set_portal_notification_as_sent_request_builder.DeviceManagementSetPortalNotificationAsSentRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_device_management_set_portal_notification_as_sent_request_builder.MicrosoftGraphDeviceManagementSetPortalNotificationAsSentRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AlertRecordItemRequestBuilderDeleteRequestConfiguration():
@@ -181,7 +181,7 @@ class AlertRecordItemRequestBuilder():
     @dataclass
     class AlertRecordItemRequestBuilderGetQueryParameters():
         """
-        The collection of records of alert events.
+        Read the properties and relationships of an alertRecord object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

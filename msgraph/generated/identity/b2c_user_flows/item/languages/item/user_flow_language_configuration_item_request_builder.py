@@ -39,7 +39,7 @@ class UserFlowLanguageConfigurationItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[UserFlowLanguageConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property languages for identity
+        Deletes a userFlowLanguageConfiguration object from a Azure AD B2C user flow. **Note:** You cannot delete languages from an Azure Active Directory user flow.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -58,7 +58,7 @@ class UserFlowLanguageConfigurationItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[UserFlowLanguageConfigurationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[user_flow_language_configuration.UserFlowLanguageConfiguration]:
         """
-        The languages supported for customization within the user flow. Language customization is not enabled by default in B2C user flows.
+        Read the properties and relationships of a userFlowLanguageConfiguration object. These objects represent a language available in a user flow. **Note:** To retrieve a language supported for customization, you must first enable language customization on your Azure AD B2C user flow. For more information, see Update b2cIdentityUserFlow. Language customization is enabled by default in Azure Active Directory user flows.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[user_flow_language_configuration.UserFlowLanguageConfiguration]
@@ -80,7 +80,7 @@ class UserFlowLanguageConfigurationItemRequestBuilder():
     
     async def patch(self,body: Optional[user_flow_language_configuration.UserFlowLanguageConfiguration] = None, request_configuration: Optional[UserFlowLanguageConfigurationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[user_flow_language_configuration.UserFlowLanguageConfiguration]:
         """
-        Update the navigation property languages in identity
+        This method is used to create or update a custom language in an Azure AD B2C user flow. **Note:** You must enable language customization in the Azure AD B2C user flow before you can create a custom language. For more information, see Update b2cIdentityUserFlow.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -105,7 +105,7 @@ class UserFlowLanguageConfigurationItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[UserFlowLanguageConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property languages for identity
+        Deletes a userFlowLanguageConfiguration object from a Azure AD B2C user flow. **Note:** You cannot delete languages from an Azure Active Directory user flow.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -121,7 +121,7 @@ class UserFlowLanguageConfigurationItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UserFlowLanguageConfigurationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The languages supported for customization within the user flow. Language customization is not enabled by default in B2C user flows.
+        Read the properties and relationships of a userFlowLanguageConfiguration object. These objects represent a language available in a user flow. **Note:** To retrieve a language supported for customization, you must first enable language customization on your Azure AD B2C user flow. For more information, see Update b2cIdentityUserFlow. Language customization is enabled by default in Azure Active Directory user flows.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -139,7 +139,7 @@ class UserFlowLanguageConfigurationItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[user_flow_language_configuration.UserFlowLanguageConfiguration] = None, request_configuration: Optional[UserFlowLanguageConfigurationItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property languages in identity
+        This method is used to create or update a custom language in an Azure AD B2C user flow. **Note:** You must enable language customization in the Azure AD B2C user flow before you can create a custom language. For more information, see Update b2cIdentityUserFlow.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -191,7 +191,7 @@ class UserFlowLanguageConfigurationItemRequestBuilder():
     @dataclass
     class UserFlowLanguageConfigurationItemRequestBuilderGetQueryParameters():
         """
-        The languages supported for customization within the user flow. Language customization is not enabled by default in B2C user flows.
+        Read the properties and relationships of a userFlowLanguageConfiguration object. These objects represent a language available in a user flow. **Note:** To retrieve a language supported for customization, you must first enable language customization on your Azure AD B2C user flow. For more information, see Update b2cIdentityUserFlow. Language customization is enabled by default in Azure Active Directory user flows.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -37,7 +37,7 @@ class AssignRequestBuilder():
     
     async def post(self,body: Optional[assign_post_request_body.AssignPostRequestBody] = None, request_configuration: Optional[AssignRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Invoke action assign
+        Assign a cloudPcUserSetting to user groups.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -59,7 +59,7 @@ class AssignRequestBuilder():
     
     def to_post_request_information(self,body: Optional[assign_post_request_body.AssignPostRequestBody] = None, request_configuration: Optional[AssignRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action assign
+        Assign a cloudPcUserSetting to user groups.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

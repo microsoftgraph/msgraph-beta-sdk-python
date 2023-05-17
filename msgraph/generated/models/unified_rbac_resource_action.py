@@ -3,7 +3,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import entity, unified_rbac_resource_scope
+    from . import authentication_context_class_reference, entity, unified_rbac_resource_scope
 
 from . import entity
 
@@ -15,6 +15,8 @@ class UnifiedRbacResourceAction(entity.Entity):
         super().__init__()
         # HTTP method for the action, such as DELETE, GET, PATCH, POST, PUT, or null. Supports $filter (eq) but not for null values.
         self._action_verb: Optional[str] = None
+        # The authenticationContext property
+        self._authentication_context: Optional[authentication_context_class_reference.AuthenticationContextClassReference] = None
         # The authenticationContextId property
         self._authentication_context_id: Optional[str] = None
         # Description for the action. Supports $filter (eq).
@@ -46,6 +48,23 @@ class UnifiedRbacResourceAction(entity.Entity):
             value: Value to set for the action_verb property.
         """
         self._action_verb = value
+    
+    @property
+    def authentication_context(self,) -> Optional[authentication_context_class_reference.AuthenticationContextClassReference]:
+        """
+        Gets the authenticationContext property value. The authenticationContext property
+        Returns: Optional[authentication_context_class_reference.AuthenticationContextClassReference]
+        """
+        return self._authentication_context
+    
+    @authentication_context.setter
+    def authentication_context(self,value: Optional[authentication_context_class_reference.AuthenticationContextClassReference] = None) -> None:
+        """
+        Sets the authenticationContext property value. The authenticationContext property
+        Args:
+            value: Value to set for the authentication_context property.
+        """
+        self._authentication_context = value
     
     @property
     def authentication_context_id(self,) -> Optional[str]:
@@ -98,10 +117,11 @@ class UnifiedRbacResourceAction(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, unified_rbac_resource_scope
+        from . import authentication_context_class_reference, entity, unified_rbac_resource_scope
 
         fields: Dict[str, Callable[[Any], None]] = {
             "actionVerb": lambda n : setattr(self, 'action_verb', n.get_str_value()),
+            "authenticationContext": lambda n : setattr(self, 'authentication_context', n.get_object_value(authentication_context_class_reference.AuthenticationContextClassReference)),
             "authenticationContextId": lambda n : setattr(self, 'authentication_context_id', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "isAuthenticationContextSettable": lambda n : setattr(self, 'is_authentication_context_settable', n.get_bool_value()),
@@ -191,6 +211,7 @@ class UnifiedRbacResourceAction(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_str_value("actionVerb", self.action_verb)
+        writer.write_object_value("authenticationContext", self.authentication_context)
         writer.write_str_value("authenticationContextId", self.authentication_context_id)
         writer.write_str_value("description", self.description)
         writer.write_bool_value("isAuthenticationContextSettable", self.is_authentication_context_settable)

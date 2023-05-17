@@ -54,7 +54,7 @@ class EmailMethodsRequestBuilder():
     
     async def get(self,request_configuration: Optional[EmailMethodsRequestBuilderGetRequestConfiguration] = None) -> Optional[email_authentication_method_collection_response.EmailAuthenticationMethodCollectionResponse]:
         """
-        Represents the email addresses registered to a user for authentication.
+        Retrieve a list of a user's email Authentication Method objects and their properties. This call will only return a single object as only one email method can be set on users.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[email_authentication_method_collection_response.EmailAuthenticationMethodCollectionResponse]
@@ -76,7 +76,7 @@ class EmailMethodsRequestBuilder():
     
     async def post(self,body: Optional[email_authentication_method.EmailAuthenticationMethod] = None, request_configuration: Optional[EmailMethodsRequestBuilderPostRequestConfiguration] = None) -> Optional[email_authentication_method.EmailAuthenticationMethod]:
         """
-        Create new navigation property to emailMethods for me
+        Set a user's emailAuthenticationMethod object. Email authentication is a self-service password reset method. A user may only have one email authentication method.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class EmailMethodsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[EmailMethodsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents the email addresses registered to a user for authentication.
+        Retrieve a list of a user's email Authentication Method objects and their properties. This call will only return a single object as only one email method can be set on users.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class EmailMethodsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[email_authentication_method.EmailAuthenticationMethod] = None, request_configuration: Optional[EmailMethodsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to emailMethods for me
+        Set a user's emailAuthenticationMethod object. Email authentication is a self-service password reset method. A user may only have one email authentication method.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class EmailMethodsRequestBuilder():
     @dataclass
     class EmailMethodsRequestBuilderGetQueryParameters():
         """
-        Represents the email addresses registered to a user for authentication.
+        Retrieve a list of a user's email Authentication Method objects and their properties. This call will only return a single object as only one email method can be set on users.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -37,7 +37,7 @@ class TargetScheduleRequestBuilder():
     
     async def get(self,request_configuration: Optional[TargetScheduleRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule]:
         """
-        Get targetSchedule from identityGovernance
+        Schedule created by this request. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule]
@@ -59,7 +59,7 @@ class TargetScheduleRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TargetScheduleRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get targetSchedule from identityGovernance
+        Schedule created by this request. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -78,7 +78,7 @@ class TargetScheduleRequestBuilder():
     @dataclass
     class TargetScheduleRequestBuilderGetQueryParameters():
         """
-        Get targetSchedule from identityGovernance
+        Schedule created by this request. Supports $expand.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

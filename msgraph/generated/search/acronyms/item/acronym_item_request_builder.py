@@ -37,7 +37,7 @@ class AcronymItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[AcronymItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property acronyms for search
+        Deletes an acronym object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class AcronymItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[AcronymItemRequestBuilderGetRequestConfiguration] = None) -> Optional[acronym.Acronym]:
         """
-        Administrative answer in Microsoft Search results to define common acronyms in a organization.
+        Read the properties and relationships of an acronym object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[acronym.Acronym]
@@ -78,7 +78,7 @@ class AcronymItemRequestBuilder():
     
     async def patch(self,body: Optional[acronym.Acronym] = None, request_configuration: Optional[AcronymItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[acronym.Acronym]:
         """
-        Update the navigation property acronyms in search
+        Update the properties of an acronym object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class AcronymItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[AcronymItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property acronyms for search
+        Deletes an acronym object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class AcronymItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AcronymItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Administrative answer in Microsoft Search results to define common acronyms in a organization.
+        Read the properties and relationships of an acronym object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class AcronymItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[acronym.Acronym] = None, request_configuration: Optional[AcronymItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property acronyms in search
+        Update the properties of an acronym object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class AcronymItemRequestBuilder():
     @dataclass
     class AcronymItemRequestBuilderGetQueryParameters():
         """
-        Administrative answer in Microsoft Search results to define common acronyms in a organization.
+        Read the properties and relationships of an acronym object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

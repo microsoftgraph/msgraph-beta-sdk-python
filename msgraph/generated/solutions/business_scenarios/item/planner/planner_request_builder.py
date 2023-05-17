@@ -60,7 +60,7 @@ class PlannerRequestBuilder():
     
     async def get(self,request_configuration: Optional[PlannerRequestBuilderGetRequestConfiguration] = None) -> Optional[business_scenario_planner.BusinessScenarioPlanner]:
         """
-        Planner content related to the scenario.
+        Read the properties and relationships of a businessScenarioPlanner object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[business_scenario_planner.BusinessScenarioPlanner]
@@ -123,7 +123,7 @@ class PlannerRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PlannerRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Planner content related to the scenario.
+        Read the properties and relationships of a businessScenarioPlanner object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -211,7 +211,7 @@ class PlannerRequestBuilder():
     @dataclass
     class PlannerRequestBuilderGetQueryParameters():
         """
-        Planner content related to the scenario.
+        Read the properties and relationships of a businessScenarioPlanner object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -13,7 +13,9 @@ if TYPE_CHECKING:
     from .....models import site_page
     from .....models.o_data_errors import o_data_error
     from .canvas_layout import canvas_layout_request_builder
+    from .created_by_user import created_by_user_request_builder
     from .get_web_parts_by_position import get_web_parts_by_position_request_builder
+    from .last_modified_by_user import last_modified_by_user_request_builder
     from .publish import publish_request_builder
     from .web_parts import web_parts_request_builder
 
@@ -60,7 +62,7 @@ class SitePageItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[SitePageItemRequestBuilderGetRequestConfiguration] = None) -> Optional[site_page.SitePage]:
         """
-        The collection of pages in the SitePages list in this site.
+        Returns the metadata for a [sitePage][] in the site pages [list][] in a [site][].
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[site_page.SitePage]
@@ -82,7 +84,7 @@ class SitePageItemRequestBuilder():
     
     async def patch(self,body: Optional[site_page.SitePage] = None, request_configuration: Optional[SitePageItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[site_page.SitePage]:
         """
-        Update the navigation property pages in sites
+        Update the properties of a sitePage object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -123,7 +125,7 @@ class SitePageItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SitePageItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection of pages in the SitePages list in this site.
+        Returns the metadata for a [sitePage][] in the site pages [list][] in a [site][].
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -141,7 +143,7 @@ class SitePageItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[site_page.SitePage] = None, request_configuration: Optional[SitePageItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property pages in sites
+        Update the properties of a sitePage object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -170,6 +172,15 @@ class SitePageItemRequestBuilder():
         return canvas_layout_request_builder.CanvasLayoutRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def created_by_user(self) -> created_by_user_request_builder.CreatedByUserRequestBuilder:
+        """
+        Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.
+        """
+        from .created_by_user import created_by_user_request_builder
+
+        return created_by_user_request_builder.CreatedByUserRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def get_web_parts_by_position(self) -> get_web_parts_by_position_request_builder.GetWebPartsByPositionRequestBuilder:
         """
         Provides operations to call the getWebPartsByPosition method.
@@ -177,6 +188,15 @@ class SitePageItemRequestBuilder():
         from .get_web_parts_by_position import get_web_parts_by_position_request_builder
 
         return get_web_parts_by_position_request_builder.GetWebPartsByPositionRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def last_modified_by_user(self) -> last_modified_by_user_request_builder.LastModifiedByUserRequestBuilder:
+        """
+        Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.
+        """
+        from .last_modified_by_user import last_modified_by_user_request_builder
+
+        return last_modified_by_user_request_builder.LastModifiedByUserRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def publish(self) -> publish_request_builder.PublishRequestBuilder:
@@ -211,7 +231,7 @@ class SitePageItemRequestBuilder():
     @dataclass
     class SitePageItemRequestBuilderGetQueryParameters():
         """
-        The collection of pages in the SitePages list in this site.
+        Returns the metadata for a [sitePage][] in the site pages [list][] in a [site][].
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

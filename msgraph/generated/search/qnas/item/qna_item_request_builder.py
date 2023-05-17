@@ -37,7 +37,7 @@ class QnaItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[QnaItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property qnas for search
+        Delete a qna object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class QnaItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[QnaItemRequestBuilderGetRequestConfiguration] = None) -> Optional[qna.Qna]:
         """
-        Administrative answer in Microsoft Search results which provide answers for specific search keywords in an organization.
+        Read the properties and relationships of a qna object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[qna.Qna]
@@ -103,7 +103,7 @@ class QnaItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[QnaItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property qnas for search
+        Delete a qna object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class QnaItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[QnaItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Administrative answer in Microsoft Search results which provide answers for specific search keywords in an organization.
+        Read the properties and relationships of a qna object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class QnaItemRequestBuilder():
     @dataclass
     class QnaItemRequestBuilderGetQueryParameters():
         """
-        Administrative answer in Microsoft Search results which provide answers for specific search keywords in an organization.
+        Read the properties and relationships of a qna object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

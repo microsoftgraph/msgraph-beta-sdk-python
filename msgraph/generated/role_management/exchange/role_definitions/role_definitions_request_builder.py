@@ -54,7 +54,7 @@ class RoleDefinitionsRequestBuilder():
     
     async def get(self,request_configuration: Optional[RoleDefinitionsRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_definition_collection_response.UnifiedRoleDefinitionCollectionResponse]:
         """
-        The roles allowed by RBAC providers and the permissions assigned to the roles.
+        Get a list of unifiedRoleDefinition objects for an RBAC provider. The following RBAC providers are currently supported:- Cloud PC - device management (Intune)- directory (Azure AD) - entitlement management (Azure AD)- Exchange Online
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[unified_role_definition_collection_response.UnifiedRoleDefinitionCollectionResponse]
@@ -101,7 +101,7 @@ class RoleDefinitionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RoleDefinitionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The roles allowed by RBAC providers and the permissions assigned to the roles.
+        Get a list of unifiedRoleDefinition objects for an RBAC provider. The following RBAC providers are currently supported:- Cloud PC - device management (Intune)- directory (Azure AD) - entitlement management (Azure AD)- Exchange Online
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class RoleDefinitionsRequestBuilder():
     @dataclass
     class RoleDefinitionsRequestBuilderGetQueryParameters():
         """
-        The roles allowed by RBAC providers and the permissions assigned to the roles.
+        Get a list of unifiedRoleDefinition objects for an RBAC provider. The following RBAC providers are currently supported:- Cloud PC - device management (Intune)- directory (Azure AD) - entitlement management (Azure AD)- Exchange Online
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -54,7 +54,7 @@ class ItemsRequestBuilder():
     
     async def get(self,request_configuration: Optional[ItemsRequestBuilderGetRequestConfiguration] = None) -> Optional[external_item_collection_response.ExternalItemCollectionResponse]:
         """
-        Get items from connections
+        Get the properties and relationships of an externalitem object. This API is provided for diagnostic purposes only. It is not intended to be used for any other purpose. Repeated requests to this API might result in `429` HTTP errors.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[external_item_collection_response.ExternalItemCollectionResponse]
@@ -101,7 +101,7 @@ class ItemsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ItemsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get items from connections
+        Get the properties and relationships of an externalitem object. This API is provided for diagnostic purposes only. It is not intended to be used for any other purpose. Repeated requests to this API might result in `429` HTTP errors.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class ItemsRequestBuilder():
     @dataclass
     class ItemsRequestBuilderGetQueryParameters():
         """
-        Get items from connections
+        Get the properties and relationships of an externalitem object. This API is provided for diagnostic purposes only. It is not intended to be used for any other purpose. Repeated requests to this API might result in `429` HTTP errors.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

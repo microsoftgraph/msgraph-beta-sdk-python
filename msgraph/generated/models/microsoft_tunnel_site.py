@@ -9,9 +9,12 @@ if TYPE_CHECKING:
 from . import entity
 
 class MicrosoftTunnelSite(entity.Entity):
+    """
+    Entity that represents a Microsoft Tunnel site
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new MicrosoftTunnelSite and sets the default values.
+        Instantiates a new microsoftTunnelSite and sets the default values.
         """
         super().__init__()
         # The site's description (optional)

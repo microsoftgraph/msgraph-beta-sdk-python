@@ -37,7 +37,7 @@ class PersonAnnotationItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[PersonAnnotationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property notes for me
+        Deletes a personAnnotation object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class PersonAnnotationItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[PersonAnnotationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[person_annotation.PersonAnnotation]:
         """
-        Represents notes that a user has added to their profile.
+        Read the properties and relationships of a personAnnotation object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[person_annotation.PersonAnnotation]
@@ -78,7 +78,7 @@ class PersonAnnotationItemRequestBuilder():
     
     async def patch(self,body: Optional[person_annotation.PersonAnnotation] = None, request_configuration: Optional[PersonAnnotationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[person_annotation.PersonAnnotation]:
         """
-        Update the navigation property notes in me
+        Update the properties of a personAnnotation object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class PersonAnnotationItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[PersonAnnotationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property notes for me
+        Deletes a personAnnotation object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class PersonAnnotationItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PersonAnnotationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents notes that a user has added to their profile.
+        Read the properties and relationships of a personAnnotation object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class PersonAnnotationItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[person_annotation.PersonAnnotation] = None, request_configuration: Optional[PersonAnnotationItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property notes in me
+        Update the properties of a personAnnotation object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class PersonAnnotationItemRequestBuilder():
     @dataclass
     class PersonAnnotationItemRequestBuilderGetQueryParameters():
         """
-        Represents notes that a user has added to their profile.
+        Read the properties and relationships of a personAnnotation object from a user's profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

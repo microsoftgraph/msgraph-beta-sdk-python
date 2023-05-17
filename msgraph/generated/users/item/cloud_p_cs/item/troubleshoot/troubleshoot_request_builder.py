@@ -36,7 +36,7 @@ class TroubleshootRequestBuilder():
     
     async def post(self,request_configuration: Optional[TroubleshootRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Invoke action troubleshoot
+        Troubleshoot a specific Cloud PC. Use this API to check the health status of the Cloud PC and the session host.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class TroubleshootRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[TroubleshootRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action troubleshoot
+        Troubleshoot a specific Cloud PC. Use this API to check the health status of the Cloud PC and the session host.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

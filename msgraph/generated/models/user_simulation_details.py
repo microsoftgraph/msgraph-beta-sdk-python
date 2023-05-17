@@ -24,6 +24,8 @@ class UserSimulationDetails(AdditionalDataHolder, Parsable):
         self._in_progress_trainings_count: Optional[int] = None
         # Indicates whether a user was compromised in an attack simulation and training campaign.
         self._is_compromised: Optional[bool] = None
+        # Indicates latest user activity.
+        self._latest_simulation_activity: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
         # Date and time when a user reported the delivered payload as phishing in the attack simulation and training campaign.
@@ -128,6 +130,7 @@ class UserSimulationDetails(AdditionalDataHolder, Parsable):
             "compromisedDateTime": lambda n : setattr(self, 'compromised_date_time', n.get_datetime_value()),
             "inProgressTrainingsCount": lambda n : setattr(self, 'in_progress_trainings_count', n.get_int_value()),
             "isCompromised": lambda n : setattr(self, 'is_compromised', n.get_bool_value()),
+            "latestSimulationActivity": lambda n : setattr(self, 'latest_simulation_activity', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "reportedPhishDateTime": lambda n : setattr(self, 'reported_phish_date_time', n.get_datetime_value()),
             "simulationEvents": lambda n : setattr(self, 'simulation_events', n.get_collection_of_object_values(user_simulation_event_info.UserSimulationEventInfo)),
@@ -169,6 +172,23 @@ class UserSimulationDetails(AdditionalDataHolder, Parsable):
             value: Value to set for the is_compromised property.
         """
         self._is_compromised = value
+    
+    @property
+    def latest_simulation_activity(self,) -> Optional[str]:
+        """
+        Gets the latestSimulationActivity property value. Indicates latest user activity.
+        Returns: Optional[str]
+        """
+        return self._latest_simulation_activity
+    
+    @latest_simulation_activity.setter
+    def latest_simulation_activity(self,value: Optional[str] = None) -> None:
+        """
+        Sets the latestSimulationActivity property value. Indicates latest user activity.
+        Args:
+            value: Value to set for the latest_simulation_activity property.
+        """
+        self._latest_simulation_activity = value
     
     @property
     def odata_type(self,) -> Optional[str]:
@@ -217,6 +237,7 @@ class UserSimulationDetails(AdditionalDataHolder, Parsable):
         writer.write_datetime_value("compromisedDateTime", self.compromised_date_time)
         writer.write_int_value("inProgressTrainingsCount", self.in_progress_trainings_count)
         writer.write_bool_value("isCompromised", self.is_compromised)
+        writer.write_str_value("latestSimulationActivity", self.latest_simulation_activity)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_datetime_value("reportedPhishDateTime", self.reported_phish_date_time)
         writer.write_collection_of_object_values("simulationEvents", self.simulation_events)

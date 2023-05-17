@@ -37,7 +37,7 @@ class LanguageProficiencyItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[LanguageProficiencyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property languages for users
+        Delete a languageProficiency object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class LanguageProficiencyItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[LanguageProficiencyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[language_proficiency.LanguageProficiency]:
         """
-        Represents detailed information about languages that a user has added to their profile.
+        Retrieve the properties and relationships of a languageProficiency object within a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[language_proficiency.LanguageProficiency]
@@ -78,7 +78,7 @@ class LanguageProficiencyItemRequestBuilder():
     
     async def patch(self,body: Optional[language_proficiency.LanguageProficiency] = None, request_configuration: Optional[LanguageProficiencyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[language_proficiency.LanguageProficiency]:
         """
-        Update the navigation property languages in users
+        Update the properties of a languageProficiency object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class LanguageProficiencyItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[LanguageProficiencyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property languages for users
+        Delete a languageProficiency object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class LanguageProficiencyItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[LanguageProficiencyItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents detailed information about languages that a user has added to their profile.
+        Retrieve the properties and relationships of a languageProficiency object within a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class LanguageProficiencyItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[language_proficiency.LanguageProficiency] = None, request_configuration: Optional[LanguageProficiencyItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property languages in users
+        Update the properties of a languageProficiency object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class LanguageProficiencyItemRequestBuilder():
     @dataclass
     class LanguageProficiencyItemRequestBuilderGetQueryParameters():
         """
-        Represents detailed information about languages that a user has added to their profile.
+        Retrieve the properties and relationships of a languageProficiency object within a user's profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

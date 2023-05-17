@@ -9,9 +9,12 @@ if TYPE_CHECKING:
 from . import entity
 
 class UserExperienceAnalyticsMetricHistory(entity.Entity):
+    """
+    The user experience analytics metric history.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new UserExperienceAnalyticsMetricHistory and sets the default values.
+        Instantiates a new userExperienceAnalyticsMetricHistory and sets the default values.
         """
         super().__init__()
         # The user experience analytics device id.

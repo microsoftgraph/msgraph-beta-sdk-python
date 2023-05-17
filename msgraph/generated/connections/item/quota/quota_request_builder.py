@@ -56,7 +56,7 @@ class QuotaRequestBuilder():
     
     async def get(self,request_configuration: Optional[QuotaRequestBuilderGetRequestConfiguration] = None) -> Optional[connection_quota.ConnectionQuota]:
         """
-        Get quota from connections
+        Retrieve the properties and relationships of a connectionQuota object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[connection_quota.ConnectionQuota]
@@ -119,7 +119,7 @@ class QuotaRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[QuotaRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get quota from connections
+        Retrieve the properties and relationships of a connectionQuota object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class QuotaRequestBuilder():
     @dataclass
     class QuotaRequestBuilderGetQueryParameters():
         """
-        Get quota from connections
+        Retrieve the properties and relationships of a connectionQuota object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

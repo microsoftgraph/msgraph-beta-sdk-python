@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ....models import home_realm_discovery_policy
     from ....models.o_data_errors import o_data_error
+    from .applies_to import applies_to_request_builder
 
 class HomeRealmDiscoveryPolicyItemRequestBuilder():
     """
@@ -37,7 +38,7 @@ class HomeRealmDiscoveryPolicyItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[HomeRealmDiscoveryPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property homeRealmDiscoveryPolicies for policies
+        Delete a homeRealmDiscoveryPolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +57,7 @@ class HomeRealmDiscoveryPolicyItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[HomeRealmDiscoveryPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[home_realm_discovery_policy.HomeRealmDiscoveryPolicy]:
         """
-        The policy to control Azure AD authentication behavior for federated users.
+        Retrieve the properties and relationships of a homeRealmDiscoveryPolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[home_realm_discovery_policy.HomeRealmDiscoveryPolicy]
@@ -78,7 +79,7 @@ class HomeRealmDiscoveryPolicyItemRequestBuilder():
     
     async def patch(self,body: Optional[home_realm_discovery_policy.HomeRealmDiscoveryPolicy] = None, request_configuration: Optional[HomeRealmDiscoveryPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[home_realm_discovery_policy.HomeRealmDiscoveryPolicy]:
         """
-        Update the navigation property homeRealmDiscoveryPolicies in policies
+        Update the properties of a homeRealmDiscoveryPolicy object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +104,7 @@ class HomeRealmDiscoveryPolicyItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[HomeRealmDiscoveryPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property homeRealmDiscoveryPolicies for policies
+        Delete a homeRealmDiscoveryPolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +120,7 @@ class HomeRealmDiscoveryPolicyItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[HomeRealmDiscoveryPolicyItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The policy to control Azure AD authentication behavior for federated users.
+        Retrieve the properties and relationships of a homeRealmDiscoveryPolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +138,7 @@ class HomeRealmDiscoveryPolicyItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[home_realm_discovery_policy.HomeRealmDiscoveryPolicy] = None, request_configuration: Optional[HomeRealmDiscoveryPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property homeRealmDiscoveryPolicies in policies
+        Update the properties of a homeRealmDiscoveryPolicy object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -156,6 +157,15 @@ class HomeRealmDiscoveryPolicyItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def applies_to(self) -> applies_to_request_builder.AppliesToRequestBuilder:
+        """
+        Provides operations to manage the appliesTo property of the microsoft.graph.stsPolicy entity.
+        """
+        from .applies_to import applies_to_request_builder
+
+        return applies_to_request_builder.AppliesToRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class HomeRealmDiscoveryPolicyItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -171,7 +181,7 @@ class HomeRealmDiscoveryPolicyItemRequestBuilder():
     @dataclass
     class HomeRealmDiscoveryPolicyItemRequestBuilderGetQueryParameters():
         """
-        The policy to control Azure AD authentication behavior for federated users.
+        Retrieve the properties and relationships of a homeRealmDiscoveryPolicy object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -8,9 +8,12 @@ if TYPE_CHECKING:
 from . import entity
 
 class UserExperienceAnalyticsBatteryHealthDeviceAppImpact(entity.Entity):
+    """
+    The user experience analytics battery health device app impact entity contains battery usage related information at an app level for a given device.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new UserExperienceAnalyticsBatteryHealthDeviceAppImpact and sets the default values.
+        Instantiates a new userExperienceAnalyticsBatteryHealthDeviceAppImpact and sets the default values.
         """
         super().__init__()
         # User friendly display name for the app. Eg: Outlook

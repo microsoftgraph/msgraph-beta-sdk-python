@@ -54,7 +54,7 @@ class EntriesRequestBuilder():
     
     async def get(self,request_configuration: Optional[EntriesRequestBuilderGetRequestConfiguration] = None) -> Optional[catalog_entry_collection_response.CatalogEntryCollectionResponse]:
         """
-        Lists the content that you can approve for deployment. Read-only.
+        Get a list of catalogEntry resources from the catalog. Currently, this operation returns entries of the featureUpdateCatalogEntry or qualityUpdateCatalog types, inherited from **catalogEntry**. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[catalog_entry_collection_response.CatalogEntryCollectionResponse]
@@ -101,7 +101,7 @@ class EntriesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[EntriesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Lists the content that you can approve for deployment. Read-only.
+        Get a list of catalogEntry resources from the catalog. Currently, this operation returns entries of the featureUpdateCatalogEntry or qualityUpdateCatalog types, inherited from **catalogEntry**. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class EntriesRequestBuilder():
     @dataclass
     class EntriesRequestBuilderGetQueryParameters():
         """
-        Lists the content that you can approve for deployment. Read-only.
+        Get a list of catalogEntry resources from the catalog. Currently, this operation returns entries of the featureUpdateCatalogEntry or qualityUpdateCatalog types, inherited from **catalogEntry**. 
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

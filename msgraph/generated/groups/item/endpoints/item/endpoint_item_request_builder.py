@@ -56,7 +56,7 @@ class EndpointItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[EndpointItemRequestBuilderGetRequestConfiguration] = None) -> Optional[endpoint.Endpoint]:
         """
-        Endpoints for the group. Read-only. Nullable.
+        Retrieve the properties and relationships of a specific endpoint object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[endpoint.Endpoint]
@@ -119,7 +119,7 @@ class EndpointItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[EndpointItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Endpoints for the group. Read-only. Nullable.
+        Retrieve the properties and relationships of a specific endpoint object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class EndpointItemRequestBuilder():
     @dataclass
     class EndpointItemRequestBuilderGetQueryParameters():
         """
-        Endpoints for the group. Read-only. Nullable.
+        Retrieve the properties and relationships of a specific endpoint object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

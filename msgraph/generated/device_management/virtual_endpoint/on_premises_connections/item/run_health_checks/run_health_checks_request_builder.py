@@ -36,7 +36,7 @@ class RunHealthChecksRequestBuilder():
     
     async def post(self,request_configuration: Optional[RunHealthChecksRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Invoke action runHealthChecks
+        Run health checks on the cloudPcOnPremisesConnection object. This will trigger a new health check for this cloudPcOnPremisesConnection object and change the healthCheckStatus and healthCheckStatusDetails properties when check finished.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class RunHealthChecksRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[RunHealthChecksRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action runHealthChecks
+        Run health checks on the cloudPcOnPremisesConnection object. This will trigger a new health check for this cloudPcOnPremisesConnection object and change the healthCheckStatus and healthCheckStatusDetails properties when check finished.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

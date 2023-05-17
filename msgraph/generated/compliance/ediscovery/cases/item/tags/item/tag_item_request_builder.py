@@ -39,7 +39,7 @@ class TagItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[TagItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property tags for compliance
+        Delete a tag object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -58,7 +58,7 @@ class TagItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[TagItemRequestBuilderGetRequestConfiguration] = None) -> Optional[tag.Tag]:
         """
-        Returns a list of tag objects associated to this case.
+        Read the properties and relationships of a tag object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[tag.Tag]
@@ -80,7 +80,7 @@ class TagItemRequestBuilder():
     
     async def patch(self,body: Optional[tag.Tag] = None, request_configuration: Optional[TagItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[tag.Tag]:
         """
-        Update the navigation property tags in compliance
+        Update the properties of a tag object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -105,7 +105,7 @@ class TagItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[TagItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property tags for compliance
+        Delete a tag object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -121,7 +121,7 @@ class TagItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TagItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Returns a list of tag objects associated to this case.
+        Read the properties and relationships of a tag object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -139,7 +139,7 @@ class TagItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[tag.Tag] = None, request_configuration: Optional[TagItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property tags in compliance
+        Update the properties of a tag object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -191,7 +191,7 @@ class TagItemRequestBuilder():
     @dataclass
     class TagItemRequestBuilderGetQueryParameters():
         """
-        Returns a list of tag objects associated to this case.
+        Read the properties and relationships of a tag object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

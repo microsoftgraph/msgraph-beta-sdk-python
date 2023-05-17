@@ -56,7 +56,7 @@ class ApprovalStepItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[ApprovalStepItemRequestBuilderGetRequestConfiguration] = None) -> Optional[approval_step.ApprovalStep]:
         """
-        Get steps from identityGovernance
+        Retrieve the properties of an approvalStep object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[approval_step.ApprovalStep]
@@ -78,7 +78,7 @@ class ApprovalStepItemRequestBuilder():
     
     async def patch(self,body: Optional[approval_step.ApprovalStep] = None, request_configuration: Optional[ApprovalStepItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[approval_step.ApprovalStep]:
         """
-        Update the navigation property steps in identityGovernance
+        Apply approve or deny decision on an approvalStep object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class ApprovalStepItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ApprovalStepItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get steps from identityGovernance
+        Retrieve the properties of an approvalStep object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class ApprovalStepItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[approval_step.ApprovalStep] = None, request_configuration: Optional[ApprovalStepItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property steps in identityGovernance
+        Apply approve or deny decision on an approvalStep object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class ApprovalStepItemRequestBuilder():
     @dataclass
     class ApprovalStepItemRequestBuilderGetQueryParameters():
         """
-        Get steps from identityGovernance
+        Retrieve the properties of an approvalStep object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

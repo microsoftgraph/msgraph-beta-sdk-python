@@ -38,7 +38,7 @@ class SiteSourceItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[SiteSourceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property siteSources for compliance
+        Delete a siteSource object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -57,7 +57,7 @@ class SiteSourceItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[SiteSourceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[site_source.SiteSource]:
         """
-        Data source entity for SharePoint sites associated with the custodian.
+        Read the properties and relationships of a siteSource object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[site_source.SiteSource]
@@ -104,7 +104,7 @@ class SiteSourceItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[SiteSourceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property siteSources for compliance
+        Delete a siteSource object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -120,7 +120,7 @@ class SiteSourceItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SiteSourceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Data source entity for SharePoint sites associated with the custodian.
+        Read the properties and relationships of a siteSource object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -181,7 +181,7 @@ class SiteSourceItemRequestBuilder():
     @dataclass
     class SiteSourceItemRequestBuilderGetQueryParameters():
         """
-        Data source entity for SharePoint sites associated with the custodian.
+        Read the properties and relationships of a siteSource object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

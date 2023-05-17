@@ -8,6 +8,9 @@ if TYPE_CHECKING:
 from . import entity
 
 class EnrollmentProfile(entity.Entity):
+    """
+    The enrollmentProfile resource represents a collection of configurations which must be provided pre-enrollment to enable enrolling certain devices whose identities have been pre-staged. Pre-staged device identities are assigned to this type of profile to apply the profile's configurations at enrollment of the corresponding device.
+    """
     def __init__(self,) -> None:
         """
         Instantiates a new enrollmentProfile and sets the default values.

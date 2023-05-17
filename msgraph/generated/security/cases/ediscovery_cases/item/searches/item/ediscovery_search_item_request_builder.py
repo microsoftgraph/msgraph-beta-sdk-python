@@ -16,9 +16,9 @@ if TYPE_CHECKING:
     from .add_to_review_set_operation import add_to_review_set_operation_request_builder
     from .custodian_sources import custodian_sources_request_builder
     from .last_estimate_statistics_operation import last_estimate_statistics_operation_request_builder
+    from .microsoft_graph_security_estimate_statistics import microsoft_graph_security_estimate_statistics_request_builder
+    from .microsoft_graph_security_purge_data import microsoft_graph_security_purge_data_request_builder
     from .noncustodial_sources import noncustodial_sources_request_builder
-    from .security_estimate_statistics import security_estimate_statistics_request_builder
-    from .security_purge_data import security_purge_data_request_builder
 
 class EdiscoverySearchItemRequestBuilder():
     """
@@ -44,7 +44,7 @@ class EdiscoverySearchItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[EdiscoverySearchItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property searches for security
+        Delete an ediscoverySearch object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -63,7 +63,7 @@ class EdiscoverySearchItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[EdiscoverySearchItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ediscovery_search.EdiscoverySearch]:
         """
-        Returns a list of eDiscoverySearch objects associated with this case.
+        Read the properties and relationships of an ediscoverySearch object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ediscovery_search.EdiscoverySearch]
@@ -85,7 +85,7 @@ class EdiscoverySearchItemRequestBuilder():
     
     async def patch(self,body: Optional[ediscovery_search.EdiscoverySearch] = None, request_configuration: Optional[EdiscoverySearchItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ediscovery_search.EdiscoverySearch]:
         """
-        Update the navigation property searches in security
+        Update the properties of an ediscoverySearch object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -110,7 +110,7 @@ class EdiscoverySearchItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[EdiscoverySearchItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property searches for security
+        Delete an ediscoverySearch object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -126,7 +126,7 @@ class EdiscoverySearchItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[EdiscoverySearchItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Returns a list of eDiscoverySearch objects associated with this case.
+        Read the properties and relationships of an ediscoverySearch object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -144,7 +144,7 @@ class EdiscoverySearchItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[ediscovery_search.EdiscoverySearch] = None, request_configuration: Optional[EdiscoverySearchItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property searches in security
+        Update the properties of an ediscoverySearch object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -200,6 +200,24 @@ class EdiscoverySearchItemRequestBuilder():
         return last_estimate_statistics_operation_request_builder.LastEstimateStatisticsOperationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def microsoft_graph_security_estimate_statistics(self) -> microsoft_graph_security_estimate_statistics_request_builder.MicrosoftGraphSecurityEstimateStatisticsRequestBuilder:
+        """
+        Provides operations to call the estimateStatistics method.
+        """
+        from .microsoft_graph_security_estimate_statistics import microsoft_graph_security_estimate_statistics_request_builder
+
+        return microsoft_graph_security_estimate_statistics_request_builder.MicrosoftGraphSecurityEstimateStatisticsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_security_purge_data(self) -> microsoft_graph_security_purge_data_request_builder.MicrosoftGraphSecurityPurgeDataRequestBuilder:
+        """
+        Provides operations to call the purgeData method.
+        """
+        from .microsoft_graph_security_purge_data import microsoft_graph_security_purge_data_request_builder
+
+        return microsoft_graph_security_purge_data_request_builder.MicrosoftGraphSecurityPurgeDataRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def noncustodial_sources(self) -> noncustodial_sources_request_builder.NoncustodialSourcesRequestBuilder:
         """
         Provides operations to manage the noncustodialSources property of the microsoft.graph.security.ediscoverySearch entity.
@@ -207,24 +225,6 @@ class EdiscoverySearchItemRequestBuilder():
         from .noncustodial_sources import noncustodial_sources_request_builder
 
         return noncustodial_sources_request_builder.NoncustodialSourcesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def security_estimate_statistics(self) -> security_estimate_statistics_request_builder.SecurityEstimateStatisticsRequestBuilder:
-        """
-        Provides operations to call the estimateStatistics method.
-        """
-        from .security_estimate_statistics import security_estimate_statistics_request_builder
-
-        return security_estimate_statistics_request_builder.SecurityEstimateStatisticsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def security_purge_data(self) -> security_purge_data_request_builder.SecurityPurgeDataRequestBuilder:
-        """
-        Provides operations to call the purgeData method.
-        """
-        from .security_purge_data import security_purge_data_request_builder
-
-        return security_purge_data_request_builder.SecurityPurgeDataRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class EdiscoverySearchItemRequestBuilderDeleteRequestConfiguration():
@@ -241,7 +241,7 @@ class EdiscoverySearchItemRequestBuilder():
     @dataclass
     class EdiscoverySearchItemRequestBuilderGetQueryParameters():
         """
-        Returns a list of eDiscoverySearch objects associated with this case.
+        Read the properties and relationships of an ediscoverySearch object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

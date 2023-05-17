@@ -72,7 +72,7 @@ class CloudPCItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[CloudPCItemRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_p_c.CloudPC]:
         """
-        Cloud managed virtual desktops.
+        Read the properties and relationships of a specific cloudPC object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cloud_p_c.CloudPC]
@@ -135,7 +135,7 @@ class CloudPCItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CloudPCItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Cloud managed virtual desktops.
+        Read the properties and relationships of a specific cloudPC object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -331,7 +331,7 @@ class CloudPCItemRequestBuilder():
     @dataclass
     class CloudPCItemRequestBuilderGetQueryParameters():
         """
-        Cloud managed virtual desktops.
+        Read the properties and relationships of a specific cloudPC object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

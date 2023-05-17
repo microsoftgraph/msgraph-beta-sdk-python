@@ -38,7 +38,7 @@ class EvaluateDynamicMembershipRequestBuilder():
     
     async def post(self,body: Optional[evaluate_dynamic_membership_post_request_body.EvaluateDynamicMembershipPostRequestBody] = None, request_configuration: Optional[EvaluateDynamicMembershipRequestBuilderPostRequestConfiguration] = None) -> Optional[evaluate_dynamic_membership_result.EvaluateDynamicMembershipResult]:
         """
-        Invoke action evaluateDynamicMembership
+        Evaluate whether a user or device is or would be a member of a dynamic group. The membership rule is returned along with other details that were used in the evaluation. You can complete this operation in the following ways:
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +63,7 @@ class EvaluateDynamicMembershipRequestBuilder():
     
     def to_post_request_information(self,body: Optional[evaluate_dynamic_membership_post_request_body.EvaluateDynamicMembershipPostRequestBody] = None, request_configuration: Optional[EvaluateDynamicMembershipRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action evaluateDynamicMembership
+        Evaluate whether a user or device is or would be a member of a dynamic group. The membership rule is returned along with other details that were used in the evaluation. You can complete this operation in the following ways:
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

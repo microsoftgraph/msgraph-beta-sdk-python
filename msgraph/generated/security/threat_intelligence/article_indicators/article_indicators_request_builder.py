@@ -54,7 +54,7 @@ class ArticleIndicatorsRequestBuilder():
     
     async def get(self,request_configuration: Optional[ArticleIndicatorsRequestBuilderGetRequestConfiguration] = None) -> Optional[article_indicator_collection_response.ArticleIndicatorCollectionResponse]:
         """
-        Refers to indicators of threat or compromise highlighted in an microsoft.graph.security.article.Note: List retrieval is not yet supported.
+        Read the properties and relationships of an articleIndicator object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[article_indicator_collection_response.ArticleIndicatorCollectionResponse]
@@ -101,7 +101,7 @@ class ArticleIndicatorsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ArticleIndicatorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Refers to indicators of threat or compromise highlighted in an microsoft.graph.security.article.Note: List retrieval is not yet supported.
+        Read the properties and relationships of an articleIndicator object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class ArticleIndicatorsRequestBuilder():
     @dataclass
     class ArticleIndicatorsRequestBuilderGetQueryParameters():
         """
-        Refers to indicators of threat or compromise highlighted in an microsoft.graph.security.article.Note: List retrieval is not yet supported.
+        Read the properties and relationships of an articleIndicator object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

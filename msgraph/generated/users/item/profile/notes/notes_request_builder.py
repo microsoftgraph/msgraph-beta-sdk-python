@@ -54,7 +54,7 @@ class NotesRequestBuilder():
     
     async def get(self,request_configuration: Optional[NotesRequestBuilderGetRequestConfiguration] = None) -> Optional[person_annotation_collection_response.PersonAnnotationCollectionResponse]:
         """
-        Represents notes that a user has added to their profile.
+        Retrieve a list of personAnnotation objects from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[person_annotation_collection_response.PersonAnnotationCollectionResponse]
@@ -76,7 +76,7 @@ class NotesRequestBuilder():
     
     async def post(self,body: Optional[person_annotation.PersonAnnotation] = None, request_configuration: Optional[NotesRequestBuilderPostRequestConfiguration] = None) -> Optional[person_annotation.PersonAnnotation]:
         """
-        Create new navigation property to notes for users
+        Create a new personAnnotation object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class NotesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[NotesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents notes that a user has added to their profile.
+        Retrieve a list of personAnnotation objects from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class NotesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[person_annotation.PersonAnnotation] = None, request_configuration: Optional[NotesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to notes for users
+        Create a new personAnnotation object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class NotesRequestBuilder():
     @dataclass
     class NotesRequestBuilderGetQueryParameters():
         """
-        Represents notes that a user has added to their profile.
+        Retrieve a list of personAnnotation objects from a user's profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

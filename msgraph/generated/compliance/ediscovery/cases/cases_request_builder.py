@@ -54,7 +54,7 @@ class CasesRequestBuilder():
     
     async def get(self,request_configuration: Optional[CasesRequestBuilderGetRequestConfiguration] = None) -> Optional[case_collection_response.CaseCollectionResponse]:
         """
-        Get cases from compliance
+        Retrieve a list of case objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[case_collection_response.CaseCollectionResponse]
@@ -76,7 +76,7 @@ class CasesRequestBuilder():
     
     async def post(self,body: Optional[case.Case] = None, request_configuration: Optional[CasesRequestBuilderPostRequestConfiguration] = None) -> Optional[case.Case]:
         """
-        Create new navigation property to cases for compliance
+        Create a new case object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class CasesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CasesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get cases from compliance
+        Retrieve a list of case objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class CasesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[case.Case] = None, request_configuration: Optional[CasesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to cases for compliance
+        Create a new case object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class CasesRequestBuilder():
     @dataclass
     class CasesRequestBuilderGetQueryParameters():
         """
-        Get cases from compliance
+        Retrieve a list of case objects.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

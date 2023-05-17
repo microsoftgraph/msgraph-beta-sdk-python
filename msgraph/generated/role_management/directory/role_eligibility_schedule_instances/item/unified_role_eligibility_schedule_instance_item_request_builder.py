@@ -12,6 +12,10 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .....models import unified_role_eligibility_schedule_instance
     from .....models.o_data_errors import o_data_error
+    from .app_scope import app_scope_request_builder
+    from .directory_scope import directory_scope_request_builder
+    from .principal import principal_request_builder
+    from .role_definition import role_definition_request_builder
 
 class UnifiedRoleEligibilityScheduleInstanceItemRequestBuilder():
     """
@@ -56,7 +60,7 @@ class UnifiedRoleEligibilityScheduleInstanceItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[UnifiedRoleEligibilityScheduleInstanceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_eligibility_schedule_instance.UnifiedRoleEligibilityScheduleInstance]:
         """
-        Get roleEligibilityScheduleInstances from roleManagement
+        Read the properties and relationships of an unifiedRoleEligibilityScheduleInstance object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[unified_role_eligibility_schedule_instance.UnifiedRoleEligibilityScheduleInstance]
@@ -119,7 +123,7 @@ class UnifiedRoleEligibilityScheduleInstanceItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UnifiedRoleEligibilityScheduleInstanceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get roleEligibilityScheduleInstances from roleManagement
+        Read the properties and relationships of an unifiedRoleEligibilityScheduleInstance object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -156,6 +160,42 @@ class UnifiedRoleEligibilityScheduleInstanceItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def app_scope(self) -> app_scope_request_builder.AppScopeRequestBuilder:
+        """
+        Provides operations to manage the appScope property of the microsoft.graph.unifiedRoleScheduleInstanceBase entity.
+        """
+        from .app_scope import app_scope_request_builder
+
+        return app_scope_request_builder.AppScopeRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def directory_scope(self) -> directory_scope_request_builder.DirectoryScopeRequestBuilder:
+        """
+        Provides operations to manage the directoryScope property of the microsoft.graph.unifiedRoleScheduleInstanceBase entity.
+        """
+        from .directory_scope import directory_scope_request_builder
+
+        return directory_scope_request_builder.DirectoryScopeRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def principal(self) -> principal_request_builder.PrincipalRequestBuilder:
+        """
+        Provides operations to manage the principal property of the microsoft.graph.unifiedRoleScheduleInstanceBase entity.
+        """
+        from .principal import principal_request_builder
+
+        return principal_request_builder.PrincipalRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def role_definition(self) -> role_definition_request_builder.RoleDefinitionRequestBuilder:
+        """
+        Provides operations to manage the roleDefinition property of the microsoft.graph.unifiedRoleScheduleInstanceBase entity.
+        """
+        from .role_definition import role_definition_request_builder
+
+        return role_definition_request_builder.RoleDefinitionRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class UnifiedRoleEligibilityScheduleInstanceItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -171,7 +211,7 @@ class UnifiedRoleEligibilityScheduleInstanceItemRequestBuilder():
     @dataclass
     class UnifiedRoleEligibilityScheduleInstanceItemRequestBuilderGetQueryParameters():
         """
-        Get roleEligibilityScheduleInstances from roleManagement
+        Read the properties and relationships of an unifiedRoleEligibilityScheduleInstance object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

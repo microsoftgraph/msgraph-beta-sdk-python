@@ -61,7 +61,7 @@ class PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest]:
         """
-        Get assignmentScheduleRequests from identityGovernance
+        Read the properties and relationships of a privilegedAccessGroupAssignmentScheduleRequest object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest]
@@ -124,7 +124,7 @@ class PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get assignmentScheduleRequests from identityGovernance
+        Read the properties and relationships of a privilegedAccessGroupAssignmentScheduleRequest object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -221,7 +221,7 @@ class PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder():
     @dataclass
     class PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilderGetQueryParameters():
         """
-        Get assignmentScheduleRequests from identityGovernance
+        Read the properties and relationships of a privilegedAccessGroupAssignmentScheduleRequest object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

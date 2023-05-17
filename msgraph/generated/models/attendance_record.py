@@ -15,9 +15,9 @@ class AttendanceRecord(entity.Entity):
         super().__init__()
         # List of time periods between joining and leaving a meeting.
         self._attendance_intervals: Optional[List[attendance_interval.AttendanceInterval]] = None
-        # Email address of the user associated with this atttendance record.
+        # Email address of the user associated with this attendance record.
         self._email_address: Optional[str] = None
-        # Identity of the user associated with this atttendance record. The specific type will be one of the following derived types of identity, depending on the type of the user: communicationsUserIdentity, azureCommunicationServicesUserIdentity.
+        # Identity of the user associated with this attendance record. The specific type will be one of the following derived types of identity, depending on the type of the user: communicationsUserIdentity, azureCommunicationServicesUserIdentity.
         self._identity: Optional[identity.Identity] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
@@ -60,7 +60,7 @@ class AttendanceRecord(entity.Entity):
     @property
     def email_address(self,) -> Optional[str]:
         """
-        Gets the emailAddress property value. Email address of the user associated with this atttendance record.
+        Gets the emailAddress property value. Email address of the user associated with this attendance record.
         Returns: Optional[str]
         """
         return self._email_address
@@ -68,7 +68,7 @@ class AttendanceRecord(entity.Entity):
     @email_address.setter
     def email_address(self,value: Optional[str] = None) -> None:
         """
-        Sets the emailAddress property value. Email address of the user associated with this atttendance record.
+        Sets the emailAddress property value. Email address of the user associated with this attendance record.
         Args:
             value: Value to set for the email_address property.
         """
@@ -96,7 +96,7 @@ class AttendanceRecord(entity.Entity):
     @property
     def identity(self,) -> Optional[identity.Identity]:
         """
-        Gets the identity property value. Identity of the user associated with this atttendance record. The specific type will be one of the following derived types of identity, depending on the type of the user: communicationsUserIdentity, azureCommunicationServicesUserIdentity.
+        Gets the identity property value. Identity of the user associated with this attendance record. The specific type will be one of the following derived types of identity, depending on the type of the user: communicationsUserIdentity, azureCommunicationServicesUserIdentity.
         Returns: Optional[identity.Identity]
         """
         return self._identity
@@ -104,7 +104,7 @@ class AttendanceRecord(entity.Entity):
     @identity.setter
     def identity(self,value: Optional[identity.Identity] = None) -> None:
         """
-        Sets the identity property value. Identity of the user associated with this atttendance record. The specific type will be one of the following derived types of identity, depending on the type of the user: communicationsUserIdentity, azureCommunicationServicesUserIdentity.
+        Sets the identity property value. Identity of the user associated with this attendance record. The specific type will be one of the following derived types of identity, depending on the type of the user: communicationsUserIdentity, azureCommunicationServicesUserIdentity.
         Args:
             value: Value to set for the identity property.
         """

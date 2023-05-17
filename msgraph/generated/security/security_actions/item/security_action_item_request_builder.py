@@ -57,7 +57,7 @@ class SecurityActionItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[SecurityActionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[security_action.SecurityAction]:
         """
-        Get securityActions from security
+        Retrieve the properties and relationships of a securityAction object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[security_action.SecurityAction]
@@ -120,7 +120,7 @@ class SecurityActionItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SecurityActionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get securityActions from security
+        Retrieve the properties and relationships of a securityAction object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -181,7 +181,7 @@ class SecurityActionItemRequestBuilder():
     @dataclass
     class SecurityActionItemRequestBuilderGetQueryParameters():
         """
-        Get securityActions from security
+        Retrieve the properties and relationships of a securityAction object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

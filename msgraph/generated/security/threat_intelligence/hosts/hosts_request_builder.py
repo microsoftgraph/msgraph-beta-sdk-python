@@ -54,7 +54,7 @@ class HostsRequestBuilder():
     
     async def get(self,request_configuration: Optional[HostsRequestBuilderGetRequestConfiguration] = None) -> Optional[host_collection_response.HostCollectionResponse]:
         """
-        Refers to microsoft.graph.security.host objects that Microsoft Threat Intelligence has observed.Note: List retrieval is not yet supported.
+        Read the properties and relationships of a host object. The host resource is the abstract base type that returns an implementation. A host can be of one of the following types:
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[host_collection_response.HostCollectionResponse]
@@ -101,7 +101,7 @@ class HostsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[HostsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Refers to microsoft.graph.security.host objects that Microsoft Threat Intelligence has observed.Note: List retrieval is not yet supported.
+        Read the properties and relationships of a host object. The host resource is the abstract base type that returns an implementation. A host can be of one of the following types:
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class HostsRequestBuilder():
     @dataclass
     class HostsRequestBuilderGetQueryParameters():
         """
-        Refers to microsoft.graph.security.host objects that Microsoft Threat Intelligence has observed.Note: List retrieval is not yet supported.
+        Read the properties and relationships of a host object. The host resource is the abstract base type that returns an implementation. A host can be of one of the following types:
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

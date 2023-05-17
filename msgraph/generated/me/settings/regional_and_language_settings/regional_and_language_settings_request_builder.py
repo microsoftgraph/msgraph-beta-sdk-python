@@ -56,7 +56,7 @@ class RegionalAndLanguageSettingsRequestBuilder():
     
     async def get(self,request_configuration: Optional[RegionalAndLanguageSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[regional_and_language_settings.RegionalAndLanguageSettings]:
         """
-        The user's preferences for languages, regional locale and date/time formatting.
+        Get the properties of a regionalAndLanguageSettings object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[regional_and_language_settings.RegionalAndLanguageSettings]
@@ -78,7 +78,7 @@ class RegionalAndLanguageSettingsRequestBuilder():
     
     async def patch(self,body: Optional[regional_and_language_settings.RegionalAndLanguageSettings] = None, request_configuration: Optional[RegionalAndLanguageSettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[regional_and_language_settings.RegionalAndLanguageSettings]:
         """
-        Update the navigation property regionalAndLanguageSettings in me
+        Update some or all of the properties of a regionalAndLanguageSettings object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class RegionalAndLanguageSettingsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RegionalAndLanguageSettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The user's preferences for languages, regional locale and date/time formatting.
+        Get the properties of a regionalAndLanguageSettings object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class RegionalAndLanguageSettingsRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[regional_and_language_settings.RegionalAndLanguageSettings] = None, request_configuration: Optional[RegionalAndLanguageSettingsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property regionalAndLanguageSettings in me
+        Update some or all of the properties of a regionalAndLanguageSettings object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class RegionalAndLanguageSettingsRequestBuilder():
     @dataclass
     class RegionalAndLanguageSettingsRequestBuilderGetQueryParameters():
         """
-        The user's preferences for languages, regional locale and date/time formatting.
+        Get the properties of a regionalAndLanguageSettings object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

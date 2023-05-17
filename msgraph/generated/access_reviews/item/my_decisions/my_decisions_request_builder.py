@@ -54,7 +54,7 @@ class MyDecisionsRequestBuilder():
     
     async def get(self,request_configuration: Optional[MyDecisionsRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_decision_collection_response.AccessReviewDecisionCollectionResponse]:
         """
-        The collection of decisions for the caller, if the caller is a reviewer.
+        In the Azure AD access reviews feature, retrieve the decisions of an accessReview object for the calling user as reviewer.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_review_decision_collection_response.AccessReviewDecisionCollectionResponse]
@@ -101,7 +101,7 @@ class MyDecisionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[MyDecisionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection of decisions for the caller, if the caller is a reviewer.
+        In the Azure AD access reviews feature, retrieve the decisions of an accessReview object for the calling user as reviewer.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class MyDecisionsRequestBuilder():
     @dataclass
     class MyDecisionsRequestBuilderGetQueryParameters():
         """
-        The collection of decisions for the caller, if the caller is a reviewer.
+        In the Azure AD access reviews feature, retrieve the decisions of an accessReview object for the calling user as reviewer.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

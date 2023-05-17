@@ -37,7 +37,7 @@ class RenameRequestBuilder():
     
     async def post(self,body: Optional[rename_post_request_body.RenamePostRequestBody] = None, request_configuration: Optional[RenameRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Invoke action rename
+        Rename a specific Cloud PC. Use this API to update the **displayName** for the Cloud PC entity.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -59,7 +59,7 @@ class RenameRequestBuilder():
     
     def to_post_request_information(self,body: Optional[rename_post_request_body.RenamePostRequestBody] = None, request_configuration: Optional[RenameRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action rename
+        Rename a specific Cloud PC. Use this API to update the **displayName** for the Cloud PC entity.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

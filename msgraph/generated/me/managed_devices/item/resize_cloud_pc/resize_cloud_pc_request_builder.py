@@ -37,7 +37,7 @@ class ResizeCloudPcRequestBuilder():
     
     async def post(self,body: Optional[resize_cloud_pc_post_request_body.ResizeCloudPcPostRequestBody] = None, request_configuration: Optional[ResizeCloudPcRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Invoke action resizeCloudPc
+        Upgrade or downgrade an existing Cloud PC to another configuration with a new virtual CPU (vCPU) and storage size.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -59,7 +59,7 @@ class ResizeCloudPcRequestBuilder():
     
     def to_post_request_information(self,body: Optional[resize_cloud_pc_post_request_body.ResizeCloudPcPostRequestBody] = None, request_configuration: Optional[ResizeCloudPcRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action resizeCloudPc
+        Upgrade or downgrade an existing Cloud PC to another configuration with a new virtual CPU (vCPU) and storage size.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

@@ -56,7 +56,7 @@ class LearningCourseActivityItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[LearningCourseActivityItemRequestBuilderGetRequestConfiguration] = None) -> Optional[learning_course_activity.LearningCourseActivity]:
         """
-        Get learningCourseActivities from employeeExperience
+        Get the specified learningCourseActivity object using either an ID or an **externalCourseActivityId** of the learning provider, or a **courseActivityId** of a user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[learning_course_activity.LearningCourseActivity]
@@ -78,7 +78,7 @@ class LearningCourseActivityItemRequestBuilder():
     
     async def patch(self,body: Optional[learning_course_activity.LearningCourseActivity] = None, request_configuration: Optional[LearningCourseActivityItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[learning_course_activity.LearningCourseActivity]:
         """
-        Update the navigation property learningCourseActivities in employeeExperience
+        Update the properties of a learningCourseActivity object. 
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class LearningCourseActivityItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[LearningCourseActivityItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get learningCourseActivities from employeeExperience
+        Get the specified learningCourseActivity object using either an ID or an **externalCourseActivityId** of the learning provider, or a **courseActivityId** of a user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class LearningCourseActivityItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[learning_course_activity.LearningCourseActivity] = None, request_configuration: Optional[LearningCourseActivityItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property learningCourseActivities in employeeExperience
+        Update the properties of a learningCourseActivity object. 
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class LearningCourseActivityItemRequestBuilder():
     @dataclass
     class LearningCourseActivityItemRequestBuilderGetQueryParameters():
         """
-        Get learningCourseActivities from employeeExperience
+        Get the specified learningCourseActivity object using either an ID or an **externalCourseActivityId** of the learning provider, or a **courseActivityId** of a user.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

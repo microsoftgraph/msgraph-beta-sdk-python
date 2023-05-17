@@ -10,7 +10,7 @@ from . import entity
 class DeviceManagementReports(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new DeviceManagementReports and sets the default values.
+        Instantiates a new deviceManagementReports and sets the default values.
         """
         super().__init__()
         # Entity representing the configuration of a cached report

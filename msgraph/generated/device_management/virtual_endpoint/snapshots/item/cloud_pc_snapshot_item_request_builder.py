@@ -56,7 +56,7 @@ class CloudPcSnapshotItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[CloudPcSnapshotItemRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_snapshot.CloudPcSnapshot]:
         """
-        Cloud PC snapshots.
+        Read the properties and relationships of a cloudPcSnapshot object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cloud_pc_snapshot.CloudPcSnapshot]
@@ -119,7 +119,7 @@ class CloudPcSnapshotItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CloudPcSnapshotItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Cloud PC snapshots.
+        Read the properties and relationships of a cloudPcSnapshot object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class CloudPcSnapshotItemRequestBuilder():
     @dataclass
     class CloudPcSnapshotItemRequestBuilderGetQueryParameters():
         """
-        Cloud PC snapshots.
+        Read the properties and relationships of a cloudPcSnapshot object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -19,11 +19,11 @@ class AuthorizationPolicy(policy_base.PolicyBase):
         self._allow_email_verified_users_to_join_organization: Optional[bool] = None
         # Indicates who can invite external users to the organization. Possible values are: none, adminsAndGuestInviters, adminsGuestInvitersAndAllMembers, everyone. everyone is the default setting for all cloud environments except US Government. See more in the table below.
         self._allow_invites_from: Optional[allow_invites_from.AllowInvitesFrom] = None
-        # Indicates whether user consent for risky apps is allowed. We recommend to keep this as false.
+        # Indicates whether user consent for risky apps is allowed. Default value is false. We recommend that you keep the value set to false.
         self._allow_user_consent_for_risky_apps: Optional[bool] = None
         # Indicates whether users can sign up for email based subscriptions.
         self._allowed_to_sign_up_email_based_subscriptions: Optional[bool] = None
-        # Indicates whether the Self-Serve Password Reset feature can be used by users on the tenant.
+        # Indicates whether the Admin Self-Serve Password Reset feature is enabled on the tenant.
         self._allowed_to_use_s_s_p_r: Optional[bool] = None
         # To disable the use of the MSOnline PowerShell module set this property to true. This will also disable user-based access to the legacy service endpoint used by the MSOnline PowerShell module. This does not affect Azure AD Connect or Microsoft Graph.
         self._block_msol_power_shell: Optional[bool] = None
@@ -75,7 +75,7 @@ class AuthorizationPolicy(policy_base.PolicyBase):
     @property
     def allow_user_consent_for_risky_apps(self,) -> Optional[bool]:
         """
-        Gets the allowUserConsentForRiskyApps property value. Indicates whether user consent for risky apps is allowed. We recommend to keep this as false.
+        Gets the allowUserConsentForRiskyApps property value. Indicates whether user consent for risky apps is allowed. Default value is false. We recommend that you keep the value set to false.
         Returns: Optional[bool]
         """
         return self._allow_user_consent_for_risky_apps
@@ -83,7 +83,7 @@ class AuthorizationPolicy(policy_base.PolicyBase):
     @allow_user_consent_for_risky_apps.setter
     def allow_user_consent_for_risky_apps(self,value: Optional[bool] = None) -> None:
         """
-        Sets the allowUserConsentForRiskyApps property value. Indicates whether user consent for risky apps is allowed. We recommend to keep this as false.
+        Sets the allowUserConsentForRiskyApps property value. Indicates whether user consent for risky apps is allowed. Default value is false. We recommend that you keep the value set to false.
         Args:
             value: Value to set for the allow_user_consent_for_risky_apps property.
         """
@@ -109,7 +109,7 @@ class AuthorizationPolicy(policy_base.PolicyBase):
     @property
     def allowed_to_use_s_s_p_r(self,) -> Optional[bool]:
         """
-        Gets the allowedToUseSSPR property value. Indicates whether the Self-Serve Password Reset feature can be used by users on the tenant.
+        Gets the allowedToUseSSPR property value. Indicates whether the Admin Self-Serve Password Reset feature is enabled on the tenant.
         Returns: Optional[bool]
         """
         return self._allowed_to_use_s_s_p_r
@@ -117,7 +117,7 @@ class AuthorizationPolicy(policy_base.PolicyBase):
     @allowed_to_use_s_s_p_r.setter
     def allowed_to_use_s_s_p_r(self,value: Optional[bool] = None) -> None:
         """
-        Sets the allowedToUseSSPR property value. Indicates whether the Self-Serve Password Reset feature can be used by users on the tenant.
+        Sets the allowedToUseSSPR property value. Indicates whether the Admin Self-Serve Password Reset feature is enabled on the tenant.
         Args:
             value: Value to set for the allowed_to_use_s_s_p_r property.
         """

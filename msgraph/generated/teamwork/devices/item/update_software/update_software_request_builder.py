@@ -37,7 +37,7 @@ class UpdateSoftwareRequestBuilder():
     
     async def post(self,body: Optional[update_software_post_request_body.UpdateSoftwarePostRequestBody] = None, request_configuration: Optional[UpdateSoftwareRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Invoke action updateSoftware
+        Update the software for a Microsoft Teams-enabled device. This API triggers a long-running operation.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -59,7 +59,7 @@ class UpdateSoftwareRequestBuilder():
     
     def to_post_request_information(self,body: Optional[update_software_post_request_body.UpdateSoftwarePostRequestBody] = None, request_configuration: Optional[UpdateSoftwareRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action updateSoftware
+        Update the software for a Microsoft Teams-enabled device. This API triggers a long-running operation.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

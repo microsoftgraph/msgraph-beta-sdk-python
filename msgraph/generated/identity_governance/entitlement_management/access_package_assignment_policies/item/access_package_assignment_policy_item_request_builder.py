@@ -41,7 +41,7 @@ class AccessPackageAssignmentPolicyItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[AccessPackageAssignmentPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property accessPackageAssignmentPolicies for identityGovernance
+        In Azure AD entitlement management, delete an accessPackageAssignmentPolicy.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -60,7 +60,7 @@ class AccessPackageAssignmentPolicyItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[AccessPackageAssignmentPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_assignment_policy.AccessPackageAssignmentPolicy]:
         """
-        Represents the policy that governs which subjects can request or be assigned an access package via an access package assignment.
+        In Azure AD entitlement management, retrieve the properties and relationships of an accessPackageAssignmentPolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_package_assignment_policy.AccessPackageAssignmentPolicy]
@@ -107,7 +107,7 @@ class AccessPackageAssignmentPolicyItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[AccessPackageAssignmentPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property accessPackageAssignmentPolicies for identityGovernance
+        In Azure AD entitlement management, delete an accessPackageAssignmentPolicy.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -123,7 +123,7 @@ class AccessPackageAssignmentPolicyItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageAssignmentPolicyItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents the policy that governs which subjects can request or be assigned an access package via an access package assignment.
+        In Azure AD entitlement management, retrieve the properties and relationships of an accessPackageAssignmentPolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -211,7 +211,7 @@ class AccessPackageAssignmentPolicyItemRequestBuilder():
     @dataclass
     class AccessPackageAssignmentPolicyItemRequestBuilderGetQueryParameters():
         """
-        Represents the policy that governs which subjects can request or be assigned an access package via an access package assignment.
+        In Azure AD entitlement management, retrieve the properties and relationships of an accessPackageAssignmentPolicy object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

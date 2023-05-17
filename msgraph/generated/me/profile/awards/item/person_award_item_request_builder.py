@@ -37,7 +37,7 @@ class PersonAwardItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[PersonAwardItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property awards for me
+        Deletes a personAward object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class PersonAwardItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[PersonAwardItemRequestBuilderGetRequestConfiguration] = None) -> Optional[person_award.PersonAward]:
         """
-        Represents the details of awards or honors associated with a person.
+        Read the properties and relationships of a personAward object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[person_award.PersonAward]
@@ -78,7 +78,7 @@ class PersonAwardItemRequestBuilder():
     
     async def patch(self,body: Optional[person_award.PersonAward] = None, request_configuration: Optional[PersonAwardItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[person_award.PersonAward]:
         """
-        Update the navigation property awards in me
+        Update the properties of a personAward object from a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class PersonAwardItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[PersonAwardItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property awards for me
+        Deletes a personAward object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class PersonAwardItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PersonAwardItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents the details of awards or honors associated with a person.
+        Read the properties and relationships of a personAward object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class PersonAwardItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[person_award.PersonAward] = None, request_configuration: Optional[PersonAwardItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property awards in me
+        Update the properties of a personAward object from a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class PersonAwardItemRequestBuilder():
     @dataclass
     class PersonAwardItemRequestBuilderGetQueryParameters():
         """
-        Represents the details of awards or honors associated with a person.
+        Read the properties and relationships of a personAward object from a user's profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

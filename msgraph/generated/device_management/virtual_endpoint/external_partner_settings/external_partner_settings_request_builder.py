@@ -54,7 +54,7 @@ class ExternalPartnerSettingsRequestBuilder():
     
     async def get(self,request_configuration: Optional[ExternalPartnerSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_external_partner_setting_collection_response.CloudPcExternalPartnerSettingCollectionResponse]:
         """
-        The external partner settings on a Cloud PC.
+        Get a list of the cloudPcExternalPartnerSetting objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cloud_pc_external_partner_setting_collection_response.CloudPcExternalPartnerSettingCollectionResponse]
@@ -76,7 +76,7 @@ class ExternalPartnerSettingsRequestBuilder():
     
     async def post(self,body: Optional[cloud_pc_external_partner_setting.CloudPcExternalPartnerSetting] = None, request_configuration: Optional[ExternalPartnerSettingsRequestBuilderPostRequestConfiguration] = None) -> Optional[cloud_pc_external_partner_setting.CloudPcExternalPartnerSetting]:
         """
-        Create new navigation property to externalPartnerSettings for deviceManagement
+        Create a new cloudPcExternalPartnerSetting object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class ExternalPartnerSettingsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ExternalPartnerSettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The external partner settings on a Cloud PC.
+        Get a list of the cloudPcExternalPartnerSetting objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class ExternalPartnerSettingsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[cloud_pc_external_partner_setting.CloudPcExternalPartnerSetting] = None, request_configuration: Optional[ExternalPartnerSettingsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to externalPartnerSettings for deviceManagement
+        Create a new cloudPcExternalPartnerSetting object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class ExternalPartnerSettingsRequestBuilder():
     @dataclass
     class ExternalPartnerSettingsRequestBuilderGetQueryParameters():
         """
-        The external partner settings on a Cloud PC.
+        Get a list of the cloudPcExternalPartnerSetting objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

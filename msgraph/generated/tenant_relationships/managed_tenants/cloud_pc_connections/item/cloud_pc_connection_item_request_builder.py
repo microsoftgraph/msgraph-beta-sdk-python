@@ -56,7 +56,7 @@ class CloudPcConnectionItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[CloudPcConnectionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_connection.CloudPcConnection]:
         """
-        The collection of cloud PC connections across managed tenants.
+        Read the properties and relationships of a cloudPcConnection object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cloud_pc_connection.CloudPcConnection]
@@ -119,7 +119,7 @@ class CloudPcConnectionItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CloudPcConnectionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection of cloud PC connections across managed tenants.
+        Read the properties and relationships of a cloudPcConnection object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class CloudPcConnectionItemRequestBuilder():
     @dataclass
     class CloudPcConnectionItemRequestBuilderGetQueryParameters():
         """
-        The collection of cloud PC connections across managed tenants.
+        Read the properties and relationships of a cloudPcConnection object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

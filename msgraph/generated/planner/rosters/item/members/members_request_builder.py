@@ -54,7 +54,7 @@ class MembersRequestBuilder():
     
     async def get(self,request_configuration: Optional[MembersRequestBuilderGetRequestConfiguration] = None) -> Optional[planner_roster_member_collection_response.PlannerRosterMemberCollectionResponse]:
         """
-        Retrieves the members of the plannerRoster.
+        Get the list of plannerRosterMembers from a plannerRoster.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[planner_roster_member_collection_response.PlannerRosterMemberCollectionResponse]
@@ -76,7 +76,7 @@ class MembersRequestBuilder():
     
     async def post(self,body: Optional[planner_roster_member.PlannerRosterMember] = None, request_configuration: Optional[MembersRequestBuilderPostRequestConfiguration] = None) -> Optional[planner_roster_member.PlannerRosterMember]:
         """
-        Create new navigation property to members for planner
+        Add a member to the plannerRoster object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class MembersRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[MembersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieves the members of the plannerRoster.
+        Get the list of plannerRosterMembers from a plannerRoster.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class MembersRequestBuilder():
     
     def to_post_request_information(self,body: Optional[planner_roster_member.PlannerRosterMember] = None, request_configuration: Optional[MembersRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to members for planner
+        Add a member to the plannerRoster object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class MembersRequestBuilder():
     @dataclass
     class MembersRequestBuilderGetQueryParameters():
         """
-        Retrieves the members of the plannerRoster.
+        Get the list of plannerRosterMembers from a plannerRoster.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

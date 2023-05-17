@@ -54,7 +54,7 @@ class UserSettingsRequestBuilder():
     
     async def get(self,request_configuration: Optional[UserSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_user_setting_collection_response.CloudPcUserSettingCollectionResponse]:
         """
-        Cloud PC user settings.
+        Retrieve a list of cloudPcUserSetting objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cloud_pc_user_setting_collection_response.CloudPcUserSettingCollectionResponse]
@@ -76,7 +76,7 @@ class UserSettingsRequestBuilder():
     
     async def post(self,body: Optional[cloud_pc_user_setting.CloudPcUserSetting] = None, request_configuration: Optional[UserSettingsRequestBuilderPostRequestConfiguration] = None) -> Optional[cloud_pc_user_setting.CloudPcUserSetting]:
         """
-        Create new navigation property to userSettings for deviceManagement
+        Create a new cloudPcUserSetting object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class UserSettingsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UserSettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Cloud PC user settings.
+        Retrieve a list of cloudPcUserSetting objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class UserSettingsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[cloud_pc_user_setting.CloudPcUserSetting] = None, request_configuration: Optional[UserSettingsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to userSettings for deviceManagement
+        Create a new cloudPcUserSetting object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class UserSettingsRequestBuilder():
     @dataclass
     class UserSettingsRequestBuilderGetQueryParameters():
         """
-        Cloud PC user settings.
+        Retrieve a list of cloudPcUserSetting objects.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

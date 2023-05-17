@@ -11,12 +11,12 @@ from .. import entity
 class ExternalItem(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new externalItem and sets the default values.
+        Instantiates a new ExternalItem and sets the default values.
         """
         super().__init__()
         # An array of access control entries. Each entry specifies the access granted to a user or group. Required.
         self._acl: Optional[List[acl.Acl]] = None
-        # Write-only property. Returns results.
+        # Returns a list of activities performed on the item. Write-only.
         self._activities: Optional[List[external_activity.ExternalActivity]] = None
         # A plain-text representation of the contents of the item. The text in this property is full-text indexed. Optional.
         self._content: Optional[external_item_content.ExternalItemContent] = None
@@ -45,7 +45,7 @@ class ExternalItem(entity.Entity):
     @property
     def activities(self,) -> Optional[List[external_activity.ExternalActivity]]:
         """
-        Gets the activities property value. Write-only property. Returns results.
+        Gets the activities property value. Returns a list of activities performed on the item. Write-only.
         Returns: Optional[List[external_activity.ExternalActivity]]
         """
         return self._activities
@@ -53,7 +53,7 @@ class ExternalItem(entity.Entity):
     @activities.setter
     def activities(self,value: Optional[List[external_activity.ExternalActivity]] = None) -> None:
         """
-        Sets the activities property value. Write-only property. Returns results.
+        Sets the activities property value. Returns a list of activities performed on the item. Write-only.
         Args:
             value: Value to set for the activities property.
         """

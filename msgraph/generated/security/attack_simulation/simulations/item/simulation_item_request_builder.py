@@ -38,7 +38,7 @@ class SimulationItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[SimulationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property simulations for security
+        Delete an attack simulation campaign for a tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -57,7 +57,7 @@ class SimulationItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[SimulationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[simulation.Simulation]:
         """
-        Represents an attack simulation training campaign in a tenant.
+        Get an attack simulation campaign for a tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[simulation.Simulation]
@@ -79,7 +79,7 @@ class SimulationItemRequestBuilder():
     
     async def patch(self,body: Optional[simulation.Simulation] = None, request_configuration: Optional[SimulationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[simulation.Simulation]:
         """
-        Update the navigation property simulations in security
+        Update an attack simulation campaign for a tenant.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -104,7 +104,7 @@ class SimulationItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[SimulationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property simulations for security
+        Delete an attack simulation campaign for a tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -120,7 +120,7 @@ class SimulationItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SimulationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents an attack simulation training campaign in a tenant.
+        Get an attack simulation campaign for a tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,7 +138,7 @@ class SimulationItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[simulation.Simulation] = None, request_configuration: Optional[SimulationItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property simulations in security
+        Update an attack simulation campaign for a tenant.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -181,7 +181,7 @@ class SimulationItemRequestBuilder():
     @dataclass
     class SimulationItemRequestBuilderGetQueryParameters():
         """
-        Represents an attack simulation training campaign in a tenant.
+        Get an attack simulation campaign for a tenant.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

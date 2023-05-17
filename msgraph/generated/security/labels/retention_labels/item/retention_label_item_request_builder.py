@@ -39,7 +39,7 @@ class RetentionLabelItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[RetentionLabelItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property retentionLabels for security
+        Delete a retentionLabel object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -80,7 +80,7 @@ class RetentionLabelItemRequestBuilder():
     
     async def patch(self,body: Optional[retention_label.RetentionLabel] = None, request_configuration: Optional[RetentionLabelItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[retention_label.RetentionLabel]:
         """
-        Update the navigation property retentionLabels in security
+        Update the properties of a retentionLabel object. To update a disposition review stage, include the **actionAfterRetentionPeriod** property in the request body with one of the possible values specified.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -105,7 +105,7 @@ class RetentionLabelItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[RetentionLabelItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property retentionLabels for security
+        Delete a retentionLabel object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -139,7 +139,7 @@ class RetentionLabelItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[retention_label.RetentionLabel] = None, request_configuration: Optional[RetentionLabelItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property retentionLabels in security
+        Update the properties of a retentionLabel object. To update a disposition review stage, include the **actionAfterRetentionPeriod** property in the request body with one of the possible values specified.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

@@ -36,7 +36,7 @@ class ResetDecisionsRequestBuilder():
     
     async def post(self,request_configuration: Optional[ResetDecisionsRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Invoke action resetDecisions
+        In the Azure AD access reviews feature, reset the decisions of a currently active accessReview.  The target object can be either a one-time access review, or an instance of a recurring access review.  Previous decisions are no longer recorded, but reviewers can continue to update decisions.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class ResetDecisionsRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[ResetDecisionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action resetDecisions
+        In the Azure AD access reviews feature, reset the decisions of a currently active accessReview.  The target object can be either a one-time access review, or an instance of a recurring access review.  Previous decisions are no longer recorded, but reviewers can continue to update decisions.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

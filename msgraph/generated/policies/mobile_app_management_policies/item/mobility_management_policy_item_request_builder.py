@@ -38,7 +38,7 @@ class MobilityManagementPolicyItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property mobileAppManagementPolicies for policies
+        Delete a mobilityManagementPolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -57,7 +57,7 @@ class MobilityManagementPolicyItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[mobility_management_policy.MobilityManagementPolicy]:
         """
-        The policy that defines auto-enrollment configuration for a mobility management (MDM or MAM) application.
+        Read the properties and relationships of a mobilityManagementPolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[mobility_management_policy.MobilityManagementPolicy]
@@ -79,7 +79,7 @@ class MobilityManagementPolicyItemRequestBuilder():
     
     async def patch(self,body: Optional[mobility_management_policy.MobilityManagementPolicy] = None, request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[mobility_management_policy.MobilityManagementPolicy]:
         """
-        Update the navigation property mobileAppManagementPolicies in policies
+        Update the properties of a mobilityManagementPolicy object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -104,7 +104,7 @@ class MobilityManagementPolicyItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property mobileAppManagementPolicies for policies
+        Delete a mobilityManagementPolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -120,7 +120,7 @@ class MobilityManagementPolicyItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The policy that defines auto-enrollment configuration for a mobility management (MDM or MAM) application.
+        Read the properties and relationships of a mobilityManagementPolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,7 +138,7 @@ class MobilityManagementPolicyItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[mobility_management_policy.MobilityManagementPolicy] = None, request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property mobileAppManagementPolicies in policies
+        Update the properties of a mobilityManagementPolicy object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -181,7 +181,7 @@ class MobilityManagementPolicyItemRequestBuilder():
     @dataclass
     class MobilityManagementPolicyItemRequestBuilderGetQueryParameters():
         """
-        The policy that defines auto-enrollment configuration for a mobility management (MDM or MAM) application.
+        Read the properties and relationships of a mobilityManagementPolicy object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

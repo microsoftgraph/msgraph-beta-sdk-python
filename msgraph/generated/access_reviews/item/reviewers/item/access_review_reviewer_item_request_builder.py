@@ -37,7 +37,7 @@ class AccessReviewReviewerItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[AccessReviewReviewerItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property reviewers for accessReviews
+        In the Azure AD access reviews feature, update an existing accessReview object to remove a user as a reviewer.  This operation is only permitted for an access review that is not yet completed, and only for an access review where the reviewers are explicitly specified. This operation is not permitted for an access review in which users review their own access, and not intended for an access review in which the group owners are assigned as the reviewers. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -103,7 +103,7 @@ class AccessReviewReviewerItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[AccessReviewReviewerItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property reviewers for accessReviews
+        In the Azure AD access reviews feature, update an existing accessReview object to remove a user as a reviewer.  This operation is only permitted for an access review that is not yet completed, and only for an access review where the reviewers are explicitly specified. This operation is not permitted for an access review in which users review their own access, and not intended for an access review in which the group owners are assigned as the reviewers. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

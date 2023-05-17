@@ -39,7 +39,7 @@ class UpdatePolicyItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[UpdatePolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property updatePolicies for admin
+        Delete an updatePolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -58,7 +58,7 @@ class UpdatePolicyItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[UpdatePolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[update_policy.UpdatePolicy]:
         """
-        A collection of policies for approving the deployment of different content to an audience over time.
+        Read the properties and relationships of an updatePolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[update_policy.UpdatePolicy]
@@ -80,7 +80,7 @@ class UpdatePolicyItemRequestBuilder():
     
     async def patch(self,body: Optional[update_policy.UpdatePolicy] = None, request_configuration: Optional[UpdatePolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[update_policy.UpdatePolicy]:
         """
-        Update the navigation property updatePolicies in admin
+        Update the properties of an updatePolicy object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -105,7 +105,7 @@ class UpdatePolicyItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[UpdatePolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property updatePolicies for admin
+        Delete an updatePolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -121,7 +121,7 @@ class UpdatePolicyItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UpdatePolicyItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        A collection of policies for approving the deployment of different content to an audience over time.
+        Read the properties and relationships of an updatePolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -139,7 +139,7 @@ class UpdatePolicyItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[update_policy.UpdatePolicy] = None, request_configuration: Optional[UpdatePolicyItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property updatePolicies in admin
+        Update the properties of an updatePolicy object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -191,7 +191,7 @@ class UpdatePolicyItemRequestBuilder():
     @dataclass
     class UpdatePolicyItemRequestBuilderGetQueryParameters():
         """
-        A collection of policies for approving the deployment of different content to an audience over time.
+        Read the properties and relationships of an updatePolicy object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

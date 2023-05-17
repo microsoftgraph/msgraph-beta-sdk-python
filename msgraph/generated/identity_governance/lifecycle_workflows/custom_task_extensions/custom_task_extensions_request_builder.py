@@ -54,7 +54,7 @@ class CustomTaskExtensionsRequestBuilder():
     
     async def get(self,request_configuration: Optional[CustomTaskExtensionsRequestBuilderGetRequestConfiguration] = None) -> Optional[custom_task_extension_collection_response.CustomTaskExtensionCollectionResponse]:
         """
-        The customTaskExtension instance.
+        Get a list of the customTaskExtension objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[custom_task_extension_collection_response.CustomTaskExtensionCollectionResponse]
@@ -76,7 +76,7 @@ class CustomTaskExtensionsRequestBuilder():
     
     async def post(self,body: Optional[custom_task_extension.CustomTaskExtension] = None, request_configuration: Optional[CustomTaskExtensionsRequestBuilderPostRequestConfiguration] = None) -> Optional[custom_task_extension.CustomTaskExtension]:
         """
-        Create new navigation property to customTaskExtensions for identityGovernance
+        Create a new customTaskExtension object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class CustomTaskExtensionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CustomTaskExtensionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The customTaskExtension instance.
+        Get a list of the customTaskExtension objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class CustomTaskExtensionsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[custom_task_extension.CustomTaskExtension] = None, request_configuration: Optional[CustomTaskExtensionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to customTaskExtensions for identityGovernance
+        Create a new customTaskExtension object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class CustomTaskExtensionsRequestBuilder():
     @dataclass
     class CustomTaskExtensionsRequestBuilderGetQueryParameters():
         """
-        The customTaskExtension instance.
+        Get a list of the customTaskExtension objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

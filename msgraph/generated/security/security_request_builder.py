@@ -24,11 +24,11 @@ if TYPE_CHECKING:
     from .information_protection import information_protection_request_builder
     from .ip_security_profiles import ip_security_profiles_request_builder
     from .labels import labels_request_builder
+    from .microsoft_graph_security_run_hunting_query import microsoft_graph_security_run_hunting_query_request_builder
     from .provider_tenant_settings import provider_tenant_settings_request_builder
     from .secure_score_control_profiles import secure_score_control_profiles_request_builder
     from .secure_scores import secure_scores_request_builder
     from .security_actions import security_actions_request_builder
-    from .security_run_hunting_query import security_run_hunting_query_request_builder
     from .subject_rights_requests import subject_rights_requests_request_builder
     from .threat_intelligence import threat_intelligence_request_builder
     from .threat_submission import threat_submission_request_builder
@@ -254,6 +254,15 @@ class SecurityRequestBuilder():
         return labels_request_builder.LabelsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def microsoft_graph_security_run_hunting_query(self) -> microsoft_graph_security_run_hunting_query_request_builder.MicrosoftGraphSecurityRunHuntingQueryRequestBuilder:
+        """
+        Provides operations to call the runHuntingQuery method.
+        """
+        from .microsoft_graph_security_run_hunting_query import microsoft_graph_security_run_hunting_query_request_builder
+
+        return microsoft_graph_security_run_hunting_query_request_builder.MicrosoftGraphSecurityRunHuntingQueryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def provider_tenant_settings(self) -> provider_tenant_settings_request_builder.ProviderTenantSettingsRequestBuilder:
         """
         Provides operations to manage the providerTenantSettings property of the microsoft.graph.security entity.
@@ -288,15 +297,6 @@ class SecurityRequestBuilder():
         from .security_actions import security_actions_request_builder
 
         return security_actions_request_builder.SecurityActionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def security_run_hunting_query(self) -> security_run_hunting_query_request_builder.SecurityRunHuntingQueryRequestBuilder:
-        """
-        Provides operations to call the runHuntingQuery method.
-        """
-        from .security_run_hunting_query import security_run_hunting_query_request_builder
-
-        return security_run_hunting_query_request_builder.SecurityRunHuntingQueryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def subject_rights_requests(self) -> subject_rights_requests_request_builder.SubjectRightsRequestsRequestBuilder:

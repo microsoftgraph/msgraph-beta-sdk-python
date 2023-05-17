@@ -37,7 +37,7 @@ class UserAccountInformationItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[UserAccountInformationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property account for users
+        Delete an userAccountInformation object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class UserAccountInformationItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[UserAccountInformationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[user_account_information.UserAccountInformation]:
         """
-        Get account from users
+        Retrieve the properties and relationships of an userAccountInformation object in a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[user_account_information.UserAccountInformation]
@@ -78,7 +78,7 @@ class UserAccountInformationItemRequestBuilder():
     
     async def patch(self,body: Optional[user_account_information.UserAccountInformation] = None, request_configuration: Optional[UserAccountInformationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[user_account_information.UserAccountInformation]:
         """
-        Update the navigation property account in users
+        Update the properties of an userAccountInformation object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class UserAccountInformationItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[UserAccountInformationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property account for users
+        Delete an userAccountInformation object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class UserAccountInformationItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UserAccountInformationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get account from users
+        Retrieve the properties and relationships of an userAccountInformation object in a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class UserAccountInformationItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[user_account_information.UserAccountInformation] = None, request_configuration: Optional[UserAccountInformationItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property account in users
+        Update the properties of an userAccountInformation object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class UserAccountInformationItemRequestBuilder():
     @dataclass
     class UserAccountInformationItemRequestBuilderGetQueryParameters():
         """
-        Get account from users
+        Retrieve the properties and relationships of an userAccountInformation object in a user's profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

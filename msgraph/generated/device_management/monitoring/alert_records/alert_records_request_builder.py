@@ -13,8 +13,8 @@ if TYPE_CHECKING:
     from ....models.device_management import alert_record, alert_record_collection_response
     from ....models.o_data_errors import o_data_error
     from .count import count_request_builder
-    from .device_management_get_portal_notifications import device_management_get_portal_notifications_request_builder
     from .item import alert_record_item_request_builder
+    from .microsoft_graph_device_management_get_portal_notifications import microsoft_graph_device_management_get_portal_notifications_request_builder
 
 class AlertRecordsRequestBuilder():
     """
@@ -55,7 +55,7 @@ class AlertRecordsRequestBuilder():
     
     async def get(self,request_configuration: Optional[AlertRecordsRequestBuilderGetRequestConfiguration] = None) -> Optional[alert_record_collection_response.AlertRecordCollectionResponse]:
         """
-        The collection of records of alert events.
+        Get a list of the alertRecord objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[alert_record_collection_response.AlertRecordCollectionResponse]
@@ -102,7 +102,7 @@ class AlertRecordsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AlertRecordsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection of records of alert events.
+        Get a list of the alertRecord objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -149,18 +149,18 @@ class AlertRecordsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device_management_get_portal_notifications(self) -> device_management_get_portal_notifications_request_builder.DeviceManagementGetPortalNotificationsRequestBuilder:
+    def microsoft_graph_device_management_get_portal_notifications(self) -> microsoft_graph_device_management_get_portal_notifications_request_builder.MicrosoftGraphDeviceManagementGetPortalNotificationsRequestBuilder:
         """
         Provides operations to call the getPortalNotifications method.
         """
-        from .device_management_get_portal_notifications import device_management_get_portal_notifications_request_builder
+        from .microsoft_graph_device_management_get_portal_notifications import microsoft_graph_device_management_get_portal_notifications_request_builder
 
-        return device_management_get_portal_notifications_request_builder.DeviceManagementGetPortalNotificationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_device_management_get_portal_notifications_request_builder.MicrosoftGraphDeviceManagementGetPortalNotificationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AlertRecordsRequestBuilderGetQueryParameters():
         """
-        The collection of records of alert events.
+        Get a list of the alertRecord objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

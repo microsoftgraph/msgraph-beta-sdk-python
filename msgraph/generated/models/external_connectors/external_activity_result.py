@@ -14,7 +14,7 @@ class ExternalActivityResult(external_activity.ExternalActivity):
         Instantiates a new ExternalActivityResult and sets the default values.
         """
         super().__init__()
-        # Error information explaining failure to process external activity.
+        # Error information that explains the failure to process an external activity.
         self._error: Optional[public_error.PublicError] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
@@ -34,7 +34,7 @@ class ExternalActivityResult(external_activity.ExternalActivity):
     @property
     def error(self,) -> Optional[public_error.PublicError]:
         """
-        Gets the error property value. Error information explaining failure to process external activity.
+        Gets the error property value. Error information that explains the failure to process an external activity.
         Returns: Optional[public_error.PublicError]
         """
         return self._error
@@ -42,7 +42,7 @@ class ExternalActivityResult(external_activity.ExternalActivity):
     @error.setter
     def error(self,value: Optional[public_error.PublicError] = None) -> None:
         """
-        Sets the error property value. Error information explaining failure to process external activity.
+        Sets the error property value. Error information that explains the failure to process an external activity.
         Args:
             value: Value to set for the error property.
         """

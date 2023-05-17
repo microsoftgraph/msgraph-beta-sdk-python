@@ -37,7 +37,7 @@ class EvaluateApplicationRequestBuilder():
     
     async def post(self,body: Optional[evaluate_application_post_request_body.EvaluateApplicationPostRequestBody] = None, request_configuration: Optional[EvaluateApplicationRequestBuilderPostRequestConfiguration] = None) -> Optional[evaluate_application_response.EvaluateApplicationResponse]:
         """
-        Invoke action evaluateApplication
+        Compute the information protection label that should be applied and return the set of actions that must be taken to correctly label the information. This API is useful when a label should be set manually or explicitly by a user or service, rather than automatically based on file contents.  Given contentInfo, which includes existing content metadata key/value pairs, and labelingOptions as an input, the API returns an informationProtectionAction object that contains one of more of the following: 
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -62,7 +62,7 @@ class EvaluateApplicationRequestBuilder():
     
     def to_post_request_information(self,body: Optional[evaluate_application_post_request_body.EvaluateApplicationPostRequestBody] = None, request_configuration: Optional[EvaluateApplicationRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action evaluateApplication
+        Compute the information protection label that should be applied and return the set of actions that must be taken to correctly label the information. This API is useful when a label should be set manually or explicitly by a user or service, rather than automatically based on file contents.  Given contentInfo, which includes existing content metadata key/value pairs, and labelingOptions as an input, the API returns an informationProtectionAction object that contains one of more of the following: 
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

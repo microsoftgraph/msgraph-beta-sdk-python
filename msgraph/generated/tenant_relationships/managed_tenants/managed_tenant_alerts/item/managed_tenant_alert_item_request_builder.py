@@ -16,7 +16,7 @@ if TYPE_CHECKING:
     from .alert_rule import alert_rule_request_builder
     from .api_notifications import api_notifications_request_builder
     from .email_notifications import email_notifications_request_builder
-    from .managed_tenants_add_user_input_log import managed_tenants_add_user_input_log_request_builder
+    from .microsoft_graph_managed_tenants_add_user_input_log import microsoft_graph_managed_tenants_add_user_input_log_request_builder
 
 class ManagedTenantAlertItemRequestBuilder():
     """
@@ -198,13 +198,13 @@ class ManagedTenantAlertItemRequestBuilder():
         return email_notifications_request_builder.EmailNotificationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def managed_tenants_add_user_input_log(self) -> managed_tenants_add_user_input_log_request_builder.ManagedTenantsAddUserInputLogRequestBuilder:
+    def microsoft_graph_managed_tenants_add_user_input_log(self) -> microsoft_graph_managed_tenants_add_user_input_log_request_builder.MicrosoftGraphManagedTenantsAddUserInputLogRequestBuilder:
         """
         Provides operations to call the addUserInputLog method.
         """
-        from .managed_tenants_add_user_input_log import managed_tenants_add_user_input_log_request_builder
+        from .microsoft_graph_managed_tenants_add_user_input_log import microsoft_graph_managed_tenants_add_user_input_log_request_builder
 
-        return managed_tenants_add_user_input_log_request_builder.ManagedTenantsAddUserInputLogRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_managed_tenants_add_user_input_log_request_builder.MicrosoftGraphManagedTenantsAddUserInputLogRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ManagedTenantAlertItemRequestBuilderDeleteRequestConfiguration():

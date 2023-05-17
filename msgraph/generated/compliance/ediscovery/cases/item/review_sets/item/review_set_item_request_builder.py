@@ -12,8 +12,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .......models.ediscovery import review_set
     from .......models.o_data_errors import o_data_error
-    from .ediscovery_add_to_review_set import ediscovery_add_to_review_set_request_builder
-    from .ediscovery_export import ediscovery_export_request_builder
+    from .microsoft_graph_ediscovery_add_to_review_set import microsoft_graph_ediscovery_add_to_review_set_request_builder
+    from .microsoft_graph_ediscovery_export import microsoft_graph_ediscovery_export_request_builder
     from .queries import queries_request_builder
 
 class ReviewSetItemRequestBuilder():
@@ -59,7 +59,7 @@ class ReviewSetItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[ReviewSetItemRequestBuilderGetRequestConfiguration] = None) -> Optional[review_set.ReviewSet]:
         """
-        Returns a list of reviewSet objects in the case. Read-only. Nullable.
+        Retrieve the properties and relationships of a reviewSet object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[review_set.ReviewSet]
@@ -122,7 +122,7 @@ class ReviewSetItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ReviewSetItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Returns a list of reviewSet objects in the case. Read-only. Nullable.
+        Retrieve the properties and relationships of a reviewSet object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -160,22 +160,22 @@ class ReviewSetItemRequestBuilder():
         return request_info
     
     @property
-    def ediscovery_add_to_review_set(self) -> ediscovery_add_to_review_set_request_builder.EdiscoveryAddToReviewSetRequestBuilder:
+    def microsoft_graph_ediscovery_add_to_review_set(self) -> microsoft_graph_ediscovery_add_to_review_set_request_builder.MicrosoftGraphEdiscoveryAddToReviewSetRequestBuilder:
         """
         Provides operations to call the addToReviewSet method.
         """
-        from .ediscovery_add_to_review_set import ediscovery_add_to_review_set_request_builder
+        from .microsoft_graph_ediscovery_add_to_review_set import microsoft_graph_ediscovery_add_to_review_set_request_builder
 
-        return ediscovery_add_to_review_set_request_builder.EdiscoveryAddToReviewSetRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_ediscovery_add_to_review_set_request_builder.MicrosoftGraphEdiscoveryAddToReviewSetRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def ediscovery_export(self) -> ediscovery_export_request_builder.EdiscoveryExportRequestBuilder:
+    def microsoft_graph_ediscovery_export(self) -> microsoft_graph_ediscovery_export_request_builder.MicrosoftGraphEdiscoveryExportRequestBuilder:
         """
         Provides operations to call the export method.
         """
-        from .ediscovery_export import ediscovery_export_request_builder
+        from .microsoft_graph_ediscovery_export import microsoft_graph_ediscovery_export_request_builder
 
-        return ediscovery_export_request_builder.EdiscoveryExportRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_ediscovery_export_request_builder.MicrosoftGraphEdiscoveryExportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def queries(self) -> queries_request_builder.QueriesRequestBuilder:
@@ -201,7 +201,7 @@ class ReviewSetItemRequestBuilder():
     @dataclass
     class ReviewSetItemRequestBuilderGetQueryParameters():
         """
-        Returns a list of reviewSet objects in the case. Read-only. Nullable.
+        Retrieve the properties and relationships of a reviewSet object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

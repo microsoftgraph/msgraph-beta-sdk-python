@@ -57,7 +57,7 @@ class IntelligenceProfileItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[IntelligenceProfileItemRequestBuilderGetRequestConfiguration] = None) -> Optional[intelligence_profile.IntelligenceProfile]:
         """
-        A list of intelligenceProfile objects.
+        Read the properties and relationships of a intelligenceProfile object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[intelligence_profile.IntelligenceProfile]
@@ -120,7 +120,7 @@ class IntelligenceProfileItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[IntelligenceProfileItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        A list of intelligenceProfile objects.
+        Read the properties and relationships of a intelligenceProfile object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -181,7 +181,7 @@ class IntelligenceProfileItemRequestBuilder():
     @dataclass
     class IntelligenceProfileItemRequestBuilderGetQueryParameters():
         """
-        A list of intelligenceProfile objects.
+        Read the properties and relationships of a intelligenceProfile object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

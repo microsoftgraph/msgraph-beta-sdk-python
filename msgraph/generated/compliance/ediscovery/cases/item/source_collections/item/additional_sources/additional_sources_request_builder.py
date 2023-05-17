@@ -54,7 +54,7 @@ class AdditionalSourcesRequestBuilder():
     
     async def get(self,request_configuration: Optional[AdditionalSourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[data_source_collection_response.DataSourceCollectionResponse]:
         """
-        Adds an additional source to the sourceCollection.
+        Get a list of additional dataSource objects associated with a source collection.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[data_source_collection_response.DataSourceCollectionResponse]
@@ -101,7 +101,7 @@ class AdditionalSourcesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AdditionalSourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Adds an additional source to the sourceCollection.
+        Get a list of additional dataSource objects associated with a source collection.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class AdditionalSourcesRequestBuilder():
     @dataclass
     class AdditionalSourcesRequestBuilderGetQueryParameters():
         """
-        Adds an additional source to the sourceCollection.
+        Get a list of additional dataSource objects associated with a source collection.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

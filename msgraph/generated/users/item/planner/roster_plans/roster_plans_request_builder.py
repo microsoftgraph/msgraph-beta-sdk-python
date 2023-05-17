@@ -54,7 +54,7 @@ class RosterPlansRequestBuilder():
     
     async def get(self,request_configuration: Optional[RosterPlansRequestBuilderGetRequestConfiguration] = None) -> Optional[planner_plan_collection_response.PlannerPlanCollectionResponse]:
         """
-        Read-only. Nullable. Returns the plannerPlans contained by the plannerRosters the user is a member.
+        Get the list of plannerPlans that are contained by the plannerRosters of which the user is a member.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[planner_plan_collection_response.PlannerPlanCollectionResponse]
@@ -76,7 +76,7 @@ class RosterPlansRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RosterPlansRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read-only. Nullable. Returns the plannerPlans contained by the plannerRosters the user is a member.
+        Get the list of plannerPlans that are contained by the plannerRosters of which the user is a member.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +104,7 @@ class RosterPlansRequestBuilder():
     @dataclass
     class RosterPlansRequestBuilderGetQueryParameters():
         """
-        Read-only. Nullable. Returns the plannerPlans contained by the plannerRosters the user is a member.
+        Get the list of plannerPlans that are contained by the plannerRosters of which the user is a member.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

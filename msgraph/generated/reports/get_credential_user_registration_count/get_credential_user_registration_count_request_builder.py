@@ -37,7 +37,7 @@ class GetCredentialUserRegistrationCountRequestBuilder():
     
     async def get(self,request_configuration: Optional[GetCredentialUserRegistrationCountRequestBuilderGetRequestConfiguration] = None) -> Optional[get_credential_user_registration_count_response.GetCredentialUserRegistrationCountResponse]:
         """
-        Invoke function getCredentialUserRegistrationCount
+        Report the current state of how many users in your organization are registered for self-service password reset and multi-factor authentication (MFA) capabilities.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[get_credential_user_registration_count_response.GetCredentialUserRegistrationCountResponse]
@@ -59,7 +59,7 @@ class GetCredentialUserRegistrationCountRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[GetCredentialUserRegistrationCountRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke function getCredentialUserRegistrationCount
+        Report the current state of how many users in your organization are registered for self-service password reset and multi-factor authentication (MFA) capabilities.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -78,7 +78,7 @@ class GetCredentialUserRegistrationCountRequestBuilder():
     @dataclass
     class GetCredentialUserRegistrationCountRequestBuilderGetQueryParameters():
         """
-        Invoke function getCredentialUserRegistrationCount
+        Report the current state of how many users in your organization are registered for self-service password reset and multi-factor authentication (MFA) capabilities.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

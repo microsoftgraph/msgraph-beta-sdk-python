@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .activate import activate_request_builder
     from .categories import categories_request_builder
     from .deactivate import deactivate_request_builder
+    from .grading_category import grading_category_request_builder
     from .publish import publish_request_builder
     from .resources import resources_request_builder
     from .rubric import rubric_request_builder
@@ -46,7 +47,7 @@ class EducationAssignmentItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[EducationAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property assignments for education
+        Delete an existing assignment. Only teachers within a class can delete assignments.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -65,7 +66,7 @@ class EducationAssignmentItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[EducationAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[education_assignment.EducationAssignment]:
         """
-        All assignments associated with this class. Nullable.
+        Get the properties and relationships of an assignment. Only teachers, students, and applications with application permissions can perform this operation. Students can only see assignments assigned to them; teachers and applications with application permissions can see all assignments in a class. You can use the `Prefer` header in your request to get the `inactive` status in case the assignment is deactivated; otherwise, you will get an `unknownFutureValue` value in the response.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[education_assignment.EducationAssignment]
@@ -87,7 +88,7 @@ class EducationAssignmentItemRequestBuilder():
     
     async def patch(self,body: Optional[education_assignment.EducationAssignment] = None, request_configuration: Optional[EducationAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[education_assignment.EducationAssignment]:
         """
-        Update the navigation property assignments in education
+        Update an educationAssignment object.  Only teachers in the class can do this. Note that you can't use a PATCH request to change the status of an **assignment**. Use the publish action to change the **assignment** status.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -112,7 +113,7 @@ class EducationAssignmentItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[EducationAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property assignments for education
+        Delete an existing assignment. Only teachers within a class can delete assignments.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -128,7 +129,7 @@ class EducationAssignmentItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[EducationAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        All assignments associated with this class. Nullable.
+        Get the properties and relationships of an assignment. Only teachers, students, and applications with application permissions can perform this operation. Students can only see assignments assigned to them; teachers and applications with application permissions can see all assignments in a class. You can use the `Prefer` header in your request to get the `inactive` status in case the assignment is deactivated; otherwise, you will get an `unknownFutureValue` value in the response.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -146,7 +147,7 @@ class EducationAssignmentItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[education_assignment.EducationAssignment] = None, request_configuration: Optional[EducationAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property assignments in education
+        Update an educationAssignment object.  Only teachers in the class can do this. Note that you can't use a PATCH request to change the status of an **assignment**. Use the publish action to change the **assignment** status.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -191,6 +192,15 @@ class EducationAssignmentItemRequestBuilder():
         from .deactivate import deactivate_request_builder
 
         return deactivate_request_builder.DeactivateRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def grading_category(self) -> grading_category_request_builder.GradingCategoryRequestBuilder:
+        """
+        Provides operations to manage the gradingCategory property of the microsoft.graph.educationAssignment entity.
+        """
+        from .grading_category import grading_category_request_builder
+
+        return grading_category_request_builder.GradingCategoryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def publish(self) -> publish_request_builder.PublishRequestBuilder:
@@ -261,7 +271,7 @@ class EducationAssignmentItemRequestBuilder():
     @dataclass
     class EducationAssignmentItemRequestBuilderGetQueryParameters():
         """
-        All assignments associated with this class. Nullable.
+        Get the properties and relationships of an assignment. Only teachers, students, and applications with application permissions can perform this operation. Students can only see assignments assigned to them; teachers and applications with application permissions can see all assignments in a class. You can use the `Prefer` header in your request to get the `inactive` status in case the assignment is deactivated; otherwise, you will get an `unknownFutureValue` value in the response.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

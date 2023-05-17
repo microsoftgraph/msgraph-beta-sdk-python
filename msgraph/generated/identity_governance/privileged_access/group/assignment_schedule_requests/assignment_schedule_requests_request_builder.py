@@ -68,7 +68,7 @@ class AssignmentScheduleRequestsRequestBuilder():
     
     async def get(self,request_configuration: Optional[AssignmentScheduleRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_access_group_assignment_schedule_request_collection_response.PrivilegedAccessGroupAssignmentScheduleRequestCollectionResponse]:
         """
-        Get assignmentScheduleRequests from identityGovernance
+        Get a list of the privilegedAccessGroupAssignmentScheduleRequest objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[privileged_access_group_assignment_schedule_request_collection_response.PrivilegedAccessGroupAssignmentScheduleRequestCollectionResponse]
@@ -90,7 +90,7 @@ class AssignmentScheduleRequestsRequestBuilder():
     
     async def post(self,body: Optional[privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest] = None, request_configuration: Optional[AssignmentScheduleRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest]:
         """
-        Create new navigation property to assignmentScheduleRequests for identityGovernance
+        Create a new privilegedAccessGroupAssignmentScheduleRequest object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -115,7 +115,7 @@ class AssignmentScheduleRequestsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AssignmentScheduleRequestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get assignmentScheduleRequests from identityGovernance
+        Get a list of the privilegedAccessGroupAssignmentScheduleRequest objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -133,7 +133,7 @@ class AssignmentScheduleRequestsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest] = None, request_configuration: Optional[AssignmentScheduleRequestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to assignmentScheduleRequests for identityGovernance
+        Create a new privilegedAccessGroupAssignmentScheduleRequest object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -164,7 +164,7 @@ class AssignmentScheduleRequestsRequestBuilder():
     @dataclass
     class AssignmentScheduleRequestsRequestBuilderGetQueryParameters():
         """
-        Get assignmentScheduleRequests from identityGovernance
+        Get a list of the privilegedAccessGroupAssignmentScheduleRequest objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

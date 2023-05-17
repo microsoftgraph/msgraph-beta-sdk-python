@@ -8,9 +8,12 @@ if TYPE_CHECKING:
 from . import entity
 
 class UserExperienceAnalyticsDeviceStartupProcess(entity.Entity):
+    """
+    The user experience analytics device startup process details.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new UserExperienceAnalyticsDeviceStartupProcess and sets the default values.
+        Instantiates a new userExperienceAnalyticsDeviceStartupProcess and sets the default values.
         """
         super().__init__()
         # The user experience analytics device id.

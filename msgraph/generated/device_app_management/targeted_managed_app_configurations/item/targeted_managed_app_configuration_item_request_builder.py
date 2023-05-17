@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from .assignments import assignments_request_builder
     from .change_settings import change_settings_request_builder
     from .deployment_summary import deployment_summary_request_builder
+    from .settings import settings_request_builder
     from .target_apps import target_apps_request_builder
 
 class TargetedManagedAppConfigurationItemRequestBuilder():
@@ -206,6 +207,15 @@ class TargetedManagedAppConfigurationItemRequestBuilder():
         from .deployment_summary import deployment_summary_request_builder
 
         return deployment_summary_request_builder.DeploymentSummaryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def settings(self) -> settings_request_builder.SettingsRequestBuilder:
+        """
+        Provides operations to manage the settings property of the microsoft.graph.managedAppConfiguration entity.
+        """
+        from .settings import settings_request_builder
+
+        return settings_request_builder.SettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def target_apps(self) -> target_apps_request_builder.TargetAppsRequestBuilder:

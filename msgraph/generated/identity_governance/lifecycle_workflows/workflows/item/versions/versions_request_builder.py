@@ -54,7 +54,7 @@ class VersionsRequestBuilder():
     
     async def get(self,request_configuration: Optional[VersionsRequestBuilderGetRequestConfiguration] = None) -> Optional[workflow_version_collection_response.WorkflowVersionCollectionResponse]:
         """
-        The workflow versions that are available.
+        Get a list of the workflowVersion objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[workflow_version_collection_response.WorkflowVersionCollectionResponse]
@@ -76,7 +76,7 @@ class VersionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[VersionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The workflow versions that are available.
+        Get a list of the workflowVersion objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +104,7 @@ class VersionsRequestBuilder():
     @dataclass
     class VersionsRequestBuilderGetQueryParameters():
         """
-        The workflow versions that are available.
+        Get a list of the workflowVersion objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

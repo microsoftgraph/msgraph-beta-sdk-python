@@ -54,7 +54,7 @@ class LegalHoldsRequestBuilder():
     
     async def get(self,request_configuration: Optional[LegalHoldsRequestBuilderGetRequestConfiguration] = None) -> Optional[legal_hold_collection_response.LegalHoldCollectionResponse]:
         """
-        Returns a list of case legalHold objects for this case.  Nullable.
+        Read the properties and relationships of a legalHold object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[legal_hold_collection_response.LegalHoldCollectionResponse]
@@ -101,7 +101,7 @@ class LegalHoldsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[LegalHoldsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Returns a list of case legalHold objects for this case.  Nullable.
+        Read the properties and relationships of a legalHold object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class LegalHoldsRequestBuilder():
     @dataclass
     class LegalHoldsRequestBuilderGetQueryParameters():
         """
-        Returns a list of case legalHold objects for this case.  Nullable.
+        Read the properties and relationships of a legalHold object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

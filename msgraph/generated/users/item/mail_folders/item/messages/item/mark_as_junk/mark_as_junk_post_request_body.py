@@ -10,7 +10,7 @@ class MarkAsJunkPostRequestBody(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The moveToJunk property
+        # The MoveToJunk property
         self._move_to_junk: Optional[bool] = None
     
     @property
@@ -48,14 +48,14 @@ class MarkAsJunkPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields: Dict[str, Callable[[Any], None]] = {
-            "moveToJunk": lambda n : setattr(self, 'move_to_junk', n.get_bool_value()),
+            "MoveToJunk": lambda n : setattr(self, 'move_to_junk', n.get_bool_value()),
         }
         return fields
     
     @property
     def move_to_junk(self,) -> Optional[bool]:
         """
-        Gets the moveToJunk property value. The moveToJunk property
+        Gets the moveToJunk property value. The MoveToJunk property
         Returns: Optional[bool]
         """
         return self._move_to_junk
@@ -63,7 +63,7 @@ class MarkAsJunkPostRequestBody(AdditionalDataHolder, Parsable):
     @move_to_junk.setter
     def move_to_junk(self,value: Optional[bool] = None) -> None:
         """
-        Sets the moveToJunk property value. The moveToJunk property
+        Sets the moveToJunk property value. The MoveToJunk property
         Args:
             value: Value to set for the move_to_junk property.
         """
@@ -77,7 +77,7 @@ class MarkAsJunkPostRequestBody(AdditionalDataHolder, Parsable):
         """
         if writer is None:
             raise Exception("writer cannot be undefined")
-        writer.write_bool_value("moveToJunk", self.move_to_junk)
+        writer.write_bool_value("MoveToJunk", self.move_to_junk)
         writer.write_additional_data_value(self.additional_data)
     
 

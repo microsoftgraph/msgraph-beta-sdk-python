@@ -54,7 +54,7 @@ class LearningCourseActivitiesRequestBuilder():
     
     async def get(self,request_configuration: Optional[LearningCourseActivitiesRequestBuilderGetRequestConfiguration] = None) -> Optional[learning_course_activity_collection_response.LearningCourseActivityCollectionResponse]:
         """
-        Get learningCourseActivities from me
+        Get a list of the learningCourseActivity objects (assigned or self-initiated) for a user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[learning_course_activity_collection_response.LearningCourseActivityCollectionResponse]
@@ -76,7 +76,7 @@ class LearningCourseActivitiesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[LearningCourseActivitiesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get learningCourseActivities from me
+        Get a list of the learningCourseActivity objects (assigned or self-initiated) for a user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +104,7 @@ class LearningCourseActivitiesRequestBuilder():
     @dataclass
     class LearningCourseActivitiesRequestBuilderGetQueryParameters():
         """
-        Get learningCourseActivities from me
+        Get a list of the learningCourseActivity objects (assigned or self-initiated) for a user.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -14,27 +14,27 @@ class PrivilegedAccessGroupAssignmentSchedule(privileged_access_schedule.Privile
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.privilegedAccessGroupAssignmentSchedule"
-        # The accessId property
+        # The identifier of the membership or ownership assignment to the group that is governed by PIM. Required. The possible values are: owner, member, unknownFutureValue.
         self._access_id: Optional[privileged_access_group_relationships.PrivilegedAccessGroupRelationships] = None
-        # The activatedUsing property
+        # When the request activates an ownership or membership assignment in PIM for groups, this object represents the eligibility relationship. Otherwise, it is null. Supports $expand.
         self._activated_using: Optional[privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule] = None
-        # The assignmentType property
+        # Indicates whether the membership or ownership assignment for the principal is granted through activation or direct assignment. Required. The possible values are: assigned, activated, unknownFutureValue.
         self._assignment_type: Optional[privileged_access_group_assignment_type.PrivilegedAccessGroupAssignmentType] = None
-        # The group property
+        # References the group that is the scope of the membership or ownership assignment through PIM for groups. Supports $expand.
         self._group: Optional[group.Group] = None
-        # The groupId property
+        # The identifier of the group representing the scope of the membership or ownership assignment through PIM for groups. Required.
         self._group_id: Optional[str] = None
-        # The memberType property
+        # Indicates whether the assignment is derived from a direct group assignment or through a transitive assignment. The possible values are: direct, group, unknownFutureValue.
         self._member_type: Optional[privileged_access_group_member_type.PrivilegedAccessGroupMemberType] = None
-        # The principal property
+        # References the principal that's in the scope of this membership or ownership assignment request to the group that's governed by PIM. Supports $expand.
         self._principal: Optional[directory_object.DirectoryObject] = None
-        # The principalId property
+        # The identifier of the principal whose membership or ownership assignment is granted through PIM for groups. Required.
         self._principal_id: Optional[str] = None
     
     @property
     def access_id(self,) -> Optional[privileged_access_group_relationships.PrivilegedAccessGroupRelationships]:
         """
-        Gets the accessId property value. The accessId property
+        Gets the accessId property value. The identifier of the membership or ownership assignment to the group that is governed by PIM. Required. The possible values are: owner, member, unknownFutureValue.
         Returns: Optional[privileged_access_group_relationships.PrivilegedAccessGroupRelationships]
         """
         return self._access_id
@@ -42,7 +42,7 @@ class PrivilegedAccessGroupAssignmentSchedule(privileged_access_schedule.Privile
     @access_id.setter
     def access_id(self,value: Optional[privileged_access_group_relationships.PrivilegedAccessGroupRelationships] = None) -> None:
         """
-        Sets the accessId property value. The accessId property
+        Sets the accessId property value. The identifier of the membership or ownership assignment to the group that is governed by PIM. Required. The possible values are: owner, member, unknownFutureValue.
         Args:
             value: Value to set for the access_id property.
         """
@@ -51,7 +51,7 @@ class PrivilegedAccessGroupAssignmentSchedule(privileged_access_schedule.Privile
     @property
     def activated_using(self,) -> Optional[privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule]:
         """
-        Gets the activatedUsing property value. The activatedUsing property
+        Gets the activatedUsing property value. When the request activates an ownership or membership assignment in PIM for groups, this object represents the eligibility relationship. Otherwise, it is null. Supports $expand.
         Returns: Optional[privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule]
         """
         return self._activated_using
@@ -59,7 +59,7 @@ class PrivilegedAccessGroupAssignmentSchedule(privileged_access_schedule.Privile
     @activated_using.setter
     def activated_using(self,value: Optional[privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule] = None) -> None:
         """
-        Sets the activatedUsing property value. The activatedUsing property
+        Sets the activatedUsing property value. When the request activates an ownership or membership assignment in PIM for groups, this object represents the eligibility relationship. Otherwise, it is null. Supports $expand.
         Args:
             value: Value to set for the activated_using property.
         """
@@ -68,7 +68,7 @@ class PrivilegedAccessGroupAssignmentSchedule(privileged_access_schedule.Privile
     @property
     def assignment_type(self,) -> Optional[privileged_access_group_assignment_type.PrivilegedAccessGroupAssignmentType]:
         """
-        Gets the assignmentType property value. The assignmentType property
+        Gets the assignmentType property value. Indicates whether the membership or ownership assignment for the principal is granted through activation or direct assignment. Required. The possible values are: assigned, activated, unknownFutureValue.
         Returns: Optional[privileged_access_group_assignment_type.PrivilegedAccessGroupAssignmentType]
         """
         return self._assignment_type
@@ -76,7 +76,7 @@ class PrivilegedAccessGroupAssignmentSchedule(privileged_access_schedule.Privile
     @assignment_type.setter
     def assignment_type(self,value: Optional[privileged_access_group_assignment_type.PrivilegedAccessGroupAssignmentType] = None) -> None:
         """
-        Sets the assignmentType property value. The assignmentType property
+        Sets the assignmentType property value. Indicates whether the membership or ownership assignment for the principal is granted through activation or direct assignment. Required. The possible values are: assigned, activated, unknownFutureValue.
         Args:
             value: Value to set for the assignment_type property.
         """
@@ -118,7 +118,7 @@ class PrivilegedAccessGroupAssignmentSchedule(privileged_access_schedule.Privile
     @property
     def group(self,) -> Optional[group.Group]:
         """
-        Gets the group property value. The group property
+        Gets the group property value. References the group that is the scope of the membership or ownership assignment through PIM for groups. Supports $expand.
         Returns: Optional[group.Group]
         """
         return self._group
@@ -126,7 +126,7 @@ class PrivilegedAccessGroupAssignmentSchedule(privileged_access_schedule.Privile
     @group.setter
     def group(self,value: Optional[group.Group] = None) -> None:
         """
-        Sets the group property value. The group property
+        Sets the group property value. References the group that is the scope of the membership or ownership assignment through PIM for groups. Supports $expand.
         Args:
             value: Value to set for the group property.
         """
@@ -135,7 +135,7 @@ class PrivilegedAccessGroupAssignmentSchedule(privileged_access_schedule.Privile
     @property
     def group_id(self,) -> Optional[str]:
         """
-        Gets the groupId property value. The groupId property
+        Gets the groupId property value. The identifier of the group representing the scope of the membership or ownership assignment through PIM for groups. Required.
         Returns: Optional[str]
         """
         return self._group_id
@@ -143,7 +143,7 @@ class PrivilegedAccessGroupAssignmentSchedule(privileged_access_schedule.Privile
     @group_id.setter
     def group_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the groupId property value. The groupId property
+        Sets the groupId property value. The identifier of the group representing the scope of the membership or ownership assignment through PIM for groups. Required.
         Args:
             value: Value to set for the group_id property.
         """
@@ -152,7 +152,7 @@ class PrivilegedAccessGroupAssignmentSchedule(privileged_access_schedule.Privile
     @property
     def member_type(self,) -> Optional[privileged_access_group_member_type.PrivilegedAccessGroupMemberType]:
         """
-        Gets the memberType property value. The memberType property
+        Gets the memberType property value. Indicates whether the assignment is derived from a direct group assignment or through a transitive assignment. The possible values are: direct, group, unknownFutureValue.
         Returns: Optional[privileged_access_group_member_type.PrivilegedAccessGroupMemberType]
         """
         return self._member_type
@@ -160,7 +160,7 @@ class PrivilegedAccessGroupAssignmentSchedule(privileged_access_schedule.Privile
     @member_type.setter
     def member_type(self,value: Optional[privileged_access_group_member_type.PrivilegedAccessGroupMemberType] = None) -> None:
         """
-        Sets the memberType property value. The memberType property
+        Sets the memberType property value. Indicates whether the assignment is derived from a direct group assignment or through a transitive assignment. The possible values are: direct, group, unknownFutureValue.
         Args:
             value: Value to set for the member_type property.
         """
@@ -169,7 +169,7 @@ class PrivilegedAccessGroupAssignmentSchedule(privileged_access_schedule.Privile
     @property
     def principal(self,) -> Optional[directory_object.DirectoryObject]:
         """
-        Gets the principal property value. The principal property
+        Gets the principal property value. References the principal that's in the scope of this membership or ownership assignment request to the group that's governed by PIM. Supports $expand.
         Returns: Optional[directory_object.DirectoryObject]
         """
         return self._principal
@@ -177,7 +177,7 @@ class PrivilegedAccessGroupAssignmentSchedule(privileged_access_schedule.Privile
     @principal.setter
     def principal(self,value: Optional[directory_object.DirectoryObject] = None) -> None:
         """
-        Sets the principal property value. The principal property
+        Sets the principal property value. References the principal that's in the scope of this membership or ownership assignment request to the group that's governed by PIM. Supports $expand.
         Args:
             value: Value to set for the principal property.
         """
@@ -186,7 +186,7 @@ class PrivilegedAccessGroupAssignmentSchedule(privileged_access_schedule.Privile
     @property
     def principal_id(self,) -> Optional[str]:
         """
-        Gets the principalId property value. The principalId property
+        Gets the principalId property value. The identifier of the principal whose membership or ownership assignment is granted through PIM for groups. Required.
         Returns: Optional[str]
         """
         return self._principal_id
@@ -194,7 +194,7 @@ class PrivilegedAccessGroupAssignmentSchedule(privileged_access_schedule.Privile
     @principal_id.setter
     def principal_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the principalId property value. The principalId property
+        Sets the principalId property value. The identifier of the principal whose membership or ownership assignment is granted through PIM for groups. Required.
         Args:
             value: Value to set for the principal_id property.
         """

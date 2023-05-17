@@ -38,7 +38,7 @@ class UnifiedGroupSourceItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[UnifiedGroupSourceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property unifiedGroupSources for compliance
+        Delete a unifiedGroupSource object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -57,7 +57,7 @@ class UnifiedGroupSourceItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[UnifiedGroupSourceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_group_source.UnifiedGroupSource]:
         """
-        Data source entity for groups associated with the custodian.
+        Read the properties and relationships of a unifiedGroupSource object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[unified_group_source.UnifiedGroupSource]
@@ -104,7 +104,7 @@ class UnifiedGroupSourceItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[UnifiedGroupSourceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property unifiedGroupSources for compliance
+        Delete a unifiedGroupSource object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -120,7 +120,7 @@ class UnifiedGroupSourceItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UnifiedGroupSourceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Data source entity for groups associated with the custodian.
+        Read the properties and relationships of a unifiedGroupSource object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -181,7 +181,7 @@ class UnifiedGroupSourceItemRequestBuilder():
     @dataclass
     class UnifiedGroupSourceItemRequestBuilderGetQueryParameters():
         """
-        Data source entity for groups associated with the custodian.
+        Read the properties and relationships of a unifiedGroupSource object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

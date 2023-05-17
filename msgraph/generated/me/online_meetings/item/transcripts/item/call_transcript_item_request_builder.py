@@ -58,7 +58,7 @@ class CallTranscriptItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[CallTranscriptItemRequestBuilderGetRequestConfiguration] = None) -> Optional[call_transcript.CallTranscript]:
         """
-        The transcripts of an online meeting. Read-only.
+        Retrieve a callTranscript object associated with an onlineMeeting. Retrieving the transcript returns the metadata of the single transcript associated with the online meeting. Retrieving the content of the transcript returns the stream of text associated with the transcript.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[call_transcript.CallTranscript]
@@ -121,7 +121,7 @@ class CallTranscriptItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CallTranscriptItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The transcripts of an online meeting. Read-only.
+        Retrieve a callTranscript object associated with an onlineMeeting. Retrieving the transcript returns the metadata of the single transcript associated with the online meeting. Retrieving the content of the transcript returns the stream of text associated with the transcript.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -191,7 +191,7 @@ class CallTranscriptItemRequestBuilder():
     @dataclass
     class CallTranscriptItemRequestBuilderGetQueryParameters():
         """
-        The transcripts of an online meeting. Read-only.
+        Retrieve a callTranscript object associated with an onlineMeeting. Retrieving the transcript returns the metadata of the single transcript associated with the online meeting. Retrieving the content of the transcript returns the stream of text associated with the transcript.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

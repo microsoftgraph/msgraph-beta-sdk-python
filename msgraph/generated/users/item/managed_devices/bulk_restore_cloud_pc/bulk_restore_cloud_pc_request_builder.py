@@ -38,7 +38,7 @@ class BulkRestoreCloudPcRequestBuilder():
     
     async def post(self,body: Optional[bulk_restore_cloud_pc_post_request_body.BulkRestoreCloudPcPostRequestBody] = None, request_configuration: Optional[BulkRestoreCloudPcRequestBuilderPostRequestConfiguration] = None) -> Optional[cloud_pc_bulk_remote_action_result.CloudPcBulkRemoteActionResult]:
         """
-        Invoke action bulkRestoreCloudPc
+        Restore multiple Cloud PC devices with a single request that includes the IDs of Intune managed devices and a restore point date and time.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +63,7 @@ class BulkRestoreCloudPcRequestBuilder():
     
     def to_post_request_information(self,body: Optional[bulk_restore_cloud_pc_post_request_body.BulkRestoreCloudPcPostRequestBody] = None, request_configuration: Optional[BulkRestoreCloudPcRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action bulkRestoreCloudPc
+        Restore multiple Cloud PC devices with a single request that includes the IDs of Intune managed devices and a restore point date and time.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

@@ -37,7 +37,7 @@ class UpdateTiIndicatorsRequestBuilder():
     
     async def post(self,body: Optional[update_ti_indicators_post_request_body.UpdateTiIndicatorsPostRequestBody] = None, request_configuration: Optional[UpdateTiIndicatorsRequestBuilderPostRequestConfiguration] = None) -> Optional[update_ti_indicators_response.UpdateTiIndicatorsResponse]:
         """
-        Invoke action updateTiIndicators
+        Update multiple threat intelligence (TI) indicators in one request instead of multiple requests.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -62,7 +62,7 @@ class UpdateTiIndicatorsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[update_ti_indicators_post_request_body.UpdateTiIndicatorsPostRequestBody] = None, request_configuration: Optional[UpdateTiIndicatorsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action updateTiIndicators
+        Update multiple threat intelligence (TI) indicators in one request instead of multiple requests.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

@@ -55,7 +55,7 @@ class CustomAuthenticationExtensionsRequestBuilder():
     
     async def get(self,request_configuration: Optional[CustomAuthenticationExtensionsRequestBuilderGetRequestConfiguration] = None) -> Optional[custom_authentication_extension_collection_response.CustomAuthenticationExtensionCollectionResponse]:
         """
-        Get customAuthenticationExtensions from identity
+        Get a list of the customAuthenticationExtension objects and their properties. Currently, only onTokenIssuanceStartCustomExtension objects are returned.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[custom_authentication_extension_collection_response.CustomAuthenticationExtensionCollectionResponse]
@@ -77,7 +77,7 @@ class CustomAuthenticationExtensionsRequestBuilder():
     
     async def post(self,body: Optional[custom_authentication_extension.CustomAuthenticationExtension] = None, request_configuration: Optional[CustomAuthenticationExtensionsRequestBuilderPostRequestConfiguration] = None) -> Optional[custom_authentication_extension.CustomAuthenticationExtension]:
         """
-        Create new navigation property to customAuthenticationExtensions for identity
+        Create a new customAuthenticationExtension object. Only the **onTokenIssuanceStartCustomExtension** object type is supported.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -102,7 +102,7 @@ class CustomAuthenticationExtensionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CustomAuthenticationExtensionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get customAuthenticationExtensions from identity
+        Get a list of the customAuthenticationExtension objects and their properties. Currently, only onTokenIssuanceStartCustomExtension objects are returned.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -120,7 +120,7 @@ class CustomAuthenticationExtensionsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[custom_authentication_extension.CustomAuthenticationExtension] = None, request_configuration: Optional[CustomAuthenticationExtensionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to customAuthenticationExtensions for identity
+        Create a new customAuthenticationExtension object. Only the **onTokenIssuanceStartCustomExtension** object type is supported.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -160,7 +160,7 @@ class CustomAuthenticationExtensionsRequestBuilder():
     @dataclass
     class CustomAuthenticationExtensionsRequestBuilderGetQueryParameters():
         """
-        Get customAuthenticationExtensions from identity
+        Get a list of the customAuthenticationExtension objects and their properties. Currently, only onTokenIssuanceStartCustomExtension objects are returned.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

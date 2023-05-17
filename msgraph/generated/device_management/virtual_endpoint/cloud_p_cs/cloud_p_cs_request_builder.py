@@ -57,7 +57,7 @@ class CloudPCsRequestBuilder():
     
     async def get(self,request_configuration: Optional[CloudPCsRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_p_c_collection_response.CloudPCCollectionResponse]:
         """
-        Cloud managed virtual desktops.
+        List the cloudPC devices in a tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cloud_p_c_collection_response.CloudPCCollectionResponse]
@@ -120,7 +120,7 @@ class CloudPCsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CloudPCsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Cloud managed virtual desktops.
+        List the cloudPC devices in a tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -187,7 +187,7 @@ class CloudPCsRequestBuilder():
     @dataclass
     class CloudPCsRequestBuilderGetQueryParameters():
         """
-        Cloud managed virtual desktops.
+        List the cloudPC devices in a tenant.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

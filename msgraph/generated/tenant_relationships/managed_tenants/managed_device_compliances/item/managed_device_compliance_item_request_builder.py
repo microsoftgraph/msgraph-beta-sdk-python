@@ -56,7 +56,7 @@ class ManagedDeviceComplianceItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[ManagedDeviceComplianceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_device_compliance.ManagedDeviceCompliance]:
         """
-        The collection of compliance for managed devices across managed tenants.
+        Read the properties and relationships of a managedDeviceCompliance object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[managed_device_compliance.ManagedDeviceCompliance]
@@ -119,7 +119,7 @@ class ManagedDeviceComplianceItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ManagedDeviceComplianceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection of compliance for managed devices across managed tenants.
+        Read the properties and relationships of a managedDeviceCompliance object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class ManagedDeviceComplianceItemRequestBuilder():
     @dataclass
     class ManagedDeviceComplianceItemRequestBuilderGetQueryParameters():
         """
-        The collection of compliance for managed devices across managed tenants.
+        Read the properties and relationships of a managedDeviceCompliance object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

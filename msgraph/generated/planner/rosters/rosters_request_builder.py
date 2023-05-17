@@ -54,7 +54,7 @@ class RostersRequestBuilder():
     
     async def get(self,request_configuration: Optional[RostersRequestBuilderGetRequestConfiguration] = None) -> Optional[planner_roster_collection_response.PlannerRosterCollectionResponse]:
         """
-        Read-only. Nullable. Returns a collection of the specified rosters
+        Read the properties and relationships of a plannerRoster object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[planner_roster_collection_response.PlannerRosterCollectionResponse]
@@ -76,7 +76,7 @@ class RostersRequestBuilder():
     
     async def post(self,body: Optional[planner_roster.PlannerRoster] = None, request_configuration: Optional[RostersRequestBuilderPostRequestConfiguration] = None) -> Optional[planner_roster.PlannerRoster]:
         """
-        Create new navigation property to rosters for planner
+        Create a new plannerRoster object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class RostersRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RostersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read-only. Nullable. Returns a collection of the specified rosters
+        Read the properties and relationships of a plannerRoster object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class RostersRequestBuilder():
     
     def to_post_request_information(self,body: Optional[planner_roster.PlannerRoster] = None, request_configuration: Optional[RostersRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to rosters for planner
+        Create a new plannerRoster object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class RostersRequestBuilder():
     @dataclass
     class RostersRequestBuilderGetQueryParameters():
         """
-        Read-only. Nullable. Returns a collection of the specified rosters
+        Read the properties and relationships of a plannerRoster object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

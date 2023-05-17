@@ -37,7 +37,7 @@ class ProjectParticipationItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[ProjectParticipationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property projects for me
+        Delete a projectParticipation object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class ProjectParticipationItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[ProjectParticipationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[project_participation.ProjectParticipation]:
         """
-        Represents detailed information about projects associated with a user.
+        Retrieve the properties and relationships of a projectParticipation object in a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[project_participation.ProjectParticipation]
@@ -78,7 +78,7 @@ class ProjectParticipationItemRequestBuilder():
     
     async def patch(self,body: Optional[project_participation.ProjectParticipation] = None, request_configuration: Optional[ProjectParticipationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[project_participation.ProjectParticipation]:
         """
-        Update the navigation property projects in me
+        Update the properties of a projectParticipation object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class ProjectParticipationItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[ProjectParticipationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property projects for me
+        Delete a projectParticipation object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class ProjectParticipationItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ProjectParticipationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents detailed information about projects associated with a user.
+        Retrieve the properties and relationships of a projectParticipation object in a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class ProjectParticipationItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[project_participation.ProjectParticipation] = None, request_configuration: Optional[ProjectParticipationItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property projects in me
+        Update the properties of a projectParticipation object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class ProjectParticipationItemRequestBuilder():
     @dataclass
     class ProjectParticipationItemRequestBuilderGetQueryParameters():
         """
-        Represents detailed information about projects associated with a user.
+        Retrieve the properties and relationships of a projectParticipation object in a user's profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

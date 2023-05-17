@@ -37,7 +37,7 @@ class AudioRoutingGroupItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[AudioRoutingGroupItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property audioRoutingGroups for app
+        Delete the specified audioRoutingGroup.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class AudioRoutingGroupItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[AudioRoutingGroupItemRequestBuilderGetRequestConfiguration] = None) -> Optional[audio_routing_group.AudioRoutingGroup]:
         """
-        Get audioRoutingGroups from app
+        Retrieve the properties and relationships of an audioRoutingGroup object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[audio_routing_group.AudioRoutingGroup]
@@ -78,7 +78,7 @@ class AudioRoutingGroupItemRequestBuilder():
     
     async def patch(self,body: Optional[audio_routing_group.AudioRoutingGroup] = None, request_configuration: Optional[AudioRoutingGroupItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[audio_routing_group.AudioRoutingGroup]:
         """
-        Update the navigation property audioRoutingGroups in app
+        Modify sources and receivers of an audioRoutingGroup.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class AudioRoutingGroupItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[AudioRoutingGroupItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property audioRoutingGroups for app
+        Delete the specified audioRoutingGroup.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class AudioRoutingGroupItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AudioRoutingGroupItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get audioRoutingGroups from app
+        Retrieve the properties and relationships of an audioRoutingGroup object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class AudioRoutingGroupItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[audio_routing_group.AudioRoutingGroup] = None, request_configuration: Optional[AudioRoutingGroupItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property audioRoutingGroups in app
+        Modify sources and receivers of an audioRoutingGroup.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class AudioRoutingGroupItemRequestBuilder():
     @dataclass
     class AudioRoutingGroupItemRequestBuilderGetQueryParameters():
         """
-        Get audioRoutingGroups from app
+        Retrieve the properties and relationships of an audioRoutingGroup object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

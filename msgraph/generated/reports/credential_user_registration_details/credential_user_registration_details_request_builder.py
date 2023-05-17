@@ -54,7 +54,7 @@ class CredentialUserRegistrationDetailsRequestBuilder():
     
     async def get(self,request_configuration: Optional[CredentialUserRegistrationDetailsRequestBuilderGetRequestConfiguration] = None) -> Optional[credential_user_registration_details_collection_response.CredentialUserRegistrationDetailsCollectionResponse]:
         """
-        Details of the usage of self-service password reset and multi-factor authentication (MFA) for all registered users.
+        Get a list of credentialUserRegistrationDetails objects for a given tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[credential_user_registration_details_collection_response.CredentialUserRegistrationDetailsCollectionResponse]
@@ -101,7 +101,7 @@ class CredentialUserRegistrationDetailsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CredentialUserRegistrationDetailsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Details of the usage of self-service password reset and multi-factor authentication (MFA) for all registered users.
+        Get a list of credentialUserRegistrationDetails objects for a given tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class CredentialUserRegistrationDetailsRequestBuilder():
     @dataclass
     class CredentialUserRegistrationDetailsRequestBuilderGetQueryParameters():
         """
-        Details of the usage of self-service password reset and multi-factor authentication (MFA) for all registered users.
+        Get a list of credentialUserRegistrationDetails objects for a given tenant.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

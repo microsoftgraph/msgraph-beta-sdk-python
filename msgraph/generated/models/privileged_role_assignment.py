@@ -14,19 +14,19 @@ class PrivilegedRoleAssignment(entity.Entity):
         Instantiates a new privilegedRoleAssignment and sets the default values.
         """
         super().__init__()
-        # The UTC DateTime when the temporary privileged role assignment will be expired. For permanent role assignment, the value is null.
+        # The expirationDateTime property
         self._expiration_date_time: Optional[datetime] = None
-        # true if the role assignment is activated. false if the role assignment is deactivated.
+        # The isElevated property
         self._is_elevated: Optional[bool] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # Result message set by the service.
+        # The resultMessage property
         self._result_message: Optional[str] = None
-        # Role identifier. In GUID string format.
+        # The roleId property
         self._role_id: Optional[str] = None
-        # Read-only. Nullable. The associated role information.
+        # The roleInfo property
         self._role_info: Optional[privileged_role.PrivilegedRole] = None
-        # User identifier. In GUID string format.
+        # The userId property
         self._user_id: Optional[str] = None
     
     @staticmethod
@@ -44,7 +44,7 @@ class PrivilegedRoleAssignment(entity.Entity):
     @property
     def expiration_date_time(self,) -> Optional[datetime]:
         """
-        Gets the expirationDateTime property value. The UTC DateTime when the temporary privileged role assignment will be expired. For permanent role assignment, the value is null.
+        Gets the expirationDateTime property value. The expirationDateTime property
         Returns: Optional[datetime]
         """
         return self._expiration_date_time
@@ -52,7 +52,7 @@ class PrivilegedRoleAssignment(entity.Entity):
     @expiration_date_time.setter
     def expiration_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the expirationDateTime property value. The UTC DateTime when the temporary privileged role assignment will be expired. For permanent role assignment, the value is null.
+        Sets the expirationDateTime property value. The expirationDateTime property
         Args:
             value: Value to set for the expiration_date_time property.
         """
@@ -80,7 +80,7 @@ class PrivilegedRoleAssignment(entity.Entity):
     @property
     def is_elevated(self,) -> Optional[bool]:
         """
-        Gets the isElevated property value. true if the role assignment is activated. false if the role assignment is deactivated.
+        Gets the isElevated property value. The isElevated property
         Returns: Optional[bool]
         """
         return self._is_elevated
@@ -88,7 +88,7 @@ class PrivilegedRoleAssignment(entity.Entity):
     @is_elevated.setter
     def is_elevated(self,value: Optional[bool] = None) -> None:
         """
-        Sets the isElevated property value. true if the role assignment is activated. false if the role assignment is deactivated.
+        Sets the isElevated property value. The isElevated property
         Args:
             value: Value to set for the is_elevated property.
         """
@@ -97,7 +97,7 @@ class PrivilegedRoleAssignment(entity.Entity):
     @property
     def result_message(self,) -> Optional[str]:
         """
-        Gets the resultMessage property value. Result message set by the service.
+        Gets the resultMessage property value. The resultMessage property
         Returns: Optional[str]
         """
         return self._result_message
@@ -105,7 +105,7 @@ class PrivilegedRoleAssignment(entity.Entity):
     @result_message.setter
     def result_message(self,value: Optional[str] = None) -> None:
         """
-        Sets the resultMessage property value. Result message set by the service.
+        Sets the resultMessage property value. The resultMessage property
         Args:
             value: Value to set for the result_message property.
         """
@@ -114,7 +114,7 @@ class PrivilegedRoleAssignment(entity.Entity):
     @property
     def role_id(self,) -> Optional[str]:
         """
-        Gets the roleId property value. Role identifier. In GUID string format.
+        Gets the roleId property value. The roleId property
         Returns: Optional[str]
         """
         return self._role_id
@@ -122,7 +122,7 @@ class PrivilegedRoleAssignment(entity.Entity):
     @role_id.setter
     def role_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the roleId property value. Role identifier. In GUID string format.
+        Sets the roleId property value. The roleId property
         Args:
             value: Value to set for the role_id property.
         """
@@ -131,7 +131,7 @@ class PrivilegedRoleAssignment(entity.Entity):
     @property
     def role_info(self,) -> Optional[privileged_role.PrivilegedRole]:
         """
-        Gets the roleInfo property value. Read-only. Nullable. The associated role information.
+        Gets the roleInfo property value. The roleInfo property
         Returns: Optional[privileged_role.PrivilegedRole]
         """
         return self._role_info
@@ -139,7 +139,7 @@ class PrivilegedRoleAssignment(entity.Entity):
     @role_info.setter
     def role_info(self,value: Optional[privileged_role.PrivilegedRole] = None) -> None:
         """
-        Sets the roleInfo property value. Read-only. Nullable. The associated role information.
+        Sets the roleInfo property value. The roleInfo property
         Args:
             value: Value to set for the role_info property.
         """
@@ -164,7 +164,7 @@ class PrivilegedRoleAssignment(entity.Entity):
     @property
     def user_id(self,) -> Optional[str]:
         """
-        Gets the userId property value. User identifier. In GUID string format.
+        Gets the userId property value. The userId property
         Returns: Optional[str]
         """
         return self._user_id
@@ -172,7 +172,7 @@ class PrivilegedRoleAssignment(entity.Entity):
     @user_id.setter
     def user_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the userId property value. User identifier. In GUID string format.
+        Sets the userId property value. The userId property
         Args:
             value: Value to set for the user_id property.
         """

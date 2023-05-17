@@ -47,7 +47,7 @@ class OrgContact(directory_object.DirectoryObject):
         self._phones: Optional[List[phone.Phone]] = None
         # For example: 'SMTP: bob@contoso.com', 'smtp: bob@sales.contoso.com'. The any operator is required for filter expressions on multi-valued properties. Supports $filter (eq, not, ge, le, startsWith, /$count eq 0, /$count ne 0).
         self._proxy_addresses: Optional[List[str]] = None
-        # The serviceProvisioningErrors property
+        # Errors published by a federated service describing a non-transient, service-specific error regarding the properties or link from an orgContact object .  Supports $filter (eq, not, for isResolved and serviceInstance).
         self._service_provisioning_errors: Optional[List[service_provisioning_error.ServiceProvisioningError]] = None
         # Last name for this organizational contact. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq for null values)
         self._surname: Optional[str] = None
@@ -406,7 +406,7 @@ class OrgContact(directory_object.DirectoryObject):
     @property
     def service_provisioning_errors(self,) -> Optional[List[service_provisioning_error.ServiceProvisioningError]]:
         """
-        Gets the serviceProvisioningErrors property value. The serviceProvisioningErrors property
+        Gets the serviceProvisioningErrors property value. Errors published by a federated service describing a non-transient, service-specific error regarding the properties or link from an orgContact object .  Supports $filter (eq, not, for isResolved and serviceInstance).
         Returns: Optional[List[service_provisioning_error.ServiceProvisioningError]]
         """
         return self._service_provisioning_errors
@@ -414,7 +414,7 @@ class OrgContact(directory_object.DirectoryObject):
     @service_provisioning_errors.setter
     def service_provisioning_errors(self,value: Optional[List[service_provisioning_error.ServiceProvisioningError]] = None) -> None:
         """
-        Sets the serviceProvisioningErrors property value. The serviceProvisioningErrors property
+        Sets the serviceProvisioningErrors property value. Errors published by a federated service describing a non-transient, service-specific error regarding the properties or link from an orgContact object .  Supports $filter (eq, not, for isResolved and serviceInstance).
         Args:
             value: Value to set for the service_provisioning_errors property.
         """

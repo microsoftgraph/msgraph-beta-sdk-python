@@ -147,7 +147,7 @@ class Group(directory_object.DirectoryObject):
         self._security_enabled: Optional[bool] = None
         # Security identifier of the group, used in Windows scenarios. Returned by default.
         self._security_identifier: Optional[str] = None
-        # The serviceProvisioningErrors property
+        # Errors published by a federated service describing a non-transient, service-specific error regarding the properties or link from a group object .  Supports $filter (eq, not, for isResolved and serviceInstance).
         self._service_provisioning_errors: Optional[List[service_provisioning_error.ServiceProvisioningError]] = None
         # Settings that can govern this group's behavior, like whether members can invite guest users to the group. Nullable.
         self._settings: Optional[List[directory_setting.DirectorySetting]] = None
@@ -1492,7 +1492,7 @@ class Group(directory_object.DirectoryObject):
     @property
     def service_provisioning_errors(self,) -> Optional[List[service_provisioning_error.ServiceProvisioningError]]:
         """
-        Gets the serviceProvisioningErrors property value. The serviceProvisioningErrors property
+        Gets the serviceProvisioningErrors property value. Errors published by a federated service describing a non-transient, service-specific error regarding the properties or link from a group object .  Supports $filter (eq, not, for isResolved and serviceInstance).
         Returns: Optional[List[service_provisioning_error.ServiceProvisioningError]]
         """
         return self._service_provisioning_errors
@@ -1500,7 +1500,7 @@ class Group(directory_object.DirectoryObject):
     @service_provisioning_errors.setter
     def service_provisioning_errors(self,value: Optional[List[service_provisioning_error.ServiceProvisioningError]] = None) -> None:
         """
-        Sets the serviceProvisioningErrors property value. The serviceProvisioningErrors property
+        Sets the serviceProvisioningErrors property value. Errors published by a federated service describing a non-transient, service-specific error regarding the properties or link from a group object .  Supports $filter (eq, not, for isResolved and serviceInstance).
         Args:
             value: Value to set for the service_provisioning_errors property.
         """

@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .......models.managed_tenants import management_template_step_deployment
     from .......models.o_data_errors import o_data_error
-    from .managed_tenants_change_deployment_status import managed_tenants_change_deployment_status_request_builder
+    from .microsoft_graph_managed_tenants_change_deployment_status import microsoft_graph_managed_tenants_change_deployment_status_request_builder
     from .template_step_version import template_step_version_request_builder
 
 class ManagementTemplateStepDeploymentItemRequestBuilder():
@@ -159,13 +159,13 @@ class ManagementTemplateStepDeploymentItemRequestBuilder():
         return request_info
     
     @property
-    def managed_tenants_change_deployment_status(self) -> managed_tenants_change_deployment_status_request_builder.ManagedTenantsChangeDeploymentStatusRequestBuilder:
+    def microsoft_graph_managed_tenants_change_deployment_status(self) -> microsoft_graph_managed_tenants_change_deployment_status_request_builder.MicrosoftGraphManagedTenantsChangeDeploymentStatusRequestBuilder:
         """
         Provides operations to call the changeDeploymentStatus method.
         """
-        from .managed_tenants_change_deployment_status import managed_tenants_change_deployment_status_request_builder
+        from .microsoft_graph_managed_tenants_change_deployment_status import microsoft_graph_managed_tenants_change_deployment_status_request_builder
 
-        return managed_tenants_change_deployment_status_request_builder.ManagedTenantsChangeDeploymentStatusRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_managed_tenants_change_deployment_status_request_builder.MicrosoftGraphManagedTenantsChangeDeploymentStatusRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def template_step_version(self) -> template_step_version_request_builder.TemplateStepVersionRequestBuilder:

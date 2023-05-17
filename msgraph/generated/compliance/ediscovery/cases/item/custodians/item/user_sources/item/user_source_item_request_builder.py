@@ -37,7 +37,7 @@ class UserSourceItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[UserSourceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property userSources for compliance
+        Delete a userSource object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class UserSourceItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[UserSourceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[user_source.UserSource]:
         """
-        Data source entity for a the custodian. This is the container for a custodian's mailbox and OneDrive for Business site.
+        Read the properties and relationships of a userSource object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[user_source.UserSource]
@@ -103,7 +103,7 @@ class UserSourceItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[UserSourceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property userSources for compliance
+        Delete a userSource object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class UserSourceItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UserSourceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Data source entity for a the custodian. This is the container for a custodian's mailbox and OneDrive for Business site.
+        Read the properties and relationships of a userSource object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class UserSourceItemRequestBuilder():
     @dataclass
     class UserSourceItemRequestBuilderGetQueryParameters():
         """
-        Data source entity for a the custodian. This is the container for a custodian's mailbox and OneDrive for Business site.
+        Read the properties and relationships of a userSource object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

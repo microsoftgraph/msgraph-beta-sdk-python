@@ -56,7 +56,7 @@ class SnapshotsRequestBuilder():
     
     async def get(self,request_configuration: Optional[SnapshotsRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_snapshot_collection_response.CloudPcSnapshotCollectionResponse]:
         """
-        Cloud PC snapshots.
+        Get a list of cloudPcSnapshot objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cloud_pc_snapshot_collection_response.CloudPcSnapshotCollectionResponse]
@@ -116,7 +116,7 @@ class SnapshotsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SnapshotsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Cloud PC snapshots.
+        Get a list of cloudPcSnapshot objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -174,7 +174,7 @@ class SnapshotsRequestBuilder():
     @dataclass
     class SnapshotsRequestBuilderGetQueryParameters():
         """
-        Cloud PC snapshots.
+        Get a list of cloudPcSnapshot objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

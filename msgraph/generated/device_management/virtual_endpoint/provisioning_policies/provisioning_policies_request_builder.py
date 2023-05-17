@@ -55,7 +55,7 @@ class ProvisioningPoliciesRequestBuilder():
     
     async def get(self,request_configuration: Optional[ProvisioningPoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_provisioning_policy_collection_response.CloudPcProvisioningPolicyCollectionResponse]:
         """
-        Cloud PC provisioning policy.
+        List properties and relationships of the cloudPcProvisioningPolicy objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cloud_pc_provisioning_policy_collection_response.CloudPcProvisioningPolicyCollectionResponse]
@@ -77,7 +77,7 @@ class ProvisioningPoliciesRequestBuilder():
     
     async def post(self,body: Optional[cloud_pc_provisioning_policy.CloudPcProvisioningPolicy] = None, request_configuration: Optional[ProvisioningPoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[cloud_pc_provisioning_policy.CloudPcProvisioningPolicy]:
         """
-        Create new navigation property to provisioningPolicies for deviceManagement
+        Create a new cloudPcProvisioningPolicy object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -102,7 +102,7 @@ class ProvisioningPoliciesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ProvisioningPoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Cloud PC provisioning policy.
+        List properties and relationships of the cloudPcProvisioningPolicy objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -120,7 +120,7 @@ class ProvisioningPoliciesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[cloud_pc_provisioning_policy.CloudPcProvisioningPolicy] = None, request_configuration: Optional[ProvisioningPoliciesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to provisioningPolicies for deviceManagement
+        Create a new cloudPcProvisioningPolicy object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -160,7 +160,7 @@ class ProvisioningPoliciesRequestBuilder():
     @dataclass
     class ProvisioningPoliciesRequestBuilderGetQueryParameters():
         """
-        Cloud PC provisioning policy.
+        List properties and relationships of the cloudPcProvisioningPolicy objects.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

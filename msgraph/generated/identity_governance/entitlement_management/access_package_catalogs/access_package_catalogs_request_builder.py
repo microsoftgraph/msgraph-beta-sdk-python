@@ -55,7 +55,7 @@ class AccessPackageCatalogsRequestBuilder():
     
     async def get(self,request_configuration: Optional[AccessPackageCatalogsRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_catalog_collection_response.AccessPackageCatalogCollectionResponse]:
         """
-        A container of access packages.
+        Retrieve a list of accessPackageCatalog objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[access_package_catalog_collection_response.AccessPackageCatalogCollectionResponse]
@@ -77,7 +77,7 @@ class AccessPackageCatalogsRequestBuilder():
     
     async def post(self,body: Optional[access_package_catalog.AccessPackageCatalog] = None, request_configuration: Optional[AccessPackageCatalogsRequestBuilderPostRequestConfiguration] = None) -> Optional[access_package_catalog.AccessPackageCatalog]:
         """
-        Create new navigation property to accessPackageCatalogs for identityGovernance
+        Create a new accessPackageCatalog object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -102,7 +102,7 @@ class AccessPackageCatalogsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageCatalogsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        A container of access packages.
+        Retrieve a list of accessPackageCatalog objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -120,7 +120,7 @@ class AccessPackageCatalogsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[access_package_catalog.AccessPackageCatalog] = None, request_configuration: Optional[AccessPackageCatalogsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to accessPackageCatalogs for identityGovernance
+        Create a new accessPackageCatalog object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -160,7 +160,7 @@ class AccessPackageCatalogsRequestBuilder():
     @dataclass
     class AccessPackageCatalogsRequestBuilderGetQueryParameters():
         """
-        A container of access packages.
+        Retrieve a list of accessPackageCatalog objects.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

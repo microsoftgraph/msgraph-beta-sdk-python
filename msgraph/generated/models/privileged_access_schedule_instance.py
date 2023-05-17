@@ -14,11 +14,11 @@ class PrivilegedAccessScheduleInstance(entity.Entity):
         Instantiates a new privilegedAccessScheduleInstance and sets the default values.
         """
         super().__init__()
-        # The endDateTime property
+        # When the schedule instance ends. Required.
         self._end_date_time: Optional[datetime] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The startDateTime property
+        # When this instance starts. Required.
         self._start_date_time: Optional[datetime] = None
     
     @staticmethod
@@ -47,7 +47,7 @@ class PrivilegedAccessScheduleInstance(entity.Entity):
     @property
     def end_date_time(self,) -> Optional[datetime]:
         """
-        Gets the endDateTime property value. The endDateTime property
+        Gets the endDateTime property value. When the schedule instance ends. Required.
         Returns: Optional[datetime]
         """
         return self._end_date_time
@@ -55,7 +55,7 @@ class PrivilegedAccessScheduleInstance(entity.Entity):
     @end_date_time.setter
     def end_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the endDateTime property value. The endDateTime property
+        Sets the endDateTime property value. When the schedule instance ends. Required.
         Args:
             value: Value to set for the end_date_time property.
         """
@@ -91,7 +91,7 @@ class PrivilegedAccessScheduleInstance(entity.Entity):
     @property
     def start_date_time(self,) -> Optional[datetime]:
         """
-        Gets the startDateTime property value. The startDateTime property
+        Gets the startDateTime property value. When this instance starts. Required.
         Returns: Optional[datetime]
         """
         return self._start_date_time
@@ -99,7 +99,7 @@ class PrivilegedAccessScheduleInstance(entity.Entity):
     @start_date_time.setter
     def start_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the startDateTime property value. The startDateTime property
+        Sets the startDateTime property value. When this instance starts. Required.
         Args:
             value: Value to set for the start_date_time property.
         """

@@ -11,7 +11,7 @@ from . import entity
 class UserExperienceAnalyticsDeviceScope(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new UserExperienceAnalyticsDeviceScope and sets the default values.
+        Instantiates a new userExperienceAnalyticsDeviceScope and sets the default values.
         """
         super().__init__()
         # Indicates the creation date and time for the custom device scope.

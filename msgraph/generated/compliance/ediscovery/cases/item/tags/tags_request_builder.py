@@ -13,8 +13,8 @@ if TYPE_CHECKING:
     from ......models.ediscovery import tag, tag_collection_response
     from ......models.o_data_errors import o_data_error
     from .count import count_request_builder
-    from .ediscovery_as_hierarchy import ediscovery_as_hierarchy_request_builder
     from .item import tag_item_request_builder
+    from .microsoft_graph_ediscovery_as_hierarchy import microsoft_graph_ediscovery_as_hierarchy_request_builder
 
 class TagsRequestBuilder():
     """
@@ -55,7 +55,7 @@ class TagsRequestBuilder():
     
     async def get(self,request_configuration: Optional[TagsRequestBuilderGetRequestConfiguration] = None) -> Optional[tag_collection_response.TagCollectionResponse]:
         """
-        Returns a list of tag objects associated to this case.
+        Retrieve a list of tag objects from an eDiscovery case.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[tag_collection_response.TagCollectionResponse]
@@ -77,7 +77,7 @@ class TagsRequestBuilder():
     
     async def post(self,body: Optional[tag.Tag] = None, request_configuration: Optional[TagsRequestBuilderPostRequestConfiguration] = None) -> Optional[tag.Tag]:
         """
-        Create new navigation property to tags for compliance
+        Create a new tag for the specified case.  The tags are used in review sets while reviewing content.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -102,7 +102,7 @@ class TagsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TagsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Returns a list of tag objects associated to this case.
+        Retrieve a list of tag objects from an eDiscovery case.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -120,7 +120,7 @@ class TagsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[tag.Tag] = None, request_configuration: Optional[TagsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to tags for compliance
+        Create a new tag for the specified case.  The tags are used in review sets while reviewing content.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -149,18 +149,18 @@ class TagsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def ediscovery_as_hierarchy(self) -> ediscovery_as_hierarchy_request_builder.EdiscoveryAsHierarchyRequestBuilder:
+    def microsoft_graph_ediscovery_as_hierarchy(self) -> microsoft_graph_ediscovery_as_hierarchy_request_builder.MicrosoftGraphEdiscoveryAsHierarchyRequestBuilder:
         """
         Provides operations to call the asHierarchy method.
         """
-        from .ediscovery_as_hierarchy import ediscovery_as_hierarchy_request_builder
+        from .microsoft_graph_ediscovery_as_hierarchy import microsoft_graph_ediscovery_as_hierarchy_request_builder
 
-        return ediscovery_as_hierarchy_request_builder.EdiscoveryAsHierarchyRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_ediscovery_as_hierarchy_request_builder.MicrosoftGraphEdiscoveryAsHierarchyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class TagsRequestBuilderGetQueryParameters():
         """
-        Returns a list of tag objects associated to this case.
+        Retrieve a list of tag objects from an eDiscovery case.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

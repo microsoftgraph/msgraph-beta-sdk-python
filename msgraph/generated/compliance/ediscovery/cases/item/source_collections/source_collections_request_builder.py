@@ -54,7 +54,7 @@ class SourceCollectionsRequestBuilder():
     
     async def get(self,request_configuration: Optional[SourceCollectionsRequestBuilderGetRequestConfiguration] = None) -> Optional[source_collection_collection_response.SourceCollectionCollectionResponse]:
         """
-        Returns a list of sourceCollection objects associated with this case.
+        Get the list of sourceCollections from a case object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[source_collection_collection_response.SourceCollectionCollectionResponse]
@@ -76,7 +76,7 @@ class SourceCollectionsRequestBuilder():
     
     async def post(self,body: Optional[source_collection.SourceCollection] = None, request_configuration: Optional[SourceCollectionsRequestBuilderPostRequestConfiguration] = None) -> Optional[source_collection.SourceCollection]:
         """
-        Create new navigation property to sourceCollections for compliance
+        Create a new sourceCollection object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class SourceCollectionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SourceCollectionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Returns a list of sourceCollection objects associated with this case.
+        Get the list of sourceCollections from a case object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class SourceCollectionsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[source_collection.SourceCollection] = None, request_configuration: Optional[SourceCollectionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to sourceCollections for compliance
+        Create a new sourceCollection object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class SourceCollectionsRequestBuilder():
     @dataclass
     class SourceCollectionsRequestBuilderGetQueryParameters():
         """
-        Returns a list of sourceCollection objects associated with this case.
+        Get the list of sourceCollections from a case object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

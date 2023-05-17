@@ -9,9 +9,12 @@ if TYPE_CHECKING:
 from . import entity
 
 class DeviceComplianceScript(entity.Entity):
+    """
+    Intune will provide customer the ability to run their Powershell Compliance scripts (detection) on the enrolled windows 10 Azure Active Directory joined devices.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new DeviceComplianceScript and sets the default values.
+        Instantiates a new deviceComplianceScript and sets the default values.
         """
         super().__init__()
         # The list of group assignments for the device compliance script

@@ -56,7 +56,7 @@ class InformationProtectionLabelItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[InformationProtectionLabelItemRequestBuilderGetRequestConfiguration] = None) -> Optional[information_protection_label.InformationProtectionLabel]:
         """
-        Get labels from users
+        Retrieve the properties and relationships of an informationProtectionLabel object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[information_protection_label.InformationProtectionLabel]
@@ -119,7 +119,7 @@ class InformationProtectionLabelItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[InformationProtectionLabelItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get labels from users
+        Retrieve the properties and relationships of an informationProtectionLabel object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class InformationProtectionLabelItemRequestBuilder():
     @dataclass
     class InformationProtectionLabelItemRequestBuilderGetQueryParameters():
         """
-        Get labels from users
+        Retrieve the properties and relationships of an informationProtectionLabel object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

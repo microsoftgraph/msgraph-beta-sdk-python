@@ -13,7 +13,7 @@ class PrivilegedAccessRoot(entity.Entity):
         Instantiates a new PrivilegedAccessRoot and sets the default values.
         """
         super().__init__()
-        # The group property
+        # A group that's governed through Privileged Identity Management (PIM).
         self._group: Optional[privileged_access_group.PrivilegedAccessGroup] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
@@ -47,7 +47,7 @@ class PrivilegedAccessRoot(entity.Entity):
     @property
     def group(self,) -> Optional[privileged_access_group.PrivilegedAccessGroup]:
         """
-        Gets the group property value. The group property
+        Gets the group property value. A group that's governed through Privileged Identity Management (PIM).
         Returns: Optional[privileged_access_group.PrivilegedAccessGroup]
         """
         return self._group
@@ -55,7 +55,7 @@ class PrivilegedAccessRoot(entity.Entity):
     @group.setter
     def group(self,value: Optional[privileged_access_group.PrivilegedAccessGroup] = None) -> None:
         """
-        Sets the group property value. The group property
+        Sets the group property value. A group that's governed through Privileged Identity Management (PIM).
         Args:
             value: Value to set for the group property.
         """

@@ -39,7 +39,7 @@ class CloudPcOnPremisesConnectionItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[CloudPcOnPremisesConnectionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property onPremisesConnections for deviceManagement
+        Delete a specific cloudPcOnPremisesConnection object. When you delete an Azure network connection, permissions to the service are removed from the specified Azure resources. You cannot delete an Azure network connection when it's in use, as indicated by the **inUse** property.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -58,7 +58,7 @@ class CloudPcOnPremisesConnectionItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[CloudPcOnPremisesConnectionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection]:
         """
-        A defined collection of Azure resource information that can be used to establish on-premises network connectivity for Cloud PCs.
+        Read the properties and relationships of the cloudPcOnPremisesConnection object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection]
@@ -80,7 +80,7 @@ class CloudPcOnPremisesConnectionItemRequestBuilder():
     
     async def patch(self,body: Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection] = None, request_configuration: Optional[CloudPcOnPremisesConnectionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection]:
         """
-        Update the navigation property onPremisesConnections in deviceManagement
+        Update the properties of a cloudPcOnPremisesConnection object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -105,7 +105,7 @@ class CloudPcOnPremisesConnectionItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[CloudPcOnPremisesConnectionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property onPremisesConnections for deviceManagement
+        Delete a specific cloudPcOnPremisesConnection object. When you delete an Azure network connection, permissions to the service are removed from the specified Azure resources. You cannot delete an Azure network connection when it's in use, as indicated by the **inUse** property.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -121,7 +121,7 @@ class CloudPcOnPremisesConnectionItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CloudPcOnPremisesConnectionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        A defined collection of Azure resource information that can be used to establish on-premises network connectivity for Cloud PCs.
+        Read the properties and relationships of the cloudPcOnPremisesConnection object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -139,7 +139,7 @@ class CloudPcOnPremisesConnectionItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection] = None, request_configuration: Optional[CloudPcOnPremisesConnectionItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property onPremisesConnections in deviceManagement
+        Update the properties of a cloudPcOnPremisesConnection object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -191,7 +191,7 @@ class CloudPcOnPremisesConnectionItemRequestBuilder():
     @dataclass
     class CloudPcOnPremisesConnectionItemRequestBuilderGetQueryParameters():
         """
-        A defined collection of Azure resource information that can be used to establish on-premises network connectivity for Cloud PCs.
+        Read the properties and relationships of the cloudPcOnPremisesConnection object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

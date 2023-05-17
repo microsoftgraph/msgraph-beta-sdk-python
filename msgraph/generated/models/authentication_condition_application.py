@@ -10,7 +10,7 @@ class AuthenticationConditionApplication(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The appId property
+        # The identifier for an application corresponding to a condition which will trigger an authenticationEventListener.
         self._app_id: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
@@ -35,7 +35,7 @@ class AuthenticationConditionApplication(AdditionalDataHolder, Parsable):
     @property
     def app_id(self,) -> Optional[str]:
         """
-        Gets the appId property value. The appId property
+        Gets the appId property value. The identifier for an application corresponding to a condition which will trigger an authenticationEventListener.
         Returns: Optional[str]
         """
         return self._app_id
@@ -43,7 +43,7 @@ class AuthenticationConditionApplication(AdditionalDataHolder, Parsable):
     @app_id.setter
     def app_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the appId property value. The appId property
+        Sets the appId property value. The identifier for an application corresponding to a condition which will trigger an authenticationEventListener.
         Args:
             value: Value to set for the app_id property.
         """

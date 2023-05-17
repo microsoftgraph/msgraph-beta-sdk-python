@@ -22,6 +22,8 @@ class MediaStream(AdditionalDataHolder, Parsable):
         self._average_audio_network_jitter: Optional[timedelta] = None
         # Average estimated bandwidth available between two endpoints in bits per second.
         self._average_bandwidth_estimate: Optional[int] = None
+        # Average of the received freeze duration related to the video stream.
+        self._average_freeze_duration: Optional[timedelta] = None
         # Average jitter for the stream computed as specified in [RFC 3550][], denoted in [ISO 8601][] format. For example, 1 second is denoted as 'PT1S', where 'P' is the duration designator, 'T' is the time designator, and 'S' is the second designator.
         self._average_jitter: Optional[timedelta] = None
         # Average packet loss rate for stream.
@@ -40,6 +42,8 @@ class MediaStream(AdditionalDataHolder, Parsable):
         self._average_video_packet_loss_rate: Optional[float] = None
         # UTC time when the stream ended. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         self._end_date_time: Optional[datetime] = None
+        # Indicates whether the forward error correction (FEC) was used at some point during the session. The default value is null.
+        self._is_audio_forward_error_correction_used: Optional[bool] = None
         # Fraction of the call where frame rate is less than 7.5 frames per second.
         self._low_frame_rate_ratio: Optional[float] = None
         # Fraction of the call that the client is running less than 70% expected video processing capability.
@@ -60,6 +64,8 @@ class MediaStream(AdditionalDataHolder, Parsable):
         self._packet_utilization: Optional[int] = None
         # Packet loss rate after FEC has been applied aggregated across all video streams and codecs.
         self._post_forward_error_correction_packet_loss_rate: Optional[float] = None
+        # Root mean square of the received freeze duration related to the video stream.
+        self._rms_freeze_duration: Optional[timedelta] = None
         # UTC time when the stream started. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         self._start_date_time: Optional[datetime] = None
         # The streamDirection property
@@ -155,6 +161,23 @@ class MediaStream(AdditionalDataHolder, Parsable):
             value: Value to set for the average_bandwidth_estimate property.
         """
         self._average_bandwidth_estimate = value
+    
+    @property
+    def average_freeze_duration(self,) -> Optional[timedelta]:
+        """
+        Gets the averageFreezeDuration property value. Average of the received freeze duration related to the video stream.
+        Returns: Optional[timedelta]
+        """
+        return self._average_freeze_duration
+    
+    @average_freeze_duration.setter
+    def average_freeze_duration(self,value: Optional[timedelta] = None) -> None:
+        """
+        Sets the averageFreezeDuration property value. Average of the received freeze duration related to the video stream.
+        Args:
+            value: Value to set for the average_freeze_duration property.
+        """
+        self._average_freeze_duration = value
     
     @property
     def average_jitter(self,) -> Optional[timedelta]:
@@ -333,6 +356,7 @@ class MediaStream(AdditionalDataHolder, Parsable):
             "averageAudioDegradation": lambda n : setattr(self, 'average_audio_degradation', n.get_float_value()),
             "averageAudioNetworkJitter": lambda n : setattr(self, 'average_audio_network_jitter', n.get_timedelta_value()),
             "averageBandwidthEstimate": lambda n : setattr(self, 'average_bandwidth_estimate', n.get_int_value()),
+            "averageFreezeDuration": lambda n : setattr(self, 'average_freeze_duration', n.get_timedelta_value()),
             "averageJitter": lambda n : setattr(self, 'average_jitter', n.get_timedelta_value()),
             "averagePacketLossRate": lambda n : setattr(self, 'average_packet_loss_rate', n.get_float_value()),
             "averageRatioOfConcealedSamples": lambda n : setattr(self, 'average_ratio_of_concealed_samples', n.get_float_value()),
@@ -342,6 +366,7 @@ class MediaStream(AdditionalDataHolder, Parsable):
             "averageVideoFrameRate": lambda n : setattr(self, 'average_video_frame_rate', n.get_float_value()),
             "averageVideoPacketLossRate": lambda n : setattr(self, 'average_video_packet_loss_rate', n.get_float_value()),
             "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
+            "isAudioForwardErrorCorrectionUsed": lambda n : setattr(self, 'is_audio_forward_error_correction_used', n.get_bool_value()),
             "lowFrameRateRatio": lambda n : setattr(self, 'low_frame_rate_ratio', n.get_float_value()),
             "lowVideoProcessingCapabilityRatio": lambda n : setattr(self, 'low_video_processing_capability_ratio', n.get_float_value()),
             "maxAudioNetworkJitter": lambda n : setattr(self, 'max_audio_network_jitter', n.get_timedelta_value()),
@@ -352,6 +377,7 @@ class MediaStream(AdditionalDataHolder, Parsable):
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "packetUtilization": lambda n : setattr(self, 'packet_utilization', n.get_int_value()),
             "postForwardErrorCorrectionPacketLossRate": lambda n : setattr(self, 'post_forward_error_correction_packet_loss_rate', n.get_float_value()),
+            "rmsFreezeDuration": lambda n : setattr(self, 'rms_freeze_duration', n.get_timedelta_value()),
             "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
             "streamDirection": lambda n : setattr(self, 'stream_direction', n.get_enum_value(media_stream_direction.MediaStreamDirection)),
             "streamId": lambda n : setattr(self, 'stream_id', n.get_str_value()),
@@ -359,6 +385,23 @@ class MediaStream(AdditionalDataHolder, Parsable):
             "wasMediaBypassed": lambda n : setattr(self, 'was_media_bypassed', n.get_bool_value()),
         }
         return fields
+    
+    @property
+    def is_audio_forward_error_correction_used(self,) -> Optional[bool]:
+        """
+        Gets the isAudioForwardErrorCorrectionUsed property value. Indicates whether the forward error correction (FEC) was used at some point during the session. The default value is null.
+        Returns: Optional[bool]
+        """
+        return self._is_audio_forward_error_correction_used
+    
+    @is_audio_forward_error_correction_used.setter
+    def is_audio_forward_error_correction_used(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the isAudioForwardErrorCorrectionUsed property value. Indicates whether the forward error correction (FEC) was used at some point during the session. The default value is null.
+        Args:
+            value: Value to set for the is_audio_forward_error_correction_used property.
+        """
+        self._is_audio_forward_error_correction_used = value
     
     @property
     def low_frame_rate_ratio(self,) -> Optional[float]:
@@ -530,6 +573,23 @@ class MediaStream(AdditionalDataHolder, Parsable):
         """
         self._post_forward_error_correction_packet_loss_rate = value
     
+    @property
+    def rms_freeze_duration(self,) -> Optional[timedelta]:
+        """
+        Gets the rmsFreezeDuration property value. Root mean square of the received freeze duration related to the video stream.
+        Returns: Optional[timedelta]
+        """
+        return self._rms_freeze_duration
+    
+    @rms_freeze_duration.setter
+    def rms_freeze_duration(self,value: Optional[timedelta] = None) -> None:
+        """
+        Sets the rmsFreezeDuration property value. Root mean square of the received freeze duration related to the video stream.
+        Args:
+            value: Value to set for the rms_freeze_duration property.
+        """
+        self._rms_freeze_duration = value
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -542,6 +602,7 @@ class MediaStream(AdditionalDataHolder, Parsable):
         writer.write_float_value("averageAudioDegradation", self.average_audio_degradation)
         writer.write_timedelta_value("averageAudioNetworkJitter", self.average_audio_network_jitter)
         writer.write_int_value("averageBandwidthEstimate", self.average_bandwidth_estimate)
+        writer.write_timedelta_value("averageFreezeDuration", self.average_freeze_duration)
         writer.write_timedelta_value("averageJitter", self.average_jitter)
         writer.write_float_value("averagePacketLossRate", self.average_packet_loss_rate)
         writer.write_float_value("averageRatioOfConcealedSamples", self.average_ratio_of_concealed_samples)
@@ -551,6 +612,7 @@ class MediaStream(AdditionalDataHolder, Parsable):
         writer.write_float_value("averageVideoFrameRate", self.average_video_frame_rate)
         writer.write_float_value("averageVideoPacketLossRate", self.average_video_packet_loss_rate)
         writer.write_datetime_value("endDateTime", self.end_date_time)
+        writer.write_bool_value("isAudioForwardErrorCorrectionUsed", self.is_audio_forward_error_correction_used)
         writer.write_float_value("lowFrameRateRatio", self.low_frame_rate_ratio)
         writer.write_float_value("lowVideoProcessingCapabilityRatio", self.low_video_processing_capability_ratio)
         writer.write_timedelta_value("maxAudioNetworkJitter", self.max_audio_network_jitter)
@@ -561,6 +623,7 @@ class MediaStream(AdditionalDataHolder, Parsable):
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_int_value("packetUtilization", self.packet_utilization)
         writer.write_float_value("postForwardErrorCorrectionPacketLossRate", self.post_forward_error_correction_packet_loss_rate)
+        writer.write_timedelta_value("rmsFreezeDuration", self.rms_freeze_duration)
         writer.write_datetime_value("startDateTime", self.start_date_time)
         writer.write_enum_value("streamDirection", self.stream_direction)
         writer.write_str_value("streamId", self.stream_id)

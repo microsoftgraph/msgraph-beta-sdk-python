@@ -38,7 +38,7 @@ class GetPlanRequestBuilder():
     
     async def post(self,body: Optional[get_plan_post_request_body.GetPlanPostRequestBody] = None, request_configuration: Optional[GetPlanRequestBuilderPostRequestConfiguration] = None) -> Optional[business_scenario_plan_reference.BusinessScenarioPlanReference]:
         """
-        Invoke action getPlan
+        Get information about the plannerPlan mapped to a given target. If a **plannerPlan** doesn't exist for the specified target at the time of the request, a new plan will be created for the businessScenario.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +63,7 @@ class GetPlanRequestBuilder():
     
     def to_post_request_information(self,body: Optional[get_plan_post_request_body.GetPlanPostRequestBody] = None, request_configuration: Optional[GetPlanRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action getPlan
+        Get information about the plannerPlan mapped to a given target. If a **plannerPlan** doesn't exist for the specified target at the time of the request, a new plan will be created for the businessScenario.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

@@ -54,7 +54,7 @@ class UpdatePoliciesRequestBuilder():
     
     async def get(self,request_configuration: Optional[UpdatePoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[update_policy_collection_response.UpdatePolicyCollectionResponse]:
         """
-        A collection of policies for approving the deployment of different content to an audience over time.
+        Get a list of updatePolicy objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[update_policy_collection_response.UpdatePolicyCollectionResponse]
@@ -76,7 +76,7 @@ class UpdatePoliciesRequestBuilder():
     
     async def post(self,body: Optional[update_policy.UpdatePolicy] = None, request_configuration: Optional[UpdatePoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[update_policy.UpdatePolicy]:
         """
-        Create new navigation property to updatePolicies for admin
+        Create a new updatePolicy object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class UpdatePoliciesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UpdatePoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        A collection of policies for approving the deployment of different content to an audience over time.
+        Get a list of updatePolicy objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class UpdatePoliciesRequestBuilder():
     
     def to_post_request_information(self,body: Optional[update_policy.UpdatePolicy] = None, request_configuration: Optional[UpdatePoliciesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to updatePolicies for admin
+        Create a new updatePolicy object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class UpdatePoliciesRequestBuilder():
     @dataclass
     class UpdatePoliciesRequestBuilderGetQueryParameters():
         """
-        A collection of policies for approving the deployment of different content to an audience over time.
+        Get a list of updatePolicy objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

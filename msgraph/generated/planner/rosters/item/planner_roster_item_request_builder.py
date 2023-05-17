@@ -39,7 +39,7 @@ class PlannerRosterItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[PlannerRosterItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property rosters for planner
+        Delete a plannerRoster object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -58,7 +58,7 @@ class PlannerRosterItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[PlannerRosterItemRequestBuilderGetRequestConfiguration] = None) -> Optional[planner_roster.PlannerRoster]:
         """
-        Read-only. Nullable. Returns a collection of the specified rosters
+        Read the properties and relationships of a plannerRoster object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[planner_roster.PlannerRoster]
@@ -105,7 +105,7 @@ class PlannerRosterItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[PlannerRosterItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property rosters for planner
+        Delete a plannerRoster object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -121,7 +121,7 @@ class PlannerRosterItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PlannerRosterItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read-only. Nullable. Returns a collection of the specified rosters
+        Read the properties and relationships of a plannerRoster object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -191,7 +191,7 @@ class PlannerRosterItemRequestBuilder():
     @dataclass
     class PlannerRosterItemRequestBuilderGetQueryParameters():
         """
-        Read-only. Nullable. Returns a collection of the specified rosters
+        Read the properties and relationships of a plannerRoster object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

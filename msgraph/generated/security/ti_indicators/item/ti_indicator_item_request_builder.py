@@ -37,7 +37,7 @@ class TiIndicatorItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[TiIndicatorItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property tiIndicators for security
+        Delete a tiIndicator object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class TiIndicatorItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[TiIndicatorItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ti_indicator.TiIndicator]:
         """
-        Get tiIndicators from security
+        Retrieve the properties and relationships of a tiIndicator object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ti_indicator.TiIndicator]
@@ -78,7 +78,7 @@ class TiIndicatorItemRequestBuilder():
     
     async def patch(self,body: Optional[ti_indicator.TiIndicator] = None, request_configuration: Optional[TiIndicatorItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ti_indicator.TiIndicator]:
         """
-        Update the navigation property tiIndicators in security
+        Update the properties of a tiIndicator object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class TiIndicatorItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[TiIndicatorItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property tiIndicators for security
+        Delete a tiIndicator object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class TiIndicatorItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TiIndicatorItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get tiIndicators from security
+        Retrieve the properties and relationships of a tiIndicator object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class TiIndicatorItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[ti_indicator.TiIndicator] = None, request_configuration: Optional[TiIndicatorItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property tiIndicators in security
+        Update the properties of a tiIndicator object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class TiIndicatorItemRequestBuilder():
     @dataclass
     class TiIndicatorItemRequestBuilderGetQueryParameters():
         """
-        Get tiIndicators from security
+        Retrieve the properties and relationships of a tiIndicator object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

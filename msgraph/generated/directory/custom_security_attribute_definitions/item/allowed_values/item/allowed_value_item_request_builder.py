@@ -56,7 +56,7 @@ class AllowedValueItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[AllowedValueItemRequestBuilderGetRequestConfiguration] = None) -> Optional[allowed_value.AllowedValue]:
         """
-        Values that are predefined for this custom security attribute.This navigation property is not returned by default and must be specified in an $expand query. For example, /directory/customSecurityAttributeDefinitions?$expand=allowedValues.
+        Read the properties and relationships of an allowedValue object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[allowed_value.AllowedValue]
@@ -78,7 +78,7 @@ class AllowedValueItemRequestBuilder():
     
     async def patch(self,body: Optional[allowed_value.AllowedValue] = None, request_configuration: Optional[AllowedValueItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[allowed_value.AllowedValue]:
         """
-        Update the navigation property allowedValues in directory
+        Update the properties of an allowedValue object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class AllowedValueItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AllowedValueItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Values that are predefined for this custom security attribute.This navigation property is not returned by default and must be specified in an $expand query. For example, /directory/customSecurityAttributeDefinitions?$expand=allowedValues.
+        Read the properties and relationships of an allowedValue object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class AllowedValueItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[allowed_value.AllowedValue] = None, request_configuration: Optional[AllowedValueItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property allowedValues in directory
+        Update the properties of an allowedValue object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class AllowedValueItemRequestBuilder():
     @dataclass
     class AllowedValueItemRequestBuilderGetQueryParameters():
         """
-        Values that are predefined for this custom security attribute.This navigation property is not returned by default and must be specified in an $expand query. For example, /directory/customSecurityAttributeDefinitions?$expand=allowedValues.
+        Read the properties and relationships of an allowedValue object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

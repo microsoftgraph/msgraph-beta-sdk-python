@@ -58,7 +58,7 @@ class PrivilegedApprovalItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[PrivilegedApprovalItemRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_approval.PrivilegedApproval]:
         """
-        Retrieve the properties and relationships of privilegedapproval object.
+        Get entity from privilegedApproval by key
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[privileged_approval.PrivilegedApproval]
@@ -80,7 +80,7 @@ class PrivilegedApprovalItemRequestBuilder():
     
     async def patch(self,body: Optional[privileged_approval.PrivilegedApproval] = None, request_configuration: Optional[PrivilegedApprovalItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[privileged_approval.PrivilegedApproval]:
         """
-        Update the properties of privilegedapproval object.
+        Update entity in privilegedApproval
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -121,7 +121,7 @@ class PrivilegedApprovalItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PrivilegedApprovalItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of privilegedapproval object.
+        Get entity from privilegedApproval by key
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -139,7 +139,7 @@ class PrivilegedApprovalItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[privileged_approval.PrivilegedApproval] = None, request_configuration: Optional[PrivilegedApprovalItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of privilegedapproval object.
+        Update entity in privilegedApproval
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -191,7 +191,7 @@ class PrivilegedApprovalItemRequestBuilder():
     @dataclass
     class PrivilegedApprovalItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of privilegedapproval object.
+        Get entity from privilegedApproval by key
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -37,7 +37,7 @@ class ItemEmailItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[ItemEmailItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property emails for users
+        Delete an itemEmail object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class ItemEmailItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[ItemEmailItemRequestBuilderGetRequestConfiguration] = None) -> Optional[item_email.ItemEmail]:
         """
-        Represents detailed information about email addresses associated with the user.
+        Retrieve the properties and relationships of an itemEmail object in a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[item_email.ItemEmail]
@@ -78,7 +78,7 @@ class ItemEmailItemRequestBuilder():
     
     async def patch(self,body: Optional[item_email.ItemEmail] = None, request_configuration: Optional[ItemEmailItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[item_email.ItemEmail]:
         """
-        Update the navigation property emails in users
+        Update the properties of an itemEmail object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class ItemEmailItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[ItemEmailItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property emails for users
+        Delete an itemEmail object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class ItemEmailItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ItemEmailItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents detailed information about email addresses associated with the user.
+        Retrieve the properties and relationships of an itemEmail object in a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class ItemEmailItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[item_email.ItemEmail] = None, request_configuration: Optional[ItemEmailItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property emails in users
+        Update the properties of an itemEmail object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class ItemEmailItemRequestBuilder():
     @dataclass
     class ItemEmailItemRequestBuilderGetQueryParameters():
         """
-        Represents detailed information about email addresses associated with the user.
+        Retrieve the properties and relationships of an itemEmail object in a user's profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

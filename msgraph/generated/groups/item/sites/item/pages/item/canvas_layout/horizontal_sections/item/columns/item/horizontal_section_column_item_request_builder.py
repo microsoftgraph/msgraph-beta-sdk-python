@@ -57,7 +57,7 @@ class HorizontalSectionColumnItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[HorizontalSectionColumnItemRequestBuilderGetRequestConfiguration] = None) -> Optional[horizontal_section_column.HorizontalSectionColumn]:
         """
-        The set of vertical columns in this section.
+        Read the properties and relationships of a horizontalSectionColumn object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[horizontal_section_column.HorizontalSectionColumn]
@@ -120,7 +120,7 @@ class HorizontalSectionColumnItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[HorizontalSectionColumnItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The set of vertical columns in this section.
+        Read the properties and relationships of a horizontalSectionColumn object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -181,7 +181,7 @@ class HorizontalSectionColumnItemRequestBuilder():
     @dataclass
     class HorizontalSectionColumnItemRequestBuilderGetQueryParameters():
         """
-        The set of vertical columns in this section.
+        Read the properties and relationships of a horizontalSectionColumn object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

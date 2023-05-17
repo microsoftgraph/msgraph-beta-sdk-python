@@ -38,7 +38,7 @@ class ExtractLabelRequestBuilder():
     
     async def post(self,body: Optional[extract_label_post_request_body.ExtractLabelPostRequestBody] = None, request_configuration: Optional[ExtractLabelRequestBuilderPostRequestConfiguration] = None) -> Optional[information_protection_content_label.InformationProtectionContentLabel]:
         """
-        Invoke action extractLabel
+        Using the metadata that exists on an already-labeled piece of information, resolve the metadata to a specific sensitivity label. The contentInfo input is resolved to informationProtectionContentLabel.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +63,7 @@ class ExtractLabelRequestBuilder():
     
     def to_post_request_information(self,body: Optional[extract_label_post_request_body.ExtractLabelPostRequestBody] = None, request_configuration: Optional[ExtractLabelRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action extractLabel
+        Using the metadata that exists on an already-labeled piece of information, resolve the metadata to a specific sensitivity label. The contentInfo input is resolved to informationProtectionContentLabel.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

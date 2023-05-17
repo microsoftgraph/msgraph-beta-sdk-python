@@ -37,7 +37,7 @@ class BookingStaffMemberItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[BookingStaffMemberItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property staffMembers for bookingBusinesses
+        Delete a staff member in the specified bookingbusiness.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class BookingStaffMemberItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[BookingStaffMemberItemRequestBuilderGetRequestConfiguration] = None) -> Optional[booking_staff_member.BookingStaffMember]:
         """
-        All the staff members that provide services in this business. Read-only. Nullable.
+        Get the properties and relationships of a bookingStaffMember in the specified bookingBusiness.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[booking_staff_member.BookingStaffMember]
@@ -78,7 +78,7 @@ class BookingStaffMemberItemRequestBuilder():
     
     async def patch(self,body: Optional[booking_staff_member.BookingStaffMember] = None, request_configuration: Optional[BookingStaffMemberItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[booking_staff_member.BookingStaffMember]:
         """
-        Update the navigation property staffMembers in bookingBusinesses
+        Update the properties of a bookingStaffMember in the specified bookingBusiness.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class BookingStaffMemberItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[BookingStaffMemberItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property staffMembers for bookingBusinesses
+        Delete a staff member in the specified bookingbusiness.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class BookingStaffMemberItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[BookingStaffMemberItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        All the staff members that provide services in this business. Read-only. Nullable.
+        Get the properties and relationships of a bookingStaffMember in the specified bookingBusiness.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class BookingStaffMemberItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[booking_staff_member.BookingStaffMember] = None, request_configuration: Optional[BookingStaffMemberItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property staffMembers in bookingBusinesses
+        Update the properties of a bookingStaffMember in the specified bookingBusiness.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class BookingStaffMemberItemRequestBuilder():
     @dataclass
     class BookingStaffMemberItemRequestBuilderGetQueryParameters():
         """
-        All the staff members that provide services in this business. Read-only. Nullable.
+        Get the properties and relationships of a bookingStaffMember in the specified bookingBusiness.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

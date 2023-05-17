@@ -56,7 +56,7 @@ class DeviceCompliancePolicySettingStateSummaryItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[DeviceCompliancePolicySettingStateSummaryItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_compliance_policy_setting_state_summary.DeviceCompliancePolicySettingStateSummary]:
         """
-        Summary information for device compliance policy setting states across managed tenants.
+        Read the properties and relationships of a deviceCompliancePolicySettingStateSummary object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[device_compliance_policy_setting_state_summary.DeviceCompliancePolicySettingStateSummary]
@@ -119,7 +119,7 @@ class DeviceCompliancePolicySettingStateSummaryItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[DeviceCompliancePolicySettingStateSummaryItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Summary information for device compliance policy setting states across managed tenants.
+        Read the properties and relationships of a deviceCompliancePolicySettingStateSummary object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class DeviceCompliancePolicySettingStateSummaryItemRequestBuilder():
     @dataclass
     class DeviceCompliancePolicySettingStateSummaryItemRequestBuilderGetQueryParameters():
         """
-        Summary information for device compliance policy setting states across managed tenants.
+        Read the properties and relationships of a deviceCompliancePolicySettingStateSummary object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

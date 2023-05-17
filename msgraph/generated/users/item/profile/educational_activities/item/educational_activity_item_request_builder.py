@@ -37,7 +37,7 @@ class EducationalActivityItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[EducationalActivityItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property educationalActivities for users
+        Delete an educationalActivity object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class EducationalActivityItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[EducationalActivityItemRequestBuilderGetRequestConfiguration] = None) -> Optional[educational_activity.EducationalActivity]:
         """
-        Represents data that a user has supplied related to undergraduate, graduate, postgraduate or other educational activities.
+        Retrieve the properties and relationships of an educationalActivity object from a users profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[educational_activity.EducationalActivity]
@@ -78,7 +78,7 @@ class EducationalActivityItemRequestBuilder():
     
     async def patch(self,body: Optional[educational_activity.EducationalActivity] = None, request_configuration: Optional[EducationalActivityItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[educational_activity.EducationalActivity]:
         """
-        Update the navigation property educationalActivities in users
+        Update the properties of an educationalActivity object within a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class EducationalActivityItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[EducationalActivityItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property educationalActivities for users
+        Delete an educationalActivity object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class EducationalActivityItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[EducationalActivityItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents data that a user has supplied related to undergraduate, graduate, postgraduate or other educational activities.
+        Retrieve the properties and relationships of an educationalActivity object from a users profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class EducationalActivityItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[educational_activity.EducationalActivity] = None, request_configuration: Optional[EducationalActivityItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property educationalActivities in users
+        Update the properties of an educationalActivity object within a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class EducationalActivityItemRequestBuilder():
     @dataclass
     class EducationalActivityItemRequestBuilderGetQueryParameters():
         """
-        Represents data that a user has supplied related to undergraduate, graduate, postgraduate or other educational activities.
+        Retrieve the properties and relationships of an educationalActivity object from a users profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

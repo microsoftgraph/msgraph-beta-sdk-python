@@ -36,7 +36,7 @@ class ReprovisionCloudPcRequestBuilder():
     
     async def post(self,request_configuration: Optional[ReprovisionCloudPcRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Invoke action reprovisionCloudPc
+        Reprovision a Cloud PC with an Intune managed device ID.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -55,7 +55,7 @@ class ReprovisionCloudPcRequestBuilder():
     
     def to_post_request_information(self,request_configuration: Optional[ReprovisionCloudPcRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action reprovisionCloudPc
+        Reprovision a Cloud PC with an Intune managed device ID.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

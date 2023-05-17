@@ -14,21 +14,21 @@ class PrivilegedAccessScheduleRequest(request.Request):
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.privilegedAccessScheduleRequest"
-        # The action property
+        # Represents the type of operation on the group membership or ownership assignment request. The possible values are: adminAssign, adminUpdate, adminRemove, selfActivate, selfDeactivate, adminExtend, adminRenew. adminAssign: For administrators to assign group membership or ownership to principals.adminRemove: For administrators to remove principals from group membership or ownership. adminUpdate: For administrators to change existing group membership or ownership assignments.adminExtend: For administrators to extend expiring assignments.adminRenew: For administrators to renew expired assignments.selfActivate: For principals to activate their assignments.selfDeactivate: For principals to deactivate their active assignments.
         self._action: Optional[schedule_request_actions.ScheduleRequestActions] = None
-        # The isValidationOnly property
+        # Determines whether the call is a validation or an actual call. Only set this property if you want to check whether an activation is subject to additional rules like MFA before actually submitting the request.
         self._is_validation_only: Optional[bool] = None
-        # The justification property
+        # A message provided by users and administrators when create they create the privilegedAccessGroupAssignmentScheduleRequest object.
         self._justification: Optional[str] = None
-        # The scheduleInfo property
+        # The period of the group membership or ownership assignment. Recurring schedules are currently unsupported.
         self._schedule_info: Optional[request_schedule.RequestSchedule] = None
-        # The ticketInfo property
+        # Ticket details linked to the group membership or ownership assignment request including details of the ticket number and ticket system.
         self._ticket_info: Optional[ticket_info.TicketInfo] = None
     
     @property
     def action(self,) -> Optional[schedule_request_actions.ScheduleRequestActions]:
         """
-        Gets the action property value. The action property
+        Gets the action property value. Represents the type of operation on the group membership or ownership assignment request. The possible values are: adminAssign, adminUpdate, adminRemove, selfActivate, selfDeactivate, adminExtend, adminRenew. adminAssign: For administrators to assign group membership or ownership to principals.adminRemove: For administrators to remove principals from group membership or ownership. adminUpdate: For administrators to change existing group membership or ownership assignments.adminExtend: For administrators to extend expiring assignments.adminRenew: For administrators to renew expired assignments.selfActivate: For principals to activate their assignments.selfDeactivate: For principals to deactivate their active assignments.
         Returns: Optional[schedule_request_actions.ScheduleRequestActions]
         """
         return self._action
@@ -36,7 +36,7 @@ class PrivilegedAccessScheduleRequest(request.Request):
     @action.setter
     def action(self,value: Optional[schedule_request_actions.ScheduleRequestActions] = None) -> None:
         """
-        Sets the action property value. The action property
+        Sets the action property value. Represents the type of operation on the group membership or ownership assignment request. The possible values are: adminAssign, adminUpdate, adminRemove, selfActivate, selfDeactivate, adminExtend, adminRenew. adminAssign: For administrators to assign group membership or ownership to principals.adminRemove: For administrators to remove principals from group membership or ownership. adminUpdate: For administrators to change existing group membership or ownership assignments.adminExtend: For administrators to extend expiring assignments.adminRenew: For administrators to renew expired assignments.selfActivate: For principals to activate their assignments.selfDeactivate: For principals to deactivate their active assignments.
         Args:
             value: Value to set for the action property.
         """
@@ -86,7 +86,7 @@ class PrivilegedAccessScheduleRequest(request.Request):
     @property
     def is_validation_only(self,) -> Optional[bool]:
         """
-        Gets the isValidationOnly property value. The isValidationOnly property
+        Gets the isValidationOnly property value. Determines whether the call is a validation or an actual call. Only set this property if you want to check whether an activation is subject to additional rules like MFA before actually submitting the request.
         Returns: Optional[bool]
         """
         return self._is_validation_only
@@ -94,7 +94,7 @@ class PrivilegedAccessScheduleRequest(request.Request):
     @is_validation_only.setter
     def is_validation_only(self,value: Optional[bool] = None) -> None:
         """
-        Sets the isValidationOnly property value. The isValidationOnly property
+        Sets the isValidationOnly property value. Determines whether the call is a validation or an actual call. Only set this property if you want to check whether an activation is subject to additional rules like MFA before actually submitting the request.
         Args:
             value: Value to set for the is_validation_only property.
         """
@@ -103,7 +103,7 @@ class PrivilegedAccessScheduleRequest(request.Request):
     @property
     def justification(self,) -> Optional[str]:
         """
-        Gets the justification property value. The justification property
+        Gets the justification property value. A message provided by users and administrators when create they create the privilegedAccessGroupAssignmentScheduleRequest object.
         Returns: Optional[str]
         """
         return self._justification
@@ -111,7 +111,7 @@ class PrivilegedAccessScheduleRequest(request.Request):
     @justification.setter
     def justification(self,value: Optional[str] = None) -> None:
         """
-        Sets the justification property value. The justification property
+        Sets the justification property value. A message provided by users and administrators when create they create the privilegedAccessGroupAssignmentScheduleRequest object.
         Args:
             value: Value to set for the justification property.
         """
@@ -120,7 +120,7 @@ class PrivilegedAccessScheduleRequest(request.Request):
     @property
     def schedule_info(self,) -> Optional[request_schedule.RequestSchedule]:
         """
-        Gets the scheduleInfo property value. The scheduleInfo property
+        Gets the scheduleInfo property value. The period of the group membership or ownership assignment. Recurring schedules are currently unsupported.
         Returns: Optional[request_schedule.RequestSchedule]
         """
         return self._schedule_info
@@ -128,7 +128,7 @@ class PrivilegedAccessScheduleRequest(request.Request):
     @schedule_info.setter
     def schedule_info(self,value: Optional[request_schedule.RequestSchedule] = None) -> None:
         """
-        Sets the scheduleInfo property value. The scheduleInfo property
+        Sets the scheduleInfo property value. The period of the group membership or ownership assignment. Recurring schedules are currently unsupported.
         Args:
             value: Value to set for the schedule_info property.
         """
@@ -152,7 +152,7 @@ class PrivilegedAccessScheduleRequest(request.Request):
     @property
     def ticket_info(self,) -> Optional[ticket_info.TicketInfo]:
         """
-        Gets the ticketInfo property value. The ticketInfo property
+        Gets the ticketInfo property value. Ticket details linked to the group membership or ownership assignment request including details of the ticket number and ticket system.
         Returns: Optional[ticket_info.TicketInfo]
         """
         return self._ticket_info
@@ -160,7 +160,7 @@ class PrivilegedAccessScheduleRequest(request.Request):
     @ticket_info.setter
     def ticket_info(self,value: Optional[ticket_info.TicketInfo] = None) -> None:
         """
-        Sets the ticketInfo property value. The ticketInfo property
+        Sets the ticketInfo property value. Ticket details linked to the group membership or ownership assignment request including details of the ticket number and ticket system.
         Args:
             value: Value to set for the ticket_info property.
         """

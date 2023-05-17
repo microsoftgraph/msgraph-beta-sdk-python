@@ -54,7 +54,7 @@ class AppRoleAssignedResourcesRequestBuilder():
     
     async def get(self,request_configuration: Optional[AppRoleAssignedResourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[service_principal_collection_response.ServicePrincipalCollectionResponse]:
         """
-        Get appRoleAssignedResources from me
+        Get the service principals to which the user has an app role assignment either directly or through group membership.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[service_principal_collection_response.ServicePrincipalCollectionResponse]
@@ -76,7 +76,7 @@ class AppRoleAssignedResourcesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AppRoleAssignedResourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get appRoleAssignedResources from me
+        Get the service principals to which the user has an app role assignment either directly or through group membership.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -104,7 +104,7 @@ class AppRoleAssignedResourcesRequestBuilder():
     @dataclass
     class AppRoleAssignedResourcesRequestBuilderGetQueryParameters():
         """
-        Get appRoleAssignedResources from me
+        Get the service principals to which the user has an app role assignment either directly or through group membership.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

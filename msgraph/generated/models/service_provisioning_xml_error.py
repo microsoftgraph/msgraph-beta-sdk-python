@@ -14,7 +14,7 @@ class ServiceProvisioningXmlError(service_provisioning_error.ServiceProvisioning
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.serviceProvisioningXmlError"
-        # The errorDetail property
+        # Error Information published by the Federated Service as an xml string .
         self._error_detail: Optional[str] = None
     
     @staticmethod
@@ -32,7 +32,7 @@ class ServiceProvisioningXmlError(service_provisioning_error.ServiceProvisioning
     @property
     def error_detail(self,) -> Optional[str]:
         """
-        Gets the errorDetail property value. The errorDetail property
+        Gets the errorDetail property value. Error Information published by the Federated Service as an xml string .
         Returns: Optional[str]
         """
         return self._error_detail
@@ -40,7 +40,7 @@ class ServiceProvisioningXmlError(service_provisioning_error.ServiceProvisioning
     @error_detail.setter
     def error_detail(self,value: Optional[str] = None) -> None:
         """
-        Sets the errorDetail property value. The errorDetail property
+        Sets the errorDetail property value. Error Information published by the Federated Service as an xml string .
         Args:
             value: Value to set for the error_detail property.
         """

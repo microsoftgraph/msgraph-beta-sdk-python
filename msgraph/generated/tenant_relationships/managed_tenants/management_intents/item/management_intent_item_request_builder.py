@@ -56,7 +56,7 @@ class ManagementIntentItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[ManagementIntentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[management_intent.ManagementIntent]:
         """
-        The collection of baseline management intents across managed tenants.
+        Read the properties and relationships of a managementIntent object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[management_intent.ManagementIntent]
@@ -119,7 +119,7 @@ class ManagementIntentItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ManagementIntentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection of baseline management intents across managed tenants.
+        Read the properties and relationships of a managementIntent object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class ManagementIntentItemRequestBuilder():
     @dataclass
     class ManagementIntentItemRequestBuilderGetQueryParameters():
         """
-        The collection of baseline management intents across managed tenants.
+        Read the properties and relationships of a managementIntent object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

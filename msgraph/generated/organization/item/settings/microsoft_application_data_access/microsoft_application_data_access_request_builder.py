@@ -56,7 +56,7 @@ class MicrosoftApplicationDataAccessRequestBuilder():
     
     async def get(self,request_configuration: Optional[MicrosoftApplicationDataAccessRequestBuilderGetRequestConfiguration] = None) -> Optional[microsoft_application_data_access_settings.MicrosoftApplicationDataAccessSettings]:
         """
-        Get microsoftApplicationDataAccess from organization
+        Get the _settings_ in a microsoftApplicationDataAccessSettings object that specify access from Microsoft applications to Microsoft 365 user data in an organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[microsoft_application_data_access_settings.MicrosoftApplicationDataAccessSettings]
@@ -78,7 +78,7 @@ class MicrosoftApplicationDataAccessRequestBuilder():
     
     async def patch(self,body: Optional[microsoft_application_data_access_settings.MicrosoftApplicationDataAccessSettings] = None, request_configuration: Optional[MicrosoftApplicationDataAccessRequestBuilderPatchRequestConfiguration] = None) -> Optional[microsoft_application_data_access_settings.MicrosoftApplicationDataAccessSettings]:
         """
-        Update the navigation property microsoftApplicationDataAccess in organization
+        Update the settings in a microsoftApplicationDataAccessSettings object that specify access from Microsoft applications to Microsoft 365 user data in an organization.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class MicrosoftApplicationDataAccessRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[MicrosoftApplicationDataAccessRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get microsoftApplicationDataAccess from organization
+        Get the _settings_ in a microsoftApplicationDataAccessSettings object that specify access from Microsoft applications to Microsoft 365 user data in an organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class MicrosoftApplicationDataAccessRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[microsoft_application_data_access_settings.MicrosoftApplicationDataAccessSettings] = None, request_configuration: Optional[MicrosoftApplicationDataAccessRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property microsoftApplicationDataAccess in organization
+        Update the settings in a microsoftApplicationDataAccessSettings object that specify access from Microsoft applications to Microsoft 365 user data in an organization.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class MicrosoftApplicationDataAccessRequestBuilder():
     @dataclass
     class MicrosoftApplicationDataAccessRequestBuilderGetQueryParameters():
         """
-        Get microsoftApplicationDataAccess from organization
+        Get the _settings_ in a microsoftApplicationDataAccessSettings object that specify access from Microsoft applications to Microsoft 365 user data in an organization.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

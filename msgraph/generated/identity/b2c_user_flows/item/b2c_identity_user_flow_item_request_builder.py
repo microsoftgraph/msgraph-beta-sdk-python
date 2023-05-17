@@ -41,7 +41,7 @@ class B2cIdentityUserFlowItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[B2cIdentityUserFlowItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property b2cUserFlows for identity
+        Delete a b2cIdentityUserFlow object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -60,7 +60,7 @@ class B2cIdentityUserFlowItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[B2cIdentityUserFlowItemRequestBuilderGetRequestConfiguration] = None) -> Optional[b2c_identity_user_flow.B2cIdentityUserFlow]:
         """
-        Represents entry point for B2C identity userflows.
+        Retrieve the properties and relationships of a b2cUserFlow object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[b2c_identity_user_flow.B2cIdentityUserFlow]
@@ -82,7 +82,7 @@ class B2cIdentityUserFlowItemRequestBuilder():
     
     async def patch(self,body: Optional[b2c_identity_user_flow.B2cIdentityUserFlow] = None, request_configuration: Optional[B2cIdentityUserFlowItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[b2c_identity_user_flow.B2cIdentityUserFlow]:
         """
-        Update the navigation property b2cUserFlows in identity
+        Update the properties of a b2cIdentityUserFlow object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -107,7 +107,7 @@ class B2cIdentityUserFlowItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[B2cIdentityUserFlowItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property b2cUserFlows for identity
+        Delete a b2cIdentityUserFlow object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -123,7 +123,7 @@ class B2cIdentityUserFlowItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[B2cIdentityUserFlowItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Represents entry point for B2C identity userflows.
+        Retrieve the properties and relationships of a b2cUserFlow object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -141,7 +141,7 @@ class B2cIdentityUserFlowItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[b2c_identity_user_flow.B2cIdentityUserFlow] = None, request_configuration: Optional[B2cIdentityUserFlowItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property b2cUserFlows in identity
+        Update the properties of a b2cIdentityUserFlow object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -211,7 +211,7 @@ class B2cIdentityUserFlowItemRequestBuilder():
     @dataclass
     class B2cIdentityUserFlowItemRequestBuilderGetQueryParameters():
         """
-        Represents entry point for B2C identity userflows.
+        Retrieve the properties and relationships of a b2cUserFlow object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

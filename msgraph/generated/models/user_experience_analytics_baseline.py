@@ -9,9 +9,12 @@ if TYPE_CHECKING:
 from . import entity
 
 class UserExperienceAnalyticsBaseline(entity.Entity):
+    """
+    The user experience analytics baseline entity contains baseline values against which to compare the user experience analytics scores.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new UserExperienceAnalyticsBaseline and sets the default values.
+        Instantiates a new userExperienceAnalyticsBaseline and sets the default values.
         """
         super().__init__()
         # The user experience analytics app health metrics.

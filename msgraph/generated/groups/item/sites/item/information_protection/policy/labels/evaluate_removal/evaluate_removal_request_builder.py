@@ -37,7 +37,7 @@ class EvaluateRemovalRequestBuilder():
     
     async def post(self,body: Optional[evaluate_removal_post_request_body.EvaluateRemovalPostRequestBody] = None, request_configuration: Optional[EvaluateRemovalRequestBuilderPostRequestConfiguration] = None) -> Optional[evaluate_removal_response.EvaluateRemovalResponse]:
         """
-        Invoke action evaluateRemoval
+        Indicate to the consuming application what actions it should take to remove the label information. Given contentInfo as an input, which includes existing content metadata key/value pairs, the API returns an informationProtectionAction that contains some combination of one of more of the following: 
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -62,7 +62,7 @@ class EvaluateRemovalRequestBuilder():
     
     def to_post_request_information(self,body: Optional[evaluate_removal_post_request_body.EvaluateRemovalPostRequestBody] = None, request_configuration: Optional[EvaluateRemovalRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action evaluateRemoval
+        Indicate to the consuming application what actions it should take to remove the label information. Given contentInfo as an input, which includes existing content metadata key/value pairs, the API returns an informationProtectionAction that contains some combination of one of more of the following: 
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

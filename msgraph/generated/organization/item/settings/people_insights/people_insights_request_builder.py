@@ -56,7 +56,7 @@ class PeopleInsightsRequestBuilder():
     
     async def get(self,request_configuration: Optional[PeopleInsightsRequestBuilderGetRequestConfiguration] = None) -> Optional[insights_settings.InsightsSettings]:
         """
-        Contains the properties that are configured by an administrator for the visibility of a list of people relevant and working with a user in Microsoft 365. List peopleInsights returns the settings to display or return people insights in an organization.
+        Get the properties of an insightsSettings object for displaying or returning people insights in an organization. To learn how to customize privacy for people insights in an organization, see Customize people insights privacy.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[insights_settings.InsightsSettings]
@@ -78,7 +78,7 @@ class PeopleInsightsRequestBuilder():
     
     async def patch(self,body: Optional[insights_settings.InsightsSettings] = None, request_configuration: Optional[PeopleInsightsRequestBuilderPatchRequestConfiguration] = None) -> Optional[insights_settings.InsightsSettings]:
         """
-        Update the navigation property peopleInsights in organization
+        Update the privacy settings to display or return the specified type of insights in an organization. The type of settings can be contact insights, item insights, or people insights. To learn more about customizing insights privacy for your organization, see:-  Customize item insights privacy -  Customize people insights privacy
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class PeopleInsightsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PeopleInsightsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Contains the properties that are configured by an administrator for the visibility of a list of people relevant and working with a user in Microsoft 365. List peopleInsights returns the settings to display or return people insights in an organization.
+        Get the properties of an insightsSettings object for displaying or returning people insights in an organization. To learn how to customize privacy for people insights in an organization, see Customize people insights privacy.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class PeopleInsightsRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[insights_settings.InsightsSettings] = None, request_configuration: Optional[PeopleInsightsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property peopleInsights in organization
+        Update the privacy settings to display or return the specified type of insights in an organization. The type of settings can be contact insights, item insights, or people insights. To learn more about customizing insights privacy for your organization, see:-  Customize item insights privacy -  Customize people insights privacy
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class PeopleInsightsRequestBuilder():
     @dataclass
     class PeopleInsightsRequestBuilderGetQueryParameters():
         """
-        Contains the properties that are configured by an administrator for the visibility of a list of people relevant and working with a user in Microsoft 365. List peopleInsights returns the settings to display or return people insights in an organization.
+        Get the properties of an insightsSettings object for displaying or returning people insights in an organization. To learn how to customize privacy for people insights in an organization, see Customize people insights privacy.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

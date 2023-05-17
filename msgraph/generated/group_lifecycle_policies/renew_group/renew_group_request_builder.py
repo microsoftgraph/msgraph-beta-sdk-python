@@ -37,7 +37,7 @@ class RenewGroupRequestBuilder():
     
     async def post(self,body: Optional[renew_group_post_request_body.RenewGroupPostRequestBody] = None, request_configuration: Optional[RenewGroupRequestBuilderPostRequestConfiguration] = None) -> Optional[renew_group_response.RenewGroupResponse]:
         """
-        Invoke action renewGroup
+        Renew a group's expiration. When a group is renewed, the group expiration is extended by the number of days defined in the policy.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -62,7 +62,7 @@ class RenewGroupRequestBuilder():
     
     def to_post_request_information(self,body: Optional[renew_group_post_request_body.RenewGroupPostRequestBody] = None, request_configuration: Optional[RenewGroupRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action renewGroup
+        Renew a group's expiration. When a group is renewed, the group expiration is extended by the number of days defined in the policy.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

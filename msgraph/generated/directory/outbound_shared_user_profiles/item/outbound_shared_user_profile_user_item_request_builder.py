@@ -57,7 +57,7 @@ class OutboundSharedUserProfileUserItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[OutboundSharedUserProfileUserItemRequestBuilderGetRequestConfiguration] = None) -> Optional[outbound_shared_user_profile.OutboundSharedUserProfile]:
         """
-        Get outboundSharedUserProfiles from directory
+        Get the details of an outboundSharedUserProfile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[outbound_shared_user_profile.OutboundSharedUserProfile]
@@ -120,7 +120,7 @@ class OutboundSharedUserProfileUserItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[OutboundSharedUserProfileUserItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get outboundSharedUserProfiles from directory
+        Get the details of an outboundSharedUserProfile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -181,7 +181,7 @@ class OutboundSharedUserProfileUserItemRequestBuilder():
     @dataclass
     class OutboundSharedUserProfileUserItemRequestBuilderGetQueryParameters():
         """
-        Get outboundSharedUserProfiles from directory
+        Get the details of an outboundSharedUserProfile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

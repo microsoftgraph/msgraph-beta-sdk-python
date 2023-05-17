@@ -12,7 +12,7 @@ class RemovedState(AdditionalDataHolder, Parsable):
 
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The reason property
+        # The removal reason for the participant resource.
         self._reason: Optional[str] = None
     
     @property
@@ -75,7 +75,7 @@ class RemovedState(AdditionalDataHolder, Parsable):
     @property
     def reason(self,) -> Optional[str]:
         """
-        Gets the reason property value. The reason property
+        Gets the reason property value. The removal reason for the participant resource.
         Returns: Optional[str]
         """
         return self._reason
@@ -83,7 +83,7 @@ class RemovedState(AdditionalDataHolder, Parsable):
     @reason.setter
     def reason(self,value: Optional[str] = None) -> None:
         """
-        Sets the reason property value. The reason property
+        Sets the reason property value. The removal reason for the participant resource.
         Args:
             value: Value to set for the reason property.
         """

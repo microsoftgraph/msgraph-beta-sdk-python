@@ -37,7 +37,7 @@ class PersonInterestItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[PersonInterestItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property interests for users
+        Deletes a personInterest object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class PersonInterestItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[PersonInterestItemRequestBuilderGetRequestConfiguration] = None) -> Optional[person_interest.PersonInterest]:
         """
-        Provides detailed information about interests the user has associated with themselves in various services.
+        Retrieve the properties and relationships of a personInterest object in a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[person_interest.PersonInterest]
@@ -78,7 +78,7 @@ class PersonInterestItemRequestBuilder():
     
     async def patch(self,body: Optional[person_interest.PersonInterest] = None, request_configuration: Optional[PersonInterestItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[person_interest.PersonInterest]:
         """
-        Update the navigation property interests in users
+        Update the properties of a personInterest object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +103,7 @@ class PersonInterestItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[PersonInterestItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property interests for users
+        Deletes a personInterest object from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class PersonInterestItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PersonInterestItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Provides detailed information about interests the user has associated with themselves in various services.
+        Retrieve the properties and relationships of a personInterest object in a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class PersonInterestItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[person_interest.PersonInterest] = None, request_configuration: Optional[PersonInterestItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property interests in users
+        Update the properties of a personInterest object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -171,7 +171,7 @@ class PersonInterestItemRequestBuilder():
     @dataclass
     class PersonInterestItemRequestBuilderGetQueryParameters():
         """
-        Provides detailed information about interests the user has associated with themselves in various services.
+        Retrieve the properties and relationships of a personInterest object in a user's profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

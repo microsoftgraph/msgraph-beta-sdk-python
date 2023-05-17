@@ -29,11 +29,11 @@ class Participant(entity.Entity):
         self.odata_type: Optional[str] = None
         # Information on whether the participant has recording capability.
         self._recording_info: Optional[recording_info.RecordingInfo] = None
-        # The removedState property
+        # Indicates the reason why the participant was removed from the roster.
         self._removed_state: Optional[removed_state.RemovedState] = None
         # Indicates the reason or reasons why media content from this participant is restricted.
         self._restricted_experience: Optional[online_meeting_restricted.OnlineMeetingRestricted] = None
-        # The rosterSequenceNumber property
+        # Indicates the roster sequence number the participant was last updated in.
         self._roster_sequence_number: Optional[int] = None
     
     @staticmethod
@@ -193,7 +193,7 @@ class Participant(entity.Entity):
     @property
     def removed_state(self,) -> Optional[removed_state.RemovedState]:
         """
-        Gets the removedState property value. The removedState property
+        Gets the removedState property value. Indicates the reason why the participant was removed from the roster.
         Returns: Optional[removed_state.RemovedState]
         """
         return self._removed_state
@@ -201,7 +201,7 @@ class Participant(entity.Entity):
     @removed_state.setter
     def removed_state(self,value: Optional[removed_state.RemovedState] = None) -> None:
         """
-        Sets the removedState property value. The removedState property
+        Sets the removedState property value. Indicates the reason why the participant was removed from the roster.
         Args:
             value: Value to set for the removed_state property.
         """
@@ -227,7 +227,7 @@ class Participant(entity.Entity):
     @property
     def roster_sequence_number(self,) -> Optional[int]:
         """
-        Gets the rosterSequenceNumber property value. The rosterSequenceNumber property
+        Gets the rosterSequenceNumber property value. Indicates the roster sequence number the participant was last updated in.
         Returns: Optional[int]
         """
         return self._roster_sequence_number
@@ -235,7 +235,7 @@ class Participant(entity.Entity):
     @roster_sequence_number.setter
     def roster_sequence_number(self,value: Optional[int] = None) -> None:
         """
-        Sets the rosterSequenceNumber property value. The rosterSequenceNumber property
+        Sets the rosterSequenceNumber property value. Indicates the roster sequence number the participant was last updated in.
         Args:
             value: Value to set for the roster_sequence_number property.
         """

@@ -10,7 +10,7 @@ from . import entity
 class WorkbookRangeFill(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new WorkbookRangeFill and sets the default values.
+        Instantiates a new workbookRangeFill and sets the default values.
         """
         super().__init__()
         # HTML color code representing the color of the border line, of the form #RRGGBB (e.g. 'FFA500') or as a named HTML color (e.g. 'orange')

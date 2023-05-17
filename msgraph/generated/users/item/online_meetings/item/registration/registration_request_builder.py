@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ......models import meeting_registration
     from ......models.o_data_errors import o_data_error
     from .custom_questions import custom_questions_request_builder
+    from .registrants import registrants_request_builder
 
 class RegistrationRequestBuilder():
     """
@@ -38,7 +39,7 @@ class RegistrationRequestBuilder():
     
     async def delete(self,request_configuration: Optional[RegistrationRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property registration for users
+        Disable and delete the meetingRegistration of an onlineMeeting on behalf of the organizer.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -57,7 +58,7 @@ class RegistrationRequestBuilder():
     
     async def get(self,request_configuration: Optional[RegistrationRequestBuilderGetRequestConfiguration] = None) -> Optional[meeting_registration.MeetingRegistration]:
         """
-        The registration that has been enabled for an online meeting. One online meeting can only have one registration enabled.
+        Get the externalMeetingRegistration details associated with an onlineMeeting.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[meeting_registration.MeetingRegistration]
@@ -79,7 +80,7 @@ class RegistrationRequestBuilder():
     
     async def patch(self,body: Optional[meeting_registration.MeetingRegistration] = None, request_configuration: Optional[RegistrationRequestBuilderPatchRequestConfiguration] = None) -> Optional[meeting_registration.MeetingRegistration]:
         """
-        Update the navigation property registration in users
+        Update the details of a meetingRegistration object assciated with an onlineMeeting on behalf of the organizer.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -104,7 +105,7 @@ class RegistrationRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[RegistrationRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property registration for users
+        Disable and delete the meetingRegistration of an onlineMeeting on behalf of the organizer.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -120,7 +121,7 @@ class RegistrationRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RegistrationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The registration that has been enabled for an online meeting. One online meeting can only have one registration enabled.
+        Get the externalMeetingRegistration details associated with an onlineMeeting.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,7 +139,7 @@ class RegistrationRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[meeting_registration.MeetingRegistration] = None, request_configuration: Optional[RegistrationRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property registration in users
+        Update the details of a meetingRegistration object assciated with an onlineMeeting on behalf of the organizer.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -166,6 +167,15 @@ class RegistrationRequestBuilder():
 
         return custom_questions_request_builder.CustomQuestionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
+    def registrants(self) -> registrants_request_builder.RegistrantsRequestBuilder:
+        """
+        Provides operations to manage the registrants property of the microsoft.graph.meetingRegistrationBase entity.
+        """
+        from .registrants import registrants_request_builder
+
+        return registrants_request_builder.RegistrantsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class RegistrationRequestBuilderDeleteRequestConfiguration():
         """
@@ -181,7 +191,7 @@ class RegistrationRequestBuilder():
     @dataclass
     class RegistrationRequestBuilderGetQueryParameters():
         """
-        The registration that has been enabled for an online meeting. One online meeting can only have one registration enabled.
+        Get the externalMeetingRegistration details associated with an onlineMeeting.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
