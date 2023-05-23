@@ -3,7 +3,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import administrative_unit, attribute_set, custom_security_attribute_definition, directory_object, entity, feature_rollout_policy, identity_provider_base, impacted_resource, inbound_shared_user_profile, on_premises_directory_synchronization, outbound_shared_user_profile, recommendation, shared_email_domain
+    from . import administrative_unit, attribute_set, certificate_authority_path, custom_security_attribute_definition, directory_object, entity, feature_rollout_policy, identity_provider_base, impacted_resource, inbound_shared_user_profile, on_premises_directory_synchronization, outbound_shared_user_profile, recommendation, shared_email_domain
 
 from . import entity
 
@@ -17,6 +17,8 @@ class Directory(entity.Entity):
         self._administrative_units: Optional[List[administrative_unit.AdministrativeUnit]] = None
         # Group of related custom security attribute definitions.
         self._attribute_sets: Optional[List[attribute_set.AttributeSet]] = None
+        # The certificateAuthorities property
+        self._certificate_authorities: Optional[certificate_authority_path.CertificateAuthorityPath] = None
         # Schema of a custom security attributes (key-value pairs).
         self._custom_security_attribute_definitions: Optional[List[custom_security_attribute_definition.CustomSecurityAttributeDefinition]] = None
         # The deletedItems property
@@ -73,6 +75,23 @@ class Directory(entity.Entity):
             value: Value to set for the attribute_sets property.
         """
         self._attribute_sets = value
+    
+    @property
+    def certificate_authorities(self,) -> Optional[certificate_authority_path.CertificateAuthorityPath]:
+        """
+        Gets the certificateAuthorities property value. The certificateAuthorities property
+        Returns: Optional[certificate_authority_path.CertificateAuthorityPath]
+        """
+        return self._certificate_authorities
+    
+    @certificate_authorities.setter
+    def certificate_authorities(self,value: Optional[certificate_authority_path.CertificateAuthorityPath] = None) -> None:
+        """
+        Sets the certificateAuthorities property value. The certificateAuthorities property
+        Args:
+            value: Value to set for the certificate_authorities property.
+        """
+        self._certificate_authorities = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Directory:
@@ -159,11 +178,12 @@ class Directory(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import administrative_unit, attribute_set, custom_security_attribute_definition, directory_object, entity, feature_rollout_policy, identity_provider_base, impacted_resource, inbound_shared_user_profile, on_premises_directory_synchronization, outbound_shared_user_profile, recommendation, shared_email_domain
+        from . import administrative_unit, attribute_set, certificate_authority_path, custom_security_attribute_definition, directory_object, entity, feature_rollout_policy, identity_provider_base, impacted_resource, inbound_shared_user_profile, on_premises_directory_synchronization, outbound_shared_user_profile, recommendation, shared_email_domain
 
         fields: Dict[str, Callable[[Any], None]] = {
             "administrativeUnits": lambda n : setattr(self, 'administrative_units', n.get_collection_of_object_values(administrative_unit.AdministrativeUnit)),
             "attributeSets": lambda n : setattr(self, 'attribute_sets', n.get_collection_of_object_values(attribute_set.AttributeSet)),
+            "certificateAuthorities": lambda n : setattr(self, 'certificate_authorities', n.get_object_value(certificate_authority_path.CertificateAuthorityPath)),
             "customSecurityAttributeDefinitions": lambda n : setattr(self, 'custom_security_attribute_definitions', n.get_collection_of_object_values(custom_security_attribute_definition.CustomSecurityAttributeDefinition)),
             "deletedItems": lambda n : setattr(self, 'deleted_items', n.get_collection_of_object_values(directory_object.DirectoryObject)),
             "featureRolloutPolicies": lambda n : setattr(self, 'feature_rollout_policies', n.get_collection_of_object_values(feature_rollout_policy.FeatureRolloutPolicy)),
@@ -275,6 +295,7 @@ class Directory(entity.Entity):
         super().serialize(writer)
         writer.write_collection_of_object_values("administrativeUnits", self.administrative_units)
         writer.write_collection_of_object_values("attributeSets", self.attribute_sets)
+        writer.write_object_value("certificateAuthorities", self.certificate_authorities)
         writer.write_collection_of_object_values("customSecurityAttributeDefinitions", self.custom_security_attribute_definitions)
         writer.write_collection_of_object_values("deletedItems", self.deleted_items)
         writer.write_collection_of_object_values("featureRolloutPolicies", self.feature_rollout_policies)

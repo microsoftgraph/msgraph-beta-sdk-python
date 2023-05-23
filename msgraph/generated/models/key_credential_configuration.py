@@ -14,6 +14,8 @@ class KeyCredentialConfiguration(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
+        # The certificateBasedApplicationConfigurationIds property
+        self._certificate_based_application_configuration_ids: Optional[List[str]] = None
         # The maxLifetime property
         self._max_lifetime: Optional[timedelta] = None
         # The OdataType property
@@ -40,6 +42,23 @@ class KeyCredentialConfiguration(AdditionalDataHolder, Parsable):
         """
         self._additional_data = value
     
+    @property
+    def certificate_based_application_configuration_ids(self,) -> Optional[List[str]]:
+        """
+        Gets the certificateBasedApplicationConfigurationIds property value. The certificateBasedApplicationConfigurationIds property
+        Returns: Optional[List[str]]
+        """
+        return self._certificate_based_application_configuration_ids
+    
+    @certificate_based_application_configuration_ids.setter
+    def certificate_based_application_configuration_ids(self,value: Optional[List[str]] = None) -> None:
+        """
+        Sets the certificateBasedApplicationConfigurationIds property value. The certificateBasedApplicationConfigurationIds property
+        Args:
+            value: Value to set for the certificate_based_application_configuration_ids property.
+        """
+        self._certificate_based_application_configuration_ids = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> KeyCredentialConfiguration:
         """
@@ -60,6 +79,7 @@ class KeyCredentialConfiguration(AdditionalDataHolder, Parsable):
         from . import app_key_credential_restriction_type
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "certificateBasedApplicationConfigurationIds": lambda n : setattr(self, 'certificate_based_application_configuration_ids', n.get_collection_of_primitive_values(str)),
             "maxLifetime": lambda n : setattr(self, 'max_lifetime', n.get_timedelta_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "restrictionType": lambda n : setattr(self, 'restriction_type', n.get_enum_value(app_key_credential_restriction_type.AppKeyCredentialRestrictionType)),
@@ -143,6 +163,7 @@ class KeyCredentialConfiguration(AdditionalDataHolder, Parsable):
         """
         if writer is None:
             raise Exception("writer cannot be undefined")
+        writer.write_collection_of_primitive_values("certificateBasedApplicationConfigurationIds", self.certificate_based_application_configuration_ids)
         writer.write_timedelta_value("maxLifetime", self.max_lifetime)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("restrictionType", self.restriction_type)

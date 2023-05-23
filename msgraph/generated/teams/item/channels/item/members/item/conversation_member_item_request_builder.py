@@ -78,7 +78,7 @@ class ConversationMemberItemRequestBuilder():
     
     async def patch(self,body: Optional[conversation_member.ConversationMember] = None, request_configuration: Optional[ConversationMemberItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[conversation_member.ConversationMember]:
         """
-        Update the role of a conversationMember in a channel. This operation is allowed only for channels with a **membershipType** value of `private` or `shared`.
+        Update the role of a conversationMember in a team.or channel.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -137,7 +137,7 @@ class ConversationMemberItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[conversation_member.ConversationMember] = None, request_configuration: Optional[ConversationMemberItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the role of a conversationMember in a channel. This operation is allowed only for channels with a **membershipType** value of `private` or `shared`.
+        Update the role of a conversationMember in a team.or channel.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

@@ -11,7 +11,7 @@ from . import entity
 class CloudAppSecurityProfile(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new CloudAppSecurityProfile and sets the default values.
+        Instantiates a new cloudAppSecurityProfile and sets the default values.
         """
         super().__init__()
         # The azureSubscriptionId property

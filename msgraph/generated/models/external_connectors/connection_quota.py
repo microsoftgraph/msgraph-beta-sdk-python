@@ -10,7 +10,7 @@ from .. import entity
 class ConnectionQuota(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new ConnectionQuota and sets the default values.
+        Instantiates a new connectionQuota and sets the default values.
         """
         super().__init__()
         # The minimum of two values, one representing the items remaining in the connection and the other remaining items at tenant-level. The following equation represents the formula used to calculate the minimum number: min ({max capacity in the connection} – {number of items in the connection}, {tenant quota} – {number of items indexed in all connections}). If the connection is not monetized, such as in a preview connector or preview content experience, then this property is simply the number of remaining items in the connection.

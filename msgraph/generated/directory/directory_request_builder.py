@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ..models.o_data_errors import o_data_error
     from .administrative_units import administrative_units_request_builder
     from .attribute_sets import attribute_sets_request_builder
+    from .certificate_authorities import certificate_authorities_request_builder
     from .custom_security_attribute_definitions import custom_security_attribute_definitions_request_builder
     from .deleted_items import deleted_items_request_builder
     from .feature_rollout_policies import feature_rollout_policies_request_builder
@@ -150,6 +151,15 @@ class DirectoryRequestBuilder():
         from .attribute_sets import attribute_sets_request_builder
 
         return attribute_sets_request_builder.AttributeSetsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def certificate_authorities(self) -> certificate_authorities_request_builder.CertificateAuthoritiesRequestBuilder:
+        """
+        Provides operations to manage the certificateAuthorities property of the microsoft.graph.directory entity.
+        """
+        from .certificate_authorities import certificate_authorities_request_builder
+
+        return certificate_authorities_request_builder.CertificateAuthoritiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def custom_security_attribute_definitions(self) -> custom_security_attribute_definitions_request_builder.CustomSecurityAttributeDefinitionsRequestBuilder:

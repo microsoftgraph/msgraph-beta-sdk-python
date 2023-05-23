@@ -12,7 +12,7 @@ from .. import entity
 class LegalHold(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new LegalHold and sets the default values.
+        Instantiates a new legalHold and sets the default values.
         """
         super().__init__()
         # KQL query that specifies content to be held in the specified locations. To learn more, see Keyword queries and search conditions for Content Search and eDiscovery.  To hold all content in the specified locations, leave contentQuery blank.

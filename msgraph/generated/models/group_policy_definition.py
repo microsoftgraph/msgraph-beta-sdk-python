@@ -10,9 +10,6 @@ if TYPE_CHECKING:
 from . import entity
 
 class GroupPolicyDefinition(entity.Entity):
-    """
-    The entity describes all of the information about a single group policy.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new groupPolicyDefinition and sets the default values.

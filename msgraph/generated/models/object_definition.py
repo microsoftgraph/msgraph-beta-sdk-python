@@ -3,7 +3,7 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import attribute_definition, metadata_entry
+    from . import attribute_definition, object_definition_metadata_entry
 
 class ObjectDefinition(AdditionalDataHolder, Parsable):
     def __init__(self,) -> None:
@@ -16,7 +16,7 @@ class ObjectDefinition(AdditionalDataHolder, Parsable):
         # The attributes property
         self._attributes: Optional[List[attribute_definition.AttributeDefinition]] = None
         # The metadata property
-        self._metadata: Optional[List[metadata_entry.MetadataEntry]] = None
+        self._metadata: Optional[List[object_definition_metadata_entry.ObjectDefinitionMetadataEntry]] = None
         # The name property
         self._name: Optional[str] = None
         # The OdataType property
@@ -75,11 +75,11 @@ class ObjectDefinition(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import attribute_definition, metadata_entry
+        from . import attribute_definition, object_definition_metadata_entry
 
         fields: Dict[str, Callable[[Any], None]] = {
             "attributes": lambda n : setattr(self, 'attributes', n.get_collection_of_object_values(attribute_definition.AttributeDefinition)),
-            "metadata": lambda n : setattr(self, 'metadata', n.get_collection_of_object_values(metadata_entry.MetadataEntry)),
+            "metadata": lambda n : setattr(self, 'metadata', n.get_collection_of_object_values(object_definition_metadata_entry.ObjectDefinitionMetadataEntry)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "supportedApis": lambda n : setattr(self, 'supported_apis', n.get_collection_of_primitive_values(str)),
@@ -87,15 +87,15 @@ class ObjectDefinition(AdditionalDataHolder, Parsable):
         return fields
     
     @property
-    def metadata(self,) -> Optional[List[metadata_entry.MetadataEntry]]:
+    def metadata(self,) -> Optional[List[object_definition_metadata_entry.ObjectDefinitionMetadataEntry]]:
         """
         Gets the metadata property value. The metadata property
-        Returns: Optional[List[metadata_entry.MetadataEntry]]
+        Returns: Optional[List[object_definition_metadata_entry.ObjectDefinitionMetadataEntry]]
         """
         return self._metadata
     
     @metadata.setter
-    def metadata(self,value: Optional[List[metadata_entry.MetadataEntry]] = None) -> None:
+    def metadata(self,value: Optional[List[object_definition_metadata_entry.ObjectDefinitionMetadataEntry]] = None) -> None:
         """
         Sets the metadata property value. The metadata property
         Args:

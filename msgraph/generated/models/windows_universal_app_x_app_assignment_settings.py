@@ -14,7 +14,7 @@ class WindowsUniversalAppXAppAssignmentSettings(mobile_app_assignment_settings.M
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.windowsUniversalAppXAppAssignmentSettings"
-        # If true, uses device execution context for Windows Universal AppX mobile app. Device-context install is not allowed when this type of app is targeted with Available intent. Defaults to false.
+        # Whether or not to use device execution context for Windows Universal AppX mobile app.
         self._use_device_context: Optional[bool] = None
     
     @staticmethod
@@ -57,7 +57,7 @@ class WindowsUniversalAppXAppAssignmentSettings(mobile_app_assignment_settings.M
     @property
     def use_device_context(self,) -> Optional[bool]:
         """
-        Gets the useDeviceContext property value. If true, uses device execution context for Windows Universal AppX mobile app. Device-context install is not allowed when this type of app is targeted with Available intent. Defaults to false.
+        Gets the useDeviceContext property value. Whether or not to use device execution context for Windows Universal AppX mobile app.
         Returns: Optional[bool]
         """
         return self._use_device_context
@@ -65,7 +65,7 @@ class WindowsUniversalAppXAppAssignmentSettings(mobile_app_assignment_settings.M
     @use_device_context.setter
     def use_device_context(self,value: Optional[bool] = None) -> None:
         """
-        Sets the useDeviceContext property value. If true, uses device execution context for Windows Universal AppX mobile app. Device-context install is not allowed when this type of app is targeted with Available intent. Defaults to false.
+        Sets the useDeviceContext property value. Whether or not to use device execution context for Windows Universal AppX mobile app.
         Args:
             value: Value to set for the use_device_context property.
         """

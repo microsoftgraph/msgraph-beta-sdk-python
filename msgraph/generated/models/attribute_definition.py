@@ -3,7 +3,7 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import attribute_type, metadata_entry, mutability, referenced_object, string_key_string_value_pair
+    from . import attribute_definition_metadata_entry, attribute_type, mutability, referenced_object, string_key_string_value_pair
 
 class AttributeDefinition(AdditionalDataHolder, Parsable):
     def __init__(self,) -> None:
@@ -24,7 +24,7 @@ class AttributeDefinition(AdditionalDataHolder, Parsable):
         # 'true' to allow null values for attributes.
         self._flow_null_values: Optional[bool] = None
         # Additional extension properties. Unless mentioned explicitly, metadata values should not be changed.
-        self._metadata: Optional[List[metadata_entry.MetadataEntry]] = None
+        self._metadata: Optional[List[attribute_definition_metadata_entry.AttributeDefinitionMetadataEntry]] = None
         # true if an attribute can have multiple values. Default is false.
         self._multivalued: Optional[bool] = None
         # The mutability property
@@ -159,7 +159,7 @@ class AttributeDefinition(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import attribute_type, metadata_entry, mutability, referenced_object, string_key_string_value_pair
+        from . import attribute_definition_metadata_entry, attribute_type, mutability, referenced_object, string_key_string_value_pair
 
         fields: Dict[str, Callable[[Any], None]] = {
             "anchor": lambda n : setattr(self, 'anchor', n.get_bool_value()),
@@ -167,7 +167,7 @@ class AttributeDefinition(AdditionalDataHolder, Parsable):
             "caseExact": lambda n : setattr(self, 'case_exact', n.get_bool_value()),
             "defaultValue": lambda n : setattr(self, 'default_value', n.get_str_value()),
             "flowNullValues": lambda n : setattr(self, 'flow_null_values', n.get_bool_value()),
-            "metadata": lambda n : setattr(self, 'metadata', n.get_collection_of_object_values(metadata_entry.MetadataEntry)),
+            "metadata": lambda n : setattr(self, 'metadata', n.get_collection_of_object_values(attribute_definition_metadata_entry.AttributeDefinitionMetadataEntry)),
             "multivalued": lambda n : setattr(self, 'multivalued', n.get_bool_value()),
             "mutability": lambda n : setattr(self, 'mutability', n.get_enum_value(mutability.Mutability)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
@@ -179,15 +179,15 @@ class AttributeDefinition(AdditionalDataHolder, Parsable):
         return fields
     
     @property
-    def metadata(self,) -> Optional[List[metadata_entry.MetadataEntry]]:
+    def metadata(self,) -> Optional[List[attribute_definition_metadata_entry.AttributeDefinitionMetadataEntry]]:
         """
         Gets the metadata property value. Additional extension properties. Unless mentioned explicitly, metadata values should not be changed.
-        Returns: Optional[List[metadata_entry.MetadataEntry]]
+        Returns: Optional[List[attribute_definition_metadata_entry.AttributeDefinitionMetadataEntry]]
         """
         return self._metadata
     
     @metadata.setter
-    def metadata(self,value: Optional[List[metadata_entry.MetadataEntry]] = None) -> None:
+    def metadata(self,value: Optional[List[attribute_definition_metadata_entry.AttributeDefinitionMetadataEntry]] = None) -> None:
         """
         Sets the metadata property value. Additional extension properties. Unless mentioned explicitly, metadata values should not be changed.
         Args:

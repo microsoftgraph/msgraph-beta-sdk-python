@@ -4,7 +4,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
 if TYPE_CHECKING:
-    from . import entity, metadata_entry, synchronization_schema
+    from . import entity, synchronization_metadata_entry, synchronization_schema
 
 from . import entity
 
@@ -25,7 +25,7 @@ class SynchronizationTemplate(entity.Entity):
         # One of the well-known factory tags supported by the synchronization engine. The factoryTag tells the synchronization engine which implementation to use when processing jobs based on this template.
         self._factory_tag: Optional[str] = None
         # Additional extension properties. Unless mentioned explicitly, metadata values should not be changed.
-        self._metadata: Optional[List[metadata_entry.MetadataEntry]] = None
+        self._metadata: Optional[List[synchronization_metadata_entry.SynchronizationMetadataEntry]] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
         # Default synchronization schema for the jobs based on this template.
@@ -133,7 +133,7 @@ class SynchronizationTemplate(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import entity, metadata_entry, synchronization_schema
+        from . import entity, synchronization_metadata_entry, synchronization_schema
 
         fields: Dict[str, Callable[[Any], None]] = {
             "applicationId": lambda n : setattr(self, 'application_id', n.get_uuid_value()),
@@ -141,7 +141,7 @@ class SynchronizationTemplate(entity.Entity):
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "discoverable": lambda n : setattr(self, 'discoverable', n.get_bool_value()),
             "factoryTag": lambda n : setattr(self, 'factory_tag', n.get_str_value()),
-            "metadata": lambda n : setattr(self, 'metadata', n.get_collection_of_object_values(metadata_entry.MetadataEntry)),
+            "metadata": lambda n : setattr(self, 'metadata', n.get_collection_of_object_values(synchronization_metadata_entry.SynchronizationMetadataEntry)),
             "schema": lambda n : setattr(self, 'schema', n.get_object_value(synchronization_schema.SynchronizationSchema)),
         }
         super_fields = super().get_field_deserializers()
@@ -149,15 +149,15 @@ class SynchronizationTemplate(entity.Entity):
         return fields
     
     @property
-    def metadata(self,) -> Optional[List[metadata_entry.MetadataEntry]]:
+    def metadata(self,) -> Optional[List[synchronization_metadata_entry.SynchronizationMetadataEntry]]:
         """
         Gets the metadata property value. Additional extension properties. Unless mentioned explicitly, metadata values should not be changed.
-        Returns: Optional[List[metadata_entry.MetadataEntry]]
+        Returns: Optional[List[synchronization_metadata_entry.SynchronizationMetadataEntry]]
         """
         return self._metadata
     
     @metadata.setter
-    def metadata(self,value: Optional[List[metadata_entry.MetadataEntry]] = None) -> None:
+    def metadata(self,value: Optional[List[synchronization_metadata_entry.SynchronizationMetadataEntry]] = None) -> None:
         """
         Sets the metadata property value. Additional extension properties. Unless mentioned explicitly, metadata values should not be changed.
         Args:

@@ -10,7 +10,7 @@ from . import data_source_container
 class NoncustodialDataSource(data_source_container.DataSourceContainer):
     def __init__(self,) -> None:
         """
-        Instantiates a new noncustodialDataSource and sets the default values.
+        Instantiates a new NoncustodialDataSource and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.ediscovery.noncustodialDataSource"

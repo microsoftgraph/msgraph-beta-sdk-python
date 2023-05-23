@@ -18,7 +18,7 @@ class ExtensionProperty(directory_object.DirectoryObject):
         self._app_display_name: Optional[str] = None
         # Specifies the data type of the value the extension property can hold. Following values are supported. Not nullable. Binary - 256 bytes maximumBooleanDateTime - Must be specified in ISO 8601 format. Will be stored in UTC.Integer - 32-bit value.LargeInteger - 64-bit value.String - 256 characters maximum
         self._data_type: Optional[str] = None
-        # The isMultiValued property
+        # Defines the directory extension as a multi-valued property. When true, the directory extension property can store a collection of objects of the dataType; for example, a collection of integers. The default value is false. Supports $filter (eq).
         self._is_multi_valued: Optional[bool] = None
         # Indicates if this extension property was synced from on-premises active directory using Azure AD Connect. Read-only.
         self._is_synced_from_on_premises: Optional[bool] = None
@@ -95,7 +95,7 @@ class ExtensionProperty(directory_object.DirectoryObject):
     @property
     def is_multi_valued(self,) -> Optional[bool]:
         """
-        Gets the isMultiValued property value. The isMultiValued property
+        Gets the isMultiValued property value. Defines the directory extension as a multi-valued property. When true, the directory extension property can store a collection of objects of the dataType; for example, a collection of integers. The default value is false. Supports $filter (eq).
         Returns: Optional[bool]
         """
         return self._is_multi_valued
@@ -103,7 +103,7 @@ class ExtensionProperty(directory_object.DirectoryObject):
     @is_multi_valued.setter
     def is_multi_valued(self,value: Optional[bool] = None) -> None:
         """
-        Sets the isMultiValued property value. The isMultiValued property
+        Sets the isMultiValued property value. Defines the directory extension as a multi-valued property. When true, the directory extension property can store a collection of objects of the dataType; for example, a collection of integers. The default value is false. Supports $filter (eq).
         Args:
             value: Value to set for the is_multi_valued property.
         """

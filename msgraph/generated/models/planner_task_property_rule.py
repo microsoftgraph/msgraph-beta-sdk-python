@@ -20,6 +20,8 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
         self._assignments: Optional[planner_field_rules.PlannerFieldRules] = None
         # Rules and restrictions for checklist. Allowed overrides are userCreated and applicationCreated. Accepted values for the default rule and individual overrides are allow, add, remove, update, check, reorder, block.
         self._check_lists: Optional[planner_field_rules.PlannerFieldRules] = None
+        # The completionRequirements property
+        self._completion_requirements: Optional[List[str]] = None
         # Rules and restrictions for deleting the task. Accepted values are allow and block.
         self._delete: Optional[List[str]] = None
         # Rules and restrictions for changing the due date of the task. Accepted values are allow and block.
@@ -94,6 +96,23 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
         """
         self._check_lists = value
     
+    @property
+    def completion_requirements(self,) -> Optional[List[str]]:
+        """
+        Gets the completionRequirements property value. The completionRequirements property
+        Returns: Optional[List[str]]
+        """
+        return self._completion_requirements
+    
+    @completion_requirements.setter
+    def completion_requirements(self,value: Optional[List[str]] = None) -> None:
+        """
+        Sets the completionRequirements property value. The completionRequirements property
+        Args:
+            value: Value to set for the completion_requirements property.
+        """
+        self._completion_requirements = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PlannerTaskPropertyRule:
         """
@@ -151,6 +170,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
             "appliedCategories": lambda n : setattr(self, 'applied_categories', n.get_object_value(planner_field_rules.PlannerFieldRules)),
             "assignments": lambda n : setattr(self, 'assignments', n.get_object_value(planner_field_rules.PlannerFieldRules)),
             "checkLists": lambda n : setattr(self, 'check_lists', n.get_object_value(planner_field_rules.PlannerFieldRules)),
+            "completionRequirements": lambda n : setattr(self, 'completion_requirements', n.get_collection_of_primitive_values(str)),
             "delete": lambda n : setattr(self, 'delete', n.get_collection_of_primitive_values(str)),
             "dueDate": lambda n : setattr(self, 'due_date', n.get_collection_of_primitive_values(str)),
             "move": lambda n : setattr(self, 'move', n.get_collection_of_primitive_values(str)),
@@ -298,6 +318,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
         writer.write_object_value("appliedCategories", self.applied_categories)
         writer.write_object_value("assignments", self.assignments)
         writer.write_object_value("checkLists", self.check_lists)
+        writer.write_collection_of_primitive_values("completionRequirements", self.completion_requirements)
         writer.write_collection_of_primitive_values("delete", self.delete)
         writer.write_collection_of_primitive_values("dueDate", self.due_date)
         writer.write_collection_of_primitive_values("move", self.move)

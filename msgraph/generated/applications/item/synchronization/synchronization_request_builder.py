@@ -81,7 +81,7 @@ class SynchronizationRequestBuilder():
 
         return await self.request_adapter.send_async(request_info, synchronization.Synchronization, error_mapping)
     
-    async def patch(self,body: Optional[synchronization.Synchronization] = None, request_configuration: Optional[SynchronizationRequestBuilderPatchRequestConfiguration] = None) -> Optional[synchronization.Synchronization]:
+    async def put(self,body: Optional[synchronization.Synchronization] = None, request_configuration: Optional[SynchronizationRequestBuilderPutRequestConfiguration] = None) -> Optional[synchronization.Synchronization]:
         """
         Update the navigation property synchronization in applications
         Args:
@@ -91,7 +91,7 @@ class SynchronizationRequestBuilder():
         """
         if body is None:
             raise Exception("body cannot be undefined")
-        request_info = self.to_patch_request_information(
+        request_info = self.to_put_request_information(
             body, request_configuration
         )
         from ....models.o_data_errors import o_data_error
@@ -140,7 +140,7 @@ class SynchronizationRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[synchronization.Synchronization] = None, request_configuration: Optional[SynchronizationRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_put_request_information(self,body: Optional[synchronization.Synchronization] = None, request_configuration: Optional[SynchronizationRequestBuilderPutRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property synchronization in applications
         Args:
@@ -153,7 +153,7 @@ class SynchronizationRequestBuilder():
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.PATCH
+        request_info.http_method = Method.PUT
         request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
@@ -261,7 +261,7 @@ class SynchronizationRequestBuilder():
 
     
     @dataclass
-    class SynchronizationRequestBuilderPatchRequestConfiguration():
+    class SynchronizationRequestBuilderPutRequestConfiguration():
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """

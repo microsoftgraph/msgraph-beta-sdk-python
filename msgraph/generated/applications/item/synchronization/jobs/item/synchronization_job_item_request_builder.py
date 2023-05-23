@@ -17,7 +17,6 @@ if TYPE_CHECKING:
     from .restart import restart_request_builder
     from .schema import schema_request_builder
     from .start import start_request_builder
-    from .stop import stop_request_builder
     from .validate_credentials import validate_credentials_request_builder
 
 class SynchronizationJobItemRequestBuilder():
@@ -207,15 +206,6 @@ class SynchronizationJobItemRequestBuilder():
         from .start import start_request_builder
 
         return start_request_builder.StartRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def stop(self) -> stop_request_builder.StopRequestBuilder:
-        """
-        Provides operations to call the stop method.
-        """
-        from .stop import stop_request_builder
-
-        return stop_request_builder.StopRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def validate_credentials(self) -> validate_credentials_request_builder.ValidateCredentialsRequestBuilder:

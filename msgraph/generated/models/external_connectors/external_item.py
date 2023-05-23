@@ -11,7 +11,7 @@ from .. import entity
 class ExternalItem(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new ExternalItem and sets the default values.
+        Instantiates a new externalItem and sets the default values.
         """
         super().__init__()
         # An array of access control entries. Each entry specifies the access granted to a user or group. Required.

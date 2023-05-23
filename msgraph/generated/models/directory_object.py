@@ -4,7 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import activity_based_timeout_policy, administrative_unit, application, app_management_policy, authorization_policy, claims_mapping_policy, contract, cross_tenant_access_policy, device, directory_object_partner_reference, directory_role, directory_role_template, directory_setting_template, endpoint, entity, extension_property, external_identities_policy, group, home_realm_discovery_policy, identity_security_defaults_enforcement_policy, organization, org_contact, permission_grant_policy, policy_base, resource_specific_permission_grant, service_principal, service_principal_creation_policy, sts_policy, tenant_app_management_policy, tenant_relationship_access_policy_base, token_issuance_policy, token_lifetime_policy, user
+    from . import activity_based_timeout_policy, administrative_unit, application, app_management_policy, authorization_policy, certificate_based_application_configuration, claims_mapping_policy, contract, cross_tenant_access_policy, device, directory_object_partner_reference, directory_role, directory_role_template, directory_setting_template, endpoint, entity, extension_property, external_identities_policy, group, home_realm_discovery_policy, identity_security_defaults_enforcement_policy, organization, org_contact, permission_grant_policy, policy_base, resource_specific_permission_grant, service_principal, service_principal_creation_policy, sts_policy, tenant_app_management_policy, tenant_relationship_access_policy_base, token_issuance_policy, token_lifetime_policy, trusted_certificate_authority_as_entity_base, user
 
 from . import entity
 
@@ -52,6 +52,10 @@ class DirectoryObject(entity.Entity):
                 from . import authorization_policy
 
                 return authorization_policy.AuthorizationPolicy()
+            if mapping_value == "#microsoft.graph.certificateBasedApplicationConfiguration":
+                from . import certificate_based_application_configuration
+
+                return certificate_based_application_configuration.CertificateBasedApplicationConfiguration()
             if mapping_value == "#microsoft.graph.claimsMappingPolicy":
                 from . import claims_mapping_policy
 
@@ -156,6 +160,10 @@ class DirectoryObject(entity.Entity):
                 from . import token_lifetime_policy
 
                 return token_lifetime_policy.TokenLifetimePolicy()
+            if mapping_value == "#microsoft.graph.trustedCertificateAuthorityAsEntityBase":
+                from . import trusted_certificate_authority_as_entity_base
+
+                return trusted_certificate_authority_as_entity_base.TrustedCertificateAuthorityAsEntityBase()
             if mapping_value == "#microsoft.graph.user":
                 from . import user
 
@@ -184,7 +192,7 @@ class DirectoryObject(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import activity_based_timeout_policy, administrative_unit, application, app_management_policy, authorization_policy, claims_mapping_policy, contract, cross_tenant_access_policy, device, directory_object_partner_reference, directory_role, directory_role_template, directory_setting_template, endpoint, entity, extension_property, external_identities_policy, group, home_realm_discovery_policy, identity_security_defaults_enforcement_policy, organization, org_contact, permission_grant_policy, policy_base, resource_specific_permission_grant, service_principal, service_principal_creation_policy, sts_policy, tenant_app_management_policy, tenant_relationship_access_policy_base, token_issuance_policy, token_lifetime_policy, user
+        from . import activity_based_timeout_policy, administrative_unit, application, app_management_policy, authorization_policy, certificate_based_application_configuration, claims_mapping_policy, contract, cross_tenant_access_policy, device, directory_object_partner_reference, directory_role, directory_role_template, directory_setting_template, endpoint, entity, extension_property, external_identities_policy, group, home_realm_discovery_policy, identity_security_defaults_enforcement_policy, organization, org_contact, permission_grant_policy, policy_base, resource_specific_permission_grant, service_principal, service_principal_creation_policy, sts_policy, tenant_app_management_policy, tenant_relationship_access_policy_base, token_issuance_policy, token_lifetime_policy, trusted_certificate_authority_as_entity_base, user
 
         fields: Dict[str, Callable[[Any], None]] = {
             "deletedDateTime": lambda n : setattr(self, 'deleted_date_time', n.get_datetime_value()),

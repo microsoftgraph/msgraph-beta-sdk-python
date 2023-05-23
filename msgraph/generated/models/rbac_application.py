@@ -10,7 +10,7 @@ from . import entity
 class RbacApplication(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new RbacApplication and sets the default values.
+        Instantiates a new rbacApplication and sets the default values.
         """
         super().__init__()
         # The OdataType property

@@ -8,9 +8,12 @@ if TYPE_CHECKING:
 from . import device_configuration
 
 class AppleVpnConfiguration(device_configuration.DeviceConfiguration):
+    """
+    Apple VPN configuration profile.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new AppleVpnConfiguration and sets the default values.
+        Instantiates a new appleVpnConfiguration and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.appleVpnConfiguration"

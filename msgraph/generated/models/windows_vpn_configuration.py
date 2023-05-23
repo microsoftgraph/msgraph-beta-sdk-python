@@ -8,12 +8,9 @@ if TYPE_CHECKING:
 from . import device_configuration
 
 class WindowsVpnConfiguration(device_configuration.DeviceConfiguration):
-    """
-    Windows VPN configuration profile.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new windowsVpnConfiguration and sets the default values.
+        Instantiates a new WindowsVpnConfiguration and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.windowsVpnConfiguration"

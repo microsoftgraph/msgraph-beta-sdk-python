@@ -84,7 +84,7 @@ class MailFolderItemRequestBuilder():
     
     async def patch(self,body: Optional[mail_folder.MailFolder] = None, request_configuration: Optional[MailFolderItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[mail_folder.MailFolder]:
         """
-        Update the properties of mailFolder object.
+        Update the writable properties of a mailSearchFolder object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -143,7 +143,7 @@ class MailFolderItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[mail_folder.MailFolder] = None, request_configuration: Optional[MailFolderItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of mailFolder object.
+        Update the writable properties of a mailSearchFolder object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

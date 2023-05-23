@@ -11,7 +11,7 @@ from . import entity
 class DeviceLocalCredentialInfo(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new DeviceLocalCredentialInfo and sets the default values.
+        Instantiates a new deviceLocalCredentialInfo and sets the default values.
         """
         super().__init__()
         # The credentials of the device's local administrator account backed up to Azure Active Directory.

@@ -4,4 +4,5 @@ class LifecycleTaskCategory(Enum):
     Joiner = "joiner",
     Leaver = "leaver",
     UnknownFutureValue = "unknownFutureValue",
+    Mover = "mover",
 

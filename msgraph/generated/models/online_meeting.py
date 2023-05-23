@@ -4,7 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import audio_conferencing, broadcast_meeting_settings, call_transcript, chat_info, entity, item_body, join_meeting_id_settings, lobby_bypass_settings, meeting_attendance_report, meeting_capabilities, meeting_chat_history_default_mode, meeting_chat_mode, meeting_participants, meeting_registration, online_meeting_presenters, online_meeting_role, virtual_appointment, watermark_protection_values
+    from . import audio_conferencing, broadcast_meeting_settings, call_transcript, chat_info, entity, item_body, join_meeting_id_settings, lobby_bypass_settings, meeting_attendance_report, meeting_capabilities, meeting_chat_history_default_mode, meeting_chat_mode, meeting_participants, meeting_registration, online_meeting_presenters, online_meeting_role, virtual_appointment, virtual_event_session, watermark_protection_values
 
 from . import entity
 
@@ -375,6 +375,13 @@ class OnlineMeeting(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.virtualEventSession":
+                from . import virtual_event_session
+
+                return virtual_event_session.VirtualEventSession()
         return OnlineMeeting()
     
     @property
@@ -433,7 +440,7 @@ class OnlineMeeting(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import audio_conferencing, broadcast_meeting_settings, call_transcript, chat_info, entity, item_body, join_meeting_id_settings, lobby_bypass_settings, meeting_attendance_report, meeting_capabilities, meeting_chat_history_default_mode, meeting_chat_mode, meeting_participants, meeting_registration, online_meeting_presenters, online_meeting_role, virtual_appointment, watermark_protection_values
+        from . import audio_conferencing, broadcast_meeting_settings, call_transcript, chat_info, entity, item_body, join_meeting_id_settings, lobby_bypass_settings, meeting_attendance_report, meeting_capabilities, meeting_chat_history_default_mode, meeting_chat_mode, meeting_participants, meeting_registration, online_meeting_presenters, online_meeting_role, virtual_appointment, virtual_event_session, watermark_protection_values
 
         fields: Dict[str, Callable[[Any], None]] = {
             "allowedPresenters": lambda n : setattr(self, 'allowed_presenters', n.get_enum_value(online_meeting_presenters.OnlineMeetingPresenters)),

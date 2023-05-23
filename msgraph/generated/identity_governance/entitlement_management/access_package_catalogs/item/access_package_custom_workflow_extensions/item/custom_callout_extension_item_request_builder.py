@@ -56,7 +56,7 @@ class CustomCalloutExtensionItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[CustomCalloutExtensionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[custom_callout_extension.CustomCalloutExtension]:
         """
-        Read the properties and relationships of an accessPackageAssignmentWorkflowExtension object.
+        Read the properties and relationships of an accessPackageAssignmentRequestWorkflowExtension object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[custom_callout_extension.CustomCalloutExtension]
@@ -119,7 +119,7 @@ class CustomCalloutExtensionItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CustomCalloutExtensionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an accessPackageAssignmentWorkflowExtension object.
+        Read the properties and relationships of an accessPackageAssignmentRequestWorkflowExtension object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class CustomCalloutExtensionItemRequestBuilder():
     @dataclass
     class CustomCalloutExtensionItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an accessPackageAssignmentWorkflowExtension object.
+        Read the properties and relationships of an accessPackageAssignmentRequestWorkflowExtension object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
