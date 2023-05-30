@@ -5,7 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
 if TYPE_CHECKING:
-    from . import api_application, app_management_policy, app_role, certification, connector_group, directory_object, extension_property, federated_identity_credential, home_realm_discovery_policy, informational_url, key_credential, on_premises_publishing, optional_claims, parental_control_settings, password_credential, public_client_application, request_signature_verification, required_resource_access, service_principal_lock_configuration, spa_application, synchronization, token_issuance_policy, token_lifetime_policy, verified_publisher, web_application, windows_application
+    from . import api_application, app_management_policy, app_role, authentication_behaviors, certification, connector_group, directory_object, extension_property, federated_identity_credential, home_realm_discovery_policy, informational_url, key_credential, on_premises_publishing, optional_claims, parental_control_settings, password_credential, public_client_application, request_signature_verification, required_resource_access, service_principal_lock_configuration, spa_application, synchronization, token_issuance_policy, token_lifetime_policy, verified_publisher, web_application, windows_application
 
 from . import directory_object
 
@@ -24,6 +24,8 @@ class Application(directory_object.DirectoryObject):
         self._app_management_policies: Optional[List[app_management_policy.AppManagementPolicy]] = None
         # The collection of roles defined for the application. With app role assignments, these roles can be assigned to users, groups, or service principals associated with other applications. Not nullable.
         self._app_roles: Optional[List[app_role.AppRole]] = None
+        # The authenticationBehaviors property
+        self._authentication_behaviors: Optional[authentication_behaviors.AuthenticationBehaviors] = None
         # Specifies the certification status of the application.
         self._certification: Optional[certification.Certification] = None
         # The connectorGroup the application is using with Azure AD Application Proxy. Nullable.
@@ -176,6 +178,23 @@ class Application(directory_object.DirectoryObject):
             value: Value to set for the app_roles property.
         """
         self._app_roles = value
+    
+    @property
+    def authentication_behaviors(self,) -> Optional[authentication_behaviors.AuthenticationBehaviors]:
+        """
+        Gets the authenticationBehaviors property value. The authenticationBehaviors property
+        Returns: Optional[authentication_behaviors.AuthenticationBehaviors]
+        """
+        return self._authentication_behaviors
+    
+    @authentication_behaviors.setter
+    def authentication_behaviors(self,value: Optional[authentication_behaviors.AuthenticationBehaviors] = None) -> None:
+        """
+        Sets the authenticationBehaviors property value. The authenticationBehaviors property
+        Args:
+            value: Value to set for the authentication_behaviors property.
+        """
+        self._authentication_behaviors = value
     
     @property
     def certification(self,) -> Optional[certification.Certification]:
@@ -364,13 +383,14 @@ class Application(directory_object.DirectoryObject):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import api_application, app_management_policy, app_role, certification, connector_group, directory_object, extension_property, federated_identity_credential, home_realm_discovery_policy, informational_url, key_credential, on_premises_publishing, optional_claims, parental_control_settings, password_credential, public_client_application, request_signature_verification, required_resource_access, service_principal_lock_configuration, spa_application, synchronization, token_issuance_policy, token_lifetime_policy, verified_publisher, web_application, windows_application
+        from . import api_application, app_management_policy, app_role, authentication_behaviors, certification, connector_group, directory_object, extension_property, federated_identity_credential, home_realm_discovery_policy, informational_url, key_credential, on_premises_publishing, optional_claims, parental_control_settings, password_credential, public_client_application, request_signature_verification, required_resource_access, service_principal_lock_configuration, spa_application, synchronization, token_issuance_policy, token_lifetime_policy, verified_publisher, web_application, windows_application
 
         fields: Dict[str, Callable[[Any], None]] = {
             "api": lambda n : setattr(self, 'api', n.get_object_value(api_application.ApiApplication)),
             "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
             "appManagementPolicies": lambda n : setattr(self, 'app_management_policies', n.get_collection_of_object_values(app_management_policy.AppManagementPolicy)),
             "appRoles": lambda n : setattr(self, 'app_roles', n.get_collection_of_object_values(app_role.AppRole)),
+            "authenticationBehaviors": lambda n : setattr(self, 'authentication_behaviors', n.get_object_value(authentication_behaviors.AuthenticationBehaviors)),
             "certification": lambda n : setattr(self, 'certification', n.get_object_value(certification.Certification)),
             "connectorGroup": lambda n : setattr(self, 'connector_group', n.get_object_value(connector_group.ConnectorGroup)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
@@ -754,6 +774,7 @@ class Application(directory_object.DirectoryObject):
         writer.write_str_value("appId", self.app_id)
         writer.write_collection_of_object_values("appManagementPolicies", self.app_management_policies)
         writer.write_collection_of_object_values("appRoles", self.app_roles)
+        writer.write_object_value("authenticationBehaviors", self.authentication_behaviors)
         writer.write_object_value("certification", self.certification)
         writer.write_object_value("connectorGroup", self.connector_group)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

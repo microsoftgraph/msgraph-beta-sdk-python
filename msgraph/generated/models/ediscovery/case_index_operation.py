@@ -10,7 +10,7 @@ from . import case_operation
 class CaseIndexOperation(case_operation.CaseOperation):
     def __init__(self,) -> None:
         """
-        Instantiates a new CaseIndexOperation and sets the default values.
+        Instantiates a new caseIndexOperation and sets the default values.
         """
         super().__init__()
         # The OdataType property

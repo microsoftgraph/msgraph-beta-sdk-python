@@ -13,11 +13,11 @@ class DevicesFilter(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The mode property
+        # Determines whether devices satisfying the rule should be allowed or blocked.The possible values are: allowed, blocked, unknownFutureValue.Not implemented yet
         self._mode: Optional[cross_tenant_access_policy_target_configuration_access_type.CrossTenantAccessPolicyTargetConfigurationAccessType] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The rule property
+        # Defines the rule to filter the devices. An example would be device.deviceAttribute2 -eq 'PrivilegedAccessWorkstation' Not implemented yet
         self._rule: Optional[str] = None
     
     @property
@@ -66,7 +66,7 @@ class DevicesFilter(AdditionalDataHolder, Parsable):
     @property
     def mode(self,) -> Optional[cross_tenant_access_policy_target_configuration_access_type.CrossTenantAccessPolicyTargetConfigurationAccessType]:
         """
-        Gets the mode property value. The mode property
+        Gets the mode property value. Determines whether devices satisfying the rule should be allowed or blocked.The possible values are: allowed, blocked, unknownFutureValue.Not implemented yet
         Returns: Optional[cross_tenant_access_policy_target_configuration_access_type.CrossTenantAccessPolicyTargetConfigurationAccessType]
         """
         return self._mode
@@ -74,7 +74,7 @@ class DevicesFilter(AdditionalDataHolder, Parsable):
     @mode.setter
     def mode(self,value: Optional[cross_tenant_access_policy_target_configuration_access_type.CrossTenantAccessPolicyTargetConfigurationAccessType] = None) -> None:
         """
-        Sets the mode property value. The mode property
+        Sets the mode property value. Determines whether devices satisfying the rule should be allowed or blocked.The possible values are: allowed, blocked, unknownFutureValue.Not implemented yet
         Args:
             value: Value to set for the mode property.
         """
@@ -100,7 +100,7 @@ class DevicesFilter(AdditionalDataHolder, Parsable):
     @property
     def rule(self,) -> Optional[str]:
         """
-        Gets the rule property value. The rule property
+        Gets the rule property value. Defines the rule to filter the devices. An example would be device.deviceAttribute2 -eq 'PrivilegedAccessWorkstation' Not implemented yet
         Returns: Optional[str]
         """
         return self._rule
@@ -108,7 +108,7 @@ class DevicesFilter(AdditionalDataHolder, Parsable):
     @rule.setter
     def rule(self,value: Optional[str] = None) -> None:
         """
-        Sets the rule property value. The rule property
+        Sets the rule property value. Defines the rule to filter the devices. An example would be device.deviceAttribute2 -eq 'PrivilegedAccessWorkstation' Not implemented yet
         Args:
             value: Value to set for the rule property.
         """

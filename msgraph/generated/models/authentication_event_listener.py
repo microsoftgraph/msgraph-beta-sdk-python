@@ -3,14 +3,14 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import authentication_conditions, entity, on_token_issuance_start_listener
+    from . import authentication_conditions, entity, on_attribute_collection_listener, on_authentication_method_load_start_listener, on_interactive_auth_flow_start_listener, on_token_issuance_start_listener, on_user_create_start_listener
 
 from . import entity
 
 class AuthenticationEventListener(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new authenticationEventListener and sets the default values.
+        Instantiates a new AuthenticationEventListener and sets the default values.
         """
         super().__init__()
         # The identifier of the authenticationEventsFlow object.
@@ -69,10 +69,26 @@ class AuthenticationEventListener(entity.Entity):
         mapping_value_node = parse_node.get_child_node("@odata.type")
         if mapping_value_node:
             mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.onAttributeCollectionListener":
+                from . import on_attribute_collection_listener
+
+                return on_attribute_collection_listener.OnAttributeCollectionListener()
+            if mapping_value == "#microsoft.graph.onAuthenticationMethodLoadStartListener":
+                from . import on_authentication_method_load_start_listener
+
+                return on_authentication_method_load_start_listener.OnAuthenticationMethodLoadStartListener()
+            if mapping_value == "#microsoft.graph.onInteractiveAuthFlowStartListener":
+                from . import on_interactive_auth_flow_start_listener
+
+                return on_interactive_auth_flow_start_listener.OnInteractiveAuthFlowStartListener()
             if mapping_value == "#microsoft.graph.onTokenIssuanceStartListener":
                 from . import on_token_issuance_start_listener
 
                 return on_token_issuance_start_listener.OnTokenIssuanceStartListener()
+            if mapping_value == "#microsoft.graph.onUserCreateStartListener":
+                from . import on_user_create_start_listener
+
+                return on_user_create_start_listener.OnUserCreateStartListener()
         return AuthenticationEventListener()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -80,7 +96,7 @@ class AuthenticationEventListener(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import authentication_conditions, entity, on_token_issuance_start_listener
+        from . import authentication_conditions, entity, on_attribute_collection_listener, on_authentication_method_load_start_listener, on_interactive_auth_flow_start_listener, on_token_issuance_start_listener, on_user_create_start_listener
 
         fields: Dict[str, Callable[[Any], None]] = {
             "authenticationEventsFlowId": lambda n : setattr(self, 'authentication_events_flow_id', n.get_str_value()),

@@ -16,9 +16,9 @@ class AttackSimulationUser(AdditionalDataHolder, Parsable):
         self._email: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The outOfOfficeDays property
+        # Number of days the user is OOF during a simulation journey/course of a campaign.
         self._out_of_office_days: Optional[int] = None
-        # id property value of the user resource that represents the user in the Azure Active Directory tenant.
+        # The id property value of the user resource that represents the user in the Azure Active Directory tenant.
         self._user_id: Optional[str] = None
     
     @property
@@ -118,7 +118,7 @@ class AttackSimulationUser(AdditionalDataHolder, Parsable):
     @property
     def out_of_office_days(self,) -> Optional[int]:
         """
-        Gets the outOfOfficeDays property value. The outOfOfficeDays property
+        Gets the outOfOfficeDays property value. Number of days the user is OOF during a simulation journey/course of a campaign.
         Returns: Optional[int]
         """
         return self._out_of_office_days
@@ -126,7 +126,7 @@ class AttackSimulationUser(AdditionalDataHolder, Parsable):
     @out_of_office_days.setter
     def out_of_office_days(self,value: Optional[int] = None) -> None:
         """
-        Sets the outOfOfficeDays property value. The outOfOfficeDays property
+        Sets the outOfOfficeDays property value. Number of days the user is OOF during a simulation journey/course of a campaign.
         Args:
             value: Value to set for the out_of_office_days property.
         """
@@ -150,7 +150,7 @@ class AttackSimulationUser(AdditionalDataHolder, Parsable):
     @property
     def user_id(self,) -> Optional[str]:
         """
-        Gets the userId property value. id property value of the user resource that represents the user in the Azure Active Directory tenant.
+        Gets the userId property value. The id property value of the user resource that represents the user in the Azure Active Directory tenant.
         Returns: Optional[str]
         """
         return self._user_id
@@ -158,7 +158,7 @@ class AttackSimulationUser(AdditionalDataHolder, Parsable):
     @user_id.setter
     def user_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the userId property value. id property value of the user resource that represents the user in the Azure Active Directory tenant.
+        Sets the userId property value. The id property value of the user resource that represents the user in the Azure Active Directory tenant.
         Args:
             value: Value to set for the user_id property.
         """

@@ -11,7 +11,7 @@ from . import entity
 class Alert(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new Alert and sets the default values.
+        Instantiates a new alert and sets the default values.
         """
         super().__init__()
         # Name or alias of the activity group (attacker) this alert is attributed to.

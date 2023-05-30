@@ -39,7 +39,7 @@ class ConversationThreadItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[ConversationThreadItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete conversationThread.
+        Delete a thread object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -105,7 +105,7 @@ class ConversationThreadItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[ConversationThreadItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete conversationThread.
+        Delete a thread object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

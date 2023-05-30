@@ -32,7 +32,7 @@ class PlannerPlan(planner_delta.PlannerDelta):
         self.odata_type: Optional[str] = None
         # The owner property
         self._owner: Optional[str] = None
-        # The sharedWithContainers property
+        # List of containers the plan is shared with.
         self._shared_with_containers: Optional[List[planner_shared_with_container.PlannerSharedWithContainer]] = None
         # Collection of tasks in the plan. Read-only. Nullable.
         self._tasks: Optional[List[planner_task.PlannerTask]] = None
@@ -235,7 +235,7 @@ class PlannerPlan(planner_delta.PlannerDelta):
     @property
     def shared_with_containers(self,) -> Optional[List[planner_shared_with_container.PlannerSharedWithContainer]]:
         """
-        Gets the sharedWithContainers property value. The sharedWithContainers property
+        Gets the sharedWithContainers property value. List of containers the plan is shared with.
         Returns: Optional[List[planner_shared_with_container.PlannerSharedWithContainer]]
         """
         return self._shared_with_containers
@@ -243,7 +243,7 @@ class PlannerPlan(planner_delta.PlannerDelta):
     @shared_with_containers.setter
     def shared_with_containers(self,value: Optional[List[planner_shared_with_container.PlannerSharedWithContainer]] = None) -> None:
         """
-        Sets the sharedWithContainers property value. The sharedWithContainers property
+        Sets the sharedWithContainers property value. List of containers the plan is shared with.
         Args:
             value: Value to set for the shared_with_containers property.
         """

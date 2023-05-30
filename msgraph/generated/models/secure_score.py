@@ -11,7 +11,7 @@ from . import entity
 class SecureScore(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new SecureScore and sets the default values.
+        Instantiates a new secureScore and sets the default values.
         """
         super().__init__()
         # Active user count of the given tenant.

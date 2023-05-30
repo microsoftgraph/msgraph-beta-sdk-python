@@ -3,7 +3,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import item_body, planner_checklist_items, planner_delta, planner_external_references, planner_preview_type
+    from . import item_body, planner_checklist_items, planner_delta, planner_external_references, planner_preview_type, planner_task_completion_requirement_details
 
 from . import planner_delta
 
@@ -15,6 +15,8 @@ class PlannerTaskDetails(planner_delta.PlannerDelta):
         super().__init__()
         # The collection of checklist items on the task.
         self._checklist: Optional[planner_checklist_items.PlannerChecklistItems] = None
+        # The completionRequirements property
+        self._completion_requirements: Optional[planner_task_completion_requirement_details.PlannerTaskCompletionRequirementDetails] = None
         # Description of the task.
         self._description: Optional[str] = None
         # Rich text description of the task. To be used by HTML-aware clients. For backwards compatibility, a plain-text version of the HTML description will be synced to the 'description' field. If this field has not previously been set but 'description' has been, the existing description will be synchronized to 'notes' with minimal whitespace-preserving HTML markup. Setting both 'description' and 'notes' is an error and will result in an exception.
@@ -42,6 +44,23 @@ class PlannerTaskDetails(planner_delta.PlannerDelta):
             value: Value to set for the checklist property.
         """
         self._checklist = value
+    
+    @property
+    def completion_requirements(self,) -> Optional[planner_task_completion_requirement_details.PlannerTaskCompletionRequirementDetails]:
+        """
+        Gets the completionRequirements property value. The completionRequirements property
+        Returns: Optional[planner_task_completion_requirement_details.PlannerTaskCompletionRequirementDetails]
+        """
+        return self._completion_requirements
+    
+    @completion_requirements.setter
+    def completion_requirements(self,value: Optional[planner_task_completion_requirement_details.PlannerTaskCompletionRequirementDetails] = None) -> None:
+        """
+        Sets the completionRequirements property value. The completionRequirements property
+        Args:
+            value: Value to set for the completion_requirements property.
+        """
+        self._completion_requirements = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PlannerTaskDetails:
@@ -77,10 +96,11 @@ class PlannerTaskDetails(planner_delta.PlannerDelta):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import item_body, planner_checklist_items, planner_delta, planner_external_references, planner_preview_type
+        from . import item_body, planner_checklist_items, planner_delta, planner_external_references, planner_preview_type, planner_task_completion_requirement_details
 
         fields: Dict[str, Callable[[Any], None]] = {
             "checklist": lambda n : setattr(self, 'checklist', n.get_object_value(planner_checklist_items.PlannerChecklistItems)),
+            "completionRequirements": lambda n : setattr(self, 'completion_requirements', n.get_object_value(planner_task_completion_requirement_details.PlannerTaskCompletionRequirementDetails)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "notes": lambda n : setattr(self, 'notes', n.get_object_value(item_body.ItemBody)),
             "previewType": lambda n : setattr(self, 'preview_type', n.get_enum_value(planner_preview_type.PlannerPreviewType)),
@@ -151,6 +171,7 @@ class PlannerTaskDetails(planner_delta.PlannerDelta):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_object_value("checklist", self.checklist)
+        writer.write_object_value("completionRequirements", self.completion_requirements)
         writer.write_str_value("description", self.description)
         writer.write_object_value("notes", self.notes)
         writer.write_enum_value("previewType", self.preview_type)

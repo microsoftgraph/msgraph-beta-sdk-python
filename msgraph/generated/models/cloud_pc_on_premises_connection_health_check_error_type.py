@@ -55,6 +55,8 @@ class CloudPcOnPremisesConnectionHealthCheckErrorType(Enum):
     PermissionCheckTransientServiceError = "permissionCheckTransientServiceError",
     PermissionCheckUnknownError = "permissionCheckUnknownError",
     UdpConnectivityCheckStunUrlNotAllowListed = "udpConnectivityCheckStunUrlNotAllowListed",
+    UdpConnectivityCheckTurnUrlNotAllowListed = "udpConnectivityCheckTurnUrlNotAllowListed",
+    UdpConnectivityCheckUrlsNotAllowListed = "udpConnectivityCheckUrlsNotAllowListed",
     UdpConnectivityCheckUnknownError = "udpConnectivityCheckUnknownError",
     InternalServerErrorDeploymentCanceled = "internalServerErrorDeploymentCanceled",
     InternalServerErrorAllocateResourceFailed = "internalServerErrorAllocateResourceFailed",

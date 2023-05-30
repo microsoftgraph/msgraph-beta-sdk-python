@@ -10,7 +10,7 @@ from . import entity
 class CredentialUserRegistrationDetails(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new CredentialUserRegistrationDetails and sets the default values.
+        Instantiates a new credentialUserRegistrationDetails and sets the default values.
         """
         super().__init__()
         # Represents the authentication method that the user has registered. Possible values are: email, mobilePhone, officePhone,  securityQuestion (only used for self-service password reset), appNotification,  appCode, alternateMobilePhone (supported only in registration),  fido,  appPassword,  unknownFutureValue.

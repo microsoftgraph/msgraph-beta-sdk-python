@@ -13,9 +13,9 @@ class AppliedAuthenticationEventListener(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The type of authentication event that triggered the custom extension request. The possible values are: tokenIssuanceStart, pageRenderStart, unknownFutureValue.
+        # The type of authentication event that triggered the custom authentication extension request. The possible values are: tokenIssuanceStart, pageRenderStart, unknownFutureValue.
         self._event_type: Optional[authentication_event_type.AuthenticationEventType] = None
-        # ID of the Event Listener that was executed.
+        # ID of the authentication event listener that was executed.
         self._executed_listener_id: Optional[str] = None
         # The result from the listening client, such as an Azure Logic App and Azure Functions, of this authentication event.
         self._handler_result: Optional[authentication_event_handler_result.AuthenticationEventHandlerResult] = None
@@ -54,7 +54,7 @@ class AppliedAuthenticationEventListener(AdditionalDataHolder, Parsable):
     @property
     def event_type(self,) -> Optional[authentication_event_type.AuthenticationEventType]:
         """
-        Gets the eventType property value. The type of authentication event that triggered the custom extension request. The possible values are: tokenIssuanceStart, pageRenderStart, unknownFutureValue.
+        Gets the eventType property value. The type of authentication event that triggered the custom authentication extension request. The possible values are: tokenIssuanceStart, pageRenderStart, unknownFutureValue.
         Returns: Optional[authentication_event_type.AuthenticationEventType]
         """
         return self._event_type
@@ -62,7 +62,7 @@ class AppliedAuthenticationEventListener(AdditionalDataHolder, Parsable):
     @event_type.setter
     def event_type(self,value: Optional[authentication_event_type.AuthenticationEventType] = None) -> None:
         """
-        Sets the eventType property value. The type of authentication event that triggered the custom extension request. The possible values are: tokenIssuanceStart, pageRenderStart, unknownFutureValue.
+        Sets the eventType property value. The type of authentication event that triggered the custom authentication extension request. The possible values are: tokenIssuanceStart, pageRenderStart, unknownFutureValue.
         Args:
             value: Value to set for the event_type property.
         """
@@ -71,7 +71,7 @@ class AppliedAuthenticationEventListener(AdditionalDataHolder, Parsable):
     @property
     def executed_listener_id(self,) -> Optional[str]:
         """
-        Gets the executedListenerId property value. ID of the Event Listener that was executed.
+        Gets the executedListenerId property value. ID of the authentication event listener that was executed.
         Returns: Optional[str]
         """
         return self._executed_listener_id
@@ -79,7 +79,7 @@ class AppliedAuthenticationEventListener(AdditionalDataHolder, Parsable):
     @executed_listener_id.setter
     def executed_listener_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the executedListenerId property value. ID of the Event Listener that was executed.
+        Sets the executedListenerId property value. ID of the authentication event listener that was executed.
         Args:
             value: Value to set for the executed_listener_id property.
         """

@@ -10,7 +10,7 @@ from . import entity
 class Company(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new Company and sets the default values.
+        Instantiates a new company and sets the default values.
         """
         super().__init__()
         # The accounts property

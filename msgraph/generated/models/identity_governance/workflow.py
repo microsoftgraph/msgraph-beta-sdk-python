@@ -5,7 +5,6 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import run, task_report, user_processing_result, workflow_base, workflow_version
-    from .. import user
 
 from . import workflow_base
 
@@ -19,7 +18,7 @@ class Workflow(workflow_base.WorkflowBase):
         # When the workflow was deleted.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
         self._deleted_date_time: Optional[datetime] = None
         # The unique identifier of the Azure AD identity that last modified the workflow object.
-        self._execution_scope: Optional[List[user.User]] = None
+        self._execution_scope: Optional[List[user_processing_result.UserProcessingResult]] = None
         # Identifier used for individually addressing a specific workflow.Supports $filter(eq, ne) and $orderby.
         self._id: Optional[str] = None
         # The date time when the workflow is expected to run next based on the schedule interval, if there are any users matching the execution conditions. Supports $filter(lt,gt) and $orderBy.
@@ -65,15 +64,15 @@ class Workflow(workflow_base.WorkflowBase):
         self._deleted_date_time = value
     
     @property
-    def execution_scope(self,) -> Optional[List[user.User]]:
+    def execution_scope(self,) -> Optional[List[user_processing_result.UserProcessingResult]]:
         """
         Gets the executionScope property value. The unique identifier of the Azure AD identity that last modified the workflow object.
-        Returns: Optional[List[user.User]]
+        Returns: Optional[List[user_processing_result.UserProcessingResult]]
         """
         return self._execution_scope
     
     @execution_scope.setter
-    def execution_scope(self,value: Optional[List[user.User]] = None) -> None:
+    def execution_scope(self,value: Optional[List[user_processing_result.UserProcessingResult]] = None) -> None:
         """
         Sets the executionScope property value. The unique identifier of the Azure AD identity that last modified the workflow object.
         Args:
@@ -87,11 +86,10 @@ class Workflow(workflow_base.WorkflowBase):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from . import run, task_report, user_processing_result, workflow_base, workflow_version
-        from .. import user
 
         fields: Dict[str, Callable[[Any], None]] = {
             "deletedDateTime": lambda n : setattr(self, 'deleted_date_time', n.get_datetime_value()),
-            "executionScope": lambda n : setattr(self, 'execution_scope', n.get_collection_of_object_values(user.User)),
+            "executionScope": lambda n : setattr(self, 'execution_scope', n.get_collection_of_object_values(user_processing_result.UserProcessingResult)),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "nextScheduleRunDateTime": lambda n : setattr(self, 'next_schedule_run_date_time', n.get_datetime_value()),
             "runs": lambda n : setattr(self, 'runs', n.get_collection_of_object_values(run.Run)),

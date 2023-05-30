@@ -38,7 +38,7 @@ class ComplianceChangeItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[ComplianceChangeItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a complianceChange object.
+        Delete a contentApproval object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -79,7 +79,7 @@ class ComplianceChangeItemRequestBuilder():
     
     async def patch(self,body: Optional[compliance_change.ComplianceChange] = None, request_configuration: Optional[ComplianceChangeItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[compliance_change.ComplianceChange]:
         """
-        Update the properties of a complianceChange object.
+        Update the properties of a contentApproval object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -104,7 +104,7 @@ class ComplianceChangeItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[ComplianceChangeItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a complianceChange object.
+        Delete a contentApproval object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,7 +138,7 @@ class ComplianceChangeItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[compliance_change.ComplianceChange] = None, request_configuration: Optional[ComplianceChangeItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a complianceChange object.
+        Update the properties of a contentApproval object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

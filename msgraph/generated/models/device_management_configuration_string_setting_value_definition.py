@@ -22,9 +22,9 @@ class DeviceManagementConfigurationStringSettingValueDefinition(device_managemen
         self._input_validation_schema: Optional[str] = None
         # Specifies whether the setting needs to be treated as a secret. Settings marked as yes will be encrypted in transit and at rest and will be displayed as asterisks when represented in the UX.
         self._is_secret: Optional[bool] = None
-        # Maximum length of string. Valid values 0 to 87516
+        # Maximum length of string
         self._maximum_length: Optional[int] = None
-        # Minimum length of string. Valid values 0 to 87516
+        # Minimum length of string
         self._minimum_length: Optional[int] = None
     
     @staticmethod
@@ -129,7 +129,7 @@ class DeviceManagementConfigurationStringSettingValueDefinition(device_managemen
     @property
     def maximum_length(self,) -> Optional[int]:
         """
-        Gets the maximumLength property value. Maximum length of string. Valid values 0 to 87516
+        Gets the maximumLength property value. Maximum length of string
         Returns: Optional[int]
         """
         return self._maximum_length
@@ -137,7 +137,7 @@ class DeviceManagementConfigurationStringSettingValueDefinition(device_managemen
     @maximum_length.setter
     def maximum_length(self,value: Optional[int] = None) -> None:
         """
-        Sets the maximumLength property value. Maximum length of string. Valid values 0 to 87516
+        Sets the maximumLength property value. Maximum length of string
         Args:
             value: Value to set for the maximum_length property.
         """
@@ -146,7 +146,7 @@ class DeviceManagementConfigurationStringSettingValueDefinition(device_managemen
     @property
     def minimum_length(self,) -> Optional[int]:
         """
-        Gets the minimumLength property value. Minimum length of string. Valid values 0 to 87516
+        Gets the minimumLength property value. Minimum length of string
         Returns: Optional[int]
         """
         return self._minimum_length
@@ -154,7 +154,7 @@ class DeviceManagementConfigurationStringSettingValueDefinition(device_managemen
     @minimum_length.setter
     def minimum_length(self,value: Optional[int] = None) -> None:
         """
-        Sets the minimumLength property value. Minimum length of string. Valid values 0 to 87516
+        Sets the minimumLength property value. Minimum length of string
         Args:
             value: Value to set for the minimum_length property.
         """

@@ -33,7 +33,7 @@ class CrossTenantAccessPolicyConfigurationPartner(AdditionalDataHolder, Parsable
         self._odata_type: Optional[str] = None
         # The tenant identifier for the partner Azure AD organization. Read-only. Key.
         self._tenant_id: Optional[str] = None
-        # The tenantRestrictions property
+        # Defines the partner-specific tenant restrictions configuration for your organization users accessing a partner organization using partner supplied idenities on your network or devices.
         self._tenant_restrictions: Optional[cross_tenant_access_policy_tenant_restrictions.CrossTenantAccessPolicyTenantRestrictions] = None
     
     @property
@@ -281,7 +281,7 @@ class CrossTenantAccessPolicyConfigurationPartner(AdditionalDataHolder, Parsable
     @property
     def tenant_restrictions(self,) -> Optional[cross_tenant_access_policy_tenant_restrictions.CrossTenantAccessPolicyTenantRestrictions]:
         """
-        Gets the tenantRestrictions property value. The tenantRestrictions property
+        Gets the tenantRestrictions property value. Defines the partner-specific tenant restrictions configuration for your organization users accessing a partner organization using partner supplied idenities on your network or devices.
         Returns: Optional[cross_tenant_access_policy_tenant_restrictions.CrossTenantAccessPolicyTenantRestrictions]
         """
         return self._tenant_restrictions
@@ -289,7 +289,7 @@ class CrossTenantAccessPolicyConfigurationPartner(AdditionalDataHolder, Parsable
     @tenant_restrictions.setter
     def tenant_restrictions(self,value: Optional[cross_tenant_access_policy_tenant_restrictions.CrossTenantAccessPolicyTenantRestrictions] = None) -> None:
         """
-        Sets the tenantRestrictions property value. The tenantRestrictions property
+        Sets the tenantRestrictions property value. Defines the partner-specific tenant restrictions configuration for your organization users accessing a partner organization using partner supplied idenities on your network or devices.
         Args:
             value: Value to set for the tenant_restrictions property.
         """

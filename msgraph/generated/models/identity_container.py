@@ -3,7 +3,7 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import authentication_event_listener, b2c_identity_user_flow, b2x_identity_user_flow, conditional_access_root, continuous_access_evaluation_policy, custom_authentication_extension, identity_api_connector, identity_provider_base, identity_user_flow, identity_user_flow_attribute
+    from . import authentication_events_flow, authentication_event_listener, b2c_identity_user_flow, b2x_identity_user_flow, conditional_access_root, continuous_access_evaluation_policy, custom_authentication_extension, identity_api_connector, identity_provider_base, identity_user_flow, identity_user_flow_attribute
 
 class IdentityContainer(AdditionalDataHolder, Parsable):
     def __init__(self,) -> None:
@@ -17,6 +17,8 @@ class IdentityContainer(AdditionalDataHolder, Parsable):
         self._api_connectors: Optional[List[identity_api_connector.IdentityApiConnector]] = None
         # The authenticationEventListeners property
         self._authentication_event_listeners: Optional[List[authentication_event_listener.AuthenticationEventListener]] = None
+        # Represents the entry point for self-service sign up and sign in user flows in both Azure AD workforce and customer tenants.
+        self._authentication_events_flows: Optional[List[authentication_events_flow.AuthenticationEventsFlow]] = None
         # Represents entry point for B2C identity userflows.
         self._b2c_user_flows: Optional[List[b2c_identity_user_flow.B2cIdentityUserFlow]] = None
         # Represents entry point for B2X and self-service sign-up identity userflows.
@@ -86,6 +88,23 @@ class IdentityContainer(AdditionalDataHolder, Parsable):
             value: Value to set for the authentication_event_listeners property.
         """
         self._authentication_event_listeners = value
+    
+    @property
+    def authentication_events_flows(self,) -> Optional[List[authentication_events_flow.AuthenticationEventsFlow]]:
+        """
+        Gets the authenticationEventsFlows property value. Represents the entry point for self-service sign up and sign in user flows in both Azure AD workforce and customer tenants.
+        Returns: Optional[List[authentication_events_flow.AuthenticationEventsFlow]]
+        """
+        return self._authentication_events_flows
+    
+    @authentication_events_flows.setter
+    def authentication_events_flows(self,value: Optional[List[authentication_events_flow.AuthenticationEventsFlow]] = None) -> None:
+        """
+        Sets the authenticationEventsFlows property value. Represents the entry point for self-service sign up and sign in user flows in both Azure AD workforce and customer tenants.
+        Args:
+            value: Value to set for the authentication_events_flows property.
+        """
+        self._authentication_events_flows = value
     
     @property
     def b2c_user_flows(self,) -> Optional[List[b2c_identity_user_flow.B2cIdentityUserFlow]]:
@@ -189,10 +208,11 @@ class IdentityContainer(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import authentication_event_listener, b2c_identity_user_flow, b2x_identity_user_flow, conditional_access_root, continuous_access_evaluation_policy, custom_authentication_extension, identity_api_connector, identity_provider_base, identity_user_flow, identity_user_flow_attribute
+        from . import authentication_events_flow, authentication_event_listener, b2c_identity_user_flow, b2x_identity_user_flow, conditional_access_root, continuous_access_evaluation_policy, custom_authentication_extension, identity_api_connector, identity_provider_base, identity_user_flow, identity_user_flow_attribute
 
         fields: Dict[str, Callable[[Any], None]] = {
             "apiConnectors": lambda n : setattr(self, 'api_connectors', n.get_collection_of_object_values(identity_api_connector.IdentityApiConnector)),
+            "authenticationEventsFlows": lambda n : setattr(self, 'authentication_events_flows', n.get_collection_of_object_values(authentication_events_flow.AuthenticationEventsFlow)),
             "authenticationEventListeners": lambda n : setattr(self, 'authentication_event_listeners', n.get_collection_of_object_values(authentication_event_listener.AuthenticationEventListener)),
             "b2cUserFlows": lambda n : setattr(self, 'b2c_user_flows', n.get_collection_of_object_values(b2c_identity_user_flow.B2cIdentityUserFlow)),
             "b2xUserFlows": lambda n : setattr(self, 'b2x_user_flows', n.get_collection_of_object_values(b2x_identity_user_flow.B2xIdentityUserFlow)),
@@ -249,6 +269,7 @@ class IdentityContainer(AdditionalDataHolder, Parsable):
         if writer is None:
             raise Exception("writer cannot be undefined")
         writer.write_collection_of_object_values("apiConnectors", self.api_connectors)
+        writer.write_collection_of_object_values("authenticationEventsFlows", self.authentication_events_flows)
         writer.write_collection_of_object_values("authenticationEventListeners", self.authentication_event_listeners)
         writer.write_collection_of_object_values("b2cUserFlows", self.b2c_user_flows)
         writer.write_collection_of_object_values("b2xUserFlows", self.b2x_user_flows)

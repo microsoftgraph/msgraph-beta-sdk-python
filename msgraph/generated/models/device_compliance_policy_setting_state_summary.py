@@ -8,9 +8,12 @@ if TYPE_CHECKING:
 from . import entity
 
 class DeviceCompliancePolicySettingStateSummary(entity.Entity):
+    """
+    Device Compilance Policy Setting State summary across the account.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new DeviceCompliancePolicySettingStateSummary and sets the default values.
+        Instantiates a new deviceCompliancePolicySettingStateSummary and sets the default values.
         """
         super().__init__()
         # Number of compliant devices

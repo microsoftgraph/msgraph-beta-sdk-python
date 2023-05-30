@@ -78,7 +78,7 @@ class LearningCourseActivityItemRequestBuilder():
     
     async def patch(self,body: Optional[learning_course_activity.LearningCourseActivity] = None, request_configuration: Optional[LearningCourseActivityItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[learning_course_activity.LearningCourseActivity]:
         """
-        Update the navigation property learningCourseActivities in employeeExperience
+        Update the properties of a learningCourseActivity object. 
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -137,7 +137,7 @@ class LearningCourseActivityItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[learning_course_activity.LearningCourseActivity] = None, request_configuration: Optional[LearningCourseActivityItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property learningCourseActivities in employeeExperience
+        Update the properties of a learningCourseActivity object. 
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

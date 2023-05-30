@@ -3,7 +3,7 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import identity_set, online_meeting_role
+    from . import identity_set, online_meeting_role, virtual_event_presenter_info
 
 class MeetingParticipantInfo(AdditionalDataHolder, Parsable):
     def __init__(self,) -> None:
@@ -49,6 +49,13 @@ class MeetingParticipantInfo(AdditionalDataHolder, Parsable):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.virtualEventPresenterInfo":
+                from . import virtual_event_presenter_info
+
+                return virtual_event_presenter_info.VirtualEventPresenterInfo()
         return MeetingParticipantInfo()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -56,7 +63,7 @@ class MeetingParticipantInfo(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import identity_set, online_meeting_role
+        from . import identity_set, online_meeting_role, virtual_event_presenter_info
 
         fields: Dict[str, Callable[[Any], None]] = {
             "identity": lambda n : setattr(self, 'identity', n.get_object_value(identity_set.IdentitySet)),

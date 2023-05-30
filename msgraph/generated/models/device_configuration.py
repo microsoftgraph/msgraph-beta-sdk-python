@@ -9,9 +9,12 @@ if TYPE_CHECKING:
 from . import entity
 
 class DeviceConfiguration(entity.Entity):
+    """
+    Device Configuration.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new DeviceConfiguration and sets the default values.
+        Instantiates a new deviceConfiguration and sets the default values.
         """
         super().__init__()
         # The list of assignments for the device configuration profile.

@@ -10,7 +10,7 @@ from . import entity
 class CloudPcSupportedRegion(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new CloudPcSupportedRegion and sets the default values.
+        Instantiates a new cloudPcSupportedRegion and sets the default values.
         """
         super().__init__()
         # The name for the supported region. Read-only.

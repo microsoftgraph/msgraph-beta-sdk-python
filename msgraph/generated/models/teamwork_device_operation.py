@@ -11,7 +11,7 @@ from . import entity
 class TeamworkDeviceOperation(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new TeamworkDeviceOperation and sets the default values.
+        Instantiates a new teamworkDeviceOperation and sets the default values.
         """
         super().__init__()
         # Time at which the operation reached a final state (for example, Successful, Failed, and Cancelled).

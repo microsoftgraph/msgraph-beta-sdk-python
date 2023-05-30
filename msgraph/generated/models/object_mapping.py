@@ -3,7 +3,7 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import attribute_mapping, filter, metadata_entry, object_flow_types
+    from . import attribute_mapping, filter, object_flow_types, object_mapping_metadata_entry
 
 class ObjectMapping(AdditionalDataHolder, Parsable):
     def __init__(self,) -> None:
@@ -20,7 +20,7 @@ class ObjectMapping(AdditionalDataHolder, Parsable):
         # The flowTypes property
         self._flow_types: Optional[object_flow_types.ObjectFlowTypes] = None
         # Additional extension properties. Unless mentioned explicitly, metadata values should not be changed.
-        self._metadata: Optional[List[metadata_entry.MetadataEntry]] = None
+        self._metadata: Optional[List[object_mapping_metadata_entry.ObjectMappingMetadataEntry]] = None
         # Human-friendly name of the object mapping.
         self._name: Optional[str] = None
         # The OdataType property
@@ -117,13 +117,13 @@ class ObjectMapping(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import attribute_mapping, filter, metadata_entry, object_flow_types
+        from . import attribute_mapping, filter, object_flow_types, object_mapping_metadata_entry
 
         fields: Dict[str, Callable[[Any], None]] = {
             "attributeMappings": lambda n : setattr(self, 'attribute_mappings', n.get_collection_of_object_values(attribute_mapping.AttributeMapping)),
             "enabled": lambda n : setattr(self, 'enabled', n.get_bool_value()),
             "flowTypes": lambda n : setattr(self, 'flow_types', n.get_enum_value(object_flow_types.ObjectFlowTypes)),
-            "metadata": lambda n : setattr(self, 'metadata', n.get_collection_of_object_values(metadata_entry.MetadataEntry)),
+            "metadata": lambda n : setattr(self, 'metadata', n.get_collection_of_object_values(object_mapping_metadata_entry.ObjectMappingMetadataEntry)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "scope": lambda n : setattr(self, 'scope', n.get_object_value(filter.Filter)),
@@ -133,15 +133,15 @@ class ObjectMapping(AdditionalDataHolder, Parsable):
         return fields
     
     @property
-    def metadata(self,) -> Optional[List[metadata_entry.MetadataEntry]]:
+    def metadata(self,) -> Optional[List[object_mapping_metadata_entry.ObjectMappingMetadataEntry]]:
         """
         Gets the metadata property value. Additional extension properties. Unless mentioned explicitly, metadata values should not be changed.
-        Returns: Optional[List[metadata_entry.MetadataEntry]]
+        Returns: Optional[List[object_mapping_metadata_entry.ObjectMappingMetadataEntry]]
         """
         return self._metadata
     
     @metadata.setter
-    def metadata(self,value: Optional[List[metadata_entry.MetadataEntry]] = None) -> None:
+    def metadata(self,value: Optional[List[object_mapping_metadata_entry.ObjectMappingMetadataEntry]] = None) -> None:
         """
         Sets the metadata property value. Additional extension properties. Unless mentioned explicitly, metadata values should not be changed.
         Args:

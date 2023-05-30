@@ -4,4 +4,5 @@ class WorkflowTriggerTimeBasedAttribute(Enum):
     EmployeeHireDate = "employeeHireDate",
     EmployeeLeaveDateTime = "employeeLeaveDateTime",
     UnknownFutureValue = "unknownFutureValue",
+    CreatedDateTime = "createdDateTime",
 

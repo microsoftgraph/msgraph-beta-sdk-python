@@ -10,7 +10,7 @@ from . import entity
 class TeamworkPeripheral(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new TeamworkPeripheral and sets the default values.
+        Instantiates a new teamworkPeripheral and sets the default values.
         """
         super().__init__()
         # Display name for the peripheral.

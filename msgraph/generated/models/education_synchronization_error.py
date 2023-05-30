@@ -11,7 +11,7 @@ from . import entity
 class EducationSynchronizationError(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new EducationSynchronizationError and sets the default values.
+        Instantiates a new educationSynchronizationError and sets the default values.
         """
         super().__init__()
         # Represents the sync entity (school, section, student, teacher).

@@ -4,7 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import business_scenario_task, identity_set, planner_applied_categories, planner_assigned_to_task_board_task_format, planner_assignments, planner_bucket_task_board_task_format, planner_delta, planner_preview_type, planner_progress_task_board_task_format, planner_task_creation, planner_task_details, planner_task_recurrence
+    from . import business_scenario_task, identity_set, planner_applied_categories, planner_assigned_to_task_board_task_format, planner_assignments, planner_bucket_task_board_task_format, planner_delta, planner_preview_type, planner_progress_task_board_task_format, planner_task_completion_requirements, planner_task_creation, planner_task_details, planner_task_recurrence
 
 from . import planner_delta
 
@@ -66,6 +66,8 @@ class PlannerTask(planner_delta.PlannerDelta):
         self._recurrence: Optional[planner_task_recurrence.PlannerTaskRecurrence] = None
         # Number of external references that exist on the task.
         self._reference_count: Optional[int] = None
+        # The specifiedCompletionRequirements property
+        self._specified_completion_requirements: Optional[planner_task_completion_requirements.PlannerTaskCompletionRequirements] = None
         # Date and time at which the task starts. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         self._start_date_time: Optional[datetime] = None
         # Title of the task.
@@ -367,7 +369,7 @@ class PlannerTask(planner_delta.PlannerDelta):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import business_scenario_task, identity_set, planner_applied_categories, planner_assigned_to_task_board_task_format, planner_assignments, planner_bucket_task_board_task_format, planner_delta, planner_preview_type, planner_progress_task_board_task_format, planner_task_creation, planner_task_details, planner_task_recurrence
+        from . import business_scenario_task, identity_set, planner_applied_categories, planner_assigned_to_task_board_task_format, planner_assignments, planner_bucket_task_board_task_format, planner_delta, planner_preview_type, planner_progress_task_board_task_format, planner_task_completion_requirements, planner_task_creation, planner_task_details, planner_task_recurrence
 
         fields: Dict[str, Callable[[Any], None]] = {
             "activeChecklistItemCount": lambda n : setattr(self, 'active_checklist_item_count', n.get_int_value()),
@@ -395,6 +397,7 @@ class PlannerTask(planner_delta.PlannerDelta):
             "progressTaskBoardFormat": lambda n : setattr(self, 'progress_task_board_format', n.get_object_value(planner_progress_task_board_task_format.PlannerProgressTaskBoardTaskFormat)),
             "recurrence": lambda n : setattr(self, 'recurrence', n.get_object_value(planner_task_recurrence.PlannerTaskRecurrence)),
             "referenceCount": lambda n : setattr(self, 'reference_count', n.get_int_value()),
+            "specifiedCompletionRequirements": lambda n : setattr(self, 'specified_completion_requirements', n.get_enum_value(planner_task_completion_requirements.PlannerTaskCompletionRequirements)),
             "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
             "title": lambda n : setattr(self, 'title', n.get_str_value()),
         }
@@ -589,8 +592,26 @@ class PlannerTask(planner_delta.PlannerDelta):
         writer.write_object_value("progressTaskBoardFormat", self.progress_task_board_format)
         writer.write_object_value("recurrence", self.recurrence)
         writer.write_int_value("referenceCount", self.reference_count)
+        writer.write_enum_value("specifiedCompletionRequirements", self.specified_completion_requirements)
         writer.write_datetime_value("startDateTime", self.start_date_time)
         writer.write_str_value("title", self.title)
+    
+    @property
+    def specified_completion_requirements(self,) -> Optional[planner_task_completion_requirements.PlannerTaskCompletionRequirements]:
+        """
+        Gets the specifiedCompletionRequirements property value. The specifiedCompletionRequirements property
+        Returns: Optional[planner_task_completion_requirements.PlannerTaskCompletionRequirements]
+        """
+        return self._specified_completion_requirements
+    
+    @specified_completion_requirements.setter
+    def specified_completion_requirements(self,value: Optional[planner_task_completion_requirements.PlannerTaskCompletionRequirements] = None) -> None:
+        """
+        Sets the specifiedCompletionRequirements property value. The specifiedCompletionRequirements property
+        Args:
+            value: Value to set for the specified_completion_requirements property.
+        """
+        self._specified_completion_requirements = value
     
     @property
     def start_date_time(self,) -> Optional[datetime]:

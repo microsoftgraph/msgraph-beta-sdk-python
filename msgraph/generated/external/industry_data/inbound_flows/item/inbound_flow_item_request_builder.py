@@ -39,7 +39,7 @@ class InboundFlowItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[InboundFlowItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete an inboundFileFlow object.
+        Delete an inboundFlow object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -58,7 +58,7 @@ class InboundFlowItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[InboundFlowItemRequestBuilderGetRequestConfiguration] = None) -> Optional[inbound_flow.InboundFlow]:
         """
-        Read the properties and relationships of an inboundFlow object.
+        Read the properties and relationships of an inboundFileFlow object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[inbound_flow.InboundFlow]
@@ -80,7 +80,7 @@ class InboundFlowItemRequestBuilder():
     
     async def patch(self,body: Optional[inbound_flow.InboundFlow] = None, request_configuration: Optional[InboundFlowItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[inbound_flow.InboundFlow]:
         """
-        Update the properties of an inboundFlow object.
+        Update the properties of an inboundFileFlow object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -105,7 +105,7 @@ class InboundFlowItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[InboundFlowItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an inboundFileFlow object.
+        Delete an inboundFlow object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -121,7 +121,7 @@ class InboundFlowItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[InboundFlowItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an inboundFlow object.
+        Read the properties and relationships of an inboundFileFlow object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -139,7 +139,7 @@ class InboundFlowItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[inbound_flow.InboundFlow] = None, request_configuration: Optional[InboundFlowItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an inboundFlow object.
+        Update the properties of an inboundFileFlow object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -191,7 +191,7 @@ class InboundFlowItemRequestBuilder():
     @dataclass
     class InboundFlowItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an inboundFlow object.
+        Read the properties and relationships of an inboundFileFlow object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

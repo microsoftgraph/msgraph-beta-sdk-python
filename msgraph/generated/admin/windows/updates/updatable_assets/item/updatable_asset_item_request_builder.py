@@ -41,7 +41,7 @@ class UpdatableAssetItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[UpdatableAssetItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete an updatableAsset object.
+        Delete an updatableAssetGroup object. When an updatableAssetGroup object, its member updatableAsset objects are not deleted.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -60,7 +60,7 @@ class UpdatableAssetItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[UpdatableAssetItemRequestBuilderGetRequestConfiguration] = None) -> Optional[updatable_asset.UpdatableAsset]:
         """
-        Read the properties of an azureADDevice object.
+        Read the properties and relationships of an updatableAsset object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[updatable_asset.UpdatableAsset]
@@ -107,7 +107,7 @@ class UpdatableAssetItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[UpdatableAssetItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an updatableAsset object.
+        Delete an updatableAssetGroup object. When an updatableAssetGroup object, its member updatableAsset objects are not deleted.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -123,7 +123,7 @@ class UpdatableAssetItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UpdatableAssetItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties of an azureADDevice object.
+        Read the properties and relationships of an updatableAsset object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -211,7 +211,7 @@ class UpdatableAssetItemRequestBuilder():
     @dataclass
     class UpdatableAssetItemRequestBuilderGetQueryParameters():
         """
-        Read the properties of an azureADDevice object.
+        Read the properties and relationships of an updatableAsset object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

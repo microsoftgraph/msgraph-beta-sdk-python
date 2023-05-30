@@ -11,7 +11,7 @@ from . import entity
 class MessageTrace(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new MessageTrace and sets the default values.
+        Instantiates a new messageTrace and sets the default values.
         """
         super().__init__()
         # The destinationIPAddress property

@@ -39,7 +39,7 @@ class RegistrationRequestBuilder():
     
     async def delete(self,request_configuration: Optional[RegistrationRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Disable and delete the meetingRegistration of an onlineMeeting on behalf of the organizer.
+        Disable and delete the externalMeetingRegistration of an onlineMeeting.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -105,7 +105,7 @@ class RegistrationRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[RegistrationRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Disable and delete the meetingRegistration of an onlineMeeting on behalf of the organizer.
+        Disable and delete the externalMeetingRegistration of an onlineMeeting.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

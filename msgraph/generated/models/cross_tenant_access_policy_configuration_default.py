@@ -29,7 +29,7 @@ class CrossTenantAccessPolicyConfigurationDefault(entity.Entity):
         self._is_service_default: Optional[bool] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The tenantRestrictions property
+        # Defines the default tenant restrictions configuration for your organization users accessing an external organization on your network or devices.
         self._tenant_restrictions: Optional[cross_tenant_access_policy_tenant_restrictions.CrossTenantAccessPolicyTenantRestrictions] = None
     
     @property
@@ -205,7 +205,7 @@ class CrossTenantAccessPolicyConfigurationDefault(entity.Entity):
     @property
     def tenant_restrictions(self,) -> Optional[cross_tenant_access_policy_tenant_restrictions.CrossTenantAccessPolicyTenantRestrictions]:
         """
-        Gets the tenantRestrictions property value. The tenantRestrictions property
+        Gets the tenantRestrictions property value. Defines the default tenant restrictions configuration for your organization users accessing an external organization on your network or devices.
         Returns: Optional[cross_tenant_access_policy_tenant_restrictions.CrossTenantAccessPolicyTenantRestrictions]
         """
         return self._tenant_restrictions
@@ -213,7 +213,7 @@ class CrossTenantAccessPolicyConfigurationDefault(entity.Entity):
     @tenant_restrictions.setter
     def tenant_restrictions(self,value: Optional[cross_tenant_access_policy_tenant_restrictions.CrossTenantAccessPolicyTenantRestrictions] = None) -> None:
         """
-        Sets the tenantRestrictions property value. The tenantRestrictions property
+        Sets the tenantRestrictions property value. Defines the default tenant restrictions configuration for your organization users accessing an external organization on your network or devices.
         Args:
             value: Value to set for the tenant_restrictions property.
         """

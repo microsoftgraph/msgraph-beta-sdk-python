@@ -12,7 +12,7 @@ from .. import entity
 class ExternalActivity(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new ExternalActivity and sets the default values.
+        Instantiates a new externalActivity and sets the default values.
         """
         super().__init__()
         # The OdataType property

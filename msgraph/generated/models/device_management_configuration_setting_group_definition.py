@@ -13,7 +13,7 @@ class DeviceManagementConfigurationSettingGroupDefinition(device_management_conf
         Instantiates a new DeviceManagementConfigurationSettingGroupDefinition and sets the default values.
         """
         super().__init__()
-        # Dependent child settings to this group of settings
+        # Dependent child settings to this group of settings.
         self._child_ids: Optional[List[str]] = None
         # List of child settings that depend on this setting
         self._depended_on_by: Optional[List[device_management_configuration_setting_depended_on_by.DeviceManagementConfigurationSettingDependedOnBy]] = None
@@ -25,7 +25,7 @@ class DeviceManagementConfigurationSettingGroupDefinition(device_management_conf
     @property
     def child_ids(self,) -> Optional[List[str]]:
         """
-        Gets the childIds property value. Dependent child settings to this group of settings
+        Gets the childIds property value. Dependent child settings to this group of settings.
         Returns: Optional[List[str]]
         """
         return self._child_ids
@@ -33,7 +33,7 @@ class DeviceManagementConfigurationSettingGroupDefinition(device_management_conf
     @child_ids.setter
     def child_ids(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the childIds property value. Dependent child settings to this group of settings
+        Sets the childIds property value. Dependent child settings to this group of settings.
         Args:
             value: Value to set for the child_ids property.
         """

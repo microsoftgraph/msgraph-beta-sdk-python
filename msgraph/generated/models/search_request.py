@@ -41,7 +41,7 @@ class SearchRequest(AdditionalDataHolder, Parsable):
         self._result_template_options: Optional[result_template_option.ResultTemplateOption] = None
         # Indicates the kind of contents to be searched when a search is performed using application permissions. Optional.
         self._share_point_one_drive_options: Optional[share_point_one_drive_options.SharePointOneDriveOptions] = None
-        # The size of the page to be retrieved. Optional.
+        # The size of the page to be retrieved. The maximum value is 500. Optional.
         self._size: Optional[int] = None
         # Contains the ordered collection of fields and direction to sort results. There can be at most 5 sort properties in the collection. Optional.
         self._sort_properties: Optional[List[sort_property.SortProperty]] = None
@@ -377,7 +377,7 @@ class SearchRequest(AdditionalDataHolder, Parsable):
     @property
     def size(self,) -> Optional[int]:
         """
-        Gets the size property value. The size of the page to be retrieved. Optional.
+        Gets the size property value. The size of the page to be retrieved. The maximum value is 500. Optional.
         Returns: Optional[int]
         """
         return self._size
@@ -385,7 +385,7 @@ class SearchRequest(AdditionalDataHolder, Parsable):
     @size.setter
     def size(self,value: Optional[int] = None) -> None:
         """
-        Sets the size property value. The size of the page to be retrieved. Optional.
+        Sets the size property value. The size of the page to be retrieved. The maximum value is 500. Optional.
         Args:
             value: Value to set for the size property.
         """

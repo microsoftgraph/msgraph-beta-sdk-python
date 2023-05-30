@@ -11,7 +11,7 @@ from . import entity
 class EducationSynchronizationProfileStatus(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new EducationSynchronizationProfileStatus and sets the default values.
+        Instantiates a new educationSynchronizationProfileStatus and sets the default values.
         """
         super().__init__()
         # Number of errors during synchronization.

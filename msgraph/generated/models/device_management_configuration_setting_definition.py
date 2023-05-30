@@ -15,19 +15,19 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
         super().__init__()
         # The accessTypes property
         self._access_types: Optional[device_management_configuration_setting_access_types.DeviceManagementConfigurationSettingAccessTypes] = None
-        # Details which device setting is applicable on. Supports: $filters.
+        # Details which device setting is applicable on
         self._applicability: Optional[device_management_configuration_setting_applicability.DeviceManagementConfigurationSettingApplicability] = None
         # Base CSP Path
         self._base_uri: Optional[str] = None
-        # Specify category in which the setting is under. Support $filters.
+        # Specifies the area group under which the setting is configured in a specified configuration service provider (CSP)
         self._category_id: Optional[str] = None
-        # Description of the setting.
+        # Description of the item
         self._description: Optional[str] = None
-        # Name of the setting. For example: Allow Toast.
+        # Display name of the item
         self._display_name: Optional[str] = None
-        # Help text of the setting. Give more details of the setting.
+        # Help text of the item
         self._help_text: Optional[str] = None
-        # List of links more info for the setting can be found at.
+        # List of links more info for the setting can be found at
         self._info_urls: Optional[List[str]] = None
         # Tokens which to search settings on
         self._keywords: Optional[List[str]] = None
@@ -41,7 +41,7 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
         self._offset_uri: Optional[str] = None
         # List of referred setting information.
         self._referred_setting_information_list: Optional[List[device_management_configuration_referred_setting_information.DeviceManagementConfigurationReferredSettingInformation]] = None
-        # Root setting definition id if the setting is a child setting.
+        # Root setting definition if the setting is a child setting.
         self._root_definition_id: Optional[str] = None
         # Supported setting types
         self._setting_usage: Optional[device_management_configuration_setting_usage.DeviceManagementConfigurationSettingUsage] = None
@@ -72,7 +72,7 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
     @property
     def applicability(self,) -> Optional[device_management_configuration_setting_applicability.DeviceManagementConfigurationSettingApplicability]:
         """
-        Gets the applicability property value. Details which device setting is applicable on. Supports: $filters.
+        Gets the applicability property value. Details which device setting is applicable on
         Returns: Optional[device_management_configuration_setting_applicability.DeviceManagementConfigurationSettingApplicability]
         """
         return self._applicability
@@ -80,7 +80,7 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
     @applicability.setter
     def applicability(self,value: Optional[device_management_configuration_setting_applicability.DeviceManagementConfigurationSettingApplicability] = None) -> None:
         """
-        Sets the applicability property value. Details which device setting is applicable on. Supports: $filters.
+        Sets the applicability property value. Details which device setting is applicable on
         Args:
             value: Value to set for the applicability property.
         """
@@ -106,7 +106,7 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
     @property
     def category_id(self,) -> Optional[str]:
         """
-        Gets the categoryId property value. Specify category in which the setting is under. Support $filters.
+        Gets the categoryId property value. Specifies the area group under which the setting is configured in a specified configuration service provider (CSP)
         Returns: Optional[str]
         """
         return self._category_id
@@ -114,7 +114,7 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
     @category_id.setter
     def category_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the categoryId property value. Specify category in which the setting is under. Support $filters.
+        Sets the categoryId property value. Specifies the area group under which the setting is configured in a specified configuration service provider (CSP)
         Args:
             value: Value to set for the category_id property.
         """
@@ -166,7 +166,7 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
     @property
     def description(self,) -> Optional[str]:
         """
-        Gets the description property value. Description of the setting.
+        Gets the description property value. Description of the item
         Returns: Optional[str]
         """
         return self._description
@@ -174,7 +174,7 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
     @description.setter
     def description(self,value: Optional[str] = None) -> None:
         """
-        Sets the description property value. Description of the setting.
+        Sets the description property value. Description of the item
         Args:
             value: Value to set for the description property.
         """
@@ -183,7 +183,7 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
     @property
     def display_name(self,) -> Optional[str]:
         """
-        Gets the displayName property value. Name of the setting. For example: Allow Toast.
+        Gets the displayName property value. Display name of the item
         Returns: Optional[str]
         """
         return self._display_name
@@ -191,7 +191,7 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
     @display_name.setter
     def display_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the displayName property value. Name of the setting. For example: Allow Toast.
+        Sets the displayName property value. Display name of the item
         Args:
             value: Value to set for the display_name property.
         """
@@ -231,7 +231,7 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
     @property
     def help_text(self,) -> Optional[str]:
         """
-        Gets the helpText property value. Help text of the setting. Give more details of the setting.
+        Gets the helpText property value. Help text of the item
         Returns: Optional[str]
         """
         return self._help_text
@@ -239,7 +239,7 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
     @help_text.setter
     def help_text(self,value: Optional[str] = None) -> None:
         """
-        Sets the helpText property value. Help text of the setting. Give more details of the setting.
+        Sets the helpText property value. Help text of the item
         Args:
             value: Value to set for the help_text property.
         """
@@ -248,7 +248,7 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
     @property
     def info_urls(self,) -> Optional[List[str]]:
         """
-        Gets the infoUrls property value. List of links more info for the setting can be found at.
+        Gets the infoUrls property value. List of links more info for the setting can be found at
         Returns: Optional[List[str]]
         """
         return self._info_urls
@@ -256,7 +256,7 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
     @info_urls.setter
     def info_urls(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the infoUrls property value. List of links more info for the setting can be found at.
+        Sets the infoUrls property value. List of links more info for the setting can be found at
         Args:
             value: Value to set for the info_urls property.
         """
@@ -350,7 +350,7 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
     @property
     def root_definition_id(self,) -> Optional[str]:
         """
-        Gets the rootDefinitionId property value. Root setting definition id if the setting is a child setting.
+        Gets the rootDefinitionId property value. Root setting definition if the setting is a child setting.
         Returns: Optional[str]
         """
         return self._root_definition_id
@@ -358,7 +358,7 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
     @root_definition_id.setter
     def root_definition_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the rootDefinitionId property value. Root setting definition id if the setting is a child setting.
+        Sets the rootDefinitionId property value. Root setting definition if the setting is a child setting.
         Args:
             value: Value to set for the root_definition_id property.
         """

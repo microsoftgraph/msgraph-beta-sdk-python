@@ -8,12 +8,9 @@ if TYPE_CHECKING:
 from . import device_configuration
 
 class Windows10PFXImportCertificateProfile(device_configuration.DeviceConfiguration):
-    """
-    Deprecated
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new windows10PFXImportCertificateProfile and sets the default values.
+        Instantiates a new Windows10PFXImportCertificateProfile and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.windows10PFXImportCertificateProfile"

@@ -2,6 +2,9 @@ from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+if TYPE_CHECKING:
+    from . import user_default_authentication_method_type
+
 class SignInPreferences(AdditionalDataHolder, Parsable):
     def __init__(self,) -> None:
         """
@@ -14,6 +17,8 @@ class SignInPreferences(AdditionalDataHolder, Parsable):
         self._is_system_preferred_authentication_method_enabled: Optional[bool] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
+        # The userPreferredMethodForSecondaryAuthentication property
+        self._user_preferred_method_for_secondary_authentication: Optional[user_default_authentication_method_type.UserDefaultAuthenticationMethodType] = None
     
     @property
     def additional_data(self,) -> Dict[str, Any]:
@@ -49,9 +54,12 @@ class SignInPreferences(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from . import user_default_authentication_method_type
+
         fields: Dict[str, Callable[[Any], None]] = {
             "isSystemPreferredAuthenticationMethodEnabled": lambda n : setattr(self, 'is_system_preferred_authentication_method_enabled', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "userPreferredMethodForSecondaryAuthentication": lambda n : setattr(self, 'user_preferred_method_for_secondary_authentication', n.get_enum_value(user_default_authentication_method_type.UserDefaultAuthenticationMethodType)),
         }
         return fields
     
@@ -99,6 +107,24 @@ class SignInPreferences(AdditionalDataHolder, Parsable):
             raise Exception("writer cannot be undefined")
         writer.write_bool_value("isSystemPreferredAuthenticationMethodEnabled", self.is_system_preferred_authentication_method_enabled)
         writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_enum_value("userPreferredMethodForSecondaryAuthentication", self.user_preferred_method_for_secondary_authentication)
         writer.write_additional_data_value(self.additional_data)
+    
+    @property
+    def user_preferred_method_for_secondary_authentication(self,) -> Optional[user_default_authentication_method_type.UserDefaultAuthenticationMethodType]:
+        """
+        Gets the userPreferredMethodForSecondaryAuthentication property value. The userPreferredMethodForSecondaryAuthentication property
+        Returns: Optional[user_default_authentication_method_type.UserDefaultAuthenticationMethodType]
+        """
+        return self._user_preferred_method_for_secondary_authentication
+    
+    @user_preferred_method_for_secondary_authentication.setter
+    def user_preferred_method_for_secondary_authentication(self,value: Optional[user_default_authentication_method_type.UserDefaultAuthenticationMethodType] = None) -> None:
+        """
+        Sets the userPreferredMethodForSecondaryAuthentication property value. The userPreferredMethodForSecondaryAuthentication property
+        Args:
+            value: Value to set for the user_preferred_method_for_secondary_authentication property.
+        """
+        self._user_preferred_method_for_secondary_authentication = value
     
 

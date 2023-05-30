@@ -11,7 +11,7 @@ from . import entity
 class HostSecurityProfile(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new HostSecurityProfile and sets the default values.
+        Instantiates a new hostSecurityProfile and sets the default values.
         """
         super().__init__()
         # The azureSubscriptionId property

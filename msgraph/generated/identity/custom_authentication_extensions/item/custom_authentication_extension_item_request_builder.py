@@ -57,7 +57,7 @@ class CustomAuthenticationExtensionItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[CustomAuthenticationExtensionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[custom_authentication_extension.CustomAuthenticationExtension]:
         """
-        Read the properties and relationships of an authenticationEventListener object. The **@odata.type** property in the response object indicates the type of the authenticationEventListener object.
+        Read the properties and relationships of a customAuthenticationExtension object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[custom_authentication_extension.CustomAuthenticationExtension]
@@ -120,7 +120,7 @@ class CustomAuthenticationExtensionItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CustomAuthenticationExtensionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an authenticationEventListener object. The **@odata.type** property in the response object indicates the type of the authenticationEventListener object.
+        Read the properties and relationships of a customAuthenticationExtension object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -181,7 +181,7 @@ class CustomAuthenticationExtensionItemRequestBuilder():
     @dataclass
     class CustomAuthenticationExtensionItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an authenticationEventListener object. The **@odata.type** property in the response object indicates the type of the authenticationEventListener object.
+        Read the properties and relationships of a customAuthenticationExtension object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

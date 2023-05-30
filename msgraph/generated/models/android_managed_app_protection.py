@@ -18,6 +18,8 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         self._allowed_android_device_manufacturers: Optional[str] = None
         # List of device models allowed, as a string, for the managed app to work.
         self._allowed_android_device_models: Optional[List[str]] = None
+        # Defines a managed app behavior, either block or warn, if the user is clocked out (non-working time).
+        self._app_action_if_account_is_clocked_out: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
         # An admin initiated action to be applied on a managed app.
         self._app_action_if_android_device_manufacturer_not_allowed: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
         # An admin initiated action to be applied on a managed app.
@@ -130,6 +132,23 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
             value: Value to set for the allowed_android_device_models property.
         """
         self._allowed_android_device_models = value
+    
+    @property
+    def app_action_if_account_is_clocked_out(self,) -> Optional[managed_app_remediation_action.ManagedAppRemediationAction]:
+        """
+        Gets the appActionIfAccountIsClockedOut property value. Defines a managed app behavior, either block or warn, if the user is clocked out (non-working time).
+        Returns: Optional[managed_app_remediation_action.ManagedAppRemediationAction]
+        """
+        return self._app_action_if_account_is_clocked_out
+    
+    @app_action_if_account_is_clocked_out.setter
+    def app_action_if_account_is_clocked_out(self,value: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None) -> None:
+        """
+        Sets the appActionIfAccountIsClockedOut property value. Defines a managed app behavior, either block or warn, if the user is clocked out (non-working time).
+        Args:
+            value: Value to set for the app_action_if_account_is_clocked_out property.
+        """
+        self._app_action_if_account_is_clocked_out = value
     
     @property
     def app_action_if_android_device_manufacturer_not_allowed(self,) -> Optional[managed_app_remediation_action.ManagedAppRemediationAction]:
@@ -563,6 +582,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
             "allowedAndroidDeviceModels": lambda n : setattr(self, 'allowed_android_device_models', n.get_collection_of_primitive_values(str)),
             "approvedKeyboards": lambda n : setattr(self, 'approved_keyboards', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
             "apps": lambda n : setattr(self, 'apps', n.get_collection_of_object_values(managed_mobile_app.ManagedMobileApp)),
+            "appActionIfAccountIsClockedOut": lambda n : setattr(self, 'app_action_if_account_is_clocked_out', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
             "appActionIfAndroidDeviceManufacturerNotAllowed": lambda n : setattr(self, 'app_action_if_android_device_manufacturer_not_allowed', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
             "appActionIfAndroidDeviceModelNotAllowed": lambda n : setattr(self, 'app_action_if_android_device_model_not_allowed', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
             "appActionIfAndroidSafetyNetAppsVerificationFailed": lambda n : setattr(self, 'app_action_if_android_safety_net_apps_verification_failed', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
@@ -839,6 +859,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         writer.write_collection_of_primitive_values("allowedAndroidDeviceModels", self.allowed_android_device_models)
         writer.write_collection_of_object_values("approvedKeyboards", self.approved_keyboards)
         writer.write_collection_of_object_values("apps", self.apps)
+        writer.write_enum_value("appActionIfAccountIsClockedOut", self.app_action_if_account_is_clocked_out)
         writer.write_enum_value("appActionIfAndroidDeviceManufacturerNotAllowed", self.app_action_if_android_device_manufacturer_not_allowed)
         writer.write_enum_value("appActionIfAndroidDeviceModelNotAllowed", self.app_action_if_android_device_model_not_allowed)
         writer.write_enum_value("appActionIfAndroidSafetyNetAppsVerificationFailed", self.app_action_if_android_safety_net_apps_verification_failed)

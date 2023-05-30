@@ -10,7 +10,7 @@ from . import entity
 class EmployeeExperienceUser(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new EmployeeExperienceUser and sets the default values.
+        Instantiates a new employeeExperienceUser and sets the default values.
         """
         super().__init__()
         # The learningCourseActivities property

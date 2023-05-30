@@ -14,7 +14,7 @@ class CrossTenantAccessPolicyTenantRestrictions(cross_tenant_access_policy_b2_b_
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.crossTenantAccessPolicyTenantRestrictions"
-        # The devices property
+        # Defines the rule for filtering devices and whether devices satisfying the rule should be allowed or blocked. Not implemented.
         self._devices: Optional[devices_filter.DevicesFilter] = None
     
     @staticmethod
@@ -32,7 +32,7 @@ class CrossTenantAccessPolicyTenantRestrictions(cross_tenant_access_policy_b2_b_
     @property
     def devices(self,) -> Optional[devices_filter.DevicesFilter]:
         """
-        Gets the devices property value. The devices property
+        Gets the devices property value. Defines the rule for filtering devices and whether devices satisfying the rule should be allowed or blocked. Not implemented.
         Returns: Optional[devices_filter.DevicesFilter]
         """
         return self._devices
@@ -40,7 +40,7 @@ class CrossTenantAccessPolicyTenantRestrictions(cross_tenant_access_policy_b2_b_
     @devices.setter
     def devices(self,value: Optional[devices_filter.DevicesFilter] = None) -> None:
         """
-        Sets the devices property value. The devices property
+        Sets the devices property value. Defines the rule for filtering devices and whether devices satisfying the rule should be allowed or blocked. Not implemented.
         Args:
             value: Value to set for the devices property.
         """

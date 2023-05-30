@@ -3,7 +3,7 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import business_scenario
+    from . import business_scenario, virtual_events_root
 
 class SolutionsRoot(AdditionalDataHolder, Parsable):
     def __init__(self,) -> None:
@@ -17,6 +17,8 @@ class SolutionsRoot(AdditionalDataHolder, Parsable):
         self._business_scenarios: Optional[List[business_scenario.BusinessScenario]] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
+        # The virtualEvents property
+        self._virtual_events: Optional[virtual_events_root.VirtualEventsRoot] = None
     
     @property
     def additional_data(self,) -> Dict[str, Any]:
@@ -69,11 +71,12 @@ class SolutionsRoot(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import business_scenario
+        from . import business_scenario, virtual_events_root
 
         fields: Dict[str, Callable[[Any], None]] = {
             "businessScenarios": lambda n : setattr(self, 'business_scenarios', n.get_collection_of_object_values(business_scenario.BusinessScenario)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "virtualEvents": lambda n : setattr(self, 'virtual_events', n.get_object_value(virtual_events_root.VirtualEventsRoot)),
         }
         return fields
     
@@ -104,6 +107,24 @@ class SolutionsRoot(AdditionalDataHolder, Parsable):
             raise Exception("writer cannot be undefined")
         writer.write_collection_of_object_values("businessScenarios", self.business_scenarios)
         writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_object_value("virtualEvents", self.virtual_events)
         writer.write_additional_data_value(self.additional_data)
+    
+    @property
+    def virtual_events(self,) -> Optional[virtual_events_root.VirtualEventsRoot]:
+        """
+        Gets the virtualEvents property value. The virtualEvents property
+        Returns: Optional[virtual_events_root.VirtualEventsRoot]
+        """
+        return self._virtual_events
+    
+    @virtual_events.setter
+    def virtual_events(self,value: Optional[virtual_events_root.VirtualEventsRoot] = None) -> None:
+        """
+        Sets the virtualEvents property value. The virtualEvents property
+        Args:
+            value: Value to set for the virtual_events property.
+        """
+        self._virtual_events = value
     
 

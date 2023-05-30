@@ -11,7 +11,7 @@ from . import entity
 class SecurityAction(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new SecurityAction and sets the default values.
+        Instantiates a new securityAction and sets the default values.
         """
         super().__init__()
         # Reason for invoking this action.

@@ -4,7 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from . import audio_conferencing, broadcast_meeting_settings, call_transcript, chat_info, entity, item_body, join_meeting_id_settings, lobby_bypass_settings, meeting_attendance_report, meeting_capabilities, meeting_chat_history_default_mode, meeting_chat_mode, meeting_participants, meeting_registration, online_meeting_presenters, online_meeting_role, virtual_appointment, watermark_protection_values
+    from . import audio_conferencing, broadcast_meeting_settings, call_recording, call_transcript, chat_info, entity, item_body, join_meeting_id_settings, lobby_bypass_settings, meeting_attendance_report, meeting_capabilities, meeting_chat_history_default_mode, meeting_chat_mode, meeting_participants, meeting_registration, online_meeting_presenters, online_meeting_role, virtual_appointment, virtual_event_session, watermark_protection_values
 
 from . import entity
 
@@ -40,6 +40,8 @@ class OnlineMeeting(entity.Entity):
         self._attendee_report: Optional[bytes] = None
         # The phone access (dial-in) information for an online meeting. Read-only.
         self._audio_conferencing: Optional[audio_conferencing.AudioConferencing] = None
+        # The broadcastRecording property
+        self._broadcast_recording: Optional[bytes] = None
         # Settings related to a live event.
         self._broadcast_settings: Optional[broadcast_meeting_settings.BroadcastMeetingSettings] = None
         # The capabilities property
@@ -76,6 +78,8 @@ class OnlineMeeting(entity.Entity):
         self._record_automatically: Optional[bool] = None
         # The content stream of the recording of a Teams live event. Read-only.
         self._recording: Optional[bytes] = None
+        # The recordings property
+        self._recordings: Optional[List[call_recording.CallRecording]] = None
         # The registration that has been enabled for an online meeting. One online meeting can only have one registration enabled.
         self._registration: Optional[meeting_registration.MeetingRegistration] = None
         # Specifies whether meeting chat history is shared with participants.  Possible values are: all, none, unknownFutureValue.
@@ -315,6 +319,23 @@ class OnlineMeeting(entity.Entity):
         self._audio_conferencing = value
     
     @property
+    def broadcast_recording(self,) -> Optional[bytes]:
+        """
+        Gets the broadcastRecording property value. The broadcastRecording property
+        Returns: Optional[bytes]
+        """
+        return self._broadcast_recording
+    
+    @broadcast_recording.setter
+    def broadcast_recording(self,value: Optional[bytes] = None) -> None:
+        """
+        Sets the broadcastRecording property value. The broadcastRecording property
+        Args:
+            value: Value to set for the broadcast_recording property.
+        """
+        self._broadcast_recording = value
+    
+    @property
     def broadcast_settings(self,) -> Optional[broadcast_meeting_settings.BroadcastMeetingSettings]:
         """
         Gets the broadcastSettings property value. Settings related to a live event.
@@ -375,6 +396,13 @@ class OnlineMeeting(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.virtualEventSession":
+                from . import virtual_event_session
+
+                return virtual_event_session.VirtualEventSession()
         return OnlineMeeting()
     
     @property
@@ -433,7 +461,7 @@ class OnlineMeeting(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from . import audio_conferencing, broadcast_meeting_settings, call_transcript, chat_info, entity, item_body, join_meeting_id_settings, lobby_bypass_settings, meeting_attendance_report, meeting_capabilities, meeting_chat_history_default_mode, meeting_chat_mode, meeting_participants, meeting_registration, online_meeting_presenters, online_meeting_role, virtual_appointment, watermark_protection_values
+        from . import audio_conferencing, broadcast_meeting_settings, call_recording, call_transcript, chat_info, entity, item_body, join_meeting_id_settings, lobby_bypass_settings, meeting_attendance_report, meeting_capabilities, meeting_chat_history_default_mode, meeting_chat_mode, meeting_participants, meeting_registration, online_meeting_presenters, online_meeting_role, virtual_appointment, virtual_event_session, watermark_protection_values
 
         fields: Dict[str, Callable[[Any], None]] = {
             "allowedPresenters": lambda n : setattr(self, 'allowed_presenters', n.get_enum_value(online_meeting_presenters.OnlineMeetingPresenters)),
@@ -449,6 +477,7 @@ class OnlineMeeting(entity.Entity):
             "attendanceReports": lambda n : setattr(self, 'attendance_reports', n.get_collection_of_object_values(meeting_attendance_report.MeetingAttendanceReport)),
             "attendeeReport": lambda n : setattr(self, 'attendee_report', n.get_bytes_value()),
             "audioConferencing": lambda n : setattr(self, 'audio_conferencing', n.get_object_value(audio_conferencing.AudioConferencing)),
+            "broadcastRecording": lambda n : setattr(self, 'broadcast_recording', n.get_bytes_value()),
             "broadcastSettings": lambda n : setattr(self, 'broadcast_settings', n.get_object_value(broadcast_meeting_settings.BroadcastMeetingSettings)),
             "capabilities": lambda n : setattr(self, 'capabilities', n.get_collection_of_enum_values(meeting_capabilities.MeetingCapabilities)),
             "chatInfo": lambda n : setattr(self, 'chat_info', n.get_object_value(chat_info.ChatInfo)),
@@ -465,6 +494,7 @@ class OnlineMeeting(entity.Entity):
             "meetingAttendanceReport": lambda n : setattr(self, 'meeting_attendance_report', n.get_object_value(meeting_attendance_report.MeetingAttendanceReport)),
             "participants": lambda n : setattr(self, 'participants', n.get_object_value(meeting_participants.MeetingParticipants)),
             "recording": lambda n : setattr(self, 'recording', n.get_bytes_value()),
+            "recordings": lambda n : setattr(self, 'recordings', n.get_collection_of_object_values(call_recording.CallRecording)),
             "recordAutomatically": lambda n : setattr(self, 'record_automatically', n.get_bool_value()),
             "registration": lambda n : setattr(self, 'registration', n.get_object_value(meeting_registration.MeetingRegistration)),
             "shareMeetingChatHistoryDefault": lambda n : setattr(self, 'share_meeting_chat_history_default', n.get_enum_value(meeting_chat_history_default_mode.MeetingChatHistoryDefaultMode)),
@@ -667,6 +697,23 @@ class OnlineMeeting(entity.Entity):
         self._recording = value
     
     @property
+    def recordings(self,) -> Optional[List[call_recording.CallRecording]]:
+        """
+        Gets the recordings property value. The recordings property
+        Returns: Optional[List[call_recording.CallRecording]]
+        """
+        return self._recordings
+    
+    @recordings.setter
+    def recordings(self,value: Optional[List[call_recording.CallRecording]] = None) -> None:
+        """
+        Sets the recordings property value. The recordings property
+        Args:
+            value: Value to set for the recordings property.
+        """
+        self._recordings = value
+    
+    @property
     def registration(self,) -> Optional[meeting_registration.MeetingRegistration]:
         """
         Gets the registration property value. The registration that has been enabled for an online meeting. One online meeting can only have one registration enabled.
@@ -705,6 +752,7 @@ class OnlineMeeting(entity.Entity):
         writer.write_collection_of_object_values("attendanceReports", self.attendance_reports)
         writer.write_object_value("attendeeReport", self.attendee_report)
         writer.write_object_value("audioConferencing", self.audio_conferencing)
+        writer.write_object_value("broadcastRecording", self.broadcast_recording)
         writer.write_object_value("broadcastSettings", self.broadcast_settings)
         writer.write_enum_value("capabilities", self.capabilities)
         writer.write_object_value("chatInfo", self.chat_info)
@@ -721,6 +769,7 @@ class OnlineMeeting(entity.Entity):
         writer.write_object_value("meetingAttendanceReport", self.meeting_attendance_report)
         writer.write_object_value("participants", self.participants)
         writer.write_object_value("recording", self.recording)
+        writer.write_collection_of_object_values("recordings", self.recordings)
         writer.write_bool_value("recordAutomatically", self.record_automatically)
         writer.write_object_value("registration", self.registration)
         writer.write_enum_value("shareMeetingChatHistoryDefault", self.share_meeting_chat_history_default)

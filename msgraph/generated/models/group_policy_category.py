@@ -9,9 +9,6 @@ if TYPE_CHECKING:
 from . import entity
 
 class GroupPolicyCategory(entity.Entity):
-    """
-    The category entity stores the category of a group policy definition
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new groupPolicyCategory and sets the default values.

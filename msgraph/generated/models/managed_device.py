@@ -9,9 +9,6 @@ if TYPE_CHECKING:
 from . import entity
 
 class ManagedDevice(entity.Entity):
-    """
-    Devices that are managed or pre-enrolled through Intune
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new managedDevice and sets the default values.

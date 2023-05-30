@@ -11,7 +11,7 @@ from . import entity
 class CloudPcSnapshot(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new CloudPcSnapshot and sets the default values.
+        Instantiates a new cloudPcSnapshot and sets the default values.
         """
         super().__init__()
         # The unique identifier for the Cloud PC.

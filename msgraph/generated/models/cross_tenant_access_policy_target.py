@@ -15,7 +15,7 @@ class CrossTenantAccessPolicyTarget(AdditionalDataHolder, Parsable):
 
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The unique identifier of the user, group, or application; one of the following keywords: AllUsers and AllApplications; or for targets that are applications, you may use reserved values.
+        # Can be one of the following values:  The unique identifier of the user, group, or application  AllUsers  AllApplications - Refers to any Microsoft cloud application.  Office365 - Includes the applications mentioned as part of the Office365 suite.
         self._target: Optional[str] = None
         # The type of resource that you want to target. The possible values are: user, group, application, unknownFutureValue.
         self._target_type: Optional[cross_tenant_access_policy_target_type.CrossTenantAccessPolicyTargetType] = None
@@ -96,7 +96,7 @@ class CrossTenantAccessPolicyTarget(AdditionalDataHolder, Parsable):
     @property
     def target(self,) -> Optional[str]:
         """
-        Gets the target property value. The unique identifier of the user, group, or application; one of the following keywords: AllUsers and AllApplications; or for targets that are applications, you may use reserved values.
+        Gets the target property value. Can be one of the following values:  The unique identifier of the user, group, or application  AllUsers  AllApplications - Refers to any Microsoft cloud application.  Office365 - Includes the applications mentioned as part of the Office365 suite.
         Returns: Optional[str]
         """
         return self._target
@@ -104,7 +104,7 @@ class CrossTenantAccessPolicyTarget(AdditionalDataHolder, Parsable):
     @target.setter
     def target(self,value: Optional[str] = None) -> None:
         """
-        Sets the target property value. The unique identifier of the user, group, or application; one of the following keywords: AllUsers and AllApplications; or for targets that are applications, you may use reserved values.
+        Sets the target property value. Can be one of the following values:  The unique identifier of the user, group, or application  AllUsers  AllApplications - Refers to any Microsoft cloud application.  Office365 - Includes the applications mentioned as part of the Office365 suite.
         Args:
             value: Value to set for the target property.
         """
