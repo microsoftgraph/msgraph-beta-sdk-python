@@ -1,129 +1,25 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class DefaultUserRolePermissions(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new defaultUserRolePermissions and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # Indicates whether the default user role can create applications.
-        self._allowed_to_create_apps: Optional[bool] = None
-        # Indicates whether the default user role can create security groups.
-        self._allowed_to_create_security_groups: Optional[bool] = None
-        # Indicates whether the default user role can create tenants.
-        self._allowed_to_create_tenants: Optional[bool] = None
-        # Indicates whether the registered owners of a device can read their own BitLocker recovery keys with default user role.
-        self._allowed_to_read_bitlocker_keys_for_owned_device: Optional[bool] = None
-        # Indicates whether the default user role can read other users.
-        self._allowed_to_read_other_users: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def allowed_to_create_apps(self,) -> Optional[bool]:
-        """
-        Gets the allowedToCreateApps property value. Indicates whether the default user role can create applications.
-        Returns: Optional[bool]
-        """
-        return self._allowed_to_create_apps
-    
-    @allowed_to_create_apps.setter
-    def allowed_to_create_apps(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the allowedToCreateApps property value. Indicates whether the default user role can create applications.
-        Args:
-            value: Value to set for the allowed_to_create_apps property.
-        """
-        self._allowed_to_create_apps = value
-    
-    @property
-    def allowed_to_create_security_groups(self,) -> Optional[bool]:
-        """
-        Gets the allowedToCreateSecurityGroups property value. Indicates whether the default user role can create security groups.
-        Returns: Optional[bool]
-        """
-        return self._allowed_to_create_security_groups
-    
-    @allowed_to_create_security_groups.setter
-    def allowed_to_create_security_groups(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the allowedToCreateSecurityGroups property value. Indicates whether the default user role can create security groups.
-        Args:
-            value: Value to set for the allowed_to_create_security_groups property.
-        """
-        self._allowed_to_create_security_groups = value
-    
-    @property
-    def allowed_to_create_tenants(self,) -> Optional[bool]:
-        """
-        Gets the allowedToCreateTenants property value. Indicates whether the default user role can create tenants.
-        Returns: Optional[bool]
-        """
-        return self._allowed_to_create_tenants
-    
-    @allowed_to_create_tenants.setter
-    def allowed_to_create_tenants(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the allowedToCreateTenants property value. Indicates whether the default user role can create tenants.
-        Args:
-            value: Value to set for the allowed_to_create_tenants property.
-        """
-        self._allowed_to_create_tenants = value
-    
-    @property
-    def allowed_to_read_bitlocker_keys_for_owned_device(self,) -> Optional[bool]:
-        """
-        Gets the allowedToReadBitlockerKeysForOwnedDevice property value. Indicates whether the registered owners of a device can read their own BitLocker recovery keys with default user role.
-        Returns: Optional[bool]
-        """
-        return self._allowed_to_read_bitlocker_keys_for_owned_device
-    
-    @allowed_to_read_bitlocker_keys_for_owned_device.setter
-    def allowed_to_read_bitlocker_keys_for_owned_device(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the allowedToReadBitlockerKeysForOwnedDevice property value. Indicates whether the registered owners of a device can read their own BitLocker recovery keys with default user role.
-        Args:
-            value: Value to set for the allowed_to_read_bitlocker_keys_for_owned_device property.
-        """
-        self._allowed_to_read_bitlocker_keys_for_owned_device = value
-    
-    @property
-    def allowed_to_read_other_users(self,) -> Optional[bool]:
-        """
-        Gets the allowedToReadOtherUsers property value. Indicates whether the default user role can read other users.
-        Returns: Optional[bool]
-        """
-        return self._allowed_to_read_other_users
-    
-    @allowed_to_read_other_users.setter
-    def allowed_to_read_other_users(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the allowedToReadOtherUsers property value. Indicates whether the default user role can read other users.
-        Args:
-            value: Value to set for the allowed_to_read_other_users property.
-        """
-        self._allowed_to_read_other_users = value
+    # Indicates whether the default user role can create applications. This setting corresponds to the Users can register applications setting in the User settings menu in the Azure portal.
+    allowed_to_create_apps: Optional[bool] = None
+    # Indicates whether the default user role can create security groups. This setting corresponds to the following menus in the Azure portal:  The Users can create security groups in Azure portals, API or PowerShell setting in the Group settings menu.  Users can create security groups setting in the User settings menu.
+    allowed_to_create_security_groups: Optional[bool] = None
+    # Indicates whether the default user role can create tenants. This setting corresponds to the Restrict non-admin users from creating tenants setting in the User settings menu in the Azure portal. When this setting is false, users assigned the Tenant Creator role can still create tenants.
+    allowed_to_create_tenants: Optional[bool] = None
+    # Indicates whether the registered owners of a device can read their own BitLocker recovery keys with default user role.
+    allowed_to_read_bitlocker_keys_for_owned_device: Optional[bool] = None
+    # Indicates whether the default user role can read other users.
+    allowed_to_read_other_users: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DefaultUserRolePermissions:
@@ -151,23 +47,6 @@ class DefaultUserRolePermissions(AdditionalDataHolder, Parsable):
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

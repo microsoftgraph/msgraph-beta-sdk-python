@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,34 +8,13 @@ if TYPE_CHECKING:
 
 from . import device_management_configuration_setting_instance_template
 
+@dataclass
 class DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate(device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementConfigurationSimpleSettingCollectionInstanceTemplate"
-        # Linked policy may append values which are not present in the template.
-        self._allow_unmanaged_values: Optional[bool] = None
-        # Simple Setting Collection Value Template
-        self._simple_setting_collection_value_template: Optional[List[device_management_configuration_simple_setting_value_template.DeviceManagementConfigurationSimpleSettingValueTemplate]] = None
-    
-    @property
-    def allow_unmanaged_values(self,) -> Optional[bool]:
-        """
-        Gets the allowUnmanagedValues property value. Linked policy may append values which are not present in the template.
-        Returns: Optional[bool]
-        """
-        return self._allow_unmanaged_values
-    
-    @allow_unmanaged_values.setter
-    def allow_unmanaged_values(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the allowUnmanagedValues property value. Linked policy may append values which are not present in the template.
-        Args:
-            value: Value to set for the allow_unmanaged_values property.
-        """
-        self._allow_unmanaged_values = value
+    odata_type = "#microsoft.graph.deviceManagementConfigurationSimpleSettingCollectionInstanceTemplate"
+    # Linked policy may append values which are not present in the template.
+    allow_unmanaged_values: Optional[bool] = None
+    # Simple Setting Collection Value Template
+    simple_setting_collection_value_template: Optional[List[device_management_configuration_simple_setting_value_template.DeviceManagementConfigurationSimpleSettingValueTemplate]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate:
@@ -74,22 +54,5 @@ class DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate(devic
         super().serialize(writer)
         writer.write_bool_value("allowUnmanagedValues", self.allow_unmanaged_values)
         writer.write_collection_of_object_values("simpleSettingCollectionValueTemplate", self.simple_setting_collection_value_template)
-    
-    @property
-    def simple_setting_collection_value_template(self,) -> Optional[List[device_management_configuration_simple_setting_value_template.DeviceManagementConfigurationSimpleSettingValueTemplate]]:
-        """
-        Gets the simpleSettingCollectionValueTemplate property value. Simple Setting Collection Value Template
-        Returns: Optional[List[device_management_configuration_simple_setting_value_template.DeviceManagementConfigurationSimpleSettingValueTemplate]]
-        """
-        return self._simple_setting_collection_value_template
-    
-    @simple_setting_collection_value_template.setter
-    def simple_setting_collection_value_template(self,value: Optional[List[device_management_configuration_simple_setting_value_template.DeviceManagementConfigurationSimpleSettingValueTemplate]] = None) -> None:
-        """
-        Sets the simpleSettingCollectionValueTemplate property value. Simple Setting Collection Value Template
-        Args:
-            value: Value to set for the simple_setting_collection_value_template property.
-        """
-        self._simple_setting_collection_value_template = value
     
 

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,20 +8,16 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class TeamworkPeripheral(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new TeamworkPeripheral and sets the default values.
-        """
-        super().__init__()
-        # Display name for the peripheral.
-        self._display_name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The product ID of the device. Each product from a vendor has its own ID.
-        self._product_id: Optional[str] = None
-        # The unique identifier for the vendor of the device. Each vendor has a unique ID.
-        self._vendor_id: Optional[str] = None
+    # Display name for the peripheral.
+    display_name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The product ID of the device. Each product from a vendor has its own ID.
+    product_id: Optional[str] = None
+    # The unique identifier for the vendor of the device. Each vendor has a unique ID.
+    vendor_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeamworkPeripheral:
@@ -33,23 +30,6 @@ class TeamworkPeripheral(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return TeamworkPeripheral()
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. Display name for the peripheral.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. Display name for the peripheral.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -67,23 +47,6 @@ class TeamworkPeripheral(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def product_id(self,) -> Optional[str]:
-        """
-        Gets the productId property value. The product ID of the device. Each product from a vendor has its own ID.
-        Returns: Optional[str]
-        """
-        return self._product_id
-    
-    @product_id.setter
-    def product_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the productId property value. The product ID of the device. Each product from a vendor has its own ID.
-        Args:
-            value: Value to set for the product_id property.
-        """
-        self._product_id = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -96,22 +59,5 @@ class TeamworkPeripheral(entity.Entity):
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("productId", self.product_id)
         writer.write_str_value("vendorId", self.vendor_id)
-    
-    @property
-    def vendor_id(self,) -> Optional[str]:
-        """
-        Gets the vendorId property value. The unique identifier for the vendor of the device. Each vendor has a unique ID.
-        Returns: Optional[str]
-        """
-        return self._vendor_id
-    
-    @vendor_id.setter
-    def vendor_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the vendorId property value. The unique identifier for the vendor of the device. Each vendor has a unique ID.
-        Args:
-            value: Value to set for the vendor_id property.
-        """
-        self._vendor_id = value
     
 

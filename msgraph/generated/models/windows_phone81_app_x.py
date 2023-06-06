@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,46 +8,25 @@ if TYPE_CHECKING:
 
 from . import mobile_lob_app
 
+@dataclass
 class WindowsPhone81AppX(mobile_lob_app.MobileLobApp):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsPhone81AppX and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsPhone81AppX"
-        # Contains properties for Windows architecture.
-        self._applicable_architectures: Optional[windows_architecture.WindowsArchitecture] = None
-        # The Identity Name.
-        self._identity_name: Optional[str] = None
-        # The Identity Publisher Hash.
-        self._identity_publisher_hash: Optional[str] = None
-        # The Identity Resource Identifier.
-        self._identity_resource_identifier: Optional[str] = None
-        # The identity version.
-        self._identity_version: Optional[str] = None
-        # The minimum operating system required for a Windows mobile app.
-        self._minimum_supported_operating_system: Optional[windows_minimum_operating_system.WindowsMinimumOperatingSystem] = None
-        # The Phone Product Identifier.
-        self._phone_product_identifier: Optional[str] = None
-        # The Phone Publisher Id.
-        self._phone_publisher_id: Optional[str] = None
-    
-    @property
-    def applicable_architectures(self,) -> Optional[windows_architecture.WindowsArchitecture]:
-        """
-        Gets the applicableArchitectures property value. Contains properties for Windows architecture.
-        Returns: Optional[windows_architecture.WindowsArchitecture]
-        """
-        return self._applicable_architectures
-    
-    @applicable_architectures.setter
-    def applicable_architectures(self,value: Optional[windows_architecture.WindowsArchitecture] = None) -> None:
-        """
-        Sets the applicableArchitectures property value. Contains properties for Windows architecture.
-        Args:
-            value: Value to set for the applicable_architectures property.
-        """
-        self._applicable_architectures = value
+    odata_type = "#microsoft.graph.windowsPhone81AppX"
+    # Contains properties for Windows architecture.
+    applicable_architectures: Optional[windows_architecture.WindowsArchitecture] = None
+    # The Identity Name.
+    identity_name: Optional[str] = None
+    # The Identity Publisher Hash.
+    identity_publisher_hash: Optional[str] = None
+    # The Identity Resource Identifier.
+    identity_resource_identifier: Optional[str] = None
+    # The identity version.
+    identity_version: Optional[str] = None
+    # The minimum operating system required for a Windows mobile app.
+    minimum_supported_operating_system: Optional[windows_minimum_operating_system.WindowsMinimumOperatingSystem] = None
+    # The Phone Product Identifier.
+    phone_product_identifier: Optional[str] = None
+    # The Phone Publisher Id.
+    phone_publisher_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsPhone81AppX:
@@ -87,125 +67,6 @@ class WindowsPhone81AppX(mobile_lob_app.MobileLobApp):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def identity_name(self,) -> Optional[str]:
-        """
-        Gets the identityName property value. The Identity Name.
-        Returns: Optional[str]
-        """
-        return self._identity_name
-    
-    @identity_name.setter
-    def identity_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the identityName property value. The Identity Name.
-        Args:
-            value: Value to set for the identity_name property.
-        """
-        self._identity_name = value
-    
-    @property
-    def identity_publisher_hash(self,) -> Optional[str]:
-        """
-        Gets the identityPublisherHash property value. The Identity Publisher Hash.
-        Returns: Optional[str]
-        """
-        return self._identity_publisher_hash
-    
-    @identity_publisher_hash.setter
-    def identity_publisher_hash(self,value: Optional[str] = None) -> None:
-        """
-        Sets the identityPublisherHash property value. The Identity Publisher Hash.
-        Args:
-            value: Value to set for the identity_publisher_hash property.
-        """
-        self._identity_publisher_hash = value
-    
-    @property
-    def identity_resource_identifier(self,) -> Optional[str]:
-        """
-        Gets the identityResourceIdentifier property value. The Identity Resource Identifier.
-        Returns: Optional[str]
-        """
-        return self._identity_resource_identifier
-    
-    @identity_resource_identifier.setter
-    def identity_resource_identifier(self,value: Optional[str] = None) -> None:
-        """
-        Sets the identityResourceIdentifier property value. The Identity Resource Identifier.
-        Args:
-            value: Value to set for the identity_resource_identifier property.
-        """
-        self._identity_resource_identifier = value
-    
-    @property
-    def identity_version(self,) -> Optional[str]:
-        """
-        Gets the identityVersion property value. The identity version.
-        Returns: Optional[str]
-        """
-        return self._identity_version
-    
-    @identity_version.setter
-    def identity_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the identityVersion property value. The identity version.
-        Args:
-            value: Value to set for the identity_version property.
-        """
-        self._identity_version = value
-    
-    @property
-    def minimum_supported_operating_system(self,) -> Optional[windows_minimum_operating_system.WindowsMinimumOperatingSystem]:
-        """
-        Gets the minimumSupportedOperatingSystem property value. The minimum operating system required for a Windows mobile app.
-        Returns: Optional[windows_minimum_operating_system.WindowsMinimumOperatingSystem]
-        """
-        return self._minimum_supported_operating_system
-    
-    @minimum_supported_operating_system.setter
-    def minimum_supported_operating_system(self,value: Optional[windows_minimum_operating_system.WindowsMinimumOperatingSystem] = None) -> None:
-        """
-        Sets the minimumSupportedOperatingSystem property value. The minimum operating system required for a Windows mobile app.
-        Args:
-            value: Value to set for the minimum_supported_operating_system property.
-        """
-        self._minimum_supported_operating_system = value
-    
-    @property
-    def phone_product_identifier(self,) -> Optional[str]:
-        """
-        Gets the phoneProductIdentifier property value. The Phone Product Identifier.
-        Returns: Optional[str]
-        """
-        return self._phone_product_identifier
-    
-    @phone_product_identifier.setter
-    def phone_product_identifier(self,value: Optional[str] = None) -> None:
-        """
-        Sets the phoneProductIdentifier property value. The Phone Product Identifier.
-        Args:
-            value: Value to set for the phone_product_identifier property.
-        """
-        self._phone_product_identifier = value
-    
-    @property
-    def phone_publisher_id(self,) -> Optional[str]:
-        """
-        Gets the phonePublisherId property value. The Phone Publisher Id.
-        Returns: Optional[str]
-        """
-        return self._phone_publisher_id
-    
-    @phone_publisher_id.setter
-    def phone_publisher_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the phonePublisherId property value. The Phone Publisher Id.
-        Args:
-            value: Value to set for the phone_publisher_id property.
-        """
-        self._phone_publisher_id = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

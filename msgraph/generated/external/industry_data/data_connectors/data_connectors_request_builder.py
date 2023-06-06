@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -54,7 +54,7 @@ class DataConnectorsRequestBuilder():
     
     async def get(self,request_configuration: Optional[DataConnectorsRequestBuilderGetRequestConfiguration] = None) -> Optional[industry_data_connector_collection_response.IndustryDataConnectorCollectionResponse]:
         """
-        Get the industryDataConnector resources from the **dataConnector** navigation property.
+        Get a list of the azureDataLakeConnector objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[industry_data_connector_collection_response.IndustryDataConnectorCollectionResponse]
@@ -101,7 +101,7 @@ class DataConnectorsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[DataConnectorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the industryDataConnector resources from the **dataConnector** navigation property.
+        Get a list of the azureDataLakeConnector objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +150,7 @@ class DataConnectorsRequestBuilder():
     @dataclass
     class DataConnectorsRequestBuilderGetQueryParameters():
         """
-        Get the industryDataConnector resources from the **dataConnector** navigation property.
+        Get a list of the azureDataLakeConnector objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

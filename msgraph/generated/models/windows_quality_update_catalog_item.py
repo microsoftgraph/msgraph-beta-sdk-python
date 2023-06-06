@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,36 +8,15 @@ if TYPE_CHECKING:
 
 from . import windows_update_catalog_item
 
+@dataclass
 class WindowsQualityUpdateCatalogItem(windows_update_catalog_item.WindowsUpdateCatalogItem):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsQualityUpdateCatalogItem and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsQualityUpdateCatalogItem"
-        # Windows quality update classification
-        self._classification: Optional[windows_quality_update_classification.WindowsQualityUpdateClassification] = None
-        # Flag indicating if update qualifies for expedite
-        self._is_expeditable: Optional[bool] = None
-        # Knowledge base article id
-        self._kb_article_id: Optional[str] = None
-    
-    @property
-    def classification(self,) -> Optional[windows_quality_update_classification.WindowsQualityUpdateClassification]:
-        """
-        Gets the classification property value. Windows quality update classification
-        Returns: Optional[windows_quality_update_classification.WindowsQualityUpdateClassification]
-        """
-        return self._classification
-    
-    @classification.setter
-    def classification(self,value: Optional[windows_quality_update_classification.WindowsQualityUpdateClassification] = None) -> None:
-        """
-        Sets the classification property value. Windows quality update classification
-        Args:
-            value: Value to set for the classification property.
-        """
-        self._classification = value
+    odata_type = "#microsoft.graph.windowsQualityUpdateCatalogItem"
+    # Windows quality update classification
+    classification: Optional[windows_quality_update_classification.WindowsQualityUpdateClassification] = None
+    # Flag indicating if update qualifies for expedite
+    is_expeditable: Optional[bool] = None
+    # Knowledge base article id
+    kb_article_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsQualityUpdateCatalogItem:
@@ -65,40 +45,6 @@ class WindowsQualityUpdateCatalogItem(windows_update_catalog_item.WindowsUpdateC
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def is_expeditable(self,) -> Optional[bool]:
-        """
-        Gets the isExpeditable property value. Flag indicating if update qualifies for expedite
-        Returns: Optional[bool]
-        """
-        return self._is_expeditable
-    
-    @is_expeditable.setter
-    def is_expeditable(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isExpeditable property value. Flag indicating if update qualifies for expedite
-        Args:
-            value: Value to set for the is_expeditable property.
-        """
-        self._is_expeditable = value
-    
-    @property
-    def kb_article_id(self,) -> Optional[str]:
-        """
-        Gets the kbArticleId property value. Knowledge base article id
-        Returns: Optional[str]
-        """
-        return self._kb_article_id
-    
-    @kb_article_id.setter
-    def kb_article_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the kbArticleId property value. Knowledge base article id
-        Args:
-            value: Value to set for the kb_article_id property.
-        """
-        self._kb_article_id = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

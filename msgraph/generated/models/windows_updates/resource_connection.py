@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -8,16 +9,12 @@ if TYPE_CHECKING:
 
 from .. import entity
 
+@dataclass
 class ResourceConnection(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new resourceConnection and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The state of the connection. The possible values are: connected, notAuthorized, notFound, unknownFutureValue.
-        self._state: Optional[resource_connection_state.ResourceConnectionState] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The state of the connection. The possible values are: connected, notAuthorized, notFound, unknownFutureValue.
+    state: Optional[resource_connection_state.ResourceConnectionState] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ResourceConnection:
@@ -63,22 +60,5 @@ class ResourceConnection(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_enum_value("state", self.state)
-    
-    @property
-    def state(self,) -> Optional[resource_connection_state.ResourceConnectionState]:
-        """
-        Gets the state property value. The state of the connection. The possible values are: connected, notAuthorized, notFound, unknownFutureValue.
-        Returns: Optional[resource_connection_state.ResourceConnectionState]
-        """
-        return self._state
-    
-    @state.setter
-    def state(self,value: Optional[resource_connection_state.ResourceConnectionState] = None) -> None:
-        """
-        Sets the state property value. The state of the connection. The possible values are: connected, notAuthorized, notFound, unknownFutureValue.
-        Args:
-            value: Value to set for the state property.
-        """
-        self._state = value
     
 

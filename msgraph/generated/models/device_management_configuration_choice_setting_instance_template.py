@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,32 +8,11 @@ if TYPE_CHECKING:
 
 from . import device_management_configuration_setting_instance_template
 
+@dataclass
 class DeviceManagementConfigurationChoiceSettingInstanceTemplate(device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementConfigurationChoiceSettingInstanceTemplate and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstanceTemplate"
-        # Choice Setting Value Template
-        self._choice_setting_value_template: Optional[device_management_configuration_choice_setting_value_template.DeviceManagementConfigurationChoiceSettingValueTemplate] = None
-    
-    @property
-    def choice_setting_value_template(self,) -> Optional[device_management_configuration_choice_setting_value_template.DeviceManagementConfigurationChoiceSettingValueTemplate]:
-        """
-        Gets the choiceSettingValueTemplate property value. Choice Setting Value Template
-        Returns: Optional[device_management_configuration_choice_setting_value_template.DeviceManagementConfigurationChoiceSettingValueTemplate]
-        """
-        return self._choice_setting_value_template
-    
-    @choice_setting_value_template.setter
-    def choice_setting_value_template(self,value: Optional[device_management_configuration_choice_setting_value_template.DeviceManagementConfigurationChoiceSettingValueTemplate] = None) -> None:
-        """
-        Sets the choiceSettingValueTemplate property value. Choice Setting Value Template
-        Args:
-            value: Value to set for the choice_setting_value_template property.
-        """
-        self._choice_setting_value_template = value
+    odata_type = "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstanceTemplate"
+    # Choice Setting Value Template
+    choice_setting_value_template: Optional[device_management_configuration_choice_setting_value_template.DeviceManagementConfigurationChoiceSettingValueTemplate] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationChoiceSettingInstanceTemplate:

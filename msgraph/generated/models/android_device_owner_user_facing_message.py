@@ -1,44 +1,25 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import key_value_pair
 
+@dataclass
 class AndroidDeviceOwnerUserFacingMessage(AdditionalDataHolder, Parsable):
     """
     Represents a user-facing message with locale information as well as a default message to be used if the user's locale doesn't match with any of the localized messages
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new androidDeviceOwnerUserFacingMessage and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The default message displayed if the user's locale doesn't match with any of the localized messages
-        self._default_message: Optional[str] = None
-        # The list of <locale, message> pairs. This collection can contain a maximum of 500 elements.
-        self._localized_messages: Optional[List[key_value_pair.KeyValuePair]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The default message displayed if the user's locale doesn't match with any of the localized messages
+    default_message: Optional[str] = None
+    # The list of <locale, message> pairs. This collection can contain a maximum of 500 elements.
+    localized_messages: Optional[List[key_value_pair.KeyValuePair]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidDeviceOwnerUserFacingMessage:
@@ -51,23 +32,6 @@ class AndroidDeviceOwnerUserFacingMessage(AdditionalDataHolder, Parsable):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return AndroidDeviceOwnerUserFacingMessage()
-    
-    @property
-    def default_message(self,) -> Optional[str]:
-        """
-        Gets the defaultMessage property value. The default message displayed if the user's locale doesn't match with any of the localized messages
-        Returns: Optional[str]
-        """
-        return self._default_message
-    
-    @default_message.setter
-    def default_message(self,value: Optional[str] = None) -> None:
-        """
-        Sets the defaultMessage property value. The default message displayed if the user's locale doesn't match with any of the localized messages
-        Args:
-            value: Value to set for the default_message property.
-        """
-        self._default_message = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -82,40 +46,6 @@ class AndroidDeviceOwnerUserFacingMessage(AdditionalDataHolder, Parsable):
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def localized_messages(self,) -> Optional[List[key_value_pair.KeyValuePair]]:
-        """
-        Gets the localizedMessages property value. The list of <locale, message> pairs. This collection can contain a maximum of 500 elements.
-        Returns: Optional[List[key_value_pair.KeyValuePair]]
-        """
-        return self._localized_messages
-    
-    @localized_messages.setter
-    def localized_messages(self,value: Optional[List[key_value_pair.KeyValuePair]] = None) -> None:
-        """
-        Sets the localizedMessages property value. The list of <locale, message> pairs. This collection can contain a maximum of 500 elements.
-        Args:
-            value: Value to set for the localized_messages property.
-        """
-        self._localized_messages = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

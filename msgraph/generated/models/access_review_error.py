@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,13 +8,9 @@ if TYPE_CHECKING:
 
 from . import generic_error
 
+@dataclass
 class AccessReviewError(generic_error.GenericError):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AccessReviewError and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.accessReviewError"
+    odata_type = "#microsoft.graph.accessReviewError"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccessReviewError:

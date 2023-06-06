@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import file_threat_submission
 
+@dataclass
 class FileUrlThreatSubmission(file_threat_submission.FileThreatSubmission):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new FileUrlThreatSubmission and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.security.fileUrlThreatSubmission"
-        # It specifies the URL of the file which needs to be submitted.
-        self._file_url: Optional[str] = None
+    odata_type = "#microsoft.graph.security.fileUrlThreatSubmission"
+    # It specifies the URL of the file which needs to be submitted.
+    file_url: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> FileUrlThreatSubmission:
@@ -28,23 +25,6 @@ class FileUrlThreatSubmission(file_threat_submission.FileThreatSubmission):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return FileUrlThreatSubmission()
-    
-    @property
-    def file_url(self,) -> Optional[str]:
-        """
-        Gets the fileUrl property value. It specifies the URL of the file which needs to be submitted.
-        Returns: Optional[str]
-        """
-        return self._file_url
-    
-    @file_url.setter
-    def file_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the fileUrl property value. It specifies the URL of the file which needs to be submitted.
-        Args:
-            value: Value to set for the file_url property.
-        """
-        self._file_url = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """

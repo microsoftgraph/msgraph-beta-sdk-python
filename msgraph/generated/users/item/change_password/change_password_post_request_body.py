@@ -1,36 +1,17 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class ChangePasswordPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new changePasswordPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The currentPassword property
-        self._current_password: Optional[str] = None
-        # The newPassword property
-        self._new_password: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The currentPassword property
+    current_password: Optional[str] = None
+    # The newPassword property
+    new_password: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ChangePasswordPostRequestBody:
@@ -44,23 +25,6 @@ class ChangePasswordPostRequestBody(AdditionalDataHolder, Parsable):
             raise Exception("parse_node cannot be undefined")
         return ChangePasswordPostRequestBody()
     
-    @property
-    def current_password(self,) -> Optional[str]:
-        """
-        Gets the currentPassword property value. The currentPassword property
-        Returns: Optional[str]
-        """
-        return self._current_password
-    
-    @current_password.setter
-    def current_password(self,value: Optional[str] = None) -> None:
-        """
-        Sets the currentPassword property value. The currentPassword property
-        Args:
-            value: Value to set for the current_password property.
-        """
-        self._current_password = value
-    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -71,23 +35,6 @@ class ChangePasswordPostRequestBody(AdditionalDataHolder, Parsable):
             "newPassword": lambda n : setattr(self, 'new_password', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def new_password(self,) -> Optional[str]:
-        """
-        Gets the newPassword property value. The newPassword property
-        Returns: Optional[str]
-        """
-        return self._new_password
-    
-    @new_password.setter
-    def new_password(self,value: Optional[str] = None) -> None:
-        """
-        Sets the newPassword property value. The newPassword property
-        Args:
-            value: Value to set for the new_password property.
-        """
-        self._new_password = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

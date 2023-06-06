@@ -1,6 +1,6 @@
 from enum import Enum
 
-class FileVaultState(Enum):
+class FileVaultState(str, Enum):
     # FileVault State Success
     Success = "success",
     # FileVault has been enabled by user and is not being managed by policy

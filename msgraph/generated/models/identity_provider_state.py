@@ -1,6 +1,6 @@
 from enum import Enum
 
-class IdentityProviderState(Enum):
+class IdentityProviderState(str, Enum):
     Enabled = "enabled",
     Disabled = "disabled",
     UnknownFutureValue = "unknownFutureValue",

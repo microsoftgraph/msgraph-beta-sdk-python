@@ -1,41 +1,22 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class EncryptionReportPolicyDetails(AdditionalDataHolder, Parsable):
     """
     Policy Details for Encryption Report
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new encryptionReportPolicyDetails and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Policy Id for Encryption Report
-        self._policy_id: Optional[str] = None
-        # Policy Name for Encryption Report
-        self._policy_name: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Policy Id for Encryption Report
+    policy_id: Optional[str] = None
+    # Policy Name for Encryption Report
+    policy_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EncryptionReportPolicyDetails:
@@ -60,57 +41,6 @@ class EncryptionReportPolicyDetails(AdditionalDataHolder, Parsable):
             "policyName": lambda n : setattr(self, 'policy_name', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def policy_id(self,) -> Optional[str]:
-        """
-        Gets the policyId property value. Policy Id for Encryption Report
-        Returns: Optional[str]
-        """
-        return self._policy_id
-    
-    @policy_id.setter
-    def policy_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the policyId property value. Policy Id for Encryption Report
-        Args:
-            value: Value to set for the policy_id property.
-        """
-        self._policy_id = value
-    
-    @property
-    def policy_name(self,) -> Optional[str]:
-        """
-        Gets the policyName property value. Policy Name for Encryption Report
-        Returns: Optional[str]
-        """
-        return self._policy_name
-    
-    @policy_name.setter
-    def policy_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the policyName property value. Policy Name for Encryption Report
-        Args:
-            value: Value to set for the policy_name property.
-        """
-        self._policy_name = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

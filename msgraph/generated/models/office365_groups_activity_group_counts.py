@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,41 +9,20 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class Office365GroupsActivityGroupCounts(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Office365GroupsActivityGroupCounts and sets the default values.
-        """
-        super().__init__()
-        # The number of active groups. A group is considered active if any of the following occurred: group mailbox received email; user viewed, edited, shared, or synced files in SharePoint document library; user viewed SharePoint pages; user posted, read, or liked messages in Yammer groups.
-        self._active: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The date on which a number of groups were active.
-        self._report_date: Optional[date] = None
-        # The number of days the report covers.
-        self._report_period: Optional[str] = None
-        # The latest date of the content.
-        self._report_refresh_date: Optional[date] = None
-        # The total number of groups.
-        self._total: Optional[int] = None
-    
-    @property
-    def active(self,) -> Optional[int]:
-        """
-        Gets the active property value. The number of active groups. A group is considered active if any of the following occurred: group mailbox received email; user viewed, edited, shared, or synced files in SharePoint document library; user viewed SharePoint pages; user posted, read, or liked messages in Yammer groups.
-        Returns: Optional[int]
-        """
-        return self._active
-    
-    @active.setter
-    def active(self,value: Optional[int] = None) -> None:
-        """
-        Sets the active property value. The number of active groups. A group is considered active if any of the following occurred: group mailbox received email; user viewed, edited, shared, or synced files in SharePoint document library; user viewed SharePoint pages; user posted, read, or liked messages in Yammer groups.
-        Args:
-            value: Value to set for the active property.
-        """
-        self._active = value
+    # The number of active groups. A group is considered active if any of the following occurred: group mailbox received email; user viewed, edited, shared, or synced files in SharePoint document library; user viewed SharePoint pages; user posted, read, or liked messages in Yammer groups.
+    active: Optional[int] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The date on which a number of groups were active.
+    report_date: Optional[date] = None
+    # The number of days the report covers.
+    report_period: Optional[str] = None
+    # The latest date of the content.
+    report_refresh_date: Optional[date] = None
+    # The total number of groups.
+    total: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Office365GroupsActivityGroupCounts:
@@ -74,57 +54,6 @@ class Office365GroupsActivityGroupCounts(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def report_date(self,) -> Optional[date]:
-        """
-        Gets the reportDate property value. The date on which a number of groups were active.
-        Returns: Optional[date]
-        """
-        return self._report_date
-    
-    @report_date.setter
-    def report_date(self,value: Optional[date] = None) -> None:
-        """
-        Sets the reportDate property value. The date on which a number of groups were active.
-        Args:
-            value: Value to set for the report_date property.
-        """
-        self._report_date = value
-    
-    @property
-    def report_period(self,) -> Optional[str]:
-        """
-        Gets the reportPeriod property value. The number of days the report covers.
-        Returns: Optional[str]
-        """
-        return self._report_period
-    
-    @report_period.setter
-    def report_period(self,value: Optional[str] = None) -> None:
-        """
-        Sets the reportPeriod property value. The number of days the report covers.
-        Args:
-            value: Value to set for the report_period property.
-        """
-        self._report_period = value
-    
-    @property
-    def report_refresh_date(self,) -> Optional[date]:
-        """
-        Gets the reportRefreshDate property value. The latest date of the content.
-        Returns: Optional[date]
-        """
-        return self._report_refresh_date
-    
-    @report_refresh_date.setter
-    def report_refresh_date(self,value: Optional[date] = None) -> None:
-        """
-        Sets the reportRefreshDate property value. The latest date of the content.
-        Args:
-            value: Value to set for the report_refresh_date property.
-        """
-        self._report_refresh_date = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -139,22 +68,5 @@ class Office365GroupsActivityGroupCounts(entity.Entity):
         writer.write_str_value("reportPeriod", self.report_period)
         writer.write_date_value("reportRefreshDate", self.report_refresh_date)
         writer.write_int_value("total", self.total)
-    
-    @property
-    def total(self,) -> Optional[int]:
-        """
-        Gets the total property value. The total number of groups.
-        Returns: Optional[int]
-        """
-        return self._total
-    
-    @total.setter
-    def total(self,value: Optional[int] = None) -> None:
-        """
-        Sets the total property value. The total number of groups.
-        Args:
-            value: Value to set for the total property.
-        """
-        self._total = value
     
 

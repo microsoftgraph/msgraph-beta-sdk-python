@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,72 +9,34 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class TeamTemplateDefinition(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new teamTemplateDefinition and sets the default values.
-        """
-        super().__init__()
-        # Describes the audience the team template is available to. The possible values are: organization, user, public, unknownFutureValue.
-        self._audience: Optional[team_template_audience.TeamTemplateAudience] = None
-        # The assigned categories for the team template.
-        self._categories: Optional[List[str]] = None
-        # A brief description of the team template as it will appear to the users in Microsoft Teams.
-        self._description: Optional[str] = None
-        # The user defined name of the team template.
-        self._display_name: Optional[str] = None
-        # The icon url for the team template.
-        self._icon_url: Optional[str] = None
-        # Language the template is available in.
-        self._language_tag: Optional[str] = None
-        # The identity of the user who last modified the team template.
-        self._last_modified_by: Optional[identity_set.IdentitySet] = None
-        # The date time of when the team template was last modified.
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The templateId for the team template
-        self._parent_template_id: Optional[str] = None
-        # The organization which published the team template.
-        self._publisher_name: Optional[str] = None
-        # A short-description of the team template as it will appear to the users in Microsoft Teams.
-        self._short_description: Optional[str] = None
-        # Collection of channel objects. A channel represents a topic, and therefore a logical isolation of discussion, within a team.
-        self._team_definition: Optional[team.Team] = None
-    
-    @property
-    def audience(self,) -> Optional[team_template_audience.TeamTemplateAudience]:
-        """
-        Gets the audience property value. Describes the audience the team template is available to. The possible values are: organization, user, public, unknownFutureValue.
-        Returns: Optional[team_template_audience.TeamTemplateAudience]
-        """
-        return self._audience
-    
-    @audience.setter
-    def audience(self,value: Optional[team_template_audience.TeamTemplateAudience] = None) -> None:
-        """
-        Sets the audience property value. Describes the audience the team template is available to. The possible values are: organization, user, public, unknownFutureValue.
-        Args:
-            value: Value to set for the audience property.
-        """
-        self._audience = value
-    
-    @property
-    def categories(self,) -> Optional[List[str]]:
-        """
-        Gets the categories property value. The assigned categories for the team template.
-        Returns: Optional[List[str]]
-        """
-        return self._categories
-    
-    @categories.setter
-    def categories(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the categories property value. The assigned categories for the team template.
-        Args:
-            value: Value to set for the categories property.
-        """
-        self._categories = value
+    # Describes the audience the team template is available to. The possible values are: organization, user, public, unknownFutureValue.
+    audience: Optional[team_template_audience.TeamTemplateAudience] = None
+    # The assigned categories for the team template.
+    categories: Optional[List[str]] = None
+    # A brief description of the team template as it will appear to the users in Microsoft Teams.
+    description: Optional[str] = None
+    # The user defined name of the team template.
+    display_name: Optional[str] = None
+    # The icon url for the team template.
+    icon_url: Optional[str] = None
+    # Language the template is available in.
+    language_tag: Optional[str] = None
+    # The identity of the user who last modified the team template.
+    last_modified_by: Optional[identity_set.IdentitySet] = None
+    # The date time of when the team template was last modified.
+    last_modified_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The templateId for the team template
+    parent_template_id: Optional[str] = None
+    # The organization which published the team template.
+    publisher_name: Optional[str] = None
+    # A short-description of the team template as it will appear to the users in Microsoft Teams.
+    short_description: Optional[str] = None
+    # Collection of channel objects. A channel represents a topic, and therefore a logical isolation of discussion, within a team.
+    team_definition: Optional[team.Team] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeamTemplateDefinition:
@@ -86,40 +49,6 @@ class TeamTemplateDefinition(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return TeamTemplateDefinition()
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. A brief description of the team template as it will appear to the users in Microsoft Teams.
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. A brief description of the team template as it will appear to the users in Microsoft Teams.
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The user defined name of the team template.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The user defined name of the team template.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -146,108 +75,6 @@ class TeamTemplateDefinition(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def icon_url(self,) -> Optional[str]:
-        """
-        Gets the iconUrl property value. The icon url for the team template.
-        Returns: Optional[str]
-        """
-        return self._icon_url
-    
-    @icon_url.setter
-    def icon_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the iconUrl property value. The icon url for the team template.
-        Args:
-            value: Value to set for the icon_url property.
-        """
-        self._icon_url = value
-    
-    @property
-    def language_tag(self,) -> Optional[str]:
-        """
-        Gets the languageTag property value. Language the template is available in.
-        Returns: Optional[str]
-        """
-        return self._language_tag
-    
-    @language_tag.setter
-    def language_tag(self,value: Optional[str] = None) -> None:
-        """
-        Sets the languageTag property value. Language the template is available in.
-        Args:
-            value: Value to set for the language_tag property.
-        """
-        self._language_tag = value
-    
-    @property
-    def last_modified_by(self,) -> Optional[identity_set.IdentitySet]:
-        """
-        Gets the lastModifiedBy property value. The identity of the user who last modified the team template.
-        Returns: Optional[identity_set.IdentitySet]
-        """
-        return self._last_modified_by
-    
-    @last_modified_by.setter
-    def last_modified_by(self,value: Optional[identity_set.IdentitySet] = None) -> None:
-        """
-        Sets the lastModifiedBy property value. The identity of the user who last modified the team template.
-        Args:
-            value: Value to set for the last_modified_by property.
-        """
-        self._last_modified_by = value
-    
-    @property
-    def last_modified_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastModifiedDateTime property value. The date time of when the team template was last modified.
-        Returns: Optional[datetime]
-        """
-        return self._last_modified_date_time
-    
-    @last_modified_date_time.setter
-    def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastModifiedDateTime property value. The date time of when the team template was last modified.
-        Args:
-            value: Value to set for the last_modified_date_time property.
-        """
-        self._last_modified_date_time = value
-    
-    @property
-    def parent_template_id(self,) -> Optional[str]:
-        """
-        Gets the parentTemplateId property value. The templateId for the team template
-        Returns: Optional[str]
-        """
-        return self._parent_template_id
-    
-    @parent_template_id.setter
-    def parent_template_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the parentTemplateId property value. The templateId for the team template
-        Args:
-            value: Value to set for the parent_template_id property.
-        """
-        self._parent_template_id = value
-    
-    @property
-    def publisher_name(self,) -> Optional[str]:
-        """
-        Gets the publisherName property value. The organization which published the team template.
-        Returns: Optional[str]
-        """
-        return self._publisher_name
-    
-    @publisher_name.setter
-    def publisher_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the publisherName property value. The organization which published the team template.
-        Args:
-            value: Value to set for the publisher_name property.
-        """
-        self._publisher_name = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -269,39 +96,5 @@ class TeamTemplateDefinition(entity.Entity):
         writer.write_str_value("publisherName", self.publisher_name)
         writer.write_str_value("shortDescription", self.short_description)
         writer.write_object_value("teamDefinition", self.team_definition)
-    
-    @property
-    def short_description(self,) -> Optional[str]:
-        """
-        Gets the shortDescription property value. A short-description of the team template as it will appear to the users in Microsoft Teams.
-        Returns: Optional[str]
-        """
-        return self._short_description
-    
-    @short_description.setter
-    def short_description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the shortDescription property value. A short-description of the team template as it will appear to the users in Microsoft Teams.
-        Args:
-            value: Value to set for the short_description property.
-        """
-        self._short_description = value
-    
-    @property
-    def team_definition(self,) -> Optional[team.Team]:
-        """
-        Gets the teamDefinition property value. Collection of channel objects. A channel represents a topic, and therefore a logical isolation of discussion, within a team.
-        Returns: Optional[team.Team]
-        """
-        return self._team_definition
-    
-    @team_definition.setter
-    def team_definition(self,value: Optional[team.Team] = None) -> None:
-        """
-        Sets the teamDefinition property value. Collection of channel objects. A channel represents a topic, and therefore a logical isolation of discussion, within a team.
-        Args:
-            value: Value to set for the team_definition property.
-        """
-        self._team_definition = value
     
 

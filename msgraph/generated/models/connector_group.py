@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,60 +8,22 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class ConnectorGroup(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new connectorGroup and sets the default values.
-        """
-        super().__init__()
-        # The applications property
-        self._applications: Optional[List[application.Application]] = None
-        # The connectorGroupType property
-        self._connector_group_type: Optional[connector_group_type.ConnectorGroupType] = None
-        # Indicates if the connectorGroup is the default connectorGroup. Only a single connector group can be the default connectorGroup and this is pre-set by the system. Read-only.
-        self._is_default: Optional[bool] = None
-        # The members property
-        self._members: Optional[List[connector.Connector]] = None
-        # The name associated with the connectorGroup.
-        self._name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The region the connectorGroup is assigned to and will optimize traffic for. This region can only be set if no connectors or applications are assigned to the connectorGroup. The possible values are: nam (for North America), eur (for Europe), aus (for Australia), asia (for Asia), ind (for India), and unknownFutureValue.
-        self._region: Optional[connector_group_region.ConnectorGroupRegion] = None
-    
-    @property
-    def applications(self,) -> Optional[List[application.Application]]:
-        """
-        Gets the applications property value. The applications property
-        Returns: Optional[List[application.Application]]
-        """
-        return self._applications
-    
-    @applications.setter
-    def applications(self,value: Optional[List[application.Application]] = None) -> None:
-        """
-        Sets the applications property value. The applications property
-        Args:
-            value: Value to set for the applications property.
-        """
-        self._applications = value
-    
-    @property
-    def connector_group_type(self,) -> Optional[connector_group_type.ConnectorGroupType]:
-        """
-        Gets the connectorGroupType property value. The connectorGroupType property
-        Returns: Optional[connector_group_type.ConnectorGroupType]
-        """
-        return self._connector_group_type
-    
-    @connector_group_type.setter
-    def connector_group_type(self,value: Optional[connector_group_type.ConnectorGroupType] = None) -> None:
-        """
-        Sets the connectorGroupType property value. The connectorGroupType property
-        Args:
-            value: Value to set for the connector_group_type property.
-        """
-        self._connector_group_type = value
+    # The applications property
+    applications: Optional[List[application.Application]] = None
+    # The connectorGroupType property
+    connector_group_type: Optional[connector_group_type.ConnectorGroupType] = None
+    # Indicates if the connectorGroup is the default connectorGroup. Only a single connector group can be the default connectorGroup and this is pre-set by the system. Read-only.
+    is_default: Optional[bool] = None
+    # The members property
+    members: Optional[List[connector.Connector]] = None
+    # The name associated with the connectorGroup.
+    name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The region the connectorGroup is assigned to and will optimize traffic for. This region can only be set if no connectors or applications are assigned to the connectorGroup. The possible values are: nam (for North America), eur (for Europe), aus (for Australia), asia (for Asia), ind (for India), and unknownFutureValue.
+    region: Optional[connector_group_region.ConnectorGroupRegion] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ConnectorGroup:
@@ -92,74 +55,6 @@ class ConnectorGroup(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def is_default(self,) -> Optional[bool]:
-        """
-        Gets the isDefault property value. Indicates if the connectorGroup is the default connectorGroup. Only a single connector group can be the default connectorGroup and this is pre-set by the system. Read-only.
-        Returns: Optional[bool]
-        """
-        return self._is_default
-    
-    @is_default.setter
-    def is_default(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isDefault property value. Indicates if the connectorGroup is the default connectorGroup. Only a single connector group can be the default connectorGroup and this is pre-set by the system. Read-only.
-        Args:
-            value: Value to set for the is_default property.
-        """
-        self._is_default = value
-    
-    @property
-    def members(self,) -> Optional[List[connector.Connector]]:
-        """
-        Gets the members property value. The members property
-        Returns: Optional[List[connector.Connector]]
-        """
-        return self._members
-    
-    @members.setter
-    def members(self,value: Optional[List[connector.Connector]] = None) -> None:
-        """
-        Sets the members property value. The members property
-        Args:
-            value: Value to set for the members property.
-        """
-        self._members = value
-    
-    @property
-    def name(self,) -> Optional[str]:
-        """
-        Gets the name property value. The name associated with the connectorGroup.
-        Returns: Optional[str]
-        """
-        return self._name
-    
-    @name.setter
-    def name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the name property value. The name associated with the connectorGroup.
-        Args:
-            value: Value to set for the name property.
-        """
-        self._name = value
-    
-    @property
-    def region(self,) -> Optional[connector_group_region.ConnectorGroupRegion]:
-        """
-        Gets the region property value. The region the connectorGroup is assigned to and will optimize traffic for. This region can only be set if no connectors or applications are assigned to the connectorGroup. The possible values are: nam (for North America), eur (for Europe), aus (for Australia), asia (for Asia), ind (for India), and unknownFutureValue.
-        Returns: Optional[connector_group_region.ConnectorGroupRegion]
-        """
-        return self._region
-    
-    @region.setter
-    def region(self,value: Optional[connector_group_region.ConnectorGroupRegion] = None) -> None:
-        """
-        Sets the region property value. The region the connectorGroup is assigned to and will optimize traffic for. This region can only be set if no connectors or applications are assigned to the connectorGroup. The possible values are: nam (for North America), eur (for Europe), aus (for Australia), asia (for Asia), ind (for India), and unknownFutureValue.
-        Args:
-            value: Value to set for the region property.
-        """
-        self._region = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

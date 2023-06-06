@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import content_properties
 
+@dataclass
 class FileContentProperties(content_properties.ContentProperties):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new FileContentProperties and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.fileContentProperties"
-        # The isVisibleOnlyToOneDriveOwner property
-        self._is_visible_only_to_one_drive_owner: Optional[bool] = None
+    odata_type = "#microsoft.graph.fileContentProperties"
+    # The isVisibleOnlyToOneDriveOwner property
+    is_visible_only_to_one_drive_owner: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> FileContentProperties:
@@ -42,23 +39,6 @@ class FileContentProperties(content_properties.ContentProperties):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def is_visible_only_to_one_drive_owner(self,) -> Optional[bool]:
-        """
-        Gets the isVisibleOnlyToOneDriveOwner property value. The isVisibleOnlyToOneDriveOwner property
-        Returns: Optional[bool]
-        """
-        return self._is_visible_only_to_one_drive_owner
-    
-    @is_visible_only_to_one_drive_owner.setter
-    def is_visible_only_to_one_drive_owner(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isVisibleOnlyToOneDriveOwner property value. The isVisibleOnlyToOneDriveOwner property
-        Args:
-            value: Value to set for the is_visible_only_to_one_drive_owner property.
-        """
-        self._is_visible_only_to_one_drive_owner = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

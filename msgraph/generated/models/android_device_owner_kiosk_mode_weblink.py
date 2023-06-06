@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,17 +8,13 @@ if TYPE_CHECKING:
 
 from . import android_device_owner_kiosk_mode_folder_item
 
+@dataclass
 class AndroidDeviceOwnerKioskModeWeblink(android_device_owner_kiosk_mode_folder_item.AndroidDeviceOwnerKioskModeFolderItem):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AndroidDeviceOwnerKioskModeWeblink and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.androidDeviceOwnerKioskModeWeblink"
-        # Display name for weblink
-        self._label: Optional[str] = None
-        # Link for weblink
-        self._link: Optional[str] = None
+    odata_type = "#microsoft.graph.androidDeviceOwnerKioskModeWeblink"
+    # Display name for weblink
+    label: Optional[str] = None
+    # Link for weblink
+    link: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidDeviceOwnerKioskModeWeblink:
@@ -45,40 +42,6 @@ class AndroidDeviceOwnerKioskModeWeblink(android_device_owner_kiosk_mode_folder_
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def label(self,) -> Optional[str]:
-        """
-        Gets the label property value. Display name for weblink
-        Returns: Optional[str]
-        """
-        return self._label
-    
-    @label.setter
-    def label(self,value: Optional[str] = None) -> None:
-        """
-        Sets the label property value. Display name for weblink
-        Args:
-            value: Value to set for the label property.
-        """
-        self._label = value
-    
-    @property
-    def link(self,) -> Optional[str]:
-        """
-        Gets the link property value. Link for weblink
-        Returns: Optional[str]
-        """
-        return self._link
-    
-    @link.setter
-    def link(self,value: Optional[str] = None) -> None:
-        """
-        Sets the link property value. Link for weblink
-        Args:
-            value: Value to set for the link property.
-        """
-        self._link = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,46 +8,25 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class EnrollmentProfile(entity.Entity):
     """
     The enrollmentProfile resource represents a collection of configurations which must be provided pre-enrollment to enable enrolling certain devices whose identities have been pre-staged. Pre-staged device identities are assigned to this type of profile to apply the profile's configurations at enrollment of the corresponding device.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new enrollmentProfile and sets the default values.
-        """
-        super().__init__()
-        # Configuration endpoint url to use for Enrollment
-        self._configuration_endpoint_url: Optional[str] = None
-        # Description of the profile
-        self._description: Optional[str] = None
-        # Name of the profile
-        self._display_name: Optional[str] = None
-        # Indicates to authenticate with Apple Setup Assistant instead of Company Portal.
-        self._enable_authentication_via_company_portal: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Indicates that Company Portal is required on setup assistant enrolled devices
-        self._require_company_portal_on_setup_assistant_enrolled_devices: Optional[bool] = None
-        # Indicates if the profile requires user authentication
-        self._requires_user_authentication: Optional[bool] = None
-    
-    @property
-    def configuration_endpoint_url(self,) -> Optional[str]:
-        """
-        Gets the configurationEndpointUrl property value. Configuration endpoint url to use for Enrollment
-        Returns: Optional[str]
-        """
-        return self._configuration_endpoint_url
-    
-    @configuration_endpoint_url.setter
-    def configuration_endpoint_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the configurationEndpointUrl property value. Configuration endpoint url to use for Enrollment
-        Args:
-            value: Value to set for the configuration_endpoint_url property.
-        """
-        self._configuration_endpoint_url = value
+    # Configuration endpoint url to use for Enrollment
+    configuration_endpoint_url: Optional[str] = None
+    # Description of the profile
+    description: Optional[str] = None
+    # Name of the profile
+    display_name: Optional[str] = None
+    # Indicates to authenticate with Apple Setup Assistant instead of Company Portal.
+    enable_authentication_via_company_portal: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Indicates that Company Portal is required on setup assistant enrolled devices
+    require_company_portal_on_setup_assistant_enrolled_devices: Optional[bool] = None
+    # Indicates if the profile requires user authentication
+    requires_user_authentication: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EnrollmentProfile:
@@ -79,57 +59,6 @@ class EnrollmentProfile(entity.Entity):
                 return dep_mac_o_s_enrollment_profile.DepMacOSEnrollmentProfile()
         return EnrollmentProfile()
     
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. Description of the profile
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. Description of the profile
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. Name of the profile
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. Name of the profile
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
-    
-    @property
-    def enable_authentication_via_company_portal(self,) -> Optional[bool]:
-        """
-        Gets the enableAuthenticationViaCompanyPortal property value. Indicates to authenticate with Apple Setup Assistant instead of Company Portal.
-        Returns: Optional[bool]
-        """
-        return self._enable_authentication_via_company_portal
-    
-    @enable_authentication_via_company_portal.setter
-    def enable_authentication_via_company_portal(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the enableAuthenticationViaCompanyPortal property value. Indicates to authenticate with Apple Setup Assistant instead of Company Portal.
-        Args:
-            value: Value to set for the enable_authentication_via_company_portal property.
-        """
-        self._enable_authentication_via_company_portal = value
-    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -148,40 +77,6 @@ class EnrollmentProfile(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def require_company_portal_on_setup_assistant_enrolled_devices(self,) -> Optional[bool]:
-        """
-        Gets the requireCompanyPortalOnSetupAssistantEnrolledDevices property value. Indicates that Company Portal is required on setup assistant enrolled devices
-        Returns: Optional[bool]
-        """
-        return self._require_company_portal_on_setup_assistant_enrolled_devices
-    
-    @require_company_portal_on_setup_assistant_enrolled_devices.setter
-    def require_company_portal_on_setup_assistant_enrolled_devices(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the requireCompanyPortalOnSetupAssistantEnrolledDevices property value. Indicates that Company Portal is required on setup assistant enrolled devices
-        Args:
-            value: Value to set for the require_company_portal_on_setup_assistant_enrolled_devices property.
-        """
-        self._require_company_portal_on_setup_assistant_enrolled_devices = value
-    
-    @property
-    def requires_user_authentication(self,) -> Optional[bool]:
-        """
-        Gets the requiresUserAuthentication property value. Indicates if the profile requires user authentication
-        Returns: Optional[bool]
-        """
-        return self._requires_user_authentication
-    
-    @requires_user_authentication.setter
-    def requires_user_authentication(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the requiresUserAuthentication property value. Indicates if the profile requires user authentication
-        Args:
-            value: Value to set for the requires_user_authentication property.
-        """
-        self._requires_user_authentication = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

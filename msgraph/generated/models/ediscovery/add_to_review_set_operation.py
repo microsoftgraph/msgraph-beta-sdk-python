@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,18 +8,14 @@ if TYPE_CHECKING:
 
 from . import case_operation
 
+@dataclass
 class AddToReviewSetOperation(case_operation.CaseOperation):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AddToReviewSetOperation and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The review set to which items matching the source collection query are added to.
-        self._review_set: Optional[review_set.ReviewSet] = None
-        # The sourceCollection that items are being added from.
-        self._source_collection: Optional[source_collection.SourceCollection] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The review set to which items matching the source collection query are added to.
+    review_set: Optional[review_set.ReviewSet] = None
+    # The sourceCollection that items are being added from.
+    source_collection: Optional[source_collection.SourceCollection] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AddToReviewSetOperation:
@@ -47,23 +44,6 @@ class AddToReviewSetOperation(case_operation.CaseOperation):
         fields.update(super_fields)
         return fields
     
-    @property
-    def review_set(self,) -> Optional[review_set.ReviewSet]:
-        """
-        Gets the reviewSet property value. The review set to which items matching the source collection query are added to.
-        Returns: Optional[review_set.ReviewSet]
-        """
-        return self._review_set
-    
-    @review_set.setter
-    def review_set(self,value: Optional[review_set.ReviewSet] = None) -> None:
-        """
-        Sets the reviewSet property value. The review set to which items matching the source collection query are added to.
-        Args:
-            value: Value to set for the review_set property.
-        """
-        self._review_set = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -75,22 +55,5 @@ class AddToReviewSetOperation(case_operation.CaseOperation):
         super().serialize(writer)
         writer.write_object_value("reviewSet", self.review_set)
         writer.write_object_value("sourceCollection", self.source_collection)
-    
-    @property
-    def source_collection(self,) -> Optional[source_collection.SourceCollection]:
-        """
-        Gets the sourceCollection property value. The sourceCollection that items are being added from.
-        Returns: Optional[source_collection.SourceCollection]
-        """
-        return self._source_collection
-    
-    @source_collection.setter
-    def source_collection(self,value: Optional[source_collection.SourceCollection] = None) -> None:
-        """
-        Sets the sourceCollection property value. The sourceCollection that items are being added from.
-        Args:
-            value: Value to set for the source_collection property.
-        """
-        self._source_collection = value
     
 

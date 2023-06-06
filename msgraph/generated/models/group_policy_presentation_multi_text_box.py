@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,19 +8,15 @@ if TYPE_CHECKING:
 
 from . import group_policy_uploaded_presentation
 
+@dataclass
 class GroupPolicyPresentationMultiTextBox(group_policy_uploaded_presentation.GroupPolicyUploadedPresentation):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new GroupPolicyPresentationMultiTextBox and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.groupPolicyPresentationMultiTextBox"
-        # An unsigned integer that specifies the maximum number of text characters. Default value is 1023.
-        self._max_length: Optional[int] = None
-        # An unsigned integer that specifies the maximum number of strings. Default value is 0.
-        self._max_strings: Optional[int] = None
-        # Requirement to enter a value in the text box. Default value is false.
-        self._required: Optional[bool] = None
+    odata_type = "#microsoft.graph.groupPolicyPresentationMultiTextBox"
+    # An unsigned integer that specifies the maximum number of text characters. Default value is 1023.
+    max_length: Optional[int] = None
+    # An unsigned integer that specifies the maximum number of strings. Default value is 0.
+    max_strings: Optional[int] = None
+    # Requirement to enter a value in the text box. Default value is false.
+    required: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GroupPolicyPresentationMultiTextBox:
@@ -48,57 +45,6 @@ class GroupPolicyPresentationMultiTextBox(group_policy_uploaded_presentation.Gro
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def max_length(self,) -> Optional[int]:
-        """
-        Gets the maxLength property value. An unsigned integer that specifies the maximum number of text characters. Default value is 1023.
-        Returns: Optional[int]
-        """
-        return self._max_length
-    
-    @max_length.setter
-    def max_length(self,value: Optional[int] = None) -> None:
-        """
-        Sets the maxLength property value. An unsigned integer that specifies the maximum number of text characters. Default value is 1023.
-        Args:
-            value: Value to set for the max_length property.
-        """
-        self._max_length = value
-    
-    @property
-    def max_strings(self,) -> Optional[int]:
-        """
-        Gets the maxStrings property value. An unsigned integer that specifies the maximum number of strings. Default value is 0.
-        Returns: Optional[int]
-        """
-        return self._max_strings
-    
-    @max_strings.setter
-    def max_strings(self,value: Optional[int] = None) -> None:
-        """
-        Sets the maxStrings property value. An unsigned integer that specifies the maximum number of strings. Default value is 0.
-        Args:
-            value: Value to set for the max_strings property.
-        """
-        self._max_strings = value
-    
-    @property
-    def required(self,) -> Optional[bool]:
-        """
-        Gets the required property value. Requirement to enter a value in the text box. Default value is false.
-        Returns: Optional[bool]
-        """
-        return self._required
-    
-    @required.setter
-    def required(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the required property value. Requirement to enter a value in the text box. Default value is false.
-        Args:
-            value: Value to set for the required property.
-        """
-        self._required = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

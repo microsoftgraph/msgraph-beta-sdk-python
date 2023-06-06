@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,39 +8,18 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class AllowedDataLocation(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AllowedDataLocation and sets the default values.
-        """
-        super().__init__()
-        # The appId property
-        self._app_id: Optional[str] = None
-        # The domain property
-        self._domain: Optional[str] = None
-        # The isDefault property
-        self._is_default: Optional[bool] = None
-        # The location property
-        self._location: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def app_id(self,) -> Optional[str]:
-        """
-        Gets the appId property value. The appId property
-        Returns: Optional[str]
-        """
-        return self._app_id
-    
-    @app_id.setter
-    def app_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the appId property value. The appId property
-        Args:
-            value: Value to set for the app_id property.
-        """
-        self._app_id = value
+    # The appId property
+    app_id: Optional[str] = None
+    # The domain property
+    domain: Optional[str] = None
+    # The isDefault property
+    is_default: Optional[bool] = None
+    # The location property
+    location: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AllowedDataLocation:
@@ -52,23 +32,6 @@ class AllowedDataLocation(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return AllowedDataLocation()
-    
-    @property
-    def domain(self,) -> Optional[str]:
-        """
-        Gets the domain property value. The domain property
-        Returns: Optional[str]
-        """
-        return self._domain
-    
-    @domain.setter
-    def domain(self,value: Optional[str] = None) -> None:
-        """
-        Sets the domain property value. The domain property
-        Args:
-            value: Value to set for the domain property.
-        """
-        self._domain = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -86,40 +49,6 @@ class AllowedDataLocation(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def is_default(self,) -> Optional[bool]:
-        """
-        Gets the isDefault property value. The isDefault property
-        Returns: Optional[bool]
-        """
-        return self._is_default
-    
-    @is_default.setter
-    def is_default(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isDefault property value. The isDefault property
-        Args:
-            value: Value to set for the is_default property.
-        """
-        self._is_default = value
-    
-    @property
-    def location(self,) -> Optional[str]:
-        """
-        Gets the location property value. The location property
-        Returns: Optional[str]
-        """
-        return self._location
-    
-    @location.setter
-    def location(self,value: Optional[str] = None) -> None:
-        """
-        Sets the location property value. The location property
-        Args:
-            value: Value to set for the location property.
-        """
-        self._location = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

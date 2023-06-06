@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import device_app_management_task
 
+@dataclass
 class UnmanagedDeviceDiscoveryTask(device_app_management_task.DeviceAppManagementTask):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new UnmanagedDeviceDiscoveryTask and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.unmanagedDeviceDiscoveryTask"
-        # Unmanaged devices discovered in the network.
-        self._unmanaged_devices: Optional[List[unmanaged_device.UnmanagedDevice]] = None
+    odata_type = "#microsoft.graph.unmanagedDeviceDiscoveryTask"
+    # Unmanaged devices discovered in the network.
+    unmanaged_devices: Optional[List[unmanaged_device.UnmanagedDevice]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UnmanagedDeviceDiscoveryTask:
@@ -53,22 +50,5 @@ class UnmanagedDeviceDiscoveryTask(device_app_management_task.DeviceAppManagemen
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_collection_of_object_values("unmanagedDevices", self.unmanaged_devices)
-    
-    @property
-    def unmanaged_devices(self,) -> Optional[List[unmanaged_device.UnmanagedDevice]]:
-        """
-        Gets the unmanagedDevices property value. Unmanaged devices discovered in the network.
-        Returns: Optional[List[unmanaged_device.UnmanagedDevice]]
-        """
-        return self._unmanaged_devices
-    
-    @unmanaged_devices.setter
-    def unmanaged_devices(self,value: Optional[List[unmanaged_device.UnmanagedDevice]] = None) -> None:
-        """
-        Sets the unmanagedDevices property value. Unmanaged devices discovered in the network.
-        Args:
-            value: Value to set for the unmanaged_devices property.
-        """
-        self._unmanaged_devices = value
     
 

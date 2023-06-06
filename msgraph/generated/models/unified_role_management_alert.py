@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,102 +9,30 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class UnifiedRoleManagementAlert(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new unifiedRoleManagementAlert and sets the default values.
-        """
-        super().__init__()
-        # The alertConfiguration property
-        self._alert_configuration: Optional[unified_role_management_alert_configuration.UnifiedRoleManagementAlertConfiguration] = None
-        # The alertDefinition property
-        self._alert_definition: Optional[unified_role_management_alert_definition.UnifiedRoleManagementAlertDefinition] = None
-        # The alertDefinitionId property
-        self._alert_definition_id: Optional[str] = None
-        # The alertIncidents property
-        self._alert_incidents: Optional[List[unified_role_management_alert_incident.UnifiedRoleManagementAlertIncident]] = None
-        # The incidentCount property
-        self._incident_count: Optional[int] = None
-        # The isActive property
-        self._is_active: Optional[bool] = None
-        # The lastModifiedDateTime property
-        self._last_modified_date_time: Optional[datetime] = None
-        # The lastScannedDateTime property
-        self._last_scanned_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The scopeId property
-        self._scope_id: Optional[str] = None
-        # The scopeType property
-        self._scope_type: Optional[str] = None
-    
-    @property
-    def alert_configuration(self,) -> Optional[unified_role_management_alert_configuration.UnifiedRoleManagementAlertConfiguration]:
-        """
-        Gets the alertConfiguration property value. The alertConfiguration property
-        Returns: Optional[unified_role_management_alert_configuration.UnifiedRoleManagementAlertConfiguration]
-        """
-        return self._alert_configuration
-    
-    @alert_configuration.setter
-    def alert_configuration(self,value: Optional[unified_role_management_alert_configuration.UnifiedRoleManagementAlertConfiguration] = None) -> None:
-        """
-        Sets the alertConfiguration property value. The alertConfiguration property
-        Args:
-            value: Value to set for the alert_configuration property.
-        """
-        self._alert_configuration = value
-    
-    @property
-    def alert_definition(self,) -> Optional[unified_role_management_alert_definition.UnifiedRoleManagementAlertDefinition]:
-        """
-        Gets the alertDefinition property value. The alertDefinition property
-        Returns: Optional[unified_role_management_alert_definition.UnifiedRoleManagementAlertDefinition]
-        """
-        return self._alert_definition
-    
-    @alert_definition.setter
-    def alert_definition(self,value: Optional[unified_role_management_alert_definition.UnifiedRoleManagementAlertDefinition] = None) -> None:
-        """
-        Sets the alertDefinition property value. The alertDefinition property
-        Args:
-            value: Value to set for the alert_definition property.
-        """
-        self._alert_definition = value
-    
-    @property
-    def alert_definition_id(self,) -> Optional[str]:
-        """
-        Gets the alertDefinitionId property value. The alertDefinitionId property
-        Returns: Optional[str]
-        """
-        return self._alert_definition_id
-    
-    @alert_definition_id.setter
-    def alert_definition_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the alertDefinitionId property value. The alertDefinitionId property
-        Args:
-            value: Value to set for the alert_definition_id property.
-        """
-        self._alert_definition_id = value
-    
-    @property
-    def alert_incidents(self,) -> Optional[List[unified_role_management_alert_incident.UnifiedRoleManagementAlertIncident]]:
-        """
-        Gets the alertIncidents property value. The alertIncidents property
-        Returns: Optional[List[unified_role_management_alert_incident.UnifiedRoleManagementAlertIncident]]
-        """
-        return self._alert_incidents
-    
-    @alert_incidents.setter
-    def alert_incidents(self,value: Optional[List[unified_role_management_alert_incident.UnifiedRoleManagementAlertIncident]] = None) -> None:
-        """
-        Sets the alertIncidents property value. The alertIncidents property
-        Args:
-            value: Value to set for the alert_incidents property.
-        """
-        self._alert_incidents = value
+    # The alertConfiguration property
+    alert_configuration: Optional[unified_role_management_alert_configuration.UnifiedRoleManagementAlertConfiguration] = None
+    # The alertDefinition property
+    alert_definition: Optional[unified_role_management_alert_definition.UnifiedRoleManagementAlertDefinition] = None
+    # The alertDefinitionId property
+    alert_definition_id: Optional[str] = None
+    # The alertIncidents property
+    alert_incidents: Optional[List[unified_role_management_alert_incident.UnifiedRoleManagementAlertIncident]] = None
+    # The incidentCount property
+    incident_count: Optional[int] = None
+    # The isActive property
+    is_active: Optional[bool] = None
+    # The lastModifiedDateTime property
+    last_modified_date_time: Optional[datetime] = None
+    # The lastScannedDateTime property
+    last_scanned_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The scopeId property
+    scope_id: Optional[str] = None
+    # The scopeType property
+    scope_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UnifiedRoleManagementAlert:
@@ -139,108 +68,6 @@ class UnifiedRoleManagementAlert(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def incident_count(self,) -> Optional[int]:
-        """
-        Gets the incidentCount property value. The incidentCount property
-        Returns: Optional[int]
-        """
-        return self._incident_count
-    
-    @incident_count.setter
-    def incident_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the incidentCount property value. The incidentCount property
-        Args:
-            value: Value to set for the incident_count property.
-        """
-        self._incident_count = value
-    
-    @property
-    def is_active(self,) -> Optional[bool]:
-        """
-        Gets the isActive property value. The isActive property
-        Returns: Optional[bool]
-        """
-        return self._is_active
-    
-    @is_active.setter
-    def is_active(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isActive property value. The isActive property
-        Args:
-            value: Value to set for the is_active property.
-        """
-        self._is_active = value
-    
-    @property
-    def last_modified_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastModifiedDateTime property value. The lastModifiedDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._last_modified_date_time
-    
-    @last_modified_date_time.setter
-    def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
-        Args:
-            value: Value to set for the last_modified_date_time property.
-        """
-        self._last_modified_date_time = value
-    
-    @property
-    def last_scanned_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastScannedDateTime property value. The lastScannedDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._last_scanned_date_time
-    
-    @last_scanned_date_time.setter
-    def last_scanned_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastScannedDateTime property value. The lastScannedDateTime property
-        Args:
-            value: Value to set for the last_scanned_date_time property.
-        """
-        self._last_scanned_date_time = value
-    
-    @property
-    def scope_id(self,) -> Optional[str]:
-        """
-        Gets the scopeId property value. The scopeId property
-        Returns: Optional[str]
-        """
-        return self._scope_id
-    
-    @scope_id.setter
-    def scope_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the scopeId property value. The scopeId property
-        Args:
-            value: Value to set for the scope_id property.
-        """
-        self._scope_id = value
-    
-    @property
-    def scope_type(self,) -> Optional[str]:
-        """
-        Gets the scopeType property value. The scopeType property
-        Returns: Optional[str]
-        """
-        return self._scope_type
-    
-    @scope_type.setter
-    def scope_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the scopeType property value. The scopeType property
-        Args:
-            value: Value to set for the scope_type property.
-        """
-        self._scope_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

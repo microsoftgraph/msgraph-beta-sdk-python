@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,16 +8,12 @@ if TYPE_CHECKING:
 
 from . import device_management_setting_definition
 
+@dataclass
 class DeviceManagementCollectionSettingDefinition(device_management_setting_definition.DeviceManagementSettingDefinition):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementCollectionSettingDefinition and sets the default values.
-        """
-        super().__init__()
-        # The Setting Definition ID that describes what each element of the collection looks like
-        self._element_definition_id: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+    # The Setting Definition ID that describes what each element of the collection looks like
+    element_definition_id: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementCollectionSettingDefinition:
@@ -29,23 +26,6 @@ class DeviceManagementCollectionSettingDefinition(device_management_setting_defi
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return DeviceManagementCollectionSettingDefinition()
-    
-    @property
-    def element_definition_id(self,) -> Optional[str]:
-        """
-        Gets the elementDefinitionId property value. The Setting Definition ID that describes what each element of the collection looks like
-        Returns: Optional[str]
-        """
-        return self._element_definition_id
-    
-    @element_definition_id.setter
-    def element_definition_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the elementDefinitionId property value. The Setting Definition ID that describes what each element of the collection looks like
-        Args:
-            value: Value to set for the element_definition_id property.
-        """
-        self._element_definition_id = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """

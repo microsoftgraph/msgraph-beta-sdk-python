@@ -1,39 +1,20 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import printer_share
 
+@dataclass
 class UserPrint(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userPrint and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The recentPrinterShares property
-        self._recent_printer_shares: Optional[List[printer_share.PrinterShare]] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The recentPrinterShares property
+    recent_printer_shares: Optional[List[printer_share.PrinterShare]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserPrint:
@@ -59,40 +40,6 @@ class UserPrint(AdditionalDataHolder, Parsable):
             "recentPrinterShares": lambda n : setattr(self, 'recent_printer_shares', n.get_collection_of_object_values(printer_share.PrinterShare)),
         }
         return fields
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def recent_printer_shares(self,) -> Optional[List[printer_share.PrinterShare]]:
-        """
-        Gets the recentPrinterShares property value. The recentPrinterShares property
-        Returns: Optional[List[printer_share.PrinterShare]]
-        """
-        return self._recent_printer_shares
-    
-    @recent_printer_shares.setter
-    def recent_printer_shares(self,value: Optional[List[printer_share.PrinterShare]] = None) -> None:
-        """
-        Sets the recentPrinterShares property value. The recentPrinterShares property
-        Args:
-            value: Value to set for the recent_printer_shares property.
-        """
-        self._recent_printer_shares = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

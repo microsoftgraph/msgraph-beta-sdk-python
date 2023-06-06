@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,15 +9,11 @@ if TYPE_CHECKING:
 
 from . import governance_insight
 
+@dataclass
 class UserSignInInsight(governance_insight.GovernanceInsight):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new UserSignInInsight and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.userSignInInsight"
-        # Indicates when the user last signed in
-        self._last_sign_in_date_time: Optional[datetime] = None
+    odata_type = "#microsoft.graph.userSignInInsight"
+    # Indicates when the user last signed in
+    last_sign_in_date_time: Optional[datetime] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserSignInInsight:
@@ -43,23 +40,6 @@ class UserSignInInsight(governance_insight.GovernanceInsight):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def last_sign_in_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastSignInDateTime property value. Indicates when the user last signed in
-        Returns: Optional[datetime]
-        """
-        return self._last_sign_in_date_time
-    
-    @last_sign_in_date_time.setter
-    def last_sign_in_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastSignInDateTime property value. Indicates when the user last signed in
-        Args:
-            value: Value to set for the last_sign_in_date_time property.
-        """
-        self._last_sign_in_date_time = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

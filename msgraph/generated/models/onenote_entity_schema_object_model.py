@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,32 +9,11 @@ if TYPE_CHECKING:
 
 from . import onenote_entity_base_model
 
+@dataclass
 class OnenoteEntitySchemaObjectModel(onenote_entity_base_model.OnenoteEntityBaseModel):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new OnenoteEntitySchemaObjectModel and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.onenoteEntitySchemaObjectModel"
-        # The createdDateTime property
-        self._created_date_time: Optional[datetime] = None
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. The createdDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. The createdDateTime property
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+    odata_type = "#microsoft.graph.onenoteEntitySchemaObjectModel"
+    # The createdDateTime property
+    created_date_time: Optional[datetime] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OnenoteEntitySchemaObjectModel:

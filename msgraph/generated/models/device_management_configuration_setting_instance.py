@@ -1,44 +1,25 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import device_management_configuration_choice_setting_collection_instance, device_management_configuration_choice_setting_instance, device_management_configuration_group_setting_collection_instance, device_management_configuration_group_setting_instance, device_management_configuration_setting_group_collection_instance, device_management_configuration_setting_group_instance, device_management_configuration_setting_instance_template_reference, device_management_configuration_simple_setting_collection_instance, device_management_configuration_simple_setting_instance
 
+@dataclass
 class DeviceManagementConfigurationSettingInstance(AdditionalDataHolder, Parsable):
     """
     Setting instance within policy
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementConfigurationSettingInstance and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Setting Definition Id
-        self._setting_definition_id: Optional[str] = None
-        # Setting Instance Template Reference
-        self._setting_instance_template_reference: Optional[device_management_configuration_setting_instance_template_reference.DeviceManagementConfigurationSettingInstanceTemplateReference] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Setting Definition Id
+    setting_definition_id: Optional[str] = None
+    # Setting Instance Template Reference
+    setting_instance_template_reference: Optional[device_management_configuration_setting_instance_template_reference.DeviceManagementConfigurationSettingInstanceTemplateReference] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationSettingInstance:
@@ -101,23 +82,6 @@ class DeviceManagementConfigurationSettingInstance(AdditionalDataHolder, Parsabl
         }
         return fields
     
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -130,39 +94,5 @@ class DeviceManagementConfigurationSettingInstance(AdditionalDataHolder, Parsabl
         writer.write_str_value("settingDefinitionId", self.setting_definition_id)
         writer.write_object_value("settingInstanceTemplateReference", self.setting_instance_template_reference)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def setting_definition_id(self,) -> Optional[str]:
-        """
-        Gets the settingDefinitionId property value. Setting Definition Id
-        Returns: Optional[str]
-        """
-        return self._setting_definition_id
-    
-    @setting_definition_id.setter
-    def setting_definition_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the settingDefinitionId property value. Setting Definition Id
-        Args:
-            value: Value to set for the setting_definition_id property.
-        """
-        self._setting_definition_id = value
-    
-    @property
-    def setting_instance_template_reference(self,) -> Optional[device_management_configuration_setting_instance_template_reference.DeviceManagementConfigurationSettingInstanceTemplateReference]:
-        """
-        Gets the settingInstanceTemplateReference property value. Setting Instance Template Reference
-        Returns: Optional[device_management_configuration_setting_instance_template_reference.DeviceManagementConfigurationSettingInstanceTemplateReference]
-        """
-        return self._setting_instance_template_reference
-    
-    @setting_instance_template_reference.setter
-    def setting_instance_template_reference(self,value: Optional[device_management_configuration_setting_instance_template_reference.DeviceManagementConfigurationSettingInstanceTemplateReference] = None) -> None:
-        """
-        Sets the settingInstanceTemplateReference property value. Setting Instance Template Reference
-        Args:
-            value: Value to set for the setting_instance_template_reference property.
-        """
-        self._setting_instance_template_reference = value
     
 

@@ -1,37 +1,18 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .....models import mobile_app_relationship
 
+@dataclass
 class UpdateRelationshipsPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new updateRelationshipsPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The relationships property
-        self._relationships: Optional[List[mobile_app_relationship.MobileAppRelationship]] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The relationships property
+    relationships: Optional[List[mobile_app_relationship.MobileAppRelationship]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UpdateRelationshipsPostRequestBody:
@@ -56,23 +37,6 @@ class UpdateRelationshipsPostRequestBody(AdditionalDataHolder, Parsable):
             "relationships": lambda n : setattr(self, 'relationships', n.get_collection_of_object_values(mobile_app_relationship.MobileAppRelationship)),
         }
         return fields
-    
-    @property
-    def relationships(self,) -> Optional[List[mobile_app_relationship.MobileAppRelationship]]:
-        """
-        Gets the relationships property value. The relationships property
-        Returns: Optional[List[mobile_app_relationship.MobileAppRelationship]]
-        """
-        return self._relationships
-    
-    @relationships.setter
-    def relationships(self,value: Optional[List[mobile_app_relationship.MobileAppRelationship]] = None) -> None:
-        """
-        Sets the relationships property value. The relationships property
-        Args:
-            value: Value to set for the relationships property.
-        """
-        self._relationships = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

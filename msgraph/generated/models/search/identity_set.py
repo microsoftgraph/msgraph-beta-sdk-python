@@ -1,60 +1,24 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import identity
 
+@dataclass
 class IdentitySet(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new identitySet and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The application property
-        self._application: Optional[identity.Identity] = None
-        # The device property
-        self._device: Optional[identity.Identity] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The user property
-        self._user: Optional[identity.Identity] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def application(self,) -> Optional[identity.Identity]:
-        """
-        Gets the application property value. The application property
-        Returns: Optional[identity.Identity]
-        """
-        return self._application
-    
-    @application.setter
-    def application(self,value: Optional[identity.Identity] = None) -> None:
-        """
-        Sets the application property value. The application property
-        Args:
-            value: Value to set for the application property.
-        """
-        self._application = value
+    # The application property
+    application: Optional[identity.Identity] = None
+    # The device property
+    device: Optional[identity.Identity] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The user property
+    user: Optional[identity.Identity] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IdentitySet:
@@ -67,23 +31,6 @@ class IdentitySet(AdditionalDataHolder, Parsable):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return IdentitySet()
-    
-    @property
-    def device(self,) -> Optional[identity.Identity]:
-        """
-        Gets the device property value. The device property
-        Returns: Optional[identity.Identity]
-        """
-        return self._device
-    
-    @device.setter
-    def device(self,value: Optional[identity.Identity] = None) -> None:
-        """
-        Sets the device property value. The device property
-        Args:
-            value: Value to set for the device property.
-        """
-        self._device = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -100,23 +47,6 @@ class IdentitySet(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -130,22 +60,5 @@ class IdentitySet(AdditionalDataHolder, Parsable):
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("user", self.user)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def user(self,) -> Optional[identity.Identity]:
-        """
-        Gets the user property value. The user property
-        Returns: Optional[identity.Identity]
-        """
-        return self._user
-    
-    @user.setter
-    def user(self,value: Optional[identity.Identity] = None) -> None:
-        """
-        Sets the user property value. The user property
-        Args:
-            value: Value to set for the user property.
-        """
-        self._user = value
     
 

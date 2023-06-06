@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,17 +8,13 @@ if TYPE_CHECKING:
 
 from . import information_protection_action
 
+@dataclass
 class CustomAction(information_protection_action.InformationProtectionAction):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new CustomAction and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.customAction"
-        # Name of the custom action.
-        self._name: Optional[str] = None
-        # Properties, in key value pair format, of the action.
-        self._properties: Optional[List[key_value_pair.KeyValuePair]] = None
+    odata_type = "#microsoft.graph.customAction"
+    # Name of the custom action.
+    name: Optional[str] = None
+    # Properties, in key value pair format, of the action.
+    properties: Optional[List[key_value_pair.KeyValuePair]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CustomAction:
@@ -45,40 +42,6 @@ class CustomAction(information_protection_action.InformationProtectionAction):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def name(self,) -> Optional[str]:
-        """
-        Gets the name property value. Name of the custom action.
-        Returns: Optional[str]
-        """
-        return self._name
-    
-    @name.setter
-    def name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the name property value. Name of the custom action.
-        Args:
-            value: Value to set for the name property.
-        """
-        self._name = value
-    
-    @property
-    def properties(self,) -> Optional[List[key_value_pair.KeyValuePair]]:
-        """
-        Gets the properties property value. Properties, in key value pair format, of the action.
-        Returns: Optional[List[key_value_pair.KeyValuePair]]
-        """
-        return self._properties
-    
-    @properties.setter
-    def properties(self,value: Optional[List[key_value_pair.KeyValuePair]] = None) -> None:
-        """
-        Sets the properties property value. Properties, in key value pair format, of the action.
-        Args:
-            value: Value to set for the properties property.
-        """
-        self._properties = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

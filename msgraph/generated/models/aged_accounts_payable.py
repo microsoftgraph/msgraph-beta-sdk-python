@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,68 +9,30 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class AgedAccountsPayable(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AgedAccountsPayable and sets the default values.
-        """
-        super().__init__()
-        # The agedAsOfDate property
-        self._aged_as_of_date: Optional[date] = None
-        # The balanceDue property
-        self._balance_due: Optional[float] = None
-        # The currencyCode property
-        self._currency_code: Optional[str] = None
-        # The currentAmount property
-        self._current_amount: Optional[float] = None
-        # The name property
-        self._name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The periodLengthFilter property
-        self._period_length_filter: Optional[str] = None
-        # The period1Amount property
-        self._period1_amount: Optional[float] = None
-        # The period2Amount property
-        self._period2_amount: Optional[float] = None
-        # The period3Amount property
-        self._period3_amount: Optional[float] = None
-        # The vendorNumber property
-        self._vendor_number: Optional[str] = None
-    
-    @property
-    def aged_as_of_date(self,) -> Optional[date]:
-        """
-        Gets the agedAsOfDate property value. The agedAsOfDate property
-        Returns: Optional[date]
-        """
-        return self._aged_as_of_date
-    
-    @aged_as_of_date.setter
-    def aged_as_of_date(self,value: Optional[date] = None) -> None:
-        """
-        Sets the agedAsOfDate property value. The agedAsOfDate property
-        Args:
-            value: Value to set for the aged_as_of_date property.
-        """
-        self._aged_as_of_date = value
-    
-    @property
-    def balance_due(self,) -> Optional[float]:
-        """
-        Gets the balanceDue property value. The balanceDue property
-        Returns: Optional[float]
-        """
-        return self._balance_due
-    
-    @balance_due.setter
-    def balance_due(self,value: Optional[float] = None) -> None:
-        """
-        Sets the balanceDue property value. The balanceDue property
-        Args:
-            value: Value to set for the balance_due property.
-        """
-        self._balance_due = value
+    # The agedAsOfDate property
+    aged_as_of_date: Optional[date] = None
+    # The balanceDue property
+    balance_due: Optional[float] = None
+    # The currencyCode property
+    currency_code: Optional[str] = None
+    # The currentAmount property
+    current_amount: Optional[float] = None
+    # The name property
+    name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The periodLengthFilter property
+    period_length_filter: Optional[str] = None
+    # The period1Amount property
+    period1_amount: Optional[float] = None
+    # The period2Amount property
+    period2_amount: Optional[float] = None
+    # The period3Amount property
+    period3_amount: Optional[float] = None
+    # The vendorNumber property
+    vendor_number: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AgedAccountsPayable:
@@ -82,40 +45,6 @@ class AgedAccountsPayable(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return AgedAccountsPayable()
-    
-    @property
-    def currency_code(self,) -> Optional[str]:
-        """
-        Gets the currencyCode property value. The currencyCode property
-        Returns: Optional[str]
-        """
-        return self._currency_code
-    
-    @currency_code.setter
-    def currency_code(self,value: Optional[str] = None) -> None:
-        """
-        Sets the currencyCode property value. The currencyCode property
-        Args:
-            value: Value to set for the currency_code property.
-        """
-        self._currency_code = value
-    
-    @property
-    def current_amount(self,) -> Optional[float]:
-        """
-        Gets the currentAmount property value. The currentAmount property
-        Returns: Optional[float]
-        """
-        return self._current_amount
-    
-    @current_amount.setter
-    def current_amount(self,value: Optional[float] = None) -> None:
-        """
-        Sets the currentAmount property value. The currentAmount property
-        Args:
-            value: Value to set for the current_amount property.
-        """
-        self._current_amount = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -140,91 +69,6 @@ class AgedAccountsPayable(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def name(self,) -> Optional[str]:
-        """
-        Gets the name property value. The name property
-        Returns: Optional[str]
-        """
-        return self._name
-    
-    @name.setter
-    def name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the name property value. The name property
-        Args:
-            value: Value to set for the name property.
-        """
-        self._name = value
-    
-    @property
-    def period_length_filter(self,) -> Optional[str]:
-        """
-        Gets the periodLengthFilter property value. The periodLengthFilter property
-        Returns: Optional[str]
-        """
-        return self._period_length_filter
-    
-    @period_length_filter.setter
-    def period_length_filter(self,value: Optional[str] = None) -> None:
-        """
-        Sets the periodLengthFilter property value. The periodLengthFilter property
-        Args:
-            value: Value to set for the period_length_filter property.
-        """
-        self._period_length_filter = value
-    
-    @property
-    def period1_amount(self,) -> Optional[float]:
-        """
-        Gets the period1Amount property value. The period1Amount property
-        Returns: Optional[float]
-        """
-        return self._period1_amount
-    
-    @period1_amount.setter
-    def period1_amount(self,value: Optional[float] = None) -> None:
-        """
-        Sets the period1Amount property value. The period1Amount property
-        Args:
-            value: Value to set for the period1_amount property.
-        """
-        self._period1_amount = value
-    
-    @property
-    def period2_amount(self,) -> Optional[float]:
-        """
-        Gets the period2Amount property value. The period2Amount property
-        Returns: Optional[float]
-        """
-        return self._period2_amount
-    
-    @period2_amount.setter
-    def period2_amount(self,value: Optional[float] = None) -> None:
-        """
-        Sets the period2Amount property value. The period2Amount property
-        Args:
-            value: Value to set for the period2_amount property.
-        """
-        self._period2_amount = value
-    
-    @property
-    def period3_amount(self,) -> Optional[float]:
-        """
-        Gets the period3Amount property value. The period3Amount property
-        Returns: Optional[float]
-        """
-        return self._period3_amount
-    
-    @period3_amount.setter
-    def period3_amount(self,value: Optional[float] = None) -> None:
-        """
-        Sets the period3Amount property value. The period3Amount property
-        Args:
-            value: Value to set for the period3_amount property.
-        """
-        self._period3_amount = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -244,22 +88,5 @@ class AgedAccountsPayable(entity.Entity):
         writer.write_float_value("period3Amount", self.period3_amount)
         writer.write_str_value("periodLengthFilter", self.period_length_filter)
         writer.write_str_value("vendorNumber", self.vendor_number)
-    
-    @property
-    def vendor_number(self,) -> Optional[str]:
-        """
-        Gets the vendorNumber property value. The vendorNumber property
-        Returns: Optional[str]
-        """
-        return self._vendor_number
-    
-    @vendor_number.setter
-    def vendor_number(self,value: Optional[str] = None) -> None:
-        """
-        Sets the vendorNumber property value. The vendorNumber property
-        Args:
-            value: Value to set for the vendor_number property.
-        """
-        self._vendor_number = value
     
 

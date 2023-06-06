@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,16 +8,12 @@ if TYPE_CHECKING:
 
 from . import job_response_base
 
+@dataclass
 class DlpEvaluatePoliciesJobResponse(job_response_base.JobResponseBase):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DlpEvaluatePoliciesJobResponse and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The result property
-        self._result: Optional[dlp_policies_job_result.DlpPoliciesJobResult] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The result property
+    result: Optional[dlp_policies_job_result.DlpPoliciesJobResult] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DlpEvaluatePoliciesJobResponse:
@@ -43,23 +40,6 @@ class DlpEvaluatePoliciesJobResponse(job_response_base.JobResponseBase):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def result(self,) -> Optional[dlp_policies_job_result.DlpPoliciesJobResult]:
-        """
-        Gets the result property value. The result property
-        Returns: Optional[dlp_policies_job_result.DlpPoliciesJobResult]
-        """
-        return self._result
-    
-    @result.setter
-    def result(self,value: Optional[dlp_policies_job_result.DlpPoliciesJobResult] = None) -> None:
-        """
-        Sets the result property value. The result property
-        Args:
-            value: Value to set for the result property.
-        """
-        self._result = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

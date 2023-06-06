@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,17 +8,13 @@ if TYPE_CHECKING:
 
 from . import exact_match_job_base
 
+@dataclass
 class ExactMatchLookupJob(exact_match_job_base.ExactMatchJobBase):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ExactMatchLookupJob and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.exactMatchLookupJob"
-        # The matchingRows property
-        self._matching_rows: Optional[List[lookup_result_row.LookupResultRow]] = None
-        # The state property
-        self._state: Optional[str] = None
+    odata_type = "#microsoft.graph.exactMatchLookupJob"
+    # The matchingRows property
+    matching_rows: Optional[List[lookup_result_row.LookupResultRow]] = None
+    # The state property
+    state: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ExactMatchLookupJob:
@@ -46,23 +43,6 @@ class ExactMatchLookupJob(exact_match_job_base.ExactMatchJobBase):
         fields.update(super_fields)
         return fields
     
-    @property
-    def matching_rows(self,) -> Optional[List[lookup_result_row.LookupResultRow]]:
-        """
-        Gets the matchingRows property value. The matchingRows property
-        Returns: Optional[List[lookup_result_row.LookupResultRow]]
-        """
-        return self._matching_rows
-    
-    @matching_rows.setter
-    def matching_rows(self,value: Optional[List[lookup_result_row.LookupResultRow]] = None) -> None:
-        """
-        Sets the matchingRows property value. The matchingRows property
-        Args:
-            value: Value to set for the matching_rows property.
-        """
-        self._matching_rows = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -74,22 +54,5 @@ class ExactMatchLookupJob(exact_match_job_base.ExactMatchJobBase):
         super().serialize(writer)
         writer.write_collection_of_object_values("matchingRows", self.matching_rows)
         writer.write_str_value("state", self.state)
-    
-    @property
-    def state(self,) -> Optional[str]:
-        """
-        Gets the state property value. The state property
-        Returns: Optional[str]
-        """
-        return self._state
-    
-    @state.setter
-    def state(self,value: Optional[str] = None) -> None:
-        """
-        Sets the state property value. The state property
-        Args:
-            value: Value to set for the state property.
-        """
-        self._state = value
     
 

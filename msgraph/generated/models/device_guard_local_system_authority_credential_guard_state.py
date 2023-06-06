@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceGuardLocalSystemAuthorityCredentialGuardState(Enum):
+class DeviceGuardLocalSystemAuthorityCredentialGuardState(str, Enum):
     # Running
     Running = "running",
     # Reboot required

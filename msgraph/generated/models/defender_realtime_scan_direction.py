@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DefenderRealtimeScanDirection(Enum):
+class DefenderRealtimeScanDirection(str, Enum):
     # 0 (default) – Monitor all files(bi-directional)
     MonitorAllFiles = "monitorAllFiles",
     # Monitor incoming files only.

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,16 +8,12 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class AdminReportSettings(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AdminReportSettings and sets the default values.
-        """
-        super().__init__()
-        # If set to true, all reports will conceal user information such as usernames, groups, and sites. If false, all reports will show identifiable information. This property represents a setting in the Microsoft 365 admin center. Required.
-        self._display_concealed_names: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+    # If set to true, all reports will conceal user information such as usernames, groups, and sites. If false, all reports will show identifiable information. This property represents a setting in the Microsoft 365 admin center. Required.
+    display_concealed_names: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AdminReportSettings:
@@ -29,23 +26,6 @@ class AdminReportSettings(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return AdminReportSettings()
-    
-    @property
-    def display_concealed_names(self,) -> Optional[bool]:
-        """
-        Gets the displayConcealedNames property value. If set to true, all reports will conceal user information such as usernames, groups, and sites. If false, all reports will show identifiable information. This property represents a setting in the Microsoft 365 admin center. Required.
-        Returns: Optional[bool]
-        """
-        return self._display_concealed_names
-    
-    @display_concealed_names.setter
-    def display_concealed_names(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the displayConcealedNames property value. If set to true, all reports will conceal user information such as usernames, groups, and sites. If false, all reports will show identifiable information. This property represents a setting in the Microsoft 365 admin center. Required.
-        Args:
-            value: Value to set for the display_concealed_names property.
-        """
-        self._display_concealed_names = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """

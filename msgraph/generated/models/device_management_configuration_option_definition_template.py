@@ -1,61 +1,25 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import device_management_configuration_setting_instance_template
 
+@dataclass
 class DeviceManagementConfigurationOptionDefinitionTemplate(AdditionalDataHolder, Parsable):
     """
     Option Definition Template
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementConfigurationOptionDefinitionTemplate and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # Option Children
-        self._children: Optional[List[device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate]] = None
-        # Option ItemId
-        self._item_id: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def children(self,) -> Optional[List[device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate]]:
-        """
-        Gets the children property value. Option Children
-        Returns: Optional[List[device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate]]
-        """
-        return self._children
-    
-    @children.setter
-    def children(self,value: Optional[List[device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate]] = None) -> None:
-        """
-        Sets the children property value. Option Children
-        Args:
-            value: Value to set for the children property.
-        """
-        self._children = value
+    # Option Children
+    children: Optional[List[device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate]] = None
+    # Option ItemId
+    item_id: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationOptionDefinitionTemplate:
@@ -82,40 +46,6 @@ class DeviceManagementConfigurationOptionDefinitionTemplate(AdditionalDataHolder
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def item_id(self,) -> Optional[str]:
-        """
-        Gets the itemId property value. Option ItemId
-        Returns: Optional[str]
-        """
-        return self._item_id
-    
-    @item_id.setter
-    def item_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the itemId property value. Option ItemId
-        Args:
-            value: Value to set for the item_id property.
-        """
-        self._item_id = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

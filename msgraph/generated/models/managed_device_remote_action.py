@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ManagedDeviceRemoteAction(Enum):
+class ManagedDeviceRemoteAction(str, Enum):
     Retire = "retire",
     Delete = "delete",
     FullScan = "fullScan",

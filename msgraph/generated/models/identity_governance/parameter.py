@@ -1,43 +1,24 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import value_type
 
+@dataclass
 class Parameter(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new parameter and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The name of the parameter.
-        self._name: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The valueType property
-        self._value_type: Optional[value_type.ValueType] = None
-        # The values of the parameter.
-        self._values: Optional[List[str]] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The name of the parameter.
+    name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The valueType property
+    value_type: Optional[value_type.ValueType] = None
+    # The values of the parameter.
+    values: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Parameter:
@@ -66,40 +47,6 @@ class Parameter(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def name(self,) -> Optional[str]:
-        """
-        Gets the name property value. The name of the parameter.
-        Returns: Optional[str]
-        """
-        return self._name
-    
-    @name.setter
-    def name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the name property value. The name of the parameter.
-        Args:
-            value: Value to set for the name property.
-        """
-        self._name = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -113,39 +60,5 @@ class Parameter(AdditionalDataHolder, Parsable):
         writer.write_collection_of_primitive_values("values", self.values)
         writer.write_enum_value("valueType", self.value_type)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def value_type(self,) -> Optional[value_type.ValueType]:
-        """
-        Gets the valueType property value. The valueType property
-        Returns: Optional[value_type.ValueType]
-        """
-        return self._value_type
-    
-    @value_type.setter
-    def value_type(self,value: Optional[value_type.ValueType] = None) -> None:
-        """
-        Sets the valueType property value. The valueType property
-        Args:
-            value: Value to set for the value_type property.
-        """
-        self._value_type = value
-    
-    @property
-    def values(self,) -> Optional[List[str]]:
-        """
-        Gets the values property value. The values of the parameter.
-        Returns: Optional[List[str]]
-        """
-        return self._values
-    
-    @values.setter
-    def values(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the values property value. The values of the parameter.
-        Args:
-            value: Value to set for the values property.
-        """
-        self._values = value
     
 

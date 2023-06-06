@@ -1,41 +1,22 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import registration_status_type
 
+@dataclass
 class UserRegistrationCount(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userRegistrationCount and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Provides the registration count for your tenant.
-        self._registration_count: Optional[int] = None
-        # The registrationStatus property
-        self._registration_status: Optional[registration_status_type.RegistrationStatusType] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Provides the registration count for your tenant.
+    registration_count: Optional[int] = None
+    # The registrationStatus property
+    registration_status: Optional[registration_status_type.RegistrationStatusType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserRegistrationCount:
@@ -62,57 +43,6 @@ class UserRegistrationCount(AdditionalDataHolder, Parsable):
             "registrationStatus": lambda n : setattr(self, 'registration_status', n.get_enum_value(registration_status_type.RegistrationStatusType)),
         }
         return fields
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def registration_count(self,) -> Optional[int]:
-        """
-        Gets the registrationCount property value. Provides the registration count for your tenant.
-        Returns: Optional[int]
-        """
-        return self._registration_count
-    
-    @registration_count.setter
-    def registration_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the registrationCount property value. Provides the registration count for your tenant.
-        Args:
-            value: Value to set for the registration_count property.
-        """
-        self._registration_count = value
-    
-    @property
-    def registration_status(self,) -> Optional[registration_status_type.RegistrationStatusType]:
-        """
-        Gets the registrationStatus property value. The registrationStatus property
-        Returns: Optional[registration_status_type.RegistrationStatusType]
-        """
-        return self._registration_status
-    
-    @registration_status.setter
-    def registration_status(self,value: Optional[registration_status_type.RegistrationStatusType] = None) -> None:
-        """
-        Sets the registrationStatus property value. The registrationStatus property
-        Args:
-            value: Value to set for the registration_status property.
-        """
-        self._registration_status = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

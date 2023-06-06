@@ -1,43 +1,24 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import translation_behavior, translation_language_override
 
+@dataclass
 class TranslationPreferences(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new translationPreferences and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # Translation override behavior for languages, if any.Returned by default.
-        self._language_overrides: Optional[List[translation_language_override.TranslationLanguageOverride]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The user's preferred translation behavior.Returned by default. Not nullable.
-        self._translation_behavior: Optional[translation_behavior.TranslationBehavior] = None
-        # The list of languages the user does not need translated. This is computed from the authoringLanguages collection in regionalAndLanguageSettings, and the languageOverrides collection in translationPreferences. The list specifies neutral culture values that include the language code without any country or region association. For example, it would specify 'fr' for the neutral French culture, but not 'fr-FR' for the French culture in France. Returned by default. Read only.
-        self._untranslated_languages: Optional[List[str]] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # Translation override behavior for languages, if any.Returned by default.
+    language_overrides: Optional[List[translation_language_override.TranslationLanguageOverride]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The user's preferred translation behavior.Returned by default. Not nullable.
+    translation_behavior: Optional[translation_behavior.TranslationBehavior] = None
+    # The list of languages the user does not need translated. This is computed from the authoringLanguages collection in regionalAndLanguageSettings, and the languageOverrides collection in translationPreferences. The list specifies neutral culture values that include the language code without any country or region association. For example, it would specify 'fr' for the neutral French culture, but not 'fr-FR' for the French culture in France. Returned by default. Read only.
+    untranslated_languages: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TranslationPreferences:
@@ -66,40 +47,6 @@ class TranslationPreferences(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def language_overrides(self,) -> Optional[List[translation_language_override.TranslationLanguageOverride]]:
-        """
-        Gets the languageOverrides property value. Translation override behavior for languages, if any.Returned by default.
-        Returns: Optional[List[translation_language_override.TranslationLanguageOverride]]
-        """
-        return self._language_overrides
-    
-    @language_overrides.setter
-    def language_overrides(self,value: Optional[List[translation_language_override.TranslationLanguageOverride]] = None) -> None:
-        """
-        Sets the languageOverrides property value. Translation override behavior for languages, if any.Returned by default.
-        Args:
-            value: Value to set for the language_overrides property.
-        """
-        self._language_overrides = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -113,39 +60,5 @@ class TranslationPreferences(AdditionalDataHolder, Parsable):
         writer.write_enum_value("translationBehavior", self.translation_behavior)
         writer.write_collection_of_primitive_values("untranslatedLanguages", self.untranslated_languages)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def translation_behavior(self,) -> Optional[translation_behavior.TranslationBehavior]:
-        """
-        Gets the translationBehavior property value. The user's preferred translation behavior.Returned by default. Not nullable.
-        Returns: Optional[translation_behavior.TranslationBehavior]
-        """
-        return self._translation_behavior
-    
-    @translation_behavior.setter
-    def translation_behavior(self,value: Optional[translation_behavior.TranslationBehavior] = None) -> None:
-        """
-        Sets the translationBehavior property value. The user's preferred translation behavior.Returned by default. Not nullable.
-        Args:
-            value: Value to set for the translation_behavior property.
-        """
-        self._translation_behavior = value
-    
-    @property
-    def untranslated_languages(self,) -> Optional[List[str]]:
-        """
-        Gets the untranslatedLanguages property value. The list of languages the user does not need translated. This is computed from the authoringLanguages collection in regionalAndLanguageSettings, and the languageOverrides collection in translationPreferences. The list specifies neutral culture values that include the language code without any country or region association. For example, it would specify 'fr' for the neutral French culture, but not 'fr-FR' for the French culture in France. Returned by default. Read only.
-        Returns: Optional[List[str]]
-        """
-        return self._untranslated_languages
-    
-    @untranslated_languages.setter
-    def untranslated_languages(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the untranslatedLanguages property value. The list of languages the user does not need translated. This is computed from the authoringLanguages collection in regionalAndLanguageSettings, and the languageOverrides collection in translationPreferences. The list specifies neutral culture values that include the language code without any country or region association. For example, it would specify 'fr' for the neutral French culture, but not 'fr-FR' for the French culture in France. Returned by default. Read only.
-        Args:
-            value: Value to set for the untranslated_languages property.
-        """
-        self._untranslated_languages = value
     
 

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,14 +8,10 @@ if TYPE_CHECKING:
 
 from ....models import base_collection_pagination_count_response
 
+@dataclass
 class GetDevicesScheduledToRetireResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new getDevicesScheduledToRetireResponse and sets the default values.
-        """
-        super().__init__()
-        # The value property
-        self._value: Optional[List[retire_scheduled_managed_device.RetireScheduledManagedDevice]] = None
+    # The value property
+    value: Optional[List[retire_scheduled_managed_device.RetireScheduledManagedDevice]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GetDevicesScheduledToRetireResponse:
@@ -52,22 +49,5 @@ class GetDevicesScheduledToRetireResponse(base_collection_pagination_count_respo
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_collection_of_object_values("value", self.value)
-    
-    @property
-    def value(self,) -> Optional[List[retire_scheduled_managed_device.RetireScheduledManagedDevice]]:
-        """
-        Gets the value property value. The value property
-        Returns: Optional[List[retire_scheduled_managed_device.RetireScheduledManagedDevice]]
-        """
-        return self._value
-    
-    @value.setter
-    def value(self,value: Optional[List[retire_scheduled_managed_device.RetireScheduledManagedDevice]] = None) -> None:
-        """
-        Sets the value property value. The value property
-        Args:
-            value: Value to set for the value property.
-        """
-        self._value = value
     
 

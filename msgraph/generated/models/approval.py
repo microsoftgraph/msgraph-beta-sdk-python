@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,16 +8,12 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class Approval(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new approval and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The steps property
-        self._steps: Optional[List[approval_step.ApprovalStep]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Used to represent the decision associated with a single step in the approval process configured in approvalStage.
+    steps: Optional[List[approval_step.ApprovalStep]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Approval:
@@ -54,22 +51,5 @@ class Approval(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_collection_of_object_values("steps", self.steps)
-    
-    @property
-    def steps(self,) -> Optional[List[approval_step.ApprovalStep]]:
-        """
-        Gets the steps property value. The steps property
-        Returns: Optional[List[approval_step.ApprovalStep]]
-        """
-        return self._steps
-    
-    @steps.setter
-    def steps(self,value: Optional[List[approval_step.ApprovalStep]] = None) -> None:
-        """
-        Sets the steps property value. The steps property
-        Args:
-            value: Value to set for the steps property.
-        """
-        self._steps = value
     
 

@@ -1,41 +1,22 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import credential
 
+@dataclass
 class PasswordSingleSignOnCredentialSet(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new passwordSingleSignOnCredentialSet and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # A list of credential objects that define the complete sign in flow.
-        self._credentials: Optional[List[credential.Credential]] = None
-        # The ID of the user or group this credential set belongs to.
-        self._id: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # A list of credential objects that define the complete sign in flow.
+    credentials: Optional[List[credential.Credential]] = None
+    # The ID of the user or group this credential set belongs to.
+    id: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PasswordSingleSignOnCredentialSet:
@@ -48,23 +29,6 @@ class PasswordSingleSignOnCredentialSet(AdditionalDataHolder, Parsable):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return PasswordSingleSignOnCredentialSet()
-    
-    @property
-    def credentials(self,) -> Optional[List[credential.Credential]]:
-        """
-        Gets the credentials property value. A list of credential objects that define the complete sign in flow.
-        Returns: Optional[List[credential.Credential]]
-        """
-        return self._credentials
-    
-    @credentials.setter
-    def credentials(self,value: Optional[List[credential.Credential]] = None) -> None:
-        """
-        Sets the credentials property value. A list of credential objects that define the complete sign in flow.
-        Args:
-            value: Value to set for the credentials property.
-        """
-        self._credentials = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -79,40 +43,6 @@ class PasswordSingleSignOnCredentialSet(AdditionalDataHolder, Parsable):
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def id(self,) -> Optional[str]:
-        """
-        Gets the id property value. The ID of the user or group this credential set belongs to.
-        Returns: Optional[str]
-        """
-        return self._id
-    
-    @id.setter
-    def id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the id property value. The ID of the user or group this credential set belongs to.
-        Args:
-            value: Value to set for the id property.
-        """
-        self._id = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

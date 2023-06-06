@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import validate_operation
 
+@dataclass
 class FileValidateOperation(validate_operation.ValidateOperation):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new FileValidateOperation and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.industryData.fileValidateOperation"
-        # Set of files validated by the validate operation.
-        self._validated_files: Optional[List[str]] = None
+    odata_type = "#microsoft.graph.industryData.fileValidateOperation"
+    # Set of files validated by the validate operation.
+    validated_files: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> FileValidateOperation:
@@ -52,22 +49,5 @@ class FileValidateOperation(validate_operation.ValidateOperation):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-    
-    @property
-    def validated_files(self,) -> Optional[List[str]]:
-        """
-        Gets the validatedFiles property value. Set of files validated by the validate operation.
-        Returns: Optional[List[str]]
-        """
-        return self._validated_files
-    
-    @validated_files.setter
-    def validated_files(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the validatedFiles property value. Set of files validated by the validate operation.
-        Args:
-            value: Value to set for the validated_files property.
-        """
-        self._validated_files = value
     
 

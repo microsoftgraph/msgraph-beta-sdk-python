@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,18 +8,14 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class HorizontalSectionColumn(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new horizontalSectionColumn and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The collection of WebParts in this column.
-        self._webparts: Optional[List[web_part.WebPart]] = None
-        # Width of the column. A horizontal section is divided into 12 grids. A column should have a value of 1-12 to represent its range spans. For example, there can be two columns both have a width of 6 in a section.
-        self._width: Optional[int] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The collection of WebParts in this column.
+    webparts: Optional[List[web_part.WebPart]] = None
+    # Width of the column. A horizontal section is divided into 12 grids. A column should have a value of 1-12 to represent its range spans. For example, there can be two columns both have a width of 6 in a section.
+    width: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> HorizontalSectionColumn:
@@ -58,39 +55,5 @@ class HorizontalSectionColumn(entity.Entity):
         super().serialize(writer)
         writer.write_collection_of_object_values("webparts", self.webparts)
         writer.write_int_value("width", self.width)
-    
-    @property
-    def webparts(self,) -> Optional[List[web_part.WebPart]]:
-        """
-        Gets the webparts property value. The collection of WebParts in this column.
-        Returns: Optional[List[web_part.WebPart]]
-        """
-        return self._webparts
-    
-    @webparts.setter
-    def webparts(self,value: Optional[List[web_part.WebPart]] = None) -> None:
-        """
-        Sets the webparts property value. The collection of WebParts in this column.
-        Args:
-            value: Value to set for the webparts property.
-        """
-        self._webparts = value
-    
-    @property
-    def width(self,) -> Optional[int]:
-        """
-        Gets the width property value. Width of the column. A horizontal section is divided into 12 grids. A column should have a value of 1-12 to represent its range spans. For example, there can be two columns both have a width of 6 in a section.
-        Returns: Optional[int]
-        """
-        return self._width
-    
-    @width.setter
-    def width(self,value: Optional[int] = None) -> None:
-        """
-        Sets the width property value. Width of the column. A horizontal section is divided into 12 grids. A column should have a value of 1-12 to represent its range spans. For example, there can be two columns both have a width of 6 in a section.
-        Args:
-            value: Value to set for the width property.
-        """
-        self._width = value
     
 

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import threat_submission
 
+@dataclass
 class UrlThreatSubmission(threat_submission.ThreatSubmission):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new UrlThreatSubmission and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.security.urlThreatSubmission"
-        # Denotes the webUrl that needs to be submitted.
-        self._web_url: Optional[str] = None
+    odata_type = "#microsoft.graph.security.urlThreatSubmission"
+    # Denotes the webUrl that needs to be submitted.
+    web_url: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UrlThreatSubmission:
@@ -53,22 +50,5 @@ class UrlThreatSubmission(threat_submission.ThreatSubmission):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_str_value("webUrl", self.web_url)
-    
-    @property
-    def web_url(self,) -> Optional[str]:
-        """
-        Gets the webUrl property value. Denotes the webUrl that needs to be submitted.
-        Returns: Optional[str]
-        """
-        return self._web_url
-    
-    @web_url.setter
-    def web_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the webUrl property value. Denotes the webUrl that needs to be submitted.
-        Args:
-            value: Value to set for the web_url property.
-        """
-        self._web_url = value
     
 

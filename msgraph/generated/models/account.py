@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,60 +9,22 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class Account(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new account and sets the default values.
-        """
-        super().__init__()
-        # The blocked property
-        self._blocked: Optional[bool] = None
-        # The category property
-        self._category: Optional[str] = None
-        # The displayName property
-        self._display_name: Optional[str] = None
-        # The lastModifiedDateTime property
-        self._last_modified_date_time: Optional[datetime] = None
-        # The number property
-        self._number: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The subCategory property
-        self._sub_category: Optional[str] = None
-    
-    @property
-    def blocked(self,) -> Optional[bool]:
-        """
-        Gets the blocked property value. The blocked property
-        Returns: Optional[bool]
-        """
-        return self._blocked
-    
-    @blocked.setter
-    def blocked(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the blocked property value. The blocked property
-        Args:
-            value: Value to set for the blocked property.
-        """
-        self._blocked = value
-    
-    @property
-    def category(self,) -> Optional[str]:
-        """
-        Gets the category property value. The category property
-        Returns: Optional[str]
-        """
-        return self._category
-    
-    @category.setter
-    def category(self,value: Optional[str] = None) -> None:
-        """
-        Sets the category property value. The category property
-        Args:
-            value: Value to set for the category property.
-        """
-        self._category = value
+    # The blocked property
+    blocked: Optional[bool] = None
+    # The category property
+    category: Optional[str] = None
+    # The displayName property
+    display_name: Optional[str] = None
+    # The lastModifiedDateTime property
+    last_modified_date_time: Optional[datetime] = None
+    # The number property
+    number: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The subCategory property
+    sub_category: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Account:
@@ -74,23 +37,6 @@ class Account(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return Account()
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The displayName property
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The displayName property
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -111,40 +57,6 @@ class Account(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def last_modified_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastModifiedDateTime property value. The lastModifiedDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._last_modified_date_time
-    
-    @last_modified_date_time.setter
-    def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
-        Args:
-            value: Value to set for the last_modified_date_time property.
-        """
-        self._last_modified_date_time = value
-    
-    @property
-    def number(self,) -> Optional[str]:
-        """
-        Gets the number property value. The number property
-        Returns: Optional[str]
-        """
-        return self._number
-    
-    @number.setter
-    def number(self,value: Optional[str] = None) -> None:
-        """
-        Sets the number property value. The number property
-        Args:
-            value: Value to set for the number property.
-        """
-        self._number = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -160,22 +72,5 @@ class Account(entity.Entity):
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("number", self.number)
         writer.write_str_value("subCategory", self.sub_category)
-    
-    @property
-    def sub_category(self,) -> Optional[str]:
-        """
-        Gets the subCategory property value. The subCategory property
-        Returns: Optional[str]
-        """
-        return self._sub_category
-    
-    @sub_category.setter
-    def sub_category(self,value: Optional[str] = None) -> None:
-        """
-        Sets the subCategory property value. The subCategory property
-        Args:
-            value: Value to set for the sub_category property.
-        """
-        self._sub_category = value
     
 

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,56 +9,52 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class Office365GroupsActivityDetail(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Office365GroupsActivityDetail and sets the default values.
-        """
-        super().__init__()
-        # The storage used of the group mailbox.
-        self._exchange_mailbox_storage_used_in_bytes: Optional[int] = None
-        # The number of items in the group mailbox.
-        self._exchange_mailbox_total_item_count: Optional[int] = None
-        # The number of email that the group mailbox received.
-        self._exchange_received_email_count: Optional[int] = None
-        # The group external member count.
-        self._external_member_count: Optional[int] = None
-        # The display name of the group.
-        self._group_display_name: Optional[str] = None
-        # The group id.
-        self._group_id: Optional[str] = None
-        # The group type. Possible values are: Public or Private.
-        self._group_type: Optional[str] = None
-        # Whether this user has been deleted or soft deleted.
-        self._is_deleted: Optional[bool] = None
-        # The last activity date for the following scenarios:  group mailbox received email; user viewed, edited, shared, or synced files in SharePoint document library; user viewed SharePoint pages; user posted, read, or liked messages in Yammer groups.
-        self._last_activity_date: Optional[date] = None
-        # The group member count.
-        self._member_count: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The group owner principal name.
-        self._owner_principal_name: Optional[str] = None
-        # The number of days the report covers.
-        self._report_period: Optional[str] = None
-        # The latest date of the content.
-        self._report_refresh_date: Optional[date] = None
-        # The number of active files in SharePoint Group site.
-        self._share_point_active_file_count: Optional[int] = None
-        # The storage used by SharePoint Group site.
-        self._share_point_site_storage_used_in_bytes: Optional[int] = None
-        # The total number of files in SharePoint Group site.
-        self._share_point_total_file_count: Optional[int] = None
-        # The number of channel messages in Teams team.
-        self._teams_channel_messages_count: Optional[int] = None
-        # The number of meetings organized in Teams team.
-        self._teams_meetings_organized_count: Optional[int] = None
-        # The number of messages liked in Yammer groups.
-        self._yammer_liked_message_count: Optional[int] = None
-        # The number of messages posted to Yammer groups.
-        self._yammer_posted_message_count: Optional[int] = None
-        # The number of messages read in Yammer groups.
-        self._yammer_read_message_count: Optional[int] = None
+    # The storage used of the group mailbox.
+    exchange_mailbox_storage_used_in_bytes: Optional[int] = None
+    # The number of items in the group mailbox.
+    exchange_mailbox_total_item_count: Optional[int] = None
+    # The number of email that the group mailbox received.
+    exchange_received_email_count: Optional[int] = None
+    # The group external member count.
+    external_member_count: Optional[int] = None
+    # The display name of the group.
+    group_display_name: Optional[str] = None
+    # The group id.
+    group_id: Optional[str] = None
+    # The group type. Possible values are: Public or Private.
+    group_type: Optional[str] = None
+    # Whether this user has been deleted or soft deleted.
+    is_deleted: Optional[bool] = None
+    # The last activity date for the following scenarios:  group mailbox received email; user viewed, edited, shared, or synced files in SharePoint document library; user viewed SharePoint pages; user posted, read, or liked messages in Yammer groups.
+    last_activity_date: Optional[date] = None
+    # The group member count.
+    member_count: Optional[int] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The group owner principal name.
+    owner_principal_name: Optional[str] = None
+    # The number of days the report covers.
+    report_period: Optional[str] = None
+    # The latest date of the content.
+    report_refresh_date: Optional[date] = None
+    # The number of active files in SharePoint Group site.
+    share_point_active_file_count: Optional[int] = None
+    # The storage used by SharePoint Group site.
+    share_point_site_storage_used_in_bytes: Optional[int] = None
+    # The total number of files in SharePoint Group site.
+    share_point_total_file_count: Optional[int] = None
+    # The number of channel messages in Teams team.
+    teams_channel_messages_count: Optional[int] = None
+    # The number of meetings organized in Teams team.
+    teams_meetings_organized_count: Optional[int] = None
+    # The number of messages liked in Yammer groups.
+    yammer_liked_message_count: Optional[int] = None
+    # The number of messages posted to Yammer groups.
+    yammer_posted_message_count: Optional[int] = None
+    # The number of messages read in Yammer groups.
+    yammer_read_message_count: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Office365GroupsActivityDetail:
@@ -70,74 +67,6 @@ class Office365GroupsActivityDetail(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return Office365GroupsActivityDetail()
-    
-    @property
-    def exchange_mailbox_storage_used_in_bytes(self,) -> Optional[int]:
-        """
-        Gets the exchangeMailboxStorageUsedInBytes property value. The storage used of the group mailbox.
-        Returns: Optional[int]
-        """
-        return self._exchange_mailbox_storage_used_in_bytes
-    
-    @exchange_mailbox_storage_used_in_bytes.setter
-    def exchange_mailbox_storage_used_in_bytes(self,value: Optional[int] = None) -> None:
-        """
-        Sets the exchangeMailboxStorageUsedInBytes property value. The storage used of the group mailbox.
-        Args:
-            value: Value to set for the exchange_mailbox_storage_used_in_bytes property.
-        """
-        self._exchange_mailbox_storage_used_in_bytes = value
-    
-    @property
-    def exchange_mailbox_total_item_count(self,) -> Optional[int]:
-        """
-        Gets the exchangeMailboxTotalItemCount property value. The number of items in the group mailbox.
-        Returns: Optional[int]
-        """
-        return self._exchange_mailbox_total_item_count
-    
-    @exchange_mailbox_total_item_count.setter
-    def exchange_mailbox_total_item_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the exchangeMailboxTotalItemCount property value. The number of items in the group mailbox.
-        Args:
-            value: Value to set for the exchange_mailbox_total_item_count property.
-        """
-        self._exchange_mailbox_total_item_count = value
-    
-    @property
-    def exchange_received_email_count(self,) -> Optional[int]:
-        """
-        Gets the exchangeReceivedEmailCount property value. The number of email that the group mailbox received.
-        Returns: Optional[int]
-        """
-        return self._exchange_received_email_count
-    
-    @exchange_received_email_count.setter
-    def exchange_received_email_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the exchangeReceivedEmailCount property value. The number of email that the group mailbox received.
-        Args:
-            value: Value to set for the exchange_received_email_count property.
-        """
-        self._exchange_received_email_count = value
-    
-    @property
-    def external_member_count(self,) -> Optional[int]:
-        """
-        Gets the externalMemberCount property value. The group external member count.
-        Returns: Optional[int]
-        """
-        return self._external_member_count
-    
-    @external_member_count.setter
-    def external_member_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the externalMemberCount property value. The group external member count.
-        Args:
-            value: Value to set for the external_member_count property.
-        """
-        self._external_member_count = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -173,159 +102,6 @@ class Office365GroupsActivityDetail(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def group_display_name(self,) -> Optional[str]:
-        """
-        Gets the groupDisplayName property value. The display name of the group.
-        Returns: Optional[str]
-        """
-        return self._group_display_name
-    
-    @group_display_name.setter
-    def group_display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the groupDisplayName property value. The display name of the group.
-        Args:
-            value: Value to set for the group_display_name property.
-        """
-        self._group_display_name = value
-    
-    @property
-    def group_id(self,) -> Optional[str]:
-        """
-        Gets the groupId property value. The group id.
-        Returns: Optional[str]
-        """
-        return self._group_id
-    
-    @group_id.setter
-    def group_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the groupId property value. The group id.
-        Args:
-            value: Value to set for the group_id property.
-        """
-        self._group_id = value
-    
-    @property
-    def group_type(self,) -> Optional[str]:
-        """
-        Gets the groupType property value. The group type. Possible values are: Public or Private.
-        Returns: Optional[str]
-        """
-        return self._group_type
-    
-    @group_type.setter
-    def group_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the groupType property value. The group type. Possible values are: Public or Private.
-        Args:
-            value: Value to set for the group_type property.
-        """
-        self._group_type = value
-    
-    @property
-    def is_deleted(self,) -> Optional[bool]:
-        """
-        Gets the isDeleted property value. Whether this user has been deleted or soft deleted.
-        Returns: Optional[bool]
-        """
-        return self._is_deleted
-    
-    @is_deleted.setter
-    def is_deleted(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isDeleted property value. Whether this user has been deleted or soft deleted.
-        Args:
-            value: Value to set for the is_deleted property.
-        """
-        self._is_deleted = value
-    
-    @property
-    def last_activity_date(self,) -> Optional[date]:
-        """
-        Gets the lastActivityDate property value. The last activity date for the following scenarios:  group mailbox received email; user viewed, edited, shared, or synced files in SharePoint document library; user viewed SharePoint pages; user posted, read, or liked messages in Yammer groups.
-        Returns: Optional[date]
-        """
-        return self._last_activity_date
-    
-    @last_activity_date.setter
-    def last_activity_date(self,value: Optional[date] = None) -> None:
-        """
-        Sets the lastActivityDate property value. The last activity date for the following scenarios:  group mailbox received email; user viewed, edited, shared, or synced files in SharePoint document library; user viewed SharePoint pages; user posted, read, or liked messages in Yammer groups.
-        Args:
-            value: Value to set for the last_activity_date property.
-        """
-        self._last_activity_date = value
-    
-    @property
-    def member_count(self,) -> Optional[int]:
-        """
-        Gets the memberCount property value. The group member count.
-        Returns: Optional[int]
-        """
-        return self._member_count
-    
-    @member_count.setter
-    def member_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the memberCount property value. The group member count.
-        Args:
-            value: Value to set for the member_count property.
-        """
-        self._member_count = value
-    
-    @property
-    def owner_principal_name(self,) -> Optional[str]:
-        """
-        Gets the ownerPrincipalName property value. The group owner principal name.
-        Returns: Optional[str]
-        """
-        return self._owner_principal_name
-    
-    @owner_principal_name.setter
-    def owner_principal_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the ownerPrincipalName property value. The group owner principal name.
-        Args:
-            value: Value to set for the owner_principal_name property.
-        """
-        self._owner_principal_name = value
-    
-    @property
-    def report_period(self,) -> Optional[str]:
-        """
-        Gets the reportPeriod property value. The number of days the report covers.
-        Returns: Optional[str]
-        """
-        return self._report_period
-    
-    @report_period.setter
-    def report_period(self,value: Optional[str] = None) -> None:
-        """
-        Sets the reportPeriod property value. The number of days the report covers.
-        Args:
-            value: Value to set for the report_period property.
-        """
-        self._report_period = value
-    
-    @property
-    def report_refresh_date(self,) -> Optional[date]:
-        """
-        Gets the reportRefreshDate property value. The latest date of the content.
-        Returns: Optional[date]
-        """
-        return self._report_refresh_date
-    
-    @report_refresh_date.setter
-    def report_refresh_date(self,value: Optional[date] = None) -> None:
-        """
-        Sets the reportRefreshDate property value. The latest date of the content.
-        Args:
-            value: Value to set for the report_refresh_date property.
-        """
-        self._report_refresh_date = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -356,141 +132,5 @@ class Office365GroupsActivityDetail(entity.Entity):
         writer.write_int_value("yammerLikedMessageCount", self.yammer_liked_message_count)
         writer.write_int_value("yammerPostedMessageCount", self.yammer_posted_message_count)
         writer.write_int_value("yammerReadMessageCount", self.yammer_read_message_count)
-    
-    @property
-    def share_point_active_file_count(self,) -> Optional[int]:
-        """
-        Gets the sharePointActiveFileCount property value. The number of active files in SharePoint Group site.
-        Returns: Optional[int]
-        """
-        return self._share_point_active_file_count
-    
-    @share_point_active_file_count.setter
-    def share_point_active_file_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the sharePointActiveFileCount property value. The number of active files in SharePoint Group site.
-        Args:
-            value: Value to set for the share_point_active_file_count property.
-        """
-        self._share_point_active_file_count = value
-    
-    @property
-    def share_point_site_storage_used_in_bytes(self,) -> Optional[int]:
-        """
-        Gets the sharePointSiteStorageUsedInBytes property value. The storage used by SharePoint Group site.
-        Returns: Optional[int]
-        """
-        return self._share_point_site_storage_used_in_bytes
-    
-    @share_point_site_storage_used_in_bytes.setter
-    def share_point_site_storage_used_in_bytes(self,value: Optional[int] = None) -> None:
-        """
-        Sets the sharePointSiteStorageUsedInBytes property value. The storage used by SharePoint Group site.
-        Args:
-            value: Value to set for the share_point_site_storage_used_in_bytes property.
-        """
-        self._share_point_site_storage_used_in_bytes = value
-    
-    @property
-    def share_point_total_file_count(self,) -> Optional[int]:
-        """
-        Gets the sharePointTotalFileCount property value. The total number of files in SharePoint Group site.
-        Returns: Optional[int]
-        """
-        return self._share_point_total_file_count
-    
-    @share_point_total_file_count.setter
-    def share_point_total_file_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the sharePointTotalFileCount property value. The total number of files in SharePoint Group site.
-        Args:
-            value: Value to set for the share_point_total_file_count property.
-        """
-        self._share_point_total_file_count = value
-    
-    @property
-    def teams_channel_messages_count(self,) -> Optional[int]:
-        """
-        Gets the teamsChannelMessagesCount property value. The number of channel messages in Teams team.
-        Returns: Optional[int]
-        """
-        return self._teams_channel_messages_count
-    
-    @teams_channel_messages_count.setter
-    def teams_channel_messages_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the teamsChannelMessagesCount property value. The number of channel messages in Teams team.
-        Args:
-            value: Value to set for the teams_channel_messages_count property.
-        """
-        self._teams_channel_messages_count = value
-    
-    @property
-    def teams_meetings_organized_count(self,) -> Optional[int]:
-        """
-        Gets the teamsMeetingsOrganizedCount property value. The number of meetings organized in Teams team.
-        Returns: Optional[int]
-        """
-        return self._teams_meetings_organized_count
-    
-    @teams_meetings_organized_count.setter
-    def teams_meetings_organized_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the teamsMeetingsOrganizedCount property value. The number of meetings organized in Teams team.
-        Args:
-            value: Value to set for the teams_meetings_organized_count property.
-        """
-        self._teams_meetings_organized_count = value
-    
-    @property
-    def yammer_liked_message_count(self,) -> Optional[int]:
-        """
-        Gets the yammerLikedMessageCount property value. The number of messages liked in Yammer groups.
-        Returns: Optional[int]
-        """
-        return self._yammer_liked_message_count
-    
-    @yammer_liked_message_count.setter
-    def yammer_liked_message_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the yammerLikedMessageCount property value. The number of messages liked in Yammer groups.
-        Args:
-            value: Value to set for the yammer_liked_message_count property.
-        """
-        self._yammer_liked_message_count = value
-    
-    @property
-    def yammer_posted_message_count(self,) -> Optional[int]:
-        """
-        Gets the yammerPostedMessageCount property value. The number of messages posted to Yammer groups.
-        Returns: Optional[int]
-        """
-        return self._yammer_posted_message_count
-    
-    @yammer_posted_message_count.setter
-    def yammer_posted_message_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the yammerPostedMessageCount property value. The number of messages posted to Yammer groups.
-        Args:
-            value: Value to set for the yammer_posted_message_count property.
-        """
-        self._yammer_posted_message_count = value
-    
-    @property
-    def yammer_read_message_count(self,) -> Optional[int]:
-        """
-        Gets the yammerReadMessageCount property value. The number of messages read in Yammer groups.
-        Returns: Optional[int]
-        """
-        return self._yammer_read_message_count
-    
-    @yammer_read_message_count.setter
-    def yammer_read_message_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the yammerReadMessageCount property value. The number of messages read in Yammer groups.
-        Args:
-            value: Value to set for the yammer_read_message_count property.
-        """
-        self._yammer_read_message_count = value
     
 

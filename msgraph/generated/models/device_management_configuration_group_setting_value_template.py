@@ -1,61 +1,25 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import device_management_configuration_setting_instance_template
 
+@dataclass
 class DeviceManagementConfigurationGroupSettingValueTemplate(AdditionalDataHolder, Parsable):
     """
     Group Setting Value Template
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementConfigurationGroupSettingValueTemplate and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # Group setting value children
-        self._children: Optional[List[device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Setting Value Template Id
-        self._setting_value_template_id: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def children(self,) -> Optional[List[device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate]]:
-        """
-        Gets the children property value. Group setting value children
-        Returns: Optional[List[device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate]]
-        """
-        return self._children
-    
-    @children.setter
-    def children(self,value: Optional[List[device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate]] = None) -> None:
-        """
-        Sets the children property value. Group setting value children
-        Args:
-            value: Value to set for the children property.
-        """
-        self._children = value
+    # Group setting value children
+    children: Optional[List[device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Setting Value Template Id
+    setting_value_template_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationGroupSettingValueTemplate:
@@ -83,23 +47,6 @@ class DeviceManagementConfigurationGroupSettingValueTemplate(AdditionalDataHolde
         }
         return fields
     
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -112,22 +59,5 @@ class DeviceManagementConfigurationGroupSettingValueTemplate(AdditionalDataHolde
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("settingValueTemplateId", self.setting_value_template_id)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def setting_value_template_id(self,) -> Optional[str]:
-        """
-        Gets the settingValueTemplateId property value. Setting Value Template Id
-        Returns: Optional[str]
-        """
-        return self._setting_value_template_id
-    
-    @setting_value_template_id.setter
-    def setting_value_template_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the settingValueTemplateId property value. Setting Value Template Id
-        Args:
-            value: Value to set for the setting_value_template_id property.
-        """
-        self._setting_value_template_id = value
     
 

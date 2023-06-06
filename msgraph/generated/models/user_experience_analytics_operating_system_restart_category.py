@@ -1,6 +1,6 @@
 from enum import Enum
 
-class UserExperienceAnalyticsOperatingSystemRestartCategory(Enum):
+class UserExperienceAnalyticsOperatingSystemRestartCategory(str, Enum):
     # Unknown
     Unknown = "unknown",
     # Restart with update

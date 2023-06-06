@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -8,16 +9,12 @@ if TYPE_CHECKING:
 
 from .. import entity
 
+@dataclass
 class Security(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new security and sets the default values.
-        """
-        super().__init__()
-        # The informationProtection property
-        self._information_protection: Optional[information_protection.InformationProtection] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+    # The informationProtection property
+    information_protection: Optional[information_protection.InformationProtection] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Security:
@@ -45,23 +42,6 @@ class Security(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def information_protection(self,) -> Optional[information_protection.InformationProtection]:
-        """
-        Gets the informationProtection property value. The informationProtection property
-        Returns: Optional[information_protection.InformationProtection]
-        """
-        return self._information_protection
-    
-    @information_protection.setter
-    def information_protection(self,value: Optional[information_protection.InformationProtection] = None) -> None:
-        """
-        Sets the informationProtection property value. The informationProtection property
-        Args:
-            value: Value to set for the information_protection property.
-        """
-        self._information_protection = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

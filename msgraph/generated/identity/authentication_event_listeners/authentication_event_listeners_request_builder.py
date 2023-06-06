@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -54,7 +54,7 @@ class AuthenticationEventListenersRequestBuilder():
     
     async def get(self,request_configuration: Optional[AuthenticationEventListenersRequestBuilderGetRequestConfiguration] = None) -> Optional[authentication_event_listener_collection_response.AuthenticationEventListenerCollectionResponse]:
         """
-        Get a list of the authenticationEventListener objects and their properties. Only the onTokenIssuanceStartListener type is supported.
+        Get a list of the authenticationEventListener objects and their properties. The following derived types are supported:
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[authentication_event_listener_collection_response.AuthenticationEventListenerCollectionResponse]
@@ -76,7 +76,7 @@ class AuthenticationEventListenersRequestBuilder():
     
     async def post(self,body: Optional[authentication_event_listener.AuthenticationEventListener] = None, request_configuration: Optional[AuthenticationEventListenersRequestBuilderPostRequestConfiguration] = None) -> Optional[authentication_event_listener.AuthenticationEventListener]:
         """
-        Create a new authenticationEventListener object. Only the onTokenIssuanceStartListener type is supported.
+        Create a new authenticationEventListener object. You can create one of the following subtypes that are derived from **authenticationEventListener**.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +101,7 @@ class AuthenticationEventListenersRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AuthenticationEventListenersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the authenticationEventListener objects and their properties. Only the onTokenIssuanceStartListener type is supported.
+        Get a list of the authenticationEventListener objects and their properties. The following derived types are supported:
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class AuthenticationEventListenersRequestBuilder():
     
     def to_post_request_information(self,body: Optional[authentication_event_listener.AuthenticationEventListener] = None, request_configuration: Optional[AuthenticationEventListenersRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new authenticationEventListener object. Only the onTokenIssuanceStartListener type is supported.
+        Create a new authenticationEventListener object. You can create one of the following subtypes that are derived from **authenticationEventListener**.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -150,7 +150,7 @@ class AuthenticationEventListenersRequestBuilder():
     @dataclass
     class AuthenticationEventListenersRequestBuilderGetQueryParameters():
         """
-        Get a list of the authenticationEventListener objects and their properties. Only the onTokenIssuanceStartListener type is supported.
+        Get a list of the authenticationEventListener objects and their properties. The following derived types are supported:
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,18 +8,14 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class CloudPcForensicStorageAccount(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new cloudPcForensicStorageAccount and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The ID of the storage account.
-        self._storage_account_id: Optional[str] = None
-        # The name of the storage account.
-        self._storage_account_name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The ID of the storage account.
+    storage_account_id: Optional[str] = None
+    # The name of the storage account.
+    storage_account_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcForensicStorageAccount:
@@ -58,39 +55,5 @@ class CloudPcForensicStorageAccount(entity.Entity):
         super().serialize(writer)
         writer.write_str_value("storageAccountId", self.storage_account_id)
         writer.write_str_value("storageAccountName", self.storage_account_name)
-    
-    @property
-    def storage_account_id(self,) -> Optional[str]:
-        """
-        Gets the storageAccountId property value. The ID of the storage account.
-        Returns: Optional[str]
-        """
-        return self._storage_account_id
-    
-    @storage_account_id.setter
-    def storage_account_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the storageAccountId property value. The ID of the storage account.
-        Args:
-            value: Value to set for the storage_account_id property.
-        """
-        self._storage_account_id = value
-    
-    @property
-    def storage_account_name(self,) -> Optional[str]:
-        """
-        Gets the storageAccountName property value. The name of the storage account.
-        Returns: Optional[str]
-        """
-        return self._storage_account_name
-    
-    @storage_account_name.setter
-    def storage_account_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the storageAccountName property value. The name of the storage account.
-        Args:
-            value: Value to set for the storage_account_name property.
-        """
-        self._storage_account_name = value
     
 

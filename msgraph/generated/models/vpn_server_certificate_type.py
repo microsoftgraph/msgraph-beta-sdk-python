@@ -1,6 +1,6 @@
 from enum import Enum
 
-class VpnServerCertificateType(Enum):
+class VpnServerCertificateType(str, Enum):
     # RSA
     Rsa = "rsa",
     # ECDSA256

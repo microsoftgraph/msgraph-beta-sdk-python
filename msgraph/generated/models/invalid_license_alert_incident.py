@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import unified_role_management_alert_incident
 
+@dataclass
 class InvalidLicenseAlertIncident(unified_role_management_alert_incident.UnifiedRoleManagementAlertIncident):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new InvalidLicenseAlertIncident and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.invalidLicenseAlertIncident"
-        # The tenantLicenseStatus property
-        self._tenant_license_status: Optional[str] = None
+    odata_type = "#microsoft.graph.invalidLicenseAlertIncident"
+    # The tenantLicenseStatus property
+    tenant_license_status: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> InvalidLicenseAlertIncident:
@@ -53,22 +50,5 @@ class InvalidLicenseAlertIncident(unified_role_management_alert_incident.Unified
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_str_value("tenantLicenseStatus", self.tenant_license_status)
-    
-    @property
-    def tenant_license_status(self,) -> Optional[str]:
-        """
-        Gets the tenantLicenseStatus property value. The tenantLicenseStatus property
-        Returns: Optional[str]
-        """
-        return self._tenant_license_status
-    
-    @tenant_license_status.setter
-    def tenant_license_status(self,value: Optional[str] = None) -> None:
-        """
-        Sets the tenantLicenseStatus property value. The tenantLicenseStatus property
-        Args:
-            value: Value to set for the tenant_license_status property.
-        """
-        self._tenant_license_status = value
     
 

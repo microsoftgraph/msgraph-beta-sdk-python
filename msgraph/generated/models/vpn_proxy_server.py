@@ -1,80 +1,27 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import windows10_vpn_proxy_server, windows81_vpn_proxy_server
 
+@dataclass
 class VpnProxyServer(AdditionalDataHolder, Parsable):
     """
     VPN Proxy Server.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new vpnProxyServer and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # Address.
-        self._address: Optional[str] = None
-        # Proxy's automatic configuration script url.
-        self._automatic_configuration_script_url: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Port. Valid values 0 to 65535
-        self._port: Optional[int] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def address(self,) -> Optional[str]:
-        """
-        Gets the address property value. Address.
-        Returns: Optional[str]
-        """
-        return self._address
-    
-    @address.setter
-    def address(self,value: Optional[str] = None) -> None:
-        """
-        Sets the address property value. Address.
-        Args:
-            value: Value to set for the address property.
-        """
-        self._address = value
-    
-    @property
-    def automatic_configuration_script_url(self,) -> Optional[str]:
-        """
-        Gets the automaticConfigurationScriptUrl property value. Proxy's automatic configuration script url.
-        Returns: Optional[str]
-        """
-        return self._automatic_configuration_script_url
-    
-    @automatic_configuration_script_url.setter
-    def automatic_configuration_script_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the automaticConfigurationScriptUrl property value. Proxy's automatic configuration script url.
-        Args:
-            value: Value to set for the automatic_configuration_script_url property.
-        """
-        self._automatic_configuration_script_url = value
+    # Address.
+    address: Optional[str] = None
+    # Proxy's automatic configuration script url.
+    automatic_configuration_script_url: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Port. Valid values 0 to 65535
+    port: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> VpnProxyServer:
@@ -113,40 +60,6 @@ class VpnProxyServer(AdditionalDataHolder, Parsable):
             "port": lambda n : setattr(self, 'port', n.get_int_value()),
         }
         return fields
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def port(self,) -> Optional[int]:
-        """
-        Gets the port property value. Port. Valid values 0 to 65535
-        Returns: Optional[int]
-        """
-        return self._port
-    
-    @port.setter
-    def port(self,value: Optional[int] = None) -> None:
-        """
-        Sets the port property value. Port. Valid values 0 to 65535
-        Args:
-            value: Value to set for the port property.
-        """
-        self._port = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

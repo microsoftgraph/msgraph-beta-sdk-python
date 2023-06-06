@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,35 +8,14 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class DocumentCommentReply(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new documentCommentReply and sets the default values.
-        """
-        super().__init__()
-        # The content property
-        self._content: Optional[str] = None
-        # The location property
-        self._location: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def content(self,) -> Optional[str]:
-        """
-        Gets the content property value. The content property
-        Returns: Optional[str]
-        """
-        return self._content
-    
-    @content.setter
-    def content(self,value: Optional[str] = None) -> None:
-        """
-        Sets the content property value. The content property
-        Args:
-            value: Value to set for the content property.
-        """
-        self._content = value
+    # The content property
+    content: Optional[str] = None
+    # The location property
+    location: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DocumentCommentReply:
@@ -63,23 +43,6 @@ class DocumentCommentReply(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def location(self,) -> Optional[str]:
-        """
-        Gets the location property value. The location property
-        Returns: Optional[str]
-        """
-        return self._location
-    
-    @location.setter
-    def location(self,value: Optional[str] = None) -> None:
-        """
-        Sets the location property value. The location property
-        Args:
-            value: Value to set for the location property.
-        """
-        self._location = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

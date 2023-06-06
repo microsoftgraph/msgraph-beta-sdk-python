@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,63 +9,25 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class GroupPolicyDefinitionValue(entity.Entity):
     """
     The definition value entity stores the value for a single group policy definition.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new groupPolicyDefinitionValue and sets the default values.
-        """
-        super().__init__()
-        # Group Policy Configuration Type
-        self._configuration_type: Optional[group_policy_configuration_type.GroupPolicyConfigurationType] = None
-        # The date and time the object was created.
-        self._created_date_time: Optional[datetime] = None
-        # The associated group policy definition with the value.
-        self._definition: Optional[group_policy_definition.GroupPolicyDefinition] = None
-        # Enables or disables the associated group policy definition.
-        self._enabled: Optional[bool] = None
-        # The date and time the entity was last modified.
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The associated group policy presentation values with the definition value.
-        self._presentation_values: Optional[List[group_policy_presentation_value.GroupPolicyPresentationValue]] = None
-    
-    @property
-    def configuration_type(self,) -> Optional[group_policy_configuration_type.GroupPolicyConfigurationType]:
-        """
-        Gets the configurationType property value. Group Policy Configuration Type
-        Returns: Optional[group_policy_configuration_type.GroupPolicyConfigurationType]
-        """
-        return self._configuration_type
-    
-    @configuration_type.setter
-    def configuration_type(self,value: Optional[group_policy_configuration_type.GroupPolicyConfigurationType] = None) -> None:
-        """
-        Sets the configurationType property value. Group Policy Configuration Type
-        Args:
-            value: Value to set for the configuration_type property.
-        """
-        self._configuration_type = value
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. The date and time the object was created.
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. The date and time the object was created.
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+    # Group Policy Configuration Type
+    configuration_type: Optional[group_policy_configuration_type.GroupPolicyConfigurationType] = None
+    # The date and time the object was created.
+    created_date_time: Optional[datetime] = None
+    # The associated group policy definition with the value.
+    definition: Optional[group_policy_definition.GroupPolicyDefinition] = None
+    # Enables or disables the associated group policy definition.
+    enabled: Optional[bool] = None
+    # The date and time the entity was last modified.
+    last_modified_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The associated group policy presentation values with the definition value.
+    presentation_values: Optional[List[group_policy_presentation_value.GroupPolicyPresentationValue]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GroupPolicyDefinitionValue:
@@ -77,40 +40,6 @@ class GroupPolicyDefinitionValue(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return GroupPolicyDefinitionValue()
-    
-    @property
-    def definition(self,) -> Optional[group_policy_definition.GroupPolicyDefinition]:
-        """
-        Gets the definition property value. The associated group policy definition with the value.
-        Returns: Optional[group_policy_definition.GroupPolicyDefinition]
-        """
-        return self._definition
-    
-    @definition.setter
-    def definition(self,value: Optional[group_policy_definition.GroupPolicyDefinition] = None) -> None:
-        """
-        Sets the definition property value. The associated group policy definition with the value.
-        Args:
-            value: Value to set for the definition property.
-        """
-        self._definition = value
-    
-    @property
-    def enabled(self,) -> Optional[bool]:
-        """
-        Gets the enabled property value. Enables or disables the associated group policy definition.
-        Returns: Optional[bool]
-        """
-        return self._enabled
-    
-    @enabled.setter
-    def enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the enabled property value. Enables or disables the associated group policy definition.
-        Args:
-            value: Value to set for the enabled property.
-        """
-        self._enabled = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -130,40 +59,6 @@ class GroupPolicyDefinitionValue(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def last_modified_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastModifiedDateTime property value. The date and time the entity was last modified.
-        Returns: Optional[datetime]
-        """
-        return self._last_modified_date_time
-    
-    @last_modified_date_time.setter
-    def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastModifiedDateTime property value. The date and time the entity was last modified.
-        Args:
-            value: Value to set for the last_modified_date_time property.
-        """
-        self._last_modified_date_time = value
-    
-    @property
-    def presentation_values(self,) -> Optional[List[group_policy_presentation_value.GroupPolicyPresentationValue]]:
-        """
-        Gets the presentationValues property value. The associated group policy presentation values with the definition value.
-        Returns: Optional[List[group_policy_presentation_value.GroupPolicyPresentationValue]]
-        """
-        return self._presentation_values
-    
-    @presentation_values.setter
-    def presentation_values(self,value: Optional[List[group_policy_presentation_value.GroupPolicyPresentationValue]] = None) -> None:
-        """
-        Sets the presentationValues property value. The associated group policy presentation values with the definition value.
-        Args:
-            value: Value to set for the presentation_values property.
-        """
-        self._presentation_values = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

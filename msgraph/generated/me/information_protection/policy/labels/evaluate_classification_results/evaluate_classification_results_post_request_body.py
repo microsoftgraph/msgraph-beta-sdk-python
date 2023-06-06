@@ -1,73 +1,20 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ......models import classification_result, content_info
 
+@dataclass
 class EvaluateClassificationResultsPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new evaluateClassificationResultsPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The classificationResults property
-        self._classification_results: Optional[List[classification_result.ClassificationResult]] = None
-        # The contentInfo property
-        self._content_info: Optional[content_info.ContentInfo] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def classification_results(self,) -> Optional[List[classification_result.ClassificationResult]]:
-        """
-        Gets the classificationResults property value. The classificationResults property
-        Returns: Optional[List[classification_result.ClassificationResult]]
-        """
-        return self._classification_results
-    
-    @classification_results.setter
-    def classification_results(self,value: Optional[List[classification_result.ClassificationResult]] = None) -> None:
-        """
-        Sets the classificationResults property value. The classificationResults property
-        Args:
-            value: Value to set for the classification_results property.
-        """
-        self._classification_results = value
-    
-    @property
-    def content_info(self,) -> Optional[content_info.ContentInfo]:
-        """
-        Gets the contentInfo property value. The contentInfo property
-        Returns: Optional[content_info.ContentInfo]
-        """
-        return self._content_info
-    
-    @content_info.setter
-    def content_info(self,value: Optional[content_info.ContentInfo] = None) -> None:
-        """
-        Sets the contentInfo property value. The contentInfo property
-        Args:
-            value: Value to set for the content_info property.
-        """
-        self._content_info = value
+    # The classificationResults property
+    classification_results: Optional[List[classification_result.ClassificationResult]] = None
+    # The contentInfo property
+    content_info: Optional[content_info.ContentInfo] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EvaluateClassificationResultsPostRequestBody:

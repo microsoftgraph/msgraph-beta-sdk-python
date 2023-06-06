@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,16 +8,12 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class PronounsSettings(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new pronounsSettings and sets the default values.
-        """
-        super().__init__()
-        # true to enable pronouns in the organization, false otherwise. The default is false, and pronouns are disabled.
-        self._is_enabled_in_organization: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+    # true to enable pronouns in the organization, false otherwise. The default is false, and pronouns are disabled.
+    is_enabled_in_organization: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PronounsSettings:
@@ -43,23 +40,6 @@ class PronounsSettings(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def is_enabled_in_organization(self,) -> Optional[bool]:
-        """
-        Gets the isEnabledInOrganization property value. true to enable pronouns in the organization, false otherwise. The default is false, and pronouns are disabled.
-        Returns: Optional[bool]
-        """
-        return self._is_enabled_in_organization
-    
-    @is_enabled_in_organization.setter
-    def is_enabled_in_organization(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isEnabledInOrganization property value. true to enable pronouns in the organization, false otherwise. The default is false, and pronouns are disabled.
-        Args:
-            value: Value to set for the is_enabled_in_organization property.
-        """
-        self._is_enabled_in_organization = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,57 +8,19 @@ if TYPE_CHECKING:
 
 from . import device_configuration
 
+@dataclass
 class VpnConfiguration(device_configuration.DeviceConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new VpnConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.vpnConfiguration"
-        # VPN Authentication Method.
-        self._authentication_method: Optional[vpn_authentication_method.VpnAuthenticationMethod] = None
-        # Connection name displayed to the user.
-        self._connection_name: Optional[str] = None
-        # Realm when connection type is set to Pulse Secure.
-        self._realm: Optional[str] = None
-        # Role when connection type is set to Pulse Secure.
-        self._role: Optional[str] = None
-        # List of VPN Servers on the network. Make sure end users can access these network locations. This collection can contain a maximum of 500 elements.
-        self._servers: Optional[List[vpn_server.VpnServer]] = None
-    
-    @property
-    def authentication_method(self,) -> Optional[vpn_authentication_method.VpnAuthenticationMethod]:
-        """
-        Gets the authenticationMethod property value. VPN Authentication Method.
-        Returns: Optional[vpn_authentication_method.VpnAuthenticationMethod]
-        """
-        return self._authentication_method
-    
-    @authentication_method.setter
-    def authentication_method(self,value: Optional[vpn_authentication_method.VpnAuthenticationMethod] = None) -> None:
-        """
-        Sets the authenticationMethod property value. VPN Authentication Method.
-        Args:
-            value: Value to set for the authentication_method property.
-        """
-        self._authentication_method = value
-    
-    @property
-    def connection_name(self,) -> Optional[str]:
-        """
-        Gets the connectionName property value. Connection name displayed to the user.
-        Returns: Optional[str]
-        """
-        return self._connection_name
-    
-    @connection_name.setter
-    def connection_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the connectionName property value. Connection name displayed to the user.
-        Args:
-            value: Value to set for the connection_name property.
-        """
-        self._connection_name = value
+    odata_type = "#microsoft.graph.vpnConfiguration"
+    # VPN Authentication Method.
+    authentication_method: Optional[vpn_authentication_method.VpnAuthenticationMethod] = None
+    # Connection name displayed to the user.
+    connection_name: Optional[str] = None
+    # Realm when connection type is set to Pulse Secure.
+    realm: Optional[str] = None
+    # Role when connection type is set to Pulse Secure.
+    role: Optional[str] = None
+    # List of VPN Servers on the network. Make sure end users can access these network locations. This collection can contain a maximum of 500 elements.
+    servers: Optional[List[vpn_server.VpnServer]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> VpnConfiguration:
@@ -96,40 +59,6 @@ class VpnConfiguration(device_configuration.DeviceConfiguration):
         fields.update(super_fields)
         return fields
     
-    @property
-    def realm(self,) -> Optional[str]:
-        """
-        Gets the realm property value. Realm when connection type is set to Pulse Secure.
-        Returns: Optional[str]
-        """
-        return self._realm
-    
-    @realm.setter
-    def realm(self,value: Optional[str] = None) -> None:
-        """
-        Sets the realm property value. Realm when connection type is set to Pulse Secure.
-        Args:
-            value: Value to set for the realm property.
-        """
-        self._realm = value
-    
-    @property
-    def role(self,) -> Optional[str]:
-        """
-        Gets the role property value. Role when connection type is set to Pulse Secure.
-        Returns: Optional[str]
-        """
-        return self._role
-    
-    @role.setter
-    def role(self,value: Optional[str] = None) -> None:
-        """
-        Sets the role property value. Role when connection type is set to Pulse Secure.
-        Args:
-            value: Value to set for the role property.
-        """
-        self._role = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -144,22 +73,5 @@ class VpnConfiguration(device_configuration.DeviceConfiguration):
         writer.write_str_value("realm", self.realm)
         writer.write_str_value("role", self.role)
         writer.write_collection_of_object_values("servers", self.servers)
-    
-    @property
-    def servers(self,) -> Optional[List[vpn_server.VpnServer]]:
-        """
-        Gets the servers property value. List of VPN Servers on the network. Make sure end users can access these network locations. This collection can contain a maximum of 500 elements.
-        Returns: Optional[List[vpn_server.VpnServer]]
-        """
-        return self._servers
-    
-    @servers.setter
-    def servers(self,value: Optional[List[vpn_server.VpnServer]] = None) -> None:
-        """
-        Sets the servers property value. List of VPN Servers on the network. Make sure end users can access these network locations. This collection can contain a maximum of 500 elements.
-        Args:
-            value: Value to set for the servers property.
-        """
-        self._servers = value
     
 

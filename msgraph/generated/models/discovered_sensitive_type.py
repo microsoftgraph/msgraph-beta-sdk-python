@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 from uuid import UUID
@@ -6,92 +7,21 @@ from uuid import UUID
 if TYPE_CHECKING:
     from . import classification_attribute
 
+@dataclass
 class DiscoveredSensitiveType(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new discoveredSensitiveType and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The classificationAttributes property
-        self._classification_attributes: Optional[List[classification_attribute.ClassificationAttribute]] = None
-        # The confidence property
-        self._confidence: Optional[int] = None
-        # The count property
-        self._count: Optional[int] = None
-        # The id property
-        self._id: Optional[UUID] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def classification_attributes(self,) -> Optional[List[classification_attribute.ClassificationAttribute]]:
-        """
-        Gets the classificationAttributes property value. The classificationAttributes property
-        Returns: Optional[List[classification_attribute.ClassificationAttribute]]
-        """
-        return self._classification_attributes
-    
-    @classification_attributes.setter
-    def classification_attributes(self,value: Optional[List[classification_attribute.ClassificationAttribute]] = None) -> None:
-        """
-        Sets the classificationAttributes property value. The classificationAttributes property
-        Args:
-            value: Value to set for the classification_attributes property.
-        """
-        self._classification_attributes = value
-    
-    @property
-    def confidence(self,) -> Optional[int]:
-        """
-        Gets the confidence property value. The confidence property
-        Returns: Optional[int]
-        """
-        return self._confidence
-    
-    @confidence.setter
-    def confidence(self,value: Optional[int] = None) -> None:
-        """
-        Sets the confidence property value. The confidence property
-        Args:
-            value: Value to set for the confidence property.
-        """
-        self._confidence = value
-    
-    @property
-    def count(self,) -> Optional[int]:
-        """
-        Gets the count property value. The count property
-        Returns: Optional[int]
-        """
-        return self._count
-    
-    @count.setter
-    def count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the count property value. The count property
-        Args:
-            value: Value to set for the count property.
-        """
-        self._count = value
+    # The classificationAttributes property
+    classification_attributes: Optional[List[classification_attribute.ClassificationAttribute]] = None
+    # The confidence property
+    confidence: Optional[int] = None
+    # The count property
+    count: Optional[int] = None
+    # The id property
+    id: Optional[UUID] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DiscoveredSensitiveType:
@@ -120,40 +50,6 @@ class DiscoveredSensitiveType(AdditionalDataHolder, Parsable):
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def id(self,) -> Optional[UUID]:
-        """
-        Gets the id property value. The id property
-        Returns: Optional[UUID]
-        """
-        return self._id
-    
-    @id.setter
-    def id(self,value: Optional[UUID] = None) -> None:
-        """
-        Sets the id property value. The id property
-        Args:
-            value: Value to set for the id property.
-        """
-        self._id = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

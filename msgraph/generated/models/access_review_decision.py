@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,117 +9,28 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class AccessReviewDecision(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new accessReviewDecision and sets the default values.
-        """
-        super().__init__()
-        # The feature- generated recommendation shown to the reviewer, one of Approve, Deny or NotAvailable.
-        self._access_recommendation: Optional[str] = None
-        # The feature-generated id of the access review.
-        self._access_review_id: Optional[str] = None
-        # When the review completes, if the results were manually applied, the user identity of the user who applied the decision. If the review was auto-applied, the userPrincipalName is empty.
-        self._applied_by: Optional[user_identity.UserIdentity] = None
-        # The date and time when the review decision was applied.
-        self._applied_date_time: Optional[datetime] = None
-        # The outcome of applying the decision, one of NotApplied, Success, Failed, NotFound or NotSupported.
-        self._apply_result: Optional[str] = None
-        # The reviewer's business justification, if supplied.
-        self._justification: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The result of the review, one of NotReviewed, Deny, DontKnow or Approve.
-        self._review_result: Optional[str] = None
-        # The identity of the reviewer. If the recommendation was used as the review, the userPrincipalName is empty.
-        self._reviewed_by: Optional[user_identity.UserIdentity] = None
-        # The reviewedDateTime property
-        self._reviewed_date_time: Optional[datetime] = None
-    
-    @property
-    def access_recommendation(self,) -> Optional[str]:
-        """
-        Gets the accessRecommendation property value. The feature- generated recommendation shown to the reviewer, one of Approve, Deny or NotAvailable.
-        Returns: Optional[str]
-        """
-        return self._access_recommendation
-    
-    @access_recommendation.setter
-    def access_recommendation(self,value: Optional[str] = None) -> None:
-        """
-        Sets the accessRecommendation property value. The feature- generated recommendation shown to the reviewer, one of Approve, Deny or NotAvailable.
-        Args:
-            value: Value to set for the access_recommendation property.
-        """
-        self._access_recommendation = value
-    
-    @property
-    def access_review_id(self,) -> Optional[str]:
-        """
-        Gets the accessReviewId property value. The feature-generated id of the access review.
-        Returns: Optional[str]
-        """
-        return self._access_review_id
-    
-    @access_review_id.setter
-    def access_review_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the accessReviewId property value. The feature-generated id of the access review.
-        Args:
-            value: Value to set for the access_review_id property.
-        """
-        self._access_review_id = value
-    
-    @property
-    def applied_by(self,) -> Optional[user_identity.UserIdentity]:
-        """
-        Gets the appliedBy property value. When the review completes, if the results were manually applied, the user identity of the user who applied the decision. If the review was auto-applied, the userPrincipalName is empty.
-        Returns: Optional[user_identity.UserIdentity]
-        """
-        return self._applied_by
-    
-    @applied_by.setter
-    def applied_by(self,value: Optional[user_identity.UserIdentity] = None) -> None:
-        """
-        Sets the appliedBy property value. When the review completes, if the results were manually applied, the user identity of the user who applied the decision. If the review was auto-applied, the userPrincipalName is empty.
-        Args:
-            value: Value to set for the applied_by property.
-        """
-        self._applied_by = value
-    
-    @property
-    def applied_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the appliedDateTime property value. The date and time when the review decision was applied.
-        Returns: Optional[datetime]
-        """
-        return self._applied_date_time
-    
-    @applied_date_time.setter
-    def applied_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the appliedDateTime property value. The date and time when the review decision was applied.
-        Args:
-            value: Value to set for the applied_date_time property.
-        """
-        self._applied_date_time = value
-    
-    @property
-    def apply_result(self,) -> Optional[str]:
-        """
-        Gets the applyResult property value. The outcome of applying the decision, one of NotApplied, Success, Failed, NotFound or NotSupported.
-        Returns: Optional[str]
-        """
-        return self._apply_result
-    
-    @apply_result.setter
-    def apply_result(self,value: Optional[str] = None) -> None:
-        """
-        Sets the applyResult property value. The outcome of applying the decision, one of NotApplied, Success, Failed, NotFound or NotSupported.
-        Args:
-            value: Value to set for the apply_result property.
-        """
-        self._apply_result = value
+    # The feature- generated recommendation shown to the reviewer, one of Approve, Deny or NotAvailable.
+    access_recommendation: Optional[str] = None
+    # The feature-generated id of the access review.
+    access_review_id: Optional[str] = None
+    # When the review completes, if the results were manually applied, the user identity of the user who applied the decision. If the review was auto-applied, the userPrincipalName is empty.
+    applied_by: Optional[user_identity.UserIdentity] = None
+    # The date and time when the review decision was applied.
+    applied_date_time: Optional[datetime] = None
+    # The outcome of applying the decision, one of NotApplied, Success, Failed, NotFound or NotSupported.
+    apply_result: Optional[str] = None
+    # The reviewer's business justification, if supplied.
+    justification: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The result of the review, one of NotReviewed, Deny, DontKnow or Approve.
+    review_result: Optional[str] = None
+    # The identity of the reviewer. If the recommendation was used as the review, the userPrincipalName is empty.
+    reviewed_by: Optional[user_identity.UserIdentity] = None
+    # The reviewedDateTime property
+    reviewed_date_time: Optional[datetime] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccessReviewDecision:
@@ -153,74 +65,6 @@ class AccessReviewDecision(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def justification(self,) -> Optional[str]:
-        """
-        Gets the justification property value. The reviewer's business justification, if supplied.
-        Returns: Optional[str]
-        """
-        return self._justification
-    
-    @justification.setter
-    def justification(self,value: Optional[str] = None) -> None:
-        """
-        Sets the justification property value. The reviewer's business justification, if supplied.
-        Args:
-            value: Value to set for the justification property.
-        """
-        self._justification = value
-    
-    @property
-    def review_result(self,) -> Optional[str]:
-        """
-        Gets the reviewResult property value. The result of the review, one of NotReviewed, Deny, DontKnow or Approve.
-        Returns: Optional[str]
-        """
-        return self._review_result
-    
-    @review_result.setter
-    def review_result(self,value: Optional[str] = None) -> None:
-        """
-        Sets the reviewResult property value. The result of the review, one of NotReviewed, Deny, DontKnow or Approve.
-        Args:
-            value: Value to set for the review_result property.
-        """
-        self._review_result = value
-    
-    @property
-    def reviewed_by(self,) -> Optional[user_identity.UserIdentity]:
-        """
-        Gets the reviewedBy property value. The identity of the reviewer. If the recommendation was used as the review, the userPrincipalName is empty.
-        Returns: Optional[user_identity.UserIdentity]
-        """
-        return self._reviewed_by
-    
-    @reviewed_by.setter
-    def reviewed_by(self,value: Optional[user_identity.UserIdentity] = None) -> None:
-        """
-        Sets the reviewedBy property value. The identity of the reviewer. If the recommendation was used as the review, the userPrincipalName is empty.
-        Args:
-            value: Value to set for the reviewed_by property.
-        """
-        self._reviewed_by = value
-    
-    @property
-    def reviewed_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the reviewedDateTime property value. The reviewedDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._reviewed_date_time
-    
-    @reviewed_date_time.setter
-    def reviewed_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the reviewedDateTime property value. The reviewedDateTime property
-        Args:
-            value: Value to set for the reviewed_date_time property.
-        """
-        self._reviewed_date_time = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

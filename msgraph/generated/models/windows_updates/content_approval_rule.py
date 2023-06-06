@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,34 +9,13 @@ if TYPE_CHECKING:
 
 from . import compliance_change_rule
 
+@dataclass
 class ContentApprovalRule(compliance_change_rule.ComplianceChangeRule):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ContentApprovalRule and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsUpdates.contentApprovalRule"
-        # A filter to determine which content matches the rule on an ongoing basis.
-        self._content_filter: Optional[content_filter.ContentFilter] = None
-        # The time before the deployment starts represented in ISO 8601 format for durations.
-        self._duration_before_deployment_start: Optional[timedelta] = None
-    
-    @property
-    def content_filter(self,) -> Optional[content_filter.ContentFilter]:
-        """
-        Gets the contentFilter property value. A filter to determine which content matches the rule on an ongoing basis.
-        Returns: Optional[content_filter.ContentFilter]
-        """
-        return self._content_filter
-    
-    @content_filter.setter
-    def content_filter(self,value: Optional[content_filter.ContentFilter] = None) -> None:
-        """
-        Sets the contentFilter property value. A filter to determine which content matches the rule on an ongoing basis.
-        Args:
-            value: Value to set for the content_filter property.
-        """
-        self._content_filter = value
+    odata_type = "#microsoft.graph.windowsUpdates.contentApprovalRule"
+    # A filter to determine which content matches the rule on an ongoing basis.
+    content_filter: Optional[content_filter.ContentFilter] = None
+    # The time before the deployment starts represented in ISO 8601 format for durations.
+    duration_before_deployment_start: Optional[timedelta] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ContentApprovalRule:
@@ -48,23 +28,6 @@ class ContentApprovalRule(compliance_change_rule.ComplianceChangeRule):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return ContentApprovalRule()
-    
-    @property
-    def duration_before_deployment_start(self,) -> Optional[timedelta]:
-        """
-        Gets the durationBeforeDeploymentStart property value. The time before the deployment starts represented in ISO 8601 format for durations.
-        Returns: Optional[timedelta]
-        """
-        return self._duration_before_deployment_start
-    
-    @duration_before_deployment_start.setter
-    def duration_before_deployment_start(self,value: Optional[timedelta] = None) -> None:
-        """
-        Sets the durationBeforeDeploymentStart property value. The time before the deployment starts represented in ISO 8601 format for durations.
-        Args:
-            value: Value to set for the duration_before_deployment_start property.
-        """
-        self._duration_before_deployment_start = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """

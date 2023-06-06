@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,17 +8,13 @@ if TYPE_CHECKING:
 
 from . import device_management_constraint
 
+@dataclass
 class DeviceManagementSettingStringLengthConstraint(device_management_constraint.DeviceManagementConstraint):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementSettingStringLengthConstraint and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementSettingStringLengthConstraint"
-        # The maximum permitted string length
-        self._maximum_length: Optional[int] = None
-        # The minimum permitted string length
-        self._minimum_length: Optional[int] = None
+    odata_type = "#microsoft.graph.deviceManagementSettingStringLengthConstraint"
+    # The maximum permitted string length
+    maximum_length: Optional[int] = None
+    # The minimum permitted string length
+    minimum_length: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementSettingStringLengthConstraint:
@@ -45,40 +42,6 @@ class DeviceManagementSettingStringLengthConstraint(device_management_constraint
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def maximum_length(self,) -> Optional[int]:
-        """
-        Gets the maximumLength property value. The maximum permitted string length
-        Returns: Optional[int]
-        """
-        return self._maximum_length
-    
-    @maximum_length.setter
-    def maximum_length(self,value: Optional[int] = None) -> None:
-        """
-        Sets the maximumLength property value. The maximum permitted string length
-        Args:
-            value: Value to set for the maximum_length property.
-        """
-        self._maximum_length = value
-    
-    @property
-    def minimum_length(self,) -> Optional[int]:
-        """
-        Gets the minimumLength property value. The minimum permitted string length
-        Returns: Optional[int]
-        """
-        return self._minimum_length
-    
-    @minimum_length.setter
-    def minimum_length(self,value: Optional[int] = None) -> None:
-        """
-        Sets the minimumLength property value. The minimum permitted string length
-        Args:
-            value: Value to set for the minimum_length property.
-        """
-        self._minimum_length = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

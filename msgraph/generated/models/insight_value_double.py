@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import user_experience_analytics_insight_value
 
+@dataclass
 class InsightValueDouble(user_experience_analytics_insight_value.UserExperienceAnalyticsInsightValue):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new InsightValueDouble and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.insightValueDouble"
-        # Not yet documented
-        self._value: Optional[float] = None
+    odata_type = "#microsoft.graph.insightValueDouble"
+    # Not yet documented
+    value: Optional[float] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> InsightValueDouble:
@@ -53,22 +50,5 @@ class InsightValueDouble(user_experience_analytics_insight_value.UserExperienceA
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_float_value("value", self.value)
-    
-    @property
-    def value(self,) -> Optional[float]:
-        """
-        Gets the value property value. Not yet documented
-        Returns: Optional[float]
-        """
-        return self._value
-    
-    @value.setter
-    def value(self,value: Optional[float] = None) -> None:
-        """
-        Sets the value property value. Not yet documented
-        Args:
-            value: Value to set for the value property.
-        """
-        self._value = value
     
 

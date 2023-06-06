@@ -1,34 +1,15 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class EvaluateDynamicMembershipPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new evaluateDynamicMembershipPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The memberId property
-        self._member_id: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The memberId property
+    member_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EvaluateDynamicMembershipPostRequestBody:
@@ -51,23 +32,6 @@ class EvaluateDynamicMembershipPostRequestBody(AdditionalDataHolder, Parsable):
             "memberId": lambda n : setattr(self, 'member_id', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def member_id(self,) -> Optional[str]:
-        """
-        Gets the memberId property value. The memberId property
-        Returns: Optional[str]
-        """
-        return self._member_id
-    
-    @member_id.setter
-    def member_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the memberId property value. The memberId property
-        Args:
-            value: Value to set for the member_id property.
-        """
-        self._member_id = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

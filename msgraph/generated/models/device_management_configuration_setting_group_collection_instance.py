@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,13 +8,9 @@ if TYPE_CHECKING:
 
 from . import device_management_configuration_setting_instance
 
+@dataclass
 class DeviceManagementConfigurationSettingGroupCollectionInstance(device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementConfigurationSettingGroupCollectionInstance and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionInstance"
+    odata_type = "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionInstance"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationSettingGroupCollectionInstance:

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,61 +9,40 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class Channel(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new channel and sets the default values.
-        """
-        super().__init__()
-        # Read only. Timestamp at which the channel was created.
-        self._created_date_time: Optional[datetime] = None
-        # Optional textual description for the channel.
-        self._description: Optional[str] = None
-        # Channel name as it will appear to the user in Microsoft Teams. The maximum length is 50 characters.
-        self._display_name: Optional[str] = None
-        # The email address for sending messages to the channel. Read-only.
-        self._email: Optional[str] = None
-        # Metadata for the location where the channel's files are stored.
-        self._files_folder: Optional[drive_item.DriveItem] = None
-        # Indicates whether the channel should automatically be marked 'favorite' for all members of the team. Can only be set programmatically with Create team. Default: false.
-        self._is_favorite_by_default: Optional[bool] = None
-        # A collection of membership records associated with the channel.
-        self._members: Optional[List[conversation_member.ConversationMember]] = None
-        # The type of the channel. Can be set during creation and can't be changed. The possible values are: standard, private, unknownFutureValue, shared. The default value is standard. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: shared.
-        self._membership_type: Optional[channel_membership_type.ChannelMembershipType] = None
-        # A collection of all the messages in the channel. A navigation property. Nullable.
-        self._messages: Optional[List[chat_message.ChatMessage]] = None
-        # Settings to configure channel moderation to control who can start new posts and reply to posts in that channel.
-        self._moderation_settings: Optional[channel_moderation_settings.ChannelModerationSettings] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # A collection of teams with which a channel is shared.
-        self._shared_with_teams: Optional[List[shared_with_channel_team_info.SharedWithChannelTeamInfo]] = None
-        # The summary property
-        self._summary: Optional[channel_summary.ChannelSummary] = None
-        # A collection of all the tabs in the channel. A navigation property.
-        self._tabs: Optional[List[teams_tab.TeamsTab]] = None
-        # The ID of the Azure Active Directory tenant.
-        self._tenant_id: Optional[str] = None
-        # A hyperlink that will go to the channel in Microsoft Teams. This is the URL that you get when you right-click a channel in Microsoft Teams and select Get link to channel. This URL should be treated as an opaque blob, and not parsed. Read-only.
-        self._web_url: Optional[str] = None
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. Read only. Timestamp at which the channel was created.
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. Read only. Timestamp at which the channel was created.
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+    # Read only. Timestamp at which the channel was created.
+    created_date_time: Optional[datetime] = None
+    # Optional textual description for the channel.
+    description: Optional[str] = None
+    # Channel name as it will appear to the user in Microsoft Teams. The maximum length is 50 characters.
+    display_name: Optional[str] = None
+    # The email address for sending messages to the channel. Read-only.
+    email: Optional[str] = None
+    # Metadata for the location where the channel's files are stored.
+    files_folder: Optional[drive_item.DriveItem] = None
+    # Indicates whether the channel should automatically be marked 'favorite' for all members of the team. Can only be set programmatically with Create team. Default: false.
+    is_favorite_by_default: Optional[bool] = None
+    # A collection of membership records associated with the channel.
+    members: Optional[List[conversation_member.ConversationMember]] = None
+    # The type of the channel. Can be set during creation and can't be changed. The possible values are: standard, private, unknownFutureValue, shared. The default value is standard. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: shared.
+    membership_type: Optional[channel_membership_type.ChannelMembershipType] = None
+    # A collection of all the messages in the channel. A navigation property. Nullable.
+    messages: Optional[List[chat_message.ChatMessage]] = None
+    # Settings to configure channel moderation to control who can start new posts and reply to posts in that channel.
+    moderation_settings: Optional[channel_moderation_settings.ChannelModerationSettings] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # A collection of teams with which a channel is shared.
+    shared_with_teams: Optional[List[shared_with_channel_team_info.SharedWithChannelTeamInfo]] = None
+    # The summary property
+    summary: Optional[channel_summary.ChannelSummary] = None
+    # A collection of all the tabs in the channel. A navigation property.
+    tabs: Optional[List[teams_tab.TeamsTab]] = None
+    # The ID of the Azure Active Directory tenant.
+    tenant_id: Optional[str] = None
+    # A hyperlink that will go to the channel in Microsoft Teams. This is the URL that you get when you right-click a channel in Microsoft Teams and select Get link to channel. This URL should be treated as an opaque blob, and not parsed. Read-only.
+    web_url: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Channel:
@@ -75,74 +55,6 @@ class Channel(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return Channel()
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. Optional textual description for the channel.
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. Optional textual description for the channel.
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. Channel name as it will appear to the user in Microsoft Teams. The maximum length is 50 characters.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. Channel name as it will appear to the user in Microsoft Teams. The maximum length is 50 characters.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
-    
-    @property
-    def email(self,) -> Optional[str]:
-        """
-        Gets the email property value. The email address for sending messages to the channel. Read-only.
-        Returns: Optional[str]
-        """
-        return self._email
-    
-    @email.setter
-    def email(self,value: Optional[str] = None) -> None:
-        """
-        Sets the email property value. The email address for sending messages to the channel. Read-only.
-        Args:
-            value: Value to set for the email property.
-        """
-        self._email = value
-    
-    @property
-    def files_folder(self,) -> Optional[drive_item.DriveItem]:
-        """
-        Gets the filesFolder property value. Metadata for the location where the channel's files are stored.
-        Returns: Optional[drive_item.DriveItem]
-        """
-        return self._files_folder
-    
-    @files_folder.setter
-    def files_folder(self,value: Optional[drive_item.DriveItem] = None) -> None:
-        """
-        Sets the filesFolder property value. Metadata for the location where the channel's files are stored.
-        Args:
-            value: Value to set for the files_folder property.
-        """
-        self._files_folder = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -172,91 +84,6 @@ class Channel(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def is_favorite_by_default(self,) -> Optional[bool]:
-        """
-        Gets the isFavoriteByDefault property value. Indicates whether the channel should automatically be marked 'favorite' for all members of the team. Can only be set programmatically with Create team. Default: false.
-        Returns: Optional[bool]
-        """
-        return self._is_favorite_by_default
-    
-    @is_favorite_by_default.setter
-    def is_favorite_by_default(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isFavoriteByDefault property value. Indicates whether the channel should automatically be marked 'favorite' for all members of the team. Can only be set programmatically with Create team. Default: false.
-        Args:
-            value: Value to set for the is_favorite_by_default property.
-        """
-        self._is_favorite_by_default = value
-    
-    @property
-    def members(self,) -> Optional[List[conversation_member.ConversationMember]]:
-        """
-        Gets the members property value. A collection of membership records associated with the channel.
-        Returns: Optional[List[conversation_member.ConversationMember]]
-        """
-        return self._members
-    
-    @members.setter
-    def members(self,value: Optional[List[conversation_member.ConversationMember]] = None) -> None:
-        """
-        Sets the members property value. A collection of membership records associated with the channel.
-        Args:
-            value: Value to set for the members property.
-        """
-        self._members = value
-    
-    @property
-    def membership_type(self,) -> Optional[channel_membership_type.ChannelMembershipType]:
-        """
-        Gets the membershipType property value. The type of the channel. Can be set during creation and can't be changed. The possible values are: standard, private, unknownFutureValue, shared. The default value is standard. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: shared.
-        Returns: Optional[channel_membership_type.ChannelMembershipType]
-        """
-        return self._membership_type
-    
-    @membership_type.setter
-    def membership_type(self,value: Optional[channel_membership_type.ChannelMembershipType] = None) -> None:
-        """
-        Sets the membershipType property value. The type of the channel. Can be set during creation and can't be changed. The possible values are: standard, private, unknownFutureValue, shared. The default value is standard. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: shared.
-        Args:
-            value: Value to set for the membership_type property.
-        """
-        self._membership_type = value
-    
-    @property
-    def messages(self,) -> Optional[List[chat_message.ChatMessage]]:
-        """
-        Gets the messages property value. A collection of all the messages in the channel. A navigation property. Nullable.
-        Returns: Optional[List[chat_message.ChatMessage]]
-        """
-        return self._messages
-    
-    @messages.setter
-    def messages(self,value: Optional[List[chat_message.ChatMessage]] = None) -> None:
-        """
-        Sets the messages property value. A collection of all the messages in the channel. A navigation property. Nullable.
-        Args:
-            value: Value to set for the messages property.
-        """
-        self._messages = value
-    
-    @property
-    def moderation_settings(self,) -> Optional[channel_moderation_settings.ChannelModerationSettings]:
-        """
-        Gets the moderationSettings property value. Settings to configure channel moderation to control who can start new posts and reply to posts in that channel.
-        Returns: Optional[channel_moderation_settings.ChannelModerationSettings]
-        """
-        return self._moderation_settings
-    
-    @moderation_settings.setter
-    def moderation_settings(self,value: Optional[channel_moderation_settings.ChannelModerationSettings] = None) -> None:
-        """
-        Sets the moderationSettings property value. Settings to configure channel moderation to control who can start new posts and reply to posts in that channel.
-        Args:
-            value: Value to set for the moderation_settings property.
-        """
-        self._moderation_settings = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -281,90 +108,5 @@ class Channel(entity.Entity):
         writer.write_collection_of_object_values("tabs", self.tabs)
         writer.write_str_value("tenantId", self.tenant_id)
         writer.write_str_value("webUrl", self.web_url)
-    
-    @property
-    def shared_with_teams(self,) -> Optional[List[shared_with_channel_team_info.SharedWithChannelTeamInfo]]:
-        """
-        Gets the sharedWithTeams property value. A collection of teams with which a channel is shared.
-        Returns: Optional[List[shared_with_channel_team_info.SharedWithChannelTeamInfo]]
-        """
-        return self._shared_with_teams
-    
-    @shared_with_teams.setter
-    def shared_with_teams(self,value: Optional[List[shared_with_channel_team_info.SharedWithChannelTeamInfo]] = None) -> None:
-        """
-        Sets the sharedWithTeams property value. A collection of teams with which a channel is shared.
-        Args:
-            value: Value to set for the shared_with_teams property.
-        """
-        self._shared_with_teams = value
-    
-    @property
-    def summary(self,) -> Optional[channel_summary.ChannelSummary]:
-        """
-        Gets the summary property value. The summary property
-        Returns: Optional[channel_summary.ChannelSummary]
-        """
-        return self._summary
-    
-    @summary.setter
-    def summary(self,value: Optional[channel_summary.ChannelSummary] = None) -> None:
-        """
-        Sets the summary property value. The summary property
-        Args:
-            value: Value to set for the summary property.
-        """
-        self._summary = value
-    
-    @property
-    def tabs(self,) -> Optional[List[teams_tab.TeamsTab]]:
-        """
-        Gets the tabs property value. A collection of all the tabs in the channel. A navigation property.
-        Returns: Optional[List[teams_tab.TeamsTab]]
-        """
-        return self._tabs
-    
-    @tabs.setter
-    def tabs(self,value: Optional[List[teams_tab.TeamsTab]] = None) -> None:
-        """
-        Sets the tabs property value. A collection of all the tabs in the channel. A navigation property.
-        Args:
-            value: Value to set for the tabs property.
-        """
-        self._tabs = value
-    
-    @property
-    def tenant_id(self,) -> Optional[str]:
-        """
-        Gets the tenantId property value. The ID of the Azure Active Directory tenant.
-        Returns: Optional[str]
-        """
-        return self._tenant_id
-    
-    @tenant_id.setter
-    def tenant_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the tenantId property value. The ID of the Azure Active Directory tenant.
-        Args:
-            value: Value to set for the tenant_id property.
-        """
-        self._tenant_id = value
-    
-    @property
-    def web_url(self,) -> Optional[str]:
-        """
-        Gets the webUrl property value. A hyperlink that will go to the channel in Microsoft Teams. This is the URL that you get when you right-click a channel in Microsoft Teams and select Get link to channel. This URL should be treated as an opaque blob, and not parsed. Read-only.
-        Returns: Optional[str]
-        """
-        return self._web_url
-    
-    @web_url.setter
-    def web_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the webUrl property value. A hyperlink that will go to the channel in Microsoft Teams. This is the URL that you get when you right-click a channel in Microsoft Teams and select Get link to channel. This URL should be treated as an opaque blob, and not parsed. Read-only.
-        Args:
-            value: Value to set for the web_url property.
-        """
-        self._web_url = value
     
 

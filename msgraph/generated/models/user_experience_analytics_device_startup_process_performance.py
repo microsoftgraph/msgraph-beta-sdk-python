@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,33 +8,29 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class UserExperienceAnalyticsDeviceStartupProcessPerformance(entity.Entity):
     """
     The user experience analytics device startup process performance.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsDeviceStartupProcessPerformance and sets the default values.
-        """
-        super().__init__()
-        # User experience analytics device startup process summarized count.
-        self._device_count: Optional[int] = None
-        # User experience analytics device startup process median impact in milliseconds.
-        self._median_impact_in_ms: Optional[int] = None
-        # User experience analytics device startup process median impact in milliseconds.
-        self._median_impact_in_ms2: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # User experience analytics device startup process name.
-        self._process_name: Optional[str] = None
-        # The user experience analytics device startup process product name.
-        self._product_name: Optional[str] = None
-        # The User experience analytics device startup process publisher.
-        self._publisher: Optional[str] = None
-        # User experience analytics device startup process total impact in milliseconds.
-        self._total_impact_in_ms: Optional[int] = None
-        # User experience analytics device startup process total impact in milliseconds.
-        self._total_impact_in_ms2: Optional[int] = None
+    # User experience analytics device startup process summarized count.
+    device_count: Optional[int] = None
+    # User experience analytics device startup process median impact in milliseconds.
+    median_impact_in_ms: Optional[int] = None
+    # User experience analytics device startup process median impact in milliseconds.
+    median_impact_in_ms2: Optional[int] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # User experience analytics device startup process name.
+    process_name: Optional[str] = None
+    # The user experience analytics device startup process product name.
+    product_name: Optional[str] = None
+    # The User experience analytics device startup process publisher.
+    publisher: Optional[str] = None
+    # User experience analytics device startup process total impact in milliseconds.
+    total_impact_in_ms: Optional[int] = None
+    # User experience analytics device startup process total impact in milliseconds.
+    total_impact_in_ms2: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsDeviceStartupProcessPerformance:
@@ -46,23 +43,6 @@ class UserExperienceAnalyticsDeviceStartupProcessPerformance(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return UserExperienceAnalyticsDeviceStartupProcessPerformance()
-    
-    @property
-    def device_count(self,) -> Optional[int]:
-        """
-        Gets the deviceCount property value. User experience analytics device startup process summarized count.
-        Returns: Optional[int]
-        """
-        return self._device_count
-    
-    @device_count.setter
-    def device_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the deviceCount property value. User experience analytics device startup process summarized count.
-        Args:
-            value: Value to set for the device_count property.
-        """
-        self._device_count = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -85,91 +65,6 @@ class UserExperienceAnalyticsDeviceStartupProcessPerformance(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def median_impact_in_ms(self,) -> Optional[int]:
-        """
-        Gets the medianImpactInMs property value. User experience analytics device startup process median impact in milliseconds.
-        Returns: Optional[int]
-        """
-        return self._median_impact_in_ms
-    
-    @median_impact_in_ms.setter
-    def median_impact_in_ms(self,value: Optional[int] = None) -> None:
-        """
-        Sets the medianImpactInMs property value. User experience analytics device startup process median impact in milliseconds.
-        Args:
-            value: Value to set for the median_impact_in_ms property.
-        """
-        self._median_impact_in_ms = value
-    
-    @property
-    def median_impact_in_ms2(self,) -> Optional[int]:
-        """
-        Gets the medianImpactInMs2 property value. User experience analytics device startup process median impact in milliseconds.
-        Returns: Optional[int]
-        """
-        return self._median_impact_in_ms2
-    
-    @median_impact_in_ms2.setter
-    def median_impact_in_ms2(self,value: Optional[int] = None) -> None:
-        """
-        Sets the medianImpactInMs2 property value. User experience analytics device startup process median impact in milliseconds.
-        Args:
-            value: Value to set for the median_impact_in_ms2 property.
-        """
-        self._median_impact_in_ms2 = value
-    
-    @property
-    def process_name(self,) -> Optional[str]:
-        """
-        Gets the processName property value. User experience analytics device startup process name.
-        Returns: Optional[str]
-        """
-        return self._process_name
-    
-    @process_name.setter
-    def process_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the processName property value. User experience analytics device startup process name.
-        Args:
-            value: Value to set for the process_name property.
-        """
-        self._process_name = value
-    
-    @property
-    def product_name(self,) -> Optional[str]:
-        """
-        Gets the productName property value. The user experience analytics device startup process product name.
-        Returns: Optional[str]
-        """
-        return self._product_name
-    
-    @product_name.setter
-    def product_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the productName property value. The user experience analytics device startup process product name.
-        Args:
-            value: Value to set for the product_name property.
-        """
-        self._product_name = value
-    
-    @property
-    def publisher(self,) -> Optional[str]:
-        """
-        Gets the publisher property value. The User experience analytics device startup process publisher.
-        Returns: Optional[str]
-        """
-        return self._publisher
-    
-    @publisher.setter
-    def publisher(self,value: Optional[str] = None) -> None:
-        """
-        Sets the publisher property value. The User experience analytics device startup process publisher.
-        Args:
-            value: Value to set for the publisher property.
-        """
-        self._publisher = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -187,39 +82,5 @@ class UserExperienceAnalyticsDeviceStartupProcessPerformance(entity.Entity):
         writer.write_str_value("publisher", self.publisher)
         writer.write_int_value("totalImpactInMs", self.total_impact_in_ms)
         writer.write_int_value("totalImpactInMs2", self.total_impact_in_ms2)
-    
-    @property
-    def total_impact_in_ms(self,) -> Optional[int]:
-        """
-        Gets the totalImpactInMs property value. User experience analytics device startup process total impact in milliseconds.
-        Returns: Optional[int]
-        """
-        return self._total_impact_in_ms
-    
-    @total_impact_in_ms.setter
-    def total_impact_in_ms(self,value: Optional[int] = None) -> None:
-        """
-        Sets the totalImpactInMs property value. User experience analytics device startup process total impact in milliseconds.
-        Args:
-            value: Value to set for the total_impact_in_ms property.
-        """
-        self._total_impact_in_ms = value
-    
-    @property
-    def total_impact_in_ms2(self,) -> Optional[int]:
-        """
-        Gets the totalImpactInMs2 property value. User experience analytics device startup process total impact in milliseconds.
-        Returns: Optional[int]
-        """
-        return self._total_impact_in_ms2
-    
-    @total_impact_in_ms2.setter
-    def total_impact_in_ms2(self,value: Optional[int] = None) -> None:
-        """
-        Sets the totalImpactInMs2 property value. User experience analytics device startup process total impact in milliseconds.
-        Args:
-            value: Value to set for the total_impact_in_ms2 property.
-        """
-        self._total_impact_in_ms2 = value
     
 

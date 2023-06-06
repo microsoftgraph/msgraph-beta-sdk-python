@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -8,39 +9,18 @@ if TYPE_CHECKING:
 
 from .. import entity
 
+@dataclass
 class TenantCustomizedInformation(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new tenantCustomizedInformation and sets the default values.
-        """
-        super().__init__()
-        # The collection of contacts for the managed tenant. Optional.
-        self._contacts: Optional[List[tenant_contact_information.TenantContactInformation]] = None
-        # The display name for the managed tenant. Required. Read-only.
-        self._display_name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
-        self._tenant_id: Optional[str] = None
-        # The website for the managed tenant. Required.
-        self._website: Optional[str] = None
-    
-    @property
-    def contacts(self,) -> Optional[List[tenant_contact_information.TenantContactInformation]]:
-        """
-        Gets the contacts property value. The collection of contacts for the managed tenant. Optional.
-        Returns: Optional[List[tenant_contact_information.TenantContactInformation]]
-        """
-        return self._contacts
-    
-    @contacts.setter
-    def contacts(self,value: Optional[List[tenant_contact_information.TenantContactInformation]] = None) -> None:
-        """
-        Sets the contacts property value. The collection of contacts for the managed tenant. Optional.
-        Args:
-            value: Value to set for the contacts property.
-        """
-        self._contacts = value
+    # The collection of contacts for the managed tenant. Optional.
+    contacts: Optional[List[tenant_contact_information.TenantContactInformation]] = None
+    # The display name for the managed tenant. Required. Read-only.
+    display_name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
+    tenant_id: Optional[str] = None
+    # The website for the managed tenant. Required.
+    website: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TenantCustomizedInformation:
@@ -53,23 +33,6 @@ class TenantCustomizedInformation(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return TenantCustomizedInformation()
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The display name for the managed tenant. Required. Read-only.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The display name for the managed tenant. Required. Read-only.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -102,39 +65,5 @@ class TenantCustomizedInformation(entity.Entity):
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("tenantId", self.tenant_id)
         writer.write_str_value("website", self.website)
-    
-    @property
-    def tenant_id(self,) -> Optional[str]:
-        """
-        Gets the tenantId property value. The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
-        Returns: Optional[str]
-        """
-        return self._tenant_id
-    
-    @tenant_id.setter
-    def tenant_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the tenantId property value. The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
-        Args:
-            value: Value to set for the tenant_id property.
-        """
-        self._tenant_id = value
-    
-    @property
-    def website(self,) -> Optional[str]:
-        """
-        Gets the website property value. The website for the managed tenant. Required.
-        Returns: Optional[str]
-        """
-        return self._website
-    
-    @website.setter
-    def website(self,value: Optional[str] = None) -> None:
-        """
-        Sets the website property value. The website for the managed tenant. Required.
-        Args:
-            value: Value to set for the website property.
-        """
-        self._website = value
     
 

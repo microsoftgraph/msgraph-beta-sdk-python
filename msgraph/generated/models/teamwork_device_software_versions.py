@@ -1,61 +1,25 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class TeamworkDeviceSoftwareVersions(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new teamworkDeviceSoftwareVersions and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The software version for the admin agent running on the device.
-        self._admin_agent_software_version: Optional[str] = None
-        # The software version for the firmware running on the device.
-        self._firmware_software_version: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The software version for the operating system on the device.
-        self._operating_system_software_version: Optional[str] = None
-        # The software version for the partner agent running on the device.
-        self._partner_agent_software_version: Optional[str] = None
-        # The software version for the Teams client running on the device.
-        self._teams_client_software_version: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def admin_agent_software_version(self,) -> Optional[str]:
-        """
-        Gets the adminAgentSoftwareVersion property value. The software version for the admin agent running on the device.
-        Returns: Optional[str]
-        """
-        return self._admin_agent_software_version
-    
-    @admin_agent_software_version.setter
-    def admin_agent_software_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the adminAgentSoftwareVersion property value. The software version for the admin agent running on the device.
-        Args:
-            value: Value to set for the admin_agent_software_version property.
-        """
-        self._admin_agent_software_version = value
+    # The software version for the admin agent running on the device.
+    admin_agent_software_version: Optional[str] = None
+    # The software version for the firmware running on the device.
+    firmware_software_version: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The software version for the operating system on the device.
+    operating_system_software_version: Optional[str] = None
+    # The software version for the partner agent running on the device.
+    partner_agent_software_version: Optional[str] = None
+    # The software version for the Teams client running on the device.
+    teams_client_software_version: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeamworkDeviceSoftwareVersions:
@@ -68,23 +32,6 @@ class TeamworkDeviceSoftwareVersions(AdditionalDataHolder, Parsable):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return TeamworkDeviceSoftwareVersions()
-    
-    @property
-    def firmware_software_version(self,) -> Optional[str]:
-        """
-        Gets the firmwareSoftwareVersion property value. The software version for the firmware running on the device.
-        Returns: Optional[str]
-        """
-        return self._firmware_software_version
-    
-    @firmware_software_version.setter
-    def firmware_software_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the firmwareSoftwareVersion property value. The software version for the firmware running on the device.
-        Args:
-            value: Value to set for the firmware_software_version property.
-        """
-        self._firmware_software_version = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -101,57 +48,6 @@ class TeamworkDeviceSoftwareVersions(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def operating_system_software_version(self,) -> Optional[str]:
-        """
-        Gets the operatingSystemSoftwareVersion property value. The software version for the operating system on the device.
-        Returns: Optional[str]
-        """
-        return self._operating_system_software_version
-    
-    @operating_system_software_version.setter
-    def operating_system_software_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the operatingSystemSoftwareVersion property value. The software version for the operating system on the device.
-        Args:
-            value: Value to set for the operating_system_software_version property.
-        """
-        self._operating_system_software_version = value
-    
-    @property
-    def partner_agent_software_version(self,) -> Optional[str]:
-        """
-        Gets the partnerAgentSoftwareVersion property value. The software version for the partner agent running on the device.
-        Returns: Optional[str]
-        """
-        return self._partner_agent_software_version
-    
-    @partner_agent_software_version.setter
-    def partner_agent_software_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the partnerAgentSoftwareVersion property value. The software version for the partner agent running on the device.
-        Args:
-            value: Value to set for the partner_agent_software_version property.
-        """
-        self._partner_agent_software_version = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -167,22 +63,5 @@ class TeamworkDeviceSoftwareVersions(AdditionalDataHolder, Parsable):
         writer.write_str_value("partnerAgentSoftwareVersion", self.partner_agent_software_version)
         writer.write_str_value("teamsClientSoftwareVersion", self.teams_client_software_version)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def teams_client_software_version(self,) -> Optional[str]:
-        """
-        Gets the teamsClientSoftwareVersion property value. The software version for the Teams client running on the device.
-        Returns: Optional[str]
-        """
-        return self._teams_client_software_version
-    
-    @teams_client_software_version.setter
-    def teams_client_software_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the teamsClientSoftwareVersion property value. The software version for the Teams client running on the device.
-        Args:
-            value: Value to set for the teams_client_software_version property.
-        """
-        self._teams_client_software_version = value
     
 

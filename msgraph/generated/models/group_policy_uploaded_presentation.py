@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,13 +8,9 @@ if TYPE_CHECKING:
 
 from . import group_policy_presentation
 
+@dataclass
 class GroupPolicyUploadedPresentation(group_policy_presentation.GroupPolicyPresentation):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new GroupPolicyUploadedPresentation and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.groupPolicyUploadedPresentation"
+    odata_type = "#microsoft.graph.groupPolicyUploadedPresentation"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GroupPolicyUploadedPresentation:

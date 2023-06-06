@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,19 +8,15 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class UserExperienceAnalyticsWorkFromAnywhereMetric(entity.Entity):
     """
     The user experience analytics metric for work from anywhere report
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsWorkFromAnywhereMetric and sets the default values.
-        """
-        super().__init__()
-        # The work from anywhere metric devices.
-        self._metric_devices: Optional[List[user_experience_analytics_work_from_anywhere_device.UserExperienceAnalyticsWorkFromAnywhereDevice]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+    # The work from anywhere metric devices.
+    metric_devices: Optional[List[user_experience_analytics_work_from_anywhere_device.UserExperienceAnalyticsWorkFromAnywhereDevice]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsWorkFromAnywhereMetric:
@@ -46,23 +43,6 @@ class UserExperienceAnalyticsWorkFromAnywhereMetric(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def metric_devices(self,) -> Optional[List[user_experience_analytics_work_from_anywhere_device.UserExperienceAnalyticsWorkFromAnywhereDevice]]:
-        """
-        Gets the metricDevices property value. The work from anywhere metric devices.
-        Returns: Optional[List[user_experience_analytics_work_from_anywhere_device.UserExperienceAnalyticsWorkFromAnywhereDevice]]
-        """
-        return self._metric_devices
-    
-    @metric_devices.setter
-    def metric_devices(self,value: Optional[List[user_experience_analytics_work_from_anywhere_device.UserExperienceAnalyticsWorkFromAnywhereDevice]] = None) -> None:
-        """
-        Sets the metricDevices property value. The work from anywhere metric devices.
-        Args:
-            value: Value to set for the metric_devices property.
-        """
-        self._metric_devices = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

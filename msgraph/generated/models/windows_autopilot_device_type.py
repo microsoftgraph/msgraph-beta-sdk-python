@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WindowsAutopilotDeviceType(Enum):
+class WindowsAutopilotDeviceType(str, Enum):
     # Windows PC
     WindowsPc = "windowsPc",
     # Surface Hub 2

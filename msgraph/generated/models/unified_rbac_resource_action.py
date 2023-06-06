@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,81 +8,26 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class UnifiedRbacResourceAction(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new unifiedRbacResourceAction and sets the default values.
-        """
-        super().__init__()
-        # HTTP method for the action, such as DELETE, GET, PATCH, POST, PUT, or null. Supports $filter (eq) but not for null values.
-        self._action_verb: Optional[str] = None
-        # The authenticationContext property
-        self._authentication_context: Optional[authentication_context_class_reference.AuthenticationContextClassReference] = None
-        # The authenticationContextId property
-        self._authentication_context_id: Optional[str] = None
-        # Description for the action. Supports $filter (eq).
-        self._description: Optional[str] = None
-        # The isAuthenticationContextSettable property
-        self._is_authentication_context_settable: Optional[bool] = None
-        # Name for the action within the resource namespace, such as microsoft.insights/programs/update. Can include slash character (/). Case insensitive. Required. Supports $filter (eq).
-        self._name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The resourceScope property
-        self._resource_scope: Optional[unified_rbac_resource_scope.UnifiedRbacResourceScope] = None
-        # Not implemented.
-        self._resource_scope_id: Optional[str] = None
-    
-    @property
-    def action_verb(self,) -> Optional[str]:
-        """
-        Gets the actionVerb property value. HTTP method for the action, such as DELETE, GET, PATCH, POST, PUT, or null. Supports $filter (eq) but not for null values.
-        Returns: Optional[str]
-        """
-        return self._action_verb
-    
-    @action_verb.setter
-    def action_verb(self,value: Optional[str] = None) -> None:
-        """
-        Sets the actionVerb property value. HTTP method for the action, such as DELETE, GET, PATCH, POST, PUT, or null. Supports $filter (eq) but not for null values.
-        Args:
-            value: Value to set for the action_verb property.
-        """
-        self._action_verb = value
-    
-    @property
-    def authentication_context(self,) -> Optional[authentication_context_class_reference.AuthenticationContextClassReference]:
-        """
-        Gets the authenticationContext property value. The authenticationContext property
-        Returns: Optional[authentication_context_class_reference.AuthenticationContextClassReference]
-        """
-        return self._authentication_context
-    
-    @authentication_context.setter
-    def authentication_context(self,value: Optional[authentication_context_class_reference.AuthenticationContextClassReference] = None) -> None:
-        """
-        Sets the authenticationContext property value. The authenticationContext property
-        Args:
-            value: Value to set for the authentication_context property.
-        """
-        self._authentication_context = value
-    
-    @property
-    def authentication_context_id(self,) -> Optional[str]:
-        """
-        Gets the authenticationContextId property value. The authenticationContextId property
-        Returns: Optional[str]
-        """
-        return self._authentication_context_id
-    
-    @authentication_context_id.setter
-    def authentication_context_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the authenticationContextId property value. The authenticationContextId property
-        Args:
-            value: Value to set for the authentication_context_id property.
-        """
-        self._authentication_context_id = value
+    # HTTP method for the action, such as DELETE, GET, PATCH, POST, PUT, or null. Supports $filter (eq) but not for null values.
+    action_verb: Optional[str] = None
+    # The authenticationContext property
+    authentication_context: Optional[authentication_context_class_reference.AuthenticationContextClassReference] = None
+    # The authenticationContextId property
+    authentication_context_id: Optional[str] = None
+    # Description for the action. Supports $filter (eq).
+    description: Optional[str] = None
+    # The isAuthenticationContextSettable property
+    is_authentication_context_settable: Optional[bool] = None
+    # Name for the action within the resource namespace, such as microsoft.insights/programs/update. Can include slash character (/). Case insensitive. Required. Supports $filter (eq).
+    name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The resourceScope property
+    resource_scope: Optional[unified_rbac_resource_scope.UnifiedRbacResourceScope] = None
+    # Not implemented.
+    resource_scope_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UnifiedRbacResourceAction:
@@ -94,23 +40,6 @@ class UnifiedRbacResourceAction(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return UnifiedRbacResourceAction()
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. Description for the action. Supports $filter (eq).
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. Description for the action. Supports $filter (eq).
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -132,74 +61,6 @@ class UnifiedRbacResourceAction(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def is_authentication_context_settable(self,) -> Optional[bool]:
-        """
-        Gets the isAuthenticationContextSettable property value. The isAuthenticationContextSettable property
-        Returns: Optional[bool]
-        """
-        return self._is_authentication_context_settable
-    
-    @is_authentication_context_settable.setter
-    def is_authentication_context_settable(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isAuthenticationContextSettable property value. The isAuthenticationContextSettable property
-        Args:
-            value: Value to set for the is_authentication_context_settable property.
-        """
-        self._is_authentication_context_settable = value
-    
-    @property
-    def name(self,) -> Optional[str]:
-        """
-        Gets the name property value. Name for the action within the resource namespace, such as microsoft.insights/programs/update. Can include slash character (/). Case insensitive. Required. Supports $filter (eq).
-        Returns: Optional[str]
-        """
-        return self._name
-    
-    @name.setter
-    def name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the name property value. Name for the action within the resource namespace, such as microsoft.insights/programs/update. Can include slash character (/). Case insensitive. Required. Supports $filter (eq).
-        Args:
-            value: Value to set for the name property.
-        """
-        self._name = value
-    
-    @property
-    def resource_scope(self,) -> Optional[unified_rbac_resource_scope.UnifiedRbacResourceScope]:
-        """
-        Gets the resourceScope property value. The resourceScope property
-        Returns: Optional[unified_rbac_resource_scope.UnifiedRbacResourceScope]
-        """
-        return self._resource_scope
-    
-    @resource_scope.setter
-    def resource_scope(self,value: Optional[unified_rbac_resource_scope.UnifiedRbacResourceScope] = None) -> None:
-        """
-        Sets the resourceScope property value. The resourceScope property
-        Args:
-            value: Value to set for the resource_scope property.
-        """
-        self._resource_scope = value
-    
-    @property
-    def resource_scope_id(self,) -> Optional[str]:
-        """
-        Gets the resourceScopeId property value. Not implemented.
-        Returns: Optional[str]
-        """
-        return self._resource_scope_id
-    
-    @resource_scope_id.setter
-    def resource_scope_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the resourceScopeId property value. Not implemented.
-        Args:
-            value: Value to set for the resource_scope_id property.
-        """
-        self._resource_scope_id = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

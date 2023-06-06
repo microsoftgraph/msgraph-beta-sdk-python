@@ -1,77 +1,24 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import key_value_pair
 
+@dataclass
 class CloudPcStatusDetails(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new cloudPcStatusDetails and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # Any additional information about the Cloud PC status.
-        self._additional_information: Optional[List[key_value_pair.KeyValuePair]] = None
-        # The code associated with the Cloud PC status.
-        self._code: Optional[str] = None
-        # The status message.
-        self._message: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def additional_information(self,) -> Optional[List[key_value_pair.KeyValuePair]]:
-        """
-        Gets the additionalInformation property value. Any additional information about the Cloud PC status.
-        Returns: Optional[List[key_value_pair.KeyValuePair]]
-        """
-        return self._additional_information
-    
-    @additional_information.setter
-    def additional_information(self,value: Optional[List[key_value_pair.KeyValuePair]] = None) -> None:
-        """
-        Sets the additionalInformation property value. Any additional information about the Cloud PC status.
-        Args:
-            value: Value to set for the additional_information property.
-        """
-        self._additional_information = value
-    
-    @property
-    def code(self,) -> Optional[str]:
-        """
-        Gets the code property value. The code associated with the Cloud PC status.
-        Returns: Optional[str]
-        """
-        return self._code
-    
-    @code.setter
-    def code(self,value: Optional[str] = None) -> None:
-        """
-        Sets the code property value. The code associated with the Cloud PC status.
-        Args:
-            value: Value to set for the code property.
-        """
-        self._code = value
+    # Any additional information about the Cloud PC status.
+    additional_information: Optional[List[key_value_pair.KeyValuePair]] = None
+    # The code associated with the Cloud PC status.
+    code: Optional[str] = None
+    # The status message.
+    message: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcStatusDetails:
@@ -99,40 +46,6 @@ class CloudPcStatusDetails(AdditionalDataHolder, Parsable):
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def message(self,) -> Optional[str]:
-        """
-        Gets the message property value. The status message.
-        Returns: Optional[str]
-        """
-        return self._message
-    
-    @message.setter
-    def message(self,value: Optional[str] = None) -> None:
-        """
-        Sets the message property value. The status message.
-        Args:
-            value: Value to set for the message property.
-        """
-        self._message = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

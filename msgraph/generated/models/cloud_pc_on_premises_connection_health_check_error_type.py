@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CloudPcOnPremisesConnectionHealthCheckErrorType(Enum):
+class CloudPcOnPremisesConnectionHealthCheckErrorType(str, Enum):
     DnsCheckFqdnNotFound = "dnsCheckFqdnNotFound",
     DnsCheckNameWithInvalidCharacter = "dnsCheckNameWithInvalidCharacter",
     DnsCheckUnknownError = "dnsCheckUnknownError",
@@ -55,6 +55,8 @@ class CloudPcOnPremisesConnectionHealthCheckErrorType(Enum):
     PermissionCheckTransientServiceError = "permissionCheckTransientServiceError",
     PermissionCheckUnknownError = "permissionCheckUnknownError",
     UdpConnectivityCheckStunUrlNotAllowListed = "udpConnectivityCheckStunUrlNotAllowListed",
+    UdpConnectivityCheckTurnUrlNotAllowListed = "udpConnectivityCheckTurnUrlNotAllowListed",
+    UdpConnectivityCheckUrlsNotAllowListed = "udpConnectivityCheckUrlsNotAllowListed",
     UdpConnectivityCheckUnknownError = "udpConnectivityCheckUnknownError",
     InternalServerErrorDeploymentCanceled = "internalServerErrorDeploymentCanceled",
     InternalServerErrorAllocateResourceFailed = "internalServerErrorAllocateResourceFailed",

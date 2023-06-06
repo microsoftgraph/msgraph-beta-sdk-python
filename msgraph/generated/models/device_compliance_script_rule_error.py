@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,16 +8,12 @@ if TYPE_CHECKING:
 
 from . import device_compliance_script_error
 
+@dataclass
 class DeviceComplianceScriptRuleError(device_compliance_script_error.DeviceComplianceScriptError):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceComplianceScriptRuleError and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Setting name for the rule with error.
-        self._setting_name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Setting name for the rule with error.
+    setting_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceComplianceScriptRuleError:
@@ -54,22 +51,5 @@ class DeviceComplianceScriptRuleError(device_compliance_script_error.DeviceCompl
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_str_value("settingName", self.setting_name)
-    
-    @property
-    def setting_name(self,) -> Optional[str]:
-        """
-        Gets the settingName property value. Setting name for the rule with error.
-        Returns: Optional[str]
-        """
-        return self._setting_name
-    
-    @setting_name.setter
-    def setting_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the settingName property value. Setting name for the rule with error.
-        Args:
-            value: Value to set for the setting_name property.
-        """
-        self._setting_name = value
     
 

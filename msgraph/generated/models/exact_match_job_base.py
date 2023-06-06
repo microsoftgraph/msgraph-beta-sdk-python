@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,41 +9,20 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class ExactMatchJobBase(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new exactMatchJobBase and sets the default values.
-        """
-        super().__init__()
-        # The completionDateTime property
-        self._completion_date_time: Optional[datetime] = None
-        # The creationDateTime property
-        self._creation_date_time: Optional[datetime] = None
-        # The error property
-        self._error: Optional[classification_error.ClassificationError] = None
-        # The lastUpdatedDateTime property
-        self._last_updated_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The startDateTime property
-        self._start_date_time: Optional[datetime] = None
-    
-    @property
-    def completion_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the completionDateTime property value. The completionDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._completion_date_time
-    
-    @completion_date_time.setter
-    def completion_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the completionDateTime property value. The completionDateTime property
-        Args:
-            value: Value to set for the completion_date_time property.
-        """
-        self._completion_date_time = value
+    # The completionDateTime property
+    completion_date_time: Optional[datetime] = None
+    # The creationDateTime property
+    creation_date_time: Optional[datetime] = None
+    # The error property
+    error: Optional[classification_error.ClassificationError] = None
+    # The lastUpdatedDateTime property
+    last_updated_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The startDateTime property
+    start_date_time: Optional[datetime] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ExactMatchJobBase:
@@ -71,40 +51,6 @@ class ExactMatchJobBase(entity.Entity):
                 return exact_match_session_base.ExactMatchSessionBase()
         return ExactMatchJobBase()
     
-    @property
-    def creation_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the creationDateTime property value. The creationDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._creation_date_time
-    
-    @creation_date_time.setter
-    def creation_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the creationDateTime property value. The creationDateTime property
-        Args:
-            value: Value to set for the creation_date_time property.
-        """
-        self._creation_date_time = value
-    
-    @property
-    def error(self,) -> Optional[classification_error.ClassificationError]:
-        """
-        Gets the error property value. The error property
-        Returns: Optional[classification_error.ClassificationError]
-        """
-        return self._error
-    
-    @error.setter
-    def error(self,value: Optional[classification_error.ClassificationError] = None) -> None:
-        """
-        Sets the error property value. The error property
-        Args:
-            value: Value to set for the error property.
-        """
-        self._error = value
-    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -123,23 +69,6 @@ class ExactMatchJobBase(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def last_updated_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastUpdatedDateTime property value. The lastUpdatedDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._last_updated_date_time
-    
-    @last_updated_date_time.setter
-    def last_updated_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastUpdatedDateTime property value. The lastUpdatedDateTime property
-        Args:
-            value: Value to set for the last_updated_date_time property.
-        """
-        self._last_updated_date_time = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -154,22 +83,5 @@ class ExactMatchJobBase(entity.Entity):
         writer.write_object_value("error", self.error)
         writer.write_datetime_value("lastUpdatedDateTime", self.last_updated_date_time)
         writer.write_datetime_value("startDateTime", self.start_date_time)
-    
-    @property
-    def start_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the startDateTime property value. The startDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._start_date_time
-    
-    @start_date_time.setter
-    def start_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the startDateTime property value. The startDateTime property
-        Args:
-            value: Value to set for the start_date_time property.
-        """
-        self._start_date_time = value
     
 

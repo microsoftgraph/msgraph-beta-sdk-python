@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,18 +8,14 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class DeltaParticipants(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeltaParticipants and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The participants property
-        self._participants: Optional[List[participant.Participant]] = None
-        # The sequence number for the roster update that is used to identify the notification order.
-        self._sequence_number: Optional[int] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The participants property
+    participants: Optional[List[participant.Participant]] = None
+    # The sequence number for the roster update that is used to identify the notification order.
+    sequence_number: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeltaParticipants:
@@ -46,40 +43,6 @@ class DeltaParticipants(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def participants(self,) -> Optional[List[participant.Participant]]:
-        """
-        Gets the participants property value. The participants property
-        Returns: Optional[List[participant.Participant]]
-        """
-        return self._participants
-    
-    @participants.setter
-    def participants(self,value: Optional[List[participant.Participant]] = None) -> None:
-        """
-        Sets the participants property value. The participants property
-        Args:
-            value: Value to set for the participants property.
-        """
-        self._participants = value
-    
-    @property
-    def sequence_number(self,) -> Optional[int]:
-        """
-        Gets the sequenceNumber property value. The sequence number for the roster update that is used to identify the notification order.
-        Returns: Optional[int]
-        """
-        return self._sequence_number
-    
-    @sequence_number.setter
-    def sequence_number(self,value: Optional[int] = None) -> None:
-        """
-        Sets the sequenceNumber property value. The sequence number for the roster update that is used to identify the notification order.
-        Args:
-            value: Value to set for the sequence_number property.
-        """
-        self._sequence_number = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,25 +9,21 @@ if TYPE_CHECKING:
 
 from . import meeting_registrant_base
 
+@dataclass
 class MeetingRegistrant(meeting_registrant_base.MeetingRegistrantBase):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new MeetingRegistrant and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.meetingRegistrant"
-        # The registrant's answer to custom questions.
-        self._custom_question_answers: Optional[List[custom_question_answer.CustomQuestionAnswer]] = None
-        # The email address of the registrant.
-        self._email: Optional[str] = None
-        # The first name of the registrant.
-        self._first_name: Optional[str] = None
-        # The last name of the registrant.
-        self._last_name: Optional[str] = None
-        # Time in UTC when the registrant registers for the meeting. Read-only.
-        self._registration_date_time: Optional[datetime] = None
-        # The registration status of the registrant. Read-only.
-        self._status: Optional[meeting_registrant_status.MeetingRegistrantStatus] = None
+    odata_type = "#microsoft.graph.meetingRegistrant"
+    # The registrant's answer to custom questions.
+    custom_question_answers: Optional[List[custom_question_answer.CustomQuestionAnswer]] = None
+    # The email address of the registrant.
+    email: Optional[str] = None
+    # The first name of the registrant.
+    first_name: Optional[str] = None
+    # The last name of the registrant.
+    last_name: Optional[str] = None
+    # Time in UTC when the registrant registers for the meeting. Read-only.
+    registration_date_time: Optional[datetime] = None
+    # The registration status of the registrant. Read-only.
+    status: Optional[meeting_registrant_status.MeetingRegistrantStatus] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MeetingRegistrant:
@@ -39,57 +36,6 @@ class MeetingRegistrant(meeting_registrant_base.MeetingRegistrantBase):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return MeetingRegistrant()
-    
-    @property
-    def custom_question_answers(self,) -> Optional[List[custom_question_answer.CustomQuestionAnswer]]:
-        """
-        Gets the customQuestionAnswers property value. The registrant's answer to custom questions.
-        Returns: Optional[List[custom_question_answer.CustomQuestionAnswer]]
-        """
-        return self._custom_question_answers
-    
-    @custom_question_answers.setter
-    def custom_question_answers(self,value: Optional[List[custom_question_answer.CustomQuestionAnswer]] = None) -> None:
-        """
-        Sets the customQuestionAnswers property value. The registrant's answer to custom questions.
-        Args:
-            value: Value to set for the custom_question_answers property.
-        """
-        self._custom_question_answers = value
-    
-    @property
-    def email(self,) -> Optional[str]:
-        """
-        Gets the email property value. The email address of the registrant.
-        Returns: Optional[str]
-        """
-        return self._email
-    
-    @email.setter
-    def email(self,value: Optional[str] = None) -> None:
-        """
-        Sets the email property value. The email address of the registrant.
-        Args:
-            value: Value to set for the email property.
-        """
-        self._email = value
-    
-    @property
-    def first_name(self,) -> Optional[str]:
-        """
-        Gets the firstName property value. The first name of the registrant.
-        Returns: Optional[str]
-        """
-        return self._first_name
-    
-    @first_name.setter
-    def first_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the firstName property value. The first name of the registrant.
-        Args:
-            value: Value to set for the first_name property.
-        """
-        self._first_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -110,40 +56,6 @@ class MeetingRegistrant(meeting_registrant_base.MeetingRegistrantBase):
         fields.update(super_fields)
         return fields
     
-    @property
-    def last_name(self,) -> Optional[str]:
-        """
-        Gets the lastName property value. The last name of the registrant.
-        Returns: Optional[str]
-        """
-        return self._last_name
-    
-    @last_name.setter
-    def last_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the lastName property value. The last name of the registrant.
-        Args:
-            value: Value to set for the last_name property.
-        """
-        self._last_name = value
-    
-    @property
-    def registration_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the registrationDateTime property value. Time in UTC when the registrant registers for the meeting. Read-only.
-        Returns: Optional[datetime]
-        """
-        return self._registration_date_time
-    
-    @registration_date_time.setter
-    def registration_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the registrationDateTime property value. Time in UTC when the registrant registers for the meeting. Read-only.
-        Args:
-            value: Value to set for the registration_date_time property.
-        """
-        self._registration_date_time = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -159,22 +71,5 @@ class MeetingRegistrant(meeting_registrant_base.MeetingRegistrantBase):
         writer.write_str_value("lastName", self.last_name)
         writer.write_datetime_value("registrationDateTime", self.registration_date_time)
         writer.write_enum_value("status", self.status)
-    
-    @property
-    def status(self,) -> Optional[meeting_registrant_status.MeetingRegistrantStatus]:
-        """
-        Gets the status property value. The registration status of the registrant. Read-only.
-        Returns: Optional[meeting_registrant_status.MeetingRegistrantStatus]
-        """
-        return self._status
-    
-    @status.setter
-    def status(self,value: Optional[meeting_registrant_status.MeetingRegistrantStatus] = None) -> None:
-        """
-        Sets the status property value. The registration status of the registrant. Read-only.
-        Args:
-            value: Value to set for the status property.
-        """
-        self._status = value
     
 

@@ -1,34 +1,15 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class WipeManagedAppRegistrationByDeviceTagPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new wipeManagedAppRegistrationByDeviceTagPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The deviceTag property
-        self._device_tag: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The deviceTag property
+    device_tag: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WipeManagedAppRegistrationByDeviceTagPostRequestBody:
@@ -41,23 +22,6 @@ class WipeManagedAppRegistrationByDeviceTagPostRequestBody(AdditionalDataHolder,
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return WipeManagedAppRegistrationByDeviceTagPostRequestBody()
-    
-    @property
-    def device_tag(self,) -> Optional[str]:
-        """
-        Gets the deviceTag property value. The deviceTag property
-        Returns: Optional[str]
-        """
-        return self._device_tag
-    
-    @device_tag.setter
-    def device_tag(self,value: Optional[str] = None) -> None:
-        """
-        Sets the deviceTag property value. The deviceTag property
-        Args:
-            value: Value to set for the device_tag property.
-        """
-        self._device_tag = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """

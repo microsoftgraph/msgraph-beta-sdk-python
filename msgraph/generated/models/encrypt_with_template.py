@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,34 +8,13 @@ if TYPE_CHECKING:
 
 from . import encrypt_content
 
+@dataclass
 class EncryptWithTemplate(encrypt_content.EncryptContent):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new EncryptWithTemplate and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.encryptWithTemplate"
-        # The availableForEncryption property
-        self._available_for_encryption: Optional[bool] = None
-        # The templateId property
-        self._template_id: Optional[str] = None
-    
-    @property
-    def available_for_encryption(self,) -> Optional[bool]:
-        """
-        Gets the availableForEncryption property value. The availableForEncryption property
-        Returns: Optional[bool]
-        """
-        return self._available_for_encryption
-    
-    @available_for_encryption.setter
-    def available_for_encryption(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the availableForEncryption property value. The availableForEncryption property
-        Args:
-            value: Value to set for the available_for_encryption property.
-        """
-        self._available_for_encryption = value
+    odata_type = "#microsoft.graph.encryptWithTemplate"
+    # The availableForEncryption property
+    available_for_encryption: Optional[bool] = None
+    # The templateId property
+    template_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EncryptWithTemplate:
@@ -74,22 +54,5 @@ class EncryptWithTemplate(encrypt_content.EncryptContent):
         super().serialize(writer)
         writer.write_bool_value("availableForEncryption", self.available_for_encryption)
         writer.write_str_value("templateId", self.template_id)
-    
-    @property
-    def template_id(self,) -> Optional[str]:
-        """
-        Gets the templateId property value. The templateId property
-        Returns: Optional[str]
-        """
-        return self._template_id
-    
-    @template_id.setter
-    def template_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the templateId property value. The templateId property
-        Args:
-            value: Value to set for the template_id property.
-        """
-        self._template_id = value
     
 

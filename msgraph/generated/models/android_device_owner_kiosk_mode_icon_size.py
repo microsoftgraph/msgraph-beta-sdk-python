@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AndroidDeviceOwnerKioskModeIconSize(Enum):
+class AndroidDeviceOwnerKioskModeIconSize(str, Enum):
     # Not configured; this value is ignored.
     NotConfigured = "notConfigured",
     # Smallest icon size.

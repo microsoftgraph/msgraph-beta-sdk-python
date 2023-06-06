@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,17 +8,13 @@ if TYPE_CHECKING:
 
 from . import policy_set_item
 
+@dataclass
 class EnrollmentRestrictionsConfigurationPolicySetItem(policy_set_item.PolicySetItem):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new EnrollmentRestrictionsConfigurationPolicySetItem and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.enrollmentRestrictionsConfigurationPolicySetItem"
-        # Limit of the EnrollmentRestrictionsConfigurationPolicySetItem.
-        self._limit: Optional[int] = None
-        # Priority of the EnrollmentRestrictionsConfigurationPolicySetItem.
-        self._priority: Optional[int] = None
+    odata_type = "#microsoft.graph.enrollmentRestrictionsConfigurationPolicySetItem"
+    # Limit of the EnrollmentRestrictionsConfigurationPolicySetItem.
+    limit: Optional[int] = None
+    # Priority of the EnrollmentRestrictionsConfigurationPolicySetItem.
+    priority: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EnrollmentRestrictionsConfigurationPolicySetItem:
@@ -45,40 +42,6 @@ class EnrollmentRestrictionsConfigurationPolicySetItem(policy_set_item.PolicySet
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def limit(self,) -> Optional[int]:
-        """
-        Gets the limit property value. Limit of the EnrollmentRestrictionsConfigurationPolicySetItem.
-        Returns: Optional[int]
-        """
-        return self._limit
-    
-    @limit.setter
-    def limit(self,value: Optional[int] = None) -> None:
-        """
-        Sets the limit property value. Limit of the EnrollmentRestrictionsConfigurationPolicySetItem.
-        Args:
-            value: Value to set for the limit property.
-        """
-        self._limit = value
-    
-    @property
-    def priority(self,) -> Optional[int]:
-        """
-        Gets the priority property value. Priority of the EnrollmentRestrictionsConfigurationPolicySetItem.
-        Returns: Optional[int]
-        """
-        return self._priority
-    
-    @priority.setter
-    def priority(self,value: Optional[int] = None) -> None:
-        """
-        Sets the priority property value. Priority of the EnrollmentRestrictionsConfigurationPolicySetItem.
-        Args:
-            value: Value to set for the priority property.
-        """
-        self._priority = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

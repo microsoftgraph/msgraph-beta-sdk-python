@@ -1,6 +1,6 @@
 from enum import Enum
 
-class RegistrationAuthMethod(Enum):
+class RegistrationAuthMethod(str, Enum):
     Email = "email",
     MobilePhone = "mobilePhone",
     OfficePhone = "officePhone",

@@ -1,37 +1,18 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ........models import drive_recipient
 
+@dataclass
 class RevokeGrantsPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new revokeGrantsPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The grantees property
-        self._grantees: Optional[List[drive_recipient.DriveRecipient]] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The grantees property
+    grantees: Optional[List[drive_recipient.DriveRecipient]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RevokeGrantsPostRequestBody:
@@ -56,23 +37,6 @@ class RevokeGrantsPostRequestBody(AdditionalDataHolder, Parsable):
             "grantees": lambda n : setattr(self, 'grantees', n.get_collection_of_object_values(drive_recipient.DriveRecipient)),
         }
         return fields
-    
-    @property
-    def grantees(self,) -> Optional[List[drive_recipient.DriveRecipient]]:
-        """
-        Gets the grantees property value. The grantees property
-        Returns: Optional[List[drive_recipient.DriveRecipient]]
-        """
-        return self._grantees
-    
-    @grantees.setter
-    def grantees(self,value: Optional[List[drive_recipient.DriveRecipient]] = None) -> None:
-        """
-        Sets the grantees property value. The grantees property
-        Args:
-            value: Value to set for the grantees property.
-        """
-        self._grantees = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

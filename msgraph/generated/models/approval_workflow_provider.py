@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,56 +8,18 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class ApprovalWorkflowProvider(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ApprovalWorkflowProvider and sets the default values.
-        """
-        super().__init__()
-        # The businessFlows property
-        self._business_flows: Optional[List[business_flow.BusinessFlow]] = None
-        # The businessFlowsWithRequestsAwaitingMyDecision property
-        self._business_flows_with_requests_awaiting_my_decision: Optional[List[business_flow.BusinessFlow]] = None
-        # The displayName property
-        self._display_name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The policyTemplates property
-        self._policy_templates: Optional[List[governance_policy_template.GovernancePolicyTemplate]] = None
-    
-    @property
-    def business_flows(self,) -> Optional[List[business_flow.BusinessFlow]]:
-        """
-        Gets the businessFlows property value. The businessFlows property
-        Returns: Optional[List[business_flow.BusinessFlow]]
-        """
-        return self._business_flows
-    
-    @business_flows.setter
-    def business_flows(self,value: Optional[List[business_flow.BusinessFlow]] = None) -> None:
-        """
-        Sets the businessFlows property value. The businessFlows property
-        Args:
-            value: Value to set for the business_flows property.
-        """
-        self._business_flows = value
-    
-    @property
-    def business_flows_with_requests_awaiting_my_decision(self,) -> Optional[List[business_flow.BusinessFlow]]:
-        """
-        Gets the businessFlowsWithRequestsAwaitingMyDecision property value. The businessFlowsWithRequestsAwaitingMyDecision property
-        Returns: Optional[List[business_flow.BusinessFlow]]
-        """
-        return self._business_flows_with_requests_awaiting_my_decision
-    
-    @business_flows_with_requests_awaiting_my_decision.setter
-    def business_flows_with_requests_awaiting_my_decision(self,value: Optional[List[business_flow.BusinessFlow]] = None) -> None:
-        """
-        Sets the businessFlowsWithRequestsAwaitingMyDecision property value. The businessFlowsWithRequestsAwaitingMyDecision property
-        Args:
-            value: Value to set for the business_flows_with_requests_awaiting_my_decision property.
-        """
-        self._business_flows_with_requests_awaiting_my_decision = value
+    # The businessFlows property
+    business_flows: Optional[List[business_flow.BusinessFlow]] = None
+    # The businessFlowsWithRequestsAwaitingMyDecision property
+    business_flows_with_requests_awaiting_my_decision: Optional[List[business_flow.BusinessFlow]] = None
+    # The displayName property
+    display_name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The policyTemplates property
+    policy_templates: Optional[List[governance_policy_template.GovernancePolicyTemplate]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ApprovalWorkflowProvider:
@@ -69,23 +32,6 @@ class ApprovalWorkflowProvider(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return ApprovalWorkflowProvider()
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The displayName property
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The displayName property
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -103,23 +49,6 @@ class ApprovalWorkflowProvider(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def policy_templates(self,) -> Optional[List[governance_policy_template.GovernancePolicyTemplate]]:
-        """
-        Gets the policyTemplates property value. The policyTemplates property
-        Returns: Optional[List[governance_policy_template.GovernancePolicyTemplate]]
-        """
-        return self._policy_templates
-    
-    @policy_templates.setter
-    def policy_templates(self,value: Optional[List[governance_policy_template.GovernancePolicyTemplate]] = None) -> None:
-        """
-        Sets the policyTemplates property value. The policyTemplates property
-        Args:
-            value: Value to set for the policy_templates property.
-        """
-        self._policy_templates = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

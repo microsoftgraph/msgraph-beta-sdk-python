@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,19 +8,15 @@ if TYPE_CHECKING:
 
 from . import access_review_instance_decision_item_target
 
+@dataclass
 class AccessReviewInstanceDecisionItemUserTarget(access_review_instance_decision_item_target.AccessReviewInstanceDecisionItemTarget):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AccessReviewInstanceDecisionItemUserTarget and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.accessReviewInstanceDecisionItemUserTarget"
-        # The name of user.
-        self._user_display_name: Optional[str] = None
-        # The identifier of user.
-        self._user_id: Optional[str] = None
-        # The user principal name.
-        self._user_principal_name: Optional[str] = None
+    odata_type = "#microsoft.graph.accessReviewInstanceDecisionItemUserTarget"
+    # The name of user.
+    user_display_name: Optional[str] = None
+    # The identifier of user.
+    user_id: Optional[str] = None
+    # The user principal name.
+    user_principal_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccessReviewInstanceDecisionItemUserTarget:
@@ -61,56 +58,5 @@ class AccessReviewInstanceDecisionItemUserTarget(access_review_instance_decision
         writer.write_str_value("userDisplayName", self.user_display_name)
         writer.write_str_value("userId", self.user_id)
         writer.write_str_value("userPrincipalName", self.user_principal_name)
-    
-    @property
-    def user_display_name(self,) -> Optional[str]:
-        """
-        Gets the userDisplayName property value. The name of user.
-        Returns: Optional[str]
-        """
-        return self._user_display_name
-    
-    @user_display_name.setter
-    def user_display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the userDisplayName property value. The name of user.
-        Args:
-            value: Value to set for the user_display_name property.
-        """
-        self._user_display_name = value
-    
-    @property
-    def user_id(self,) -> Optional[str]:
-        """
-        Gets the userId property value. The identifier of user.
-        Returns: Optional[str]
-        """
-        return self._user_id
-    
-    @user_id.setter
-    def user_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the userId property value. The identifier of user.
-        Args:
-            value: Value to set for the user_id property.
-        """
-        self._user_id = value
-    
-    @property
-    def user_principal_name(self,) -> Optional[str]:
-        """
-        Gets the userPrincipalName property value. The user principal name.
-        Returns: Optional[str]
-        """
-        return self._user_principal_name
-    
-    @user_principal_name.setter
-    def user_principal_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the userPrincipalName property value. The user principal name.
-        Args:
-            value: Value to set for the user_principal_name property.
-        """
-        self._user_principal_name = value
     
 

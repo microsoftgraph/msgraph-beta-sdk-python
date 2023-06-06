@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,20 +9,16 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class MessageEvent(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new messageEvent and sets the default values.
-        """
-        super().__init__()
-        # The dateTime property
-        self._date_time: Optional[datetime] = None
-        # The description property
-        self._description: Optional[str] = None
-        # The eventType property
-        self._event_type: Optional[message_event_type.MessageEventType] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+    # The dateTime property
+    date_time: Optional[datetime] = None
+    # The description property
+    description: Optional[str] = None
+    # The eventType property
+    event_type: Optional[message_event_type.MessageEventType] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MessageEvent:
@@ -34,57 +31,6 @@ class MessageEvent(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return MessageEvent()
-    
-    @property
-    def date_time(self,) -> Optional[datetime]:
-        """
-        Gets the dateTime property value. The dateTime property
-        Returns: Optional[datetime]
-        """
-        return self._date_time
-    
-    @date_time.setter
-    def date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the dateTime property value. The dateTime property
-        Args:
-            value: Value to set for the date_time property.
-        """
-        self._date_time = value
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. The description property
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. The description property
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def event_type(self,) -> Optional[message_event_type.MessageEventType]:
-        """
-        Gets the eventType property value. The eventType property
-        Returns: Optional[message_event_type.MessageEventType]
-        """
-        return self._event_type
-    
-    @event_type.setter
-    def event_type(self,value: Optional[message_event_type.MessageEventType] = None) -> None:
-        """
-        Sets the eventType property value. The eventType property
-        Args:
-            value: Value to set for the event_type property.
-        """
-        self._event_type = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """

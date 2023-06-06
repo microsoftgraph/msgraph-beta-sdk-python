@@ -1,46 +1,27 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class ResponsibleSensitiveType(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new responsibleSensitiveType and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The description property
-        self._description: Optional[str] = None
-        # The id property
-        self._id: Optional[str] = None
-        # The name property
-        self._name: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The publisherName property
-        self._publisher_name: Optional[str] = None
-        # The rulePackageId property
-        self._rule_package_id: Optional[str] = None
-        # The rulePackageType property
-        self._rule_package_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The description property
+    description: Optional[str] = None
+    # The id property
+    id: Optional[str] = None
+    # The name property
+    name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The publisherName property
+    publisher_name: Optional[str] = None
+    # The rulePackageId property
+    rule_package_id: Optional[str] = None
+    # The rulePackageType property
+    rule_package_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ResponsibleSensitiveType:
@@ -53,23 +34,6 @@ class ResponsibleSensitiveType(AdditionalDataHolder, Parsable):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return ResponsibleSensitiveType()
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. The description property
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. The description property
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -86,108 +50,6 @@ class ResponsibleSensitiveType(AdditionalDataHolder, Parsable):
             "rulePackageType": lambda n : setattr(self, 'rule_package_type', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def id(self,) -> Optional[str]:
-        """
-        Gets the id property value. The id property
-        Returns: Optional[str]
-        """
-        return self._id
-    
-    @id.setter
-    def id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the id property value. The id property
-        Args:
-            value: Value to set for the id property.
-        """
-        self._id = value
-    
-    @property
-    def name(self,) -> Optional[str]:
-        """
-        Gets the name property value. The name property
-        Returns: Optional[str]
-        """
-        return self._name
-    
-    @name.setter
-    def name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the name property value. The name property
-        Args:
-            value: Value to set for the name property.
-        """
-        self._name = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def publisher_name(self,) -> Optional[str]:
-        """
-        Gets the publisherName property value. The publisherName property
-        Returns: Optional[str]
-        """
-        return self._publisher_name
-    
-    @publisher_name.setter
-    def publisher_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the publisherName property value. The publisherName property
-        Args:
-            value: Value to set for the publisher_name property.
-        """
-        self._publisher_name = value
-    
-    @property
-    def rule_package_id(self,) -> Optional[str]:
-        """
-        Gets the rulePackageId property value. The rulePackageId property
-        Returns: Optional[str]
-        """
-        return self._rule_package_id
-    
-    @rule_package_id.setter
-    def rule_package_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the rulePackageId property value. The rulePackageId property
-        Args:
-            value: Value to set for the rule_package_id property.
-        """
-        self._rule_package_id = value
-    
-    @property
-    def rule_package_type(self,) -> Optional[str]:
-        """
-        Gets the rulePackageType property value. The rulePackageType property
-        Returns: Optional[str]
-        """
-        return self._rule_package_type
-    
-    @rule_package_type.setter
-    def rule_package_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the rulePackageType property value. The rulePackageType property
-        Args:
-            value: Value to set for the rule_package_type property.
-        """
-        self._rule_package_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

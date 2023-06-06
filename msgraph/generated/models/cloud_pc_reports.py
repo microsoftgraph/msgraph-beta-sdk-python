@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,16 +8,12 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class CloudPcReports(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new CloudPcReports and sets the default values.
-        """
-        super().__init__()
-        # The export jobs created for downloading reports.
-        self._export_jobs: Optional[List[cloud_pc_export_job.CloudPcExportJob]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+    # The export jobs created for downloading reports.
+    export_jobs: Optional[List[cloud_pc_export_job.CloudPcExportJob]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcReports:
@@ -29,23 +26,6 @@ class CloudPcReports(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return CloudPcReports()
-    
-    @property
-    def export_jobs(self,) -> Optional[List[cloud_pc_export_job.CloudPcExportJob]]:
-        """
-        Gets the exportJobs property value. The export jobs created for downloading reports.
-        Returns: Optional[List[cloud_pc_export_job.CloudPcExportJob]]
-        """
-        return self._export_jobs
-    
-    @export_jobs.setter
-    def export_jobs(self,value: Optional[List[cloud_pc_export_job.CloudPcExportJob]] = None) -> None:
-        """
-        Sets the exportJobs property value. The export jobs created for downloading reports.
-        Args:
-            value: Value to set for the export_jobs property.
-        """
-        self._export_jobs = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """

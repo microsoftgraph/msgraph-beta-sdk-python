@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,56 +8,18 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class Picture(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new picture and sets the default values.
-        """
-        super().__init__()
-        # The content property
-        self._content: Optional[bytes] = None
-        # The contentType property
-        self._content_type: Optional[str] = None
-        # The height property
-        self._height: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The width property
-        self._width: Optional[int] = None
-    
-    @property
-    def content(self,) -> Optional[bytes]:
-        """
-        Gets the content property value. The content property
-        Returns: Optional[bytes]
-        """
-        return self._content
-    
-    @content.setter
-    def content(self,value: Optional[bytes] = None) -> None:
-        """
-        Sets the content property value. The content property
-        Args:
-            value: Value to set for the content property.
-        """
-        self._content = value
-    
-    @property
-    def content_type(self,) -> Optional[str]:
-        """
-        Gets the contentType property value. The contentType property
-        Returns: Optional[str]
-        """
-        return self._content_type
-    
-    @content_type.setter
-    def content_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the contentType property value. The contentType property
-        Args:
-            value: Value to set for the content_type property.
-        """
-        self._content_type = value
+    # The content property
+    content: Optional[bytes] = None
+    # The contentType property
+    content_type: Optional[str] = None
+    # The height property
+    height: Optional[int] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The width property
+    width: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Picture:
@@ -87,23 +50,6 @@ class Picture(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def height(self,) -> Optional[int]:
-        """
-        Gets the height property value. The height property
-        Returns: Optional[int]
-        """
-        return self._height
-    
-    @height.setter
-    def height(self,value: Optional[int] = None) -> None:
-        """
-        Sets the height property value. The height property
-        Args:
-            value: Value to set for the height property.
-        """
-        self._height = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -117,22 +63,5 @@ class Picture(entity.Entity):
         writer.write_str_value("contentType", self.content_type)
         writer.write_int_value("height", self.height)
         writer.write_int_value("width", self.width)
-    
-    @property
-    def width(self,) -> Optional[int]:
-        """
-        Gets the width property value. The width property
-        Returns: Optional[int]
-        """
-        return self._width
-    
-    @width.setter
-    def width(self,value: Optional[int] = None) -> None:
-        """
-        Sets the width property value. The width property
-        Args:
-            value: Value to set for the width property.
-        """
-        self._width = value
     
 

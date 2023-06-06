@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,26 +8,22 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class PrivilegedAccess(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new PrivilegedAccess and sets the default values.
-        """
-        super().__init__()
-        # The display name of the provider managed by PIM.
-        self._display_name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # A collection of resources for the provider.
-        self._resources: Optional[List[governance_resource.GovernanceResource]] = None
-        # A collection of role assignment requests for the provider.
-        self._role_assignment_requests: Optional[List[governance_role_assignment_request.GovernanceRoleAssignmentRequest]] = None
-        # A collection of role assignments for the provider.
-        self._role_assignments: Optional[List[governance_role_assignment.GovernanceRoleAssignment]] = None
-        # A collection of role defintions for the provider.
-        self._role_definitions: Optional[List[governance_role_definition.GovernanceRoleDefinition]] = None
-        # A collection of role settings for the provider.
-        self._role_settings: Optional[List[governance_role_setting.GovernanceRoleSetting]] = None
+    # The display name of the provider managed by PIM.
+    display_name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # A collection of resources for the provider.
+    resources: Optional[List[governance_resource.GovernanceResource]] = None
+    # A collection of role assignment requests for the provider.
+    role_assignment_requests: Optional[List[governance_role_assignment_request.GovernanceRoleAssignmentRequest]] = None
+    # A collection of role assignments for the provider.
+    role_assignments: Optional[List[governance_role_assignment.GovernanceRoleAssignment]] = None
+    # A collection of role defintions for the provider.
+    role_definitions: Optional[List[governance_role_definition.GovernanceRoleDefinition]] = None
+    # A collection of role settings for the provider.
+    role_settings: Optional[List[governance_role_setting.GovernanceRoleSetting]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PrivilegedAccess:
@@ -39,23 +36,6 @@ class PrivilegedAccess(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return PrivilegedAccess()
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The display name of the provider managed by PIM.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The display name of the provider managed by PIM.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -75,91 +55,6 @@ class PrivilegedAccess(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def resources(self,) -> Optional[List[governance_resource.GovernanceResource]]:
-        """
-        Gets the resources property value. A collection of resources for the provider.
-        Returns: Optional[List[governance_resource.GovernanceResource]]
-        """
-        return self._resources
-    
-    @resources.setter
-    def resources(self,value: Optional[List[governance_resource.GovernanceResource]] = None) -> None:
-        """
-        Sets the resources property value. A collection of resources for the provider.
-        Args:
-            value: Value to set for the resources property.
-        """
-        self._resources = value
-    
-    @property
-    def role_assignment_requests(self,) -> Optional[List[governance_role_assignment_request.GovernanceRoleAssignmentRequest]]:
-        """
-        Gets the roleAssignmentRequests property value. A collection of role assignment requests for the provider.
-        Returns: Optional[List[governance_role_assignment_request.GovernanceRoleAssignmentRequest]]
-        """
-        return self._role_assignment_requests
-    
-    @role_assignment_requests.setter
-    def role_assignment_requests(self,value: Optional[List[governance_role_assignment_request.GovernanceRoleAssignmentRequest]] = None) -> None:
-        """
-        Sets the roleAssignmentRequests property value. A collection of role assignment requests for the provider.
-        Args:
-            value: Value to set for the role_assignment_requests property.
-        """
-        self._role_assignment_requests = value
-    
-    @property
-    def role_assignments(self,) -> Optional[List[governance_role_assignment.GovernanceRoleAssignment]]:
-        """
-        Gets the roleAssignments property value. A collection of role assignments for the provider.
-        Returns: Optional[List[governance_role_assignment.GovernanceRoleAssignment]]
-        """
-        return self._role_assignments
-    
-    @role_assignments.setter
-    def role_assignments(self,value: Optional[List[governance_role_assignment.GovernanceRoleAssignment]] = None) -> None:
-        """
-        Sets the roleAssignments property value. A collection of role assignments for the provider.
-        Args:
-            value: Value to set for the role_assignments property.
-        """
-        self._role_assignments = value
-    
-    @property
-    def role_definitions(self,) -> Optional[List[governance_role_definition.GovernanceRoleDefinition]]:
-        """
-        Gets the roleDefinitions property value. A collection of role defintions for the provider.
-        Returns: Optional[List[governance_role_definition.GovernanceRoleDefinition]]
-        """
-        return self._role_definitions
-    
-    @role_definitions.setter
-    def role_definitions(self,value: Optional[List[governance_role_definition.GovernanceRoleDefinition]] = None) -> None:
-        """
-        Sets the roleDefinitions property value. A collection of role defintions for the provider.
-        Args:
-            value: Value to set for the role_definitions property.
-        """
-        self._role_definitions = value
-    
-    @property
-    def role_settings(self,) -> Optional[List[governance_role_setting.GovernanceRoleSetting]]:
-        """
-        Gets the roleSettings property value. A collection of role settings for the provider.
-        Returns: Optional[List[governance_role_setting.GovernanceRoleSetting]]
-        """
-        return self._role_settings
-    
-    @role_settings.setter
-    def role_settings(self,value: Optional[List[governance_role_setting.GovernanceRoleSetting]] = None) -> None:
-        """
-        Sets the roleSettings property value. A collection of role settings for the provider.
-        Args:
-            value: Value to set for the role_settings property.
-        """
-        self._role_settings = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

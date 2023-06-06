@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import governance_criteria
 
+@dataclass
 class GroupMembershipGovernanceCriteria(governance_criteria.GovernanceCriteria):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new GroupMembershipGovernanceCriteria and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.groupMembershipGovernanceCriteria"
-        # The groupId property
-        self._group_id: Optional[str] = None
+    odata_type = "#microsoft.graph.groupMembershipGovernanceCriteria"
+    # The groupId property
+    group_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GroupMembershipGovernanceCriteria:
@@ -42,23 +39,6 @@ class GroupMembershipGovernanceCriteria(governance_criteria.GovernanceCriteria):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def group_id(self,) -> Optional[str]:
-        """
-        Gets the groupId property value. The groupId property
-        Returns: Optional[str]
-        """
-        return self._group_id
-    
-    @group_id.setter
-    def group_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the groupId property value. The groupId property
-        Args:
-            value: Value to set for the group_id property.
-        """
-        self._group_id = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

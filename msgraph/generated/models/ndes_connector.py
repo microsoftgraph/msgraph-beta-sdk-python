@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,48 +9,27 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class NdesConnector(entity.Entity):
     """
     Entity which represents an OnPrem Ndes connector.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ndesConnector and sets the default values.
-        """
-        super().__init__()
-        # The build version of the Ndes Connector.
-        self._connector_version: Optional[str] = None
-        # The friendly name of the Ndes Connector.
-        self._display_name: Optional[str] = None
-        # Timestamp when on-prem certificate connector was enrolled in Intune.
-        self._enrolled_date_time: Optional[datetime] = None
-        # Last connection time for the Ndes Connector
-        self._last_connection_date_time: Optional[datetime] = None
-        # Name of the machine running on-prem certificate connector service.
-        self._machine_name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # List of Scope Tags for this Entity instance.
-        self._role_scope_tag_ids: Optional[List[str]] = None
-        # The current status of the Ndes Connector.
-        self._state: Optional[ndes_connector_state.NdesConnectorState] = None
-    
-    @property
-    def connector_version(self,) -> Optional[str]:
-        """
-        Gets the connectorVersion property value. The build version of the Ndes Connector.
-        Returns: Optional[str]
-        """
-        return self._connector_version
-    
-    @connector_version.setter
-    def connector_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the connectorVersion property value. The build version of the Ndes Connector.
-        Args:
-            value: Value to set for the connector_version property.
-        """
-        self._connector_version = value
+    # The build version of the Ndes Connector.
+    connector_version: Optional[str] = None
+    # The friendly name of the Ndes Connector.
+    display_name: Optional[str] = None
+    # Timestamp when on-prem certificate connector was enrolled in Intune.
+    enrolled_date_time: Optional[datetime] = None
+    # Last connection time for the Ndes Connector
+    last_connection_date_time: Optional[datetime] = None
+    # Name of the machine running on-prem certificate connector service.
+    machine_name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # List of Scope Tags for this Entity instance.
+    role_scope_tag_ids: Optional[List[str]] = None
+    # The current status of the Ndes Connector.
+    state: Optional[ndes_connector_state.NdesConnectorState] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> NdesConnector:
@@ -62,40 +42,6 @@ class NdesConnector(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return NdesConnector()
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The friendly name of the Ndes Connector.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The friendly name of the Ndes Connector.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
-    
-    @property
-    def enrolled_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the enrolledDateTime property value. Timestamp when on-prem certificate connector was enrolled in Intune.
-        Returns: Optional[datetime]
-        """
-        return self._enrolled_date_time
-    
-    @enrolled_date_time.setter
-    def enrolled_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the enrolledDateTime property value. Timestamp when on-prem certificate connector was enrolled in Intune.
-        Args:
-            value: Value to set for the enrolled_date_time property.
-        """
-        self._enrolled_date_time = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -117,57 +63,6 @@ class NdesConnector(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def last_connection_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastConnectionDateTime property value. Last connection time for the Ndes Connector
-        Returns: Optional[datetime]
-        """
-        return self._last_connection_date_time
-    
-    @last_connection_date_time.setter
-    def last_connection_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastConnectionDateTime property value. Last connection time for the Ndes Connector
-        Args:
-            value: Value to set for the last_connection_date_time property.
-        """
-        self._last_connection_date_time = value
-    
-    @property
-    def machine_name(self,) -> Optional[str]:
-        """
-        Gets the machineName property value. Name of the machine running on-prem certificate connector service.
-        Returns: Optional[str]
-        """
-        return self._machine_name
-    
-    @machine_name.setter
-    def machine_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the machineName property value. Name of the machine running on-prem certificate connector service.
-        Args:
-            value: Value to set for the machine_name property.
-        """
-        self._machine_name = value
-    
-    @property
-    def role_scope_tag_ids(self,) -> Optional[List[str]]:
-        """
-        Gets the roleScopeTagIds property value. List of Scope Tags for this Entity instance.
-        Returns: Optional[List[str]]
-        """
-        return self._role_scope_tag_ids
-    
-    @role_scope_tag_ids.setter
-    def role_scope_tag_ids(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the roleScopeTagIds property value. List of Scope Tags for this Entity instance.
-        Args:
-            value: Value to set for the role_scope_tag_ids property.
-        """
-        self._role_scope_tag_ids = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -184,22 +79,5 @@ class NdesConnector(entity.Entity):
         writer.write_str_value("machineName", self.machine_name)
         writer.write_collection_of_primitive_values("roleScopeTagIds", self.role_scope_tag_ids)
         writer.write_enum_value("state", self.state)
-    
-    @property
-    def state(self,) -> Optional[ndes_connector_state.NdesConnectorState]:
-        """
-        Gets the state property value. The current status of the Ndes Connector.
-        Returns: Optional[ndes_connector_state.NdesConnectorState]
-        """
-        return self._state
-    
-    @state.setter
-    def state(self,value: Optional[ndes_connector_state.NdesConnectorState] = None) -> None:
-        """
-        Sets the state property value. The current status of the Ndes Connector.
-        Args:
-            value: Value to set for the state property.
-        """
-        self._state = value
     
 

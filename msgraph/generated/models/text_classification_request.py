@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,43 +8,22 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class TextClassificationRequest(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new TextClassificationRequest and sets the default values.
-        """
-        super().__init__()
-        # The contentMetaData property
-        self._content_meta_data: Optional[classification_request_content_meta_data.ClassificationRequestContentMetaData] = None
-        # The fileExtension property
-        self._file_extension: Optional[str] = None
-        # The matchTolerancesToInclude property
-        self._match_tolerances_to_include: Optional[ml_classification_match_tolerance.MlClassificationMatchTolerance] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The scopesToRun property
-        self._scopes_to_run: Optional[sensitive_type_scope.SensitiveTypeScope] = None
-        # The sensitiveTypeIds property
-        self._sensitive_type_ids: Optional[List[str]] = None
-        # The text property
-        self._text: Optional[str] = None
-    
-    @property
-    def content_meta_data(self,) -> Optional[classification_request_content_meta_data.ClassificationRequestContentMetaData]:
-        """
-        Gets the contentMetaData property value. The contentMetaData property
-        Returns: Optional[classification_request_content_meta_data.ClassificationRequestContentMetaData]
-        """
-        return self._content_meta_data
-    
-    @content_meta_data.setter
-    def content_meta_data(self,value: Optional[classification_request_content_meta_data.ClassificationRequestContentMetaData] = None) -> None:
-        """
-        Sets the contentMetaData property value. The contentMetaData property
-        Args:
-            value: Value to set for the content_meta_data property.
-        """
-        self._content_meta_data = value
+    # The contentMetaData property
+    content_meta_data: Optional[classification_request_content_meta_data.ClassificationRequestContentMetaData] = None
+    # The fileExtension property
+    file_extension: Optional[str] = None
+    # The matchTolerancesToInclude property
+    match_tolerances_to_include: Optional[ml_classification_match_tolerance.MlClassificationMatchTolerance] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The scopesToRun property
+    scopes_to_run: Optional[sensitive_type_scope.SensitiveTypeScope] = None
+    # The sensitiveTypeIds property
+    sensitive_type_ids: Optional[List[str]] = None
+    # The text property
+    text: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TextClassificationRequest:
@@ -56,23 +36,6 @@ class TextClassificationRequest(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return TextClassificationRequest()
-    
-    @property
-    def file_extension(self,) -> Optional[str]:
-        """
-        Gets the fileExtension property value. The fileExtension property
-        Returns: Optional[str]
-        """
-        return self._file_extension
-    
-    @file_extension.setter
-    def file_extension(self,value: Optional[str] = None) -> None:
-        """
-        Sets the fileExtension property value. The fileExtension property
-        Args:
-            value: Value to set for the file_extension property.
-        """
-        self._file_extension = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -93,57 +56,6 @@ class TextClassificationRequest(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def match_tolerances_to_include(self,) -> Optional[ml_classification_match_tolerance.MlClassificationMatchTolerance]:
-        """
-        Gets the matchTolerancesToInclude property value. The matchTolerancesToInclude property
-        Returns: Optional[ml_classification_match_tolerance.MlClassificationMatchTolerance]
-        """
-        return self._match_tolerances_to_include
-    
-    @match_tolerances_to_include.setter
-    def match_tolerances_to_include(self,value: Optional[ml_classification_match_tolerance.MlClassificationMatchTolerance] = None) -> None:
-        """
-        Sets the matchTolerancesToInclude property value. The matchTolerancesToInclude property
-        Args:
-            value: Value to set for the match_tolerances_to_include property.
-        """
-        self._match_tolerances_to_include = value
-    
-    @property
-    def scopes_to_run(self,) -> Optional[sensitive_type_scope.SensitiveTypeScope]:
-        """
-        Gets the scopesToRun property value. The scopesToRun property
-        Returns: Optional[sensitive_type_scope.SensitiveTypeScope]
-        """
-        return self._scopes_to_run
-    
-    @scopes_to_run.setter
-    def scopes_to_run(self,value: Optional[sensitive_type_scope.SensitiveTypeScope] = None) -> None:
-        """
-        Sets the scopesToRun property value. The scopesToRun property
-        Args:
-            value: Value to set for the scopes_to_run property.
-        """
-        self._scopes_to_run = value
-    
-    @property
-    def sensitive_type_ids(self,) -> Optional[List[str]]:
-        """
-        Gets the sensitiveTypeIds property value. The sensitiveTypeIds property
-        Returns: Optional[List[str]]
-        """
-        return self._sensitive_type_ids
-    
-    @sensitive_type_ids.setter
-    def sensitive_type_ids(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the sensitiveTypeIds property value. The sensitiveTypeIds property
-        Args:
-            value: Value to set for the sensitive_type_ids property.
-        """
-        self._sensitive_type_ids = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -159,22 +71,5 @@ class TextClassificationRequest(entity.Entity):
         writer.write_enum_value("scopesToRun", self.scopes_to_run)
         writer.write_collection_of_primitive_values("sensitiveTypeIds", self.sensitive_type_ids)
         writer.write_str_value("text", self.text)
-    
-    @property
-    def text(self,) -> Optional[str]:
-        """
-        Gets the text property value. The text property
-        Returns: Optional[str]
-        """
-        return self._text
-    
-    @text.setter
-    def text(self,value: Optional[str] = None) -> None:
-        """
-        Sets the text property value. The text property
-        Args:
-            value: Value to set for the text property.
-        """
-        self._text = value
     
 

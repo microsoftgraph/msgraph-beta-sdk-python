@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AgentStatus(Enum):
+class AgentStatus(str, Enum):
     Active = "active",
     Inactive = "inactive",
 

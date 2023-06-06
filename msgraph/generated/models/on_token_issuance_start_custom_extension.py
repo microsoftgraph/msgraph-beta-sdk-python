@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,32 +8,11 @@ if TYPE_CHECKING:
 
 from . import custom_authentication_extension
 
+@dataclass
 class OnTokenIssuanceStartCustomExtension(custom_authentication_extension.CustomAuthenticationExtension):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new OnTokenIssuanceStartCustomExtension and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.onTokenIssuanceStartCustomExtension"
-        # Collection of claims to be returned by the API called by this custom authentication extension.
-        self._claims_for_token_configuration: Optional[List[on_token_issuance_start_return_claim.OnTokenIssuanceStartReturnClaim]] = None
-    
-    @property
-    def claims_for_token_configuration(self,) -> Optional[List[on_token_issuance_start_return_claim.OnTokenIssuanceStartReturnClaim]]:
-        """
-        Gets the claimsForTokenConfiguration property value. Collection of claims to be returned by the API called by this custom authentication extension.
-        Returns: Optional[List[on_token_issuance_start_return_claim.OnTokenIssuanceStartReturnClaim]]
-        """
-        return self._claims_for_token_configuration
-    
-    @claims_for_token_configuration.setter
-    def claims_for_token_configuration(self,value: Optional[List[on_token_issuance_start_return_claim.OnTokenIssuanceStartReturnClaim]] = None) -> None:
-        """
-        Sets the claimsForTokenConfiguration property value. Collection of claims to be returned by the API called by this custom authentication extension.
-        Args:
-            value: Value to set for the claims_for_token_configuration property.
-        """
-        self._claims_for_token_configuration = value
+    odata_type = "#microsoft.graph.onTokenIssuanceStartCustomExtension"
+    # Collection of claims to be returned by the API called by this custom authentication extension.
+    claims_for_token_configuration: Optional[List[on_token_issuance_start_return_claim.OnTokenIssuanceStartReturnClaim]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OnTokenIssuanceStartCustomExtension:

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -8,17 +9,13 @@ if TYPE_CHECKING:
 
 from . import workflow_execution_conditions
 
+@dataclass
 class TriggerAndScopeBasedConditions(workflow_execution_conditions.WorkflowExecutionConditions):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new TriggerAndScopeBasedConditions and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.identityGovernance.triggerAndScopeBasedConditions"
-        # Defines who the workflow runs for.
-        self._scope: Optional[subject_set.SubjectSet] = None
-        # What triggers a workflow to run.
-        self._trigger: Optional[workflow_execution_trigger.WorkflowExecutionTrigger] = None
+    odata_type = "#microsoft.graph.identityGovernance.triggerAndScopeBasedConditions"
+    # Defines who the workflow runs for.
+    scope: Optional[subject_set.SubjectSet] = None
+    # What triggers a workflow to run.
+    trigger: Optional[workflow_execution_trigger.WorkflowExecutionTrigger] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TriggerAndScopeBasedConditions:
@@ -48,23 +45,6 @@ class TriggerAndScopeBasedConditions(workflow_execution_conditions.WorkflowExecu
         fields.update(super_fields)
         return fields
     
-    @property
-    def scope(self,) -> Optional[subject_set.SubjectSet]:
-        """
-        Gets the scope property value. Defines who the workflow runs for.
-        Returns: Optional[subject_set.SubjectSet]
-        """
-        return self._scope
-    
-    @scope.setter
-    def scope(self,value: Optional[subject_set.SubjectSet] = None) -> None:
-        """
-        Sets the scope property value. Defines who the workflow runs for.
-        Args:
-            value: Value to set for the scope property.
-        """
-        self._scope = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -76,22 +56,5 @@ class TriggerAndScopeBasedConditions(workflow_execution_conditions.WorkflowExecu
         super().serialize(writer)
         writer.write_object_value("scope", self.scope)
         writer.write_object_value("trigger", self.trigger)
-    
-    @property
-    def trigger(self,) -> Optional[workflow_execution_trigger.WorkflowExecutionTrigger]:
-        """
-        Gets the trigger property value. What triggers a workflow to run.
-        Returns: Optional[workflow_execution_trigger.WorkflowExecutionTrigger]
-        """
-        return self._trigger
-    
-    @trigger.setter
-    def trigger(self,value: Optional[workflow_execution_trigger.WorkflowExecutionTrigger] = None) -> None:
-        """
-        Sets the trigger property value. What triggers a workflow to run.
-        Args:
-            value: Value to set for the trigger property.
-        """
-        self._trigger = value
     
 

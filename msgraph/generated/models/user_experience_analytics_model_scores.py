@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,69 +8,31 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class UserExperienceAnalyticsModelScores(entity.Entity):
     """
     The user experience analytics model scores entity consolidates the various endpoint analytics scores.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsModelScores and sets the default values.
-        """
-        super().__init__()
-        # The user experience analytics model app reliability score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._app_reliability_score: Optional[float] = None
-        # The user experience analytics model battery health score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._battery_health_score: Optional[float] = None
-        # The user experience analytics model score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._endpoint_analytics_score: Optional[float] = None
-        # The healthStatus property
-        self._health_status: Optional[user_experience_analytics_health_state.UserExperienceAnalyticsHealthState] = None
-        # A unique identifier of the user experience analytics model scores: device manufacturer.
-        self._manufacturer: Optional[str] = None
-        # A unique identifier of the user experience analytics model scores: device model.
-        self._model: Optional[str] = None
-        # The user experience analytics model device count. Valid values -9.22337203685478E+18 to 9.22337203685478E+18
-        self._model_device_count: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The user experience analytics model startup performance score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._startup_performance_score: Optional[float] = None
-        # The user experience analytics model work from anywhere score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._work_from_anywhere_score: Optional[float] = None
-    
-    @property
-    def app_reliability_score(self,) -> Optional[float]:
-        """
-        Gets the appReliabilityScore property value. The user experience analytics model app reliability score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Returns: Optional[float]
-        """
-        return self._app_reliability_score
-    
-    @app_reliability_score.setter
-    def app_reliability_score(self,value: Optional[float] = None) -> None:
-        """
-        Sets the appReliabilityScore property value. The user experience analytics model app reliability score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Args:
-            value: Value to set for the app_reliability_score property.
-        """
-        self._app_reliability_score = value
-    
-    @property
-    def battery_health_score(self,) -> Optional[float]:
-        """
-        Gets the batteryHealthScore property value. The user experience analytics model battery health score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Returns: Optional[float]
-        """
-        return self._battery_health_score
-    
-    @battery_health_score.setter
-    def battery_health_score(self,value: Optional[float] = None) -> None:
-        """
-        Sets the batteryHealthScore property value. The user experience analytics model battery health score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Args:
-            value: Value to set for the battery_health_score property.
-        """
-        self._battery_health_score = value
+    # The user experience analytics model app reliability score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+    app_reliability_score: Optional[float] = None
+    # The user experience analytics model battery health score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+    battery_health_score: Optional[float] = None
+    # The user experience analytics model score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+    endpoint_analytics_score: Optional[float] = None
+    # The healthStatus property
+    health_status: Optional[user_experience_analytics_health_state.UserExperienceAnalyticsHealthState] = None
+    # A unique identifier of the user experience analytics model scores: device manufacturer.
+    manufacturer: Optional[str] = None
+    # A unique identifier of the user experience analytics model scores: device model.
+    model: Optional[str] = None
+    # The user experience analytics model device count. Valid values -9.22337203685478E+18 to 9.22337203685478E+18
+    model_device_count: Optional[int] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The user experience analytics model startup performance score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+    startup_performance_score: Optional[float] = None
+    # The user experience analytics model work from anywhere score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+    work_from_anywhere_score: Optional[float] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsModelScores:
@@ -82,23 +45,6 @@ class UserExperienceAnalyticsModelScores(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return UserExperienceAnalyticsModelScores()
-    
-    @property
-    def endpoint_analytics_score(self,) -> Optional[float]:
-        """
-        Gets the endpointAnalyticsScore property value. The user experience analytics model score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Returns: Optional[float]
-        """
-        return self._endpoint_analytics_score
-    
-    @endpoint_analytics_score.setter
-    def endpoint_analytics_score(self,value: Optional[float] = None) -> None:
-        """
-        Sets the endpointAnalyticsScore property value. The user experience analytics model score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Args:
-            value: Value to set for the endpoint_analytics_score property.
-        """
-        self._endpoint_analytics_score = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -122,74 +68,6 @@ class UserExperienceAnalyticsModelScores(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def health_status(self,) -> Optional[user_experience_analytics_health_state.UserExperienceAnalyticsHealthState]:
-        """
-        Gets the healthStatus property value. The healthStatus property
-        Returns: Optional[user_experience_analytics_health_state.UserExperienceAnalyticsHealthState]
-        """
-        return self._health_status
-    
-    @health_status.setter
-    def health_status(self,value: Optional[user_experience_analytics_health_state.UserExperienceAnalyticsHealthState] = None) -> None:
-        """
-        Sets the healthStatus property value. The healthStatus property
-        Args:
-            value: Value to set for the health_status property.
-        """
-        self._health_status = value
-    
-    @property
-    def manufacturer(self,) -> Optional[str]:
-        """
-        Gets the manufacturer property value. A unique identifier of the user experience analytics model scores: device manufacturer.
-        Returns: Optional[str]
-        """
-        return self._manufacturer
-    
-    @manufacturer.setter
-    def manufacturer(self,value: Optional[str] = None) -> None:
-        """
-        Sets the manufacturer property value. A unique identifier of the user experience analytics model scores: device manufacturer.
-        Args:
-            value: Value to set for the manufacturer property.
-        """
-        self._manufacturer = value
-    
-    @property
-    def model(self,) -> Optional[str]:
-        """
-        Gets the model property value. A unique identifier of the user experience analytics model scores: device model.
-        Returns: Optional[str]
-        """
-        return self._model
-    
-    @model.setter
-    def model(self,value: Optional[str] = None) -> None:
-        """
-        Sets the model property value. A unique identifier of the user experience analytics model scores: device model.
-        Args:
-            value: Value to set for the model property.
-        """
-        self._model = value
-    
-    @property
-    def model_device_count(self,) -> Optional[int]:
-        """
-        Gets the modelDeviceCount property value. The user experience analytics model device count. Valid values -9.22337203685478E+18 to 9.22337203685478E+18
-        Returns: Optional[int]
-        """
-        return self._model_device_count
-    
-    @model_device_count.setter
-    def model_device_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the modelDeviceCount property value. The user experience analytics model device count. Valid values -9.22337203685478E+18 to 9.22337203685478E+18
-        Args:
-            value: Value to set for the model_device_count property.
-        """
-        self._model_device_count = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -208,39 +86,5 @@ class UserExperienceAnalyticsModelScores(entity.Entity):
         writer.write_int_value("modelDeviceCount", self.model_device_count)
         writer.write_float_value("startupPerformanceScore", self.startup_performance_score)
         writer.write_float_value("workFromAnywhereScore", self.work_from_anywhere_score)
-    
-    @property
-    def startup_performance_score(self,) -> Optional[float]:
-        """
-        Gets the startupPerformanceScore property value. The user experience analytics model startup performance score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Returns: Optional[float]
-        """
-        return self._startup_performance_score
-    
-    @startup_performance_score.setter
-    def startup_performance_score(self,value: Optional[float] = None) -> None:
-        """
-        Sets the startupPerformanceScore property value. The user experience analytics model startup performance score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Args:
-            value: Value to set for the startup_performance_score property.
-        """
-        self._startup_performance_score = value
-    
-    @property
-    def work_from_anywhere_score(self,) -> Optional[float]:
-        """
-        Gets the workFromAnywhereScore property value. The user experience analytics model work from anywhere score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Returns: Optional[float]
-        """
-        return self._work_from_anywhere_score
-    
-    @work_from_anywhere_score.setter
-    def work_from_anywhere_score(self,value: Optional[float] = None) -> None:
-        """
-        Sets the workFromAnywhereScore property value. The user experience analytics model work from anywhere score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Args:
-            value: Value to set for the work_from_anywhere_score property.
-        """
-        self._work_from_anywhere_score = value
     
 

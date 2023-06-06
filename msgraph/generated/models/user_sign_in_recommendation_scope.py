@@ -1,6 +1,6 @@
 from enum import Enum
 
-class UserSignInRecommendationScope(Enum):
+class UserSignInRecommendationScope(str, Enum):
     Tenant = "tenant",
     Application = "application",
     UnknownFutureValue = "unknownFutureValue",

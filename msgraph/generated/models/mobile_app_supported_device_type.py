@@ -1,46 +1,27 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import device_type
 
+@dataclass
 class MobileAppSupportedDeviceType(AdditionalDataHolder, Parsable):
     """
     Device properties
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new mobileAppSupportedDeviceType and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # Maximum OS version
-        self._maximum_operating_system_version: Optional[str] = None
-        # Minimum OS version
-        self._minimum_operating_system_version: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Device type.
-        self._type: Optional[device_type.DeviceType] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # Maximum OS version
+    maximum_operating_system_version: Optional[str] = None
+    # Minimum OS version
+    minimum_operating_system_version: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Device type.
+    type: Optional[device_type.DeviceType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MobileAppSupportedDeviceType:
@@ -69,57 +50,6 @@ class MobileAppSupportedDeviceType(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def maximum_operating_system_version(self,) -> Optional[str]:
-        """
-        Gets the maximumOperatingSystemVersion property value. Maximum OS version
-        Returns: Optional[str]
-        """
-        return self._maximum_operating_system_version
-    
-    @maximum_operating_system_version.setter
-    def maximum_operating_system_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the maximumOperatingSystemVersion property value. Maximum OS version
-        Args:
-            value: Value to set for the maximum_operating_system_version property.
-        """
-        self._maximum_operating_system_version = value
-    
-    @property
-    def minimum_operating_system_version(self,) -> Optional[str]:
-        """
-        Gets the minimumOperatingSystemVersion property value. Minimum OS version
-        Returns: Optional[str]
-        """
-        return self._minimum_operating_system_version
-    
-    @minimum_operating_system_version.setter
-    def minimum_operating_system_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the minimumOperatingSystemVersion property value. Minimum OS version
-        Args:
-            value: Value to set for the minimum_operating_system_version property.
-        """
-        self._minimum_operating_system_version = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -133,22 +63,5 @@ class MobileAppSupportedDeviceType(AdditionalDataHolder, Parsable):
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("type", self.type)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def type(self,) -> Optional[device_type.DeviceType]:
-        """
-        Gets the type property value. Device type.
-        Returns: Optional[device_type.DeviceType]
-        """
-        return self._type
-    
-    @type.setter
-    def type(self,value: Optional[device_type.DeviceType] = None) -> None:
-        """
-        Sets the type property value. Device type.
-        Args:
-            value: Value to set for the type property.
-        """
-        self._type = value
     
 

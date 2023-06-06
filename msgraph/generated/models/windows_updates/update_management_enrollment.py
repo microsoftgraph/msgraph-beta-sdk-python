@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import updatable_asset_enrollment
 
+@dataclass
 class UpdateManagementEnrollment(updatable_asset_enrollment.UpdatableAssetEnrollment):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new UpdateManagementEnrollment and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsUpdates.updateManagementEnrollment"
-        # The updateCategory property
-        self._update_category: Optional[update_category.UpdateCategory] = None
+    odata_type = "#microsoft.graph.windowsUpdates.updateManagementEnrollment"
+    # The updateCategory property
+    update_category: Optional[update_category.UpdateCategory] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UpdateManagementEnrollment:
@@ -53,22 +50,5 @@ class UpdateManagementEnrollment(updatable_asset_enrollment.UpdatableAssetEnroll
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_enum_value("updateCategory", self.update_category)
-    
-    @property
-    def update_category(self,) -> Optional[update_category.UpdateCategory]:
-        """
-        Gets the updateCategory property value. The updateCategory property
-        Returns: Optional[update_category.UpdateCategory]
-        """
-        return self._update_category
-    
-    @update_category.setter
-    def update_category(self,value: Optional[update_category.UpdateCategory] = None) -> None:
-        """
-        Sets the updateCategory property value. The updateCategory property
-        Args:
-            value: Value to set for the update_category property.
-        """
-        self._update_category = value
     
 

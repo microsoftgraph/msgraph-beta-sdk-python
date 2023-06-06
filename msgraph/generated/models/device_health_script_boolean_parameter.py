@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import device_health_script_parameter
 
+@dataclass
 class DeviceHealthScriptBooleanParameter(device_health_script_parameter.DeviceHealthScriptParameter):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceHealthScriptBooleanParameter and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceHealthScriptBooleanParameter"
-        # The default value of boolean param
-        self._default_value: Optional[bool] = None
+    odata_type = "#microsoft.graph.deviceHealthScriptBooleanParameter"
+    # The default value of boolean param
+    default_value: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceHealthScriptBooleanParameter:
@@ -28,23 +25,6 @@ class DeviceHealthScriptBooleanParameter(device_health_script_parameter.DeviceHe
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return DeviceHealthScriptBooleanParameter()
-    
-    @property
-    def default_value(self,) -> Optional[bool]:
-        """
-        Gets the defaultValue property value. The default value of boolean param
-        Returns: Optional[bool]
-        """
-        return self._default_value
-    
-    @default_value.setter
-    def default_value(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the defaultValue property value. The default value of boolean param
-        Args:
-            value: Value to set for the default_value property.
-        """
-        self._default_value = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """

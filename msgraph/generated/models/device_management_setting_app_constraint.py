@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import device_management_constraint
 
+@dataclass
 class DeviceManagementSettingAppConstraint(device_management_constraint.DeviceManagementConstraint):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementSettingAppConstraint and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementSettingAppConstraint"
-        # Acceptable app types to allow for this setting
-        self._supported_types: Optional[List[str]] = None
+    odata_type = "#microsoft.graph.deviceManagementSettingAppConstraint"
+    # Acceptable app types to allow for this setting
+    supported_types: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementSettingAppConstraint:
@@ -53,22 +50,5 @@ class DeviceManagementSettingAppConstraint(device_management_constraint.DeviceMa
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_collection_of_primitive_values("supportedTypes", self.supported_types)
-    
-    @property
-    def supported_types(self,) -> Optional[List[str]]:
-        """
-        Gets the supportedTypes property value. Acceptable app types to allow for this setting
-        Returns: Optional[List[str]]
-        """
-        return self._supported_types
-    
-    @supported_types.setter
-    def supported_types(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the supportedTypes property value. Acceptable app types to allow for this setting
-        Args:
-            value: Value to set for the supported_types property.
-        """
-        self._supported_types = value
     
 

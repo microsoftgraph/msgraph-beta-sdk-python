@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,85 +8,30 @@ if TYPE_CHECKING:
 
 from .. import entity
 
+@dataclass
 class TenantDetailedInformation(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new tenantDetailedInformation and sets the default values.
-        """
-        super().__init__()
-        # The city where the managed tenant is located. Optional. Read-only.
-        self._city: Optional[str] = None
-        # The code for the country where the managed tenant is located. Optional. Read-only.
-        self._country_code: Optional[str] = None
-        # The name for the country where the managed tenant is located. Optional. Read-only.
-        self._country_name: Optional[str] = None
-        # The default domain name for the managed tenant. Optional. Read-only.
-        self._default_domain_name: Optional[str] = None
-        # The display name for the managed tenant.
-        self._display_name: Optional[str] = None
-        # The business industry associated with the managed tenant. Optional. Read-only.
-        self._industry_name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The region where the managed tenant is located. Optional. Read-only.
-        self._region: Optional[str] = None
-        # The business segment associated with the managed tenant. Optional. Read-only.
-        self._segment_name: Optional[str] = None
-        # The Azure Active Directory tenant identifier for the managed tenant.
-        self._tenant_id: Optional[str] = None
-        # The vertical associated with the managed tenant. Optional. Read-only.
-        self._vertical_name: Optional[str] = None
-    
-    @property
-    def city(self,) -> Optional[str]:
-        """
-        Gets the city property value. The city where the managed tenant is located. Optional. Read-only.
-        Returns: Optional[str]
-        """
-        return self._city
-    
-    @city.setter
-    def city(self,value: Optional[str] = None) -> None:
-        """
-        Sets the city property value. The city where the managed tenant is located. Optional. Read-only.
-        Args:
-            value: Value to set for the city property.
-        """
-        self._city = value
-    
-    @property
-    def country_code(self,) -> Optional[str]:
-        """
-        Gets the countryCode property value. The code for the country where the managed tenant is located. Optional. Read-only.
-        Returns: Optional[str]
-        """
-        return self._country_code
-    
-    @country_code.setter
-    def country_code(self,value: Optional[str] = None) -> None:
-        """
-        Sets the countryCode property value. The code for the country where the managed tenant is located. Optional. Read-only.
-        Args:
-            value: Value to set for the country_code property.
-        """
-        self._country_code = value
-    
-    @property
-    def country_name(self,) -> Optional[str]:
-        """
-        Gets the countryName property value. The name for the country where the managed tenant is located. Optional. Read-only.
-        Returns: Optional[str]
-        """
-        return self._country_name
-    
-    @country_name.setter
-    def country_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the countryName property value. The name for the country where the managed tenant is located. Optional. Read-only.
-        Args:
-            value: Value to set for the country_name property.
-        """
-        self._country_name = value
+    # The city where the managed tenant is located. Optional. Read-only.
+    city: Optional[str] = None
+    # The code for the country where the managed tenant is located. Optional. Read-only.
+    country_code: Optional[str] = None
+    # The name for the country where the managed tenant is located. Optional. Read-only.
+    country_name: Optional[str] = None
+    # The default domain name for the managed tenant. Optional. Read-only.
+    default_domain_name: Optional[str] = None
+    # The display name for the managed tenant.
+    display_name: Optional[str] = None
+    # The business industry associated with the managed tenant. Optional. Read-only.
+    industry_name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The region where the managed tenant is located. Optional. Read-only.
+    region: Optional[str] = None
+    # The business segment associated with the managed tenant. Optional. Read-only.
+    segment_name: Optional[str] = None
+    # The Azure Active Directory tenant identifier for the managed tenant.
+    tenant_id: Optional[str] = None
+    # The vertical associated with the managed tenant. Optional. Read-only.
+    vertical_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TenantDetailedInformation:
@@ -98,40 +44,6 @@ class TenantDetailedInformation(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return TenantDetailedInformation()
-    
-    @property
-    def default_domain_name(self,) -> Optional[str]:
-        """
-        Gets the defaultDomainName property value. The default domain name for the managed tenant. Optional. Read-only.
-        Returns: Optional[str]
-        """
-        return self._default_domain_name
-    
-    @default_domain_name.setter
-    def default_domain_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the defaultDomainName property value. The default domain name for the managed tenant. Optional. Read-only.
-        Args:
-            value: Value to set for the default_domain_name property.
-        """
-        self._default_domain_name = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The display name for the managed tenant.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The display name for the managed tenant.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -156,57 +68,6 @@ class TenantDetailedInformation(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def industry_name(self,) -> Optional[str]:
-        """
-        Gets the industryName property value. The business industry associated with the managed tenant. Optional. Read-only.
-        Returns: Optional[str]
-        """
-        return self._industry_name
-    
-    @industry_name.setter
-    def industry_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the industryName property value. The business industry associated with the managed tenant. Optional. Read-only.
-        Args:
-            value: Value to set for the industry_name property.
-        """
-        self._industry_name = value
-    
-    @property
-    def region(self,) -> Optional[str]:
-        """
-        Gets the region property value. The region where the managed tenant is located. Optional. Read-only.
-        Returns: Optional[str]
-        """
-        return self._region
-    
-    @region.setter
-    def region(self,value: Optional[str] = None) -> None:
-        """
-        Sets the region property value. The region where the managed tenant is located. Optional. Read-only.
-        Args:
-            value: Value to set for the region property.
-        """
-        self._region = value
-    
-    @property
-    def segment_name(self,) -> Optional[str]:
-        """
-        Gets the segmentName property value. The business segment associated with the managed tenant. Optional. Read-only.
-        Returns: Optional[str]
-        """
-        return self._segment_name
-    
-    @segment_name.setter
-    def segment_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the segmentName property value. The business segment associated with the managed tenant. Optional. Read-only.
-        Args:
-            value: Value to set for the segment_name property.
-        """
-        self._segment_name = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -226,39 +87,5 @@ class TenantDetailedInformation(entity.Entity):
         writer.write_str_value("segmentName", self.segment_name)
         writer.write_str_value("tenantId", self.tenant_id)
         writer.write_str_value("verticalName", self.vertical_name)
-    
-    @property
-    def tenant_id(self,) -> Optional[str]:
-        """
-        Gets the tenantId property value. The Azure Active Directory tenant identifier for the managed tenant.
-        Returns: Optional[str]
-        """
-        return self._tenant_id
-    
-    @tenant_id.setter
-    def tenant_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the tenantId property value. The Azure Active Directory tenant identifier for the managed tenant.
-        Args:
-            value: Value to set for the tenant_id property.
-        """
-        self._tenant_id = value
-    
-    @property
-    def vertical_name(self,) -> Optional[str]:
-        """
-        Gets the verticalName property value. The vertical associated with the managed tenant. Optional. Read-only.
-        Returns: Optional[str]
-        """
-        return self._vertical_name
-    
-    @vertical_name.setter
-    def vertical_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the verticalName property value. The vertical associated with the managed tenant. Optional. Read-only.
-        Args:
-            value: Value to set for the vertical_name property.
-        """
-        self._vertical_name = value
     
 

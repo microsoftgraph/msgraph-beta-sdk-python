@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,37 +8,16 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class HorizontalSection(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new horizontalSection and sets the default values.
-        """
-        super().__init__()
-        # The set of vertical columns in this section.
-        self._columns: Optional[List[horizontal_section_column.HorizontalSectionColumn]] = None
-        # Enumeration value that indicates the emphasis of the section background. The possible values are: none, netural, soft, strong, unknownFutureValue.
-        self._emphasis: Optional[section_emphasis_type.SectionEmphasisType] = None
-        # Layout type of the section. The possible values are: none, oneColumn, twoColumns, threeColumns, oneThirdLeftColumn, oneThirdRightColumn, fullWidth, unknownFutureValue.
-        self._layout: Optional[horizontal_section_layout_type.HorizontalSectionLayoutType] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def columns(self,) -> Optional[List[horizontal_section_column.HorizontalSectionColumn]]:
-        """
-        Gets the columns property value. The set of vertical columns in this section.
-        Returns: Optional[List[horizontal_section_column.HorizontalSectionColumn]]
-        """
-        return self._columns
-    
-    @columns.setter
-    def columns(self,value: Optional[List[horizontal_section_column.HorizontalSectionColumn]] = None) -> None:
-        """
-        Sets the columns property value. The set of vertical columns in this section.
-        Args:
-            value: Value to set for the columns property.
-        """
-        self._columns = value
+    # The set of vertical columns in this section.
+    columns: Optional[List[horizontal_section_column.HorizontalSectionColumn]] = None
+    # Enumeration value that indicates the emphasis of the section background. The possible values are: none, netural, soft, strong, unknownFutureValue.
+    emphasis: Optional[section_emphasis_type.SectionEmphasisType] = None
+    # Layout type of the section. The possible values are: none, oneColumn, twoColumns, threeColumns, oneThirdLeftColumn, oneThirdRightColumn, fullWidth, unknownFutureValue.
+    layout: Optional[horizontal_section_layout_type.HorizontalSectionLayoutType] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> HorizontalSection:
@@ -50,23 +30,6 @@ class HorizontalSection(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return HorizontalSection()
-    
-    @property
-    def emphasis(self,) -> Optional[section_emphasis_type.SectionEmphasisType]:
-        """
-        Gets the emphasis property value. Enumeration value that indicates the emphasis of the section background. The possible values are: none, netural, soft, strong, unknownFutureValue.
-        Returns: Optional[section_emphasis_type.SectionEmphasisType]
-        """
-        return self._emphasis
-    
-    @emphasis.setter
-    def emphasis(self,value: Optional[section_emphasis_type.SectionEmphasisType] = None) -> None:
-        """
-        Sets the emphasis property value. Enumeration value that indicates the emphasis of the section background. The possible values are: none, netural, soft, strong, unknownFutureValue.
-        Args:
-            value: Value to set for the emphasis property.
-        """
-        self._emphasis = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -83,23 +46,6 @@ class HorizontalSection(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def layout(self,) -> Optional[horizontal_section_layout_type.HorizontalSectionLayoutType]:
-        """
-        Gets the layout property value. Layout type of the section. The possible values are: none, oneColumn, twoColumns, threeColumns, oneThirdLeftColumn, oneThirdRightColumn, fullWidth, unknownFutureValue.
-        Returns: Optional[horizontal_section_layout_type.HorizontalSectionLayoutType]
-        """
-        return self._layout
-    
-    @layout.setter
-    def layout(self,value: Optional[horizontal_section_layout_type.HorizontalSectionLayoutType] = None) -> None:
-        """
-        Sets the layout property value. Layout type of the section. The possible values are: none, oneColumn, twoColumns, threeColumns, oneThirdLeftColumn, oneThirdRightColumn, fullWidth, unknownFutureValue.
-        Args:
-            value: Value to set for the layout property.
-        """
-        self._layout = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,122 +8,33 @@ if TYPE_CHECKING:
 
 from . import device_enrollment_configuration
 
+@dataclass
 class Windows10EnrollmentCompletionPageConfiguration(device_enrollment_configuration.DeviceEnrollmentConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Windows10EnrollmentCompletionPageConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windows10EnrollmentCompletionPageConfiguration"
-        # Allow or block device reset on installation failure
-        self._allow_device_reset_on_install_failure: Optional[bool] = None
-        # Allow the user to continue using the device on installation failure
-        self._allow_device_use_on_install_failure: Optional[bool] = None
-        # Allow or block log collection on installation failure
-        self._allow_log_collection_on_install_failure: Optional[bool] = None
-        # Install all required apps as non blocking apps during white glove
-        self._allow_non_blocking_app_installation: Optional[bool] = None
-        # Allow the user to retry the setup on installation failure
-        self._block_device_setup_retry_by_user: Optional[bool] = None
-        # Set custom error message to show upon installation failure
-        self._custom_error_message: Optional[str] = None
-        # Only show installation progress for first user post enrollment
-        self._disable_user_status_tracking_after_first_user: Optional[bool] = None
-        # Set installation progress timeout in minutes
-        self._install_progress_timeout_in_minutes: Optional[int] = None
-        # Allows quality updates installation during OOBE
-        self._install_quality_updates: Optional[bool] = None
-        # Selected applications to track the installation status
-        self._selected_mobile_app_ids: Optional[List[str]] = None
-        # Show or hide installation progress to user
-        self._show_installation_progress: Optional[bool] = None
-        # Only show installation progress for Autopilot enrollment scenarios
-        self._track_install_progress_for_autopilot_only: Optional[bool] = None
-    
-    @property
-    def allow_device_reset_on_install_failure(self,) -> Optional[bool]:
-        """
-        Gets the allowDeviceResetOnInstallFailure property value. Allow or block device reset on installation failure
-        Returns: Optional[bool]
-        """
-        return self._allow_device_reset_on_install_failure
-    
-    @allow_device_reset_on_install_failure.setter
-    def allow_device_reset_on_install_failure(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the allowDeviceResetOnInstallFailure property value. Allow or block device reset on installation failure
-        Args:
-            value: Value to set for the allow_device_reset_on_install_failure property.
-        """
-        self._allow_device_reset_on_install_failure = value
-    
-    @property
-    def allow_device_use_on_install_failure(self,) -> Optional[bool]:
-        """
-        Gets the allowDeviceUseOnInstallFailure property value. Allow the user to continue using the device on installation failure
-        Returns: Optional[bool]
-        """
-        return self._allow_device_use_on_install_failure
-    
-    @allow_device_use_on_install_failure.setter
-    def allow_device_use_on_install_failure(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the allowDeviceUseOnInstallFailure property value. Allow the user to continue using the device on installation failure
-        Args:
-            value: Value to set for the allow_device_use_on_install_failure property.
-        """
-        self._allow_device_use_on_install_failure = value
-    
-    @property
-    def allow_log_collection_on_install_failure(self,) -> Optional[bool]:
-        """
-        Gets the allowLogCollectionOnInstallFailure property value. Allow or block log collection on installation failure
-        Returns: Optional[bool]
-        """
-        return self._allow_log_collection_on_install_failure
-    
-    @allow_log_collection_on_install_failure.setter
-    def allow_log_collection_on_install_failure(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the allowLogCollectionOnInstallFailure property value. Allow or block log collection on installation failure
-        Args:
-            value: Value to set for the allow_log_collection_on_install_failure property.
-        """
-        self._allow_log_collection_on_install_failure = value
-    
-    @property
-    def allow_non_blocking_app_installation(self,) -> Optional[bool]:
-        """
-        Gets the allowNonBlockingAppInstallation property value. Install all required apps as non blocking apps during white glove
-        Returns: Optional[bool]
-        """
-        return self._allow_non_blocking_app_installation
-    
-    @allow_non_blocking_app_installation.setter
-    def allow_non_blocking_app_installation(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the allowNonBlockingAppInstallation property value. Install all required apps as non blocking apps during white glove
-        Args:
-            value: Value to set for the allow_non_blocking_app_installation property.
-        """
-        self._allow_non_blocking_app_installation = value
-    
-    @property
-    def block_device_setup_retry_by_user(self,) -> Optional[bool]:
-        """
-        Gets the blockDeviceSetupRetryByUser property value. Allow the user to retry the setup on installation failure
-        Returns: Optional[bool]
-        """
-        return self._block_device_setup_retry_by_user
-    
-    @block_device_setup_retry_by_user.setter
-    def block_device_setup_retry_by_user(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the blockDeviceSetupRetryByUser property value. Allow the user to retry the setup on installation failure
-        Args:
-            value: Value to set for the block_device_setup_retry_by_user property.
-        """
-        self._block_device_setup_retry_by_user = value
+    odata_type = "#microsoft.graph.windows10EnrollmentCompletionPageConfiguration"
+    # Allow or block device reset on installation failure
+    allow_device_reset_on_install_failure: Optional[bool] = None
+    # Allow the user to continue using the device on installation failure
+    allow_device_use_on_install_failure: Optional[bool] = None
+    # Allow or block log collection on installation failure
+    allow_log_collection_on_install_failure: Optional[bool] = None
+    # Install all required apps as non blocking apps during white glove
+    allow_non_blocking_app_installation: Optional[bool] = None
+    # Allow the user to retry the setup on installation failure
+    block_device_setup_retry_by_user: Optional[bool] = None
+    # Set custom error message to show upon installation failure
+    custom_error_message: Optional[str] = None
+    # Only show installation progress for first user post enrollment
+    disable_user_status_tracking_after_first_user: Optional[bool] = None
+    # Set installation progress timeout in minutes
+    install_progress_timeout_in_minutes: Optional[int] = None
+    # Allows quality updates installation during OOBE
+    install_quality_updates: Optional[bool] = None
+    # Selected applications to track the installation status
+    selected_mobile_app_ids: Optional[List[str]] = None
+    # Show or hide installation progress to user
+    show_installation_progress: Optional[bool] = None
+    # Only show installation progress for Autopilot enrollment scenarios
+    track_install_progress_for_autopilot_only: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10EnrollmentCompletionPageConfiguration:
@@ -135,40 +47,6 @@ class Windows10EnrollmentCompletionPageConfiguration(device_enrollment_configura
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return Windows10EnrollmentCompletionPageConfiguration()
-    
-    @property
-    def custom_error_message(self,) -> Optional[str]:
-        """
-        Gets the customErrorMessage property value. Set custom error message to show upon installation failure
-        Returns: Optional[str]
-        """
-        return self._custom_error_message
-    
-    @custom_error_message.setter
-    def custom_error_message(self,value: Optional[str] = None) -> None:
-        """
-        Sets the customErrorMessage property value. Set custom error message to show upon installation failure
-        Args:
-            value: Value to set for the custom_error_message property.
-        """
-        self._custom_error_message = value
-    
-    @property
-    def disable_user_status_tracking_after_first_user(self,) -> Optional[bool]:
-        """
-        Gets the disableUserStatusTrackingAfterFirstUser property value. Only show installation progress for first user post enrollment
-        Returns: Optional[bool]
-        """
-        return self._disable_user_status_tracking_after_first_user
-    
-    @disable_user_status_tracking_after_first_user.setter
-    def disable_user_status_tracking_after_first_user(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the disableUserStatusTrackingAfterFirstUser property value. Only show installation progress for first user post enrollment
-        Args:
-            value: Value to set for the disable_user_status_tracking_after_first_user property.
-        """
-        self._disable_user_status_tracking_after_first_user = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -195,57 +73,6 @@ class Windows10EnrollmentCompletionPageConfiguration(device_enrollment_configura
         fields.update(super_fields)
         return fields
     
-    @property
-    def install_progress_timeout_in_minutes(self,) -> Optional[int]:
-        """
-        Gets the installProgressTimeoutInMinutes property value. Set installation progress timeout in minutes
-        Returns: Optional[int]
-        """
-        return self._install_progress_timeout_in_minutes
-    
-    @install_progress_timeout_in_minutes.setter
-    def install_progress_timeout_in_minutes(self,value: Optional[int] = None) -> None:
-        """
-        Sets the installProgressTimeoutInMinutes property value. Set installation progress timeout in minutes
-        Args:
-            value: Value to set for the install_progress_timeout_in_minutes property.
-        """
-        self._install_progress_timeout_in_minutes = value
-    
-    @property
-    def install_quality_updates(self,) -> Optional[bool]:
-        """
-        Gets the installQualityUpdates property value. Allows quality updates installation during OOBE
-        Returns: Optional[bool]
-        """
-        return self._install_quality_updates
-    
-    @install_quality_updates.setter
-    def install_quality_updates(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the installQualityUpdates property value. Allows quality updates installation during OOBE
-        Args:
-            value: Value to set for the install_quality_updates property.
-        """
-        self._install_quality_updates = value
-    
-    @property
-    def selected_mobile_app_ids(self,) -> Optional[List[str]]:
-        """
-        Gets the selectedMobileAppIds property value. Selected applications to track the installation status
-        Returns: Optional[List[str]]
-        """
-        return self._selected_mobile_app_ids
-    
-    @selected_mobile_app_ids.setter
-    def selected_mobile_app_ids(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the selectedMobileAppIds property value. Selected applications to track the installation status
-        Args:
-            value: Value to set for the selected_mobile_app_ids property.
-        """
-        self._selected_mobile_app_ids = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -267,39 +94,5 @@ class Windows10EnrollmentCompletionPageConfiguration(device_enrollment_configura
         writer.write_collection_of_primitive_values("selectedMobileAppIds", self.selected_mobile_app_ids)
         writer.write_bool_value("showInstallationProgress", self.show_installation_progress)
         writer.write_bool_value("trackInstallProgressForAutopilotOnly", self.track_install_progress_for_autopilot_only)
-    
-    @property
-    def show_installation_progress(self,) -> Optional[bool]:
-        """
-        Gets the showInstallationProgress property value. Show or hide installation progress to user
-        Returns: Optional[bool]
-        """
-        return self._show_installation_progress
-    
-    @show_installation_progress.setter
-    def show_installation_progress(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the showInstallationProgress property value. Show or hide installation progress to user
-        Args:
-            value: Value to set for the show_installation_progress property.
-        """
-        self._show_installation_progress = value
-    
-    @property
-    def track_install_progress_for_autopilot_only(self,) -> Optional[bool]:
-        """
-        Gets the trackInstallProgressForAutopilotOnly property value. Only show installation progress for Autopilot enrollment scenarios
-        Returns: Optional[bool]
-        """
-        return self._track_install_progress_for_autopilot_only
-    
-    @track_install_progress_for_autopilot_only.setter
-    def track_install_progress_for_autopilot_only(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the trackInstallProgressForAutopilotOnly property value. Only show installation progress for Autopilot enrollment scenarios
-        Args:
-            value: Value to set for the track_install_progress_for_autopilot_only property.
-        """
-        self._track_install_progress_for_autopilot_only = value
     
 

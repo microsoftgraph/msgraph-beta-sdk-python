@@ -1,62 +1,26 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import education_user_role
 
+@dataclass
 class EducationIdentityMatchingOptions(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new educationIdentityMatchingOptions and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The appliesTo property
-        self._applies_to: Optional[education_user_role.EducationUserRole] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The name of the source property, which should be a field name in the source data. This property is case-sensitive.
-        self._source_property_name: Optional[str] = None
-        # The domain to suffix with the source property to match on the target. If provided as null, the source property will be used to match with the target property.
-        self._target_domain: Optional[str] = None
-        # The name of the target property, which should be a valid property in Azure AD. This property is case-sensitive.
-        self._target_property_name: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def applies_to(self,) -> Optional[education_user_role.EducationUserRole]:
-        """
-        Gets the appliesTo property value. The appliesTo property
-        Returns: Optional[education_user_role.EducationUserRole]
-        """
-        return self._applies_to
-    
-    @applies_to.setter
-    def applies_to(self,value: Optional[education_user_role.EducationUserRole] = None) -> None:
-        """
-        Sets the appliesTo property value. The appliesTo property
-        Args:
-            value: Value to set for the applies_to property.
-        """
-        self._applies_to = value
+    # The appliesTo property
+    applies_to: Optional[education_user_role.EducationUserRole] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The name of the source property, which should be a field name in the source data. This property is case-sensitive.
+    source_property_name: Optional[str] = None
+    # The domain to suffix with the source property to match on the target. If provided as null, the source property will be used to match with the target property.
+    target_domain: Optional[str] = None
+    # The name of the target property, which should be a valid property in Azure AD. This property is case-sensitive.
+    target_property_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EducationIdentityMatchingOptions:
@@ -86,23 +50,6 @@ class EducationIdentityMatchingOptions(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -117,56 +64,5 @@ class EducationIdentityMatchingOptions(AdditionalDataHolder, Parsable):
         writer.write_str_value("targetDomain", self.target_domain)
         writer.write_str_value("targetPropertyName", self.target_property_name)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def source_property_name(self,) -> Optional[str]:
-        """
-        Gets the sourcePropertyName property value. The name of the source property, which should be a field name in the source data. This property is case-sensitive.
-        Returns: Optional[str]
-        """
-        return self._source_property_name
-    
-    @source_property_name.setter
-    def source_property_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the sourcePropertyName property value. The name of the source property, which should be a field name in the source data. This property is case-sensitive.
-        Args:
-            value: Value to set for the source_property_name property.
-        """
-        self._source_property_name = value
-    
-    @property
-    def target_domain(self,) -> Optional[str]:
-        """
-        Gets the targetDomain property value. The domain to suffix with the source property to match on the target. If provided as null, the source property will be used to match with the target property.
-        Returns: Optional[str]
-        """
-        return self._target_domain
-    
-    @target_domain.setter
-    def target_domain(self,value: Optional[str] = None) -> None:
-        """
-        Sets the targetDomain property value. The domain to suffix with the source property to match on the target. If provided as null, the source property will be used to match with the target property.
-        Args:
-            value: Value to set for the target_domain property.
-        """
-        self._target_domain = value
-    
-    @property
-    def target_property_name(self,) -> Optional[str]:
-        """
-        Gets the targetPropertyName property value. The name of the target property, which should be a valid property in Azure AD. This property is case-sensitive.
-        Returns: Optional[str]
-        """
-        return self._target_property_name
-    
-    @target_property_name.setter
-    def target_property_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the targetPropertyName property value. The name of the target property, which should be a valid property in Azure AD. This property is case-sensitive.
-        Args:
-            value: Value to set for the target_property_name property.
-        """
-        self._target_property_name = value
     
 

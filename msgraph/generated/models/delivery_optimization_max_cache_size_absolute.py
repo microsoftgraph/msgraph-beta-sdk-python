@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import delivery_optimization_max_cache_size
 
+@dataclass
 class DeliveryOptimizationMaxCacheSizeAbsolute(delivery_optimization_max_cache_size.DeliveryOptimizationMaxCacheSize):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeliveryOptimizationMaxCacheSizeAbsolute and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deliveryOptimizationMaxCacheSizeAbsolute"
-        # Specifies the maximum size in GB of Delivery Optimization cache. Valid values 0 to 4294967295
-        self._maximum_cache_size_in_gigabytes: Optional[int] = None
+    odata_type = "#microsoft.graph.deliveryOptimizationMaxCacheSizeAbsolute"
+    # Specifies the maximum size in GB of Delivery Optimization cache. Valid values 0 to 4294967295
+    maximum_cache_size_in_gigabytes: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeliveryOptimizationMaxCacheSizeAbsolute:
@@ -42,23 +39,6 @@ class DeliveryOptimizationMaxCacheSizeAbsolute(delivery_optimization_max_cache_s
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def maximum_cache_size_in_gigabytes(self,) -> Optional[int]:
-        """
-        Gets the maximumCacheSizeInGigabytes property value. Specifies the maximum size in GB of Delivery Optimization cache. Valid values 0 to 4294967295
-        Returns: Optional[int]
-        """
-        return self._maximum_cache_size_in_gigabytes
-    
-    @maximum_cache_size_in_gigabytes.setter
-    def maximum_cache_size_in_gigabytes(self,value: Optional[int] = None) -> None:
-        """
-        Sets the maximumCacheSizeInGigabytes property value. Specifies the maximum size in GB of Delivery Optimization cache. Valid values 0 to 4294967295
-        Args:
-            value: Value to set for the maximum_cache_size_in_gigabytes property.
-        """
-        self._maximum_cache_size_in_gigabytes = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

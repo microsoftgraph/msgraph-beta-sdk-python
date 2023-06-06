@@ -1,64 +1,28 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .....models import call_disposition, invitation_participant_info
 
+@dataclass
 class RedirectPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new redirectPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The callbackUri property
-        self._callback_uri: Optional[str] = None
-        # The maskCallee property
-        self._mask_callee: Optional[bool] = None
-        # The maskCaller property
-        self._mask_caller: Optional[bool] = None
-        # The targetDisposition property
-        self._target_disposition: Optional[call_disposition.CallDisposition] = None
-        # The targets property
-        self._targets: Optional[List[invitation_participant_info.InvitationParticipantInfo]] = None
-        # The timeout property
-        self._timeout: Optional[int] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def callback_uri(self,) -> Optional[str]:
-        """
-        Gets the callbackUri property value. The callbackUri property
-        Returns: Optional[str]
-        """
-        return self._callback_uri
-    
-    @callback_uri.setter
-    def callback_uri(self,value: Optional[str] = None) -> None:
-        """
-        Sets the callbackUri property value. The callbackUri property
-        Args:
-            value: Value to set for the callback_uri property.
-        """
-        self._callback_uri = value
+    # The callbackUri property
+    callback_uri: Optional[str] = None
+    # The maskCallee property
+    mask_callee: Optional[bool] = None
+    # The maskCaller property
+    mask_caller: Optional[bool] = None
+    # The targetDisposition property
+    target_disposition: Optional[call_disposition.CallDisposition] = None
+    # The targets property
+    targets: Optional[List[invitation_participant_info.InvitationParticipantInfo]] = None
+    # The timeout property
+    timeout: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RedirectPostRequestBody:
@@ -89,40 +53,6 @@ class RedirectPostRequestBody(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def mask_callee(self,) -> Optional[bool]:
-        """
-        Gets the maskCallee property value. The maskCallee property
-        Returns: Optional[bool]
-        """
-        return self._mask_callee
-    
-    @mask_callee.setter
-    def mask_callee(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the maskCallee property value. The maskCallee property
-        Args:
-            value: Value to set for the mask_callee property.
-        """
-        self._mask_callee = value
-    
-    @property
-    def mask_caller(self,) -> Optional[bool]:
-        """
-        Gets the maskCaller property value. The maskCaller property
-        Returns: Optional[bool]
-        """
-        return self._mask_caller
-    
-    @mask_caller.setter
-    def mask_caller(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the maskCaller property value. The maskCaller property
-        Args:
-            value: Value to set for the mask_caller property.
-        """
-        self._mask_caller = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -138,56 +68,5 @@ class RedirectPostRequestBody(AdditionalDataHolder, Parsable):
         writer.write_enum_value("targetDisposition", self.target_disposition)
         writer.write_int_value("timeout", self.timeout)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def target_disposition(self,) -> Optional[call_disposition.CallDisposition]:
-        """
-        Gets the targetDisposition property value. The targetDisposition property
-        Returns: Optional[call_disposition.CallDisposition]
-        """
-        return self._target_disposition
-    
-    @target_disposition.setter
-    def target_disposition(self,value: Optional[call_disposition.CallDisposition] = None) -> None:
-        """
-        Sets the targetDisposition property value. The targetDisposition property
-        Args:
-            value: Value to set for the target_disposition property.
-        """
-        self._target_disposition = value
-    
-    @property
-    def targets(self,) -> Optional[List[invitation_participant_info.InvitationParticipantInfo]]:
-        """
-        Gets the targets property value. The targets property
-        Returns: Optional[List[invitation_participant_info.InvitationParticipantInfo]]
-        """
-        return self._targets
-    
-    @targets.setter
-    def targets(self,value: Optional[List[invitation_participant_info.InvitationParticipantInfo]] = None) -> None:
-        """
-        Sets the targets property value. The targets property
-        Args:
-            value: Value to set for the targets property.
-        """
-        self._targets = value
-    
-    @property
-    def timeout(self,) -> Optional[int]:
-        """
-        Gets the timeout property value. The timeout property
-        Returns: Optional[int]
-        """
-        return self._timeout
-    
-    @timeout.setter
-    def timeout(self,value: Optional[int] = None) -> None:
-        """
-        Sets the timeout property value. The timeout property
-        Args:
-            value: Value to set for the timeout property.
-        """
-        self._timeout = value
     
 

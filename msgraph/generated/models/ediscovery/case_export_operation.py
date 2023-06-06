@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,64 +8,26 @@ if TYPE_CHECKING:
 
 from . import case_operation
 
+@dataclass
 class CaseExportOperation(case_operation.CaseOperation):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new CaseExportOperation and sets the default values.
-        """
-        super().__init__()
-        # The name of the Azure storage location where the export will be stored. This only applies to exports stored in your own Azure storage location.
-        self._azure_blob_container: Optional[str] = None
-        # The SAS token for the Azure storage location.  This only applies to exports stored in your own Azure storage location.
-        self._azure_blob_token: Optional[str] = None
-        # The description provided for the export.
-        self._description: Optional[str] = None
-        # The options provided for the export. For more details, see reviewSet: export. Possible values are: originalFiles, text, pdfReplacement, fileInfo, tags.
-        self._export_options: Optional[export_options.ExportOptions] = None
-        # The options provided that specify the structure of the export. For more details, see reviewSet: export. Possible values are: none, directory, pst.
-        self._export_structure: Optional[export_file_structure.ExportFileStructure] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The outputFolderId property
-        self._output_folder_id: Optional[str] = None
-        # The name provided for the export.
-        self._output_name: Optional[str] = None
-        # The review set the content is being exported from.
-        self._review_set: Optional[review_set.ReviewSet] = None
-    
-    @property
-    def azure_blob_container(self,) -> Optional[str]:
-        """
-        Gets the azureBlobContainer property value. The name of the Azure storage location where the export will be stored. This only applies to exports stored in your own Azure storage location.
-        Returns: Optional[str]
-        """
-        return self._azure_blob_container
-    
-    @azure_blob_container.setter
-    def azure_blob_container(self,value: Optional[str] = None) -> None:
-        """
-        Sets the azureBlobContainer property value. The name of the Azure storage location where the export will be stored. This only applies to exports stored in your own Azure storage location.
-        Args:
-            value: Value to set for the azure_blob_container property.
-        """
-        self._azure_blob_container = value
-    
-    @property
-    def azure_blob_token(self,) -> Optional[str]:
-        """
-        Gets the azureBlobToken property value. The SAS token for the Azure storage location.  This only applies to exports stored in your own Azure storage location.
-        Returns: Optional[str]
-        """
-        return self._azure_blob_token
-    
-    @azure_blob_token.setter
-    def azure_blob_token(self,value: Optional[str] = None) -> None:
-        """
-        Sets the azureBlobToken property value. The SAS token for the Azure storage location.  This only applies to exports stored in your own Azure storage location.
-        Args:
-            value: Value to set for the azure_blob_token property.
-        """
-        self._azure_blob_token = value
+    # The name of the Azure storage location where the export will be stored. This only applies to exports stored in your own Azure storage location.
+    azure_blob_container: Optional[str] = None
+    # The SAS token for the Azure storage location.  This only applies to exports stored in your own Azure storage location.
+    azure_blob_token: Optional[str] = None
+    # The description provided for the export.
+    description: Optional[str] = None
+    # The options provided for the export. For more details, see reviewSet: export. Possible values are: originalFiles, text, pdfReplacement, fileInfo, tags.
+    export_options: Optional[export_options.ExportOptions] = None
+    # The options provided that specify the structure of the export. For more details, see reviewSet: export. Possible values are: none, directory, pst.
+    export_structure: Optional[export_file_structure.ExportFileStructure] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The outputFolderId property
+    output_folder_id: Optional[str] = None
+    # The name provided for the export.
+    output_name: Optional[str] = None
+    # The review set the content is being exported from.
+    review_set: Optional[review_set.ReviewSet] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CaseExportOperation:
@@ -77,57 +40,6 @@ class CaseExportOperation(case_operation.CaseOperation):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return CaseExportOperation()
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. The description provided for the export.
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. The description provided for the export.
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def export_options(self,) -> Optional[export_options.ExportOptions]:
-        """
-        Gets the exportOptions property value. The options provided for the export. For more details, see reviewSet: export. Possible values are: originalFiles, text, pdfReplacement, fileInfo, tags.
-        Returns: Optional[export_options.ExportOptions]
-        """
-        return self._export_options
-    
-    @export_options.setter
-    def export_options(self,value: Optional[export_options.ExportOptions] = None) -> None:
-        """
-        Sets the exportOptions property value. The options provided for the export. For more details, see reviewSet: export. Possible values are: originalFiles, text, pdfReplacement, fileInfo, tags.
-        Args:
-            value: Value to set for the export_options property.
-        """
-        self._export_options = value
-    
-    @property
-    def export_structure(self,) -> Optional[export_file_structure.ExportFileStructure]:
-        """
-        Gets the exportStructure property value. The options provided that specify the structure of the export. For more details, see reviewSet: export. Possible values are: none, directory, pst.
-        Returns: Optional[export_file_structure.ExportFileStructure]
-        """
-        return self._export_structure
-    
-    @export_structure.setter
-    def export_structure(self,value: Optional[export_file_structure.ExportFileStructure] = None) -> None:
-        """
-        Sets the exportStructure property value. The options provided that specify the structure of the export. For more details, see reviewSet: export. Possible values are: none, directory, pst.
-        Args:
-            value: Value to set for the export_structure property.
-        """
-        self._export_structure = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -149,57 +61,6 @@ class CaseExportOperation(case_operation.CaseOperation):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def output_folder_id(self,) -> Optional[str]:
-        """
-        Gets the outputFolderId property value. The outputFolderId property
-        Returns: Optional[str]
-        """
-        return self._output_folder_id
-    
-    @output_folder_id.setter
-    def output_folder_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the outputFolderId property value. The outputFolderId property
-        Args:
-            value: Value to set for the output_folder_id property.
-        """
-        self._output_folder_id = value
-    
-    @property
-    def output_name(self,) -> Optional[str]:
-        """
-        Gets the outputName property value. The name provided for the export.
-        Returns: Optional[str]
-        """
-        return self._output_name
-    
-    @output_name.setter
-    def output_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the outputName property value. The name provided for the export.
-        Args:
-            value: Value to set for the output_name property.
-        """
-        self._output_name = value
-    
-    @property
-    def review_set(self,) -> Optional[review_set.ReviewSet]:
-        """
-        Gets the reviewSet property value. The review set the content is being exported from.
-        Returns: Optional[review_set.ReviewSet]
-        """
-        return self._review_set
-    
-    @review_set.setter
-    def review_set(self,value: Optional[review_set.ReviewSet] = None) -> None:
-        """
-        Sets the reviewSet property value. The review set the content is being exported from.
-        Args:
-            value: Value to set for the review_set property.
-        """
-        self._review_set = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

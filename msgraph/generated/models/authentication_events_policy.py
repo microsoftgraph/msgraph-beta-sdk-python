@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,16 +8,12 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class AuthenticationEventsPolicy(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AuthenticationEventsPolicy and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # A list of applicable actions to be taken on sign-up.
-        self._on_signup_start: Optional[List[authentication_listener.AuthenticationListener]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # A list of applicable actions to be taken on sign-up.
+    on_signup_start: Optional[List[authentication_listener.AuthenticationListener]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AuthenticationEventsPolicy:
@@ -43,23 +40,6 @@ class AuthenticationEventsPolicy(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def on_signup_start(self,) -> Optional[List[authentication_listener.AuthenticationListener]]:
-        """
-        Gets the onSignupStart property value. A list of applicable actions to be taken on sign-up.
-        Returns: Optional[List[authentication_listener.AuthenticationListener]]
-        """
-        return self._on_signup_start
-    
-    @on_signup_start.setter
-    def on_signup_start(self,value: Optional[List[authentication_listener.AuthenticationListener]] = None) -> None:
-        """
-        Sets the onSignupStart property value. A list of applicable actions to be taken on sign-up.
-        Args:
-            value: Value to set for the on_signup_start property.
-        """
-        self._on_signup_start = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

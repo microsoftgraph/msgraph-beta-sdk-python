@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import information_protection_action
 
+@dataclass
 class RemoveContentHeaderAction(information_protection_action.InformationProtectionAction):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new RemoveContentHeaderAction and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.security.removeContentHeaderAction"
-        # The name of the UI element of the header to be removed.
-        self._ui_element_names: Optional[List[str]] = None
+    odata_type = "#microsoft.graph.security.removeContentHeaderAction"
+    # The name of the UI element of the header to be removed.
+    ui_element_names: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RemoveContentHeaderAction:
@@ -53,22 +50,5 @@ class RemoveContentHeaderAction(information_protection_action.InformationProtect
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_collection_of_primitive_values("uiElementNames", self.ui_element_names)
-    
-    @property
-    def ui_element_names(self,) -> Optional[List[str]]:
-        """
-        Gets the uiElementNames property value. The name of the UI element of the header to be removed.
-        Returns: Optional[List[str]]
-        """
-        return self._ui_element_names
-    
-    @ui_element_names.setter
-    def ui_element_names(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the uiElementNames property value. The name of the UI element of the header to be removed.
-        Args:
-            value: Value to set for the ui_element_names property.
-        """
-        self._ui_element_names = value
     
 

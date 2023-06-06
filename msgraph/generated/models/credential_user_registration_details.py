@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,45 +8,24 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class CredentialUserRegistrationDetails(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new CredentialUserRegistrationDetails and sets the default values.
-        """
-        super().__init__()
-        # Represents the authentication method that the user has registered. Possible values are: email, mobilePhone, officePhone,  securityQuestion (only used for self-service password reset), appNotification,  appCode, alternateMobilePhone (supported only in registration),  fido,  appPassword,  unknownFutureValue.
-        self._auth_methods: Optional[List[registration_auth_method.RegistrationAuthMethod]] = None
-        # Indicates whether the user is ready to perform self-service password reset or MFA.
-        self._is_capable: Optional[bool] = None
-        # Indicates whether the user enabled to perform self-service password reset.
-        self._is_enabled: Optional[bool] = None
-        # Indicates whether the user is registered for MFA.
-        self._is_mfa_registered: Optional[bool] = None
-        # Indicates whether the user has registered any authentication methods for self-service password reset.
-        self._is_registered: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Provides the user name of the corresponding user.
-        self._user_display_name: Optional[str] = None
-        # Provides the user principal name of the corresponding user.
-        self._user_principal_name: Optional[str] = None
-    
-    @property
-    def auth_methods(self,) -> Optional[List[registration_auth_method.RegistrationAuthMethod]]:
-        """
-        Gets the authMethods property value. Represents the authentication method that the user has registered. Possible values are: email, mobilePhone, officePhone,  securityQuestion (only used for self-service password reset), appNotification,  appCode, alternateMobilePhone (supported only in registration),  fido,  appPassword,  unknownFutureValue.
-        Returns: Optional[List[registration_auth_method.RegistrationAuthMethod]]
-        """
-        return self._auth_methods
-    
-    @auth_methods.setter
-    def auth_methods(self,value: Optional[List[registration_auth_method.RegistrationAuthMethod]] = None) -> None:
-        """
-        Sets the authMethods property value. Represents the authentication method that the user has registered. Possible values are: email, mobilePhone, officePhone,  securityQuestion (only used for self-service password reset), appNotification,  appCode, alternateMobilePhone (supported only in registration),  fido,  appPassword,  unknownFutureValue.
-        Args:
-            value: Value to set for the auth_methods property.
-        """
-        self._auth_methods = value
+    # Represents the authentication method that the user has registered. Possible values are: email, mobilePhone, officePhone,  securityQuestion (only used for self-service password reset), appNotification,  appCode, alternateMobilePhone (supported only in registration),  fido,  appPassword,  unknownFutureValue.
+    auth_methods: Optional[List[registration_auth_method.RegistrationAuthMethod]] = None
+    # Indicates whether the user is ready to perform self-service password reset or MFA.
+    is_capable: Optional[bool] = None
+    # Indicates whether the user enabled to perform self-service password reset.
+    is_enabled: Optional[bool] = None
+    # Indicates whether the user is registered for MFA.
+    is_mfa_registered: Optional[bool] = None
+    # Indicates whether the user has registered any authentication methods for self-service password reset.
+    is_registered: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Provides the user name of the corresponding user.
+    user_display_name: Optional[str] = None
+    # Provides the user principal name of the corresponding user.
+    user_principal_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CredentialUserRegistrationDetails:
@@ -79,74 +59,6 @@ class CredentialUserRegistrationDetails(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def is_capable(self,) -> Optional[bool]:
-        """
-        Gets the isCapable property value. Indicates whether the user is ready to perform self-service password reset or MFA.
-        Returns: Optional[bool]
-        """
-        return self._is_capable
-    
-    @is_capable.setter
-    def is_capable(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isCapable property value. Indicates whether the user is ready to perform self-service password reset or MFA.
-        Args:
-            value: Value to set for the is_capable property.
-        """
-        self._is_capable = value
-    
-    @property
-    def is_enabled(self,) -> Optional[bool]:
-        """
-        Gets the isEnabled property value. Indicates whether the user enabled to perform self-service password reset.
-        Returns: Optional[bool]
-        """
-        return self._is_enabled
-    
-    @is_enabled.setter
-    def is_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isEnabled property value. Indicates whether the user enabled to perform self-service password reset.
-        Args:
-            value: Value to set for the is_enabled property.
-        """
-        self._is_enabled = value
-    
-    @property
-    def is_mfa_registered(self,) -> Optional[bool]:
-        """
-        Gets the isMfaRegistered property value. Indicates whether the user is registered for MFA.
-        Returns: Optional[bool]
-        """
-        return self._is_mfa_registered
-    
-    @is_mfa_registered.setter
-    def is_mfa_registered(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isMfaRegistered property value. Indicates whether the user is registered for MFA.
-        Args:
-            value: Value to set for the is_mfa_registered property.
-        """
-        self._is_mfa_registered = value
-    
-    @property
-    def is_registered(self,) -> Optional[bool]:
-        """
-        Gets the isRegistered property value. Indicates whether the user has registered any authentication methods for self-service password reset.
-        Returns: Optional[bool]
-        """
-        return self._is_registered
-    
-    @is_registered.setter
-    def is_registered(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isRegistered property value. Indicates whether the user has registered any authentication methods for self-service password reset.
-        Args:
-            value: Value to set for the is_registered property.
-        """
-        self._is_registered = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -163,39 +75,5 @@ class CredentialUserRegistrationDetails(entity.Entity):
         writer.write_bool_value("isRegistered", self.is_registered)
         writer.write_str_value("userDisplayName", self.user_display_name)
         writer.write_str_value("userPrincipalName", self.user_principal_name)
-    
-    @property
-    def user_display_name(self,) -> Optional[str]:
-        """
-        Gets the userDisplayName property value. Provides the user name of the corresponding user.
-        Returns: Optional[str]
-        """
-        return self._user_display_name
-    
-    @user_display_name.setter
-    def user_display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the userDisplayName property value. Provides the user name of the corresponding user.
-        Args:
-            value: Value to set for the user_display_name property.
-        """
-        self._user_display_name = value
-    
-    @property
-    def user_principal_name(self,) -> Optional[str]:
-        """
-        Gets the userPrincipalName property value. Provides the user principal name of the corresponding user.
-        Returns: Optional[str]
-        """
-        return self._user_principal_name
-    
-    @user_principal_name.setter
-    def user_principal_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the userPrincipalName property value. Provides the user principal name of the corresponding user.
-        Args:
-            value: Value to set for the user_principal_name property.
-        """
-        self._user_principal_name = value
     
 

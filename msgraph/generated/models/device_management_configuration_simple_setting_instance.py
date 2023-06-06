@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import device_management_configuration_setting_instance
 
+@dataclass
 class DeviceManagementConfigurationSimpleSettingInstance(device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementConfigurationSimpleSettingInstance and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementConfigurationSimpleSettingInstance"
-        # The simpleSettingValue property
-        self._simple_setting_value: Optional[device_management_configuration_simple_setting_value.DeviceManagementConfigurationSimpleSettingValue] = None
+    odata_type = "#microsoft.graph.deviceManagementConfigurationSimpleSettingInstance"
+    # The simpleSettingValue property
+    simple_setting_value: Optional[device_management_configuration_simple_setting_value.DeviceManagementConfigurationSimpleSettingValue] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationSimpleSettingInstance:
@@ -53,22 +50,5 @@ class DeviceManagementConfigurationSimpleSettingInstance(device_management_confi
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_object_value("simpleSettingValue", self.simple_setting_value)
-    
-    @property
-    def simple_setting_value(self,) -> Optional[device_management_configuration_simple_setting_value.DeviceManagementConfigurationSimpleSettingValue]:
-        """
-        Gets the simpleSettingValue property value. The simpleSettingValue property
-        Returns: Optional[device_management_configuration_simple_setting_value.DeviceManagementConfigurationSimpleSettingValue]
-        """
-        return self._simple_setting_value
-    
-    @simple_setting_value.setter
-    def simple_setting_value(self,value: Optional[device_management_configuration_simple_setting_value.DeviceManagementConfigurationSimpleSettingValue] = None) -> None:
-        """
-        Sets the simpleSettingValue property value. The simpleSettingValue property
-        Args:
-            value: Value to set for the simple_setting_value property.
-        """
-        self._simple_setting_value = value
     
 

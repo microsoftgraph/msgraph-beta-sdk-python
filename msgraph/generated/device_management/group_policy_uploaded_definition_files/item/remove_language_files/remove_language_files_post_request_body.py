@@ -1,37 +1,18 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .....models import group_policy_uploaded_language_file
 
+@dataclass
 class RemoveLanguageFilesPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new removeLanguageFilesPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The groupPolicyUploadedLanguageFiles property
-        self._group_policy_uploaded_language_files: Optional[List[group_policy_uploaded_language_file.GroupPolicyUploadedLanguageFile]] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The groupPolicyUploadedLanguageFiles property
+    group_policy_uploaded_language_files: Optional[List[group_policy_uploaded_language_file.GroupPolicyUploadedLanguageFile]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RemoveLanguageFilesPostRequestBody:
@@ -56,23 +37,6 @@ class RemoveLanguageFilesPostRequestBody(AdditionalDataHolder, Parsable):
             "groupPolicyUploadedLanguageFiles": lambda n : setattr(self, 'group_policy_uploaded_language_files', n.get_collection_of_object_values(group_policy_uploaded_language_file.GroupPolicyUploadedLanguageFile)),
         }
         return fields
-    
-    @property
-    def group_policy_uploaded_language_files(self,) -> Optional[List[group_policy_uploaded_language_file.GroupPolicyUploadedLanguageFile]]:
-        """
-        Gets the groupPolicyUploadedLanguageFiles property value. The groupPolicyUploadedLanguageFiles property
-        Returns: Optional[List[group_policy_uploaded_language_file.GroupPolicyUploadedLanguageFile]]
-        """
-        return self._group_policy_uploaded_language_files
-    
-    @group_policy_uploaded_language_files.setter
-    def group_policy_uploaded_language_files(self,value: Optional[List[group_policy_uploaded_language_file.GroupPolicyUploadedLanguageFile]] = None) -> None:
-        """
-        Sets the groupPolicyUploadedLanguageFiles property value. The groupPolicyUploadedLanguageFiles property
-        Args:
-            value: Value to set for the group_policy_uploaded_language_files property.
-        """
-        self._group_policy_uploaded_language_files = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,18 +8,14 @@ if TYPE_CHECKING:
 
 from . import booking_named_entity
 
+@dataclass
 class BookingPerson(booking_named_entity.BookingNamedEntity):
     """
     Represents a booking customer or staff member.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new bookingPerson and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.bookingPerson"
-        # The email address of the person.
-        self._email_address: Optional[str] = None
+    odata_type = "#microsoft.graph.bookingPerson"
+    # The email address of the person.
+    email_address: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> BookingPerson:
@@ -42,23 +39,6 @@ class BookingPerson(booking_named_entity.BookingNamedEntity):
 
                 return booking_staff_member.BookingStaffMember()
         return BookingPerson()
-    
-    @property
-    def email_address(self,) -> Optional[str]:
-        """
-        Gets the emailAddress property value. The email address of the person.
-        Returns: Optional[str]
-        """
-        return self._email_address
-    
-    @email_address.setter
-    def email_address(self,value: Optional[str] = None) -> None:
-        """
-        Sets the emailAddress property value. The email address of the person.
-        Args:
-            value: Value to set for the email_address property.
-        """
-        self._email_address = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """

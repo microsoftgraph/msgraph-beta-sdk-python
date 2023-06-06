@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,36 +8,15 @@ if TYPE_CHECKING:
 
 from . import device_enrollment_configuration
 
+@dataclass
 class DeviceComanagementAuthorityConfiguration(device_enrollment_configuration.DeviceEnrollmentConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceComanagementAuthorityConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceComanagementAuthorityConfiguration"
-        # CoManagement Authority configuration ConfigurationManagerAgentCommandLineArgument
-        self._configuration_manager_agent_command_line_argument: Optional[str] = None
-        # CoManagement Authority configuration InstallConfigurationManagerAgent
-        self._install_configuration_manager_agent: Optional[bool] = None
-        # CoManagement Authority configuration ManagedDeviceAuthority
-        self._managed_device_authority: Optional[int] = None
-    
-    @property
-    def configuration_manager_agent_command_line_argument(self,) -> Optional[str]:
-        """
-        Gets the configurationManagerAgentCommandLineArgument property value. CoManagement Authority configuration ConfigurationManagerAgentCommandLineArgument
-        Returns: Optional[str]
-        """
-        return self._configuration_manager_agent_command_line_argument
-    
-    @configuration_manager_agent_command_line_argument.setter
-    def configuration_manager_agent_command_line_argument(self,value: Optional[str] = None) -> None:
-        """
-        Sets the configurationManagerAgentCommandLineArgument property value. CoManagement Authority configuration ConfigurationManagerAgentCommandLineArgument
-        Args:
-            value: Value to set for the configuration_manager_agent_command_line_argument property.
-        """
-        self._configuration_manager_agent_command_line_argument = value
+    odata_type = "#microsoft.graph.deviceComanagementAuthorityConfiguration"
+    # CoManagement Authority configuration ConfigurationManagerAgentCommandLineArgument
+    configuration_manager_agent_command_line_argument: Optional[str] = None
+    # CoManagement Authority configuration InstallConfigurationManagerAgent
+    install_configuration_manager_agent: Optional[bool] = None
+    # CoManagement Authority configuration ManagedDeviceAuthority
+    managed_device_authority: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceComanagementAuthorityConfiguration:
@@ -65,40 +45,6 @@ class DeviceComanagementAuthorityConfiguration(device_enrollment_configuration.D
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def install_configuration_manager_agent(self,) -> Optional[bool]:
-        """
-        Gets the installConfigurationManagerAgent property value. CoManagement Authority configuration InstallConfigurationManagerAgent
-        Returns: Optional[bool]
-        """
-        return self._install_configuration_manager_agent
-    
-    @install_configuration_manager_agent.setter
-    def install_configuration_manager_agent(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the installConfigurationManagerAgent property value. CoManagement Authority configuration InstallConfigurationManagerAgent
-        Args:
-            value: Value to set for the install_configuration_manager_agent property.
-        """
-        self._install_configuration_manager_agent = value
-    
-    @property
-    def managed_device_authority(self,) -> Optional[int]:
-        """
-        Gets the managedDeviceAuthority property value. CoManagement Authority configuration ManagedDeviceAuthority
-        Returns: Optional[int]
-        """
-        return self._managed_device_authority
-    
-    @managed_device_authority.setter
-    def managed_device_authority(self,value: Optional[int] = None) -> None:
-        """
-        Sets the managedDeviceAuthority property value. CoManagement Authority configuration ManagedDeviceAuthority
-        Args:
-            value: Value to set for the managed_device_authority property.
-        """
-        self._managed_device_authority = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

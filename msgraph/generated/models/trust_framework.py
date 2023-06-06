@@ -1,41 +1,22 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import trust_framework_key_set, trust_framework_policy
 
+@dataclass
 class TrustFramework(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new TrustFramework and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The keySets property
-        self._key_sets: Optional[List[trust_framework_key_set.TrustFrameworkKeySet]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The policies property
-        self._policies: Optional[List[trust_framework_policy.TrustFrameworkPolicy]] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The keySets property
+    key_sets: Optional[List[trust_framework_key_set.TrustFrameworkKeySet]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The policies property
+    policies: Optional[List[trust_framework_policy.TrustFrameworkPolicy]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TrustFramework:
@@ -62,57 +43,6 @@ class TrustFramework(AdditionalDataHolder, Parsable):
             "policies": lambda n : setattr(self, 'policies', n.get_collection_of_object_values(trust_framework_policy.TrustFrameworkPolicy)),
         }
         return fields
-    
-    @property
-    def key_sets(self,) -> Optional[List[trust_framework_key_set.TrustFrameworkKeySet]]:
-        """
-        Gets the keySets property value. The keySets property
-        Returns: Optional[List[trust_framework_key_set.TrustFrameworkKeySet]]
-        """
-        return self._key_sets
-    
-    @key_sets.setter
-    def key_sets(self,value: Optional[List[trust_framework_key_set.TrustFrameworkKeySet]] = None) -> None:
-        """
-        Sets the keySets property value. The keySets property
-        Args:
-            value: Value to set for the key_sets property.
-        """
-        self._key_sets = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def policies(self,) -> Optional[List[trust_framework_policy.TrustFrameworkPolicy]]:
-        """
-        Gets the policies property value. The policies property
-        Returns: Optional[List[trust_framework_policy.TrustFrameworkPolicy]]
-        """
-        return self._policies
-    
-    @policies.setter
-    def policies(self,value: Optional[List[trust_framework_policy.TrustFrameworkPolicy]] = None) -> None:
-        """
-        Sets the policies property value. The policies property
-        Args:
-            value: Value to set for the policies property.
-        """
-        self._policies = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

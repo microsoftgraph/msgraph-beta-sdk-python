@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,13 +8,9 @@ if TYPE_CHECKING:
 
 from . import access_review_recommendation_insight_setting
 
+@dataclass
 class GroupPeerOutlierRecommendationInsightSettings(access_review_recommendation_insight_setting.AccessReviewRecommendationInsightSetting):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new GroupPeerOutlierRecommendationInsightSettings and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.groupPeerOutlierRecommendationInsightSettings"
+    odata_type = "#microsoft.graph.groupPeerOutlierRecommendationInsightSettings"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GroupPeerOutlierRecommendationInsightSettings:

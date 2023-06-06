@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,17 +8,13 @@ if TYPE_CHECKING:
 
 from . import device_management_configuration_simple_setting_value
 
+@dataclass
 class DeviceManagementConfigurationSecretSettingValue(device_management_configuration_simple_setting_value.DeviceManagementConfigurationSimpleSettingValue):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementConfigurationSecretSettingValue and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementConfigurationSecretSettingValue"
-        # Value of the secret setting.
-        self._value: Optional[str] = None
-        # type tracking the encryption state of a secret setting value
-        self._value_state: Optional[device_management_configuration_secret_setting_value_state.DeviceManagementConfigurationSecretSettingValueState] = None
+    odata_type = "#microsoft.graph.deviceManagementConfigurationSecretSettingValue"
+    # Value of the secret setting.
+    value: Optional[str] = None
+    # type tracking the encryption state of a secret setting value
+    value_state: Optional[device_management_configuration_secret_setting_value_state.DeviceManagementConfigurationSecretSettingValueState] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationSecretSettingValue:
@@ -57,39 +54,5 @@ class DeviceManagementConfigurationSecretSettingValue(device_management_configur
         super().serialize(writer)
         writer.write_str_value("value", self.value)
         writer.write_enum_value("valueState", self.value_state)
-    
-    @property
-    def value(self,) -> Optional[str]:
-        """
-        Gets the value property value. Value of the secret setting.
-        Returns: Optional[str]
-        """
-        return self._value
-    
-    @value.setter
-    def value(self,value: Optional[str] = None) -> None:
-        """
-        Sets the value property value. Value of the secret setting.
-        Args:
-            value: Value to set for the value property.
-        """
-        self._value = value
-    
-    @property
-    def value_state(self,) -> Optional[device_management_configuration_secret_setting_value_state.DeviceManagementConfigurationSecretSettingValueState]:
-        """
-        Gets the valueState property value. type tracking the encryption state of a secret setting value
-        Returns: Optional[device_management_configuration_secret_setting_value_state.DeviceManagementConfigurationSecretSettingValueState]
-        """
-        return self._value_state
-    
-    @value_state.setter
-    def value_state(self,value: Optional[device_management_configuration_secret_setting_value_state.DeviceManagementConfigurationSecretSettingValueState] = None) -> None:
-        """
-        Sets the valueState property value. type tracking the encryption state of a secret setting value
-        Args:
-            value: Value to set for the value_state property.
-        """
-        self._value_state = value
     
 

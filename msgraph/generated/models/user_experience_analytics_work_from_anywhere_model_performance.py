@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,86 +8,31 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class UserExperienceAnalyticsWorkFromAnywhereModelPerformance(entity.Entity):
     """
     The user experience analytics work from anywhere model performance.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsWorkFromAnywhereModelPerformance and sets the default values.
-        """
-        super().__init__()
-        # The user experience work from anywhere's cloud identity score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._cloud_identity_score: Optional[float] = None
-        # The user experience work from anywhere's cloud management score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._cloud_management_score: Optional[float] = None
-        # The user experience work from anywhere's cloud provisioning score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._cloud_provisioning_score: Optional[float] = None
-        # The healthStatus property
-        self._health_status: Optional[user_experience_analytics_health_state.UserExperienceAnalyticsHealthState] = None
-        # The user experience work from anywhere's manufacturer name of the devices.
-        self._manufacturer: Optional[str] = None
-        # The user experience work from anywhere's model name of the devices.
-        self._model: Optional[str] = None
-        # The user experience work from anywhere's devices count for the model. Valid values -2147483648 to 2147483647
-        self._model_device_count: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The user experience work from anywhere windows score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._windows_score: Optional[float] = None
-        # The user experience work from anywhere overall score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._work_from_anywhere_score: Optional[float] = None
-    
-    @property
-    def cloud_identity_score(self,) -> Optional[float]:
-        """
-        Gets the cloudIdentityScore property value. The user experience work from anywhere's cloud identity score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Returns: Optional[float]
-        """
-        return self._cloud_identity_score
-    
-    @cloud_identity_score.setter
-    def cloud_identity_score(self,value: Optional[float] = None) -> None:
-        """
-        Sets the cloudIdentityScore property value. The user experience work from anywhere's cloud identity score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Args:
-            value: Value to set for the cloud_identity_score property.
-        """
-        self._cloud_identity_score = value
-    
-    @property
-    def cloud_management_score(self,) -> Optional[float]:
-        """
-        Gets the cloudManagementScore property value. The user experience work from anywhere's cloud management score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Returns: Optional[float]
-        """
-        return self._cloud_management_score
-    
-    @cloud_management_score.setter
-    def cloud_management_score(self,value: Optional[float] = None) -> None:
-        """
-        Sets the cloudManagementScore property value. The user experience work from anywhere's cloud management score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Args:
-            value: Value to set for the cloud_management_score property.
-        """
-        self._cloud_management_score = value
-    
-    @property
-    def cloud_provisioning_score(self,) -> Optional[float]:
-        """
-        Gets the cloudProvisioningScore property value. The user experience work from anywhere's cloud provisioning score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Returns: Optional[float]
-        """
-        return self._cloud_provisioning_score
-    
-    @cloud_provisioning_score.setter
-    def cloud_provisioning_score(self,value: Optional[float] = None) -> None:
-        """
-        Sets the cloudProvisioningScore property value. The user experience work from anywhere's cloud provisioning score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Args:
-            value: Value to set for the cloud_provisioning_score property.
-        """
-        self._cloud_provisioning_score = value
+    # The user experience work from anywhere's cloud identity score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+    cloud_identity_score: Optional[float] = None
+    # The user experience work from anywhere's cloud management score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+    cloud_management_score: Optional[float] = None
+    # The user experience work from anywhere's cloud provisioning score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+    cloud_provisioning_score: Optional[float] = None
+    # The healthStatus property
+    health_status: Optional[user_experience_analytics_health_state.UserExperienceAnalyticsHealthState] = None
+    # The user experience work from anywhere's manufacturer name of the devices.
+    manufacturer: Optional[str] = None
+    # The user experience work from anywhere's model name of the devices.
+    model: Optional[str] = None
+    # The user experience work from anywhere's devices count for the model. Valid values -2147483648 to 2147483647
+    model_device_count: Optional[int] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The user experience work from anywhere windows score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+    windows_score: Optional[float] = None
+    # The user experience work from anywhere overall score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+    work_from_anywhere_score: Optional[float] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsWorkFromAnywhereModelPerformance:
@@ -122,74 +68,6 @@ class UserExperienceAnalyticsWorkFromAnywhereModelPerformance(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def health_status(self,) -> Optional[user_experience_analytics_health_state.UserExperienceAnalyticsHealthState]:
-        """
-        Gets the healthStatus property value. The healthStatus property
-        Returns: Optional[user_experience_analytics_health_state.UserExperienceAnalyticsHealthState]
-        """
-        return self._health_status
-    
-    @health_status.setter
-    def health_status(self,value: Optional[user_experience_analytics_health_state.UserExperienceAnalyticsHealthState] = None) -> None:
-        """
-        Sets the healthStatus property value. The healthStatus property
-        Args:
-            value: Value to set for the health_status property.
-        """
-        self._health_status = value
-    
-    @property
-    def manufacturer(self,) -> Optional[str]:
-        """
-        Gets the manufacturer property value. The user experience work from anywhere's manufacturer name of the devices.
-        Returns: Optional[str]
-        """
-        return self._manufacturer
-    
-    @manufacturer.setter
-    def manufacturer(self,value: Optional[str] = None) -> None:
-        """
-        Sets the manufacturer property value. The user experience work from anywhere's manufacturer name of the devices.
-        Args:
-            value: Value to set for the manufacturer property.
-        """
-        self._manufacturer = value
-    
-    @property
-    def model(self,) -> Optional[str]:
-        """
-        Gets the model property value. The user experience work from anywhere's model name of the devices.
-        Returns: Optional[str]
-        """
-        return self._model
-    
-    @model.setter
-    def model(self,value: Optional[str] = None) -> None:
-        """
-        Sets the model property value. The user experience work from anywhere's model name of the devices.
-        Args:
-            value: Value to set for the model property.
-        """
-        self._model = value
-    
-    @property
-    def model_device_count(self,) -> Optional[int]:
-        """
-        Gets the modelDeviceCount property value. The user experience work from anywhere's devices count for the model. Valid values -2147483648 to 2147483647
-        Returns: Optional[int]
-        """
-        return self._model_device_count
-    
-    @model_device_count.setter
-    def model_device_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the modelDeviceCount property value. The user experience work from anywhere's devices count for the model. Valid values -2147483648 to 2147483647
-        Args:
-            value: Value to set for the model_device_count property.
-        """
-        self._model_device_count = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -208,39 +86,5 @@ class UserExperienceAnalyticsWorkFromAnywhereModelPerformance(entity.Entity):
         writer.write_int_value("modelDeviceCount", self.model_device_count)
         writer.write_float_value("windowsScore", self.windows_score)
         writer.write_float_value("workFromAnywhereScore", self.work_from_anywhere_score)
-    
-    @property
-    def windows_score(self,) -> Optional[float]:
-        """
-        Gets the windowsScore property value. The user experience work from anywhere windows score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Returns: Optional[float]
-        """
-        return self._windows_score
-    
-    @windows_score.setter
-    def windows_score(self,value: Optional[float] = None) -> None:
-        """
-        Sets the windowsScore property value. The user experience work from anywhere windows score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Args:
-            value: Value to set for the windows_score property.
-        """
-        self._windows_score = value
-    
-    @property
-    def work_from_anywhere_score(self,) -> Optional[float]:
-        """
-        Gets the workFromAnywhereScore property value. The user experience work from anywhere overall score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Returns: Optional[float]
-        """
-        return self._work_from_anywhere_score
-    
-    @work_from_anywhere_score.setter
-    def work_from_anywhere_score(self,value: Optional[float] = None) -> None:
-        """
-        Sets the workFromAnywhereScore property value. The user experience work from anywhere overall score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Args:
-            value: Value to set for the work_from_anywhere_score property.
-        """
-        self._work_from_anywhere_score = value
     
 

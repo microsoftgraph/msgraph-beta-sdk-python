@@ -1,6 +1,6 @@
 from enum import Enum
 
-class Operator(Enum):
+class Operator(str, Enum):
     # None operator.
     None_ = "none",
     # And operator.

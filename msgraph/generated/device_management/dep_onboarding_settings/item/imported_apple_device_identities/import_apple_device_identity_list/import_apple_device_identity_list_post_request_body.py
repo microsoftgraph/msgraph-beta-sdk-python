@@ -1,39 +1,20 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ......models import imported_apple_device_identity
 
+@dataclass
 class ImportAppleDeviceIdentityListPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new importAppleDeviceIdentityListPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The importedAppleDeviceIdentities property
-        self._imported_apple_device_identities: Optional[List[imported_apple_device_identity.ImportedAppleDeviceIdentity]] = None
-        # The overwriteImportedDeviceIdentities property
-        self._overwrite_imported_device_identities: Optional[bool] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The importedAppleDeviceIdentities property
+    imported_apple_device_identities: Optional[List[imported_apple_device_identity.ImportedAppleDeviceIdentity]] = None
+    # The overwriteImportedDeviceIdentities property
+    overwrite_imported_device_identities: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ImportAppleDeviceIdentityListPostRequestBody:
@@ -59,40 +40,6 @@ class ImportAppleDeviceIdentityListPostRequestBody(AdditionalDataHolder, Parsabl
             "overwriteImportedDeviceIdentities": lambda n : setattr(self, 'overwrite_imported_device_identities', n.get_bool_value()),
         }
         return fields
-    
-    @property
-    def imported_apple_device_identities(self,) -> Optional[List[imported_apple_device_identity.ImportedAppleDeviceIdentity]]:
-        """
-        Gets the importedAppleDeviceIdentities property value. The importedAppleDeviceIdentities property
-        Returns: Optional[List[imported_apple_device_identity.ImportedAppleDeviceIdentity]]
-        """
-        return self._imported_apple_device_identities
-    
-    @imported_apple_device_identities.setter
-    def imported_apple_device_identities(self,value: Optional[List[imported_apple_device_identity.ImportedAppleDeviceIdentity]] = None) -> None:
-        """
-        Sets the importedAppleDeviceIdentities property value. The importedAppleDeviceIdentities property
-        Args:
-            value: Value to set for the imported_apple_device_identities property.
-        """
-        self._imported_apple_device_identities = value
-    
-    @property
-    def overwrite_imported_device_identities(self,) -> Optional[bool]:
-        """
-        Gets the overwriteImportedDeviceIdentities property value. The overwriteImportedDeviceIdentities property
-        Returns: Optional[bool]
-        """
-        return self._overwrite_imported_device_identities
-    
-    @overwrite_imported_device_identities.setter
-    def overwrite_imported_device_identities(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the overwriteImportedDeviceIdentities property value. The overwriteImportedDeviceIdentities property
-        Args:
-            value: Value to set for the overwrite_imported_device_identities property.
-        """
-        self._overwrite_imported_device_identities = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

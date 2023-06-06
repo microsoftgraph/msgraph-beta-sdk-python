@@ -1,70 +1,34 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import label, property_type
 
+@dataclass
 class Property_(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new property_ and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The aliases property
-        self._aliases: Optional[List[str]] = None
-        # The isQueryable property
-        self._is_queryable: Optional[bool] = None
-        # The isRefinable property
-        self._is_refinable: Optional[bool] = None
-        # The isRetrievable property
-        self._is_retrievable: Optional[bool] = None
-        # The isSearchable property
-        self._is_searchable: Optional[bool] = None
-        # The labels property
-        self._labels: Optional[List[label.Label]] = None
-        # The name property
-        self._name: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The type property
-        self._type: Optional[property_type.PropertyType] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def aliases(self,) -> Optional[List[str]]:
-        """
-        Gets the aliases property value. The aliases property
-        Returns: Optional[List[str]]
-        """
-        return self._aliases
-    
-    @aliases.setter
-    def aliases(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the aliases property value. The aliases property
-        Args:
-            value: Value to set for the aliases property.
-        """
-        self._aliases = value
+    # The aliases property
+    aliases: Optional[List[str]] = None
+    # The isQueryable property
+    is_queryable: Optional[bool] = None
+    # The isRefinable property
+    is_refinable: Optional[bool] = None
+    # The isRetrievable property
+    is_retrievable: Optional[bool] = None
+    # The isSearchable property
+    is_searchable: Optional[bool] = None
+    # The labels property
+    labels: Optional[List[label.Label]] = None
+    # The name property
+    name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The type property
+    type: Optional[property_type.PropertyType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Property_:
@@ -98,125 +62,6 @@ class Property_(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def is_queryable(self,) -> Optional[bool]:
-        """
-        Gets the isQueryable property value. The isQueryable property
-        Returns: Optional[bool]
-        """
-        return self._is_queryable
-    
-    @is_queryable.setter
-    def is_queryable(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isQueryable property value. The isQueryable property
-        Args:
-            value: Value to set for the is_queryable property.
-        """
-        self._is_queryable = value
-    
-    @property
-    def is_refinable(self,) -> Optional[bool]:
-        """
-        Gets the isRefinable property value. The isRefinable property
-        Returns: Optional[bool]
-        """
-        return self._is_refinable
-    
-    @is_refinable.setter
-    def is_refinable(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isRefinable property value. The isRefinable property
-        Args:
-            value: Value to set for the is_refinable property.
-        """
-        self._is_refinable = value
-    
-    @property
-    def is_retrievable(self,) -> Optional[bool]:
-        """
-        Gets the isRetrievable property value. The isRetrievable property
-        Returns: Optional[bool]
-        """
-        return self._is_retrievable
-    
-    @is_retrievable.setter
-    def is_retrievable(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isRetrievable property value. The isRetrievable property
-        Args:
-            value: Value to set for the is_retrievable property.
-        """
-        self._is_retrievable = value
-    
-    @property
-    def is_searchable(self,) -> Optional[bool]:
-        """
-        Gets the isSearchable property value. The isSearchable property
-        Returns: Optional[bool]
-        """
-        return self._is_searchable
-    
-    @is_searchable.setter
-    def is_searchable(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isSearchable property value. The isSearchable property
-        Args:
-            value: Value to set for the is_searchable property.
-        """
-        self._is_searchable = value
-    
-    @property
-    def labels(self,) -> Optional[List[label.Label]]:
-        """
-        Gets the labels property value. The labels property
-        Returns: Optional[List[label.Label]]
-        """
-        return self._labels
-    
-    @labels.setter
-    def labels(self,value: Optional[List[label.Label]] = None) -> None:
-        """
-        Sets the labels property value. The labels property
-        Args:
-            value: Value to set for the labels property.
-        """
-        self._labels = value
-    
-    @property
-    def name(self,) -> Optional[str]:
-        """
-        Gets the name property value. The name property
-        Returns: Optional[str]
-        """
-        return self._name
-    
-    @name.setter
-    def name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the name property value. The name property
-        Args:
-            value: Value to set for the name property.
-        """
-        self._name = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -235,22 +80,5 @@ class Property_(AdditionalDataHolder, Parsable):
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("type", self.type)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def type(self,) -> Optional[property_type.PropertyType]:
-        """
-        Gets the type property value. The type property
-        Returns: Optional[property_type.PropertyType]
-        """
-        return self._type
-    
-    @type.setter
-    def type(self,value: Optional[property_type.PropertyType] = None) -> None:
-        """
-        Sets the type property value. The type property
-        Args:
-            value: Value to set for the type property.
-        """
-        self._type = value
     
 

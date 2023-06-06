@@ -1,158 +1,37 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import certificate_validity_period_scale
 
+@dataclass
 class IosEduCertificateSettings(AdditionalDataHolder, Parsable):
     """
     Trusted Root and PFX certificates for iOS EDU.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new iosEduCertificateSettings and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # File name to display in UI.
-        self._cert_file_name: Optional[str] = None
-        # PKCS Certificate Template Name.
-        self._certificate_template_name: Optional[str] = None
-        # Certificate Validity Period Options.
-        self._certificate_validity_period_scale: Optional[certificate_validity_period_scale.CertificateValidityPeriodScale] = None
-        # Value for the Certificate Validity Period.
-        self._certificate_validity_period_value: Optional[int] = None
-        # PKCS Certification Authority.
-        self._certification_authority: Optional[str] = None
-        # PKCS Certification Authority Name.
-        self._certification_authority_name: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Certificate renewal threshold percentage. Valid values 1 to 99
-        self._renewal_threshold_percentage: Optional[int] = None
-        # Trusted Root Certificate.
-        self._trusted_root_certificate: Optional[bytes] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def cert_file_name(self,) -> Optional[str]:
-        """
-        Gets the certFileName property value. File name to display in UI.
-        Returns: Optional[str]
-        """
-        return self._cert_file_name
-    
-    @cert_file_name.setter
-    def cert_file_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the certFileName property value. File name to display in UI.
-        Args:
-            value: Value to set for the cert_file_name property.
-        """
-        self._cert_file_name = value
-    
-    @property
-    def certificate_template_name(self,) -> Optional[str]:
-        """
-        Gets the certificateTemplateName property value. PKCS Certificate Template Name.
-        Returns: Optional[str]
-        """
-        return self._certificate_template_name
-    
-    @certificate_template_name.setter
-    def certificate_template_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the certificateTemplateName property value. PKCS Certificate Template Name.
-        Args:
-            value: Value to set for the certificate_template_name property.
-        """
-        self._certificate_template_name = value
-    
-    @property
-    def certificate_validity_period_scale(self,) -> Optional[certificate_validity_period_scale.CertificateValidityPeriodScale]:
-        """
-        Gets the certificateValidityPeriodScale property value. Certificate Validity Period Options.
-        Returns: Optional[certificate_validity_period_scale.CertificateValidityPeriodScale]
-        """
-        return self._certificate_validity_period_scale
-    
-    @certificate_validity_period_scale.setter
-    def certificate_validity_period_scale(self,value: Optional[certificate_validity_period_scale.CertificateValidityPeriodScale] = None) -> None:
-        """
-        Sets the certificateValidityPeriodScale property value. Certificate Validity Period Options.
-        Args:
-            value: Value to set for the certificate_validity_period_scale property.
-        """
-        self._certificate_validity_period_scale = value
-    
-    @property
-    def certificate_validity_period_value(self,) -> Optional[int]:
-        """
-        Gets the certificateValidityPeriodValue property value. Value for the Certificate Validity Period.
-        Returns: Optional[int]
-        """
-        return self._certificate_validity_period_value
-    
-    @certificate_validity_period_value.setter
-    def certificate_validity_period_value(self,value: Optional[int] = None) -> None:
-        """
-        Sets the certificateValidityPeriodValue property value. Value for the Certificate Validity Period.
-        Args:
-            value: Value to set for the certificate_validity_period_value property.
-        """
-        self._certificate_validity_period_value = value
-    
-    @property
-    def certification_authority(self,) -> Optional[str]:
-        """
-        Gets the certificationAuthority property value. PKCS Certification Authority.
-        Returns: Optional[str]
-        """
-        return self._certification_authority
-    
-    @certification_authority.setter
-    def certification_authority(self,value: Optional[str] = None) -> None:
-        """
-        Sets the certificationAuthority property value. PKCS Certification Authority.
-        Args:
-            value: Value to set for the certification_authority property.
-        """
-        self._certification_authority = value
-    
-    @property
-    def certification_authority_name(self,) -> Optional[str]:
-        """
-        Gets the certificationAuthorityName property value. PKCS Certification Authority Name.
-        Returns: Optional[str]
-        """
-        return self._certification_authority_name
-    
-    @certification_authority_name.setter
-    def certification_authority_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the certificationAuthorityName property value. PKCS Certification Authority Name.
-        Args:
-            value: Value to set for the certification_authority_name property.
-        """
-        self._certification_authority_name = value
+    # File name to display in UI.
+    cert_file_name: Optional[str] = None
+    # PKCS Certificate Template Name.
+    certificate_template_name: Optional[str] = None
+    # Certificate Validity Period Options.
+    certificate_validity_period_scale: Optional[certificate_validity_period_scale.CertificateValidityPeriodScale] = None
+    # Value for the Certificate Validity Period.
+    certificate_validity_period_value: Optional[int] = None
+    # PKCS Certification Authority.
+    certification_authority: Optional[str] = None
+    # PKCS Certification Authority Name.
+    certification_authority_name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Certificate renewal threshold percentage. Valid values 1 to 99
+    renewal_threshold_percentage: Optional[int] = None
+    # Trusted Root Certificate.
+    trusted_root_certificate: Optional[bytes] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosEduCertificateSettings:
@@ -186,40 +65,6 @@ class IosEduCertificateSettings(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def renewal_threshold_percentage(self,) -> Optional[int]:
-        """
-        Gets the renewalThresholdPercentage property value. Certificate renewal threshold percentage. Valid values 1 to 99
-        Returns: Optional[int]
-        """
-        return self._renewal_threshold_percentage
-    
-    @renewal_threshold_percentage.setter
-    def renewal_threshold_percentage(self,value: Optional[int] = None) -> None:
-        """
-        Sets the renewalThresholdPercentage property value. Certificate renewal threshold percentage. Valid values 1 to 99
-        Args:
-            value: Value to set for the renewal_threshold_percentage property.
-        """
-        self._renewal_threshold_percentage = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -238,22 +83,5 @@ class IosEduCertificateSettings(AdditionalDataHolder, Parsable):
         writer.write_int_value("renewalThresholdPercentage", self.renewal_threshold_percentage)
         writer.write_object_value("trustedRootCertificate", self.trusted_root_certificate)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def trusted_root_certificate(self,) -> Optional[bytes]:
-        """
-        Gets the trustedRootCertificate property value. Trusted Root Certificate.
-        Returns: Optional[bytes]
-        """
-        return self._trusted_root_certificate
-    
-    @trusted_root_certificate.setter
-    def trusted_root_certificate(self,value: Optional[bytes] = None) -> None:
-        """
-        Sets the trustedRootCertificate property value. Trusted Root Certificate.
-        Args:
-            value: Value to set for the trusted_root_certificate property.
-        """
-        self._trusted_root_certificate = value
     
 

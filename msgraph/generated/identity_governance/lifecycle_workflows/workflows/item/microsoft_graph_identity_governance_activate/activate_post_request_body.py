@@ -1,37 +1,18 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ......models import user
 
+@dataclass
 class ActivatePostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new activatePostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The subjects property
-        self._subjects: Optional[List[user.User]] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The subjects property
+    subjects: Optional[List[user.User]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ActivatePostRequestBody:
@@ -67,22 +48,5 @@ class ActivatePostRequestBody(AdditionalDataHolder, Parsable):
             raise Exception("writer cannot be undefined")
         writer.write_collection_of_object_values("subjects", self.subjects)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def subjects(self,) -> Optional[List[user.User]]:
-        """
-        Gets the subjects property value. The subjects property
-        Returns: Optional[List[user.User]]
-        """
-        return self._subjects
-    
-    @subjects.setter
-    def subjects(self,value: Optional[List[user.User]] = None) -> None:
-        """
-        Sets the subjects property value. The subjects property
-        Args:
-            value: Value to set for the subjects property.
-        """
-        self._subjects = value
     
 

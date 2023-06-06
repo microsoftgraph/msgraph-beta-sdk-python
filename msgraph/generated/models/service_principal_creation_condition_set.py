@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,109 +8,20 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class ServicePrincipalCreationConditionSet(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new servicePrincipalCreationConditionSet and sets the default values.
-        """
-        super().__init__()
-        # The applicationIds property
-        self._application_ids: Optional[List[str]] = None
-        # The applicationPublisherIds property
-        self._application_publisher_ids: Optional[List[str]] = None
-        # The applicationTenantIds property
-        self._application_tenant_ids: Optional[List[str]] = None
-        # The applicationsFromVerifiedPublisherOnly property
-        self._applications_from_verified_publisher_only: Optional[bool] = None
-        # The certifiedApplicationsOnly property
-        self._certified_applications_only: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def application_ids(self,) -> Optional[List[str]]:
-        """
-        Gets the applicationIds property value. The applicationIds property
-        Returns: Optional[List[str]]
-        """
-        return self._application_ids
-    
-    @application_ids.setter
-    def application_ids(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the applicationIds property value. The applicationIds property
-        Args:
-            value: Value to set for the application_ids property.
-        """
-        self._application_ids = value
-    
-    @property
-    def application_publisher_ids(self,) -> Optional[List[str]]:
-        """
-        Gets the applicationPublisherIds property value. The applicationPublisherIds property
-        Returns: Optional[List[str]]
-        """
-        return self._application_publisher_ids
-    
-    @application_publisher_ids.setter
-    def application_publisher_ids(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the applicationPublisherIds property value. The applicationPublisherIds property
-        Args:
-            value: Value to set for the application_publisher_ids property.
-        """
-        self._application_publisher_ids = value
-    
-    @property
-    def application_tenant_ids(self,) -> Optional[List[str]]:
-        """
-        Gets the applicationTenantIds property value. The applicationTenantIds property
-        Returns: Optional[List[str]]
-        """
-        return self._application_tenant_ids
-    
-    @application_tenant_ids.setter
-    def application_tenant_ids(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the applicationTenantIds property value. The applicationTenantIds property
-        Args:
-            value: Value to set for the application_tenant_ids property.
-        """
-        self._application_tenant_ids = value
-    
-    @property
-    def applications_from_verified_publisher_only(self,) -> Optional[bool]:
-        """
-        Gets the applicationsFromVerifiedPublisherOnly property value. The applicationsFromVerifiedPublisherOnly property
-        Returns: Optional[bool]
-        """
-        return self._applications_from_verified_publisher_only
-    
-    @applications_from_verified_publisher_only.setter
-    def applications_from_verified_publisher_only(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the applicationsFromVerifiedPublisherOnly property value. The applicationsFromVerifiedPublisherOnly property
-        Args:
-            value: Value to set for the applications_from_verified_publisher_only property.
-        """
-        self._applications_from_verified_publisher_only = value
-    
-    @property
-    def certified_applications_only(self,) -> Optional[bool]:
-        """
-        Gets the certifiedApplicationsOnly property value. The certifiedApplicationsOnly property
-        Returns: Optional[bool]
-        """
-        return self._certified_applications_only
-    
-    @certified_applications_only.setter
-    def certified_applications_only(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the certifiedApplicationsOnly property value. The certifiedApplicationsOnly property
-        Args:
-            value: Value to set for the certified_applications_only property.
-        """
-        self._certified_applications_only = value
+    # The applicationIds property
+    application_ids: Optional[List[str]] = None
+    # The applicationPublisherIds property
+    application_publisher_ids: Optional[List[str]] = None
+    # The applicationTenantIds property
+    application_tenant_ids: Optional[List[str]] = None
+    # The applicationsFromVerifiedPublisherOnly property
+    applications_from_verified_publisher_only: Optional[bool] = None
+    # The certifiedApplicationsOnly property
+    certified_applications_only: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ServicePrincipalCreationConditionSet:

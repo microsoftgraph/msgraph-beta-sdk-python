@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,32 +8,11 @@ if TYPE_CHECKING:
 
 from . import segment_configuration
 
+@dataclass
 class IpSegmentConfiguration(segment_configuration.SegmentConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new IpSegmentConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.ipSegmentConfiguration"
-        # The applicationSegments property
-        self._application_segments: Optional[List[ip_application_segment.IpApplicationSegment]] = None
-    
-    @property
-    def application_segments(self,) -> Optional[List[ip_application_segment.IpApplicationSegment]]:
-        """
-        Gets the applicationSegments property value. The applicationSegments property
-        Returns: Optional[List[ip_application_segment.IpApplicationSegment]]
-        """
-        return self._application_segments
-    
-    @application_segments.setter
-    def application_segments(self,value: Optional[List[ip_application_segment.IpApplicationSegment]] = None) -> None:
-        """
-        Sets the applicationSegments property value. The applicationSegments property
-        Args:
-            value: Value to set for the application_segments property.
-        """
-        self._application_segments = value
+    odata_type = "#microsoft.graph.ipSegmentConfiguration"
+    # The applicationSegments property
+    application_segments: Optional[List[ip_application_segment.IpApplicationSegment]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IpSegmentConfiguration:

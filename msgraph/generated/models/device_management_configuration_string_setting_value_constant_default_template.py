@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,32 +8,11 @@ if TYPE_CHECKING:
 
 from . import device_management_configuration_string_setting_value_default_template
 
+@dataclass
 class DeviceManagementConfigurationStringSettingValueConstantDefaultTemplate(device_management_configuration_string_setting_value_default_template.DeviceManagementConfigurationStringSettingValueDefaultTemplate):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementConfigurationStringSettingValueConstantDefaultTemplate and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementConfigurationStringSettingValueConstantDefaultTemplate"
-        # Default Constant Value
-        self._constant_value: Optional[str] = None
-    
-    @property
-    def constant_value(self,) -> Optional[str]:
-        """
-        Gets the constantValue property value. Default Constant Value
-        Returns: Optional[str]
-        """
-        return self._constant_value
-    
-    @constant_value.setter
-    def constant_value(self,value: Optional[str] = None) -> None:
-        """
-        Sets the constantValue property value. Default Constant Value
-        Args:
-            value: Value to set for the constant_value property.
-        """
-        self._constant_value = value
+    odata_type = "#microsoft.graph.deviceManagementConfigurationStringSettingValueConstantDefaultTemplate"
+    # Default Constant Value
+    constant_value: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationStringSettingValueConstantDefaultTemplate:

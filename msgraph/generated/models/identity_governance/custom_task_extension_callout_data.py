@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -8,21 +9,17 @@ if TYPE_CHECKING:
 
 from .. import custom_extension_data
 
+@dataclass
 class CustomTaskExtensionCalloutData(custom_extension_data.CustomExtensionData):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new CustomTaskExtensionCalloutData and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.identityGovernance.customTaskExtensionCalloutData"
-        # The subject property
-        self._subject: Optional[user.User] = None
-        # The task property
-        self._task: Optional[task.Task] = None
-        # The taskProcessingresult property
-        self._task_processingresult: Optional[task_processing_result.TaskProcessingResult] = None
-        # The workflow property
-        self._workflow: Optional[workflow.Workflow] = None
+    odata_type = "#microsoft.graph.identityGovernance.customTaskExtensionCalloutData"
+    # The subject property
+    subject: Optional[user.User] = None
+    # The task property
+    task: Optional[task.Task] = None
+    # The taskProcessingresult property
+    task_processingresult: Optional[task_processing_result.TaskProcessingResult] = None
+    # The workflow property
+    workflow: Optional[workflow.Workflow] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CustomTaskExtensionCalloutData:
@@ -67,73 +64,5 @@ class CustomTaskExtensionCalloutData(custom_extension_data.CustomExtensionData):
         writer.write_object_value("task", self.task)
         writer.write_object_value("taskProcessingresult", self.task_processingresult)
         writer.write_object_value("workflow", self.workflow)
-    
-    @property
-    def subject(self,) -> Optional[user.User]:
-        """
-        Gets the subject property value. The subject property
-        Returns: Optional[user.User]
-        """
-        return self._subject
-    
-    @subject.setter
-    def subject(self,value: Optional[user.User] = None) -> None:
-        """
-        Sets the subject property value. The subject property
-        Args:
-            value: Value to set for the subject property.
-        """
-        self._subject = value
-    
-    @property
-    def task(self,) -> Optional[task.Task]:
-        """
-        Gets the task property value. The task property
-        Returns: Optional[task.Task]
-        """
-        return self._task
-    
-    @task.setter
-    def task(self,value: Optional[task.Task] = None) -> None:
-        """
-        Sets the task property value. The task property
-        Args:
-            value: Value to set for the task property.
-        """
-        self._task = value
-    
-    @property
-    def task_processingresult(self,) -> Optional[task_processing_result.TaskProcessingResult]:
-        """
-        Gets the taskProcessingresult property value. The taskProcessingresult property
-        Returns: Optional[task_processing_result.TaskProcessingResult]
-        """
-        return self._task_processingresult
-    
-    @task_processingresult.setter
-    def task_processingresult(self,value: Optional[task_processing_result.TaskProcessingResult] = None) -> None:
-        """
-        Sets the taskProcessingresult property value. The taskProcessingresult property
-        Args:
-            value: Value to set for the task_processingresult property.
-        """
-        self._task_processingresult = value
-    
-    @property
-    def workflow(self,) -> Optional[workflow.Workflow]:
-        """
-        Gets the workflow property value. The workflow property
-        Returns: Optional[workflow.Workflow]
-        """
-        return self._workflow
-    
-    @workflow.setter
-    def workflow(self,value: Optional[workflow.Workflow] = None) -> None:
-        """
-        Sets the workflow property value. The workflow property
-        Args:
-            value: Value to set for the workflow property.
-        """
-        self._workflow = value
     
 

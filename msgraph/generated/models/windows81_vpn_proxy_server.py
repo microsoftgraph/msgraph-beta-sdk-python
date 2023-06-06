@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,51 +8,13 @@ if TYPE_CHECKING:
 
 from . import vpn_proxy_server
 
+@dataclass
 class Windows81VpnProxyServer(vpn_proxy_server.VpnProxyServer):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Windows81VpnProxyServer and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windows81VpnProxyServer"
-        # Automatically detect proxy settings.
-        self._automatically_detect_proxy_settings: Optional[bool] = None
-        # Bypass proxy server for local address.
-        self._bypass_proxy_server_for_local_address: Optional[bool] = None
-    
-    @property
-    def automatically_detect_proxy_settings(self,) -> Optional[bool]:
-        """
-        Gets the automaticallyDetectProxySettings property value. Automatically detect proxy settings.
-        Returns: Optional[bool]
-        """
-        return self._automatically_detect_proxy_settings
-    
-    @automatically_detect_proxy_settings.setter
-    def automatically_detect_proxy_settings(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the automaticallyDetectProxySettings property value. Automatically detect proxy settings.
-        Args:
-            value: Value to set for the automatically_detect_proxy_settings property.
-        """
-        self._automatically_detect_proxy_settings = value
-    
-    @property
-    def bypass_proxy_server_for_local_address(self,) -> Optional[bool]:
-        """
-        Gets the bypassProxyServerForLocalAddress property value. Bypass proxy server for local address.
-        Returns: Optional[bool]
-        """
-        return self._bypass_proxy_server_for_local_address
-    
-    @bypass_proxy_server_for_local_address.setter
-    def bypass_proxy_server_for_local_address(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the bypassProxyServerForLocalAddress property value. Bypass proxy server for local address.
-        Args:
-            value: Value to set for the bypass_proxy_server_for_local_address property.
-        """
-        self._bypass_proxy_server_for_local_address = value
+    odata_type = "#microsoft.graph.windows81VpnProxyServer"
+    # Automatically detect proxy settings.
+    automatically_detect_proxy_settings: Optional[bool] = None
+    # Bypass proxy server for local address.
+    bypass_proxy_server_for_local_address: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows81VpnProxyServer:

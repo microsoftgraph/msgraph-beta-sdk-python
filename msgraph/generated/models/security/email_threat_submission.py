@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,48 +9,27 @@ if TYPE_CHECKING:
 
 from . import threat_submission
 
+@dataclass
 class EmailThreatSubmission(threat_submission.ThreatSubmission):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new EmailThreatSubmission and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.security.emailThreatSubmission"
-        # If the email is phishing simulation, this field will not be null.
-        self._attack_simulation_info: Optional[attack_simulation_info.AttackSimulationInfo] = None
-        # Specifies the internet message id of the email being submitted. This information is present in the email header.
-        self._internet_message_id: Optional[str] = None
-        # The original category of the submission. The possible values are: notJunk, spam, phishing, malware and unkownFutureValue.
-        self._original_category: Optional[submission_category.SubmissionCategory] = None
-        # Specifies the date and time stamp when the email was received.
-        self._received_date_time: Optional[datetime] = None
-        # Specifies the email address (in smtp format) of the recipient who received the email.
-        self._recipient_email_address: Optional[str] = None
-        # Specifies the email address of the sender.
-        self._sender: Optional[str] = None
-        # Specifies the IP address of the sender.
-        self._sender_i_p: Optional[str] = None
-        # Specifies the subject of the email .
-        self._subject: Optional[str] = None
-        # It is used to automatically add allows for the components such as URL, file, sender; which are deemed bad by Microsoft so that similar messages in the future can be allowed.
-        self._tenant_allow_or_block_list_action: Optional[tenant_allow_or_block_list_action.TenantAllowOrBlockListAction] = None
-    
-    @property
-    def attack_simulation_info(self,) -> Optional[attack_simulation_info.AttackSimulationInfo]:
-        """
-        Gets the attackSimulationInfo property value. If the email is phishing simulation, this field will not be null.
-        Returns: Optional[attack_simulation_info.AttackSimulationInfo]
-        """
-        return self._attack_simulation_info
-    
-    @attack_simulation_info.setter
-    def attack_simulation_info(self,value: Optional[attack_simulation_info.AttackSimulationInfo] = None) -> None:
-        """
-        Sets the attackSimulationInfo property value. If the email is phishing simulation, this field will not be null.
-        Args:
-            value: Value to set for the attack_simulation_info property.
-        """
-        self._attack_simulation_info = value
+    odata_type = "#microsoft.graph.security.emailThreatSubmission"
+    # If the email is phishing simulation, this field will not be null.
+    attack_simulation_info: Optional[attack_simulation_info.AttackSimulationInfo] = None
+    # Specifies the internet message id of the email being submitted. This information is present in the email header.
+    internet_message_id: Optional[str] = None
+    # The original category of the submission. The possible values are: notJunk, spam, phishing, malware and unkownFutureValue.
+    original_category: Optional[submission_category.SubmissionCategory] = None
+    # Specifies the date and time stamp when the email was received.
+    received_date_time: Optional[datetime] = None
+    # Specifies the email address (in smtp format) of the recipient who received the email.
+    recipient_email_address: Optional[str] = None
+    # Specifies the email address of the sender.
+    sender: Optional[str] = None
+    # Specifies the IP address of the sender.
+    sender_i_p: Optional[str] = None
+    # Specifies the subject of the email .
+    subject: Optional[str] = None
+    # It is used to automatically add allows for the components such as URL, file, sender; which are deemed bad by Microsoft so that similar messages in the future can be allowed.
+    tenant_allow_or_block_list_action: Optional[tenant_allow_or_block_list_action.TenantAllowOrBlockListAction] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EmailThreatSubmission:
@@ -96,108 +76,6 @@ class EmailThreatSubmission(threat_submission.ThreatSubmission):
         fields.update(super_fields)
         return fields
     
-    @property
-    def internet_message_id(self,) -> Optional[str]:
-        """
-        Gets the internetMessageId property value. Specifies the internet message id of the email being submitted. This information is present in the email header.
-        Returns: Optional[str]
-        """
-        return self._internet_message_id
-    
-    @internet_message_id.setter
-    def internet_message_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the internetMessageId property value. Specifies the internet message id of the email being submitted. This information is present in the email header.
-        Args:
-            value: Value to set for the internet_message_id property.
-        """
-        self._internet_message_id = value
-    
-    @property
-    def original_category(self,) -> Optional[submission_category.SubmissionCategory]:
-        """
-        Gets the originalCategory property value. The original category of the submission. The possible values are: notJunk, spam, phishing, malware and unkownFutureValue.
-        Returns: Optional[submission_category.SubmissionCategory]
-        """
-        return self._original_category
-    
-    @original_category.setter
-    def original_category(self,value: Optional[submission_category.SubmissionCategory] = None) -> None:
-        """
-        Sets the originalCategory property value. The original category of the submission. The possible values are: notJunk, spam, phishing, malware and unkownFutureValue.
-        Args:
-            value: Value to set for the original_category property.
-        """
-        self._original_category = value
-    
-    @property
-    def received_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the receivedDateTime property value. Specifies the date and time stamp when the email was received.
-        Returns: Optional[datetime]
-        """
-        return self._received_date_time
-    
-    @received_date_time.setter
-    def received_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the receivedDateTime property value. Specifies the date and time stamp when the email was received.
-        Args:
-            value: Value to set for the received_date_time property.
-        """
-        self._received_date_time = value
-    
-    @property
-    def recipient_email_address(self,) -> Optional[str]:
-        """
-        Gets the recipientEmailAddress property value. Specifies the email address (in smtp format) of the recipient who received the email.
-        Returns: Optional[str]
-        """
-        return self._recipient_email_address
-    
-    @recipient_email_address.setter
-    def recipient_email_address(self,value: Optional[str] = None) -> None:
-        """
-        Sets the recipientEmailAddress property value. Specifies the email address (in smtp format) of the recipient who received the email.
-        Args:
-            value: Value to set for the recipient_email_address property.
-        """
-        self._recipient_email_address = value
-    
-    @property
-    def sender(self,) -> Optional[str]:
-        """
-        Gets the sender property value. Specifies the email address of the sender.
-        Returns: Optional[str]
-        """
-        return self._sender
-    
-    @sender.setter
-    def sender(self,value: Optional[str] = None) -> None:
-        """
-        Sets the sender property value. Specifies the email address of the sender.
-        Args:
-            value: Value to set for the sender property.
-        """
-        self._sender = value
-    
-    @property
-    def sender_i_p(self,) -> Optional[str]:
-        """
-        Gets the senderIP property value. Specifies the IP address of the sender.
-        Returns: Optional[str]
-        """
-        return self._sender_i_p
-    
-    @sender_i_p.setter
-    def sender_i_p(self,value: Optional[str] = None) -> None:
-        """
-        Sets the senderIP property value. Specifies the IP address of the sender.
-        Args:
-            value: Value to set for the sender_i_p property.
-        """
-        self._sender_i_p = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -216,39 +94,5 @@ class EmailThreatSubmission(threat_submission.ThreatSubmission):
         writer.write_str_value("senderIP", self.sender_i_p)
         writer.write_str_value("subject", self.subject)
         writer.write_object_value("tenantAllowOrBlockListAction", self.tenant_allow_or_block_list_action)
-    
-    @property
-    def subject(self,) -> Optional[str]:
-        """
-        Gets the subject property value. Specifies the subject of the email .
-        Returns: Optional[str]
-        """
-        return self._subject
-    
-    @subject.setter
-    def subject(self,value: Optional[str] = None) -> None:
-        """
-        Sets the subject property value. Specifies the subject of the email .
-        Args:
-            value: Value to set for the subject property.
-        """
-        self._subject = value
-    
-    @property
-    def tenant_allow_or_block_list_action(self,) -> Optional[tenant_allow_or_block_list_action.TenantAllowOrBlockListAction]:
-        """
-        Gets the tenantAllowOrBlockListAction property value. It is used to automatically add allows for the components such as URL, file, sender; which are deemed bad by Microsoft so that similar messages in the future can be allowed.
-        Returns: Optional[tenant_allow_or_block_list_action.TenantAllowOrBlockListAction]
-        """
-        return self._tenant_allow_or_block_list_action
-    
-    @tenant_allow_or_block_list_action.setter
-    def tenant_allow_or_block_list_action(self,value: Optional[tenant_allow_or_block_list_action.TenantAllowOrBlockListAction] = None) -> None:
-        """
-        Sets the tenantAllowOrBlockListAction property value. It is used to automatically add allows for the components such as URL, file, sender; which are deemed bad by Microsoft so that similar messages in the future can be allowed.
-        Args:
-            value: Value to set for the tenant_allow_or_block_list_action property.
-        """
-        self._tenant_allow_or_block_list_action = value
     
 

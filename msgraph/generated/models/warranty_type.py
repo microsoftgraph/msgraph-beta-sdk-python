@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WarrantyType(Enum):
+class WarrantyType(str, Enum):
     # Unknown warranty type
     Unknown = "unknown",
     # Manufacturer warranty

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import threat_submission
 
+@dataclass
 class FileThreatSubmission(threat_submission.ThreatSubmission):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new FileThreatSubmission and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.security.fileThreatSubmission"
-        # It specifies the file name to be submitted.
-        self._file_name: Optional[str] = None
+    odata_type = "#microsoft.graph.security.fileThreatSubmission"
+    # It specifies the file name to be submitted.
+    file_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> FileThreatSubmission:
@@ -39,23 +36,6 @@ class FileThreatSubmission(threat_submission.ThreatSubmission):
 
                 return file_url_threat_submission.FileUrlThreatSubmission()
         return FileThreatSubmission()
-    
-    @property
-    def file_name(self,) -> Optional[str]:
-        """
-        Gets the fileName property value. It specifies the file name to be submitted.
-        Returns: Optional[str]
-        """
-        return self._file_name
-    
-    @file_name.setter
-    def file_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the fileName property value. It specifies the file name to be submitted.
-        Args:
-            value: Value to set for the file_name property.
-        """
-        self._file_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class PlannerCreationSourceKind(Enum):
+class PlannerCreationSourceKind(str, Enum):
     None_ = "none",
     External = "external",
     Publication = "publication",

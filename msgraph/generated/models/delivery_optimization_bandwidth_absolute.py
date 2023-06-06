@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,17 +8,13 @@ if TYPE_CHECKING:
 
 from . import delivery_optimization_bandwidth
 
+@dataclass
 class DeliveryOptimizationBandwidthAbsolute(delivery_optimization_bandwidth.DeliveryOptimizationBandwidth):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeliveryOptimizationBandwidthAbsolute and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deliveryOptimizationBandwidthAbsolute"
-        # Specifies the maximum download bandwidth in KiloBytes/second that the device can use across all concurrent download activities using Delivery Optimization. Valid values 0 to 4294967295
-        self._maximum_download_bandwidth_in_kilobytes_per_second: Optional[int] = None
-        # Specifies the maximum upload bandwidth in KiloBytes/second that a device will use across all concurrent upload activity using Delivery Optimization (0-4000000). Valid values 0 to 4000000
-        self._maximum_upload_bandwidth_in_kilobytes_per_second: Optional[int] = None
+    odata_type = "#microsoft.graph.deliveryOptimizationBandwidthAbsolute"
+    # Specifies the maximum download bandwidth in KiloBytes/second that the device can use across all concurrent download activities using Delivery Optimization. Valid values 0 to 4294967295
+    maximum_download_bandwidth_in_kilobytes_per_second: Optional[int] = None
+    # Specifies the maximum upload bandwidth in KiloBytes/second that a device will use across all concurrent upload activity using Delivery Optimization (0-4000000). Valid values 0 to 4000000
+    maximum_upload_bandwidth_in_kilobytes_per_second: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeliveryOptimizationBandwidthAbsolute:
@@ -45,40 +42,6 @@ class DeliveryOptimizationBandwidthAbsolute(delivery_optimization_bandwidth.Deli
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def maximum_download_bandwidth_in_kilobytes_per_second(self,) -> Optional[int]:
-        """
-        Gets the maximumDownloadBandwidthInKilobytesPerSecond property value. Specifies the maximum download bandwidth in KiloBytes/second that the device can use across all concurrent download activities using Delivery Optimization. Valid values 0 to 4294967295
-        Returns: Optional[int]
-        """
-        return self._maximum_download_bandwidth_in_kilobytes_per_second
-    
-    @maximum_download_bandwidth_in_kilobytes_per_second.setter
-    def maximum_download_bandwidth_in_kilobytes_per_second(self,value: Optional[int] = None) -> None:
-        """
-        Sets the maximumDownloadBandwidthInKilobytesPerSecond property value. Specifies the maximum download bandwidth in KiloBytes/second that the device can use across all concurrent download activities using Delivery Optimization. Valid values 0 to 4294967295
-        Args:
-            value: Value to set for the maximum_download_bandwidth_in_kilobytes_per_second property.
-        """
-        self._maximum_download_bandwidth_in_kilobytes_per_second = value
-    
-    @property
-    def maximum_upload_bandwidth_in_kilobytes_per_second(self,) -> Optional[int]:
-        """
-        Gets the maximumUploadBandwidthInKilobytesPerSecond property value. Specifies the maximum upload bandwidth in KiloBytes/second that a device will use across all concurrent upload activity using Delivery Optimization (0-4000000). Valid values 0 to 4000000
-        Returns: Optional[int]
-        """
-        return self._maximum_upload_bandwidth_in_kilobytes_per_second
-    
-    @maximum_upload_bandwidth_in_kilobytes_per_second.setter
-    def maximum_upload_bandwidth_in_kilobytes_per_second(self,value: Optional[int] = None) -> None:
-        """
-        Sets the maximumUploadBandwidthInKilobytesPerSecond property value. Specifies the maximum upload bandwidth in KiloBytes/second that a device will use across all concurrent upload activity using Delivery Optimization (0-4000000). Valid values 0 to 4000000
-        Args:
-            value: Value to set for the maximum_upload_bandwidth_in_kilobytes_per_second property.
-        """
-        self._maximum_upload_bandwidth_in_kilobytes_per_second = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

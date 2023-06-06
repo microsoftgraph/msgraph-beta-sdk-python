@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -6,37 +7,17 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ....models import restore_time_range
 
+@dataclass
 class BulkRestoreCloudPcPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new bulkRestoreCloudPcPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The managedDeviceIds property
-        self._managed_device_ids: Optional[List[str]] = None
-        # The restorePointDateTime property
-        self._restore_point_date_time: Optional[datetime] = None
-        # The timeRange property
-        self._time_range: Optional[restore_time_range.RestoreTimeRange] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The managedDeviceIds property
+    managed_device_ids: Optional[List[str]] = None
+    # The restorePointDateTime property
+    restore_point_date_time: Optional[datetime] = None
+    # The timeRange property
+    time_range: Optional[restore_time_range.RestoreTimeRange] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> BulkRestoreCloudPcPostRequestBody:
@@ -64,40 +45,6 @@ class BulkRestoreCloudPcPostRequestBody(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def managed_device_ids(self,) -> Optional[List[str]]:
-        """
-        Gets the managedDeviceIds property value. The managedDeviceIds property
-        Returns: Optional[List[str]]
-        """
-        return self._managed_device_ids
-    
-    @managed_device_ids.setter
-    def managed_device_ids(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the managedDeviceIds property value. The managedDeviceIds property
-        Args:
-            value: Value to set for the managed_device_ids property.
-        """
-        self._managed_device_ids = value
-    
-    @property
-    def restore_point_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the restorePointDateTime property value. The restorePointDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._restore_point_date_time
-    
-    @restore_point_date_time.setter
-    def restore_point_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the restorePointDateTime property value. The restorePointDateTime property
-        Args:
-            value: Value to set for the restore_point_date_time property.
-        """
-        self._restore_point_date_time = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -110,22 +57,5 @@ class BulkRestoreCloudPcPostRequestBody(AdditionalDataHolder, Parsable):
         writer.write_datetime_value("restorePointDateTime", self.restore_point_date_time)
         writer.write_enum_value("timeRange", self.time_range)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def time_range(self,) -> Optional[restore_time_range.RestoreTimeRange]:
-        """
-        Gets the timeRange property value. The timeRange property
-        Returns: Optional[restore_time_range.RestoreTimeRange]
-        """
-        return self._time_range
-    
-    @time_range.setter
-    def time_range(self,value: Optional[restore_time_range.RestoreTimeRange] = None) -> None:
-        """
-        Sets the timeRange property value. The timeRange property
-        Args:
-            value: Value to set for the time_range property.
-        """
-        self._time_range = value
     
 

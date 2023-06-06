@@ -1,6 +1,6 @@
 from enum import Enum
 
-class MacOSSoftwareUpdateCategory(Enum):
+class MacOSSoftwareUpdateCategory(str, Enum):
     # A critical update
     Critical = "critical",
     # A configuration data file update

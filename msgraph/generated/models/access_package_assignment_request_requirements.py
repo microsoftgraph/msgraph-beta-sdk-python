@@ -1,59 +1,40 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import access_package_answer, access_package_question, request_schedule, verifiable_credential_requirement_status
 
+@dataclass
 class AccessPackageAssignmentRequestRequirements(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new accessPackageAssignmentRequestRequirements and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # Answers that have already been provided.
-        self._existing_answers: Optional[List[access_package_answer.AccessPackageAnswer]] = None
-        # Indicates whether a request must be approved by an approver.
-        self._is_approval_required: Optional[bool] = None
-        # Indicates whether approval is required when a user tries to extend their access.
-        self._is_approval_required_for_extension: Optional[bool] = None
-        # Indicates whether the requestor is allowed to set a custom schedule.
-        self._is_custom_assignment_schedule_allowed: Optional[bool] = None
-        # Indicates whether a requestor must supply justification when submitting an assignment request.
-        self._is_requestor_justification_required: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The description of the policy that the user is trying to request access using.
-        self._policy_description: Optional[str] = None
-        # The display name of the policy that the user is trying to request access using.
-        self._policy_display_name: Optional[str] = None
-        # The identifier of the policy that these requirements are associated with. This identifier can be used when creating a new assignment request.
-        self._policy_id: Optional[str] = None
-        # Questions that are configured on the policy. The questions can be required or optional; callers can determine whether a question is required or optional based on the isRequired property on accessPackageQuestion.
-        self._questions: Optional[List[access_package_question.AccessPackageQuestion]] = None
-        # Schedule restrictions enforced, if any.
-        self._schedule: Optional[request_schedule.RequestSchedule] = None
-        # The status of the process to process the verifiable credential, if any.
-        self._verifiable_credential_requirement_status: Optional[verifiable_credential_requirement_status.VerifiableCredentialRequirementStatus] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # Answers that have already been provided.
+    existing_answers: Optional[List[access_package_answer.AccessPackageAnswer]] = None
+    # Indicates whether a request must be approved by an approver.
+    is_approval_required: Optional[bool] = None
+    # Indicates whether approval is required when a user tries to extend their access.
+    is_approval_required_for_extension: Optional[bool] = None
+    # Indicates whether the requestor is allowed to set a custom schedule.
+    is_custom_assignment_schedule_allowed: Optional[bool] = None
+    # Indicates whether a requestor must supply justification when submitting an assignment request.
+    is_requestor_justification_required: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The description of the policy that the user is trying to request access using.
+    policy_description: Optional[str] = None
+    # The display name of the policy that the user is trying to request access using.
+    policy_display_name: Optional[str] = None
+    # The identifier of the policy that these requirements are associated with. This identifier can be used when creating a new assignment request.
+    policy_id: Optional[str] = None
+    # Questions that are configured on the policy. The questions can be required or optional; callers can determine whether a question is required or optional based on the isRequired property on accessPackageQuestion.
+    questions: Optional[List[access_package_question.AccessPackageQuestion]] = None
+    # Schedule restrictions enforced, if any.
+    schedule: Optional[request_schedule.RequestSchedule] = None
+    # The status of the process to process the verifiable credential, if any.
+    verifiable_credential_requirement_status: Optional[verifiable_credential_requirement_status.VerifiableCredentialRequirementStatus] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccessPackageAssignmentRequestRequirements:
@@ -66,23 +47,6 @@ class AccessPackageAssignmentRequestRequirements(AdditionalDataHolder, Parsable)
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return AccessPackageAssignmentRequestRequirements()
-    
-    @property
-    def existing_answers(self,) -> Optional[List[access_package_answer.AccessPackageAnswer]]:
-        """
-        Gets the existingAnswers property value. Answers that have already been provided.
-        Returns: Optional[List[access_package_answer.AccessPackageAnswer]]
-        """
-        return self._existing_answers
-    
-    @existing_answers.setter
-    def existing_answers(self,value: Optional[List[access_package_answer.AccessPackageAnswer]] = None) -> None:
-        """
-        Sets the existingAnswers property value. Answers that have already been provided.
-        Args:
-            value: Value to set for the existing_answers property.
-        """
-        self._existing_answers = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -107,176 +71,6 @@ class AccessPackageAssignmentRequestRequirements(AdditionalDataHolder, Parsable)
         }
         return fields
     
-    @property
-    def is_approval_required(self,) -> Optional[bool]:
-        """
-        Gets the isApprovalRequired property value. Indicates whether a request must be approved by an approver.
-        Returns: Optional[bool]
-        """
-        return self._is_approval_required
-    
-    @is_approval_required.setter
-    def is_approval_required(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isApprovalRequired property value. Indicates whether a request must be approved by an approver.
-        Args:
-            value: Value to set for the is_approval_required property.
-        """
-        self._is_approval_required = value
-    
-    @property
-    def is_approval_required_for_extension(self,) -> Optional[bool]:
-        """
-        Gets the isApprovalRequiredForExtension property value. Indicates whether approval is required when a user tries to extend their access.
-        Returns: Optional[bool]
-        """
-        return self._is_approval_required_for_extension
-    
-    @is_approval_required_for_extension.setter
-    def is_approval_required_for_extension(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isApprovalRequiredForExtension property value. Indicates whether approval is required when a user tries to extend their access.
-        Args:
-            value: Value to set for the is_approval_required_for_extension property.
-        """
-        self._is_approval_required_for_extension = value
-    
-    @property
-    def is_custom_assignment_schedule_allowed(self,) -> Optional[bool]:
-        """
-        Gets the isCustomAssignmentScheduleAllowed property value. Indicates whether the requestor is allowed to set a custom schedule.
-        Returns: Optional[bool]
-        """
-        return self._is_custom_assignment_schedule_allowed
-    
-    @is_custom_assignment_schedule_allowed.setter
-    def is_custom_assignment_schedule_allowed(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isCustomAssignmentScheduleAllowed property value. Indicates whether the requestor is allowed to set a custom schedule.
-        Args:
-            value: Value to set for the is_custom_assignment_schedule_allowed property.
-        """
-        self._is_custom_assignment_schedule_allowed = value
-    
-    @property
-    def is_requestor_justification_required(self,) -> Optional[bool]:
-        """
-        Gets the isRequestorJustificationRequired property value. Indicates whether a requestor must supply justification when submitting an assignment request.
-        Returns: Optional[bool]
-        """
-        return self._is_requestor_justification_required
-    
-    @is_requestor_justification_required.setter
-    def is_requestor_justification_required(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isRequestorJustificationRequired property value. Indicates whether a requestor must supply justification when submitting an assignment request.
-        Args:
-            value: Value to set for the is_requestor_justification_required property.
-        """
-        self._is_requestor_justification_required = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def policy_description(self,) -> Optional[str]:
-        """
-        Gets the policyDescription property value. The description of the policy that the user is trying to request access using.
-        Returns: Optional[str]
-        """
-        return self._policy_description
-    
-    @policy_description.setter
-    def policy_description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the policyDescription property value. The description of the policy that the user is trying to request access using.
-        Args:
-            value: Value to set for the policy_description property.
-        """
-        self._policy_description = value
-    
-    @property
-    def policy_display_name(self,) -> Optional[str]:
-        """
-        Gets the policyDisplayName property value. The display name of the policy that the user is trying to request access using.
-        Returns: Optional[str]
-        """
-        return self._policy_display_name
-    
-    @policy_display_name.setter
-    def policy_display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the policyDisplayName property value. The display name of the policy that the user is trying to request access using.
-        Args:
-            value: Value to set for the policy_display_name property.
-        """
-        self._policy_display_name = value
-    
-    @property
-    def policy_id(self,) -> Optional[str]:
-        """
-        Gets the policyId property value. The identifier of the policy that these requirements are associated with. This identifier can be used when creating a new assignment request.
-        Returns: Optional[str]
-        """
-        return self._policy_id
-    
-    @policy_id.setter
-    def policy_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the policyId property value. The identifier of the policy that these requirements are associated with. This identifier can be used when creating a new assignment request.
-        Args:
-            value: Value to set for the policy_id property.
-        """
-        self._policy_id = value
-    
-    @property
-    def questions(self,) -> Optional[List[access_package_question.AccessPackageQuestion]]:
-        """
-        Gets the questions property value. Questions that are configured on the policy. The questions can be required or optional; callers can determine whether a question is required or optional based on the isRequired property on accessPackageQuestion.
-        Returns: Optional[List[access_package_question.AccessPackageQuestion]]
-        """
-        return self._questions
-    
-    @questions.setter
-    def questions(self,value: Optional[List[access_package_question.AccessPackageQuestion]] = None) -> None:
-        """
-        Sets the questions property value. Questions that are configured on the policy. The questions can be required or optional; callers can determine whether a question is required or optional based on the isRequired property on accessPackageQuestion.
-        Args:
-            value: Value to set for the questions property.
-        """
-        self._questions = value
-    
-    @property
-    def schedule(self,) -> Optional[request_schedule.RequestSchedule]:
-        """
-        Gets the schedule property value. Schedule restrictions enforced, if any.
-        Returns: Optional[request_schedule.RequestSchedule]
-        """
-        return self._schedule
-    
-    @schedule.setter
-    def schedule(self,value: Optional[request_schedule.RequestSchedule] = None) -> None:
-        """
-        Sets the schedule property value. Schedule restrictions enforced, if any.
-        Args:
-            value: Value to set for the schedule property.
-        """
-        self._schedule = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -298,22 +92,5 @@ class AccessPackageAssignmentRequestRequirements(AdditionalDataHolder, Parsable)
         writer.write_object_value("schedule", self.schedule)
         writer.write_object_value("verifiableCredentialRequirementStatus", self.verifiable_credential_requirement_status)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def verifiable_credential_requirement_status(self,) -> Optional[verifiable_credential_requirement_status.VerifiableCredentialRequirementStatus]:
-        """
-        Gets the verifiableCredentialRequirementStatus property value. The status of the process to process the verifiable credential, if any.
-        Returns: Optional[verifiable_credential_requirement_status.VerifiableCredentialRequirementStatus]
-        """
-        return self._verifiable_credential_requirement_status
-    
-    @verifiable_credential_requirement_status.setter
-    def verifiable_credential_requirement_status(self,value: Optional[verifiable_credential_requirement_status.VerifiableCredentialRequirementStatus] = None) -> None:
-        """
-        Sets the verifiableCredentialRequirementStatus property value. The status of the process to process the verifiable credential, if any.
-        Args:
-            value: Value to set for the verifiable_credential_requirement_status property.
-        """
-        self._verifiable_credential_requirement_status = value
     
 

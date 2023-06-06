@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,17 +8,13 @@ if TYPE_CHECKING:
 
 from . import windows_kiosk_user
 
+@dataclass
 class WindowsKioskAzureADUser(windows_kiosk_user.WindowsKioskUser):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsKioskAzureADUser and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsKioskAzureADUser"
-        # The ID of the AzureAD user that will be locked to this kiosk configuration
-        self._user_id: Optional[str] = None
-        # The user accounts that will be locked to this kiosk configuration
-        self._user_principal_name: Optional[str] = None
+    odata_type = "#microsoft.graph.windowsKioskAzureADUser"
+    # The ID of the AzureAD user that will be locked to this kiosk configuration
+    user_id: Optional[str] = None
+    # The user accounts that will be locked to this kiosk configuration
+    user_principal_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsKioskAzureADUser:
@@ -57,39 +54,5 @@ class WindowsKioskAzureADUser(windows_kiosk_user.WindowsKioskUser):
         super().serialize(writer)
         writer.write_str_value("userId", self.user_id)
         writer.write_str_value("userPrincipalName", self.user_principal_name)
-    
-    @property
-    def user_id(self,) -> Optional[str]:
-        """
-        Gets the userId property value. The ID of the AzureAD user that will be locked to this kiosk configuration
-        Returns: Optional[str]
-        """
-        return self._user_id
-    
-    @user_id.setter
-    def user_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the userId property value. The ID of the AzureAD user that will be locked to this kiosk configuration
-        Args:
-            value: Value to set for the user_id property.
-        """
-        self._user_id = value
-    
-    @property
-    def user_principal_name(self,) -> Optional[str]:
-        """
-        Gets the userPrincipalName property value. The user accounts that will be locked to this kiosk configuration
-        Returns: Optional[str]
-        """
-        return self._user_principal_name
-    
-    @user_principal_name.setter
-    def user_principal_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the userPrincipalName property value. The user accounts that will be locked to this kiosk configuration
-        Args:
-            value: Value to set for the user_principal_name property.
-        """
-        self._user_principal_name = value
     
 

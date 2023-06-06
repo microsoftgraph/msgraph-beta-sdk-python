@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,16 +8,12 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class InformationProtectionPolicy(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new informationProtectionPolicy and sets the default values.
-        """
-        super().__init__()
-        # The labels property
-        self._labels: Optional[List[information_protection_label.InformationProtectionLabel]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+    # The labels property
+    labels: Optional[List[information_protection_label.InformationProtectionLabel]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> InformationProtectionPolicy:
@@ -43,23 +40,6 @@ class InformationProtectionPolicy(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def labels(self,) -> Optional[List[information_protection_label.InformationProtectionLabel]]:
-        """
-        Gets the labels property value. The labels property
-        Returns: Optional[List[information_protection_label.InformationProtectionLabel]]
-        """
-        return self._labels
-    
-    @labels.setter
-    def labels(self,value: Optional[List[information_protection_label.InformationProtectionLabel]] = None) -> None:
-        """
-        Sets the labels property value. The labels property
-        Args:
-            value: Value to set for the labels property.
-        """
-        self._labels = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

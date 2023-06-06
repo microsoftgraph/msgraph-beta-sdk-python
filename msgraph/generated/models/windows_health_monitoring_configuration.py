@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,70 +8,15 @@ if TYPE_CHECKING:
 
 from . import device_configuration
 
+@dataclass
 class WindowsHealthMonitoringConfiguration(device_configuration.DeviceConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsHealthMonitoringConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsHealthMonitoringConfiguration"
-        # Possible values of a property
-        self._allow_device_health_monitoring: Optional[enablement.Enablement] = None
-        # Specifies custom set of events collected from the device where health monitoring is enabled
-        self._config_device_health_monitoring_custom_scope: Optional[str] = None
-        # Device health monitoring scope
-        self._config_device_health_monitoring_scope: Optional[windows_health_monitoring_scope.WindowsHealthMonitoringScope] = None
-    
-    @property
-    def allow_device_health_monitoring(self,) -> Optional[enablement.Enablement]:
-        """
-        Gets the allowDeviceHealthMonitoring property value. Possible values of a property
-        Returns: Optional[enablement.Enablement]
-        """
-        return self._allow_device_health_monitoring
-    
-    @allow_device_health_monitoring.setter
-    def allow_device_health_monitoring(self,value: Optional[enablement.Enablement] = None) -> None:
-        """
-        Sets the allowDeviceHealthMonitoring property value. Possible values of a property
-        Args:
-            value: Value to set for the allow_device_health_monitoring property.
-        """
-        self._allow_device_health_monitoring = value
-    
-    @property
-    def config_device_health_monitoring_custom_scope(self,) -> Optional[str]:
-        """
-        Gets the configDeviceHealthMonitoringCustomScope property value. Specifies custom set of events collected from the device where health monitoring is enabled
-        Returns: Optional[str]
-        """
-        return self._config_device_health_monitoring_custom_scope
-    
-    @config_device_health_monitoring_custom_scope.setter
-    def config_device_health_monitoring_custom_scope(self,value: Optional[str] = None) -> None:
-        """
-        Sets the configDeviceHealthMonitoringCustomScope property value. Specifies custom set of events collected from the device where health monitoring is enabled
-        Args:
-            value: Value to set for the config_device_health_monitoring_custom_scope property.
-        """
-        self._config_device_health_monitoring_custom_scope = value
-    
-    @property
-    def config_device_health_monitoring_scope(self,) -> Optional[windows_health_monitoring_scope.WindowsHealthMonitoringScope]:
-        """
-        Gets the configDeviceHealthMonitoringScope property value. Device health monitoring scope
-        Returns: Optional[windows_health_monitoring_scope.WindowsHealthMonitoringScope]
-        """
-        return self._config_device_health_monitoring_scope
-    
-    @config_device_health_monitoring_scope.setter
-    def config_device_health_monitoring_scope(self,value: Optional[windows_health_monitoring_scope.WindowsHealthMonitoringScope] = None) -> None:
-        """
-        Sets the configDeviceHealthMonitoringScope property value. Device health monitoring scope
-        Args:
-            value: Value to set for the config_device_health_monitoring_scope property.
-        """
-        self._config_device_health_monitoring_scope = value
+    odata_type = "#microsoft.graph.windowsHealthMonitoringConfiguration"
+    # Possible values of a property
+    allow_device_health_monitoring: Optional[enablement.Enablement] = None
+    # Specifies custom set of events collected from the device where health monitoring is enabled
+    config_device_health_monitoring_custom_scope: Optional[str] = None
+    # Device health monitoring scope
+    config_device_health_monitoring_scope: Optional[windows_health_monitoring_scope.WindowsHealthMonitoringScope] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsHealthMonitoringConfiguration:

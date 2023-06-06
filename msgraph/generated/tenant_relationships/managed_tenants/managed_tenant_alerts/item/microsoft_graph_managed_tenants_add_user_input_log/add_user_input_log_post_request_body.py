@@ -1,34 +1,15 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class AddUserInputLogPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new addUserInputLogPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The logInformation property
-        self._log_information: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The logInformation property
+    log_information: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AddUserInputLogPostRequestBody:
@@ -51,23 +32,6 @@ class AddUserInputLogPostRequestBody(AdditionalDataHolder, Parsable):
             "logInformation": lambda n : setattr(self, 'log_information', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def log_information(self,) -> Optional[str]:
-        """
-        Gets the logInformation property value. The logInformation property
-        Returns: Optional[str]
-        """
-        return self._log_information
-    
-    @log_information.setter
-    def log_information(self,value: Optional[str] = None) -> None:
-        """
-        Sets the logInformation property value. The logInformation property
-        Args:
-            value: Value to set for the log_information property.
-        """
-        self._log_information = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

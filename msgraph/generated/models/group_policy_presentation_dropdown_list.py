@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,19 +8,15 @@ if TYPE_CHECKING:
 
 from . import group_policy_uploaded_presentation
 
+@dataclass
 class GroupPolicyPresentationDropdownList(group_policy_uploaded_presentation.GroupPolicyUploadedPresentation):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new GroupPolicyPresentationDropdownList and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.groupPolicyPresentationDropdownList"
-        # Localized string value identifying the default choice of the list of items.
-        self._default_item: Optional[group_policy_presentation_dropdown_list_item.GroupPolicyPresentationDropdownListItem] = None
-        # Represents a set of localized display names and their associated values.
-        self._items: Optional[List[group_policy_presentation_dropdown_list_item.GroupPolicyPresentationDropdownListItem]] = None
-        # Requirement to enter a value in the parameter box. The default value is false.
-        self._required: Optional[bool] = None
+    odata_type = "#microsoft.graph.groupPolicyPresentationDropdownList"
+    # Localized string value identifying the default choice of the list of items.
+    default_item: Optional[group_policy_presentation_dropdown_list_item.GroupPolicyPresentationDropdownListItem] = None
+    # Represents a set of localized display names and their associated values.
+    items: Optional[List[group_policy_presentation_dropdown_list_item.GroupPolicyPresentationDropdownListItem]] = None
+    # Requirement to enter a value in the parameter box. The default value is false.
+    required: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GroupPolicyPresentationDropdownList:
@@ -32,23 +29,6 @@ class GroupPolicyPresentationDropdownList(group_policy_uploaded_presentation.Gro
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return GroupPolicyPresentationDropdownList()
-    
-    @property
-    def default_item(self,) -> Optional[group_policy_presentation_dropdown_list_item.GroupPolicyPresentationDropdownListItem]:
-        """
-        Gets the defaultItem property value. Localized string value identifying the default choice of the list of items.
-        Returns: Optional[group_policy_presentation_dropdown_list_item.GroupPolicyPresentationDropdownListItem]
-        """
-        return self._default_item
-    
-    @default_item.setter
-    def default_item(self,value: Optional[group_policy_presentation_dropdown_list_item.GroupPolicyPresentationDropdownListItem] = None) -> None:
-        """
-        Sets the defaultItem property value. Localized string value identifying the default choice of the list of items.
-        Args:
-            value: Value to set for the default_item property.
-        """
-        self._default_item = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -65,40 +45,6 @@ class GroupPolicyPresentationDropdownList(group_policy_uploaded_presentation.Gro
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def items(self,) -> Optional[List[group_policy_presentation_dropdown_list_item.GroupPolicyPresentationDropdownListItem]]:
-        """
-        Gets the items property value. Represents a set of localized display names and their associated values.
-        Returns: Optional[List[group_policy_presentation_dropdown_list_item.GroupPolicyPresentationDropdownListItem]]
-        """
-        return self._items
-    
-    @items.setter
-    def items(self,value: Optional[List[group_policy_presentation_dropdown_list_item.GroupPolicyPresentationDropdownListItem]] = None) -> None:
-        """
-        Sets the items property value. Represents a set of localized display names and their associated values.
-        Args:
-            value: Value to set for the items property.
-        """
-        self._items = value
-    
-    @property
-    def required(self,) -> Optional[bool]:
-        """
-        Gets the required property value. Requirement to enter a value in the parameter box. The default value is false.
-        Returns: Optional[bool]
-        """
-        return self._required
-    
-    @required.setter
-    def required(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the required property value. Requirement to enter a value in the parameter box. The default value is false.
-        Args:
-            value: Value to set for the required property.
-        """
-        self._required = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

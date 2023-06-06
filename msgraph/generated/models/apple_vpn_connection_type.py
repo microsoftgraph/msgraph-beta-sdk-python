@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AppleVpnConnectionType(Enum):
+class AppleVpnConnectionType(str, Enum):
     # Cisco AnyConnect.
     CiscoAnyConnect = "ciscoAnyConnect",
     # Pulse Secure.

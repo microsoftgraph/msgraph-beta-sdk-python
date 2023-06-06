@@ -1,54 +1,18 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..........models import teams_app_permission_set
 
+@dataclass
 class UpgradePostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new upgradePostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The consentedPermissionSet property
-        self._consented_permission_set: Optional[teams_app_permission_set.TeamsAppPermissionSet] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def consented_permission_set(self,) -> Optional[teams_app_permission_set.TeamsAppPermissionSet]:
-        """
-        Gets the consentedPermissionSet property value. The consentedPermissionSet property
-        Returns: Optional[teams_app_permission_set.TeamsAppPermissionSet]
-        """
-        return self._consented_permission_set
-    
-    @consented_permission_set.setter
-    def consented_permission_set(self,value: Optional[teams_app_permission_set.TeamsAppPermissionSet] = None) -> None:
-        """
-        Sets the consentedPermissionSet property value. The consentedPermissionSet property
-        Args:
-            value: Value to set for the consented_permission_set property.
-        """
-        self._consented_permission_set = value
+    # The consentedPermissionSet property
+    consented_permission_set: Optional[teams_app_permission_set.TeamsAppPermissionSet] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UpgradePostRequestBody:

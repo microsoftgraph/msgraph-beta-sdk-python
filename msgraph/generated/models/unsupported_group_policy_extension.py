@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,25 +8,21 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class UnsupportedGroupPolicyExtension(entity.Entity):
     """
     Unsupported Group Policy Extension.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new unsupportedGroupPolicyExtension and sets the default values.
-        """
-        super().__init__()
-        # ExtensionType of the unsupported extension.
-        self._extension_type: Optional[str] = None
-        # Namespace Url of the unsupported extension.
-        self._namespace_url: Optional[str] = None
-        # Node name of the unsupported extension.
-        self._node_name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Scope of the group policy setting.
-        self._setting_scope: Optional[group_policy_setting_scope.GroupPolicySettingScope] = None
+    # ExtensionType of the unsupported extension.
+    extension_type: Optional[str] = None
+    # Namespace Url of the unsupported extension.
+    namespace_url: Optional[str] = None
+    # Node name of the unsupported extension.
+    node_name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Scope of the group policy setting.
+    setting_scope: Optional[group_policy_setting_scope.GroupPolicySettingScope] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UnsupportedGroupPolicyExtension:
@@ -38,23 +35,6 @@ class UnsupportedGroupPolicyExtension(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return UnsupportedGroupPolicyExtension()
-    
-    @property
-    def extension_type(self,) -> Optional[str]:
-        """
-        Gets the extensionType property value. ExtensionType of the unsupported extension.
-        Returns: Optional[str]
-        """
-        return self._extension_type
-    
-    @extension_type.setter
-    def extension_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the extensionType property value. ExtensionType of the unsupported extension.
-        Args:
-            value: Value to set for the extension_type property.
-        """
-        self._extension_type = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -73,40 +53,6 @@ class UnsupportedGroupPolicyExtension(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def namespace_url(self,) -> Optional[str]:
-        """
-        Gets the namespaceUrl property value. Namespace Url of the unsupported extension.
-        Returns: Optional[str]
-        """
-        return self._namespace_url
-    
-    @namespace_url.setter
-    def namespace_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the namespaceUrl property value. Namespace Url of the unsupported extension.
-        Args:
-            value: Value to set for the namespace_url property.
-        """
-        self._namespace_url = value
-    
-    @property
-    def node_name(self,) -> Optional[str]:
-        """
-        Gets the nodeName property value. Node name of the unsupported extension.
-        Returns: Optional[str]
-        """
-        return self._node_name
-    
-    @node_name.setter
-    def node_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the nodeName property value. Node name of the unsupported extension.
-        Args:
-            value: Value to set for the node_name property.
-        """
-        self._node_name = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -120,22 +66,5 @@ class UnsupportedGroupPolicyExtension(entity.Entity):
         writer.write_str_value("namespaceUrl", self.namespace_url)
         writer.write_str_value("nodeName", self.node_name)
         writer.write_enum_value("settingScope", self.setting_scope)
-    
-    @property
-    def setting_scope(self,) -> Optional[group_policy_setting_scope.GroupPolicySettingScope]:
-        """
-        Gets the settingScope property value. Scope of the group policy setting.
-        Returns: Optional[group_policy_setting_scope.GroupPolicySettingScope]
-        """
-        return self._setting_scope
-    
-    @setting_scope.setter
-    def setting_scope(self,value: Optional[group_policy_setting_scope.GroupPolicySettingScope] = None) -> None:
-        """
-        Sets the settingScope property value. Scope of the group policy setting.
-        Args:
-            value: Value to set for the setting_scope property.
-        """
-        self._setting_scope = value
     
 

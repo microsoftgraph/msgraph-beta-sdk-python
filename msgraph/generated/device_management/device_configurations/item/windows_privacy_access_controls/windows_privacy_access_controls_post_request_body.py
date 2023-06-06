@@ -1,37 +1,18 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .....models import windows_privacy_data_access_control_item
 
+@dataclass
 class WindowsPrivacyAccessControlsPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new windowsPrivacyAccessControlsPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The windowsPrivacyAccessControls property
-        self._windows_privacy_access_controls: Optional[List[windows_privacy_data_access_control_item.WindowsPrivacyDataAccessControlItem]] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The windowsPrivacyAccessControls property
+    windows_privacy_access_controls: Optional[List[windows_privacy_data_access_control_item.WindowsPrivacyDataAccessControlItem]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsPrivacyAccessControlsPostRequestBody:
@@ -67,22 +48,5 @@ class WindowsPrivacyAccessControlsPostRequestBody(AdditionalDataHolder, Parsable
             raise Exception("writer cannot be undefined")
         writer.write_collection_of_object_values("windowsPrivacyAccessControls", self.windows_privacy_access_controls)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def windows_privacy_access_controls(self,) -> Optional[List[windows_privacy_data_access_control_item.WindowsPrivacyDataAccessControlItem]]:
-        """
-        Gets the windowsPrivacyAccessControls property value. The windowsPrivacyAccessControls property
-        Returns: Optional[List[windows_privacy_data_access_control_item.WindowsPrivacyDataAccessControlItem]]
-        """
-        return self._windows_privacy_access_controls
-    
-    @windows_privacy_access_controls.setter
-    def windows_privacy_access_controls(self,value: Optional[List[windows_privacy_data_access_control_item.WindowsPrivacyDataAccessControlItem]] = None) -> None:
-        """
-        Sets the windowsPrivacyAccessControls property value. The windowsPrivacyAccessControls property
-        Args:
-            value: Value to set for the windows_privacy_access_controls property.
-        """
-        self._windows_privacy_access_controls = value
     
 

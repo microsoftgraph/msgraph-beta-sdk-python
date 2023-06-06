@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,26 +9,25 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class WindowsInformationProtectionWipeAction(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsInformationProtectionWipeAction and sets the default values.
-        """
-        super().__init__()
-        # Last checkin time of the device that was targeted by this wipe action.
-        self._last_check_in_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The status property
-        self._status: Optional[action_state.ActionState] = None
-        # Targeted device Mac address.
-        self._targeted_device_mac_address: Optional[str] = None
-        # Targeted device name.
-        self._targeted_device_name: Optional[str] = None
-        # The DeviceRegistrationId being targeted by this wipe action.
-        self._targeted_device_registration_id: Optional[str] = None
-        # The UserId being targeted by this wipe action.
-        self._targeted_user_id: Optional[str] = None
+    """
+    Represents wipe requests issued by tenant admin for Bring-Your-Own-Device(BYOD) Windows devices.
+    """
+    # Last checkin time of the device that was targeted by this wipe action.
+    last_check_in_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The status property
+    status: Optional[action_state.ActionState] = None
+    # Targeted device Mac address.
+    targeted_device_mac_address: Optional[str] = None
+    # Targeted device name.
+    targeted_device_name: Optional[str] = None
+    # The DeviceRegistrationId being targeted by this wipe action.
+    targeted_device_registration_id: Optional[str] = None
+    # The UserId being targeted by this wipe action.
+    targeted_user_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsInformationProtectionWipeAction:
@@ -60,23 +60,6 @@ class WindowsInformationProtectionWipeAction(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def last_check_in_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastCheckInDateTime property value. Last checkin time of the device that was targeted by this wipe action.
-        Returns: Optional[datetime]
-        """
-        return self._last_check_in_date_time
-    
-    @last_check_in_date_time.setter
-    def last_check_in_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastCheckInDateTime property value. Last checkin time of the device that was targeted by this wipe action.
-        Args:
-            value: Value to set for the last_check_in_date_time property.
-        """
-        self._last_check_in_date_time = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -92,90 +75,5 @@ class WindowsInformationProtectionWipeAction(entity.Entity):
         writer.write_str_value("targetedDeviceName", self.targeted_device_name)
         writer.write_str_value("targetedDeviceRegistrationId", self.targeted_device_registration_id)
         writer.write_str_value("targetedUserId", self.targeted_user_id)
-    
-    @property
-    def status(self,) -> Optional[action_state.ActionState]:
-        """
-        Gets the status property value. The status property
-        Returns: Optional[action_state.ActionState]
-        """
-        return self._status
-    
-    @status.setter
-    def status(self,value: Optional[action_state.ActionState] = None) -> None:
-        """
-        Sets the status property value. The status property
-        Args:
-            value: Value to set for the status property.
-        """
-        self._status = value
-    
-    @property
-    def targeted_device_mac_address(self,) -> Optional[str]:
-        """
-        Gets the targetedDeviceMacAddress property value. Targeted device Mac address.
-        Returns: Optional[str]
-        """
-        return self._targeted_device_mac_address
-    
-    @targeted_device_mac_address.setter
-    def targeted_device_mac_address(self,value: Optional[str] = None) -> None:
-        """
-        Sets the targetedDeviceMacAddress property value. Targeted device Mac address.
-        Args:
-            value: Value to set for the targeted_device_mac_address property.
-        """
-        self._targeted_device_mac_address = value
-    
-    @property
-    def targeted_device_name(self,) -> Optional[str]:
-        """
-        Gets the targetedDeviceName property value. Targeted device name.
-        Returns: Optional[str]
-        """
-        return self._targeted_device_name
-    
-    @targeted_device_name.setter
-    def targeted_device_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the targetedDeviceName property value. Targeted device name.
-        Args:
-            value: Value to set for the targeted_device_name property.
-        """
-        self._targeted_device_name = value
-    
-    @property
-    def targeted_device_registration_id(self,) -> Optional[str]:
-        """
-        Gets the targetedDeviceRegistrationId property value. The DeviceRegistrationId being targeted by this wipe action.
-        Returns: Optional[str]
-        """
-        return self._targeted_device_registration_id
-    
-    @targeted_device_registration_id.setter
-    def targeted_device_registration_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the targetedDeviceRegistrationId property value. The DeviceRegistrationId being targeted by this wipe action.
-        Args:
-            value: Value to set for the targeted_device_registration_id property.
-        """
-        self._targeted_device_registration_id = value
-    
-    @property
-    def targeted_user_id(self,) -> Optional[str]:
-        """
-        Gets the targetedUserId property value. The UserId being targeted by this wipe action.
-        Returns: Optional[str]
-        """
-        return self._targeted_user_id
-    
-    @targeted_user_id.setter
-    def targeted_user_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the targetedUserId property value. The UserId being targeted by this wipe action.
-        Args:
-            value: Value to set for the targeted_user_id property.
-        """
-        self._targeted_user_id = value
     
 

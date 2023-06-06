@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,41 +8,20 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class DeviceManagementIntentUserStateSummary(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementIntentUserStateSummary and sets the default values.
-        """
-        super().__init__()
-        # Number of users in conflict
-        self._conflict_count: Optional[int] = None
-        # Number of error users
-        self._error_count: Optional[int] = None
-        # Number of failed users
-        self._failed_count: Optional[int] = None
-        # Number of not applicable users
-        self._not_applicable_count: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Number of succeeded users
-        self._success_count: Optional[int] = None
-    
-    @property
-    def conflict_count(self,) -> Optional[int]:
-        """
-        Gets the conflictCount property value. Number of users in conflict
-        Returns: Optional[int]
-        """
-        return self._conflict_count
-    
-    @conflict_count.setter
-    def conflict_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the conflictCount property value. Number of users in conflict
-        Args:
-            value: Value to set for the conflict_count property.
-        """
-        self._conflict_count = value
+    # Number of users in conflict
+    conflict_count: Optional[int] = None
+    # Number of error users
+    error_count: Optional[int] = None
+    # Number of failed users
+    failed_count: Optional[int] = None
+    # Number of not applicable users
+    not_applicable_count: Optional[int] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Number of succeeded users
+    success_count: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementIntentUserStateSummary:
@@ -54,40 +34,6 @@ class DeviceManagementIntentUserStateSummary(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return DeviceManagementIntentUserStateSummary()
-    
-    @property
-    def error_count(self,) -> Optional[int]:
-        """
-        Gets the errorCount property value. Number of error users
-        Returns: Optional[int]
-        """
-        return self._error_count
-    
-    @error_count.setter
-    def error_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the errorCount property value. Number of error users
-        Args:
-            value: Value to set for the error_count property.
-        """
-        self._error_count = value
-    
-    @property
-    def failed_count(self,) -> Optional[int]:
-        """
-        Gets the failedCount property value. Number of failed users
-        Returns: Optional[int]
-        """
-        return self._failed_count
-    
-    @failed_count.setter
-    def failed_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the failedCount property value. Number of failed users
-        Args:
-            value: Value to set for the failed_count property.
-        """
-        self._failed_count = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -107,23 +53,6 @@ class DeviceManagementIntentUserStateSummary(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def not_applicable_count(self,) -> Optional[int]:
-        """
-        Gets the notApplicableCount property value. Number of not applicable users
-        Returns: Optional[int]
-        """
-        return self._not_applicable_count
-    
-    @not_applicable_count.setter
-    def not_applicable_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the notApplicableCount property value. Number of not applicable users
-        Args:
-            value: Value to set for the not_applicable_count property.
-        """
-        self._not_applicable_count = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -138,22 +67,5 @@ class DeviceManagementIntentUserStateSummary(entity.Entity):
         writer.write_int_value("failedCount", self.failed_count)
         writer.write_int_value("notApplicableCount", self.not_applicable_count)
         writer.write_int_value("successCount", self.success_count)
-    
-    @property
-    def success_count(self,) -> Optional[int]:
-        """
-        Gets the successCount property value. Number of succeeded users
-        Returns: Optional[int]
-        """
-        return self._success_count
-    
-    @success_count.setter
-    def success_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the successCount property value. Number of succeeded users
-        Args:
-            value: Value to set for the success_count property.
-        """
-        self._success_count = value
     
 

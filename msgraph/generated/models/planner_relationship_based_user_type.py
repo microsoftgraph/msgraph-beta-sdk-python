@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import planner_task_configuration_role_base
 
+@dataclass
 class PlannerRelationshipBasedUserType(planner_task_configuration_role_base.PlannerTaskConfigurationRoleBase):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new PlannerRelationshipBasedUserType and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.plannerRelationshipBasedUserType"
-        # The role property
-        self._role: Optional[planner_relationship_user_roles.PlannerRelationshipUserRoles] = None
+    odata_type = "#microsoft.graph.plannerRelationshipBasedUserType"
+    # The role property
+    role: Optional[planner_relationship_user_roles.PlannerRelationshipUserRoles] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PlannerRelationshipBasedUserType:
@@ -42,23 +39,6 @@ class PlannerRelationshipBasedUserType(planner_task_configuration_role_base.Plan
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def role(self,) -> Optional[planner_relationship_user_roles.PlannerRelationshipUserRoles]:
-        """
-        Gets the role property value. The role property
-        Returns: Optional[planner_relationship_user_roles.PlannerRelationshipUserRoles]
-        """
-        return self._role
-    
-    @role.setter
-    def role(self,value: Optional[planner_relationship_user_roles.PlannerRelationshipUserRoles] = None) -> None:
-        """
-        Sets the role property value. The role property
-        Args:
-            value: Value to set for the role property.
-        """
-        self._role = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

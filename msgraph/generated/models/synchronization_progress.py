@@ -1,60 +1,24 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class SynchronizationProgress(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new synchronizationProgress and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The numerator of a progress ratio; the number of units of changes already processed.
-        self._completed_units: Optional[int] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The time of a progress observation as an offset in minutes from UTC.
-        self._progress_observation_date_time: Optional[datetime] = None
-        # The denominator of a progress ratio; a number of units of changes to be processed to accomplish synchronization.
-        self._total_units: Optional[int] = None
-        # An optional description of the units.
-        self._units: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def completed_units(self,) -> Optional[int]:
-        """
-        Gets the completedUnits property value. The numerator of a progress ratio; the number of units of changes already processed.
-        Returns: Optional[int]
-        """
-        return self._completed_units
-    
-    @completed_units.setter
-    def completed_units(self,value: Optional[int] = None) -> None:
-        """
-        Sets the completedUnits property value. The numerator of a progress ratio; the number of units of changes already processed.
-        Args:
-            value: Value to set for the completed_units property.
-        """
-        self._completed_units = value
+    # The numerator of a progress ratio; the number of units of changes already processed.
+    completed_units: Optional[int] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The time of a progress observation as an offset in minutes from UTC.
+    progress_observation_date_time: Optional[datetime] = None
+    # The denominator of a progress ratio; a number of units of changes to be processed to accomplish synchronization.
+    total_units: Optional[int] = None
+    # An optional description of the units.
+    units: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SynchronizationProgress:
@@ -82,40 +46,6 @@ class SynchronizationProgress(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def progress_observation_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the progressObservationDateTime property value. The time of a progress observation as an offset in minutes from UTC.
-        Returns: Optional[datetime]
-        """
-        return self._progress_observation_date_time
-    
-    @progress_observation_date_time.setter
-    def progress_observation_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the progressObservationDateTime property value. The time of a progress observation as an offset in minutes from UTC.
-        Args:
-            value: Value to set for the progress_observation_date_time property.
-        """
-        self._progress_observation_date_time = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -130,39 +60,5 @@ class SynchronizationProgress(AdditionalDataHolder, Parsable):
         writer.write_int_value("totalUnits", self.total_units)
         writer.write_str_value("units", self.units)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def total_units(self,) -> Optional[int]:
-        """
-        Gets the totalUnits property value. The denominator of a progress ratio; a number of units of changes to be processed to accomplish synchronization.
-        Returns: Optional[int]
-        """
-        return self._total_units
-    
-    @total_units.setter
-    def total_units(self,value: Optional[int] = None) -> None:
-        """
-        Sets the totalUnits property value. The denominator of a progress ratio; a number of units of changes to be processed to accomplish synchronization.
-        Args:
-            value: Value to set for the total_units property.
-        """
-        self._total_units = value
-    
-    @property
-    def units(self,) -> Optional[str]:
-        """
-        Gets the units property value. An optional description of the units.
-        Returns: Optional[str]
-        """
-        return self._units
-    
-    @units.setter
-    def units(self,value: Optional[str] = None) -> None:
-        """
-        Sets the units property value. An optional description of the units.
-        Args:
-            value: Value to set for the units property.
-        """
-        self._units = value
     
 

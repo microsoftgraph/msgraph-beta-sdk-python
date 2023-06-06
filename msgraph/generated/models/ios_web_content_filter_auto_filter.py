@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,51 +8,13 @@ if TYPE_CHECKING:
 
 from . import ios_web_content_filter_base
 
+@dataclass
 class IosWebContentFilterAutoFilter(ios_web_content_filter_base.IosWebContentFilterBase):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new IosWebContentFilterAutoFilter and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.iosWebContentFilterAutoFilter"
-        # Additional URLs allowed for access
-        self._allowed_urls: Optional[List[str]] = None
-        # Additional URLs blocked for access
-        self._blocked_urls: Optional[List[str]] = None
-    
-    @property
-    def allowed_urls(self,) -> Optional[List[str]]:
-        """
-        Gets the allowedUrls property value. Additional URLs allowed for access
-        Returns: Optional[List[str]]
-        """
-        return self._allowed_urls
-    
-    @allowed_urls.setter
-    def allowed_urls(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the allowedUrls property value. Additional URLs allowed for access
-        Args:
-            value: Value to set for the allowed_urls property.
-        """
-        self._allowed_urls = value
-    
-    @property
-    def blocked_urls(self,) -> Optional[List[str]]:
-        """
-        Gets the blockedUrls property value. Additional URLs blocked for access
-        Returns: Optional[List[str]]
-        """
-        return self._blocked_urls
-    
-    @blocked_urls.setter
-    def blocked_urls(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the blockedUrls property value. Additional URLs blocked for access
-        Args:
-            value: Value to set for the blocked_urls property.
-        """
-        self._blocked_urls = value
+    odata_type = "#microsoft.graph.iosWebContentFilterAutoFilter"
+    # Additional URLs allowed for access
+    allowed_urls: Optional[List[str]] = None
+    # Additional URLs blocked for access
+    blocked_urls: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosWebContentFilterAutoFilter:

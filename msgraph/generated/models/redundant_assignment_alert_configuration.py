@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,15 +9,11 @@ if TYPE_CHECKING:
 
 from . import unified_role_management_alert_configuration
 
+@dataclass
 class RedundantAssignmentAlertConfiguration(unified_role_management_alert_configuration.UnifiedRoleManagementAlertConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new RedundantAssignmentAlertConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.redundantAssignmentAlertConfiguration"
-        # The duration property
-        self._duration: Optional[timedelta] = None
+    odata_type = "#microsoft.graph.redundantAssignmentAlertConfiguration"
+    # The duration property
+    duration: Optional[timedelta] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RedundantAssignmentAlertConfiguration:
@@ -29,23 +26,6 @@ class RedundantAssignmentAlertConfiguration(unified_role_management_alert_config
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return RedundantAssignmentAlertConfiguration()
-    
-    @property
-    def duration(self,) -> Optional[timedelta]:
-        """
-        Gets the duration property value. The duration property
-        Returns: Optional[timedelta]
-        """
-        return self._duration
-    
-    @duration.setter
-    def duration(self,value: Optional[timedelta] = None) -> None:
-        """
-        Sets the duration property value. The duration property
-        Args:
-            value: Value to set for the duration property.
-        """
-        self._duration = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """

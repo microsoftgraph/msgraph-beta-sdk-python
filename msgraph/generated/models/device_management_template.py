@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,58 +9,37 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class DeviceManagementTemplate(entity.Entity):
     """
     Entity that represents a defined collection of device settings
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementTemplate and sets the default values.
-        """
-        super().__init__()
-        # Collection of setting categories within the template
-        self._categories: Optional[List[device_management_template_setting_category.DeviceManagementTemplateSettingCategory]] = None
-        # The template's description
-        self._description: Optional[str] = None
-        # The template's display name
-        self._display_name: Optional[str] = None
-        # Number of Intents created from this template.
-        self._intent_count: Optional[int] = None
-        # The template is deprecated or not. Intents cannot be created from a deprecated template.
-        self._is_deprecated: Optional[bool] = None
-        # Collection of templates this template can migrate to
-        self._migratable_to: Optional[List[DeviceManagementTemplate]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Supported platform types for policies.
-        self._platform_type: Optional[policy_platform_type.PolicyPlatformType] = None
-        # When the template was published
-        self._published_date_time: Optional[datetime] = None
-        # Collection of all settings this template has
-        self._settings: Optional[List[device_management_setting_instance.DeviceManagementSettingInstance]] = None
-        # Template subtype
-        self._template_subtype: Optional[device_management_template_subtype.DeviceManagementTemplateSubtype] = None
-        # Template type
-        self._template_type: Optional[device_management_template_type.DeviceManagementTemplateType] = None
-        # The template's version information
-        self._version_info: Optional[str] = None
-    
-    @property
-    def categories(self,) -> Optional[List[device_management_template_setting_category.DeviceManagementTemplateSettingCategory]]:
-        """
-        Gets the categories property value. Collection of setting categories within the template
-        Returns: Optional[List[device_management_template_setting_category.DeviceManagementTemplateSettingCategory]]
-        """
-        return self._categories
-    
-    @categories.setter
-    def categories(self,value: Optional[List[device_management_template_setting_category.DeviceManagementTemplateSettingCategory]] = None) -> None:
-        """
-        Sets the categories property value. Collection of setting categories within the template
-        Args:
-            value: Value to set for the categories property.
-        """
-        self._categories = value
+    # Collection of setting categories within the template
+    categories: Optional[List[device_management_template_setting_category.DeviceManagementTemplateSettingCategory]] = None
+    # The template's description
+    description: Optional[str] = None
+    # The template's display name
+    display_name: Optional[str] = None
+    # Number of Intents created from this template.
+    intent_count: Optional[int] = None
+    # The template is deprecated or not. Intents cannot be created from a deprecated template.
+    is_deprecated: Optional[bool] = None
+    # Collection of templates this template can migrate to
+    migratable_to: Optional[List[DeviceManagementTemplate]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Supported platform types for policies.
+    platform_type: Optional[policy_platform_type.PolicyPlatformType] = None
+    # When the template was published
+    published_date_time: Optional[datetime] = None
+    # Collection of all settings this template has
+    settings: Optional[List[device_management_setting_instance.DeviceManagementSettingInstance]] = None
+    # Template subtype
+    template_subtype: Optional[device_management_template_subtype.DeviceManagementTemplateSubtype] = None
+    # Template type
+    template_type: Optional[device_management_template_type.DeviceManagementTemplateType] = None
+    # The template's version information
+    version_info: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementTemplate:
@@ -79,40 +59,6 @@ class DeviceManagementTemplate(entity.Entity):
 
                 return security_baseline_template.SecurityBaselineTemplate()
         return DeviceManagementTemplate()
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. The template's description
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. The template's description
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The template's display name
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The template's display name
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -139,91 +85,6 @@ class DeviceManagementTemplate(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def intent_count(self,) -> Optional[int]:
-        """
-        Gets the intentCount property value. Number of Intents created from this template.
-        Returns: Optional[int]
-        """
-        return self._intent_count
-    
-    @intent_count.setter
-    def intent_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the intentCount property value. Number of Intents created from this template.
-        Args:
-            value: Value to set for the intent_count property.
-        """
-        self._intent_count = value
-    
-    @property
-    def is_deprecated(self,) -> Optional[bool]:
-        """
-        Gets the isDeprecated property value. The template is deprecated or not. Intents cannot be created from a deprecated template.
-        Returns: Optional[bool]
-        """
-        return self._is_deprecated
-    
-    @is_deprecated.setter
-    def is_deprecated(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isDeprecated property value. The template is deprecated or not. Intents cannot be created from a deprecated template.
-        Args:
-            value: Value to set for the is_deprecated property.
-        """
-        self._is_deprecated = value
-    
-    @property
-    def migratable_to(self,) -> Optional[List[DeviceManagementTemplate]]:
-        """
-        Gets the migratableTo property value. Collection of templates this template can migrate to
-        Returns: Optional[List[DeviceManagementTemplate]]
-        """
-        return self._migratable_to
-    
-    @migratable_to.setter
-    def migratable_to(self,value: Optional[List[DeviceManagementTemplate]] = None) -> None:
-        """
-        Sets the migratableTo property value. Collection of templates this template can migrate to
-        Args:
-            value: Value to set for the migratable_to property.
-        """
-        self._migratable_to = value
-    
-    @property
-    def platform_type(self,) -> Optional[policy_platform_type.PolicyPlatformType]:
-        """
-        Gets the platformType property value. Supported platform types for policies.
-        Returns: Optional[policy_platform_type.PolicyPlatformType]
-        """
-        return self._platform_type
-    
-    @platform_type.setter
-    def platform_type(self,value: Optional[policy_platform_type.PolicyPlatformType] = None) -> None:
-        """
-        Sets the platformType property value. Supported platform types for policies.
-        Args:
-            value: Value to set for the platform_type property.
-        """
-        self._platform_type = value
-    
-    @property
-    def published_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the publishedDateTime property value. When the template was published
-        Returns: Optional[datetime]
-        """
-        return self._published_date_time
-    
-    @published_date_time.setter
-    def published_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the publishedDateTime property value. When the template was published
-        Args:
-            value: Value to set for the published_date_time property.
-        """
-        self._published_date_time = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -245,73 +106,5 @@ class DeviceManagementTemplate(entity.Entity):
         writer.write_enum_value("templateSubtype", self.template_subtype)
         writer.write_enum_value("templateType", self.template_type)
         writer.write_str_value("versionInfo", self.version_info)
-    
-    @property
-    def settings(self,) -> Optional[List[device_management_setting_instance.DeviceManagementSettingInstance]]:
-        """
-        Gets the settings property value. Collection of all settings this template has
-        Returns: Optional[List[device_management_setting_instance.DeviceManagementSettingInstance]]
-        """
-        return self._settings
-    
-    @settings.setter
-    def settings(self,value: Optional[List[device_management_setting_instance.DeviceManagementSettingInstance]] = None) -> None:
-        """
-        Sets the settings property value. Collection of all settings this template has
-        Args:
-            value: Value to set for the settings property.
-        """
-        self._settings = value
-    
-    @property
-    def template_subtype(self,) -> Optional[device_management_template_subtype.DeviceManagementTemplateSubtype]:
-        """
-        Gets the templateSubtype property value. Template subtype
-        Returns: Optional[device_management_template_subtype.DeviceManagementTemplateSubtype]
-        """
-        return self._template_subtype
-    
-    @template_subtype.setter
-    def template_subtype(self,value: Optional[device_management_template_subtype.DeviceManagementTemplateSubtype] = None) -> None:
-        """
-        Sets the templateSubtype property value. Template subtype
-        Args:
-            value: Value to set for the template_subtype property.
-        """
-        self._template_subtype = value
-    
-    @property
-    def template_type(self,) -> Optional[device_management_template_type.DeviceManagementTemplateType]:
-        """
-        Gets the templateType property value. Template type
-        Returns: Optional[device_management_template_type.DeviceManagementTemplateType]
-        """
-        return self._template_type
-    
-    @template_type.setter
-    def template_type(self,value: Optional[device_management_template_type.DeviceManagementTemplateType] = None) -> None:
-        """
-        Sets the templateType property value. Template type
-        Args:
-            value: Value to set for the template_type property.
-        """
-        self._template_type = value
-    
-    @property
-    def version_info(self,) -> Optional[str]:
-        """
-        Gets the versionInfo property value. The template's version information
-        Returns: Optional[str]
-        """
-        return self._version_info
-    
-    @version_info.setter
-    def version_info(self,value: Optional[str] = None) -> None:
-        """
-        Sets the versionInfo property value. The template's version information
-        Args:
-            value: Value to set for the version_info property.
-        """
-        self._version_info = value
     
 

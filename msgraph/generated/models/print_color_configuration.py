@@ -1,6 +1,6 @@
 from enum import Enum
 
-class PrintColorConfiguration(Enum):
+class PrintColorConfiguration(str, Enum):
     BlackAndWhite = "blackAndWhite",
     Grayscale = "grayscale",
     Color = "color",

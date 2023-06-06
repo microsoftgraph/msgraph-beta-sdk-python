@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,41 +9,20 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class Office365GroupsActivityFileCounts(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Office365GroupsActivityFileCounts and sets the default values.
-        """
-        super().__init__()
-        # The number of files that were viewed, edited, shared, or synced in the group's SharePoint document library.
-        self._active: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The date on which a number of files were active in the group's SharePoint site.
-        self._report_date: Optional[date] = None
-        # The number of days the report covers.
-        self._report_period: Optional[str] = None
-        # The latest date of the content.
-        self._report_refresh_date: Optional[date] = None
-        # The total number of files in the group's SharePoint document library.
-        self._total: Optional[int] = None
-    
-    @property
-    def active(self,) -> Optional[int]:
-        """
-        Gets the active property value. The number of files that were viewed, edited, shared, or synced in the group's SharePoint document library.
-        Returns: Optional[int]
-        """
-        return self._active
-    
-    @active.setter
-    def active(self,value: Optional[int] = None) -> None:
-        """
-        Sets the active property value. The number of files that were viewed, edited, shared, or synced in the group's SharePoint document library.
-        Args:
-            value: Value to set for the active property.
-        """
-        self._active = value
+    # The number of files that were viewed, edited, shared, or synced in the group's SharePoint document library.
+    active: Optional[int] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The date on which a number of files were active in the group's SharePoint site.
+    report_date: Optional[date] = None
+    # The number of days the report covers.
+    report_period: Optional[str] = None
+    # The latest date of the content.
+    report_refresh_date: Optional[date] = None
+    # The total number of files in the group's SharePoint document library.
+    total: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Office365GroupsActivityFileCounts:
@@ -74,57 +54,6 @@ class Office365GroupsActivityFileCounts(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def report_date(self,) -> Optional[date]:
-        """
-        Gets the reportDate property value. The date on which a number of files were active in the group's SharePoint site.
-        Returns: Optional[date]
-        """
-        return self._report_date
-    
-    @report_date.setter
-    def report_date(self,value: Optional[date] = None) -> None:
-        """
-        Sets the reportDate property value. The date on which a number of files were active in the group's SharePoint site.
-        Args:
-            value: Value to set for the report_date property.
-        """
-        self._report_date = value
-    
-    @property
-    def report_period(self,) -> Optional[str]:
-        """
-        Gets the reportPeriod property value. The number of days the report covers.
-        Returns: Optional[str]
-        """
-        return self._report_period
-    
-    @report_period.setter
-    def report_period(self,value: Optional[str] = None) -> None:
-        """
-        Sets the reportPeriod property value. The number of days the report covers.
-        Args:
-            value: Value to set for the report_period property.
-        """
-        self._report_period = value
-    
-    @property
-    def report_refresh_date(self,) -> Optional[date]:
-        """
-        Gets the reportRefreshDate property value. The latest date of the content.
-        Returns: Optional[date]
-        """
-        return self._report_refresh_date
-    
-    @report_refresh_date.setter
-    def report_refresh_date(self,value: Optional[date] = None) -> None:
-        """
-        Sets the reportRefreshDate property value. The latest date of the content.
-        Args:
-            value: Value to set for the report_refresh_date property.
-        """
-        self._report_refresh_date = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -139,22 +68,5 @@ class Office365GroupsActivityFileCounts(entity.Entity):
         writer.write_str_value("reportPeriod", self.report_period)
         writer.write_date_value("reportRefreshDate", self.report_refresh_date)
         writer.write_int_value("total", self.total)
-    
-    @property
-    def total(self,) -> Optional[int]:
-        """
-        Gets the total property value. The total number of files in the group's SharePoint document library.
-        Returns: Optional[int]
-        """
-        return self._total
-    
-    @total.setter
-    def total(self,value: Optional[int] = None) -> None:
-        """
-        Sets the total property value. The total number of files in the group's SharePoint document library.
-        Args:
-            value: Value to set for the total property.
-        """
-        self._total = value
     
 

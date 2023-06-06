@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,16 +8,12 @@ if TYPE_CHECKING:
 
 from . import job_response_base
 
+@dataclass
 class ClassificationJobResponse(job_response_base.JobResponseBase):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ClassificationJobResponse and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The result property
-        self._result: Optional[detected_sensitive_content_wrapper.DetectedSensitiveContentWrapper] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The result property
+    result: Optional[detected_sensitive_content_wrapper.DetectedSensitiveContentWrapper] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ClassificationJobResponse:
@@ -43,23 +40,6 @@ class ClassificationJobResponse(job_response_base.JobResponseBase):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def result(self,) -> Optional[detected_sensitive_content_wrapper.DetectedSensitiveContentWrapper]:
-        """
-        Gets the result property value. The result property
-        Returns: Optional[detected_sensitive_content_wrapper.DetectedSensitiveContentWrapper]
-        """
-        return self._result
-    
-    @result.setter
-    def result(self,value: Optional[detected_sensitive_content_wrapper.DetectedSensitiveContentWrapper] = None) -> None:
-        """
-        Sets the result property value. The result property
-        Args:
-            value: Value to set for the result property.
-        """
-        self._result = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

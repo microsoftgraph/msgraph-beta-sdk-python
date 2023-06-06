@@ -1,43 +1,24 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import teamwork_connection
 
+@dataclass
 class TeamworkLoginStatus(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new teamworkLoginStatus and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # Information about the Exchange connection.
-        self._exchange_connection: Optional[teamwork_connection.TeamworkConnection] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Information about the Skype for Business connection.
-        self._skype_connection: Optional[teamwork_connection.TeamworkConnection] = None
-        # Information about the Teams connection.
-        self._teams_connection: Optional[teamwork_connection.TeamworkConnection] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # Information about the Exchange connection.
+    exchange_connection: Optional[teamwork_connection.TeamworkConnection] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Information about the Skype for Business connection.
+    skype_connection: Optional[teamwork_connection.TeamworkConnection] = None
+    # Information about the Teams connection.
+    teams_connection: Optional[teamwork_connection.TeamworkConnection] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeamworkLoginStatus:
@@ -50,23 +31,6 @@ class TeamworkLoginStatus(AdditionalDataHolder, Parsable):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return TeamworkLoginStatus()
-    
-    @property
-    def exchange_connection(self,) -> Optional[teamwork_connection.TeamworkConnection]:
-        """
-        Gets the exchangeConnection property value. Information about the Exchange connection.
-        Returns: Optional[teamwork_connection.TeamworkConnection]
-        """
-        return self._exchange_connection
-    
-    @exchange_connection.setter
-    def exchange_connection(self,value: Optional[teamwork_connection.TeamworkConnection] = None) -> None:
-        """
-        Sets the exchangeConnection property value. Information about the Exchange connection.
-        Args:
-            value: Value to set for the exchange_connection property.
-        """
-        self._exchange_connection = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -83,23 +47,6 @@ class TeamworkLoginStatus(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -113,39 +60,5 @@ class TeamworkLoginStatus(AdditionalDataHolder, Parsable):
         writer.write_object_value("skypeConnection", self.skype_connection)
         writer.write_object_value("teamsConnection", self.teams_connection)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def skype_connection(self,) -> Optional[teamwork_connection.TeamworkConnection]:
-        """
-        Gets the skypeConnection property value. Information about the Skype for Business connection.
-        Returns: Optional[teamwork_connection.TeamworkConnection]
-        """
-        return self._skype_connection
-    
-    @skype_connection.setter
-    def skype_connection(self,value: Optional[teamwork_connection.TeamworkConnection] = None) -> None:
-        """
-        Sets the skypeConnection property value. Information about the Skype for Business connection.
-        Args:
-            value: Value to set for the skype_connection property.
-        """
-        self._skype_connection = value
-    
-    @property
-    def teams_connection(self,) -> Optional[teamwork_connection.TeamworkConnection]:
-        """
-        Gets the teamsConnection property value. Information about the Teams connection.
-        Returns: Optional[teamwork_connection.TeamworkConnection]
-        """
-        return self._teams_connection
-    
-    @teams_connection.setter
-    def teams_connection(self,value: Optional[teamwork_connection.TeamworkConnection] = None) -> None:
-        """
-        Sets the teamsConnection property value. Information about the Teams connection.
-        Args:
-            value: Value to set for the teams_connection property.
-        """
-        self._teams_connection = value
     
 

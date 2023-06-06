@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,14 +8,10 @@ if TYPE_CHECKING:
 
 from . import base_collection_pagination_count_response
 
+@dataclass
 class TeamworkDeviceCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new TeamworkDeviceCollectionResponse and sets the default values.
-        """
-        super().__init__()
-        # The value property
-        self._value: Optional[List[teamwork_device.TeamworkDevice]] = None
+    # The value property
+    value: Optional[List[teamwork_device.TeamworkDevice]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeamworkDeviceCollectionResponse:
@@ -52,22 +49,5 @@ class TeamworkDeviceCollectionResponse(base_collection_pagination_count_response
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_collection_of_object_values("value", self.value)
-    
-    @property
-    def value(self,) -> Optional[List[teamwork_device.TeamworkDevice]]:
-        """
-        Gets the value property value. The value property
-        Returns: Optional[List[teamwork_device.TeamworkDevice]]
-        """
-        return self._value
-    
-    @value.setter
-    def value(self,value: Optional[List[teamwork_device.TeamworkDevice]] = None) -> None:
-        """
-        Sets the value property value. The value property
-        Args:
-            value: Value to set for the value property.
-        """
-        self._value = value
     
 

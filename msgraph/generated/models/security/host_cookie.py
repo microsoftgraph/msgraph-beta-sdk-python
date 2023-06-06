@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,23 +9,19 @@ if TYPE_CHECKING:
 
 from . import artifact
 
+@dataclass
 class HostCookie(artifact.Artifact):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new hostCookie and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.security.hostCookie"
-        # The URI for which the cookie is valid.
-        self._domain: Optional[str] = None
-        # The first date and time when this hostCookie was observed by Microsoft Defender Threat Intelligence. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        self._first_seen_date_time: Optional[datetime] = None
-        # The host property
-        self._host: Optional[host.Host] = None
-        # The most recent date and time when this hostCookie was observed by Microsoft Defender Threat Intelligence. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        self._last_seen_date_time: Optional[datetime] = None
-        # The name of the cookie, for example, JSESSIONID or SEARCH_NAMESITE.
-        self._name: Optional[str] = None
+    odata_type = "#microsoft.graph.security.hostCookie"
+    # The URI for which the cookie is valid.
+    domain: Optional[str] = None
+    # The first date and time when this hostCookie was observed by Microsoft Defender Threat Intelligence. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+    first_seen_date_time: Optional[datetime] = None
+    # The host property
+    host: Optional[host.Host] = None
+    # The most recent date and time when this hostCookie was observed by Microsoft Defender Threat Intelligence. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+    last_seen_date_time: Optional[datetime] = None
+    # The name of the cookie, for example, JSESSIONID or SEARCH_NAMESITE.
+    name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> HostCookie:
@@ -37,40 +34,6 @@ class HostCookie(artifact.Artifact):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return HostCookie()
-    
-    @property
-    def domain(self,) -> Optional[str]:
-        """
-        Gets the domain property value. The URI for which the cookie is valid.
-        Returns: Optional[str]
-        """
-        return self._domain
-    
-    @domain.setter
-    def domain(self,value: Optional[str] = None) -> None:
-        """
-        Sets the domain property value. The URI for which the cookie is valid.
-        Args:
-            value: Value to set for the domain property.
-        """
-        self._domain = value
-    
-    @property
-    def first_seen_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the firstSeenDateTime property value. The first date and time when this hostCookie was observed by Microsoft Defender Threat Intelligence. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        Returns: Optional[datetime]
-        """
-        return self._first_seen_date_time
-    
-    @first_seen_date_time.setter
-    def first_seen_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the firstSeenDateTime property value. The first date and time when this hostCookie was observed by Microsoft Defender Threat Intelligence. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        Args:
-            value: Value to set for the first_seen_date_time property.
-        """
-        self._first_seen_date_time = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -89,57 +52,6 @@ class HostCookie(artifact.Artifact):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def host(self,) -> Optional[host.Host]:
-        """
-        Gets the host property value. The host property
-        Returns: Optional[host.Host]
-        """
-        return self._host
-    
-    @host.setter
-    def host(self,value: Optional[host.Host] = None) -> None:
-        """
-        Sets the host property value. The host property
-        Args:
-            value: Value to set for the host property.
-        """
-        self._host = value
-    
-    @property
-    def last_seen_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastSeenDateTime property value. The most recent date and time when this hostCookie was observed by Microsoft Defender Threat Intelligence. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        Returns: Optional[datetime]
-        """
-        return self._last_seen_date_time
-    
-    @last_seen_date_time.setter
-    def last_seen_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastSeenDateTime property value. The most recent date and time when this hostCookie was observed by Microsoft Defender Threat Intelligence. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        Args:
-            value: Value to set for the last_seen_date_time property.
-        """
-        self._last_seen_date_time = value
-    
-    @property
-    def name(self,) -> Optional[str]:
-        """
-        Gets the name property value. The name of the cookie, for example, JSESSIONID or SEARCH_NAMESITE.
-        Returns: Optional[str]
-        """
-        return self._name
-    
-    @name.setter
-    def name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the name property value. The name of the cookie, for example, JSESSIONID or SEARCH_NAMESITE.
-        Args:
-            value: Value to set for the name property.
-        """
-        self._name = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

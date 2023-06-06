@@ -1,138 +1,34 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import alert_impact, alert_rule_template, rule_severity_type
 
+@dataclass
 class PortalNotification(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new portalNotification and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The associated alert impact.
-        self._alert_impact: Optional[alert_impact.AlertImpact] = None
-        # The associated alert record ID.
-        self._alert_record_id: Optional[str] = None
-        # The associated alert rule ID.
-        self._alert_rule_id: Optional[str] = None
-        # The associated alert rule name.
-        self._alert_rule_name: Optional[str] = None
-        # The associated alert rule template. The possible values are: cloudPcProvisionScenario, cloudPcImageUploadScenario, cloudPcOnPremiseNetworkConnectionCheckScenario, unknownFutureValue.
-        self._alert_rule_template: Optional[alert_rule_template.AlertRuleTemplate] = None
-        # The unique identifier for the portal notification.
-        self._id: Optional[str] = None
-        # true if the portal notification has already been sent to the user; false otherwise.
-        self._is_portal_notification_sent: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The associated alert rule severity. The possible values are: unknown, informational, warning, critical, unknownFutureValue.
-        self._severity: Optional[rule_severity_type.RuleSeverityType] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def alert_impact(self,) -> Optional[alert_impact.AlertImpact]:
-        """
-        Gets the alertImpact property value. The associated alert impact.
-        Returns: Optional[alert_impact.AlertImpact]
-        """
-        return self._alert_impact
-    
-    @alert_impact.setter
-    def alert_impact(self,value: Optional[alert_impact.AlertImpact] = None) -> None:
-        """
-        Sets the alertImpact property value. The associated alert impact.
-        Args:
-            value: Value to set for the alert_impact property.
-        """
-        self._alert_impact = value
-    
-    @property
-    def alert_record_id(self,) -> Optional[str]:
-        """
-        Gets the alertRecordId property value. The associated alert record ID.
-        Returns: Optional[str]
-        """
-        return self._alert_record_id
-    
-    @alert_record_id.setter
-    def alert_record_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the alertRecordId property value. The associated alert record ID.
-        Args:
-            value: Value to set for the alert_record_id property.
-        """
-        self._alert_record_id = value
-    
-    @property
-    def alert_rule_id(self,) -> Optional[str]:
-        """
-        Gets the alertRuleId property value. The associated alert rule ID.
-        Returns: Optional[str]
-        """
-        return self._alert_rule_id
-    
-    @alert_rule_id.setter
-    def alert_rule_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the alertRuleId property value. The associated alert rule ID.
-        Args:
-            value: Value to set for the alert_rule_id property.
-        """
-        self._alert_rule_id = value
-    
-    @property
-    def alert_rule_name(self,) -> Optional[str]:
-        """
-        Gets the alertRuleName property value. The associated alert rule name.
-        Returns: Optional[str]
-        """
-        return self._alert_rule_name
-    
-    @alert_rule_name.setter
-    def alert_rule_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the alertRuleName property value. The associated alert rule name.
-        Args:
-            value: Value to set for the alert_rule_name property.
-        """
-        self._alert_rule_name = value
-    
-    @property
-    def alert_rule_template(self,) -> Optional[alert_rule_template.AlertRuleTemplate]:
-        """
-        Gets the alertRuleTemplate property value. The associated alert rule template. The possible values are: cloudPcProvisionScenario, cloudPcImageUploadScenario, cloudPcOnPremiseNetworkConnectionCheckScenario, unknownFutureValue.
-        Returns: Optional[alert_rule_template.AlertRuleTemplate]
-        """
-        return self._alert_rule_template
-    
-    @alert_rule_template.setter
-    def alert_rule_template(self,value: Optional[alert_rule_template.AlertRuleTemplate] = None) -> None:
-        """
-        Sets the alertRuleTemplate property value. The associated alert rule template. The possible values are: cloudPcProvisionScenario, cloudPcImageUploadScenario, cloudPcOnPremiseNetworkConnectionCheckScenario, unknownFutureValue.
-        Args:
-            value: Value to set for the alert_rule_template property.
-        """
-        self._alert_rule_template = value
+    # The associated alert impact.
+    alert_impact: Optional[alert_impact.AlertImpact] = None
+    # The associated alert record ID.
+    alert_record_id: Optional[str] = None
+    # The associated alert rule ID.
+    alert_rule_id: Optional[str] = None
+    # The associated alert rule name.
+    alert_rule_name: Optional[str] = None
+    # The associated alert rule template. The possible values are: cloudPcProvisionScenario, cloudPcImageUploadScenario, cloudPcOnPremiseNetworkConnectionCheckScenario, unknownFutureValue.
+    alert_rule_template: Optional[alert_rule_template.AlertRuleTemplate] = None
+    # The unique identifier for the portal notification.
+    id: Optional[str] = None
+    # true if the portal notification has already been sent to the user; false otherwise.
+    is_portal_notification_sent: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The associated alert rule severity. The possible values are: unknown, informational, warning, critical, unknownFutureValue.
+    severity: Optional[rule_severity_type.RuleSeverityType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PortalNotification:
@@ -166,57 +62,6 @@ class PortalNotification(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def id(self,) -> Optional[str]:
-        """
-        Gets the id property value. The unique identifier for the portal notification.
-        Returns: Optional[str]
-        """
-        return self._id
-    
-    @id.setter
-    def id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the id property value. The unique identifier for the portal notification.
-        Args:
-            value: Value to set for the id property.
-        """
-        self._id = value
-    
-    @property
-    def is_portal_notification_sent(self,) -> Optional[bool]:
-        """
-        Gets the isPortalNotificationSent property value. true if the portal notification has already been sent to the user; false otherwise.
-        Returns: Optional[bool]
-        """
-        return self._is_portal_notification_sent
-    
-    @is_portal_notification_sent.setter
-    def is_portal_notification_sent(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isPortalNotificationSent property value. true if the portal notification has already been sent to the user; false otherwise.
-        Args:
-            value: Value to set for the is_portal_notification_sent property.
-        """
-        self._is_portal_notification_sent = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -235,22 +80,5 @@ class PortalNotification(AdditionalDataHolder, Parsable):
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("severity", self.severity)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def severity(self,) -> Optional[rule_severity_type.RuleSeverityType]:
-        """
-        Gets the severity property value. The associated alert rule severity. The possible values are: unknown, informational, warning, critical, unknownFutureValue.
-        Returns: Optional[rule_severity_type.RuleSeverityType]
-        """
-        return self._severity
-    
-    @severity.setter
-    def severity(self,value: Optional[rule_severity_type.RuleSeverityType] = None) -> None:
-        """
-        Sets the severity property value. The associated alert rule severity. The possible values are: unknown, informational, warning, critical, unknownFutureValue.
-        Args:
-            value: Value to set for the severity property.
-        """
-        self._severity = value
     
 

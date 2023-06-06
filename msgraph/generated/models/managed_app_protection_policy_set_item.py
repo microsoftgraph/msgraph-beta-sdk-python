@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import policy_set_item
 
+@dataclass
 class ManagedAppProtectionPolicySetItem(policy_set_item.PolicySetItem):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ManagedAppProtectionPolicySetItem and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.managedAppProtectionPolicySetItem"
-        # TargetedAppManagementLevels of the ManagedAppPolicySetItem.
-        self._targeted_app_management_levels: Optional[str] = None
+    odata_type = "#microsoft.graph.managedAppProtectionPolicySetItem"
+    # TargetedAppManagementLevels of the ManagedAppPolicySetItem.
+    targeted_app_management_levels: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ManagedAppProtectionPolicySetItem:
@@ -53,22 +50,5 @@ class ManagedAppProtectionPolicySetItem(policy_set_item.PolicySetItem):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_str_value("targetedAppManagementLevels", self.targeted_app_management_levels)
-    
-    @property
-    def targeted_app_management_levels(self,) -> Optional[str]:
-        """
-        Gets the targetedAppManagementLevels property value. TargetedAppManagementLevels of the ManagedAppPolicySetItem.
-        Returns: Optional[str]
-        """
-        return self._targeted_app_management_levels
-    
-    @targeted_app_management_levels.setter
-    def targeted_app_management_levels(self,value: Optional[str] = None) -> None:
-        """
-        Sets the targetedAppManagementLevels property value. TargetedAppManagementLevels of the ManagedAppPolicySetItem.
-        Args:
-            value: Value to set for the targeted_app_management_levels property.
-        """
-        self._targeted_app_management_levels = value
     
 

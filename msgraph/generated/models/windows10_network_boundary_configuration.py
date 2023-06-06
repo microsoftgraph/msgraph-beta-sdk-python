@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import device_configuration
 
+@dataclass
 class Windows10NetworkBoundaryConfiguration(device_configuration.DeviceConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Windows10NetworkBoundaryConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windows10NetworkBoundaryConfiguration"
-        # Windows Network Isolation Policy
-        self._windows_network_isolation_policy: Optional[windows_network_isolation_policy.WindowsNetworkIsolationPolicy] = None
+    odata_type = "#microsoft.graph.windows10NetworkBoundaryConfiguration"
+    # Windows Network Isolation Policy
+    windows_network_isolation_policy: Optional[windows_network_isolation_policy.WindowsNetworkIsolationPolicy] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10NetworkBoundaryConfiguration:
@@ -53,22 +50,5 @@ class Windows10NetworkBoundaryConfiguration(device_configuration.DeviceConfigura
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_object_value("windowsNetworkIsolationPolicy", self.windows_network_isolation_policy)
-    
-    @property
-    def windows_network_isolation_policy(self,) -> Optional[windows_network_isolation_policy.WindowsNetworkIsolationPolicy]:
-        """
-        Gets the windowsNetworkIsolationPolicy property value. Windows Network Isolation Policy
-        Returns: Optional[windows_network_isolation_policy.WindowsNetworkIsolationPolicy]
-        """
-        return self._windows_network_isolation_policy
-    
-    @windows_network_isolation_policy.setter
-    def windows_network_isolation_policy(self,value: Optional[windows_network_isolation_policy.WindowsNetworkIsolationPolicy] = None) -> None:
-        """
-        Sets the windowsNetworkIsolationPolicy property value. Windows Network Isolation Policy
-        Args:
-            value: Value to set for the windows_network_isolation_policy property.
-        """
-        self._windows_network_isolation_policy = value
     
 

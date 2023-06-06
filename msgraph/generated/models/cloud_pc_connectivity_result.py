@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -6,39 +7,19 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from . import cloud_pc_connectivity_status, cloud_pc_health_check_item
 
+@dataclass
 class CloudPcConnectivityResult(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new cloudPcConnectivityResult and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # A list of failed health check items. If the status property is available, this property will be empty.
-        self._failed_health_check_items: Optional[List[cloud_pc_health_check_item.CloudPcHealthCheckItem]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The status property
-        self._status: Optional[cloud_pc_connectivity_status.CloudPcConnectivityStatus] = None
-        # Datetime when the status was updated. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z.
-        self._updated_date_time: Optional[datetime] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # A list of failed health check items. If the status property is available, this property will be empty.
+    failed_health_check_items: Optional[List[cloud_pc_health_check_item.CloudPcHealthCheckItem]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The status property
+    status: Optional[cloud_pc_connectivity_status.CloudPcConnectivityStatus] = None
+    # Datetime when the status was updated. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z.
+    updated_date_time: Optional[datetime] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcConnectivityResult:
@@ -51,23 +32,6 @@ class CloudPcConnectivityResult(AdditionalDataHolder, Parsable):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return CloudPcConnectivityResult()
-    
-    @property
-    def failed_health_check_items(self,) -> Optional[List[cloud_pc_health_check_item.CloudPcHealthCheckItem]]:
-        """
-        Gets the failedHealthCheckItems property value. A list of failed health check items. If the status property is available, this property will be empty.
-        Returns: Optional[List[cloud_pc_health_check_item.CloudPcHealthCheckItem]]
-        """
-        return self._failed_health_check_items
-    
-    @failed_health_check_items.setter
-    def failed_health_check_items(self,value: Optional[List[cloud_pc_health_check_item.CloudPcHealthCheckItem]] = None) -> None:
-        """
-        Sets the failedHealthCheckItems property value. A list of failed health check items. If the status property is available, this property will be empty.
-        Args:
-            value: Value to set for the failed_health_check_items property.
-        """
-        self._failed_health_check_items = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -84,23 +48,6 @@ class CloudPcConnectivityResult(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -114,39 +61,5 @@ class CloudPcConnectivityResult(AdditionalDataHolder, Parsable):
         writer.write_enum_value("status", self.status)
         writer.write_datetime_value("updatedDateTime", self.updated_date_time)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def status(self,) -> Optional[cloud_pc_connectivity_status.CloudPcConnectivityStatus]:
-        """
-        Gets the status property value. The status property
-        Returns: Optional[cloud_pc_connectivity_status.CloudPcConnectivityStatus]
-        """
-        return self._status
-    
-    @status.setter
-    def status(self,value: Optional[cloud_pc_connectivity_status.CloudPcConnectivityStatus] = None) -> None:
-        """
-        Sets the status property value. The status property
-        Args:
-            value: Value to set for the status property.
-        """
-        self._status = value
-    
-    @property
-    def updated_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the updatedDateTime property value. Datetime when the status was updated. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z.
-        Returns: Optional[datetime]
-        """
-        return self._updated_date_time
-    
-    @updated_date_time.setter
-    def updated_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the updatedDateTime property value. Datetime when the status was updated. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z.
-        Args:
-            value: Value to set for the updated_date_time property.
-        """
-        self._updated_date_time = value
     
 

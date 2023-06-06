@@ -1,6 +1,6 @@
 from enum import Enum
 
-class DeviceGuardVirtualizationBasedSecurityState(Enum):
+class DeviceGuardVirtualizationBasedSecurityState(str, Enum):
     # Running
     Running = "running",
     # Root required

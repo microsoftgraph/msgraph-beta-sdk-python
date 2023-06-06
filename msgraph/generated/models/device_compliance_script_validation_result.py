@@ -1,43 +1,24 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import device_compliance_script_error, device_compliance_script_rule, device_compliance_script_rule_error
 
+@dataclass
 class DeviceComplianceScriptValidationResult(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceComplianceScriptValidationResult and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Errors in json for the script for rules.
-        self._rule_errors: Optional[List[device_compliance_script_rule_error.DeviceComplianceScriptRuleError]] = None
-        # Parsed rules from json.
-        self._rules: Optional[List[device_compliance_script_rule.DeviceComplianceScriptRule]] = None
-        # Errors in json for the script.
-        self._script_errors: Optional[List[device_compliance_script_error.DeviceComplianceScriptError]] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Errors in json for the script for rules.
+    rule_errors: Optional[List[device_compliance_script_rule_error.DeviceComplianceScriptRuleError]] = None
+    # Parsed rules from json.
+    rules: Optional[List[device_compliance_script_rule.DeviceComplianceScriptRule]] = None
+    # Errors in json for the script.
+    script_errors: Optional[List[device_compliance_script_error.DeviceComplianceScriptError]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceComplianceScriptValidationResult:
@@ -65,74 +46,6 @@ class DeviceComplianceScriptValidationResult(AdditionalDataHolder, Parsable):
             "scriptErrors": lambda n : setattr(self, 'script_errors', n.get_collection_of_object_values(device_compliance_script_error.DeviceComplianceScriptError)),
         }
         return fields
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def rule_errors(self,) -> Optional[List[device_compliance_script_rule_error.DeviceComplianceScriptRuleError]]:
-        """
-        Gets the ruleErrors property value. Errors in json for the script for rules.
-        Returns: Optional[List[device_compliance_script_rule_error.DeviceComplianceScriptRuleError]]
-        """
-        return self._rule_errors
-    
-    @rule_errors.setter
-    def rule_errors(self,value: Optional[List[device_compliance_script_rule_error.DeviceComplianceScriptRuleError]] = None) -> None:
-        """
-        Sets the ruleErrors property value. Errors in json for the script for rules.
-        Args:
-            value: Value to set for the rule_errors property.
-        """
-        self._rule_errors = value
-    
-    @property
-    def rules(self,) -> Optional[List[device_compliance_script_rule.DeviceComplianceScriptRule]]:
-        """
-        Gets the rules property value. Parsed rules from json.
-        Returns: Optional[List[device_compliance_script_rule.DeviceComplianceScriptRule]]
-        """
-        return self._rules
-    
-    @rules.setter
-    def rules(self,value: Optional[List[device_compliance_script_rule.DeviceComplianceScriptRule]] = None) -> None:
-        """
-        Sets the rules property value. Parsed rules from json.
-        Args:
-            value: Value to set for the rules property.
-        """
-        self._rules = value
-    
-    @property
-    def script_errors(self,) -> Optional[List[device_compliance_script_error.DeviceComplianceScriptError]]:
-        """
-        Gets the scriptErrors property value. Errors in json for the script.
-        Returns: Optional[List[device_compliance_script_error.DeviceComplianceScriptError]]
-        """
-        return self._script_errors
-    
-    @script_errors.setter
-    def script_errors(self,value: Optional[List[device_compliance_script_error.DeviceComplianceScriptError]] = None) -> None:
-        """
-        Sets the scriptErrors property value. Errors in json for the script.
-        Args:
-            value: Value to set for the script_errors property.
-        """
-        self._script_errors = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

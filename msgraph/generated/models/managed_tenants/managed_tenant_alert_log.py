@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -9,94 +10,22 @@ if TYPE_CHECKING:
 
 from .. import entity
 
+@dataclass
 class ManagedTenantAlertLog(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new managedTenantAlertLog and sets the default values.
-        """
-        super().__init__()
-        # The alert property
-        self._alert: Optional[managed_tenant_alert.ManagedTenantAlert] = None
-        # The content property
-        self._content: Optional[alert_log_content.AlertLogContent] = None
-        # The createdByUserId property
-        self._created_by_user_id: Optional[str] = None
-        # The createdDateTime property
-        self._created_date_time: Optional[datetime] = None
-        # The lastActionByUserId property
-        self._last_action_by_user_id: Optional[str] = None
-        # The lastActionDateTime property
-        self._last_action_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def alert(self,) -> Optional[managed_tenant_alert.ManagedTenantAlert]:
-        """
-        Gets the alert property value. The alert property
-        Returns: Optional[managed_tenant_alert.ManagedTenantAlert]
-        """
-        return self._alert
-    
-    @alert.setter
-    def alert(self,value: Optional[managed_tenant_alert.ManagedTenantAlert] = None) -> None:
-        """
-        Sets the alert property value. The alert property
-        Args:
-            value: Value to set for the alert property.
-        """
-        self._alert = value
-    
-    @property
-    def content(self,) -> Optional[alert_log_content.AlertLogContent]:
-        """
-        Gets the content property value. The content property
-        Returns: Optional[alert_log_content.AlertLogContent]
-        """
-        return self._content
-    
-    @content.setter
-    def content(self,value: Optional[alert_log_content.AlertLogContent] = None) -> None:
-        """
-        Sets the content property value. The content property
-        Args:
-            value: Value to set for the content property.
-        """
-        self._content = value
-    
-    @property
-    def created_by_user_id(self,) -> Optional[str]:
-        """
-        Gets the createdByUserId property value. The createdByUserId property
-        Returns: Optional[str]
-        """
-        return self._created_by_user_id
-    
-    @created_by_user_id.setter
-    def created_by_user_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the createdByUserId property value. The createdByUserId property
-        Args:
-            value: Value to set for the created_by_user_id property.
-        """
-        self._created_by_user_id = value
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. The createdDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. The createdDateTime property
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+    # The alert property
+    alert: Optional[managed_tenant_alert.ManagedTenantAlert] = None
+    # The content property
+    content: Optional[alert_log_content.AlertLogContent] = None
+    # The createdByUserId property
+    created_by_user_id: Optional[str] = None
+    # The createdDateTime property
+    created_date_time: Optional[datetime] = None
+    # The lastActionByUserId property
+    last_action_by_user_id: Optional[str] = None
+    # The lastActionDateTime property
+    last_action_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ManagedTenantAlertLog:
@@ -129,40 +58,6 @@ class ManagedTenantAlertLog(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def last_action_by_user_id(self,) -> Optional[str]:
-        """
-        Gets the lastActionByUserId property value. The lastActionByUserId property
-        Returns: Optional[str]
-        """
-        return self._last_action_by_user_id
-    
-    @last_action_by_user_id.setter
-    def last_action_by_user_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the lastActionByUserId property value. The lastActionByUserId property
-        Args:
-            value: Value to set for the last_action_by_user_id property.
-        """
-        self._last_action_by_user_id = value
-    
-    @property
-    def last_action_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastActionDateTime property value. The lastActionDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._last_action_date_time
-    
-    @last_action_date_time.setter
-    def last_action_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastActionDateTime property value. The lastActionDateTime property
-        Args:
-            value: Value to set for the last_action_date_time property.
-        """
-        self._last_action_date_time = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

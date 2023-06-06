@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,20 +8,16 @@ if TYPE_CHECKING:
 
 from . import dlp_action_info
 
+@dataclass
 class DeviceRestrictionAction(dlp_action_info.DlpActionInfo):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceRestrictionAction and sets the default values.
-        """
-        super().__init__()
-        # The message property
-        self._message: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The restrictionAction property
-        self._restriction_action: Optional[restriction_action.RestrictionAction] = None
-        # The triggers property
-        self._triggers: Optional[List[restriction_trigger.RestrictionTrigger]] = None
+    # The message property
+    message: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The restrictionAction property
+    restriction_action: Optional[restriction_action.RestrictionAction] = None
+    # The triggers property
+    triggers: Optional[List[restriction_trigger.RestrictionTrigger]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceRestrictionAction:
@@ -50,40 +47,6 @@ class DeviceRestrictionAction(dlp_action_info.DlpActionInfo):
         fields.update(super_fields)
         return fields
     
-    @property
-    def message(self,) -> Optional[str]:
-        """
-        Gets the message property value. The message property
-        Returns: Optional[str]
-        """
-        return self._message
-    
-    @message.setter
-    def message(self,value: Optional[str] = None) -> None:
-        """
-        Sets the message property value. The message property
-        Args:
-            value: Value to set for the message property.
-        """
-        self._message = value
-    
-    @property
-    def restriction_action(self,) -> Optional[restriction_action.RestrictionAction]:
-        """
-        Gets the restrictionAction property value. The restrictionAction property
-        Returns: Optional[restriction_action.RestrictionAction]
-        """
-        return self._restriction_action
-    
-    @restriction_action.setter
-    def restriction_action(self,value: Optional[restriction_action.RestrictionAction] = None) -> None:
-        """
-        Sets the restrictionAction property value. The restrictionAction property
-        Args:
-            value: Value to set for the restriction_action property.
-        """
-        self._restriction_action = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -96,22 +59,5 @@ class DeviceRestrictionAction(dlp_action_info.DlpActionInfo):
         writer.write_str_value("message", self.message)
         writer.write_enum_value("restrictionAction", self.restriction_action)
         writer.write_enum_value("triggers", self.triggers)
-    
-    @property
-    def triggers(self,) -> Optional[List[restriction_trigger.RestrictionTrigger]]:
-        """
-        Gets the triggers property value. The triggers property
-        Returns: Optional[List[restriction_trigger.RestrictionTrigger]]
-        """
-        return self._triggers
-    
-    @triggers.setter
-    def triggers(self,value: Optional[List[restriction_trigger.RestrictionTrigger]] = None) -> None:
-        """
-        Sets the triggers property value. The triggers property
-        Args:
-            value: Value to set for the triggers property.
-        """
-        self._triggers = value
     
 

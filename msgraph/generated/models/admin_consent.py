@@ -1,44 +1,25 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import admin_consent_state
 
+@dataclass
 class AdminConsent(AdditionalDataHolder, Parsable):
     """
     Admin consent information.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new adminConsent and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Admin consent state.
-        self._share_a_p_n_s_data: Optional[admin_consent_state.AdminConsentState] = None
-        # Admin consent state.
-        self._share_user_experience_analytics_data: Optional[admin_consent_state.AdminConsentState] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Admin consent state.
+    share_a_p_n_s_data: Optional[admin_consent_state.AdminConsentState] = None
+    # Admin consent state.
+    share_user_experience_analytics_data: Optional[admin_consent_state.AdminConsentState] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AdminConsent:
@@ -66,23 +47,6 @@ class AdminConsent(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -95,39 +59,5 @@ class AdminConsent(AdditionalDataHolder, Parsable):
         writer.write_enum_value("shareAPNSData", self.share_a_p_n_s_data)
         writer.write_enum_value("shareUserExperienceAnalyticsData", self.share_user_experience_analytics_data)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def share_a_p_n_s_data(self,) -> Optional[admin_consent_state.AdminConsentState]:
-        """
-        Gets the shareAPNSData property value. Admin consent state.
-        Returns: Optional[admin_consent_state.AdminConsentState]
-        """
-        return self._share_a_p_n_s_data
-    
-    @share_a_p_n_s_data.setter
-    def share_a_p_n_s_data(self,value: Optional[admin_consent_state.AdminConsentState] = None) -> None:
-        """
-        Sets the shareAPNSData property value. Admin consent state.
-        Args:
-            value: Value to set for the share_a_p_n_s_data property.
-        """
-        self._share_a_p_n_s_data = value
-    
-    @property
-    def share_user_experience_analytics_data(self,) -> Optional[admin_consent_state.AdminConsentState]:
-        """
-        Gets the shareUserExperienceAnalyticsData property value. Admin consent state.
-        Returns: Optional[admin_consent_state.AdminConsentState]
-        """
-        return self._share_user_experience_analytics_data
-    
-    @share_user_experience_analytics_data.setter
-    def share_user_experience_analytics_data(self,value: Optional[admin_consent_state.AdminConsentState] = None) -> None:
-        """
-        Sets the shareUserExperienceAnalyticsData property value. Admin consent state.
-        Args:
-            value: Value to set for the share_user_experience_analytics_data property.
-        """
-        self._share_user_experience_analytics_data = value
     
 

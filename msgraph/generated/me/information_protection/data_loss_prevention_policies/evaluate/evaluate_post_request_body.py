@@ -1,41 +1,22 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .....models import dlp_evaluation_input, dlp_notification
 
+@dataclass
 class EvaluatePostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new evaluatePostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The evaluationInput property
-        self._evaluation_input: Optional[dlp_evaluation_input.DlpEvaluationInput] = None
-        # The notificationInfo property
-        self._notification_info: Optional[dlp_notification.DlpNotification] = None
-        # The target property
-        self._target: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The evaluationInput property
+    evaluation_input: Optional[dlp_evaluation_input.DlpEvaluationInput] = None
+    # The notificationInfo property
+    notification_info: Optional[dlp_notification.DlpNotification] = None
+    # The target property
+    target: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EvaluatePostRequestBody:
@@ -48,23 +29,6 @@ class EvaluatePostRequestBody(AdditionalDataHolder, Parsable):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return EvaluatePostRequestBody()
-    
-    @property
-    def evaluation_input(self,) -> Optional[dlp_evaluation_input.DlpEvaluationInput]:
-        """
-        Gets the evaluationInput property value. The evaluationInput property
-        Returns: Optional[dlp_evaluation_input.DlpEvaluationInput]
-        """
-        return self._evaluation_input
-    
-    @evaluation_input.setter
-    def evaluation_input(self,value: Optional[dlp_evaluation_input.DlpEvaluationInput] = None) -> None:
-        """
-        Sets the evaluationInput property value. The evaluationInput property
-        Args:
-            value: Value to set for the evaluation_input property.
-        """
-        self._evaluation_input = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -80,23 +44,6 @@ class EvaluatePostRequestBody(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def notification_info(self,) -> Optional[dlp_notification.DlpNotification]:
-        """
-        Gets the notificationInfo property value. The notificationInfo property
-        Returns: Optional[dlp_notification.DlpNotification]
-        """
-        return self._notification_info
-    
-    @notification_info.setter
-    def notification_info(self,value: Optional[dlp_notification.DlpNotification] = None) -> None:
-        """
-        Sets the notificationInfo property value. The notificationInfo property
-        Args:
-            value: Value to set for the notification_info property.
-        """
-        self._notification_info = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -109,22 +56,5 @@ class EvaluatePostRequestBody(AdditionalDataHolder, Parsable):
         writer.write_object_value("notificationInfo", self.notification_info)
         writer.write_str_value("target", self.target)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def target(self,) -> Optional[str]:
-        """
-        Gets the target property value. The target property
-        Returns: Optional[str]
-        """
-        return self._target
-    
-    @target.setter
-    def target(self,value: Optional[str] = None) -> None:
-        """
-        Sets the target property value. The target property
-        Args:
-            value: Value to set for the target property.
-        """
-        self._target = value
     
 

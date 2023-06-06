@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,18 +8,17 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class UserExperienceAnalyticsCategory(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsCategory and sets the default values.
-        """
-        super().__init__()
-        # The insights for the user experience analytics category.
-        self._insights: Optional[List[user_experience_analytics_insight.UserExperienceAnalyticsInsight]] = None
-        # The metric values for the user experience analytics category.
-        self._metric_values: Optional[List[user_experience_analytics_metric.UserExperienceAnalyticsMetric]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+    """
+    The user experience analytics category entity contains the scores and insights for the various metrics of a category.
+    """
+    # The insights for the user experience analytics category.
+    insights: Optional[List[user_experience_analytics_insight.UserExperienceAnalyticsInsight]] = None
+    # The metric values for the user experience analytics category.
+    metric_values: Optional[List[user_experience_analytics_metric.UserExperienceAnalyticsMetric]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsCategory:
@@ -46,40 +46,6 @@ class UserExperienceAnalyticsCategory(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def insights(self,) -> Optional[List[user_experience_analytics_insight.UserExperienceAnalyticsInsight]]:
-        """
-        Gets the insights property value. The insights for the user experience analytics category.
-        Returns: Optional[List[user_experience_analytics_insight.UserExperienceAnalyticsInsight]]
-        """
-        return self._insights
-    
-    @insights.setter
-    def insights(self,value: Optional[List[user_experience_analytics_insight.UserExperienceAnalyticsInsight]] = None) -> None:
-        """
-        Sets the insights property value. The insights for the user experience analytics category.
-        Args:
-            value: Value to set for the insights property.
-        """
-        self._insights = value
-    
-    @property
-    def metric_values(self,) -> Optional[List[user_experience_analytics_metric.UserExperienceAnalyticsMetric]]:
-        """
-        Gets the metricValues property value. The metric values for the user experience analytics category.
-        Returns: Optional[List[user_experience_analytics_metric.UserExperienceAnalyticsMetric]]
-        """
-        return self._metric_values
-    
-    @metric_values.setter
-    def metric_values(self,value: Optional[List[user_experience_analytics_metric.UserExperienceAnalyticsMetric]] = None) -> None:
-        """
-        Sets the metricValues property value. The metric values for the user experience analytics category.
-        Args:
-            value: Value to set for the metric_values property.
-        """
-        self._metric_values = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

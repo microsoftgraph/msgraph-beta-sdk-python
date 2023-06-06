@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,50 +9,26 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class GroupPolicyCategory(entity.Entity):
-    """
-    The category entity stores the category of a group policy definition
-    """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new groupPolicyCategory and sets the default values.
-        """
-        super().__init__()
-        # The children categories
-        self._children: Optional[List[GroupPolicyCategory]] = None
-        # The id of the definition file the category came from
-        self._definition_file: Optional[group_policy_definition_file.GroupPolicyDefinitionFile] = None
-        # The immediate GroupPolicyDefinition children of the category
-        self._definitions: Optional[List[group_policy_definition.GroupPolicyDefinition]] = None
-        # The string id of the category's display name
-        self._display_name: Optional[str] = None
-        # Category Ingestion source
-        self._ingestion_source: Optional[ingestion_source.IngestionSource] = None
-        # Defines if the category is a root category
-        self._is_root: Optional[bool] = None
-        # The date and time the entity was last modified.
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The parent category
-        self._parent: Optional[GroupPolicyCategory] = None
-    
-    @property
-    def children(self,) -> Optional[List[GroupPolicyCategory]]:
-        """
-        Gets the children property value. The children categories
-        Returns: Optional[List[GroupPolicyCategory]]
-        """
-        return self._children
-    
-    @children.setter
-    def children(self,value: Optional[List[GroupPolicyCategory]] = None) -> None:
-        """
-        Sets the children property value. The children categories
-        Args:
-            value: Value to set for the children property.
-        """
-        self._children = value
+    # The children categories
+    children: Optional[List[GroupPolicyCategory]] = None
+    # The id of the definition file the category came from
+    definition_file: Optional[group_policy_definition_file.GroupPolicyDefinitionFile] = None
+    # The immediate GroupPolicyDefinition children of the category
+    definitions: Optional[List[group_policy_definition.GroupPolicyDefinition]] = None
+    # The string id of the category's display name
+    display_name: Optional[str] = None
+    # Category Ingestion source
+    ingestion_source: Optional[ingestion_source.IngestionSource] = None
+    # Defines if the category is a root category
+    is_root: Optional[bool] = None
+    # The date and time the entity was last modified.
+    last_modified_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The parent category
+    parent: Optional[GroupPolicyCategory] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GroupPolicyCategory:
@@ -64,57 +41,6 @@ class GroupPolicyCategory(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return GroupPolicyCategory()
-    
-    @property
-    def definition_file(self,) -> Optional[group_policy_definition_file.GroupPolicyDefinitionFile]:
-        """
-        Gets the definitionFile property value. The id of the definition file the category came from
-        Returns: Optional[group_policy_definition_file.GroupPolicyDefinitionFile]
-        """
-        return self._definition_file
-    
-    @definition_file.setter
-    def definition_file(self,value: Optional[group_policy_definition_file.GroupPolicyDefinitionFile] = None) -> None:
-        """
-        Sets the definitionFile property value. The id of the definition file the category came from
-        Args:
-            value: Value to set for the definition_file property.
-        """
-        self._definition_file = value
-    
-    @property
-    def definitions(self,) -> Optional[List[group_policy_definition.GroupPolicyDefinition]]:
-        """
-        Gets the definitions property value. The immediate GroupPolicyDefinition children of the category
-        Returns: Optional[List[group_policy_definition.GroupPolicyDefinition]]
-        """
-        return self._definitions
-    
-    @definitions.setter
-    def definitions(self,value: Optional[List[group_policy_definition.GroupPolicyDefinition]] = None) -> None:
-        """
-        Sets the definitions property value. The immediate GroupPolicyDefinition children of the category
-        Args:
-            value: Value to set for the definitions property.
-        """
-        self._definitions = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The string id of the category's display name
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The string id of the category's display name
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -136,74 +62,6 @@ class GroupPolicyCategory(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def ingestion_source(self,) -> Optional[ingestion_source.IngestionSource]:
-        """
-        Gets the ingestionSource property value. Category Ingestion source
-        Returns: Optional[ingestion_source.IngestionSource]
-        """
-        return self._ingestion_source
-    
-    @ingestion_source.setter
-    def ingestion_source(self,value: Optional[ingestion_source.IngestionSource] = None) -> None:
-        """
-        Sets the ingestionSource property value. Category Ingestion source
-        Args:
-            value: Value to set for the ingestion_source property.
-        """
-        self._ingestion_source = value
-    
-    @property
-    def is_root(self,) -> Optional[bool]:
-        """
-        Gets the isRoot property value. Defines if the category is a root category
-        Returns: Optional[bool]
-        """
-        return self._is_root
-    
-    @is_root.setter
-    def is_root(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isRoot property value. Defines if the category is a root category
-        Args:
-            value: Value to set for the is_root property.
-        """
-        self._is_root = value
-    
-    @property
-    def last_modified_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastModifiedDateTime property value. The date and time the entity was last modified.
-        Returns: Optional[datetime]
-        """
-        return self._last_modified_date_time
-    
-    @last_modified_date_time.setter
-    def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastModifiedDateTime property value. The date and time the entity was last modified.
-        Args:
-            value: Value to set for the last_modified_date_time property.
-        """
-        self._last_modified_date_time = value
-    
-    @property
-    def parent(self,) -> Optional[GroupPolicyCategory]:
-        """
-        Gets the parent property value. The parent category
-        Returns: Optional[GroupPolicyCategory]
-        """
-        return self._parent
-    
-    @parent.setter
-    def parent(self,value: Optional[GroupPolicyCategory] = None) -> None:
-        """
-        Sets the parent property value. The parent category
-        Args:
-            value: Value to set for the parent property.
-        """
-        self._parent = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

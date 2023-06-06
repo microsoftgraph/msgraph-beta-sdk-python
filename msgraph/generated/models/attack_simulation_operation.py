@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,20 +8,16 @@ if TYPE_CHECKING:
 
 from . import long_running_operation
 
+@dataclass
 class AttackSimulationOperation(long_running_operation.LongRunningOperation):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AttackSimulationOperation and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Percentage of completion of the respective operation.
-        self._percentage_completed: Optional[int] = None
-        # Tenant identifier.
-        self._tenant_id: Optional[str] = None
-        # The attack simulation operation type. Possible values are: createSimulation, updateSimulation, unknownFutureValue.
-        self._type: Optional[attack_simulation_operation_type.AttackSimulationOperationType] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Percentage of completion of the respective operation.
+    percentage_completed: Optional[int] = None
+    # Tenant identifier.
+    tenant_id: Optional[str] = None
+    # The attack simulation operation type. Possible values are: createSimulation, updateSimulation, unknownFutureValue.
+    type: Optional[attack_simulation_operation_type.AttackSimulationOperationType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AttackSimulationOperation:
@@ -50,23 +47,6 @@ class AttackSimulationOperation(long_running_operation.LongRunningOperation):
         fields.update(super_fields)
         return fields
     
-    @property
-    def percentage_completed(self,) -> Optional[int]:
-        """
-        Gets the percentageCompleted property value. Percentage of completion of the respective operation.
-        Returns: Optional[int]
-        """
-        return self._percentage_completed
-    
-    @percentage_completed.setter
-    def percentage_completed(self,value: Optional[int] = None) -> None:
-        """
-        Sets the percentageCompleted property value. Percentage of completion of the respective operation.
-        Args:
-            value: Value to set for the percentage_completed property.
-        """
-        self._percentage_completed = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -79,39 +59,5 @@ class AttackSimulationOperation(long_running_operation.LongRunningOperation):
         writer.write_int_value("percentageCompleted", self.percentage_completed)
         writer.write_str_value("tenantId", self.tenant_id)
         writer.write_enum_value("type", self.type)
-    
-    @property
-    def tenant_id(self,) -> Optional[str]:
-        """
-        Gets the tenantId property value. Tenant identifier.
-        Returns: Optional[str]
-        """
-        return self._tenant_id
-    
-    @tenant_id.setter
-    def tenant_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the tenantId property value. Tenant identifier.
-        Args:
-            value: Value to set for the tenant_id property.
-        """
-        self._tenant_id = value
-    
-    @property
-    def type(self,) -> Optional[attack_simulation_operation_type.AttackSimulationOperationType]:
-        """
-        Gets the type property value. The attack simulation operation type. Possible values are: createSimulation, updateSimulation, unknownFutureValue.
-        Returns: Optional[attack_simulation_operation_type.AttackSimulationOperationType]
-        """
-        return self._type
-    
-    @type.setter
-    def type(self,value: Optional[attack_simulation_operation_type.AttackSimulationOperationType] = None) -> None:
-        """
-        Sets the type property value. The attack simulation operation type. Possible values are: createSimulation, updateSimulation, unknownFutureValue.
-        Args:
-            value: Value to set for the type property.
-        """
-        self._type = value
     
 

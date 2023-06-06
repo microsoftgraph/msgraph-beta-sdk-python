@@ -1,38 +1,19 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class SendCustomNotificationToCompanyPortalPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new sendCustomNotificationToCompanyPortalPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The groupsToNotify property
-        self._groups_to_notify: Optional[List[str]] = None
-        # The notificationBody property
-        self._notification_body: Optional[str] = None
-        # The notificationTitle property
-        self._notification_title: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The groupsToNotify property
+    groups_to_notify: Optional[List[str]] = None
+    # The notificationBody property
+    notification_body: Optional[str] = None
+    # The notificationTitle property
+    notification_title: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SendCustomNotificationToCompanyPortalPostRequestBody:
@@ -57,57 +38,6 @@ class SendCustomNotificationToCompanyPortalPostRequestBody(AdditionalDataHolder,
             "notificationTitle": lambda n : setattr(self, 'notification_title', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def groups_to_notify(self,) -> Optional[List[str]]:
-        """
-        Gets the groupsToNotify property value. The groupsToNotify property
-        Returns: Optional[List[str]]
-        """
-        return self._groups_to_notify
-    
-    @groups_to_notify.setter
-    def groups_to_notify(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the groupsToNotify property value. The groupsToNotify property
-        Args:
-            value: Value to set for the groups_to_notify property.
-        """
-        self._groups_to_notify = value
-    
-    @property
-    def notification_body(self,) -> Optional[str]:
-        """
-        Gets the notificationBody property value. The notificationBody property
-        Returns: Optional[str]
-        """
-        return self._notification_body
-    
-    @notification_body.setter
-    def notification_body(self,value: Optional[str] = None) -> None:
-        """
-        Sets the notificationBody property value. The notificationBody property
-        Args:
-            value: Value to set for the notification_body property.
-        """
-        self._notification_body = value
-    
-    @property
-    def notification_title(self,) -> Optional[str]:
-        """
-        Gets the notificationTitle property value. The notificationTitle property
-        Returns: Optional[str]
-        """
-        return self._notification_title
-    
-    @notification_title.setter
-    def notification_title(self,value: Optional[str] = None) -> None:
-        """
-        Sets the notificationTitle property value. The notificationTitle property
-        Args:
-            value: Value to set for the notification_title property.
-        """
-        self._notification_title = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

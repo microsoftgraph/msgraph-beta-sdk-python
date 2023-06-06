@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import device_management_constraint
 
+@dataclass
 class DeviceManagementSettingBooleanConstraint(device_management_constraint.DeviceManagementConstraint):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementSettingBooleanConstraint and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementSettingBooleanConstraint"
-        # The boolean value to compare against
-        self._value: Optional[bool] = None
+    odata_type = "#microsoft.graph.deviceManagementSettingBooleanConstraint"
+    # The boolean value to compare against
+    value: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementSettingBooleanConstraint:
@@ -53,22 +50,5 @@ class DeviceManagementSettingBooleanConstraint(device_management_constraint.Devi
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_bool_value("value", self.value)
-    
-    @property
-    def value(self,) -> Optional[bool]:
-        """
-        Gets the value property value. The boolean value to compare against
-        Returns: Optional[bool]
-        """
-        return self._value
-    
-    @value.setter
-    def value(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the value property value. The boolean value to compare against
-        Args:
-            value: Value to set for the value property.
-        """
-        self._value = value
     
 

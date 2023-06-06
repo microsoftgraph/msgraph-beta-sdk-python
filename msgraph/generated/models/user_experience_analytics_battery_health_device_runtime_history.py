@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,23 +8,19 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory(entity.Entity):
     """
     The user experience analytics battery health runtime history entity contains the trend of runtime of a device over a period of 30 days
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsBatteryHealthDeviceRuntimeHistory and sets the default values.
-        """
-        super().__init__()
-        # The unique identifier of the device, Intune DeviceID or SCCM device id.
-        self._device_id: Optional[str] = None
-        # The estimated runtime of the device when the battery is fully charged. Unit in minutes. Valid values -2147483648 to 2147483647
-        self._estimated_runtime_in_minutes: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The datetime for the instance of runtime history.
-        self._runtime_date_time: Optional[str] = None
+    # The unique identifier of the device, Intune DeviceID or SCCM device id.
+    device_id: Optional[str] = None
+    # The estimated runtime of the device when the battery is fully charged. Unit in minutes. Valid values -2147483648 to 2147483647
+    estimated_runtime_in_minutes: Optional[int] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The datetime for the instance of runtime history.
+    runtime_date_time: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory:
@@ -36,40 +33,6 @@ class UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory()
-    
-    @property
-    def device_id(self,) -> Optional[str]:
-        """
-        Gets the deviceId property value. The unique identifier of the device, Intune DeviceID or SCCM device id.
-        Returns: Optional[str]
-        """
-        return self._device_id
-    
-    @device_id.setter
-    def device_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the deviceId property value. The unique identifier of the device, Intune DeviceID or SCCM device id.
-        Args:
-            value: Value to set for the device_id property.
-        """
-        self._device_id = value
-    
-    @property
-    def estimated_runtime_in_minutes(self,) -> Optional[int]:
-        """
-        Gets the estimatedRuntimeInMinutes property value. The estimated runtime of the device when the battery is fully charged. Unit in minutes. Valid values -2147483648 to 2147483647
-        Returns: Optional[int]
-        """
-        return self._estimated_runtime_in_minutes
-    
-    @estimated_runtime_in_minutes.setter
-    def estimated_runtime_in_minutes(self,value: Optional[int] = None) -> None:
-        """
-        Sets the estimatedRuntimeInMinutes property value. The estimated runtime of the device when the battery is fully charged. Unit in minutes. Valid values -2147483648 to 2147483647
-        Args:
-            value: Value to set for the estimated_runtime_in_minutes property.
-        """
-        self._estimated_runtime_in_minutes = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -86,23 +49,6 @@ class UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def runtime_date_time(self,) -> Optional[str]:
-        """
-        Gets the runtimeDateTime property value. The datetime for the instance of runtime history.
-        Returns: Optional[str]
-        """
-        return self._runtime_date_time
-    
-    @runtime_date_time.setter
-    def runtime_date_time(self,value: Optional[str] = None) -> None:
-        """
-        Sets the runtimeDateTime property value. The datetime for the instance of runtime history.
-        Args:
-            value: Value to set for the runtime_date_time property.
-        """
-        self._runtime_date_time = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

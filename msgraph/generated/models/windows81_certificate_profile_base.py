@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,17 +8,13 @@ if TYPE_CHECKING:
 
 from . import windows_certificate_profile_base
 
+@dataclass
 class Windows81CertificateProfileBase(windows_certificate_profile_base.WindowsCertificateProfileBase):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Windows81CertificateProfileBase and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windows81CertificateProfileBase"
-        # Custom Subject Alternative Name Settings. This collection can contain a maximum of 500 elements.
-        self._custom_subject_alternative_names: Optional[List[custom_subject_alternative_name.CustomSubjectAlternativeName]] = None
-        # Extended Key Usage (EKU) settings. This collection can contain a maximum of 500 elements.
-        self._extended_key_usages: Optional[List[extended_key_usage.ExtendedKeyUsage]] = None
+    odata_type = "#microsoft.graph.windows81CertificateProfileBase"
+    # Custom Subject Alternative Name Settings. This collection can contain a maximum of 500 elements.
+    custom_subject_alternative_names: Optional[List[custom_subject_alternative_name.CustomSubjectAlternativeName]] = None
+    # Extended Key Usage (EKU) settings. This collection can contain a maximum of 500 elements.
+    extended_key_usages: Optional[List[extended_key_usage.ExtendedKeyUsage]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows81CertificateProfileBase:
@@ -37,40 +34,6 @@ class Windows81CertificateProfileBase(windows_certificate_profile_base.WindowsCe
 
                 return windows81_s_c_e_p_certificate_profile.Windows81SCEPCertificateProfile()
         return Windows81CertificateProfileBase()
-    
-    @property
-    def custom_subject_alternative_names(self,) -> Optional[List[custom_subject_alternative_name.CustomSubjectAlternativeName]]:
-        """
-        Gets the customSubjectAlternativeNames property value. Custom Subject Alternative Name Settings. This collection can contain a maximum of 500 elements.
-        Returns: Optional[List[custom_subject_alternative_name.CustomSubjectAlternativeName]]
-        """
-        return self._custom_subject_alternative_names
-    
-    @custom_subject_alternative_names.setter
-    def custom_subject_alternative_names(self,value: Optional[List[custom_subject_alternative_name.CustomSubjectAlternativeName]] = None) -> None:
-        """
-        Sets the customSubjectAlternativeNames property value. Custom Subject Alternative Name Settings. This collection can contain a maximum of 500 elements.
-        Args:
-            value: Value to set for the custom_subject_alternative_names property.
-        """
-        self._custom_subject_alternative_names = value
-    
-    @property
-    def extended_key_usages(self,) -> Optional[List[extended_key_usage.ExtendedKeyUsage]]:
-        """
-        Gets the extendedKeyUsages property value. Extended Key Usage (EKU) settings. This collection can contain a maximum of 500 elements.
-        Returns: Optional[List[extended_key_usage.ExtendedKeyUsage]]
-        """
-        return self._extended_key_usages
-    
-    @extended_key_usages.setter
-    def extended_key_usages(self,value: Optional[List[extended_key_usage.ExtendedKeyUsage]] = None) -> None:
-        """
-        Sets the extendedKeyUsages property value. Extended Key Usage (EKU) settings. This collection can contain a maximum of 500 elements.
-        Args:
-            value: Value to set for the extended_key_usages property.
-        """
-        self._extended_key_usages = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """

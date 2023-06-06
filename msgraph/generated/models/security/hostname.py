@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,17 +8,13 @@ if TYPE_CHECKING:
 
 from . import host
 
+@dataclass
 class Hostname(host.Host):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Hostname and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.security.hostname"
-        # The company or individual who registered this hostname, from WHOIS data.
-        self._registrant: Optional[str] = None
-        # The registrar for this hostname, from WHOIS data.
-        self._registrar: Optional[str] = None
+    odata_type = "#microsoft.graph.security.hostname"
+    # The company or individual who registered this hostname, from WHOIS data.
+    registrant: Optional[str] = None
+    # The registrar for this hostname, from WHOIS data.
+    registrar: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Hostname:
@@ -45,40 +42,6 @@ class Hostname(host.Host):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def registrant(self,) -> Optional[str]:
-        """
-        Gets the registrant property value. The company or individual who registered this hostname, from WHOIS data.
-        Returns: Optional[str]
-        """
-        return self._registrant
-    
-    @registrant.setter
-    def registrant(self,value: Optional[str] = None) -> None:
-        """
-        Sets the registrant property value. The company or individual who registered this hostname, from WHOIS data.
-        Args:
-            value: Value to set for the registrant property.
-        """
-        self._registrant = value
-    
-    @property
-    def registrar(self,) -> Optional[str]:
-        """
-        Gets the registrar property value. The registrar for this hostname, from WHOIS data.
-        Returns: Optional[str]
-        """
-        return self._registrar
-    
-    @registrar.setter
-    def registrar(self,value: Optional[str] = None) -> None:
-        """
-        Sets the registrar property value. The registrar for this hostname, from WHOIS data.
-        Args:
-            value: Value to set for the registrar property.
-        """
-        self._registrar = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

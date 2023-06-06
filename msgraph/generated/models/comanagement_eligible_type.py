@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ComanagementEligibleType(Enum):
+class ComanagementEligibleType(str, Enum):
     Comanaged = "comanaged",
     Eligible = "eligible",
     EligibleButNotAzureAdJoined = "eligibleButNotAzureAdJoined",

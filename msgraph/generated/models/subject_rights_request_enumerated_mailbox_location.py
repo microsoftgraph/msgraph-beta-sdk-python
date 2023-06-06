@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import subject_rights_request_mailbox_location
 
+@dataclass
 class SubjectRightsRequestEnumeratedMailboxLocation(subject_rights_request_mailbox_location.SubjectRightsRequestMailboxLocation):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new SubjectRightsRequestEnumeratedMailboxLocation and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.subjectRightsRequestEnumeratedMailboxLocation"
-        # Collection of mailboxes that should be included in the search. Includes the UPN (user principal name) of each mailbox, for example, Monica.Thompson@contoso.com.
-        self._upns: Optional[List[str]] = None
+    odata_type = "#microsoft.graph.subjectRightsRequestEnumeratedMailboxLocation"
+    # Collection of mailboxes that should be included in the search. Includes the UPN (user principal name) of each mailbox, for example, Monica.Thompson@contoso.com.
+    upns: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SubjectRightsRequestEnumeratedMailboxLocation:
@@ -53,22 +50,5 @@ class SubjectRightsRequestEnumeratedMailboxLocation(subject_rights_request_mailb
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_collection_of_primitive_values("upns", self.upns)
-    
-    @property
-    def upns(self,) -> Optional[List[str]]:
-        """
-        Gets the upns property value. Collection of mailboxes that should be included in the search. Includes the UPN (user principal name) of each mailbox, for example, Monica.Thompson@contoso.com.
-        Returns: Optional[List[str]]
-        """
-        return self._upns
-    
-    @upns.setter
-    def upns(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the upns property value. Collection of mailboxes that should be included in the search. Includes the UPN (user principal name) of each mailbox, for example, Monica.Thompson@contoso.com.
-        Args:
-            value: Value to set for the upns property.
-        """
-        self._upns = value
     
 

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,34 +8,13 @@ if TYPE_CHECKING:
 
 from . import mark_content
 
+@dataclass
 class AddHeader(mark_content.MarkContent):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AddHeader and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.addHeader"
-        # The alignment property
-        self._alignment: Optional[alignment.Alignment] = None
-        # The margin property
-        self._margin: Optional[int] = None
-    
-    @property
-    def alignment(self,) -> Optional[alignment.Alignment]:
-        """
-        Gets the alignment property value. The alignment property
-        Returns: Optional[alignment.Alignment]
-        """
-        return self._alignment
-    
-    @alignment.setter
-    def alignment(self,value: Optional[alignment.Alignment] = None) -> None:
-        """
-        Sets the alignment property value. The alignment property
-        Args:
-            value: Value to set for the alignment property.
-        """
-        self._alignment = value
+    odata_type = "#microsoft.graph.addHeader"
+    # The alignment property
+    alignment: Optional[alignment.Alignment] = None
+    # The margin property
+    margin: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AddHeader:
@@ -62,23 +42,6 @@ class AddHeader(mark_content.MarkContent):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def margin(self,) -> Optional[int]:
-        """
-        Gets the margin property value. The margin property
-        Returns: Optional[int]
-        """
-        return self._margin
-    
-    @margin.setter
-    def margin(self,value: Optional[int] = None) -> None:
-        """
-        Sets the margin property value. The margin property
-        Args:
-            value: Value to set for the margin property.
-        """
-        self._margin = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

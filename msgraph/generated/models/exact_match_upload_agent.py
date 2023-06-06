@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,18 +9,14 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class ExactMatchUploadAgent(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new exactMatchUploadAgent and sets the default values.
-        """
-        super().__init__()
-        # The creationDateTime property
-        self._creation_date_time: Optional[datetime] = None
-        # The description property
-        self._description: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+    # The creationDateTime property
+    creation_date_time: Optional[datetime] = None
+    # The description property
+    description: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ExactMatchUploadAgent:
@@ -32,40 +29,6 @@ class ExactMatchUploadAgent(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return ExactMatchUploadAgent()
-    
-    @property
-    def creation_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the creationDateTime property value. The creationDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._creation_date_time
-    
-    @creation_date_time.setter
-    def creation_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the creationDateTime property value. The creationDateTime property
-        Args:
-            value: Value to set for the creation_date_time property.
-        """
-        self._creation_date_time = value
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. The description property
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. The description property
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """

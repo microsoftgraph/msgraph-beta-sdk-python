@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,14 +8,10 @@ if TYPE_CHECKING:
 
 from . import base_collection_pagination_count_response
 
+@dataclass
 class GeneralLedgerEntryCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new GeneralLedgerEntryCollectionResponse and sets the default values.
-        """
-        super().__init__()
-        # The value property
-        self._value: Optional[List[general_ledger_entry.GeneralLedgerEntry]] = None
+    # The value property
+    value: Optional[List[general_ledger_entry.GeneralLedgerEntry]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GeneralLedgerEntryCollectionResponse:
@@ -52,22 +49,5 @@ class GeneralLedgerEntryCollectionResponse(base_collection_pagination_count_resp
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_collection_of_object_values("value", self.value)
-    
-    @property
-    def value(self,) -> Optional[List[general_ledger_entry.GeneralLedgerEntry]]:
-        """
-        Gets the value property value. The value property
-        Returns: Optional[List[general_ledger_entry.GeneralLedgerEntry]]
-        """
-        return self._value
-    
-    @value.setter
-    def value(self,value: Optional[List[general_ledger_entry.GeneralLedgerEntry]] = None) -> None:
-        """
-        Sets the value property value. The value property
-        Args:
-            value: Value to set for the value property.
-        """
-        self._value = value
     
 

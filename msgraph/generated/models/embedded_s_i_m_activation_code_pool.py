@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,99 +9,27 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class EmbeddedSIMActivationCodePool(entity.Entity):
     """
     A pool represents a group of embedded SIM activation codes.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new embeddedSIMActivationCodePool and sets the default values.
-        """
-        super().__init__()
-        # The total count of activation codes which belong to this pool.
-        self._activation_code_count: Optional[int] = None
-        # The activation codes which belong to this pool. This navigation property is used to post activation codes to Intune but cannot be used to read activation codes from Intune.
-        self._activation_codes: Optional[List[embedded_s_i_m_activation_code.EmbeddedSIMActivationCode]] = None
-        # Navigational property to a list of targets to which this pool is assigned.
-        self._assignments: Optional[List[embedded_s_i_m_activation_code_pool_assignment.EmbeddedSIMActivationCodePoolAssignment]] = None
-        # The time the embedded SIM activation code pool was created. Generated service side.
-        self._created_date_time: Optional[datetime] = None
-        # Navigational property to a list of device states for this pool.
-        self._device_states: Optional[List[embedded_s_i_m_device_state.EmbeddedSIMDeviceState]] = None
-        # The admin defined name of the embedded SIM activation code pool.
-        self._display_name: Optional[str] = None
-        # The time the embedded SIM activation code pool was last modified. Updated service side.
-        self._modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def activation_code_count(self,) -> Optional[int]:
-        """
-        Gets the activationCodeCount property value. The total count of activation codes which belong to this pool.
-        Returns: Optional[int]
-        """
-        return self._activation_code_count
-    
-    @activation_code_count.setter
-    def activation_code_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the activationCodeCount property value. The total count of activation codes which belong to this pool.
-        Args:
-            value: Value to set for the activation_code_count property.
-        """
-        self._activation_code_count = value
-    
-    @property
-    def activation_codes(self,) -> Optional[List[embedded_s_i_m_activation_code.EmbeddedSIMActivationCode]]:
-        """
-        Gets the activationCodes property value. The activation codes which belong to this pool. This navigation property is used to post activation codes to Intune but cannot be used to read activation codes from Intune.
-        Returns: Optional[List[embedded_s_i_m_activation_code.EmbeddedSIMActivationCode]]
-        """
-        return self._activation_codes
-    
-    @activation_codes.setter
-    def activation_codes(self,value: Optional[List[embedded_s_i_m_activation_code.EmbeddedSIMActivationCode]] = None) -> None:
-        """
-        Sets the activationCodes property value. The activation codes which belong to this pool. This navigation property is used to post activation codes to Intune but cannot be used to read activation codes from Intune.
-        Args:
-            value: Value to set for the activation_codes property.
-        """
-        self._activation_codes = value
-    
-    @property
-    def assignments(self,) -> Optional[List[embedded_s_i_m_activation_code_pool_assignment.EmbeddedSIMActivationCodePoolAssignment]]:
-        """
-        Gets the assignments property value. Navigational property to a list of targets to which this pool is assigned.
-        Returns: Optional[List[embedded_s_i_m_activation_code_pool_assignment.EmbeddedSIMActivationCodePoolAssignment]]
-        """
-        return self._assignments
-    
-    @assignments.setter
-    def assignments(self,value: Optional[List[embedded_s_i_m_activation_code_pool_assignment.EmbeddedSIMActivationCodePoolAssignment]] = None) -> None:
-        """
-        Sets the assignments property value. Navigational property to a list of targets to which this pool is assigned.
-        Args:
-            value: Value to set for the assignments property.
-        """
-        self._assignments = value
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. The time the embedded SIM activation code pool was created. Generated service side.
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. The time the embedded SIM activation code pool was created. Generated service side.
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+    # The total count of activation codes which belong to this pool.
+    activation_code_count: Optional[int] = None
+    # The activation codes which belong to this pool. This navigation property is used to post activation codes to Intune but cannot be used to read activation codes from Intune.
+    activation_codes: Optional[List[embedded_s_i_m_activation_code.EmbeddedSIMActivationCode]] = None
+    # Navigational property to a list of targets to which this pool is assigned.
+    assignments: Optional[List[embedded_s_i_m_activation_code_pool_assignment.EmbeddedSIMActivationCodePoolAssignment]] = None
+    # The time the embedded SIM activation code pool was created. Generated service side.
+    created_date_time: Optional[datetime] = None
+    # Navigational property to a list of device states for this pool.
+    device_states: Optional[List[embedded_s_i_m_device_state.EmbeddedSIMDeviceState]] = None
+    # The admin defined name of the embedded SIM activation code pool.
+    display_name: Optional[str] = None
+    # The time the embedded SIM activation code pool was last modified. Updated service side.
+    modified_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EmbeddedSIMActivationCodePool:
@@ -113,40 +42,6 @@ class EmbeddedSIMActivationCodePool(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return EmbeddedSIMActivationCodePool()
-    
-    @property
-    def device_states(self,) -> Optional[List[embedded_s_i_m_device_state.EmbeddedSIMDeviceState]]:
-        """
-        Gets the deviceStates property value. Navigational property to a list of device states for this pool.
-        Returns: Optional[List[embedded_s_i_m_device_state.EmbeddedSIMDeviceState]]
-        """
-        return self._device_states
-    
-    @device_states.setter
-    def device_states(self,value: Optional[List[embedded_s_i_m_device_state.EmbeddedSIMDeviceState]] = None) -> None:
-        """
-        Sets the deviceStates property value. Navigational property to a list of device states for this pool.
-        Args:
-            value: Value to set for the device_states property.
-        """
-        self._device_states = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The admin defined name of the embedded SIM activation code pool.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The admin defined name of the embedded SIM activation code pool.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -167,23 +62,6 @@ class EmbeddedSIMActivationCodePool(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def modified_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the modifiedDateTime property value. The time the embedded SIM activation code pool was last modified. Updated service side.
-        Returns: Optional[datetime]
-        """
-        return self._modified_date_time
-    
-    @modified_date_time.setter
-    def modified_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the modifiedDateTime property value. The time the embedded SIM activation code pool was last modified. Updated service side.
-        Args:
-            value: Value to set for the modified_date_time property.
-        """
-        self._modified_date_time = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

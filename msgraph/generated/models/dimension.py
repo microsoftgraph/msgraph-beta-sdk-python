@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,39 +9,18 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class Dimension(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new dimension and sets the default values.
-        """
-        super().__init__()
-        # The code property
-        self._code: Optional[str] = None
-        # The dimensionValues property
-        self._dimension_values: Optional[List[dimension_value.DimensionValue]] = None
-        # The displayName property
-        self._display_name: Optional[str] = None
-        # The lastModifiedDateTime property
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def code(self,) -> Optional[str]:
-        """
-        Gets the code property value. The code property
-        Returns: Optional[str]
-        """
-        return self._code
-    
-    @code.setter
-    def code(self,value: Optional[str] = None) -> None:
-        """
-        Sets the code property value. The code property
-        Args:
-            value: Value to set for the code property.
-        """
-        self._code = value
+    # The code property
+    code: Optional[str] = None
+    # The dimensionValues property
+    dimension_values: Optional[List[dimension_value.DimensionValue]] = None
+    # The displayName property
+    display_name: Optional[str] = None
+    # The lastModifiedDateTime property
+    last_modified_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Dimension:
@@ -53,40 +33,6 @@ class Dimension(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return Dimension()
-    
-    @property
-    def dimension_values(self,) -> Optional[List[dimension_value.DimensionValue]]:
-        """
-        Gets the dimensionValues property value. The dimensionValues property
-        Returns: Optional[List[dimension_value.DimensionValue]]
-        """
-        return self._dimension_values
-    
-    @dimension_values.setter
-    def dimension_values(self,value: Optional[List[dimension_value.DimensionValue]] = None) -> None:
-        """
-        Sets the dimensionValues property value. The dimensionValues property
-        Args:
-            value: Value to set for the dimension_values property.
-        """
-        self._dimension_values = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The displayName property
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The displayName property
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -104,23 +50,6 @@ class Dimension(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def last_modified_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastModifiedDateTime property value. The lastModifiedDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._last_modified_date_time
-    
-    @last_modified_date_time.setter
-    def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
-        Args:
-            value: Value to set for the last_modified_date_time property.
-        """
-        self._last_modified_date_time = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

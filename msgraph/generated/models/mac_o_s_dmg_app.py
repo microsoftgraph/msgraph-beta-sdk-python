@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,23 +8,19 @@ if TYPE_CHECKING:
 
 from . import mobile_lob_app
 
+@dataclass
 class MacOSDmgApp(mobile_lob_app.MobileLobApp):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new MacOSDmgApp and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.macOSDmgApp"
-        # A value indicating whether the app's version will be used to detect the app after it is installed on a device. Set this to true for apps that use a self-update feature. Set this to false to install the app when it is not already installed on the device, or if the deploying app's version number does not match the version that's already installed on the device.
-        self._ignore_version_detection: Optional[bool] = None
-        # The list of apps expected to be installed by the DMG.
-        self._included_apps: Optional[List[mac_o_s_included_app.MacOSIncludedApp]] = None
-        # The value for the minimum applicable operating system.
-        self._minimum_supported_operating_system: Optional[mac_o_s_minimum_operating_system.MacOSMinimumOperatingSystem] = None
-        # The primary CFBundleIdentifier of the DMG.
-        self._primary_bundle_id: Optional[str] = None
-        # The primary CFBundleVersion of the DMG.
-        self._primary_bundle_version: Optional[str] = None
+    odata_type = "#microsoft.graph.macOSDmgApp"
+    # A value indicating whether the app's version will be used to detect the app after it is installed on a device. Set this to true for apps that use a self-update feature. Set this to false to install the app when it is not already installed on the device, or if the deploying app's version number does not match the version that's already installed on the device.
+    ignore_version_detection: Optional[bool] = None
+    # The list of apps expected to be installed by the DMG.
+    included_apps: Optional[List[mac_o_s_included_app.MacOSIncludedApp]] = None
+    # The value for the minimum applicable operating system.
+    minimum_supported_operating_system: Optional[mac_o_s_minimum_operating_system.MacOSMinimumOperatingSystem] = None
+    # The primary CFBundleIdentifier of the DMG.
+    primary_bundle_id: Optional[str] = None
+    # The primary CFBundleVersion of the DMG.
+    primary_bundle_version: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSDmgApp:
@@ -54,91 +51,6 @@ class MacOSDmgApp(mobile_lob_app.MobileLobApp):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def ignore_version_detection(self,) -> Optional[bool]:
-        """
-        Gets the ignoreVersionDetection property value. A value indicating whether the app's version will be used to detect the app after it is installed on a device. Set this to true for apps that use a self-update feature. Set this to false to install the app when it is not already installed on the device, or if the deploying app's version number does not match the version that's already installed on the device.
-        Returns: Optional[bool]
-        """
-        return self._ignore_version_detection
-    
-    @ignore_version_detection.setter
-    def ignore_version_detection(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the ignoreVersionDetection property value. A value indicating whether the app's version will be used to detect the app after it is installed on a device. Set this to true for apps that use a self-update feature. Set this to false to install the app when it is not already installed on the device, or if the deploying app's version number does not match the version that's already installed on the device.
-        Args:
-            value: Value to set for the ignore_version_detection property.
-        """
-        self._ignore_version_detection = value
-    
-    @property
-    def included_apps(self,) -> Optional[List[mac_o_s_included_app.MacOSIncludedApp]]:
-        """
-        Gets the includedApps property value. The list of apps expected to be installed by the DMG.
-        Returns: Optional[List[mac_o_s_included_app.MacOSIncludedApp]]
-        """
-        return self._included_apps
-    
-    @included_apps.setter
-    def included_apps(self,value: Optional[List[mac_o_s_included_app.MacOSIncludedApp]] = None) -> None:
-        """
-        Sets the includedApps property value. The list of apps expected to be installed by the DMG.
-        Args:
-            value: Value to set for the included_apps property.
-        """
-        self._included_apps = value
-    
-    @property
-    def minimum_supported_operating_system(self,) -> Optional[mac_o_s_minimum_operating_system.MacOSMinimumOperatingSystem]:
-        """
-        Gets the minimumSupportedOperatingSystem property value. The value for the minimum applicable operating system.
-        Returns: Optional[mac_o_s_minimum_operating_system.MacOSMinimumOperatingSystem]
-        """
-        return self._minimum_supported_operating_system
-    
-    @minimum_supported_operating_system.setter
-    def minimum_supported_operating_system(self,value: Optional[mac_o_s_minimum_operating_system.MacOSMinimumOperatingSystem] = None) -> None:
-        """
-        Sets the minimumSupportedOperatingSystem property value. The value for the minimum applicable operating system.
-        Args:
-            value: Value to set for the minimum_supported_operating_system property.
-        """
-        self._minimum_supported_operating_system = value
-    
-    @property
-    def primary_bundle_id(self,) -> Optional[str]:
-        """
-        Gets the primaryBundleId property value. The primary CFBundleIdentifier of the DMG.
-        Returns: Optional[str]
-        """
-        return self._primary_bundle_id
-    
-    @primary_bundle_id.setter
-    def primary_bundle_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the primaryBundleId property value. The primary CFBundleIdentifier of the DMG.
-        Args:
-            value: Value to set for the primary_bundle_id property.
-        """
-        self._primary_bundle_id = value
-    
-    @property
-    def primary_bundle_version(self,) -> Optional[str]:
-        """
-        Gets the primaryBundleVersion property value. The primary CFBundleVersion of the DMG.
-        Returns: Optional[str]
-        """
-        return self._primary_bundle_version
-    
-    @primary_bundle_version.setter
-    def primary_bundle_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the primaryBundleVersion property value. The primary CFBundleVersion of the DMG.
-        Args:
-            value: Value to set for the primary_bundle_version property.
-        """
-        self._primary_bundle_version = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

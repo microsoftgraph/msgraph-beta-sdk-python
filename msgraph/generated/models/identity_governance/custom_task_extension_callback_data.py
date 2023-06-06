@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -8,15 +9,11 @@ if TYPE_CHECKING:
 
 from .. import custom_extension_data
 
+@dataclass
 class CustomTaskExtensionCallbackData(custom_extension_data.CustomExtensionData):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new CustomTaskExtensionCallbackData and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.identityGovernance.customTaskExtensionCallbackData"
-        # Operation status that's provided by the Azure Logic App indicating whenever the Azure Logic App has run successfully or not. Supported values: completed, failed, unknownFutureValue.
-        self._operation_status: Optional[custom_task_extension_operation_status.CustomTaskExtensionOperationStatus] = None
+    odata_type = "#microsoft.graph.identityGovernance.customTaskExtensionCallbackData"
+    # Operation status that's provided by the Azure Logic App indicating whenever the Azure Logic App has run successfully or not. Supported values: completed, failed, unknownFutureValue.
+    operation_status: Optional[custom_task_extension_operation_status.CustomTaskExtensionOperationStatus] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CustomTaskExtensionCallbackData:
@@ -44,23 +41,6 @@ class CustomTaskExtensionCallbackData(custom_extension_data.CustomExtensionData)
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def operation_status(self,) -> Optional[custom_task_extension_operation_status.CustomTaskExtensionOperationStatus]:
-        """
-        Gets the operationStatus property value. Operation status that's provided by the Azure Logic App indicating whenever the Azure Logic App has run successfully or not. Supported values: completed, failed, unknownFutureValue.
-        Returns: Optional[custom_task_extension_operation_status.CustomTaskExtensionOperationStatus]
-        """
-        return self._operation_status
-    
-    @operation_status.setter
-    def operation_status(self,value: Optional[custom_task_extension_operation_status.CustomTaskExtensionOperationStatus] = None) -> None:
-        """
-        Sets the operationStatus property value. Operation status that's provided by the Azure Logic App indicating whenever the Azure Logic App has run successfully or not. Supported values: completed, failed, unknownFutureValue.
-        Args:
-            value: Value to set for the operation_status property.
-        """
-        self._operation_status = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

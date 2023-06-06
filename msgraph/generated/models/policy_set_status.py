@@ -1,6 +1,6 @@
 from enum import Enum
 
-class PolicySetStatus(Enum):
+class PolicySetStatus(str, Enum):
     # Default Value.
     Unknown = "unknown",
     # All PolicySet items are now validating for corresponding settings of workloads.

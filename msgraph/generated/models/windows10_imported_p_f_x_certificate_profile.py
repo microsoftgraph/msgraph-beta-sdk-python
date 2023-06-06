@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,17 +8,13 @@ if TYPE_CHECKING:
 
 from . import windows_certificate_profile_base
 
+@dataclass
 class Windows10ImportedPFXCertificateProfile(windows_certificate_profile_base.WindowsCertificateProfileBase):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Windows10ImportedPFXCertificateProfile and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windows10ImportedPFXCertificateProfile"
-        # PFX Import Options.
-        self._intended_purpose: Optional[intended_purpose.IntendedPurpose] = None
-        # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
-        self._managed_device_certificate_states: Optional[List[managed_device_certificate_state.ManagedDeviceCertificateState]] = None
+    odata_type = "#microsoft.graph.windows10ImportedPFXCertificateProfile"
+    # PFX Import Options.
+    intended_purpose: Optional[intended_purpose.IntendedPurpose] = None
+    # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
+    managed_device_certificate_states: Optional[List[managed_device_certificate_state.ManagedDeviceCertificateState]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10ImportedPFXCertificateProfile:
@@ -45,40 +42,6 @@ class Windows10ImportedPFXCertificateProfile(windows_certificate_profile_base.Wi
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def intended_purpose(self,) -> Optional[intended_purpose.IntendedPurpose]:
-        """
-        Gets the intendedPurpose property value. PFX Import Options.
-        Returns: Optional[intended_purpose.IntendedPurpose]
-        """
-        return self._intended_purpose
-    
-    @intended_purpose.setter
-    def intended_purpose(self,value: Optional[intended_purpose.IntendedPurpose] = None) -> None:
-        """
-        Sets the intendedPurpose property value. PFX Import Options.
-        Args:
-            value: Value to set for the intended_purpose property.
-        """
-        self._intended_purpose = value
-    
-    @property
-    def managed_device_certificate_states(self,) -> Optional[List[managed_device_certificate_state.ManagedDeviceCertificateState]]:
-        """
-        Gets the managedDeviceCertificateStates property value. Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
-        Returns: Optional[List[managed_device_certificate_state.ManagedDeviceCertificateState]]
-        """
-        return self._managed_device_certificate_states
-    
-    @managed_device_certificate_states.setter
-    def managed_device_certificate_states(self,value: Optional[List[managed_device_certificate_state.ManagedDeviceCertificateState]] = None) -> None:
-        """
-        Sets the managedDeviceCertificateStates property value. Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
-        Args:
-            value: Value to set for the managed_device_certificate_states property.
-        """
-        self._managed_device_certificate_states = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

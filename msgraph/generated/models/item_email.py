@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,36 +8,15 @@ if TYPE_CHECKING:
 
 from . import item_facet
 
+@dataclass
 class ItemEmail(item_facet.ItemFacet):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ItemEmail and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.itemEmail"
-        # The email address itself.
-        self._address: Optional[str] = None
-        # The name or label a user has associated with a particular email address.
-        self._display_name: Optional[str] = None
-        # The type property
-        self._type: Optional[email_type.EmailType] = None
-    
-    @property
-    def address(self,) -> Optional[str]:
-        """
-        Gets the address property value. The email address itself.
-        Returns: Optional[str]
-        """
-        return self._address
-    
-    @address.setter
-    def address(self,value: Optional[str] = None) -> None:
-        """
-        Sets the address property value. The email address itself.
-        Args:
-            value: Value to set for the address property.
-        """
-        self._address = value
+    odata_type = "#microsoft.graph.itemEmail"
+    # The email address itself.
+    address: Optional[str] = None
+    # The name or label a user has associated with a particular email address.
+    display_name: Optional[str] = None
+    # The type property
+    type: Optional[email_type.EmailType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ItemEmail:
@@ -49,23 +29,6 @@ class ItemEmail(item_facet.ItemFacet):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return ItemEmail()
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The name or label a user has associated with a particular email address.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The name or label a user has associated with a particular email address.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -95,22 +58,5 @@ class ItemEmail(item_facet.ItemFacet):
         writer.write_str_value("address", self.address)
         writer.write_str_value("displayName", self.display_name)
         writer.write_enum_value("type", self.type)
-    
-    @property
-    def type(self,) -> Optional[email_type.EmailType]:
-        """
-        Gets the type property value. The type property
-        Returns: Optional[email_type.EmailType]
-        """
-        return self._type
-    
-    @type.setter
-    def type(self,value: Optional[email_type.EmailType] = None) -> None:
-        """
-        Sets the type property value. The type property
-        Args:
-            value: Value to set for the type property.
-        """
-        self._type = value
     
 

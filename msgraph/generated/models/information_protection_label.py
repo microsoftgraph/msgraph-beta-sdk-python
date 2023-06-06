@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,45 +8,24 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class InformationProtectionLabel(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new informationProtectionLabel and sets the default values.
-        """
-        super().__init__()
-        # The color that the UI should display for the label, if configured.
-        self._color: Optional[str] = None
-        # The admin-defined description for the label.
-        self._description: Optional[str] = None
-        # Indicates whether the label is active or not. Active labels should be hidden or disabled in UI.
-        self._is_active: Optional[bool] = None
-        # The plaintext name of the label.
-        self._name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The parent label associated with a child label. Null if label has no parent.
-        self._parent: Optional[parent_label_details.ParentLabelDetails] = None
-        # The sensitivity value of the label, where lower is less sensitive.
-        self._sensitivity: Optional[int] = None
-        # The tooltip that should be displayed for the label in a UI.
-        self._tooltip: Optional[str] = None
-    
-    @property
-    def color(self,) -> Optional[str]:
-        """
-        Gets the color property value. The color that the UI should display for the label, if configured.
-        Returns: Optional[str]
-        """
-        return self._color
-    
-    @color.setter
-    def color(self,value: Optional[str] = None) -> None:
-        """
-        Sets the color property value. The color that the UI should display for the label, if configured.
-        Args:
-            value: Value to set for the color property.
-        """
-        self._color = value
+    # The color that the UI should display for the label, if configured.
+    color: Optional[str] = None
+    # The admin-defined description for the label.
+    description: Optional[str] = None
+    # Indicates whether the label is active or not. Active labels should be hidden or disabled in UI.
+    is_active: Optional[bool] = None
+    # The plaintext name of the label.
+    name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The parent label associated with a child label. Null if label has no parent.
+    parent: Optional[parent_label_details.ParentLabelDetails] = None
+    # The sensitivity value of the label, where lower is less sensitive.
+    sensitivity: Optional[int] = None
+    # The tooltip that should be displayed for the label in a UI.
+    tooltip: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> InformationProtectionLabel:
@@ -58,23 +38,6 @@ class InformationProtectionLabel(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return InformationProtectionLabel()
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. The admin-defined description for the label.
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. The admin-defined description for the label.
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -96,74 +59,6 @@ class InformationProtectionLabel(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def is_active(self,) -> Optional[bool]:
-        """
-        Gets the isActive property value. Indicates whether the label is active or not. Active labels should be hidden or disabled in UI.
-        Returns: Optional[bool]
-        """
-        return self._is_active
-    
-    @is_active.setter
-    def is_active(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isActive property value. Indicates whether the label is active or not. Active labels should be hidden or disabled in UI.
-        Args:
-            value: Value to set for the is_active property.
-        """
-        self._is_active = value
-    
-    @property
-    def name(self,) -> Optional[str]:
-        """
-        Gets the name property value. The plaintext name of the label.
-        Returns: Optional[str]
-        """
-        return self._name
-    
-    @name.setter
-    def name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the name property value. The plaintext name of the label.
-        Args:
-            value: Value to set for the name property.
-        """
-        self._name = value
-    
-    @property
-    def parent(self,) -> Optional[parent_label_details.ParentLabelDetails]:
-        """
-        Gets the parent property value. The parent label associated with a child label. Null if label has no parent.
-        Returns: Optional[parent_label_details.ParentLabelDetails]
-        """
-        return self._parent
-    
-    @parent.setter
-    def parent(self,value: Optional[parent_label_details.ParentLabelDetails] = None) -> None:
-        """
-        Sets the parent property value. The parent label associated with a child label. Null if label has no parent.
-        Args:
-            value: Value to set for the parent property.
-        """
-        self._parent = value
-    
-    @property
-    def sensitivity(self,) -> Optional[int]:
-        """
-        Gets the sensitivity property value. The sensitivity value of the label, where lower is less sensitive.
-        Returns: Optional[int]
-        """
-        return self._sensitivity
-    
-    @sensitivity.setter
-    def sensitivity(self,value: Optional[int] = None) -> None:
-        """
-        Sets the sensitivity property value. The sensitivity value of the label, where lower is less sensitive.
-        Args:
-            value: Value to set for the sensitivity property.
-        """
-        self._sensitivity = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -180,22 +75,5 @@ class InformationProtectionLabel(entity.Entity):
         writer.write_object_value("parent", self.parent)
         writer.write_int_value("sensitivity", self.sensitivity)
         writer.write_str_value("tooltip", self.tooltip)
-    
-    @property
-    def tooltip(self,) -> Optional[str]:
-        """
-        Gets the tooltip property value. The tooltip that should be displayed for the label in a UI.
-        Returns: Optional[str]
-        """
-        return self._tooltip
-    
-    @tooltip.setter
-    def tooltip(self,value: Optional[str] = None) -> None:
-        """
-        Sets the tooltip property value. The tooltip that should be displayed for the label in a UI.
-        Args:
-            value: Value to set for the tooltip property.
-        """
-        self._tooltip = value
     
 

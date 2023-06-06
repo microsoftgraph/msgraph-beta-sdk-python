@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,32 +8,11 @@ if TYPE_CHECKING:
 
 from . import deployable_content
 
+@dataclass
 class CatalogContent(deployable_content.DeployableContent):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new CatalogContent and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsUpdates.catalogContent"
-        # The catalogEntry property
-        self._catalog_entry: Optional[catalog_entry.CatalogEntry] = None
-    
-    @property
-    def catalog_entry(self,) -> Optional[catalog_entry.CatalogEntry]:
-        """
-        Gets the catalogEntry property value. The catalogEntry property
-        Returns: Optional[catalog_entry.CatalogEntry]
-        """
-        return self._catalog_entry
-    
-    @catalog_entry.setter
-    def catalog_entry(self,value: Optional[catalog_entry.CatalogEntry] = None) -> None:
-        """
-        Sets the catalogEntry property value. The catalogEntry property
-        Args:
-            value: Value to set for the catalog_entry property.
-        """
-        self._catalog_entry = value
+    odata_type = "#microsoft.graph.windowsUpdates.catalogContent"
+    # The catalogEntry property
+    catalog_entry: Optional[catalog_entry.CatalogEntry] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CatalogContent:

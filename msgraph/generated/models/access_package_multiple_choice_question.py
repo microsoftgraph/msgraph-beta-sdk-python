@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,51 +8,13 @@ if TYPE_CHECKING:
 
 from . import access_package_question
 
+@dataclass
 class AccessPackageMultipleChoiceQuestion(access_package_question.AccessPackageQuestion):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AccessPackageMultipleChoiceQuestion and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.accessPackageMultipleChoiceQuestion"
-        # Indicates whether requestor can select multiple choices as their answer.
-        self._allows_multiple_selection: Optional[bool] = None
-        # List of answer choices.
-        self._choices: Optional[List[access_package_answer_choice.AccessPackageAnswerChoice]] = None
-    
-    @property
-    def allows_multiple_selection(self,) -> Optional[bool]:
-        """
-        Gets the allowsMultipleSelection property value. Indicates whether requestor can select multiple choices as their answer.
-        Returns: Optional[bool]
-        """
-        return self._allows_multiple_selection
-    
-    @allows_multiple_selection.setter
-    def allows_multiple_selection(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the allowsMultipleSelection property value. Indicates whether requestor can select multiple choices as their answer.
-        Args:
-            value: Value to set for the allows_multiple_selection property.
-        """
-        self._allows_multiple_selection = value
-    
-    @property
-    def choices(self,) -> Optional[List[access_package_answer_choice.AccessPackageAnswerChoice]]:
-        """
-        Gets the choices property value. List of answer choices.
-        Returns: Optional[List[access_package_answer_choice.AccessPackageAnswerChoice]]
-        """
-        return self._choices
-    
-    @choices.setter
-    def choices(self,value: Optional[List[access_package_answer_choice.AccessPackageAnswerChoice]] = None) -> None:
-        """
-        Sets the choices property value. List of answer choices.
-        Args:
-            value: Value to set for the choices property.
-        """
-        self._choices = value
+    odata_type = "#microsoft.graph.accessPackageMultipleChoiceQuestion"
+    # Indicates whether requestor can select multiple choices as their answer.
+    allows_multiple_selection: Optional[bool] = None
+    # List of answer choices.
+    choices: Optional[List[access_package_answer_choice.AccessPackageAnswerChoice]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccessPackageMultipleChoiceQuestion:

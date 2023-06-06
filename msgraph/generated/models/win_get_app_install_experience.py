@@ -1,42 +1,23 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import run_as_account_type
 
+@dataclass
 class WinGetAppInstallExperience(AdditionalDataHolder, Parsable):
     """
     Represents the install experience settings associated with WinGet apps. This is used to ensure the desired install experiences on the target device are taken into account. Required at creation time.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new winGetAppInstallExperience and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Indicates the type of execution context the app runs in.
-        self._run_as_account: Optional[run_as_account_type.RunAsAccountType] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Indicates the type of execution context the app runs in.
+    run_as_account: Optional[run_as_account_type.RunAsAccountType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WinGetAppInstallExperience:
@@ -62,40 +43,6 @@ class WinGetAppInstallExperience(AdditionalDataHolder, Parsable):
             "runAsAccount": lambda n : setattr(self, 'run_as_account', n.get_enum_value(run_as_account_type.RunAsAccountType)),
         }
         return fields
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def run_as_account(self,) -> Optional[run_as_account_type.RunAsAccountType]:
-        """
-        Gets the runAsAccount property value. Indicates the type of execution context the app runs in.
-        Returns: Optional[run_as_account_type.RunAsAccountType]
-        """
-        return self._run_as_account
-    
-    @run_as_account.setter
-    def run_as_account(self,value: Optional[run_as_account_type.RunAsAccountType] = None) -> None:
-        """
-        Sets the runAsAccount property value. Indicates the type of execution context the app runs in.
-        Args:
-            value: Value to set for the run_as_account property.
-        """
-        self._run_as_account = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

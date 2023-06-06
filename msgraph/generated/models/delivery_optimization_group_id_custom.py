@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import delivery_optimization_group_id_source
 
+@dataclass
 class DeliveryOptimizationGroupIdCustom(delivery_optimization_group_id_source.DeliveryOptimizationGroupIdSource):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeliveryOptimizationGroupIdCustom and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deliveryOptimizationGroupIdCustom"
-        # Specifies an arbitrary group ID that the device belongs to
-        self._group_id_custom: Optional[str] = None
+    odata_type = "#microsoft.graph.deliveryOptimizationGroupIdCustom"
+    # Specifies an arbitrary group ID that the device belongs to
+    group_id_custom: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeliveryOptimizationGroupIdCustom:
@@ -42,23 +39,6 @@ class DeliveryOptimizationGroupIdCustom(delivery_optimization_group_id_source.De
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def group_id_custom(self,) -> Optional[str]:
-        """
-        Gets the groupIdCustom property value. Specifies an arbitrary group ID that the device belongs to
-        Returns: Optional[str]
-        """
-        return self._group_id_custom
-    
-    @group_id_custom.setter
-    def group_id_custom(self,value: Optional[str] = None) -> None:
-        """
-        Sets the groupIdCustom property value. Specifies an arbitrary group ID that the device belongs to
-        Args:
-            value: Value to set for the group_id_custom property.
-        """
-        self._group_id_custom = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,16 +8,12 @@ if TYPE_CHECKING:
 
 from . import device_management_setting_category
 
+@dataclass
 class DeviceManagementTemplateSettingCategory(device_management_setting_category.DeviceManagementSettingCategory):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementTemplateSettingCategory and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The settings this category contains
-        self._recommended_settings: Optional[List[device_management_setting_instance.DeviceManagementSettingInstance]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The settings this category contains
+    recommended_settings: Optional[List[device_management_setting_instance.DeviceManagementSettingInstance]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementTemplateSettingCategory:
@@ -43,23 +40,6 @@ class DeviceManagementTemplateSettingCategory(device_management_setting_category
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def recommended_settings(self,) -> Optional[List[device_management_setting_instance.DeviceManagementSettingInstance]]:
-        """
-        Gets the recommendedSettings property value. The settings this category contains
-        Returns: Optional[List[device_management_setting_instance.DeviceManagementSettingInstance]]
-        """
-        return self._recommended_settings
-    
-    @recommended_settings.setter
-    def recommended_settings(self,value: Optional[List[device_management_setting_instance.DeviceManagementSettingInstance]] = None) -> None:
-        """
-        Sets the recommendedSettings property value. The settings this category contains
-        Args:
-            value: Value to set for the recommended_settings property.
-        """
-        self._recommended_settings = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

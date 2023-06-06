@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,73 +9,18 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class DeviceLocalCredential(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceLocalCredential and sets the default values.
-        """
-        super().__init__()
-        # The name of the local admin account for which LAPS is enabled.
-        self._account_name: Optional[str] = None
-        # The SID of the local admin account for which LAPS is enabled.
-        self._account_sid: Optional[str] = None
-        # When the local adminstrator account credential for the device object was backed up to Azure Active Directory.
-        self._backup_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The password for the local administrator account that is backed up to Azure Active Directory and returned as a base 64 encoded value.
-        self._password_base64: Optional[str] = None
-    
-    @property
-    def account_name(self,) -> Optional[str]:
-        """
-        Gets the accountName property value. The name of the local admin account for which LAPS is enabled.
-        Returns: Optional[str]
-        """
-        return self._account_name
-    
-    @account_name.setter
-    def account_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the accountName property value. The name of the local admin account for which LAPS is enabled.
-        Args:
-            value: Value to set for the account_name property.
-        """
-        self._account_name = value
-    
-    @property
-    def account_sid(self,) -> Optional[str]:
-        """
-        Gets the accountSid property value. The SID of the local admin account for which LAPS is enabled.
-        Returns: Optional[str]
-        """
-        return self._account_sid
-    
-    @account_sid.setter
-    def account_sid(self,value: Optional[str] = None) -> None:
-        """
-        Sets the accountSid property value. The SID of the local admin account for which LAPS is enabled.
-        Args:
-            value: Value to set for the account_sid property.
-        """
-        self._account_sid = value
-    
-    @property
-    def backup_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the backupDateTime property value. When the local adminstrator account credential for the device object was backed up to Azure Active Directory.
-        Returns: Optional[datetime]
-        """
-        return self._backup_date_time
-    
-    @backup_date_time.setter
-    def backup_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the backupDateTime property value. When the local adminstrator account credential for the device object was backed up to Azure Active Directory.
-        Args:
-            value: Value to set for the backup_date_time property.
-        """
-        self._backup_date_time = value
+    # The name of the local admin account for which LAPS is enabled.
+    account_name: Optional[str] = None
+    # The SID of the local admin account for which LAPS is enabled.
+    account_sid: Optional[str] = None
+    # When the local adminstrator account credential for the device object was backed up to Azure Active Directory.
+    backup_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The password for the local administrator account that is backed up to Azure Active Directory and returned as a base 64 encoded value.
+    password_base64: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceLocalCredential:
@@ -104,23 +50,6 @@ class DeviceLocalCredential(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def password_base64(self,) -> Optional[str]:
-        """
-        Gets the passwordBase64 property value. The password for the local administrator account that is backed up to Azure Active Directory and returned as a base 64 encoded value.
-        Returns: Optional[str]
-        """
-        return self._password_base64
-    
-    @password_base64.setter
-    def password_base64(self,value: Optional[str] = None) -> None:
-        """
-        Sets the passwordBase64 property value. The password for the local administrator account that is backed up to Azure Active Directory and returned as a base 64 encoded value.
-        Args:
-            value: Value to set for the password_base64 property.
-        """
-        self._password_base64 = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

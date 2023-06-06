@@ -1,38 +1,19 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class ApplicableContentDeviceMatch(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new applicableContentDeviceMatch and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The deviceId property
-        self._device_id: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Collection of vendors who recommend the content.
-        self._recommended_by: Optional[List[str]] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The deviceId property
+    device_id: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Collection of vendors who recommend the content.
+    recommended_by: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ApplicableContentDeviceMatch:
@@ -46,23 +27,6 @@ class ApplicableContentDeviceMatch(AdditionalDataHolder, Parsable):
             raise Exception("parse_node cannot be undefined")
         return ApplicableContentDeviceMatch()
     
-    @property
-    def device_id(self,) -> Optional[str]:
-        """
-        Gets the deviceId property value. The deviceId property
-        Returns: Optional[str]
-        """
-        return self._device_id
-    
-    @device_id.setter
-    def device_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the deviceId property value. The deviceId property
-        Args:
-            value: Value to set for the device_id property.
-        """
-        self._device_id = value
-    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -74,40 +38,6 @@ class ApplicableContentDeviceMatch(AdditionalDataHolder, Parsable):
             "recommendedBy": lambda n : setattr(self, 'recommended_by', n.get_collection_of_primitive_values(str)),
         }
         return fields
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def recommended_by(self,) -> Optional[List[str]]:
-        """
-        Gets the recommendedBy property value. Collection of vendors who recommend the content.
-        Returns: Optional[List[str]]
-        """
-        return self._recommended_by
-    
-    @recommended_by.setter
-    def recommended_by(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the recommendedBy property value. Collection of vendors who recommend the content.
-        Args:
-            value: Value to set for the recommended_by property.
-        """
-        self._recommended_by = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

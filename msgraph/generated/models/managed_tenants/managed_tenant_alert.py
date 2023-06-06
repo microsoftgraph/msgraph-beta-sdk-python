@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -9,239 +10,48 @@ if TYPE_CHECKING:
 
 from .. import entity
 
+@dataclass
 class ManagedTenantAlert(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new managedTenantAlert and sets the default values.
-        """
-        super().__init__()
-        # The alertData property
-        self._alert_data: Optional[alert_data.AlertData] = None
-        # The alertDataReferenceStrings property
-        self._alert_data_reference_strings: Optional[List[alert_data_reference_string.AlertDataReferenceString]] = None
-        # The alertLogs property
-        self._alert_logs: Optional[List[managed_tenant_alert_log.ManagedTenantAlertLog]] = None
-        # The alertRule property
-        self._alert_rule: Optional[managed_tenant_alert_rule.ManagedTenantAlertRule] = None
-        # The alertRuleDisplayName property
-        self._alert_rule_display_name: Optional[str] = None
-        # The apiNotifications property
-        self._api_notifications: Optional[List[managed_tenant_api_notification.ManagedTenantApiNotification]] = None
-        # The assignedToUserId property
-        self._assigned_to_user_id: Optional[str] = None
-        # The correlationCount property
-        self._correlation_count: Optional[int] = None
-        # The correlationId property
-        self._correlation_id: Optional[str] = None
-        # The createdByUserId property
-        self._created_by_user_id: Optional[str] = None
-        # The createdDateTime property
-        self._created_date_time: Optional[datetime] = None
-        # The emailNotifications property
-        self._email_notifications: Optional[List[managed_tenant_email_notification.ManagedTenantEmailNotification]] = None
-        # The lastActionByUserId property
-        self._last_action_by_user_id: Optional[str] = None
-        # The lastActionDateTime property
-        self._last_action_date_time: Optional[datetime] = None
-        # The message property
-        self._message: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The severity property
-        self._severity: Optional[alert_severity.AlertSeverity] = None
-        # The status property
-        self._status: Optional[alert_status.AlertStatus] = None
-        # The tenantId property
-        self._tenant_id: Optional[str] = None
-        # The title property
-        self._title: Optional[str] = None
-    
-    @property
-    def alert_data(self,) -> Optional[alert_data.AlertData]:
-        """
-        Gets the alertData property value. The alertData property
-        Returns: Optional[alert_data.AlertData]
-        """
-        return self._alert_data
-    
-    @alert_data.setter
-    def alert_data(self,value: Optional[alert_data.AlertData] = None) -> None:
-        """
-        Sets the alertData property value. The alertData property
-        Args:
-            value: Value to set for the alert_data property.
-        """
-        self._alert_data = value
-    
-    @property
-    def alert_data_reference_strings(self,) -> Optional[List[alert_data_reference_string.AlertDataReferenceString]]:
-        """
-        Gets the alertDataReferenceStrings property value. The alertDataReferenceStrings property
-        Returns: Optional[List[alert_data_reference_string.AlertDataReferenceString]]
-        """
-        return self._alert_data_reference_strings
-    
-    @alert_data_reference_strings.setter
-    def alert_data_reference_strings(self,value: Optional[List[alert_data_reference_string.AlertDataReferenceString]] = None) -> None:
-        """
-        Sets the alertDataReferenceStrings property value. The alertDataReferenceStrings property
-        Args:
-            value: Value to set for the alert_data_reference_strings property.
-        """
-        self._alert_data_reference_strings = value
-    
-    @property
-    def alert_logs(self,) -> Optional[List[managed_tenant_alert_log.ManagedTenantAlertLog]]:
-        """
-        Gets the alertLogs property value. The alertLogs property
-        Returns: Optional[List[managed_tenant_alert_log.ManagedTenantAlertLog]]
-        """
-        return self._alert_logs
-    
-    @alert_logs.setter
-    def alert_logs(self,value: Optional[List[managed_tenant_alert_log.ManagedTenantAlertLog]] = None) -> None:
-        """
-        Sets the alertLogs property value. The alertLogs property
-        Args:
-            value: Value to set for the alert_logs property.
-        """
-        self._alert_logs = value
-    
-    @property
-    def alert_rule(self,) -> Optional[managed_tenant_alert_rule.ManagedTenantAlertRule]:
-        """
-        Gets the alertRule property value. The alertRule property
-        Returns: Optional[managed_tenant_alert_rule.ManagedTenantAlertRule]
-        """
-        return self._alert_rule
-    
-    @alert_rule.setter
-    def alert_rule(self,value: Optional[managed_tenant_alert_rule.ManagedTenantAlertRule] = None) -> None:
-        """
-        Sets the alertRule property value. The alertRule property
-        Args:
-            value: Value to set for the alert_rule property.
-        """
-        self._alert_rule = value
-    
-    @property
-    def alert_rule_display_name(self,) -> Optional[str]:
-        """
-        Gets the alertRuleDisplayName property value. The alertRuleDisplayName property
-        Returns: Optional[str]
-        """
-        return self._alert_rule_display_name
-    
-    @alert_rule_display_name.setter
-    def alert_rule_display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the alertRuleDisplayName property value. The alertRuleDisplayName property
-        Args:
-            value: Value to set for the alert_rule_display_name property.
-        """
-        self._alert_rule_display_name = value
-    
-    @property
-    def api_notifications(self,) -> Optional[List[managed_tenant_api_notification.ManagedTenantApiNotification]]:
-        """
-        Gets the apiNotifications property value. The apiNotifications property
-        Returns: Optional[List[managed_tenant_api_notification.ManagedTenantApiNotification]]
-        """
-        return self._api_notifications
-    
-    @api_notifications.setter
-    def api_notifications(self,value: Optional[List[managed_tenant_api_notification.ManagedTenantApiNotification]] = None) -> None:
-        """
-        Sets the apiNotifications property value. The apiNotifications property
-        Args:
-            value: Value to set for the api_notifications property.
-        """
-        self._api_notifications = value
-    
-    @property
-    def assigned_to_user_id(self,) -> Optional[str]:
-        """
-        Gets the assignedToUserId property value. The assignedToUserId property
-        Returns: Optional[str]
-        """
-        return self._assigned_to_user_id
-    
-    @assigned_to_user_id.setter
-    def assigned_to_user_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the assignedToUserId property value. The assignedToUserId property
-        Args:
-            value: Value to set for the assigned_to_user_id property.
-        """
-        self._assigned_to_user_id = value
-    
-    @property
-    def correlation_count(self,) -> Optional[int]:
-        """
-        Gets the correlationCount property value. The correlationCount property
-        Returns: Optional[int]
-        """
-        return self._correlation_count
-    
-    @correlation_count.setter
-    def correlation_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the correlationCount property value. The correlationCount property
-        Args:
-            value: Value to set for the correlation_count property.
-        """
-        self._correlation_count = value
-    
-    @property
-    def correlation_id(self,) -> Optional[str]:
-        """
-        Gets the correlationId property value. The correlationId property
-        Returns: Optional[str]
-        """
-        return self._correlation_id
-    
-    @correlation_id.setter
-    def correlation_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the correlationId property value. The correlationId property
-        Args:
-            value: Value to set for the correlation_id property.
-        """
-        self._correlation_id = value
-    
-    @property
-    def created_by_user_id(self,) -> Optional[str]:
-        """
-        Gets the createdByUserId property value. The createdByUserId property
-        Returns: Optional[str]
-        """
-        return self._created_by_user_id
-    
-    @created_by_user_id.setter
-    def created_by_user_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the createdByUserId property value. The createdByUserId property
-        Args:
-            value: Value to set for the created_by_user_id property.
-        """
-        self._created_by_user_id = value
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. The createdDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. The createdDateTime property
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+    # The alertData property
+    alert_data: Optional[alert_data.AlertData] = None
+    # The alertDataReferenceStrings property
+    alert_data_reference_strings: Optional[List[alert_data_reference_string.AlertDataReferenceString]] = None
+    # The alertLogs property
+    alert_logs: Optional[List[managed_tenant_alert_log.ManagedTenantAlertLog]] = None
+    # The alertRule property
+    alert_rule: Optional[managed_tenant_alert_rule.ManagedTenantAlertRule] = None
+    # The alertRuleDisplayName property
+    alert_rule_display_name: Optional[str] = None
+    # The apiNotifications property
+    api_notifications: Optional[List[managed_tenant_api_notification.ManagedTenantApiNotification]] = None
+    # The assignedToUserId property
+    assigned_to_user_id: Optional[str] = None
+    # The correlationCount property
+    correlation_count: Optional[int] = None
+    # The correlationId property
+    correlation_id: Optional[str] = None
+    # The createdByUserId property
+    created_by_user_id: Optional[str] = None
+    # The createdDateTime property
+    created_date_time: Optional[datetime] = None
+    # The emailNotifications property
+    email_notifications: Optional[List[managed_tenant_email_notification.ManagedTenantEmailNotification]] = None
+    # The lastActionByUserId property
+    last_action_by_user_id: Optional[str] = None
+    # The lastActionDateTime property
+    last_action_date_time: Optional[datetime] = None
+    # The message property
+    message: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The severity property
+    severity: Optional[alert_severity.AlertSeverity] = None
+    # The status property
+    status: Optional[alert_status.AlertStatus] = None
+    # The tenantId property
+    tenant_id: Optional[str] = None
+    # The title property
+    title: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ManagedTenantAlert:
@@ -254,23 +64,6 @@ class ManagedTenantAlert(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return ManagedTenantAlert()
-    
-    @property
-    def email_notifications(self,) -> Optional[List[managed_tenant_email_notification.ManagedTenantEmailNotification]]:
-        """
-        Gets the emailNotifications property value. The emailNotifications property
-        Returns: Optional[List[managed_tenant_email_notification.ManagedTenantEmailNotification]]
-        """
-        return self._email_notifications
-    
-    @email_notifications.setter
-    def email_notifications(self,value: Optional[List[managed_tenant_email_notification.ManagedTenantEmailNotification]] = None) -> None:
-        """
-        Sets the emailNotifications property value. The emailNotifications property
-        Args:
-            value: Value to set for the email_notifications property.
-        """
-        self._email_notifications = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -305,57 +98,6 @@ class ManagedTenantAlert(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def last_action_by_user_id(self,) -> Optional[str]:
-        """
-        Gets the lastActionByUserId property value. The lastActionByUserId property
-        Returns: Optional[str]
-        """
-        return self._last_action_by_user_id
-    
-    @last_action_by_user_id.setter
-    def last_action_by_user_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the lastActionByUserId property value. The lastActionByUserId property
-        Args:
-            value: Value to set for the last_action_by_user_id property.
-        """
-        self._last_action_by_user_id = value
-    
-    @property
-    def last_action_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastActionDateTime property value. The lastActionDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._last_action_date_time
-    
-    @last_action_date_time.setter
-    def last_action_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastActionDateTime property value. The lastActionDateTime property
-        Args:
-            value: Value to set for the last_action_date_time property.
-        """
-        self._last_action_date_time = value
-    
-    @property
-    def message(self,) -> Optional[str]:
-        """
-        Gets the message property value. The message property
-        Returns: Optional[str]
-        """
-        return self._message
-    
-    @message.setter
-    def message(self,value: Optional[str] = None) -> None:
-        """
-        Sets the message property value. The message property
-        Args:
-            value: Value to set for the message property.
-        """
-        self._message = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -384,73 +126,5 @@ class ManagedTenantAlert(entity.Entity):
         writer.write_enum_value("status", self.status)
         writer.write_str_value("tenantId", self.tenant_id)
         writer.write_str_value("title", self.title)
-    
-    @property
-    def severity(self,) -> Optional[alert_severity.AlertSeverity]:
-        """
-        Gets the severity property value. The severity property
-        Returns: Optional[alert_severity.AlertSeverity]
-        """
-        return self._severity
-    
-    @severity.setter
-    def severity(self,value: Optional[alert_severity.AlertSeverity] = None) -> None:
-        """
-        Sets the severity property value. The severity property
-        Args:
-            value: Value to set for the severity property.
-        """
-        self._severity = value
-    
-    @property
-    def status(self,) -> Optional[alert_status.AlertStatus]:
-        """
-        Gets the status property value. The status property
-        Returns: Optional[alert_status.AlertStatus]
-        """
-        return self._status
-    
-    @status.setter
-    def status(self,value: Optional[alert_status.AlertStatus] = None) -> None:
-        """
-        Sets the status property value. The status property
-        Args:
-            value: Value to set for the status property.
-        """
-        self._status = value
-    
-    @property
-    def tenant_id(self,) -> Optional[str]:
-        """
-        Gets the tenantId property value. The tenantId property
-        Returns: Optional[str]
-        """
-        return self._tenant_id
-    
-    @tenant_id.setter
-    def tenant_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the tenantId property value. The tenantId property
-        Args:
-            value: Value to set for the tenant_id property.
-        """
-        self._tenant_id = value
-    
-    @property
-    def title(self,) -> Optional[str]:
-        """
-        Gets the title property value. The title property
-        Returns: Optional[str]
-        """
-        return self._title
-    
-    @title.setter
-    def title(self,value: Optional[str] = None) -> None:
-        """
-        Sets the title property value. The title property
-        Args:
-            value: Value to set for the title property.
-        """
-        self._title = value
     
 

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import delivery_optimization_max_cache_size
 
+@dataclass
 class DeliveryOptimizationMaxCacheSizePercentage(delivery_optimization_max_cache_size.DeliveryOptimizationMaxCacheSize):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeliveryOptimizationMaxCacheSizePercentage and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deliveryOptimizationMaxCacheSizePercentage"
-        # Specifies the maximum cache size that Delivery Optimization can utilize, as a percentage of disk size (1-100). Valid values 1 to 100
-        self._maximum_cache_size_percentage: Optional[int] = None
+    odata_type = "#microsoft.graph.deliveryOptimizationMaxCacheSizePercentage"
+    # Specifies the maximum cache size that Delivery Optimization can utilize, as a percentage of disk size (1-100). Valid values 1 to 100
+    maximum_cache_size_percentage: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeliveryOptimizationMaxCacheSizePercentage:
@@ -42,23 +39,6 @@ class DeliveryOptimizationMaxCacheSizePercentage(delivery_optimization_max_cache
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def maximum_cache_size_percentage(self,) -> Optional[int]:
-        """
-        Gets the maximumCacheSizePercentage property value. Specifies the maximum cache size that Delivery Optimization can utilize, as a percentage of disk size (1-100). Valid values 1 to 100
-        Returns: Optional[int]
-        """
-        return self._maximum_cache_size_percentage
-    
-    @maximum_cache_size_percentage.setter
-    def maximum_cache_size_percentage(self,value: Optional[int] = None) -> None:
-        """
-        Sets the maximumCacheSizePercentage property value. Specifies the maximum cache size that Delivery Optimization can utilize, as a percentage of disk size (1-100). Valid values 1 to 100
-        Args:
-            value: Value to set for the maximum_cache_size_percentage property.
-        """
-        self._maximum_cache_size_percentage = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

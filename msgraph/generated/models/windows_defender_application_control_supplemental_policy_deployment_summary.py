@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,18 +8,14 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new windowsDefenderApplicationControlSupplementalPolicyDeploymentSummary and sets the default values.
-        """
-        super().__init__()
-        # Number of Devices that have successfully deployed this WindowsDefenderApplicationControl supplemental policy.
-        self._deployed_device_count: Optional[int] = None
-        # Number of Devices that have failed to deploy this WindowsDefenderApplicationControl supplemental policy.
-        self._failed_device_count: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+    # Number of Devices that have successfully deployed this WindowsDefenderApplicationControl supplemental policy.
+    deployed_device_count: Optional[int] = None
+    # Number of Devices that have failed to deploy this WindowsDefenderApplicationControl supplemental policy.
+    failed_device_count: Optional[int] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary:
@@ -31,40 +28,6 @@ class WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary(entit
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary()
-    
-    @property
-    def deployed_device_count(self,) -> Optional[int]:
-        """
-        Gets the deployedDeviceCount property value. Number of Devices that have successfully deployed this WindowsDefenderApplicationControl supplemental policy.
-        Returns: Optional[int]
-        """
-        return self._deployed_device_count
-    
-    @deployed_device_count.setter
-    def deployed_device_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the deployedDeviceCount property value. Number of Devices that have successfully deployed this WindowsDefenderApplicationControl supplemental policy.
-        Args:
-            value: Value to set for the deployed_device_count property.
-        """
-        self._deployed_device_count = value
-    
-    @property
-    def failed_device_count(self,) -> Optional[int]:
-        """
-        Gets the failedDeviceCount property value. Number of Devices that have failed to deploy this WindowsDefenderApplicationControl supplemental policy.
-        Returns: Optional[int]
-        """
-        return self._failed_device_count
-    
-    @failed_device_count.setter
-    def failed_device_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the failedDeviceCount property value. Number of Devices that have failed to deploy this WindowsDefenderApplicationControl supplemental policy.
-        Args:
-            value: Value to set for the failed_device_count property.
-        """
-        self._failed_device_count = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """

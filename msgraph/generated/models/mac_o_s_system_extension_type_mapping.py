@@ -1,61 +1,25 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import mac_o_s_system_extension_type
 
+@dataclass
 class MacOSSystemExtensionTypeMapping(AdditionalDataHolder, Parsable):
     """
     Represents a mapping between team identifiers for macOS system extensions and system extension types.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new macOSSystemExtensionTypeMapping and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # Flag enum representing the allowed macOS system extension types.
-        self._allowed_types: Optional[mac_o_s_system_extension_type.MacOSSystemExtensionType] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Gets or sets the team identifier used to sign the system extension.
-        self._team_identifier: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def allowed_types(self,) -> Optional[mac_o_s_system_extension_type.MacOSSystemExtensionType]:
-        """
-        Gets the allowedTypes property value. Flag enum representing the allowed macOS system extension types.
-        Returns: Optional[mac_o_s_system_extension_type.MacOSSystemExtensionType]
-        """
-        return self._allowed_types
-    
-    @allowed_types.setter
-    def allowed_types(self,value: Optional[mac_o_s_system_extension_type.MacOSSystemExtensionType] = None) -> None:
-        """
-        Sets the allowedTypes property value. Flag enum representing the allowed macOS system extension types.
-        Args:
-            value: Value to set for the allowed_types property.
-        """
-        self._allowed_types = value
+    # Flag enum representing the allowed macOS system extension types.
+    allowed_types: Optional[mac_o_s_system_extension_type.MacOSSystemExtensionType] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Gets or sets the team identifier used to sign the system extension.
+    team_identifier: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSSystemExtensionTypeMapping:
@@ -83,23 +47,6 @@ class MacOSSystemExtensionTypeMapping(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -112,22 +59,5 @@ class MacOSSystemExtensionTypeMapping(AdditionalDataHolder, Parsable):
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("teamIdentifier", self.team_identifier)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def team_identifier(self,) -> Optional[str]:
-        """
-        Gets the teamIdentifier property value. Gets or sets the team identifier used to sign the system extension.
-        Returns: Optional[str]
-        """
-        return self._team_identifier
-    
-    @team_identifier.setter
-    def team_identifier(self,value: Optional[str] = None) -> None:
-        """
-        Sets the teamIdentifier property value. Gets or sets the team identifier used to sign the system extension.
-        Args:
-            value: Value to set for the team_identifier property.
-        """
-        self._team_identifier = value
     
 

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import subject_rights_request_site_location
 
+@dataclass
 class SubjectRightsRequestEnumeratedSiteLocation(subject_rights_request_site_location.SubjectRightsRequestSiteLocation):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new SubjectRightsRequestEnumeratedSiteLocation and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.subjectRightsRequestEnumeratedSiteLocation"
-        # Collection of site URLs that should be included. Includes the URL of each site, for example, https://www.contoso.com/site1.
-        self._urls: Optional[List[str]] = None
+    odata_type = "#microsoft.graph.subjectRightsRequestEnumeratedSiteLocation"
+    # Collection of site URLs that should be included. Includes the URL of each site, for example, https://www.contoso.com/site1.
+    urls: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SubjectRightsRequestEnumeratedSiteLocation:
@@ -53,22 +50,5 @@ class SubjectRightsRequestEnumeratedSiteLocation(subject_rights_request_site_loc
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_collection_of_primitive_values("urls", self.urls)
-    
-    @property
-    def urls(self,) -> Optional[List[str]]:
-        """
-        Gets the urls property value. Collection of site URLs that should be included. Includes the URL of each site, for example, https://www.contoso.com/site1.
-        Returns: Optional[List[str]]
-        """
-        return self._urls
-    
-    @urls.setter
-    def urls(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the urls property value. Collection of site URLs that should be included. Includes the URL of each site, for example, https://www.contoso.com/site1.
-        Args:
-            value: Value to set for the urls property.
-        """
-        self._urls = value
     
 

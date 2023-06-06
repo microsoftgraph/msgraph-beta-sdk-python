@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -38,7 +38,7 @@ class DismissRequestBuilder():
     
     async def post(self,body: Optional[dismiss_post_request_body.DismissPostRequestBody] = None, request_configuration: Optional[DismissRequestBuilderPostRequestConfiguration] = None) -> Optional[impacted_resource.ImpactedResource]:
         """
-        Invoke action dismiss
+        Dismiss an impactedResources object and update its status to `dismissed`.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +63,7 @@ class DismissRequestBuilder():
     
     def to_post_request_information(self,body: Optional[dismiss_post_request_body.DismissPostRequestBody] = None, request_configuration: Optional[DismissRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action dismiss
+        Dismiss an impactedResources object and update its status to `dismissed`.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

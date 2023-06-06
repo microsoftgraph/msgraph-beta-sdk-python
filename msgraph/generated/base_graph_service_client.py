@@ -29,7 +29,6 @@ if TYPE_CHECKING:
     from .authentication_methods_policy import authentication_methods_policy_request_builder
     from .booking_businesses import booking_businesses_request_builder
     from .booking_currencies import booking_currencies_request_builder
-    from .branding import branding_request_builder
     from .business_flow_templates import business_flow_templates_request_builder
     from .certificate_based_auth_configuration import certificate_based_auth_configuration_request_builder
     from .chats import chats_request_builder
@@ -321,15 +320,6 @@ class BaseGraphServiceClient():
         from .booking_currencies import booking_currencies_request_builder
 
         return booking_currencies_request_builder.BookingCurrenciesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def branding(self) -> branding_request_builder.BrandingRequestBuilder:
-        """
-        Provides operations to manage the organizationalBranding singleton.
-        """
-        from .branding import branding_request_builder
-
-        return branding_request_builder.BrandingRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def business_flow_templates(self) -> business_flow_templates_request_builder.BusinessFlowTemplatesRequestBuilder:

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import education_identity_synchronization_configuration
 
+@dataclass
 class EducationIdentityMatchingConfiguration(education_identity_synchronization_configuration.EducationIdentitySynchronizationConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new EducationIdentityMatchingConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.educationIdentityMatchingConfiguration"
-        # Mapping between the user account and the options to use to uniquely identify the user to update.
-        self._matching_options: Optional[List[education_identity_matching_options.EducationIdentityMatchingOptions]] = None
+    odata_type = "#microsoft.graph.educationIdentityMatchingConfiguration"
+    # Mapping between the user account and the options to use to uniquely identify the user to update.
+    matching_options: Optional[List[education_identity_matching_options.EducationIdentityMatchingOptions]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EducationIdentityMatchingConfiguration:
@@ -42,23 +39,6 @@ class EducationIdentityMatchingConfiguration(education_identity_synchronization_
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def matching_options(self,) -> Optional[List[education_identity_matching_options.EducationIdentityMatchingOptions]]:
-        """
-        Gets the matchingOptions property value. Mapping between the user account and the options to use to uniquely identify the user to update.
-        Returns: Optional[List[education_identity_matching_options.EducationIdentityMatchingOptions]]
-        """
-        return self._matching_options
-    
-    @matching_options.setter
-    def matching_options(self,value: Optional[List[education_identity_matching_options.EducationIdentityMatchingOptions]] = None) -> None:
-        """
-        Sets the matchingOptions property value. Mapping between the user account and the options to use to uniquely identify the user to update.
-        Args:
-            value: Value to set for the matching_options property.
-        """
-        self._matching_options = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

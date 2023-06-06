@@ -1,6 +1,6 @@
 from enum import Enum
 
-class TlpLevel(Enum):
+class TlpLevel(str, Enum):
     Unknown = "unknown",
     White = "white",
     Green = "green",

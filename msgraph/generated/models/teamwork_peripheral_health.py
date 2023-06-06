@@ -1,60 +1,24 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import teamwork_connection, teamwork_peripheral
 
+@dataclass
 class TeamworkPeripheralHealth(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new teamworkPeripheralHealth and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The connected state and time since the peripheral device was connected.
-        self._connection: Optional[teamwork_connection.TeamworkConnection] = None
-        # True if the peripheral is optional. Used for health computation.
-        self._is_optional: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The peripheral property
-        self._peripheral: Optional[teamwork_peripheral.TeamworkPeripheral] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def connection(self,) -> Optional[teamwork_connection.TeamworkConnection]:
-        """
-        Gets the connection property value. The connected state and time since the peripheral device was connected.
-        Returns: Optional[teamwork_connection.TeamworkConnection]
-        """
-        return self._connection
-    
-    @connection.setter
-    def connection(self,value: Optional[teamwork_connection.TeamworkConnection] = None) -> None:
-        """
-        Sets the connection property value. The connected state and time since the peripheral device was connected.
-        Args:
-            value: Value to set for the connection property.
-        """
-        self._connection = value
+    # The connected state and time since the peripheral device was connected.
+    connection: Optional[teamwork_connection.TeamworkConnection] = None
+    # True if the peripheral is optional. Used for health computation.
+    is_optional: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The peripheral property
+    peripheral: Optional[teamwork_peripheral.TeamworkPeripheral] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeamworkPeripheralHealth:
@@ -82,57 +46,6 @@ class TeamworkPeripheralHealth(AdditionalDataHolder, Parsable):
             "peripheral": lambda n : setattr(self, 'peripheral', n.get_object_value(teamwork_peripheral.TeamworkPeripheral)),
         }
         return fields
-    
-    @property
-    def is_optional(self,) -> Optional[bool]:
-        """
-        Gets the isOptional property value. True if the peripheral is optional. Used for health computation.
-        Returns: Optional[bool]
-        """
-        return self._is_optional
-    
-    @is_optional.setter
-    def is_optional(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isOptional property value. True if the peripheral is optional. Used for health computation.
-        Args:
-            value: Value to set for the is_optional property.
-        """
-        self._is_optional = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def peripheral(self,) -> Optional[teamwork_peripheral.TeamworkPeripheral]:
-        """
-        Gets the peripheral property value. The peripheral property
-        Returns: Optional[teamwork_peripheral.TeamworkPeripheral]
-        """
-        return self._peripheral
-    
-    @peripheral.setter
-    def peripheral(self,value: Optional[teamwork_peripheral.TeamworkPeripheral] = None) -> None:
-        """
-        Sets the peripheral property value. The peripheral property
-        Args:
-            value: Value to set for the peripheral property.
-        """
-        self._peripheral = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

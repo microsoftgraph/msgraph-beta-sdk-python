@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,32 +9,11 @@ if TYPE_CHECKING:
 
 from . import activity_statistics
 
+@dataclass
 class CallActivityStatistics(activity_statistics.ActivityStatistics):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new CallActivityStatistics and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.callActivityStatistics"
-        # Time spent on calls outside of working hours, which is based on the user's Outlook calendar setting for work hours. The value is represented in ISO 8601 format for durations.
-        self._after_hours: Optional[timedelta] = None
-    
-    @property
-    def after_hours(self,) -> Optional[timedelta]:
-        """
-        Gets the afterHours property value. Time spent on calls outside of working hours, which is based on the user's Outlook calendar setting for work hours. The value is represented in ISO 8601 format for durations.
-        Returns: Optional[timedelta]
-        """
-        return self._after_hours
-    
-    @after_hours.setter
-    def after_hours(self,value: Optional[timedelta] = None) -> None:
-        """
-        Sets the afterHours property value. Time spent on calls outside of working hours, which is based on the user's Outlook calendar setting for work hours. The value is represented in ISO 8601 format for durations.
-        Args:
-            value: Value to set for the after_hours property.
-        """
-        self._after_hours = value
+    odata_type = "#microsoft.graph.callActivityStatistics"
+    # Time spent on calls outside of working hours, which is based on the user's Outlook calendar setting for work hours. The value is represented in ISO 8601 format for durations.
+    after_hours: Optional[timedelta] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CallActivityStatistics:

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,14 +8,10 @@ if TYPE_CHECKING:
 
 from . import base_collection_pagination_count_response
 
+@dataclass
 class DeviceManagementComplianceActionItemCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementComplianceActionItemCollectionResponse and sets the default values.
-        """
-        super().__init__()
-        # The value property
-        self._value: Optional[List[device_management_compliance_action_item.DeviceManagementComplianceActionItem]] = None
+    # The value property
+    value: Optional[List[device_management_compliance_action_item.DeviceManagementComplianceActionItem]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementComplianceActionItemCollectionResponse:
@@ -52,22 +49,5 @@ class DeviceManagementComplianceActionItemCollectionResponse(base_collection_pag
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_collection_of_object_values("value", self.value)
-    
-    @property
-    def value(self,) -> Optional[List[device_management_compliance_action_item.DeviceManagementComplianceActionItem]]:
-        """
-        Gets the value property value. The value property
-        Returns: Optional[List[device_management_compliance_action_item.DeviceManagementComplianceActionItem]]
-        """
-        return self._value
-    
-    @value.setter
-    def value(self,value: Optional[List[device_management_compliance_action_item.DeviceManagementComplianceActionItem]] = None) -> None:
-        """
-        Sets the value property value. The value property
-        Args:
-            value: Value to set for the value property.
-        """
-        self._value = value
     
 

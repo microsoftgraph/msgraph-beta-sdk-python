@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,16 +8,12 @@ if TYPE_CHECKING:
 
 from . import device_management_setting_definition
 
+@dataclass
 class DeviceManagementAbstractComplexSettingDefinition(device_management_setting_definition.DeviceManagementSettingDefinition):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementAbstractComplexSettingDefinition and sets the default values.
-        """
-        super().__init__()
-        # List of definition IDs for all possible implementations of this abstract complex setting
-        self._implementations: Optional[List[str]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+    # List of definition IDs for all possible implementations of this abstract complex setting
+    implementations: Optional[List[str]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementAbstractComplexSettingDefinition:
@@ -43,23 +40,6 @@ class DeviceManagementAbstractComplexSettingDefinition(device_management_setting
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def implementations(self,) -> Optional[List[str]]:
-        """
-        Gets the implementations property value. List of definition IDs for all possible implementations of this abstract complex setting
-        Returns: Optional[List[str]]
-        """
-        return self._implementations
-    
-    @implementations.setter
-    def implementations(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the implementations property value. List of definition IDs for all possible implementations of this abstract complex setting
-        Args:
-            value: Value to set for the implementations property.
-        """
-        self._implementations = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

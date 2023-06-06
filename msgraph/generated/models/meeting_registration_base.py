@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,35 +8,14 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class MeetingRegistrationBase(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new meetingRegistrationBase and sets the default values.
-        """
-        super().__init__()
-        # Specifies who can register for the meeting.
-        self._allowed_registrant: Optional[meeting_audience.MeetingAudience] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Registrants of the online meeting.
-        self._registrants: Optional[List[meeting_registrant_base.MeetingRegistrantBase]] = None
-    
-    @property
-    def allowed_registrant(self,) -> Optional[meeting_audience.MeetingAudience]:
-        """
-        Gets the allowedRegistrant property value. Specifies who can register for the meeting.
-        Returns: Optional[meeting_audience.MeetingAudience]
-        """
-        return self._allowed_registrant
-    
-    @allowed_registrant.setter
-    def allowed_registrant(self,value: Optional[meeting_audience.MeetingAudience] = None) -> None:
-        """
-        Sets the allowedRegistrant property value. Specifies who can register for the meeting.
-        Args:
-            value: Value to set for the allowed_registrant property.
-        """
-        self._allowed_registrant = value
+    # Specifies who can register for the meeting.
+    allowed_registrant: Optional[meeting_audience.MeetingAudience] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Registrants of the online meeting.
+    registrants: Optional[List[meeting_registrant_base.MeetingRegistrantBase]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MeetingRegistrationBase:
@@ -74,23 +54,6 @@ class MeetingRegistrationBase(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def registrants(self,) -> Optional[List[meeting_registrant_base.MeetingRegistrantBase]]:
-        """
-        Gets the registrants property value. Registrants of the online meeting.
-        Returns: Optional[List[meeting_registrant_base.MeetingRegistrantBase]]
-        """
-        return self._registrants
-    
-    @registrants.setter
-    def registrants(self,value: Optional[List[meeting_registrant_base.MeetingRegistrantBase]] = None) -> None:
-        """
-        Sets the registrants property value. Registrants of the online meeting.
-        Args:
-            value: Value to set for the registrants property.
-        """
-        self._registrants = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

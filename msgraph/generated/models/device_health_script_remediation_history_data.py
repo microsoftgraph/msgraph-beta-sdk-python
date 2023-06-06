@@ -1,44 +1,25 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import date
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class DeviceHealthScriptRemediationHistoryData(AdditionalDataHolder, Parsable):
     """
     The number of devices remediated by a device health script on a given date.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceHealthScriptRemediationHistoryData and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The date on which devices were remediated by the device health script.
-        self._date: Optional[date] = None
-        # The number of devices that were found to have no issue by the device health script.
-        self._no_issue_device_count: Optional[int] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The number of devices remediated by the device health script.
-        self._remediated_device_count: Optional[int] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The date on which devices were remediated by the device health script.
+    date: Optional[date] = None
+    # The number of devices that were found to have no issue by the device health script.
+    no_issue_device_count: Optional[int] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The number of devices remediated by the device health script.
+    remediated_device_count: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceHealthScriptRemediationHistoryData:
@@ -52,23 +33,6 @@ class DeviceHealthScriptRemediationHistoryData(AdditionalDataHolder, Parsable):
             raise Exception("parse_node cannot be undefined")
         return DeviceHealthScriptRemediationHistoryData()
     
-    @property
-    def date(self,) -> Optional[date]:
-        """
-        Gets the date property value. The date on which devices were remediated by the device health script.
-        Returns: Optional[date]
-        """
-        return self._date
-    
-    @date.setter
-    def date(self,value: Optional[date] = None) -> None:
-        """
-        Sets the date property value. The date on which devices were remediated by the device health script.
-        Args:
-            value: Value to set for the date property.
-        """
-        self._date = value
-    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -81,57 +45,6 @@ class DeviceHealthScriptRemediationHistoryData(AdditionalDataHolder, Parsable):
             "remediatedDeviceCount": lambda n : setattr(self, 'remediated_device_count', n.get_int_value()),
         }
         return fields
-    
-    @property
-    def no_issue_device_count(self,) -> Optional[int]:
-        """
-        Gets the noIssueDeviceCount property value. The number of devices that were found to have no issue by the device health script.
-        Returns: Optional[int]
-        """
-        return self._no_issue_device_count
-    
-    @no_issue_device_count.setter
-    def no_issue_device_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the noIssueDeviceCount property value. The number of devices that were found to have no issue by the device health script.
-        Args:
-            value: Value to set for the no_issue_device_count property.
-        """
-        self._no_issue_device_count = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def remediated_device_count(self,) -> Optional[int]:
-        """
-        Gets the remediatedDeviceCount property value. The number of devices remediated by the device health script.
-        Returns: Optional[int]
-        """
-        return self._remediated_device_count
-    
-    @remediated_device_count.setter
-    def remediated_device_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the remediatedDeviceCount property value. The number of devices remediated by the device health script.
-        Args:
-            value: Value to set for the remediated_device_count property.
-        """
-        self._remediated_device_count = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,16 +8,12 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class EmployeeExperienceUser(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new EmployeeExperienceUser and sets the default values.
-        """
-        super().__init__()
-        # The learningCourseActivities property
-        self._learning_course_activities: Optional[List[learning_course_activity.LearningCourseActivity]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+    # The learningCourseActivities property
+    learning_course_activities: Optional[List[learning_course_activity.LearningCourseActivity]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EmployeeExperienceUser:
@@ -43,23 +40,6 @@ class EmployeeExperienceUser(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def learning_course_activities(self,) -> Optional[List[learning_course_activity.LearningCourseActivity]]:
-        """
-        Gets the learningCourseActivities property value. The learningCourseActivities property
-        Returns: Optional[List[learning_course_activity.LearningCourseActivity]]
-        """
-        return self._learning_course_activities
-    
-    @learning_course_activities.setter
-    def learning_course_activities(self,value: Optional[List[learning_course_activity.LearningCourseActivity]] = None) -> None:
-        """
-        Sets the learningCourseActivities property value. The learningCourseActivities property
-        Args:
-            value: Value to set for the learning_course_activities property.
-        """
-        self._learning_course_activities = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

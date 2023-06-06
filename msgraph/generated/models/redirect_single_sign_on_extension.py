@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,38 +8,17 @@ if TYPE_CHECKING:
 
 from . import single_sign_on_extension
 
+@dataclass
 class RedirectSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtension):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new RedirectSingleSignOnExtension and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.redirectSingleSignOnExtension"
-        # Gets or sets a list of typed key-value pairs used to configure Credential-type profiles. This collection can contain a maximum of 500 elements.
-        self._configurations: Optional[List[key_typed_value_pair.KeyTypedValuePair]] = None
-        # Gets or sets the bundle ID of the app extension that performs SSO for the specified URLs.
-        self._extension_identifier: Optional[str] = None
-        # Gets or sets the team ID of the app extension that performs SSO for the specified URLs.
-        self._team_identifier: Optional[str] = None
-        # One or more URL prefixes of identity providers on whose behalf the app extension performs single sign-on. URLs must begin with http:// or https://. All URL prefixes must be unique for all profiles.
-        self._url_prefixes: Optional[List[str]] = None
-    
-    @property
-    def configurations(self,) -> Optional[List[key_typed_value_pair.KeyTypedValuePair]]:
-        """
-        Gets the configurations property value. Gets or sets a list of typed key-value pairs used to configure Credential-type profiles. This collection can contain a maximum of 500 elements.
-        Returns: Optional[List[key_typed_value_pair.KeyTypedValuePair]]
-        """
-        return self._configurations
-    
-    @configurations.setter
-    def configurations(self,value: Optional[List[key_typed_value_pair.KeyTypedValuePair]] = None) -> None:
-        """
-        Sets the configurations property value. Gets or sets a list of typed key-value pairs used to configure Credential-type profiles. This collection can contain a maximum of 500 elements.
-        Args:
-            value: Value to set for the configurations property.
-        """
-        self._configurations = value
+    odata_type = "#microsoft.graph.redirectSingleSignOnExtension"
+    # Gets or sets a list of typed key-value pairs used to configure Credential-type profiles. This collection can contain a maximum of 500 elements.
+    configurations: Optional[List[key_typed_value_pair.KeyTypedValuePair]] = None
+    # Gets or sets the bundle ID of the app extension that performs SSO for the specified URLs.
+    extension_identifier: Optional[str] = None
+    # Gets or sets the team ID of the app extension that performs SSO for the specified URLs.
+    team_identifier: Optional[str] = None
+    # One or more URL prefixes of identity providers on whose behalf the app extension performs single sign-on. URLs must begin with http:// or https://. All URL prefixes must be unique for all profiles.
+    url_prefixes: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RedirectSingleSignOnExtension:
@@ -51,23 +31,6 @@ class RedirectSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return RedirectSingleSignOnExtension()
-    
-    @property
-    def extension_identifier(self,) -> Optional[str]:
-        """
-        Gets the extensionIdentifier property value. Gets or sets the bundle ID of the app extension that performs SSO for the specified URLs.
-        Returns: Optional[str]
-        """
-        return self._extension_identifier
-    
-    @extension_identifier.setter
-    def extension_identifier(self,value: Optional[str] = None) -> None:
-        """
-        Sets the extensionIdentifier property value. Gets or sets the bundle ID of the app extension that performs SSO for the specified URLs.
-        Args:
-            value: Value to set for the extension_identifier property.
-        """
-        self._extension_identifier = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -99,39 +62,5 @@ class RedirectSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         writer.write_str_value("extensionIdentifier", self.extension_identifier)
         writer.write_str_value("teamIdentifier", self.team_identifier)
         writer.write_collection_of_primitive_values("urlPrefixes", self.url_prefixes)
-    
-    @property
-    def team_identifier(self,) -> Optional[str]:
-        """
-        Gets the teamIdentifier property value. Gets or sets the team ID of the app extension that performs SSO for the specified URLs.
-        Returns: Optional[str]
-        """
-        return self._team_identifier
-    
-    @team_identifier.setter
-    def team_identifier(self,value: Optional[str] = None) -> None:
-        """
-        Sets the teamIdentifier property value. Gets or sets the team ID of the app extension that performs SSO for the specified URLs.
-        Args:
-            value: Value to set for the team_identifier property.
-        """
-        self._team_identifier = value
-    
-    @property
-    def url_prefixes(self,) -> Optional[List[str]]:
-        """
-        Gets the urlPrefixes property value. One or more URL prefixes of identity providers on whose behalf the app extension performs single sign-on. URLs must begin with http:// or https://. All URL prefixes must be unique for all profiles.
-        Returns: Optional[List[str]]
-        """
-        return self._url_prefixes
-    
-    @url_prefixes.setter
-    def url_prefixes(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the urlPrefixes property value. One or more URL prefixes of identity providers on whose behalf the app extension performs single sign-on. URLs must begin with http:// or https://. All URL prefixes must be unique for all profiles.
-        Args:
-            value: Value to set for the url_prefixes property.
-        """
-        self._url_prefixes = value
     
 

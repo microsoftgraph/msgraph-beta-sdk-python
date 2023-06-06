@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,18 +9,14 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class PrivilegedAccessScheduleInstance(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new privilegedAccessScheduleInstance and sets the default values.
-        """
-        super().__init__()
-        # When the schedule instance ends. Required.
-        self._end_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # When this instance starts. Required.
-        self._start_date_time: Optional[datetime] = None
+    # When the schedule instance ends. Required.
+    end_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # When this instance starts. Required.
+    start_date_time: Optional[datetime] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PrivilegedAccessScheduleInstance:
@@ -43,23 +40,6 @@ class PrivilegedAccessScheduleInstance(entity.Entity):
 
                 return privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance()
         return PrivilegedAccessScheduleInstance()
-    
-    @property
-    def end_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the endDateTime property value. When the schedule instance ends. Required.
-        Returns: Optional[datetime]
-        """
-        return self._end_date_time
-    
-    @end_date_time.setter
-    def end_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the endDateTime property value. When the schedule instance ends. Required.
-        Args:
-            value: Value to set for the end_date_time property.
-        """
-        self._end_date_time = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -87,22 +67,5 @@ class PrivilegedAccessScheduleInstance(entity.Entity):
         super().serialize(writer)
         writer.write_datetime_value("endDateTime", self.end_date_time)
         writer.write_datetime_value("startDateTime", self.start_date_time)
-    
-    @property
-    def start_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the startDateTime property value. When this instance starts. Required.
-        Returns: Optional[datetime]
-        """
-        return self._start_date_time
-    
-    @start_date_time.setter
-    def start_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the startDateTime property value. When this instance starts. Required.
-        Args:
-            value: Value to set for the start_date_time property.
-        """
-        self._start_date_time = value
     
 

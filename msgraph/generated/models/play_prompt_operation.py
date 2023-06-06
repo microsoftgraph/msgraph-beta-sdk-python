@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,33 +8,12 @@ if TYPE_CHECKING:
 
 from . import comms_operation
 
+@dataclass
 class PlayPromptOperation(comms_operation.CommsOperation):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new PlayPromptOperation and sets the default values.
-        """
-        super().__init__()
-        # Possible values are: unknown, completedSuccessfully, mediaOperationCanceled.
-        self._completion_reason: Optional[play_prompt_completion_reason.PlayPromptCompletionReason] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
-    @property
-    def completion_reason(self,) -> Optional[play_prompt_completion_reason.PlayPromptCompletionReason]:
-        """
-        Gets the completionReason property value. Possible values are: unknown, completedSuccessfully, mediaOperationCanceled.
-        Returns: Optional[play_prompt_completion_reason.PlayPromptCompletionReason]
-        """
-        return self._completion_reason
-    
-    @completion_reason.setter
-    def completion_reason(self,value: Optional[play_prompt_completion_reason.PlayPromptCompletionReason] = None) -> None:
-        """
-        Sets the completionReason property value. Possible values are: unknown, completedSuccessfully, mediaOperationCanceled.
-        Args:
-            value: Value to set for the completion_reason property.
-        """
-        self._completion_reason = value
+    # Possible values are: unknown, completedSuccessfully, mediaOperationCanceled.
+    completion_reason: Optional[play_prompt_completion_reason.PlayPromptCompletionReason] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PlayPromptOperation:

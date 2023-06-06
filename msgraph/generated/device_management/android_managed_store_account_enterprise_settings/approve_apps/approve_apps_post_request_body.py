@@ -1,53 +1,17 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class ApproveAppsPostRequestBody(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new approveAppsPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The approveAllPermissions property
-        self._approve_all_permissions: Optional[bool] = None
-        # The packageIds property
-        self._package_ids: Optional[List[str]] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def approve_all_permissions(self,) -> Optional[bool]:
-        """
-        Gets the approveAllPermissions property value. The approveAllPermissions property
-        Returns: Optional[bool]
-        """
-        return self._approve_all_permissions
-    
-    @approve_all_permissions.setter
-    def approve_all_permissions(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the approveAllPermissions property value. The approveAllPermissions property
-        Args:
-            value: Value to set for the approve_all_permissions property.
-        """
-        self._approve_all_permissions = value
+    # The approveAllPermissions property
+    approve_all_permissions: Optional[bool] = None
+    # The packageIds property
+    package_ids: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ApproveAppsPostRequestBody:
@@ -71,23 +35,6 @@ class ApproveAppsPostRequestBody(AdditionalDataHolder, Parsable):
             "packageIds": lambda n : setattr(self, 'package_ids', n.get_collection_of_primitive_values(str)),
         }
         return fields
-    
-    @property
-    def package_ids(self,) -> Optional[List[str]]:
-        """
-        Gets the packageIds property value. The packageIds property
-        Returns: Optional[List[str]]
-        """
-        return self._package_ids
-    
-    @package_ids.setter
-    def package_ids(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the packageIds property value. The packageIds property
-        Args:
-            value: Value to set for the package_ids property.
-        """
-        self._package_ids = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

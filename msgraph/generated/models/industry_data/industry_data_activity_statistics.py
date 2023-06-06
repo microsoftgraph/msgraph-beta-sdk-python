@@ -1,60 +1,24 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import inbound_activity_results, industry_data_activity_status
 
+@dataclass
 class IndustryDataActivityStatistics(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new industryDataActivityStatistics and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The identifier for the activity that is being reported on.
-        self._activity_id: Optional[str] = None
-        # The display name of the underlying flow.
-        self._display_name: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The status property
-        self._status: Optional[industry_data_activity_status.IndustryDataActivityStatus] = None
-    
-    @property
-    def activity_id(self,) -> Optional[str]:
-        """
-        Gets the activityId property value. The identifier for the activity that is being reported on.
-        Returns: Optional[str]
-        """
-        return self._activity_id
-    
-    @activity_id.setter
-    def activity_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the activityId property value. The identifier for the activity that is being reported on.
-        Args:
-            value: Value to set for the activity_id property.
-        """
-        self._activity_id = value
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The identifier for the activity that is being reported on.
+    activity_id: Optional[str] = None
+    # The display name of the underlying flow.
+    display_name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The status property
+    status: Optional[industry_data_activity_status.IndustryDataActivityStatus] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IndustryDataActivityStatistics:
@@ -75,23 +39,6 @@ class IndustryDataActivityStatistics(AdditionalDataHolder, Parsable):
                 return inbound_activity_results.InboundActivityResults()
         return IndustryDataActivityStatistics()
     
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The display name of the underlying flow.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The display name of the underlying flow.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
-    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -107,23 +54,6 @@ class IndustryDataActivityStatistics(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -135,22 +65,5 @@ class IndustryDataActivityStatistics(AdditionalDataHolder, Parsable):
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("status", self.status)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def status(self,) -> Optional[industry_data_activity_status.IndustryDataActivityStatus]:
-        """
-        Gets the status property value. The status property
-        Returns: Optional[industry_data_activity_status.IndustryDataActivityStatus]
-        """
-        return self._status
-    
-    @status.setter
-    def status(self,value: Optional[industry_data_activity_status.IndustryDataActivityStatus] = None) -> None:
-        """
-        Sets the status property value. The status property
-        Args:
-            value: Value to set for the status property.
-        """
-        self._status = value
     
 

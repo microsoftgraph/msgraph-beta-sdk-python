@@ -1,60 +1,24 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class MacOSAssociatedDomainsItem(AdditionalDataHolder, Parsable):
     """
     A mapping of application identifiers to associated domains.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new macOSAssociatedDomainsItem and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The application identifier of the app to associate domains with.
-        self._application_identifier: Optional[str] = None
-        # Determines whether data should be downloaded directly or via a CDN.
-        self._direct_downloads_enabled: Optional[bool] = None
-        # The list of domains to associate.
-        self._domains: Optional[List[str]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def application_identifier(self,) -> Optional[str]:
-        """
-        Gets the applicationIdentifier property value. The application identifier of the app to associate domains with.
-        Returns: Optional[str]
-        """
-        return self._application_identifier
-    
-    @application_identifier.setter
-    def application_identifier(self,value: Optional[str] = None) -> None:
-        """
-        Sets the applicationIdentifier property value. The application identifier of the app to associate domains with.
-        Args:
-            value: Value to set for the application_identifier property.
-        """
-        self._application_identifier = value
+    # The application identifier of the app to associate domains with.
+    application_identifier: Optional[str] = None
+    # Determines whether data should be downloaded directly or via a CDN.
+    direct_downloads_enabled: Optional[bool] = None
+    # The list of domains to associate.
+    domains: Optional[List[str]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSAssociatedDomainsItem:
@@ -68,40 +32,6 @@ class MacOSAssociatedDomainsItem(AdditionalDataHolder, Parsable):
             raise Exception("parse_node cannot be undefined")
         return MacOSAssociatedDomainsItem()
     
-    @property
-    def direct_downloads_enabled(self,) -> Optional[bool]:
-        """
-        Gets the directDownloadsEnabled property value. Determines whether data should be downloaded directly or via a CDN.
-        Returns: Optional[bool]
-        """
-        return self._direct_downloads_enabled
-    
-    @direct_downloads_enabled.setter
-    def direct_downloads_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the directDownloadsEnabled property value. Determines whether data should be downloaded directly or via a CDN.
-        Args:
-            value: Value to set for the direct_downloads_enabled property.
-        """
-        self._direct_downloads_enabled = value
-    
-    @property
-    def domains(self,) -> Optional[List[str]]:
-        """
-        Gets the domains property value. The list of domains to associate.
-        Returns: Optional[List[str]]
-        """
-        return self._domains
-    
-    @domains.setter
-    def domains(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the domains property value. The list of domains to associate.
-        Args:
-            value: Value to set for the domains property.
-        """
-        self._domains = value
-    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -114,23 +44,6 @@ class MacOSAssociatedDomainsItem(AdditionalDataHolder, Parsable):
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -8,25 +9,21 @@ if TYPE_CHECKING:
 
 from . import item_facet
 
+@dataclass
 class PersonAward(item_facet.ItemFacet):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new PersonAward and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.personAward"
-        # Descpription of the award or honor.
-        self._description: Optional[str] = None
-        # Name of the award or honor.
-        self._display_name: Optional[str] = None
-        # The date that the award or honor was granted.
-        self._issued_date: Optional[date] = None
-        # Authority which granted the award or honor.
-        self._issuing_authority: Optional[str] = None
-        # URL referencing a thumbnail of the award or honor.
-        self._thumbnail_url: Optional[str] = None
-        # URL referencing the award or honor.
-        self._web_url: Optional[str] = None
+    odata_type = "#microsoft.graph.personAward"
+    # Descpription of the award or honor.
+    description: Optional[str] = None
+    # Name of the award or honor.
+    display_name: Optional[str] = None
+    # The date that the award or honor was granted.
+    issued_date: Optional[date] = None
+    # Authority which granted the award or honor.
+    issuing_authority: Optional[str] = None
+    # URL referencing a thumbnail of the award or honor.
+    thumbnail_url: Optional[str] = None
+    # URL referencing the award or honor.
+    web_url: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PersonAward:
@@ -39,40 +36,6 @@ class PersonAward(item_facet.ItemFacet):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return PersonAward()
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. Descpription of the award or honor.
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. Descpription of the award or honor.
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. Name of the award or honor.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. Name of the award or honor.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -93,40 +56,6 @@ class PersonAward(item_facet.ItemFacet):
         fields.update(super_fields)
         return fields
     
-    @property
-    def issued_date(self,) -> Optional[date]:
-        """
-        Gets the issuedDate property value. The date that the award or honor was granted.
-        Returns: Optional[date]
-        """
-        return self._issued_date
-    
-    @issued_date.setter
-    def issued_date(self,value: Optional[date] = None) -> None:
-        """
-        Sets the issuedDate property value. The date that the award or honor was granted.
-        Args:
-            value: Value to set for the issued_date property.
-        """
-        self._issued_date = value
-    
-    @property
-    def issuing_authority(self,) -> Optional[str]:
-        """
-        Gets the issuingAuthority property value. Authority which granted the award or honor.
-        Returns: Optional[str]
-        """
-        return self._issuing_authority
-    
-    @issuing_authority.setter
-    def issuing_authority(self,value: Optional[str] = None) -> None:
-        """
-        Sets the issuingAuthority property value. Authority which granted the award or honor.
-        Args:
-            value: Value to set for the issuing_authority property.
-        """
-        self._issuing_authority = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -142,39 +71,5 @@ class PersonAward(item_facet.ItemFacet):
         writer.write_str_value("issuingAuthority", self.issuing_authority)
         writer.write_str_value("thumbnailUrl", self.thumbnail_url)
         writer.write_str_value("webUrl", self.web_url)
-    
-    @property
-    def thumbnail_url(self,) -> Optional[str]:
-        """
-        Gets the thumbnailUrl property value. URL referencing a thumbnail of the award or honor.
-        Returns: Optional[str]
-        """
-        return self._thumbnail_url
-    
-    @thumbnail_url.setter
-    def thumbnail_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the thumbnailUrl property value. URL referencing a thumbnail of the award or honor.
-        Args:
-            value: Value to set for the thumbnail_url property.
-        """
-        self._thumbnail_url = value
-    
-    @property
-    def web_url(self,) -> Optional[str]:
-        """
-        Gets the webUrl property value. URL referencing the award or honor.
-        Returns: Optional[str]
-        """
-        return self._web_url
-    
-    @web_url.setter
-    def web_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the webUrl property value. URL referencing the award or honor.
-        Args:
-            value: Value to set for the web_url property.
-        """
-        self._web_url = value
     
 

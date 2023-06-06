@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,34 +8,13 @@ if TYPE_CHECKING:
 
 from . import android_device_owner_kiosk_mode_folder_item
 
+@dataclass
 class AndroidDeviceOwnerKioskModeApp(android_device_owner_kiosk_mode_folder_item.AndroidDeviceOwnerKioskModeFolderItem):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AndroidDeviceOwnerKioskModeApp and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.androidDeviceOwnerKioskModeApp"
-        # Class name of application
-        self._class_name: Optional[str] = None
-        # Package name of application
-        self._package: Optional[str] = None
-    
-    @property
-    def class_name(self,) -> Optional[str]:
-        """
-        Gets the className property value. Class name of application
-        Returns: Optional[str]
-        """
-        return self._class_name
-    
-    @class_name.setter
-    def class_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the className property value. Class name of application
-        Args:
-            value: Value to set for the class_name property.
-        """
-        self._class_name = value
+    odata_type = "#microsoft.graph.androidDeviceOwnerKioskModeApp"
+    # Class name of application
+    class_name: Optional[str] = None
+    # Package name of application
+    package: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidDeviceOwnerKioskModeApp:
@@ -62,23 +42,6 @@ class AndroidDeviceOwnerKioskModeApp(android_device_owner_kiosk_mode_folder_item
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def package(self,) -> Optional[str]:
-        """
-        Gets the package property value. Package name of application
-        Returns: Optional[str]
-        """
-        return self._package
-    
-    @package.setter
-    def package(self,value: Optional[str] = None) -> None:
-        """
-        Sets the package property value. Package name of application
-        Args:
-            value: Value to set for the package property.
-        """
-        self._package = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,18 +8,14 @@ if TYPE_CHECKING:
 
 from . import role_assignment
 
+@dataclass
 class DeviceAndAppManagementRoleAssignment(role_assignment.RoleAssignment):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceAndAppManagementRoleAssignment and sets the default values.
-        """
-        super().__init__()
-        # The list of ids of role member security groups. These are IDs from Azure Active Directory.
-        self._members: Optional[List[str]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The set of Role Scope Tags defined on the Role Assignment.
-        self._role_scope_tags: Optional[List[role_scope_tag.RoleScopeTag]] = None
+    # The list of ids of role member security groups. These are IDs from Azure Active Directory.
+    members: Optional[List[str]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The set of Role Scope Tags defined on the Role Assignment.
+    role_scope_tags: Optional[List[role_scope_tag.RoleScopeTag]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceAndAppManagementRoleAssignment:
@@ -46,40 +43,6 @@ class DeviceAndAppManagementRoleAssignment(role_assignment.RoleAssignment):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def members(self,) -> Optional[List[str]]:
-        """
-        Gets the members property value. The list of ids of role member security groups. These are IDs from Azure Active Directory.
-        Returns: Optional[List[str]]
-        """
-        return self._members
-    
-    @members.setter
-    def members(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the members property value. The list of ids of role member security groups. These are IDs from Azure Active Directory.
-        Args:
-            value: Value to set for the members property.
-        """
-        self._members = value
-    
-    @property
-    def role_scope_tags(self,) -> Optional[List[role_scope_tag.RoleScopeTag]]:
-        """
-        Gets the roleScopeTags property value. The set of Role Scope Tags defined on the Role Assignment.
-        Returns: Optional[List[role_scope_tag.RoleScopeTag]]
-        """
-        return self._role_scope_tags
-    
-    @role_scope_tags.setter
-    def role_scope_tags(self,value: Optional[List[role_scope_tag.RoleScopeTag]] = None) -> None:
-        """
-        Sets the roleScopeTags property value. The set of Role Scope Tags defined on the Role Assignment.
-        Args:
-            value: Value to set for the role_scope_tags property.
-        """
-        self._role_scope_tags = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

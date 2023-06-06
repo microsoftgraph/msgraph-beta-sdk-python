@@ -1,6 +1,6 @@
 from enum import Enum
 
-class OperatingSystemUpgradeEligibility(Enum):
+class OperatingSystemUpgradeEligibility(str, Enum):
     # The device is upgraded to latest version of windows
     Upgraded = "upgraded",
     # Not enough data available to compute the eligibility of device for windows upgrade

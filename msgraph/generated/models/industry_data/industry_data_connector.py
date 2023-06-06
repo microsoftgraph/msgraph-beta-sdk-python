@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -8,18 +9,14 @@ if TYPE_CHECKING:
 
 from .. import entity
 
+@dataclass
 class IndustryDataConnector(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new industryDataConnector and sets the default values.
-        """
-        super().__init__()
-        # The name of the data connector. Maximum supported length is 100 characters.
-        self._display_name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The sourceSystem property
-        self._source_system: Optional[source_system_definition.SourceSystemDefinition] = None
+    # The name of the data connector. Maximum supported length is 100 characters.
+    display_name: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The sourceSystem property
+    source_system: Optional[source_system_definition.SourceSystemDefinition] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IndustryDataConnector:
@@ -43,23 +40,6 @@ class IndustryDataConnector(entity.Entity):
 
                 return file_data_connector.FileDataConnector()
         return IndustryDataConnector()
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The name of the data connector. Maximum supported length is 100 characters.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The name of the data connector. Maximum supported length is 100 characters.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -88,22 +68,5 @@ class IndustryDataConnector(entity.Entity):
         super().serialize(writer)
         writer.write_str_value("displayName", self.display_name)
         writer.write_object_value("sourceSystem", self.source_system)
-    
-    @property
-    def source_system(self,) -> Optional[source_system_definition.SourceSystemDefinition]:
-        """
-        Gets the sourceSystem property value. The sourceSystem property
-        Returns: Optional[source_system_definition.SourceSystemDefinition]
-        """
-        return self._source_system
-    
-    @source_system.setter
-    def source_system(self,value: Optional[source_system_definition.SourceSystemDefinition] = None) -> None:
-        """
-        Sets the sourceSystem property value. The sourceSystem property
-        Args:
-            value: Value to set for the source_system property.
-        """
-        self._source_system = value
     
 

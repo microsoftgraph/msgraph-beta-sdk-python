@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,16 +8,12 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class MeetingRegistrantBase(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new meetingRegistrantBase and sets the default values.
-        """
-        super().__init__()
-        # A unique web URL for the registrant to join the meeting. Read-only.
-        self._join_web_url: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
+    # A unique web URL for the registrant to join the meeting. Read-only.
+    join_web_url: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MeetingRegistrantBase:
@@ -54,23 +51,6 @@ class MeetingRegistrantBase(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def join_web_url(self,) -> Optional[str]:
-        """
-        Gets the joinWebUrl property value. A unique web URL for the registrant to join the meeting. Read-only.
-        Returns: Optional[str]
-        """
-        return self._join_web_url
-    
-    @join_web_url.setter
-    def join_web_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the joinWebUrl property value. A unique web URL for the registrant to join the meeting. Read-only.
-        Args:
-            value: Value to set for the join_web_url property.
-        """
-        self._join_web_url = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

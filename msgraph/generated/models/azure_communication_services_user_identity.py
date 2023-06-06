@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,32 +8,11 @@ if TYPE_CHECKING:
 
 from . import identity
 
+@dataclass
 class AzureCommunicationServicesUserIdentity(identity.Identity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AzureCommunicationServicesUserIdentity and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.azureCommunicationServicesUserIdentity"
-        # The Azure Communication Services resource ID associated with the user.
-        self._azure_communication_services_resource_id: Optional[str] = None
-    
-    @property
-    def azure_communication_services_resource_id(self,) -> Optional[str]:
-        """
-        Gets the azureCommunicationServicesResourceId property value. The Azure Communication Services resource ID associated with the user.
-        Returns: Optional[str]
-        """
-        return self._azure_communication_services_resource_id
-    
-    @azure_communication_services_resource_id.setter
-    def azure_communication_services_resource_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the azureCommunicationServicesResourceId property value. The Azure Communication Services resource ID associated with the user.
-        Args:
-            value: Value to set for the azure_communication_services_resource_id property.
-        """
-        self._azure_communication_services_resource_id = value
+    odata_type = "#microsoft.graph.azureCommunicationServicesUserIdentity"
+    # The Azure Communication Services resource ID associated with the user.
+    azure_communication_services_resource_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AzureCommunicationServicesUserIdentity:

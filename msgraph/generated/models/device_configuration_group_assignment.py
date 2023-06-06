@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,23 +8,19 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class DeviceConfigurationGroupAssignment(entity.Entity):
     """
     Device configuration group assignment.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceConfigurationGroupAssignment and sets the default values.
-        """
-        super().__init__()
-        # The navigation link to the Device Configuration being targeted.
-        self._device_configuration: Optional[device_configuration.DeviceConfiguration] = None
-        # Indicates if this group is should be excluded. Defaults that the group should be included
-        self._exclude_group: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The Id of the AAD group we are targeting the device configuration to.
-        self._target_group_id: Optional[str] = None
+    # The navigation link to the Device Configuration being targeted.
+    device_configuration: Optional[device_configuration.DeviceConfiguration] = None
+    # Indicates if this group is should be excluded. Defaults that the group should be included
+    exclude_group: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The Id of the AAD group we are targeting the device configuration to.
+    target_group_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceConfigurationGroupAssignment:
@@ -36,40 +33,6 @@ class DeviceConfigurationGroupAssignment(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return DeviceConfigurationGroupAssignment()
-    
-    @property
-    def device_configuration(self,) -> Optional[device_configuration.DeviceConfiguration]:
-        """
-        Gets the deviceConfiguration property value. The navigation link to the Device Configuration being targeted.
-        Returns: Optional[device_configuration.DeviceConfiguration]
-        """
-        return self._device_configuration
-    
-    @device_configuration.setter
-    def device_configuration(self,value: Optional[device_configuration.DeviceConfiguration] = None) -> None:
-        """
-        Sets the deviceConfiguration property value. The navigation link to the Device Configuration being targeted.
-        Args:
-            value: Value to set for the device_configuration property.
-        """
-        self._device_configuration = value
-    
-    @property
-    def exclude_group(self,) -> Optional[bool]:
-        """
-        Gets the excludeGroup property value. Indicates if this group is should be excluded. Defaults that the group should be included
-        Returns: Optional[bool]
-        """
-        return self._exclude_group
-    
-    @exclude_group.setter
-    def exclude_group(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the excludeGroup property value. Indicates if this group is should be excluded. Defaults that the group should be included
-        Args:
-            value: Value to set for the exclude_group property.
-        """
-        self._exclude_group = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -99,22 +62,5 @@ class DeviceConfigurationGroupAssignment(entity.Entity):
         writer.write_object_value("deviceConfiguration", self.device_configuration)
         writer.write_bool_value("excludeGroup", self.exclude_group)
         writer.write_str_value("targetGroupId", self.target_group_id)
-    
-    @property
-    def target_group_id(self,) -> Optional[str]:
-        """
-        Gets the targetGroupId property value. The Id of the AAD group we are targeting the device configuration to.
-        Returns: Optional[str]
-        """
-        return self._target_group_id
-    
-    @target_group_id.setter
-    def target_group_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the targetGroupId property value. The Id of the AAD group we are targeting the device configuration to.
-        Args:
-            value: Value to set for the target_group_id property.
-        """
-        self._target_group_id = value
     
 

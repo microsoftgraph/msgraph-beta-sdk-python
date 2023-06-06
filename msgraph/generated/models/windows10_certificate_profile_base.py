@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,13 +8,9 @@ if TYPE_CHECKING:
 
 from . import windows_certificate_profile_base
 
+@dataclass
 class Windows10CertificateProfileBase(windows_certificate_profile_base.WindowsCertificateProfileBase):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Windows10CertificateProfileBase and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windows10CertificateProfileBase"
+    odata_type = "#microsoft.graph.windows10CertificateProfileBase"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10CertificateProfileBase:

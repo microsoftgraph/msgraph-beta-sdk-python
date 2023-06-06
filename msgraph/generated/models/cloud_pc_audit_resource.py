@@ -1,45 +1,26 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from . import cloud_pc_audit_property
 
+@dataclass
 class CloudPcAuditResource(AdditionalDataHolder, Parsable):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new cloudPcAuditResource and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The resource entity display name.
-        self._display_name: Optional[str] = None
-        # A list of modified properties.
-        self._modified_properties: Optional[List[cloud_pc_audit_property.CloudPcAuditProperty]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The ID of the audit resource.
-        self._resource_id: Optional[str] = None
-        # The type of the audit resource.
-        self._type: Optional[str] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The resource entity display name.
+    display_name: Optional[str] = None
+    # A list of modified properties.
+    modified_properties: Optional[List[cloud_pc_audit_property.CloudPcAuditProperty]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The ID of the audit resource.
+    resource_id: Optional[str] = None
+    # The type of the audit resource.
+    type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcAuditResource:
@@ -52,23 +33,6 @@ class CloudPcAuditResource(AdditionalDataHolder, Parsable):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return CloudPcAuditResource()
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The resource entity display name.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The resource entity display name.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -86,57 +50,6 @@ class CloudPcAuditResource(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def modified_properties(self,) -> Optional[List[cloud_pc_audit_property.CloudPcAuditProperty]]:
-        """
-        Gets the modifiedProperties property value. A list of modified properties.
-        Returns: Optional[List[cloud_pc_audit_property.CloudPcAuditProperty]]
-        """
-        return self._modified_properties
-    
-    @modified_properties.setter
-    def modified_properties(self,value: Optional[List[cloud_pc_audit_property.CloudPcAuditProperty]] = None) -> None:
-        """
-        Sets the modifiedProperties property value. A list of modified properties.
-        Args:
-            value: Value to set for the modified_properties property.
-        """
-        self._modified_properties = value
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def resource_id(self,) -> Optional[str]:
-        """
-        Gets the resourceId property value. The ID of the audit resource.
-        Returns: Optional[str]
-        """
-        return self._resource_id
-    
-    @resource_id.setter
-    def resource_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the resourceId property value. The ID of the audit resource.
-        Args:
-            value: Value to set for the resource_id property.
-        """
-        self._resource_id = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -151,22 +64,5 @@ class CloudPcAuditResource(AdditionalDataHolder, Parsable):
         writer.write_str_value("resourceId", self.resource_id)
         writer.write_str_value("type", self.type)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def type(self,) -> Optional[str]:
-        """
-        Gets the type property value. The type of the audit resource.
-        Returns: Optional[str]
-        """
-        return self._type
-    
-    @type.setter
-    def type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the type property value. The type of the audit resource.
-        Args:
-            value: Value to set for the type property.
-        """
-        self._type = value
     
 

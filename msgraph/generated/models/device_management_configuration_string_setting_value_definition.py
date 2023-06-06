@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,25 +8,21 @@ if TYPE_CHECKING:
 
 from . import device_management_configuration_setting_value_definition
 
+@dataclass
 class DeviceManagementConfigurationStringSettingValueDefinition(device_management_configuration_setting_value_definition.DeviceManagementConfigurationSettingValueDefinition):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementConfigurationStringSettingValueDefinition and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementConfigurationStringSettingValueDefinition"
-        # Supported file types for this setting.
-        self._file_types: Optional[List[str]] = None
-        # The format property
-        self._format: Optional[device_management_configuration_string_format.DeviceManagementConfigurationStringFormat] = None
-        # Regular expression or any xml or json schema that the input string should match
-        self._input_validation_schema: Optional[str] = None
-        # Specifies whether the setting needs to be treated as a secret. Settings marked as yes will be encrypted in transit and at rest and will be displayed as asterisks when represented in the UX.
-        self._is_secret: Optional[bool] = None
-        # Maximum length of string. Valid values 0 to 87516
-        self._maximum_length: Optional[int] = None
-        # Minimum length of string. Valid values 0 to 87516
-        self._minimum_length: Optional[int] = None
+    odata_type = "#microsoft.graph.deviceManagementConfigurationStringSettingValueDefinition"
+    # Supported file types for this setting.
+    file_types: Optional[List[str]] = None
+    # The format property
+    format: Optional[device_management_configuration_string_format.DeviceManagementConfigurationStringFormat] = None
+    # Regular expression or any xml or json schema that the input string should match
+    input_validation_schema: Optional[str] = None
+    # Specifies whether the setting needs to be treated as a secret. Settings marked as yes will be encrypted in transit and at rest and will be displayed as asterisks when represented in the UX.
+    is_secret: Optional[bool] = None
+    # Maximum length of string. Valid values 0 to 87516
+    maximum_length: Optional[int] = None
+    # Minimum length of string. Valid values 0 to 87516
+    minimum_length: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationStringSettingValueDefinition:
@@ -38,40 +35,6 @@ class DeviceManagementConfigurationStringSettingValueDefinition(device_managemen
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return DeviceManagementConfigurationStringSettingValueDefinition()
-    
-    @property
-    def file_types(self,) -> Optional[List[str]]:
-        """
-        Gets the fileTypes property value. Supported file types for this setting.
-        Returns: Optional[List[str]]
-        """
-        return self._file_types
-    
-    @file_types.setter
-    def file_types(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the fileTypes property value. Supported file types for this setting.
-        Args:
-            value: Value to set for the file_types property.
-        """
-        self._file_types = value
-    
-    @property
-    def format(self,) -> Optional[device_management_configuration_string_format.DeviceManagementConfigurationStringFormat]:
-        """
-        Gets the format property value. The format property
-        Returns: Optional[device_management_configuration_string_format.DeviceManagementConfigurationStringFormat]
-        """
-        return self._format
-    
-    @format.setter
-    def format(self,value: Optional[device_management_configuration_string_format.DeviceManagementConfigurationStringFormat] = None) -> None:
-        """
-        Sets the format property value. The format property
-        Args:
-            value: Value to set for the format property.
-        """
-        self._format = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -91,74 +54,6 @@ class DeviceManagementConfigurationStringSettingValueDefinition(device_managemen
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def input_validation_schema(self,) -> Optional[str]:
-        """
-        Gets the inputValidationSchema property value. Regular expression or any xml or json schema that the input string should match
-        Returns: Optional[str]
-        """
-        return self._input_validation_schema
-    
-    @input_validation_schema.setter
-    def input_validation_schema(self,value: Optional[str] = None) -> None:
-        """
-        Sets the inputValidationSchema property value. Regular expression or any xml or json schema that the input string should match
-        Args:
-            value: Value to set for the input_validation_schema property.
-        """
-        self._input_validation_schema = value
-    
-    @property
-    def is_secret(self,) -> Optional[bool]:
-        """
-        Gets the isSecret property value. Specifies whether the setting needs to be treated as a secret. Settings marked as yes will be encrypted in transit and at rest and will be displayed as asterisks when represented in the UX.
-        Returns: Optional[bool]
-        """
-        return self._is_secret
-    
-    @is_secret.setter
-    def is_secret(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isSecret property value. Specifies whether the setting needs to be treated as a secret. Settings marked as yes will be encrypted in transit and at rest and will be displayed as asterisks when represented in the UX.
-        Args:
-            value: Value to set for the is_secret property.
-        """
-        self._is_secret = value
-    
-    @property
-    def maximum_length(self,) -> Optional[int]:
-        """
-        Gets the maximumLength property value. Maximum length of string. Valid values 0 to 87516
-        Returns: Optional[int]
-        """
-        return self._maximum_length
-    
-    @maximum_length.setter
-    def maximum_length(self,value: Optional[int] = None) -> None:
-        """
-        Sets the maximumLength property value. Maximum length of string. Valid values 0 to 87516
-        Args:
-            value: Value to set for the maximum_length property.
-        """
-        self._maximum_length = value
-    
-    @property
-    def minimum_length(self,) -> Optional[int]:
-        """
-        Gets the minimumLength property value. Minimum length of string. Valid values 0 to 87516
-        Returns: Optional[int]
-        """
-        return self._minimum_length
-    
-    @minimum_length.setter
-    def minimum_length(self,value: Optional[int] = None) -> None:
-        """
-        Sets the minimumLength property value. Minimum length of string. Valid values 0 to 87516
-        Args:
-            value: Value to set for the minimum_length property.
-        """
-        self._minimum_length = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

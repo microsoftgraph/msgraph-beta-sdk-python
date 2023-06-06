@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import gradual_rollout_settings
 
+@dataclass
 class RateDrivenRolloutSettings(gradual_rollout_settings.GradualRolloutSettings):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new RateDrivenRolloutSettings and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsUpdates.rateDrivenRolloutSettings"
-        # Specifies the number of devices that are offered at the same time. When not set, all devices in the deployment are offered content at the same time.
-        self._devices_per_offer: Optional[int] = None
+    odata_type = "#microsoft.graph.windowsUpdates.rateDrivenRolloutSettings"
+    # Specifies the number of devices that are offered at the same time. When not set, all devices in the deployment are offered content at the same time.
+    devices_per_offer: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RateDrivenRolloutSettings:
@@ -28,23 +25,6 @@ class RateDrivenRolloutSettings(gradual_rollout_settings.GradualRolloutSettings)
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return RateDrivenRolloutSettings()
-    
-    @property
-    def devices_per_offer(self,) -> Optional[int]:
-        """
-        Gets the devicesPerOffer property value. Specifies the number of devices that are offered at the same time. When not set, all devices in the deployment are offered content at the same time.
-        Returns: Optional[int]
-        """
-        return self._devices_per_offer
-    
-    @devices_per_offer.setter
-    def devices_per_offer(self,value: Optional[int] = None) -> None:
-        """
-        Sets the devicesPerOffer property value. Specifies the number of devices that are offered at the same time. When not set, all devices in the deployment are offered content at the same time.
-        Args:
-            value: Value to set for the devices_per_offer property.
-        """
-        self._devices_per_offer = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import device_health_script_parameter
 
+@dataclass
 class DeviceHealthScriptIntegerParameter(device_health_script_parameter.DeviceHealthScriptParameter):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceHealthScriptIntegerParameter and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceHealthScriptIntegerParameter"
-        # The default value of Integer param. Valid values -2147483648 to 2147483647
-        self._default_value: Optional[int] = None
+    odata_type = "#microsoft.graph.deviceHealthScriptIntegerParameter"
+    # The default value of Integer param. Valid values -2147483648 to 2147483647
+    default_value: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceHealthScriptIntegerParameter:
@@ -28,23 +25,6 @@ class DeviceHealthScriptIntegerParameter(device_health_script_parameter.DeviceHe
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return DeviceHealthScriptIntegerParameter()
-    
-    @property
-    def default_value(self,) -> Optional[int]:
-        """
-        Gets the defaultValue property value. The default value of Integer param. Valid values -2147483648 to 2147483647
-        Returns: Optional[int]
-        """
-        return self._default_value
-    
-    @default_value.setter
-    def default_value(self,value: Optional[int] = None) -> None:
-        """
-        Sets the defaultValue property value. The default value of Integer param. Valid values -2147483648 to 2147483647
-        Args:
-            value: Value to set for the default_value property.
-        """
-        self._default_value = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """

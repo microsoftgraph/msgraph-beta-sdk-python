@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,118 +8,46 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class DeviceManagementConfigurationSettingDefinition(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementConfigurationSettingDefinition and sets the default values.
-        """
-        super().__init__()
-        # The accessTypes property
-        self._access_types: Optional[device_management_configuration_setting_access_types.DeviceManagementConfigurationSettingAccessTypes] = None
-        # Details which device setting is applicable on. Supports: $filters.
-        self._applicability: Optional[device_management_configuration_setting_applicability.DeviceManagementConfigurationSettingApplicability] = None
-        # Base CSP Path
-        self._base_uri: Optional[str] = None
-        # Specify category in which the setting is under. Support $filters.
-        self._category_id: Optional[str] = None
-        # Description of the setting.
-        self._description: Optional[str] = None
-        # Name of the setting. For example: Allow Toast.
-        self._display_name: Optional[str] = None
-        # Help text of the setting. Give more details of the setting.
-        self._help_text: Optional[str] = None
-        # List of links more info for the setting can be found at.
-        self._info_urls: Optional[List[str]] = None
-        # Tokens which to search settings on
-        self._keywords: Optional[List[str]] = None
-        # Name of the item
-        self._name: Optional[str] = None
-        # Indicates whether the setting is required or not
-        self._occurrence: Optional[device_management_configuration_setting_occurrence.DeviceManagementConfigurationSettingOccurrence] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Offset CSP Path from Base
-        self._offset_uri: Optional[str] = None
-        # List of referred setting information.
-        self._referred_setting_information_list: Optional[List[device_management_configuration_referred_setting_information.DeviceManagementConfigurationReferredSettingInformation]] = None
-        # Root setting definition id if the setting is a child setting.
-        self._root_definition_id: Optional[str] = None
-        # Supported setting types
-        self._setting_usage: Optional[device_management_configuration_setting_usage.DeviceManagementConfigurationSettingUsage] = None
-        # Setting control type representation in the UX
-        self._ux_behavior: Optional[device_management_configuration_control_type.DeviceManagementConfigurationControlType] = None
-        # Item Version
-        self._version: Optional[str] = None
-        # Supported setting types
-        self._visibility: Optional[device_management_configuration_setting_visibility.DeviceManagementConfigurationSettingVisibility] = None
-    
-    @property
-    def access_types(self,) -> Optional[device_management_configuration_setting_access_types.DeviceManagementConfigurationSettingAccessTypes]:
-        """
-        Gets the accessTypes property value. The accessTypes property
-        Returns: Optional[device_management_configuration_setting_access_types.DeviceManagementConfigurationSettingAccessTypes]
-        """
-        return self._access_types
-    
-    @access_types.setter
-    def access_types(self,value: Optional[device_management_configuration_setting_access_types.DeviceManagementConfigurationSettingAccessTypes] = None) -> None:
-        """
-        Sets the accessTypes property value. The accessTypes property
-        Args:
-            value: Value to set for the access_types property.
-        """
-        self._access_types = value
-    
-    @property
-    def applicability(self,) -> Optional[device_management_configuration_setting_applicability.DeviceManagementConfigurationSettingApplicability]:
-        """
-        Gets the applicability property value. Details which device setting is applicable on. Supports: $filters.
-        Returns: Optional[device_management_configuration_setting_applicability.DeviceManagementConfigurationSettingApplicability]
-        """
-        return self._applicability
-    
-    @applicability.setter
-    def applicability(self,value: Optional[device_management_configuration_setting_applicability.DeviceManagementConfigurationSettingApplicability] = None) -> None:
-        """
-        Sets the applicability property value. Details which device setting is applicable on. Supports: $filters.
-        Args:
-            value: Value to set for the applicability property.
-        """
-        self._applicability = value
-    
-    @property
-    def base_uri(self,) -> Optional[str]:
-        """
-        Gets the baseUri property value. Base CSP Path
-        Returns: Optional[str]
-        """
-        return self._base_uri
-    
-    @base_uri.setter
-    def base_uri(self,value: Optional[str] = None) -> None:
-        """
-        Sets the baseUri property value. Base CSP Path
-        Args:
-            value: Value to set for the base_uri property.
-        """
-        self._base_uri = value
-    
-    @property
-    def category_id(self,) -> Optional[str]:
-        """
-        Gets the categoryId property value. Specify category in which the setting is under. Support $filters.
-        Returns: Optional[str]
-        """
-        return self._category_id
-    
-    @category_id.setter
-    def category_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the categoryId property value. Specify category in which the setting is under. Support $filters.
-        Args:
-            value: Value to set for the category_id property.
-        """
-        self._category_id = value
+    # The accessTypes property
+    access_types: Optional[device_management_configuration_setting_access_types.DeviceManagementConfigurationSettingAccessTypes] = None
+    # Details which device setting is applicable on. Supports: $filters.
+    applicability: Optional[device_management_configuration_setting_applicability.DeviceManagementConfigurationSettingApplicability] = None
+    # Base CSP Path
+    base_uri: Optional[str] = None
+    # Specify category in which the setting is under. Support $filters.
+    category_id: Optional[str] = None
+    # Description of the setting.
+    description: Optional[str] = None
+    # Name of the setting. For example: Allow Toast.
+    display_name: Optional[str] = None
+    # Help text of the setting. Give more details of the setting.
+    help_text: Optional[str] = None
+    # List of links more info for the setting can be found at.
+    info_urls: Optional[List[str]] = None
+    # Tokens which to search settings on
+    keywords: Optional[List[str]] = None
+    # Name of the item
+    name: Optional[str] = None
+    # Indicates whether the setting is required or not
+    occurrence: Optional[device_management_configuration_setting_occurrence.DeviceManagementConfigurationSettingOccurrence] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Offset CSP Path from Base
+    offset_uri: Optional[str] = None
+    # List of referred setting information.
+    referred_setting_information_list: Optional[List[device_management_configuration_referred_setting_information.DeviceManagementConfigurationReferredSettingInformation]] = None
+    # Root setting definition id if the setting is a child setting.
+    root_definition_id: Optional[str] = None
+    # Supported setting types
+    setting_usage: Optional[device_management_configuration_setting_usage.DeviceManagementConfigurationSettingUsage] = None
+    # Setting control type representation in the UX
+    ux_behavior: Optional[device_management_configuration_control_type.DeviceManagementConfigurationControlType] = None
+    # Item Version
+    version: Optional[str] = None
+    # Supported setting types
+    visibility: Optional[device_management_configuration_setting_visibility.DeviceManagementConfigurationSettingVisibility] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationSettingDefinition:
@@ -163,40 +92,6 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
                 return device_management_configuration_simple_setting_definition.DeviceManagementConfigurationSimpleSettingDefinition()
         return DeviceManagementConfigurationSettingDefinition()
     
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. Description of the setting.
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. Description of the setting.
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. Name of the setting. For example: Allow Toast.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. Name of the setting. For example: Allow Toast.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
-    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -228,142 +123,6 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def help_text(self,) -> Optional[str]:
-        """
-        Gets the helpText property value. Help text of the setting. Give more details of the setting.
-        Returns: Optional[str]
-        """
-        return self._help_text
-    
-    @help_text.setter
-    def help_text(self,value: Optional[str] = None) -> None:
-        """
-        Sets the helpText property value. Help text of the setting. Give more details of the setting.
-        Args:
-            value: Value to set for the help_text property.
-        """
-        self._help_text = value
-    
-    @property
-    def info_urls(self,) -> Optional[List[str]]:
-        """
-        Gets the infoUrls property value. List of links more info for the setting can be found at.
-        Returns: Optional[List[str]]
-        """
-        return self._info_urls
-    
-    @info_urls.setter
-    def info_urls(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the infoUrls property value. List of links more info for the setting can be found at.
-        Args:
-            value: Value to set for the info_urls property.
-        """
-        self._info_urls = value
-    
-    @property
-    def keywords(self,) -> Optional[List[str]]:
-        """
-        Gets the keywords property value. Tokens which to search settings on
-        Returns: Optional[List[str]]
-        """
-        return self._keywords
-    
-    @keywords.setter
-    def keywords(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the keywords property value. Tokens which to search settings on
-        Args:
-            value: Value to set for the keywords property.
-        """
-        self._keywords = value
-    
-    @property
-    def name(self,) -> Optional[str]:
-        """
-        Gets the name property value. Name of the item
-        Returns: Optional[str]
-        """
-        return self._name
-    
-    @name.setter
-    def name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the name property value. Name of the item
-        Args:
-            value: Value to set for the name property.
-        """
-        self._name = value
-    
-    @property
-    def occurrence(self,) -> Optional[device_management_configuration_setting_occurrence.DeviceManagementConfigurationSettingOccurrence]:
-        """
-        Gets the occurrence property value. Indicates whether the setting is required or not
-        Returns: Optional[device_management_configuration_setting_occurrence.DeviceManagementConfigurationSettingOccurrence]
-        """
-        return self._occurrence
-    
-    @occurrence.setter
-    def occurrence(self,value: Optional[device_management_configuration_setting_occurrence.DeviceManagementConfigurationSettingOccurrence] = None) -> None:
-        """
-        Sets the occurrence property value. Indicates whether the setting is required or not
-        Args:
-            value: Value to set for the occurrence property.
-        """
-        self._occurrence = value
-    
-    @property
-    def offset_uri(self,) -> Optional[str]:
-        """
-        Gets the offsetUri property value. Offset CSP Path from Base
-        Returns: Optional[str]
-        """
-        return self._offset_uri
-    
-    @offset_uri.setter
-    def offset_uri(self,value: Optional[str] = None) -> None:
-        """
-        Sets the offsetUri property value. Offset CSP Path from Base
-        Args:
-            value: Value to set for the offset_uri property.
-        """
-        self._offset_uri = value
-    
-    @property
-    def referred_setting_information_list(self,) -> Optional[List[device_management_configuration_referred_setting_information.DeviceManagementConfigurationReferredSettingInformation]]:
-        """
-        Gets the referredSettingInformationList property value. List of referred setting information.
-        Returns: Optional[List[device_management_configuration_referred_setting_information.DeviceManagementConfigurationReferredSettingInformation]]
-        """
-        return self._referred_setting_information_list
-    
-    @referred_setting_information_list.setter
-    def referred_setting_information_list(self,value: Optional[List[device_management_configuration_referred_setting_information.DeviceManagementConfigurationReferredSettingInformation]] = None) -> None:
-        """
-        Sets the referredSettingInformationList property value. List of referred setting information.
-        Args:
-            value: Value to set for the referred_setting_information_list property.
-        """
-        self._referred_setting_information_list = value
-    
-    @property
-    def root_definition_id(self,) -> Optional[str]:
-        """
-        Gets the rootDefinitionId property value. Root setting definition id if the setting is a child setting.
-        Returns: Optional[str]
-        """
-        return self._root_definition_id
-    
-    @root_definition_id.setter
-    def root_definition_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the rootDefinitionId property value. Root setting definition id if the setting is a child setting.
-        Args:
-            value: Value to set for the root_definition_id property.
-        """
-        self._root_definition_id = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -391,73 +150,5 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
         writer.write_enum_value("uxBehavior", self.ux_behavior)
         writer.write_str_value("version", self.version)
         writer.write_enum_value("visibility", self.visibility)
-    
-    @property
-    def setting_usage(self,) -> Optional[device_management_configuration_setting_usage.DeviceManagementConfigurationSettingUsage]:
-        """
-        Gets the settingUsage property value. Supported setting types
-        Returns: Optional[device_management_configuration_setting_usage.DeviceManagementConfigurationSettingUsage]
-        """
-        return self._setting_usage
-    
-    @setting_usage.setter
-    def setting_usage(self,value: Optional[device_management_configuration_setting_usage.DeviceManagementConfigurationSettingUsage] = None) -> None:
-        """
-        Sets the settingUsage property value. Supported setting types
-        Args:
-            value: Value to set for the setting_usage property.
-        """
-        self._setting_usage = value
-    
-    @property
-    def ux_behavior(self,) -> Optional[device_management_configuration_control_type.DeviceManagementConfigurationControlType]:
-        """
-        Gets the uxBehavior property value. Setting control type representation in the UX
-        Returns: Optional[device_management_configuration_control_type.DeviceManagementConfigurationControlType]
-        """
-        return self._ux_behavior
-    
-    @ux_behavior.setter
-    def ux_behavior(self,value: Optional[device_management_configuration_control_type.DeviceManagementConfigurationControlType] = None) -> None:
-        """
-        Sets the uxBehavior property value. Setting control type representation in the UX
-        Args:
-            value: Value to set for the ux_behavior property.
-        """
-        self._ux_behavior = value
-    
-    @property
-    def version(self,) -> Optional[str]:
-        """
-        Gets the version property value. Item Version
-        Returns: Optional[str]
-        """
-        return self._version
-    
-    @version.setter
-    def version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the version property value. Item Version
-        Args:
-            value: Value to set for the version property.
-        """
-        self._version = value
-    
-    @property
-    def visibility(self,) -> Optional[device_management_configuration_setting_visibility.DeviceManagementConfigurationSettingVisibility]:
-        """
-        Gets the visibility property value. Supported setting types
-        Returns: Optional[device_management_configuration_setting_visibility.DeviceManagementConfigurationSettingVisibility]
-        """
-        return self._visibility
-    
-    @visibility.setter
-    def visibility(self,value: Optional[device_management_configuration_setting_visibility.DeviceManagementConfigurationSettingVisibility] = None) -> None:
-        """
-        Sets the visibility property value. Supported setting types
-        Args:
-            value: Value to set for the visibility property.
-        """
-        self._visibility = value
     
 

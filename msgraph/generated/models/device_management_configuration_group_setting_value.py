@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,32 +8,11 @@ if TYPE_CHECKING:
 
 from . import device_management_configuration_setting_value
 
+@dataclass
 class DeviceManagementConfigurationGroupSettingValue(device_management_configuration_setting_value.DeviceManagementConfigurationSettingValue):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementConfigurationGroupSettingValue and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementConfigurationGroupSettingValue"
-        # Collection of child setting instances contained within this GroupSetting
-        self._children: Optional[List[device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance]] = None
-    
-    @property
-    def children(self,) -> Optional[List[device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance]]:
-        """
-        Gets the children property value. Collection of child setting instances contained within this GroupSetting
-        Returns: Optional[List[device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance]]
-        """
-        return self._children
-    
-    @children.setter
-    def children(self,value: Optional[List[device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance]] = None) -> None:
-        """
-        Sets the children property value. Collection of child setting instances contained within this GroupSetting
-        Args:
-            value: Value to set for the children property.
-        """
-        self._children = value
+    odata_type = "#microsoft.graph.deviceManagementConfigurationGroupSettingValue"
+    # Collection of child setting instances contained within this GroupSetting
+    children: Optional[List[device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationGroupSettingValue:

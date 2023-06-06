@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,36 +8,15 @@ if TYPE_CHECKING:
 
 from . import access_review_instance_decision_item_target
 
+@dataclass
 class AccessReviewInstanceDecisionItemServicePrincipalTarget(access_review_instance_decision_item_target.AccessReviewInstanceDecisionItemTarget):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AccessReviewInstanceDecisionItemServicePrincipalTarget and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.accessReviewInstanceDecisionItemServicePrincipalTarget"
-        # The appId for the service principal entity being reviewed.
-        self._app_id: Optional[str] = None
-        # The display name of the service principal whose access is being reviewed.
-        self._service_principal_display_name: Optional[str] = None
-        # The servicePrincipalId property
-        self._service_principal_id: Optional[str] = None
-    
-    @property
-    def app_id(self,) -> Optional[str]:
-        """
-        Gets the appId property value. The appId for the service principal entity being reviewed.
-        Returns: Optional[str]
-        """
-        return self._app_id
-    
-    @app_id.setter
-    def app_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the appId property value. The appId for the service principal entity being reviewed.
-        Args:
-            value: Value to set for the app_id property.
-        """
-        self._app_id = value
+    odata_type = "#microsoft.graph.accessReviewInstanceDecisionItemServicePrincipalTarget"
+    # The appId for the service principal entity being reviewed.
+    app_id: Optional[str] = None
+    # The display name of the service principal whose access is being reviewed.
+    service_principal_display_name: Optional[str] = None
+    # The servicePrincipalId property
+    service_principal_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccessReviewInstanceDecisionItemServicePrincipalTarget:
@@ -78,39 +58,5 @@ class AccessReviewInstanceDecisionItemServicePrincipalTarget(access_review_insta
         writer.write_str_value("appId", self.app_id)
         writer.write_str_value("servicePrincipalDisplayName", self.service_principal_display_name)
         writer.write_str_value("servicePrincipalId", self.service_principal_id)
-    
-    @property
-    def service_principal_display_name(self,) -> Optional[str]:
-        """
-        Gets the servicePrincipalDisplayName property value. The display name of the service principal whose access is being reviewed.
-        Returns: Optional[str]
-        """
-        return self._service_principal_display_name
-    
-    @service_principal_display_name.setter
-    def service_principal_display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the servicePrincipalDisplayName property value. The display name of the service principal whose access is being reviewed.
-        Args:
-            value: Value to set for the service_principal_display_name property.
-        """
-        self._service_principal_display_name = value
-    
-    @property
-    def service_principal_id(self,) -> Optional[str]:
-        """
-        Gets the servicePrincipalId property value. The servicePrincipalId property
-        Returns: Optional[str]
-        """
-        return self._service_principal_id
-    
-    @service_principal_id.setter
-    def service_principal_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the servicePrincipalId property value. The servicePrincipalId property
-        Args:
-            value: Value to set for the service_principal_id property.
-        """
-        self._service_principal_id = value
     
 

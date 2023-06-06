@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,19 +8,15 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class DeviceManagementTemplateInsightsDefinition(entity.Entity):
     """
     template insights definition
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementTemplateInsightsDefinition and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Setting insights in a template
-        self._setting_insights: Optional[List[device_management_setting_insights_definition.DeviceManagementSettingInsightsDefinition]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Setting insights in a template
+    setting_insights: Optional[List[device_management_setting_insights_definition.DeviceManagementSettingInsightsDefinition]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementTemplateInsightsDefinition:
@@ -57,22 +54,5 @@ class DeviceManagementTemplateInsightsDefinition(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_collection_of_object_values("settingInsights", self.setting_insights)
-    
-    @property
-    def setting_insights(self,) -> Optional[List[device_management_setting_insights_definition.DeviceManagementSettingInsightsDefinition]]:
-        """
-        Gets the settingInsights property value. Setting insights in a template
-        Returns: Optional[List[device_management_setting_insights_definition.DeviceManagementSettingInsightsDefinition]]
-        """
-        return self._setting_insights
-    
-    @setting_insights.setter
-    def setting_insights(self,value: Optional[List[device_management_setting_insights_definition.DeviceManagementSettingInsightsDefinition]] = None) -> None:
-        """
-        Sets the settingInsights property value. Setting insights in a template
-        Args:
-            value: Value to set for the setting_insights property.
-        """
-        self._setting_insights = value
     
 

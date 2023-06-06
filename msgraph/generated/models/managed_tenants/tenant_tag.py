@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -9,64 +10,26 @@ if TYPE_CHECKING:
 
 from .. import entity
 
+@dataclass
 class TenantTag(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new tenantTag and sets the default values.
-        """
-        super().__init__()
-        # The identifier for the account that created the tenant tag. Required. Read-only.
-        self._created_by_user_id: Optional[str] = None
-        # The date and time when the tenant tag was created. Required. Read-only.
-        self._created_date_time: Optional[datetime] = None
-        # The date and time when the tenant tag was deleted. Required. Read-only.
-        self._deleted_date_time: Optional[datetime] = None
-        # The description for the tenant tag. Optional. Read-only.
-        self._description: Optional[str] = None
-        # The display name for the tenant tag. Required. Read-only.
-        self._display_name: Optional[str] = None
-        # The identifier for the account that lasted on the tenant tag. Optional. Read-only.
-        self._last_action_by_user_id: Optional[str] = None
-        # The date and time the last action was performed against the tenant tag. Optional. Read-only.
-        self._last_action_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The collection of managed tenants associated with the tenant tag. Optional.
-        self._tenants: Optional[List[tenant_info.TenantInfo]] = None
-    
-    @property
-    def created_by_user_id(self,) -> Optional[str]:
-        """
-        Gets the createdByUserId property value. The identifier for the account that created the tenant tag. Required. Read-only.
-        Returns: Optional[str]
-        """
-        return self._created_by_user_id
-    
-    @created_by_user_id.setter
-    def created_by_user_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the createdByUserId property value. The identifier for the account that created the tenant tag. Required. Read-only.
-        Args:
-            value: Value to set for the created_by_user_id property.
-        """
-        self._created_by_user_id = value
-    
-    @property
-    def created_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the createdDateTime property value. The date and time when the tenant tag was created. Required. Read-only.
-        Returns: Optional[datetime]
-        """
-        return self._created_date_time
-    
-    @created_date_time.setter
-    def created_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the createdDateTime property value. The date and time when the tenant tag was created. Required. Read-only.
-        Args:
-            value: Value to set for the created_date_time property.
-        """
-        self._created_date_time = value
+    # The identifier for the account that created the tenant tag. Required. Read-only.
+    created_by_user_id: Optional[str] = None
+    # The date and time when the tenant tag was created. Required. Read-only.
+    created_date_time: Optional[datetime] = None
+    # The date and time when the tenant tag was deleted. Required. Read-only.
+    deleted_date_time: Optional[datetime] = None
+    # The description for the tenant tag. Optional. Read-only.
+    description: Optional[str] = None
+    # The display name for the tenant tag. Required. Read-only.
+    display_name: Optional[str] = None
+    # The identifier for the account that lasted on the tenant tag. Optional. Read-only.
+    last_action_by_user_id: Optional[str] = None
+    # The date and time the last action was performed against the tenant tag. Optional. Read-only.
+    last_action_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The collection of managed tenants associated with the tenant tag. Optional.
+    tenants: Optional[List[tenant_info.TenantInfo]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TenantTag:
@@ -79,57 +42,6 @@ class TenantTag(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return TenantTag()
-    
-    @property
-    def deleted_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the deletedDateTime property value. The date and time when the tenant tag was deleted. Required. Read-only.
-        Returns: Optional[datetime]
-        """
-        return self._deleted_date_time
-    
-    @deleted_date_time.setter
-    def deleted_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the deletedDateTime property value. The date and time when the tenant tag was deleted. Required. Read-only.
-        Args:
-            value: Value to set for the deleted_date_time property.
-        """
-        self._deleted_date_time = value
-    
-    @property
-    def description(self,) -> Optional[str]:
-        """
-        Gets the description property value. The description for the tenant tag. Optional. Read-only.
-        Returns: Optional[str]
-        """
-        return self._description
-    
-    @description.setter
-    def description(self,value: Optional[str] = None) -> None:
-        """
-        Sets the description property value. The description for the tenant tag. Optional. Read-only.
-        Args:
-            value: Value to set for the description property.
-        """
-        self._description = value
-    
-    @property
-    def display_name(self,) -> Optional[str]:
-        """
-        Gets the displayName property value. The display name for the tenant tag. Required. Read-only.
-        Returns: Optional[str]
-        """
-        return self._display_name
-    
-    @display_name.setter
-    def display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the displayName property value. The display name for the tenant tag. Required. Read-only.
-        Args:
-            value: Value to set for the display_name property.
-        """
-        self._display_name = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -153,40 +65,6 @@ class TenantTag(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def last_action_by_user_id(self,) -> Optional[str]:
-        """
-        Gets the lastActionByUserId property value. The identifier for the account that lasted on the tenant tag. Optional. Read-only.
-        Returns: Optional[str]
-        """
-        return self._last_action_by_user_id
-    
-    @last_action_by_user_id.setter
-    def last_action_by_user_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the lastActionByUserId property value. The identifier for the account that lasted on the tenant tag. Optional. Read-only.
-        Args:
-            value: Value to set for the last_action_by_user_id property.
-        """
-        self._last_action_by_user_id = value
-    
-    @property
-    def last_action_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the lastActionDateTime property value. The date and time the last action was performed against the tenant tag. Optional. Read-only.
-        Returns: Optional[datetime]
-        """
-        return self._last_action_date_time
-    
-    @last_action_date_time.setter
-    def last_action_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the lastActionDateTime property value. The date and time the last action was performed against the tenant tag. Optional. Read-only.
-        Args:
-            value: Value to set for the last_action_date_time property.
-        """
-        self._last_action_date_time = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -204,22 +82,5 @@ class TenantTag(entity.Entity):
         writer.write_str_value("lastActionByUserId", self.last_action_by_user_id)
         writer.write_datetime_value("lastActionDateTime", self.last_action_date_time)
         writer.write_collection_of_object_values("tenants", self.tenants)
-    
-    @property
-    def tenants(self,) -> Optional[List[tenant_info.TenantInfo]]:
-        """
-        Gets the tenants property value. The collection of managed tenants associated with the tenant tag. Optional.
-        Returns: Optional[List[tenant_info.TenantInfo]]
-        """
-        return self._tenants
-    
-    @tenants.setter
-    def tenants(self,value: Optional[List[tenant_info.TenantInfo]] = None) -> None:
-        """
-        Sets the tenants property value. The collection of managed tenants associated with the tenant tag. Optional.
-        Args:
-            value: Value to set for the tenants property.
-        """
-        self._tenants = value
     
 

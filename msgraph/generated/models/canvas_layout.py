@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,18 +8,14 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class CanvasLayout(entity.Entity):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new canvasLayout and sets the default values.
-        """
-        super().__init__()
-        # Collection of horizontal sections on the SharePoint page.
-        self._horizontal_sections: Optional[List[horizontal_section.HorizontalSection]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Vertical section on the SharePoint page.
-        self._vertical_section: Optional[vertical_section.VerticalSection] = None
+    # Collection of horizontal sections on the SharePoint page.
+    horizontal_sections: Optional[List[horizontal_section.HorizontalSection]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Vertical section on the SharePoint page.
+    vertical_section: Optional[vertical_section.VerticalSection] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CanvasLayout:
@@ -47,23 +44,6 @@ class CanvasLayout(entity.Entity):
         fields.update(super_fields)
         return fields
     
-    @property
-    def horizontal_sections(self,) -> Optional[List[horizontal_section.HorizontalSection]]:
-        """
-        Gets the horizontalSections property value. Collection of horizontal sections on the SharePoint page.
-        Returns: Optional[List[horizontal_section.HorizontalSection]]
-        """
-        return self._horizontal_sections
-    
-    @horizontal_sections.setter
-    def horizontal_sections(self,value: Optional[List[horizontal_section.HorizontalSection]] = None) -> None:
-        """
-        Sets the horizontalSections property value. Collection of horizontal sections on the SharePoint page.
-        Args:
-            value: Value to set for the horizontal_sections property.
-        """
-        self._horizontal_sections = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -75,22 +55,5 @@ class CanvasLayout(entity.Entity):
         super().serialize(writer)
         writer.write_collection_of_object_values("horizontalSections", self.horizontal_sections)
         writer.write_object_value("verticalSection", self.vertical_section)
-    
-    @property
-    def vertical_section(self,) -> Optional[vertical_section.VerticalSection]:
-        """
-        Gets the verticalSection property value. Vertical section on the SharePoint page.
-        Returns: Optional[vertical_section.VerticalSection]
-        """
-        return self._vertical_section
-    
-    @vertical_section.setter
-    def vertical_section(self,value: Optional[vertical_section.VerticalSection] = None) -> None:
-        """
-        Sets the verticalSection property value. Vertical section on the SharePoint page.
-        Args:
-            value: Value to set for the vertical_section property.
-        """
-        self._vertical_section = value
     
 

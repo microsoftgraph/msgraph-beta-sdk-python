@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import mobile_app_identifier
 
+@dataclass
 class WindowsAppIdentifier(mobile_app_identifier.MobileAppIdentifier):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsAppIdentifier and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsAppIdentifier"
-        # The identifier for an app, as specified in the app store.
-        self._windows_app_id: Optional[str] = None
+    odata_type = "#microsoft.graph.windowsAppIdentifier"
+    # The identifier for an app, as specified in the app store.
+    windows_app_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsAppIdentifier:
@@ -53,22 +50,5 @@ class WindowsAppIdentifier(mobile_app_identifier.MobileAppIdentifier):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_str_value("windowsAppId", self.windows_app_id)
-    
-    @property
-    def windows_app_id(self,) -> Optional[str]:
-        """
-        Gets the windowsAppId property value. The identifier for an app, as specified in the app store.
-        Returns: Optional[str]
-        """
-        return self._windows_app_id
-    
-    @windows_app_id.setter
-    def windows_app_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the windowsAppId property value. The identifier for an app, as specified in the app store.
-        Args:
-            value: Value to set for the windows_app_id property.
-        """
-        self._windows_app_id = value
     
 

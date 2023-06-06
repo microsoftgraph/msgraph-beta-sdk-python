@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,119 +8,47 @@ if TYPE_CHECKING:
 
 from . import targeted_managed_app_protection
 
+@dataclass
 class IosManagedAppProtection(targeted_managed_app_protection.TargetedManagedAppProtection):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new IosManagedAppProtection and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.iosManagedAppProtection"
-        # Semicolon seperated list of device models allowed, as a string, for the managed app to work.
-        self._allowed_ios_device_models: Optional[str] = None
-        # An admin initiated action to be applied on a managed app.
-        self._app_action_if_ios_device_model_not_allowed: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
-        # Represents the level to which app data is encrypted for managed apps
-        self._app_data_encryption_type: Optional[managed_app_data_encryption_type.ManagedAppDataEncryptionType] = None
-        # List of apps to which the policy is deployed.
-        self._apps: Optional[List[managed_mobile_app.ManagedMobileApp]] = None
-        # A custom browser protocol to open weblink on iOS.
-        self._custom_browser_protocol: Optional[str] = None
-        # Protocol of a custom dialer app to click-to-open a phone number on iOS, for example, skype:.
-        self._custom_dialer_app_protocol: Optional[str] = None
-        # Count of apps to which the current policy is deployed.
-        self._deployed_app_count: Optional[int] = None
-        # Navigation property to deployment summary of the configuration.
-        self._deployment_summary: Optional[managed_app_policy_deployment_summary.ManagedAppPolicyDeploymentSummary] = None
-        # Disable protection of data transferred to other apps through IOS OpenIn option. This setting is only allowed to be True when AllowedOutboundDataTransferDestinations is set to ManagedApps.
-        self._disable_protection_of_managed_outbound_open_in_data: Optional[bool] = None
-        # Apps in this list will be exempt from the policy and will be able to receive data from managed apps.
-        self._exempted_app_protocols: Optional[List[key_value_pair.KeyValuePair]] = None
-        # A list of custom urls that are allowed to invocate an unmanaged app
-        self._exempted_universal_links: Optional[List[str]] = None
-        # Indicates whether use of the FaceID is allowed in place of a pin if PinRequired is set to True.
-        self._face_id_blocked: Optional[bool] = None
-        # Defines if open-in operation is supported from the managed app to the filesharing locations selected. This setting only applies when AllowedOutboundDataTransferDestinations is set to ManagedApps and DisableProtectionOfManagedOutboundOpenInData is set to False.
-        self._filter_open_in_to_only_managed_apps: Optional[bool] = None
-        # A list of custom urls that are allowed to invocate a managed app
-        self._managed_universal_links: Optional[List[str]] = None
-        # Versions less than the specified version will block the managed app from accessing company data.
-        self._minimum_required_sdk_version: Optional[str] = None
-        # Versions less than the specified version will result in warning message on the managed app from accessing company data.
-        self._minimum_warning_sdk_version: Optional[str] = None
-        # Versions less than the specified version will block the managed app from accessing company data.
-        self._minimum_wipe_sdk_version: Optional[str] = None
-        # Protect incoming data from unknown source. This setting is only allowed to be True when AllowedInboundDataTransferSources is set to AllApps.
-        self._protect_inbound_data_from_unknown_sources: Optional[bool] = None
-        # Defines if third party keyboards are allowed while accessing a managed app
-        self._third_party_keyboards_blocked: Optional[bool] = None
-    
-    @property
-    def allowed_ios_device_models(self,) -> Optional[str]:
-        """
-        Gets the allowedIosDeviceModels property value. Semicolon seperated list of device models allowed, as a string, for the managed app to work.
-        Returns: Optional[str]
-        """
-        return self._allowed_ios_device_models
-    
-    @allowed_ios_device_models.setter
-    def allowed_ios_device_models(self,value: Optional[str] = None) -> None:
-        """
-        Sets the allowedIosDeviceModels property value. Semicolon seperated list of device models allowed, as a string, for the managed app to work.
-        Args:
-            value: Value to set for the allowed_ios_device_models property.
-        """
-        self._allowed_ios_device_models = value
-    
-    @property
-    def app_action_if_ios_device_model_not_allowed(self,) -> Optional[managed_app_remediation_action.ManagedAppRemediationAction]:
-        """
-        Gets the appActionIfIosDeviceModelNotAllowed property value. An admin initiated action to be applied on a managed app.
-        Returns: Optional[managed_app_remediation_action.ManagedAppRemediationAction]
-        """
-        return self._app_action_if_ios_device_model_not_allowed
-    
-    @app_action_if_ios_device_model_not_allowed.setter
-    def app_action_if_ios_device_model_not_allowed(self,value: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None) -> None:
-        """
-        Sets the appActionIfIosDeviceModelNotAllowed property value. An admin initiated action to be applied on a managed app.
-        Args:
-            value: Value to set for the app_action_if_ios_device_model_not_allowed property.
-        """
-        self._app_action_if_ios_device_model_not_allowed = value
-    
-    @property
-    def app_data_encryption_type(self,) -> Optional[managed_app_data_encryption_type.ManagedAppDataEncryptionType]:
-        """
-        Gets the appDataEncryptionType property value. Represents the level to which app data is encrypted for managed apps
-        Returns: Optional[managed_app_data_encryption_type.ManagedAppDataEncryptionType]
-        """
-        return self._app_data_encryption_type
-    
-    @app_data_encryption_type.setter
-    def app_data_encryption_type(self,value: Optional[managed_app_data_encryption_type.ManagedAppDataEncryptionType] = None) -> None:
-        """
-        Sets the appDataEncryptionType property value. Represents the level to which app data is encrypted for managed apps
-        Args:
-            value: Value to set for the app_data_encryption_type property.
-        """
-        self._app_data_encryption_type = value
-    
-    @property
-    def apps(self,) -> Optional[List[managed_mobile_app.ManagedMobileApp]]:
-        """
-        Gets the apps property value. List of apps to which the policy is deployed.
-        Returns: Optional[List[managed_mobile_app.ManagedMobileApp]]
-        """
-        return self._apps
-    
-    @apps.setter
-    def apps(self,value: Optional[List[managed_mobile_app.ManagedMobileApp]] = None) -> None:
-        """
-        Sets the apps property value. List of apps to which the policy is deployed.
-        Args:
-            value: Value to set for the apps property.
-        """
-        self._apps = value
+    odata_type = "#microsoft.graph.iosManagedAppProtection"
+    # Semicolon seperated list of device models allowed, as a string, for the managed app to work.
+    allowed_ios_device_models: Optional[str] = None
+    # An admin initiated action to be applied on a managed app.
+    app_action_if_ios_device_model_not_allowed: Optional[managed_app_remediation_action.ManagedAppRemediationAction] = None
+    # Represents the level to which app data is encrypted for managed apps
+    app_data_encryption_type: Optional[managed_app_data_encryption_type.ManagedAppDataEncryptionType] = None
+    # List of apps to which the policy is deployed.
+    apps: Optional[List[managed_mobile_app.ManagedMobileApp]] = None
+    # A custom browser protocol to open weblink on iOS.
+    custom_browser_protocol: Optional[str] = None
+    # Protocol of a custom dialer app to click-to-open a phone number on iOS, for example, skype:.
+    custom_dialer_app_protocol: Optional[str] = None
+    # Count of apps to which the current policy is deployed.
+    deployed_app_count: Optional[int] = None
+    # Navigation property to deployment summary of the configuration.
+    deployment_summary: Optional[managed_app_policy_deployment_summary.ManagedAppPolicyDeploymentSummary] = None
+    # Disable protection of data transferred to other apps through IOS OpenIn option. This setting is only allowed to be True when AllowedOutboundDataTransferDestinations is set to ManagedApps.
+    disable_protection_of_managed_outbound_open_in_data: Optional[bool] = None
+    # Apps in this list will be exempt from the policy and will be able to receive data from managed apps.
+    exempted_app_protocols: Optional[List[key_value_pair.KeyValuePair]] = None
+    # A list of custom urls that are allowed to invocate an unmanaged app
+    exempted_universal_links: Optional[List[str]] = None
+    # Indicates whether use of the FaceID is allowed in place of a pin if PinRequired is set to True.
+    face_id_blocked: Optional[bool] = None
+    # Defines if open-in operation is supported from the managed app to the filesharing locations selected. This setting only applies when AllowedOutboundDataTransferDestinations is set to ManagedApps and DisableProtectionOfManagedOutboundOpenInData is set to False.
+    filter_open_in_to_only_managed_apps: Optional[bool] = None
+    # A list of custom urls that are allowed to invocate a managed app
+    managed_universal_links: Optional[List[str]] = None
+    # Versions less than the specified version will block the managed app from accessing company data.
+    minimum_required_sdk_version: Optional[str] = None
+    # Versions less than the specified version will result in warning message on the managed app from accessing company data.
+    minimum_warning_sdk_version: Optional[str] = None
+    # Versions less than the specified version will block the managed app from accessing company data.
+    minimum_wipe_sdk_version: Optional[str] = None
+    # Protect incoming data from unknown source. This setting is only allowed to be True when AllowedInboundDataTransferSources is set to AllApps.
+    protect_inbound_data_from_unknown_sources: Optional[bool] = None
+    # Defines if third party keyboards are allowed while accessing a managed app
+    third_party_keyboards_blocked: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosManagedAppProtection:
@@ -132,159 +61,6 @@ class IosManagedAppProtection(targeted_managed_app_protection.TargetedManagedApp
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return IosManagedAppProtection()
-    
-    @property
-    def custom_browser_protocol(self,) -> Optional[str]:
-        """
-        Gets the customBrowserProtocol property value. A custom browser protocol to open weblink on iOS.
-        Returns: Optional[str]
-        """
-        return self._custom_browser_protocol
-    
-    @custom_browser_protocol.setter
-    def custom_browser_protocol(self,value: Optional[str] = None) -> None:
-        """
-        Sets the customBrowserProtocol property value. A custom browser protocol to open weblink on iOS.
-        Args:
-            value: Value to set for the custom_browser_protocol property.
-        """
-        self._custom_browser_protocol = value
-    
-    @property
-    def custom_dialer_app_protocol(self,) -> Optional[str]:
-        """
-        Gets the customDialerAppProtocol property value. Protocol of a custom dialer app to click-to-open a phone number on iOS, for example, skype:.
-        Returns: Optional[str]
-        """
-        return self._custom_dialer_app_protocol
-    
-    @custom_dialer_app_protocol.setter
-    def custom_dialer_app_protocol(self,value: Optional[str] = None) -> None:
-        """
-        Sets the customDialerAppProtocol property value. Protocol of a custom dialer app to click-to-open a phone number on iOS, for example, skype:.
-        Args:
-            value: Value to set for the custom_dialer_app_protocol property.
-        """
-        self._custom_dialer_app_protocol = value
-    
-    @property
-    def deployed_app_count(self,) -> Optional[int]:
-        """
-        Gets the deployedAppCount property value. Count of apps to which the current policy is deployed.
-        Returns: Optional[int]
-        """
-        return self._deployed_app_count
-    
-    @deployed_app_count.setter
-    def deployed_app_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the deployedAppCount property value. Count of apps to which the current policy is deployed.
-        Args:
-            value: Value to set for the deployed_app_count property.
-        """
-        self._deployed_app_count = value
-    
-    @property
-    def deployment_summary(self,) -> Optional[managed_app_policy_deployment_summary.ManagedAppPolicyDeploymentSummary]:
-        """
-        Gets the deploymentSummary property value. Navigation property to deployment summary of the configuration.
-        Returns: Optional[managed_app_policy_deployment_summary.ManagedAppPolicyDeploymentSummary]
-        """
-        return self._deployment_summary
-    
-    @deployment_summary.setter
-    def deployment_summary(self,value: Optional[managed_app_policy_deployment_summary.ManagedAppPolicyDeploymentSummary] = None) -> None:
-        """
-        Sets the deploymentSummary property value. Navigation property to deployment summary of the configuration.
-        Args:
-            value: Value to set for the deployment_summary property.
-        """
-        self._deployment_summary = value
-    
-    @property
-    def disable_protection_of_managed_outbound_open_in_data(self,) -> Optional[bool]:
-        """
-        Gets the disableProtectionOfManagedOutboundOpenInData property value. Disable protection of data transferred to other apps through IOS OpenIn option. This setting is only allowed to be True when AllowedOutboundDataTransferDestinations is set to ManagedApps.
-        Returns: Optional[bool]
-        """
-        return self._disable_protection_of_managed_outbound_open_in_data
-    
-    @disable_protection_of_managed_outbound_open_in_data.setter
-    def disable_protection_of_managed_outbound_open_in_data(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the disableProtectionOfManagedOutboundOpenInData property value. Disable protection of data transferred to other apps through IOS OpenIn option. This setting is only allowed to be True when AllowedOutboundDataTransferDestinations is set to ManagedApps.
-        Args:
-            value: Value to set for the disable_protection_of_managed_outbound_open_in_data property.
-        """
-        self._disable_protection_of_managed_outbound_open_in_data = value
-    
-    @property
-    def exempted_app_protocols(self,) -> Optional[List[key_value_pair.KeyValuePair]]:
-        """
-        Gets the exemptedAppProtocols property value. Apps in this list will be exempt from the policy and will be able to receive data from managed apps.
-        Returns: Optional[List[key_value_pair.KeyValuePair]]
-        """
-        return self._exempted_app_protocols
-    
-    @exempted_app_protocols.setter
-    def exempted_app_protocols(self,value: Optional[List[key_value_pair.KeyValuePair]] = None) -> None:
-        """
-        Sets the exemptedAppProtocols property value. Apps in this list will be exempt from the policy and will be able to receive data from managed apps.
-        Args:
-            value: Value to set for the exempted_app_protocols property.
-        """
-        self._exempted_app_protocols = value
-    
-    @property
-    def exempted_universal_links(self,) -> Optional[List[str]]:
-        """
-        Gets the exemptedUniversalLinks property value. A list of custom urls that are allowed to invocate an unmanaged app
-        Returns: Optional[List[str]]
-        """
-        return self._exempted_universal_links
-    
-    @exempted_universal_links.setter
-    def exempted_universal_links(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the exemptedUniversalLinks property value. A list of custom urls that are allowed to invocate an unmanaged app
-        Args:
-            value: Value to set for the exempted_universal_links property.
-        """
-        self._exempted_universal_links = value
-    
-    @property
-    def face_id_blocked(self,) -> Optional[bool]:
-        """
-        Gets the faceIdBlocked property value. Indicates whether use of the FaceID is allowed in place of a pin if PinRequired is set to True.
-        Returns: Optional[bool]
-        """
-        return self._face_id_blocked
-    
-    @face_id_blocked.setter
-    def face_id_blocked(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the faceIdBlocked property value. Indicates whether use of the FaceID is allowed in place of a pin if PinRequired is set to True.
-        Args:
-            value: Value to set for the face_id_blocked property.
-        """
-        self._face_id_blocked = value
-    
-    @property
-    def filter_open_in_to_only_managed_apps(self,) -> Optional[bool]:
-        """
-        Gets the filterOpenInToOnlyManagedApps property value. Defines if open-in operation is supported from the managed app to the filesharing locations selected. This setting only applies when AllowedOutboundDataTransferDestinations is set to ManagedApps and DisableProtectionOfManagedOutboundOpenInData is set to False.
-        Returns: Optional[bool]
-        """
-        return self._filter_open_in_to_only_managed_apps
-    
-    @filter_open_in_to_only_managed_apps.setter
-    def filter_open_in_to_only_managed_apps(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the filterOpenInToOnlyManagedApps property value. Defines if open-in operation is supported from the managed app to the filesharing locations selected. This setting only applies when AllowedOutboundDataTransferDestinations is set to ManagedApps and DisableProtectionOfManagedOutboundOpenInData is set to False.
-        Args:
-            value: Value to set for the filter_open_in_to_only_managed_apps property.
-        """
-        self._filter_open_in_to_only_managed_apps = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -318,91 +94,6 @@ class IosManagedAppProtection(targeted_managed_app_protection.TargetedManagedApp
         fields.update(super_fields)
         return fields
     
-    @property
-    def managed_universal_links(self,) -> Optional[List[str]]:
-        """
-        Gets the managedUniversalLinks property value. A list of custom urls that are allowed to invocate a managed app
-        Returns: Optional[List[str]]
-        """
-        return self._managed_universal_links
-    
-    @managed_universal_links.setter
-    def managed_universal_links(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the managedUniversalLinks property value. A list of custom urls that are allowed to invocate a managed app
-        Args:
-            value: Value to set for the managed_universal_links property.
-        """
-        self._managed_universal_links = value
-    
-    @property
-    def minimum_required_sdk_version(self,) -> Optional[str]:
-        """
-        Gets the minimumRequiredSdkVersion property value. Versions less than the specified version will block the managed app from accessing company data.
-        Returns: Optional[str]
-        """
-        return self._minimum_required_sdk_version
-    
-    @minimum_required_sdk_version.setter
-    def minimum_required_sdk_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the minimumRequiredSdkVersion property value. Versions less than the specified version will block the managed app from accessing company data.
-        Args:
-            value: Value to set for the minimum_required_sdk_version property.
-        """
-        self._minimum_required_sdk_version = value
-    
-    @property
-    def minimum_warning_sdk_version(self,) -> Optional[str]:
-        """
-        Gets the minimumWarningSdkVersion property value. Versions less than the specified version will result in warning message on the managed app from accessing company data.
-        Returns: Optional[str]
-        """
-        return self._minimum_warning_sdk_version
-    
-    @minimum_warning_sdk_version.setter
-    def minimum_warning_sdk_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the minimumWarningSdkVersion property value. Versions less than the specified version will result in warning message on the managed app from accessing company data.
-        Args:
-            value: Value to set for the minimum_warning_sdk_version property.
-        """
-        self._minimum_warning_sdk_version = value
-    
-    @property
-    def minimum_wipe_sdk_version(self,) -> Optional[str]:
-        """
-        Gets the minimumWipeSdkVersion property value. Versions less than the specified version will block the managed app from accessing company data.
-        Returns: Optional[str]
-        """
-        return self._minimum_wipe_sdk_version
-    
-    @minimum_wipe_sdk_version.setter
-    def minimum_wipe_sdk_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the minimumWipeSdkVersion property value. Versions less than the specified version will block the managed app from accessing company data.
-        Args:
-            value: Value to set for the minimum_wipe_sdk_version property.
-        """
-        self._minimum_wipe_sdk_version = value
-    
-    @property
-    def protect_inbound_data_from_unknown_sources(self,) -> Optional[bool]:
-        """
-        Gets the protectInboundDataFromUnknownSources property value. Protect incoming data from unknown source. This setting is only allowed to be True when AllowedInboundDataTransferSources is set to AllApps.
-        Returns: Optional[bool]
-        """
-        return self._protect_inbound_data_from_unknown_sources
-    
-    @protect_inbound_data_from_unknown_sources.setter
-    def protect_inbound_data_from_unknown_sources(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the protectInboundDataFromUnknownSources property value. Protect incoming data from unknown source. This setting is only allowed to be True when AllowedInboundDataTransferSources is set to AllApps.
-        Args:
-            value: Value to set for the protect_inbound_data_from_unknown_sources property.
-        """
-        self._protect_inbound_data_from_unknown_sources = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -431,22 +122,5 @@ class IosManagedAppProtection(targeted_managed_app_protection.TargetedManagedApp
         writer.write_str_value("minimumWipeSdkVersion", self.minimum_wipe_sdk_version)
         writer.write_bool_value("protectInboundDataFromUnknownSources", self.protect_inbound_data_from_unknown_sources)
         writer.write_bool_value("thirdPartyKeyboardsBlocked", self.third_party_keyboards_blocked)
-    
-    @property
-    def third_party_keyboards_blocked(self,) -> Optional[bool]:
-        """
-        Gets the thirdPartyKeyboardsBlocked property value. Defines if third party keyboards are allowed while accessing a managed app
-        Returns: Optional[bool]
-        """
-        return self._third_party_keyboards_blocked
-    
-    @third_party_keyboards_blocked.setter
-    def third_party_keyboards_blocked(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the thirdPartyKeyboardsBlocked property value. Defines if third party keyboards are allowed while accessing a managed app
-        Args:
-            value: Value to set for the third_party_keyboards_blocked property.
-        """
-        self._third_party_keyboards_blocked = value
     
 

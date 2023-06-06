@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -37,7 +37,7 @@ class ResourceConnectionItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[ResourceConnectionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete an operationalInsightsConnection object.
+        Delete a resourceConnection object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -56,7 +56,7 @@ class ResourceConnectionItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[ResourceConnectionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[resource_connection.ResourceConnection]:
         """
-        Read the properties and relationships of an operationalInsightsConnection object.
+        Read the properties and relationships of a resourceConnection object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[resource_connection.ResourceConnection]
@@ -103,7 +103,7 @@ class ResourceConnectionItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[ResourceConnectionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an operationalInsightsConnection object.
+        Delete a resourceConnection object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,7 +119,7 @@ class ResourceConnectionItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ResourceConnectionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an operationalInsightsConnection object.
+        Read the properties and relationships of a resourceConnection object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -171,7 +171,7 @@ class ResourceConnectionItemRequestBuilder():
     @dataclass
     class ResourceConnectionItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an operationalInsightsConnection object.
+        Read the properties and relationships of a resourceConnection object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

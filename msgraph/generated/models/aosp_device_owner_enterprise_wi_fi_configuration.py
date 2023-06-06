@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,46 +8,25 @@ if TYPE_CHECKING:
 
 from . import aosp_device_owner_wi_fi_configuration
 
+@dataclass
 class AospDeviceOwnerEnterpriseWiFiConfiguration(aosp_device_owner_wi_fi_configuration.AospDeviceOwnerWiFiConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AospDeviceOwnerEnterpriseWiFiConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.aospDeviceOwnerEnterpriseWiFiConfiguration"
-        # Indicates the Authentication Method the client (device) needs to use when the EAP Type is configured to PEAP or EAP-TTLS. Possible values are: certificate, usernameAndPassword, derivedCredential.
-        self._authentication_method: Optional[wi_fi_authentication_method.WiFiAuthenticationMethod] = None
-        # Extensible Authentication Protocol (EAP) Configuration Types.
-        self._eap_type: Optional[android_eap_type.AndroidEapType] = None
-        # Identity Certificate for client authentication when EAP Type is configured to EAP-TLS, EAP-TTLS (with Certificate Authentication), or PEAP (with Certificate Authentication). This is the certificate presented by client to the Wi-Fi endpoint. The authentication server sitting behind the Wi-Fi endpoint must accept this certificate to successfully establish a Wi-Fi connection.
-        self._identity_certificate_for_client_authentication: Optional[aosp_device_owner_certificate_profile_base.AospDeviceOwnerCertificateProfileBase] = None
-        # Non-EAP Method for Authentication (Inner Identity) when EAP Type is EAP-TTLS and Authenticationmethod is Username and Password. Possible values are: unencryptedPassword, challengeHandshakeAuthenticationProtocol, microsoftChap, microsoftChapVersionTwo.
-        self._inner_authentication_protocol_for_eap_ttls: Optional[non_eap_authentication_method_for_eap_ttls_type.NonEapAuthenticationMethodForEapTtlsType] = None
-        # Non-EAP Method for Authentication (Inner Identity) when EAP Type is PEAP and Authenticationmethod is Username and Password. This collection can contain a maximum of 500 elements. Possible values are: none, microsoftChapVersionTwo.
-        self._inner_authentication_protocol_for_peap: Optional[non_eap_authentication_method_for_peap.NonEapAuthenticationMethodForPeap] = None
-        # Enable identity privacy (Outer Identity) when EAP Type is configured to EAP-TTLS or PEAP. The String provided here is used to mask the username of individual users when they attempt to connect to Wi-Fi network.
-        self._outer_identity_privacy_temporary_value: Optional[str] = None
-        # Trusted Root Certificate for Server Validation when EAP Type is configured to EAP-TLS, EAP-TTLS or PEAP. This is the certificate presented by the Wi-Fi endpoint when the device attempts to connect to Wi-Fi endpoint. The device (or user) must accept this certificate to continue the connection attempt.
-        self._root_certificate_for_server_validation: Optional[aosp_device_owner_trusted_root_certificate.AospDeviceOwnerTrustedRootCertificate] = None
-        # Trusted server certificate names when EAP Type is configured to EAP-TLS/TTLS/FAST or PEAP. This is the common name used in the certificates issued by your trusted certificate authority (CA). If you provide this information, you can bypass the dynamic trust dialog that is displayed on end users' devices when they connect to this Wi-Fi network.
-        self._trusted_server_certificate_names: Optional[List[str]] = None
-    
-    @property
-    def authentication_method(self,) -> Optional[wi_fi_authentication_method.WiFiAuthenticationMethod]:
-        """
-        Gets the authenticationMethod property value. Indicates the Authentication Method the client (device) needs to use when the EAP Type is configured to PEAP or EAP-TTLS. Possible values are: certificate, usernameAndPassword, derivedCredential.
-        Returns: Optional[wi_fi_authentication_method.WiFiAuthenticationMethod]
-        """
-        return self._authentication_method
-    
-    @authentication_method.setter
-    def authentication_method(self,value: Optional[wi_fi_authentication_method.WiFiAuthenticationMethod] = None) -> None:
-        """
-        Sets the authenticationMethod property value. Indicates the Authentication Method the client (device) needs to use when the EAP Type is configured to PEAP or EAP-TTLS. Possible values are: certificate, usernameAndPassword, derivedCredential.
-        Args:
-            value: Value to set for the authentication_method property.
-        """
-        self._authentication_method = value
+    odata_type = "#microsoft.graph.aospDeviceOwnerEnterpriseWiFiConfiguration"
+    # Indicates the Authentication Method the client (device) needs to use when the EAP Type is configured to PEAP or EAP-TTLS. Possible values are: certificate, usernameAndPassword, derivedCredential.
+    authentication_method: Optional[wi_fi_authentication_method.WiFiAuthenticationMethod] = None
+    # Extensible Authentication Protocol (EAP) Configuration Types.
+    eap_type: Optional[android_eap_type.AndroidEapType] = None
+    # Identity Certificate for client authentication when EAP Type is configured to EAP-TLS, EAP-TTLS (with Certificate Authentication), or PEAP (with Certificate Authentication). This is the certificate presented by client to the Wi-Fi endpoint. The authentication server sitting behind the Wi-Fi endpoint must accept this certificate to successfully establish a Wi-Fi connection.
+    identity_certificate_for_client_authentication: Optional[aosp_device_owner_certificate_profile_base.AospDeviceOwnerCertificateProfileBase] = None
+    # Non-EAP Method for Authentication (Inner Identity) when EAP Type is EAP-TTLS and Authenticationmethod is Username and Password. Possible values are: unencryptedPassword, challengeHandshakeAuthenticationProtocol, microsoftChap, microsoftChapVersionTwo.
+    inner_authentication_protocol_for_eap_ttls: Optional[non_eap_authentication_method_for_eap_ttls_type.NonEapAuthenticationMethodForEapTtlsType] = None
+    # Non-EAP Method for Authentication (Inner Identity) when EAP Type is PEAP and Authenticationmethod is Username and Password. This collection can contain a maximum of 500 elements. Possible values are: none, microsoftChapVersionTwo.
+    inner_authentication_protocol_for_peap: Optional[non_eap_authentication_method_for_peap.NonEapAuthenticationMethodForPeap] = None
+    # Enable identity privacy (Outer Identity) when EAP Type is configured to EAP-TTLS or PEAP. The String provided here is used to mask the username of individual users when they attempt to connect to Wi-Fi network.
+    outer_identity_privacy_temporary_value: Optional[str] = None
+    # Trusted Root Certificate for Server Validation when EAP Type is configured to EAP-TLS, EAP-TTLS or PEAP. This is the certificate presented by the Wi-Fi endpoint when the device attempts to connect to Wi-Fi endpoint. The device (or user) must accept this certificate to continue the connection attempt.
+    root_certificate_for_server_validation: Optional[aosp_device_owner_trusted_root_certificate.AospDeviceOwnerTrustedRootCertificate] = None
+    # Trusted server certificate names when EAP Type is configured to EAP-TLS/TTLS/FAST or PEAP. This is the common name used in the certificates issued by your trusted certificate authority (CA). If you provide this information, you can bypass the dynamic trust dialog that is displayed on end users' devices when they connect to this Wi-Fi network.
+    trusted_server_certificate_names: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AospDeviceOwnerEnterpriseWiFiConfiguration:
@@ -59,23 +39,6 @@ class AospDeviceOwnerEnterpriseWiFiConfiguration(aosp_device_owner_wi_fi_configu
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return AospDeviceOwnerEnterpriseWiFiConfiguration()
-    
-    @property
-    def eap_type(self,) -> Optional[android_eap_type.AndroidEapType]:
-        """
-        Gets the eapType property value. Extensible Authentication Protocol (EAP) Configuration Types.
-        Returns: Optional[android_eap_type.AndroidEapType]
-        """
-        return self._eap_type
-    
-    @eap_type.setter
-    def eap_type(self,value: Optional[android_eap_type.AndroidEapType] = None) -> None:
-        """
-        Sets the eapType property value. Extensible Authentication Protocol (EAP) Configuration Types.
-        Args:
-            value: Value to set for the eap_type property.
-        """
-        self._eap_type = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -98,91 +61,6 @@ class AospDeviceOwnerEnterpriseWiFiConfiguration(aosp_device_owner_wi_fi_configu
         fields.update(super_fields)
         return fields
     
-    @property
-    def identity_certificate_for_client_authentication(self,) -> Optional[aosp_device_owner_certificate_profile_base.AospDeviceOwnerCertificateProfileBase]:
-        """
-        Gets the identityCertificateForClientAuthentication property value. Identity Certificate for client authentication when EAP Type is configured to EAP-TLS, EAP-TTLS (with Certificate Authentication), or PEAP (with Certificate Authentication). This is the certificate presented by client to the Wi-Fi endpoint. The authentication server sitting behind the Wi-Fi endpoint must accept this certificate to successfully establish a Wi-Fi connection.
-        Returns: Optional[aosp_device_owner_certificate_profile_base.AospDeviceOwnerCertificateProfileBase]
-        """
-        return self._identity_certificate_for_client_authentication
-    
-    @identity_certificate_for_client_authentication.setter
-    def identity_certificate_for_client_authentication(self,value: Optional[aosp_device_owner_certificate_profile_base.AospDeviceOwnerCertificateProfileBase] = None) -> None:
-        """
-        Sets the identityCertificateForClientAuthentication property value. Identity Certificate for client authentication when EAP Type is configured to EAP-TLS, EAP-TTLS (with Certificate Authentication), or PEAP (with Certificate Authentication). This is the certificate presented by client to the Wi-Fi endpoint. The authentication server sitting behind the Wi-Fi endpoint must accept this certificate to successfully establish a Wi-Fi connection.
-        Args:
-            value: Value to set for the identity_certificate_for_client_authentication property.
-        """
-        self._identity_certificate_for_client_authentication = value
-    
-    @property
-    def inner_authentication_protocol_for_eap_ttls(self,) -> Optional[non_eap_authentication_method_for_eap_ttls_type.NonEapAuthenticationMethodForEapTtlsType]:
-        """
-        Gets the innerAuthenticationProtocolForEapTtls property value. Non-EAP Method for Authentication (Inner Identity) when EAP Type is EAP-TTLS and Authenticationmethod is Username and Password. Possible values are: unencryptedPassword, challengeHandshakeAuthenticationProtocol, microsoftChap, microsoftChapVersionTwo.
-        Returns: Optional[non_eap_authentication_method_for_eap_ttls_type.NonEapAuthenticationMethodForEapTtlsType]
-        """
-        return self._inner_authentication_protocol_for_eap_ttls
-    
-    @inner_authentication_protocol_for_eap_ttls.setter
-    def inner_authentication_protocol_for_eap_ttls(self,value: Optional[non_eap_authentication_method_for_eap_ttls_type.NonEapAuthenticationMethodForEapTtlsType] = None) -> None:
-        """
-        Sets the innerAuthenticationProtocolForEapTtls property value. Non-EAP Method for Authentication (Inner Identity) when EAP Type is EAP-TTLS and Authenticationmethod is Username and Password. Possible values are: unencryptedPassword, challengeHandshakeAuthenticationProtocol, microsoftChap, microsoftChapVersionTwo.
-        Args:
-            value: Value to set for the inner_authentication_protocol_for_eap_ttls property.
-        """
-        self._inner_authentication_protocol_for_eap_ttls = value
-    
-    @property
-    def inner_authentication_protocol_for_peap(self,) -> Optional[non_eap_authentication_method_for_peap.NonEapAuthenticationMethodForPeap]:
-        """
-        Gets the innerAuthenticationProtocolForPeap property value. Non-EAP Method for Authentication (Inner Identity) when EAP Type is PEAP and Authenticationmethod is Username and Password. This collection can contain a maximum of 500 elements. Possible values are: none, microsoftChapVersionTwo.
-        Returns: Optional[non_eap_authentication_method_for_peap.NonEapAuthenticationMethodForPeap]
-        """
-        return self._inner_authentication_protocol_for_peap
-    
-    @inner_authentication_protocol_for_peap.setter
-    def inner_authentication_protocol_for_peap(self,value: Optional[non_eap_authentication_method_for_peap.NonEapAuthenticationMethodForPeap] = None) -> None:
-        """
-        Sets the innerAuthenticationProtocolForPeap property value. Non-EAP Method for Authentication (Inner Identity) when EAP Type is PEAP and Authenticationmethod is Username and Password. This collection can contain a maximum of 500 elements. Possible values are: none, microsoftChapVersionTwo.
-        Args:
-            value: Value to set for the inner_authentication_protocol_for_peap property.
-        """
-        self._inner_authentication_protocol_for_peap = value
-    
-    @property
-    def outer_identity_privacy_temporary_value(self,) -> Optional[str]:
-        """
-        Gets the outerIdentityPrivacyTemporaryValue property value. Enable identity privacy (Outer Identity) when EAP Type is configured to EAP-TTLS or PEAP. The String provided here is used to mask the username of individual users when they attempt to connect to Wi-Fi network.
-        Returns: Optional[str]
-        """
-        return self._outer_identity_privacy_temporary_value
-    
-    @outer_identity_privacy_temporary_value.setter
-    def outer_identity_privacy_temporary_value(self,value: Optional[str] = None) -> None:
-        """
-        Sets the outerIdentityPrivacyTemporaryValue property value. Enable identity privacy (Outer Identity) when EAP Type is configured to EAP-TTLS or PEAP. The String provided here is used to mask the username of individual users when they attempt to connect to Wi-Fi network.
-        Args:
-            value: Value to set for the outer_identity_privacy_temporary_value property.
-        """
-        self._outer_identity_privacy_temporary_value = value
-    
-    @property
-    def root_certificate_for_server_validation(self,) -> Optional[aosp_device_owner_trusted_root_certificate.AospDeviceOwnerTrustedRootCertificate]:
-        """
-        Gets the rootCertificateForServerValidation property value. Trusted Root Certificate for Server Validation when EAP Type is configured to EAP-TLS, EAP-TTLS or PEAP. This is the certificate presented by the Wi-Fi endpoint when the device attempts to connect to Wi-Fi endpoint. The device (or user) must accept this certificate to continue the connection attempt.
-        Returns: Optional[aosp_device_owner_trusted_root_certificate.AospDeviceOwnerTrustedRootCertificate]
-        """
-        return self._root_certificate_for_server_validation
-    
-    @root_certificate_for_server_validation.setter
-    def root_certificate_for_server_validation(self,value: Optional[aosp_device_owner_trusted_root_certificate.AospDeviceOwnerTrustedRootCertificate] = None) -> None:
-        """
-        Sets the rootCertificateForServerValidation property value. Trusted Root Certificate for Server Validation when EAP Type is configured to EAP-TLS, EAP-TTLS or PEAP. This is the certificate presented by the Wi-Fi endpoint when the device attempts to connect to Wi-Fi endpoint. The device (or user) must accept this certificate to continue the connection attempt.
-        Args:
-            value: Value to set for the root_certificate_for_server_validation property.
-        """
-        self._root_certificate_for_server_validation = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -200,22 +78,5 @@ class AospDeviceOwnerEnterpriseWiFiConfiguration(aosp_device_owner_wi_fi_configu
         writer.write_str_value("outerIdentityPrivacyTemporaryValue", self.outer_identity_privacy_temporary_value)
         writer.write_object_value("rootCertificateForServerValidation", self.root_certificate_for_server_validation)
         writer.write_collection_of_primitive_values("trustedServerCertificateNames", self.trusted_server_certificate_names)
-    
-    @property
-    def trusted_server_certificate_names(self,) -> Optional[List[str]]:
-        """
-        Gets the trustedServerCertificateNames property value. Trusted server certificate names when EAP Type is configured to EAP-TLS/TTLS/FAST or PEAP. This is the common name used in the certificates issued by your trusted certificate authority (CA). If you provide this information, you can bypass the dynamic trust dialog that is displayed on end users' devices when they connect to this Wi-Fi network.
-        Returns: Optional[List[str]]
-        """
-        return self._trusted_server_certificate_names
-    
-    @trusted_server_certificate_names.setter
-    def trusted_server_certificate_names(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the trustedServerCertificateNames property value. Trusted server certificate names when EAP Type is configured to EAP-TLS/TTLS/FAST or PEAP. This is the common name used in the certificates issued by your trusted certificate authority (CA). If you provide this information, you can bypass the dynamic trust dialog that is displayed on end users' devices when they connect to this Wi-Fi network.
-        Args:
-            value: Value to set for the trusted_server_certificate_names property.
-        """
-        self._trusted_server_certificate_names = value
     
 

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CloudPcReportName(Enum):
+class CloudPcReportName(str, Enum):
     RemoteConnectionHistoricalReports = "remoteConnectionHistoricalReports",
     DailyAggregatedRemoteConnectionReports = "dailyAggregatedRemoteConnectionReports",
     TotalAggregatedRemoteConnectionReports = "totalAggregatedRemoteConnectionReports",

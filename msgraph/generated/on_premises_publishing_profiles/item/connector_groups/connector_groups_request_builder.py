@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -76,7 +76,7 @@ class ConnectorGroupsRequestBuilder():
     
     async def post(self,body: Optional[connector_group.ConnectorGroup] = None, request_configuration: Optional[ConnectorGroupsRequestBuilderPostRequestConfiguration] = None) -> Optional[connector_group.ConnectorGroup]:
         """
-        Create a new connectorGroup.
+        Create a connectorGroup object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +119,7 @@ class ConnectorGroupsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[connector_group.ConnectorGroup] = None, request_configuration: Optional[ConnectorGroupsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new connectorGroup.
+        Create a connectorGroup object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

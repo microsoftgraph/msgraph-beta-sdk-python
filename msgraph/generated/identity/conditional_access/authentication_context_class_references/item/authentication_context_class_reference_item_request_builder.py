@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -37,7 +37,7 @@ class AuthenticationContextClassReferenceItemRequestBuilder():
     
     async def delete(self,request_configuration: Optional[AuthenticationContextClassReferenceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete navigation property authenticationContextClassReferences for identity
+        Delete an authenticationContextClassReference object that's not published or used by a conditional access policy.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         """
@@ -103,7 +103,7 @@ class AuthenticationContextClassReferenceItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[AuthenticationContextClassReferenceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property authenticationContextClassReferences for identity
+        Delete an authenticationContextClassReference object that's not published or used by a conditional access policy.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,27 +8,23 @@ if TYPE_CHECKING:
 
 from . import entity
 
+@dataclass
 class MobileAppRelationship(entity.Entity):
     """
     Describes a relationship between two mobile apps.
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new mobileAppRelationship and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The target mobile app's display name.
-        self._target_display_name: Optional[str] = None
-        # The target mobile app's display version.
-        self._target_display_version: Optional[str] = None
-        # The target mobile app's app id.
-        self._target_id: Optional[str] = None
-        # The target mobile app's publisher.
-        self._target_publisher: Optional[str] = None
-        # Indicates whether the target of a relationship is the parent or the child in the relationship.
-        self._target_type: Optional[mobile_app_relationship_type.MobileAppRelationshipType] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The target mobile app's display name.
+    target_display_name: Optional[str] = None
+    # The target mobile app's display version.
+    target_display_version: Optional[str] = None
+    # The target mobile app's app id.
+    target_id: Optional[str] = None
+    # The target mobile app's publisher.
+    target_publisher: Optional[str] = None
+    # Indicates whether the target of a relationship is the parent or the child in the relationship.
+    target_type: Optional[mobile_app_relationship_type.MobileAppRelationshipType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MobileAppRelationship:
@@ -84,90 +81,5 @@ class MobileAppRelationship(entity.Entity):
         writer.write_str_value("targetId", self.target_id)
         writer.write_str_value("targetPublisher", self.target_publisher)
         writer.write_enum_value("targetType", self.target_type)
-    
-    @property
-    def target_display_name(self,) -> Optional[str]:
-        """
-        Gets the targetDisplayName property value. The target mobile app's display name.
-        Returns: Optional[str]
-        """
-        return self._target_display_name
-    
-    @target_display_name.setter
-    def target_display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the targetDisplayName property value. The target mobile app's display name.
-        Args:
-            value: Value to set for the target_display_name property.
-        """
-        self._target_display_name = value
-    
-    @property
-    def target_display_version(self,) -> Optional[str]:
-        """
-        Gets the targetDisplayVersion property value. The target mobile app's display version.
-        Returns: Optional[str]
-        """
-        return self._target_display_version
-    
-    @target_display_version.setter
-    def target_display_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the targetDisplayVersion property value. The target mobile app's display version.
-        Args:
-            value: Value to set for the target_display_version property.
-        """
-        self._target_display_version = value
-    
-    @property
-    def target_id(self,) -> Optional[str]:
-        """
-        Gets the targetId property value. The target mobile app's app id.
-        Returns: Optional[str]
-        """
-        return self._target_id
-    
-    @target_id.setter
-    def target_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the targetId property value. The target mobile app's app id.
-        Args:
-            value: Value to set for the target_id property.
-        """
-        self._target_id = value
-    
-    @property
-    def target_publisher(self,) -> Optional[str]:
-        """
-        Gets the targetPublisher property value. The target mobile app's publisher.
-        Returns: Optional[str]
-        """
-        return self._target_publisher
-    
-    @target_publisher.setter
-    def target_publisher(self,value: Optional[str] = None) -> None:
-        """
-        Sets the targetPublisher property value. The target mobile app's publisher.
-        Args:
-            value: Value to set for the target_publisher property.
-        """
-        self._target_publisher = value
-    
-    @property
-    def target_type(self,) -> Optional[mobile_app_relationship_type.MobileAppRelationshipType]:
-        """
-        Gets the targetType property value. Indicates whether the target of a relationship is the parent or the child in the relationship.
-        Returns: Optional[mobile_app_relationship_type.MobileAppRelationshipType]
-        """
-        return self._target_type
-    
-    @target_type.setter
-    def target_type(self,value: Optional[mobile_app_relationship_type.MobileAppRelationshipType] = None) -> None:
-        """
-        Sets the targetType property value. Indicates whether the target of a relationship is the parent or the child in the relationship.
-        Args:
-            value: Value to set for the target_type property.
-        """
-        self._target_type = value
     
 

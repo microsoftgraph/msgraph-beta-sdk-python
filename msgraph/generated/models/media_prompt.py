@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,17 +8,13 @@ if TYPE_CHECKING:
 
 from . import prompt
 
+@dataclass
 class MediaPrompt(prompt.Prompt):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new MediaPrompt and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.mediaPrompt"
-        # The loop property
-        self._loop: Optional[int] = None
-        # The mediaInfo property
-        self._media_info: Optional[media_info.MediaInfo] = None
+    odata_type = "#microsoft.graph.mediaPrompt"
+    # The loop property
+    loop: Optional[int] = None
+    # The mediaInfo property
+    media_info: Optional[media_info.MediaInfo] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MediaPrompt:
@@ -45,40 +42,6 @@ class MediaPrompt(prompt.Prompt):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def loop(self,) -> Optional[int]:
-        """
-        Gets the loop property value. The loop property
-        Returns: Optional[int]
-        """
-        return self._loop
-    
-    @loop.setter
-    def loop(self,value: Optional[int] = None) -> None:
-        """
-        Sets the loop property value. The loop property
-        Args:
-            value: Value to set for the loop property.
-        """
-        self._loop = value
-    
-    @property
-    def media_info(self,) -> Optional[media_info.MediaInfo]:
-        """
-        Gets the mediaInfo property value. The mediaInfo property
-        Returns: Optional[media_info.MediaInfo]
-        """
-        return self._media_info
-    
-    @media_info.setter
-    def media_info(self,value: Optional[media_info.MediaInfo] = None) -> None:
-        """
-        Sets the mediaInfo property value. The mediaInfo property
-        Args:
-            value: Value to set for the media_info property.
-        """
-        self._media_info = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

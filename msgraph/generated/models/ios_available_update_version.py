@@ -1,46 +1,27 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+@dataclass
 class IosAvailableUpdateVersion(AdditionalDataHolder, Parsable):
     """
     iOS available update version details
     """
-    def __init__(self,) -> None:
-        """
-        Instantiates a new iosAvailableUpdateVersion and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: Dict[str, Any] = field(default_factory=dict)
 
-        # The expiration date of the update.
-        self._expiration_date_time: Optional[datetime] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The posting date of the update.
-        self._posting_date_time: Optional[datetime] = None
-        # The version of the update.
-        self._product_version: Optional[str] = None
-        # List of supported devices for the update.
-        self._supported_devices: Optional[List[str]] = None
-    
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
+    # The expiration date of the update.
+    expiration_date_time: Optional[datetime] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The posting date of the update.
+    posting_date_time: Optional[datetime] = None
+    # The version of the update.
+    product_version: Optional[str] = None
+    # List of supported devices for the update.
+    supported_devices: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosAvailableUpdateVersion:
@@ -53,23 +34,6 @@ class IosAvailableUpdateVersion(AdditionalDataHolder, Parsable):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return IosAvailableUpdateVersion()
-    
-    @property
-    def expiration_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the expirationDateTime property value. The expiration date of the update.
-        Returns: Optional[datetime]
-        """
-        return self._expiration_date_time
-    
-    @expiration_date_time.setter
-    def expiration_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the expirationDateTime property value. The expiration date of the update.
-        Args:
-            value: Value to set for the expiration_date_time property.
-        """
-        self._expiration_date_time = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -85,57 +49,6 @@ class IosAvailableUpdateVersion(AdditionalDataHolder, Parsable):
         }
         return fields
     
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the odata_type property.
-        """
-        self._odata_type = value
-    
-    @property
-    def posting_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the postingDateTime property value. The posting date of the update.
-        Returns: Optional[datetime]
-        """
-        return self._posting_date_time
-    
-    @posting_date_time.setter
-    def posting_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the postingDateTime property value. The posting date of the update.
-        Args:
-            value: Value to set for the posting_date_time property.
-        """
-        self._posting_date_time = value
-    
-    @property
-    def product_version(self,) -> Optional[str]:
-        """
-        Gets the productVersion property value. The version of the update.
-        Returns: Optional[str]
-        """
-        return self._product_version
-    
-    @product_version.setter
-    def product_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the productVersion property value. The version of the update.
-        Args:
-            value: Value to set for the product_version property.
-        """
-        self._product_version = value
-    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -150,22 +63,5 @@ class IosAvailableUpdateVersion(AdditionalDataHolder, Parsable):
         writer.write_str_value("productVersion", self.product_version)
         writer.write_collection_of_primitive_values("supportedDevices", self.supported_devices)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def supported_devices(self,) -> Optional[List[str]]:
-        """
-        Gets the supportedDevices property value. List of supported devices for the update.
-        Returns: Optional[List[str]]
-        """
-        return self._supported_devices
-    
-    @supported_devices.setter
-    def supported_devices(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the supportedDevices property value. List of supported devices for the update.
-        Args:
-            value: Value to set for the supported_devices property.
-        """
-        self._supported_devices = value
     
 

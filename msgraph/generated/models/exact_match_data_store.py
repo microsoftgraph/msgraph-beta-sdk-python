@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,16 +8,12 @@ if TYPE_CHECKING:
 
 from . import exact_match_data_store_base
 
+@dataclass
 class ExactMatchDataStore(exact_match_data_store_base.ExactMatchDataStoreBase):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ExactMatchDataStore and sets the default values.
-        """
-        super().__init__()
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The sessions property
-        self._sessions: Optional[List[exact_match_session.ExactMatchSession]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The sessions property
+    sessions: Optional[List[exact_match_session.ExactMatchSession]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ExactMatchDataStore:
@@ -54,22 +51,5 @@ class ExactMatchDataStore(exact_match_data_store_base.ExactMatchDataStoreBase):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_collection_of_object_values("sessions", self.sessions)
-    
-    @property
-    def sessions(self,) -> Optional[List[exact_match_session.ExactMatchSession]]:
-        """
-        Gets the sessions property value. The sessions property
-        Returns: Optional[List[exact_match_session.ExactMatchSession]]
-        """
-        return self._sessions
-    
-    @sessions.setter
-    def sessions(self,value: Optional[List[exact_match_session.ExactMatchSession]] = None) -> None:
-        """
-        Sets the sessions property value. The sessions property
-        Args:
-            value: Value to set for the sessions property.
-        """
-        self._sessions = value
     
 

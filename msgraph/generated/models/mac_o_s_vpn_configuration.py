@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
@@ -7,15 +8,11 @@ if TYPE_CHECKING:
 
 from . import apple_vpn_configuration
 
+@dataclass
 class MacOSVpnConfiguration(apple_vpn_configuration.AppleVpnConfiguration):
-    def __init__(self,) -> None:
-        """
-        Instantiates a new MacOSVpnConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.macOSVpnConfiguration"
-        # Identity certificate for client authentication when authentication method is certificate.
-        self._identity_certificate: Optional[mac_o_s_certificate_profile_base.MacOSCertificateProfileBase] = None
+    odata_type = "#microsoft.graph.macOSVpnConfiguration"
+    # Identity certificate for client authentication when authentication method is certificate.
+    identity_certificate: Optional[mac_o_s_certificate_profile_base.MacOSCertificateProfileBase] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSVpnConfiguration:
@@ -42,23 +39,6 @@ class MacOSVpnConfiguration(apple_vpn_configuration.AppleVpnConfiguration):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def identity_certificate(self,) -> Optional[mac_o_s_certificate_profile_base.MacOSCertificateProfileBase]:
-        """
-        Gets the identityCertificate property value. Identity certificate for client authentication when authentication method is certificate.
-        Returns: Optional[mac_o_s_certificate_profile_base.MacOSCertificateProfileBase]
-        """
-        return self._identity_certificate
-    
-    @identity_certificate.setter
-    def identity_certificate(self,value: Optional[mac_o_s_certificate_profile_base.MacOSCertificateProfileBase] = None) -> None:
-        """
-        Sets the identityCertificate property value. Identity certificate for client authentication when authentication method is certificate.
-        Args:
-            value: Value to set for the identity_certificate property.
-        """
-        self._identity_certificate = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
